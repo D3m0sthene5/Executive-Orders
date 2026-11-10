@@ -1,5 +1,8 @@
 test_archived_web_capture_is_refetched_and_rehashed (test_checker.CheckerTests.test_archived_web_capture_is_refetched_and_rehashed) ... ok
 test_bad_claim_is_caught (test_checker.CheckerTests.test_bad_claim_is_caught) ... ok
+test_checked_replica_changed_held_bytes_fail (test_checker.CheckerTests.test_checked_replica_changed_held_bytes_fail) ... ok
+test_checked_replica_of_another_order_is_refused (test_checker.CheckerTests.test_checked_replica_of_another_order_is_refused) ... ok
+test_checked_replica_passes_existing_checker_without_original_upgrade (test_checker.CheckerTests.test_checked_replica_passes_existing_checker_without_original_upgrade) ... ok
 test_csv_size_guard (test_checker.CheckerTests.test_csv_size_guard) ... ok
 test_dates (test_checker.CheckerTests.test_dates) ... ok
 test_fetch_with_class_based_ladder (test_checker.CheckerTests.test_fetch_with_class_based_ladder) ... ok
@@ -79,7 +82,7 @@ test_a_stat_of_a_file_opened_elsewhere_becomes_a_content_dependency (test_palsgr
 test_fingerprints_of_files_stats_and_tables (test_palsgraf.DecideTests.test_fingerprints_of_files_stats_and_tables) ... ok
 test_rules (test_palsgraf.DecideTests.test_rules) ... ok
 test_changed_ending_source_alone (test_palsgraf.PalsgrafTests.test_changed_ending_source_alone) ...   fetch https://example.gov/x.pdf: fetched_and_matches_claim
-Loading inputs from /tmp/claim-checker-test-leryytb8 ...
+Loading inputs from /tmp/claim-checker-test-dax5e8ri ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -100,8 +103,8 @@ Checked 2 claim(s) from 2 file(s) (limited to 3 of 4 lines).
   Quotations: {'exact': 3, 'normalised': 1, 'other_copy_exact': 1, 'other_copy_normalised': 1}
   Fetch attempts: {'fetched_different_bytes': 1}
   Palsgraf: full (fetch_mode): rechecked 2, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/claim-checker-test-leryytb8/out (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/claim-checker-test-evc322bl ...
+  Outputs in /tmp/claim-checker-test-dax5e8ri/out (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/claim-checker-test-fjpb63no ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -120,9 +123,9 @@ Checked 0 claim(s) from 0 file(s).
   Source identity: none
   Quotations: none
   Palsgraf: full (code_or_rules_changed): rechecked 0, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.1, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
-  Outputs in /tmp/claim-checker-test-evc322bl/out0 (0.1s). These are mechanical checks, not legal findings.
+  Outputs in /tmp/claim-checker-test-fjpb63no/out0 (0.1s). These are mechanical checks, not legal findings.
   note: JOB_LIMIT='x' is not a whole number; checking every claim
-Loading inputs from /tmp/claim-checker-test-_2gkntzh ...
+Loading inputs from /tmp/claim-checker-test-sr83w6c9 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -143,8 +146,8 @@ Checked 3 claim(s) from 2 file(s).
   Quotations: {'exact': 4, 'normalised': 2}
   Checker errors: 1 claim(s) could not be fully checked; see REPORT.md
   Palsgraf: full (code_or_rules_changed): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.1, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
-  Outputs in /tmp/claim-checker-test-_2gkntzh/out-bad (0.1s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-lfy30c5j ...
+  Outputs in /tmp/claim-checker-test-sr83w6c9/out-bad (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-opn4yhdc ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -161,9 +164,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 16}
   Source identity: {'recorded_for_other_order': 3, 'recorded_for_this_order': 4}
   Quotations: {'exact': 7, 'normalised': 3}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-lfy30c5j/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-lfy30c5j ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-opn4yhdc/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-opn4yhdc ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -183,8 +186,8 @@ test_changed_pdf_bytes_select_the_pdf_claim (test_palsgraf.PalsgrafTests.test_ch
   Source identity: {'recorded_for_other_order': 3, 'recorded_for_this_order': 4}
   Quotations: {'exact': 7, 'normalised': 3}
   Palsgraf: selective (inputs_compared): rechecked 2, reused 1; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-lfy30c5j/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-lfy30c5j ...
+  Outputs in /tmp/palsgraf-test-opn4yhdc/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-opn4yhdc ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -202,8 +205,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 3, 'recorded_for_this_order': 4}
   Quotations: {'exact': 7, 'normalised': 3}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-lfy30c5j/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-wilmuo7i ...
+  Outputs in /tmp/palsgraf-test-opn4yhdc/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-oo4ce6xn ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -220,9 +223,9 @@ Checked 4 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 28}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 12, 'normalised': 5}
-  Palsgraf: full (no_previous_trace): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-wilmuo7i/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-wilmuo7i ...
+  Palsgraf: full (no_previous_trace): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-oo4ce6xn/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-oo4ce6xn ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -239,9 +242,9 @@ Checked 4 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 28}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 12, 'normalised': 5}
-  Palsgraf: selective (inputs_compared): rechecked 1, reused 3; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-wilmuo7i/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-wilmuo7i ...
+  Palsgraf: selective (inputs_compared): rechecked 1, reused 3; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-oo4ce6xn/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-oo4ce6xn ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -259,8 +262,8 @@ Checked 4 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 12, 'normalised': 5}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-wilmuo7i/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-wcgx776g ...
+  Outputs in /tmp/palsgraf-test-oo4ce6xn/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-9evvwuip ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -278,9 +281,9 @@ Checked 3 claim(s) from 1 file(s).
 test_changed_source_bytes_select_only_the_claims_citing_them (test_palsgraf.PalsgrafTests.test_changed_source_bytes_select_only_the_claims_citing_them) ... 
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-wcgx776g/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-wcgx776g ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-9evvwuip/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-9evvwuip ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -298,8 +301,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: selective (inputs_compared): rechecked 1, reused 2; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-wcgx776g/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-wcgx776g ...
+  Outputs in /tmp/palsgraf-test-9evvwuip/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-9evvwuip ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -317,8 +320,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-wcgx776g/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-2e_z7soc ...
+  Outputs in /tmp/palsgraf-test-9evvwuip/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-o5c8nt1k ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -335,9 +338,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-2e_z7soc/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-2e_z7soc ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-o5c8nt1k/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-o5c8nt1k ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -355,8 +358,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: selective (inputs_compared): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-2e_z7soc/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-2e_z7soc ...
+  Outputs in /tmp/palsgraf-test-o5c8nt1k/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-o5c8nt1k ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -377,8 +380,8 @@ test_code_loaded_from_bytecode_is_still_a_global_dependency (test_palsgraf.Palsg
 test_code_or_rule_change_forces_a_full_run (test_palsgraf.PalsgrafTests.test_code_or_rule_change_forces_a_full_run) ... 
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-2e_z7soc/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-n7rrl67_ ...
+  Outputs in /tmp/palsgraf-test-o5c8nt1k/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-zdxh3xbj ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -395,9 +398,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-n7rrl67_/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-n7rrl67_ ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-zdxh3xbj/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-zdxh3xbj ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -415,8 +418,27 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (code_or_rules_changed): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-n7rrl67_/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-thymt24g ...
+  Outputs in /tmp/palsgraf-test-zdxh3xbj/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-e2frbekz ...
+  universe: 5 orders; provisional statuses: 2
+  held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
+  jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
+  missing research/stage20/output/STATUTE_FETCH_INDEX.csv
+  missing research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
+  missing research/stage18/SOURCE_MANIFEST.json
+  Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
+  no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
+  pypdf: 6.20.1
+  Palsgraf: full (no_previous_trace); recheck 3, reuse 0 of 3 claim lines; 0 MB hashed to compare inputs
+
+Checked 3 claim(s) from 1 file(s).
+  All checks passed: 1; mechanical fail: 2; gate passed: 3
+  Source references: {'held_bytes_verified': 21}
+  Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
+  Quotations: {'exact': 9, 'normalised': 4}
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-e2frbekz/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-e2frbekz ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -434,8 +456,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-thymt24g/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-thymt24g ...
+  Outputs in /tmp/palsgraf-test-e2frbekz/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-jjjiyze6 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -452,30 +474,11 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-thymt24g/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-oqws7r7a ...
-  universe: 5 orders; provisional statuses: 2
-  held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
-  jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
-  missing research/stage20/output/STATUTE_FETCH_INDEX.csv
-  missing research/stage20/output/OPUS_ORIGINAL_MEDIA_MEMBER_MAP.csv
-  missing research/stage18/SOURCE_MANIFEST.json
-  Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)
-  no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip
-  pypdf: 6.20.1
-  Palsgraf: full (no_previous_trace); recheck 3, reuse 0 of 3 claim lines; 0 MB hashed to compare inputs
-
-Checked 3 claim(s) from 1 file(s).
-  All checks passed: 1; mechanical fail: 2; gate passed: 3
-  Source references: {'held_bytes_verified': 21}
-  Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
-  Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-oqws7r7a/out1 (0.0s). These are mechanical checks, not legal findings.ok
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-jjjiyze6/out1 (0.1s). These are mechanical checks, not legal findings.ok
 test_evicted_text_cache_selects_the_pdf_claim (test_palsgraf.PalsgrafTests.test_evicted_text_cache_selects_the_pdf_claim) ... ok
 test_future_activity_date_is_rechecked_every_run (test_palsgraf.PalsgrafTests.test_future_activity_date_is_rechecked_every_run) ... 
-Loading inputs from /tmp/palsgraf-test-oqws7r7a ...
+Loading inputs from /tmp/palsgraf-test-jjjiyze6 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -492,9 +495,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (code_or_rules_changed): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-oqws7r7a/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-20m4lce5 ...
+  Palsgraf: full (code_or_rules_changed): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-jjjiyze6/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-cjwzobrl ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -511,9 +514,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-20m4lce5/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-20m4lce5 ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-cjwzobrl/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-cjwzobrl ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -531,8 +534,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: selective (inputs_compared): rechecked 1, reused 2; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-20m4lce5/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-20m4lce5 ...
+  Outputs in /tmp/palsgraf-test-cjwzobrl/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-cjwzobrl ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -550,8 +553,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-20m4lce5/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-81vfu_lj ...
+  Outputs in /tmp/palsgraf-test-cjwzobrl/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-7tufins7 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -568,9 +571,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 2, 'recorded_for_this_order': 7}
   Quotations: {'exact': 8, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-81vfu_lj/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-81vfu_lj ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-7tufins7/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-7tufins7 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)ok
 test_lachmann_confirmation_of_another_order_selects_nothing (test_palsgraf.PalsgrafTests.test_lachmann_confirmation_of_another_order_selects_nothing) ... ok
@@ -590,8 +593,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 2, 'recorded_for_this_order': 7}
   Quotations: {'exact': 8, 'normalised': 4}
   Palsgraf: selective (inputs_compared): rechecked 1, reused 2; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-81vfu_lj/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-pw0cdrx6 ...
+  Outputs in /tmp/palsgraf-test-7tufins7/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-uvnszjbd ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -608,9 +611,9 @@ Checked 4 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 28}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 12, 'normalised': 5}
-  Palsgraf: full (no_previous_trace): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-pw0cdrx6/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-pw0cdrx6 ...
+  Palsgraf: full (no_previous_trace): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-uvnszjbd/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-uvnszjbd ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -628,8 +631,8 @@ Checked 4 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 12, 'normalised': 5}
   Palsgraf: selective (inputs_compared): rechecked 0, reused 4; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-pw0cdrx6/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-pw0cdrx6 ...
+  Outputs in /tmp/palsgraf-test-uvnszjbd/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-uvnszjbd ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -647,8 +650,8 @@ Checked 4 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 12, 'normalised': 5}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-pw0cdrx6/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-m40bzx9f ...
+  Outputs in /tmp/palsgraf-test-uvnszjbd/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ygszp929 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -665,9 +668,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-m40bzx9f/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-m40bzx9f ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-ygszp929/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ygszp929 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path valuesok
@@ -686,9 +689,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: selective (inputs_compared): rechecked 2, reused 1; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-m40bzx9f/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-m40bzx9f ...
+  Palsgraf: selective (inputs_compared): rechecked 2, reused 1; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-ygszp929/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ygszp929 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -706,8 +709,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-m40bzx9f/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-xnlejm_6 ...
+  Outputs in /tmp/palsgraf-test-ygszp929/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-tmjuj63x ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -724,9 +727,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-xnlejm_6/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-xnlejm_6 ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-tmjuj63x/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-tmjuj63x ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -743,9 +746,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: selective (inputs_compared): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-xnlejm_6/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-xnlejm_6 ...
+  Palsgraf: selective (inputs_compared): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-tmjuj63x/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-tmjuj63x ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -763,8 +766,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-xnlejm_6/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-0_sfpqea ...
+  Outputs in /tmp/palsgraf-test-tmjuj63x/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-0ebvopvu ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -782,9 +785,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-0_sfpqea/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-0_sfpqea ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-0ebvopvu/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-0ebvopvu ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -802,8 +805,8 @@ Checked 4 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 11, 'normalised': 5}
   Palsgraf: selective (inputs_compared): rechecked 1, reused 3; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-0_sfpqea/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-0_sfpqea ...
+  Outputs in /tmp/palsgraf-test-0ebvopvu/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-0ebvopvu ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -821,8 +824,8 @@ Checked 4 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 11, 'normalised': 5}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-0_sfpqea/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-l598m5hc ...
+  Outputs in /tmp/palsgraf-test-0ebvopvu/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-yjqguk4q ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -839,9 +842,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-l598m5hc/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-l598m5hc ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-yjqguk4q/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-yjqguk4q ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -859,8 +862,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: selective (inputs_compared): rechecked 0, reused 3; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-l598m5hc/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-l598m5hc ...
+  Outputs in /tmp/palsgraf-test-yjqguk4q/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-yjqguk4q ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -880,8 +883,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: selective (inputs_compared): rechecked 0, reused 3; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-l598m5hc/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-no4j6ng6 ...
+  Outputs in /tmp/palsgraf-test-yjqguk4q/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ziapnp9b ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -898,9 +901,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-no4j6ng6/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-no4j6ng6 ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-ziapnp9b/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ziapnp9b ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -917,9 +920,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (code_or_rules_changed): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-no4j6ng6/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-094hdv_e ...
+  Palsgraf: full (code_or_rules_changed): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-ziapnp9b/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-kvk3rqyx ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -936,9 +939,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-094hdv_e/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-094hdv_e ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-kvk3rqyx/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-kvk3rqyx ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -955,9 +958,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: selective (inputs_compared): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-094hdv_e/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-094hdv_e ...
+  Palsgraf: selective (inputs_compared): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-kvk3rqyx/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-kvk3rqyx ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -977,8 +980,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-094hdv_e/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-673kvulv ...
+  Outputs in /tmp/palsgraf-test-kvk3rqyx/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ujanrijm ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -995,9 +998,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-673kvulv/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-673kvulv ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-ujanrijm/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ujanrijm ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1015,8 +1018,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: selective (inputs_compared): rechecked 2, reused 1; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-673kvulv/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-673kvulv ...
+  Outputs in /tmp/palsgraf-test-ujanrijm/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ujanrijm ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1033,9 +1036,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 13, 'held_record_but_local_bytes_differ': 8}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (forced_full): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-673kvulv/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-7i0mxh2x ...
+  Palsgraf: full (forced_full): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-ujanrijm/out3 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-5ry6p3w3 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1052,9 +1055,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-7i0mxh2x/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-7i0mxh2x ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-5ry6p3w3/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-5ry6p3w3 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1073,9 +1076,9 @@ test_signing_date_change_selects_that_order_only (test_palsgraf.PalsgrafTests.te
 test_universe_change_selects_claims_naming_the_order (test_palsgraf.PalsgrafTests.test_universe_change_selects_claims_naming_the_order) ... 
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (code_or_rules_changed): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-7i0mxh2x/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-p5jmtpf4 ...
+  Palsgraf: full (code_or_rules_changed): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-5ry6p3w3/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-dxfvfact ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1092,9 +1095,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-p5jmtpf4/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-p5jmtpf4 ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-dxfvfact/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-dxfvfact ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1112,8 +1115,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: selective (inputs_compared): rechecked 1, reused 2; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-p5jmtpf4/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-p5jmtpf4 ...
+  Outputs in /tmp/palsgraf-test-dxfvfact/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-dxfvfact ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1131,8 +1134,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-p5jmtpf4/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-tt42vjt8 ...
+  Outputs in /tmp/palsgraf-test-dxfvfact/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-fwsjukh5 ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1149,9 +1152,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-tt42vjt8/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-tt42vjt8 ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-fwsjukh5/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-fwsjukh5 ...
   universe: 4 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1168,11 +1171,11 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: selective (inputs_compared): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}ok
+  Palsgraf: selective (inputs_compared): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}ok
 test_unrelated_producer_record_selects_nothing (test_palsgraf.PalsgrafTests.test_unrelated_producer_record_selects_nothing) ... ok
 test_untraced_modes_run_in_full_and_write_no_trace (test_palsgraf.PalsgrafTests.test_untraced_modes_run_in_full_and_write_no_trace) ... 
-  Outputs in /tmp/palsgraf-test-tt42vjt8/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-tt42vjt8 ...
+  Outputs in /tmp/palsgraf-test-fwsjukh5/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-fwsjukh5 ...
   universe: 4 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1190,8 +1193,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-tt42vjt8/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-b3cyz3ko ...
+  Outputs in /tmp/palsgraf-test-fwsjukh5/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-autklhwh ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1208,9 +1211,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-b3cyz3ko/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-b3cyz3ko ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-autklhwh/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-autklhwh ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 10 (jobs/other-job/output/SOURCES.jsonl 5, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 5 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1228,8 +1231,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: selective (inputs_compared): rechecked 0, reused 3; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-b3cyz3ko/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-b3cyz3ko ...
+  Outputs in /tmp/palsgraf-test-autklhwh/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-autklhwh ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 10 (jobs/other-job/output/SOURCES.jsonl 5, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 5 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1247,8 +1250,8 @@ Checked 3 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-b3cyz3ko/out3 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-qxlr4k1g ...
+  Outputs in /tmp/palsgraf-test-autklhwh/out3 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-dsn_yd4u ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1265,9 +1268,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-qxlr4k1g/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-qxlr4k1g ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-dsn_yd4u/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-dsn_yd4u ...
 ok
 test_weekly_full_run_reconciles (test_palsgraf.PalsgrafTests.test_weekly_full_run_reconciles) ... ok
 test_working_text_fragment_change_selects_the_transcription_claim (test_palsgraf.PalsgrafTests.test_working_text_fragment_change_selects_the_transcription_claim) ...   universe: 5 orders; provisional statuses: 2
@@ -1287,8 +1290,8 @@ Checked 2 claim(s) from 1 file(s) (limited to 2 of 3 lines).
   Source identity: {'recorded_for_other_order': 2, 'recorded_for_this_order': 4}
   Quotations: {'exact': 6, 'normalised': 3}
   Palsgraf: full (job_limit): rechecked 2, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-qxlr4k1g/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-1ql4_32c ...
+  Outputs in /tmp/palsgraf-test-dsn_yd4u/out2 (0.0s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ilmqv2pl ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1305,9 +1308,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-1ql4_32c/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-1ql4_32c ...
+  Palsgraf: full (no_previous_trace): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-ilmqv2pl/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-ilmqv2pl ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1324,9 +1327,9 @@ Checked 3 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 21}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 4}
   Quotations: {'exact': 9, 'normalised': 4}
-  Palsgraf: full (periodic_full_reconcile): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-1ql4_32c/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-nhd9uyqe ...
+  Palsgraf: full (periodic_full_reconcile): rechecked 3, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-ilmqv2pl/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-2ty0a6oh ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1343,9 +1346,9 @@ Checked 4 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 28}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 12, 'normalised': 5}
-  Palsgraf: full (no_previous_trace): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-nhd9uyqe/out1 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-nhd9uyqe ...
+  Palsgraf: full (no_previous_trace): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-2ty0a6oh/out1 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-2ty0a6oh ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)
   jobs/other-job/output/SOURCES.jsonl: 4 source records (1 with saved bytes on this machine); ignored 4 non-object/non-JSON lines, 1 records without a usable sha256, 4 unusable text_path/cache_path values
@@ -1362,14 +1365,14 @@ Checked 4 claim(s) from 1 file(s).
   Source references: {'held_bytes_verified': 28}
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 12, 'normalised': 5}
-  Palsgraf: selective (inputs_compared): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-nhd9uyqe/out2 (0.0s). These are mechanical checks, not legal findings.
-Loading inputs from /tmp/palsgraf-test-nhd9uyqe ...
+  Palsgraf: selective (inputs_compared): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.1}
+  Outputs in /tmp/palsgraf-test-2ty0a6oh/out2 (0.1s). These are mechanical checks, not legal findings.
+Loading inputs from /tmp/palsgraf-test-2ty0a6oh ...
   universe: 5 orders; provisional statuses: 2
   held source copies indexed: 9 (jobs/other-job/output/SOURCES.jsonl 4, opus_stage11_fetch_meta 1, opus_stage11_manifest 1, stage21_acquisition_log 1, stage21_custody 2)ok
 
 ----------------------------------------------------------------------
-Ran 103 tests in 2.720s
+Ran 106 tests in 10.904s
 
 OK
 
@@ -1388,11 +1391,11 @@ Checked 4 claim(s) from 1 file(s).
   Source identity: {'recorded_for_other_order': 5, 'recorded_for_this_order': 7}
   Quotations: {'exact': 12, 'normalised': 5}
   Palsgraf: full (disabled_by_CLAIM_CHECKER_PALSGRAF): rechecked 4, reused 0; timings {'load_inputs_s': 0.0, 'select_s': 0.0, 'check_s': 0.0, 'trace_s': 0.0, 'total_s': 0.0}
-  Outputs in /tmp/palsgraf-test-nhd9uyqe/out3 (0.0s). These are mechanical checks, not legal findings.
-{"proquest_materialization": [{"instrument_id": "EO:254", "path": "ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1b.jsonl:1", "claim_sha256": "3d81c6988fe003c30d3196237715c90232924b948764e3cedc036e6beeddeef4", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "operative_clauses[0].original_source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "original_representation", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "savings_residuals.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "whole_order_end.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}]}, {"instrument_id": "EO:799", "path": "ProQuest Pre-1937 Orders/PT1-1908-EO-799.pdf", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-11-05-herschel-H2-rl1-noB2.jsonl:1", "claim_sha256": "5832838af9b6d230090725bdf195f903fb106b2d4fd304384ac9c98b15c34745", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}, {"field": "operative_clauses[0].original_source", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}, {"field": "original_representation", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}, {"field": "savings_residuals.source", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}, {"field": "whole_order_end.source", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}]}, {"instrument_id": "EO:1547", "path": "ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1", "claim_sha256": "998d4816c1d95f60df4db5c83098267a1a0a5ce20bbd33d9aa3237a993b9043b", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "operative_clauses[0].original_source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "original_representation", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "savings_residuals.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "whole_order_end.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}]}, {"instrument_id": "EO:2171", "path": "ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1a.jsonl:1", "claim_sha256": "fc217aa201fa91c65f39bdc0e785a0c58edb99a886b76459928206ee3b7d6158", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "operative_clauses[0].original_source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "original_representation", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "savings_residuals.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "whole_order_end.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}]}, {"instrument_id": "EO:4354", "path": "ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1c.jsonl:1", "claim_sha256": "b8d5d882bde8c035d04597de8dcb3828094b81b296aac6402ab31620fd695484", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "operative_clauses[0].original_source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "original_representation", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "savings_residuals.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "whole_order_end.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}]}, {"instrument_id": "EO:4782", "path": "ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:2", "claim_sha256": "8d6af6e4c281700bd8edf48a99e1bb8728f933a80bb604acab2d78185c2815fc", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "operative_clauses[0].original_source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "original_representation", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "savings_residuals.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "whole_order_end.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}]}], "errors": [], "artifacts_attempted": 6, "bytes_read": 446295, "selection_sha256": "0482f45b19417edb6b32cf725d1911a29dd5eb8c2c18b4fdfe5da1b3e1b76c04", "next_cursor": null, "deferred": []}
+  Outputs in /tmp/palsgraf-test-2ty0a6oh/out3 (0.0s). These are mechanical checks, not legal findings.
+{"proquest_materialization": [{"instrument_id": "EO:254", "path": "ProQuest Pre-1937 Orders/PT1-1904-EO-254.pdf", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1b.jsonl:1", "claim_sha256": "3d81c6988fe003c30d3196237715c90232924b948764e3cedc036e6beeddeef4", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "operative_clauses[0].original_source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "original_representation", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "savings_residuals.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}, {"field": "whole_order_end.source", "sha256": "63a96efb348908966e3769b300d93b2a2cefd10dacdcee9bd8bf33f1f6748732", "source_instrument_id": "EO:254"}]}, {"instrument_id": "EO:799", "path": "ProQuest Pre-1937 Orders/PT1-1908-EO-799.pdf", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-11-05-herschel-H2-rl1-noB2.jsonl:1", "claim_sha256": "5832838af9b6d230090725bdf195f903fb106b2d4fd304384ac9c98b15c34745", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}, {"field": "operative_clauses[0].original_source", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}, {"field": "original_representation", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}, {"field": "savings_residuals.source", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}, {"field": "whole_order_end.source", "sha256": "fd42bb02ce5e134a0495d732be502054401e91d7418619f02b768e8a386e27fb", "source_instrument_id": "EO:799"}]}, {"instrument_id": "EO:1547", "path": "ProQuest Pre-1937 Orders/PT1-1912-EO-1547.pdf", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:1", "claim_sha256": "998d4816c1d95f60df4db5c83098267a1a0a5ce20bbd33d9aa3237a993b9043b", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "operative_clauses[0].original_source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "original_representation", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "savings_residuals.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}, {"field": "whole_order_end.source", "sha256": "2e446a8148b78c1398a3d3a90c3cdce3887444eadc3abe69942b84d67afb198e", "source_instrument_id": "EO:1547"}]}, {"instrument_id": "EO:2171", "path": "ProQuest Pre-1937 Orders/PT1-1915-EO-2171.pdf", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1a.jsonl:1", "claim_sha256": "fc217aa201fa91c65f39bdc0e785a0c58edb99a886b76459928206ee3b7d6158", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "operative_clauses[0].original_source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "original_representation", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "savings_residuals.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}, {"field": "whole_order_end.source", "sha256": "6887d2296a53d1b5bafe5a40f11399a1a7b2d87331a6349ed220129a0112a4b7", "source_instrument_id": "EO:2171"}]}, {"instrument_id": "EO:4354", "path": "ProQuest Pre-1937 Orders/PT1-1925-EO-4354.pdf", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-production-b1c.jsonl:1", "claim_sha256": "b8d5d882bde8c035d04597de8dcb3828094b81b296aac6402ab31620fd695484", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "operative_clauses[0].original_source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "original_representation", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "savings_residuals.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}, {"field": "whole_order_end.source", "sha256": "98b1a107e723aa5f9fc91a3f66c08c722b3377aaf24d4339320acf99da3ea3da", "source_instrument_id": "EO:4354"}]}, {"instrument_id": "EO:4782", "path": "ProQuest Pre-1937 Orders/PT1-1927-EO-4782.pdf", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "state": "already_held", "claim_key": "research/readiness/claims/claude-2026-10-28-spent-probe.jsonl:2", "claim_sha256": "8d6af6e4c281700bd8edf48a99e1bb8728f933a80bb604acab2d78185c2815fc", "references": [{"field": "operative_clauses[0].first_end.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "operative_clauses[0].original_source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "original_representation", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "savings_residuals.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}, {"field": "whole_order_end.source", "sha256": "cf42ef50a95da80b5cb6109bcb93716da0d9556124f75635e213bbe19f807138", "source_instrument_id": "EO:4782"}]}], "errors": [], "artifacts_attempted": 6, "bytes_read": 446295, "selection_sha256": "f72bd8cd869478e472a3e2b51f8ed5c5412a00e782e26d15b1242648944f8ebf", "next_cursor": null, "deferred": []}
 Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
   universe: 14998 orders; provisional statuses: 4274
-  held source copies indexed: 113767 (jobs/app-executive-orders/output/SOURCES.jsonl 792, jobs/app-transcriptions/output/SOURCES.jsonl 9902, jobs/astra-source-retention/output/SOURCES.jsonl 314, jobs/cassiodorus/output/SOURCES.jsonl 296, jobs/clark-discovery/output/SOURCES.jsonl 225, jobs/clause-drafts/output/SOURCES.jsonl 9789, jobs/cotton-capture-custody/output/SOURCES.jsonl 756, jobs/cruden-fr-concordance/output/SOURCES.jsonl 927, jobs/current-law/output/SOURCES.jsonl 1138, jobs/duodecim-tableiv/output/SOURCES.jsonl 16, jobs/eumenes-nmb-reports/output/SOURCES.jsonl 119, jobs/family-rule-sources/output/SOURCES.jsonl 2, jobs/family-rule-tail/output/SOURCES.jsonl 1, jobs/fr-originals/output/SOURCES.jsonl 6497, jobs/fr-pages/output/SOURCES.jsonl 30, jobs/hathi-gpo-orders/output/SOURCES.jsonl 1531, jobs/indian-reservations-1912/data/PROVENANCE.json 1, jobs/indian-reservations-1912/output/FRAGMENTS.jsonl 55, jobs/isthmian-canal-1911/data/PROVENANCE.json 1, jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl 105, jobs/later-events/output/SOURCES.jsonl 17528, jobs/lewis-originals/output/SOURCES.jsonl 7, jobs/mabillon-held-printings/output/SOURCES.jsonl 2037, jobs/numbered-early-orders/output/SOURCES.jsonl 197, jobs/ofr-codification-1989/data/PROVENANCE.json 1, jobs/ofr-compilations/data/PROVENANCE.json 1, jobs/ofr-compilations/output/FRAGMENTS.jsonl 500, jobs/opus-media-match/output/SOURCES.jsonl 496, jobs/peano-formulario/output/SOURCES.jsonl 33, jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl 2750, jobs/pothier/output/SOURCES.jsonl 96, jobs/ptolemy-custody/output/SOURCES.jsonl 3060, jobs/repetita-lsa/output/SOURCES.jsonl 729, jobs/richardson-volumes/data/PROVENANCE.json 3, jobs/richardson-volumes/output/FRAGMENTS.jsonl 68, jobs/selden-fr-acting/output/SOURCES.jsonl 1361, jobs/selden-fr-citers/output/SOURCES.jsonl 4820, jobs/selden-statutes/output/SOURCES.jsonl 1916, jobs/shepard-citations/output/SOURCES.jsonl 24, jobs/source-ladder/output/SOURCES.jsonl 920, jobs/theophilus-sources/output/SOURCES.jsonl 1438, jobs/wikisource-texts/output/SOURCES.jsonl 1639, jobs/youngstown-courts/output/SOURCES.jsonl 1137, opus_media_member_map 496, opus_stage11_fetch_meta 9203, opus_stage11_manifest 27237, pinakes_replica_fragments 2750, stage18_source_manifest 25, stage20_statute_fetch_index 7, stage21_acquisition_log 406, stage21_custody 385)
+  held source copies indexed: 113992 (jobs/app-executive-orders/output/SOURCES.jsonl 792, jobs/app-transcriptions/output/SOURCES.jsonl 9902, jobs/astra-source-retention/output/SOURCES.jsonl 314, jobs/cassiodorus/output/SOURCES.jsonl 296, jobs/clark-discovery/output/SOURCES.jsonl 225, jobs/clause-drafts/output/SOURCES.jsonl 9789, jobs/cotton-capture-custody/output/SOURCES.jsonl 756, jobs/cruden-fr-concordance/output/SOURCES.jsonl 927, jobs/current-law/output/SOURCES.jsonl 1138, jobs/duodecim-tableiv/output/SOURCES.jsonl 16, jobs/eumenes-nmb-reports/output/SOURCES.jsonl 119, jobs/family-rule-sources/output/SOURCES.jsonl 2, jobs/family-rule-tail/output/SOURCES.jsonl 1, jobs/fr-originals/output/SOURCES.jsonl 6497, jobs/fr-pages/output/SOURCES.jsonl 30, jobs/hathi-gpo-orders/output/SOURCES.jsonl 1531, jobs/indian-reservations-1912/data/PROVENANCE.json 1, jobs/indian-reservations-1912/output/FRAGMENTS.jsonl 55, jobs/isthmian-canal-1911/data/PROVENANCE.json 1, jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl 105, jobs/later-events/output/SOURCES.jsonl 17753, jobs/lewis-originals/output/SOURCES.jsonl 7, jobs/mabillon-held-printings/output/SOURCES.jsonl 2037, jobs/numbered-early-orders/output/SOURCES.jsonl 197, jobs/ofr-codification-1989/data/PROVENANCE.json 1, jobs/ofr-compilations/data/PROVENANCE.json 1, jobs/ofr-compilations/output/FRAGMENTS.jsonl 500, jobs/opus-media-match/output/SOURCES.jsonl 496, jobs/peano-formulario/output/SOURCES.jsonl 33, jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl 2750, jobs/pothier/output/SOURCES.jsonl 96, jobs/ptolemy-custody/output/SOURCES.jsonl 3060, jobs/repetita-lsa/output/SOURCES.jsonl 729, jobs/richardson-volumes/data/PROVENANCE.json 3, jobs/richardson-volumes/output/FRAGMENTS.jsonl 68, jobs/selden-fr-acting/output/SOURCES.jsonl 1361, jobs/selden-fr-citers/output/SOURCES.jsonl 4820, jobs/selden-statutes/output/SOURCES.jsonl 1916, jobs/shepard-citations/output/SOURCES.jsonl 24, jobs/source-ladder/output/SOURCES.jsonl 920, jobs/theophilus-sources/output/SOURCES.jsonl 1438, jobs/wikisource-texts/output/SOURCES.jsonl 1639, jobs/youngstown-courts/output/SOURCES.jsonl 1137, opus_media_member_map 496, opus_stage11_fetch_meta 9203, opus_stage11_manifest 27237, pinakes_replica_fragments 2750, stage18_source_manifest 25, stage20_statute_fetch_index 7, stage21_acquisition_log 406, stage21_custody 385)
   jobs/app-executive-orders/output/SOURCES.jsonl: 792 source records (0 with saved bytes on this machine)
   jobs/app-transcriptions/output/SOURCES.jsonl: 9902 source records (0 with saved bytes on this machine)
   jobs/astra-source-retention/output/SOURCES.jsonl: 314 source records (314 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 0 records without a usable sha256, 7 unusable text_path/cache_path values
@@ -1409,7 +1412,7 @@ Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
   jobs/fr-originals/output/SOURCES.jsonl: 6497 source records (7 with saved bytes on this machine)
   jobs/fr-pages/output/SOURCES.jsonl: 30 source records (28 with saved bytes on this machine)
   jobs/hathi-gpo-orders/output/SOURCES.jsonl: 1531 source records (0 with saved bytes on this machine)
-  jobs/later-events/output/SOURCES.jsonl: 17528 source records (0 with saved bytes on this machine)
+  jobs/later-events/output/SOURCES.jsonl: 17753 source records (0 with saved bytes on this machine)
   jobs/lewis-originals/output/SOURCES.jsonl: 7 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 12 records without a usable sha256, 0 unusable text_path/cache_path values
   jobs/mabillon-held-printings/output/SOURCES.jsonl: 2037 source records (0 with saved bytes on this machine)
   jobs/numbered-early-orders/output/SOURCES.jsonl: 197 source records (0 with saved bytes on this machine)
@@ -1438,8 +1441,8 @@ Loading inputs from /home/runner/work/Executive-Orders/Executive-Orders ...
 
 Checked 1908 claim(s) from 186 file(s).
   All checks passed: 1746; mechanical fail: 74; gate passed: 1818
-  Source references: {'custody_record_only': 3, 'gpo_published_hash_match': 9956, 'held_bytes_in_release_or_repo': 123, 'held_bytes_verified': 13276}
+  Source references: {'custody_record_only': 3, 'gpo_published_hash_match': 9913, 'held_bytes_in_release_or_repo': 123, 'held_bytes_verified': 13319}
   Source identity: {'recorded_for_this_order': 9473}
   Quotations: {'exact': 30068, 'normalised': 11, 'not_found': 7}
-  Palsgraf: full (code_or_rules_changed): rechecked 1908, reused 0; timings {'load_inputs_s': 23.9, 'select_s': 0.1, 'check_s': 2281.5, 'trace_s': 2.3, 'total_s': 2308.6}
-  Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/output (2308.6s). These are mechanical checks, not legal findings.
+  Palsgraf: full (code_or_rules_changed): rechecked 1908, reused 0; timings {'load_inputs_s': 113.4, 'select_s': 0.1, 'check_s': 308.5, 'trace_s': 3.6, 'total_s': 426.7}
+  Outputs in /home/runner/work/Executive-Orders/Executive-Orders/jobs/claim-checker/output (426.7s). These are mechanical checks, not legal findings.
