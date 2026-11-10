@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "C:\Users\danie\eo-wt\mommsen-1\jobs\bentham\sessions.py", line 671, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "C:\Users\danie\eo-wt\mommsen-1\jobs\bentham\sessions.py", line 653, in main
+    summary, written, n = run(a.wave, a.out, a.phase, pmap, a.session_id, since, a.claude_dir, a.reported_costs)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\danie\eo-wt\mommsen-1\jobs\bentham\sessions.py", line 605, in run
+    hp = load_hamilton()
+         ^^^^^^^^^^^^^^^
+  File "C:\Users\danie\eo-wt\mommsen-1\jobs\bentham\sessions.py", line 123, in load_hamilton
+    spec.loader.exec_module(mod)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1132, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1190, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\danie\\eo-wt\\mommsen-1\\jobs\\hamilton-token-audit\\profile.py'
