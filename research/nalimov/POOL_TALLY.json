@@ -1,0 +1,141 @@
+{
+ "schema": "nalimov-pool-tally/v1",
+ "basis": "origin/main 854514831e outputs; coarse model, upper bounds",
+ "larrey_gate_applied": false,
+ "pools": {
+  "undecided": {
+   "orders": 10691,
+   "basis_kind": {
+    "none": 7353,
+    "partial_only": 1204,
+    "yes_current": 743,
+    "express": 721,
+    "amendment_only": 596,
+    "own_terms": 74
+   },
+   "text_gate": {
+    "F6": 4561,
+    "ok": 4441,
+    "sources": 1689
+   },
+   "orders_needing_tier": {
+    "one_time_commands": 3363,
+    "read_unlocated_actor": 2721,
+    "recorded_amendments": 2173,
+    "read_current_law": 1397,
+    "own_terms_before_end": 443
+   },
+   "reachable_with_F3_F7_and_all_question_tiers": 1633,
+   "reachable_by_basis": {
+    "yes_current": 730,
+    "express": 566,
+    "amendment_only": 279,
+    "own_terms": 58
+   },
+   "needs_source_or_rule": 9058
+  },
+  "decided_no_lifecycle": {
+   "orders": 2732,
+   "basis_kind": {
+    "none": 2139,
+    "partial_only": 405,
+    "express": 121,
+    "own_terms": 67
+   },
+   "text_gate": {
+    "ok": 1383,
+    "sources": 790,
+    "F6": 559
+   },
+   "orders_needing_tier": {
+    "read_unlocated_actor": 805,
+    "one_time_commands": 729,
+    "recorded_amendments": 658,
+    "read_current_law": 399,
+    "own_terms_before_end": 40
+   },
+   "reachable_with_F3_F7_and_all_question_tiers": 164,
+   "reachable_by_basis": {
+    "express": 106,
+    "own_terms": 58
+   },
+   "needs_source_or_rule": 2568
+  },
+  "decided_yes_lifecycle": {
+   "orders": 327,
+   "basis_kind": {
+    "yes_current": 308,
+    "none": 19
+   },
+   "text_gate": {
+    "ok": 307,
+    "sources": 19,
+    "F6": 1
+   },
+   "orders_needing_tier": {
+    "read_unlocated_actor": 197,
+    "recorded_amendments": 188,
+    "own_terms_before_end": 160,
+    "one_time_commands": 130
+   },
+   "reachable_with_F3_F7_and_all_question_tiers": 291,
+   "reachable_by_basis": {
+    "yes_current": 291
+   },
+   "needs_source_or_rule": 36
+  }
+ },
+ "whole_pool": {
+  "orders": 13750,
+  "reachable": 2088,
+  "tier_order": [
+   "read_unlocated_actor",
+   "one_time_commands",
+   "recorded_amendments",
+   "own_terms_before_end",
+   "read_current_law"
+  ],
+  "cumulative": [
+   {
+    "tiers": "none (basis questions only)",
+    "orders": 372
+   },
+   {
+    "tiers_through": "read_unlocated_actor",
+    "orders": 560,
+    "new": 188
+   },
+   {
+    "tiers_through": "one_time_commands",
+    "orders": 903,
+    "new": 343
+   },
+   {
+    "tiers_through": "recorded_amendments",
+    "orders": 1204,
+    "new": 301
+   },
+   {
+    "tiers_through": "own_terms_before_end",
+    "orders": 1606,
+    "new": 402
+   },
+   {
+    "tiers_through": "read_current_law",
+    "orders": 2088,
+    "new": 482
+   }
+  ],
+  "questions_per_reachable_order_median": 2,
+  "question_tokens_per_order_median": 2987,
+  "projected_usd_per_adopted_status": 0.206,
+  "vs_full_route": 37.4,
+  "needs_source_or_rule": 11662,
+  "fixes_needed_by_reachable": {
+   "F3": 1503,
+   "F4": 808,
+   "F6": 313,
+   "F5": 279
+  }
+ }
+}
