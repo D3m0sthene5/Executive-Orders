@@ -168,7 +168,6 @@
   - hook bypasses.
   All are fixed and tested: sudo jobs are untraced, traced jobs get gc.auto=0, the trace streams through gzip with a cap, and the record is written after STATUS.json. Tests: test_ariadne 19, test_ockham_hook 6, test_rattle_watch 10.
 - **Next:**
-  - After merging PR #280, run the job on main (`gh workflow run run-jobs.yml --ref main -f job=larrey-triage -f only=true`): the PR carries no output, and admission refuses triaged actions until it exists.
   - First hosted record (claim-checker, run 42573865370): no measurable overhead (1,500 s traced vs 2,017 s untraced), and the closure is 65,188 of 194,293 materialized files. One harmless silent miss (root listing lacks `.claude`). F-20261109-ariadne-first-hosted-record. Collect more records next.
   - Then build the narrowing change: restore only a stable closure for an unchanged `narrow_signature`, with the trace as referee.
 - **Valla certificate:** already stale on main before this PR. Both certificates match 11fd9f42e2, and 14 later in-scope commits changed the signature, so Valla runs on the fallback. The PR adds `ariadne.py` to `VALLA_CERTIFICATE_ROOTS` but does not re-certify; that needs an audit of those commits (F-20261109-valla-certificate-stale-on-main).
@@ -199,7 +198,6 @@
 - **Cost:** about $39 of the $45 cap. The coordinator stopped at about 18:30Z.
 - **Running:** a source-ladder run on main, dispatched for the 58 board-report requests. Verify its STATUS.json.
 - **Next:**
-  - After merging PR #280, run the job on main (`gh workflow run run-jobs.yml --ref main -f job=larrey-triage -f only=true`): the PR carries no output, and admission refuses triaged actions until it exists.
   - 92 stale orders remain. Use `tools/carry.py`, which needs Tribonian sheets from `origin/claude/tribonian-state`, and the one-chain script pattern in COORDINATOR_LOG.
   - Prepare fresh after claim-kit rebuilds.
   - Add a `recovery.photius_stale` action to Bentham.
@@ -464,7 +462,6 @@
   - Asks closed: A-20261103-1, A-20261104-1, A-20261105-niebuhr-admit, A-20261106-mabillon-register and A-20261106-justinian-{freeze, r3-scope, e1e3, e4, astra, dedup}. No ask is open.
 - **Running:** dispatch of claim-drafts, claim-kit, claim-checker, readiness-tracker, domesday-register, daily-digest and bentham with requeue_depth 1, so main publishes the post-merge figures (expected 1,208 ready of 14,998 orders and 4,298 statuses).
 - **Next:**
-  - After merging PR #280, run the job on main (`gh workflow run run-jobs.yml --ref main -f job=larrey-triage -f only=true`): the PR carries no output, and admission refuses triaged actions until it exists.
   - Let the claim-kit undecided route accept a held transcription as working text (2026-10-21 ruling), then re-run the 28 undecided sample orders blocked only by that. They are the `blocked` rows of `research/excavator/dorotheus-sample-2026-11-06/DISPOSITION.csv` whose blocker names the original requirement.
   - Request bytes from Ptolemy for the 38 dispatch-blocked orders (custody_record_only).
   - Re-run `research/dorotheus/estimate.py`.
@@ -487,7 +484,6 @@
   - Proof: 8 of 30 random decided orders filed after two-arm blind review, 3 of them decided by Selden texts. All 5 planted controls were caught.
   - Most remaining blocks need a current-source grade, a fact date or an owner ruling, not a text (`research/selden/REPORT.md`, F-20261106-1).
 - **Next:**
-  - After merging PR #280, run the job on main (`gh workflow run run-jobs.yml --ref main -f job=larrey-triage -f only=true`): the PR carries no output, and admission refuses triaged actions until it exists.
   - Fix EO 8116 (Proclamation 2416 is held) and refile.
   - Mabillon: take `research/selden/ACTING_EO_TEXTS_NEEDED.csv`.
   - Gratian: add `selden-fr-acting` to `later-events/after.txt` after the merge.
@@ -517,7 +513,6 @@
   - E4 identity class and two denominators: an owner ruling first.
   - A5: the owner is absent, so the freeze ask is recorded.
 - **Next:**
-  - After merging PR #280, run the job on main (`gh workflow run run-jobs.yml --ref main -f job=larrey-triage -f only=true`): the PR carries no output, and admission refuses triaged actions until it exists.
   - Merge #168-#172, #175, #177, #178 on green.
   - Owner decides #173, then #174.
   - Run D1 as one named wave before any other production (R4), then the 30-order undecided probe that Bentham now ranks #7.
@@ -984,7 +979,6 @@ Newest entry first. See `README.md` in this folder for the format.
   - Planted controls: every plant caught today. One automated "instruction poisoning" flag on the R12553NB s5 planter was a false positive; I checked it, and the edit was scratch-only.
 - **Owner brief:** `research/production/owner-rulings-2026-10-20/BRIEF.md` covers three method rulings (report deadline, strike-and-insert, unnamed-instrument ends). AGENT_PROTOCOL step 3 already says "A report deadline is never an end", which equals option C: 97 orders.
 - **Next:**
-  - After merging PR #280, run the job on main (`gh workflow run run-jobs.yml --ref main -f job=larrey-triage -f only=true`): the PR carries no output, and admission refuses triaged actions until it exists.
   1. F11490 once its pages land: `research/production/day-review-2026-10-20/next-lines/F11490_ids.txt`, Lambertini with a probe gate.
   2. After any owner ruling, run the matching staged packets: Pullman (`research/excavator/pullman-2026-10-20/`) or Blackstone.
   3. Almost every remaining line now waits on an owner ruling.
@@ -1005,7 +999,6 @@ Newest entry first. See `README.md` in this folder for the format.
   - (c) Workflow scripts must handle a null agent result. A session-limit hit at 14:30Z killed agents mid-run; resume from the journal works.
   - (d) The PR for this branch is #40.
 - **Next:**
-  - After merging PR #280, run the job on main (`gh workflow run run-jobs.yml --ref main -f job=larrey-triage -f only=true`): the PR carries no output, and admission refuses triaged actions until it exists.
   1. Read the Lambertini IV and R9830 results, then scale whichever passes.
   2. After the next ladder run, check the 43 remaining Lamm III PEB lines.
   3. Pre-stage the EO 12553 emergency-board packets so they can run as soon as the ruling lands.
