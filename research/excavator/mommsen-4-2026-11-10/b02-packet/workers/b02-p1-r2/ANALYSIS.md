@@ -1,0 +1,35 @@
+# MOMMSEN-4 b02-p1-r2 source examination
+
+I inspected page 1 of each of the seven one-page ProQuest replicas named in `SOURCE_LOCATORS.json` and checked each PDF's SHA-256 against its locator. All seven hashes match. The pages identify the assigned order numbers, dates, signatures, and operative wording. They remain `archival_replica_checked` working texts, not authenticated official originals. The standing obligation is: **original not yet held; replace and re-check quotes when an official copy is retrieved.** The OCR is notably damaged for EO 2908; page 1 controls the reading below. No human certification is claimed.
+
+## EO:2007
+
+Page 1 declares Canal Zone magistrates' court constables peace officers, requires attendance, preservation of order, receipt and accounting for court money, and repeals conflicting prior laws or orders. These are continuing administrative duties with a distinct repeal consequence; the single whole-order inventory could conceal those scopes on submission. The frozen full-body OCR for EO 7676, 2 FR 1579-1581, sections 9 and 12 recreates the constable office and duties, section 13 expressly supersedes EO 2007, and section 14 says the new order takes effect on the thirtieth day after July 26, 1937 (candidate August 25, 1937, counting July 27 as day one). I read all of that held OCR, including the sections before and after the operative provisions. The actual Federal Register page images for EO 7676 are not held in the assigned source locations; its OCR expressly warns of recognition errors. Earlier cessation and the residual effect of the 1914 conflict repeal require source comparison. The post-1937 OFR catalogue hit corroborates a lead, but does not search the pre-1937 interval. Block pending official pages 1-3 of the July 29, 1937 Federal Register and bounded earlier contrary-source examination.
+
+## EO:2072
+
+Page 1 permits David A. Gates to be reinstated without regard to his separation interval. It does not appoint him or prove that reinstatement occurred. The frozen full-body text of EO 6218 (1938) authorizes a new one-year appointment of a person with the same name and withdraws a particular position from civil-service rules during incumbency. Its scanned pages 425-427 were not available for independent page inspection here. The 1938 order cannot by itself establish performance or the first cessation of the 1914 permission, and the name-match search authenticates neither identity nor the employment chronology. Block pending a dated personnel or appointment record, or another source establishing that the 1914 permission expired or was withdrawn; inspect the EO 6218 printed pages if relied on.
+
+## EO:2382
+
+Page 1 assigns Canal protection to the Governor until Presidential designation of an Army officer for entire control in war or threatened war, and directs stationed military and naval forces to assist on the Governor's request. The designation contingency and assistance command need separate consideration. The frozen full-body text of EO 10398, 17 FR 8647, section 2 expressly revokes EO 2382; section 1 establishes a replacement security decision arrangement and has its own distinct emergency term. I read that held OCR through its signature and filing line. The official page 3 image of the September 30, 1952 Federal Register is unavailable in the assigned source locations. The 1952 revocation establishes formal disposition if verified, but does not show whether the earlier Presidential designation occurred or when the original command first ceased. Block pending official page 3 and evidence addressing designation and prior operative displacement. The catalogue's duplicate hits are no independent proof of first cessation.
+
+## EO:2562
+
+Page 1 makes Matthew E. Hanna eligible for examination for a diplomatic secretaryship despite the April 21, 1915 age rule. It is permission for one identified person, not a finding that an examination or appointment took place. The held name search found no match, which cannot establish either event or expiry. Block pending dated examination, appointment, withdrawal, or legally specific age-rule evidence that actually ends this individual permission. An unnamed later general rule would not suffice without an effect on this grant.
+
+## EO:2908
+
+Page 1 suspends the eight-hour limit for federal contracts connected with construction **and maintenance** of the Alaskan Railroad during the then-present national emergency, and invokes the statutory overtime-pay condition. Maintenance makes a simple construction-completion theory inadequate. The held OCR badly corrupts the operative sentence; the image supplies the readable words, but the frozen quote would need careful re-check before submission. No held source establishes the end of the identified emergency, the covered federal contracts, or a specific superseding instrument. Block pending those dated sources and the prior-law/savings analysis for accrued wages. The OFR catalogue begins in 1937 and zero hits do not resolve the earlier period.
+
+## EO:2933
+
+Page 1 suspends the eight-hour law for labor on the particular temporary Liberty Loan building beside the Bureau of Engraving and Printing, effective "from and after" August 12, 1918. The quoted overtime provision is the statutory condition, not proof that the work was completed. No held dated record establishes completion of the covered work, contract closeout, or a specific extinguishing instrument. A temporary objective and the age of the order cannot supply an endpoint. Block pending dated building/contract evidence and assessment of accrued overtime consequences.
+
+## EO:2950
+
+Page 1 suspends the eight-hour law for construction and remodeling of Marine Hospital buildings in Boston, Baltimore, Detroit, New Orleans, San Francisco, and Savannah, effective "from and after" August 31, 1918. The multiple projects may have different completion dates. No held source establishes the last covered work, contract closeout, or a specific extinguishing instrument. Block pending dated evidence for all six sites and any accrued wage consequences. A general end of war or later eight-hour law is not an established end for this project-specific suspension without a source linking the effect.
+
+## Search limits
+
+I read the scope notices for the machine searches before using them as leads. `current-law:usc` searches named citations in an edition current through October 9, 2026; `current-law:ecfr` searches named citations in the 2026-10-14 eCFR and 49 CFR bulk titles. Neither proves the absence of an uncited supersession or a historical occurrence. `later-events:ofr_catalog` covers Federal Register catalogue records only from 1937 onward and saved order text; for these pre-1937 orders it is never sufficient alone. `namier:held_texts_person_name` covers held text for 14,913 of 14,998 census orders, with name parsing and identity limits. The frozen corpus leads and the specific later texts above have been weighed, but no clause is assigned an exact or interval endpoint from a missing occurrence record.

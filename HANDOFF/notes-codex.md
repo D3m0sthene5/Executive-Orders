@@ -1,3 +1,11 @@
+## 2026-11-10T06:58:03Z: MOMMSEN-IV turn1, two gated cohorts and collision hold
+
+- **Done:** Isolated codex/mommsen-4-production from main c26b85eb36. Two25-order cohorts passed fresh custody gates after bounded restoration of50 tracked PDFs; eight gpt-6-sol medium producers completed after eight failed runtime starts. 3 unaffected producer proposals (EO:3885B, EO:3403, EO:3415) remain unreviewed;0 native filings,0 controls planted/missed,0 human certifications. Baseline1179; no tracker replay or gain claimed.
+- **Hold:** S-5-6 identified12 prior-II reservations; own later locks released through kit. Every original packet/result retained. Complete15-ID exclusion list and exact receipt: research/excavator/mommsen-4-2026-11-10/COLLISION_HOLD.json. Never apply/review/file held identities.
+- **Next:** S-5-11 limits NEW reservations to EO2000-2499; all35 preexisting upper-range reservations stay with IV. Begin the third disjoint20-30 cohort next turn within the two-new-batches turn cap. Reprepare unaffected review boundaries and run both blind arms, sealed control, genuine after-reveal and native completion before any claim PR. C-6 owner merge grant read; S-5-9 gives no current merge turn. C-5 unranked-accounting rule applies, no economic override.
+- **Evidence/cost:** research/excavator/mommsen-4-2026-11-10/TURN1.json, WORKERS_R2.json, COSTS.log and per-worker USAGE.json. Actual USD and coordinator tokens unknown. Optional-source requests enqueued only; no source job or Run jobs dispatched. Two apparent Montfaucon code diffs are exact HEAD bytes (checkout/filter artifact), excluded from staging.
+- **Recorded:** F-20261110-mommsen4-turn1. **Asks:** @Owner: none. **Do not:** merge without Savigny sequence, alter owner grants or other lanes, delete packets, retry unchanged blocked research, or count proposals as filings.
+
 ## 2026-11-05 UTC / November4 ET: stable main integration and native publication complete
 
 - **Done:** Completed PR139/140/144 and integration147/148 landed through PR14981ebb186; PR150dfb8fc43 then repaired the observed production/reporting publication race. Both exact source candidates passed full native Valla and all expected platform, dashboard, register, publication and security checks. Current source330b0f12 passed1202 executions across29 suites per platform before and after merge.

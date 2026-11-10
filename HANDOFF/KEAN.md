@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 289; `search` finds the rest)
+## Newest results (6 of 290; `search` finds the rest)
 
+- 2026-11-10 F-20261110-mommsen4-turn1 **partly worked**: Produce two disjoint25-order decided-not-ready cohorts in EO2000-3999 using exact held archival replicas and… Lesson: Check authoritative cross-worktree reservations before dispatch; a main-only lock is insufficient. Retain failed starts and collided work as costs, reprepare disjoint packet boundaries, and never tur…
 - 2026-11-10 F-20261110-mommsen2-road-sparse-ci **partly worked**: PR 252 claim publication against the road-tests sparse checkout. Lesson: Read the committed runner declaration with git show when the worktree file is absent. This one-test fallback keeps the existing scope comparison and allows claim PR CI without changing .github.
 - 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 - 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
 - 2026-11-09 F-20261109-mission-refresh-stuck **analysis**: Checked why the dashboard's Mission tab says 'Pending mission publication' after the 2026-11-09 runs settled. Lesson: The freshness guard is working as designed, but every refresh since 2026-11-06 is refused, so something upstream (checker inputs versus the canonical readiness tree) needs a fix before Mission moves…
 - 2026-11-09 F-20261109-mission-refresh-diagnosed **partly worked**: Diagnosed why Mission (jobs/daily-digest/mission.py) has refused every refresh since 2026-11-06 and fixed the… Lesson: A guard that checks another job's recorded inputs must use that job's recorded scope; narrowing a job's freshness scope silently breaks consumers that assumed whole-tree capture. A page check that pi…
-- 2026-11-09 F-20261109-gutenberg-valla-pilot-chain **partly worked**: Find why the Valla bounded pilot check fails on every PR (seen on #242 and the sol/montfaucon branches) Lesson: A failing non-required check can hide later failures for days; when it turns red, read every step, not only the first failing one. Next: decide in Valla whether a schema-v2 re-tag file is a productio…
 
-Register: 75 owner decisions, 45 answered questions, 289 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 290 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
