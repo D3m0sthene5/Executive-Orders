@@ -83,7 +83,7 @@ def existing_claims(repo):
             if r.get('instrument_id'):found.add(r['instrument_id'])
     return found
 
-def pick(repo,out,agent,n,excluded=None,scope='all'):
+def pick(repo,out,agent,n,excluded=None,scope='all',action=None):
     if n<1 or not re.fullmatch(r'[A-Za-z0-9_.-]+',agent):raise ValueError('agent must be a simple name and n positive')
     index=read(out/'INDEX.json',[]);by={r['instrument_id']:r for r in index}
     if not index:raise ValueError('Corpus INDEX.json missing or empty')
@@ -109,6 +109,12 @@ def pick(repo,out,agent,n,excluded=None,scope='all'):
     with reservations(repo) as locks:
         unavailable=excluded|set(locks['orders'])
         eligible={iid for iid,row in by.items() if iid not in unavailable}
+        import admission
+        if admission.applies(repo):
+            allowed,room=admission.capacity(repo,action,locks['orders']);eligible&=allowed
+            if room is not None:
+                if room==0:raise ValueError(action+' is a probe and its '+str(admission.PROBE_ORDERS)+' orders are already reserved; wait for Bentham to measure it')
+                n=min(n,room)
         ranked=[];candidate_dossiers={}
         for f in families:
             if not f['family_id'].startswith('actor:'):continue
@@ -129,11 +135,13 @@ def pick(repo,out,agent,n,excluded=None,scope='all'):
                 if iid not in selected:
                     selected.append(iid)
                     locks['orders'][iid]={'agent':agent,'family':family,'dossier_sha256':by[iid]['fingerprint'],'reserved_on':datetime.now(timezone.utc).isoformat()}
+                    if action:locks['orders'][iid]['action']=action
                 if len(selected)>=n:break
             if len(selected)>=n:break
         for iid in sorted(eligible-set(selected)):
             if len(selected)>=n:break
             selected.append(iid);locks['orders'][iid]={'agent':agent,'family':None,'dossier_sha256':by[iid]['fingerprint'],'reserved_on':datetime.now(timezone.utc).isoformat()}
+            if action:locks['orders'][iid]['action']=action
             if by[iid].get('status') is None:
                 locks['orders'][iid].update({k:by[iid][k] for k in ('history_sha256','compiled_summary_sha256')})
         return [{'instrument_id':iid,**locks['orders'][iid],
@@ -166,7 +174,7 @@ def main(argv=None):
     sub.add_parser('build')
     from blind_verify import add_arguments as blind_arguments
     blind_arguments(sub.add_parser('blind-verify',help='check explicit blinded inputs; no legal verdict'))
-    s=sub.add_parser('next');s.add_argument('--agent',required=True);s.add_argument('--n',type=int,default=20);s.add_argument('--exclude',type=Path);s.add_argument('--scope',choices=('all','decided','undecided'),default='all')
+    s=sub.add_parser('next');s.add_argument('--agent',required=True);s.add_argument('--action',help='Bentham action id from jobs/bentham/output/PLAN.json; required in a checkout that holds the plan');s.add_argument('--n',type=int,default=20);s.add_argument('--exclude',type=Path);s.add_argument('--scope',choices=('all','decided','undecided'),default='all')
     for cmd in ('dossier','sheet'):
         s=sub.add_parser(cmd);s.add_argument('instrument_id');s.add_argument('--agent',default='');s.add_argument('--write',type=Path)
     s=sub.add_parser('history');s.add_argument('instrument_id');s.add_argument('--full',action='store_true')
@@ -175,7 +183,7 @@ def main(argv=None):
     s=sub.add_parser('history-impact',help='use Valla to identify historical answers requiring revalidation');s.add_argument('results',type=Path);s.add_argument('--changed',type=Path,required=True);s.add_argument('--write',type=Path)
     s=sub.add_parser('factual-at',help='query reviewed bounded occurrence facts, not legal state');s.add_argument('packet',type=Path);s.add_argument('--order',required=True);s.add_argument('--on',required=True)
     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
-    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--history-bundle',type=Path,action='append',default=[]);s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
+    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--action',help='Bentham action id; every order must be in its list');s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--history-bundle',type=Path,action='append',default=[]);s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
     s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path)
     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path);s.add_argument('--geddes-strict',action='store_true',help='exit nonzero unless every Geddes lint flag has a resolution (geddes gate)')
@@ -315,7 +323,7 @@ def main(argv=None):
             print(batch.view(repo,a.packet,a.order,a.source));return 0
         if a.command in ('prepare','apply','batch-check'):
             import batch
-            if a.command=='prepare':result=batch.prepare(repo,out,a.write,a.instrument_ids,a.agent,replacement_proposal=a.replacement_proposal,history_bundles=a.history_bundle)
+            if a.command=='prepare':result=batch.prepare(repo,out,a.write,a.instrument_ids,a.agent,replacement_proposal=a.replacement_proposal,history_bundles=a.history_bundle,action=a.action)
             elif a.command=='apply':result=batch.apply(repo,a.packet,a.write)
             else:result=batch.check(repo,a.packet,a.applied)
             failed=(result.get('strict_claim_fail',0)>0 or result.get('counts',{}).get('rejected',0)>0)
@@ -356,7 +364,7 @@ def main(argv=None):
         if a.command=='build':build(repo,out,os.environ.get('JOB_CACHE_DIR'));return 0
         if a.command=='next':
             excluded=read(a.exclude,[]) if a.exclude else []
-            print(json.dumps(pick(repo,out,a.agent,a.n,excluded,a.scope),indent=2));return 0
+            print(json.dumps(pick(repo,out,a.agent,a.n,excluded,a.scope,a.action),indent=2));return 0
         if a.command in ('dossier','sheet'):
             d=load_dossier(out,a.instrument_id,repo)
             if a.command=='sheet':
