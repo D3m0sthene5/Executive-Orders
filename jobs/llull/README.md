@@ -162,3 +162,11 @@ the command can run. A requirement of 2 catches in 3 planted controls cannot pas
 `--run` evaluates and records the gate without continuation. `evaluate_gate` and `require_gate` are
 available for callers, and `verify_evidence` checks source bytes. The gate verifies the recorded protocol;
 it does not establish legal conclusions or turn an AI review into human certification.
+
+## Larrey triage gates (2026-11-10)
+
+Six gates read what the claim kit would freeze into an order's dossier (`kit_features.py`: the compiled decided
+dossier, or the compiled overlay inputs of an undecided order, assembled as `build.package` does): `original_usable`,
+`no_page_check_owed`, `clause_inventory_present`, `status_basis_record`, `later_order_text_held`,
+`nea_notice_if_emergency`. Larrey (`jobs/larrey-triage`) combines them into per-route dispatch gates and back-tests them
+on past waves; `census --requires` can count them for any pool. Existing gates and `GATES_REV` are unchanged.

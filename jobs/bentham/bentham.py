@@ -81,6 +81,22 @@ def score(measured, action, half_life=HALF_LIFE_DAYS):
             now = float(action["orders"]) * float(r["value"])
             out["rate"] = {"key": r["key"], "value": r["value"], "num": r.get("num"), "den": r.get("den"),
                            "source": r.get("source")}
+            tri = action.get("triage") or {}
+            kept = (tri.get("retained_success_share") or {}).get("share")
+            before = action.get("orders_before_triage")
+            if tri.get("applied") and kept is not None and before:
+                # The rate was measured on untriaged draws. Larrey keeps out orders that cannot succeed on this
+                # route, so the members' expected dossiers stay (times the back-test's retained share) while only
+                # the admitted orders are paid for. A projection, labelled as one, until a gated wave measures it.
+                now = min(float(action["orders"]), float(before) * float(r["value"]) * float(kept))
+                out["orders_before_triage"] = before
+                out["notes"].append(
+                    f"Larrey triage: {action['orders']} of {before} orders admitted; yield projected as "
+                    f"{before} x {r['value']} x retained share {kept} (back-test "
+                    f"{tri['retained_success_share']['kept']}/{tri['retained_success_share']['of']} successes kept), "
+                    f"not yet measured on a gated wave")
+            elif tri and not tri.get("applied"):
+                out["notes"].append("Larrey triage not applied: " + str(tri.get("reason")))
     fec = 0.0
     for u in action.get("unlocks") or []:
         r = rate_of(measured, u.get("rate_key"))
@@ -249,7 +265,8 @@ def report(r):
     for i, s in enumerate(r["ranked"], 1):
         per = "∞" if s["per_usd"] == math.inf else f"{100 * s['per_usd']:.1f}"
         mark = "" if s.get("within_budget", True) else " (over budget)"
-        lines.append(f"| {i} | {s['id']}{mark} | {s['kind']} | {s['orders']} | {s['expected_now']} | {s['fecundity']} | "
+        orders = f"{s['orders']} of {s['orders_before_triage']}" if s.get("orders_before_triage") else s["orders"]
+        lines.append(f"| {i} | {s['id']}{mark} | {s['kind']} | {orders} | {s['expected_now']} | {s['fecundity']} | "
                      f"{fmt_usd(s['cost_usd'])} | {per} | {fmt_usd(s['cumulative_usd'])} |")
     if r["unranked"]:
         lines += ["", "Unranked (a yield or cost is not measured; Bentham will not guess). For a production stratum the "

@@ -421,6 +421,14 @@ class Data:
         return self._memo("todo", lambda: {r["instrument_id"]: r for r in read_csv(
             self.repo / "jobs/claim-drafts/output/TODO_BY_ORDER.csv")})
 
+    def kit(self):
+        """{instrument_id: dispatch inputs} from claim-kit's compiled outputs (kit_features.py; Larrey gates)."""
+        def build():
+            sys.path.insert(0, str(ROOT))
+            import kit_features
+            return kit_features.load(self.repo)
+        return self._memo("kit", build)
+
 
 def _held(b):
     return "held" if b else "no"
@@ -464,6 +472,57 @@ def g_ending_or_current_lead2(row, D):
     return "na"
 
 
+def _kit(row, D):
+    return D.kit().get(row["instrument_id"])
+
+
+def g_original_usable(row, D):
+    """Larrey: the dossier's selected text can carry this route. An acceptable original always does. On the
+    decided route a working text (transcription ruling 2026-10-21, working_text.GRADES) does too, with its
+    confirmations; on the undecided route only a frozen working_text_basis (Accursius F6) does."""
+    f = _kit(row, D)
+    if not f or not f["has_original"]:
+        return "no"
+    if f["original_acceptable"] or f["working_text_basis"]:
+        return "held"
+    if row["provisional_status"] in ("yes", "no") and (f["working_text_grade"] or f["working_text_confirmation"]):
+        return "held"
+    return "no"
+
+
+def g_no_page_check_owed(row, D):
+    f = _kit(row, D)
+    if not f or not f["has_original"]:
+        return "na"       # nothing to check; original_usable already keeps the order out
+    return "no" if f["page_check_owed"] else "held"
+
+
+def g_clause_inventory(row, D):
+    f = _kit(row, D)
+    return _held(bool(f and f["clauses"] > 0))
+
+
+def g_status_basis_record(row, D):
+    """Larrey: an exact held ACT/TERM/ACTOR_TEXT (NO) or CURRENT (YES) record, not a report deadline, so the
+    undecided route can accept a proposal (status_overlay); OWN_TEXT/PARENT_END counted once F5 freezes them."""
+    f = _kit(row, D)
+    return _held(bool(f and f["basis_kinds"]))
+
+
+def g_later_order_text(row, D):
+    f = _kit(row, D)
+    return _held(bool(f and f["actor_text"]))
+
+
+def g_nea_notice_if_emergency(row, D):
+    """Larrey: a provisional-YES order invoking a national emergency declared before 2025-10-14 needs a
+    continuation notice through the cutoff (50 U.S.C. 1622(d)); na for any other order."""
+    f = _kit(row, D)
+    if row["provisional_status"] != "yes" or not f or not f["emergency_needs_notice"]:
+        return "na"       # a NO order needs no continuation notice; only a YES must show the emergency continues
+    return _held(f["notice_held"])
+
+
 GATES = {
     "status_present": ("provisional_status is yes or no (readiness tracker)",
                        lambda r, D: _held(r["provisional_status"] in ("yes", "no"))),
@@ -489,6 +548,18 @@ GATES = {
                                                 and not D.todo()[r["instrument_id"]]["conflicts"])),
     "only_judgment_left": ("claim-drafts TODO says only judgment is left",
                            lambda r, D: _held(D.todo().get(r["instrument_id"], {}).get("only_judgment_left") == "yes")),
+    # Larrey triage gates (2026-11-10): what the claim kit would freeze for the order (jobs/llull/kit_features.py).
+    "original_usable": ("dossier text can carry the route: acceptable original; decided route also a working text "
+                        "(transcription ruling); undecided route also an F6 working_text_basis (claim-kit)",
+                        g_original_usable),
+    "no_page_check_owed": ("the selected original does not require a page/image check (claim-kit)", g_no_page_check_owed),
+    "clause_inventory_present": ("the compiled dossier has a clause inventory (claim-kit CLAUSES)", g_clause_inventory),
+    "status_basis_record": ("an exact held ACT/TERM/ACTOR_TEXT/CURRENT record that status_overlay accepts as a basis",
+                            g_status_basis_record),
+    "later_order_text_held": ("a held text of a later instrument acting on or citing the order (ACTOR_TEXT)",
+                              g_later_order_text),
+    "nea_notice_if_emergency": ("emergency order declared before 2025-10-14: a National Emergencies Act continuation "
+                                "notice is held; na otherwise", g_nea_notice_if_emergency),
 }
 
 
