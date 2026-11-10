@@ -1,0 +1,62 @@
+F..............F.................F................................F......
+======================================================================
+FAIL: test_accepted_flag_stays_on_the_record (test_llull.TestCeiling.test_accepted_flag_stays_on_the_record)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/llull/test_llull.py", line 137, in test_accepted_flag_stays_on_the_record
+    self.assertEqual(run(*self.args, "check")[0], 0)
+AssertionError: 4 != 0
+
+======================================================================
+FAIL: test_shipped_pools_load_and_craigellachie_pool_is_23 (test_llull.TestCustomPools.test_shipped_pools_load_and_craigellachie_pool_is_23)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/llull/test_llull.py", line 443, in test_shipped_pools_load_and_craigellachie_pool_is_23
+    self.assertEqual(llull.run_census("CRAIG", pools=pools)["pool_size"], 23)
+AssertionError: 188 != 23
+
+======================================================================
+FAIL: test_outcome_becomes_a_base_rate_with_the_outcome_id_as_source (test_llull.TestOutcomeBaseRates.test_outcome_becomes_a_base_rate_with_the_outcome_id_as_source)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/llull/test_llull.py", line 551, in test_outcome_becomes_a_base_rate_with_the_outcome_id_as_source
+    self.assertEqual(run(*self.args, "check")[0], 0)
+AssertionError: 4 != 0
+
+======================================================================
+FAIL: test_shipped_ledger_checks_clean (test_llull.TestUnmeasuredRefused.test_shipped_ledger_checks_clean)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/llull/test_llull.py", line 107, in test_shipped_ledger_checks_clean
+    self.assertEqual(code, 0, out)
+AssertionError: 4 != 0 : warn: L-20261020-3: no run directory declared
+warn: L-20261020-4: no run directory declared
+warn: L-20261020-5: no run directory declared
+warn: L-20261020-6: no run directory declared
+warn: L-20261020-7: no run directory declared
+warn: L-20261020-8: no run directory declared
+warn: L-20261020-9: no run directory declared
+warn: L-20261020-10: no run directory declared
+warn: L-20261020-11: no run directory declared
+warn: L-20261020-12: no run directory declared
+warn: L-20261020-13: no run directory declared
+warn: L-20261020-14: no run directory declared
+warn: L-20261020-61: run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified
+warn: L-20261020-62: run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified
+warn: L-20261020-63: run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified
+warn: L-20261020-64: run artifacts in research/excavator/lambertini-2026-10-20/iv are not committed; ordering is unverified
+warn: L-20261020-69: run artifacts in research/excavator/lambertini-2026-10-20/lamb4/02 are not committed; ordering is unverified
+warn: L-20261020-70: run artifacts in research/excavator/lambertini-2026-10-20/lamb4/02 are not committed; ordering is unverified
+warn: L-20261020-74: run artifacts in research/excavator/lambertini-2026-10-20/viapar/probe are not committed; ordering is unverified
+warn: L-20261020-75: run artifacts in research/excavator/lambertini-2026-10-20/viapar/probe are not committed; ordering is unverified
+FAIL: base rate rejected_per_submitted.family_rule_targets_first_decisions: quote 'Historical first-decision rejection2/19' not found in HANDOFF/notes-astra.md
+FAIL: base rate complete_per_accepted.family_rule_targets: quote '19 independently accepted frozen candidates (17partial,2comp' not found in HANDOFF/notes-astra.md
+FAIL: base rate cleared_per_queued.opus_refetch: quote '(session108to125)' not found in HANDOFF/notes-astra.md
+not_preregistered: L-20261020-1: its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with or before the forecast (439e274ab); excluded from calibration scoring (marked)
+not_preregistered: L-20261020-2: its outcome source research/excavator/craigellachie-2026-10-20/OUTCOME.json was first committed together with or before the forecast (439e274ab); excluded from calibration scoring (marked)
+
+
+----------------------------------------------------------------------
+Ran 73 tests in 50.509s
+
+FAILED (failures=4)
