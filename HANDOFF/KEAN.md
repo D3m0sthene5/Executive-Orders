@@ -10,7 +10,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 ## Waiting for the owner (3)
 
-**A-20261108-lean-main**, **A-20261110-papinian-board-bytes**, **A-20261110-mommsen1-grant-source**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-papinian-board-bytes**, **A-20261110-mommsen1-shared-filename**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -58,4 +58,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-10 F-20261110-mommsen1-road-test-sparse-fixture **stopped at gate**: Run road tests on PR254 head 77a4d2478e Lesson: Read the tracked runner manifest through git show in this test; leave the workflow and production runner untouched.
 - 2026-11-10 F-20261110-mommsen1-r02-source-gate **stopped at gate**: Prepare the next20 disjoint S-1-1 members while R01 was under independent review Lesson: Source-blocked preparation is not a completed legal investigation. Retain native checkpoints and ask SAVIGNY for lawful fresh source binding and a ranked Bentham action mapping before another product…
 
-Register: 76 owner decisions, 45 answered questions, 300 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 76 owner decisions, 46 answered questions, 300 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

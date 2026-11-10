@@ -19,10 +19,10 @@ The board rule (D-20261108-board-rule) cannot run: the 101 held National Mediati
 
 Sources: `research/excavator/claude-haloander-2026-11-07/evidence/R3_BOARD_REPORTS.csv`
 
-## A-20261110-mommsen1-grant-source (2026-11-10, mommsen-1)
+## A-20261110-mommsen1-shared-filename (2026-11-10, mommsen-1)
 
-Does the retained OWNER GRANT and OWNER OVERRIDE in the Nov09 21:46 MOMMSEN-I desktop session supply this lane's exact existing grants despite its session/turn cwd being Documents/Codex/2026-11-09/you-are-mommsen-i-change-to rather than the worktree? No widening is requested.
+Please resolve the protected SHARED filename instruction (compact mommsen1-) versus S-3-1/S-4-1 Claude correction (mommsen-1-): is there an explicit owner amendment of that SHARED line? No legal finding, grant widening or sealed-receipt rewrite is requested.
 
-*Why:* The takeover prompt identifies the grant source by first user message and worktree cwd. No matching-cwd Nov09 session or owner-grants.md was found. No merge grant is assumed; PR254/255 stay unmerged and SAVIGNY controls review and merge order.
+*Why:* The current user prompt binds directives except when they break a SHARED RULE. Filename change directly contradicts that protected line. Unaffected production continues; current main native publication prefix and protected prompt need an authoritative resolution.
 
-Sources: `HANDOFF/packets/2026-11-10-mommsen-1-turn1-takeover.md`
+Sources: `research/excavator/mommsen1-2026-11-10/FILENAME_SHARED_RULE_CONFLICT.md`
