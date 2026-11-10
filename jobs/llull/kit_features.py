@@ -13,8 +13,8 @@ Standard library only, no model tokens, nothing written. A feature is a fact abo
 """
 import glob
 import json
-import os
 import re
+import sys
 from pathlib import Path
 
 KIT_OUT = "jobs/claim-kit/output"
@@ -67,7 +67,62 @@ def _features(iid, status, orig, clauses, basis_kinds, actor_text, notice_held, 
     }
 
 
-def from_dossier(d, status=None):
+class KitRules:
+    """The claim kit's own freeze-time rules, used when this checkout carries them (Whitworth I2).
+
+    - ``own_text``: Accursius F5 (PR 274) ``own_text.records(iid, original, clauses)`` frames OWN_TEXT /
+      PARENT_END records from an order's own words at freeze time.
+    - ``working_text_basis``: Accursius F6 (PR 276) ``status_overlay.working_text_basis(dossier)`` says which
+      ruling lets a non-original text carry an undecided status.
+    On a kit that predates them they are absent and the gates follow the older rules. Nothing here copies them:
+    when the kit's rules change, the gates change with them.
+    """
+
+    def __init__(self, kit_dir=None, own_text=None, working_text_basis=None):
+        self.own_text, self.working_text_basis, self.loaded = own_text, working_text_basis, []
+        if kit_dir is None:
+            return
+        kit_dir = Path(kit_dir)
+        if str(kit_dir) not in sys.path:
+            sys.path.insert(0, str(kit_dir))
+        if self.own_text is None and (kit_dir / "own_text.py").is_file():
+            try:
+                import own_text
+                self.own_text = own_text.records
+                self.loaded.append("own_text.records")
+            except Exception as exc:          # reported in SUMMARY.json, never guessed around
+                self.loaded.append("own_text.records unavailable: %s" % exc)
+        if self.working_text_basis is None and (kit_dir / "status_overlay.py").is_file():
+            try:
+                import status_overlay
+                fn = getattr(status_overlay, "working_text_basis", None)
+                if fn is not None:
+                    self.working_text_basis = fn
+                    self.loaded.append("status_overlay.working_text_basis")
+            except Exception as exc:
+                self.loaded.append("status_overlay unavailable: %s" % exc)
+
+
+def _apply_rules(iid, orig, clauses, dossier, kinds, rules):
+    """Undecided route: a credited working text (F6) and own-text basis records (F5), by the kit's own functions.
+
+    Adds the basis kinds own_text finds to ``kinds``; returns whether working_text_basis credits the text."""
+    wtb = False
+    if rules is None or not orig:
+        return wtb
+    if rules.working_text_basis is not None and not orig.get("acceptable_as_original"):
+        try:
+            wtb = rules.working_text_basis(dossier) is not None
+        except (KeyError, TypeError, ValueError):
+            wtb = False
+    if rules.own_text is not None and orig.get("text") and not kinds:
+        for k in rules.own_text(iid, orig, clauses or []) or {}:
+            if str(k).startswith(BASIS_PREFIXES):
+                kinds.add(str(k).split(":", 1)[0])
+    return wtb
+
+
+def from_dossier(d, status=None, rules=None):
     """Features of one claim-kit dossier (a compiled decided dossier, or a frozen overlay base_dossier)."""
     recs = d.get("evidence") or {}
     orig = recs.get(d.get("original_source_id") or "") if d.get("original_source_id") else None
@@ -84,17 +139,23 @@ def from_dossier(d, status=None):
     clauses = sum(1 for k in recs if k.startswith("CLAUSES:"))
     if status is None:
         status = d.get("whole_order_status")
-    return _features(d.get("instrument_id"), status, orig, clauses, kinds, actor_text, notice,
-                     original_text=(orig or {}).get("text"),
-                     working_confirmation=d.get("working_text_confirmation") is not None,
-                     current_leads=len(d.get("current_law_leads") or []))
+    wtb = False
+    if status not in ("yes", "no"):
+        wtb = _apply_rules(d.get("instrument_id"), orig, d.get("clauses"), d, kinds, rules)
+    f = _features(d.get("instrument_id"), status, orig, clauses, kinds, actor_text, notice,
+                  original_text=(orig or {}).get("text"),
+                  working_confirmation=d.get("working_text_confirmation") is not None,
+                  current_leads=len(d.get("current_law_leads") or []))
+    f["working_text_basis"] = f["working_text_basis"] or wtb
+    return f
 
 
-def from_overlay(inputs, terms, acts, clause, actor_ok, lead=None):
+def from_overlay(inputs, terms, acts, clause, actor_ok, lead=None, rules=None, read_text=None):
     """Features of one undecided order from its compiled overlay records (the build.package assembly).
 
     actor_ok(actor_id) -> True when the actor has a compiled selected text that package() would frame as an
-    ACTOR_TEXT record (a CLAUSES source, and not an overflow actor text).
+    ACTOR_TEXT record (a CLAUSES source, and not an overflow actor text). read_text(rel) -> the held text, read
+    only when the kit's own-text rule (F5) must look at the order's words and no other basis is held.
     """
     iid = inputs["instrument_id"]
     orig = inputs.get("selected") or None
@@ -113,14 +174,30 @@ def from_overlay(inputs, terms, acts, clause, actor_ok, lead=None):
         kinds.add("ACTOR_TEXT")
     current = 0
     for frag in (lead or {}).get("current_law_leads") or []:
+        # build.package frames CURRENT:{iid}#{n} from a lead with exact text, offsets and a source (F3's leads).
         if isinstance(frag, dict) and all(k in frag for k in ("text", "char_start", "char_end", "source")) \
                 and _held(frag):
             kinds.add("CURRENT")
         current += 1
     nclauses = len((clause or {}).get("clauses") or [])
-    return _features(iid, None, orig, nclauses, kinds, actor_text, False,
-                     working_confirmation=inputs.get("working_text_confirmation") is not None,
-                     current_leads=current)
+    wtb = False
+    if orig and rules is not None:
+        original = {"text": None, "char_start": 0, "char_end": 0, "source": orig.get("source"),
+                    "signing_date": orig.get("signing_date"), "grade": orig.get("grade"),
+                    "acceptable_as_original": bool(orig.get("acceptable_as_original")),
+                    "requires_page_check": bool(orig.get("requires_page_check"))}
+        if rules.own_text is not None and not kinds and read_text is not None and orig.get("text_path"):
+            original["text"] = read_text(orig["text_path"])
+            original["char_end"] = len(original["text"] or "")
+        dossier = {"instrument_id": iid, "original_source_id": "O", "evidence": {"O": original}}
+        if inputs.get("working_text_confirmation") is not None:
+            dossier["working_text_confirmation"] = inputs["working_text_confirmation"]
+        wtb = _apply_rules(iid, original, (clause or {}).get("clauses"), dossier, kinds, rules)
+    f = _features(iid, None, orig, nclauses, kinds, actor_text, False,
+                  working_confirmation=inputs.get("working_text_confirmation") is not None,
+                  current_leads=current)
+    f["working_text_basis"] = f["working_text_basis"] or wtb
+    return f
 
 
 def _shards(out, stem):
@@ -134,14 +211,20 @@ def _shards(out, stem):
                     yield json.loads(line)
 
 
-def load(repo, out_rel=KIT_OUT):
-    """{instrument_id: features} for every decided dossier and every undecided overlay input."""
+CODE_KIT = Path(__file__).resolve().parents[1] / "claim-kit"
+
+
+def load(repo, out_rel=KIT_OUT, rules=None):
+    """{instrument_id: features} for every decided dossier and every undecided overlay input.
+
+    rules: KitRules; by default the claim kit next to this file (the code, not the data checkout)."""
+    rules = KitRules(CODE_KIT) if rules is None else rules
     out = Path(repo) / out_rel
     result = {}
     for p in sorted((out / "dossiers").glob("*.json")):
         with open(p, encoding="utf-8") as fh:
             d = json.load(fh)
-        result[d["instrument_id"]] = from_dossier(d)
+        result[d["instrument_id"]] = from_dossier(d, rules=rules)
     inputs = {r["instrument_id"]: r for r in _shards(out, "OVERLAY_INPUTS")}
     if not inputs:
         return result
@@ -174,9 +257,15 @@ def load(repo, out_rel=KIT_OUT):
     def actor_ok(a):
         return a in clause_src and a not in overflow
 
+    def read_text(rel):
+        try:
+            return (Path(repo) / rel).read_bytes().decode("utf-8")
+        except (OSError, UnicodeDecodeError):
+            return None
+
     for iid, r in inputs.items():
         result[iid] = from_overlay(r, terms.get(iid, []), acts.get(iid, []), clause_rows.get(iid), actor_ok,
-                                   leads.get(iid))
+                                   leads.get(iid), rules=rules, read_text=read_text)
     return result
 
 

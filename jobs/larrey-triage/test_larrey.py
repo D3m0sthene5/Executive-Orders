@@ -141,9 +141,11 @@ class Fixture:
             (self.root / rel).write_text("# kit code v1\n", encoding="utf-8")
         self.calibrate()
 
-    def calibrate(self):
+    def calibrate(self, lost=0):
         bt = {"calibrated_code_sha256": {rel: hashlib.sha256((self.root / rel).read_bytes()).hexdigest()
-                                         for rel in ("jobs/claim-kit/status_overlay.py", "jobs/claim-kit/assemble.py")}}
+                                         for rel in ("jobs/claim-kit/status_overlay.py", "jobs/claim-kit/assemble.py")},
+              "undecided": {"curve": [{"successes": 33, "successes_lost": lost}]},
+              "decided": {"curve": [{"successes": 97, "successes_lost": 0}]}}
         (self.root / L.BACKTEST).write_text(json.dumps(bt), encoding="utf-8")
 
 
@@ -176,8 +178,7 @@ class _Base(unittest.TestCase):
         return L.triage(self.tmp.name, out, **kw), out
 
     def verdicts(self, out):
-        with open(out / "VERDICTS.csv", encoding="utf-8") as fh:
-            return {(r["route"], r["instrument_id"]): r for r in csv.DictReader(fh)}
+        return {(route, i): v for route in L.ROUTES for i, v in L.verdicts_for(self.tmp.name, route).items()}
 
 
 class TriageTests(_Base):
@@ -213,6 +214,18 @@ class TriageTests(_Base):
         self.assertEqual((p["members"], p["admitted"], p["no_verdict_kept_out"]), (3, 1, 1))
         self.assertEqual(p["top_reasons"], {"soft:no_later_order_text_held": 1, "no_compiled_inputs": 1})
         self.assertIsNone(pools["production.one_step_away"]["route"])
+
+    def test_gates_file_carries_the_whitworth_fields(self):
+        _, out = self.run_triage()
+        lines = [json.loads(l) for l in (out / L.GATES_FILE).read_text(encoding="utf-8").splitlines()]
+        self.assertEqual(len(lines), 6 + 2 * 6)       # decided: one route; undecided: full and status-only
+        g = next(x for x in lines if x["instrument_id"] == "EO:8003" and x["route"] == "undecided_full")
+        self.assertFalse(g["pass"])
+        self.assertIn("status_basis_record", g["missing"])
+        self.assertIn("gates_commit", g)
+        self.assertTrue({"instrument_id", "route", "pass", "missing", "gates_commit"} <= set(g))
+        ok = next(x for x in lines if x["instrument_id"] == "EO:8001" and x["route"] == "status_only")
+        self.assertEqual((ok["pass"], ok["missing"]), (True, []))
 
     def test_no_pools_mode_reads_no_strata(self):
         self.f.strata("status_assignment.undecided", ["EO:8001"])
@@ -267,6 +280,19 @@ class AdmittedTests(_Base):
         self.assertFalse(rec["larrey_enforced"])
         self.assertIsNotNone(L.admitted(self.tmp.name, "production.claim_ready.yes.fr")[0])
 
+    def test_a_backtest_that_loses_a_success_turns_the_route_advisory(self):
+        self.run_triage()
+        self.f.calibrate(lost=1)
+        ok, _, rec = L.admitted(self.tmp.name, "status_assignment.undecided")
+        self.assertIsNone(ok)
+        self.assertFalse(rec["larrey_enforced"])
+        self.assertIsNotNone(L.admitted(self.tmp.name, "production.claim_ready.no.fr")[0])
+        # the job's own re-run back-test (output/BACKTEST.json) wins over the committed one
+        bt = json.loads((Path(self.tmp.name) / L.BACKTEST).read_text(encoding="utf-8"))
+        bt["undecided"]["curve"][-1]["successes_lost"] = 0
+        (Path(self.tmp.name) / L.OUTPUT / "BACKTEST.json").write_text(json.dumps(bt), encoding="utf-8")
+        self.assertTrue(L.admitted(self.tmp.name, "status_assignment.undecided")[2]["larrey_enforced"])
+
     def test_refusal_names_the_missing_input_and_fails_closed(self):
         self.run_triage()
         ok, why, _ = L.admitted(self.tmp.name, "status_assignment.undecided")
@@ -319,6 +345,43 @@ class AdmittedTests(_Base):
         self.assertEqual(s["cost_usd"], 0.5)                       # one admitted order is paid for
         self.assertAlmostEqual(s["expected_now"], round(min(1.0, 4 * 0.1 * 34 / 35), 1))
         self.assertTrue(any("Larrey triage" in n for n in s["notes"]))
+
+
+class KitRulesTests(unittest.TestCase):
+    """Accursius F5/F6 (Whitworth I2): the gates call the kit's own freeze-time functions when it has them."""
+
+    def test_own_text_records_become_a_status_basis_on_the_undecided_route_only(self):
+        seen = []
+
+        def own_text(iid, original, clauses):
+            seen.append((iid, original["text"], len(clauses)))
+            return {"OWN_TEXT:" + iid + "#0": {"own_text_kind": "spent_on_issue"}}
+
+        rules = KF.KitRules(own_text=own_text)
+        d = dossier("EO:7001", text="Fort X is restored to the public domain.")
+        self.assertEqual(KF.from_dossier(d, rules=rules)["basis_kinds"], ["OWN_TEXT"])
+        self.assertEqual(seen, [("EO:7001", "Fort X is restored to the public domain.", 0)])
+        self.assertEqual(KF.from_dossier(dossier("EO:7002", "no"), rules=rules)["basis_kinds"], [])
+        inputs = {"instrument_id": "EO:7003", "selected": {"acceptable_as_original": True, "text_path": "t.txt",
+                                                           "source": dict(SRC)}}
+        f = KF.from_overlay(inputs, [], [], {"clauses": [{"scope_id": "EO:7003#1"}]}, lambda a: False,
+                            rules=rules, read_text=lambda rel: "Sec. 1. Revoked.")
+        self.assertEqual(f["basis_kinds"], ["OWN_TEXT"])
+
+    def test_working_text_basis_credits_an_undecided_original(self):
+        rules = KF.KitRules(working_text_basis=lambda d: "p4_replica" if d["evidence"][d["original_source_id"]]
+                            ["grade"] == "archival_replica_checked" else None)
+        f = KF.from_dossier(dossier("EO:7004", acceptable=False, grade="archival_replica_checked"), rules=rules)
+        self.assertTrue(f["working_text_basis"])
+        D = L._FeatData({"EO:7004": f})
+        self.assertEqual(llull.GATES["original_usable"][1]({"instrument_id": "EO:7004", "provisional_status": ""}, D),
+                         "held")
+        g = KF.from_dossier(dossier("EO:7005", acceptable=False, grade="mirror_transcription"), rules=rules)
+        self.assertFalse(g["working_text_basis"])
+
+    def test_kit_rules_load_from_the_real_kit_without_error(self):
+        rules = KF.KitRules(KF.CODE_KIT)
+        self.assertFalse(any("unavailable" in x for x in rules.loaded), rules.loaded)
 
 
 class ActionRouteTests(unittest.TestCase):

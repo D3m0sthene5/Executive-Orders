@@ -394,7 +394,7 @@ def build(repo, write_ids=True):
 
 
 LARREY_DIR = "jobs/larrey-triage"
-LARREY_VERDICTS = LARREY_DIR + "/output/VERDICTS.csv"
+LARREY_VERDICTS = LARREY_DIR + "/output/GATES.jsonl"
 
 
 def apply_triage(repo, actions):
@@ -415,8 +415,8 @@ def apply_triage(repo, actions):
     L = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(L)
     retained = {}
-    bt = Path(repo) / L.BACKTEST
-    if bt.is_file():
+    bt = L.backtest_path(repo)
+    if bt is not None and bt.is_file():
         b = json.loads(bt.read_text(encoding="utf-8"))
         for route, key in (("undecided_full", "undecided"), ("status_only", "undecided"),
                            ("decided_lifecycle", "decided")):
@@ -424,7 +424,7 @@ def apply_triage(repo, actions):
             if last:
                 k, n = last["successes"] - last["successes_lost"], last["successes"]
                 retained[route] = {"kept": k, "of": n, "share": round((k + 1) / (n + 2), 4),
-                                   "basis": "rule of succession (kept+1)/(of+2) on " + L.BACKTEST}
+                                   "basis": "rule of succession (kept+1)/(of+2) on the Larrey back-test"}
     applied, skipped = [], []
     for a in actions:
         if not a.get("order_ids_path") or not L.action_route(a["id"]):

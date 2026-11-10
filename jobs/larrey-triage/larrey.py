@@ -32,6 +32,7 @@ OUTPUT = "jobs/larrey-triage/output"
 BACKTEST = "jobs/larrey-triage/BACKTEST.json"
 SCHEMA = "larrey.triage/v1"
 KIT_SUMMARY = "jobs/claim-kit/output/SUMMARY.json"
+GATES_FILE = "GATES.jsonl"
 
 # Each route lists its gates (names in Llull's GATES registry). Hard gates are what the route itself requires:
 # without them the kit cannot accept the result whatever the agent finds. Soft gates are measured predictors,
@@ -153,6 +154,7 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
             verdicts.append({"instrument_id": iid, "provisional_status": r.get("provisional_status") or "",
                              "route": route, "admit": "yes" if not hard and not soft else "no",
                              "admit_hard_only": "yes" if not hard else "no",
+                             "missing": failed["hard"] + failed["soft"],
                              "reasons": ";".join(hard + ["soft:" + c for c in soft])})
             t = tallies.setdefault(route, {"orders": 0, "admitted": 0, "admitted_hard_only": 0,
                                            "any": Counter(), "sole": Counter(), "detail": Counter()})
@@ -164,20 +166,28 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
             if len(base) == 1:
                 t["sole"][base[0]] += 1
             t["detail"].update(c for c in hard if ":" in c)
-    with open(out / "VERDICTS.csv", "w", newline="", encoding="utf-8") as fh:
-        w = csv.DictWriter(fh, fieldnames=["instrument_id", "provisional_status", "route", "admit", "admit_hard_only",
-                                           "reasons"], lineterminator="\n")
-        w.writeheader()
-        w.writerows(sorted(verdicts, key=lambda v: (v["route"], v["instrument_id"])))
+    commit = gates_commit(repo)
+    # Whitworth I1: one line per (order, route) with pass, missing gate ids and the commit of the gate code.
+    _write(out / GATES_FILE, "".join(json.dumps(
+        {"instrument_id": v["instrument_id"], "route": v["route"], "pass": v["admit"] == "yes",
+         "missing": v["missing"], "pass_hard": v["admit_hard_only"] == "yes",
+         "reasons": [x for x in v["reasons"].split(";") if x], "provisional_status": v["provisional_status"],
+         "gates_commit": commit}, sort_keys=True) + "\n"
+        for v in sorted(verdicts, key=lambda v: (v["route"], v["instrument_id"]))))
+    gate_tally = {}
+    for v in verdicts:
+        if v["admit"] != "yes":
+            gate_tally.setdefault(v["route"], Counter()).update(v["missing"])
     reasons = {route: {"orders": t["orders"], "admitted": t["admitted"], "admitted_hard_only": t["admitted_hard_only"],
                        "kept_out": t["orders"] - t["admitted"],
                        "reasons_any": dict(t["any"].most_common()), "reasons_sole": dict(t["sole"].most_common()),
+                       "missing_gates_any": dict(gate_tally.get(route, Counter()).most_common()),
                        "original_grades_kept_out": dict(t["detail"].most_common(20))}
                for route, t in sorted(tallies.items())}
     # The job leaves pools to Bentham, which reads these verdicts (reading Bentham's strata here would make each
     # job an input of the other); a local run lists them from the committed strata.
     pools = action_pools(repo, verdicts, strata_dir) if pools else {}
-    calib = calibration(repo)
+    calib = calibration(repo, out / "BACKTEST.json")
     summary = {"schema": SCHEMA, "generated_at": now(),
                "inputs": {"claim_kit_summary_sha256": sha_file(repo / KIT_SUMMARY),
                           "tracker_sha256": sha_file(repo / "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv")},
@@ -186,6 +196,7 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
                "routes": {k: {kk: v[kk] for kk in ("title", "hard", "soft")} for k, v in ROUTES.items()},
                "calibration": calib,
                "orders_with_compiled_inputs": len(feats), "tracker_orders": len(rows),
+               "gates_commit": commit, "kit_rules_loaded": _kf().KitRules(_kf().CODE_KIT).loaded,
                "notice": "Deferral, not decision: a kept-out order is open until its missing input is held. "
                          "No status, count or certification changed."}
     _write((out / "SUMMARY.json"), json.dumps(summary, indent=1) + "\n")
@@ -195,21 +206,49 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
     return summary, reasons, pools
 
 
-def calibration(repo):
-    """Per route: is the kit code its gates were back-tested on still the code on this checkout?"""
-    bt = {}
-    p = Path(repo) / BACKTEST
-    if not p.exists():
-        p = HERE / "BACKTEST.json"   # the code's own back-test when the data checkout is another worktree
-    if p.exists():
-        bt = json.loads(p.read_text(encoding="utf-8")).get("calibrated_code_sha256", {})
+def backtest_path(repo):
+    """The newest back-test: the job's own (output/BACKTEST.json, re-run on every job run), else the committed one,
+    else the one beside this code (a data checkout that is another worktree)."""
+    for p in (Path(repo) / OUTPUT / "BACKTEST.json", Path(repo) / BACKTEST, HERE / "BACKTEST.json"):
+        if p.exists():
+            return p
+    return None
+
+
+def calibration(repo, bt_path=None):
+    """Per route: enforced only while the kit code its gates mirror is the code the back-test ran on, and that
+    back-test lost no success at the operating point. The job re-runs the back-test on every run, so a merged
+    route change (an Accursius fix) recalibrates without new code; a back-test that now loses a success turns
+    the route advisory until someone looks."""
+    bt, p = {}, (Path(bt_path) if bt_path and Path(bt_path).exists() else backtest_path(repo))
+    if p is not None:
+        bt = json.loads(p.read_text(encoding="utf-8"))
+    hashes = bt.get("calibrated_code_sha256", {})
     out = {}
     for route, spec in ROUTES.items():
         rel = spec["calibrated_on"]
         cur = sha_file(Path(repo) / rel)
-        out[route] = {"file": rel, "backtested_sha256": bt.get(rel), "current_sha256": cur,
-                      "enforced": bool(cur) and bt.get(rel) == cur}
+        curve = (bt.get("decided" if route == "decided_lifecycle" else "undecided") or {}).get("curve") or []
+        lost = curve[-1]["successes_lost"] if curve else None
+        where = None
+        if p is not None:
+            try:
+                where = p.resolve().relative_to(Path(repo).resolve()).as_posix()
+            except ValueError:
+                where = str(p)
+        out[route] = {"file": rel, "backtest": where, "backtested_sha256": hashes.get(rel), "current_sha256": cur,
+                      "successes_lost": lost, "enforced": bool(cur) and hashes.get(rel) == cur and lost == 0}
     return out
+
+
+def gates_commit(repo):
+    """The commit the gate code ran at (the runner's checkout), or None outside git."""
+    import subprocess
+    try:
+        r = subprocess.run(["git", "-C", str(HERE), "rev-parse", "HEAD"], capture_output=True, text=True, timeout=30)
+    except (OSError, subprocess.SubprocessError):
+        return None
+    return (r.stdout.strip() or None) if r.returncode == 0 else None
 
 
 def _code(reason):
@@ -278,9 +317,18 @@ def todo_md(reasons, pools, calib):
 # ---------------------------------------------------------------- admission helper (no Llull import)
 
 def verdicts_for(repo, route):
-    path = Path(repo) / OUTPUT / "VERDICTS.csv"
-    with open(path, newline="", encoding="utf-8") as fh:
-        return {r["instrument_id"]: r for r in csv.DictReader(fh) if r["route"] == route}
+    """{instrument_id: {'admit', 'admit_hard_only', 'reasons'}} from GATES.jsonl for one route."""
+    out = {}
+    with open(Path(repo) / OUTPUT / GATES_FILE, encoding="utf-8") as fh:
+        for line in fh:
+            if not line.strip():
+                continue
+            g = json.loads(line)
+            if g["route"] == route:
+                out[g["instrument_id"]] = {"admit": "yes" if g["pass"] else "no",
+                                           "admit_hard_only": "yes" if g["pass_hard"] else "no",
+                                           "reasons": ";".join(g.get("reasons") or [])}
+    return out
 
 
 def admitted(repo, action):
@@ -299,7 +347,7 @@ def admitted(repo, action):
     out = repo / OUTPUT
     summary_path = out / "SUMMARY.json"
     rerun = "run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
-    if not summary_path.exists() or not (out / "VERDICTS.csv").exists():
+    if not summary_path.exists() or not (out / GATES_FILE).exists():
         raise ValueError(f"Larrey triage missing ({OUTPUT}); {rerun}")
     summary = json.loads(summary_path.read_text(encoding="utf-8"))
     if summary.get("inputs", {}).get("claim_kit_summary_sha256") != sha_file(repo / KIT_SUMMARY):
@@ -352,6 +400,7 @@ def undecided_outcomes(repo):
     """One row per attempted undecided order in Papinian u01b/u02/u03 and Haloander u01-u03, with its frozen
     overlay dossier and its outcome."""
     kf = _kf()
+    rules = kf.KitRules(kf.CODE_KIT)
     repo = Path(repo)
     rows = {}
     for wave, base, batches in (("papinian", PAPINIAN, ["u01b", "u02", "u03"]),
@@ -370,7 +419,7 @@ def undecided_outcomes(repo):
                              "producer_status": bool(sd.get("approved") is True
                                                      and sd.get("recommended_provisional_status") in ("yes", "no")),
                              "accepted": False, "filed": False,
-                             "features": kf.from_dossier(e["base_dossier"], status=None)}
+                             "features": kf.from_dossier(e["base_dossier"], status=None, rules=rules)}
     reviews = (glob.glob(str(repo / PAPINIAN / "u0*/overlay/*/review-v1/STATUS_REVIEW.json"))
                + glob.glob(str(repo / HALOANDER / "u0*/packet/undecided/*/STATUS_REVIEW.json"))
                + glob.glob(str(repo / HALOANDER / "ux/overlay/*/proposal-v1/STATUS_REVIEW.json")))
@@ -461,7 +510,7 @@ DECIDED_LADDER = [
 ]
 
 
-def backtest(repo=REPO, diagnosis=None, write=True):
+def backtest(repo=REPO, diagnosis=None, write=True, out_path=None):
     repo = Path(repo)
     G = _llull().GATES
     und = undecided_outcomes(repo)
@@ -520,8 +569,9 @@ def backtest(repo=REPO, diagnosis=None, write=True):
     result["operating_point"] = {"undecided_full": op, "decided_lifecycle": DECIDED_LADDER[-1]}
     result["kept_out"] = kept_rows
     result["costs"] = measured_costs(repo)
+    result["kit_rules_loaded"] = _kf().KitRules(_kf().CODE_KIT).loaded
     if write:
-        _write((repo / BACKTEST), json.dumps(result, indent=1) + "\n")
+        _write(Path(out_path) if out_path else repo / BACKTEST, json.dumps(result, indent=1) + "\n")
     return result
 
 
@@ -563,7 +613,7 @@ def project(repo=REPO, bt=None):
     worker dollar scales with attempted orders. Both are projections, not measurements.
     """
     repo = Path(repo)
-    bt = bt or json.loads((repo / BACKTEST).read_text(encoding="utf-8"))
+    bt = bt or json.loads(backtest_path(repo).read_text(encoding="utf-8"))
     costs = bt["costs"]
     und = undecided_outcomes(repo)
     G = _llull().GATES
@@ -639,6 +689,18 @@ def project(repo=REPO, bt=None):
         "filed": yfiled, "usd_per_filed_without": round(yusd / yfiled, 2) if yfiled else None,
         "usd_per_filed_with_P": round(y_with_p / yfiled, 2) if yfiled else None,
         "usd_per_filed_with_A": round(y_with_a / yfiled, 2) if yfiled else None}
+    # Whitworth units: worker dollars per filed claim (a filed undecided proposal counts once, as adopted).
+    tot_usd = usd + (sum(b["usd"] for b in hb) if hb else 0) + yusd
+    tot_filed = adopted + (sum(1 for r in hu.values() if r["outcome"] == "filed") if hb and hu else 0) + yfiled
+    tot_a = with_a + (husd * (len(hu) - len(hk)) / len(hu) if hb and hu else 0) + y_with_a
+    tot_p = with_p + (husd * (len(hu) - len(hk)) / len(hu) if hb and hu else 0) + y_with_p
+    out["all_waves_usd_per_filed_claim"] = {
+        "worker_usd_measured": round(tot_usd, 2), "filed": tot_filed,
+        "without_gate": round(tot_usd / tot_filed, 2) if tot_filed else None,
+        "with_gate_P": round(tot_p / tot_filed, 2) if tot_filed else None,
+        "with_gate_A": round(tot_a / tot_filed, 2) if tot_filed else None,
+        "note": "Papinian undecided + Haloander probe + Papinian YES; Haloander enters model P at its model-A value "
+                "(no per-role costs); coordinator dollars excluded"}
     return out
 
 
