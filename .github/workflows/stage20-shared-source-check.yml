@@ -1,18 +1,9 @@
 name: Verify Stage 20 shared-source workbench
 
+# Retired from automatic runs (owner, 2026-11-09, Kean D-20261109-no-push-runs): it ran only when a
+# pergamon-* tag push matched its paths, about 79 times in four days, mostly failing. Start it by hand
+# (Actions tab -> Run workflow). .github/scripts/test_workflow_triggers.py keeps it manual.
 on:
-  push:
-    paths:
-      - '.github/workflows/stage20-shared-source-check.yml'
-      - 'research/stage20/code/build_shared_source_workbench.mjs'
-      - 'research/stage20/code/test_shared_source_workbench.mjs'
-      - 'research/stage20/output/SHARED_SOURCE_*'
-      - 'research/stage20/code/merge_statute_custody.mjs'
-      - 'research/stage20/code/test_statute_custody.mjs'
-      - 'research/stage20/output/STATUTE_CASE_REVIEW_QUEUE.csv'
-      - 'research/stage20/output/STATUTE_SOURCE_CASE_PACKETS.jsonl'
-      - 'research/stage20/output/STATUTE_SOURCE_READY_WORKBENCH.html'
-      - 'research/stage20/output/STATUTE_CUSTODY_METRICS.json'
   workflow_dispatch:
 
 permissions:

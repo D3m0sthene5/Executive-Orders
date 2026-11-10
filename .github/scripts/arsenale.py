@@ -869,6 +869,12 @@ def blocked_by_failures(deferred, attempts, after_of=None):
 
 
 def command_requeue(args):
+    # A workflow re-queues only itself (owner, 2026-11-09, Kean D-20261109-no-push-runs): otherwise a
+    # push-started workflow could start Run jobs through this command.
+    caller = (os.environ.get("GITHUB_WORKFLOW_REF") or "").split("@", 1)[0].rsplit("/", 1)[-1]
+    if caller and args.workflow != caller:
+        print(f"::error::{caller} may re-queue only itself, not {args.workflow}.")
+        return 1
     report = read_json(REPORT, {}) or {}
     publication = report.get("publication") or {}
     # An as-of readout is published but behind: queue the catch-up like a refusal.

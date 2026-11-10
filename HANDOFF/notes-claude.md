@@ -14,6 +14,26 @@
 - Kean F-20261109-mission-refresh-diagnosed.
 - **Asks:** @Owner: none. @Montfaucon/Tischendorf owners: decide how a page check survives a producer retargeting.
 
+## 2026-11-09 ET (Claude, no push starts Run jobs; tags start no workflow)
+
+- **Why:** over 2026-11-06..09 only 18% of Run jobs minutes ended in a successful run, a third were runs
+  refused at publish as stale, and every `pergamon-*` tag push started about ten workflows.
+  `research/diagnostics/actions-throughput-20261109/README.md`; Kean F-20261109-actions-throughput.
+- **Done** (owner decision D-20261109-no-push-runs):
+  - Run jobs starts only on its schedule or by hand. To run your job on your branch:
+    `gh workflow run run-jobs.yml --ref <branch> -f job=<name> -f only=true`.
+  - The sweep reads every commit after the previous sweep's input commit (Actions run history), not a
+    3h20m clock window, so a late sweep or an old-dated commit is no longer missed. The daily run is a sweep.
+  - Every push trigger names `branches: [main]`; the Stage 20/21, Tribonian and R1 workflows run only by hand.
+  - `.github/scripts/workflow_triggers.py` enforces this in the road tests (fails closed). No workflow
+    listens to tag events; only `run-jobs.yml` picks jobs; `arsenale.py requeue` dispatches only its own
+    workflow. An independent review found nine holes in the first version, all fixed with tests;
+    mutation testing killed all 34 breakages. Kean flags the old push-to-run wording if it returns.
+- **Open for the owner:** main has no branch protection, so a red check does not block a merge or a direct
+  push. GitGuardian flags `jobs/_attempts/portfolio-repair-check/42714395090-1/OUTPUT_PINS.json` (a SHA-256
+  pin keyed by a file named `hamilton-token-audit.log`): a false positive only the owner can dismiss.
+- **Not changed:** job outputs are still committed to main, the remaining source of stale refusals.
+
 ## 2026-11-09 ET (Claude, live dashboard at dannykind.wiki/eo/dashboard; PC and branch deconfliction)
 
 - **Done:** the control center (`research/progress/control-center/`, all eight tabs) is live at

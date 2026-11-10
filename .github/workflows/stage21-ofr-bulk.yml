@@ -1,12 +1,10 @@
 name: Stage 21 — official EO bulk index and reverse-disposition leads
 
+# Retired from automatic runs (owner, 2026-11-09, Kean D-20261109-no-push-runs): it ran only when a
+# pergamon-* tag push matched its paths, about 79 times in four days, mostly failing. Start it by hand
+# (Actions tab -> Run workflow). .github/scripts/test_workflow_triggers.py keeps it manual.
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/stage21-ofr-bulk.yml'
-      - 'research/stage21/code/ofr_bulk_excavator.py'
-      - 'research/stage21/code/test_ofr_bulk_excavator.py'
 
 permissions:
   contents: write

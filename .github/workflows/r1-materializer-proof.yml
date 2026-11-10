@@ -1,16 +1,10 @@
 name: R1 matched Valla materialization proof
+# Retired from automatic runs (owner, 2026-11-09, Kean D-20261109-no-push-runs): it ran only when a
+# pergamon-* tag push matched its paths, about 79 times in four days, mostly failing. Start it by hand
+# (Actions tab -> Run workflow). .github/scripts/test_workflow_triggers.py keeps it manual.
 on:
-  push:
-    branches: [sol/r1-materializer-followthrough, codex/r1-r4-final-integration]
-    paths:
-      - '.github/scripts/materialize_job_inputs.py'
-      - '.github/scripts/result_freshness.py'
-      - '.github/scripts/materialization_certificates.json'
-      - '.github/workflows/r1-materializer-proof.yml'
-      - 'jobs/valla/needs.txt'
-      - 'jobs/valla/inputs.txt'
-      - 'jobs/valla/triggers.txt'
-      - 'research/progress/r1-materializer-followthrough/run_production_comparison.py'
+  workflow_dispatch:
+
 permissions:
   contents: read
 concurrency:
