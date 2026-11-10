@@ -98,7 +98,7 @@ def pick(repo,out,agent,n,excluded=None,scope='all'):
                 for line in fh:
                     if not line.strip():continue
                     lead=json.loads(line);iid=lead.get('instrument_id')
-                    if iid not in by and iid in histories and lead.get('status') is None:
+                    if iid not in by and iid in histories and histories[iid].get('fingerprint') and lead.get('status') is None:
                         by[iid]={'instrument_id':iid,'status':None,'fingerprint':None,
                             'history_sha256':histories[iid]['fingerprint'],'compiled_summary_sha256':summary_sha}
     if scope=='undecided':by={iid:r for iid,r in by.items() if r.get('status') is None}
