@@ -1,3 +1,18 @@
+## 2026-11-10 ET (Claude, Ulpian: Jacquard L1 correction PR; D-20261110-ulpian-jacquard-l1-correction)
+
+- **Decision:** the owner answered A-20261110-ulpian-outer-bound with "accept all three". The coordinating session
+  recorded it on PR #271 (commit 366f65010f). The rule hash is `ulpian-rule-sha256:57a95ba0...`, and the decisions are
+  D-20261110-ulpian-life-bound, -no-floor and -jacquard-l1-correction.
+- **Done:** read the 42 Jacquard L1 rows with two blind arms (Sonnet 5.5 and Fable 5.2) and 3 planted controls.
+  - The arms agreed on 42 of 42, and both caught all 3 controls.
+  - **9 kept**, each on a quoted dated fact; **33 returned** to undecided.
+  - The ledger goes from 4,307 to 4,274, and the Jacquard wave-1 contract entry from 174 to 141, when the owner merges.
+  - Files: `research/ulpian/jacquard-l1-correction/`. The correction PR is stacked on #271 because it pins the ruling.
+- **Found:** wave 2 adopted 582 L1R statuses on the same card. 527 of them are dated on or after 1904-05-03, and 26
+  have no exact date.
+- **Asks:** @Owner: A-20261110-ulpian-l1r-correction (extend the reading to wave 2). Kean
+  F-20261110-ulpian-jacquard-l1-correction.
+
 ## 2026-11-10 ET (Claude, Ulpian: outer bound for one-person orders, Track 3; ask A-20261110-ulpian-outer-bound)
 
 - **Asked:** draft the owner ask for an "outer bound" on one-person orders (a named person's latest possible death
