@@ -1,0 +1,7 @@
+Files one native-published EO6826 lifecycle claim: the flag-display command ends on its stated August22,1934 date. Two blind arms caught the planted signing-date error; both exact genuine after-reveal reviews upheld the filed version. Human certification remains0. The selected government-printed machine text retains its provisional grade, original-replacement and quotation-recheck obligations.
+
+Validation: native completion published1/blocked19/exceptions0. The affected actual checker passes1/1. After reconciling main21b182e359, the latest isolated local readiness replay is **632 before /633 after**; these sparse-checkout counts are not published-main totals. Earlier659->660 replay is preserved on its own input basis. No main readiness gain or merge is claimed.
+
+C-7 reconciliation preserves416main reservation keys and adds69branch-only keys, union485, with0same-key/different-owner collisions; main common values remain unchanged. Append-only Kean/FETCH_QUEUE entries are preserved and the regenerated brief passes strict Kean. No code, rejected mirror proposal, selector change, pending decided02 evidence or regenerated job-output bulk is in this PR.
+
+Integration: conditional SECOND slot activates only after actual PR252 merge, then current-main/C7 reconciliation and all actual head checks must pass. This head does not claim that clearance. CodePR259 and adoptionPR256 remain owner-held.

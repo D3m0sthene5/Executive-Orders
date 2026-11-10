@@ -1,0 +1,113 @@
+{
+  "instrument_id": "EO:6826",
+  "claim_sha256": "1756efd041af0ea46b6e0cd7b38b922aa1a6fe383ea32eded4e08eb189d6ab90",
+  "reviewer": "mommsen-3-decided01-A-v2",
+  "model_family": "OpenAI",
+  "model": "gpt-6.1-sol",
+  "independent": true,
+  "separate_context": true,
+  "review_kind": "independent_ai_source_review",
+  "scope": "whole_case",
+  "verdict": "rejected",
+  "rationale": "The exact submitted whole-case claim materially misstates the commanded calendar day and first/whole-order ending. I read the complete retained text at characters 0-850 and the cited operative span 390-849. The operative command requires flags on the White House and public buildings in the District of Columbia and State of Illinois to be at half mast on the day of the funeral service at Carrollton, Illinois, Wednesday, August 22, 1934. August 21, 1934 appears only in the signature block. The submitted first_end.date and whole_order_end.date are 1934-08-21, and the judgment_reason, research_rationale and source_notes repeatedly treat August 21 as the commanded day. Those exact conclusions contradict their own verified source. The whole-command calendar limitation supports expiration at the end of August 22, 1934 on the supplied text, without requiring proof of performance or funeral occurrence; it does not establish an August 21 ending. The source identifies EO:6826 through its closing number, Rainey subject and signature block. Its complete operative inventory contains one geographically bounded flag command, with no separate continuing command, savings clause or residual duty. Termination by the distant cutoff is consistent with that calendar limitation, but does not cure the erroneous exact lifecycle dates. No supplied source establishes an earlier ending, formal revocation, later amendment, revival, actual compliance or a current predicate requiring factual determination. I do not infer such events from absence. The claimed later-search coverage is qualified and does not independently prove the first ending. Rejection is scientific and rests on the source/date contradiction, not on the retained mechanical coverage limitations.",
+  "checked_source_files": [
+    {
+      "path": "C:/Users/danie/AppData/Local/Temp/mommsen3-decided01-blind-obo3hosx/sources/jobs/hathi-gpo-orders/output/texts/EO_6826.txt",
+      "sha256": "6a2a881a44761d23fd3bc51708829f25358332e458b4b2967dda1f3e8fae9e7b",
+      "bytes": 852,
+      "verification": "Exact bytes and UTF-8 spans verified; complete retained source text read, characters 0-850; operative span 390-849 read."
+    },
+    {
+      "path": "C:/Users/danie/AppData/Local/Temp/mommsen3-decided01-blind-obo3hosx/sources/jobs/hathi-gpo-orders/output/books/Executive_Orders_6690-6935.djvu",
+      "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+      "bytes": 16809160,
+      "verification": "Raw bytes verified by maintained verifier through both supplied descriptors; pages not visually inspected; requires_page_check is false."
+    }
+  ],
+  "mechanical_card_path": "research/excavator/mommsen3-2026-11-10-decided01/review-A-v2/MECHANICAL_CARD.json",
+  "mechanical_sources_path": "research/excavator/mommsen3-2026-11-10-decided01/review-A-v2/MECHANICAL_SOURCES.json",
+  "source_binding_complete": true,
+  "source_binding_audit_path": "research/excavator/mommsen3-2026-11-10-decided01/review-A-v2/SOURCE_BINDING_AUDIT.json",
+  "input_file_hashes": {
+    "R7.json": "ed24bbfec341514ab39c0a77d86a9c6b88313d2bc96f9fdf17a5e2605c7b5dbd",
+    "SOURCE_BINDINGS.json": "52e69bcacb21ca5a7a97b6afa3dc3b35f8ea421bf28d27602c5f9d3f759e91e8"
+  },
+  "canonical_card_sha256": "2b75485da7388df80972a566306664e21524cbf1f11a4e56637f476d7ec7031a",
+  "mechanical_card_ok": false,
+  "mechanical_sources_ok": true,
+  "mechanical_limitations": [
+    {
+      "locus": "$.operative_clauses[0].first_end.source",
+      "errors": [
+        "raw_path_missing"
+      ],
+      "unresolved": [],
+      "text_verified": true,
+      "raw_verified": false
+    },
+    {
+      "locus": "$.operative_clauses[0].original_source",
+      "errors": [
+        "raw_path_missing"
+      ],
+      "unresolved": [],
+      "text_verified": true,
+      "raw_verified": false
+    },
+    {
+      "locus": "$.original_representation",
+      "errors": [
+        "raw_path_missing"
+      ],
+      "unresolved": [],
+      "text_verified": true,
+      "raw_verified": false
+    },
+    {
+      "locus": "$.savings_residuals.source",
+      "errors": [
+        "raw_path_missing"
+      ],
+      "unresolved": [],
+      "text_verified": true,
+      "raw_verified": false
+    },
+    {
+      "locus": "$.source_notes[0].source",
+      "errors": [
+        "raw_path_missing"
+      ],
+      "unresolved": [],
+      "text_verified": true,
+      "raw_verified": false
+    },
+    {
+      "locus": "$.whole_order_end.source",
+      "errors": [
+        "raw_path_missing"
+      ],
+      "unresolved": [],
+      "text_verified": true,
+      "raw_verified": false
+    },
+    {
+      "locus": "$.working_text.confirmations[0]",
+      "errors": [
+        "quote_offsets",
+        "raw_path_missing"
+      ],
+      "unresolved": [],
+      "text_verified": false,
+      "raw_verified": false
+    }
+  ],
+  "qualifications": [
+    "The actual card remains mechanically failed. All seven raw_path_missing refusals are retained, including the quote_offsets error at $.working_text.confirmations[0]. The card was not rewritten and was not called a pass.",
+    "The six actual quoted references comprise two unique descriptors. Each exactly equals a supplied byte-verified descriptor after removing only raw_path. Both descriptor text/span and raw-byte checks passed. Every declared instrument_id, grade, sha256, text_path and text_sha256 pin in the one nonquotation working_text confirmation matched the verified full-source descriptor. There is no quotation or offset declaration in that confirmation; the verifier classification limitation is retained. No other byte/span/binding defect was found.",
+    "Source binding means matching supplied declarations to exact confined bytes; it establishes neither custody nor original authentication. Grade remains machine_read_government_printed_copy and acceptable_as_original remains false. Original replacement and quotation recheck remain required under the supplied working_text declaration. No page check is required by the selected source declaration.",
+    "The supplied search declarations have bounded coverage: OFR catalog records start in 1937; the USC release is current through 2026-10-09 and omits later laws through the 2026-10-14 cutoff; machine searches and their underlying outputs were not independently reproduced or inspected in this confined review. They cannot supply an unshown earlier ending or prove exhaustive historical absence.",
+    "No canonical dossiers, other review arms, seed receipts, keys, counterparts, Git state or unapproved folders were read. One substantive source examination was performed. No scientific approval is inferred from producer approval, a coordinator or byte verification.",
+    "This is independent AI source review only, with no human certification, original authentication or authorization to change the claim."
+  ],
+  "human_certified": false
+}

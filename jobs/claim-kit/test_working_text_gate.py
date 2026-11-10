@@ -71,7 +71,7 @@ class OfficialPrintingTests(_GradedFixture):
         self.base.assert_rejects("acceptable_original_required_for_status_proposal")
 
     def test_routes_constant_names_the_live_route(self):
-        self.assertIn("working_text", O.UNDECIDED_ROUTES)
+        self.assertEqual(O.UNDECIDED_ROUTES, frozenset({"current", "own_text", "working_text"}))
 
 
 class ReplicaCheckedTests(_GradedFixture):

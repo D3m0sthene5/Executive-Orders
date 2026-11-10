@@ -29,6 +29,42 @@ PDF can resolve custody; it does not establish that the document applies to the
 claimed order, that an event happened, or that a legal command ended. Preserve
 exact receipt versions and source grades.
 
+## Which claims a run rechecks (Palsgraf, owner ruling 2026-11-09)
+
+A run does not recheck every claim. `palsgraf.py` records, while each claim is checked, every input its
+result came from: each lookup into the run-wide tables (held sources by SHA-256 and URL, the Opus text
+pack, working-text fragments, Lachmann confirmations, the universe, provisional statuses, signing dates,
+GPO matches, archive captures), every file it opens, every directory it lists and every path it stats.
+`output/DEPENDENCY_TRACE.json.gz` keeps those inputs with fingerprints, plus each claim's stored result.
+The next run recomputes every fingerprint from the current checkout and rechecks a claim only if its line
+bytes or any fingerprint changed; every other claim's previous result is reused, and the outputs are
+byte-identical to a full run (the tests in `test_palsgraf.py` prove this for each kind of change).
+
+Always rechecked: new or edited lines, claims whose check touched the network (verification downloads),
+judged a date against today, or crashed. Checked in full, and said so in `output/SELECTION.json`
+(`mode`, `reason`):
+
+- `code_or_rules_changed`: any repository module the checker imported (checker, sources, palsgraf,
+  working_text, factual_events, norton, the Stage 19 gate, the tracker's step mapping), any file read while
+  loading them, Python, pypdf, the repository or cache path, or a `CLAIM_CHECKER_*` setting changed;
+- `no_previous_trace` or an unreadable one;
+- `periodic_full_reconcile`: the last full run is 7 or more days old. Every claim the selector would have
+  reused must come out identical; if not, the run stops with `BLOCKED.json` ("Palsgraf reconcile
+  failed"), because that means a dependency was missed;
+- `forced_full` (`CLAIM_CHECKER_FULL=1` or `--full`), also reconciled;
+- runs outside the default production run (`--fetch`, `--claims`, `JOB_LIMIT`, `CLAIM_CHECKER_CSV_ALL_ROWS`),
+  which write no trace. `CLAIM_CHECKER_PALSGRAF=off` turns selection off.
+
+`SELECTION.json` also lists the rechecked claim keys, why (new line, changed input kind, volatile), an
+example of each changed input, and timings. The previous output is read from `JOB_PRIOR_OUTPUT_DIR` (the
+runner sets it), `CLAIM_CHECKER_PRIOR_OUTPUT_DIR`, or the output folder itself.
+
+The download cache is capped at 2,048 MB (`CACHE_MB`, owner D-20261109-claim-checker-cache): at 1 GB about 487 MB
+of extracted texts and verified downloads were evicted each run, and the claims that read them were rechecked.
+
+To test a change to a producer's fragments, texts or hashes, run the checker as usual: it checks only the
+claims that change can reach. To check one claim file by hand, `--claims FILE` still works (untraced).
+
 ## What it checks
 
 For every claim (Stage 19 format, see `research/stage19/CLAIM_SCHEMA.md`) and every
