@@ -11,7 +11,7 @@ Discovery only. A located sentence is a lead to what a later document says, neve
 the order. A target with no hit, or with hits but no acting sentence, gets a search record and nothing else: a
 concordance's silence is never evidence about an order (D-20261028-evidence-decides).
 
-Identity (cruden-locate-2, after the 2026-11-10 hostile review). A sentence is published with its printed relation
+Identity (cruden-locate-3, after two passes of the 2026-11-10 hostile review). A sentence is published with its printed relation
 only when a citation in it prints a date equal to the target's own date. A sentence whose printed dates all disagree,
 whose number runs into more digits or a letter, that sits inside the order's own printing, or that names another
 issuer, is refused (kept in LOCATED.csv, never published). A sentence with no printed date, an index or contents
@@ -47,7 +47,7 @@ from fetch_pool import FetchPool, FetchError  # noqa: E402
 import selden_common as S  # noqa: E402  (read-only reuse: locator, fragment and source records, controls)
 
 csv.field_size_limit(min(2 ** 31 - 1, 10 ** 9))
-LOCATOR = "cruden-locate-2"
+LOCATOR = "cruden-locate-3"
 UA = "EO-Road-System/1.0 (Cruden concordance of the Federal Register by order number; owner-run research)"
 SEARCH_URL = "https://api.govinfo.gov/search"
 FR_PDF = "https://www.govinfo.gov/content/pkg/{pkg}/pdf/{pkg}.pdf"
@@ -55,6 +55,7 @@ GRANULE_PDF = "https://www.govinfo.gov/content/pkg/{pkg}/pdf/{gran}.pdf"
 FR_FIRST, FR_LAST = "1936-03-14", "1993-12-31"
 PRODUCER = "cruden-fr-concordance"
 MIN_RECALL = 0.6  # planted positives that must be located for a run's controls to pass
+MIN_PUBLISHED_RECALL = 0.4  # planted positives whose dated sentence must also be published as acting
 GRADE_FR = ("government_printed_federal_register_issue (govinfo scan of the daily Federal Register; text is the scan's "
             "OCR layer)")
 GRADE_STAT = "government_printed_statutes_at_large_page (govinfo scan; text is the scan's OCR layer)"
@@ -74,12 +75,22 @@ ISSUER_WORDS = (r"Governor[\s-]*General|Governor|Military\s+Governor|High\s+Comm
 ISSUER_AFTER = re.compile(r"^[\s,]*(?:No\.?\s*)?(?:of\s+\w+\s+\d{1,2},?\s+\d{4},?\s*)?(?:of|by|issued\s+by)\s+(?:the\s+)?"
                           r"(?:" + ISSUER_WORDS + r")\b", re.I)
 ISSUER_BEFORE = re.compile(r"(?:Governor'?s|Governor[\s-]*General'?s|Commissioner'?s|Mayor'?s|Canal\s+Zone|Philippine|"
-                           r"Puerto\s+Rico|Porto\s+Rico|Commonwealth|Territorial|State|Tribal|Military\s+Governor'?s|"
-                           r"\bhis|\bits)\s*(?:\(\s*)?$", re.I)
-EXCEPTION = re.compile(r"\bexcept\b|\bexcepting\b|\bother\s+than\b|with\s+the\s+exception\s+of|\bsave\b|"
+                           r"Puerto\s+Rico|Porto\s+Rico|Commonwealth|Territorial|State|Tribal|Military\s+Governor'?s)"
+                           r"\s*(?:\(\s*)?$", re.I)
+POSSESSIVE_BEFORE = re.compile(r"\b(?:his|its)\s*$", re.I)  # 'by his Executive Order': unclear issuer, pointer only
+# Exception and savings wording that can keep the target out of an act (review N5: 'subject to valid existing
+# rights', 'save', 'exclud' are ordinary in acting sentences and no longer demote them).
+EXCEPTION = re.compile(r"\bexcept\b|\bexcepting\b|\bother\s+than\b|with\s+the\s+exception\s+of|"
                        r"not\s+so\s+as\s+to\s+affect|shall\s+not\s+(?:be\s+)?(?:affect|revoke|modify|appl)|"
-                       r"does\s+not\s+(?:otherwise\s+)?(?:affect|revoke|modify|amend)|\bnot\s+(?:\w+\s+){0,3}affect|"
-                       r"\bexclud|\bsubject\s+to\b|\bnotwithstanding\b", re.I)
+                       r"does\s+not\s+(?:otherwise\s+)?(?:affect|revoke|modify|amend)|nothing\s+in\s+this", re.I)
+# A filing line whose OCR is damaged ('[P. E. Doe. 50-1234; Filed') still carries the filing time or 'Filed, <date>'.
+LOOSE_FILING = re.compile(r"Filed,?\s+[A-Z][a-z]{2,4}\.?\s+\d{1,2},\s+\d{4}|\d{1,2}:\d{2}\s*[ap]\.\s?m\.")
+# A new document's agency header ends the previous instrument's span (review finding 2).
+AGENCY_HEADER = re.compile(r"(?m)^[ \t]*(?:TITLE\s+\d+|Chapter\s+[IVXL]+|(?:DEPARTMENT|BUREAU|OFFICE|COMMISSION|"
+                           r"ADMINISTRATION|BOARD|AGENCY|DIVISION|CORPS|SERVICE|AUTHORITY|COUNCIL)\b[A-Z ,.&'-]*|"
+                           r"[A-Z][A-Z .,&'-]{3,}\s+(?:SERVICE|BUREAU|ADMINISTRATION|COMMISSION|DEPARTMENT|OFFICE)|"
+                           r"(?:Department|Bureau|Office)\s+of\s+[A-Z][\w ]+|[A-Z][a-z]+\s+Service)[ \t]*$")
+SPAN_CAP = 6000  # characters from a heading to a citation it may govern
 LEADER = re.compile(r"(?:[._]\s?){4,}\s*\d{1,5}\s*$|_{3,}\s*\d{1,5}\b", re.M)  # contents / index leaders
 
 
@@ -101,7 +112,7 @@ HEADINGS = [
     # 1936-37 form: 'EXECUTIVE ORDER' on its own line, the title, then '[No. 7500]' on its own line
     ("EO", re.compile(r"(?m)^[ \t]*\[\s*N\s?[Oo]\.?\s*(\d{4,5})\s*[\]1lI|]\s*$")),
 ]
-CONTINUES = re.compile(r"(?:\band|\bor|\bof|\bto|\bby|,|;|-|revoking|amending|modifying|superseding|see)\s*$", re.I)
+CONTINUES = re.compile(r"(?:\band|\bor|\bof|\bto|\bby|,|;|:|-|revoking|amending|modifying|superseding|see)\s*$", re.I)
 
 
 def now_utc():
@@ -255,50 +266,87 @@ def _iso(y, m, d):
         return None
 
 
-def dates_after(text, end, limit=70):
-    """Dates printed right after a citation ('of October 30, 1929', 'approved March 9, 1951', 'of 5 January 1914'),
-    stopping at the next order citation or sentence end."""
-    seg = text[end:end + limit]
-    stop = re.search(r"\b(?:Executive\s+Order|E\.\s?O\.|Proclamation|Public\s+Land\s+Order)\b|;|"
-                     r"(?<!\bJan)(?<!\bFeb)(?<!\bMar)(?<!\bApr)(?<!\bJun)(?<!\bJul)(?<!\bAug)(?<!\bSep)(?<!Sept)"
-                     r"(?<!\bOct)(?<!\bNov)(?<!\bDec)(?<!\bNo)(?<!\b[A-Z])\.\s+[A-Z]", seg)
-    if stop:
-        seg = seg[:stop.start() + 1]
+ATTACHED = re.compile(r"\s*,?\s*(?:(?:of|dated|approved|signed|issued|promulgated)\s+(?:on\s+)?)?")
+
+
+def dates_after(text, end):
+    """Dates attached to a citation: 'of October 30, 1929', 'dated ...', 'approved March 9, 1951', 'of 5 January
+    1914', or the contents form ', Oct. 30, 1929'. A date further on ('effective March 9, 1951', '(8 F.R. 5516,
+    April 27, 1943)', 'as modified by the act of March 9, 1951') is not the order's date and is not read (review N2)."""
+    m = ATTACHED.match(text, end)
+    pos = m.end() if m else end
     out = []
-    for m in DATE_RE.finditer(seg):
-        out.append(_iso(m.group(3), m.group(1), m.group(2)))
-    for m in DATE_DMY.finditer(seg):
-        out.append(_iso(m.group(3), m.group(2), m.group(1)))
+    d1 = DATE_RE.match(text, pos)
+    if d1:
+        out.append(_iso(d1.group(3), d1.group(1), d1.group(2)))
+    d2 = DATE_DMY.match(text, pos)
+    if d2:
+        out.append(_iso(d2.group(3), d2.group(2), d2.group(1)))
     return [d for d in out if d]
 
 
+SPLIT_MONTH = re.compile(r"\s*,?\s*(?:of|dated)\s+(" + MONTHS + r")(?:\s+(\d{1,2})\s*,?)?\s*(?=\S)")
+
+
+def split_date_confirms(text, end, target_date):
+    """True when an attached date that the scan's column interleave split ('of February [other column] 24, 1913';
+    'of June 8, [other column] 1936') reassembles into exactly the target's date. Confirm only: a reassembled date
+    that differs proves nothing and never refuses (review 3: dates split across Federal Register columns)."""
+    if not target_date:
+        return False
+    m = SPLIT_MONTH.match(text, end)
+    if not m:
+        return False
+    rest = text[m.end():m.end() + 160]
+    if m.group(2):
+        y = re.search(r"(?<!\d)(1[6-9]\d\d|20\d\d)(?!\d)", rest)
+        cand = _iso(y.group(1), m.group(1), m.group(2)) if y else None
+    else:
+        dy = re.search(r"(?<![\d,])(\d{1,2}),\s?(1[6-9]\d\d|20\d\d)(?!\d)", rest)
+        cand = _iso(dy.group(2), m.group(1), dy.group(1)) if dy else None
+    return cand == target_date
+
+
 def boundary_problem(text, s, e, num, suf):
-    """The printed number is not exactly the target's: it runs on into digits ('1085 6', '1,885' read as 1), starts
-    inside a longer number ('10,885' read as 885), or carries a letter or fraction the target lacks ('2656 A', '2656½')."""
+    """(refusal, pointer) when the printed number may not be exactly the target's. Refused: it runs on into digits
+    ('1085 6', '1,885' read as 1) or sits inside a longer number ('10,885' read as 885), or carries an attached letter
+    or fraction the target lacks ('2656A', '2656-A', '2656-a', '2656½'). Pointer only: a single capital letter after a
+    space ('2656 A' or '1885 A further withdrawal' cannot be told apart). A list member ('Nos. 1884, 1885 and 1886')
+    is neither (review N1)."""
     m = None
     for m in re.finditer(r"(?<!\d)" + re.escape(num) + r"(?!\d)", text[s:e]):
         pass
     if m is None:
-        return None
+        return None, None
     a, b = s + m.start(), s + m.end()
-    after, before = text[b:b + 4], text[max(0, a - 3):a]
-    if re.match(r"\s\d|,\d{3}", after):
-        return "number_runs_on"
-    if re.search(r"\d,\s?$|\d\s$", before):
-        return "number_inside_longer_number"
-    if not suf and re.match(r"\s?[-–]?\s?[A-Za-z](?![A-Za-z])|½|1/2", after):
-        return "number_carries_suffix_target_lacks"
-    return None
+    after, before = text[b:b + 4], text[max(0, a - 4):a]
+    if re.match(r" \d(?!\d{3})|,\d{3}(?!\d)", after):
+        return "number_runs_on", None
+    if re.search(r"(?<![\d,])\d{1,3},$|(?<![\d,])\d{1,2} $", before):
+        return "number_inside_longer_number", None
+    if not suf:
+        if re.match(r"-?[A-Za-z](?![A-Za-z])|-?½|-?1/2", after):
+            return "number_carries_suffix_target_lacks", None
+        if re.match(r" [A-Z](?![A-Za-z])", after):
+            return None, "possible_letter_suffix"
+    return None, None
 
 
-def own_printing(text, cite_start, num, target_date, issue_date):
-    """The citation lies in the order's own printing: under its own standalone heading or '[No. N]' tag with no
-    filing line between, or (an issue within 45 days of the order) on a line that starts with the order's number."""
+def own_printing(text, cite_start, num, target_date, issue_date, acting):
+    """The citation lies in the order's own printing: under its own heading line (the whole line: '[No. N]',
+    'EXECUTIVE ORDER N', '[Executive Order N]') with no filing line between, or, in an issue within 45 days of the order
+    and with no relation word governing the citation, on a line that starts with the order's number (review N3)."""
     pat = re.compile(r"(?m)^[ \t]*(?:\[\s*N\s?[Oo]\.?\s*" + num + r"\s*[\]1lI|]|" + _spaced(["EXECUTIVE", "ORDER"])
-                     + r"\s*(?:N\s?[Oo]\.?\s*)?" + num + r"\b|\[\s*(?i:executive\s+order)\s*(?:no\.?\s*)?" + num + r"\s*\])")
-    for m in pat.finditer(text, 0, cite_start + 1):
-        if not S.FILING.search(text, m.end(), cite_start):
+                     + r"\s*(?:N\s?[Oo]\.?\s*)?" + num + r"|\[\s*(?i:executive\s+order)\s*(?:no\.?\s*)?" + num
+                     + r"\s*\])[ \t]*$")
+    for m in pat.finditer(text):
+        if m.start() > cite_start:
+            break
+        if m.end() >= cite_start or not (S.FILING.search(text, m.end(), cite_start)
+                                         or LOOSE_FILING.search(text, m.end(), cite_start)):
             return True
+    if acting:
+        return False
     try:
         near = 0 <= (dt.date.fromisoformat(issue_date) - dt.date.fromisoformat(target_date)).days <= 45
     except (TypeError, ValueError):
@@ -334,20 +382,36 @@ def locate(text, target, target_date, issue_date=None):
                 dates.append(d)
             dates += dates_after(text, e)
         confirmed = bool(target_date) and target_date in dates
-        why = None
+        split_confirmed = False
+        if not confirmed and target_date and not dates:
+            split_confirmed = any(split_date_confirms(text, e, target_date) for _, e, _ in cites)
+            confirmed = split_confirmed
+        why, pointer = None, []
         for s, e, _ in cites:
-            why = why or boundary_problem(text, s, e, num, suf)
-        if not why and dates and not confirmed:
+            r, p = boundary_problem(text, s, e, num, suf)
+            why = why or r
+            if p and p not in pointer:
+                pointer.append(p)
+        if not target_date and not why:
+            pointer.append("target_date_unknown")  # nothing to confirm or disagree with
+        elif not why and dates and not confirmed:
             why = "printed_date_disagrees_with_target"
         if not why and not confirmed:
             for s, e, _ in cites:
-                if ISSUER_AFTER.search(text[e:e + 90]) or ISSUER_BEFORE.search(
-                        re.sub(r"(?i)\s*(?:the\s+)?$", "", text[max(0, s - 60):s])):
+                before = re.sub(r"(?i)\s*(?:the\s+)?$", "", text[max(0, s - 60):s])
+                if ISSUER_AFTER.search(text[e:e + 90]) or ISSUER_BEFORE.search(before):
                     why = "another_issuer_printed_with_the_number"
                     break
-        if not why and own_printing(text, h["cite_start"], num, target_date, issue_date):
+                if POSSESSIVE_BEFORE.search(before):
+                    # 'The Governor-General ..., by his Executive Order No. N': the issuer named earlier in the
+                    # sentence decides; otherwise the possessive is unclear and the sentence is a pointer only
+                    if re.search(ISSUER_WORDS, text[max(seg_lo, s - 150):s], re.I):
+                        why = "another_issuer_printed_with_the_number"
+                        break
+                    if "possessive_issuer_unclear" not in pointer:
+                        pointer.append("possessive_issuer_unclear")
+        if not why and own_printing(text, h["cite_start"], num, target_date, issue_date, S.acting_on_target(h)):
             why = "inside_the_orders_own_printing"
-        pointer = []
         if not why:
             if not confirmed:
                 pointer.append("identity_unconfirmed_no_matching_printed_date")
@@ -356,21 +420,24 @@ def locate(text, target, target_date, issue_date=None):
                 pointer.append("contents_or_index_entry")
             if EXCEPTION.search(text[seg_lo:seg_hi]):
                 pointer.append("exception_or_saving_wording_in_sentence")
+        if split_confirmed and not why:
+            pointer = [p for p in pointer if p != "identity_unconfirmed_no_matching_printed_date"]
         h = dict(h, date_stated=(target_date if confirmed else (dates[0] if dates else None)),
-                 date_match=True if confirmed else (False if dates else None))
+                 date_match=True if confirmed else (False if dates else None),
+                 date_reassembled_from_split_columns=split_confirmed)
         out.append((h, why, pointer))
     return out
 
 
 def acting_instrument(text, cite_start, target=None):
     """(acting_id, label) only when the citation lies in that instrument's own printed span: the nearest standalone
-    heading before it, with no filing line between, whose previous line does not run on into it (a title line such as
-    'REVOKING EXECUTIVE ORDER NO. 1885 AND / PUBLIC LAND ORDER NO. 500' is no heading). A heading that prints the
-    target's own number is skipped. Else (None, None): the caller names the page."""
+    heading line before it, at most SPAN_CAP characters away, with no filing line (strict or damaged) and no new
+    document's agency header between, whose previous line does not run on into it ('... AND', 'Prior orders:'). A
+    heading that prints the target's own number is skipped. Else (None, None): the caller names the page."""
     tnum = (S.parse_eo(target) or ("",))[0] if target else ""
     best = None
     for kind, rx in HEADINGS:
-        for m in rx.finditer(text, 0, cite_start):
+        for m in rx.finditer(text, max(0, cite_start - SPAN_CAP), cite_start):
             n = next(g for g in m.groups() if g)
             if kind == "EO" and n == tnum:
                 continue
@@ -378,11 +445,14 @@ def acting_instrument(text, cite_start, target=None):
             if CONTINUES.search(prev):
                 continue
             if best is None or m.start() > best[1]:
-                best = (kind, m.start(), n)
-    if best and not S.FILING.search(text, best[1], cite_start):
-        kind, _, n = best
-        return f"{kind}:{n}", {"PLO": "Public Land Order", "PROC": "Proclamation", "EO": "Executive Order"}[kind] + f" {n}"
-    return None, None
+                best = (kind, m.start(), m.end(), n)
+    if not best:
+        return None, None
+    kind, start, end, n = best
+    between = text[end:cite_start]
+    if S.FILING.search(between) or LOOSE_FILING.search(between) or AGENCY_HEADER.search(between):
+        return None, None
+    return f"{kind}:{n}", {"PLO": "Public Land Order", "PROC": "Proclamation", "EO": "Executive Order"}[kind] + f" {n}"
 
 
 # ---- the run -------------------------------------------------------------------------------------------------------
@@ -392,13 +462,13 @@ class Run:
         self.repo, self.out, self.env = Path(repo), Path(out), env
         g = lambda k, d: type(d)(env.get(k) or d)  # noqa: E731
         self.max_packages = g("JOB_MAX_PACKAGES", 1500)
-        self.max_download = int(g("JOB_MAX_DOWNLOAD_GB", 12.0) * 1e9)
+        self.max_download = int(g("JOB_MAX_DOWNLOAD_GB", 25.0) * 1e9)
         self.deadline = time.monotonic() + g("JOB_TIME_BUDGET_MIN", 280.0) * 60
         self.per_target_cap = {"FR": g("CRUDEN_FR_HITS_PER_TARGET", 40), "STATUTE": g("CRUDEN_STAT_HITS_PER_TARGET", 20)}
         self.commit_bytes, self.committed = g("CRUDEN_COMMIT_MB", 80) * 1_000_000, 0
         key, self.key_kind = api_key(env)
-        self.searcher = Searcher(key, opener=opener, min_interval=g("CRUDEN_SEARCH_INTERVAL", 1.0),
-                                 max_searches=g("JOB_MAX_SEARCHES", 2500 if self.key_kind == "real" else 25))
+        self.searcher = Searcher(key, opener=opener, min_interval=g("CRUDEN_SEARCH_INTERVAL", 0.25),
+                                 max_searches=g("JOB_MAX_SEARCHES", 6000 if self.key_kind == "real" else 25))
         self.pool = FetchPool(Path(cache) / "govinfo", workers=g("JOB_WORKERS", 6), per_host=6, transport=transport,
                               max_bytes=450_000_000, timeout=240, user_agent=UA, min_interval=0.1,
                               max_cache_bytes=3 * 1024 ** 3)
@@ -515,7 +585,9 @@ class Run:
                 if actor is None or actor == t:
                     actor = "NOTICE:" + (gran if gran else f"{pkg}/p{i + 1}")
                     label = f"document printed on PDF page {i + 1} of {gran or pkg} (instrument not identified by machine)"
-                reasons = list(pointer) + ([] if verifiable else ["bytes_not_verifiable"])
+                if not verifiable and not why:
+                    why = "bytes_not_verifiable"  # neither committed nor a GPO PREMIS match: never published
+                reasons = list(pointer)
                 if reasons:
                     h = dict(h, mechanism_class="mention")
                 published = "" if why else (h["mechanism"] if S.acting_on_target(h) else "cross_reference")
@@ -528,6 +600,8 @@ class Run:
                 if why:
                     continue  # names something else: kept in LOCATED.csv, never published as a lead
                 flags = ["publication_date_not_instrument_date"] + reasons
+                if h.get("date_reassembled_from_split_columns"):
+                    flags.append("date_reassembled_from_split_columns")
                 if actor.startswith("NOTICE:"):
                     flags.append("acting_instrument_not_identified")
                 fragments.append(S.fragment(
@@ -550,6 +624,23 @@ class Run:
             self.located.extend(located)
             self.fragments.extend(fragments)
         return {"bytes": got["bytes"], "pages": len(pages)}
+
+
+def target_dates(repo):
+    """Signing dates: domesday-register and the OFR catalog (Selden's order_dates), then, for numbered orders they
+    lack, the Lord 1944 WPA list's year and month-day when the list has exactly one entry for the number."""
+    dates = S.order_dates(repo)
+    wpa = defaultdict(set)
+    for r in read_csv(Path(repo) / "jobs/x1-class-engine/data/WPA_NUMBERED_ENTRIES.csv"):
+        m = re.match(r"([A-Za-z]{3,5})\.?\s+(\d{1,2})", r.get("month_day") or "")
+        if m and (r.get("year") or "").isdigit():
+            d = _iso(r["year"], m.group(1), m.group(2))
+            if d:
+                wpa[r["id"]].add(d)
+    for iid, ds in wpa.items():
+        if iid not in dates and len(ds) == 1:
+            dates[iid] = next(iter(ds))
+    return dates
 
 
 def load_targets(repo, env):
@@ -637,7 +728,7 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
     out.mkdir(parents=True, exist_ok=True)
     started = now_utc()
     targets = load_targets(repo, env)
-    dates = S.order_dates(repo)
+    dates = target_dates(repo)
     limit = int(env.get("JOB_LIMIT") or 0)
     collections_ = [c for c in (env.get("CRUDEN_COLLECTIONS") or "FR,STATUTE").split(",") if c]
     run = Run(repo, out, cache, env, transport=transport, opener=opener, premis=premis)
@@ -651,6 +742,8 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
     for r in S.read_jsonl(prior / "SEARCHES.jsonl"):
         if r.get("status") == "searched" and r.get("query") == query(r["target_id"], r["collection"],
                                                                      dates.get(r["target_id"])):
+            if (r.get("count") or 0) > 100 and "response_sha256_desc" not in r:
+                continue  # chosen before the latest-half fix (review N7): ask again
             prior_searches[(r["target_id"], r["collection"])] = r
     ok, why_not = prior_valid(prior)
     carried, done_pairs = (carry_forward(prior, out, run, control_ids) if ok else (0, set()))
@@ -676,7 +769,10 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
                 if count is not None and count > len(hits):
                     late = run.searcher.search(rec["query"], order="DESC")
                     seen = {(h["package"], h["granule"]) for h in hits}
-                    hits = hits + [h for h in late["hits"] if (h["package"], h["granule"]) not in seen]
+                    # DESC arrives newest first: reverse it so the list stays in date order and the tail is the
+                    # newest (review N7)
+                    hits = hits + [h for h in reversed(late["hits"]) if (h["package"], h["granule"]) not in seen]
+                    rec["response_sha256_desc"] = late["sha256"]
                 cap = run.per_target_cap[coll]
                 if len(hits) > cap:  # earliest and latest halves: revocations sit late, first mentions early
                     hits = hits[:cap // 2] + hits[-(cap - cap // 2):]
@@ -769,17 +865,28 @@ def carry_forward(prior, out, run, control_ids):
             (out / r["cache_path"]).write_bytes((prior / r["cache_path"]).read_bytes())
             run.committed += r["bytes"]
         run.sources.append(r)
-    pairs = set()
-    good_pk = {(r.get("package"), r.get("granule") or "") for r in keep.values()}
+    # A (target, package) pair is done only if every page it was located on survived verification (review N6);
+    # otherwise the whole unit is read again for that target and its rows are rebuilt (duplicates are removed on
+    # write).
+    good_pages = {(r.get("package"), r.get("granule") or "", str(r.get("cited_pdf_page"))) for r in keep.values()}
+    rows, bad = [], set()
     for r in read_csv(prior / "LOCATED.csv"):
-        k = (r["package"], r.get("granule") or "")
         if r["target_id"] in control_ids:
             continue
-        if r.get("located") == "True" and k not in good_pk:
-            continue  # its page did not survive verification: read it again
+        pair = (r["target_id"], r["package"], r.get("granule") or "")
+        if r.get("located") == "True" and (r["package"], r.get("granule") or "", str(r.get("pdf_page"))) not in good_pages:
+            bad.add(pair)
+            continue
+        rows.append((pair, r))
+    pairs = set()
+    for pair, r in rows:
+        if pair in bad:
+            continue
         run.located.append(r)
-        pairs.add((r["target_id"], r["package"], r.get("granule") or ""))
-    return n, pairs
+        pairs.add(pair)
+    run.fragments = [f for f in run.fragments
+                     if (f["instrument_id"], f["data"][0].get("package"), f["data"][0].get("granule") or "") not in bad]
+    return len(run.fragments), pairs
 
 
 def measure_controls(run, controls):
@@ -807,12 +914,20 @@ def measure_controls(run, controls):
     searched = sum(1 for t, _ in controls if any(x["target_id"] == t and x.get("status") == "searched"
                                                   for x in run.searches))
     recall = round(found / searched, 4) if searched else None
+    # What would have been published for the planted positives (review N5): a dated sentence demoted to a pointer
+    # by over-broad wording rules counts as a miss here.
+    published = sum(1 for t, _ in controls if any(
+        str(r.get("located")) == "True" and not r.get("refused")
+        and r.get("published_mechanism") not in ("", "cross_reference") for r in loc.get(t, [])))
+    pub_recall = round(published / searched, 4) if searched else None
     idn = identity_negatives()
     return {"planted_positives": len(controls), "positives_searched": searched, "positives_located_with_date": found,
-            "recall": recall, "min_recall": MIN_RECALL, "misses": misses[:40],
+            "recall": recall, "min_recall": MIN_RECALL, "positives_published_acting": published,
+            "published_recall": pub_recall, "min_published_recall": MIN_PUBLISHED_RECALL, "misses": misses[:40],
             "near_miss_negatives": neg.get("negatives", 0), "false_locations": neg.get("false_locations", 0),
             "false_hits": neg.get("false_hits", [])[:40], **idn,
             "passed": bool(searched) and recall is not None and recall >= MIN_RECALL
+            and pub_recall >= MIN_PUBLISHED_RECALL
             and neg.get("false_locations", 0) == 0 and idn["identity_negatives_published_as_acting"] == 0}
 
 
@@ -835,11 +950,14 @@ def write(out, run, fr_out, ctl, targets, control_ids, started, carried, attempt
     (out / "CONTROLS.json").write_text(json.dumps(ctl, indent=1) + "\n", encoding="utf-8")
     cols = ["target_id", "collection", "package", "granule", "pdf_page", "located", "refused", "acting_id",
             "mechanism_printed", "published_mechanism", "date_stated", "date_match", "quote", "note"]
+    uniq = {}
+    for r in run.located:  # a re-read pair can repeat a carried row
+        uniq.setdefault(tuple(str(r.get(c, "")) for c in cols), r)
     with open(out / "LOCATED.csv", "w", newline="", encoding="utf-8") as fh:
         w = csv.DictWriter(fh, cols, extrasaction="ignore", lineterminator="\n")
         w.writeheader()
-        w.writerows(sorted(run.located, key=lambda r: (r["target_id"], r["collection"], r["package"],
-                                                       r.get("granule") or "", str(r.get("pdf_page")))))
+        w.writerows(sorted(uniq.values(), key=lambda r: (r["target_id"], r["collection"], r["package"],
+                                                         r.get("granule") or "", str(r.get("pdf_page")))))
     tset = set(targets)
     srch = [r for r in run.searches if r["target_id"] in tset]
 

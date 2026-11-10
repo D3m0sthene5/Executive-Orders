@@ -145,7 +145,8 @@ class Cruden(unittest.TestCase):
             ("EO:1885", "1913-11-01", "Executive Order No. 1885 of the State of California is hereby revoked."),
             ("EO:1085", "1909-06-01", "Executive Order No. 1085 6 is hereby revoked."),
             ("EO:885", "1908-06-12", "Executive Order No. 10,885 is hereby revoked."),
-            ("EO:2656", "1917-07-01", "Executive Order No. 2656 A is hereby revoked."),
+            ("EO:2656", "1917-07-01", "Executive Order No. 2656-A is hereby revoked."),
+            ("EO:2656", "1917-07-01", "Executive Order No. 2656A is hereby revoked."),
             ("EO:1885", "1913-11-01", "Executive Order No. 1885, approved March 9, 1951, is hereby revoked."),
             ("EO:1885", "1913-11-01", "Executive Order No. 1885 of 5 January 1914 is hereby revoked."),
         ]
@@ -160,6 +161,9 @@ class Cruden(unittest.TestCase):
                                       "Order No. 1885 of November 1, 1913.", "exception_or_saving"),
             ("EO:5214", "1929-10-30", "Alaska; revocation of E. O. 5214, Oct. 30, 1929______________ 1583",
              "contents_or_index_entry"),
+            ("EO:2656", "1917-07-01", "Executive Order No. 2656 A is hereby revoked.", "possible_letter_suffix"),
+            ("EO:1885", "1913-11-01", "The President, by his Executive Order No. 1885, revoked it.",
+             "possessive_issuer_unclear"),
         ]
         for t, d, txt, why_expected in pointers:
             (h, why, pointer), = cruden.locate(txt, t, d, "1960-01-01")
@@ -169,9 +173,46 @@ class Cruden(unittest.TestCase):
         for txt in ["Executive Order No. 1885 of November 1, 1913, withdrawing lands in the Territory of Alaska, is "
                     "hereby revoked.",
                     "Executive Order No. 1885 of November 1, 1913, reserving lands in Puerto Rico, is hereby revoked.",
-                    "Executive Order No. 1885 of November 1, 1913, is hereby revoked by the Secretary of the Interior."]:
+                    "Executive Order No. 1885 of November 1, 1913, is hereby revoked by the Secretary of the Interior.",
+                    # second review pass: list members, later dates, ordinary qualifying words
+                    "Executive Orders Nos. 1884, 1885 of November 1, 1913, and 1886 are hereby revoked.",
+                    "Executive Order No. 1885 of November 1, 1913, is hereby revoked, effective March 9, 1951.",
+                    "Executive Order No. 1885 of November 1, 1913 (8 F.R. 5516, April 27, 1943), is hereby revoked.",
+                    "Executive Order No. 1885 of November 1, 1913, as modified by the act of March 9, 1951, is hereby "
+                    "revoked.",
+                    "Subject to valid existing rights, Executive Order No. 1885 of November 1, 1913, is hereby revoked.",
+                    "Executive Order No. 1885 of November 1, 1913, is hereby revoked so far as it affects the lands, "
+                    "save those in sec. 2."]:
             (h, why, pointer), = cruden.locate(txt, "EO:1885", "1913-11-01", "1960-01-01")
             self.assertEqual((why, pointer, h["date_match"]), (None, [], True), txt)
+        # an undated later date is not read as the order's date (pointer, not refusal)
+        (h, why, pointer), = cruden.locate("Executive Order No. 1885 is hereby revoked, effective March 9, 1951.",
+                                           "EO:1885", "1913-11-01", "1960-01-01")
+        self.assertIsNone(why)
+        # a later order's own title line does not make its body the target's own printing
+        txt = ("EXECUTIVE ORDER 9100\nREVOKING EXECUTIVE ORDER NO. 1885 OF NOVEMBER 1, 1913\n\nIt is ordered that "
+               "Executive Order No. 1885 of November 1, 1913, is hereby revoked.")
+        for h, why, pointer in cruden.locate(txt, "EO:1885", "1913-11-01", "1942-03-01"):
+            self.assertIsNone(why, txt)
+        # the 45-day rule does not refuse an act on the order
+        (h, why, pointer), = cruden.locate("Executive Order No. 8200 of July 29, 1939, is hereby revoked.",
+                                           "EO:8200", "1939-07-29", "1939-08-10")
+        self.assertIsNone(why)
+
+    def test_split_column_date_confirms_only(self):
+        txt = ("PUBLIC LAND ORDER 1156\nThe land will not be Executive Order No. 1713 of February subject to "
+               "occupancy or disposition until 24, 1913, reserving certain lands, is hereby revoked.")
+        (h, why, pointer), = cruden.locate(txt, "EO:1713", "1913-02-24", "1955-01-01")
+        self.assertEqual((why, h["date_match"], h["date_reassembled_from_split_columns"]), (None, True, True))
+        (h, why, pointer), = cruden.locate(txt, "EO:1713", "1913-03-01", "1955-01-01")
+        self.assertIsNone(why)  # a reassembled date that differs never refuses
+        self.assertIn("identity_unconfirmed_no_matching_printed_date", pointer)
+
+    def test_unknown_target_date_is_pointer_not_refusal(self):
+        (h, why, pointer), = cruden.locate("Executive Order No. 1830 of September 24, 1913, is hereby revoked.",
+                                           "EO:1830", None, "1955-01-01")
+        self.assertIsNone(why)
+        self.assertIn("target_date_unknown", pointer)
 
     def test_own_printing_is_refused(self):
         txt = ("EXECUTIVE ORDER 8200\nPARTIAL REVOCATION OF EXECUTIVE ORDER NO. 5886\nBy virtue of the authority "
@@ -194,6 +235,12 @@ class Cruden(unittest.TestCase):
              "ordered: Executive Order No. 1885 is hereby revoked.", "EO:9000"),
             ("Some text, see [Public Land Order 100] above, and Executive Order No. 1885 is hereby revoked.", None),
             ("EXECUTIVE ORDER\nREVOKING ORDER\n[No. 7500]\nExecutive Order No. 1885 is hereby revoked.", "EO:7500"),
+            # second review pass: a damaged filing line, a new agency header, a 'Prior orders:' label
+            ("[Public Land Order 944]\nARIZONA\ntext\n[P. E. Doe. 50-1234; Filed, Jan. 4, 1950; 8:45 a. m.]\n\nBUREAU OF "
+             "RECLAMATION\nNotice\nExecutive Order No. 1885 is hereby revoked.", None),
+            ("[Public Land Order 944]\nARIZONA\ntext\nDEPARTMENT OF AGRICULTURE\nForest Service\nExecutive Order No. "
+             "1885 is hereby revoked.", None),
+            ("Prior orders:\n[Public Land Order 100]\nExecutive Order No. 1885 is hereby revoked.", None),
         ]
         for txt, want in cases:
             got, _ = cruden.acting_instrument(txt, txt.index("Executive Order No. 1885"), "EO:1885")
