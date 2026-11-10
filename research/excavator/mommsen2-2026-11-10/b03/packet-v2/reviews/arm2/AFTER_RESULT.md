@@ -1,0 +1,3 @@
+Both EO393 and EO506 are **blocked**: the sandbox denies card access and Python execution; escalation is disabled.
+
+Recorded in [FINAL_REVIEW.json](/C:/Users/danie/eo-wt/mommsen-2/research/excavator/mommsen2-2026-11-10/b03/packet-v2/reviews/arm2/FINAL_REVIEW.json) and [AFTER_REVEAL_393.json](/C:/Users/danie/eo-wt/mommsen-2/research/excavator/mommsen2-2026-11-10/b03/packet-v2/reviews/arm2/AFTER_REVEAL_393.json). Access failures are preserved. The initial sealed review remains unchanged.

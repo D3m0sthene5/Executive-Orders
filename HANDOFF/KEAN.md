@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 290; `search` finds the rest)
+## Newest results (6 of 291; `search` finds the rest)
 
 - 2026-11-10 F-20261110-mommsen2-source-ladder-test-gate **stopped at gate**: Bounded local source-ladder fetch of queued FRUS texts for EO 171 and EO 2406. Lesson: A source-ladder test failure blocks even a two-item bounded fetch. Preserve the failure and use direct public-source research as a lead; do not credit raw custody or page confirmation until verified…
 - 2026-11-10 F-20261110-mommsen2-filename-route **partly worked**: Complete a MOMMSEN-II claim batch using the owner-specified compact claim filename mommsen2-2026-11-10-b02.js… Lesson: Route around without changing code by publishing as mommsen-2-2026-11-10-b02.jsonl. Keep agent/reservation identity mommsen-2 and record the filename exception; the owner rule and completion validato…
+- 2026-11-10 F-20261110-mommsen2-b03 **worked**: Twenty decided below-6000 held-original lifecycle assignments with two independent blind arms and native comp… Lesson: Materialize existing source-provider PROVENANCE metadata as well as the held PDF. A raw-only custody entry does not supply per-order text/identity. Keep native blind-verifier raw-path limitations and…
 - 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 - 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
 - 2026-11-09 F-20261109-mission-refresh-stuck **analysis**: Checked why the dashboard's Mission tab says 'Pending mission publication' after the 2026-11-09 runs settled. Lesson: The freshness guard is working as designed, but every refresh since 2026-11-06 is refused, so something upstream (checker inputs versus the canonical readiness tree) needs a fix before Mission moves…
-- 2026-11-09 F-20261109-mission-refresh-diagnosed **partly worked**: Diagnosed why Mission (jobs/daily-digest/mission.py) has refused every refresh since 2026-11-06 and fixed the… Lesson: A guard that checks another job's recorded inputs must use that job's recorded scope; narrowing a job's freshness scope silently breaks consumers that assumed whole-tree capture. A page check that pi…
 
-Register: 75 owner decisions, 45 answered questions, 290 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 291 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
