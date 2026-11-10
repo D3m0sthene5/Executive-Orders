@@ -67,6 +67,59 @@ and 11361 in one sentence. Selden's 16,322 pairs over 5,579 actors include large
 carry one of the blockers above. Dependency order is built (`packets.topological`). It becomes active when the
 amendment-only kind opens.
 
+## 1a. Reach tally: dozens or thousands?
+
+`research/nalimov/tally.py` → `TALLY.json` maps each blocker on each order to what removes it:
+- an Accursius fix (F3 #272, F4 #275, F6 #276, F7 #273; F5 #274 opens only the amendment-only kind);
+- sources: an acquisition, such as official copies, page images or files missing from the data checkout (Linnaeus);
+- a new drafter tier: a reading the current script refuses on purpose;
+- another kind of order.
+
+An order counts as unlocked at a level only when every one of its blockers is removed at that level. These are upper
+bounds, and each fix is assumed to remove its blockers everywhere it applies.
+
+| Scriptable if... | Express named revocation (720 undecided candidates) | Decided NO, no ready claim (2,730) |
+|---|---:|---:|
+| today | 12 (8 pass every checker step) | 0 |
+| Accursius F3-F7 merged | at most 19 | 0 |
+| plus sources (official copies of ending orders, page checks, missing files) | at most 41 | 0 |
+| plus new drafter tiers | at most 719 | at most 720 |
+| plus other kinds | 720 | 2,730 |
+
+**Answer: F3-F7 and sources move this route from about a dozen orders to a few dozen, not thousands.** Thousands
+come only from drafter tiers that turn producer readings into script rules.
+
+Orders needing each tier, express kind:
+
+| Drafter tier | What the script would have to do | Orders |
+|---|---|---:|
+| one-time commands | date the performance of transfers, appointments and abolitions; Pothier P1 already answers part of this | 412 |
+| recorded amendments | map an amending provision to clause labels | 236 |
+| read an unlocated acting text | decide whether a held text that names the order acts on it | 229 |
+| read current-law notes | read U.S. Code and eCFR notes, once F3 makes them held text | 218 |
+| second witness | find a second witness for orders before EO 7532 | 215 |
+| own terms before the end | handle an own term that ends before the revocation | 203 |
+| delayed effect | handle delayed or dated effectiveness | 156 |
+
+Each tier is a legal reading. It needs the same treatment v1 got: an independent review, a replay against adopted
+claims, and probably an owner ruling.
+
+Decided orders, what they hold instead:
+
+| Held evidence | Orders | What it would take |
+|---|---:|---|
+| no later instrument and no ending own term | 1,483 | not scriptable from held evidence |
+| own terms only | 526 | a different kind |
+| a named whole act that fails the sentence test | 288 | |
+| partial acts only | 288 | |
+
+1,272 decided orders also lack an acceptable original. The tally counts those under F6.
+
+**Re-measuring on a local build with F3-F7 applied was not cheap.** The five branches all change claim-kit compiler
+files (`build.py`, `status_overlay.py`, `current_evidence.py`, `excavate.py`), and two of them are still in review. A
+merged build is a 15-30 minute, 1.6 GB kit compile after resolving their overlaps. The tally above is the proxy. The
+real figure comes from rerunning `census.py` on main after each fix merges.
+
 ## 2. What the drafter writes and how it is checked
 
 For each complete order, the drafter fills exactly what a Maudslay producer writes:

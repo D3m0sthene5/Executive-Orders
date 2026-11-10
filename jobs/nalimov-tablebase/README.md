@@ -16,9 +16,8 @@ standing rule (once the owner approves it) or a named owner decision, after the 
 | Draft: fill the producer sheet and `STATUS_DECISION.json` from held records, or name the blocker | `drafter.py` | 0 |
 | Pre-screen: the kit's own assembler, `check_claim` and the actual claim checker on every draft | `prescreen.py` | 0 |
 | Packets: one actor text per session, every target claim it settles, typed planted controls, no mechanical tells | `packets.py` | 0 |
-| Verify: two blind arms (A, B) and a status-only reader (S), each in a fresh folder outside the repository | `verify.py` | the only model cost |
-| Score: upheld only if both arms uphold; a control caught only if both arms name its defect; any miss, invalid arm or status-reader miss stops | `verify.py` | 0 |
-| Install: only upheld, unchanged drafts go into the still-unworked prepared packet; the kit's own apply, checker, overlay-propose and completion follow | `nalimov.py install` | 0 |
+| Review context: each acting instrument's held text once, with the entries of every target it settles | `packets.review_bundle` | 0 |
+| Verify, controls, status review, overlay, completion: the Maudslay conveyor's own stages (`--producer nalimov`) | `jobs/maudslay-conveyor/conveyor.py` | the only model cost |
 
 The drafter writes exactly what a Maudslay producer writes (one `decisions.csv` row, its `clauses.csv` rows,
 `RATIONALES.json`, the filled `STATUS_DECISION.json`), so the kit assembles the claim in the format the checker and
@@ -57,16 +56,8 @@ both arms reject it and name the defect code its kind maps to (`packets.CATCH`);
 python -I jobs/nalimov-tablebase/census.py --data CHECKOUT_WITH_OUTPUTS --out research/nalimov/census --evidence-cache SCRATCH/evidence
 python -I jobs/nalimov-tablebase/prescreen.py --data CHECKOUT_WITH_OUTPUTS --evidence SCRATCH/evidence --out SCRATCH/prescreen --mentions CHECKOUT/jobs/current-law/output/MENTIONS.csv
 python -I jobs/nalimov-tablebase/nalimov.py measure --evidence SCRATCH/evidence --only SCRATCH/prescreen/PRESCREEN.json --mentions .../MENTIONS.csv --out research/nalimov/MEASURES.json
-# a run (Augur-gated; see research/nalimov/calibration/WAVE.json):
-python -I jobs/claim-kit/kit.py prepare --action status_assignment.undecided ...      # the kit's own packet, ADMISSION.json
-python -I jobs/nalimov-tablebase/nalimov.py draft --packet BATCH/packet --out SCRATCH/drafts --mentions .../MENTIONS.csv
-python -I jobs/nalimov-tablebase/nalimov.py sessions --drafts SCRATCH/drafts --scratch SCRATCH/verify --key-dir KEYS/batch
-python -I jobs/nalimov-tablebase/nalimov.py run --scratch SCRATCH/verify --key-dir KEYS/batch --workers WORKERS.json   # Maudslay workers file
-#   or run one fresh agent per SCRATCH/verify/workers/* folder by hand and record each with record-usage
-python -I jobs/nalimov-tablebase/nalimov.py score --scratch SCRATCH/verify --key-dir KEYS/batch
-python -I jobs/nalimov-tablebase/nalimov.py reveal --scratch SCRATCH/verify --key-dir KEYS/batch   # genuine twins for after-reveal review
-python -I jobs/nalimov-tablebase/nalimov.py install --packet BATCH/packet --drafts SCRATCH/drafts --only-upheld SCRATCH/verify/SCORE.json
-# then the kit: apply, batch-check, STATUS_REVIEW.json from reader S's accept (named reviewer), overlay-propose, completion
+# a run (Augur-gated; see research/nalimov/calibration/WAVE.json), through the conveyor:
+python -I jobs/maudslay-conveyor/conveyor.py run --run-dir RUN --batch b01 --agent nalimov-script     --action status_assignment.undecided --ids EO:N ... --producer nalimov --replacement-proposal     --workers WORKERS.json --wave research/nalimov/calibration/WAVE.json --scratch-root SCRATCH --batch-usd X
 ```
 
 `SCRATCH` must be outside the repository, and `KEYS/batch` outside both the repository and `SCRATCH`, so no relative
