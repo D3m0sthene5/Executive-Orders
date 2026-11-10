@@ -166,6 +166,47 @@ evidence-decides ruling already separates an exhausted command from its survivin
 evidence that the performance happened: an unrecorded performance stays open. Any question whose answer would need a
 doctrine the rulings do not give becomes a Kean ask, never a guess.
 
+**Whole pool** (`research/nalimov/pool_tally.py` → `POOL_TALLY.json`). This is a coarse model over 13,750 orders:
+all 10,691 undecided, the 2,732 decided-NO orders with no ready claim, and the 327 decided-YES orders with no ready
+claim. Larrey's gate is not on main (PR #280), so it is not applied. Each order gets three things:
+- a basis kind: express revocation, own terms, amendment-only (after F5), current-law YES (after F3), partial acts
+  only, or none;
+- a text gate;
+- one-question items by tier.
+
+An order is reachable when its basis is one of the four kinds, its text gate is passable after F6, and everything
+else is a question.
+
+| Pool | Orders | Basis: none / partial only | Reachable with F3-F7 + all question tiers |
+|---|---:|---:|---:|
+| undecided | 10,691 | 7,353 / 1,204 | 1,633 (YES 730, express 566, amendment-only 279, own terms 58) |
+| decided NO, lifecycle | 2,732 | 2,139 / 405 | 164 |
+| decided YES, lifecycle | 327 | 19 / 0 | 291 |
+| **whole pool** | **13,750** | | **2,088 (coarse upper bound)** |
+
+Cumulative, with tiers in whole-pool order:
+
+| Tiers built so far | Orders (cumulative) |
+|---|---:|
+| basis question only | 372 |
+| + unlocated acting texts | 560 |
+| + one-time commands | 903 |
+| + recorded amendments | 1,204 |
+| + own terms before the end | 1,606 |
+| + current-law notes | 2,088 |
+
+- **Per-order cost:** median 2 questions, about 3k question tokens, projected $0.21 per adopted status (37x lower than
+  $7.71).
+- **The coarse model is generous.** On the express kind it finds 566 reachable, where the detailed per-blocker model
+  above finds about 201. It does not see inventory gaps, transcription-only ending sources, savings, delayed effect or
+  history flags. Scaling the whole pool by that ratio gives roughly **700-800 orders**.
+- **So the one-question route reaches hundreds to low thousands, not the whole project.** About 11,700 orders (85%)
+  need a source or a rule, chiefly the 7,353 undecided and 2,139 decided orders with no basis held.
+- **Fixes the reachable set depends on:** F3 for 1,503 orders, F4 for 808, F6 for 313 and F5 for 279.
+- **Recommended build order, by whole-pool count:** unlocated acting texts (with F4), one-time commands, recorded
+  amendments, own terms before the end, then current-law notes once F3 merges. The YES kind (730 undecided and 291
+  decided) depends wholly on F3 and on Respondendi's strict YES lot.
+
 Acquisition lists for Linnaeus:
 - `ACQUISITION_DECIDED_NO_LATER_INSTRUMENT.csv`: 1,483 decided orders whose dossier holds no later instrument or
   ending term (962 of them before EO 7532).
