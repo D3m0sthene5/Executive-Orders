@@ -144,10 +144,28 @@ def main():
         emit({"type": "thread.started", "thread_id": sid})
         for t in tools:
             emit({"type": "item.completed", "item": {"type": "command_execution", "command": t, "aggregated_output": ""}})
-        for _ in range(turns):
-            emit({"type": "turn.completed", "usage": {"input_tokens": 3 * tok, "cached_input_tokens": 2 * tok,
-                                                      "output_tokens": tok}})
+        # One turn of `turns` model calls. Like codex, the --json stream reports usage only at turn.completed; the
+        # session's rollout file ($CODEX_HOME/sessions/YYYY/MM/DD/rollout-*-<thread>.jsonl) grows a cumulative
+        # token_count line after every call.
+        rollout = None
+        if os.environ.get("CODEX_HOME"):
+            d = Path(os.environ["CODEX_HOME"]) / "sessions" / time.strftime("%Y/%m/%d")
+            d.mkdir(parents=True, exist_ok=True)
+            rollout = d / f"rollout-{time.strftime('%Y-%m-%dT%H-%M-%S')}-{sid}.jsonl"
+            with open(rollout, "a", encoding="utf-8") as f:
+                f.write(json.dumps({"type": "session_meta", "payload": {"id": sid, "cwd": os.getcwd()}}) + "\n")
+        for i in range(1, turns + 1):
+            if rollout:
+                with open(rollout, "a", encoding="utf-8") as f:
+                    f.write(json.dumps({"timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ"), "type": "event_msg",
+                                        "payload": {"type": "token_count", "info": {
+                                            "total_token_usage": {"input_tokens": 3 * tok * i,
+                                                                  "cached_input_tokens": 2 * tok * i,
+                                                                  "output_tokens": tok * i},
+                                            "last_token_usage": {"input_tokens": 3 * tok}}}}) + "\n")
             time.sleep(float(sc.get("turn_sleep", 0)))
+        emit({"type": "turn.completed", "usage": {"input_tokens": 3 * tok * turns, "cached_input_tokens": 2 * tok * turns,
+                                                  "output_tokens": tok * turns}})
         if rc:
             emit({"type": "turn.failed"})
     else:

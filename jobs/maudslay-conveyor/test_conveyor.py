@@ -26,10 +26,52 @@ FAKES = HERE / "fakes"
 PY = sys.executable
 CLAUDE_FAKE = [PY, str(FAKES / "fake_worker.py"), "-p", "--model", "{model}", "--output-format", "stream-json",
                "--verbose", "--max-turns", "{max_turns}", "--max-budget-usd", "{item_usd}"]
-CODEX_FAKE = [PY, str(FAKES / "fake_worker.py"), "exec", "--json", "--ephemeral", "--skip-git-repo-check", "-C", "{cwd}",
+CODEX_FAKE = [PY, str(FAKES / "fake_worker.py"), "exec", "--json", "--skip-git-repo-check", "-C", "{cwd}",
               "-m", "{model}", "--config", "model_auto_compact_token_limit={auto_compact_tokens}",
               "--config", "tool_output_token_limit={tool_output_tokens}", "--config", 'approval_policy="never"']
 CODEX_OK = {"item_tokens": 100000, "prices_usd_per_mtok": {"input": 1.0, "cached_input": 0.1, "output": 8.0}}
+
+
+def load_augur():
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("test_augur_module", C.REPO / "jobs/augur-launch/augur.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    return mod
+
+
+AUGUR = load_augur()
+
+
+def stub_bentham(repo, action, orders_listed=100, members=()):
+    """A minimal Bentham plan, an empty Kean register, and (optionally) the action's strata list."""
+    out = Path(repo) / "jobs/bentham/output"
+    out.mkdir(parents=True, exist_ok=True)
+    (out / "PLAN.json").write_text(json.dumps({"ranked": [{"id": action, "orders": orders_listed, "rate": {"value": 0.6},
+                                                           "per_usd": 1.0, "cost_usd": 100.0}], "unranked": []}))
+    if members:
+        (out / "strata").mkdir(exist_ok=True)
+        (out / "strata" / f"{action}.txt").write_text("".join(m + "\n" for m in members))
+    reg = Path(repo) / "jobs/kean/register/findings.jsonl"
+    reg.parent.mkdir(parents=True, exist_ok=True)
+    reg.write_text("")
+
+
+def wave_plan(path, action, orders, reviewed=True):
+    """A WAVE.json that Augur's real check() passes against stub_bentham."""
+    plan = {"wave": "maudslay-test", "author": "claude-opus-5-5", "stage": 0,
+            "objective": {"metric": "filed_dossiers_per_unit"},
+            "actions": [{"id": action, "orders": orders, "lanes": 1}],
+            "configuration": {"orchestrator": "maudslay-conveyor", "coordinator_model": "claude-opus-5-5",
+                              "producer_model": "claude-sonnet"},
+            "limits": {"chain_budget_units": 1000000, "spend_per_claim_units": 100000, "no_claim_minutes": 40,
+                       "context_kill_tokens": 120000, "reviews_per_hour": 6, "coordinator_units_per_hour": 100000},
+            "premortem": [{"failure": f"synthetic failure number {i} in the test wave", "guard": f"synthetic guard "
+                           f"number {i} that stops it"} for i in range(3)],
+            "acknowledged_findings": {}}
+    if reviewed:
+        plan["review"] = {"reviewer": "gpt-6.1-sol", "verdict": "approve", "plan_sha256": AUGUR.plan_sha(plan)}
+    Path(path).write_text(json.dumps(plan))
 
 
 def jl(path):
@@ -47,6 +89,9 @@ class ConveyorCase(unittest.TestCase):
         self.repo.mkdir()
         self.scratch = Path(s.name) / "scratch"
         self.control = self.scratch / "control"
+        self.codex_home = Path(s.name) / "codex-home"
+        stub_bentham(self.repo, "production.test")
+        wave_plan(self.repo / "WAVE.json", "production.test", 8)
         (self.repo / "FAKE_POOL.json").write_text(json.dumps([f"EO:{i}" for i in range(1, 9)]))
         (self.repo / "route_test.txt").write_text("decided, synthetic route for tests.\n")
         tools = {"kit": [PY, str(FAKES / "fake_kit.py"), "--repo", "{repo}"],
@@ -57,7 +102,8 @@ class ConveyorCase(unittest.TestCase):
         self.workers(CLAUDE_FAKE)
         self.log = self.repo / "WORKER_LOG.jsonl"
         self.scenario({})
-        env = {"MAUDSLAY_FAKE_LOG": str(self.log), "MAUDSLAY_FAKE_SCENARIO": str(self.repo / "SCENARIO.json")}
+        env = {"MAUDSLAY_FAKE_LOG": str(self.log), "MAUDSLAY_FAKE_SCENARIO": str(self.repo / "SCENARIO.json"),
+               "MAUDSLAY_TEST_ALLOW_TEMP_SCRATCH": "1", "CODEX_HOME": str(self.codex_home)}
         p = mock.patch.dict(os.environ, env)
         p.start()
         self.addCleanup(p.stop)
@@ -81,6 +127,7 @@ class ConveyorCase(unittest.TestCase):
         a = ["run", "--repo", str(self.repo), "--run-dir", "research/excavator/maudslay-test", "--batch", "b01",
              "--agent", "testagent", "--action", "production.test", "--n", str(n), "--route", "route_test.txt",
              "--workers", "workers.json", "--tools", "tools.json", "--scratch-root", str(self.scratch),
+             "--wave", "WAVE.json",
              "--item-usd", "2", "--parallel", "2", "--publication", "research/readiness/claims/testagent-b01.jsonl"]
         if budget is not None:
             a += ["--batch-usd", budget]
@@ -398,12 +445,13 @@ class WorkerCommandTests(ConveyorCase):
         cx = C.render_args(C.CODEX_TEMPLATE, {"cwd": "W", "model": "m", "auto_compact_tokens": 1000,
                                               "tool_output_tokens": 100, "writable_roots": '["W"]', "network": "false"})
         C.validate_worker_command(cx, "codex")
-        for need in ("--ephemeral", "--skip-git-repo-check", "--json", "model_auto_compact_token_limit=1000",
+        self.assertNotIn("--ephemeral", cx)  # its rollout file is the mid-run meter
+        for need in ("--skip-git-repo-check", "--json", "model_auto_compact_token_limit=1000",
                      "tool_output_token_limit=100", 'approval_policy="never"', 'sandbox_mode="workspace-write"',
                      'sandbox_workspace_write.writable_roots=["W"]', "sandbox_workspace_write.network_access=false"):
             self.assertIn(need, cx)
         for bad in (["codex", "exec", "resume", "--last"] + cx[2:], [t if t != "--config" else "-c" for t in cx],
-                    cx + ["--config", "rollout_token_budget=1"], [t for t in cx if t != "--ephemeral"],
+                    cx + ["--config", "rollout_token_budget=1"], cx + ["--ephemeral"], [t for t in cx if t != "--json"],
                     cx + ["--dangerously-bypass-approvals-and-sandbox"]):
             with self.assertRaises(C.Fail, msg=bad):
                 C.validate_worker_command(bad, "codex")
@@ -427,11 +475,11 @@ class WorkerCommandTests(ConveyorCase):
 
     def test_codex_spend_counts_at_its_item_cap(self):
         self.workers(CODEX_FAKE, family="codex", pextra=CODEX_OK)
-        self.assertEqual(self.run_cli("--parallel", "1", budget="5"), C.EXIT_STOPPED)  # 2 x $2 cap, then $6 > $5
-        self.assertEqual(len(self.worker_calls("producer")), 2)
-        ws = C.Ledger(self.bdir / "LEDGER.jsonl").workers()
-        self.assertTrue(all(w["usd"] < 0.1 for w in ws))  # priced cheaply, yet budgeted at the cap
-        self.assertIn("batch_budget", self.run_state()["data"]["reason"])
+        self.assertEqual(self.run_cli(), C.EXIT_DONE)
+        ws = [w for w in C.Ledger(self.bdir / "LEDGER.jsonl").workers() if w["role"] == "producer"]
+        self.assertTrue(len(ws) == 4 and all(w["usd"] < 0.1 for w in ws))  # priced cheaply ...
+        b = C.Batch(json.loads((self.bdir / "CONFIG.json").read_text()), self.repo)
+        self.assertGreaterEqual(b.spent()[0], 4 * 2.0)  # ... yet budgeted at the $2 cap each
 
     def test_codex_usage_is_read_from_its_json_events(self):
         self.workers(CODEX_FAKE, CODEX_FAKE, "codex", "codex", pextra=CODEX_OK, rextra=CODEX_OK)
@@ -456,16 +504,38 @@ class StopRuleTests(ConveyorCase):
                             for c in json.loads((self.bdir / "CONTROLS.json").read_text())["controls"]))
         self.assertIn("planted control", self.run_state()["data"]["reason"])
 
-    def test_batch_budget_stops_launching_writes_a_batch_line_and_a_resume_continues(self):
-        self.scenario({"usd": {"producer": 1.0}})
-        self.assertEqual(self.run_cli("--parallel", "1", "--item-usd", "1", budget="2.5"), C.EXIT_STOPPED)
+    def test_budget_stop_is_a_resumable_pause_with_no_bentham_line(self):
+        # Each claude fake reports 4,000 tokens; the token budget allows two producers, then pauses.
+        self.assertEqual(self.run_cli("--parallel", "1", "--item-tokens", "4000", "--batch-tokens", "9000"),
+                         C.EXIT_BUDGET)
         self.assertEqual(len(self.worker_calls("producer")), 2)
-        self.assertIn("batch_budget", self.run_state()["data"]["reason"])
-        self.assertEqual(self.calls("apply"), [])
-        self.assertEqual((self.batch_lines()[0]["filed"], self.batch_lines()[0]["usd"]), (0, 2.0))
-        self.assertEqual(self.run_cli("--parallel", "1", "--item-usd", "1", budget="100"), C.EXIT_DONE)
+        self.assertEqual(self.run_state()["status"], "budget_paused")
+        self.assertIn("batch_token_budget", self.run_state()["data"]["reason"])
+        self.assertEqual((self.calls("apply"), self.batch_lines()), ([], []))  # no filed=0 line, no gate
+        self.assertFalse([r for r in self.ledger() if r["key"].startswith("gate:")])
+        self.assertEqual(self.run_cli("--parallel", "1", "--item-tokens", "4000", "--batch-tokens", "100000"),
+                         C.EXIT_DONE)
         self.assertEqual(sorted(c["id"] for c in self.worker_calls("producer")), ["EO:1", "EO:2", "EO:3", "EO:4"])
-        self.assertEqual(len(self.batch_lines()), 1)  # upserted, not duplicated
+        self.assertEqual(len(self.batch_lines()), 1)
+
+    def test_batch_usd_below_the_minimum_is_refused_and_the_minimum_printed(self):
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            rc = C.main(self.args(budget="20"))
+        self.assertEqual(rc, C.EXIT_FAILED)
+        # 4 producers + 4 repairs at $2, plus (1 blind chunk + 1 reveal) x 2 arms at $2.
+        self.assertIn('"minimum_batch_usd": 24.0', out.getvalue())
+        self.assertEqual(self.calls(), [])
+        self.assertEqual(self.run_cli(budget="24"), C.EXIT_DONE)
+
+    def test_review_chunk_defaults_to_ten(self):
+        self.assertEqual(self.run_cli(n=4), C.EXIT_DONE)
+        self.assertEqual(json.loads((self.bdir / "CONFIG.json").read_text())["review_chunk"], 10)
+        self.assertEqual(sum("review-" in Path(c["cwd"]).name for c in self.worker_calls("reviewer")), 2)
+
+    def test_review_chunks_split_each_arm(self):
+        self.assertEqual(self.run_cli("--review-chunk", "2", n=4), C.EXIT_DONE)
+        self.assertEqual(sum("review-" in Path(c["cwd"]).name for c in self.worker_calls("reviewer")), 4)
 
     def test_zero_submittable_after_producers_stops_and_writes_a_batch_line(self):
         self.scenario({"producer": {f"EO:{i}": "block" for i in range(1, 5)}})
@@ -475,13 +545,18 @@ class StopRuleTests(ConveyorCase):
         self.assertEqual(self.batch_lines(), [{"batch": "b01", "attempted": 4, "submitted": 0, "filed": 0,
                                                "controls_missed": 0, "usd": 2.0}])
 
-    def test_item_token_cap_kills_a_codex_worker_in_the_loop(self):
+    def test_codex_token_cap_is_read_from_the_rollout_mid_turn(self):
+        # One codex turn of 6 model calls, 4,000 tokens each; --json reports usage only at the end of the turn.
         self.workers(CODEX_FAKE, family="codex", pextra=dict(CODEX_OK, item_tokens=6000))
-        self.scenario({"turns": 6, "turn_sleep": 0.4, "tokens": 1000})
+        self.scenario({"turns": 6, "turn_sleep": 0.5, "tokens": 1000})
         self.assertEqual(self.run_cli(n=2), C.EXIT_STOPPED)  # both producers killed: zero submittable
         ws = C.Ledger(self.bdir / "LEDGER.jsonl").workers()
         self.assertEqual(len(ws), 2)
-        self.assertTrue(all(w["killed"] and "item_token_cap" in w["killed"] and w["tokens"] <= 12000 for w in ws))
+        for w in ws:
+            self.assertIn("(rollout)", w["killed"])
+            self.assertFalse(w["result_seen"])  # killed before turn.completed
+            self.assertTrue(8000 <= w["tokens"] <= 12000, w["tokens"])  # the spend comes from the rollout
+            self.assertTrue(w["rollout"]["path"].startswith(self.codex_home.as_posix()))
         items = json.loads((self.bdir / "ADJUDICATE.json").read_text())["items"]
         self.assertEqual({i["kind"] for i in items}, {"over_item_cap"})
 
@@ -584,6 +659,96 @@ class RepairTests(ConveyorCase):
         self.assertIn("producer sheet invalid", r["unresolved_material_gaps"])
 
 
+class GuardTests(ConveyorCase):
+    def test_a_second_process_on_the_same_batch_is_refused(self):
+        holder = subprocess.Popen([PY, "-c", "import time; time.sleep(60)"])
+        self.addCleanup(holder.kill)
+        self.bdir.mkdir(parents=True)
+        (self.bdir / "RUN.lock").write_text(json.dumps({"pid": holder.pid, "epoch": time.time()}))
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            self.assertEqual(C.main(self.args()), C.EXIT_FAILED)
+        self.assertIn("another conveyor process", out.getvalue())
+        self.assertEqual(self.calls(), [])
+
+    def test_a_stale_lock_of_a_dead_process_is_cleared(self):
+        dead = subprocess.Popen([PY, "-c", "pass"])
+        dead.wait()
+        self.bdir.mkdir(parents=True)
+        (self.bdir / "RUN.lock").write_text(json.dumps({"pid": dead.pid, "epoch": time.time()}))
+        self.assertEqual(self.run_cli(), C.EXIT_DONE)
+        self.assertFalse((self.bdir / "RUN.lock").exists())  # released at the end of the run
+
+    def batch(self):
+        with contextlib.redirect_stdout(io.StringIO()), mock.patch.object(C, "run", lambda cfg, repo: cfg):
+            cfg = C.main(self.args())
+        return C.Batch(cfg, self.repo)
+
+    def test_lock_is_exclusive_while_a_run_holds_it(self):
+        b = self.batch()
+        b.lock()
+        with self.assertRaises(C.Fail):
+            b.lock()  # held by this live test process
+
+    def test_scratch_root_is_required_and_not_in_temp(self):
+        args = self.args()
+        i = args.index("--scratch-root")
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(C.main(args[:i] + args[i + 2:]), C.EXIT_FAILED)
+        os.environ.pop("MAUDSLAY_TEST_ALLOW_TEMP_SCRATCH")
+        self.assertEqual(self.run_cli(), C.EXIT_FAILED)  # the test scratch root sits in the system temp folder
+        self.assertEqual(self.calls(), [])
+
+    def test_lost_producer_folder_is_a_hard_failure_on_resume(self):
+        import shutil
+        self.assertEqual(self.run_proc("--parallel", "1", kill="produce:EO_2:done"), 137)
+        shutil.rmtree(self.scratch / "workers" / "b01-produce-EO_1")
+        self.assertEqual(self.run_proc("--parallel", "1"), C.EXIT_FAILED)
+        self.assertIn("scratch lost", self.run_state()["data"]["reason"])
+        self.assertEqual(sorted(c["id"] for c in self.worker_calls("producer")), ["EO:1", "EO:2"])
+
+    def test_missing_control_key_is_a_clear_error(self):
+        self.assertEqual(self.run_proc("--parallel", "1", kill="plant:done"), 137)
+        (self.control / "b01.json").unlink()
+        self.assertEqual(self.run_proc("--parallel", "1"), C.EXIT_FAILED)
+        self.assertIn("control material missing", self.run_state()["data"]["reason"])
+
+    def test_a_changed_workers_file_is_refused_on_resume(self):
+        self.assertEqual(self.run_proc("--parallel", "1", kill="produce:EO_1:done"), 137)
+        self.workers(CLAUDE_FAKE, rextra={"model_family": "OpenAI"})
+        self.assertEqual(self.run_proc("--parallel", "1"), C.EXIT_FAILED)
+        self.assertIn("workers file changed", self.run_state()["data"]["reason"])
+
+    def test_augur_refusal_stops_the_run_before_any_work(self):
+        wave_plan(self.repo / "WAVE.json", "production.test", 8, reviewed=False)  # real check(): no review
+        self.assertEqual(self.run_cli(), C.EXIT_FAILED)
+        self.assertEqual(self.calls(), [])
+        receipt = next(r for r in self.ledger() if r["key"] == "augur:1")["data"]
+        self.assertEqual(receipt["verdict"], "REFUSE")
+        self.assertTrue(any("review" in x for x in receipt["refusals"]))
+
+    def test_batch_must_fit_one_of_the_plans_actions(self):
+        wave_plan(self.repo / "WAVE.json", "production.test", 3)  # passes Augur, but only 3 orders
+        self.assertEqual(self.run_cli(n=4), C.EXIT_FAILED)
+        receipt = next(r for r in self.ledger() if r["key"] == "augur:1")["data"]
+        self.assertEqual((receipt["verdict"], receipt["fits"]), ("PASS", False))
+        self.assertEqual(self.calls(), [])
+
+    def test_a_substituted_refusing_check_is_obeyed(self):
+        with mock.patch.object(C, "check_plan", lambda mod, plan, repo: (["stub refusal"], {"verdict": "REFUSE"})):
+            self.assertEqual(self.run_cli(), C.EXIT_FAILED)
+        self.assertEqual(self.calls(), [])
+
+    def test_reviewers_may_read_undecided_evidence(self):
+        b = self.batch()
+        rules = b.rules_for("reviewer_A", b.scratch / "workers" / "b01-review-A0")
+        batch = "research/excavator/maudslay-test/b01"
+        self.assertEqual(C.scan([f"cat {batch}/packet/undecided/EO_5/EVIDENCE.json", f"ls {batch}/packet/undecided",
+                                 f"load_packet('{batch}/packet')"], rules), [])
+        self.assertTrue(C.scan([f"cat {batch}/packet/undecided/EO_5/STATUS_DECISION.json"], rules))
+        self.assertTrue(C.scan([f"cat {batch}/packet/decisions.csv"], rules))
+
+
 KIT_HOME = Path(os.environ.get("MAUDSLAY_KIT_HOME") or C.REPO)
 KIT_NEEDS = ("jobs/claim-kit/test_build.py", "jobs/claim-kit/test_dispatch.py", "jobs/norton/model.py",
              "jobs/claim-checker/checker.py", "jobs/later-events/later_events.py", "jobs/geddes/geddes.py",
@@ -647,8 +812,12 @@ class RealKitFixtureTests(unittest.TestCase):
                                   for k, v in d.items()} for d in s["clauses"]}
             canned[iid] = {"decision": dec, "clauses": cl}
         (self.repo / "SCENARIO.json").write_text(json.dumps({"canned": canned}))
+        # Bentham's plan and the action's strata (the kit's admission check reads them) and a wave Augur passes.
+        stub_bentham(self.repo, "production.fixture", members=[f"EO:{i}" for i in range(1, 7)])
+        wave_plan(self.repo / "WAVE.json", "production.fixture", 2)
         p = mock.patch.dict(os.environ, {"MAUDSLAY_FAKE_SCENARIO": str(self.repo / "SCENARIO.json"),
-                                         "MAUDSLAY_FAKE_LOG": str(self.repo / "WORKER_LOG.jsonl")})
+                                         "MAUDSLAY_FAKE_LOG": str(self.repo / "WORKER_LOG.jsonl"),
+                                         "MAUDSLAY_TEST_ALLOW_TEMP_SCRATCH": "1"})
         p.start()
         self.addCleanup(p.stop)
 
@@ -657,7 +826,7 @@ class RealKitFixtureTests(unittest.TestCase):
             rc = C.main(["run", "--repo", str(self.repo), "--run-dir", "research/excavator/real", "--batch", "r01",
                          "--agent", "producer", "--action", "production.fixture", "--n", "2", "--route", "route.txt",
                          "--workers", "workers.json", "--tools", "tools.json", "--scratch-root", str(self.scratch),
-                         "--item-usd", "1", "--batch-usd", "20", "--publish",
+                         "--wave", "WAVE.json", "--item-usd", "1", "--batch-usd", "20", "--publish",
                          "--publication", "research/readiness/claims/producer-r01.jsonl"])
         b = self.repo / "research/excavator/real/r01"
         self.assertEqual(rc, C.EXIT_DONE, [r for r in jl(b / "LEDGER.jsonl") if r["key"] == "run"])

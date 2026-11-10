@@ -6,7 +6,8 @@ themselves; the Papinian lane, where small scripts did that work, spent 17%. Thi
 resumable state machine.
 
     python -I jobs/maudslay-conveyor/conveyor.py run --run-dir research/excavator/RUN --batch b01 --agent NAME \
-        --action BENTHAM_ACTION --n 20 --route ROUTE.txt --workers WORKERS.json --batch-usd 170 [--publish]
+        --action BENTHAM_ACTION --n 20 --route ROUTE.txt --workers WORKERS.json --wave WAVE.json \
+        --scratch-root D:/maudslay-scratch/RUN/b01 --batch-usd 200 [--publish]
     python -I jobs/maudslay-conveyor/conveyor.py status research/excavator/RUN/b01
     python -I jobs/maudslay-conveyor/conveyor.py commands --workers WORKERS.json      (print worker commands)
 
@@ -19,7 +20,11 @@ the genuine control claims also stay in the scratch root; only the post-reveal r
 are written under research/.
 
 Exit codes: 0 done; 1 failed; 2 stopped by a stop rule; 3 paused for coordinator adjudication; 4 done, but Bentham's
-gate says STOP; 5 done, but the gate gave no verdict (refused or unranked).
+gate says STOP; 5 done, but the gate gave no verdict (refused or unranked); 6 paused at the batch budget (resumable).
+
+`run` requires --wave (a WAVE.json that Augur, jobs/augur-launch/augur.py, must PASS, with an action that fits this
+batch), --scratch-root (a durable folder outside the repository and outside the system temp folder) and --batch-usd
+(at least the batch's minimum at its caps, which is printed). One process per batch: BATCH/RUN.lock.
 
 The conveyor makes no legal judgment. It never decides an order the arms disagree on, never edits a claim, and never
 certifies anything: human-certified stays 0.
@@ -49,14 +54,14 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 PROMPTS = HERE / "prompts"
 
-EXIT_DONE, EXIT_FAILED, EXIT_STOPPED, EXIT_PAUSED, EXIT_GATE_STOP, EXIT_NO_GATE = 0, 1, 2, 3, 4, 5
+EXIT_DONE, EXIT_FAILED, EXIT_STOPPED, EXIT_PAUSED, EXIT_GATE_STOP, EXIT_NO_GATE, EXIT_BUDGET = 0, 1, 2, 3, 4, 5, 6
 # A planted control is caught only when a word or field name in the reviewer's `defects` is one of these.
 DATE_TERMS = frozenset({"date", "dates", "dated", "first_end", "whole_order_end", "signing_date", "effective_date",
                         "later_event", "later_events", "year", "years"})
 OUTCOMES = ("submit", "unresolved", "blocked", "route_owner")
 # Settings fixed when a batch starts; a re-run may change only budgets, concurrency, timeouts and switches.
-FIXED = ("agent", "action", "n", "ids", "route", "replacement_proposal", "publication", "prompt_cap_chars",
-         "review_chunk", "repair_rounds", "adjudicator", "keys_dir", "scratch_root")
+FIXED = ("agent", "action", "n", "ids", "route", "replacement_proposal", "publication", "publication_mode",
+         "prompt_cap_chars", "review_chunk", "repair_rounds", "adjudicator", "keys_dir", "scratch_root", "wave")
 MUTABLE = ("parallel", "item_usd", "item_tokens", "batch_usd", "batch_tokens", "item_timeout", "publish",
            "defer_adjudication", "batches_file", "tools", "workers")
 
@@ -74,7 +79,7 @@ DEFAULT_TOOLS = {
 CLAUDE_TEMPLATE = ["claude", "-p", "--model", "{model}", "--output-format", "stream-json", "--verbose",
                    "--max-turns", "{max_turns}", "--max-budget-usd", "{item_usd}", "--permission-mode", "auto",
                    "--add-dir", "{repo}"]
-CODEX_TEMPLATE = ["codex", "exec", "--json", "--ephemeral", "--skip-git-repo-check", "-C", "{cwd}", "-m", "{model}",
+CODEX_TEMPLATE = ["codex", "exec", "--json", "--skip-git-repo-check", "-C", "{cwd}", "-m", "{model}",
                   "--config", 'model_reasoning_effort="medium"',
                   "--config", "model_auto_compact_token_limit={auto_compact_tokens}",
                   "--config", "tool_output_token_limit={tool_output_tokens}",
@@ -90,7 +95,16 @@ PATH_TAIL = re.compile(r"[^\s\"'`;|&<>(),]*")
 
 
 class Stop(Exception):
-    """A stop rule fired: the batch is not completed (exit 2)."""
+    """A stop rule fired: the batch is not completed (exit 2). quality=True for a yield outcome (zero submittable,
+    a missed control), which Bentham's gate is told about; other stops are process failures it is not."""
+
+    def __init__(self, msg, quality=False):
+        super().__init__(msg)
+        self.quality = quality
+
+
+class BudgetPause(Exception):
+    """The batch budget would be passed by the next launch: a resumable pause, not an outcome (exit 6)."""
 
 
 class Pause(Exception):
@@ -374,9 +388,11 @@ def validate_worker_command(argv, family):
         if not toks[toks.index("--max-budget-usd") + 1]:
             raise Fail("claude worker has an empty --max-budget-usd")
     else:
-        for flag in ("exec", "--json", "--ephemeral", "--skip-git-repo-check"):
+        for flag in ("exec", "--json", "--skip-git-repo-check"):
             if flag not in toks:
                 raise Fail(f"codex worker command lacks {flag}")
+        if "--ephemeral" in toks:
+            raise Fail("codex workers must not use --ephemeral: its rollout file is how the token cap is read mid-run")
         cfg = " ".join(toks[i + 1] for i, t in enumerate(toks[:-1]) if t == "--config")
         for need in ("model_auto_compact_token_limit=", "tool_output_token_limit=", 'approval_policy="never"'):
             if need not in cfg:
@@ -456,6 +472,39 @@ def price(u, prices):
     return ((u.get("input") or 0) * prices["input"] + (u.get("cache_read") or 0) * prices["cached_input"]
             + (u.get("cache_write") or 0) * prices.get("cache_write", prices["input"])
             + (u.get("output") or 0) * prices["output"]) / 1e6
+
+
+def codex_home():
+    return Path(os.environ.get("CODEX_HOME") or Path.home() / ".codex")
+
+
+def find_rollout(thread, epoch):
+    """The rollout file of a codex session: $CODEX_HOME/sessions/YYYY/MM/DD/rollout-*-<thread>.jsonl."""
+    base = codex_home() / "sessions"
+    days = set()
+    for dt in (epoch - 86400, epoch, epoch + 86400):
+        for t in (time.gmtime(dt), time.localtime(dt)):
+            days.add(time.strftime("%Y/%m/%d", t))
+    for d in sorted(days):
+        hits = sorted((base / d).glob(f"rollout-*{thread}.jsonl"))
+        if hits:
+            return hits[-1]
+    return None
+
+
+def rollout_tokens(line):
+    """Cumulative {input, cached_input, output} from one rollout token_count line (as carnot meter.read_rollout)."""
+    if b"token_count" not in line:
+        return None
+    try:
+        payload = json.loads(line).get("payload") or {}
+        t = (payload.get("info") or {}).get("total_token_usage") or {}
+    except (ValueError, AttributeError):
+        return None
+    if not t:
+        return None
+    return {"input": int(t.get("input_tokens") or 0), "cached_input": int(t.get("cached_input_tokens") or 0),
+            "output": int(t.get("output_tokens") or 0)}
 
 
 def _strings(v):
@@ -618,9 +667,13 @@ class Batch:
         self.name = cfg["batch"]
         self.scratch = Path(cfg["scratch_root"]).resolve()
         self.keys = Path(cfg["keys_dir"]).resolve()
+        temp = Path(tempfile.gettempdir()).resolve()
         for label, p in (("--scratch-root", self.scratch), ("--keys-dir", self.keys)):
             if p.is_relative_to(self.repo) or self.repo.is_relative_to(p):
                 raise Fail(f"{label} must be outside the repository (workers and control material stay out of it)")
+            # Scratch holds paid worker output and the sealed key: a temp folder may be cleaned under a live batch.
+            if p.is_relative_to(temp) and os.environ.get("MAUDSLAY_TEST_ALLOW_TEMP_SCRATCH") != "1":
+                raise Fail(f"{label} must be a durable folder outside {temp} (the system temp folder can be cleaned)")
         if self.keys.is_relative_to(self.scratch / "workers"):
             raise Fail("--keys-dir must not be inside the workers' folders")
         self.ledger = Ledger(self.dir / "LEDGER.jsonl")
@@ -633,6 +686,100 @@ class Batch:
         if cfg.get("batch_usd") is None:
             raise Fail("--batch-usd is required")
         self.check_workers()
+
+    # -- guards before any work -----------------------------------------------------------------------------
+    def order_count(self):
+        return len(self.cfg["ids"]) if self.cfg.get("ids") else int(self.cfg["n"])
+
+    def minimum_budget(self):
+        """Dollars this batch can commit at its caps: producers, repair rounds, blind review chunks, reveals."""
+        n = self.order_count()
+        chunk = int(self.cfg.get("review_chunk") or 0)
+        sessions = -(-n // chunk) if chunk else 1
+        prod = float(self.cap("producer", "usd"))
+        review = sum(float(self.cap(f"reviewer_{a}", "usd")) * (sessions + 1) for a in "AB")
+        return round(n * prod * (1 + int(self.cfg.get("repair_rounds") or 0)) + review, 2)
+
+    def check_budget(self):
+        need = self.minimum_budget()
+        print(json.dumps({"batch": self.name, "minimum_batch_usd": need, "batch_usd": self.cfg["batch_usd"]}))
+        if float(self.cfg["batch_usd"]) + 1e-9 < need:
+            raise Fail(f"--batch-usd {self.cfg['batch_usd']} is below this batch's minimum ${need:.2f} "
+                       f"({self.order_count()} producers and repairs at their caps, plus every reviewer session)")
+
+    def pin_workers(self):
+        """The workers file is fixed for a batch, so earlier review records keep the right model and family."""
+        digest = fsha(self.cfg["workers"])
+        pinned = self.ledger.data("workers:pinned")
+        if pinned is None:
+            self.ledger.mark("workers:pinned", "done", sha256=digest, path=self.cfg["workers"],
+                             roles={r: {"model": w["model"], "family": w["family"], "model_family": w.get("model_family")}
+                                    for r, w in self.workers.items()})
+        elif pinned["sha256"] != digest:
+            raise Fail(f"the workers file changed since this batch started ({self.cfg['workers']}); "
+                       "restore it or start a new batch")
+
+    def augur(self):
+        """Run Augur's launch check (jobs/augur-launch/augur.py check) on the wave plan; refuse unless it passes and
+        this batch fits one of the plan's actions."""
+        path = REPO / "jobs/augur-launch/augur.py"
+        if not path.exists():
+            raise Fail(f"Augur is missing ({path}); check out jobs/augur-launch")
+        import importlib.util
+        spec = importlib.util.spec_from_file_location("maudslay_augur", path)
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)
+        plan = read_json(self.cfg["wave"])
+        if not isinstance(plan, dict):
+            raise Fail(f"the wave plan {self.cfg['wave']} is missing or unreadable")
+        refusals, receipt = check_plan(mod, plan, self.repo)
+        n = self.order_count()
+        fits = [a for a in plan.get("actions") or [] if a.get("id") == self.cfg["action"] and int(a.get("orders") or 0) >= n]
+        k = len({r["key"] for r in self.ledger.rows if str(r.get("key", "")).startswith("augur:")}) + 1
+        self.ledger.mark(f"augur:{k}", "done", verdict=receipt.get("verdict"), plan_sha256=receipt.get("plan_sha256"),
+                         refusals=list(refusals)[:10], fits=bool(fits), wave=self.cfg["wave"])
+        if refusals or receipt.get("verdict") != "PASS":
+            raise Fail(f"Augur refuses the wave plan: {list(refusals)[:3]}")
+        if not fits:
+            raise Fail(f"the wave plan has no action {self.cfg['action']!r} with at least {n} orders")
+
+    def lock(self):
+        """BATCH/RUN.lock, created exclusively. A stale lock is cleared only when its recorded process is dead."""
+        path = self.dir / "RUN.lock"
+        self.dir.mkdir(parents=True, exist_ok=True)
+        for _ in range(2):
+            try:
+                fd = os.open(path, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+            except FileExistsError:
+                held = read_json(path, {}) or {}
+                if pid_alive(held.get("pid"), held.get("epoch")):
+                    raise Fail(f"another conveyor process (pid {held.get('pid')}) is running this batch ({path})")
+                try:
+                    os.remove(path)  # stale: its process is dead
+                except OSError as exc:
+                    raise Fail(f"cannot clear the stale lock {path}: {exc}")
+                continue
+            with os.fdopen(fd, "w", encoding="utf-8") as fh:
+                fh.write(json.dumps({"pid": os.getpid(), "epoch": time.time(), "utc": now()}))
+            return path
+        raise Fail(f"cannot take the batch lock {path}")
+
+    def verify_scratch(self):
+        """On resume, every finished worker's folder and output must still exist: lost scratch is a hard failure."""
+        if self.ledger.done("complete"):
+            return
+        for w in self.ledger.workers():
+            if not w.get("ok"):
+                continue
+            missing = [x for x in (w.get("folder"), w.get("out")) if x and not Path(x).exists()]
+            if missing:
+                raise Fail(f"scratch lost: {w.get('label')} finished, but {missing[0]} is gone. The paid result "
+                           "cannot be reused; restore the scratch root or start a new batch")
+        if self.ledger.done("plant"):
+            for name in (f"{self.name}.json", f"{self.name}.REVIEW_SET.jsonl", f"{self.name}.GENUINE.jsonl"):
+                if not (self.keys / name).exists():
+                    raise Fail(f"control material missing: {(self.keys / name).as_posix()}; the sealed controls "
+                               "cannot be scored. Restore it or start a new batch")
 
     # -- helpers -------------------------------------------------------------------------------------------
     def rel(self, p):
@@ -721,7 +868,8 @@ class Batch:
                  (path_forms(self.keys), None, "control folder")]
         if role.startswith("reviewer"):
             batch = path_forms(self.dir) + [self.rel(self.dir).lower()]
-            rules.append((batch, re.compile(r"^/packet(/packet\.json)?$"), "batch material"))
+            rules.append((batch, re.compile(r"^/packet(/packet\.json|/undecided(/[^/]+(/evidence\.json)?)?)?$"),
+                          "batch material"))
         return rules
 
     # -- workers ------------------------------------------------------------------------------------------
@@ -763,20 +911,32 @@ class Batch:
             self.ledger.mark(key, "launched", worker_launch=True, label=label, role=role, stage=stage, pid=proc.pid,
                              launched_epoch=epoch, started_utc=started, folder=folder.as_posix(),
                              out=out_path.as_posix())
-            text, killed = self.watch(proc, out_path, role, folder, t0)
+            text, killed, rollout = self.watch(proc, out_path, role, folder, t0, epoch)
         finally:
             with self.live_lock:
                 self.live.pop(key, None)
         return self.record(label, role, stage, folder, out_path, text, proc.returncode, killed, started,
-                           round(time.monotonic() - t0, 3), len(prompt), argv)
+                           round(time.monotonic() - t0, 3), len(prompt), argv, rollout)
 
-    def watch(self, proc, out_path, role, folder, t0):
-        """Follow the worker's event file; kill it on a blinding violation, the item token cap or the timeout."""
+    def watch(self, proc, out_path, role, folder, t0, epoch=None):
+        """Follow the worker's event file; kill it on a blinding violation, the item token cap or the timeout.
+
+        `codex exec --json` reports usage only at turn.completed, after the spend. For a codex worker the conveyor
+        also follows the session's rollout file ($CODEX_HOME/sessions/YYYY/MM/DD/rollout-*-<thread>.jsonl), whose
+        token_count events carry the cumulative usage of every model call, and kills the worker there."""
         u, rules, killed, chunks, buf = new_usage(), self.rules_for(role, folder), None, [], b""
         cap_tok = self.cap(role, "tokens")
         timeout = self.workers[role].get("item_timeout", self.cfg.get("item_timeout"))
+        codex = self.workers[role]["family"] == "codex"
+        roll = {"path": None, "fh": None, "buf": b"", "usage": None}
         with open(out_path, "rb") as fh:
             while True:
+                if codex:
+                    self.follow_rollout(roll, u.get("session_id"), epoch or time.time())
+                    ru = roll["usage"]
+                    if cap_tok and ru and ru["input"] + ru["output"] > cap_tok and not killed:
+                        killed = f"item_token_cap {ru['input'] + ru['output']} > {cap_tok} (rollout)"
+                        kill_tree(proc)
                 data = fh.read()
                 if data:
                     chunks.append(data)
@@ -803,11 +963,41 @@ class Batch:
                     kill_tree(proc)
                 time.sleep(0.1)
         proc.wait()
-        return b"".join(chunks).decode("utf-8", "replace"), killed
+        if codex:
+            self.follow_rollout(roll, u.get("session_id"), epoch or time.time())
+            if roll["fh"]:
+                roll["fh"].close()
+        rollout = dict(roll["usage"] or {}, path=roll["path"]) if roll["path"] else None
+        return b"".join(chunks).decode("utf-8", "replace"), killed, rollout
 
-    def record(self, label, role, stage, folder, out_path, text, rc, killed, started, wall, prompt_chars, argv):
+    @staticmethod
+    def follow_rollout(roll, thread, epoch):
+        """Read new token_count lines of the codex session's rollout file into roll["usage"]."""
+        if not thread:
+            return
+        if roll["fh"] is None:
+            path = find_rollout(thread, epoch)
+            if not path:
+                return
+            roll["path"], roll["fh"] = path.as_posix(), open(path, "rb")
+        data = roll["fh"].read()
+        if not data:
+            return
+        roll["buf"] += data
+        *lines, roll["buf"] = roll["buf"].split(b"\n")
+        for line in lines:
+            t = rollout_tokens(line)
+            if t:
+                roll["usage"] = t
+
+    def record(self, label, role, stage, folder, out_path, text, rc, killed, started, wall, prompt_chars, argv,
+               rollout=None):
         w = self.workers[role]
         u = parse_usage(text)
+        if rollout and rollout.get("input") is not None and rollout["input"] + rollout["output"] > tokens(u):
+            # Killed mid-turn: the rollout's cumulative usage is the only full account of the spend.
+            u.update(input=rollout["input"] - rollout["cached_input"], cache_read=rollout["cached_input"],
+                     cache_write=0, output=rollout["output"], usage_seen=True)
         violations = []
         for line in text.splitlines():
             try:
@@ -822,7 +1012,7 @@ class Batch:
                "output": u["output"], "tokens": tokens(u), "usd": usd, "usage_reported": u["usage_seen"],
                "result_seen": u["result_seen"], "blinding_violations": sorted(set(violations)),
                "started_utc": started, "ended_utc": now(), "wall_seconds": wall, "prompt_chars": prompt_chars,
-               "folder": Path(folder).as_posix(), "out": Path(out_path).as_posix(),
+               "folder": Path(folder).as_posix(), "out": Path(out_path).as_posix(), "rollout": rollout,
                "argv": [Path(argv[0]).name] + list(argv[1:]) if argv else None}
         over = []
         ct, cu = self.cap(role, "tokens"), self.cap(role, "usd")
@@ -935,7 +1125,7 @@ class Batch:
         finally:
             ex.shutdown(wait=True)
         if stop:
-            raise Stop(f"{stage}: {stop}; {len(pending)} worker(s) not launched")
+            raise BudgetPause(f"{stage}: {stop}; {len(pending)} worker(s) not launched; re-run with a larger --batch-usd")
         return results
 
     # -- stages -------------------------------------------------------------------------------------------
@@ -1140,6 +1330,8 @@ class Batch:
                 note = "dispatch check: a mandatory source is not held; no producer was launched"
                 r["outcome"] = "blocked"
             elif p.get("folder"):
+                if not Path(p["folder"]).is_dir():
+                    raise Fail(f"scratch lost: the finished producer folder for {iid} is gone ({p['folder']})")
                 try:
                     sheets[iid] = self.validate_sheet(iid, p["folder"])
                 except (ValueError, OSError, StopIteration) as exc:
@@ -1281,7 +1473,10 @@ class Batch:
         for name, rec in sorted(results.items()):
             arm = name[0]
             w = self.workers[f"reviewer_{arm}"]
-            for r in read_jsonl(Path(rec["folder"]) / fname):
+            src = Path(rec["folder"]) / fname
+            if not src.exists():
+                raise Fail(f"scratch lost: {rec.get('label')} finished, but its output {src.as_posix()} is gone")
+            for r in read_jsonl(src):
                 if not isinstance(r, dict) or r.get("claim_sha256") not in hashes or r.get("verdict") not in (
                         "upheld", "rejected", "upheld_after_reveal"):
                     continue
@@ -1387,10 +1582,14 @@ class Batch:
         man = {"schema": "eo-claim-kit-completion/v1", "agent": agents.pop(), "producer_model_family": pf,
                "independence_requirement": indep, "publication": {"mode": "own_claims", "path": pub},
                "members": members, "controls": controls, "receipts": receipts}
-        if self.cfg.get("replacement_proposal"):
-            man["publication"] = {"mode": "replacement_proposal", "path": pub}
+        man["publication"] = {"mode": self.cfg.get("publication_mode") or "own_claims", "path": pub}
         write_json(out / "COMPLETION.json", man)
         return out / "COMPLETION.json", man
+
+
+def check_plan(augur_module, plan, repo):
+    """Augur's own check(plan) -> (refusals, receipt). A separate function so tests can substitute it."""
+    return augur_module.check(plan, repo=repo)
 
 
 def load_workers(path):
@@ -1422,9 +1621,29 @@ def load_workers(path):
 
 def run(cfg, repo=REPO):
     b = Batch(cfg, repo)
+    lock = b.lock()
+    try:
+        return _run(b, cfg)
+    finally:
+        try:
+            os.remove(lock)
+        except OSError:
+            pass
+
+
+def _run(b, cfg):
     L = b.ledger
     L.mark("run", "started", pid=os.getpid())
-    b.reap()
+    try:
+        b.pin_workers()
+        b.augur()
+        b.check_budget()
+        b.reap()
+        b.verify_scratch()
+    except Fail as f:
+        L.mark("run", "failed", reason=str(f))
+        print(json.dumps({"batch": b.name, "state": "failed", "reason": str(f)}))
+        return EXIT_FAILED
     adjudicate = []
     state = {"ids": [], "submitted": 0, "controls_missed": 0}
     try:
@@ -1440,7 +1659,7 @@ def run(cfg, repo=REPO):
                                "detail": f"rendered producer prompt {n} chars > cap {rend['cap_chars']}; not dispatched"})
         go = rend["rendered"]
         if not go:
-            raise Stop("render: zero orders can be dispatched (all source-blocked, viewless or over the prompt cap)")
+            raise Stop("render: zero orders can be dispatched (all source-blocked, viewless or over the prompt cap)", quality=True)
         pending = [i for i in go if not (b.latest(f"produce:{slug(i)}")[1] or {}).get("ok")]
         if pending:
             # A fresh dispatch check right before producers launch, on every (re)start that still launches any.
@@ -1459,14 +1678,14 @@ def run(cfg, repo=REPO):
         col = b.collect(prep, produced, demoted)
         state["submitted"] = len(col["submit"])
         if not col["submit"]:
-            raise Stop("collect: zero orders submittable after the producers finished")
+            raise Stop("collect: zero orders submittable after the producers finished", quality=True)
         # Mechanical checks, with fresh-session repair rounds for orders that fail them.
         rnd = 0
         while True:
             chk = b.apply_and_check(col["sheets_fingerprint"])
             if not chk["failures"]:
                 if not chk["claims"]:
-                    raise Stop("check: zero claims assembled")
+                    raise Stop("check: zero claims assembled", quality=True)
                 break
             failing = [i for i in chk["failures"] if i in col["submit"]]
             if not failing:
@@ -1488,7 +1707,7 @@ def run(cfg, repo=REPO):
             col = b.collect(prep, produced, demoted)
             state["submitted"] = len(col["submit"])
             if not col["submit"]:
-                raise Stop("check: zero orders submittable after the mechanical checks")
+                raise Stop("check: zero orders submittable after the mechanical checks", quality=True)
         applied = b.repo / chk["applied"]
         claims = read_jsonl(applied / "CLAIMS.proposed.jsonl")
         state["submitted"] = len(claims)
@@ -1532,7 +1751,7 @@ def run(cfg, repo=REPO):
         sc = L.once("controls", score)
         if sc["missed"]:
             state["controls_missed"] = len(sc["missed"])
-            raise Stop(f"controls: planted control(s) missed by at least one arm: {sc['missed']}; batch not completed")
+            raise Stop(f"controls: planted control(s) missed by at least one arm: {sc['missed']}; batch not completed", quality=True)
         genuine_path = b.keys / f"{b.name}.GENUINE.jsonl"
         reveal_res = b.run_reviews("after_reveal", {"AR": genuine_path, "BR": genuine_path})
         ghash = {canon(c) for c in read_jsonl(genuine_path)}
@@ -1628,12 +1847,20 @@ def run(cfg, repo=REPO):
         if decision == "STOP":
             return EXIT_GATE_STOP
         return EXIT_DONE if decision in ("CONTINUE", "PILOT") else EXIT_NO_GATE
+    except BudgetPause as bp:
+        # Not an outcome: no Bentham line, no gate. A re-run with a larger budget continues.
+        b.kill_all()
+        L.mark("run", "budget_paused", reason=str(bp))
+        write_measures(b, cfg, state, None, None, stopped=str(bp))
+        print(json.dumps({"batch": b.name, "state": "budget_paused", "reason": str(bp)}))
+        return EXIT_BUDGET
     except Stop as s:
         b.kill_all()
-        L.mark("run", "stopped", reason=str(s))
+        L.mark("run", "stopped", reason=str(s), quality=s.quality)
         if adjudicate:
             write_json(b.dir / "ADJUDICATE.json", {"schema": "maudslay-adjudicate/v1", "batch": b.name, "items": adjudicate})
-        verdict = gate_line(b, cfg, state, filed=0)
+        # Bentham hears only about yield outcomes (zero submittable, a missed control), not process failures.
+        verdict = gate_line(b, cfg, state, filed=0) if s.quality else None
         write_measures(b, cfg, state, None, verdict, stopped=str(s))
         print(json.dumps({"batch": b.name, "state": "stopped", "reason": str(s)}))
         return EXIT_STOPPED
@@ -1719,9 +1946,9 @@ def build_config(a, repo):
     bdir = (repo / run_dir / a.batch) if not run_dir.is_absolute() else run_dir / a.batch
     saved = read_json(bdir / "CONFIG.json")
     given = {k: getattr(a, k) for k in FIXED + MUTABLE if getattr(a, k, None) is not None}
-    for k in ("keys_dir", "scratch_root"):
+    for k in ("keys_dir", "scratch_root", "wave"):
         if k in given:
-            given[k] = Path(given[k]).resolve().as_posix()
+            given[k] = Path(given[k] if Path(given[k]).is_absolute() or k != "wave" else repo / given[k]).resolve().as_posix()
     if saved:
         for k in FIXED:
             if k in given and given[k] != saved.get(k):
@@ -1729,14 +1956,16 @@ def build_config(a, repo):
         cfg = dict(saved)
         cfg.update({k: v for k, v in given.items() if k in MUTABLE})
     else:
-        for need in ("agent", "action", "route", "workers", "batch_usd"):
+        for need in ("agent", "action", "route", "workers", "batch_usd", "scratch_root", "wave"):
             if given.get(need) is None:
                 raise Fail(f"--{need.replace('_', '-')} is required for a new batch")
         name = Path(a.run_dir).name
-        scratch = Path(given.get("scratch_root") or Path(tempfile.gettempdir()) / "maudslay" / name / a.batch).resolve()
+        scratch = Path(given["scratch_root"]).resolve()
+        rp = bool(given.get("replacement_proposal"))
         cfg = {"run_dir": Path(a.run_dir).as_posix(), "batch": a.batch, "n": 20, "parallel": 4,
-               "prompt_cap_chars": 16000, "review_chunk": 0, "repair_rounds": 1, "item_timeout": 5400,
+               "prompt_cap_chars": 16000, "review_chunk": 10, "repair_rounds": 1, "item_timeout": 5400,
                "replacement_proposal": False, "publish": False, "defer_adjudication": False,
+               "publication_mode": "replacement_proposal" if rp else "own_claims",
                "scratch_root": scratch.as_posix(), "keys_dir": (scratch / "control").as_posix(),
                "batches_file": (Path(a.run_dir) / "BATCHES.json").as_posix(),
                "publication": f"research/readiness/claims/{given['agent']}-{datetime.now(timezone.utc).date()}-"
@@ -1774,13 +2003,17 @@ def main(argv=None):
     r.add_argument("--batch-usd", type=float, help="batch budget in dollars (required)")
     r.add_argument("--batch-tokens", type=int, help="batch budget in tokens")
     r.add_argument("--prompt-cap-chars", type=int, help="hard cap on every rendered prompt (default 16000)")
-    r.add_argument("--review-chunk", type=int, help="claims per reviewer session (0 = one session per arm)")
+    r.add_argument("--review-chunk", type=int, help="claims per reviewer session (default 10; 0 = one session per arm)")
     r.add_argument("--repair-rounds", type=int, help="fresh producer sessions for mechanical failures (default 1)")
     r.add_argument("--defer-adjudication", action="store_true", default=None,
                    help="complete now and hold disagreed orders unfiled, instead of pausing")
     r.add_argument("--adjudicator", help="name recorded on control adjudications and seed receipts")
-    r.add_argument("--scratch-root", help="worker folders and control material, outside the repository "
-                                          "(default TEMP/maudslay/RUN/BATCH)")
+    r.add_argument("--scratch-root", help="worker folders and control material: required, a durable folder outside "
+                                          "the repository and outside the system temp folder")
+    r.add_argument("--wave", help="the wave plan (WAVE.json) Augur must pass (jobs/augur-launch); required")
+    r.add_argument("--publication-mode", choices=("own_claims", "replacement_proposal"),
+                   help="completion publication mode (default replacement_proposal with --replacement-proposal, "
+                        "else own_claims; own-claim corrections by agent claude use own_claims)")
     r.add_argument("--keys-dir", help="sealed control key, review sets and ADJUDICATION.json (default SCRATCH/control)")
     r.add_argument("--batches-file", help="Bentham gate batch file (default RUN/BATCHES.json)")
     s = sub.add_parser("status", help="print one batch's ledger summary")
