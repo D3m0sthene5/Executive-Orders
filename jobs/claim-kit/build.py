@@ -238,6 +238,13 @@ _MODERN_BOILERPLATE=re.compile(r'(?i)regulatory[ \t\n]+(?:action|planning|review
                                r'civil[ \t\n]+justice|environmental[ \t\n]+(?:justice|health[ \t\n]+risks)|energy[ \t\n]+(?:supply|effects)|'
                                r'significant(?:ly)?[ \t\n]+(?:regulatory|rule|affect|energy)|plain[ \t\n]+language|'
                                r'OMB[ \t\n]+(?:control|circular|review)|controlled[ \t\n]+unclassified|customer[ \t\n]+experience')
+# The cue and number-word alone, with no list before the number: a direct citation ("Executive Order No. 8790").
+_DIRECT=re.compile(_CUE+r'[ \t\n]{0,3}(?:'+_NUMWORD+r'[ \t\n]{0,3})?\Z',re.I)
+# What may follow a number reached through a list continuation: a delimiter, the end of the list (a verb or
+# function word), or its date or amendment. A noun ("Executive Order 9066 and 8 other orders") ends no list.
+_LIST_END=re.compile(r'(?i)\A(?:[ \t\n]{0,3}(?:[,;:.)\]]|\Z)|[ \t\n]{1,3}(?:and|or|of|dated|as|are|is|were|was|be|been|'
+                     r'shall|hereby|have|has|had|which|that|to|in|so|respectively|revoked|superseded|amended|'
+                     r'terminated|abolished|rescinded|insofar|also|apply|applies|remain|remains|do|does|will|may)\b)')
 _FIVE_DIGIT_CITE=re.compile(r'(?i)(?:Executive[ \t\n]+Orders?|Exec\.[ \t\n]*Order|E\.[ ]?O\.|EO)[ \t\n]{0,3}(?:No\.?[ \t\n]{0,2})?(\d{5})\b')
 
 def _year(value):
@@ -262,11 +269,14 @@ def target_mentions(iid, text, signing_date=None, agency=False):
     m=re.fullmatch(r'EO:(\d+)([A-Za-z]?)',iid or '')
     if not m or not isinstance(text,str):return None
     digits,suffix=m[1],m[2]
-    number='[ ]?'.join(re.escape(ch) for ch in digits)+('[ -]?(?i:'+re.escape(suffix)+')' if suffix else '')
+    # OCR letter-spacing joins digits only when every digit of a number of three or more is single-spaced
+    # ("7 7 9 4"), never two separate numbers ("Executive Order 1 2" is not EO 12; "12 866" is not EO 866).
+    spaced='|'+' '.join(re.escape(ch) for ch in digits) if len(digits)>=3 else ''
+    number='(?:'+re.escape(digits)+spaced+')'+('[ -]?(?i:'+re.escape(suffix)+')' if suffix else '')
     tail=r'(?![ ]?\d|\w|[.,]\d)' if suffix else r'(?![ ]?\d|\w|[.,]\d|-[A-Za-z]\b)'
     signed=_year(signing_date);old=(signed<1945) if signed else int(digits)<9000
     others=None;found=[]
-    for hit in re.finditer(r'(?<![\w.,/$§-])'+number+tail,text):
+    for hit in re.finditer(r'(?<![\w.,/$§-])(?<!\d[ ])'+number+tail,text):
         s,e=hit.start(),hit.end()
         after=text[e:e+120]
         if _FOLLOWS_OTHER.match(after) or _GOVERNOR_AFTER.search(after[:80]):continue
@@ -275,6 +285,7 @@ def target_mentions(iid, text, signing_date=None, agency=False):
         before=_HYPHENATED.sub('',('w' if a else '')+text[a:s])
         cue=_PRECEDES.search(before)
         if not cue:continue
+        if not _DIRECT.search(before) and not _LIST_END.match(after):continue
         if _QUALIFIED.search(before[max(0,cue.start()-60):cue.start()]):continue
         if agency:
             sentence=re.split(r'[.;:]\s',before[max(0,cue.start()-160):cue.start()])[-1]
@@ -315,7 +326,7 @@ def _actor_context(iid, actor, ar, acts, evidence, missing, signing_date=None):
     """ACTOR_TEXT evidence for one held actor text: the whole text up to ACTOR_TEXT_LIMIT bytes, else exact windows
     around each located provision (kept first) and each printed mention of the target, at most WINDOW_CAP windows
     and WINDOW_BYTES bytes. A non-census acting text is routed only when the lexical check finds the number, and is
-    basis_eligible only when it is also an official printing. Returns the actor_contexts entry, or None."""
+    basis_eligible only when it is also an official printing with no page check owed. Returns the actor_contexts entry, or None."""
     text=ar['text'];acting=ar.get('role')==ACTING_ROLE
     mentions=target_mentions(iid,text,signing_date,actor.startswith('FRDOC:')) or []
     if acting and not mentions:
@@ -334,7 +345,7 @@ def _actor_context(iid, actor, ar, acts, evidence, missing, signing_date=None):
         if ar.get('location_confidence') is not None:base['location_confidence']=ar['location_confidence']
     if len(text.encode('utf-8'))<=ACTOR_TEXT_LIMIT:
         record=dict(base,id=key,text=text,char_start=0,char_end=len(text),role='actor_context')
-        if acting:record['basis_eligible']=bool(official and mentions)
+        if acting:record['basis_eligible']=bool(official and mentions and not ar.get('requires_page_check'))
         evidence[key]=record
         entry={'actor_id':actor,'evidence_id':key}
         if mentions:entry['prints_number_lexical']=True
@@ -361,7 +372,7 @@ def _actor_context(iid, actor, ar, acts, evidence, missing, signing_date=None):
         record.pop('prints_number_lexical',None)
         named=any(s<end and e>start for s,e in mentions)
         if named:record['prints_number_lexical']=True
-        if acting:record['basis_eligible']=bool(official and named)
+        if acting:record['basis_eligible']=bool(official and named and not ar.get('requires_page_check'))
         evidence[wid]=record
         entry['evidence_ids'].append(wid)
     if acting:

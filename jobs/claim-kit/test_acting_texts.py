@@ -147,6 +147,31 @@ class TargetMentionTests(unittest.TestCase):
             with self.subTest(iid=iid, text=text):
                 self.assertFalse(self.names(iid, text))
 
+    def test_list_tails_and_spaced_digits(self):
+        # A continuation number before a noun is not a list item.
+        self.assertFalse(self.names("EO:8", "Executive Order 9066 and 8 other orders"))
+        self.assertTrue(self.names("EO:9066", "Executive Order 9066 and 8 other orders"))
+        self.assertTrue(self.names("EO:8791", "Executive Orders 8790 and 8791 are hereby revoked"))
+        self.assertTrue(self.names("EO:8791", "Executive Orders 8790 and 8791, as amended, are"))
+        # Spaced digits join only a fully single-spaced run of three or more digits.
+        self.assertFalse(self.names("EO:12", "Executive Order 1 2 is revoked"))
+        self.assertFalse(self.names("EO:866", "Executive Order 12 866 is revoked"))
+        self.assertFalse(self.names("EO:12866", "Executive Order 12 866 is revoked"))
+        self.assertTrue(self.names("EO:7794", "EXECUTIVE ORDER NO. 7 7 9 4\n"))
+
+    def test_page_check_debt_blocks_basis_eligibility(self):
+        ar = {"text": PLO_TEXT, "source": {"text_sha256": "h"}, "text_path": "t.txt", "role": B.ACTING_ROLE,
+              "grade": FR_GRADE, "requires_page_check": True}
+        evidence = {}
+        B._actor_context("EO:1", "PLO:9", ar, [], evidence, [])
+        record = evidence["ACTOR_TEXT:PLO:9"]
+        self.assertTrue(record["prints_number_lexical"] and record["official_printing"] and record["requires_page_check"])
+        self.assertFalse(record["basis_eligible"])
+        ar["requires_page_check"] = False
+        evidence = {}
+        B._actor_context("EO:1", "PLO:9", ar, [], evidence, [])
+        self.assertTrue(evidence["ACTOR_TEXT:PLO:9"]["basis_eligible"])
+
     def test_agency_document_state_and_unit_contexts(self):
         self.assertFalse(self.names("EO:17", "Initiative (Executive Order 17-\n03), Missouri proposes"))
         self.assertFalse(self.names("EO:72", "sections 2 and 6 of the Executive Order 72 hours after all injunctions"))
@@ -438,6 +463,14 @@ class SupplementEligibilityTests(unittest.TestCase):
         first = text.index("No. 1 in part")
         self.assertFalse(S.basis_mark(self.repo, source, text, 0, first - 4, "EO:1")["basis_eligible"])
         self.assertTrue(S.basis_mark(self.repo, source, text, first - 20, first + 8, "EO:1")["basis_eligible"])
+        # A page check owed on the official declaration is carried into the mark.
+        for r in rows:
+            if r["text_path"] == "texts/FR_1_1.txt":
+                r["needs_page_check"] = True
+        write_jsonl(self.repo / "jobs/selden-fr-acting/output/SOURCES.jsonl", rows)
+        owed = S.basis_mark(self.repo, source, text, 0, len(text), "EO:1")
+        self.assertTrue(owed["official_declaration"]["requires_page_check"])
+        self.assertFalse(owed["basis_eligible"])
 
     def test_unofficial_or_unmatched_excerpt_is_not_eligible(self):
         S, source, text, entry = self.entry("fr-2000-1.txt")

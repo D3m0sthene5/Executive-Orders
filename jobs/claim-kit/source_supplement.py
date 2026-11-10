@@ -64,7 +64,8 @@ def basis_mark(repo, source, text, start, end, iid, official=None, index=None):
 
     Eligible only when the lexical check, run on the whole held text, finds iid's number inside the excerpt, and
     the held text is an official printing: an official original representation in the fragment index, or a
-    producer-declared official government printing of the same text file and raw bytes. derive() has already
+    producer-declared official government printing of the same text file and raw bytes with no page check owed.
+    derive() has already
     verified both the raw-byte and the text hash. ``prints_number_lexical`` is True or None, never a finding that
     the text does not name the order. A mark is a gate input, not a finding that the text ends the order;
     producers and independent reviewers judge that."""
@@ -84,7 +85,7 @@ def basis_mark(repo, source, text, start, end, iid, official=None, index=None):
                 break
     names = any(start <= s and e <= end for s, e in (target_mentions(iid, text) or []))
     return {'prints_number_lexical': True if names else None, 'official_declaration': declaration,
-            'basis_eligible': bool(names and declaration)}
+            'basis_eligible': bool(names and declaration and not declaration.get('requires_page_check'))}
 
 
 ENTRY_KEYS = {'alias', 'instrument_ids', 'actor_id', 'reason', 'source', 'char_start', 'char_end'}
