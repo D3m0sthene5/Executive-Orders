@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (1)
+## Waiting for the owner (2)
 
-**A-20261108-lean-main**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-papinian-board-bytes**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 292; `search` finds the rest)
+## Newest results (6 of 295; `search` finds the rest)
 
 - 2026-11-10 F-20261110-mommsen3-mirror-correction **analysis**: Carry out Claude C-1d as relayed by S-3-3 on the predecessor mirror proposal. Lesson: Do not substitute rejected MIRROR_FRAGMENTS declarations for the designated APP conversion route or operate another lane recovery. No old result is rewritten as new accepted production.
 - 2026-11-10 F-20261110-mommsen3-headless-turn1 **partly worked**: Produce two bounded20-order packets from S-3-3 assigned decided EO6750-7531,using existing custody and claim-… Lesson: Keep actual filing distinct from proposals and local replay distinct from main. New context needs a new packet; place completion outputs inside its exclusion boundary to prevent its own receipt copie…
 - 2026-11-10 F-20261110-mommsen3-blind-input-contract **stopped at gate**: Run maintained blind verification on exact blinded cards and confined source descriptors. Lesson: Allowlist only actual existing confined directories. Do not invent quote offsets for provenance-only confirmations or infer control sensitivity from a preinterpretation refusal.
 - 2026-11-10 F-20261110-mommsen2-road-sparse-ci **partly worked**: PR 252 claim publication against the road-tests sparse checkout. Lesson: Read the committed runner declaration with git show when the worktree file is absent. This one-test fallback keeps the existing scope comparison and allows claim PR CI without changing .github.
-- 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
-- 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
+- 2026-11-09 F-20261110-papinian-photius-overlap **analysis**: Papinian pool 1b: recovery.working_text_stale (26 orders, EO 7912-8025) Lesson: A Bentham stratum and a named campaign can be the same orders under two names; split lanes by order ids, not by action names.
+- 2026-11-09 F-20261110-papinian-nea-notices **analysis**: Papinian YES pool (production.claim_ready.yes.fr): producers worked batches y01-y09 by the original_plus_boun… Lesson: Bentham's acquire.nea_continuation_notices (listed free, 0 orders) is the largest single unlock left in the YES stratum: enqueue the annual Federal Register continuation notices for each live IEEPA/N…
 
-Register: 75 owner decisions, 45 answered questions, 292 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 295 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
