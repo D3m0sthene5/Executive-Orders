@@ -323,11 +323,19 @@ def own_terms(instrument_id, text, source, clauses):
         # (Respondendi F5: EO 13064 and 13010 sunsets were typed report_deadline only).
         body_sunset = bool(re.search(r"\b(?:shall|will|is\s+to)\s+(?:terminate|expire|cease(?:\s+to\s+exist)?)\b"
                                      r"|\bmay\s+be\s+retained\b.{0,60}?\b(?:no|not)\s+later\s+than\b", sentence, re.I | re.S))
-        if (not report or body_sunset) and re.search(r"\b(?:expire[sd]?|sunset|terminate[sd]?|cease|retained)\b", sentence, re.I) and re.search(DATE, sentence, re.I):
+        # "retained" counts only through body_sunset: "still retained for military purposes" and "retained
+        # in the service until 1902" are not sunsets (F5 review finding 3).
+        if ((not report or body_sunset) and re.search(DATE, sentence, re.I)
+                and (body_sunset or re.search(r"\b(?:expire[sd]?|sunset|terminate[sd]?|cease)\b", sentence, re.I))):
             kinds.append("sunset_date")
         # Duties limited to enumerated years ("for 1999, 2000, and 2001"): a final period of the order's
-        # own terms, distinct from the deadline of a report (Respondendi F5: EO 13116).
+        # own terms, distinct from the deadline of a report (Respondendi F5: EO 13116). Only when a duty
+        # verb governs the sentence, and never in a statute title ("Authorization Act for Fiscal Years 1992
+        # and 1993") or a description of reports ("reports of ... for 1906, 1907, and 1908") (finding 4).
         enumerated = re.search(r"\bfor\s+(?:(?:fiscal|calendar)\s+)?(?:years?\s+)?(?:\d{4}\s*,\s*)+(?:and\s+)?(\d{4})\b|\bfor\s+(?:(?:fiscal|calendar)\s+)?years?\s+\d{4}\s+(?:and|through)\s+(\d{4})\b", sentence, re.I)
+        if enumerated and (re.search(r"\bActs?\s*$|\breports?\s+of\b[^.;]{0,80}$", sentence[:enumerated.start()], re.I)
+                           or not re.search(r"\b(?:shall|will)\b", sentence, re.I)):
+            enumerated = None
         if enumerated:
             kinds.append("enumerated_final_period")
         if re.search(r"\buntil\b", sentence, re.I):

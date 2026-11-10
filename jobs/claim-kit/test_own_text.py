@@ -108,9 +108,44 @@ class ClassifierTests(unittest.TestCase):
         for iid, text in (("EO:4531", standing), ("EO:7489", refuge), ("EO:1426", so_as), ("EO:1624", unquoted)):
             self.assertEqual(T.records(iid, original(text, "1926-01-01"), []), {}, iid)
 
-    def test_records_need_the_full_original_span(self):
+    def test_fails_closed_on_unlisted_standing_commands(self):
+        # EO 8100 (1939), abridged: a forest reservation beside a revocation. The first classifier called the
+        # preamble sentence neutral because no listed wording matched (F5 review finding 1).
+        forest = ("By virtue of the authority vested in me, it is ordered that the following-described public land "
+                  "in Mississippi be, and it is hereby, included in and reserved as a part of the Homochitto National "
+                  "Forest.\nExecutive Order No. 6964 of February 5, 1935, is hereby revoked so far as it affects the "
+                  "above-described land.\n")
+        self.assertEqual(T.records("EO:8100", original(forest, "1939-04-20"), []), {})
+        # An unlisted verb after a recognised revocation also fails closed.
+        mixed = "Executive Order No. 5 is hereby revoked, and the Board is hereby charged with its records.\n"
+        self.assertEqual(T.records("EO:9", original(mixed), []), {})
+
+    def test_month_may_is_not_the_modal(self):
+        text = ("By the authority vested in me, Executive Order No. 11223 of May 12, 1965, is hereby amended by "
+                "adding at the end thereof the following Section:\n\u201cSec. 6. The functions are delegated.\u201d\n")
+        self.assertEqual(next(iter(T.records("EO:12178", original(text, "1979-12-10"), []).values()))["parent_id"],
+                         "EO:11223")
+
+    def test_own_heading_ends_unclosed_insertion(self):
+        # EO 12315 shape: the amending order's own later section carries a duty.
+        text = ("Section 1. Paragraph 75 of the Manual is amended to read as follows:\n\u201c75. The defense may "
+                "present matters.\nSec. 2.\nThe Secretary of Defense shall transmit a copy of this Order to the "
+                "Congress.\n")
+        self.assertEqual(T.records("EO:12315", original(text, "1981-07-29"), []), {})
+
+    def test_amendment_of_an_unnumbered_instrument_is_marked_parent_unidentified(self):
+        r = next(iter(T.records("EO:13552", original(DEFERRED_FIXED, "2010-08-31"), []).values()))
+        self.assertEqual((r["parent_id"], r["parent_unidentified"]), (None, True))
+        r = next(iter(T.records("EO:13013", original(AMEND_ONLY, "1996-08-06"), []).values()))
+        self.assertIs(r["parent_unidentified"], False)
+
+    def test_records_need_the_full_held_original(self):
         partial = dict(original(REVOKE_ONLY), char_end=40)
         self.assertEqual(T.records("EO:12379", partial, []), {})
+        # A truncated text re-spanned to look complete fails the held file's hash (F5 review finding 5).
+        cut = original(REVOKE_ONLY[:400])
+        cut["source"] = dict(cut["source"], text_sha256=hashlib.sha256(REVOKE_ONLY.encode()).hexdigest())
+        self.assertEqual(T.records("EO:12379", cut, []), {})
 
     def test_parent_end_requires_whole_named_ending_of_the_parent(self):
         own = T.records("EO:13013", original(AMEND_ONLY, "1996-08-06"), [])
@@ -134,9 +169,9 @@ class ClassifierTests(unittest.TestCase):
 
 
 class OwnTermsRetypingTests(unittest.TestCase):
-    def terms(self, sentence):
+    def terms(self, sentence, iid="EO:13064"):
         src = {"signing_date": "1997-10-11"}
-        return {t["kind"]: t for t in E.own_terms("EO:13064", sentence, src, [])}
+        return {t["kind"]: t for t in E.own_terms(iid, sentence, src, [])}
 
     def test_body_sunset_beside_a_report_is_a_sunset(self):
         # EO 13064 / 13010 wording: previously typed report_deadline only.
@@ -145,6 +180,14 @@ class OwnTermsRetypingTests(unittest.TestCase):
         self.assertIn("sunset_date", t)
         self.assertEqual((t["sunset_date"]["stated_end_date"], t["sunset_date"]["end_bound"]), ("1998-09-30", "not_later_than"))
         self.assertIn("report_deadline", t)
+        t = self.terms("Certain of the Commission's staff may be retained no later than March 15, 1998.")
+        self.assertEqual(t["sunset_date"]["stated_end_date"], "1998-03-15")
+
+    def test_retained_alone_is_not_a_sunset(self):
+        # F5 review finding 3: EO 1844 and EO 5637 wording.
+        for sentence in ("Cronin was appointed on August 14, 1901, and retained in the service until March 29, 1902.",
+                         "The excepted tract of land which is still retained for military purposes on May 1, 1931."):
+            self.assertNotIn("sunset_date", self.terms(sentence, "EO:1844"))
 
     def test_enumerated_years_are_a_final_period(self):
         # EO 13116 Part II sec. 1(a).
@@ -153,19 +196,25 @@ class OwnTermsRetypingTests(unittest.TestCase):
         self.assertEqual(t["enumerated_final_period"]["final_year"], "2001")
         self.assertIsNone(t["enumerated_final_period"]["stated_end_date"])
 
+    def test_statute_titles_and_report_descriptions_are_not_final_periods(self):
+        # F5 review finding 4: EO 12851 and EO 1036 wording.
+        for sentence in ("The functions vested in the President by the National Defense Authorization Act for Fiscal "
+                         "Years 1992 and 1993 shall be performed by the Secretary.",
+                         "The reports of the Chief Signal Officer of the Army for 1906, 1907, and 1908 shall be printed."):
+            self.assertNotIn("enumerated_final_period", self.terms(sentence, "EO:12851"))
+
     def test_a_plain_report_deadline_is_unchanged(self):
         t = self.terms("The Board shall report to the President within 30 days from the date of its creation.")
         self.assertEqual(set(t), {"report_deadline"})
 
 
 class _OverlayFixture(unittest.TestCase):
-    """Freeze real evidence for an undecided order whose held original is TEXT, then run the gate."""
+    """Freeze real evidence for an undecided order (EO:1) whose held original is TEXT, then run the gate."""
     TEXT = REVOKE_ONLY.replace("12379", "1").replace("12071", "2").replace("12042", "3")
-    GRADE = None
 
     def setUp(self):
         original_init = S.F.BuildIntegrationTests.setUp
-        text, grade = self.TEXT, self.GRADE
+        text = self.TEXT
 
         def patched(fixture):
             original_init(fixture)
@@ -178,8 +227,6 @@ class _OverlayFixture(unittest.TestCase):
                     digest = hashlib.sha256(path.read_bytes()).hexdigest()
                     r["source"].update(sha256=digest, text_sha256=digest)
                     r["signing_date"] = "1982-08-17"
-                    if grade:
-                        r.update(grade=grade, acceptable_as_original=False)
             prov_path.write_text(json.dumps(prov), encoding="utf-8")
         S.F.BuildIntegrationTests.setUp = patched
         try:
@@ -191,8 +238,9 @@ class _OverlayFixture(unittest.TestCase):
         self.evidence, self.decision = self.base.evidence, self.base.decision
         self.dossier = self.evidence["base_dossier"]
 
-    def use_basis(self, ids):
+    def use_basis(self, ids, confirmed=True):
         self.base.decision["basis_evidence_ids"] = ids
+        self.base.decision["own_text_whole_order_confirmed"] = confirmed
         self.base.ending = ids[0]
         self.base.review = self.base.accepted_review(self.base.decision)
         self.base.review["checked_evidence_ids"] = sorted(set(self.base.review["checked_evidence_ids"]) | set(ids))
@@ -210,7 +258,11 @@ class OverlayRouteTests(_OverlayFixture):
         proposal = self.base.propose()
         self.assertEqual(proposal["recommended_provisional_status"], "no")
         self.assertFalse(proposal["owner_acceptance"]["accepted"])
-        self.assertNotIn("working_text", proposal)
+
+    def test_own_text_basis_needs_the_producer_whole_order_confirmation(self):
+        self.assertIs(O.extend_decision(self.base.packet, self.evidence, "p")["own_text_whole_order_confirmed"], False)
+        self.use_basis([self.dossier["own_text_ids"][0]], confirmed=False)
+        self.base.assert_rejects("producer_own_text_whole_order_confirmed_required")
 
     def test_hand_written_own_text_record_is_refused(self):
         ident = "OWN_TEXT:EO:1#0"
@@ -236,47 +288,36 @@ class OverlayRouteTests(_OverlayFixture):
             record.update(id=ident, basis_code=code, role="current_law_wording_lead")
             self.dossier["evidence"][ident] = record
         current("CURRENT:EO:1#0", "amending_order_in_status_line")
-        current("CURRENT:EO:1#1", "printed_eo_text")
+        current("CURRENT:EO:1#1", "amending_order_in_ended_status_line")
+        current("CURRENT:EO:1#2", "printed_eo_text")
         self.base.reseal_changed_fixture_evidence()
         self.base.decision.update(recommended_provisional_status="yes", current_predicate_checked_through=O.CUTOFF)
-        self.use_basis(["CURRENT:EO:1#0"])
-        self.base.assert_rejects("amender_listing_cannot_establish_current_predicate")
         self.use_basis(["CURRENT:EO:1#0", "CURRENT:EO:1#1"])
+        self.base.assert_rejects("amender_listing_cannot_establish_current_predicate")
+        self.use_basis(["CURRENT:EO:1#0", "CURRENT:EO:1#2"])
         self.assertEqual(self.base.propose()["recommended_provisional_status"], "yes")
 
     def test_routes_constant_names_the_live_routes(self):
-        self.assertEqual(O.UNDECIDED_ROUTES, frozenset({"current", "own_text", "working_text"}))
+        self.assertEqual(O.UNDECIDED_ROUTES, frozenset({"current", "own_text"}))
         self.assertIn("OWN_TEXT:", O.NO_BASIS_PREFIXES)
 
 
-class WorkingTextGateTests(_OverlayFixture):
-    GRADE = "official_printing"
+class AmendOnlyBatchTests(_OverlayFixture):
+    """EO:1 only amends EO 2, which EO 5 revokes as a whole: a PARENT_END record, and batch == single."""
+    TEXT = ("EXECUTIVE ORDER 1\nExecutive Order No. 2 is hereby amended by striking out the word "
+            "“Second” and inserting in lieu thereof the word “Revised”.\n")
 
-    def test_tracker_credited_working_text_may_carry_a_status_with_the_standing_note(self):
-        original = self.dossier["evidence"][self.dossier["original_source_id"]]
-        self.assertEqual((original["acceptable_as_original"], original["working_text_basis"]),
-                         (False, "tracker_original_supported"))
-        self.use_basis([self.dossier["own_text_ids"][0]])
-        proposal = self.base.propose()
-        self.assertEqual(proposal["working_text"]["standing_note"], O.W.NOTE)
-        self.assertEqual(proposal["working_text"]["basis"], "tracker_original_supported")
-        self.assertTrue(proposal["working_text"]["replacement_required"])
-
-    def test_a_relabelled_basis_is_refused(self):
-        self.dossier["evidence"][self.dossier["original_source_id"]]["working_text_basis"] = "lachmann_confirmation"
-        self.base.reseal_changed_fixture_evidence()
-        self.use_basis([self.dossier["own_text_ids"][0]])
-        self.base.assert_rejects("acceptable_original_required_for_status_proposal")
-
-
-class UncreditedTranscriptionTests(_OverlayFixture):
-    GRADE = "mirror_transcription"
-
-    def test_uncredited_transcription_is_still_refused(self):
-        original = self.dossier["evidence"][self.dossier["original_source_id"]]
-        self.assertNotIn("working_text_basis", original)
-        self.use_basis([self.dossier["own_text_ids"][0]])
-        self.base.assert_rejects("acceptable_original_required_for_status_proposal")
+    def test_parent_end_is_frozen_and_batch_freezing_is_byte_identical(self):
+        self.assertEqual(self.dossier["parent_end_ids"], ["PARENT_END:EO:1>EO:2>EO:5"])
+        record = self.dossier["evidence"]["PARENT_END:EO:1>EO:2>EO:5"]
+        self.assertEqual((record["mechanism"], record["parent_id"], record["actor_id"]), ("follows_parent", "EO:2", "EO:5"))
+        own = self.dossier["evidence"][self.dossier["own_text_ids"][0]]
+        self.assertEqual((own["own_text_kind"], own["parent_id"]), ("amends_parent", "EO:2"))
+        many = O.prepare_evidence_many(self.base.repo, self.base.out, ["EO:1"])["EO:1"]
+        single = O.prepare_evidence(self.base.repo, self.base.out, "EO:1")
+        self.assertEqual(json.dumps(many, sort_keys=True), json.dumps(single, sort_keys=True))
+        self.use_basis([self.dossier["own_text_ids"][0], "PARENT_END:EO:1>EO:2>EO:5"])
+        self.assertEqual(self.base.propose()["recommended_provisional_status"], "no")
 
 
 if __name__ == "__main__":

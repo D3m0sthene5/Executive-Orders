@@ -37,8 +37,7 @@ CUTOFF = "2026-10-14"
 #   current: a CURRENT: basis for YES (the gate below predates Accursius; the records come from F3,
 #            PR #272, so no claim can carry one until that lands)
 #   own_text: OWN_TEXT basis for self-executing and amendment-only orders (Accursius F5)
-#   working_text: a working text the tracker already credits, or a Lachmann confirmation (Accursius F6)
-UNDECIDED_ROUTES = frozenset({"current", "own_text", "working_text"})
+UNDECIDED_ROUTES = frozenset({"current", "own_text"})
 NO_BASIS_PREFIXES = ("ACT:", "TERM:", "ACTOR_TEXT:", "OWN_TEXT:")
 
 
@@ -353,7 +352,6 @@ def _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads
             stats["span_validation_file_opens"] += 1
             stats["span_validation_file_bytes"] += len(raw)
     own_text.attach(dossier, iid, parent_acts)
-    _mark_working_text(dossier)
     dossier["fingerprint"] = canonical_sha(dossier)
     _source_pins(root, dossier, pins, stats)
     # Pin the actual held history sources as well as their typed records.
@@ -391,40 +389,6 @@ def _parent_candidates(root, iid, inputs):
     except (OSError, ValueError, UnicodeError):
         return set()  # _held raises the precise error for the selected text later
     return own_text.parent_candidates(iid, text)
-
-
-# Owner rulings carried out on this route (Accursius F6): a working text the tracker already credits.
-WORKING_TEXT_RULINGS = {
-    "tracker_original_supported": ("research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
-                                   "D-20261106-photius-r37 (official_printing)",
-                                   "D-20261106-photius-p4 (archival_replica_checked)"),
-    "lachmann_confirmation": ("research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
-                              "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md"),
-}
-# Grades whose selected text the readiness tracker credits as original_supported before any claim:
-# Photius R37 official printings, Photius P4 checked ProQuest replicas, and government printed copies
-# labelled under the 2026-10-21 transcription ruling. A page check still owed stays owed
-# (``original_page_confirmation_required``). Mirror and compiled transcriptions need a Lachmann confirmation.
-TRACKER_CREDITED_GRADES = frozenset({"official_printing", "archival_replica_checked", "government_printed_copy",
-                                     "machine_read_government_printed_copy", "government_printed_reproduction"})
-
-
-def working_text_basis(dossier):
-    """Why a non-original selected text may carry a status proposal, or None."""
-    original = dossier.get("evidence", {}).get(dossier.get("original_source_id"))
-    if not isinstance(original, dict) or original.get("acceptable_as_original") is not False:
-        return None
-    if dossier.get("working_text_confirmation") is not None and original.get("grade") in W.GRADES:
-        return "lachmann_confirmation"
-    if original.get("grade") in TRACKER_CREDITED_GRADES:
-        return "tracker_original_supported"
-    return None
-
-
-def _mark_working_text(dossier):
-    basis = working_text_basis(dossier)
-    if basis is not None:
-        dossier["evidence"][dossier["original_source_id"]]["working_text_basis"] = basis
 
 
 def freeze_evidence(repo, output, packet, telemetry=None):
@@ -679,6 +643,7 @@ def extend_decision(packet, evidence, agent=""):
             "basis_evidence_ids": [], "basis_review_confirmed": False,
             "earlier_endings_checked": False, "partial_scope_checked": False, "savings_checked": False,
             "current_predicate_checked_through": None, "original_pages_confirmed": False,
+            "own_text_whole_order_confirmed": False,
             "notice": "Producer research decision only. Independent review and owner adoption remain separate."}
 
 
@@ -754,6 +719,10 @@ def _decision_errors(decision, evidence):
         # Re-derive from the frozen original: a hand-written OWN_TEXT record is never a basis.
         if not own_text.verify(dossier, ident):
             errors.append("own_text_basis_not_rederivable:" + ident)
+    if own and decision.get("own_text_whole_order_confirmed") is not True:
+        # The record's claim is a negative (no continuing command anywhere in the order); the producer
+        # must confirm it from the held original, beyond the generic scope flags (F5 review finding 1).
+        errors.append("producer_own_text_whole_order_confirmed_required")
     for ident in (i for i in basis if i.startswith("PARENT_END:")):
         record = records.get(ident) or {}
         parents = {p for i in own if isinstance(records.get(i), dict) and own_text.verify(dossier, i)
@@ -778,18 +747,13 @@ def _decision_errors(decision, evidence):
             errors.append("current_predicate_cutoff_confirmation_required")
     original = records.get(dossier.get("original_source_id"), {})
     if not original.get("acceptable_as_original"):
-        # F6: a working text the tracker already credits (2026-10-21 and 2026-10-31 rulings, Photius
-        # R37/P4) may carry a status proposal with the standing replace-and-recheck note. The stored
-        # basis must be the one the frozen record itself yields.
-        basis_kind = original.get("working_text_basis")
-        if basis_kind is None or basis_kind != working_text_basis(dossier):
-            errors.append("acceptable_original_required_for_status_proposal")
+        errors.append("acceptable_original_required_for_status_proposal")
     if original.get("requires_page_check") and decision.get("original_pages_confirmed") is not True:
         errors.append("original_page_confirmation_required")
     return errors
 
 
-AMENDER_LISTING_CODES = frozenset({"amending_order_in_status_line"})
+AMENDER_LISTING_CODES = frozenset({"amending_order_in_status_line", "amending_order_in_ended_status_line"})
 
 
 def _amender_listing(record):
@@ -857,13 +821,6 @@ def propose(repo, decision, review, evidence):
         proposal["history_basis"] = ("explicit empty history: no dated status observation or later event was located; "
                                      "the recommendation rests on the order's own terms and the recorded bounded "
                                      "searches (owner ruling 2026-11-05)")
-    original = evidence["base_dossier"]["evidence"].get(evidence["base_dossier"].get("original_source_id"), {})
-    if original.get("working_text_basis"):
-        # The status rests on a disclosed working text, never on an authenticated original.
-        proposal["working_text"] = {
-            "basis": original["working_text_basis"], "grade": original.get("grade"),
-            "acceptable_as_original": False, "rulings": list(WORKING_TEXT_RULINGS[original["working_text_basis"]]),
-            "standing_note": W.NOTE, "replacement_required": True, "quotation_recheck_required": True}
     proposal["proposal_id"] = "status-overlay:" + evidence["instrument_id"] + ":" + canonical_sha(proposal)[:20]
     return _seal(proposal)
 

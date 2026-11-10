@@ -35,6 +35,7 @@ so a hand-written ``OWN_TEXT:`` record cannot become a basis.
 """
 from __future__ import annotations
 
+import hashlib
 import re
 
 from excavate import DATE, EO_REF, TERM, _add_term, _date, _extent, _sentence_spans
@@ -80,7 +81,7 @@ CONTINUING = re.compile(
     r"prescribed|promulgated|approved|appointed|ordered\s+to|exempted|placed)\b"
     r"|\bhereby\s+(?:withdraw|reserve|establish|create|constitute|designate|direct|authorize|empower|delegate|"
     r"assign|require|prohibit|request|continue|extend|prescribe|promulgate|approve|appoint|exempt|place)\b"
-    r"|\bmay\b"
+    r"|\bmay\b(?!\s*\d)"  # the modal, not the month ("May 12, 1965")
     # Pothier's further-provision markers for amending orders (PD-CS-RULES only-content test).
     r"|\bthe\s+effect\s+of\s+(?:this|the\s+above|these|such)\s+(?:amendments?|order)\b"
     r"|\b(?:present|existing)\s+(?:incumbents?|occupants?)\b|\bpersons\s+now\s+(?:holding|serving|employed)\b"
@@ -110,6 +111,7 @@ ORDERED = re.compile(r"\bit\s+is\s+(?:hereby\s+)?ordered(?:\s+as\s+follows)?\s*[
 COMMANDISH = re.compile(r"\b(?:shall|must|may|will|hereby|is|are|be|directed|authorized|ordered)\b", _I)
 QUOTED = re.compile(r"[\"“][^\"”]*[\"”]|‘[^’]*’")
 TOP_HEADING = re.compile(r"^\W*(?:Sec(?:tion)?\.?|SECTION|SEC\.?)\s*\d", _I)
+OWN_HEADING = re.compile(r"[ \t]*(?:Sec(?:tion)?\.|SECTION|SEC\.)[ \t]*\d+[A-Za-z]?\.?[ \t]*$", re.I)
 DEFERRED = re.compile(r"\b(?:take\s+effect|become\s+effective|be\s+effective|effective)\b", _I)
 
 
@@ -127,24 +129,44 @@ def _strip_quotes(sentence):
     return QUOTED.sub(" ", _normal_quotes(sentence))
 
 
+# The enacting formula ("By virtue of ... it is hereby ordered that"): it commands nothing itself, and
+# whatever follows it in the same sentence is classified on its own.
+ENACTING = re.compile(r"^.*?\bit\s+is\s+(?:hereby\s+)?ordered\b(?:\s+as\s+follows)?\s*[:,.]?\s*(?:that\b\s*[:,]?)?", _I)
+# Command words left over once the recognised verb forms are removed. Any of them makes the sentence a
+# continuing command: the classifier fails closed (independent F5 review, 2026-11-10, finding 1).
+LEFTOVER = re.compile(r"\bhereby\b|\bshall\b|\bmust\b|\bmay\b(?!\s*\d)|\bwill\b", _I)
+# A savings clause ("Nothing in these amendments shall be construed to invalidate ... proceedings, which may
+# proceed ...") keeps earlier acts alive; it is recorded under savings (2026-10-28 point 1), not a command.
+LEFTOVER_IN_SAVINGS = re.compile(r"\bhereby\b|\bshall\b|\bmust\b|\bwill\b", _I)
+
+
 def _classify(sentence):
-    """One sentence outside inserted text: amend, spent, effective, construction, neutral or continuing."""
+    """One sentence outside inserted text: amend, spent, effective, construction, neutral or continuing.
+
+    Fails closed: a sentence is neutral only when it carries no command word at all (a heading, a title,
+    a land description, the bare enacting formula, a recital), and it is spent, amend, effective or
+    construction only when a recognised form accounts for every command word in it."""
     # Producer preambles and page markers are not the order's words.
     plain = _strip_quotes("\n".join(line for line in sentence.splitlines() if not HEADER.search(line)))
+    enacting = ENACTING.match(plain)
+    if enacting:
+        plain = plain[enacting.end():]
     if not plain.strip():
         return "neutral"
     head = _instruction(plain)
     if AMEND.search(head):
         rest = NEUTRAL_SHALL.sub(" ", AMEND.sub(" ", head))
-        return "continuing" if CONTINUING_IN_INSTRUCTION.search(rest) else "amend"
+        return "continuing" if CONTINUING_IN_INSTRUCTION.search(rest) or LEFTOVER.search(rest) else "amend"
     if SPENT.search(plain):
         rest = NEUTRAL_SHALL.sub(" ", SPENT.sub(" ", plain))
-        return "continuing" if CONTINUING.search(rest) else "spent"
+        return "continuing" if CONTINUING.search(rest) or LEFTOVER.search(rest) else "spent"
     if CONSTRUCTION.search(plain):
-        return "construction"
+        rest = CONSTRUCTION.sub(" ", NEUTRAL_SHALL.sub(" ", plain))
+        return "continuing" if LEFTOVER_IN_SAVINGS.search(rest) else "construction"
     if EFFECTIVE.search(plain):
-        return "continuing" if CONTINUING.search(NEUTRAL_SHALL.sub(" ", plain)) else "effective"
-    if ORDERED.search(plain) or (PREAMBLE.search(plain) and not CONTINUING.search(NEUTRAL_SHALL.sub(" ", plain))):
+        rest = NEUTRAL_SHALL.sub(" ", plain)
+        return "continuing" if CONTINUING.search(rest) or LEFTOVER.search(rest) else "effective"
+    if RECITAL.search(plain) and not LEFTOVER.search(plain):
         return "neutral"
     if not COMMANDISH.search(plain):
         return "neutral"
@@ -189,7 +211,7 @@ def _windows(iid, text, clauses):
 FURTHER = re.compile(
     r"\bthe\s+effect\s+of\s+(?:this|the\s+above|these|such)\s+(?:amendments?|order)\b"
     r"|\b(?:present|existing)\s+(?:incumbents?|occupants?)\b|\bpersons\s+now\s+(?:holding|serving|employed)\b"
-    r"|\bit\s+is\s+further\s+ordered\b|\bincumbents?\b|\bhereafter\b", _I)
+    r"|\bit\s+is\s+further\s+ordered\b|\bincumbents?\b|\bhereafter\b|\boccupants?\b", _I)
 HEADER = re.compile(r"^\W*(?:#|Instrument:|Source:|Location:|SHA-256|Wanted:|Cited by:|Machine text layer|"
                     r"May contain recognition errors|Not an authenticated transcription|=== PDF page)", _I)
 
@@ -238,6 +260,11 @@ def classify(iid, text, clauses, signing_date=None):
         for a, b in _sentence_spans(text[start:end]):
             a, b = start + a, start + b
             sentence = text[a:b]
+            if inserted and OWN_HEADING.match(_normal_quotes(sentence)):
+                # A bare section heading of the amending order itself ("Sec. 3." at a line start, not
+                # quote-prefixed) ends the inserted text even when OCR lost the closing quotation mark
+                # (EO 12315: its own Sec. 6-7 had been read as inserted text).
+                inserted, quoted, depth = False, False, 0
             if inserted:
                 if quoted:
                     depth += _quote_balance(sentence)
@@ -246,8 +273,12 @@ def classify(iid, text, clauses, signing_date=None):
                         inserted, quoted, depth = False, False, 0
                     continue
                 plain = _strip_quotes(sentence)
-                if not (TOP_HEADING.search(sentence) and (AMEND.search(_instruction(plain)) or SPENT.search(plain)
-                                                          or EFFECTIVE.search(plain) or CONSTRUCTION.search(plain))):
+                # "This Order will be effective on ..." after an unquoted insertion is the amending order
+                # speaking about its own effect (EO 6215), so it leaves the inserted text.
+                own_effect = EFFECTIVE.search(plain) and re.search(r"\bthis\s+order\b", plain, re.I)
+                if not own_effect and not (TOP_HEADING.search(sentence) and (
+                        AMEND.search(_instruction(plain)) or SPENT.search(plain)
+                        or EFFECTIVE.search(plain) or CONSTRUCTION.search(plain))):
                     # Unquoted inserted text has no reliable end. A command in it may be this order's own
                     # (EO 1624: "the regulations ... shall be amended so as to provide"), so it is ambiguous
                     # and the order does not qualify (blind audit 2026-11-10).
@@ -299,7 +330,10 @@ def classify(iid, text, clauses, signing_date=None):
         if gs >= ge:
             continue
         for a, b in _sentence_spans(text[gs:ge]):
-            if _strong_command(text[gs + a:gs + b]) and not _quote_balance(text[lo:gs + a]) > 0:
+            # The same test as for clause sentences (review finding 6), so qualification does not depend on
+            # where the segmenter drew its spans; amending instructions out here are the clause's own.
+            if (_classify(text[gs + a:gs + b]) == "continuing"
+                    and not _quote_balance(text[lo:gs + a]) > 0):
                 rows.append({"char_start": gs + a, "char_end": gs + b, "label": "continuing", "outside_clauses": True})
                 break
     labels = {r["label"] for r in rows}
@@ -320,6 +354,9 @@ def records(iid, original, clauses):
     text = original["text"]
     if original.get("char_start") != 0 or original.get("char_end") != len(text):
         return {}
+    # The whole held file, not a prefix: a truncated original must not be classified (review finding 5).
+    if hashlib.sha256(text.encode("utf-8")).hexdigest() != str(original["source"].get("text_sha256") or "").lower():
+        return {}
     kind, rows = classify(iid, text, clauses or [], original.get("signing_date"))
     if kind is None:
         return {}
@@ -338,7 +375,7 @@ def records(iid, original, clauses):
     test = {"operative_sentences": len(operative),
             "inserted_sentences": sum(r["label"] == "inserted" for r in rows),
             "neutral_sentences": sum(r["label"] in {"neutral", "construction", "effective"} for r in rows),
-            "continuing_sentences": 0, "classifier": "own_text_v1"}
+            "continuing_sentences": 0, "classifier": "own_text_v2_fail_closed"}
     result = {}
     for ident, r in zip(ids, operative):
         sentence = text[r["char_start"]:r["char_end"]]
@@ -361,9 +398,14 @@ def records(iid, original, clauses):
             record["parent_ids"] = parents
         if kind == "amends_parent":
             record["parent_id"] = parents[0] if parents else None
-            record["surviving_consequence"] = ("The inserted text continues inside the amended instrument until it "
-                                               "ends (D-20261021-strike-and-insert); record it under savings_residuals, "
-                                               "citing a PARENT_END record when one is held.")
+            record["parent_unidentified"] = not parents
+            record["surviving_consequence"] = (
+                ("The inserted text continues inside the amended instrument until it ends "
+                 "(D-20261021-strike-and-insert); record it under savings_residuals, citing a PARENT_END record when "
+                 "one is held.") if parents else
+                ("The amended instrument is not named by an order number (a rule, schedule, manual or an order cited "
+                 "by date): identify it from the instruction quoted here and record the surviving inserted text under "
+                 "savings_residuals; that half stays open until it is identified."))
         result[ident] = record
     return result
 
@@ -401,7 +443,7 @@ def parent_end_records(iid, own, parent_acts):
                 chosen[key] = act
         for actor, act in sorted(chosen.items()):
             ident = "PARENT_END:" + iid + ">" + parent + ">" + actor
-            result[ident] = {
+            result[ident] = {"ender_candidates": len(chosen),
                 "id": ident, "role": PARENT_ROLE, "mechanism": PARENT_MECHANISM, "instrument_id": iid,
                 "target_id": iid, "parent_id": parent, "actor_id": actor, "parent_act_id": act.get("id"),
                 "verb": act.get("verb"), "scope": act.get("scope"), "names_parent": True,
