@@ -241,11 +241,13 @@ def join_caution(*parts):
     return ";".join(p for p in dict.fromkeys(parts) if p)
 
 
-def _refs_in(text, base_role, **extra):
+def _refs_in(text, base_role, container=None, **extra):
     """Group references by order number -> one mention per (number, suffix).
 
     An order the same text says was revoked or superseded gets the caution
     'text_says_revoked_or_superseded' (so it is not a 'still operating' lead).
+    ``_container_text`` carries the whole note or section text the mention sits
+    in (``container``, default ``text``), for usc_extracts; build.Book drops it.
     """
     grouped = {}
     refs = eo_refs.find_eo_refs(text)
@@ -256,7 +258,8 @@ def _refs_in(text, base_role, **extra):
             grouped[key] = dict(extra, role=base_role, eo_raw=r["raw"], eo_number=r["number"], eo_suffix=r["suffix"],
                                 occurrences=0, snippet=eo_refs.snippet(text, r["start"], r["end"]),
                                 caution=join_caution(eo_refs.caution(text, r["start"], r["end"]),
-                                                     ENDED_CAUTION if key in ended else ""))
+                                                     ENDED_CAUTION if key in ended else ""),
+                                _container_text=text if container is None else container)
         grouped[key]["occurrences"] += 1
     return grouped
 
@@ -380,7 +383,7 @@ def _note(elem, ident, crossheading, member, last_subject):
     for s in subjects:
         subject_keys.add((s["number"], s["suffix"].upper()))
         yield "mention", dict(base, role=subject_role, eo_raw=s["raw"], eo_number=s["number"], eo_suffix=s["suffix"],
-                              occurrences=1, snippet=(heading + " | " + status)[:420])
+                              occurrences=1, snippet=(heading + " | " + status)[:420], _container_text=full)
     acting = set()
     for e in eo_refs.editorial_events(status):
         if not _keep_event(e):
@@ -394,7 +397,7 @@ def _note(elem, ident, crossheading, member, last_subject):
             yield "event", _event({"subject": s, "verb": "amended", "actor": a, "sentence": a["segment"]},
                                   dict(base, note_role=subject_role))
     amending = {(a["ref"]["number"], a["ref"]["suffix"].upper()) for a in amenders if a["kind"] == "executive_order"}
-    for key, m in _refs_in(status, "status_line_other_reference", **base).items():
+    for key, m in _refs_in(status, "status_line_other_reference", container=full, **base).items():
         if key in subject_keys:
             continue
         if key in acting:
@@ -409,7 +412,7 @@ def _note(elem, ident, crossheading, member, last_subject):
         if idx >= 0:
             body = body[idx + len(part):]
     body = body.strip()
-    for key, m in _refs_in(body, "mentioned_in_printed_eo_text", **base).items():
+    for key, m in _refs_in(body, "mentioned_in_printed_eo_text", container=full, **base).items():
         if key in subject_keys:
             continue
         yield "mention", m
