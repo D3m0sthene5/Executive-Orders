@@ -808,6 +808,9 @@ def propose(repo, decision, review, evidence):
             "basis": original["working_text_basis"], "grade": original.get("grade"),
             "acceptable_as_original": False, "rulings": list(WORKING_TEXT_RULINGS[original["working_text_basis"]]),
             "standing_note": W.NOTE, "replacement_required": True, "quotation_recheck_required": True}
+        if original.get("grade") == "archival_replica_checked":
+            # Photius P4: the dependence on ProQuest bytes stays visible until M1118 or Hein facts re-point it.
+            proposal["working_text"]["informational_flags"] = ["REPLICA_CHECKED_PROQUEST_BYTES"]
     proposal["proposal_id"] = "status-overlay:" + evidence["instrument_id"] + ":" + canonical_sha(proposal)[:20]
     return _seal(proposal)
 

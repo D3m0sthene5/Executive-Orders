@@ -79,7 +79,9 @@ class ReplicaCheckedTests(_GradedFixture):
 
     def test_p4_checked_replica_is_credited(self):
         self.assertEqual(self.original["working_text_basis"], "tracker_original_supported")
-        self.assertEqual(self.base.propose()["working_text"]["grade"], "archival_replica_checked")
+        working = self.base.propose()["working_text"]
+        self.assertEqual(working["grade"], "archival_replica_checked")
+        self.assertEqual(working["informational_flags"], ["REPLICA_CHECKED_PROQUEST_BYTES"])
 
 
 class UncreditedGradeTests(_GradedFixture):
