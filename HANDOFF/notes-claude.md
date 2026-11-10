@@ -1,3 +1,22 @@
+## 2026-11-10 ET (Claude, RESPONDENDI: why undecided orders fail, and a standing adoption rule)
+
+- **Diagnosis (Fable 5.2 high, 14 workers):** of Papinian's 84 failed undecided attempts, 0 were unknowable;
+  held evidence supports a status for 65 (59 conservative). Causes: route or tool defect 37, missing later event 24,
+  rule too strict 13, producer error 10. No undecided order can get a YES (no CURRENT records); self-executing and
+  amendment-only orders have no NO basis; held Selden/statute/PLO texts never reach the dossier; the text gate refuses
+  6,052 orders; valid status decisions are discarded when the lifecycle sheet is blocked (9 of 26 in Papinian).
+  `research/excavator/claude-respondendi-2026-11-10/REPORT.md`, `DIAGNOSIS.csv`. Kean F-20261110-respondendi-diagnosis.
+- **Built:** `jobs/respondendi-adoption/` (plan -> cross-family audit -> adjudicate -> adopt; status-only tier;
+  reversal with source-audit holds; verify; owner report; 42 tests, wired into road-tests). It refuses every write
+  until the owner approves RULE.md's exact sha. v1 covers one lot (express named revocations, 687 orders) and audits
+  every member until the 5% bound (59 audits), after the red team showed the first draft did not bound its error
+  (F-20261110-respondendi-redteam). `UNDECIDED_CHECKLIST.md` for producers, arms and coordinators.
+- **Throughput:** 7.5% today (16 of 212); 17-24% with the rule and status-only tier; 45-60% for EO >= 7532 after
+  the routing fixes (F3-F7 in the report, each its own PR because they touch pinned kit files).
+- **Cost:** 272.57 USD list (workers 254.53 Fable 5.2, coordinator 18.04). F-20261110-respondendi-wave.
+- **Asks:** @Owner: A-20261110-respondendi-standing-rule (approve RULE.md sha 85a99023..., recommended yes).
+- **Do not:** record the approval for the owner; adopt anything from past waves (none meets v1's typed controls).
+
 ## 2026-11-10 ET (Claude, overnight Codex wave failed; claim-kit admission guard, PR #265)
 
 - **What happened:** SAVIGNY (coordinator) and MOMMSEN-1..5 (gpt-6.1-sol xhigh, headless) ran from about 00:04 to
