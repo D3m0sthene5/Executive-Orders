@@ -1,3 +1,29 @@
+## 2026-11-10 ET (Claude, Ulpian: outer bound for one-person orders, Track 3; ask A-20261110-ulpian-outer-bound)
+
+- **Asked:** draft the owner ask for an "outer bound" on one-person orders (a named person's latest possible death
+  ends the order) and measure it. Deliverable is an ask and a design, not adoption. Branch `claude/ulpian-outer-bound`.
+- **Found:** the bound is already the rule (TR-CS-WAIVER; Pothier PD-CS-ONE-PERSON M1, 99 leads, none adopted). What
+  is missing is an adoption route. The new part, a flat adulthood floor of 14, adds at most 20 orders and fails the
+  evidence rule. Its 1883-1900 source did not govern the 1907-1918 orders. The limits bound examinations that the
+  orders waive. It would be a presumption standing in for evidence.
+- **Measured (zero tokens, `jobs/ulpian-outer-bound/ulpian.py measure`):**
+  - 1,178 undecided candidates; 270 pass every gate (one person, one command, clean text, legible date).
+  - **37 are bounded on a quoted fact** (the lot): all waivers, dated 1913-1933, with bounds from 1986 to 2026-03-10.
+  - 233 have no quoted fact. Their required ages run from 4 to 33 years; this is a reading list, not a yield.
+  - 25 post-1936 retirement exemptions need their held texts.
+  - 42 of the 48 Jacquard L1 NOs the owner merged rested on the "at least 14" premise.
+- **Review:** Fable 5.2, separate context, two rounds, 98 held texts read, about 355k tokens. Round 1 found the floor
+  fatal; it also found that tier 1 bypassed the predicate (65 of 99 failed), and gates were missing. All fixed. Round 2
+  found the lot sound in substance; it held 4 rows for a page check (now gated) and fixed 3 sentences.
+  `research/ulpian/REVIEW.md`.
+- **Ask A-20261110-ulpian-outer-bound:** (1) approve RULE.md v2 as the Respondendi lot `ulpian-life-bound` (yes);
+  (2) decline the flat floor; (3) correct the Jacquard L1 rows by reading. `ulpian.py tag` refuses until a decision
+  cites the rule hash.
+- **For Respondendi v2:** the lot slot is the `respondendi_lot` block in `jobs/ulpian-outer-bound/RULE.md`.
+- **Open:** the lifespan source (Guinness or GRG) is not held. The Jacquard L1 rows need a reading, and 9 sound Pothier
+  leads that false screen hits keep out need individual review.
+- **Asks:** @Owner: A-20261110-ulpian-outer-bound. Kean F-20261110-ulpian-outer-bound.
+
 ## 2026-11-10 ET (Claude, overnight Codex wave failed; claim-kit admission guard, PR #265)
 
 - **What happened:** SAVIGNY (coordinator) and MOMMSEN-1..5 (gpt-6.1-sol xhigh, headless) ran from about 00:04 to
