@@ -308,7 +308,15 @@ request that makes a route's gate live adds its name, and a test there ties the 
 OWN_TEXT gate re-derives each record from the frozen original, so a hand-written record fails.
 
 The working-text basis (F6) opens the same way. An outer-bound lot for one-person orders is reserved: it enters only
-by an amendment after the owner decides the Ulpian ask.
+by an amendment after the owner decides the Ulpian ask (A-20261110-ulpian-outer-bound). Ulpian's lot is ready to be
+written into that amendment (PR #271, `jobs/ulpian-outer-bound/RULE.md` v2, sha256 `57a95ba0...`):
+- lot id `ulpian-life-bound`, mechanism `life_of_named_person`, NO only, end kind `not_later_than`;
+- members: the 37 `quoted_fact` rows of `research/ulpian/CLASS.csv`, with the bound equal to the birth bound plus
+  44,724 days;
+- predicate: the claim's not-later-than date equals the CLASS.csv bound and the claim quotes the birth-bound fact; the
+  reviewer confirms one beneficiary, one command and the order's date from the held text.
+
+It stays out of v2 so that approving v2 does not also approve a bound rule the owner has not decided.
 
 **Reachable orders per kind, measured on main.** Sources: `KINDS.json` and `measure_kinds.py`, which apply the rule's
 own predicates to the compiled leads. Each order is counted once, in the order below. These are eligibility upper
