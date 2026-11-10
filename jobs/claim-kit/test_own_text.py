@@ -195,6 +195,7 @@ class _OverlayFixture(unittest.TestCase):
         self.base.decision["basis_evidence_ids"] = ids
         self.base.ending = ids[0]
         self.base.review = self.base.accepted_review(self.base.decision)
+        self.base.review["checked_evidence_ids"] = sorted(set(self.base.review["checked_evidence_ids"]) | set(ids))
 
 
 class OverlayRouteTests(_OverlayFixture):
@@ -228,6 +229,20 @@ class OverlayRouteTests(_OverlayFixture):
         self.base.reseal_changed_fixture_evidence()
         self.use_basis([ident])
         self.base.assert_rejects("parent_end_requires_own_text_amends_parent_basis")
+
+    def test_amender_listing_alone_cannot_establish_yes(self):
+        def current(ident, code):
+            record = deepcopy(self.dossier["evidence"][self.dossier["original_source_id"]])
+            record.update(id=ident, basis_code=code, role="current_law_wording_lead")
+            self.dossier["evidence"][ident] = record
+        current("CURRENT:EO:1#0", "amending_order_in_status_line")
+        current("CURRENT:EO:1#1", "printed_eo_text")
+        self.base.reseal_changed_fixture_evidence()
+        self.base.decision.update(recommended_provisional_status="yes", current_predicate_checked_through=O.CUTOFF)
+        self.use_basis(["CURRENT:EO:1#0"])
+        self.base.assert_rejects("amender_listing_cannot_establish_current_predicate")
+        self.use_basis(["CURRENT:EO:1#0", "CURRENT:EO:1#1"])
+        self.assertEqual(self.base.propose()["recommended_provisional_status"], "yes")
 
     def test_routes_constant_names_the_live_routes(self):
         self.assertEqual(O.UNDECIDED_ROUTES, frozenset({"current", "own_text", "working_text"}))

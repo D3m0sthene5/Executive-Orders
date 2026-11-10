@@ -766,8 +766,14 @@ def _decision_errors(decision, evidence):
     if status == "no" and not valid_no:
         errors.append("snapshot_only_or_missing_ending_basis")
     if status == "yes":
-        if not any(ident.startswith("CURRENT:") and ident in records for ident in basis):
+        current = [ident for ident in basis if ident.startswith("CURRENT:") and ident in records]
+        if not current:
             errors.append("snapshot_only_or_missing_current_predicate")
+        elif all(_amender_listing(records[ident]) for ident in current):
+            # A parent's U.S. Code status line that lists this order "as amended by" shows only the
+            # consequence living in the parent; the amending order's own command was spent on issue
+            # (owner answer to A-20261106-pothier, point 2). It never shows this order in force.
+            errors.append("amender_listing_cannot_establish_current_predicate")
         if decision.get("current_predicate_checked_through") != CUTOFF:
             errors.append("current_predicate_cutoff_confirmation_required")
     original = records.get(dossier.get("original_source_id"), {})
@@ -781,6 +787,14 @@ def _decision_errors(decision, evidence):
     if original.get("requires_page_check") and decision.get("original_pages_confirmed") is not True:
         errors.append("original_page_confirmation_required")
     return errors
+
+
+AMENDER_LISTING_CODES = frozenset({"amending_order_in_status_line"})
+
+
+def _amender_listing(record):
+    meta = record.get("meta") if isinstance(record.get("meta"), dict) else {}
+    return (record.get("basis_code") or meta.get("basis_code")) in AMENDER_LISTING_CODES
 
 
 def _review_errors(review, decision, evidence):
