@@ -208,6 +208,31 @@ class Cruden(unittest.TestCase):
         self.assertIsNone(why)  # a reassembled date that differs never refuses
         self.assertIn("identity_unconfirmed_no_matching_printed_date", pointer)
 
+    def test_locate4_precision_rules(self):
+        cases = [
+            ("EO:4814", "1928-02-24", "Modified by E. O. 4716 of Sept. 12, 1927 and E. O. 4814 of Feb. 24,1928. 40 Stat. 1674.",
+             "order_printed_as_actor"),
+            ("EO:4295", "1925-08-26", "Accordingly, with St. Paul (E.O. 4295, Aug. 26, 1925) in the column is hereby "
+             "extended.", "order_cited_in_parenthesis"),
+            ("EO:3321", "1920-09-01", "ection 1.1 (c) is amended by adding T. D. 53738 under Executive Order No. 3321 of "
+             "September 1, 1920.", "relation_governs_a_regulation_not_the_order"),
+            ("EO:9521", "1945-02-13", "In accordance with Executive Order 9521 of February 13, 1945, the subject matter "
+             "of Executive Order 8396 is superseded.", "order_cited_as_authority_or_description"),
+        ]
+        for t, d, txt, want in cases:
+            (h, why, pointer), = cruden.locate(txt, t, d, "1950-01-01")
+            self.assertIsNone(why, txt)
+            self.assertIn(want, pointer, txt)
+        # 'Section 2 of Executive Order No. N is amended' still amends the order
+        (h, why, pointer), = cruden.locate("Section 2 of Executive Order No. 1885 of November 1, 1913, is hereby "
+                                           "amended to read as follows.", "EO:1885", "1913-11-01", "1950-01-01")
+        self.assertEqual((why, pointer), (None, []))
+        # a Statutes margin tag never names the actor
+        txt = "Secretary of State.\n\n[No. 2111]\n\nJanuary 4, 1935.\nA PROCLAMATION\nby revoking Executive Order No. 779"
+        self.assertEqual(cruden.acting_instrument(txt, txt.index("Executive Order No. 779"), "EO:779", allow_tag=False),
+                         (None, None))
+        self.assertEqual(cruden.acting_instrument(txt, txt.index("Executive Order No. 779"), "EO:779")[0], "PROC:2111")
+
     def test_unknown_target_date_is_pointer_not_refusal(self):
         (h, why, pointer), = cruden.locate("Executive Order No. 1830 of September 24, 1913, is hereby revoked.",
                                            "EO:1830", None, "1955-01-01")

@@ -19,7 +19,7 @@ Ulpian):
 2. Each issue or page is downloaded once for all the orders that hit it (`jobs/_lib/fetch_pool.py`), its text read
    with pdftotext (pypdf if poppler is missing), and every sentence printing the order's number located with
    `jobs/selden-common` (citation forms, relation words, negation, the order printed as actor).
-3. **Identity** (`cruden-locate-3`, after two passes of the 2026-11-10 hostile review). A sentence is tied to the target by the
+3. **Identity** (`cruden-locate-4`, after two passes of the 2026-11-10 hostile review and a precision read of the first passing run). A sentence is tied to the target by the
    printed number. It is published with its printed relation only when some citation of the target in it prints an
    attached date (`of`, `dated`, `approved`, `signed`, or the contents form `, Oct. 30, 1929`; a later `effective`
    date, an FR citation's date or an act's date is not read as the order's) equal to the target's own date (domesday-register, OFR catalog, then the Lord 1944 WPA list's month-day for numbered orders they lack). The scan's
@@ -36,11 +36,15 @@ Ulpian):
    nor a GPO PREMIS match. **Pointer only** (`cross_reference`): no matching printed date; a
    contents or index entry (leader dots to a page number); an exception or savings sentence (`except`, `but not so
    as to affect`, `does not revoke`, `nothing in this`); a capital letter after a space (`2656 A`); `by his` or `its`
-   with no issuer named earlier in the sentence. The FR search starts the
+   with no issuer named earlier in the sentence. Also pointer only (precision read of run 42867104942): a relation whose subject is a
+   regulation, section or table ('Section 1.1(c), Customs Regulations, is amended by deleting "(E. O. 3808)"'); the order
+   cited as the authority or description ('pursuant to', 'in accordance with', 'described in'); the order printed as
+   the actor ('by E. O. 4716 ... and E. O. 4814'); a citation in parentheses. The FR search starts the
    day after the order's date.
 4. **Acting instrument.** Named only when the citation lies inside that instrument's own printed span: the nearest
    standalone heading line before it (`[Public Land Order 945]`, `PUBLIC LAND ORDER 2100`, `EXECUTIVE ORDER 10524`,
-   `PROCLAMATION 2600`, or the 1936-37 `[No. 7500]` tag), at most 6,000 characters before, with no filing line
+   `PROCLAMATION 2600`, or the 1936-37 Federal Register `[No. 7500]` tag, whose series the title block's
+   `EXECUTIVE ORDER` or `PROCLAMATION` line decides; a Statutes margin tag is never an actor), at most 6,000 characters before, with no filing line
    (strict, or damaged but carrying `Filed, <date>` or a filing time) and no new document's agency header
    (`BUREAU OF RECLAMATION`, `DEPARTMENT OF AGRICULTURE`, `Forest Service`, `TITLE 43`) between, whose previous line
    does not run on into it (`... AND`, `Prior orders:`), and which is not the target itself. The previous page is read for the

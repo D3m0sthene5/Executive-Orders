@@ -47,7 +47,7 @@ from fetch_pool import FetchPool, FetchError  # noqa: E402
 import selden_common as S  # noqa: E402  (read-only reuse: locator, fragment and source records, controls)
 
 csv.field_size_limit(min(2 ** 31 - 1, 10 ** 9))
-LOCATOR = "cruden-locate-3"
+LOCATOR = "cruden-locate-4"
 UA = "EO-Road-System/1.0 (Cruden concordance of the Federal Register by order number; owner-run research)"
 SEARCH_URL = "https://api.govinfo.gov/search"
 FR_PDF = "https://www.govinfo.gov/content/pkg/{pkg}/pdf/{pkg}.pdf"
@@ -109,9 +109,40 @@ HEADINGS = [
     ("PLO", _heading(["Public", "Land", "Order"], r"\d{1,4}")),
     ("PROC", _heading(["Proclamation"], r"\d{4}")),
     ("EO", _heading(["Executive", "Order"], r"\d{4,5}")),
-    # 1936-37 form: 'EXECUTIVE ORDER' on its own line, the title, then '[No. 7500]' on its own line
-    ("EO", re.compile(r"(?m)^[ \t]*\[\s*N\s?[Oo]\.?\s*(\d{4,5})\s*[\]1lI|]\s*$")),
+    # 1936-37 form: 'EXECUTIVE ORDER' (or 'PROCLAMATION') on its own line, the title, then '[No. 7500]' on its own
+    # line. The tag alone does not say which series: tag_kind() decides from the title block around it.
+    ("TAG", re.compile(r"(?m)^[ \t]*\[\s*N\s?[Oo]\.?\s*(\d{4,5})\s*[\]1lI|]\s*$")),
 ]
+TAG_EO = re.compile(r"(?m)^[ \t]*" + _spaced(["EXECUTIVE", "ORDER"]) + r"[ \t]*$")
+TAG_PROC = re.compile(r"(?m)^[ \t]*(?:A\s+)?" + _spaced(["PROCLAMATION"]) + r"[ \t]*$")
+# A relation word whose subject is a regulation, section or table ('Section 1.1(c), Customs Regulations, is amended by
+# deleting "Hyder (E. O. 3808)"'): it changes the regulation, not the order (third review, run 42867104942).
+REG_SUBJECT = re.compile(r"(?:\bs?ection|\bsections|§|\bsec\.|\bpart|\bparagraph|\bsubparagraph|\btable|\bregulations?|\brules?|"
+                         r"\bschedule|\bsubdivision|\bcolumn)\b[^;]{0,200}?\b(?:is|are)\s+(?:hereby\s+)?(?:further\s+)?"
+                         r"(?:amended|revised|modified|extended|corrected|redesignated)\b", re.I)
+# The order cited as the authority or the description another act relies on, not the order acted on.
+AUTHORITY_BEFORE = re.compile(r"(?:pursuant\s+to|in\s+accordance\s+with|under(?:\s+the\s+authority\s+of)?|"
+                              r"by\s+virtue\s+of|as\s+provided\s+in|as\s+directed\s+by|delegated\s+by|vested\s+in\s+"
+                              r"(?:me|him|the\s+\w+)\s+by|described\s+in|including\s+(?:the\s+)?territory\s+described\s+in|"
+                              r"authorized\s+by|prescribed\s+(?:by|in)|issued\s+under)\s*(?:section\s+[\w().]+\s+of\s+)?"
+                              r"(?:the\s+)?$", re.I)
+# 'the name of which was by Executive Order No. N changed', 'as modified by E. O. N': the target is the actor.
+BY_BEFORE = re.compile(r"\bby\s+(?:(?:E\.\s?O\.|Ex\.\s?Ord\.|Executive\s+Orders?)\s*(?:Nos?\.?\s*)?[\d-]+[A-Z]?[^;]{0,80}?"
+                       r"\band\s+)?(?:the\s+)?$", re.I)
+# A citation in parentheses ('St. Paul (E.O. 4295, Aug. 26, 1925)', '(as continued by ...)') is a reference.
+PAREN_BEFORE = re.compile(r"\(\s*(?:see\s+|as\s+\w+\s+by\s+|including\s+)?$", re.I)
+
+
+def tag_kind(text, start, end):
+    """'EO', 'PROC' or None for a bare '[No. N]' tag: the series named by a standalone 'EXECUTIVE ORDER' or
+    '(A) PROCLAMATION' line in the title block (300 characters before the tag, 600 after). Both or neither: None."""
+    lo, hi = max(0, start - 300), min(len(text), end + 600)
+    eo, proc = bool(TAG_EO.search(text, lo, hi)), bool(TAG_PROC.search(text, lo, hi))
+    if eo and not proc:
+        return "EO"
+    if proc and not eo:
+        return "PROC"
+    return None
 CONTINUES = re.compile(r"(?:\band|\bor|\bof|\bto|\bby|,|;|:|-|revoking|amending|modifying|superseding|see)\s*$", re.I)
 
 
@@ -416,10 +447,22 @@ def locate(text, target, target_date, issue_date=None):
             if not confirmed:
                 pointer.append("identity_unconfirmed_no_matching_printed_date")
             line = text[text.rfind("\n", 0, h["cite_start"]) + 1:text.find("\n", h["cite_end"]) % (len(text) + 1)]
-            if LEADER.search(line) or LEADER.search(text[h["cite_end"]:h["cite_end"] + 120].split("\n")[0]):
+            if (LEADER.search(line) or LEADER.search(text[h["cite_end"]:h["cite_end"] + 120].split("\n")[0])
+                    or LEADER.search(text[seg_lo:seg_hi])):
                 pointer.append("contents_or_index_entry")
             if EXCEPTION.search(text[seg_lo:seg_hi]):
                 pointer.append("exception_or_saving_wording_in_sentence")
+            for m in REG_SUBJECT.finditer(text, seg_lo, seg_hi):
+                # 'Section 2 of Executive Order No. N is amended' amends the order: the target sits inside the subject
+                if not any(m.start() <= s < m.end() for s, _, _ in cites):
+                    pointer.append("relation_governs_a_regulation_not_the_order")
+                    break
+            if any(AUTHORITY_BEFORE.search(text[max(seg_lo, s - 70):s]) for s, _, _ in cites):
+                pointer.append("order_cited_as_authority_or_description")
+            if all(BY_BEFORE.search(text[max(seg_lo, s - 140):s]) for s, _, _ in cites):
+                pointer.append("order_printed_as_actor")
+            if all(PAREN_BEFORE.search(text[max(seg_lo, s - 30):s]) for s, _, _ in cites):
+                pointer.append("order_cited_in_parenthesis")
         if split_confirmed and not why:
             pointer = [p for p in pointer if p != "identity_unconfirmed_no_matching_printed_date"]
         h = dict(h, date_stated=(target_date if confirmed else (dates[0] if dates else None)),
@@ -429,7 +472,7 @@ def locate(text, target, target_date, issue_date=None):
     return out
 
 
-def acting_instrument(text, cite_start, target=None):
+def acting_instrument(text, cite_start, target=None, allow_tag=True):
     """(acting_id, label) only when the citation lies in that instrument's own printed span: the nearest standalone
     heading line before it, at most SPAN_CAP characters away, with no filing line (strict or damaged) and no new
     document's agency header between, whose previous line does not run on into it ('... AND', 'Prior orders:'). A
@@ -439,6 +482,11 @@ def acting_instrument(text, cite_start, target=None):
     for kind, rx in HEADINGS:
         for m in rx.finditer(text, max(0, cite_start - SPAN_CAP), cite_start):
             n = next(g for g in m.groups() if g)
+            if kind == "TAG":
+                # a Statutes at Large margin tag may belong to the neighbouring proclamation: never an actor there
+                kind = tag_kind(text, m.start(), m.end()) if allow_tag else None
+                if kind is None:
+                    continue  # a bare '[No. N]' whose series the title block does not name
             if kind == "EO" and n == tnum:
                 continue
             prev = text[:m.start()].rstrip().rsplit("\n", 1)[-1]
@@ -581,7 +629,7 @@ class Run:
             for t, h, why, pointer in per_page[i]:
                 h = dict(h, start=h["start"] + off, end=h["end"] + off, cite_start=h["cite_start"] + off,
                          cite_end=h["cite_end"] + off)
-                actor, label = acting_instrument(full, h["cite_start"], t)
+                actor, label = acting_instrument(full, h["cite_start"], t, allow_tag=(coll == "FR"))
                 if actor is None or actor == t:
                     actor = "NOTICE:" + (gran if gran else f"{pkg}/p{i + 1}")
                     label = f"document printed on PDF page {i + 1} of {gran or pkg} (instrument not identified by machine)"
