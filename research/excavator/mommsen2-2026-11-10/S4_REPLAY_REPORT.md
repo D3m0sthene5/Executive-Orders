@@ -1,0 +1,9 @@
+# S-4-2 exact-four revalidation on reconciled main
+
+PR253 was owner-merged c26b85eb36fc5907e216c1e9316502c18cd6ed52 at2026-11-10T06:12:44Z. Under S-4-2, reconciled origin/main 5c16e31bdf35b4c7e44931c11663f61eebb3ec4e into lane branch (source merge 58ee6fb4881f5a2b2c0db380318a369b202def81). All append-only Kean/FETCH_QUEUE lines and all424reservation records were retained;0owner collisions. No code/test/workflow delta against main. Publication audit passes exactly4added identities,0duplicates/problems.
+
+The actual affected-four checker passes EO5595,5989,393,506;20held-source verifications,8identity associations,24exact quotations. Canonical versions unchanged: hashes in REPLAY_SUMMARY.json. Maintained isolated readiness replay 658->662 on reconciled sparse local inputs; published main baseline 1178, after pending merge/refresh. This is validation of4existing lane filings, not4new production attempts or another4filings. Human certification0.
+
+b04/b05 independently source-reviewed blockers and native0exception completions remain separate:0submissions/0filings,50members retained (28substantively examined,22blocked before dispatch). Both new controls caught by both served arms; exact genuine after-reveal upheld by both. Cue/transport limitations and all costs remain disclosed. The two-zero stop applies to the affected held-Canal route; it does not invalidate successful b02/b03 claim batches, which have0control misses and no quality stop. New target range EO4000-5999 has42unreserved candidates; source-gate eligibility remains unmeasured and no third batch was reserved this turn.
+
+PR252 may merge only on its exact pushed head with all required checks green and S-4-2/retained grant conditions. Native raw outputs preserved locally; compact receipt archive omits only duplicate canonical-union bytes and cache, pinning input commit and exact artifacts. No restricted source bytes or plants/keys committed. @Owner: none.
