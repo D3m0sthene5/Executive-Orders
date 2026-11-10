@@ -1,3 +1,20 @@
+## 2026-11-10 ET (Claude, Ulpian: Jacquard L1R correction PR; D-20261110-ulpian-l1r-correction)
+
+- **Decision:** the owner answered A-20261110-ulpian-l1r-correction directly in the Ulpian session: "Yes, read them".
+  Recorded as D-20261110-ulpian-l1r-correction, with ruling `2026-11-10-ulpian-l1r-correction.md`.
+- **Done:** read 556 statuses resting on the declined "at least 14" premise: 553 wave-2 L1R rows and 3 undated wave-1
+  L1 rows.
+  - Method: 6 blind batches, each read by two arms (Sonnet 5.5 and Fable 5.2) with 3 planted controls.
+  - Agreement: 547 of 556 rows; both arms caught all 18 controls. I decided 13 rows and recorded each one.
+  - **70 kept, 486 returned.**
+  - On merge, decided goes from 4,274 to 3,788; the wave-2 entry from 714 to 231 and the wave-1 entry from 141 to 138.
+  - Files: `research/ulpian/jacquard-l1r-correction/`.
+  - Worker tokens: 1,469,701 across 12 arms.
+- **Judgment:** I returned 8 Civil War or Spanish-war veterans uniformly. They were certainly born before 1904, but
+  RULE.md v2 section 2 counts only facts whose date the text states.
+- **Asks:** @Owner: A-20261110-ulpian-named-war (count named-war service as a dated fact?). Kean
+  F-20261110-ulpian-l1r-correction.
+
 ## 2026-11-10 ET (Claude, ACCURSIUS: Respondendi claim-kit fixes F3-F7)
 
 - **Done:** five pull requests, each reviewed by a different model (Fable 5.2) and re-reviewed after fixes:

@@ -43,10 +43,10 @@ Approve Respondendi rule version 2 (jobs/respondendi-adoption/RULE.md, sha256 e1
 
 Sources: `jobs/respondendi-adoption/RULE.md`, `research/excavator/claude-respondendi-2026-11-10/REPORT.md`, `research/excavator/claude-respondendi-2026-11-10/KINDS.json`
 
-## A-20261110-ulpian-l1r-correction (2026-11-10, Claude)
+## A-20261110-ulpian-named-war (2026-11-10, Claude)
 
-Extend the Jacquard L1 correction to wave 2? 582 L1R provisional NO statuses (PR 119, same L1 card and its 'at least 14' premise, which you declined in D-20261110-ulpian-no-floor) were adopted; 527 are dated on or after 1904-05-03 and 26 have no exact date, plus 3 undated wave-1 L1 rows (EO 940, 1596, 1604). Recommended: yes, read them by the same blind two-arm method with planted controls (research/ulpian/jacquard-l1-correction), keep those whose own text quotes a sufficient fact and return the rest by a correction PR you merge, in batches of at most 100. Alternatives: ratify the premise for wave 2 only (inconsistent with D-20261110-ulpian-no-floor), or leave them.
+Count service in a named war as a dated fact? Eight returned L1R orders (EO 437, 444, 453, 411 and four others; list in research/ulpian/jacquard-l1r-correction/COORDINATOR.jsonl) say the person is a veteran of the Civil War (1861-1865) or the Spanish war (1898) but print no date. RULE.md v2 section 2, which you approved, counts only facts whose date the text states, so they were returned. Recommended: yes, add to the lot rule (a new RULE.md version and hash) that service in a named war ending before 1904-05-02 places the person's birth no later than the war's last year (Civil War 1865-12-31; Spanish-American War 1898-12-31); then re-tag these 8. Alternative: leave them undecided.
 
-*Why:* The 42-row wave-1 reading kept 9 and returned 33 (21% kept). At that rate about 110 of the 527 would stay and about 420 would return to undecided. Cost of the 42: about 196k worker tokens (two arms) plus coordination, so the 556 would cost roughly 2.6M worker tokens. Until read, those statuses rest on a basis you declined.
+*Why:* Such a person was certainly born before 1904; the rule's letter, not the evidence, keeps them open. 8 orders now; the same wording likely recurs in later one-person readings.
 
-Sources: `research/ulpian/jacquard-l1-correction/README.md`, `research/excavator/jacquard-2026-10-31-w2/README.md`
+Sources: `research/ulpian/jacquard-l1r-correction/README.md`, `jobs/ulpian-outer-bound/RULE.md`
