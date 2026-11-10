@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (4)
+## Waiting for the owner (5)
 
-**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-l1r-correction**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-l1r-correction**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 

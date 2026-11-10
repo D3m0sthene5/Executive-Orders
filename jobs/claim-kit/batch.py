@@ -574,7 +574,7 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
     dispatch=dispatch_check(repo,dest)
     dump(dest/'DISPATCH_CHECK.json',dispatch)
     metrics['dispatch_check']={k:dispatch[k] for k in ('ok','dispatchable_ids','source_blocked_ids','state')}
-    if admitted:admission.record(dest,action,new,agent)
+    if admitted:admission.record(dest,action,new,agent,repo)
     dump(dest/'PREPARE.json',metrics);return metrics
 
 

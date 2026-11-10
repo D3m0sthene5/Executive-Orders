@@ -406,15 +406,81 @@ def build(repo, write_ids=True):
             "basis": "Target count from %s (cruden_targets)." % LINNAEUS_SUMMARY,
             "evidence": evidence(repo, [(LINNAEUS_SUMMARY, '"cruden_targets"')])})
 
+    triage_note = apply_triage(repo, actions) if write_ids else None
     inputs = [TRACKER_CSV, TRACKER_MD, SHARED_CSV, POLYA_ACTIONS, POLYA_COMPARE, DISPOSITION, TRIBONIAN_REPORT,
-              LINNAEUS_SUMMARY]
+              LARREY_VERDICTS, LINNAEUS_SUMMARY]
     gen = {p: sha256(repo / p) for p in inputs if (repo / p).exists()}
     return {"generated_from": gen,
             "pool": {"decided_not_ready_orders": len(orders), "held_by_unretrieved_source_or_quarantine": held},
             "notes": ["Unlock counts are additive across acquisition actions (one assignment per order); orders needing two acquisitions are uncounted.",
                       "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE (orders absent from the OFR catalog) has no tracker action, so no acquisition is proposed for it.",
-                      "Polya counts reach, not yield; they are cited, never added."],
+                      "Polya counts reach, not yield; they are cited, never added."] + ([triage_note] if triage_note else []),
             "actions": actions}
+
+
+LARREY_DIR = "jobs/larrey-triage"
+LARREY_VERDICTS = LARREY_DIR + "/output/GATES.jsonl"
+
+
+def apply_triage(repo, actions):
+    """Larrey: an action's dispatchable orders are the members its zero-token triage admits.
+
+    For an action Larrey triages (output current for these claim-kit outputs, route calibrated), `orders` becomes
+    the admitted count and `orders_before_triage` keeps the member count; `triage` carries the kept-out reasons and
+    the back-test's yield and cost lifts. bentham.score then prices only admitted orders and projects their yield
+    as the untriaged rate times the yield lift (the back-test's success rate among admitted orders relative to all
+    attempted), and their cost as the measured cost per attempt times the cost lift (Model P). Both are
+    projections until a gated wave measures the rate. The strata files keep every member: admission applies Larrey.
+    Returns a note for the plan, or None when the checkout carries no Larrey code.
+    """
+    path = Path(repo) / LARREY_DIR / "larrey.py"
+    if not path.is_file():
+        return None
+    if not (Path(repo) / LARREY_VERDICTS).is_file():
+        return ("Larrey triage output absent: triaged actions are priced on all members, while claim-kit admission "
+                "refuses them until `larrey.py triage` runs.")
+    import importlib.util
+    spec = importlib.util.spec_from_file_location("larrey_triage", path)
+    L = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(L)
+    lifts = {}
+    bt = L.backtest_path(repo)
+    if bt is not None and bt.is_file():
+        b = json.loads(bt.read_text(encoding="utf-8")).get("bentham") or {}
+        for route, key in (("undecided_full", "undecided"), ("status_only", "undecided"),
+                           ("decided_lifecycle", "decided")):
+            if b.get(key):
+                lifts[route] = b[key]
+    applied, skipped = [], []
+    for a in actions:
+        if not a.get("order_ids_path") or not L.action_route(a["id"]):
+            continue
+        try:
+            ok, why, receipt = L.admitted(repo, a["id"])
+        except ValueError as exc:
+            skipped.append(a["id"])
+            a["triage"] = {"applied": False, "reason": str(exc)}
+            continue
+        if ok is None:
+            skipped.append(a["id"])
+            a["triage"] = {"applied": False, "reason": "route not enforced: kit code changed since Larrey's back-test",
+                           "receipt": receipt}
+            continue
+        ids = [l.strip() for l in (Path(repo) / a["order_ids_path"]).read_text(encoding="utf-8").splitlines()
+               if l.strip()]
+        reach = [i for i in ids if i in ok]
+        reasons = Counter(L._code(r) for i in ids if i not in ok
+                          for r in (why.get(i) or "no_verdict_on_route").split(";") if r)
+        a["orders_before_triage"] = len(ids)
+        a["orders"] = len(reach)
+        a["triage"] = {"applied": True, "route": receipt["larrey_route"], "level": receipt["larrey_level"],
+                       "kept_out": len(ids) - len(reach), "top_reasons": dict(reasons.most_common(6)),
+                       "lifts": lifts.get(receipt["larrey_route"]), "source": LARREY_VERDICTS}
+        applied.append(a["id"])
+    if not applied and not skipped:
+        return None
+    return ("Larrey triage: orders are those its zero-token check admits for %s%s." % (
+        ", ".join(applied) or "no action", ("; not applied to " + ", ".join(skipped)) if skipped else ""))
 
 
 def candidates(repo, write_ids=True):

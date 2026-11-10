@@ -34,10 +34,10 @@ SHA = re.compile(r"[0-9a-f]{64}\Z")
 CUTOFF = "2026-10-14"
 # Undecided-route status bases this module's gate makes live (Respondendi reads this constant from
 # origin/main to activate a lot kind; a route name appears only once its gate code has landed).
-#   current: a CURRENT: basis for YES (the gate below predates Accursius; the records come from F3,
-#            PR #272, so no claim can carry one until that lands)
-#   own_text: OWN_TEXT basis for self-executing and amendment-only orders (Accursius F5)
-UNDECIDED_ROUTES = frozenset({"current", "own_text"})
+#   current: a CURRENT: basis for YES (the gate below predates Accursius; the records come from F3, PR #272)
+#   own_text: OWN_TEXT basis for self-executing and amendment-only orders (Accursius F5, PR #274)
+#   working_text: a working text the tracker credits, or a Lachmann confirmation (Accursius F6, PR #276)
+UNDECIDED_ROUTES = frozenset({"current", "own_text", "working_text"})
 NO_BASIS_PREFIXES = ("ACT:", "TERM:", "ACTOR_TEXT:", "OWN_TEXT:")
 
 
@@ -352,6 +352,7 @@ def _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads
             stats["span_validation_file_opens"] += 1
             stats["span_validation_file_bytes"] += len(raw)
     own_text.attach(dossier, iid, parent_acts)
+    _mark_working_text(dossier)
     dossier["fingerprint"] = canonical_sha(dossier)
     _source_pins(root, dossier, pins, stats)
     # Pin the actual held history sources as well as their typed records.
@@ -389,6 +390,41 @@ def _parent_candidates(root, iid, inputs):
     except (OSError, ValueError, UnicodeError):
         return set()  # _held raises the precise error for the selected text later
     return own_text.parent_candidates(iid, text)
+
+
+# Owner rulings carried out on this route (Accursius F6).
+WORKING_TEXT_RULINGS = {
+    "tracker_original_supported": ("D-20261106-photius-r37 (official_printing, page-checked)",
+                                   "D-20261106-photius-p4 (archival_replica_checked)"),
+    "lachmann_confirmation": ("research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+                              "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md"),
+}
+# Grades the owner's rulings themselves make a credited text: Photius R37 (official_printing, "an official
+# original witness ... once a page check confirms") and Photius P4 (archival_replica_checked, "credits the
+# original-text step"). Each counts only with no page check owed, the tracker's own rule for these producers
+# (needs_page_check false). Every other working-text grade (machine-read or printed government copies, mirror
+# and compiled transcriptions) needs a current Lachmann working-text confirmation (2026-10-31 ruling): the
+# tracker credits those orders, when it does, through a different fragment than the selected text
+# (independent F6 review, finding 2).
+TRACKER_CREDITED_GRADES = frozenset({"official_printing", "archival_replica_checked"})
+
+
+def working_text_basis(dossier):
+    """Why a non-original selected text may carry a status proposal, or None."""
+    original = dossier.get("evidence", {}).get(dossier.get("original_source_id"))
+    if not isinstance(original, dict) or original.get("acceptable_as_original") is not False:
+        return None
+    if dossier.get("working_text_confirmation") is not None and original.get("grade") in W.GRADES:
+        return "lachmann_confirmation"
+    if original.get("grade") in TRACKER_CREDITED_GRADES and not original.get("requires_page_check"):
+        return "tracker_original_supported"
+    return None
+
+
+def _mark_working_text(dossier):
+    basis = working_text_basis(dossier)
+    if basis is not None:
+        dossier["evidence"][dossier["original_source_id"]]["working_text_basis"] = basis
 
 
 def freeze_evidence(repo, output, packet, telemetry=None):
@@ -747,7 +783,11 @@ def _decision_errors(decision, evidence):
             errors.append("current_predicate_cutoff_confirmation_required")
     original = records.get(dossier.get("original_source_id"), {})
     if not original.get("acceptable_as_original"):
-        errors.append("acceptable_original_required_for_status_proposal")
+        # F6: a working text the rulings credit may carry a status proposal with the standing
+        # replace-and-recheck note. The stored basis must be the one the frozen record itself yields.
+        basis_kind = original.get("working_text_basis")
+        if basis_kind is None or basis_kind != working_text_basis(evidence["base_dossier"]):
+            errors.append("acceptable_original_required_for_status_proposal")
     if original.get("requires_page_check") and decision.get("original_pages_confirmed") is not True:
         errors.append("original_page_confirmation_required")
     return errors
@@ -821,6 +861,16 @@ def propose(repo, decision, review, evidence):
         proposal["history_basis"] = ("explicit empty history: no dated status observation or later event was located; "
                                      "the recommendation rests on the order's own terms and the recorded bounded "
                                      "searches (owner ruling 2026-11-05)")
+    original = evidence["base_dossier"]["evidence"].get(evidence["base_dossier"].get("original_source_id"), {})
+    if original.get("working_text_basis"):
+        # The status rests on a disclosed working text, never on an authenticated original.
+        proposal["working_text"] = {
+            "basis": original["working_text_basis"], "grade": original.get("grade"),
+            "acceptable_as_original": False, "rulings": list(WORKING_TEXT_RULINGS[original["working_text_basis"]]),
+            "standing_note": W.NOTE, "replacement_required": True, "quotation_recheck_required": True}
+        if original.get("grade") == "archival_replica_checked":
+            # Photius P4: the dependence on ProQuest bytes stays visible until M1118 or Hein facts re-point it.
+            proposal["working_text"]["informational_flags"] = ["REPLICA_CHECKED_PROQUEST_BYTES"]
     proposal["proposal_id"] = "status-overlay:" + evidence["instrument_id"] + ":" + canonical_sha(proposal)[:20]
     return _seal(proposal)
 
