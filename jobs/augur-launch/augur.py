@@ -166,8 +166,12 @@ def check(plan, repo=REPO):
         if probe or rate is None:
             if orders > PROBE_ORDERS or lanes > 1:
                 no.append(f"{aid} is unmeasured: one lane and at most {PROBE_ORDERS} orders until Bentham measures it")
-        elif per_usd is not None and per_usd != float("inf") and per_usd < FLOOR_PER_USD:
-            no.append(f"{aid} yields {per_usd:.2f} dossiers per dollar, below the floor {FLOOR_PER_USD}; run it only as a probe")
+        elif (per_usd is not None and per_usd != float("inf") and per_usd < FLOOR_PER_USD
+              and (orders > PROBE_ORDERS or lanes > 1)):
+            # Below the floor, a ranked action may still run as a probe (one lane, at most 30 orders), which
+            # re-measures a yield that may rest on a small sample.
+            no.append(f"{aid} yields {per_usd:.2f} dossiers per dollar, below the floor {FLOOR_PER_USD}; run it only as a "
+                      f"probe (one lane, at most {PROBE_ORDERS} orders)")
         if orders > (item.get("orders") or 0):
             no.append(f"{aid}: {orders} orders planned but Bentham lists {item.get('orders')}")
         cost = orders * ((item.get("cost_usd") or 0) / item["orders"]) if item.get("orders") else 0.0
