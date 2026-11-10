@@ -1,0 +1,52 @@
+{
+  "instrument_id": "EO:393",
+  "claim_sha256": "f2c3f797fb49a8494a232e044d28537300cb5b91a3921c3469675769de92dff2",
+  "reviewer": "mommsen-2-b03-arm2",
+  "model_family": "OpenAI",
+  "independent": true,
+  "separate_context": true,
+  "review_kind": "independent_ai_source_review",
+  "scope": "whole_case",
+  "verdict": "rejected",
+  "rationale": "The exact submitted claim fails on both operative_clauses[0].first_end.date and whole_order_end.date (1906-02-12), and on research_rationale asserting a one-month administrative wind-down. The independently inspected complete printed page 67 (PDF page 80) contains a single present-tense repeal of the November 15, 1905 appointment order, followed by Theodore Roosevelt and The White House, January 12, 1906. Nothing on the page postpones effectiveness, establishes a month of administration, or requires a future act. The source supports self-executing repeal on January 12, 1906. The card itself contradicts its February dates in judgment_reason, which correctly describes completion on January 12. Accurate inventory and a supportable negative cutoff status cannot cure these material date and duration errors.",
+  "assertion_tests": {
+    "identity": "The scan prints no EO number. Only the permitted IC1911_WPA_LORD_MATCH.csv and IC1911_ORDERS.csv identity metadata were used: EO:393, sequence 35, January 12, 1906, repeal subject, PDF 80 / printed 67. Identity metadata and provisional status are not legal-effect evidence.",
+    "complete_operative_inventory": "Full page visually inspected, including blank space, running head, body, date and signature. One operative sentence repeals the November 15, 1905 order concerning appointments to Isthmian Canal Commission positions on the Isthmus. No separate administrative, appointment, removal, repayment, reporting, implementation or prospective command; no schedule or footnote. The body-only inventory is substantively complete.",
+    "effective_date_and_first_cessation": "The operative present-tense words is hereby repealed effect the legal transition themselves, on the dated January 12, 1906 instrument. Completion here does not depend on evidence of future actual performance. The earlier January 12 candidate is decisive against February 12. November 15, 1905 identifies the target order, not commencement or cessation of EO:393. No earlier pre-issuance cessation is evidenced.",
+    "formal_disposition": "No later formal revocation of EO:393 is established by this page. A formal-disposition date need not be inferred to identify exhaustion of its sole self-executing repeal command.",
+    "savings_and_residuals": "No express savings or independent continuing obligation appears. Persistence of the accomplished repeal is a legal consequence, not continued performance of the repealing command. The text does not direct vacatur of existing appointments, removal, repayment or replacement appointments. Rights under other instruments are not adjudicated.",
+    "cutoff": "The original supports no remaining executory command from this order at the October 14, 2026 cutoff. This does not approve the submitted February cessation date or certify every possible later legal event.",
+    "bounded_search": "The card reports number-based Code, CFR and later-order searches. Their execution/results were not independently reproduced or examined under this sole-card, held-source assignment. Reported coverage is limited (including Code release through October 9 and number-based retrieval) and cannot establish comprehensive absence of later law, unnamed effects or surviving rights. None supplies evidence for a one-month wind-down. No network or additional-source search was performed."
+  },
+  "mechanical_verification": {
+    "report": "MECHANICAL.json",
+    "ok": false,
+    "input_pin_checked": true,
+    "input_sha256": "0c9b575000eae6f69dcb8a316976f0e93ff6f6bbeaeff7cfbcb0dbac06fb5d9d",
+    "text_checks_passed": true,
+    "limitations": [
+      "Maintained blind-verify reports raw_path_missing at all five source-reference loci because native references omit an explicit raw path. No card repair performed.",
+      "Raw-source verification was performed separately against the exact owner-designated held PDF; mechanical failure is retained and is distinct from substantive rejection."
+    ],
+    "invocation": "python.exe -I -c wrapper: sys.dont_write_bytecode=True; sys.path.insert(0, jobs/claim-kit); runpy.run_path kit.py blind-verify with exact card pin, source-root and both specified allow-source-root values"
+  },
+  "source_verification": {
+    "raw_path": "releases/source_books/Isthmian_Canal_Commission_Executive_Orders_1904-1911_ufl1.ark+=13960=t3dz15k02.pdf",
+    "raw_sha256": "4151116ad1c3ae8b08a9216f8591ca14e0d71ef20805c9250405d88aa6365eda",
+    "expected_raw_sha256": "4151116ad1c3ae8b08a9216f8591ca14e0d71ef20805c9250405d88aa6365eda",
+    "raw_pin_matches": true,
+    "text_path": "jobs/isthmian-canal-1911/output/texts/EO_393.txt",
+    "text_sha256": "ce7758a25a50186474bd709182d8697e88a8699173aaa7b567f9272278fbbe4a",
+    "page_image": "page80.png",
+    "page_image_sha256": "f2ab4a84114ef2c37c61687b419e0b6d1ab4fbab8f809a3f410974ffd880e1f2",
+    "visual_scope": "Complete PDF page 80 / printed page 67; body, signature, date and full margins inspected"
+  },
+  "supported_correction": {
+    "first_end_date": "1906-01-12",
+    "whole_order_end_date": "1906-01-12",
+    "basis": "Exhaustion of the sole self-executing repeal command; no inferred administrative performance or duration. This review does not alter or file the claim."
+  },
+  "human_certification": false,
+  "start_utc": "2026-11-10T05:38:08+00:00",
+  "end_utc": "2026-11-10T05:40:26.134040+00:00"
+}

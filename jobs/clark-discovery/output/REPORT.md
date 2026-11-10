@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-09T05:11:51Z. Leads only; no census, count or identity changes.
+Generated 2026-11-10T20:52:55Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -85,9 +85,9 @@ Generated 2026-11-09T05:11:51Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-32 of 32 unknowns advanced this run (0 never searched yet); 243 of 1100 requests used. 3082 hits on file, 107 pages confirmed to name the order (41 unknowns): `WEB_LEADS.csv`. 21 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+32 of 32 unknowns advanced this run (0 never searched yet); 224 of 1100 requests used. 3511 hits on file, 115 pages confirmed to name the order (45 unknowns): `WEB_LEADS.csv`. 22 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
-List pages: 60 read, 236 order numbers named, **3 absent from the census**: `WEB_LISTED_ORDERS.csv`.
+List pages: 60 read, 237 order numbers named, **3 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
 | Engine | Status |
 |---|---|
@@ -95,12 +95,12 @@ List pages: 60 read, 236 order numbers named, **3 absent from the census**: `WEB
 | bing_rss | blocked_by_robots_txt |
 | brave_api | blocked_by_robots_txt |
 | brave_html | blocked_by_robots_txt |
-| duckduckgo_html | http_403 |
-| duckduckgo_lite | http_403 |
+| duckduckgo_html | error |
+| duckduckgo_lite | ok |
 | federal_register_api | ok |
 | google_books | http_429 |
 | google_cse | needs_key |
-| govinfo_search_page | ok |
+| govinfo_search_page | blocked_by_robots_txt |
 | hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
 | loc_books | http_429 |

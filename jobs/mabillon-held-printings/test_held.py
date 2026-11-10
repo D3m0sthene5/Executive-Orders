@@ -25,6 +25,35 @@ The White House, July 6, 1936.
 
 
 class HeldTests(unittest.TestCase):
+    def test_source_text_matching_hash(self):
+        with tempfile.TemporaryDirectory() as d:
+            body = PAGE.encode("utf-8")
+            path = Path(d) / "texts/EO_7405.txt"
+            path.parent.mkdir()
+            path.write_bytes(body)
+            data = {"text_path": "texts/EO_7405.txt", "text_sha256": hashlib.sha256(body).hexdigest(),
+                    "sha256": hashlib.sha256(b"different raw source bytes").hexdigest()}
+            self.assertEqual(H.verified_source_text(d, data), {"text_path": "texts/EO_7405.txt"})
+
+    def test_source_text_mismatched_hash(self):
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / "text.txt").write_bytes(b"changed text")
+            data = {"text_path": "text.txt", "text_sha256": hashlib.sha256(PAGE.encode("utf-8")).hexdigest()}
+            with self.assertRaisesRegex(ValueError, "recorded text_sha256"):
+                H.verified_source_text(d, data)
+
+    def test_source_text_missing_file(self):
+        with tempfile.TemporaryDirectory() as d:
+            data = {"text_path": "missing.txt", "text_sha256": hashlib.sha256(b"").hexdigest()}
+            with self.assertRaises(FileNotFoundError):
+                H.verified_source_text(d, data)
+
+    def test_source_text_outside_output(self):
+        with tempfile.TemporaryDirectory() as d:
+            for path in ("../outside.txt", str(Path(d).resolve() / "text.txt")):
+                with self.subTest(path=path), self.assertRaises(ValueError):
+                    H.verified_source_text(d, {"text_path": path, "text_sha256": "0" * 64})
+
     def test_own_segment_cuts_neighbours(self):
         seg, kind = H.own_segment(PAGE, "7406")
         self.assertEqual(kind, "closing_number_tag")

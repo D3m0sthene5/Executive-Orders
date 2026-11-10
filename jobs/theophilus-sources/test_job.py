@@ -155,13 +155,29 @@ class EndToEnd(unittest.TestCase):
             recs = [json.loads(l) for l in open(out / "SOURCES.jsonl")]
             need = {"source_id", "instrument_ids", "url", "sha256", "bytes", "content_type", "retrieved_utc", "route",
                     "page_or_item", "text_path", "cache_path", "notes"}
+            section_keys = {"mentioned_instrument_ids", "citation", "item_extract", "extracted_from", "identity_note"}
             for r in recs:
-                self.assertEqual(set(r), need)
+                self.assertEqual(set(r), need | (section_keys if r["source_id"].split(":")[0] in ("usc", "cfr") else set()))
                 self.assertEqual(T.sha((out / r["text_path"]).read_bytes()), r["sha256"])
             by = {r["source_id"]: r for r in recs}
             self.assertEqual(by["fr:notice:2023-1"]["instrument_ids"], ["EO:12170", "EO:13222"])
             self.assertEqual(by["fr:notice:2023-1"]["sha256"], T.sha(NOTICE))
-            self.assertEqual(by["usc:119-121:t50:s1701"]["instrument_ids"], ["EO:5"])
+            # A section is not the citing order's text: no instrument_ids, the citing order is a mention.
+            usc = by["usc:119-121:t50:s1701"]
+            self.assertEqual(usc["instrument_ids"], [])
+            self.assertEqual(usc["mentioned_instrument_ids"], ["EO:5"])
+            self.assertEqual(usc["citation"], "50 U.S.C. 1701")
+            self.assertEqual(usc["extracted_from"]["sha256"], T.sha(zb.getvalue()))
+            cfr = by["cfr:t5:591.205"]
+            self.assertEqual((cfr["instrument_ids"], cfr["citation"], cfr["item_extract"]), ([], "5 CFR 591.205", "citation"))
+            self.assertEqual(cfr["extracted_from"], {"url": T.GOVINFO_BULK.format(title=5), "sha256": T.sha(CFR_XML)})
+            # Rewriting an earlier run's rows gives the same declaration and is idempotent.
+            old = {k: v for k, v in cfr.items() if k not in section_keys}
+            old["instrument_ids"] = ["EO:5"]
+            self.assertEqual(T.redeclare(old), cfr)
+            self.assertIs(T.redeclare(cfr), cfr)
+            notice = by["fr:notice:2023-1"]
+            self.assertIs(T.redeclare(notice), notice)
             self.assertIn("cfr:t5:591.205", by)
             self.assertIn("cfr:t5:part591", by)
             self.assertTrue((out / "FAILURES.jsonl").is_file())

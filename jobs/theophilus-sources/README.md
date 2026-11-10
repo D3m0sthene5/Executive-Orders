@@ -28,8 +28,14 @@ free source can supply that basis. The job costs no model tokens.
      robots, so when it is refused the job falls back to the GovInfo bulk XML of the whole title (same eCFR
      schema, current copy), downloaded once per title and read as a stream. Parts larger than 6 MB of text are
      reported as failures, not saved.
-   * One `SOURCES.jsonl` record per section or part, with `instrument_ids` set to the YES orders that cite it. Its
-     `sha256` is the hash of the committed extracted text; the hash of the downloaded response is in `notes`.
+   * One `SOURCES.jsonl` record per section or part, declared by its own identity: `instrument_ids` is empty (a
+     section is not the text of the order that cites it), `mentioned_instrument_ids` lists the YES orders that cite
+     it, `citation` names it, and `extracted_from` gives the url and sha256 of the downloaded response it was cut
+     from (also in `notes`); `item_extract: "citation"` lets the claim kit match a current-law lead on that same
+     response and citation to this text. Its `sha256` is the hash of the committed extracted text.
+     (Until 2026-11-10 `instrument_ids` held the citing orders, so the claim kit read each section as that order's
+     own text and its mention scan made bogus ACT records; `python theophilus.py --redeclare output/SOURCES.jsonl`
+     rewrote the committed rows.)
 
 ## Output (`output/`)
 

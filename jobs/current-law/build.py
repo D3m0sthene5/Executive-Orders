@@ -10,8 +10,10 @@ import json
 from collections import Counter, defaultdict
 
 import eo_refs
+import usc_extracts
 
 PRODUCED_BY = "current-law"
+EXTRACT_ROUTE_NAME = usc_extracts.EXTRACT_ROUTE
 MAX_ENTRIES_PER_FRAGMENT = 80
 
 # Roles that suggest something in current law still prints, relies on or
@@ -103,6 +105,7 @@ class Book:
         self.eo_notes = []
         self.search_hits = []
         self.dropped_events = Counter()
+        self.extracts = usc_extracts.Extracts()
 
     # -------------------------------------------------------- sources --
     def add_source(self, source_id, meta, instrument_ids=(), page_or_item="", notes="", text_path=None):
@@ -281,8 +284,8 @@ class Book:
                      "basis_code": m["role"], "where": where, "edition": m["edition"], "snippet": m["snippet"],
                      "checked_through": m["checked_through"] or None, "currency_code": self.currency_code(m),
                      "mention_id": m["mention_id"], "source": ref}
-            if m["role"] == "printed_eo_text" and m.get("note_id"):
-                entry["text_path"] = f"USC_EO_NOTES.jsonl#note_id={m['note_id']}"
+            # usc_extracts.attach adds text_path / text / char_start / char_end
+            # when the note or section text is held as an attributed extract.
             frag = self._frag(frags, m["instrument_id"], "current_predicate_candidates")
             frag["data"].append(entry)
         for e in self.events:
@@ -362,6 +365,10 @@ class Book:
                 "state_plan_approval_part": "(MENTIONS.csv) A CFR part approving State plans or programs, where 'Executive Order' usually means a Governor's order.",
             },
             "snippets": "Snippets are whitespace-normalized excerpts; ' | ' joins a heading to a status line or excerpt. They are not byte-verbatim quotes: quote from the source itself.",
+            "text_path": ("U.S. Code entries whose note or section text is held carry text_path (an attributed .txt extract "
+                          "declared in SOURCES.jsonl under the release-point ZIP url/sha256, route " + EXTRACT_ROUTE_NAME + "), "
+                          "text_sha256 and, when the snippet's words occur exactly once in it, text with char_start/char_end: "
+                          "an exact slice of the extract. A held slice is still only a lead."),
         }
 
     usc_currency = ""

@@ -1,0 +1,38 @@
+﻿{
+    "instrument_id":  "EO:393",
+    "claim_sha256":  "e1dfbda896e33357fa315ba3e12b19fed7bf4c15ab219330859f77783f2a14f8",
+    "reviewer":  "mommsen-2-b05-arm2-control-v2",
+    "model_family":  "OpenAI",
+    "independent":  true,
+    "separate_context":  true,
+    "review_kind":  "independent_ai_source_review",
+    "scope":  "whole_case",
+    "verdict":  "rejected",
+    "candidate_file_sha256":  "27c0934c49b057de71d4e8d94ced6625ef0456766053130437f067ed0149ffe3",
+    "rationale":  "The actual supplied PDF, independently rehashed and visually read at PDF page 80 / printed page 67, dates the signed order January 12, 1906. Its complete body states that the Executive Order of November 15, 1905 concerning appointments in Isthmian Canal Commission service upon the Isthmus of Panama is hereby repealed. The candidate claims first_end and whole_order_end January 13, 1906 and invents a one-day administrative implementation period. No such period, delayed effective date, performance condition or implementing actor appears in the complete source. The present-tense repeal completes the legal transition on January 12; completed cancellation may have continuing consequences without leaving an unperformed command. The candidate original_representation also substitutes January 13 for January 12 in its quoted metadata and signature date. Rejection is substantive and exact-version-specific, not an approval of a different claim.",
+    "inventory_check":  "The entire printed page contains one operative repeal sentence, Roosevelt signature and White House January 12, 1906 dateline. No additional independent command, schedule, reporting duty or future performance requirement is present.",
+    "earlier_end_check":  "January 12, 1906 is the supported earlier cessation candidate for this self-executing transition. A date before issuance cannot end this command on these sources; the November 15, 1905 instrument is the object of repeal, not an earlier ending of EO393. The January 13 date has no source support.",
+    "predecessor_check":  "Visually read PDF page 75 / printed page 62. The Roosevelt order dated November 15, 1905 permits the Civil Service Commission, where no register contains a specially qualified eligible, to allow a temporary appointment, which may become permanent upon an Isthmian Canal Commission certificate. That permission explains the repeal target; it does not impose an implementation delay on the later repeal. No appointment or conversion is proved to have occurred.",
+    "savings_check":  "EO393 contains no express savings. It does not expressly vacate prior appointments, order removals, repayment or new appointments. Continuing effects of completed repeal and rights under other instruments are distinct from an operative duty imposed by EO393. No survival or extinction of particular appointments is inferred.",
+    "identity_check":  "The source prints no EO number. Allowed IC1911_WPA_LORD_MATCH.csv maps EO393 to January 12, 1906 and revocation of the November 15, 1905 appointment order; IC1911_ORDERS.csv maps it to PDF80/printed67. Full body, date and Roosevelt signature agree with this mapping.",
+    "mechanical_check":  {
+                             "ok":  false,
+                             "errors":  [
+                                            "raw_path_missing for all five source references",
+                                            "quote_not_exact_slice at original_representation"
+                                        ],
+                             "disposition":  "Refusal retained without repair. Separate direct PDF hashing and visual examination do not convert the native verifier refusal into a pass.",
+                             "input_pin_checked":  true,
+                             "report":  "MECHANICAL.json"
+                         },
+    "source":  {
+                   "path":  "releases/source_books/Isthmian_Canal_Commission_Executive_Orders_1904-1911_ufl1.ark+=13960=t3dz15k02.pdf",
+                   "sha256":  "4151116ad1c3ae8b08a9216f8591ca14e0d71ef20805c9250405d88aa6365eda",
+                   "pages_visually_read":  [
+                                               80,
+                                               75
+                                           ],
+                   "hash_checked_before_and_after":  true
+               },
+    "limits":  "Independent AI source review only. No genuine counterpart, canonical claim, seed/key, producer output, prior review or other arm inspected. No source fetching, publication, status adoption or human certification. Candidate machine-search descriptions are bounded disclosures, not independently rerun searches or proof of exhaustive later law."
+}

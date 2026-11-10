@@ -1,0 +1,57 @@
+﻿{
+  "instrument_id": "EO:6826",
+  "claim_sha256": "1756efd041af0ea46b6e0cd7b38b922aa1a6fe383ea32eded4e08eb189d6ab90",
+  "reviewer": "mommsen-3-decided01-B-v2",
+  "model_family": "OpenAI",
+  "model": "gpt-6.1-sol",
+  "independent": true,
+  "separate_context": true,
+  "review_kind": "independent_ai_source_review",
+  "scope": "whole_case",
+  "verdict": "rejected",
+  "rationale": "The exact submitted lifecycle claim is contradicted by its byte-verified source. The full retained text (characters 0-850) and operative span (390-849) direct flags at the White House and public buildings in the District of Columbia and Illinois to be at half mast on the funeral day, expressly Wednesday, August 22, 1934. August 21, 1934 appears in the signature block. The card instead assigns August 21 as both the clause first_end and whole_order_end, and repeatedly misstates the commanded calendar day as August 21. A signature date does not end a command expressly applicable the following day. The direct whole-command calendar limitation supports own-terms expiration at the end of August 22 on this retained text, without needing proof of performance; it cannot support the submitted August 21 expiration. This is a substantive date error, not a source-byte mismatch. The inventory otherwise contains the one complete flag command; the commemorative recital, signature and order number create no additional independent command. The retained text contains no savings clause or surviving independent duty. It supplies no earlier ending event. Thus the exact ending date and related reasoning fail even though the general conclusion that this one-day command is no longer operative is supported on the retained representation. No replacement claim, original authentication, or human certification is issued.",
+  "checked_source_files": [
+    {
+      "path": "C:/Users/danie/AppData/Local/Temp/mommsen3-decided01-blind-obo3hosx/sources/jobs/hathi-gpo-orders/output/texts/EO_6826.txt",
+      "sha256": "6a2a881a44761d23fd3bc51708829f25358332e458b4b2967dda1f3e8fae9e7b",
+      "bytes": 852,
+      "examination": "Complete retained UTF-8 text read; exact full-source span 0-850 and operative span 390-849 independently checked against descriptors."
+    },
+    {
+      "path": "C:/Users/danie/AppData/Local/Temp/mommsen3-decided01-blind-obo3hosx/sources/jobs/hathi-gpo-orders/output/books/Executive_Orders_6690-6935.djvu",
+      "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+      "bytes": 16809160,
+      "examination": "Raw bytes verified by the maintained verifier; page images not inspected because the exact source declaration sets requires_page_check=false."
+    }
+  ],
+  "mechanical_card_path": "research/excavator/mommsen3-2026-11-10-decided01/review-B-v2/MECHANICAL_CARD.json",
+  "mechanical_sources_path": "research/excavator/mommsen3-2026-11-10-decided01/review-B-v2/MECHANICAL_SOURCES.json",
+  "source_binding_complete": true,
+  "binding_check_path": "research/excavator/mommsen3-2026-11-10-decided01/review-B-v2/BINDING_CHECK.json",
+  "input_file_hashes": {
+    "R7.json": "ed24bbfec341514ab39c0a77d86a9c6b88313d2bc96f9fdf17a5e2605c7b5dbd",
+    "SOURCE_BINDINGS.json": "52e69bcacb21ca5a7a97b6afa3dc3b35f8ea421bf28d27602c5f9d3f759e91e8"
+  },
+  "canonical_card_sha256": "2b75485da7388df80972a566306664e21524cbf1f11a4e56637f476d7ec7031a",
+  "mechanical_card_ok": false,
+  "mechanical_sources_ok": true,
+  "retained_mechanical_errors": [
+    {"locus": "$.operative_clauses[0].first_end.source", "errors": ["raw_path_missing"]},
+    {"locus": "$.operative_clauses[0].original_source", "errors": ["raw_path_missing"]},
+    {"locus": "$.original_representation", "errors": ["raw_path_missing"]},
+    {"locus": "$.savings_residuals.source", "errors": ["raw_path_missing"]},
+    {"locus": "$.source_notes[0].source", "errors": ["raw_path_missing"]},
+    {"locus": "$.whole_order_end.source", "errors": ["raw_path_missing"]},
+    {"locus": "$.working_text.confirmations[0]", "errors": ["quote_offsets", "raw_path_missing"]}
+  ],
+  "qualifications": [
+    "The actual card was not modified and does not mechanically pass. Its text_checks_passed=false is retained. Each of six quoted occurrences, representing two unique references, equals a supplied descriptor after removing only raw_path. Every substantive quotation passed exact text/hash/span checks and both supplied descriptors passed text and raw-byte verification. No other unexplained byte/span/binding defect remained.",
+    "The working_text.confirmations[0] entry is the nonquotation provenance declaration identified in the supplied input contract. Its instrument_id, grade, sha256, text_path and text_sha256 were independently compared with the byte-verified full-source descriptor and all match. No offsets were invented. Its original quote_offsets/raw_path_missing failures remain mechanical coverage limitations. Separate binding does not imply custody or convert the actual-card verifier result to a pass.",
+    "Identity is supported within the retained representation by the Henry T. Rainey subject, Roosevelt signature, August 21 signature date and closing number 6826. Grade remains machine_read_government_printed_copy and acceptable_as_original remains false. OCR noise is present; the original is not authenticated, pages are not confirmed, and the card's replacement and quotation-recheck requirements remain.",
+    "The card reports bounded machine searches rather than supplying their underlying outputs. Those searches were not independently reproduced or approved. Its USC edition ends October 9, 2026 and omits the October 10-14 interval; its OFR catalog search covers records from 1937 onward and cannot establish exhaustive pre-1937 coverage. eCFR/CFR number-reference searching is likewise bounded. These declarations are not affirmative ending evidence and cannot repair the contradicted date.",
+    "No earlier revocation, amendment, revival or other ending event is established by the confined source set. No comprehensive negative historical finding is made. The candidate August 22 own-terms ending follows the complete retained command, subject to these source and coverage qualifications; this review does not certify an independently exhaustive first-event history.",
+    "No actual flag lowering/restoration or occurrence of the funeral is inferred. The instruction's expressly named calendar day supplies its temporal limit without a current factual predicate or proof of performance. No performance-based exhaustion or formal revocation is asserted.",
+    "Only the authorized blinded card, SOURCE_BINDINGS, confined cited sources, maintained verifier/imports and assigned output directory were used. No canonical dossier, counterpart, other review arm, seed receipt, key, Git state or external source was consulted. This is one substantive independent AI source examination and supplies no human certification."
+  ],
+  "human_certified": false
+}
