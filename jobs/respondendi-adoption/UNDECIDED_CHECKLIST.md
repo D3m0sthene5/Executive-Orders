@@ -49,3 +49,15 @@ rule; where a kit rule blocks the order, say so in the blocker and still give th
     only if the status, the whole-order end and its source are right and the listed gaps are exactly the gaps.
 13. A held text file is not a usable source if the checker grades it `custody_record_only`; check the unusable-source
     list before relying on it.
+
+## For the coordinator (what the standing rule will check)
+
+14. Prepare through `kit.py prepare --action status_assignment.undecided` so the packet has `ADMISSION.json`.
+15. Send every producer status decision that passes `status_overlay._decision_errors` to the status reviewer, whether
+    or not the lifecycle sheet was submitted.
+16. Plant at least two controls per review set (one per 15 claims), of different kinds, at least one
+    status-determining: `partial_as_whole`, `transfer_as_end`, `later_event_removed`, `ending_source_swapped` or
+    `wrong_order_text` (the date shift, `date_shift`, alone is not enough). Write the kind as `control_kind` in each
+    `CONTROL_ADJUDICATION_*.json`. Run the after-reveal review of every genuine control claim.
+17. Then `respondendi.py plan`, the cross-family audits, `adjudicate` for any disagreement, and `adopt` once a day
+    after the day's batches complete. Changing this checklist or the prompts starts a new audit stratum.
