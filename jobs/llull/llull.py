@@ -334,7 +334,7 @@ def eo_num(iid):
 
 
 def read_csv(path):
-    with open(path, newline="") as f:
+    with open(path, newline="", encoding="utf-8") as f:
         return list(csv.DictReader(f))
 
 
@@ -357,7 +357,7 @@ class Data:
         base = self.repo / rel
         files = [base] + sorted(Path(p) for p in glob.glob(str(base).replace(".jsonl", ".part*.jsonl")))
         for f in files:
-            with open(f) as fh:
+            with open(f, encoding="utf-8") as fh:
                 for l in fh:
                     if l.strip():
                         yield json.loads(l)
