@@ -116,7 +116,7 @@ class Searcher:
     def __init__(self, key, opener=None, min_interval=0.75, max_searches=2500):
         self.key, self.opener = key, opener or urllib.request.urlopen
         self.min_interval, self.max_searches = min_interval, max_searches
-        self.n, self.last, self.stopped = 0, 0.0, ""
+        self.n, self.last, self.stopped, self.rate_limit = 0, 0.0, "", ""
         self.lock = threading.Lock()
 
     def search(self, q, page_size=100):
@@ -138,6 +138,13 @@ class Searcher:
         try:
             with self.opener(req, timeout=60) as r:
                 raw = r.read(5_000_001)
+                hdr = getattr(r, "headers", None)
+                if hdr is not None:
+                    lim, rem = hdr.get("X-RateLimit-Limit"), hdr.get("X-RateLimit-Remaining")
+                    with self.lock:
+                        self.rate_limit = lim or self.rate_limit
+                        if rem is not None and rem.isdigit() and int(rem) < 5:
+                            self.stopped = f"rate limit nearly spent (limit {lim}, remaining {rem}); next run continues"
         except urllib.error.HTTPError as e:
             if e.code in (429, 403):
                 with self.lock:
@@ -259,7 +266,7 @@ class Run:
         self.per_target_cap = {"FR": g("CRUDEN_FR_HITS_PER_TARGET", 40), "STATUTE": g("CRUDEN_STAT_HITS_PER_TARGET", 20)}
         self.commit_extract_bytes, self.committed = g("CRUDEN_COMMIT_MB", 80) * 1_000_000, 0
         key, self.key_kind = api_key(env)
-        self.searcher = Searcher(key, opener=opener, min_interval=g("CRUDEN_SEARCH_INTERVAL", 0.75),
+        self.searcher = Searcher(key, opener=opener, min_interval=g("CRUDEN_SEARCH_INTERVAL", 1.0),
                                  max_searches=g("JOB_MAX_SEARCHES", 2500 if self.key_kind == "real" else 25))
         self.pool = FetchPool(Path(cache) / "govinfo", workers=g("JOB_WORKERS", 6), per_host=6, transport=transport,
                               max_bytes=450_000_000, timeout=240, user_agent=UA, min_interval=0.1,
@@ -452,9 +459,9 @@ def main(repo: Path, out: Path, cache: Path, env=os.environ, transport=None, ope
     order = [t for t, _ in controls] + targets
     if limit:
         order = order[:limit + len(controls)]
-    # 1. searches
-    for t in order:
-        for coll in collections_:
+    # 1. searches: every target in the Federal Register first, then the Statutes at Large
+    for coll in collections_:
+        for t in order:
             key = (t, coll)
             if key in prior_searches:
                 run.searches.append(dict(prior_searches[key], carried_forward=True))
@@ -643,7 +650,7 @@ def write(out, run, fr_out, ctl, targets, control_ids, started, carried, attempt
     summary = {
         "job": PRODUCER, "generated_utc": now_utc(), "started_utc": started, "key_kind": run.key_kind,
         "targets": len(targets), "control_targets": len(control_ids), "searches_made_this_run": run.searcher.n,
-        "search_stopped": run.searcher.stopped, "units_planned": todo_n, "units_attempted": attempted,
+        "search_stopped": run.searcher.stopped, "search_rate_limit": run.searcher.rate_limit, "units_planned": todo_n, "units_attempted": attempted,
         "units_failed": len(run.failures), "bytes_downloaded": run.pool.bytes_downloaded,
         "fragments": len(frs), "fragments_carried_forward": carried, "by_collection": by_coll,
         "orders_with_located_citation": len(cited_all), "orders_with_acting_sentence": len(acting_all),
