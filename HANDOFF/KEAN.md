@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 299; `search` finds the rest)
+## Newest results (6 of 304; `search` finds the rest)
 
 - 2026-11-10 F-20261110-mommsen3-undecided-selector **analysis**: Reserve a 30-order early undecided probe with kit.py next --scope undecided and an out-of-pool exclusion list. Lesson: Skip unpinned history rows before constructing undecided selector entries; source and status gates remain unchanged.
 - 2026-11-10 F-20261110-mommsen3-undecided-probe01 **stopped at gate**: Thirty early undecided orders with accepted official compilations and history-event leads, fresh claim-kit pa… Lesson: Accepted original plus event leads is insufficient by itself: prove first end, scope, savings and current predicate before canonical filing. Keep status proposals isolated for owner adoption; do not…
 - 2026-11-10 F-20261110-mommsen3-undecided-original-gate **analysis**: Screen the 30 reserved early undecided orders against the current status-overlay decision gate and their froz… Lesson: Route this probe through the accepted-original subset; held working-text status assignment remains a separate blocked policy change, not a source-page claim.
+- 2026-11-10 F-20261110-mommsen3-source-only-canal-act **partly worked**: S10-2bounded source-only verification of six blocked cases; rehash existing NIRA shared sources and named6999… Lesson: Always fetch/read continuation before declaring a statute complete. Shared section3code analysis excludes agreements/mixed administrative powers and supplies no automatic ending here. Retain raw and…
 - 2026-11-10 F-20261110-mommsen3-selector-replay **worked**: Skip undecided status-history rows lacking a fingerprint before creating selector entries, then run kit.py ne… Lesson: An in-pool exclusion cannot prevent an exception thrown while constructing candidates; validate candidate history before constructing its selector row.
-- 2026-11-10 F-20261110-mommsen3-mirror-replay **worked**: Add APP MIRROR_FRAGMENTS declarations to the existing exact working-text index and replay readiness-tracker l… Lesson: A producer mirror file can be present and exact yet omitted by a filename-specific consumer glob; compare local tracker rows, not just provider counts.
-- 2026-11-10 F-20261110-mommsen3-mirror-fragments **analysis**: Run readiness-tracker locally with current code and exact tracker provider folders materialized. Lesson: Include explicit mirror fragment declarations in the exact working-text index before accepting or rejecting dependent filed claims.
+- 2026-11-10 F-20261110-mommsen3-public-text-mapping-hold **stopped at gate**: Diagnose existing7420/7431 checker failures using the exact held public volume, selected Mabillon texts and s… Lesson: A source descriptor verified for blind examination does not register its text with the actual checker. Seek only the concrete shared data-boundary decision from Savigny; preserve existing seals and u…
 
-Register: 75 owner decisions, 45 answered questions, 299 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 304 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
