@@ -1,3 +1,13 @@
+## 2026-11-10T08:25:16.799452+00:00: MOMMSEN-V turn3,20new cases retained at source/lifecycle gates
+
+- **Done:** S-8-7/S-9-5 distinct6905-6974 cohort20reserved/published70af2eee8a, excluding III6919/6932/6950/6969 and all other owners. Merged main with C-7 proof416main+81branch-only=497keys,314identical common,0changed objects. Native prepare initially0passes; exact held-byte restoration yields2passes(6946A/6964A),2bounded Sol medium producers, both blocked. Native apply exit0:20blocked,0proposed/filed,343source hashes checked. Kean F-20261110-mommsen5-turn3-source-lifecycle-blocks.
+- **Evidence:** research/excavator/mommsen-5-2026-11-10-turn3/TURN3_RESULT.json.16public Wikimedia DJVU witnesses restored/hash-verified but recorded source_artifact not consumed by current custody adapter; issue sent to Savigny, no patch/grade workaround.2APP raw holds;2producer Agreement/Code/Act, first-ending and savings gaps.20native checkpoints;15validated queued requests total(7priorb03handoffs+8new); no repeat fetch for16already-held books.
+- **Running:**0producers/0reviewers;2workers exited with RESULT+turn.completed.1new cohort this turn, no proposals, blind arms, actual plants or completion.0controls is no sensitivity pass.101unfinished own reservations remain. No PR/merge slot/workflow/source-job dispatch.
+- **Measures:** Actual worker input1,850,496(cached subset1,704,064),output14,303(reasoning subset1,136). Coordinator tokens and all USD by role/model unknown. Native scoped usage cannot measure Codex; no matched Claude transcript is not zero spend. External main1223 at42769037965-1 observed; no own readiness replay/gain.
+- **Next:** No new reservations under S-9-5(C-12remainder belongsIII). Source/legal holds need actual changed evidence and fresh native packet/review; old1-1999/nonnumeric and2500-3999 stops remain. New pool has only1zero-filed batch, no new two-zero quality stop.
+- **Asks:** @Owner: none. @Savigny: existing16-case custody mapping reported for coordination; assign distinct lawful work if these retained holds remain unavailable.
+- **Do not:** Reuse stale seals after new checkpoints; treat source custody/AI examination as original authentication, independent whole-case review or human certification; change code/grades/rulings, publish with unmerged IV code, or attribute external ready gain to this lane.
+
 ## 2026-11-10T07:47:06.709979+00:00: MOMMSEN-V turn2, EO2500-3999 source/lifecycle stop
 
 - **Done:** S-5-12/S-6-5 new pool; current main merged with C-7 union proof:39 branch+314 main=353 keys,0 conflicting objects;3 unique incoming Kean lines preserved. Published II/IV locks plus explicit35IV+5II exclusions applied.0 new collisions. Two cohorts reserved26/25;81 total own unfinished reservations retained.

@@ -1,0 +1,117 @@
+{
+  "schema": "bounded-producer-result/v1",
+  "producer": "b05-p02",
+  "lane": "mommsen-5",
+  "instrument_id": "EO:6964A",
+  "outcome": "blocked",
+  "approved": false,
+  "submitted_claims": 0,
+  "blocked_members": 1,
+  "clause_rows": 1,
+  "human_certification": 0,
+  "requested_model": "gpt-6.1-sol",
+  "requested_reasoning_effort": "medium",
+  "actual_model": null,
+  "actual_model_note": "Actual runtime model identifier is not exposed to this producer.",
+  "started_utc": null,
+  "started_utc_note": "Session start UTC was not captured; not reconstructed. Local source-examination timestamp observed at 2026-11-10T08:15:57.632149+00:00.",
+  "finished_utc": "2026-11-10T08:17:17.720034+00:00",
+  "tokens": null,
+  "cash": null,
+  "dispatch": {
+    "path": "research/excavator/mommsen-5-2026-11-10-turn3/mommsen-5-b05-packet/DISPATCH.producers-v1.json",
+    "ok": true,
+    "explicit_checked_member": true,
+    "dispatchable": true,
+    "scientific_approval": false,
+    "freshness_limit": "Coordinator launch freshness is not independently time-proven by this receipt; no renewed dispatch run performed."
+  },
+  "sources_actually_read": [
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-6964-approving-agreement-between-members-the-division-the-painting.txt",
+      "sha256": "0dbbe484dd00bc1edbb6e55782714d8df724ae4e2090edd5fb0a6aebea70e96c",
+      "spans": [
+        [
+          0,
+          1900
+        ],
+        [
+          884,
+          1867
+        ],
+        [
+          1161,
+          1272
+        ],
+        [
+          1272,
+          1336
+        ],
+        [
+          1336,
+          1721
+        ]
+      ],
+      "standing": "mirror_transcription; raw compared"
+    },
+    {
+      "path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6964A-117ac616c9.txt",
+      "sha256": "06cbf01ffee8c6ecefee305a5a7308970fadd356eeb72590e9b7432bb3995926",
+      "spans": [
+        [
+          0,
+          2146
+        ],
+        [
+          1162,
+          1968
+        ]
+      ],
+      "standing": "duplicate mirror working text"
+    },
+    {
+      "path": "jobs/photius-gpo-volumes/output/texts/EO_6964A.txt",
+      "sha256": "ee2442fefcdc49ea9d6a4d4a954bca0d9de382324f3778e714050f00a45c8a4b",
+      "spans": [
+        [
+          0,
+          2560
+        ],
+        [
+          1568,
+          2398
+        ]
+      ],
+      "standing": "official_printing metadata retained; raw not held; extracted text lead only"
+    },
+    {
+      "path": "jobs/ptolemy-custody/output/raw/117ac616c9695305e30bc4b0f20a20f0635b0baf29ce81db78beb0a97e3c4833.html",
+      "sha256": "117ac616c9695305e30bc4b0f20a20f0635b0baf29ce81db78beb0a97e3c4833",
+      "spans": "complete retained HTML read; h1, dc:date, field-docs-content examined",
+      "standing": "APP mirror raw HTML; source grade unchanged; not an authenticated official original"
+    }
+  ],
+  "app_record_check": {
+    "path": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+    "line": 383,
+    "number": true,
+    "date": true,
+    "subject": true,
+    "text_sha256": true,
+    "raw_hash": true,
+    "material_operative_mismatch": false,
+    "official_original": false
+  },
+  "reasoning": "Blocked after substantive source examination. ORIGINAL:EO:6964A (0:1900) and CLAUSES:EO:6964A#whole (884:1867), compared with complete retained APP HTML and same-sha MIRROR_DOCUMENTS record, establish the working text. The operative paragraph contains adoption/approval of the Board report, recommendations and findings (1161:1272), approval of the Agreement (1272:1336), and prospective Board exceptions/exemptions discretion (1336:1721). The approvals are effectuated by the order itself; physical implementation need not be proved for those approving acts. But approval is not a whole-order cessation: the Board may make future exceptions, with or without conditions, on several stated grounds. The preamble reports an application, hearing and rendered report, not a future report command. Machine own-term condition/report-deadline labels establish no ending. No exact Agreement, Code, Title I or ending/court/savings source is supplied as a bound evidence item; no whole-case date or cutoff predicate is defensible from the read sources.",
+  "remaining_obligations": [
+    "Read the exact approved Knox County, Indiana painting/paperhanging/decorating Agreement, including duration, termination, amendment, enforcement and accrued-rights provisions; the approving order does not reproduce it.",
+    "Read the Construction Industry Code approved January 31, 1934 and applicable Painting, Paperhanging and Decorating Division provisions, together with exact Title I of the National Industrial Recovery Act and relevant amendments, to establish the legal scope and temporal limits of approval and exceptions/exemptions authority.",
+    "Locate and read exact earlier/later instruments or judicial holdings, if applicable, establishing the first cessation or surviving current predicate of the Board discretion for this Agreement. Establish effective date and scope, including any transfer/continuation of authority; no constitutional-law event or statutory date is inferred from memory.",
+    "Determine treatment of exceptions already granted, conditions, accrued rights/liabilities and enforcement savings under the Agreement, Code, statute and actual ending authority; no blanket absence of residual effects is established.",
+    "Retain official-original acquisition and quotation recheck. The GPO text lead has no held raw copy in the dispatch receipt and its page image was not inspected."
+  ],
+  "carried_search_assessment": "Read all three carried machine searches. Zero number hits are bounded leads only. USC release excludes laws enacted October 10-14, 2026; eCFR/USC number searches do not establish the Agreement/Board ending; OFR catalog starts 1937 and expressly omits possible early endings. No search IDs accepted as adequate whole-case closure.",
+  "prior_context": "Full native producer view read; prior_research reports no prior research located; Valla has no claim or refused method review; no actor contexts/provisions and no chain events supplied.",
+  "constraints": "Only own decisions.csv, clauses.csv and RESULT.json written. No Git, network, source/grade/status/ownership/code changes, messages, delegation, apply, completion or publication.",
+  "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved."
+}

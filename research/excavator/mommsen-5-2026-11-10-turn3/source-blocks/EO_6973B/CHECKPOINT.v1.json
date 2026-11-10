@@ -1,0 +1,73 @@
+{
+  "schema": "eo-source-blocked-work/v1",
+  "instrument_id": "EO:6973B",
+  "state": "source_blocked",
+  "reason": "Exact tracked public Wikimedia book bytes restored/hash verified; native source_artifact custody locator is unconsumed by current adapter. No code/grade/metadata bypass and no production dispatch.",
+  "source_requests": [
+    {
+      "request_id": "mommsen-5-20261110-b05-EO-6973B-custody",
+      "instrument_id": "EO:6973B",
+      "step": "original_text",
+      "citation": "Exact frozen selected witness for EO:6973B",
+      "urls": [
+        "https://commons.wikimedia.org/wiki/File:Executive_Orders_6936-7081.djvu"
+      ],
+      "requested_by": "mommsen-5",
+      "note": "Exact tracked public Wikimedia book bytes restored/hash verified; native source_artifact custody locator is unconsumed by current adapter. No code/grade/metadata bypass and no production dispatch. Expected SHA256 b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617. Source grade unchanged; a URL or text layer does not substitute for exact registered raw custody."
+    }
+  ],
+  "result_paths": [
+    "research/excavator/mommsen-5-2026-11-10-turn3/mommsen-5-b05-packet/DISPATCH.fresh-v1.json",
+    "research/excavator/mommsen-5-2026-11-10-turn3/b05-RAW_CUSTODY_CHECK.json"
+  ],
+  "route_fingerprint": "3b6a6f9613c58087b408d1bdaf38a521ac99a081a439dca5c327d8fbe16c7733",
+  "source_results": [
+    {
+      "checks": [
+        {
+          "check": "source_held",
+          "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+          "field": "source",
+          "result": "skip",
+          "status": "custody_record_only",
+          "step": "claim_record"
+        }
+      ],
+      "evidence_id": "CLAUSES:EO:6973B#whole",
+      "required": true,
+      "source": {
+        "page_or_item": "Executive_Orders_6936-7081.djvu; scanned pages 127-127; closing number 6973B",
+        "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
+        "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6973B.txt",
+        "text_sha256": "e9de28a69288a798a14fec5417fe3a9b2e2a4703606e55c996e0565cfd06cac5",
+        "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6936-7081.djvu"
+      }
+    },
+    {
+      "checks": [
+        {
+          "check": "source_held",
+          "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+          "field": "source",
+          "result": "skip",
+          "status": "custody_record_only",
+          "step": "claim_record"
+        }
+      ],
+      "evidence_id": "ORIGINAL:EO:6973B",
+      "required": true,
+      "source": {
+        "page_or_item": "Executive_Orders_6936-7081.djvu; scanned pages 127-127; closing number 6973B",
+        "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
+        "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6973B.txt",
+        "text_sha256": "e9de28a69288a798a14fec5417fe3a9b2e2a4703606e55c996e0565cfd06cac5",
+        "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6936-7081.djvu"
+      }
+    }
+  ],
+  "input_fingerprint": "fdce623539eb00cc79bea16ca21c9e54cba1cfa9aaa514faee809df24b7ac2f3",
+  "prior_research_reference": {
+    "packet": "research/excavator/mommsen-5-2026-11-10-turn3/mommsen-5-b05-packet/PACKET.json",
+    "packet_fingerprint": "93eb3d89879a1c45c4f73e9016c49c731d0c893c8581958f49e711474b5ac44e"
+  }
+}

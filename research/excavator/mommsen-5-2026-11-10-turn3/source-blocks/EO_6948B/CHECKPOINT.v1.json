@@ -1,0 +1,179 @@
+{
+  "schema": "eo-source-blocked-work/v1",
+  "instrument_id": "EO:6948B",
+  "state": "source_blocked",
+  "reason": "Exact tracked public Wikimedia book bytes restored/hash verified; native source_artifact custody locator is unconsumed by current adapter. No code/grade/metadata bypass and no production dispatch.",
+  "source_requests": [
+    {
+      "request_id": "mommsen-5-20261110-b05-EO-6948B-custody",
+      "instrument_id": "EO:6948B",
+      "step": "original_text",
+      "citation": "Exact frozen selected witness for EO:6948B",
+      "urls": [
+        "https://commons.wikimedia.org/wiki/File:Executive_Orders_6936-7081.djvu"
+      ],
+      "requested_by": "mommsen-5",
+      "note": "Exact tracked public Wikimedia book bytes restored/hash verified; native source_artifact custody locator is unconsumed by current adapter. No code/grade/metadata bypass and no production dispatch. Expected SHA256 b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617. Source grade unchanged; a URL or text layer does not substitute for exact registered raw custody."
+    }
+  ],
+  "result_paths": [
+    "research/excavator/mommsen-5-2026-11-10-turn3/mommsen-5-b05-packet/DISPATCH.fresh-v1.json",
+    "research/excavator/mommsen-5-2026-11-10-turn3/b05-RAW_CUSTODY_CHECK.json"
+  ],
+  "route_fingerprint": "3b6a6f9613c58087b408d1bdaf38a521ac99a081a439dca5c327d8fbe16c7733",
+  "source_results": [
+    {
+      "checks": [
+        {
+          "check": "source_held",
+          "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+          "field": "source",
+          "result": "skip",
+          "status": "custody_record_only",
+          "step": "claim_record"
+        }
+      ],
+      "evidence_id": "CLAUSES:EO:6948B#whole",
+      "required": true,
+      "source": {
+        "page_or_item": "Executive_Orders_6936-7081.djvu; scanned pages 54-56; closing number 6948B",
+        "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
+        "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6948B.txt",
+        "text_sha256": "8c9734a390108a10a6c725146a61a39cfcff4218dc2c6c8b962f560b957aee7e",
+        "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6936-7081.djvu"
+      }
+    },
+    {
+      "checks": [
+        {
+          "check": "source_held",
+          "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+          "field": "source",
+          "result": "skip",
+          "status": "custody_record_only",
+          "step": "claim_record"
+        }
+      ],
+      "evidence_id": "ORIGINAL:EO:6948B",
+      "required": true,
+      "source": {
+        "page_or_item": "Executive_Orders_6936-7081.djvu; scanned pages 54-56; closing number 6948B",
+        "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
+        "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6948B.txt",
+        "text_sha256": "8c9734a390108a10a6c725146a61a39cfcff4218dc2c6c8b962f560b957aee7e",
+        "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6936-7081.djvu"
+      }
+    },
+    {
+      "checks": [
+        {
+          "check": "source_held",
+          "detail": "no saved copy with sha256 0a3b52659e14... and no saved copy of https://babel.hathitrust.org/cgi/pt?id=hvd.hl2726&seq=54",
+          "field": "source",
+          "result": "fail",
+          "status": "not_held",
+          "step": "claim_record"
+        }
+      ],
+      "evidence_id": "TERM:EO:6948B:1b8c5b24253d52ef@4005c4e048e05982",
+      "required": false,
+      "source": {
+        "page_or_item": "HathiTrust hvd.hl2726 (GPO bound Executive orders, title range 6936-7261), PDF pages 54-55",
+        "sha256": "0a3b52659e143f43bfb0297a71782f5412f55d7ac65b87b4bd5071829aced3fa",
+        "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6948B.txt",
+        "text_sha256": "4005c4e048e059828cee31d6f22ed1e893e5a8e27dbc03f229340f2808c9b832",
+        "url": "https://babel.hathitrust.org/cgi/pt?id=hvd.hl2726&seq=54"
+      }
+    },
+    {
+      "checks": [
+        {
+          "check": "source_held",
+          "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+          "field": "source",
+          "result": "skip",
+          "status": "custody_record_only",
+          "step": "claim_record"
+        }
+      ],
+      "evidence_id": "TERM:EO:6948B:4836a606b42c6f27@792c3f2c4d423f74",
+      "required": false,
+      "source": {
+        "page_or_item": "Executive_Orders_6936-7081.djvu; scanned pages 54-56; closing number 6948B",
+        "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6948B.txt",
+        "text_sha256": "792c3f2c4d423f74b0ad12783843029395e336e9fc47f6e9afcb2df934d4e91b",
+        "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6936-7081.djvu"
+      }
+    },
+    {
+      "checks": [
+        {
+          "check": "source_held",
+          "detail": "recorded in jobs/hathi-gpo-orders/output/SOURCES.jsonl, jobs/mabillon-held-printings/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+          "field": "source",
+          "result": "skip",
+          "status": "custody_record_only",
+          "step": "claim_record"
+        }
+      ],
+      "evidence_id": "TERM:EO:6948B:4836a606b42c6f27@8c9734a390108a10",
+      "required": false,
+      "source": {
+        "page_or_item": "Executive_Orders_6936-7081.djvu; scanned pages 54-56; closing number 6948B",
+        "sha256": "b8302c12c7566389dd8dec67a8f463e171c0038d0c86bbd8c0b950e21970d617",
+        "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6948B.txt",
+        "text_sha256": "8c9734a390108a10a6c725146a61a39cfcff4218dc2c6c8b962f560b957aee7e",
+        "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6936-7081.djvu"
+      }
+    },
+    {
+      "checks": [
+        {
+          "check": "source_held",
+          "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+          "field": "source",
+          "result": "skip",
+          "status": "custody_record_only",
+          "step": "claim_record"
+        }
+      ],
+      "evidence_id": "TERM:EO:6948B:86d09782b336c7c6@a1f797ee4cba805e",
+      "required": false,
+      "source": {
+        "archival_id": "app:node/362614",
+        "page_or_item": "Executive Order 6948-B\u2014Approving Agreement Between Members of the Division of the Painting, Paperhanging and Decorating Division of the Construction Industry and Journeyman Painter, Paperhanger and Decorator Employees in the Region of All of Utah, Salt Lake, Davis, Weber and Cache Counties, and All of That Portion of Boxelder County East of a Certain Range of Mountains Known as the Blue Springs Hills, All in the State of Utah; January 19, 1935; APP node 362614; common-crawl capture 2025-11-19T05:44:31Z",
+        "sha256": "d4b9bf0d0a47903102b5a8f916d915a80ce7950a6cce44df72999e9230ca1fa2",
+        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6948-b-approving-agreement-between-members-the-division-the-painting.txt",
+        "text_sha256": "a1f797ee4cba805ec16fced44720ccd747d6304123121b596cb09a23ff5ea82a",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-6948-b-approving-agreement-between-members-the-division-the-painting"
+      }
+    },
+    {
+      "checks": [
+        {
+          "check": "source_held",
+          "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/clause-drafts/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+          "field": "source",
+          "result": "skip",
+          "status": "custody_record_only",
+          "step": "claim_record"
+        }
+      ],
+      "evidence_id": "TERM:EO:6948B:86d09782b336c7c6@c51cea3052761909",
+      "required": false,
+      "source": {
+        "page_or_item": "American Presidency Project web page (transcription; not an official edition); APP node 362614; common-crawl capture 2025-11-19T05:44:31Z",
+        "sha256": "d4b9bf0d0a47903102b5a8f916d915a80ce7950a6cce44df72999e9230ca1fa2",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6948B-d4b9bf0d0a.txt",
+        "text_sha256": "c51cea3052761909e9728524a3a012a68d1b36b829a93cc083d26661457babc7",
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-6948-b-approving-agreement-between-members-the-division-the-painting"
+      }
+    }
+  ],
+  "input_fingerprint": "99d5dc9fa274993567e4465671ffbfe2a0d22e916aba53bf3b479be536e63345",
+  "prior_research_reference": {
+    "packet": "research/excavator/mommsen-5-2026-11-10-turn3/mommsen-5-b05-packet/PACKET.json",
+    "packet_fingerprint": "93eb3d89879a1c45c4f73e9016c49c731d0c893c8581958f49e711474b5ac44e"
+  }
+}

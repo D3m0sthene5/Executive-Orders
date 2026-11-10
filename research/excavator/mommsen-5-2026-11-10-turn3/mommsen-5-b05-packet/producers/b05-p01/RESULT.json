@@ -1,0 +1,137 @@
+{
+  "schema": "bounded-producer-result/v1",
+  "producer": "b05-p01",
+  "lane": "mommsen-5",
+  "instrument_id": "EO:6946A",
+  "outcome": "blocked",
+  "submitted_claims": 0,
+  "blocked_members": 1,
+  "clause_rows": 3,
+  "human_certification": 0,
+  "requested_model": "gpt-6.1-sol",
+  "requested_reasoning_effort": "medium",
+  "actual_model": null,
+  "actual_model_note": "Exact runtime model identity unavailable.",
+  "started_utc": "2026-11-10T08:13:48.029174+00:00",
+  "started_utc_basis": "producer event-log creation time, proxy for turn start",
+  "finished_utc": "2026-11-10T08:17:44.358856+00:00",
+  "tokens": null,
+  "cash_usd": null,
+  "dispatch": {
+    "path": "research/excavator/mommsen-5-2026-11-10-turn3/mommsen-5-b05-packet/DISPATCH.producers-v1.json",
+    "ok": true,
+    "assigned_id_in_checked_and_dispatchable_ids": true,
+    "checked_ids": [
+      "EO:6946A",
+      "EO:6964A"
+    ],
+    "scientific_approval": false,
+    "qualification": "Supplied subset receipt read; producer did not independently observe coordinator exit or rerun dispatch."
+  },
+  "native_view_read": "research/excavator/mommsen-5-2026-11-10-turn3/mommsen-5-b05-packet/producer-views/EO_6946A.md",
+  "source_reads": [
+    {
+      "path": "jobs/ptolemy-custody/output/raw/0f4b67462b1e2feeacdcc6af3a9a7252f5b48ad7977784b8415534fff30491c9.html",
+      "sha256": "0f4b67462b1e2feeacdcc6af3a9a7252f5b48ad7977784b8415534fff30491c9",
+      "scope": "Loaded and rehashed retained HTML; inspected substantive heading/date/content decoded characters 52053:54831. No signature-image authentication.",
+      "char_start": 52053,
+      "char_end": 54831
+    },
+    {
+      "path": "jobs/app-executive-orders/output/texts/executive-order-6946-approving-agreement-between-members-the-division-the-painting.txt",
+      "char_start": 0,
+      "char_end": 1929,
+      "text_sha256": "2fc6c2515315d045c2ba4176bdfb263db016a750ffbecbac1a11c234c4c5b304",
+      "native_source_ids": [
+        "ORIGINAL:EO:6946A",
+        "CLAUSES:EO:6946A#whole",
+        "TERM:EO:6946A:8ae5b834eb8e7861@2fc6c2515315d045"
+      ]
+    },
+    {
+      "path": "jobs/app-executive-orders/output/MIRROR_DOCUMENTS.jsonl",
+      "selector": {
+        "sha256": "0f4b67462b1e2feeacdcc6af3a9a7252f5b48ad7977784b8415534fff30491c9",
+        "instrument_id": "EO:6946A"
+      },
+      "finding": "Number/date/subject and text_sha256 match. Row text_chars 1928 differs from held 1929 by terminal newline; no operative mismatch."
+    },
+    {
+      "path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6946A-0f4b67462b.txt",
+      "char_start": 0,
+      "char_end": 2202,
+      "native_source_id": "TERM:EO:6946A:8ae5b834eb8e7861@4caeebcfd56c26d4",
+      "qualification": "Full alternate text read; unselected, confirmations unchanged."
+    },
+    {
+      "path": "jobs/photius-gpo-volumes/output/texts/EO_6946A.txt",
+      "char_start": 0,
+      "char_end": 3827,
+      "native_source_id": "TERM:EO:6946A:88e30157f3101c74@ffb896d909afaff5",
+      "qualification": "Full text layer including unrelated preceding map read; raw PDF unavailable per dispatch, no official page/image confirmation."
+    }
+  ],
+  "raw_text_comparison": "HTML tags removed and entities decoded; full content agrees ignoring whitespace. A first normalization check inserted a space before the comma after italic Roosevelt; inspected difference is markup only, not a material term. No source bytes repaired.",
+  "prior_context": "Native view: no prior research located, actor contexts/provisions or chain events; no Valla claim/review queue. These absences do not prove legal cessation.",
+  "reasoning": "Preamble 0:910 recites the application, hearing and an already rendered Board report. Operative text 912:1749 adopts/approves the report, recommendations and findings, approves the Agreement, and permits continuing Board exceptions/exemptions with or without conditions. Adoption and approval occur through the instrument itself and do not require later physical performance. Their prospective consequences and the independent recurring discretion are not proved to end at signing. The incorporated Agreement, Code and Act are not reproduced; no applicable ending/current predicate or savings closure is established. Retain blocked; no complete whole-case claim.",
+  "scope_analysis": [
+    {
+      "scope_id": "EO:6946A#adoption",
+      "source_id": "ORIGINAL:EO:6946A",
+      "char_start": 912,
+      "char_end": 1300,
+      "reason": "Adopts/approves rendered report, recommendations and findings; adoption by the order does not prove cessation of legal consequences.",
+      "state_at_cutoff": null,
+      "end_date": null
+    },
+    {
+      "scope_id": "EO:6946A#agreement-approval",
+      "source_id": "ORIGINAL:EO:6946A",
+      "char_start": 1300,
+      "char_end": 1364,
+      "reason": "Agreement approved by the instrument; duration, prospective operation and accrued effects require its exact incorporated terms.",
+      "state_at_cutoff": null,
+      "end_date": null
+    },
+    {
+      "scope_id": "EO:6946A#board-discretion",
+      "source_id": "ORIGINAL:EO:6946A",
+      "char_start": 1364,
+      "char_end": 1749,
+      "reason": "Independent continuing Board discretion for exceptions/exemptions with or without conditions; no first ending, exhaustion or current predicate established.",
+      "state_at_cutoff": null,
+      "end_date": null
+    }
+  ],
+  "search_assessment": {
+    "carried_ids": [
+      "current-law:usc",
+      "current-law:ecfr",
+      "later-events:ofr_catalog"
+    ],
+    "accepted_as_sufficient": false,
+    "reason": "Zero number hits are bounded leads. USC release omits enactments after October 9; OFR catalog starts 1937 while EO dates 1935. Agreement/entity/authority history and accrued effects remain material. No new network searches or repeated absent-source probes."
+  },
+  "remaining_obligations": [
+    "Read the exact approved Agreement for Painting, Paperhanging and Decorating Division employers/employees in Passaic and Bergen Counties, including duration, renewal, termination, enforcement, accrued rights and savings. It is incorporated but not reproduced in the EO.",
+    "Read the applicable Construction Industry Code approved January 31, 1934 and Title I of the National Industrial Recovery Act, including Agreement approval and Board exception/exemption authority and applicable duration/savings.",
+    "Obtain/read any exact later instrument or court holding relied upon; establish its operative scope, effective date, first cessation of this prospective Board discretion, and savings. No later ending source is supplied by this dossier; no constitutional-law endpoint/date is inferred.",
+    "Resolve subject/entity-based historical coverage for the Agreement and Board authority, including the pre-1937 gap. Number-only searches do not establish first ending or current force at October 14, 2026.",
+    "Retrieve/check the official printing/original and replace/re-check quotations. The GPO text layer was read as an unheld-raw lead, without inspecting PDF pages/images."
+  ],
+  "working_representation": {
+    "grade": "mirror_transcription",
+    "acceptable_as_original": false,
+    "identity_confirmed": true,
+    "complete_text_confirmed": true,
+    "pages_confirmed": true,
+    "scope": "Primary APP text only, protocol APP record check; HTML has no printed page.",
+    "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved."
+  },
+  "artifacts": [
+    "decisions.csv",
+    "clauses.csv",
+    "RESULT.json"
+  ],
+  "limitations": "No actual incorporated Agreement, Code, Act, court holding or ending instrument supplied/read. Missing evidence is not exhausted. No apply/complete/publication, Git, network, delegation, source/status/grade/ownership/code changes."
+}
