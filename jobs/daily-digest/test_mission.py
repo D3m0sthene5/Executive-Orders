@@ -153,7 +153,10 @@ class MissionTests(unittest.TestCase):
         import importlib.util
         spec=importlib.util.spec_from_file_location('result_freshness',REPO/'.github/scripts/result_freshness.py')
         freshness=importlib.util.module_from_spec(spec);spec.loader.exec_module(freshness)
-        declared=json.loads((REPO/mission.CHECKER/'RUNNER_INPUTS.json').read_text())['scope']
+        # road-tests checks out jobs/ without jobs/*/output/, so read the committed manifest from Git when absent.
+        manifest=REPO/mission.CHECKER/'RUNNER_INPUTS.json'
+        text=manifest.read_text() if manifest.exists() else mission.git(REPO,'show','HEAD:'+mission.CHECKER+'RUNNER_INPUTS.json')
+        declared=json.loads(text)['scope']
         paths=[l.split('\t',1)[1] for l in mission.git(REPO,'ls-tree','-r','HEAD','--','research/readiness','jobs/claim-checker').splitlines()]
         entries={p:'x' for p in paths+['research/readiness/claims','jobs/claim-checker/output/x.csv']}
         self.assertEqual({p for p in entries if mission.in_scope(p,declared)},set(freshness.select(entries,declared)))
