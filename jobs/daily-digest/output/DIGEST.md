@@ -10,7 +10,7 @@ New York date: 2026-11-10. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42885309594-1:18cd83e00acfaa721799925ff8696e21c9bd18ede581c8b44f0f6844a0a4dc0c` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42893197070-1:2517793d6d37d667e2de1b402b888dc1eb4b1b5d279f2f4cd986a200b9d429f0` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -28,6 +28,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 Comparison snapshot: 2026-11-09; intervening runs may be absent.
 - cassiodorus: pages_kept_total: 294 → 296
 - claim-checker: claim_lines_found: 1828 → 1897; claims_all_checks_passed: 1660 → 1735; claims_checked: 1828 → 1897; claims_gate_passed: 1738 → 1807
+- claim-drafts: decided_orders_with_draft: 4301 → 4307; drafts_whose_only_remaining_gaps_are_judgment_fields: 1151 → 1157; of_which_decided: 1151 → 1157; undecided_orders_with_draft: 10652 → 10646
 - cotton-capture-custody: not_web_sources: 1175 → 1240; wanted_hashes: 1932 → 1997
 - eumenes-nmb-reports: manifest_records: unavailable → 119; orders_covered: unavailable → 126; published: unavailable → 119
 - family-rules: saved_texts_scanned: 82852 → 83308
@@ -66,4 +67,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42885309594)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42893197070)

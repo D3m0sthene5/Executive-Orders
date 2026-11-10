@@ -4415,29 +4415,29 @@
           "order_exists:not_in_universe": 123,
           "quote_verbatim:exact": 66448,
           "quote_verbatim:too_short_to_verify": 4829,
-          "source_held:custody_record_only": 27190,
+          "source_held:custody_record_only": 20621,
           "source_held:gpo_published_hash_match": 12621,
           "source_held:held_bytes_in_release_or_repo": 828,
-          "source_held:held_bytes_verified": 37509,
+          "source_held:held_bytes_verified": 44078,
           "source_identity:recorded_for_this_order": 78148,
-          "working_text_policy:invalid_working_text": 112790
+          "working_text_policy:invalid_working_text": 112524
         },
         "drafts_by_mechanical_result": {
-          "fail": 5399,
-          "pass": 8523,
-          "pass_with_unverified": 1031
+          "fail": 5385,
+          "pass": 8539,
+          "pass_with_unverified": 1029
         },
-        "note": "jobs/claim-checker imported; 112033 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 111818 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
-      "decided_orders_with_draft": 4301,
+      "decided_orders_with_draft": 4307,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
-      "drafts_whose_only_remaining_gaps_are_judgment_fields": 1151,
-      "elapsed_seconds": 739.5,
+      "drafts_whose_only_remaining_gaps_are_judgment_fields": 1157,
+      "elapsed_seconds": 802.1,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 8086,
-        "medium": 5843,
-        "small": 1024
+        "medium": 5837,
+        "small": 1030
       },
       "filled": {
         "clauses_total": 71277,
@@ -4486,6 +4486,7 @@
         "fragments_read:csc-annual-reports": 798,
         "fragments_read:current-law": 3477,
         "fragments_read:duodecim-tableiv": 4536,
+        "fragments_read:eumenes-nmb-reports": 0,
         "fragments_read:family-rule-sources": 0,
         "fragments_read:family-rule-tail": 0,
         "fragments_read:family-rules": 748,
@@ -4520,7 +4521,7 @@
         "fragments_read:source-ladder": 0,
         "fragments_read:status-history": 7651,
         "fragments_read:theophilus-sources": 0,
-        "fragments_read:tischendorf-originals": 721,
+        "fragments_read:tischendorf-originals": 698,
         "fragments_read:wikisource-texts": 1639,
         "fragments_read:youngstown-courts": 1170,
         "fragments_unusable": 11749,
@@ -4534,6 +4535,7 @@
         "sources_read:csc-annual-reports": 0,
         "sources_read:current-law": 110,
         "sources_read:duodecim-tableiv": 16,
+        "sources_read:eumenes-nmb-reports": 119,
         "sources_read:family-rule-sources": 2,
         "sources_read:family-rule-tail": 1,
         "sources_read:family-rules": 0,
@@ -4543,7 +4545,7 @@
         "sources_read:indian-reservations-1912": 0,
         "sources_read:isthmian-canal-1911": 0,
         "sources_read:later-events": 17528,
-        "sources_read:lewis-originals": 487,
+        "sources_read:lewis-originals": 19,
         "sources_read:mabillon-held-printings": 2037,
         "sources_read:namier": 0,
         "sources_read:norton": 0,
@@ -4563,9 +4565,9 @@
         "sources_read:richardson-volumes": 0,
         "sources_read:selden-fr-acting": 1361,
         "sources_read:selden-fr-citers": 4820,
-        "sources_read:selden-statutes": 1931,
+        "sources_read:selden-statutes": 1916,
         "sources_read:shepard-citations": 24,
-        "sources_read:source-ladder": 870,
+        "sources_read:source-ladder": 920,
         "sources_read:status-history": 0,
         "sources_read:theophilus-sources": 1438,
         "sources_read:tischendorf-originals": 0,
@@ -4614,6 +4616,10 @@
         {
           "job": "duodecim-tableiv",
           "path": "jobs/duodecim-tableiv/output"
+        },
+        {
+          "job": "eumenes-nmb-reports",
+          "path": "jobs/eumenes-nmb-reports/output"
         },
         {
           "job": "family-rule-sources",
@@ -4817,8 +4823,8 @@
         {
           "complete": true,
           "entry": {
-            "checked_on": "2026-11-09",
-            "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 85 census orders have no held text and were not searched; 299 of 2242 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+            "checked_on": "2026-11-10",
+            "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 85 census orders have no held text and were not searched; 300 of 2243 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
             "repository": "held order texts in this repository (30725 text files for 14913 of 14998 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
             "searched_by": "jobs/namier (machine search)"
           },
@@ -4827,9 +4833,9 @@
         }
       ],
       "network_requests": 0,
-      "of_which_decided": 1151,
+      "of_which_decided": 1157,
       "only_judgment_left_by_status": {
-        "no": 942,
+        "no": 948,
         "none": 0,
         "yes": 209
       },
@@ -4867,8 +4873,8 @@
         "clause_*_current_predicate x9": 4,
         "clause_*_first_end x4": 1,
         "clause_*_original_text_or_source": 5164,
-        "clause_*_state": 7550,
-        "clause_*_state x10": 163,
+        "clause_*_state": 7549,
+        "clause_*_state x10": 162,
         "clause_*_state x100": 1,
         "clause_*_state x105": 1,
         "clause_*_state x11": 129,
@@ -4902,8 +4908,8 @@
         "clause_*_state x18": 70,
         "clause_*_state x183": 1,
         "clause_*_state x189": 1,
-        "clause_*_state x19": 77,
-        "clause_*_state x2": 1626,
+        "clause_*_state x19": 76,
+        "clause_*_state x2": 1625,
         "clause_*_state x20": 53,
         "clause_*_state x209": 1,
         "clause_*_state x21": 35,
@@ -4961,7 +4967,7 @@
         "clause_*_state x67": 1,
         "clause_*_state x68": 3,
         "clause_*_state x69": 1,
-        "clause_*_state x7": 257,
+        "clause_*_state x7": 256,
         "clause_*_state x70": 1,
         "clause_*_state x71": 1,
         "clause_*_state x72": 1,
@@ -4978,7 +4984,7 @@
         "clause_*_state x85": 2,
         "clause_*_state x87": 1,
         "clause_*_state x88": 1,
-        "clause_*_state x9": 168,
+        "clause_*_state x9": 167,
         "clause_*_state x90": 1,
         "clause_*_state x91": 3,
         "clause_*_state x94": 1,
@@ -4988,7 +4994,7 @@
         "original_representation_provenance": 7796,
         "savings_residuals_evidence": 7744,
         "whole_order_end_evidence": 2883,
-        "whole_order_status_mismatch": 10652,
+        "whole_order_status_mismatch": 10646,
         "yes_without_continuing_clause": 44
       },
       "orders_by_remaining_gate_error": {
@@ -4999,8 +5005,8 @@
         "research_rationale": 14953,
         "savings_residuals_evidence": 14953,
         "unresolved_material_gaps": 14953,
-        "whole_order_end_evidence": 3896,
-        "whole_order_status_mismatch": 10652,
+        "whole_order_end_evidence": 3902,
+        "whole_order_status_mismatch": 10646,
         "yes_without_continuing_clause": 405
       },
       "orders_with_any_conflict": 929,
@@ -5016,18 +5022,18 @@
       ],
       "readiness_by_step": {
         "clause_inventory": {
-          "confirm": 1326,
-          "research": 13627
+          "confirm": 1332,
+          "research": 13621
         },
         "counterevidence": {
-          "confirm": 2141,
-          "research": 12275,
-          "resolve_conflicts": 537
+          "confirm": 2146,
+          "research": 12269,
+          "resolve_conflicts": 538
         },
         "ending_or_current_basis": {
           "agent_judgment": 66,
-          "confirm": 1109,
-          "research": 13778
+          "confirm": 1115,
+          "research": 13772
         },
         "opus_media": {
           "confirm": 82,
@@ -5066,7 +5072,7 @@
         "WHOLE_END_DATE_MISSING_OR_DISPUTED": 114,
         "YES_ORDER_HAS_WHOLE_END_CANDIDATE": 9
       },
-      "undecided_orders_with_draft": 10652,
+      "undecided_orders_with_draft": 10646,
       "yes_orders_with_partial_end_candidate": 96
     },
     "claim-kit": {
@@ -8200,10 +8206,10 @@
       "readiness_rows_missing_from_register": [],
       "ready_for_human_review": 1248,
       "register_generated_utc": "2026-11-10T11:08:13Z",
-      "tracker_commit": "a595501ceb58e3c0679349ff5808147f142082f7",
-      "tracker_finished_utc": "2026-11-10T20:12:23Z",
+      "tracker_commit": "97d287c63f4cb759f6faf78de30a2ce822ac2167",
+      "tracker_finished_utc": "2026-11-10T21:08:43Z",
       "tracker_result": "succeeded",
-      "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42885309594",
+      "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42893197070",
       "unnumbered_series_estimate_95": [
         4101,
         5095
@@ -12862,7 +12868,7 @@
         "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 63
       },
       "formal_revocation_after_earlier_cessation": 33,
-      "generation_id": "42885309594-1:18cd83e00acfaa721799925ff8696e21c9bd18ede581c8b44f0f6844a0a4dc0c",
+      "generation_id": "42893197070-1:2517793d6d37d667e2de1b402b888dc1eb4b1b5d279f2f4cd986a200b9d429f0",
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
         "LOC_items_with_original_page_images": 3,
         "LOC_transcribed_items": 0,
