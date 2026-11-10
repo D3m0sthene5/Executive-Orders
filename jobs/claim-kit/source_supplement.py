@@ -25,15 +25,12 @@ import working_text as W
 SCHEMA = 'eo-source-excerpt-declarations/v1'
 EVIDENCE_SUPPLEMENT_SCHEMA = 'eo-status-overlay-evidence-supplement/v1'
 SOURCE_KEYS = {'url', 'sha256', 'text_path', 'text_sha256', 'page_or_item', 'local_path'}
-# Official government printings of later instruments, as their producers declare them in SOURCES.jsonl: the
-# govinfo Federal Register issue scan, the govinfo Statutes at Large granule, an official FR page of a later
-# instrument. A transcription, a federalregister.gov text rendering, a code or table listing is not on this list.
-OFFICIAL_GRADE_PREFIXES = ('government_printed_federal_register_issue', 'government_printed_statutes_at_large')
-OFFICIAL_ROLES = {'official_federal_register_page_of_a_later_instrument'}
 
 
 def official_declarations(repo):
-    """{(text_path, raw sha256): declaration} for held official printings declared in jobs/*/output/SOURCES.jsonl."""
+    """{(text_path, raw sha256): [declarations]} for held official printings declared in jobs/*/output/SOURCES.jsonl.
+    The official grades and roles are the compiler's (build.OFFICIAL_GRADE_PREFIXES, build.OFFICIAL_ROLES)."""
+    from build import official_acting_grade
     repo = Path(repo).resolve()
     found = {}
     for path in sorted(repo.glob('jobs/*/output/SOURCES.jsonl')):
@@ -46,8 +43,7 @@ def official_declarations(repo):
                     continue
                 if not isinstance(row, dict) or not isinstance(row.get('text_path'), str):
                     continue
-                grade = str(row.get('grade') or '')
-                if not (grade.startswith(OFFICIAL_GRADE_PREFIXES) or row.get('role') in OFFICIAL_ROLES):
+                if not official_acting_grade(row.get('grade'), row.get('role')):
                     continue
                 raw = row['text_path']
                 try:
@@ -56,20 +52,22 @@ def official_declarations(repo):
                 except (OSError, ValueError):
                     continue
                 if isinstance(row.get('sha256'), str):
-                    found.setdefault((rel, row['sha256'].lower()), {
+                    found.setdefault((rel, row['sha256'].lower()), []).append({
                         'declaration_path': decl, 'grade': row.get('grade'), 'role': row.get('role'),
-                        'text_sha256': row.get('text_sha256'), 'instrument_ids': row.get('instrument_ids')})
+                        'text_sha256': row.get('text_sha256'),
+                        'requires_page_check': bool(row.get('needs_page_check') or row.get('requires_page_check'))})
     return found
 
 
-def basis_mark(repo, source, excerpt, iid, official=None, index=None):
-    """Whether a held excerpt may be cited as a status basis for iid (``basis_eligible``), and why.
+def basis_mark(repo, source, text, start, end, iid, official=None, index=None):
+    """Whether the held excerpt text[start:end] may be cited as a status basis for iid (``basis_eligible``).
 
-    Eligible only when the excerpt prints iid's number (owner ruling D-20261021-unnamed-instruments) and its
-    held text is an official printing: an official original representation in the fragment index, or a
+    Eligible only when the lexical check, run on the whole held text, finds iid's number inside the excerpt, and
+    the held text is an official printing: an official original representation in the fragment index, or a
     producer-declared official government printing of the same text file and raw bytes. derive() has already
-    verified both the raw-byte and the text hash. A mark is a gate input, not a finding that the text ends
-    the order; producers and independent reviewers judge that."""
+    verified both the raw-byte and the text hash. ``prints_number_lexical`` is True or None, never a finding that
+    the text does not name the order. A mark is a gate input, not a finding that the text ends the order;
+    producers and independent reviewers judge that."""
     from build import target_mentions
     official = official_declarations(repo) if official is None else official
     index = index or fragment_cache.shared(repo)
@@ -78,14 +76,17 @@ def basis_mark(repo, source, excerpt, iid, official=None, index=None):
     if index.exact_official(dict(source, text_path=rel)):
         declaration = {'declaration_path': 'fragment-index:official_original_representation', 'grade': None}
     else:
-        match = official.get((rel, str(source.get('sha256') or '').lower()))
-        if match and match.get('text_sha256') in (None, source.get('text_sha256')):
-            declaration = {'declaration_path': match['declaration_path'], 'grade': match['grade']}
-            if match.get('role'):
-                declaration['role'] = match['role']
-    names = bool(target_mentions(iid, excerpt))
-    return {'names_target': names, 'official_declaration': declaration,
+        for match in official.get((rel, str(source.get('sha256') or '').lower()), []):
+            if match.get('text_sha256') in (None, source.get('text_sha256')):
+                declaration = {k: match[k] for k in ('declaration_path', 'grade', 'requires_page_check')}
+                if match.get('role'):
+                    declaration['role'] = match['role']
+                break
+    names = any(start <= s and e <= end for s, e in (target_mentions(iid, text) or []))
+    return {'prints_number_lexical': True if names else None, 'official_declaration': declaration,
             'basis_eligible': bool(names and declaration)}
+
+
 ENTRY_KEYS = {'alias', 'instrument_ids', 'actor_id', 'reason', 'source', 'char_start', 'char_end'}
 
 
@@ -184,7 +185,7 @@ def derive(repo, dossiers, declaration, provenance, undecided=None):
                 raise ValueError('source evidence ID collision')
             if official is None:
                 official = official_declarations(repo)
-            mark = basis_mark(repo, source, text[start:end], iid, official, index)
+            mark = basis_mark(repo, source, text, start, end, iid, official, index)
             if held is not None:
                 # A registered working text is never an official printing.
                 mark.update(official_declaration=None, basis_eligible=False)

@@ -38,14 +38,18 @@ codifications remain derivative leads. Missing local files, unsafe paths and has
 mismatches are reported. No network request or LFS download occurs inside the kit.
 
 Acting texts of instruments outside the census (public land orders, statutes, agency
-Federal Register documents) are declared with `role: acting_instrument_text` and
-`instrument_ids: [acting instrument, target orders...]`, or by a later-event fragment
-that carries `text_path`. They keep that identity (`PLO:`, `STAT:`, `PL:`, `FRDOC:` ...),
-are never an order's own text, and enter a target's dossier as `ACTOR_TEXT:` only when
-they print the target's number (owner ruling D-20261021-unnamed-instruments); no `ACT:`
-record is made for them. An actor text over 50,000 bytes is cited by exact windows,
-`ACTOR_TEXT:<actor>@<char_start>`, around each printed mention and located provision;
-every `ACTOR_TEXT` record carries `names_target`.
+Federal Register documents) are declared in SOURCES.jsonl with `role: acting_instrument_text`
+and `instrument_ids: [acting instrument, target orders...]`. That binds the text to the
+instrument (`PLO:`, `STAT:`, `PL:`, `FRDOC:` ...); it is never an order's own text. Only a
+later-event fragment makes a pair. The text enters that target's dossier as `ACTOR_TEXT:`
+when a lexical check finds the target's number (`prints_number_lexical: true`); otherwise
+the dossier says the number was not found and points at the held text, which may cite the
+order by date or in garbled OCR. No `ACT:` record is made for them. Such a record is a NO
+basis only when `basis_eligible` (an official printing, the govinfo FR issue scan or
+Statutes at Large granule or an official FR page, in which the number was found); a
+federalregister.gov rendering stays a lead. An actor text over 50,000 bytes is cited by
+exact windows, `ACTOR_TEXT:<actor>@<char_start>`, around located provisions first and then
+printed mentions, at most 20,000 bytes per actor. Census actor texts are citable as before.
 
 Parser cache keys include code, source/text hashes, identity and date metadata.
 The bounded runner cache can resume unchanged evidence; it is not a source custody

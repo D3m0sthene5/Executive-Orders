@@ -58,13 +58,19 @@ def add_acting_sources(repo):
                             "text_path": "texts/FR_1_1.txt", "source_sha256": raw,
                             "source_url": "https://www.govinfo.gov/content/pkg/FR-1991/a.pdf#page=1",
                             "page_or_item": "1 FR 1"}]})
-    # A statute that the target cites but that never prints the target's number.
+    # A statute that a later-event fragment links to EO 4 but whose text never prints the number.
     held("STATUTE-1-Pg1.txt", STAT_TEXT, "STAT:1-1", ["EO:4"], STAT_GRADE, "https://www.govinfo.gov/content/pkg/STATUTE-1/pdf/STATUTE-1-Pg1.pdf")
+    frags.append({"instrument_id": "EO:4", "kind": "later_event_candidates", "produced_by": "selden-statutes",
+                  "data": [{"acting_id": "STAT:1-1", "target_id": "EO:4", "mechanism": "cross_reference"}]})
+    # A custody row that lists EO 2 with no event fragment: the text is bound, but no pair is made.
+    held("FR_2_2.txt", PLO_TEXT.replace("No. 1 ", "No. 2 "), "PLO:11", ["EO:2"], FR_GRADE, "https://www.govinfo.gov/content/pkg/FR-1992/b.pdf")
     # A large agency document (over the 50,000-byte limit) that cites EO 1 twice, far apart.
     big = ("FR Doc. 2000-1\nNotice of rescission.\n" + FILLER * 400 +
            "The rules issued under Executive Order 1 are rescinded effective March 23, 2001.\n" + FILLER * 400 +
            "See also Executive Orders 6 and 1 of 1990.\n" + FILLER * 20)
     held("fr-2000-1.txt", big, "FRDOC:2000-1", ["EO:1"], CITER_GRADE, "https://www.federalregister.gov/d/2000-1.txt")
+    frags.append({"instrument_id": "EO:1", "kind": "later_event_candidates", "produced_by": "selden-fr-citers",
+                  "data": [{"acting_id": "FRDOC:2000-1", "target_id": "EO:1", "mechanism": "cross_reference"}]})
     write_jsonl(out / "SOURCES.jsonl", rows)
     write_jsonl(out / "FRAGMENTS.jsonl", frags)
     return out
@@ -84,8 +90,8 @@ def grow_actor_text(repo, iid="EO:5"):
 
 
 class TargetMentionTests(unittest.TestCase):
-    def names(self, iid, text):
-        return bool(B.target_mentions(iid, text))
+    def names(self, iid, text, signed=None):
+        return bool(B.target_mentions(iid, text, signed))
 
     def test_executive_forms_name_the_order(self):
         self.assertTrue(self.names("EO:8790", "lands withdrawn by Executive Order No. 8790 of June 13, 1941"))
@@ -96,14 +102,56 @@ class TargetMentionTests(unittest.TestCase):
         self.assertTrue(self.names("EO:10092", "The provisions of Executive Order 10092 as made applicable"))
         self.assertTrue(self.names("EO:1", "issued under Executive Order 1 are rescinded"))
         self.assertTrue(self.names("EO:7933A", "Executive Order No. 7933A is revoked"))
+        self.assertTrue(self.names("EO:5068", "issued Exec. Order No. 5068, prescribing how veterans"))
 
-    def test_other_instruments_and_numbers_do_not(self):
-        self.assertFalse(self.names("EO:2748", "Public Land Order 2748 revokes the withdrawal"))
-        self.assertFalse(self.names("EO:341", "Executive Order No. 341A is revoked"))
-        self.assertFalse(self.names("EO:13354", "Executive Order 113354 is revoked"))
-        self.assertFalse(self.names("EO:13354", "69 FR 13354, published"))
-        self.assertFalse(self.names("EO:6", "under Executive Order 16 of 1990"))
-        self.assertFalse(self.names("PLO:9", "Executive Order No. 9"))
+    def test_ocr_and_long_lists(self):
+        self.assertTrue(self.names("EO:7734", "revoked by Execu-\ntive Order No. 7734 of"))
+        self.assertTrue(self.names("EO:8979", "under Exec- utive Order No. 8979"))
+        self.assertTrue(self.names("EO:10292", "Executive Or-\nder No. 10292 is"))
+        self.assertTrue(self.names("EO:7794", "EXECUTIVE ORDER NO. 7 7 9 4\n"))
+        self.assertTrue(self.names("EO:9019", "Executive Orders No. 8578 of Octo-\nber 29, 1940, as amended; No. 9019 of January 12,1942"))
+        self.assertTrue(self.names("EO:6910", "Executive Order (E.O.) 6910 of November 26, 1934"))
+        self.assertTrue(self.names("EO:7933A", "Executive Order 7933-A is revoked"))
+        self.assertTrue(self.names("EO:7933A", "Executive Order No. 7933a is revoked"))
+        self.assertIsNone(B.target_mentions("EO:106½", "Executive Order 106½"))
+        self.assertIsNone(B.target_mentions("PLO:9", "Executive Order No. 9"))
+
+    def test_reviewer_false_matches_are_refused(self):
+        rows = [("EO:17", "Missouri Executive Order 17-03 (January 10, 2017)"),
+                ("EO:17", "Initiative (Executive Order 17- 03), Missouri proposes"),
+                ("EO:1991", "reorganized by Executive Order 1991-31 (Michigan)"),
+                ("EO:12", "Executive Order 12, 731, requires"),
+                ("EO:7", "Executive Order No. 9066, 7 F.R. 1407"),
+                ("EO:58", "Executive Order 12866, 58 FR 51735"),
+                ("EO:43", "Executive Order No. 6910 of November 26, 1934, as amended, 43 CFR 297"),
+                ("EO:1934", "Executive Order 6910, 1934"),
+                ("EO:75", "issued by Order 75-6-12 of the Board"),
+                ("EO:2748", "by Order No. 2748 of the Secretary of the Interior"),
+                ("EO:2509", "Secretary's Order 2508 and Order 2509"),
+                ("EO:10", "required by Executive Order 10 (E.O.-10), issued by the Iowa Governor in January 2023"),
+                ("EO:145", "incorporating Massachusetts Executive Order 145, Consultation with Cities"),
+                ("EO:145", "the Commonwealth's Executive Order No. 145 (discussed earlier)"),
+                ("EO:1266", "is not a ``significantly regulatory action'' under Executive Order 1266; (2) is not"),
+                ("EO:3211", "K. Executive Order 3211\n E.O. 13211, Actions Concerning Regulations"),
+                ("EO:1317", "Tribal implications as specified in Executive Order 1317(65 FR 67249, November 9, 2000)"),
+                ("EO:13", "The President, through Executive Order 13, 222 of August 17, 2001"),
+                ("EO:2004", "you signed Executive Order 2004-005 on January 31, 2004"),
+                ("EO:200", "established by Executive Order 200-76 on July 11, 1975"),
+                ("EO:6", "under Executive Order 16 of 1990"),
+                ("EO:13354", "Executive Order 113354 is revoked"),
+                ("EO:13354", "69 FR 13354, published"),
+                ("EO:341", "Executive Order No. 341A is revoked"),
+                ("EO:7933", "Executive Order 7933-A is revoked"),
+                ("EO:2748", "Public Land Order 2748 revokes the withdrawal")]
+        for iid, text in rows:
+            with self.subTest(iid=iid, text=text):
+                self.assertFalse(self.names(iid, text))
+
+    def test_printed_date_must_match_the_signing_year(self):
+        self.assertFalse(self.names("EO:1318", "Executive Order 1318 of March 31, 1999, and", "1911-03-02"))
+        self.assertFalse(self.names("EO:1322", "through Executive Order 1322 of August 17, 2001 (3 CFR", "1911-04-01"))
+        self.assertTrue(self.names("EO:5158", "established by Executive Order 5158 on July 16, 1929, as a", "1929-07-16"))
+        self.assertTrue(self.names("EO:101", "issued Executive Order 101 on July 27, 1897. This", "1897-07-27"))
 
     def test_windows_are_exact_merged_and_bounded(self):
         text = "\n".join("line %d" % n for n in range(3000))
@@ -112,7 +160,26 @@ class TargetMentionTests(unittest.TestCase):
         self.assertEqual(len(windows), 2)
         for start, end in windows:
             self.assertTrue(0 <= start < end <= len(text))
+            self.assertLessEqual(end - start, B.WINDOW_MAX_CHARS)
         self.assertTrue(windows[0][0] <= 100 and windows[0][1] >= 125)
+        # A text citing the order every 2,000 characters is never included whole: bytes are capped per actor,
+        # and the window around a located provision late in the text is kept first.
+        chunk = "Executive Order 1 applies here.\n" + ("x" * 60 + "\n") * 32
+        text = chunk * 60
+        act_at = len(chunk) * 55 + 3
+        act = [{"actor_id": "FRDOC:x", "actor_source": {"text_sha256": "h"}, "char_start": act_at, "char_end": act_at + 10}]
+        ar = {"text": text, "source": {"text_sha256": "h"}, "text_path": "t.txt", "role": B.ACTING_ROLE,
+              "grade": CITER_GRADE}
+        evidence, missing = {}, []
+        entry = B._actor_context("EO:1", "FRDOC:x", ar, act, evidence, missing)
+        self.assertLessEqual(entry["window_bytes"], B.WINDOW_BYTES)
+        self.assertLessEqual(sum(len(r["text"].encode()) for r in evidence.values()), B.WINDOW_BYTES)
+        self.assertTrue(all(len(r["text"]) <= B.WINDOW_MAX_CHARS for r in evidence.values()))
+        first = evidence[entry["evidence_ids"][0]]
+        self.assertTrue(first["char_start"] <= act_at < first["char_end"])
+        self.assertGreater(entry["windows_omitted"], 0)
+        self.assertTrue(missing)
+        self.assertFalse(any(r["basis_eligible"] for r in evidence.values()))  # a federalregister.gov rendering
 
 
 class ActingCorpusTests(unittest.TestCase):
@@ -125,7 +192,7 @@ class ActingCorpusTests(unittest.TestCase):
     def test_corpus_keeps_honest_non_census_identities(self):
         corpus = I.load_corpus(self.repo)
         actors = {r["instrument_id"] for r in corpus["acting_texts"]}
-        self.assertEqual(actors, {"PLO:9", "STAT:1-1", "FRDOC:2000-1"})
+        self.assertEqual(actors, {"PLO:9", "PLO:11", "STAT:1-1", "FRDOC:2000-1"})
         self.assertFalse(any(r["instrument_id"] in actors for r in corpus["texts"]))
         for row in corpus["acting_texts"]:
             self.assertEqual(row["role"], I.ACTING_ROLE)
@@ -134,13 +201,19 @@ class ActingCorpusTests(unittest.TestCase):
         self.assertTrue(I.NON_EO_ACTOR.fullmatch("FRDOC:2000-1"))
         pairs = {(p["target_id"], p["actor_id"]) for p in corpus["pairs"]}
         self.assertTrue({("EO:1", "PLO:9"), ("EO:4", "STAT:1-1"), ("EO:1", "FRDOC:2000-1")} <= pairs)
+        # A custody row is not a pair: PLO:11 lists EO 2 but no event fragment links them.
+        self.assertNotIn(("EO:2", "PLO:11"), pairs)
+        plo = next(r for r in corpus["acting_texts"] if r["instrument_id"] == "PLO:9")
+        self.assertEqual(plo["producer_role"], "acting_instrument_text")
+        self.assertFalse(plo["requires_page_check"])
 
     def test_named_acting_texts_become_exact_actor_text_records(self):
         self.run_build()
         d = self.dossier("EO:1")
         plo = d["evidence"]["ACTOR_TEXT:PLO:9"]
         self.assertEqual(plo["text"], PLO_TEXT)
-        self.assertTrue(plo["names_target"])
+        self.assertTrue(plo["prints_number_lexical"])
+        self.assertTrue(plo["basis_eligible"])
         self.assertEqual(plo["actor_kind"], B.NON_CENSUS_ACTOR)
         self.assertEqual(plo["source"]["text_sha256"], hashlib.sha256(PLO_TEXT.encode()).hexdigest())
         self.assertNotIn("Acting identity absent from census: PLO:9", d["missing"])
@@ -153,7 +226,8 @@ class ActingCorpusTests(unittest.TestCase):
             self.assertTrue(eid.startswith("ACTOR_TEXT:FRDOC:2000-1@"))
             record = d["evidence"][eid]
             self.assertEqual(held[record["char_start"]:record["char_end"]], record["text"])
-            self.assertTrue(record["names_target"])
+            self.assertTrue(record["prints_number_lexical"])
+            self.assertFalse(record["basis_eligible"])  # federalregister.gov text: a lead, not a basis
             self.assertLess(len(record["text"]), 5000)
         self.assertNotIn("ACTOR_TEXT:FRDOC:2000-1", d["evidence"])
         O._source_pins(self.repo, d, {})
@@ -164,13 +238,17 @@ class ActingCorpusTests(unittest.TestCase):
         self.assertEqual(clauses[0]["clauses"], [])
         self.assertEqual(clauses[0]["role"], I.ACTING_ROLE)
 
-    def test_unnamed_statute_is_not_routed_and_not_a_known_actor(self):
+    def test_number_not_found_is_a_lead_note_not_a_finding(self):
         self.run_build()
         lead = next(r for r in read_jsonl(self.out / "STATUS_LEADS.jsonl") if r["instrument_id"] == "EO:4")
-        self.assertIn(B.UNNAMED_ACTING + ": STAT:1-1", lead["missing"])
+        note = ("Acting text of STAT:1-1: " + B.NOT_FOUND_LEXICAL +
+                "jobs/selden-fr-acting/output/texts/STATUTE-1-Pg1.txt")
+        self.assertIn(note, lead["missing"])
+        self.assertFalse(any("D-20261021" in m for m in lead["missing"]))
         overlay = next(r for r in read_jsonl(self.out / "OVERLAY_INPUTS.jsonl") if r["instrument_id"] == "EO:4")
         self.assertNotIn("STAT:1-1", overlay["known_actor_ids"])
-        self.assertFalse(any(r["instrument_id"] == "STAT:1-1" for r in read_jsonl(self.out / "CLAUSES.jsonl")))
+        self.assertFalse(any(r["instrument_id"] in ("STAT:1-1", "PLO:11") for r in read_jsonl(self.out / "CLAUSES.jsonl")))
+        self.assertNotIn("ACTOR_TEXT:PLO:11", self.dossier("EO:2")["evidence"])
 
     def test_census_overflow_actor_text_gets_window_ids_and_keeps_pointer(self):
         grow_actor_text(self.repo)
@@ -182,7 +260,8 @@ class ActingCorpusTests(unittest.TestCase):
         for eid in context["evidence_ids"]:
             self.assertTrue(eid.startswith("ACTOR_TEXT:EO:5@"))
             self.assertIn("Executive Order 1", d["evidence"][eid]["text"])
-            self.assertTrue(d["evidence"][eid]["names_target"])
+            self.assertTrue(d["evidence"][eid]["prints_number_lexical"])
+            self.assertNotIn("basis_eligible", d["evidence"][eid])
         self.assertNotIn("ACTOR_TEXT:EO:5", d["evidence"])
         self.assertIn("Large actor context must be read at actor-texts/EO_5.json before deciding scope/savings.", d["missing"])
         O._source_pins(self.repo, d, {})
@@ -192,8 +271,9 @@ class ActingCorpusTests(unittest.TestCase):
         d = self.dossier("EO:1")
         record = d["evidence"]["ACTOR_TEXT:EO:5"]
         self.assertEqual(record["char_start"], 0)
-        self.assertTrue(record["names_target"])
+        self.assertTrue(record["prints_number_lexical"])
         self.assertNotIn("actor_kind", record)
+        self.assertNotIn("basis_eligible", record)
 
 
 class ActingOverlayTests(unittest.TestCase):
@@ -255,6 +335,27 @@ class ActingOverlayTests(unittest.TestCase):
         self.review = self.accepted_review(self.decision)
         self.assertEqual(O.propose(self.repo, self.decision, self.review, self.evidence)["recommended_provisional_status"], "no")
 
+    def test_non_census_lead_is_refused_as_a_basis(self):
+        window = next(k for k in self.evidence["base_dossier"]["evidence"] if k.startswith("ACTOR_TEXT:FRDOC:2000-1@"))
+        self.decision["basis_evidence_ids"] = [window]
+        self.ending = window
+        self.review = self.accepted_review(self.decision)
+        with self.assertRaisesRegex(ValueError, "non_census_actor_text_is_a_lead_not_a_basis:" + window):
+            O.propose(self.repo, self.decision, self.review, self.evidence)
+
+    def test_census_actor_text_behaves_as_on_main(self):
+        # A census actor text with no lexical mark (an OCR-missed or date-cited provision) remains citable.
+        window = next(k for k in self.evidence["base_dossier"]["evidence"] if k.startswith("ACTOR_TEXT:EO:5@"))
+        self.evidence["base_dossier"]["evidence"][window].pop("prints_number_lexical", None)
+        base = self.evidence["base_dossier"]
+        base["fingerprint"] = A.canonical_sha(base)
+        O._seal(self.evidence)
+        self.decision["evidence_sha256"] = self.evidence["fingerprint"]
+        self.decision["basis_evidence_ids"] = [window]
+        self.ending = window
+        self.review = self.accepted_review(self.decision)
+        self.assertEqual(O.propose(self.repo, self.decision, self.review, self.evidence)["recommended_provisional_status"], "no")
+
     def test_changed_acting_text_is_stale(self):
         path = self.repo / "jobs/selden-fr-acting/output/texts/FR_1_1.txt"
         path.write_bytes(path.read_bytes() + b"tampered\n")
@@ -311,40 +412,32 @@ class SupplementEligibilityTests(unittest.TestCase):
             if r["text_path"] == "texts/FR_1_1.txt":
                 r["sha256"] = source["sha256"]
         write_jsonl(self.repo / "jobs/selden-fr-acting/output/SOURCES.jsonl", rows)
-        mark = S.basis_mark(self.repo, source, text, "EO:1")
+        mark = S.basis_mark(self.repo, source, text, 0, len(text), "EO:1")
         self.assertTrue(mark["basis_eligible"])
-        self.assertTrue(mark["names_target"])
+        self.assertTrue(mark["prints_number_lexical"])
         self.assertEqual(mark["official_declaration"]["declaration_path"], "jobs/selden-fr-acting/output/SOURCES.jsonl")
-        self.assertFalse(S.basis_mark(self.repo, source, text, "EO:4")["basis_eligible"])
+        unnamed = S.basis_mark(self.repo, source, text, 0, len(text), "EO:4")
+        self.assertFalse(unnamed["basis_eligible"])
+        self.assertIsNone(unnamed["prints_number_lexical"])
+        # Naming is read on the whole text: an excerpt cut to start at "Order 4" inside "Public Land Order 4"
+        # does not name EO 4, and an excerpt that holds no mention is not eligible.
+        start = text.index("Order 4 is not")
+        self.assertFalse(S.basis_mark(self.repo, source, text, start, len(text), "EO:4")["basis_eligible"])
+        first = text.index("No. 1 in part")
+        self.assertFalse(S.basis_mark(self.repo, source, text, 0, first - 4, "EO:1")["basis_eligible"])
+        self.assertTrue(S.basis_mark(self.repo, source, text, first - 20, first + 8, "EO:1")["basis_eligible"])
 
     def test_unofficial_or_unmatched_excerpt_is_not_eligible(self):
         S, source, text, entry = self.entry("fr-2000-1.txt")
-        self.assertFalse(S.basis_mark(self.repo, source, text, "EO:1")["basis_eligible"])  # raw hash differs
+        self.assertFalse(S.basis_mark(self.repo, source, text, 0, len(text), "EO:1")["basis_eligible"])  # raw hash differs
         rows = read_jsonl(self.repo / "jobs/selden-fr-acting/output/SOURCES.jsonl")
         for r in rows:
             if r["text_path"] == "texts/fr-2000-1.txt":
                 r["sha256"] = source["sha256"]
         write_jsonl(self.repo / "jobs/selden-fr-acting/output/SOURCES.jsonl", rows)
-        mark = S.basis_mark(self.repo, source, text, "EO:1")
-        self.assertTrue(mark["names_target"])
+        mark = S.basis_mark(self.repo, source, text, 0, len(text), "EO:1")
+        self.assertTrue(mark["prints_number_lexical"])
         self.assertFalse(mark["basis_eligible"])  # federalregister.gov text is not the official edition
-
-
-
-
-class UnnamedInstrumentGateTests(unittest.TestCase):
-    """D-20261021-unnamed-instruments: a held acting text that does not name the order is never a NO basis."""
-
-    def test_actor_text_that_does_not_name_the_order_is_refused(self):
-        base = TO.OverlayTests("test_held_actor_context_can_support_manual_review_of_ocr_missed_provision")
-        base.setUp()
-        self.addCleanup(base.doCleanups)
-        base.evidence["base_dossier"]["evidence"]["ACTOR_TEXT:EO:5"]["names_target"] = False
-        base.reseal_changed_fixture_evidence()
-        base.decision["basis_evidence_ids"] = ["ACTOR_TEXT:EO:5"]
-        base.review = base.accepted_review(base.decision)
-        base.review["checked_evidence_ids"].append("ACTOR_TEXT:EO:5")
-        base.assert_rejects("unnamed_instrument_cannot_end_order:ACTOR_TEXT:EO:5")
 
 
 if __name__ == "__main__":
