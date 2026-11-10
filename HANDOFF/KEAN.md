@@ -49,13 +49,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 293; `search` finds the rest)
+## Newest results (6 of 296; `search` finds the rest)
 
+- 2026-11-10 F-20261110-mommsen1-wave-turn1 **partly worked**: Continue S-1-1 production through source gates, four bounded producers, two blind arms, strict control adjudi… Lesson: Load required consumer inputs and supply native review schema before dispatch. Preserve historical scientific records; clerical provenance conversion belongs to explicit deterministic attestations, n…
 - 2026-11-10 F-20261110-mommsen1-wave-production **partly worked**: Photius official-print recheck then claim_ready.no.fr batches under the owner wave Lesson: Preserve source reviews but reprepare any packet after Valla context changes. When first-end and residual evidence is absent, block and hand off rather than infer a cessation. Treat unknown cost as u…
 - 2026-11-10 F-20261110-mommsen1-turn1-takeover **stopped at gate**: Reconstruct desktop MOMMSEN-I production state and continue only authorized work under current SAVIGNY direct… Lesson: Do not restart quality-stopped pools or infer merge authority from predecessor summaries. Preserve unfinished reservations and exact receipts; treat global usage/context as unattributed. In isolated…
 - 2026-11-10 F-20261110-mommsen1-road-test-sparse-fixture **stopped at gate**: Run road tests on PR254 head 77a4d2478e Lesson: Read the tracked runner manifest through git show in this test; leave the workflow and production runner untouched.
+- 2026-11-10 F-20261110-mommsen1-r02-source-gate **stopped at gate**: Prepare the next20 disjoint S-1-1 members while R01 was under independent review Lesson: Source-blocked preparation is not a completed legal investigation. Retain native checkpoints and ask SAVIGNY for lawful fresh source binding and a ranked Bentham action mapping before another product…
 - 2026-11-10 F-20261110-mommsen1-r01-custody **partly worked**: Prepare the S-1-1 twenty-order reassigned decided/not-ready batch; route around source and stale-confirmation… Lesson: A tracker text-step label is not raw custody. Use the existing factual acquisition register for already-held public bytes, retain the failed gate and prepare fresh before dispatch; never alter grades…
-- 2026-11-10 F-20261110-mommsen1-claim-filename-gate **stopped at gate**: Complete MOMMSEN-I NO01 with agent mommsen-1 and the owner-required canonical claim filename mommsen1-2026-11… Lesson: Allow the compact Mommsen lane alias in the own-agent filename gate; keep all other ownership checks and publication requirements unchanged
-- 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 
-Register: 76 owner decisions, 45 answered questions, 293 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 76 owner decisions, 45 answered questions, 296 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

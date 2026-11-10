@@ -1,0 +1,68 @@
+{
+  "schema": "eo-claim-kit-decision/v1",
+  "instrument_id": "EO:6301",
+  "dossier_sha256": "06d303797323842212d642456599ea37fdd82b049ab01944677aceb931a8b3aa",
+  "agent": "mommsen-1",
+  "original_confirmed": false,
+  "original_pages_confirmed": true,
+  "inventory_confirmed": true,
+  "inventory_overrides": [
+    {
+      "scope_id": "EO:6301#operative",
+      "source_id": "ORIGINAL:EO:6301",
+      "char_start": 506,
+      "char_end": 994,
+      "reason": "Image-checked complete operative paragraph. Exclude scan wrapper, library marks, title, statutory quotation, recitals and signature block; recitals constrain this single combined command. No additional operative command in the complete printing."
+    }
+  ],
+  "clauses": [
+    {
+      "scope_id": "EO:6301#operative",
+      "state": null,
+      "end_id": null,
+      "effective_date": null,
+      "effective_date_confirmed": false,
+      "current_basis_id": null,
+      "current_legal_basis": "",
+      "checked_through": null,
+      "later_event_ids": [],
+      "later_events": [],
+      "reason": "Need EO 6166 section 22 and its court-transfer provisions, EO 6243, and held primary evidence of the first operative replacement/cessation of the postponed transfer date and any retained transfer consequences. November 4, 1933 is a substituted effective date, not proof of transfer performance or cessation."
+    }
+  ],
+  "savings": {
+    "state": null,
+    "source_id": "ORIGINAL:EO:6301",
+    "reason": "No express savings in the single paragraph; the transfer date amendment and its consequences cannot be closed without the parent instruments."
+  },
+  "search_ids": [
+    "current-law:usc",
+    "current-law:ecfr",
+    "later-events:ofr_catalog"
+  ],
+  "conflict_resolutions": {},
+  "research_rationale": "Examined complete public GPO printing images and all cited held text witnesses. Source grade and acceptable_as_original=false remain unchanged; original_confirmed=false does not authenticate a signed original. The held representation is complete despite disclosed OCR artifacts. Machine searches are bounded citation/name searches: no silence-based cessation; OFR starts 1937, 85 census texts were unsearched in Namier, and USC laws after October 9 through October 14, 2026 are not reflected. No prior version or applicable automatic Valla approval was located in the frozen context. Scan 153 contains the complete order; 151 is outside the target extent and 152 only a deposit stamp. EO 6301 modifies a parent transfer date. That amendment cannot be treated as an exhausted deadline, and absence of later actors in the machine chain establishes no ending. Blocked under D-20261028.",
+  "source_notes": [],
+  "unresolved_material_gaps": [
+    "Need EO 6166 section 22 and its court-transfer provisions, EO 6243, and held primary evidence of the first operative replacement/cessation of the postponed transfer date and any retained transfer consequences. November 4, 1933 is a substituted effective date, not proof of transfer performance or cessation."
+  ],
+  "approved": false,
+  "working_text": {
+    "ruling": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+    "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+    "replacement_required": true,
+    "quotation_recheck_required": true,
+    "confirmations": [
+      {
+        "instrument_id": "EO:6301",
+        "grade": "machine_read_government_printed_copy",
+        "sha256": "dcb182404f2bb1fb2ba355000d00782d6f75a99098cfbdb2d2d4c66df174b996",
+        "text_sha256": "f5bc4c7cecfd3d16847f9ff91d5c412d8576e1510675067ecc1d033191c83062",
+        "text_path": "jobs/hathi-gpo-orders/output/texts/EO_6301.txt",
+        "identity_confirmed": true,
+        "complete_text_confirmed": true,
+        "pages_confirmed": true
+      }
+    ]
+  }
+}
