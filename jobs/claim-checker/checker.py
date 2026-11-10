@@ -56,7 +56,7 @@ SOURCE_STATUS_RESULT = {
 }
 # Warnings that also stop a step from counting as checker-passed (they need a person to look).
 BLOCKING_WARN_STATUSES = {"too_short_to_verify", "recorded_for_other_order_but_text_names_this_order",
-                          "text_does_not_name_this_order"}
+                          "text_does_not_name_this_order", "out_of_universe_number_in_verbatim_quote"}
 MIN_QUOTE_WORDS, MIN_QUOTE_CHARS = 6, 30  # a shorter quotation proves nothing about the clause
 IDENTITY_FIELD = re.compile(r"^(original_representation|operative_clauses\[\d+\]\.original_source)$")
 REF_IN_LIST = re.compile(r"(^|\.)(sources|source_refs)\[\d+\]$")
@@ -934,17 +934,59 @@ def check_orders(claim, ctx, rows):
         for written, cands in cited_orders(val):
             if cands[0] in seen:
                 continue
-            seen.add(cands[0])
             step = step_for_path(path)
             hit = next((c for c in cands if c in ctx.universe), None)
+            # The quote exemption is decided per occurrence: an unknown number that passed only inside a
+            # verbatim quote is not marked seen, so a later use outside a quote (an actor) still fails.
+            if hit or not _verbatim_quote_passed(rows, path):
+                seen.add(cands[0])
             if hit == cands[0] and written.startswith("EO:"):
                 _row(rows, step, "order_exists", path, "pass", "in_universe", hit)
             elif hit:
                 _row(rows, step, "order_exists", path, "pass" if not written.startswith("EO:") else "warn",
                      "in_universe", f"'{written}' = {hit}")
+            elif _verbatim_quote_passed(rows, path):
+                # An unknown number inside a verbatim quote of a held source is the source's own printing, not
+                # a citation by the claim (EO 9446: the FR text layer reads "Order No. 84541 of June 26, 1940",
+                # EO 8454 with footnote marker 1 fused to it). It never passes silently and is never accepted
+                # as an order: it resolves only when dropping the last digit gives a universe order that the
+                # quoted context ("of <date>") supports; otherwise it is a blocking warning for a person.
+                _row(rows, step, "order_exists", path, "warn", *_unknown_number_in_quote(val, written, cands, ctx))
             else:
                 _row(rows, step, "order_exists", path, "fail", "not_in_universe",
                      f"'{written}' is not in the 14,972-order universe")
+
+
+def _verbatim_quote_passed(rows, path):
+    """True when this exact field is a quotation that was found in a held source (exact or normalised)."""
+    return any(r["check"] == "quote_verbatim" and r["field"] == path and r["result"] == "pass"
+               and r["status"] in ("exact", "normalised") for r in rows)
+
+
+def _unknown_number_in_quote(text, written, cands, ctx):
+    """(status, detail) for an out-of-universe order number printed inside a verbatim quote of a held source."""
+    digits = re.search(r"\d[\d,]*", written)
+    digits = re.sub(r",", "", digits.group(0)) if digits else ""
+    shorter = f"EO:{int(digits[:-1])}" if len(digits) >= 4 and digits[:-1].isdigit() else None
+    if shorter and shorter in ctx.universe:
+        sig = ctx.signing.get(shorter) or {}
+        follows = re.search(re.escape(digits) + r"(?:[\s,]*of)?\s+([A-Z][a-z]+)\.?\s+(\d{1,2}),?\s+(\d{4})", text)
+        printed = None
+        if follows:
+            try:
+                printed = dt.datetime.strptime(" ".join(follows.groups()).replace(",", ""), "%B %d %Y").date().isoformat()
+            except ValueError:
+                printed = None
+        if printed and (printed in sig.get("full", ()) or (not sig.get("full") and sig.get("year") == int(printed[:4]))):
+            return ("footnote_marker_fused_number",
+                    f"'{written}' inside a verbatim quote of a held source is {shorter} with a footnote marker "
+                    f"({digits[-1]}) fused to the number; the printed date {printed} matches")
+        return ("out_of_universe_number_in_verbatim_quote",
+                f"'{written}' is not in the universe; it sits inside a verbatim quote of a held source. Dropping the "
+                f"last digit gives {shorter}, but no printed date confirms it. Not accepted as an order.")
+    return ("out_of_universe_number_in_verbatim_quote",
+            f"'{written}' is not in the universe; it sits inside a verbatim quote of a held source, so the source "
+            "prints it. Not accepted as an order; a person must read the source.")
 
 
 def check_gate(claim, ctx, rows):

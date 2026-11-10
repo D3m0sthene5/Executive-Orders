@@ -25,7 +25,9 @@ from datetime import date, datetime, timezone
 from pathlib import Path
 
 # 2: page locator v2 (wrong-issue rejection, windowed markers, reference filter).
-STATE_VERSION = 2
+# 3: page locator v3 (continued orders, 80-page filing search, bundled-PDF start, OCR-tolerant closing tag);
+#    older states are not loaded, so every order is located again with the new rules.
+STATE_VERSION = 3
 PRODUCED_BY = "fr-originals"
 PATHS = {
     "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
@@ -200,7 +202,7 @@ def reuse_stage21(repo, item, custody_row, fetcher):
         "sha256": sha, "bytes": path.stat().st_size, "content_type": "application/pdf",
         "retrieved_utc": normalise_utc(raw_time),
         "route": "reuse/stage21_original_sources",
-        "page_or_item": f"{rec.get('citation') or item['instrument_id']}, PDF pages {a}-{b}",
+        "page_or_item": f"{fr_pages.start_citation(loc, rec.get('citation')) or item['instrument_id']}, PDF pages {a}-{b}",
         "text_path": f"texts/{text_name(item['instrument_id'])}", "cache_path": None,
         "repo_path": custody_row["source_repository_path"],
         "notes": (f"Bytes already preserved in the repo at {custody_row['source_repository_path']} (Stage 21 custody; "
