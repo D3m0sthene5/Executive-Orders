@@ -434,34 +434,59 @@ class SweepRangeTest(unittest.TestCase):
             self.assertEqual(picker.sweep_changes(), ['window'])
 
     def run_history(self, runs, jobs, run_id='900', **env):
+        pages = runs if isinstance(runs, dict) else {1: runs}
         def fake(path):
             if '/actions/workflows/run-jobs.yml/runs?' in path:
                 self.assertIn('event=schedule', path)
                 self.assertIn('branch=main', path)
-                return {'workflow_runs': runs}
+                return {'workflow_runs': pages.get(int(re.search(r'[?&]page=(\d+)', path).group(1)), [])}
             rid = re.search(r'/actions/runs/(\d+)/jobs', path).group(1)
             return {'jobs': jobs[rid]}
         values = {'GITHUB_REPOSITORY': 'o/r', 'GITHUB_TOKEN': 't', 'GITHUB_RUN_ID': run_id, **env}
         with patch.dict(os.environ, values), patch.object(picker, 'github', side_effect=fake):
             return picker.previous_sweep_commit()
 
-    def test_previous_sweep_is_the_newest_earlier_run_whose_plan_succeeded(self):
-        sha = lambda c: c * 40
-        runs = [
-            {'id': 900, 'created_at': '2026-11-09T12:47:00Z', 'status': 'in_progress', 'conclusion': None, 'head_sha': sha('9')},
-            {'id': 950, 'created_at': '2026-11-09T13:00:00Z', 'status': 'completed', 'conclusion': 'success', 'head_sha': sha('e')},
-            {'id': 890, 'created_at': '2026-11-09T09:47:00Z', 'status': 'in_progress', 'conclusion': None, 'head_sha': sha('8')},
-            {'id': 880, 'created_at': '2026-11-09T06:47:00Z', 'status': 'completed', 'conclusion': 'cancelled', 'head_sha': sha('7')},
-            {'id': 870, 'created_at': '2026-11-09T03:47:00Z', 'status': 'completed', 'conclusion': 'failure', 'head_sha': sha('6')},
-            {'id': 860, 'created_at': '2026-11-09T00:47:00Z', 'status': 'completed', 'conclusion': 'failure', 'head_sha': sha('5')},
-            {'id': 850, 'created_at': '2026-11-08T21:47:00Z', 'status': 'completed', 'conclusion': 'success', 'head_sha': sha('4')},
-        ]
-        jobs = {'870': [{'name': 'plan', 'conclusion': 'failure'}],
-                '860': [{'name': 'plan', 'conclusion': 'success'}, {'name': 'publish', 'conclusion': 'failure'}],
-                '850': [{'name': 'plan', 'conclusion': 'success'}]}
-        # Skips itself, a later run, an unfinished one, a cancelled one and one whose plan failed;
-        # a run refused at publish still planned, and its refused jobs were re-queued.
-        self.assertEqual(self.run_history(runs, jobs), sha('5'))
+    @staticmethod
+    def gh_run(rid, when, status, conclusion):
+        return {'id': rid, 'created_at': f'2026-11-09T{when}:00Z', 'status': status,
+                'conclusion': conclusion, 'head_sha': str(rid)[-1] * 40}
+
+    def test_previous_sweep_is_the_newest_earlier_run_that_swept(self):
+        P = lambda c: {'name': 'plan', 'conclusion': c}
+        U = lambda c: {'name': 'publish', 'conclusion': c}
+        E = lambda c: {'name': 'execute (station 1: a b)', 'conclusion': c}
+        runs = [self.gh_run(900, '12:47', 'in_progress', None), self.gh_run(951, '13:00', 'completed', 'success'),
+                self.gh_run(892, '11:47', 'in_progress', None), self.gh_run(883, '10:47', 'completed', 'cancelled'),
+                self.gh_run(874, '09:47', 'completed', 'failure'), self.gh_run(865, '08:47', 'completed', 'failure'),
+                self.gh_run(856, '07:47', 'completed', 'failure'), self.gh_run(847, '06:47', 'completed', 'success')]
+        jobs = {'892': [P(None)],                               # still planning: not yet in charge
+                '874': [P('failure')],                          # never picked its jobs
+                '865': [P('success'), E('cancelled'), U('cancelled')],  # cancelled after planning
+                '856': [P('success'), E('success'), U('failure')],      # refused at publish: re-queued
+                '847': [P('success'), U('success')]}
+        # Skips itself, a later run, one still planning, a cancelled run, a failed plan and a run whose
+        # publish never ran; a run refused at publish planned and re-queued its jobs.
+        self.assertEqual(self.run_history(runs, jobs), '6' * 40)
+
+    def test_a_planned_run_still_going_counts_so_its_range_is_not_raced(self):
+        runs = [self.gh_run(900, '12:47', 'in_progress', None), self.gh_run(891, '09:47', 'in_progress', None),
+                self.gh_run(882, '06:47', 'completed', 'success')]
+        jobs = {'891': [{'name': 'plan', 'conclusion': 'success'}, {'name': 'execute (station 1: a)', 'conclusion': None}],
+                '882': [{'name': 'plan', 'conclusion': 'success'}, {'name': 'publish', 'conclusion': 'success'}]}
+        self.assertEqual(self.run_history(runs, jobs), '1' * 40)
+
+    def test_a_sweep_with_nothing_to_run_counts(self):
+        runs = [self.gh_run(900, '12:47', 'in_progress', None), self.gh_run(891, '09:47', 'completed', 'success')]
+        jobs = {'891': [{'name': 'plan', 'conclusion': 'success'}, {'name': 'execute', 'conclusion': 'skipped'},
+                        {'name': 'publish', 'conclusion': 'skipped'}]}
+        self.assertEqual(self.run_history(runs, jobs), '1' * 40)
+
+    def test_history_is_read_past_the_first_page(self):
+        first = [self.gh_run(900, '12:47', 'in_progress', None)] + [
+            self.gh_run(1000 + i, '06:00', 'completed', 'cancelled') for i in range(99)]
+        second = [self.gh_run(2003, '05:00', 'completed', 'success')]
+        jobs = {'2003': [{'name': 'plan', 'conclusion': 'success'}, {'name': 'publish', 'conclusion': 'success'}]}
+        self.assertEqual(self.run_history({1: first, 2: second}, jobs), '3' * 40)
 
     def test_run_history_failures_never_guess(self):
         self.assertIsNone(self.run_history([], {}))

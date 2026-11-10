@@ -128,6 +128,8 @@ jobs:
 
       # A certified runtime-only push still runs claim-kit tests. Do not run the
       # compiler or restore old output generations merely to execute unit tests.
+      # No push starts this workflow since 2026-11-09, so this is reached only by a
+      # replayed push event; the road tests run the claim-kit tests on every pull request.
       - name: Materialize claim-kit test fixtures
         if: steps.pick.outputs.runtime_tests == 'claim-kit'
         run: git sparse-checkout add '/research/stage19/code/**' '/research/plans/claim_kit_contract/**'

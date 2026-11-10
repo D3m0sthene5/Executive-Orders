@@ -28,11 +28,24 @@ RETIRED = {"stage20-causal-cues.yml", "stage20-opus-recovery.yml", "stage20-shar
            "stage20-shared-statutes.yml", "stage21-batchforge.yml", "stage21-ofr-bulk.yml",
            "stage21-original-pdfs.yml", "stage21-reuse-sources.yml", "tribonian-finalization.yml",
            "r1-materializer-proof.yml"}
-AUTOMATIC = {"push", "pull_request", "pull_request_target", "workflow_run"}
 PUSH_KEYS = {"branches", "paths", "paths-ignore"}
+# Events GitHub raises for tags (a pergamon-* release creates a tag); no workflow may listen to them.
+TAG_EVENTS = {"create", "delete", "release", "registry_package"}
 ON_KEY = re.compile(r"""^(?:on|"on"|'on'|true|"true"|'true')[ \t]*:(.*)$""")
 KEY = re.compile(r"^([A-Za-z_][A-Za-z0-9_-]*)[ \t]*:(.*)$")
-STARTS_RUN_JOBS = re.compile(r"run-jobs\.yml|['\"]Run jobs['\"]")
+TOP_KEY = re.compile(r"""^(?:[A-Za-z_][A-Za-z0-9_-]*|"[^"]+"|'[^']+')[ \t]*:(?:[ \t]|$)""")
+# Line breaks a YAML parser honours but str.split("\n") does not, and other invisible structure.
+ODD_BREAKS = re.compile("[  \u0085\x0b\x0c﻿]")
+BRANCH_PATTERN = re.compile(r"[*?+\[\]!]")
+STARTS_RUN_JOBS = re.compile(r"run-jobs|['\"]?Run jobs['\"]?")
+# Any way a workflow step can start another workflow run.
+DISPATCH = re.compile(r"gh\s+workflow\s+run|/dispatches|createWorkflowDispatch|repository_dispatch"
+                      r"|uses:\s*\.?/?\.github/workflows/|arsenale\.py\s+requeue")
+# Picking jobs belongs to run-jobs.yml only; executing and committing a fixed set of jobs also to the
+# progress refresh and to manual-only workflows.
+PICKER = re.compile(r"pick_jobs\.py|arsenale\.py\s+(?:plan|publish)\b")
+EXECUTOR = re.compile(r"run_jobs\.(?:py|sh)|commit_results\.sh")
+EXECUTOR_ALLOWED = {RUN_JOBS, "refresh-readiness.yml"}
 
 
 class PolicyError(ValueError):
@@ -54,7 +67,14 @@ def triggers(text):
     text = text.replace("\r\n", "\n").replace("\r", "\n")
     if "\t" in text:
         raise PolicyError("tabs in the workflow; YAML indentation must be spaces")
+    if ODD_BREAKS.search(text):
+        raise PolicyError("unusual line-break or invisible characters (U+2028, U+2029, U+0085, form feed, BOM)")
     lines = text.split("\n")
+    for line in lines:
+        # Every column-0 line is a comment or a top-level key. A quoted or folded value that runs on at
+        # column 0 could end the `on:` block early for this reader but not for GitHub's.
+        if line.strip() and not line.startswith(" ") and not line.startswith("#") and not TOP_KEY.match(line):
+            raise PolicyError(f"column-0 line is not a top-level key: {line[:60]!r}")
     starts = [i for i, line in enumerate(lines) if ON_KEY.match(line)]
     if len(starts) != 1:
         raise PolicyError(f"expected exactly one top-level `on:` key, found {len(starts)}")
@@ -119,12 +139,14 @@ def check(name, text):
     except PolicyError as exc:
         return [f"{name}: {exc}"]
     problems = []
+    if set(events) & TAG_EVENTS:
+        problems.append(f"{name}: no workflow may start on tag events {sorted(set(events) & TAG_EVENTS)}")
     if "push" in events:
         push = events["push"]
         branches = push.get("branches") or []
         if not branches:
             problems.append(f"{name}: a push trigger must name branches (a tag push matches every path)")
-        if any(re.search(r"[*?\[\]!]", b) for b in branches):
+        if any(BRANCH_PATTERN.search(b) for b in branches):
             problems.append(f"{name}: push branches must be literal names, not patterns: {branches}")
         extra = set(push) - PUSH_KEYS
         if extra:
@@ -136,11 +158,26 @@ def check(name, text):
         problems.append(f"{name}: the scheduled sweep is missing")
     if name in RETIRED and set(events) != {"workflow_dispatch"}:
         problems.append(f"{name}: retired workflows start only by hand (workflow_dispatch), not {sorted(events)}")
-    if name != RUN_JOBS and set(events) & AUTOMATIC:
-        code = "\n".join(line for line in text.replace("\r\n", "\n").split("\n")
-                         if not line.lstrip().startswith("#") and not re.match(r"\s*workflows:", line))
+    lines = text.replace("\r\n", "\n").split("\n")
+    start = next(i for i, line in enumerate(lines) if ON_KEY.match(line))
+    end = next((i for i in range(start + 1, len(lines))
+                if lines[i].strip() and not lines[i].startswith(" ") and not lines[i].startswith("#")), len(lines))
+    # Everything outside the `on:` block, without comments (a workflow_run may name 'Run jobs' to listen).
+    code = "\n".join(line for i, line in enumerate(lines)
+                     if not (start <= i < end) and not line.lstrip().startswith("#"))
+    title = re.search(r"""(?m)^name:[ \t]*['"]?([^'"\n#]*?)['"]?[ \t]*(?:#.*)?$""", text.replace("\r\n", "\n"))
+    if name != RUN_JOBS and ((title and title.group(1).strip().lower() == "run jobs") or PICKER.search(code)):
+        problems.append(f"{name}: only {RUN_JOBS} may be Run jobs or pick jobs")
+    if name not in EXECUTOR_ALLOWED and set(events) != {"workflow_dispatch"} and EXECUTOR.search(code):
+        problems.append(f"{name}: only {sorted(EXECUTOR_ALLOWED)} or a manual-only workflow may execute jobs")
+    if name != RUN_JOBS and set(events) != {"workflow_dispatch"}:
+        allowed = f"python .github/scripts/arsenale.py requeue --workflow {name}"
+        for line in code.split("\n"):
+            if DISPATCH.search(line) and re.sub(r"^(?:-\s+)?(?:run:\s*)?", "", line.strip()) != allowed:
+                problems.append(f"{name}: a workflow that starts on {sorted(events)} may start no other "
+                                f"workflow run (only `{allowed}`): {line.strip()[:80]!r}")
         if STARTS_RUN_JOBS.search(code):
-            problems.append(f"{name}: a workflow started by {sorted(set(events) & AUTOMATIC)} may not start Run jobs")
+            problems.append(f"{name}: a workflow that starts on {sorted(events)} may not start Run jobs")
     return problems
 
 

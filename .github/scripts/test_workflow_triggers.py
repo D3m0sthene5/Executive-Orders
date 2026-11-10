@@ -174,6 +174,69 @@ class TriggerPolicyTest(unittest.TestCase):
                 bad = text.replace('  workflow_dispatch:\n', '  push:\n    branches: [main]\n  workflow_dispatch:\n')
                 self.assertRefused('run-jobs.yml', bad, 'Run jobs may start only')
 
+    def test_independent_review_attacks_are_refused(self):
+        # Each case is one an independent adversarial review (2026-11-09) showed the first checker accepted.
+        hidden = {'line separator': '\u2028', 'paragraph separator': '\u2029', 'next line': '\u0085'}
+        for label, brk in hidden.items():
+            with self.subTest(label):
+                text = run_jobs('  schedule:\n    - cron: "1 * * * *"\n  workflow_dispatch: # x'
+                                + brk + '  push:' + brk + '    branches: [main]\n')
+                self.assertRefused('run-jobs.yml', text, 'unusual line-break')
+        self.assertRefused('run-jobs.yml', run_jobs(
+            '  schedule:\n    - cron: "1 * * * *"\n  workflow_dispatch:\n    inputs:\n      job:\n'
+            '        description: "a\nb"\n  push:\n    branches: [main]\n'), 'column-0')
+        for event in sorted(policy.TAG_EVENTS):
+            with self.subTest(event):
+                self.assertRefused('x.yml', other(f'  {event}:\n'), 'tag events')
+        self.assertRefused('x.yml', other("  push:\n    branches: ['main+']\n"), 'literal')
+        sneaky = {
+            'scheduled dispatch': ('  schedule:\n    - cron: "1 * * * *"\n',
+                                   'jobs:\n  a:\n    steps:\n      - run: gh workflow run run-jobs.yml\n'),
+            'name in a variable': ('  push:\n    branches: [main]\n',
+                                   'env:\n  WF: run-\njobs:\n  a:\n    steps:\n      - run: gh workflow run "${WF}jobs.yml"\n'),
+            'numeric workflow id': ('  pull_request:\n',
+                                    'jobs:\n  a:\n    steps:\n      - run: gh api -X POST repos/o/r/actions/workflows/123/dispatches\n'),
+            'bash line named workflows': ('  pull_request:\n',
+                                          'jobs:\n  a:\n    steps:\n      - run: |\n          workflows: ; gh workflow run x\n'),
+            'requeue another workflow': ('  push:\n    branches: [main]\n',
+                                         'jobs:\n  a:\n    steps:\n      - run: python .github/scripts/arsenale.py requeue --workflow run-jobs.yml\n'),
+            'reusable call of any workflow': ('  pull_request:\n', 'jobs:\n  a:\n    uses: ./.github/workflows/other.yml\n'),
+        }
+        for label, (trigger, body) in sneaky.items():
+            with self.subTest(label):
+                self.assertRefused('sneaky.yml', other(trigger, body), 'may start no other workflow run')
+        self.assertAccepted('refresh-readiness.yml', other(
+            '  push:\n    branches: [main]\n',
+            'jobs:\n  a:\n    steps:\n      - run: python .github/scripts/arsenale.py requeue --workflow refresh-readiness.yml\n'
+            '      - run: bash .github/scripts/run_jobs.sh\n'))
+        copies = {'run-jobs.yaml': 'name: Run jobs\non:\n  workflow_dispatch:\njobs: {}\n',
+                  'run-jobs-2.yml': other('  workflow_dispatch:\n', 'jobs:\n  a:\n    steps:\n      - run: python .github/scripts/pick_jobs.py\n'),
+                  'copy.yml': "name: 'Run jobs'\non:\n  push:\n    branches: [main]\njobs: {}\n"}
+        for filename, text in copies.items():
+            with self.subTest(filename):
+                self.assertRefused(filename, text, f'only {policy.RUN_JOBS}')
+        self.assertRefused('x.yml', other('  push:\n    branches: [main]\n',
+                                          'jobs:\n  a:\n    steps:\n      - run: bash .github/scripts/run_jobs.sh\n'), 'execute jobs')
+        self.assertAccepted('tribonian-finalization.yml', other('  workflow_dispatch:\n',
+                                                                'jobs:\n  a:\n    steps:\n      - run: bash .github/scripts/run_jobs.sh\n'))
+
+    def test_requeue_dispatches_only_its_own_workflow(self):
+        import os
+        import sys
+        from unittest import mock
+        sys.path.insert(0, str(ROOT / '.github/scripts'))
+        try:
+            arsenale_spec = importlib.util.spec_from_file_location('arsenale_under_test', ROOT / '.github/scripts/arsenale.py')
+            arsenale = importlib.util.module_from_spec(arsenale_spec)
+            arsenale_spec.loader.exec_module(arsenale)
+        finally:
+            sys.path.pop(0)
+        args = mock.Mock(workflow='run-jobs.yml')
+        ref = 'D3m0sthene5/Executive-Orders/.github/workflows/refresh-readiness.yml@refs/heads/main'
+        with mock.patch.dict(os.environ, {'GITHUB_WORKFLOW_REF': ref}), \
+                mock.patch.object(arsenale.subprocess, 'run', side_effect=AssertionError('dispatched')):
+            self.assertEqual(arsenale.command_requeue(args), 1)
+
     def test_this_guard_stays_wired_into_ci(self):
         # Dropping the guard from the road tests, or the road tests from workflow changes, fails here.
         roads = (ROOT / '.github/scripts/test_roads.py').read_text(encoding='utf-8')

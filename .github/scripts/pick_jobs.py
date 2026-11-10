@@ -197,31 +197,60 @@ def github(path):
         return json.load(response)
 
 
-def previous_sweep_commit():
-    """Input commit of the newest earlier scheduled run whose plan succeeded, or None if unknown.
+HISTORY_PAGES = 3  # 300 scheduled runs, over a month at eight a day
 
-    A run that GitHub started but whose plan failed (or that was cancelled) never picked its jobs,
-    so its commits stay in the next sweep's range. Its head_sha is the commit that triggered it,
-    at or before the tip its plan read, so a range starting there can overlap, never skip.
+
+def swept(run, jobs):
+    """Whether a scheduled run took charge of the commits up to its head_sha.
+
+    Its plan must have succeeded. A run still going counts once planned: sweeping its range again
+    would race it. A finished run counts only if its publish ran (or it had nothing to run): a run
+    cancelled after planning published nothing, so its commits stay in the next sweep's range.
+    Refused stale jobs are re-queued by Arsenale; a real job failure would fail again.
+    """
+    by_name = {}
+    for job in jobs:
+        by_name.setdefault(job.get("name", "").split(" (", 1)[0], []).append(job.get("conclusion"))
+    if by_name.get("plan") != ["success"]:
+        return False
+    if run.get("status") != "completed":
+        return True
+    if run.get("conclusion") not in ("success", "failure"):
+        return False
+    publish, execute = by_name.get("publish", []), by_name.get("execute", [])
+    if publish and all(c in ("success", "failure") for c in publish):
+        return True
+    return all(c == "skipped" for c in publish + execute)
+
+
+def previous_sweep_commit():
+    """Input commit of the newest earlier scheduled run that swept its range, or None if unknown.
+
+    Its head_sha is the commit that triggered it, at or before the tip its plan read, so a range
+    starting there can overlap the previous sweep, never skip past it.
     """
     repo, run_id = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_RUN_ID") or ""
     branch = os.environ.get("DEFAULT_BRANCH") or "main"
     if not (repo and os.environ.get("GITHUB_TOKEN")):
         return None
     try:
-        runs = github(f"/repos/{repo}/actions/workflows/run-jobs.yml/runs"
-                      f"?event=schedule&branch={branch}&per_page=50")["workflow_runs"]
-        mine = next((r["created_at"] for r in runs if str(r["id"]) == run_id), None)
-        for run in sorted(runs, key=lambda r: r["created_at"], reverse=True):
-            if str(run["id"]) == run_id or (mine and run["created_at"] >= mine):
-                continue
-            if run.get("status") != "completed" or run.get("conclusion") not in ("success", "failure"):
-                continue
-            jobs = github(f"/repos/{repo}/actions/runs/{run['id']}/jobs?filter=latest&per_page=100")["jobs"]
-            if any(j.get("name") == "plan" and j.get("conclusion") == "success" for j in jobs):
-                sha = run.get("head_sha") or ""
-                return sha if SHA.match(sha) else None
-    except (OSError, ValueError, KeyError, TypeError) as exc:
+        mine = None
+        for page in range(1, HISTORY_PAGES + 1):
+            runs = github(f"/repos/{repo}/actions/workflows/run-jobs.yml/runs"
+                          f"?event=schedule&branch={branch}&per_page=100&page={page}")["workflow_runs"]
+            mine = mine or next((r["created_at"] for r in runs if str(r["id"]) == run_id), None)
+            for run in sorted(runs, key=lambda r: r["created_at"], reverse=True):
+                if str(run["id"]) == run_id or (mine and run["created_at"] >= mine):
+                    continue
+                if run.get("status") == "completed" and run.get("conclusion") not in ("success", "failure"):
+                    continue
+                jobs = github(f"/repos/{repo}/actions/runs/{run['id']}/jobs?filter=latest&per_page=100")["jobs"]
+                if swept(run, jobs):
+                    sha = run.get("head_sha") or ""
+                    return sha if SHA.match(sha) else None
+            if len(runs) < 100:
+                break
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
         print(f"::warning::Could not read the previous sweep from GitHub: {exc}")
     return None
 

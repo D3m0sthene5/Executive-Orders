@@ -41,8 +41,20 @@ others.
   a sweep too.
 - Every push trigger names literal branches, so tag pushes start nothing.
 - The Stage 20/21, Tribonian and R1 workflows run only by hand.
-- `.github/scripts/workflow_triggers.py` checks all of this; its adversarial tests run in the road
-  tests, and every one of 14 deliberate breakages of the checker made them fail.
+- No workflow listens to tag events (`create`, `delete`, `release`, `registry_package`); only
+  `run-jobs.yml` may pick jobs or be named Run jobs; an automatically started workflow may start no
+  other workflow run except re-queueing itself, and `arsenale.py requeue` refuses any other target.
+- A sweep counts as covering its range once its plan succeeded and, if it finished, its publish ran;
+  a sweep still running counts, so its range is not swept twice. History is read up to 300 runs.
+- `.github/scripts/workflow_triggers.py` checks all of this and fails closed on trigger syntax it
+  cannot read (inline forms, anchors, tabs, Unicode line separators, column-0 continuations). Its
+  adversarial tests run in the road tests. An independent review found nine ways past the first
+  version; each now has a test. Mutation testing: all 34 deliberate breakages of the checker, the
+  picker's sweep rules and the re-queue rule made the tests fail.
+
+Remaining known limits: a finished sweep whose publish could not push after its retries
+(`push-failed`) still counts, so its range is not retried; a force-push to main or an unreadable run
+history falls back to the 3h20m window, with a warning.
 
 ## Not changed
 

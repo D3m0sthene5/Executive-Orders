@@ -9,8 +9,10 @@
   - The sweep reads every commit after the previous sweep's input commit (Actions run history), not a
     3h20m clock window, so a late sweep or an old-dated commit is no longer missed. The daily run is a sweep.
   - Every push trigger names `branches: [main]`; the Stage 20/21, Tribonian and R1 workflows run only by hand.
-  - `.github/scripts/workflow_triggers.py` enforces this in the road tests; its adversarial tests killed
-    all 14 deliberate breakages of the checker, and Kean flags the old push-to-run wording if it returns.
+  - `.github/scripts/workflow_triggers.py` enforces this in the road tests (fails closed). No workflow
+    listens to tag events; only `run-jobs.yml` picks jobs; `arsenale.py requeue` dispatches only its own
+    workflow. An independent review found nine holes in the first version, all fixed with tests;
+    mutation testing killed all 34 breakages. Kean flags the old push-to-run wording if it returns.
 - **Open for the owner:** main has no branch protection, so a red check does not block a merge or a direct
   push. GitGuardian flags `jobs/_attempts/portfolio-repair-check/42714395090-1/OUTPUT_PINS.json` (a SHA-256
   pin keyed by a file named `hamilton-token-audit.log`): a false positive only the owner can dismiss.
