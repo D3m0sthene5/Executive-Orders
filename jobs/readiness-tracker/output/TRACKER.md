@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42818802851-1:5f223a82b88650f458a9db0e7344be43ae64c79172dd3d7dca402117f6fea9e7` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42862860004-1:fe8d8c78cc7d6ecee87374de3d97171c344c2c308bc9c2040181ef2057245fab` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -108,7 +108,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
 - lachmann working-text confirmations (provisional text step only, never an original): 2,360
 - opus-media-match status: 1,155
-- source-ladder: 870
+- source-ladder: 920
 - claim-checker: 1,593
 - machine later-source search: 6,938
 
