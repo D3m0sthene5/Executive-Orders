@@ -97,7 +97,8 @@ class Cruden(unittest.TestCase):
                   [{"plo_id": "PLO:610", "fr_volume": "15", "fr_page": "1", "eo_refs": "EO:4100@1924-12-01=revocation"}])
         self.out = Path(self.tmp.name) / "out"
         self.env = {"GOVINFO_API_KEY": "test-key", "CRUDEN_SEARCH_INTERVAL": "0", "JOB_WORKERS": "2",
-                    "JOB_PRIOR_OUTPUT_DIR": str(Path(self.tmp.name) / "none"), "CRUDEN_COLLECTIONS": "FR,STATUTE"}
+                    "JOB_PRIOR_OUTPUT_DIR": str(Path(self.tmp.name) / "none"), "CRUDEN_COLLECTIONS": "FR,STATUTE",
+                    "CRUDEN_EXTRA_TARGETS": str(Path(self.tmp.name) / "no-extra.csv")}
         self.orig = (cruden.pdf_pages, cruden.extract_pages)
         cruden.pdf_pages = lambda raw: (PAGES[raw.decode().split()[-1]], "test")
         cruden.extract_pages = lambda raw, a, b: (b"%PDF extract " + raw + f" {a}-{b}".encode(), "test")

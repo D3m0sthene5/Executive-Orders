@@ -10,7 +10,8 @@ reference). `selden-fr-citers` searches the Federal Register's full text only fr
 1936-1993 Federal Register, or the Statutes at Large, by order number. govinfo's search index covers both.
 
 **Route, per target** (`jobs/linnaeus-types/output/CRUDEN_TARGETS.csv`; one-person civil-service waivers are left to
-Ulpian):
+Ulpian; then the committed `EXTRA_TARGETS.csv`, now Nalimov's 962 decided orders below EO 7532 with no held later
+instrument):
 
 1. govinfo search (`api.govinfo.gov/search`, POST; key `API_DATA_GOV_KEY` or `GOVINFO_API_KEY` in the `X-Api-Key`
    header, never in a URL or log): `collection:FR` from the order's date (or 1936-03-14) to 1993-12-31, and

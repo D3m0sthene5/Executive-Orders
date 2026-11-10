@@ -692,8 +692,19 @@ def target_dates(repo):
 
 
 def load_targets(repo, env):
+    """Linnaeus's unsourced undecided orders, then the committed EXTRA_TARGETS.csv in this folder (other lists the
+    owner's sessions ask Cruden to search, e.g. Nalimov's decided orders with no held later instrument). Numbered ids
+    only, each once, in that order."""
     p = Path(env.get("CRUDEN_TARGETS") or (Path(repo) / "jobs/linnaeus-types/output/CRUDEN_TARGETS.csv"))
-    return [r["instrument_id"] for r in read_csv(p)]
+    out = [r["instrument_id"] for r in read_csv(p)]
+    extra = Path(env.get("CRUDEN_EXTRA_TARGETS") or (HERE / "EXTRA_TARGETS.csv"))
+    seen = set(out)
+    for r in read_csv(extra):
+        iid = (r.get("instrument_id") or "").strip()
+        if iid not in seen and re.fullmatch(r"EO:\d+[A-Z]?", iid):
+            seen.add(iid)
+            out.append(iid)
+    return out
 
 
 def control_targets(repo, exclude, n=30, seed=1737):
@@ -1023,6 +1034,8 @@ def write(out, run, fr_out, ctl, targets, control_ids, started, carried, attempt
                                                        if f["data"][0].get("collection") == coll and acting(f)}),
             "queries_truncated_at_cap": sum(1 for r in ok if r.get("complete") is False)}
     fam = {r["instrument_id"]: r["family"] for r in read_csv(run.repo / "jobs/linnaeus-types/output/CRUDEN_TARGETS.csv")}
+    for r in read_csv(HERE / "EXTRA_TARGETS.csv"):
+        fam.setdefault(r.get("instrument_id"), "extra:" + (r.get("list") or ""))
     acting_all = {f["instrument_id"] for f in frs if acting(f)}
     cited_all = {f["instrument_id"] for f in frs}
     queried = {r["target_id"] for r in srch if r.get("status") == "searched"}

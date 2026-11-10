@@ -23,5 +23,5 @@ cache = pathlib.Path(os.environ.get("JOB_CACHE_DIR") or (out.parent / "cruden-ca
 s = cruden.main(repo, out, cache)
 if not s["controls"]["passed"]:
     print("controls did not pass: every fragment was written as cross_reference", flush=True)
-if s["searches_made_this_run"] == 0 and s["fragments_carried_forward"] == 0:
-    sys.exit("nothing searched and nothing carried forward")
+if s["searches_made_this_run"] == 0 and s["fragments_carried_forward"] == 0 and s["units_attempted"] == 0:
+    sys.exit("nothing searched, read or carried forward")
