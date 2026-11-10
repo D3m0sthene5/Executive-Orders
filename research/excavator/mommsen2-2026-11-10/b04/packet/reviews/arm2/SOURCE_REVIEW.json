@@ -1,0 +1,960 @@
+{
+  "schema": "mommsen2-independent-source-review/v1",
+  "reviewer": "mommsen-2-b04-arm2",
+  "model_family": "OpenAI",
+  "independent": true,
+  "separate_context": true,
+  "scope": "whole_case_source_sufficiency",
+  "packet_sha256": "ca9feaad5e3034a8cbb64c5e954133a086cb8676571f1535584839b90942c661",
+  "method": "Loaded exact packet JSON and existing batch.decode only; never load_packet. Read frozen original, actor, own-term and search evidence. Visually examined complete original pages in supplied GPO PDF, complete EO 317A parent, EO 418 parent and Canal actors EO 474, EO 506, EO 1250 and EO 1372. Date, subject and signature checked against allowed identity crosswalk. Number identity is crosswalk-dependent: the printing has no EO numbers. These records assess source sufficiency and approve no unprovided claim.",
+  "shared_limits": [
+    "Whole-case first cessation/current predicate remains distinct from original existence and provisional NO. No status adoption, human certification, filing or publication.",
+    "Frozen number-citation USC searches cover edition through 2026-10-09, leaving laws enacted October 10-14 outside that edition. eCFR/49-title bulk searches are bounded number-reference searches. OFR disposition catalog begins 1937 and cannot alone exclude earlier cessation of these 1904-1911 orders. Search complete means the machine operation finished, not that legal history is complete.",
+    "Person-name searches cover held EO texts only, omit 85 orders without held texts and disclose 302 of 2246 one-person orders without parsable names. Zero hits do not establish appointment, transfer, death, retirement or cessation.",
+    "No native claim byte-verification pass is inferred for these dossiers. Original text SHA pins are separately checked and the supplied raw GPO PDF was hashed and viewed. Original raw source references in the native format lack explicit raw_path.",
+    "No raw actor PDF was supplied with a usable path for EO 9830, EO 8393 or EO 1532. No claim of viewing those absent actor bytes. EO 9830 opening/Part III/signature OCR and EO 8393/EO 1532 frozen contexts are leads only. Packet actor-texts/EO_9830.json overflow path is absent."
+  ],
+  "records": [
+    {
+      "instrument_id": "EO:1131",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        202
+      ],
+      "inventory": "Six sections: establish local inspectors; classification/licensing; inquiry and three-year individual licenses with suspension/revocation; employment citizenship/licensing; noncitizen licenses; limited amendment of Governor's December 8, 1905 order.",
+      "challenge": "Three years limits each license, not the order or board. The citizenship availability condition is recurring, not an ending. Original supplies no whole-order sunset.",
+      "unresolved_questions": [
+        "What source first ended each licensing, employment and board command, with exact effective date?",
+        "How did the Governor's 1905 rule and later replacement law interact; what licenses or accrued consequences were saved? No current predicate or complete earlier chain is frozen."
+      ],
+      "dossier_fingerprint": "9d97a701b370f0d828a39f2c7c245a13d4481f663e7760d7d2f8d32cbfb8504f",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_1131.txt",
+        "sha256": "cf9fc15fe777dbcde8a8c932277147b6737c11ec8a629278a2c0fafd7a7e3b6d",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1909: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:1153",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        209
+      ],
+      "inventory": "Amends and reproduces the February 20, 1908 recommendation procedure: reasons, department approval, CSC report, and restriction on submission to Congress with express exception.",
+      "challenge": "Insertion into a continuing rule is not instantaneous exhaustion. Report language describes a repeated procedure, not a deadline ending the order. EO 9830 OCR names EO 1153 in Part III and states effective May 1, 1947 in its enacting clause; February 24 is signing, not that effective date.",
+      "unresolved_questions": [
+        "Obtain and inspect complete EO 9830 raw pages and savings/context; the frozen overflow is missing.",
+        "Exclude earlier supersession of each recommendation restriction between 1910 and 1947; reconcile the February 1908 parent and any intervening civil-service rules. Later express revocation alone does not prove first cessation."
+      ],
+      "dossier_fingerprint": "4ab28820db2900293c4289e4eeef7435fdbda8e5ac51b272ec1737a0152e186b",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_1153.txt",
+        "sha256": "145e35344958298a1fcf481fece93a051f6e47d57a2c56d27fcab1a09c0ceb79",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 2,
+          "coverage_warning": "order dated 1910: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:1190",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        214,
+        215
+      ],
+      "inventory": "Six articles cover counsel duties, subpoenas/oaths, criminal informations, amended section 138, process execution/peace officers, and conflict repeal.",
+      "challenge": "Independent procedural powers survive any individual litigation. Article 5 expressly makes its process rule cumulative and preserves existing process laws; it cannot be dropped as redundant.",
+      "unresolved_questions": [
+        "Locate first cessation/effective replacement for all six articles, including court and criminal-code changes.",
+        "Determine savings for pending proceedings and accrued procedural consequences. No ending instrument or current-law predicate is frozen."
+      ],
+      "dossier_fingerprint": "25ebe62db61560eaea4aa2e6ef7bc23173f26d46828f344fffe8d765de24bb97",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_1190.txt",
+        "sha256": "5a74c50b03032da1b90efaa866de25a1174cd3db7aa61bb44b809228a34bb844",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1910: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:1239",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        219,
+        220
+      ],
+      "inventory": "Five articles: married-woman conveyancing; retrospective validation; acknowledgment process and certificate forms; authorized officers; conflict repeal with protection of previously lawful instruments.",
+      "challenge": "The retrospective validation is separate from prospective acknowledgment rules. Article 5 expressly preserves earlier deeds/instruments; a no-residual conclusion would contradict it.",
+      "unresolved_questions": [
+        "Trace later civil-code changes and exact first cessation of each prospective command.",
+        "Distinguish continuing rule from durable title consequences of validated deeds; determine effective date and scope of later savings. Frozen sources contain no complete ending/current predicate."
+      ],
+      "dossier_fingerprint": "90e7bd3e0a0f199c6c0817df33e68b2bd627d75578fc024d132aa81db292b404",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_1239.txt",
+        "sha256": "3665592ea922c445c417e392d93cb84c08c9f709e402b0157889d67f51003001",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1910: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:1250",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        222,
+        223,
+        224
+      ],
+      "inventory": "Ten sections: abolish collector office; reallocate duties/deputies; liens; sale warrant/accounting; personal-property redemption/title; forfeiture/redemption; real-estate deeds; transferred powers; conflict repeal/transition; retained superior appointment/supervision authority.",
+      "challenge": "Office abolition does not exhaust recurring tax rules. Section 2 preserves official-bond laws; section 9 preserves prior proceedings and addresses existing delinquency; section 10 preserves superior authority.",
+      "unresolved_questions": [
+        "Find later law and effective dates ending each recurring collection/title command.",
+        "Trace Act 7 dependencies, saved proceedings, liens and property titles; complete original alone cannot establish a whole lifecycle."
+      ],
+      "dossier_fingerprint": "053d3fcb289d1afec06427f054cb31ba3f0cb366914e2899553bb9deb65b6d6d",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_1250.txt",
+        "sha256": "518c9af56131f3565ec872cabecbd63daad715e7facd5fe5f65e618375373cd3",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1910: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:1348",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        240,
+        241
+      ],
+      "inventory": "Four paragraphs: American deserter arrest/return; protective discharge/wages/employment/passage/lien/log; treaty-conditioned foreign deserter procedure with citizenship exclusions and criminal-case qualification; effect from and after May 6, 1911.",
+      "challenge": "Two-month detention runs from an individual's arrest; voyage/discharge conditions apply per case. Neither is an order-wide sunset. Protective wage/lien commands are independent of return authority.",
+      "unresolved_questions": [
+        "Trace first legal cessation of domestic and treaty-dependent foreign provisions, including changed shipping law and treaties.",
+        "Resolve surviving wage claims, liens, pending cases and exact effective dates. Original supplies no whole-order ending/current predicate."
+      ],
+      "dossier_fingerprint": "55e2f6e664b7c4eea379a6247e499d78c2abd66cf5a58753f45c340358f2e3b8",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_1348.txt",
+        "sha256": "3fb66d09e2dd75e9dcb1775b6c36daff5c3fae6c37f26ee2d85af02b08d2d611",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1911: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:1353",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        248,
+        249
+      ],
+      "additional_visual_pages": [
+        250
+      ],
+      "inventory": "Eight sections: distillation tax; licenses/bonds/deposits; meters; bulk-sale privilege; penalties; regulations; conflict repeal; delayed effectiveness.",
+      "challenge": "Visually read EO 1372 (June 12, 1911), which changes EO 1353 effectiveness to August 13, 1911; it does not terminate the tax. EO 1532 frozen OCR allows an alternative measurement method and ends the right to operate stills on January 1, 1913 while creating a prohibition. That lead does not by itself extinguish accrued taxes, bonds, penalties or all independent commands.",
+      "unresolved_questions": [
+        "EO 1532 held-text path is absent and raw printing not supplied with usable path; inspect actual complete page before relying on OCR.",
+        "Determine scope, effective sequence, later law, accrued liability and first cessation of every section. Do not equate prohibition of future distillation with wholesale repeal of the tax order."
+      ],
+      "dossier_fingerprint": "09983ae465917b27f50d719d148973bb73a2616c7ee87327f38ba35fd5bc8d4c",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_1353.txt",
+        "sha256": "f2efd640ebaa9cb003fd303c1ce0453bd1cc7ae84577cf55ea53b8aade4d4d83",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1911: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:283",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        39
+      ],
+      "inventory": "Continuing permission to waive citizenship for Isthmus applicants under CSC regulations.",
+      "challenge": "Not a completed appointment. EO 9830 OCR expressly lists number 283 and December 8, 1904; the enacting effective date is May 1, 1947, distinct from February 24 signing. This remains an unvisualized later-actor lead.",
+      "unresolved_questions": [
+        "Supply complete actor raw pages and missing overflow context for source-level revocation/savings review.",
+        "Examine intervening 1905-1935 law, Panama Canal Act/1914 employment rules and later citizenship schedules for earlier cessation. The frozen prior source note itself discloses this gap; a later cleanup revocation does not close it."
+      ],
+      "dossier_fingerprint": "1629d58906359ec25a4cb4e145a9740d0839d5a01847065ff23e492405937852",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_283.txt",
+        "sha256": "b9003e351eca65cd1b887aad34f7d51f25415d6b4c3675ab13b9b21a73743282",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 2,
+          "coverage_warning": "order dated 1904: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:351",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        65
+      ],
+      "inventory": "Waives Rule XII removal procedure on Isthmus while independently requiring recorded reasons and providing CSC copies/originals on request.",
+      "challenge": "EO 8393 frozen actor context refers to a Hawaiian Governor's EO 351 of January 23, 1929, not this presidential order of September 8, 1905. That is a number collision and supplies no ending lead for the removal rule. Actor raw pages not viewed.",
+      "unresolved_questions": [
+        "Identify actual later changes to Rule XII and Isthmus removal procedures with effective dates.",
+        "Close both waiver and record/copy duties, including record-retention consequences; a whole-case conclusion cannot rest on the false number match."
+      ],
+      "dossier_fingerprint": "183bca7c4bac9cf539bcad6d7ecbd41636f933b5aa8593b2a41342249f5fe04b",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_351.txt",
+        "sha256": "e16c09da81a4088c8ec8b6010bcd0ceef825e3e37a380db0275721c33dc3e784",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1905: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:377B",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        77
+      ],
+      "additional_visual_pages": [
+        46,
+        47,
+        48,
+        49,
+        89
+      ],
+      "inventory": "Permits the January 1, 1906 quarterly session in Washington rather than the Governor's Isthmus office; no independent appointment or report command.",
+      "challenge": "This changes venue for a session, whereas EO 506 changes the commencement date of a different quarterly session. EO 506 is not a revocation of EO 377B. Complete parent EO 317A allows each session to continue as long as public business requires; January 1 is not proof of adjournment or exhaustion of venue authority.",
+      "unresolved_questions": [
+        "When did the January session actually commence and end, or what earlier legal instrument extinguished this venue permission?",
+        "Can exact first cessation be proved without inferring meeting performance? Original and parent alone do not establish actual duration; saved validity of acts must remain distinct."
+      ],
+      "dossier_fingerprint": "998b43ba64db7cc961258bf995649f255712c877777307fa6e25f8a4eb78ff1c",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_377B.txt",
+        "sha256": "9b20ae088b3b449f71ef0d2fd91e3e83b7b1ee49ff49d7e8e190a25ad4f2e3aa",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1905: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:384",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        78
+      ],
+      "inventory": "Permission to appoint Anna F. McCormick permanently where temporarily employed.",
+      "challenge": "May be appointed is permission, not evidence of an appointment. No own expiry or independent continuing regulatory command appears.",
+      "unresolved_questions": [
+        "Find actual permanent appointment/exercise and date or another legally supported cessation of eligibility/authority.",
+        "Distinguish exhausted exception from continuing employment/title consequences. Bounded zero name hits and provisional NO do not establish performance or first end."
+      ],
+      "dossier_fingerprint": "50442777b9bdb67830f4e5c64bb9d690ee49c872e91e140b373144e5fb3fa1e2",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_384.txt",
+        "sha256": "f677caa42b4c8454b246370dca0637d1e5d5fe52e66a94fa83b0617efe71179b",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1905: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        },
+        {
+          "search_id": "namier:held_texts_person_name",
+          "scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 85 census orders have no held text and were not searched; 302 of 2246 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+          "repository": "held order texts in this repository (30725 text files for 14913 of 14998 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+          "hits": 0,
+          "coverage_warning": null
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:391",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        79
+      ],
+      "inventory": "Permission for Ralph Whitman's permanent appointment as Engineer Draftsman where temporarily employed.",
+      "challenge": "The signed permission does not execute or document permanent appointment and contains no express time limit.",
+      "unresolved_questions": [
+        "What personnel/appointment record establishes exercise and date, or what source terminates the permission first?",
+        "Separate appointment-authority cessation from employment consequences; no adequate factual event or full alternative ending is frozen."
+      ],
+      "dossier_fingerprint": "4523e4c6fd2073870dd2de844e84988dc2262a99625437a790b002781cda5cf8",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_391.txt",
+        "sha256": "449dd004bb0a764791773187c79f3d305820433e46217ef54cf38bed574e05e7",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1906: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        },
+        {
+          "search_id": "namier:held_texts_person_name",
+          "scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 85 census orders have no held text and were not searched; 302 of 2246 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+          "repository": "held order texts in this repository (30725 text files for 14913 of 14998 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+          "hits": 0,
+          "coverage_warning": null
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:430",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        84
+      ],
+      "additional_visual_pages": [
+        83,
+        86
+      ],
+      "inventory": "Clarifies recurring expense entitlements of Chairman, Governor and Chief Engineer, expressly effective February 26, 1906, although signed March 26.",
+      "challenge": "Read complete EO 418 parent and EO 474. EO 474 repeats the same expense rule and revokes only conflicting orders. Repetition/re-enactment plus a conflict clause does not show this consistent entitlement ceased on June 30, 1906. Amendment continues rather than instantaneously expires.",
+      "unresolved_questions": [
+        "Identify later cessation/replacement of each role-based expense entitlement and first effective date.",
+        "Trace accrued reimbursement claims and parent changes. Neither signing nor EO 474's general conflict repeal supplies the missing whole-order end."
+      ],
+      "dossier_fingerprint": "b361715896e0320e247a52f22c3d577896a9091da1272daeeec63f3487dd2083",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_430.txt",
+        "sha256": "bae51e4b25730ca8e3889c5e97ad0029ed30de3c7d7bc3a1fe43b5126ab656b9",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1906: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:571",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        96
+      ],
+      "inventory": "Permits John E. Kidwell's transfer from Isthmian pay-clerk/accountant service to a classified US clerical position.",
+      "challenge": "Permission is not a transfer record; annual salary identifies his then-position rather than an expiration term.",
+      "unresolved_questions": [
+        "Establish actual transfer and effective date, or an earlier legally supported ending of the exception.",
+        "Account for resulting appointment rights/consequences separately. Frozen name search is not personnel evidence."
+      ],
+      "dossier_fingerprint": "eee3842ed644b643b2e4f9bd9e406123663d0339e15b3c6f3c4f31536a386dc4",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_571.txt",
+        "sha256": "08d03d4fd7ef997da32bcdb901fb74b7f3a7bd87e3f4e729f2a039b5b0007349",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1907: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        },
+        {
+          "search_id": "namier:held_texts_person_name",
+          "scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 85 census orders have no held text and were not searched; 302 of 2246 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+          "repository": "held order texts in this repository (30725 text files for 14913 of 14998 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+          "hits": 0,
+          "coverage_warning": null
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:586",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        107,
+        108,
+        109
+      ],
+      "additional_visual_pages": [
+        222,
+        223,
+        224
+      ],
+      "inventory": "Ten numbered provisions: districts; collectors; taxes/liens/appeals/equalization; judges; public works; district accounts/rents; ordinance power; municipal abolition; appointment/salaries; conflict repeal. Express effect April 15, 1907 differs from March 13 signing.",
+      "challenge": "Visually read full EO 1250: it expressly abolishes the paragraph-2 collector office and reallocates collection, with transition/savings. It does not establish cessation of district boundaries, judges, public works, accounts, ordinance authority or all other independent commands in EO 586.",
+      "unresolved_questions": [
+        "Map EO 1250 changes clause by clause and locate endings/effective dates for the remaining commands.",
+        "Trace tax liens, prior proceedings, municipal-property consequences and later Canal law; no complete lifecycle is established by this partial actor."
+      ],
+      "dossier_fingerprint": "956c6639d7bb92c6796f6653044405251d2cb8b27f60bc783227587c4cdc31b6",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_586.txt",
+        "sha256": "35af637174f074d0a444161ebeb2f9d91c8f276fdf6443714036b897878f3427",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1907: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:600",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        116
+      ],
+      "inventory": "Permits W. P. Armstrong's transfer to another competitive position capped at $2500 salary without transfer-rule limits.",
+      "challenge": "Salary cap qualifies the authorized destination; it is not a date or evidence that a transfer occurred. Permission has no express sunset.",
+      "unresolved_questions": [
+        "Locate actual qualifying transfer/effective date or a sourced first termination of the permission.",
+        "Separate the exception's exercise from employment consequences and examine intervening transfer rules; no such factual/ending source is frozen."
+      ],
+      "dossier_fingerprint": "afd2c40e72e8d9ea8340ef2502f28e72b03aca51de4bf94b2a1f4a53f214a18e",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_600.txt",
+        "sha256": "b5b91574827fd908fd4ca1fe5717928eee86949c620e66ab3298d2b8973f6441",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1907: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        },
+        {
+          "search_id": "namier:held_texts_person_name",
+          "scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 85 census orders have no held text and were not searched; 302 of 2246 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
+          "repository": "held order texts in this repository (30725 text files for 14913 of 14998 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
+          "hits": 0,
+          "coverage_warning": null
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:647",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        121
+      ],
+      "inventory": "Validates past marriages; authorizes future ceremonies with license/age/impediment requirements; certificate/return/registration and fee duties; misdemeanor. Effective June 1, 1907, signed May 31.",
+      "challenge": "Past-marriage validation and recurring prospective marriage law are distinct. License conditions and a single marriage's performance do not exhaust the order.",
+      "unresolved_questions": [
+        "Find first ending/replacement law with effective scope for each provision.",
+        "Determine treatment of validated marriages, records, fees and accrued offenses; neither no number hits nor historical territorial change alone establishes a legally scoped ending."
+      ],
+      "dossier_fingerprint": "646eb261c50a440aa77604aace6ce4283e4b6afcaef50d7a2b852c62a5c9b5c3",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_647.txt",
+        "sha256": "b530c4f460f676a9b25a8671507e9a0218ac7d48bff2fc5bcdc5edc3a70f7f60",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1907: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:729",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        145
+      ],
+      "inventory": "Adds Penal Code section 293-a with five offense classes and punishment, expressly effective January 15, 1908, signed January 9.",
+      "challenge": "Code amendment creates recurring law. Thirty-day imprisonment limits a sentence, not the duration of the section or order.",
+      "unresolved_questions": [
+        "Trace later penal-code replacements/repeals and the first effective cessation of all five offense classes.",
+        "Determine pending-prosecution/sentence savings and residual effects. No ending/current predicate is frozen; amendment execution is not a complete lifecycle."
+      ],
+      "dossier_fingerprint": "0eebd777c6ad91692426f2dea0bf9d0eb3a015d5fef12bb6be720a23703d513c",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_729.txt",
+        "sha256": "9933bfd89de2c0f39d21f3d21977fd420480b9d9379bdde51d37a625031d2117",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1908: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:730",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        146
+      ],
+      "inventory": "Four recurring provisions: unclaimed property sale after six months/advertisement; perishable judicial sale; owner notice; residue held three years with payment on demand or transfer to school fund.",
+      "challenge": "Six months, three weeks, four weeks and three years are transaction-relative periods. None runs from January 9, 1908 signing; none is an order-wide sunset. The residue duty can survive a particular sale.",
+      "unresolved_questions": [
+        "Locate first ending/replacement of the continuing sale/notice/residue regime and exact effective date.",
+        "Resolve pending property sales and held residues; a computed 1911 anniversary would be unsupported without transaction evidence and still would not end the recurring order."
+      ],
+      "dossier_fingerprint": "964132505fb95076f4d99630d9a6f2f1482d5f1ece70235495d6e24adce841ed",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_730.txt",
+        "sha256": "b498ecf52c8d270d587f06b400c910e79177ee62c4f148741ce0d3d3f301e7f5",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1908: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    },
+    {
+      "instrument_id": "EO:731",
+      "supported": "blocked",
+      "original_pdf_pages": [
+        147
+      ],
+      "inventory": "Replaces Act 1 section 22, dividing the Zone into three judicial circuits by administrative district.",
+      "challenge": "Replacement text establishes ongoing judicial geography. Amending the parent does not exhaust its new rule on issuance. Original says circuits; crosswalk subject's districts is only metadata shorthand.",
+      "unresolved_questions": [
+        "Read parent Act 1 and later court/district reorganizations to identify first replacement or cessation with effective date.",
+        "Determine transition/jurisdiction and pending-case savings. No complete actor chain or current predicate is frozen."
+      ],
+      "dossier_fingerprint": "60fe4a8e7b06fcc5a9714cd139fe75fe4eaf955a569726eb6a730a7a6b6c7b95",
+      "original_text_source": {
+        "path": "jobs/isthmian-canal-1911/output/texts/EO_731.txt",
+        "sha256": "c716e75a8f3e82c55dd766e5bfb51c60f3c977e464bd377d7acf454b231db2f3",
+        "pin_matched": true
+      },
+      "original_pages_visually_examined": true,
+      "search_scopes_read": [
+        {
+          "search_id": "current-law:usc",
+          "scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
+          "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "current-law:ecfr",
+          "scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
+          "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
+          "hits": 0,
+          "coverage_warning": null
+        },
+        {
+          "search_id": "later-events:ofr_catalog",
+          "scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+          "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
+          "hits": 0,
+          "coverage_warning": "order dated 1908: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own"
+        }
+      ],
+      "identity_metadata_checked": true
+    }
+  ],
+  "counts": {
+    "members": 20,
+    "complete": 0,
+    "blocked": 20,
+    "claim_approvals": 0
+  }
+}
