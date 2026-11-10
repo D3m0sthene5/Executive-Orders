@@ -1,14 +1,14 @@
 {
  "schema": "larrey.triage/v1",
- "generated_at": "2026-11-10T18:07:31Z",
+ "generated_at": "2026-11-10T18:22:01Z",
  "inputs": {
   "claim_kit_summary_sha256": "39aa1b25df48aa3a1c7132969edd51eefc6290077af478fd6035124ff66230a7",
   "tracker_sha256": "8760db9e70c4c724cf40b2dd7e53f3139b2470afa8b43ae9bfe8c65a9df1cd6a"
  },
  "code_sha256": {
-  "jobs/larrey-triage/larrey.py": "7bee38106be097aded5f7a0412038ff5f3200d4082010876d42331a6e1c388f2",
-  "jobs/llull/kit_features.py": "3734fac153e42e7fa5d8ec6c3117eb60dbefe08271744c90bd0c1a5d055f6ff8",
-  "jobs/llull/llull.py": "e564fa859fd7c807ad2b21dca8c1218452266da5763bc1e1497a61dd514ba7c1"
+  "jobs/larrey-triage/larrey.py": "2f4844cb5e1adccf11f90ee8450d639491c6acae62360042b4b6a501d9ed3f59",
+  "jobs/llull/kit_features.py": "2dd85b3cfa131e2887eee01705d295167e3a3b0f65a8378a71fe06496271883f",
+  "jobs/llull/llull.py": "1a549f4669671159f4c33fe0bf06d2f7057eb969985c6a1d206b3df6b0ba942f"
  },
  "routes": {
   "status_only": {
@@ -49,24 +49,32 @@
  "calibration": {
   "status_only": {
    "file": "jobs/claim-kit/status_overlay.py",
+   "backtest": "jobs/larrey-triage/output/BACKTEST.json",
    "backtested_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
    "current_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
+   "successes_lost": 0,
    "enforced": true
   },
   "undecided_full": {
    "file": "jobs/claim-kit/status_overlay.py",
+   "backtest": "jobs/larrey-triage/output/BACKTEST.json",
    "backtested_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
    "current_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
+   "successes_lost": 0,
    "enforced": true
   },
   "decided_lifecycle": {
    "file": "jobs/claim-kit/assemble.py",
+   "backtest": "jobs/larrey-triage/output/BACKTEST.json",
    "backtested_sha256": "537cc4a1d49ea92693f11459343f1820f7d866a538f4ba36de48283ef1660385",
    "current_sha256": "537cc4a1d49ea92693f11459343f1820f7d866a538f4ba36de48283ef1660385",
+   "successes_lost": 0,
    "enforced": true
   }
  },
  "orders_with_compiled_inputs": 14998,
  "tracker_orders": 14998,
+ "gates_commit": "427f7cfad11f729079e3e40ef202a28bab69fca3",
+ "kit_rules_loaded": [],
  "notice": "Deferral, not decision: a kept-out order is open until its missing input is held. No status, count or certification changed."
 }
