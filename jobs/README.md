@@ -16,23 +16,26 @@ to the same branch, so the next agent can read them.
    `job.sh` runs.
 3. Optional: `requirements.txt` for Python packages to install, and
    `needs.txt` for the repo folders the script reads (see below).
-4. Commit and push. The run starts by itself and runs only your job.
+4. Commit and push, then start it once it is ready:
+   `gh workflow run run-jobs.yml --ref <your-branch> -f job=<name> -f only=true`
+   (or **Actions** tab → **Run jobs** → **Run workflow**, pick the branch, type the name and tick
+   *only*). `only` runs exactly the named jobs, without the jobs that read their outputs.
 
 To run a job every day, add an empty file named `DAILY` to its folder. It then
 runs once a day (09:17 UTC) on `main`, and commits only if its results changed.
 
-**Pushes stay light (owner, 2026-10-28).** A push starts a run only when it changes a job's own folder
-or the runner, and that run runs only the edited job. Uploads, claims, notes, research files and rulings
-start nothing on push. To rerun a job when files outside its folder change, list fnmatch patterns in
-`triggers.txt` (for example `research/readiness/claims/*`): the **sweep**, every three hours on `main`
-(at 00:47, 03:47, ... UTC), runs every job whose patterns match a path changed since the previous sweep,
-plus every job that lists it in `after.txt`. Committed job outputs never trigger. To make a job run after
-others when they run together, list their names in `after.txt`. When you need a result sooner than the
-next sweep, start the job by hand (below); a manual run can name several jobs at once.
+**No push starts a run (owner, 2026-11-09, Kean D-20261109-no-push-runs).** Push-started runs raced
+each other and the runner's own result commits, and over 2026-11-06..09 most of them finished only to
+have their results refused as stale; a tag push started them too. On `main`, the **sweep** (every three
+hours, at 00:47, 03:47, ... UTC, and with the daily run) runs every job whose own folder changed, or whose
+`triggers.txt` patterns (for example `research/readiness/claims/*`) match a path changed, in every commit
+since the previous sweep's input commit, plus every job that lists it in `after.txt`. Committed job
+outputs never trigger. To make a job run after others when they run together, list their names in
+`after.txt`. When you need a result sooner than the next sweep, start the job by hand; a manual run can
+name several jobs at once, and without `only` it also runs their consumers.
+`.github/scripts/test_workflow_triggers.py` fails CI if a push trigger is added back to any job workflow.
 
-To run a job again without changing it, open the **Actions** tab, choose
-**Run jobs**, then **Run workflow**, pick the branch and type the job name.
-Changing any file in the job's folder (outside `output/`) also reruns it.
+To run a job again without changing it, start it by hand the same way.
 
 ## What the script gets
 

@@ -1,19 +1,24 @@
 """Decide which jobs/<name>/ folders the runner should run.
 
-Pushes stay light (owner, 2026-10-28: adding a file must not mean waiting on the pipeline):
-- A push runs only the jobs whose own folder had a file changed outside output/, and nothing
-  downstream of them. An exact audited claim-kit runtime-only push runs tests in the existing runner
-  workflow and leaves the compiler for the normal sweep; unknown versions rebuild. Data, claims, notes, research and rulings start no jobs on push.
-- The sweep (scheduled every three hours) runs every job whose triggers.txt has a pattern
-  (fnmatch, e.g. "research/readiness/claims/*") matching a path changed on the default branch
-  since the previous sweep, plus every job that reads their outputs (after.txt).
-- The daily scheduled run (09:17 UTC) runs every job whose folder contains a file named DAILY,
-  plus their consumers. GitHub has delivered only the sweep since a second cron was added on
-  2026-10-28, so every sweep also runs each DAILY job whose newest committed receipt
-  (output/STATUS.json or jobs/_attempts/<name>/) is older than DAILY_STALE_HOURS (Justinian,
-  2026-11-06; this replaces .github/workflows/daily-dispatch.yml). Receipt ages come from Git
-  history, not from output files, which the picker's checkout omits.
-- A manual run runs the named job(s), separated by spaces or commas, plus their consumers.
+No push starts the runner (owner, 2026-11-09, Kean D-20261109-no-push-runs): push-started runs raced
+each other and the bots' own result commits, and most of their results were refused as stale.
+.github/scripts/test_workflow_triggers.py keeps it that way. The push branch of main() below is kept
+only for a manual replay of old events.
+- The sweep (every scheduled run) runs every job whose own folder changed outside output/, or
+  whose triggers.txt has a pattern (fnmatch, e.g. "research/readiness/claims/*") matching a path
+  changed on the default branch, plus every job that reads their outputs (after.txt). "Changed"
+  means every first-parent commit after the input commit of the previous sweep whose plan
+  succeeded, read from GitHub's run history, so a sweep GitHub starts late, or a commit dated
+  earlier than its push, is still seen. Only if that history is unavailable does the sweep fall
+  back to the last SWEEP_WINDOW, with a warning.
+- The daily scheduled run (09:17 UTC) is a sweep that also runs every job whose folder contains a
+  file named DAILY, with their consumers at full strength. GitHub has delivered only the 3-hour
+  cron since a second cron was added on 2026-10-28, so every sweep also runs each DAILY job whose
+  newest committed receipt (output/STATUS.json or jobs/_attempts/<name>/) is older than
+  DAILY_STALE_HOURS (Justinian, 2026-11-06; this replaces .github/workflows/daily-dispatch.yml).
+  Receipt ages come from Git history, not from output files, which the picker's checkout omits.
+- A manual run runs the named job(s), separated by spaces or commas, plus their consumers; with
+  only=true it runs exactly the named jobs, as a push used to.
   Manual diagnostics run only the requested jobs; the workflow retains receipts without publishing.
   An Arsenale re-queue (a manual run with requeue_depth > 0) or a Riquet continuation (continuation > 0)
   runs exactly the jobs it names, and
@@ -29,20 +34,23 @@ materializer runs afterward; do not add reads of output generations here.
 
 import fnmatch
 import hashlib
+import json
 from pathlib import Path
 import os
 import re
 import subprocess
 import sys
+import urllib.request
 
-NAME = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
+NAME =re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*$")
 ZERO = "0" * 40
 RUNNER_FILES = {".github/workflows/run-jobs.yml"}
 SMOKE_TEST = "example-hello"
 DAILY_CRON = "17 9 * * *"
-# A sweep looks back a little further than its 3-hour interval, so a commit is never missed between
-# sweeps; a file changed twice in the overlap only reruns the same jobs once more.
+# Fallback only, when GitHub's run history cannot name the previous sweep: look back a little further
+# than the 3-hour interval; a file changed twice in the overlap only reruns the same jobs once more.
 SWEEP_WINDOW = "3 hours 20 minutes ago"
+SHA = re.compile(r"^[0-9a-f]{40}$")
 DAILY_STALE_HOURS = 20
 
 
@@ -179,6 +187,87 @@ def recent_changes(since=SWEEP_WINDOW):
     return sorted({line for line in out.stdout.splitlines() if line.strip()})
 
 
+def github(path):
+    """GET a GitHub REST path with the run's token; raises OSError/ValueError on any failure."""
+    api = os.environ.get("GITHUB_API_URL") or "https://api.github.com"
+    request = urllib.request.Request(api + path, headers={
+        "Authorization": "Bearer " + os.environ["GITHUB_TOKEN"], "Accept": "application/vnd.github+json",
+        "X-GitHub-Api-Version": "2022-11-28", "User-Agent": "pick_jobs"})
+    with urllib.request.urlopen(request, timeout=30) as response:
+        return json.load(response)
+
+
+HISTORY_PAGES = 3  # 300 scheduled runs, over a month at eight a day
+
+
+def swept(run, jobs):
+    """Whether a scheduled run took charge of the commits up to its head_sha.
+
+    Its plan must have succeeded. A run still going counts once planned: sweeping its range again
+    would race it. A finished run counts only if its publish ran (or it had nothing to run): a run
+    cancelled after planning published nothing, so its commits stay in the next sweep's range.
+    Refused stale jobs are re-queued by Arsenale; a real job failure would fail again.
+    """
+    by_name = {}
+    for job in jobs:
+        by_name.setdefault(job.get("name", "").split(" (", 1)[0], []).append(job.get("conclusion"))
+    if by_name.get("plan") != ["success"]:
+        return False
+    if run.get("status") != "completed":
+        return True
+    if run.get("conclusion") not in ("success", "failure"):
+        return False
+    publish, execute = by_name.get("publish", []), by_name.get("execute", [])
+    if publish and all(c in ("success", "failure") for c in publish):
+        return True
+    return all(c == "skipped" for c in publish + execute)
+
+
+def previous_sweep_commit():
+    """Input commit of the newest earlier scheduled run that swept its range, or None if unknown.
+
+    Its head_sha is the commit that triggered it, at or before the tip its plan read, so a range
+    starting there can overlap the previous sweep, never skip past it.
+    """
+    repo, run_id = os.environ.get("GITHUB_REPOSITORY"), os.environ.get("GITHUB_RUN_ID") or ""
+    branch = os.environ.get("DEFAULT_BRANCH") or "main"
+    if not (repo and os.environ.get("GITHUB_TOKEN")):
+        return None
+    try:
+        mine = None
+        for page in range(1, HISTORY_PAGES + 1):
+            runs = github(f"/repos/{repo}/actions/workflows/run-jobs.yml/runs"
+                          f"?event=schedule&branch={branch}&per_page=100&page={page}")["workflow_runs"]
+            mine = mine or next((r["created_at"] for r in runs if str(r["id"]) == run_id), None)
+            for run in sorted(runs, key=lambda r: r["created_at"], reverse=True):
+                if str(run["id"]) == run_id or (mine and run["created_at"] >= mine):
+                    continue
+                if run.get("status") == "completed" and run.get("conclusion") not in ("success", "failure"):
+                    continue
+                jobs = github(f"/repos/{repo}/actions/runs/{run['id']}/jobs?filter=latest&per_page=100")["jobs"]
+                if swept(run, jobs):
+                    sha = run.get("head_sha") or ""
+                    return sha if SHA.match(sha) else None
+            if len(runs) < 100:
+                break
+    except (OSError, ValueError, KeyError, TypeError, AttributeError) as exc:
+        print(f"::warning::Could not read the previous sweep from GitHub: {exc}")
+    return None
+
+
+def sweep_changes():
+    """Paths changed on first-parent history since the previous sweep's input commit."""
+    base = previous_sweep_commit()
+    if base and git("merge-base", "--is-ancestor", base, "HEAD").returncode == 0:
+        out = git("log", "--first-parent", "-m", "--name-only", "--format=", f"{base}..HEAD")
+        if out.returncode == 0:
+            print(f"Sweep range: commits after {base[:12]}, the previous sweep's input.")
+            return sorted({line for line in out.stdout.splitlines() if line.strip()})
+    print(f"::warning::The previous sweep's input commit is unknown or not on this branch; "
+          f"the sweep falls back to changes since {SWEEP_WINDOW}.")
+    return recent_changes()
+
+
 def for_changes(changed, triggers=True, runtime_push=False):
     """Select direct consumers of code/data edits; outputs never start feedback loops.
 
@@ -262,20 +351,26 @@ def stale_daily_jobs(hours=DAILY_STALE_HOURS, now=None):
 
 def main():
     event, schedule = os.environ.get("EVENT"), os.environ.get("SCHEDULE") or ""
-    sweep = event == "schedule" and schedule not in ("", DAILY_CRON)
+    # Every scheduled run is a sweep, so "the previous sweep" is simply the previous scheduled run.
+    sweep = event == "schedule"
     consumers = True
     runtime_tests = False
     daily_due = []
+    full_strength = set()
     if sweep:
-        picked = for_changes(recent_changes())
-        daily_due = [name for name in stale_daily_jobs() if name not in picked]
+        picked = for_changes(sweep_changes())
+        due = daily_jobs() if schedule == DAILY_CRON else stale_daily_jobs()
+        daily_due = [name for name in due if name not in picked]
         picked += daily_due
-    elif event == "schedule":
-        picked = daily_jobs()
+        if schedule == DAILY_CRON:
+            # The daily run keeps its DAILY jobs' consumers at full strength.
+            full_strength = set(with_consumers(due))
     elif os.environ.get("EVENT") == "workflow_dispatch":
         # An Arsenale re-queue (requeue_depth > 0) reruns exactly the refused jobs, and a Riquet
-        # continuation (continuation > 0) runs exactly the jobs an earlier run deferred.
-        consumers = os.environ.get("DIAGNOSTIC") != "true" and not requeue_depth() and not continuation()
+        # continuation (continuation > 0) runs exactly the jobs an earlier run deferred. With only=true
+        # a manual run runs exactly the named jobs, as a push used to.
+        consumers = (os.environ.get("DIAGNOSTIC") != "true" and os.environ.get("ONLY") != "true"
+                     and not requeue_depth() and not continuation())
         picked = []
         for name in re.split(r"[\s,]+", os.environ.get("INPUT_JOB") or ""):
             name = name.strip().strip("/").removeprefix("jobs/")
@@ -304,7 +399,8 @@ def main():
         sys.exit(str(exc))
     if sweep:
         # A DAILY job due by age runs at full strength, never as a downstream-only consumer.
-        downstream = [name for name in downstream_only(direct, picked) if name not in daily_due]
+        downstream = [name for name in downstream_only(direct, picked)
+                      if name not in daily_due and name not in full_strength]
     elif event == "workflow_dispatch":
         # A re-queued sweep consumer keeps the small web-search budget it ran with.
         named = set(re.split(r"[\s,]+", os.environ.get("INPUT_DOWNSTREAM") or ""))

@@ -2,30 +2,33 @@
 # script on GitHub's machines by committing it under jobs/<name>/. See
 # jobs/README.md for how to write one.
 #
-# A job runs when a push changes any file in its folder outside output/, or when
-# someone starts this workflow by hand (Actions tab -> Run jobs -> Run workflow)
-# and types the job name. Jobs whose folder contains a file named DAILY also run
-# once a day on the default branch. Results are committed back to the same branch in
-# jobs/<name>/output/. Commits made by this workflow do not start it again.
+# A job runs when someone starts this workflow by hand (Actions tab -> Run jobs -> Run
+# workflow, or `gh workflow run run-jobs.yml --ref <branch> -f job=<name> -f only=true`)
+# and names it, or in the scheduled sweep on the default branch when its folder or a
+# path in its triggers.txt changed since the previous sweep. Jobs whose folder contains
+# a file named DAILY also run once a day. Results are committed back to the same
+# branch in jobs/<name>/output/. Commits made by this workflow do not start it again.
+#
+# No push starts this workflow (owner, 2026-11-09, Kean D-20261109-no-push-runs). Push-started
+# runs raced each other and the result commits, and most were refused as stale; a tag push
+# started them too. .github/scripts/test_workflow_triggers.py fails if a push or
+# pull_request trigger is added back.
 
 name: Run jobs
 
 on:
-  # Pushes stay light: only a change to a job's own folder (or to the runner) starts a run, and that run
-  # runs only the edited job. Data, claims, notes, research and rulings are picked up by the sweep below.
-  push:
-    paths:
-      - "jobs/**"
-      - ".github/workflows/run-jobs.yml"
-      - ".github/scripts/**"
   schedule:
-    - cron: "17 9 * * *" # 09:17 UTC daily: jobs with a DAILY file, and their consumers
-    - cron: "47 */3 * * *" # every 3 hours: jobs whose triggers.txt matched recent changes, and their consumers
+    - cron: "17 9 * * *" # 09:17 UTC daily: a sweep, plus jobs with a DAILY file and their consumers
+    - cron: "47 */3 * * *" # every 3 hours: jobs changed since the previous sweep (own folder or triggers.txt), and their consumers
   workflow_dispatch:
     inputs:
       job:
         description: "Job folder name(s) under jobs/, separated by spaces (for example: claim-checker readiness-tracker)"
         required: true
+      only:
+        description: "Run exactly the named jobs, without the jobs that read their outputs (what a push used to do)"
+        type: boolean
+        default: false
       diagnostic:
         description: "Run named jobs only and retain receipts without publishing results"
         type: boolean
@@ -63,6 +66,10 @@ jobs:
   plan:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # actions: read lets the sweep find the previous sweep's input commit in the run history.
+    permissions:
+      contents: read
+      actions: read
     outputs:
       jobs: ${{ steps.plan.outputs.check_order }}
       direct: ${{ steps.pick.outputs.direct }}
@@ -108,16 +115,21 @@ jobs:
           SCHEDULE: ${{ github.event.schedule }}
           INPUT_JOB: ${{ github.event.inputs.job }}
           DIAGNOSTIC: ${{ github.event.inputs.diagnostic }}
+          ONLY: ${{ github.event.inputs.only }}
           REQUEUE_DEPTH: ${{ github.event.inputs.requeue_depth }}
           CONTINUATION: ${{ github.event.inputs.continuation }}
           INPUT_DOWNSTREAM: ${{ github.event.inputs.downstream }}
           BEFORE: ${{ github.event.before }}
           AFTER: ${{ github.sha }}
           DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+          # Read-only run history (actions: read above): the previous sweep's input commit.
+          GITHUB_TOKEN: ${{ github.token }}
         run: python .github/scripts/pick_jobs.py
 
       # A certified runtime-only push still runs claim-kit tests. Do not run the
       # compiler or restore old output generations merely to execute unit tests.
+      # No push starts this workflow since 2026-11-09, so this is reached only by a
+      # replayed push event; the road tests run the claim-kit tests on every pull request.
       - name: Materialize claim-kit test fixtures
         if: steps.pick.outputs.runtime_tests == 'claim-kit'
         run: git sparse-checkout add '/research/stage19/code/**' '/research/plans/claim_kit_contract/**'

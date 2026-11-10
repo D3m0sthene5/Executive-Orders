@@ -33,4 +33,6 @@ subprocess.run([sys.executable,str(root/'.github/scripts/test_job_summary.py')],
 
 subprocess.run([sys.executable,str(root/'.github/scripts/test_writer_queue.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 subprocess.run([sys.executable,str(root/'.github/scripts/test_arsenale.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
+# Trigger policy (owner, 2026-11-09): no push starts Run jobs, no tag starts any workflow.
+subprocess.run([sys.executable,str(root/'.github/scripts/test_workflow_triggers.py')],cwd=root,check=True,env={**os.environ,'PYTHONDONTWRITEBYTECODE':'1'})
 

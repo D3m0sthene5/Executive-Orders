@@ -215,6 +215,13 @@ class RiquetSegmentTests(unittest.TestCase):
 
 
 class RequeueTests(unittest.TestCase):
+    def setUp(self):
+        # On a hosted runner GITHUB_WORKFLOW_REF names the road-tests workflow, and requeue dispatches
+        # only its own workflow (D-20261109-no-push-runs); these tests stand in for run-jobs.yml.
+        env = mock.patch.dict(os.environ, {"GITHUB_WORKFLOW_REF": ""})
+        env.start()
+        self.addCleanup(env.stop)
+
     def test_deferred_jobs_continue_without_spending_requeue_depth(self):
         d = arsenale.requeue_plan([], 0, ["c"], "run-jobs.yml", "main", deferred=["c", "d"], continuation=0)
         self.assertEqual(d["command"], ["gh", "workflow", "run", "run-jobs.yml", "--ref", "main",

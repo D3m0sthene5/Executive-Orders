@@ -1,13 +1,10 @@
 name: Reconcile full Opus research and original images
 
+# Retired from automatic runs (owner, 2026-11-09, Kean D-20261109-no-push-runs): it ran only when a
+# pergamon-* tag push matched its paths, about 79 times in four days, mostly failing. Start it by hand
+# (Actions tab -> Run workflow). .github/scripts/test_workflow_triggers.py keeps it manual.
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - '.github/workflows/stage20-opus-recovery.yml'
-      - 'research/stage20/code/build_conversion_bridge.mjs'
-      - 'research/stage20/code/extract_full_opus.py'
-      - 'research/stage20/code/verify_opus_media.py'
 
 permissions:
   contents: write
