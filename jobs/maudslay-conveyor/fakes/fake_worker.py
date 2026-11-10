@@ -1,10 +1,15 @@
-"""A canned worker for test_conveyor.py: reads the rendered prompt on stdin, writes a canned sheet or review file,
-and prints claude-style (`-p --output-format json`) or codex-style (`exec --json`) usage. No model, no network.
+"""A canned worker for test_conveyor.py: reads the rendered prompt on stdin, writes a canned sheet or review file in
+its working folder, and prints claude-style (`-p --output-format stream-json`) or codex-style (`exec --json`)
+events, including tool calls the conveyor scans for blinding. No model, no network.
 
-Env MAUDSLAY_FAKE_LOG: append {"argv", "prompt_chars", "kind", "id"} per call. Env MAUDSLAY_FAKE_SCENARIO: JSON with
-optional "producer": {EO: "block"|"bad_sheet"|"fail"|"badclaim"|"checkfail"}, "repair_fails": [EO],
-"reviewer": {"A"|"B": {"miss_controls": bool, "reject": [EO], "fail": bool}}, "usd": {"producer"|"reviewer": x},
-"tokens": n, "sleep": {EO: seconds}, "codex_turns": n, "end_date": "2000-01-02"."""
+Env MAUDSLAY_FAKE_LOG: write LOG.<random> holding {"argv", "cwd", "files", "kind", "id", "repair", "pid"} per call
+(after the last event).
+Env MAUDSLAY_FAKE_SCENARIO: JSON with optional
+  "producer": {EO: "block"|"bad_sheet"|"fail"|"badclaim"|"checkfail"}, "repair_fails": [EO],
+  "reviewer": {"A"|"B": {"miss_controls": bool, "reject": [EO], "fail": bool, "touch": [string], "reasons": str}},
+  "touch": {EO: [string]} (extra producer tool-call arguments), "usd": {"producer"|"reviewer": x}, "tokens": n,
+  "sleep": {EO: s}, "sleep_once": {EO: s}, "turns": n, "turn_sleep": s, "end_date": "2000-01-02",
+  "canned": {EO: {"decision": {...}, "clauses": {scope: {...}}, "rationale": str}}."""
 import csv
 import hashlib
 import json
@@ -38,13 +43,25 @@ def write_csv(p, fields, rs):
         w.writerows(rs)
 
 
+def sleep_for(sc, ident):
+    s = (sc.get("sleep") or {}).get(ident, 0)
+    once = (sc.get("sleep_once") or {}).get(ident)
+    if once and os.environ.get("MAUDSLAY_FAKE_SCENARIO"):
+        mark = Path(os.environ["MAUDSLAY_FAKE_SCENARIO"]).parent / f"slept-{ident.replace(':', '_')}"
+        if not mark.exists():
+            mark.write_text("1")
+            s = once
+    time.sleep(s)
+
+
 def produce(prompt, sc):
     iid, work, agent = field(prompt, "ORDER"), Path(field(prompt, "SHEET FOLDER")), field(prompt, "AGENT")
+    tools = [f"cat {field(prompt, 'VIEW')}"] + list((sc.get("touch") or {}).get(iid, []))
     mode = (sc.get("producer") or {}).get(iid, "submit")
     repair = "REPAIR ROUND" in prompt
-    time.sleep((sc.get("sleep") or {}).get(iid, 0))
+    sleep_for(sc, iid)
     if mode == "fail":
-        return iid, 1
+        return iid, 1, tools
     s = iid.replace(":", "_")
     df, dr = rows(work / "decisions.csv")
     cf, cr = rows(work / "clauses.csv")
@@ -75,7 +92,7 @@ def produce(prompt, sc):
     (work / "RATIONALES.json").write_text(json.dumps({f"{s}.main": text}), encoding="utf-8")
     (work / "ASSESSMENT.json").write_text(json.dumps({"id": iid, "outcome": r["outcome"]}), encoding="utf-8")
     (work / "REPORT.md").write_text(f"synthetic {iid} {r['outcome']}\n", encoding="utf-8")
-    return iid, 0
+    return iid, 0, tools
 
 
 def review(prompt, sc):
@@ -83,8 +100,12 @@ def review(prompt, sc):
                             field(prompt, "REVIEWER NAME"), field(prompt, "MODE"))
     arm = name.rsplit("-", 1)[1]
     cfg = (sc.get("reviewer") or {}).get(arm, {})
+    packet = field(prompt, "PACKET")
+    tools = [f"cat {src}", f"python -X utf8 -c \"import batch; batch.load_packet('{packet}', '.')\"",
+             f"python -c \"print(open('{packet}/PACKET.json').read()[:10])\""] + list(cfg.get("touch", []))
+    sleep_for(sc, arm + mode)
     if cfg.get("fail"):
-        return name, 1
+        return name, 1, tools
     end = sc.get("end_date", "2000-01-02")
     recs = []
     for line in Path(src).read_text(encoding="utf-8").splitlines():
@@ -94,42 +115,61 @@ def review(prompt, sc):
         planted = c.get("whole_order_end", {}).get("date") != end
         iid = c["instrument_id"]
         if planted and not cfg.get("miss_controls"):
-            v, d = "rejected", [{"field": "whole_order_end.date", "problem": "date contradicts the cited source"}]
+            v, d = "rejected", [{"field": "whole_order_end.date", "problem": "contradicts the cited source"}]
         elif iid in cfg.get("reject", []):
             v, d = "rejected", [{"field": "research_rationale", "problem": "reason does not match the source"}]
         else:
             v, d = ("upheld_after_reveal" if mode == "after_reveal" else "upheld"), []
         recs.append({"instrument_id": iid, "claim_sha256": canon(c), "verdict": v, "defects": d,
-                     "reasons": "synthetic", "scope": "whole_case"})
-    Path(out).parent.mkdir(parents=True, exist_ok=True)
+                     "reasons": cfg.get("reasons", "synthetic"), "scope": "whole_case"})
     Path(out).write_text("".join(json.dumps(r) + "\n" for r in recs), encoding="utf-8")
-    return name, 0
+    return name, 0, tools
+
+
+def emit(ev):
+    print(json.dumps(ev), flush=True)
 
 
 def main():
     prompt = sys.stdin.read()
     sc = json.loads(Path(os.environ["MAUDSLAY_FAKE_SCENARIO"]).read_text()) if os.environ.get("MAUDSLAY_FAKE_SCENARIO") else {}
+    files = sorted(os.listdir("."))
     kind = "producer" if "SHEET FOLDER:" in prompt else "reviewer"
-    ident, rc = produce(prompt, sc) if kind == "producer" else review(prompt, sc)
-    if os.environ.get("MAUDSLAY_FAKE_LOG"):
-        with open(os.environ["MAUDSLAY_FAKE_LOG"], "a", encoding="utf-8") as f:
-            f.write(json.dumps({"argv": sys.argv[1:], "prompt_chars": len(prompt), "kind": kind, "id": ident,
-                                "repair": "REPAIR ROUND" in prompt}) + "\n")
+    ident, rc, tools = produce(prompt, sc) if kind == "producer" else review(prompt, sc)
     usd = (sc.get("usd") or {}).get(kind, 0.5)
     tok = int(sc.get("tokens", 1000))
+    turns = int(sc.get("turns", 1))
+    sid = str(uuid.uuid4())
     if "exec" in sys.argv[1:]:
-        print(json.dumps({"type": "thread.started", "thread_id": str(uuid.uuid4())}), flush=True)
-        for _ in range(int(sc.get("codex_turns", 1))):
-            print(json.dumps({"type": "turn.completed", "usage": {"input_tokens": 3 * tok, "cached_input_tokens": 2 * tok,
-                                                                  "output_tokens": tok}}), flush=True)
-            time.sleep(float(sc.get("codex_turn_sleep", 0)))
+        emit({"type": "thread.started", "thread_id": sid})
+        for t in tools:
+            emit({"type": "item.completed", "item": {"type": "command_execution", "command": t, "aggregated_output": ""}})
+        for _ in range(turns):
+            emit({"type": "turn.completed", "usage": {"input_tokens": 3 * tok, "cached_input_tokens": 2 * tok,
+                                                      "output_tokens": tok}})
+            time.sleep(float(sc.get("turn_sleep", 0)))
         if rc:
-            print(json.dumps({"type": "turn.failed"}), flush=True)
-        return rc
-    print(json.dumps({"type": "result", "session_id": str(uuid.uuid4()), "total_cost_usd": usd, "num_turns": 3,
-                      "is_error": bool(rc), "result": "synthetic", "duration_ms": 10,
-                      "usage": {"input_tokens": tok, "cache_read_input_tokens": tok,
-                                "cache_creation_input_tokens": tok, "output_tokens": tok}}))
+            emit({"type": "turn.failed"})
+    else:
+        emit({"type": "system", "subtype": "init", "session_id": sid, "cwd": os.getcwd()})
+        for i, t in enumerate(tools):
+            emit({"type": "assistant", "message": {"id": f"t{i}", "usage": {"input_tokens": 1, "output_tokens": 1},
+                                                   "content": [{"type": "tool_use", "name": "Bash",
+                                                                "input": {"command": t}}]}})
+        for i in range(turns - 1):
+            emit({"type": "assistant", "message": {"id": f"m{i}", "usage": {"input_tokens": tok, "output_tokens": tok},
+                                                   "content": [{"type": "text", "text": "working"}]}})
+            time.sleep(float(sc.get("turn_sleep", 0)))
+        emit({"type": "result", "session_id": sid, "total_cost_usd": usd, "num_turns": 3, "is_error": bool(rc),
+              "result": "synthetic", "duration_ms": 10,
+              "usage": {"input_tokens": tok, "cache_read_input_tokens": tok, "cache_creation_input_tokens": tok,
+                        "output_tokens": tok}})
+    if os.environ.get("MAUDSLAY_FAKE_LOG"):
+        # One file per call: concurrent appends from several processes can lose a line on Windows.
+        with open(f"{os.environ['MAUDSLAY_FAKE_LOG']}.{uuid.uuid4().hex}", "w", encoding="utf-8") as f:
+            f.write(json.dumps({"argv": sys.argv[1:], "cwd": os.getcwd(), "files": files, "kind": kind, "id": ident,
+                                "repair": "REPAIR ROUND" in prompt, "pid": os.getpid(),
+                                "prompt_chars": len(prompt)}) + "\n")
     return rc
 
 

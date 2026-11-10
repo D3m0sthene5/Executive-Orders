@@ -10,7 +10,7 @@ ORDER HEADER (from its view): <<VIEW_HEADER>>
 ROUTE: <<ROUTE_NAME>>
 <<ROUTE>>
 
-SCOPE: work only on <<ORDER>>. Read the view above, the repository sources it cites, and the shared rules below. Do not open other orders' views, other sheet folders under <<RUN>>, review folders, or any other wave's packets.
+SCOPE: work only on <<ORDER>>. Your working folder is SHEET FOLDER (outside the repository). Read the view above, the repository sources it cites, and the shared rules below. Do not open anything else under <<SCRATCH_ROOT>> (other workers' folders, control material), other orders' views, or any other wave's packets; tool calls are checked.
 
 CONTEXT BUDGET (measured): the project targets under 150,000 context tokens per order. Every tool result stays in your context, so never cat a whole large file (PACKET.json, READ.md, LOOKUPS.details.json, a long order text) when the view, a grep or a byte range answers the question, and combine checks into one python script. Cut the reading, not the research.
 
@@ -32,6 +32,6 @@ THE SHEET (the only files you write, all in SHEET FOLDER):
 - RATIONALES.json: any text you reference as @rationale:KEY, with every KEY starting with "<<SLUG>>.".
 - ASSESSMENT.json: one object, never filed as a claim: {"id":"<<ORDER>>","operative_force_at_cutoff":"yes|no|unknown","operative_force_basis":"one sentence + repository source path","formal_validity_at_cutoff":"unrevoked|revoked|unknown","formal_disposition":"instrument and date, or empty","first_cause":"under_original_terms|later_amendment_imposed_condition|later_presidential|legislative|regulatory|judicial|completion_of_task|never_activated|unresolved","formal_revocation_after_earlier_cessation":"yes|no|unknown","claimed_status":"yes|no|","outcome":"submit|blocked|unresolved","blocker":"exact missing source, or empty"}.
 - REPORT.md: start and end UTC, outcome and why, what took the time, files opened beyond the view, tool defects.
-Put any scratch script in SHEET FOLDER/scratch/. Do not edit the packet, and do not run kit.py prepare, apply, batch-check, complete or source_supplement: the conveyor merges your sheet and runs the mechanical checks itself, and sends any errors to a fresh session.
+Put any scratch script in SHEET FOLDER/scratch/. Write nothing in the repository: do not edit the packet, and do not run kit.py prepare, apply, batch-check, complete or source_supplement: the conveyor merges your sheet and runs the mechanical checks itself, and sends any errors to a fresh session.
 
 Reply in at most 60 words: outcome and, for a block, the missing source.

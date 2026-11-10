@@ -154,6 +154,8 @@ def main(argv):
             with open(target, "xb") as f:
                 f.write("".join(l + "\n" for l in lines).encode())
             published = len(lines)
+        (a.write / "PUBLICATION.json").write_text(json.dumps({"path": m["publication"]["path"],
+                                                             "written": bool(published)}))
         (a.write / "TALLY.json").write_text(json.dumps({"exceptions": len(exceptions), "exception_list": exceptions,
                                                          "eligible": [json.loads(l)["instrument_id"] for l in lines],
                                                          "claims_published": published}))

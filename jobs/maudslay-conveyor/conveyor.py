@@ -5,21 +5,21 @@ of many skilled ones. The 2026-11-09/10 Codex wave spent 54% of its tokens on co
 themselves; the Papinian lane, where small scripts did that work, spent 17%. This file is those scripts as one
 resumable state machine.
 
-    python -I jobs/maudslay-conveyor/conveyor.py run --run-dir research/excavator/RUN --batch b01 \
-        --agent NAME --action BENTHAM_ACTION --n 20 --route ROUTE.txt --workers WORKERS.json [--publish]
+    python -I jobs/maudslay-conveyor/conveyor.py run --run-dir research/excavator/RUN --batch b01 --agent NAME \
+        --action BENTHAM_ACTION --n 20 --route ROUTE.txt --workers WORKERS.json --batch-usd 170 [--publish]
     python -I jobs/maudslay-conveyor/conveyor.py status research/excavator/RUN/b01
-    python -I jobs/maudslay-conveyor/conveyor.py commands --workers WORKERS.json      (print rendered worker commands)
+    python -I jobs/maudslay-conveyor/conveyor.py commands --workers WORKERS.json      (print worker commands)
 
-Stages, each recorded in BATCH/LEDGER.jsonl and skipped on a re-run once done: reserve (kit next), prepare (kit
-prepare, cruden lookups, Geddes views), dispatch (kit dispatch-check just before producers), render (one producer
-prompt per order, size-capped), produce (fresh worker sessions, concurrent, capped), collect (validate and merge the
-per-order sheets), check (kit apply and batch-check, optional repair rounds), plant (sealed planted controls), review
-(two independent blind arms), controls (stop on any miss), reveal (fresh after-reveal sessions on the genuine
-controls), agree (arm agreement; disagreements go to ADJUDICATE.json), complete (kit complete, --publish only when
-asked), measure (MEASURES.json and the Bentham gate line).
+Stages, each recorded in BATCH/LEDGER.jsonl and skipped on a re-run once done: reserve, prepare, dispatch, render,
+produce, collect, check (with repair rounds), plant, review, controls, reveal, agree, complete, measure. See README.md.
 
-Exit codes: 0 done; 1 failed (a tool or configuration error); 2 stopped by a stop rule; 3 paused for coordinator
-adjudication (write BATCH/ADJUDICATION.json and re-run); 4 done, but Bentham's gate says STOP.
+Workers never run inside the repository: each gets a fresh, empty folder under the scratch root (outside the
+repository), so no worker loads the repository's CLAUDE.md or AGENTS.md. Review sets, the sealed control key and
+the genuine control claims also stay in the scratch root; only the post-reveal records the kit's completion needs
+are written under research/.
+
+Exit codes: 0 done; 1 failed; 2 stopped by a stop rule; 3 paused for coordinator adjudication; 4 done, but Bentham's
+gate says STOP; 5 done, but the gate gave no verdict (refused or unranked).
 
 The conveyor makes no legal judgment. It never decides an order the arms disagree on, never edits a claim, and never
 certifies anything: human-certified stays 0.
@@ -36,6 +36,7 @@ import os
 import random
 import re
 import shutil
+import signal
 import subprocess
 import sys
 import tempfile
@@ -48,14 +49,16 @@ HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 PROMPTS = HERE / "prompts"
 
-EXIT_DONE, EXIT_FAILED, EXIT_STOPPED, EXIT_PAUSED, EXIT_GATE_STOP = 0, 1, 2, 3, 4
-DATE_WORDS = ("date", "first_end", "whole_order_end", "signing", "later_event", "effective", "year")
+EXIT_DONE, EXIT_FAILED, EXIT_STOPPED, EXIT_PAUSED, EXIT_GATE_STOP, EXIT_NO_GATE = 0, 1, 2, 3, 4, 5
+# A planted control is caught only when a word or field name in the reviewer's `defects` is one of these.
+DATE_TERMS = frozenset({"date", "dates", "dated", "first_end", "whole_order_end", "signing_date", "effective_date",
+                        "later_event", "later_events", "year", "years"})
 OUTCOMES = ("submit", "unresolved", "blocked", "route_owner")
-# Settings fixed when a batch starts; a re-run may change only budgets, concurrency and publication switches.
+# Settings fixed when a batch starts; a re-run may change only budgets, concurrency, timeouts and switches.
 FIXED = ("agent", "action", "n", "ids", "route", "replacement_proposal", "publication", "prompt_cap_chars",
-         "review_chunk", "repair_rounds", "adjudicator")
+         "review_chunk", "repair_rounds", "adjudicator", "keys_dir", "scratch_root")
 MUTABLE = ("parallel", "item_usd", "item_tokens", "batch_usd", "batch_tokens", "item_timeout", "publish",
-           "defer_adjudication", "batches_file", "keys_dir", "tools", "workers")
+           "defer_adjudication", "batches_file", "tools", "workers")
 
 DEFAULT_TOOLS = {
     "kit": ["{python}", "-X", "utf8", "{repo}/jobs/claim-kit/kit.py", "--repo", "{repo}"],
@@ -67,20 +70,23 @@ DEFAULT_TOOLS = {
              "{batches}"],
 }
 
-# Worker templates. Every call is a fresh session: no resume, continue or fork flag is ever accepted.
-CLAUDE_TEMPLATE = ["claude", "-p", "--model", "{model}", "--output-format", "json", "--max-turns", "{max_turns}",
-                   "--max-budget-usd", "{item_usd}", "--permission-mode", "auto", "--add-dir", "{repo}"]
+# Worker templates. Every call is a fresh session in a fresh folder outside the repository.
+CLAUDE_TEMPLATE = ["claude", "-p", "--model", "{model}", "--output-format", "stream-json", "--verbose",
+                   "--max-turns", "{max_turns}", "--max-budget-usd", "{item_usd}", "--permission-mode", "auto",
+                   "--add-dir", "{repo}"]
 CODEX_TEMPLATE = ["codex", "exec", "--json", "--ephemeral", "--skip-git-repo-check", "-C", "{cwd}", "-m", "{model}",
-                  "-c", 'model_reasoning_effort="medium"',
-                  "-c", "model_auto_compact_token_limit={auto_compact_tokens}",
-                  "-c", "tool_output_token_limit={tool_output_tokens}",
-                  "-c", 'approval_policy="never"',
-                  "-c", 'sandbox_mode="workspace-write"',
-                  "-c", "sandbox_workspace_write.writable_roots={writable_roots}",
-                  "-c", "sandbox_workspace_write.network_access={network}",
+                  "--config", 'model_reasoning_effort="medium"',
+                  "--config", "model_auto_compact_token_limit={auto_compact_tokens}",
+                  "--config", "tool_output_token_limit={tool_output_tokens}",
+                  "--config", 'approval_policy="never"',
+                  "--config", 'sandbox_mode="workspace-write"',
+                  "--config", "sandbox_workspace_write.writable_roots={writable_roots}",
+                  "--config", "sandbox_workspace_write.network_access={network}",
                   "-"]
-RESUME_TOKENS = {"resume", "--resume", "--continue", "--last", "--fork-session", "fork"}
+# Refused anywhere in any worker command: session reuse, and the short -c (claude --continue; use codex --config).
+REFUSED_TOKENS = {"-c", "-r", "--continue", "--resume", "resume", "--last", "--fork-session", "fork"}
 UNSAFE_TOKENS = {"--dangerously-bypass-approvals-and-sandbox", "--yolo", "--dangerously-skip-permissions"}
+PATH_TAIL = re.compile(r"[^\s\"'`;|&<>(),]*")
 
 
 class Stop(Exception):
@@ -114,7 +120,7 @@ def slug(iid):
 def read_json(path, default=None):
     try:
         return json.loads(Path(path).read_text(encoding="utf-8"))
-    except (FileNotFoundError, ValueError):
+    except (OSError, ValueError):
         return default
 
 
@@ -128,9 +134,11 @@ def write_json(path, obj):
 
 def read_jsonl(path):
     out = []
-    if not Path(path).exists():
+    try:
+        text = Path(path).read_text(encoding="utf-8")
+    except OSError:
         return out
-    for line in Path(path).read_text(encoding="utf-8").splitlines():
+    for line in text.splitlines():
         if line.strip():
             try:
                 out.append(json.loads(line))
@@ -167,12 +175,85 @@ def json_list(text):
     return v if isinstance(v, list) else [v]
 
 
+def bash_path(p):
+    s = Path(p).as_posix()
+    m = re.match(r"^([A-Za-z]):/(.*)$", s)
+    return f"/{m.group(1).lower()}/{m.group(2)}" if m else s
+
+
+def move_aside(path, stem):
+    """Rename path to the first free STEM-k beside it; an orphan process holding the folder is a clear failure."""
+    path = Path(path)
+    k = 1
+    while (path.parent / f"{stem}-{k}").exists():
+        k += 1
+    try:
+        os.replace(path, path.parent / f"{stem}-{k}")
+    except OSError as exc:
+        raise Fail(f"cannot move {path} aside ({exc}); a leftover process may still hold it. Stop it and re-run.")
+    return path.parent / f"{stem}-{k}"
+
+
+# ---------------------------------------------------------------------------------------------------------------
+# Processes
+
+
+def pid_alive(pid, launched_epoch=None):
+    """True if the process exists and (on Windows) was created within two minutes of launched_epoch."""
+    if not pid:
+        return False
+    if os.name == "nt":
+        import ctypes
+        from ctypes import wintypes
+        k = ctypes.windll.kernel32
+        k.OpenProcess.restype = wintypes.HANDLE
+        k.OpenProcess.argtypes = [wintypes.DWORD, wintypes.BOOL, wintypes.DWORD]
+        h = k.OpenProcess(0x1000, False, int(pid))  # PROCESS_QUERY_LIMITED_INFORMATION
+        if not h:
+            return False
+        try:
+            code = wintypes.DWORD()
+            if not k.GetExitCodeProcess(h, ctypes.byref(code)) or code.value != 259:  # STILL_ACTIVE
+                return False
+            if launched_epoch:
+                ft = [wintypes.FILETIME() for _ in range(4)]
+                if k.GetProcessTimes(h, *[ctypes.byref(f) for f in ft]):
+                    created = ((ft[0].dwHighDateTime << 32) + ft[0].dwLowDateTime) / 1e7 - 11644473600
+                    if abs(created - float(launched_epoch)) > 120:
+                        return False  # the PID was reused by another process
+            return True
+        finally:
+            k.CloseHandle(h)
+    try:
+        os.kill(int(pid), 0)
+        return True
+    except ProcessLookupError:
+        return False
+    except PermissionError:
+        return True
+
+
+def kill_pid_tree(pid):
+    if os.name == "nt":
+        subprocess.run(["taskkill", "/T", "/F", "/PID", str(pid)], capture_output=True)
+    else:
+        try:
+            os.killpg(int(pid), signal.SIGKILL)  # workers start in their own session
+        except (ProcessLookupError, PermissionError):
+            pass
+
+
+def kill_tree(proc):
+    if proc.poll() is None:
+        kill_pid_tree(proc.pid)
+
+
 # ---------------------------------------------------------------------------------------------------------------
 # Ledger
 
 
 class Ledger:
-    """Append-only JSONL of stage and item records. A key is done once a 'done' record exists for it."""
+    """Append-only JSONL of stage and worker records. A key is done once a 'done' record exists for it."""
 
     def __init__(self, path):
         self.path = Path(path)
@@ -189,12 +270,21 @@ class Ledger:
         r = self.done(key)
         return r.get("data") if r else None
 
+    def count(self, key, status):
+        return sum(1 for r in self.rows if r.get("key") == key and r.get("status") == status)
+
     def mark(self, key, status, **data):
         row = {"utc": now(), "key": key, "status": status, "data": data}
         with self.lock:
             self.path.parent.mkdir(parents=True, exist_ok=True)
-            with self.path.open("a", encoding="utf-8") as fh:
-                fh.write(json.dumps(row, ensure_ascii=False) + "\n")
+            with self.path.open("ab") as fh:
+                # A torn last line (a kill mid-write) must not swallow this record.
+                if fh.tell() > 0:
+                    with self.path.open("rb") as rd:
+                        rd.seek(-1, os.SEEK_END)
+                        if rd.read(1) != b"\n":
+                            fh.write(b"\n")
+                fh.write((json.dumps(row, ensure_ascii=False) + "\n").encode("utf-8"))
                 fh.flush()
                 os.fsync(fh.fileno())
             self.rows.append(row)
@@ -209,23 +299,33 @@ class Ledger:
             return hit["data"]
         self.mark(key, "started")
         t0 = time.monotonic()
-        data = fn()
-        data = dict(data or {})
+        try:
+            data = dict(fn() or {})
+        except (Fail, Stop, Pause) as exc:
+            self.mark(key, "aborted", reason=str(exc))
+            raise
         data.setdefault("wall_seconds", round(time.monotonic() - t0, 3))
         self.mark(key, "done", **data)
         return data
 
+    def worker_states(self):
+        """{key: (last status, merged data)} for every worker key (pool 'started', 'launched', 'done', 'aborted')."""
+        out = {}
+        for r in self.rows:
+            d = r.get("data") if isinstance(r.get("data"), dict) else {}
+            if not (d.get("pool") or d.get("worker_launch") or d.get("worker") or r["key"] in out):
+                continue
+            status, merged = out.get(r["key"], (None, {}))
+            out[r["key"]] = (r["status"], {**merged, **d})
+        return out
+
     def workers(self):
         """Every finished worker record (one per launched session)."""
-        seen = {}
-        for r in self.rows:
-            if r.get("status") == "done" and isinstance(r.get("data"), dict) and r["data"].get("worker"):
-                seen[r["key"]] = r["data"]
-        return list(seen.values())
+        return [d for s, d in self.worker_states().values() if s == "done" and d.get("worker")]
 
 
 # ---------------------------------------------------------------------------------------------------------------
-# Commands
+# Worker commands
 
 
 def render_args(template, mapping):
@@ -240,82 +340,85 @@ def render_args(template, mapping):
     return out
 
 
+def program_family(program):
+    name = Path(str(program)).name.lower()
+    for ext in (".exe", ".cmd", ".bat", ".ps1"):
+        if name.endswith(ext):
+            name = name[: -len(ext)]
+    return name if name in ("claude", "codex") else None
+
+
 def validate_worker_command(argv, family):
-    """Refuse any command that resumes, continues or forks a session, or that lacks the budget flags."""
+    """Refuse any command that reuses a session, disables the sandbox, or lacks the budget and event flags."""
     toks = [str(t) for t in argv]
-    bad = [t for t in toks if t in RESUME_TOKENS or t.startswith(("--resume=", "--continue=", "--session-id"))]
-    if family == "claude":
-        bad += [t for t in toks if t in ("-c", "-r")]
+    if family not in ("claude", "codex"):
+        raise Fail(f"worker family {family!r} is refused for now: only claude and codex commands are accepted")
+    prog = program_family(toks[0])
+    if prog and prog != family:
+        raise Fail(f"the program {toks[0]!r} is {prog}, but the worker is declared {family}")
+    bad = [t for t in toks if t in REFUSED_TOKENS or t.startswith(("--resume=", "--continue=", "--session-id"))]
     if bad:
-        raise Fail(f"worker command would reuse a session ({bad}); every worker call must be a fresh session")
+        raise Fail(f"worker command contains refused flags {bad}: every call is a fresh session, and codex "
+                   "settings use --config, not -c")
     unsafe = [t for t in toks if t in UNSAFE_TOKENS or "danger-full-access" in t]
     if unsafe:
         raise Fail(f"worker command disables the sandbox or approvals: {unsafe}")
     if any("rollout_token_budget" in t for t in toks):
         raise Fail("rollout_token_budget does not exist in the installed Codex build; remove it")
     if family == "claude":
-        for flag in ("-p", "--max-turns", "--max-budget-usd", "--output-format"):
+        for flag in ("-p", "--max-turns", "--max-budget-usd", "--output-format", "--verbose"):
             if flag not in toks:
                 raise Fail(f"claude worker command lacks {flag}")
-        fmt = toks[toks.index("--output-format") + 1]
-        if fmt not in ("json", "stream-json"):
-            raise Fail("claude worker must report usage with --output-format json")
-    elif family == "codex":
-        for flag in ("exec", "--json", "--ephemeral"):
+        if toks[toks.index("--output-format") + 1] != "stream-json":
+            raise Fail("claude workers must use --output-format stream-json (tool calls are scanned for blinding)")
+        if not toks[toks.index("--max-budget-usd") + 1]:
+            raise Fail("claude worker has an empty --max-budget-usd")
+    else:
+        for flag in ("exec", "--json", "--ephemeral", "--skip-git-repo-check"):
             if flag not in toks:
                 raise Fail(f"codex worker command lacks {flag}")
-        cfg = " ".join(toks[i + 1] for i, t in enumerate(toks[:-1]) if t == "-c")
+        cfg = " ".join(toks[i + 1] for i, t in enumerate(toks[:-1]) if t == "--config")
         for need in ("model_auto_compact_token_limit=", "tool_output_token_limit=", 'approval_policy="never"'):
             if need not in cfg:
-                raise Fail(f"codex worker command lacks -c {need}")
-    elif family != "generic":
-        raise Fail(f"unknown worker family {family!r} (claude, codex or generic)")
+                raise Fail(f"codex worker command lacks --config {need}")
     return toks
 
 
-def kill_tree(proc):
-    if proc.poll() is not None:
-        return
-    if os.name == "nt":
-        subprocess.run(["taskkill", "/T", "/F", "/PID", str(proc.pid)], capture_output=True)
-    else:
-        proc.kill()
+# ---------------------------------------------------------------------------------------------------------------
+# Usage and events
 
 
-def parse_usage(text):
-    """Usage from a worker's own JSON output: a `claude -p --output-format json` result object, or `codex exec
-    --json` events (turn.completed usage). Tokens: input (uncached), cache_read, cache_write, output."""
-    u = {"session_id": None, "is_error": False, "num_turns": None, "input": 0, "cache_read": 0, "cache_write": 0,
-         "output": 0, "usd": None, "result": None, "usage_seen": False}
-    d = None
-    try:
-        d = json.loads(text)
-    except ValueError:
-        pass
-    if isinstance(d, list):
-        d = next((x for x in reversed(d) if isinstance(x, dict) and x.get("type") == "result"), None)
-    if isinstance(d, dict) and ("usage" in d or "total_cost_usd" in d):
-        us = d.get("usage") or {}
-        u.update(session_id=d.get("session_id"), is_error=bool(d.get("is_error")), num_turns=d.get("num_turns"),
-                 input=int(us.get("input_tokens") or 0), cache_read=int(us.get("cache_read_input_tokens") or 0),
-                 cache_write=int(us.get("cache_creation_input_tokens") or 0),
-                 output=int(us.get("output_tokens") or 0), usd=d.get("total_cost_usd"), result=d.get("result"),
-                 usage_seen=True)
-        return u
-    for line in text.splitlines():
-        try:
-            ev = json.loads(line)
-        except ValueError:
-            continue
-        add_event(u, ev)
-    return u
+def new_usage():
+    return {"session_id": None, "is_error": False, "num_turns": None, "input": 0, "cache_read": 0, "cache_write": 0,
+            "output": 0, "usd": None, "result": None, "usage_seen": False, "result_seen": False, "_msgs": {}}
 
 
 def add_event(u, ev):
+    """Fold one event of `claude -p --output-format stream-json` or `codex exec --json` into usage u."""
     if not isinstance(ev, dict):
         return
     t = ev.get("type")
-    if t == "thread.started":
+    if t == "system" and ev.get("session_id"):
+        u["session_id"] = ev["session_id"]
+    elif t == "assistant" and isinstance(ev.get("message"), dict):
+        msg = ev["message"]
+        if isinstance(msg.get("usage"), dict) and msg.get("id") and not u["result_seen"]:
+            u["_msgs"][msg["id"]] = msg["usage"]  # the last usage per message id, as bentham sessions.py does
+            ms = u["_msgs"].values()
+            u.update(input=sum(int(m.get("input_tokens") or 0) for m in ms),
+                     cache_read=sum(int(m.get("cache_read_input_tokens") or 0) for m in ms),
+                     cache_write=sum(int(m.get("cache_creation_input_tokens") or 0) for m in ms),
+                     output=sum(int(m.get("output_tokens") or 0) for m in ms), usage_seen=True)
+    elif t == "result":
+        us = ev.get("usage") or {}
+        u.update(session_id=ev.get("session_id") or u["session_id"], is_error=bool(ev.get("is_error")),
+                 num_turns=ev.get("num_turns"), usd=ev.get("total_cost_usd"), result=ev.get("result"),
+                 result_seen=True)
+        if us:
+            u.update(input=int(us.get("input_tokens") or 0), cache_read=int(us.get("cache_read_input_tokens") or 0),
+                     cache_write=int(us.get("cache_creation_input_tokens") or 0),
+                     output=int(us.get("output_tokens") or 0), usage_seen=True)
+    elif t == "thread.started":
         u["session_id"] = ev.get("thread_id") or u["session_id"]
     elif t == "turn.completed" and isinstance(ev.get("usage"), dict):
         us = ev["usage"]
@@ -324,11 +427,21 @@ def add_event(u, ev):
         u["input"] += max(int(us.get("input_tokens") or 0) - cached, 0)
         u["output"] += int(us.get("output_tokens") or 0)
         u["num_turns"] = (u["num_turns"] or 0) + 1
-        u["usage_seen"] = True
+        u.update(usage_seen=True, result_seen=True)
     elif t in ("turn.failed", "error"):
         u["is_error"] = True
     elif t == "item.completed" and isinstance(ev.get("item"), dict) and ev["item"].get("type") == "agent_message":
         u["result"] = ev["item"].get("text")
+
+
+def parse_usage(text):
+    u = new_usage()
+    for line in text.splitlines():
+        try:
+            add_event(u, json.loads(line))
+        except ValueError:
+            continue
+    return u
 
 
 def tokens(u):
@@ -340,9 +453,60 @@ def price(u, prices):
         return float(u["usd"])
     if not prices or any(not isinstance(prices.get(k), (int, float)) for k in ("input", "cached_input", "output")):
         return None
-    return ((u.get("input") or 0) * prices.get("input", 0) + (u.get("cache_read") or 0) * prices.get("cached_input", 0)
-            + (u.get("cache_write") or 0) * prices.get("cache_write", prices.get("input", 0))
-            + (u.get("output") or 0) * prices.get("output", 0)) / 1e6
+    return ((u.get("input") or 0) * prices["input"] + (u.get("cache_read") or 0) * prices["cached_input"]
+            + (u.get("cache_write") or 0) * prices.get("cache_write", prices["input"])
+            + (u.get("output") or 0) * prices["output"]) / 1e6
+
+
+def _strings(v):
+    if isinstance(v, str):
+        return [v]
+    if isinstance(v, dict):
+        return [s for x in v.values() for s in _strings(x)]
+    if isinstance(v, list):
+        return [s for x in v for s in _strings(x)]
+    return []
+
+
+def tool_strings(ev):
+    """The arguments of every tool call in one event (claude tool_use inputs; codex commands and file paths)."""
+    if not isinstance(ev, dict):
+        return []
+    if ev.get("type") == "assistant" and isinstance(ev.get("message"), dict):
+        return [s for b in ev["message"].get("content") or [] if isinstance(b, dict) and b.get("type") == "tool_use"
+                for s in _strings(b.get("input"))]
+    if ev.get("type") in ("item.started", "item.updated", "item.completed") and isinstance(ev.get("item"), dict):
+        it = ev["item"]
+        if it.get("type") in ("agent_message", "reasoning"):
+            return []
+        return [s for k in ("command", "path", "changes", "arguments", "query") for s in _strings(it.get(k))]
+    return []
+
+
+def path_forms(p):
+    p = Path(p).resolve().as_posix().lower()
+    return sorted({p, bash_path(p).lower()})
+
+
+def scan(strings, rules):
+    """Violations: a tool argument naming a forbidden path. rules: [(prefix forms, allowed tail regex|None, label)]."""
+    out = []
+    for s in strings:
+        n = re.sub(r"/+", "/", s.replace("\\", "/").lower())
+        for forms, allow, label in rules:
+            for f in forms:
+                start = 0
+                while True:
+                    i = n.find(f, start)
+                    if i < 0:
+                        break
+                    start = i + 1
+                    tail = PATH_TAIL.match(n, i + len(f)).group(0)
+                    if tail and not tail.startswith("/"):
+                        continue  # a longer, different name that merely starts with the prefix
+                    if allow is None or not allow.match(tail.rstrip("/")):
+                        out.append(f"{label}: {s[:200]}")
+    return sorted(set(out))
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -431,11 +595,12 @@ def plant_controls(claims, salt):
 
 
 def caught(rec):
-    """Papinian finish_pair.py rule, fixed in advance: rejected, and the defect text names a date."""
+    """Rule fixed in advance: the arm rejected the version, and a whole word or field name in its `defects` names a
+    date. Reasons are not read, and no substring of a longer word ("mandate", "update") counts."""
     if not rec or rec.get("verdict") != "rejected":
         return False
-    text = json.dumps([rec.get("defects", []), rec.get("reasons", ""), rec.get("reason", "")], ensure_ascii=False).lower()
-    return any(w in text for w in DATE_WORDS)
+    text = json.dumps(rec.get("defects") or [], ensure_ascii=False).lower()
+    return bool(set(re.findall(r"[a-z_]+", text)) & DATE_TERMS)
 
 
 # ---------------------------------------------------------------------------------------------------------------
@@ -450,22 +615,24 @@ class Batch:
         if not self.dir.is_relative_to(self.repo):
             raise Fail("the batch folder must be inside the repository")
         self.packet = self.dir / "packet"
-        # Sheets, review sets and review outputs live inside the packet folder. claim-kit's prior-research scan
-        # excludes only the packet itself, so a claim or review file elsewhere under research/ would change the
-        # frozen packet's prior research ("changed prior research; prepare a new version").
-        self.work = self.packet / "maudslay" / "work"
-        self.reviews = self.packet / "maudslay" / "review"
         self.name = cfg["batch"]
+        self.scratch = Path(cfg["scratch_root"]).resolve()
+        self.keys = Path(cfg["keys_dir"]).resolve()
+        for label, p in (("--scratch-root", self.scratch), ("--keys-dir", self.keys)):
+            if p.is_relative_to(self.repo) or self.repo.is_relative_to(p):
+                raise Fail(f"{label} must be outside the repository (workers and control material stay out of it)")
+        if self.keys.is_relative_to(self.scratch / "workers"):
+            raise Fail("--keys-dir must not be inside the workers' folders")
         self.ledger = Ledger(self.dir / "LEDGER.jsonl")
-        keys = Path(cfg["keys_dir"]).resolve()
-        if keys.is_relative_to(self.repo):
-            raise Fail("--keys-dir must be outside the repository (the control key is sealed from reviewers)")
-        self.keys = keys
         self.tools = dict(DEFAULT_TOOLS)
         if cfg.get("tools"):
             self.tools.update(read_json(cfg["tools"], {}) or {})
         self.workers = load_workers(cfg["workers"])
         self.spend_lock = threading.Lock()
+        self.live, self.live_lock = {}, threading.Lock()
+        if cfg.get("batch_usd") is None:
+            raise Fail("--batch-usd is required")
+        self.check_workers()
 
     # -- helpers -------------------------------------------------------------------------------------------
     def rel(self, p):
@@ -487,127 +654,229 @@ class Batch:
             fh.write(f"{now()} {log} exit {p.returncode} {round(time.monotonic() - t0, 2)}s {' '.join(argv[:8])}\n")
         return p.returncode, p.stdout or ""
 
-    def git_dirs(self):
-        out = []
-        for flag in ("--git-dir", "--git-common-dir"):
-            try:
-                p = subprocess.run(["git", "rev-parse", flag], cwd=self.repo, capture_output=True, text=True)
-                if p.returncode == 0 and p.stdout.strip():
-                    d = Path(p.stdout.strip())
-                    d = d if d.is_absolute() else self.repo / d
-                    out.append(d.resolve().as_posix())
-            except OSError:
-                pass
-        return sorted(set(out)) or [(self.repo / ".git").as_posix()]
-
-    def spent(self):
-        """(usd, tokens) of every worker this batch launched, counting a worker with unknown usd at the item cap."""
-        usd = tok = 0.0
-        for w in self.ledger.workers():
-            usd += w["usd"] if w.get("usd") is not None else float(self.cap(w["role"], "usd") or 0)
-            tok += w.get("tokens") or 0
-        return usd, tok
-
     def cap(self, role, kind):
         """Per-worker cap: the role's own item_usd / item_tokens in the workers file, else the batch-wide one."""
         w = self.workers.get(role) or {}
         v = w.get(f"item_{kind}")
         return v if v is not None else self.cfg.get(f"item_{kind}")
 
-    def budget_reason(self, running, role="producer"):
-        usd, tok = self.spent()
-        iu, it = self.cap(role, "usd"), self.cap(role, "tokens")
-        bu, bt = self.cfg.get("batch_usd"), self.cfg.get("batch_tokens")
-        if bu is not None and (usd + (running + 1) * float(iu or 0) > bu or usd >= bu):
-            return f"batch_budget: spent ${usd:.2f} + {running + 1} x item cap ${float(iu or 0):.2f} > ${bu:.2f}"
-        if bt is not None and (tok + (running + 1) * float(it or 0) > bt or tok >= bt):
-            return f"batch_token_budget: {int(tok)} + {running + 1} x {int(it or 0)} > {int(bt)}"
-        return None
-
-    # -- workers ------------------------------------------------------------------------------------------
-    def run_worker(self, label, role, prompt_text, stage="worker"):
+    def command(self, role, folder):
         w = self.workers[role]
-        cwd = self.dir
-        prompt_file = self.dir / "prompts" / f"{label}.txt"
-        prompt_file.parent.mkdir(parents=True, exist_ok=True)
-        prompt_file.write_text(prompt_text, encoding="utf-8")
         mapping = {"model": w["model"], "max_turns": w.get("max_turns", 80), "repo": self.repo.as_posix(),
-                   "cwd": cwd.as_posix(), "prompt_file": prompt_file.as_posix(),
-                   "item_usd": self.cap(role, "usd") if self.cap(role, "usd") is not None else "",
+                   "cwd": Path(folder).as_posix(), "item_usd": self.cap(role, "usd"),
                    "auto_compact_tokens": w.get("auto_compact_tokens", 120000),
                    "tool_output_tokens": w.get("tool_output_tokens", 6000),
-                   "writable_roots": json.dumps([cwd.as_posix()] + self.git_dirs()),
+                   "writable_roots": json.dumps([Path(folder).as_posix()]),
                    "network": "true" if w.get("network") else "false"}
-        argv = render_args(w["command"], mapping)
-        if w["family"] == "claude" and mapping["item_usd"] == "":
-            raise Fail("a claude worker needs --item-usd or its own item_usd (passed as --max-budget-usd)")
-        argv = validate_worker_command(argv, w["family"])
+        return validate_worker_command(render_args(w["command"], mapping), w["family"])
+
+    def check_workers(self):
+        for role, w in self.workers.items():
+            if w["family"] not in ("claude", "codex"):
+                raise Fail(f"{role}: worker family {w['family']!r} is refused for now (claude or codex only)")
+            if self.cap(role, "usd") is None:
+                raise Fail(f"{role}: needs an item dollar cap (--item-usd or item_usd in the workers file)")
+            if w["family"] == "codex":
+                if self.cap(role, "tokens") is None:
+                    raise Fail(f"{role}: a codex worker needs an item token cap (--item-tokens or item_tokens)")
+                pr = w.get("prices_usd_per_mtok") or {}
+                if any(not isinstance(pr.get(k), (int, float)) for k in ("input", "cached_input", "output")):
+                    raise Fail(f"{role}: a codex worker needs prices_usd_per_mtok (input, cached_input, output)")
+            self.command(role, self.scratch / "workers" / "CHECK")
+
+    def spent(self):
+        """(usd, tokens) for budget checks. A running or unfinished worker counts at its item caps; a codex worker
+        always counts at least its item dollar cap; a worker with unknown dollars counts at its cap."""
+        usd = tok = 0.0
+        for status, d in self.ledger.worker_states().values():
+            role = d.get("role")
+            cu, ct = float(self.cap(role, "usd") or 0), float(self.cap(role, "tokens") or 0)
+            if status in ("started", "launched"):
+                usd, tok = usd + cu, tok + ct
+            elif status == "done":
+                u = d.get("usd")
+                if d.get("family") == "codex":
+                    u = max(float(u or 0), cu)
+                usd += cu if u is None else float(u)
+                tok += d.get("tokens") or 0
+        return usd, tok
+
+    def measured_usd(self):
+        return round(sum(float(w["usd"]) if w.get("usd") is not None else float(self.cap(w.get("role"), "usd") or 0)
+                         for w in self.ledger.workers()), 4)
+
+    def budget_reason(self, role):
+        usd, tok = self.spent()
+        cu, ct = float(self.cap(role, "usd") or 0), self.cap(role, "tokens")
+        bu, bt = float(self.cfg["batch_usd"]), self.cfg.get("batch_tokens")
+        if usd + cu > bu + 1e-9:
+            return f"batch_budget: committed ${usd:.2f} + next {role} cap ${cu:.2f} > ${bu:.2f}"
+        if bt is not None and tok + float(ct or 0) > bt:
+            return f"batch_token_budget: {int(tok)} + {int(ct or 0)} > {int(bt)}"
+        return None
+
+    def rules_for(self, role, folder):
+        own = re.escape(Path(folder).name.lower())
+        rules = [(path_forms(self.scratch), re.compile(rf"^/workers/{own}(/.*)?$"), "outside its own folder"),
+                 (path_forms(self.keys), None, "control folder")]
+        if role.startswith("reviewer"):
+            batch = path_forms(self.dir) + [self.rel(self.dir).lower()]
+            rules.append((batch, re.compile(r"^/packet(/packet\.json)?$"), "batch material"))
+        return rules
+
+    # -- workers ------------------------------------------------------------------------------------------
+    def run_worker(self, item, stage):
+        key, label, role = item["key"], item["label"], item["role"]
+        folder = self.scratch / "workers" / label
+        k = 1
+        while folder.exists():
+            k += 1
+            folder = self.scratch / "workers" / f"{label}.{k}"
+        folder.mkdir(parents=True)
+        if item.get("setup"):
+            item["setup"](folder)
+        prompt = item["render"](folder)
+        if len(prompt) > int(self.cfg["prompt_cap_chars"]):
+            raise Fail(f"{label}: prompt of {len(prompt)} chars exceeds the cap")
+        (folder / "PROMPT.txt").write_text(prompt, encoding="utf-8")
+        (self.dir / "prompts").mkdir(parents=True, exist_ok=True)
+        (self.dir / "prompts" / f"{label}.txt").write_text(prompt, encoding="utf-8")
+        argv = self.command(role, folder)
         exe = shutil.which(argv[0])
         if exe:
             argv[0] = exe
-        wdir = self.dir / "workers"
-        wdir.mkdir(parents=True, exist_ok=True)
-        out_path, err_path = wdir / f"{label}.out", wdir / f"{label}.err"
-        t0, started = time.monotonic(), now()
-        item_tokens, timeout = self.cap(role, "tokens"), w.get("item_timeout", self.cfg.get("item_timeout"))
-        killed = None
-        live = {"session_id": None, "is_error": False, "num_turns": None, "input": 0, "cache_read": 0,
-                "cache_write": 0, "output": 0, "usd": None, "result": None, "usage_seen": False}
+        outd = self.scratch / "out"
+        outd.mkdir(parents=True, exist_ok=True)
+        out_path, err_path = outd / f"{folder.name}.out", outd / f"{folder.name}.err"
+        env = {k_: v for k_, v in os.environ.items() if k_ != "CLAUDE_CODE_ADDITIONAL_DIRECTORIES_CLAUDE_MD"}
+        kw = {} if os.name == "nt" else {"start_new_session": True}
+        t0, started, epoch = time.monotonic(), now(), time.time()
         try:
-            with open(prompt_file, "rb") as stdin, open(err_path, "wb") as err:
-                proc = subprocess.Popen(argv, cwd=cwd, stdin=stdin, stdout=subprocess.PIPE, stderr=err)
-                timer = None
-                if timeout:
-                    def on_timeout():
-                        nonlocal killed
-                        killed = killed or f"item_timeout {timeout}s"
-                        kill_tree(proc)
-                    timer = threading.Timer(float(timeout), on_timeout)
-                    timer.start()
-                chunks = []
-                for raw in proc.stdout:
-                    chunks.append(raw)
-                    try:
-                        add_event(live, json.loads(raw.decode("utf-8", "replace")))
-                    except ValueError:
-                        pass
-                    # Per-item cap, in the loop: stop a worker whose own reported usage passes the cap.
-                    if item_tokens and tokens(live) > item_tokens and not killed:
-                        killed = f"item_token_cap {tokens(live)} > {item_tokens}"
-                        kill_tree(proc)
-                proc.stdout.close()
-                rc = proc.wait()
-                if timer:
-                    timer.cancel()
+            # The worker writes its events straight to a file, so a conveyor crash never loses a finished result.
+            with open(folder / "PROMPT.txt", "rb") as stdin, open(out_path, "wb") as out, open(err_path, "wb") as err:
+                proc = subprocess.Popen(argv, cwd=folder, stdin=stdin, stdout=out, stderr=err, env=env, **kw)
         except OSError as exc:
             raise Fail(f"cannot launch worker {label}: {exc}")
-        text = b"".join(chunks).decode("utf-8", "replace")
-        out_path.write_text(text, encoding="utf-8")
+        with self.live_lock:
+            self.live[key] = proc
+        try:
+            self.ledger.mark(key, "launched", worker_launch=True, label=label, role=role, stage=stage, pid=proc.pid,
+                             launched_epoch=epoch, started_utc=started, folder=folder.as_posix(),
+                             out=out_path.as_posix())
+            text, killed = self.watch(proc, out_path, role, folder, t0)
+        finally:
+            with self.live_lock:
+                self.live.pop(key, None)
+        return self.record(label, role, stage, folder, out_path, text, proc.returncode, killed, started,
+                           round(time.monotonic() - t0, 3), len(prompt), argv)
+
+    def watch(self, proc, out_path, role, folder, t0):
+        """Follow the worker's event file; kill it on a blinding violation, the item token cap or the timeout."""
+        u, rules, killed, chunks, buf = new_usage(), self.rules_for(role, folder), None, [], b""
+        cap_tok = self.cap(role, "tokens")
+        timeout = self.workers[role].get("item_timeout", self.cfg.get("item_timeout"))
+        with open(out_path, "rb") as fh:
+            while True:
+                data = fh.read()
+                if data:
+                    chunks.append(data)
+                    buf += data
+                    *lines, buf = buf.split(b"\n")
+                    for line in lines:
+                        try:
+                            ev = json.loads(line)
+                        except ValueError:
+                            continue
+                        add_event(u, ev)
+                        bad = scan(tool_strings(ev), rules)
+                        if bad and not killed:
+                            killed = "blinding: " + bad[0]
+                            kill_tree(proc)
+                    if cap_tok and tokens(u) > cap_tok and not killed:
+                        killed = f"item_token_cap {tokens(u)} > {cap_tok}"
+                        kill_tree(proc)
+                    continue
+                if proc.poll() is not None:
+                    break
+                if timeout and time.monotonic() - t0 > float(timeout) and not killed:
+                    killed = f"item_timeout {timeout}s"
+                    kill_tree(proc)
+                time.sleep(0.1)
+        proc.wait()
+        return b"".join(chunks).decode("utf-8", "replace"), killed
+
+    def record(self, label, role, stage, folder, out_path, text, rc, killed, started, wall, prompt_chars, argv):
+        w = self.workers[role]
         u = parse_usage(text)
+        violations = []
+        for line in text.splitlines():
+            try:
+                violations += scan(tool_strings(json.loads(line)), self.rules_for(role, folder))
+            except ValueError:
+                pass
         usd = price(u, w.get("prices_usd_per_mtok"))
-        rec = {"worker": True, "label": label, "stage": stage, "role": role, "family": w["family"], "model": w["model"],
-               "model_family": w.get("model_family"), "session_id": u["session_id"], "exit": rc,
-               "is_error": u["is_error"], "killed": killed, "num_turns": u["num_turns"],
+        rec = {"worker": True, "label": label, "stage": stage, "role": role, "family": w["family"],
+               "model": w["model"], "model_family": w.get("model_family"), "session_id": u["session_id"],
+               "exit": rc, "is_error": u["is_error"], "killed": killed, "num_turns": u["num_turns"],
                "input": u["input"], "cache_read": u["cache_read"], "cache_write": u["cache_write"],
                "output": u["output"], "tokens": tokens(u), "usd": usd, "usage_reported": u["usage_seen"],
-               "started_utc": started, "ended_utc": now(), "wall_seconds": round(time.monotonic() - t0, 3),
-               "argv": [Path(argv[0]).name] + argv[1:], "prompt_chars": len(prompt_text)}
+               "result_seen": u["result_seen"], "blinding_violations": sorted(set(violations)),
+               "started_utc": started, "ended_utc": now(), "wall_seconds": wall, "prompt_chars": prompt_chars,
+               "folder": Path(folder).as_posix(), "out": Path(out_path).as_posix(),
+               "argv": [Path(argv[0]).name] + list(argv[1:]) if argv else None}
         over = []
-        if item_tokens and rec["tokens"] > item_tokens:
-            over.append(f"tokens {rec['tokens']} > {item_tokens}")
-        iu = self.cap(role, "usd")
-        if iu is not None and usd is not None and usd > float(iu) * 1.0001:
-            over.append(f"usd {usd:.4f} > {iu}")
+        ct, cu = self.cap(role, "tokens"), self.cap(role, "usd")
+        if ct and rec["tokens"] > ct:
+            over.append(f"tokens {rec['tokens']} > {ct}")
+        if cu is not None and usd is not None and usd > float(cu) * 1.0001:
+            over.append(f"usd {usd:.4f} > {cu}")
         rec["over_item_cap"] = "; ".join(over) or None
-        rec["ok"] = rc == 0 and not u["is_error"] and not killed
-        # One lock for the whole record: on Windows, append mode from two threads can lose a write.
+        rec["ok"] = (rc in (0, None)) and not u["is_error"] and not killed and u["result_seen"] and not violations
         with self.spend_lock, (self.dir / "COSTS.log").open("a", encoding="utf-8") as fh:
             # The carnot-coordinator/worker.py cost line, read by `bentham.py usage --reported-costs`.
             fh.write(f"{label} launched {started}\n")
             if u["session_id"] and usd is not None:
-                fh.write(f"{label} {u['session_id']} cost {usd} turns {u['num_turns']} ms {int(rec['wall_seconds'] * 1000)}\n")
+                fh.write(f"{label} {u['session_id']} cost {usd} turns {u['num_turns']} ms {int((wall or 0) * 1000)}\n")
             fh.write(f"{label} {'done' if rec['ok'] else 'failed'} {rec['ended_utc']}\n")
         return rec
+
+    def reap(self):
+        """On (re)start: kill workers a dead conveyor left running, adopt finished ones, and close the rest."""
+        for key, (status, d) in self.ledger.worker_states().items():
+            if status not in ("started", "launched"):
+                continue
+            killed = None
+            if status == "launched" and pid_alive(d.get("pid"), d.get("launched_epoch")):
+                kill_pid_tree(d["pid"])
+                for _ in range(100):
+                    if not pid_alive(d["pid"], d.get("launched_epoch")):
+                        break
+                    time.sleep(0.1)
+                killed = "orphan worker still running at resume; killed"
+            text = ""
+            if status == "launched" and d.get("out"):
+                try:
+                    text = Path(d["out"]).read_text(encoding="utf-8", errors="replace")
+                except OSError:
+                    text = ""
+            if status == "launched" and not killed and d.get("role") in self.workers and parse_usage(text)["result_seen"]:
+                rec = self.record(d["label"], d["role"], d.get("stage"), d["folder"], d["out"], text, None, None,
+                                  d.get("started_utc"), None, None, None)
+                rec["adopted"] = True
+                self.ledger.mark(key, "done", **rec)
+                continue
+            role = d.get("role")
+            self.ledger.mark(key, "done", worker=True, orphaned=True, ok=False, label=d.get("label"), role=role,
+                             stage=d.get("stage"), family=(self.workers.get(role) or {}).get("family"),
+                             model=(self.workers.get(role) or {}).get("model"), usd=None, tokens=0,
+                             folder=d.get("folder"), out=d.get("out"),
+                             killed=killed or "the conveyor stopped before this worker finished")
+
+    def kill_all(self):
+        with self.live_lock:
+            procs = list(self.live.values())
+        for p in procs:
+            kill_tree(p)
 
     def latest(self, key):
         """(key of the newest attempt, its done record or None). Attempts after the first are KEY#2, KEY#3 ..."""
@@ -618,14 +887,16 @@ class Batch:
         return k, self.ledger.data(k)
 
     def pool(self, items, stage, retry_failed=False):
-        """Run worker items concurrently, capped, with the budget checked before every launch.
+        """Run worker items concurrently, capped, with the batch budget checked before every launch.
 
-        items: [{"key", "label", "role", "prompt", "id", "before"}]; returns {id: worker record}. A finished
-        worker is never relaunched, except a failed one when retry_failed (then as a new attempt key)."""
+        items: [{"key", "label", "role", "id", "render": fn(folder), "setup": fn(folder)}]; returns {id: record}.
+        A finished worker is not relaunched, except an orphaned one (always) or a failed one when retry_failed;
+        a worker that broke blinding is never relaunched."""
         results, pending = {}, []
         for it in items:
             k, rec = self.latest(it["key"])
-            if rec is not None and (rec.get("ok") or not retry_failed):
+            if rec is not None and (rec.get("ok") or rec.get("blinding_violations")
+                                    or (not rec.get("orphaned") and not retry_failed)):
                 results[it["id"]] = rec
                 continue
             if rec is not None:
@@ -634,18 +905,18 @@ class Batch:
             pending.append(dict(it, key=k, label=it["label"] + (f"-a{k.split('#')[1]}" if "#" in k else "")))
         stop = None
         parallel = max(1, int(self.cfg.get("parallel") or 1))
-        with cf.ThreadPoolExecutor(max_workers=parallel) as ex:
-            running = {}
+        ex = cf.ThreadPoolExecutor(max_workers=parallel)
+        running = {}
+        try:
             while pending or running:
                 while pending and len(running) < parallel and stop is None:
-                    stop = self.budget_reason(len(running), pending[0]["role"])
+                    stop = self.budget_reason(pending[0]["role"])
                     if stop:
                         break
                     it = pending.pop(0)
-                    if it.get("before"):
-                        it["before"]()
-                    self.ledger.mark(it["key"], "started", label=it["label"], role=it["role"])
-                    running[ex.submit(self.run_worker, it["label"], it["role"], it["prompt"], stage)] = it
+                    # Recorded before launch, so the next budget check already counts this worker at its cap.
+                    self.ledger.mark(it["key"], "started", pool=True, label=it["label"], role=it["role"], stage=stage)
+                    running[ex.submit(self.run_worker, it, stage)] = it
                 if not running:
                     break
                 done, _ = cf.wait(running, return_when=cf.FIRST_COMPLETED)
@@ -653,17 +924,16 @@ class Batch:
                     it = running.pop(f)
                     try:
                         rec = f.result()
-                    except Fail:
-                        for g in running:
-                            g.cancel()
+                    except Fail as exc:
+                        self.ledger.mark(it["key"], "aborted", reason=str(exc))
                         raise
                     self.ledger.mark(it["key"], "done", **rec)
                     results[it["id"]] = rec
-                    if stop is None:
-                        usd, tok = self.spent()
-                        bu, bt = self.cfg.get("batch_usd"), self.cfg.get("batch_tokens")
-                        if (bu is not None and usd >= bu) or (bt is not None and tok >= bt):
-                            stop = f"batch_budget: spent ${usd:.2f} / {int(tok)} tokens"
+        except BaseException:
+            self.kill_all()  # never leave a worker tree running behind a failed batch
+            raise
+        finally:
+            ex.shutdown(wait=True)
         if stop:
             raise Stop(f"{stage}: {stop}; {len(pending)} worker(s) not launched")
         return results
@@ -675,15 +945,20 @@ class Batch:
         saved = self.dir / "RESERVED.json"
         rows = read_json(saved)
         if not isinstance(rows, list):
+            if self.ledger.count("reserve", "started") - self.ledger.count("reserve", "aborted") > 1:
+                raise Fail("an earlier run may have reserved orders with kit next, but RESERVED.json is missing; "
+                           "kit next is not called twice. Check research/readiness/CLAIM_KIT_LOCK.json, release or "
+                           "reuse those orders, and start a new batch")
             rc, out = self.tool("kit", ["next", "--agent", self.cfg["agent"], "--action", self.cfg["action"],
                                         "--n", self.cfg["n"]], log="reserve")
             try:
                 rows = json.loads(out)
             except ValueError:
                 rows = None
+            if isinstance(rows, list):
+                write_json(saved, rows)  # atomically, before anything else can fail
             if rc or not isinstance(rows, list):
                 raise Fail(f"kit next failed (exit {rc}); see {self.rel(self.dir / 'logs/reserve.err')}")
-            write_json(saved, rows)
         ids = [r["instrument_id"] for r in rows]
         if not ids:
             raise Stop("reserve: kit next reserved no orders under this action")
@@ -691,10 +966,7 @@ class Batch:
 
     def prepare(self, ids):
         if self.packet.exists():
-            k = 1
-            while (self.dir / f"packet.incomplete-{k}").exists():
-                k += 1
-            os.replace(self.packet, self.dir / f"packet.incomplete-{k}")
+            move_aside(self.packet, "packet.incomplete")
         args = ["prepare", *ids, "--agent", self.cfg["agent"], "--action", self.cfg["action"], "--write", self.packet]
         if self.cfg.get("replacement_proposal"):
             args.append("--replacement-proposal")
@@ -715,8 +987,7 @@ class Batch:
             shutil.copyfile(self.packet / name, prep / name)
         return {"prepare_exit": rc, "lookups_exit": lrc, "views": views,
                 "dispatchable": list(dc.get("dispatchable_ids") or []),
-                "source_blocked": list(dc.get("source_blocked_ids") or []),
-                "agent": (read_json(self.packet / "PACKET.json", {}) or {}).get("agent", self.cfg["agent"])}
+                "source_blocked": list(dc.get("source_blocked_ids") or [])}
 
     def dispatch(self, targets):
         k = 1
@@ -744,16 +1015,16 @@ class Batch:
             raise Fail(f"view for {iid} names {keep.get('instrument_id')}")
         return json.dumps(keep, ensure_ascii=False)
 
-    def producer_prompt(self, iid, view_rel, extra=""):
+    def producer_prompt(self, iid, view_rel, folder, extra=""):
         t = (PROMPTS / "producer.txt").read_text(encoding="utf-8")
         route = Path(self.cfg["route"])
         route = route if route.is_absolute() else self.repo / route
-        work = self.work / slug(iid)
         sub = {"<<REPO>>": self.repo.as_posix(), "<<REPO_BASH>>": bash_path(self.repo), "<<ORDER>>": iid,
                "<<SLUG>>": slug(iid), "<<VIEW>>": view_rel, "<<PACKET>>": self.rel(self.packet),
-               "<<WORK>>": work.as_posix(), "<<AGENT>>": self.cfg["agent"], "<<ROUTE_NAME>>": route.stem,
+               "<<WORK>>": Path(folder).as_posix(), "<<AGENT>>": self.cfg["agent"], "<<ROUTE_NAME>>": route.stem,
                "<<ROUTE>>": route.read_text(encoding="utf-8").strip(),
-               "<<VIEW_HEADER>>": self.view_header(iid, view_rel), "<<RUN>>": self.rel(self.dir.parent)}
+               "<<VIEW_HEADER>>": self.view_header(iid, view_rel), "<<RUN>>": self.rel(self.dir.parent),
+               "<<SCRATCH_ROOT>>": self.scratch.as_posix()}
         for k, v in sub.items():
             t = t.replace(k, v)
         return t + extra
@@ -762,7 +1033,7 @@ class Batch:
         cap = int(self.cfg["prompt_cap_chars"])
         ok, over, sizes = [], {}, {}
         for iid in targets:
-            text = self.producer_prompt(iid, views[iid])
+            text = self.producer_prompt(iid, views[iid], self.scratch / "workers" / f"{self.name}-produce-{slug(iid)}")
             sizes[iid] = len(text)
             if len(text) > cap:
                 over[iid] = len(text)
@@ -770,29 +1041,55 @@ class Batch:
             ok.append(iid)
         return {"rendered": ok, "over_cap": over, "cap_chars": cap, "prompt_chars": sizes}
 
-    def fresh_sheet(self, iid):
-        """Give a producer this order's prepared rows; an earlier (killed) attempt's folder is kept aside."""
-        work = self.work / slug(iid)
-        if work.exists():
-            k = 1
-            while (work.parent / f"{slug(iid)}.prior-{k}").exists():
-                k += 1
-            os.replace(work, work.parent / f"{slug(iid)}.prior-{k}")
-        work.mkdir(parents=True)
+    def seed_sheet(self, iid, folder, source=None):
+        """A producer's folder: this order's prepared rows, or (for a repair) the sheet as it last stood."""
+        if source:
+            for name in ("decisions.csv", "clauses.csv", "RATIONALES.json", "ASSESSMENT.json", "REPORT.md"):
+                if (Path(source) / name).exists():
+                    shutil.copyfile(Path(source) / name, folder / name)
+            return
         for name in ("decisions.csv", "clauses.csv"):
             fields, rows = read_csv(self.dir / "prepared" / name)
-            write_csv(work / name, fields, [r for r in rows if r.get("instrument_id") == iid])
-        (work / "RATIONALES.json").write_text("{}\n", encoding="utf-8")
+            write_csv(folder / name, fields, [r for r in rows if r.get("instrument_id") == iid])
+        (folder / "RATIONALES.json").write_text("{}\n", encoding="utf-8")
 
-    def snapshot(self, iid, rnd):
-        work = self.work / slug(iid)
-        snap = self.work / f"{slug(iid)}.round-{rnd - 1}"
-        if work.exists() and not snap.exists():
-            shutil.copytree(work, snap)
+    def produce_round(self, rnd, iids, views, folders, errors=None):
+        items = []
+        cap = int(self.cfg["prompt_cap_chars"])
+        for iid in iids:
+            def render(folder, iid=iid):
+                if not errors:
+                    return self.producer_prompt(iid, views[iid], folder)
+                err = json.dumps(errors.get(iid, []), ensure_ascii=False)
+                room = cap - len(self.producer_prompt(iid, views[iid], folder)) - 900
+                if len(err) > max(room, 200):
+                    err = err[:max(room, 200)] + " ...(cut)"
+                extra = ((PROMPTS / "repair.txt").read_text(encoding="utf-8")
+                         .replace("<<ROUND>>", str(rnd)).replace("<<ORDER>>", iid).replace("<<ERRORS>>", err))
+                return self.producer_prompt(iid, views[iid], folder, "\n\n" + extra)
+            tag = "produce" if rnd == 0 else f"repair{rnd}"
+            items.append({"key": f"{tag}:{slug(iid)}", "label": f"{self.name}-{tag}-{slug(iid)}", "role": "producer",
+                          "id": iid, "render": render,
+                          "setup": lambda folder, iid=iid: self.seed_sheet(iid, folder, folders.get(iid) if rnd else None)})
+        return self.pool(items, "produce" if rnd == 0 else "repair")
 
-    def validate_sheet(self, iid):
-        """(decision row, clause rows, rationales, assessment) from work/EO_N, or raise ValueError."""
-        work = self.work / slug(iid)
+    @staticmethod
+    def produced_map(results):
+        out = {}
+        for iid, rec in results.items():
+            if rec.get("over_item_cap"):
+                out[iid] = {"reason": f"worker over the item cap ({rec['over_item_cap']}); sheet held, not used"}
+            elif rec.get("blinding_violations"):
+                out[iid] = {"reason": f"worker named a forbidden path ({rec['blinding_violations'][0]}); not used"}
+            elif not rec.get("ok"):
+                out[iid] = {"reason": f"worker did not finish (exit {rec.get('exit')}, {rec.get('killed') or 'error'})"}
+            else:
+                out[iid] = {"folder": rec["folder"]}
+        return out
+
+    def validate_sheet(self, iid, folder):
+        """(decision row, clause rows, rationales, assessment) from a producer folder, or raise ValueError."""
+        work = Path(folder)
         pf, prows = read_csv(self.dir / "prepared" / "decisions.csv")
         cf_, _ = read_csv(self.dir / "prepared" / "clauses.csv")
         prep = next(r for r in prows if r["instrument_id"] == iid)
@@ -838,16 +1135,17 @@ class Batch:
         for r in drows:
             iid = r["instrument_id"]
             note = None
+            p = produced.get(iid) or {}
             if iid in blocked:
                 note = "dispatch check: a mandatory source is not held; no producer was launched"
                 r["outcome"] = "blocked"
-            elif produced.get(iid) is True:
+            elif p.get("folder"):
                 try:
-                    sheets[iid] = self.validate_sheet(iid)
+                    sheets[iid] = self.validate_sheet(iid, p["folder"])
                 except (ValueError, OSError, StopIteration) as exc:
                     note = f"producer sheet invalid: {exc}"
             else:
-                note = produced.get(iid) or "no producer sheet (not dispatched)"
+                note = p.get("reason") or "no producer sheet (not dispatched)"
             if iid in sheets:
                 row, _, srat, a = sheets[iid]
                 for k, v in srat.items():
@@ -865,8 +1163,8 @@ class Batch:
                 if r.get("outcome") == "submit":
                     r["outcome"] = "unresolved"
                 notes[iid] = note
-                gaps = json_list(r.get("unresolved_material_gaps"))
-                r["unresolved_material_gaps"] = json.dumps(gaps + [note], ensure_ascii=False)
+                r["unresolved_material_gaps"] = json.dumps(json_list(r.get("unresolved_material_gaps")) + [note],
+                                                           ensure_ascii=False)
         out_c = [c for c in crows if c["instrument_id"] not in sheets]
         for r in drows:
             if r["instrument_id"] in sheets:
@@ -922,80 +1220,70 @@ class Batch:
                     "claims": len(claims)}
         return self.ledger.once(key, go)
 
-    def produce_round(self, rnd, iids, views, errors=None):
-        items = []
-        for iid in iids:
-            extra = ""
-            if errors:
-                err = json.dumps(errors.get(iid, []), ensure_ascii=False)
-                room = int(self.cfg["prompt_cap_chars"]) - len(self.producer_prompt(iid, views[iid])) - 900
-                if len(err) > max(room, 200):
-                    err = err[:max(room, 200)] + " ...(cut)"
-                extra = ((PROMPTS / "repair.txt").read_text(encoding="utf-8")
-                         .replace("<<ROUND>>", str(rnd)).replace("<<ORDER>>", iid).replace("<<ERRORS>>", err))
-            prompt = self.producer_prompt(iid, views[iid], "\n\n" + extra if extra else "")
-            if len(prompt) > int(self.cfg["prompt_cap_chars"]):
-                raise Fail(f"repair prompt for {iid} exceeds the cap")
-            tag = "produce" if rnd == 0 else f"repair{rnd}"
-            before = (lambda i=iid: self.fresh_sheet(i)) if rnd == 0 else (lambda i=iid, r=rnd: self.snapshot(i, r))
-            items.append({"key": f"{tag}:{slug(iid)}", "label": f"{self.name}-{tag}-{slug(iid)}", "role": "producer",
-                          "prompt": prompt, "id": iid, "before": before})
-        return self.pool(items, "produce" if rnd == 0 else "repair")
-
-    @staticmethod
-    def produced_map(results):
-        out = {}
-        for iid, rec in results.items():
-            if rec.get("over_item_cap"):
-                out[iid] = f"worker over the item cap ({rec['over_item_cap']}); sheet held, not used"
-            elif not rec.get("ok"):
-                out[iid] = f"worker did not finish (exit {rec.get('exit')}, {rec.get('killed') or 'error'})"
-            else:
-                out[iid] = True
-        return out
-
-    def review_sets(self, claims, key):
-        sets = {}
-        chunk = int(self.cfg.get("review_chunk") or 0)
-        rows_by_arm = {}
-        for arm in "AB":
-            rows = list(claims)
-            random.Random(f"{key['salt']}-{arm}").shuffle(rows)
-            rows_by_arm[arm] = rows
-            parts = [rows[i:i + chunk] for i in range(0, len(rows), chunk)] if chunk else [rows]
-            for k, part in enumerate(parts):
-                d = self.reviews / f"{arm}{k}"
-                write_jsonl(d / "REVIEW_SET.jsonl", part)
-                sets[f"{arm}{k}"] = d
-        return sets
-
-    def reviewer_prompt(self, arm, d, mode):
-        w = self.workers[f"reviewer_{arm}"]
-        t = (PROMPTS / "reviewer.txt").read_text(encoding="utf-8")
-        mode_text = (PROMPTS / ("reveal.txt" if mode == "after_reveal" else "blind.txt")).read_text(encoding="utf-8")
-        out = d / ("AFTER_REVEAL.jsonl" if mode == "after_reveal" else "BLIND_REVIEW.jsonl")
-        sub = {"<<MODE_RULES>>": mode_text.strip(), "<<REPO>>": self.repo.as_posix(), "<<REPO_BASH>>": bash_path(self.repo),
-               "<<SET>>": (d / ("GENUINE.jsonl" if mode == "after_reveal" else "REVIEW_SET.jsonl")).as_posix(),
-               "<<OUT>>": out.as_posix(), "<<SCRATCH>>": (d / "scratch").as_posix(),
-               "<<PACKET>>": self.rel(self.packet), "<<RUN>>": self.rel(self.dir.parent),
-               "<<REVIEWER>>": self.reviewer_name(arm), "<<MODEL_FAMILY>>": w.get("model_family", ""), "<<MODE>>": mode}
-        for k, v in sub.items():
-            t = t.replace(k, v)
-        if len(t) > int(self.cfg["prompt_cap_chars"]):
-            raise Fail(f"reviewer prompt exceeds the cap ({len(t)} chars)")
-        return t
-
+    # -- review -------------------------------------------------------------------------------------------
     def reviewer_name(self, arm):
         return f"maudslay-blind-reviewer-{self.name}-{arm}"
 
-    def merge_reviews(self, arm, dirs, fname, hashes):
-        recs, dropped = [], 0
+    def review_sets(self, rset, key):
+        """Per arm (and chunk), a separately shuffled copy of the planted set, kept in the control folder."""
+        sets = {}
+        chunk = int(self.cfg.get("review_chunk") or 0)
+        for arm in "AB":
+            rows = list(rset)
+            random.Random(f"{key['salt']}-{arm}").shuffle(rows)
+            parts = [rows[i:i + chunk] for i in range(0, len(rows), chunk)] if chunk else [rows]
+            for k, part in enumerate(parts):
+                p = self.keys / "sets" / f"{self.name}-{arm}{k}.jsonl"
+                if not p.exists():
+                    write_jsonl(p, part)
+                sets[f"{arm}{k}"] = p
+        return sets
+
+    def reviewer_prompt(self, arm, folder, mode):
         w = self.workers[f"reviewer_{arm}"]
-        for d in dirs:
-            for r in read_jsonl(d / fname):
+        t = (PROMPTS / "reviewer.txt").read_text(encoding="utf-8")
+        mode_text = (PROMPTS / ("reveal.txt" if mode == "after_reveal" else "blind.txt")).read_text(encoding="utf-8")
+        folder = Path(folder)
+        sub = {"<<MODE_RULES>>": mode_text.strip(), "<<REPO>>": self.repo.as_posix(), "<<REPO_BASH>>": bash_path(self.repo),
+               "<<SET>>": (folder / ("GENUINE.jsonl" if mode == "after_reveal" else "REVIEW_SET.jsonl")).as_posix(),
+               "<<OUT>>": (folder / ("AFTER_REVEAL.jsonl" if mode == "after_reveal" else "BLIND_REVIEW.jsonl")).as_posix(),
+               "<<SCRATCH>>": (folder / "scratch").as_posix(), "<<PACKET>>": self.rel(self.packet),
+               "<<BATCH>>": self.rel(self.dir), "<<SCRATCH_ROOT>>": self.scratch.as_posix(),
+               "<<REVIEWER>>": self.reviewer_name(arm), "<<MODEL_FAMILY>>": w.get("model_family", ""), "<<MODE>>": mode}
+        for k, v in sub.items():
+            t = t.replace(k, v)
+        return t
+
+    def run_reviews(self, mode, sets):
+        """One fresh session per arm (or chunk), each in its own folder holding only its prompt and its set."""
+        items = []
+        tag = "review" if mode == "blind" else "reveal"
+        dest = "GENUINE.jsonl" if mode == "after_reveal" else "REVIEW_SET.jsonl"
+        for name, src in sorted(sets.items()):
+            arm = name[0]
+            items.append({"key": f"{tag}:{name}", "label": f"{self.name}-{tag}-{name}", "role": f"reviewer_{arm}",
+                          "id": name, "render": lambda folder, arm=arm: self.reviewer_prompt(arm, folder, mode),
+                          "setup": lambda folder, src=src: shutil.copyfile(src, folder / dest)})
+        res = self.pool(items, tag, retry_failed=True)
+        bad = {k: r["blinding_violations"] for k, r in res.items() if r.get("blinding_violations")}
+        if bad:
+            raise Stop(f"{mode} review: blinding broken, arm(s) {sorted(bad)} named forbidden paths: "
+                       f"{next(iter(bad.values()))[:2]}; this batch cannot be completed")
+        failed = [k for k, r in res.items() if not r.get("ok")]
+        if failed:
+            raise Stop(f"{mode} review: worker(s) {failed} did not finish; re-run to retry them "
+                       "(not scored as control misses)")
+        return res
+
+    def arm_records(self, results, fname, hashes):
+        """{arm: [record]} from each reviewer's own output file, with the session identity the conveyor knows."""
+        out = {"A": [], "B": []}
+        for name, rec in sorted(results.items()):
+            arm = name[0]
+            w = self.workers[f"reviewer_{arm}"]
+            for r in read_jsonl(Path(rec["folder"]) / fname):
                 if not isinstance(r, dict) or r.get("claim_sha256") not in hashes or r.get("verdict") not in (
                         "upheld", "rejected", "upheld_after_reveal"):
-                    dropped += 1
                     continue
                 # The conveyor launched this fresh, separate session, so it states the session's identity itself;
                 # the verdict, defects and reasons are the reviewer's own and are never changed.
@@ -1004,40 +1292,39 @@ class Batch:
                 r.setdefault("scope", "whole_case")
                 if not isinstance(r.get("defects"), list):
                     r["defects"] = [r["defects"]] if r.get("defects") else []
-                recs.append(r)
-        path = self.packet / "reviews" / f"{fname[:-6]}_{arm}.jsonl"
-        write_jsonl(path, recs)
-        return {"records": len(recs), "dropped": dropped, "path": self.rel(path)}
+                out[arm].append(r)
+        return out
 
-    def run_reviews(self, mode, sets):
-        items = []
-        out = "AFTER_REVEAL.jsonl" if mode == "after_reveal" else "BLIND_REVIEW.jsonl"
-        for name, d in sorted(sets.items()):
-            arm = name[0]
-            tag = "review" if mode == "blind" else "reveal"
-
-            def aside(d=d):
-                # A retried reviewer starts from an empty output file; the failed attempt's file is kept.
-                if (d / out).exists():
-                    k = 1
-                    while (d / f"{out}.attempt-{k}").exists():
-                        k += 1
-                    os.replace(d / out, d / f"{out}.attempt-{k}")
-            items.append({"key": f"{tag}:{name}", "label": f"{self.name}-{tag}-{name}", "role": f"reviewer_{arm}",
-                          "prompt": self.reviewer_prompt(arm, d, mode), "id": name, "before": aside})
-        res = self.pool(items, "review" if mode == "blind" else "reveal", retry_failed=True)
-        bad = [k for k, r in res.items() if not r.get("ok")]
-        if bad:
-            raise Stop(f"{mode} review: worker(s) {bad} did not finish; rerun after checking them "
-                       "(not scored as control misses)")
-        return res
+    def adjudications(self, items):
+        """The coordinator's decisions from CONTROL/ADJUDICATION.json, a folder no worker may name or write."""
+        p = self.keys / "ADJUDICATION.json"
+        if not p.exists():
+            return {}
+        written = self.ledger.data("adjudicate:written")
+        if not written or p.stat().st_mtime <= float(written["epoch"]):
+            raise Fail(f"{p} predates this batch's ADJUDICATE.json; write it after reading ADJUDICATE.json")
+        raw = read_json(p)
+        decisions = raw.get("decisions") if isinstance(raw, dict) else None
+        if not isinstance(decisions, list):
+            raise Fail(f"{p} must be {{\"decisions\": [...]}}")
+        want = {i["instrument_id"]: i["claim_sha256"] for i in items if i.get("blocks_completion")}
+        out = {}
+        for d in decisions:
+            iid = d.get("instrument_id") if isinstance(d, dict) else None
+            if iid not in want:
+                raise Fail(f"ADJUDICATION.json names {iid!r}, which is not awaiting adjudication")
+            if d.get("claim_sha256") != want[iid]:
+                raise Fail(f"ADJUDICATION.json must name the exact claim_sha256 of {iid} from ADJUDICATE.json")
+            if d.get("decision") not in ("file", "block") or not str(d.get("adjudicator") or "").strip():
+                raise Fail(f"ADJUDICATION.json entry for {iid} needs decision file|block and an adjudicator")
+            out[iid] = d
+        return out
 
     # -- completion manifest (port of research/excavator/claude-nira-sweep-2026-10-29/make_completion.py,
     #    with Papinian finish_pair.py's two-arm rule) -----------------------------------------------------
-    def manifest(self, applied, key, agree, adjudicator, pub):
+    def manifest(self, applied, key, agree, adjudicator, pub, files):
         ref = lambda p, line=None: dict({"path": self.rel(p), "sha256": fsha(p)}, **({"line": line} if line else {}))
-        lines = lambda p: {r.get("claim_sha256"): (i, r) for i, r in enumerate(
-            (json.loads(l) for l in Path(p).read_text(encoding="utf-8").splitlines() if l.strip()), 1)} if Path(p).exists() else {}
+        lines = lambda p: {r.get("claim_sha256"): (i, r) for i, r in enumerate(read_jsonl(p), 1)}
         cpath = applied / "CLAIMS.proposed.jsonl"
         claims, agents = {}, set()
         for i, l in enumerate(cpath.read_text(encoding="utf-8").splitlines(), 1):
@@ -1047,8 +1334,6 @@ class Batch:
                 agents.add((c.get("claim_kit") or {}).get("agent"))
         if len(agents) != 1:
             raise Fail(f"claims name more than one producer agent: {sorted(map(str, agents))}")
-        rv = self.packet / "reviews"
-        files = {(m, a): rv / f"{m}_{a}.jsonl" for m in ("BLIND_REVIEW", "AFTER_REVEAL") for a in "AB"}
         idx = {k: lines(p) for k, p in files.items()}
         pk = ref(self.packet / "PACKET.json")
         ctrl = {k["instrument_id"]: k for k in key["controls"]}
@@ -1066,13 +1351,12 @@ class Batch:
                 members.append({"instrument_id": iid, "outcome": "blocked", "reason": a.get("reason", "not upheld")})
                 continue
             mode = "AFTER_REVEAL" if iid in ctrl else "BLIND_REVIEW"
-            arm = a["arm"]
-            hit = idx[(mode, arm)].get(sha)
+            hit = idx[(mode, a["arm"])].get(sha)
             if not hit:
-                raise Fail(f"no {mode} record for {iid} in arm {arm}")
+                raise Fail(f"no {mode} record for {iid} in arm {a['arm']}")
             m = {"instrument_id": iid, "outcome": "submit", "claim_sha256": sha, "claim": ref(cpath, line),
                  "publication_kind": "whole_case", "packet": pk}
-            m["after_reveal_review" if iid in ctrl else "review"] = ref(files[(mode, arm)], hit[0])
+            m["after_reveal_review" if iid in ctrl else "review"] = ref(files[(mode, a["arm"])], hit[0])
             members.append(m)
         out = self.packet / "completion"
         out.mkdir(exist_ok=True)
@@ -1088,10 +1372,10 @@ class Batch:
             ap = out / f"CONTROL_ADJUDICATION_{slug(iid)}.json"
             ap.write_text(json.dumps({"instrument_id": iid, "planted_claim_sha256": k["planted"], "review": rr,
                                       "adjudicator": adjudicator, "caught": True, "scoring": "strict",
-                                      "rationale": f"Planted version: {k['defect']}. Rule fixed in advance (Papinian "
-                                      "finish_pair.py): both independent blind arms (A and B) rejected that exact "
-                                      "planted hash and named a date defect."}, indent=1, ensure_ascii=False) + "\n",
-                          encoding="utf-8")
+                                      "rationale": f"Planted version: {k['defect']}. Rule fixed in advance: both "
+                                      "independent blind arms (A and B) rejected that exact planted hash and named a "
+                                      "date field or the word date in their defects."}, indent=1, ensure_ascii=False)
+                          + "\n", encoding="utf-8")
             controls.append({"instrument_id": iid, "planted_claim_sha256": k["planted"], "seed": ref(sp),
                              "review": rr, "adjudication": ref(ap)})
         receipts = [ref(p) for p in (files[("BLIND_REVIEW", "B")], files[("AFTER_REVEAL", "B")],
@@ -1109,12 +1393,6 @@ class Batch:
         return out / "COMPLETION.json", man
 
 
-def bash_path(p):
-    s = Path(p).as_posix()
-    m = re.match(r"^([A-Za-z]):/(.*)$", s)
-    return f"/{m.group(1).lower()}/{m.group(2)}" if m else s
-
-
 def load_workers(path):
     raw = read_json(path)
     if not isinstance(raw, dict):
@@ -1126,16 +1404,13 @@ def load_workers(path):
             raise Fail(f"workers file needs a {role} (or reviewer) entry with a model")
         w = dict(w)
         cmd = w.get("command", w.get("family", "claude"))
-        if cmd == "claude":
-            w["command"] = list(CLAUDE_TEMPLATE)
-            w["family"] = w.get("family") or "claude"
-        elif cmd == "codex":
-            w["command"] = list(CODEX_TEMPLATE)
-            w["family"] = w.get("family") or "codex"
-        elif isinstance(cmd, list):
-            w.setdefault("family", "generic")
+        if cmd in ("claude", "codex"):
+            w["command"] = list(CLAUDE_TEMPLATE if cmd == "claude" else CODEX_TEMPLATE)
+            w["family"] = w.get("family") or cmd
+        elif isinstance(cmd, list) and cmd:
+            w["family"] = w.get("family") or program_family(cmd[0]) or "generic"
         else:
-            raise Fail(f"{role}: command must be 'claude', 'codex' or a list")
+            raise Fail(f"{role}: command must be 'claude', 'codex' or a non-empty list")
         w.setdefault("model_family", {"claude": "Anthropic", "codex": "OpenAI"}.get(w["family"], "unknown"))
         out[role] = w
     return out
@@ -1149,12 +1424,13 @@ def run(cfg, repo=REPO):
     b = Batch(cfg, repo)
     L = b.ledger
     L.mark("run", "started", pid=os.getpid())
+    b.reap()
     adjudicate = []
+    state = {"ids": [], "submitted": 0, "controls_missed": 0}
     try:
         res = L.once("reserve", b.reserve)
-        ids = res["ids"]
+        ids = state["ids"] = res["ids"]
         prep = L.once("prepare", lambda: b.prepare(ids))
-        prep["ids"] = ids
         views = prep["views"]
         targets = [i for i in prep["dispatchable"] if i in ids and views.get(i)]
         no_view = [i for i in prep["dispatchable"] if not views.get(i)]
@@ -1165,21 +1441,23 @@ def run(cfg, repo=REPO):
         go = rend["rendered"]
         if not go:
             raise Stop("render: zero orders can be dispatched (all source-blocked, viewless or over the prompt cap)")
-        pending = [i for i in go if not L.done(f"produce:{slug(i)}")]
+        pending = [i for i in go if not (b.latest(f"produce:{slug(i)}")[1] or {}).get("ok")]
         if pending:
             # A fresh dispatch check right before producers launch, on every (re)start that still launches any.
             n = len({r["key"] for r in L.rows if str(r.get("key", "")).startswith("dispatch:")})
             L.once(f"dispatch:{n + 1}", lambda: b.dispatch(pending))
-        results = b.produce_round(0, go, views)
+        results = b.produce_round(0, go, views, {})
         produced = b.produced_map(results)
         for iid, v in produced.items():
-            if v is not True and "item cap" in v:
+            if "item cap" in v.get("reason", ""):
                 adjudicate.append({"instrument_id": iid, "kind": "over_item_cap", "blocks_completion": False,
-                                   "detail": v})
+                                   "detail": v["reason"]})
         for iid in no_view:
-            produced[iid] = "Geddes view failed; no producer launched"
+            produced[iid] = {"reason": "Geddes view failed; no producer launched"}
+        folders = {iid: v["folder"] for iid, v in produced.items() if v.get("folder")}
         demoted = dict(L.data("demoted") or {})
         col = b.collect(prep, produced, demoted)
+        state["submitted"] = len(col["submit"])
         if not col["submit"]:
             raise Stop("collect: zero orders submittable after the producers finished")
         # Mechanical checks, with fresh-session repair rounds for orders that fail them.
@@ -1195,23 +1473,28 @@ def run(cfg, repo=REPO):
                 raise Fail(f"mechanical failures name no submitted order: {sorted(chk['failures'])[:5]}")
             if rnd < int(cfg.get("repair_rounds") or 0):
                 rnd += 1
-                rr = b.produce_round(rnd, failing, views, chk["failures"])
+                rr = b.produce_round(rnd, failing, views, folders, chk["failures"])
                 for iid, v in b.produced_map(rr).items():
-                    if v is not True:
-                        demoted[iid] = f"repair round {rnd}: {v}"
+                    if v.get("folder"):
+                        produced[iid] = v
+                        folders[iid] = v["folder"]
+                    else:
+                        demoted[iid] = f"repair round {rnd}: {v['reason']}"
             else:
                 for iid in failing:
                     demoted[iid] = ("mechanical checks failed after "
                                     f"{rnd} repair round(s): {'; '.join(chk['failures'][iid])[:400]}")
                 L.mark("demoted", "done", **demoted)
             col = b.collect(prep, produced, demoted)
+            state["submitted"] = len(col["submit"])
             if not col["submit"]:
                 raise Stop("check: zero orders submittable after the mechanical checks")
         applied = b.repo / chk["applied"]
         claims = read_jsonl(applied / "CLAIMS.proposed.jsonl")
+        state["submitted"] = len(claims)
+        kp = b.keys / f"{b.name}.json"
 
         def plant():
-            kp = b.keys / f"{b.name}.json"
             key = read_json(kp)
             if not key or key.get("applied") != chk["applied"]:
                 salt = os.urandom(16).hex()
@@ -1219,27 +1502,21 @@ def run(cfg, repo=REPO):
                 key = {"batch": b.name, "applied": chk["applied"], "salt": salt, "controls": controls,
                        "sealed_utc": now()}
                 write_json(kp, key)
-                write_jsonl(b.keys / f"{b.name}.GENUINE.jsonl",
-                            [c for c in claims if c["instrument_id"] in {k["instrument_id"] for k in controls}])
+                ctl = {k["instrument_id"] for k in controls}
+                write_jsonl(b.keys / f"{b.name}.GENUINE.jsonl", [c for c in claims if c["instrument_id"] in ctl])
                 write_jsonl(b.keys / f"{b.name}.REVIEW_SET.jsonl", rset)
-            rset = read_jsonl(b.keys / f"{b.name}.REVIEW_SET.jsonl")
-            sets = b.review_sets(rset, key)
-            # Only counts and the key's hash go in the ledger, which sits in the repository beside the reviewers.
-            return {"controls": len(key["controls"]), "key_sha256": fsha(kp), "claims": len(rset),
-                    "sets": {k: b.rel(v) for k, v in sets.items()}}
+            # Only counts and the key's hash go in the ledger, which sits in the repository.
+            return {"controls": len(key["controls"]), "key_sha256": fsha(kp), "claims": len(claims)}
 
         pl = L.once("plant", plant)
-        kp = b.keys / f"{b.name}.json"
         if fsha(kp) != pl["key_sha256"]:
             raise Fail("the sealed control key changed after planting")
         key = read_json(kp)
-        sets = {k: b.repo / v for k, v in pl["sets"].items()}
         rset = read_jsonl(b.keys / f"{b.name}.REVIEW_SET.jsonl")
         hashes = {canon(c) for c in rset}
-        b.run_reviews("blind", sets)
-        merged = L.once("merge:blind", lambda: {a: b.merge_reviews(a, [d for k, d in sets.items() if k[0] == a],
-                                                                   "BLIND_REVIEW.jsonl", hashes) for a in "AB"})
-        blind = {a: {r["claim_sha256"]: r for r in read_jsonl(b.repo / merged[a]["path"])} for a in "AB"}
+        blind_res = b.run_reviews("blind", b.review_sets(rset, key))
+        blind_recs = b.arm_records(blind_res, "BLIND_REVIEW.jsonl", hashes)
+        blind = {a: {r["claim_sha256"]: r for r in blind_recs[a]} for a in "AB"}
 
         def score():
             rows = []
@@ -1247,32 +1524,24 @@ def run(cfg, repo=REPO):
                 ok = {a: caught(blind[a].get(k["planted"])) for a in "AB"}
                 rows.append({"instrument_id": k["instrument_id"], "defect": k["defect"], "caught_A": ok["A"],
                              "caught_B": ok["B"], "caught": all(ok.values())})
-            write_json(b.dir / "CONTROLS.json", {"rule": "caught only if both arms rejected the exact planted hash "
-                                                 "and named a date defect (Papinian finish_pair.py)", "controls": rows})
+            write_json(b.dir / "CONTROLS.json", {"rule": "caught only if both arms rejected the exact planted hash and "
+                                                 "a whole word or field name in their defects names a date",
+                                                 "controls": rows})
             return {"missed": [r["instrument_id"] for r in rows if not r["caught"]], "controls": len(rows)}
 
         sc = L.once("controls", score)
         if sc["missed"]:
-            gate_line(b, cfg, ids, col, filed=0, controls_missed=len(sc["missed"]))
+            state["controls_missed"] = len(sc["missed"])
             raise Stop(f"controls: planted control(s) missed by at least one arm: {sc['missed']}; batch not completed")
-        genuine = read_jsonl(b.keys / f"{b.name}.GENUINE.jsonl")
-        rsets = {}
-        for arm in "AB":
-            d = b.reviews / f"{arm}-reveal"
-            if not (d / "GENUINE.jsonl").exists():
-                write_jsonl(d / "GENUINE.jsonl", genuine)
-            rsets[f"{arm}R"] = d
-        b.run_reviews("after_reveal", rsets)
-        ghash = {canon(c) for c in genuine}
-        rm = L.once("merge:reveal", lambda: {a: b.merge_reviews(a, [rsets[f"{a}R"]], "AFTER_REVEAL.jsonl", ghash)
-                                             for a in "AB"})
-        after = {a: {r["claim_sha256"]: r for r in read_jsonl(b.repo / rm[a]["path"])} for a in "AB"}
+        genuine_path = b.keys / f"{b.name}.GENUINE.jsonl"
+        reveal_res = b.run_reviews("after_reveal", {"AR": genuine_path, "BR": genuine_path})
+        ghash = {canon(c) for c in read_jsonl(genuine_path)}
+        after_recs = b.arm_records(reveal_res, "AFTER_REVEAL.jsonl", ghash)
+        after = {a: {r["claim_sha256"]: r for r in after_recs[a]} for a in "AB"}
         # Arm agreement. The conveyor files only what both arms upheld and blocks only what both rejected;
         # everything else goes to the coordinator.
         ctrl = {k["instrument_id"] for k in key["controls"]}
-        agree, held = {}, []
-        decisions = {d["instrument_id"]: d for d in (read_json(b.dir / "ADJUDICATION.json", {}) or {}).get("decisions", [])
-                     if isinstance(d, dict) and d.get("instrument_id")}
+        agree = {}
         for c in claims:
             iid, sha = c["instrument_id"], canon(c)
             src, need = (after, "upheld_after_reveal") if iid in ctrl else (blind, "upheld")
@@ -1284,33 +1553,57 @@ def run(cfg, repo=REPO):
                 agree[iid] = {"decision": "block", "reason": "Both independent blind arms rejected this exact version: "
                               + json.dumps({"A": ra.get("defects"), "B": rb.get("defects")}, ensure_ascii=False)}
             else:
-                item = {"instrument_id": iid, "kind": "arm_disagreement" if ra and rb else "missing_review",
-                        "blocks_completion": True, "claim_sha256": sha, "control_genuine": iid in ctrl,
-                        "arm_A": {"verdict": va, "defects": (ra or {}).get("defects")},
-                        "arm_B": {"verdict": vb, "defects": (rb or {}).get("defects")}}
-                adjudicate.append(item)
-                d = decisions.get(iid)
-                if d and d.get("decision") == "file" and need in (va, vb):
-                    agree[iid] = {"decision": "file", "arm": "A" if va == need else "B"}
-                elif d and d.get("decision") == "block":
-                    agree[iid] = {"decision": "block", "reason": "Coordinator adjudication (ADJUDICATION.json): "
-                                  + str(d.get("reason") or "blocked")}
-                elif cfg.get("defer_adjudication"):
-                    agree[iid] = {"decision": "block", "reason": "The two blind arms disagreed; held for the "
-                                  "coordinator's adjudication and not filed in this completion."}
-                else:
-                    held.append(iid)
-        write_json(b.dir / "ADJUDICATE.json", {"schema": "maudslay-adjudicate/v1", "batch": b.name,
-                                               "note": "The conveyor decides none of these. Write ADJUDICATION.json "
-                                               "({\"decisions\":[{\"instrument_id\",\"decision\":\"file|block\","
-                                               "\"reason\",\"adjudicator\"}]}) and re-run.",
-                                               "items": adjudicate})
+                adjudicate.append({"instrument_id": iid, "kind": "arm_disagreement" if ra and rb else "missing_review",
+                                   "blocks_completion": True, "claim_sha256": sha, "control_genuine": iid in ctrl,
+                                   "need": need, "arm_A": {"verdict": va, "defects": (ra or {}).get("defects")},
+                                   "arm_B": {"verdict": vb, "defects": (rb or {}).get("defects")}})
+        write_json(b.dir / "ADJUDICATE.json", {
+            "schema": "maudslay-adjudicate/v1", "batch": b.name, "items": adjudicate,
+            "note": f"The conveyor decides none of these. Write {(b.keys / 'ADJUDICATION.json').as_posix()} as "
+                    "{\"decisions\":[{\"instrument_id\",\"claim_sha256\",\"decision\":\"file|block\",\"reason\","
+                    "\"adjudicator\"}]} and re-run."})
+        if not L.done("adjudicate:written"):
+            L.mark("adjudicate:written", "done", epoch=time.time())
+        decisions = b.adjudications(adjudicate)
+        held = []
+        for item in [i for i in adjudicate if i.get("blocks_completion")]:
+            iid, d = item["instrument_id"], decisions.get(item["instrument_id"])
+            verdicts = {"A": item["arm_A"]["verdict"], "B": item["arm_B"]["verdict"]}
+            if d and d["decision"] == "file":
+                arm = next((a for a in "AB" if verdicts[a] == item["need"]), None)
+                if not arm:
+                    raise Fail(f"ADJUDICATION.json files {iid}, but no arm upheld that exact version")
+                agree[iid] = {"decision": "file", "arm": arm}
+            elif d:
+                agree[iid] = {"decision": "block", "reason": f"Coordinator adjudication ({d['adjudicator']}): "
+                              + str(d.get("reason") or "blocked")}
+            elif cfg.get("defer_adjudication"):
+                agree[iid] = {"decision": "block", "reason": "The two blind arms disagreed; held for the "
+                              "coordinator's adjudication and not filed in this completion."}
+            else:
+                held.append(iid)
         if held:
             raise Pause(f"agree: {len(held)} order(s) await adjudication: {held}")
         adj = cfg.get("adjudicator") or f"{cfg['agent']}-coordinator-maudslay"
 
         def complete():
-            mpath, man = b.manifest(applied, key, agree, adj, cfg["publication"])
+            # A run killed after kit complete published must adopt that publication, not fail on the existing file.
+            for d in sorted(b.packet.glob("complete-v*"), key=lambda p: int(p.name.split("-v")[1])):
+                pub = read_json(d / "PUBLICATION.json", {}) or {}
+                if pub.get("written") is True:
+                    tally = read_json(d / "TALLY.json", {}) or {}
+                    return {"complete": b.rel(d), "exit": 0, "adopted": True, "exceptions": tally.get("exceptions"),
+                            "eligible": len(tally.get("eligible") or []), "published": tally.get("claims_published", 0),
+                            "publication": cfg["publication"]}
+            # Post-reveal records the kit's completion needs: the only review files written under research/.
+            rv = b.packet / "reviews"
+            files = {(m, a): rv / f"{m}_{a}.jsonl" for m in ("BLIND_REVIEW", "AFTER_REVEAL") for a in "AB"}
+            for a in "AB":
+                write_jsonl(files[("BLIND_REVIEW", a)], blind_recs[a])
+                write_jsonl(files[("AFTER_REVEAL", a)], after_recs[a])
+            if decisions:
+                shutil.copyfile(b.keys / "ADJUDICATION.json", b.dir / "ADJUDICATION.json")
+            mpath, man = b.manifest(applied, key, agree, adj, cfg["publication"], files)
             k = 1
             while (b.packet / f"complete-v{k}").exists():
                 k += 1
@@ -1328,67 +1621,69 @@ def run(cfg, repo=REPO):
         done = L.once("complete", complete)
         if done["exit"]:
             raise Fail(f"kit complete reported {done['exceptions']} exception(s); see {done['complete']}")
-        verdict = gate_line(b, cfg, ids, col, filed=done["published"], controls_missed=0)
-        write_measures(b, cfg, ids, col, done, verdict)
+        verdict = gate_line(b, cfg, state, filed=done["published"])
+        write_measures(b, cfg, state, done, verdict)
         L.mark("run", "done", outcome="done", gate=(verdict or {}).get("decision"))
-        if verdict and verdict.get("decision") == "STOP":
+        decision = (verdict or {}).get("decision")
+        if decision == "STOP":
             return EXIT_GATE_STOP
-        return EXIT_DONE
+        return EXIT_DONE if decision in ("CONTINUE", "PILOT") else EXIT_NO_GATE
     except Stop as s:
+        b.kill_all()
         L.mark("run", "stopped", reason=str(s))
-        write_measures(b, cfg, None, None, None, None, stopped=str(s))
         if adjudicate:
             write_json(b.dir / "ADJUDICATE.json", {"schema": "maudslay-adjudicate/v1", "batch": b.name, "items": adjudicate})
+        verdict = gate_line(b, cfg, state, filed=0)
+        write_measures(b, cfg, state, None, verdict, stopped=str(s))
         print(json.dumps({"batch": b.name, "state": "stopped", "reason": str(s)}))
         return EXIT_STOPPED
     except Pause as p:
         L.mark("run", "paused", reason=str(p))
-        write_measures(b, cfg, None, None, None, None, stopped=str(p))
+        write_measures(b, cfg, state, None, None, stopped=str(p))
         print(json.dumps({"batch": b.name, "state": "paused", "reason": str(p),
                           "adjudicate": b.rel(b.dir / "ADJUDICATE.json")}))
         return EXIT_PAUSED
     except Fail as f:
+        b.kill_all()
         L.mark("run", "failed", reason=str(f))
         print(json.dumps({"batch": b.name, "state": "failed", "reason": str(f)}))
         return EXIT_FAILED
 
 
-def gate_line(b, cfg, ids, col, filed, controls_missed):
-    """Upsert this batch's line in the wave's batch file, then run Bentham's gate on it."""
-    usd, _ = b.spent()
-    unknown = [w["label"] for w in b.ledger.workers() if w.get("usd") is None]
-    line = {"batch": b.name, "attempted": len(ids), "submitted": len(col["submit"]) if col else 0, "filed": filed,
-            "controls_missed": controls_missed, "usd": round(usd, 4)}
+def gate_line(b, cfg, state, filed):
+    """Upsert this batch's line in the wave's batch file, then run Bentham's gate on it (on every stop or finish)."""
+    line = {"batch": b.name, "attempted": len(state["ids"]), "submitted": state["submitted"], "filed": filed,
+            "controls_missed": state["controls_missed"], "usd": b.measured_usd()}
     bf = Path(cfg["batches_file"])
     bf = bf if bf.is_absolute() else b.repo / bf
     rows = read_json(bf, [])
     rows = rows["batches"] if isinstance(rows, dict) else (rows or [])
     rows = [r for r in rows if r.get("batch") != b.name] + [line]
     write_json(bf, rows)
-    verdict = None
-    if unknown:
-        verdict = {"decision": None, "skipped": f"usd unknown for {len(unknown)} worker(s) (set prices_usd_per_mtok); "
-                   "the gate was not run on a guessed cost"}
-    else:
-        rc, out = b.tool("gate", log="gate", batches=bf)
-        try:
-            verdict = json.loads(out)
-        except ValueError:
-            verdict = {"decision": None, "refused": f"gate exit {rc}: {out.strip()[:300]}"}
-    b.ledger.mark(f"gate:{b.name}:{filed}:{controls_missed}", "done", line=line, verdict=verdict)
+    rc, out = b.tool("gate", log="gate", batches=bf)
+    try:
+        verdict = json.loads(out)
+        if not isinstance(verdict, dict) or not verdict.get("decision"):
+            raise ValueError
+    except ValueError:
+        verdict = {"decision": None, "refused": f"gate exit {rc}: {out.strip()[:300]}"}
+    b.ledger.mark(f"gate:{len([r for r in b.ledger.rows if str(r.get('key')).startswith('gate:')]) + 1}", "done",
+                  line=line, verdict=verdict)
     return verdict
 
 
-def write_measures(b, cfg, ids, col, done, verdict, stopped=None):
+def write_measures(b, cfg, state, done, verdict, stopped=None):
     stages = {}
     for w in b.ledger.workers():
-        s = stages.setdefault(w.get("stage") or w["role"], {"workers": 0, "input": 0, "cache_read": 0, "cache_write": 0, "output": 0,
-                                   "tokens": 0, "usd": 0.0, "usd_unknown_workers": 0, "wall_seconds": 0.0})
+        s = stages.setdefault(w.get("stage") or w.get("role") or "worker",
+                              {"workers": 0, "input": 0, "cache_read": 0, "cache_write": 0, "output": 0, "tokens": 0,
+                               "usd": 0.0, "usd_at_cap_workers": 0, "wall_seconds": 0.0})
         s["workers"] += 1
         for k in ("input", "cache_read", "cache_write", "output", "tokens"):
             s[k] += int(w.get(k) or 0)
         if w.get("usd") is None:
-            s["usd_unknown_workers"] += 1
+            s["usd_at_cap_workers"] += 1
+            s["usd"] = round(s["usd"] + float(b.cap(w.get("role"), "usd") or 0), 6)
         else:
             s["usd"] = round(s["usd"] + w["usd"], 6)
         s["wall_seconds"] = round(s["wall_seconds"] + (w.get("wall_seconds") or 0), 3)
@@ -1402,13 +1697,15 @@ def write_measures(b, cfg, ids, col, done, verdict, stopped=None):
          "stages": stages, "machine_stage_seconds": machine,
          "workers": [{k: w.get(k) for k in ("label", "role", "model", "family", "session_id", "tokens", "input",
                                             "cache_read", "cache_write", "output", "usd", "wall_seconds", "ok",
-                                            "killed", "over_item_cap", "prompt_chars")} for w in b.ledger.workers()],
+                                            "killed", "orphaned", "adopted", "over_item_cap", "prompt_chars")}
+                     for w in b.ledger.workers()],
          "totals": {"usd": round(usd, 4), "tokens": sum(s["tokens"] for s in stages.values()),
-                    "attempted": len(ids) if ids else None, "submitted": len(col["submit"]) if col else None,
-                    "filed": filed, "usd_per_filed": round(usd / filed, 4) if filed else None},
+                    "attempted": len(state["ids"]), "submitted": state["submitted"], "filed": filed,
+                    "usd_per_filed": round(usd / filed, 4) if filed else None},
          "gate": verdict, "human_certified": 0,
-         "note": "Tokens and dollars are the workers' own reported usage (claude -p total_cost_usd; codex exec "
-                 "turn.completed usage priced from the workers file). The coordinator's own tokens are not here."}
+         "note": "Tokens and dollars are the workers' own reported usage (claude stream-json result; codex exec "
+                 "turn.completed usage priced from the workers file). A worker with unknown dollars counts at its "
+                 "item cap. The coordinator's own tokens are not here."}
     write_json(b.dir / "MEASURES.json", m)
     return m
 
@@ -1422,6 +1719,9 @@ def build_config(a, repo):
     bdir = (repo / run_dir / a.batch) if not run_dir.is_absolute() else run_dir / a.batch
     saved = read_json(bdir / "CONFIG.json")
     given = {k: getattr(a, k) for k in FIXED + MUTABLE if getattr(a, k, None) is not None}
+    for k in ("keys_dir", "scratch_root"):
+        if k in given:
+            given[k] = Path(given[k]).resolve().as_posix()
     if saved:
         for k in FIXED:
             if k in given and given[k] != saved.get(k):
@@ -1429,23 +1729,23 @@ def build_config(a, repo):
         cfg = dict(saved)
         cfg.update({k: v for k, v in given.items() if k in MUTABLE})
     else:
-        for need in ("agent", "action", "route", "workers"):
-            if not given.get(need):
+        for need in ("agent", "action", "route", "workers", "batch_usd"):
+            if given.get(need) is None:
                 raise Fail(f"--{need.replace('_', '-')} is required for a new batch")
         name = Path(a.run_dir).name
+        scratch = Path(given.get("scratch_root") or Path(tempfile.gettempdir()) / "maudslay" / name / a.batch).resolve()
         cfg = {"run_dir": Path(a.run_dir).as_posix(), "batch": a.batch, "n": 20, "parallel": 4,
                "prompt_cap_chars": 16000, "review_chunk": 0, "repair_rounds": 1, "item_timeout": 5400,
                "replacement_proposal": False, "publish": False, "defer_adjudication": False,
-               "keys_dir": (Path(tempfile.gettempdir()) / "maudslay-keys" / name).as_posix(),
+               "scratch_root": scratch.as_posix(), "keys_dir": (scratch / "control").as_posix(),
                "batches_file": (Path(a.run_dir) / "BATCHES.json").as_posix(),
                "publication": f"research/readiness/claims/{given['agent']}-{datetime.now(timezone.utc).date()}-"
                               f"{name}-{a.batch}.jsonl"}
         cfg.update(given)
-    cfg["run_dir"] = Path(cfg["run_dir"]).as_posix()
-    for k in ("route", "workers", "tools"):
+    for k in ("workers", "tools"):
         if cfg.get(k):
             p = Path(cfg[k])
-            cfg[k] = (p if p.is_absolute() else (repo / p)).as_posix() if k != "route" else cfg[k]
+            cfg[k] = (p if p.is_absolute() else (repo / p)).as_posix()
     write_json(bdir / "CONFIG.json", cfg)
     return cfg
 
@@ -1471,7 +1771,7 @@ def main(argv=None):
     r.add_argument("--item-usd", type=float, help="per-worker dollar cap (claude --max-budget-usd)")
     r.add_argument("--item-tokens", type=int, help="per-worker token cap, enforced from the worker's own usage")
     r.add_argument("--item-timeout", type=int, help="per-worker wall-clock cap, seconds")
-    r.add_argument("--batch-usd", type=float, help="batch budget in dollars")
+    r.add_argument("--batch-usd", type=float, help="batch budget in dollars (required)")
     r.add_argument("--batch-tokens", type=int, help="batch budget in tokens")
     r.add_argument("--prompt-cap-chars", type=int, help="hard cap on every rendered prompt (default 16000)")
     r.add_argument("--review-chunk", type=int, help="claims per reviewer session (0 = one session per arm)")
@@ -1479,7 +1779,9 @@ def main(argv=None):
     r.add_argument("--defer-adjudication", action="store_true", default=None,
                    help="complete now and hold disagreed orders unfiled, instead of pausing")
     r.add_argument("--adjudicator", help="name recorded on control adjudications and seed receipts")
-    r.add_argument("--keys-dir", help="sealed control keys, outside the repository")
+    r.add_argument("--scratch-root", help="worker folders and control material, outside the repository "
+                                          "(default TEMP/maudslay/RUN/BATCH)")
+    r.add_argument("--keys-dir", help="sealed control key, review sets and ADJUDICATION.json (default SCRATCH/control)")
     r.add_argument("--batches-file", help="Bentham gate batch file (default RUN/BATCHES.json)")
     s = sub.add_parser("status", help="print one batch's ledger summary")
     s.add_argument("batch_dir", type=Path)
@@ -1497,17 +1799,16 @@ def main(argv=None):
                               "run": next((r_ for r_ in reversed(rows) if r_["key"] == "run"), None)}, indent=1))
             return 0
         if a.cmd == "commands":
-            ws = load_workers(a.workers)
-            for role, w in ws.items():
+            for role, w in load_workers(a.workers).items():
                 argv_ = render_args(w["command"], {"model": w["model"], "max_turns": w.get("max_turns", 80),
-                                                  "repo": REPO.as_posix(), "cwd": "BATCH_DIR", "prompt_file": "PROMPT",
-                                                  "item_usd": a.item_usd,
+                                                  "repo": REPO.as_posix(), "cwd": "WORKER_FOLDER",
+                                                  "item_usd": w.get("item_usd", a.item_usd),
                                                   "auto_compact_tokens": w.get("auto_compact_tokens", 120000),
                                                   "tool_output_tokens": w.get("tool_output_tokens", 6000),
-                                                  "writable_roots": json.dumps(["BATCH_DIR", "GIT_DIR"]),
+                                                  "writable_roots": json.dumps(["WORKER_FOLDER"]),
                                                   "network": "true" if w.get("network") else "false"})
                 validate_worker_command(argv_, w["family"])
-                print(role, " ".join(argv_), "< PROMPT")
+                print(role, "(cwd WORKER_FOLDER)", " ".join(argv_), "< PROMPT.txt")
             return 0
         repo = a.repo.resolve()
         cfg = build_config(a, repo)

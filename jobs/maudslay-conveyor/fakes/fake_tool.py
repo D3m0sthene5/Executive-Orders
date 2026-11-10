@@ -1,6 +1,6 @@
 """Stand-ins for cruden.py lookups, geddes.py view and bentham.py gate, for test_conveyor.py only.
     fake_tool.py lookups PACKET | view PACKET.json EO:N --write OUT | gate --action ID --batches FILE
-Env MAUDSLAY_FAKE_GATE sets the gate decision (default CONTINUE); MAUDSLAY_FAKE_LOG records each call."""
+Env MAUDSLAY_FAKE_GATE sets the gate decision (default CONTINUE; REFUSE exits 1 as for an unranked action); MAUDSLAY_FAKE_LOG records each call."""
 import json
 import os
 import sys
@@ -22,6 +22,9 @@ def main(a):
                                    "own_text_boundary": {"verified_whole_order": True}}), encoding="utf-8")
         return 0
     if a[0] == "gate":
+        if os.environ.get("MAUDSLAY_FAKE_GATE") == "REFUSE":
+            print("production.test: not a ranked production action in output/PLAN.json; run `plan` first")
+            return 1
         rows = json.loads(Path(a[a.index("--batches") + 1]).read_text())
         print(json.dumps({"decision": os.environ.get("MAUDSLAY_FAKE_GATE", "CONTINUE"), "batches_seen": len(rows),
                           "action": a[a.index("--action") + 1]}))
