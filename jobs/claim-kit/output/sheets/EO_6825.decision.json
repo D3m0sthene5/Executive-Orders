@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "7301482e5506e61f5a724216df0542086a68e7f4c8fa3c82f6bad761e48fd37d",
+  "dossier_sha256": "e845262178f1ff564a89aba942e4661aa76864fed0bdbe3a039ebc4fddca1d27",
   "instrument_id": "EO:6825",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,11 +34,103 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
+      {
+        "complete_text_confirmed": true,
+        "grade": "machine_read_government_printed_copy",
+        "identity_confirmed": true,
+        "instrument_id": "EO:6825",
+        "pages_confirmed": false,
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6825",
+              "requires_page_check": false,
+              "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6825.txt",
+              "text_sha256": "f7e33fd28a8da2be128089404c2b617c024cd008f895eed9fd9695ea567fb497",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6690-6935.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "dated_line",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": " Dw cy  Executive @rder  EXEMPTION OF C. FRANK WITTENAUER FROM COMPULSORY RETIRE",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "service until September 1, 1935;",
+              "matched_date": "August 20, 1934",
+              "matched_number": "No. 6825",
+              "pages_detail": {},
+              "register_date": "1934-08-20",
+              "register_number": "6825",
+              "similarity": [
+                {
+                  "agrees": true,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.8246,
+                  "length_ratio": 1.1068,
+                  "producer": "app-executive-orders",
+                  "sha256": "31a382609a6adfce6653158d0c921031351868540a23777a3e30d050691ce854"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6825.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "text_chars": 1453
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6825",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6825.txt",
+            "text_sha256": "f7e33fd28a8da2be128089404c2b617c024cd008f895eed9fd9695ea567fb497",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6825.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "31a382609a6adfce6653158d0c921031351868540a23777a3e30d050691ce854",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6825-exemption-c-frank-wittenauer-from-compulsory-retirement-for-age.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6825.txt",
+        "text_sha256": "f7e33fd28a8da2be128089404c2b617c024cd008f895eed9fd9695ea567fb497"
+      },
       {
         "complete_text_confirmed": false,
         "grade": "mirror_transcription",
@@ -68,16 +160,6 @@
         "sha256": "31a382609a6adfce6653158d0c921031351868540a23777a3e30d050691ce854",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-6825-31a382609a.txt",
         "text_sha256": "0eca5ac514fc8cfc9d63dce34a6cf78629ca703eb8148e0c8446ce85d4004b33"
-      },
-      {
-        "complete_text_confirmed": false,
-        "grade": "compiled_transcription_lead",
-        "identity_confirmed": false,
-        "instrument_id": "EO:6825",
-        "pages_confirmed": false,
-        "sha256": "411903946a91486b955f96799e6981d0131e8700f190239bb6103fad5d0a78fc",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6825.txt",
-        "text_sha256": "887b4ca68bcd8b09e615d8d89bb613553687d251e80533a60c89e7421c17131b"
       }
     ],
     "quotation_recheck_required": true,

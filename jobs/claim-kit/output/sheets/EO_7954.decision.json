@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "3ab04e2477e8e1f43cba14ed2592dd441b950d93d4f0bb6d0a14cf045ebf1ece",
+  "dossier_sha256": "edb39b5d1b4490dd4d43d979fa90cd4951b4185bc7e129747c6e9cabf4b00a85",
   "instrument_id": "EO:7954",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,30 +34,30 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified. No confident operative boundary found; unstructured text retained for review.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
         "complete_text_confirmed": true,
-        "grade": "mirror_transcription",
+        "grade": "machine_read_government_printed_copy",
         "identity_confirmed": true,
         "instrument_id": "EO:7954",
-        "pages_confirmed": true,
+        "pages_confirmed": false,
         "prior_confirmation": {
           "fragments": [
             {
               "acceptable_as_original": false,
               "complete_text": null,
-              "declaration_path": "jobs/app-transcriptions/output/FRAGMENTS.jsonl",
-              "grade": "mirror_transcription",
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
               "instrument_id": "EO:7954",
-              "requires_page_check": true,
-              "sha256": "bc60252bd4df4979aa6202d28e741b3b3ecf2bfb872d7595f76d88af87eb0a2f",
-              "text_path": "jobs/app-executive-orders/output/texts/executive-order-7954-exemption-frank-s-smith-from-compulsory-retirement-for-age.txt",
-              "text_sha256": "26afe0b02c32acfb916ec24a308680583405846de9636259fa9f39cfed0a503c",
-              "url": "https://www.presidency.ucsb.edu/documents/executive-order-7954-exemption-frank-s-smith-from-compulsory-retirement-for-age"
+              "requires_page_check": false,
+              "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_7954.txt",
+              "text_sha256": "9daf792b65f0bbaf369de8592bab24f219f1bd21402e25a4215476c4dc77cd66",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_7262-8027.djvu"
             }
           ],
           "record": {
@@ -66,58 +66,58 @@
             "confirmed": true,
             "evidence": {
               "complete_detail": {
-                "end_cue_kind": "signature",
+                "end_cue_kind": "dated_line",
                 "start_kind": "title_words"
               },
               "complete_route": "own_start_and_end",
-              "first_cue_snippet": "Whereas, in my judgment, the public interest requires that Frank S. Smith, speci",
-              "identity_detail": {
-                "source_heading": "Executive Order 7954—Exemption of Frank S. Smith From Compulsory Retirement for Age",
-                "source_heading_producer": "app-executive-orders",
-                "title_overlap_body_opening": 0.8333,
-                "title_overlap_heading": 1.0
-              },
-              "identity_route": "source_heading",
-              "last_cue_snippet": "FRANKLIN D. ROOSEVELT",
+              "first_cue_snippet": " AG  Executive Order  EXEMPTION OF FRANK S. SmitH From CoMPuLsoRY RETIREMENT FOR",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "period of one year ending September 30, 1939.",
               "matched_date": "August 12, 1938",
-              "matched_number": null,
-              "pages_detail": {
-                "app_date": "1938-08-12",
-                "app_heading": "Executive Order 7954—Exemption of Frank S. Smith From Compulsory Retirement for ",
-                "app_subject_overlap": 0.8333
-              },
+              "matched_number": "No. 7954",
+              "pages_detail": {},
               "register_date": "1938-08-12",
               "register_number": "7954",
-              "similarity": [],
-              "skipped_witnesses": [
+              "similarity": [
                 {
-                  "grade": "machine_read_government_printed_copy",
-                  "text_path": "jobs/mabillon-held-printings/output/texts/EO_7954.txt",
-                  "why": "text_hash_mismatch"
-                },
+                  "agrees": false,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.741,
+                  "length_ratio": 1.1842,
+                  "producer": "app-executive-orders",
+                  "sha256": "bc60252bd4df4979aa6202d28e741b3b3ecf2bfb872d7595f76d88af87eb0a2f"
+                }
+              ],
+              "skipped_witnesses": [
                 {
                   "grade": "official_printing",
                   "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7954.txt",
                   "why": "grade_not_in_working_text_policy"
                 }
               ],
-              "source_heading": "Executive Order 7954—Exemption of Frank S. Smith From Compulsory Retirement for Age",
-              "text_chars": 720
+              "text_chars": 858
             },
-            "grade": "mirror_transcription",
+            "grade": "machine_read_government_printed_copy",
             "identity_confirmed": true,
             "instrument_id": "EO:7954",
             "method": "machine",
-            "pages_confirmed": true,
+            "pages_confirmed": null,
             "reasons": [],
-            "requires_page_check": true,
+            "requires_page_check": false,
             "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
             "schema": "eo-lachmann-confirmation/v1",
-            "sha256": "bc60252bd4df4979aa6202d28e741b3b3ecf2bfb872d7595f76d88af87eb0a2f",
+            "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
             "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
-            "text_path": "jobs/app-executive-orders/output/texts/executive-order-7954-exemption-frank-s-smith-from-compulsory-retirement-for-age.txt",
-            "text_sha256": "26afe0b02c32acfb916ec24a308680583405846de9636259fa9f39cfed0a503c",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_7954.txt",
+            "text_sha256": "9daf792b65f0bbaf369de8592bab24f219f1bd21402e25a4215476c4dc77cd66",
             "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_7954.txt"
+              },
               {
                 "grade": "mirror_transcription",
                 "producer": "app-executive-orders",
@@ -128,6 +128,16 @@
           },
           "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
         },
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7954.txt",
+        "text_sha256": "9daf792b65f0bbaf369de8592bab24f219f1bd21402e25a4215476c4dc77cd66"
+      },
+      {
+        "complete_text_confirmed": false,
+        "grade": "mirror_transcription",
+        "identity_confirmed": false,
+        "instrument_id": "EO:7954",
+        "pages_confirmed": false,
         "sha256": "bc60252bd4df4979aa6202d28e741b3b3ecf2bfb872d7595f76d88af87eb0a2f",
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-7954-exemption-frank-s-smith-from-compulsory-retirement-for-age.txt",
         "text_sha256": "26afe0b02c32acfb916ec24a308680583405846de9636259fa9f39cfed0a503c"
@@ -151,16 +161,6 @@
         "sha256": "bc60252bd4df4979aa6202d28e741b3b3ecf2bfb872d7595f76d88af87eb0a2f",
         "text_path": "jobs/clause-drafts/output/texts/cd-job-app-executive-orders-7954-bc60252bd4.txt",
         "text_sha256": "c57132e0aa3f5f8d3684eba16b23886a786ace973934db26fa4e71217462eca6"
-      },
-      {
-        "complete_text_confirmed": false,
-        "grade": "compiled_transcription_lead",
-        "identity_confirmed": false,
-        "instrument_id": "EO:7954",
-        "pages_confirmed": false,
-        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
-        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7954.txt",
-        "text_sha256": "e0f22c5f6f56e5268ceeef8325339cc1459d7359078b3bf5c0dfa35dd383b5cb"
       }
     ],
     "quotation_recheck_required": true,

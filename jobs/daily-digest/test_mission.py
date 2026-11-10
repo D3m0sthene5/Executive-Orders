@@ -153,7 +153,11 @@ class MissionTests(unittest.TestCase):
         import importlib.util
         spec=importlib.util.spec_from_file_location('result_freshness',REPO/'.github/scripts/result_freshness.py')
         freshness=importlib.util.module_from_spec(spec);spec.loader.exec_module(freshness)
-        declared=json.loads(mission.git(REPO,'show','HEAD:jobs/claim-checker/output/RUNNER_INPUTS.json'))['scope']
+        # Road CI excludes job output directories from its sparse checkout.
+        # Read the committed runner declaration when the worktree lacks that file.
+        path=REPO/mission.CHECKER/'RUNNER_INPUTS.json'
+        raw=path.read_text() if path.is_file() else mission.git(REPO,'show','HEAD:'+mission.CHECKER+'RUNNER_INPUTS.json')
+        declared=json.loads(raw)['scope']
         paths=[l.split('\t',1)[1] for l in mission.git(REPO,'ls-tree','-r','HEAD','--','research/readiness','jobs/claim-checker').splitlines()]
         entries={p:'x' for p in paths+['research/readiness/claims','jobs/claim-checker/output/x.csv']}
         self.assertEqual({p for p in entries if mission.in_scope(p,declared)},set(freshness.select(entries,declared)))

@@ -699,12 +699,7 @@ def complete(repo, manifest_path, dest, publish=False, *, diagnosis=None):
     target = batch.safe(repo, publication['path'])
     require(not target.exists() and target.suffix == '.jsonl', 'publication must create a new JSONL file')
     if mode == 'own_claims':
-        prefixes = {manifest['agent'] + '-'}
-        if re.fullmatch(r'mommsen-[1-3]', manifest['agent']):
-            prefixes.add(manifest['agent'].replace('-', '') + '-')
-        require(target.parent == repo / 'research/readiness/claims' and
-                any(target.name.startswith(prefix) for prefix in prefixes),
-                'publication must be an own-agent claims file')
+        require(target.parent == repo / 'research/readiness/claims' and target.name.startswith(manifest['agent'] + '-'), 'publication must be an own-agent claims file')
     else:
         require(target.is_relative_to(repo / 'research') and not target.is_relative_to(repo / 'research/readiness'), 'replacement proposals must stay outside canonical readiness')
     dest.mkdir(parents=True)

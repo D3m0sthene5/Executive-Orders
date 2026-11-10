@@ -18,7 +18,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "7938d1d5e24e932e773afbce1506d68ef0b7a48c64416c6c6f8c0e5110ce82db",
+  "dossier_sha256": "bae73c425c274e441f904bb57af28575156abcecff0ba7637307c5a46d093c3c",
   "instrument_id": "EO:6503",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -34,20 +34,108 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
+    "Machine segmentation lead; compare the inventory with the official original. heading_has_no_number_matched_by_trailing_No_line Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
+        "complete_text_confirmed": true,
         "grade": "machine_read_government_printed_copy",
-        "identity_confirmed": false,
+        "identity_confirmed": true,
         "instrument_id": "EO:6503",
         "pages_confirmed": false,
-        "sha256": "a044a4ce1c3ca1318d9cce3f2791d573a038fae4547f050203c7904b283a8a54",
-        "text_path": "jobs/tischendorf-originals/output/texts/EO_6503.txt",
-        "text_sha256": "c02227469cd19882fa2374d65330818ebe15a15d2e4deb4efffcb42cbdcf7c3d"
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6503",
+              "requires_page_check": false,
+              "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6503.txt",
+              "text_sha256": "8c08ae2256811bbcf3aff87a567d6b4211b0045f0d61b552dfaa4393a5c54723",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6480-6689.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "o  Aé  Executive Order  CoprE or Farr CoMPETITION FOR THE VALVE AND Firrincs MAN",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "FRANKLIN D ROOSEVELT",
+              "matched_date": "December 15, 1933",
+              "matched_number": "No. 6503",
+              "pages_detail": {},
+              "register_date": "1933-12-15",
+              "register_number": "6503",
+              "similarity": [
+                {
+                  "agrees": false,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.7797,
+                  "length_ratio": 1.1034,
+                  "producer": "app-executive-orders",
+                  "sha256": "0b4d003e419c059ed08d67ecbcfcf977f83277251d2e8236558437e8daea1231"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "machine_read_government_printed_copy",
+                  "text_path": "jobs/tischendorf-originals/output/texts/EO_6503.txt",
+                  "why": "text_hash_mismatch"
+                },
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6503.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "text_chars": 1556
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6503",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6503.txt",
+            "text_sha256": "8c08ae2256811bbcf3aff87a567d6b4211b0045f0d61b552dfaa4393a5c54723",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6503.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "0b4d003e419c059ed08d67ecbcfcf977f83277251d2e8236558437e8daea1231",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6503-code-fair-competition-for-the-valve-and-fittings-manufacturing.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6503.txt",
+        "text_sha256": "8c08ae2256811bbcf3aff87a567d6b4211b0045f0d61b552dfaa4393a5c54723"
       }
     ],
     "quotation_recheck_required": true,

@@ -74,7 +74,7 @@
     }
   ],
   "conflict_resolutions": {},
-  "dossier_sha256": "6a29f0f00304485be49fe2ca03a0fa92f8fdb001280ead4b601cb8b31feaaa57",
+  "dossier_sha256": "325c01ae0a11ca8d757be288b488f7ef18d1796e5fe59f11028d06bffd771044",
   "instrument_id": "EO:6631A",
   "inventory_confirmed": false,
   "inventory_overrides": [],
@@ -90,20 +90,102 @@
   "search_ids": [],
   "source_notes": [],
   "unresolved_material_gaps": [
-    "Official-source page location requires a separate page/image check before original confirmation.",
     "Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations."
   ],
   "working_text": {
     "confirmations": [
       {
-        "complete_text_confirmed": false,
-        "grade": "mirror_transcription",
-        "identity_confirmed": false,
+        "complete_text_confirmed": true,
+        "grade": "machine_read_government_printed_copy",
+        "identity_confirmed": true,
         "instrument_id": "EO:6631A",
         "pages_confirmed": false,
-        "sha256": "e5a63f369c4a00fa54644355fdfdd3c219acfbdf74fcff872d535fe6683b7064",
-        "text_path": "jobs/app-executive-orders/output/texts/executive-order-6631-approval-code-fair-competition-for-the-anti-hog-cholera-serum-and-hog.txt",
-        "text_sha256": "b6f37b248677953389f12e3676678e303ad870676beaa16dd95393dc9e6e385c"
+        "prior_confirmation": {
+          "fragments": [
+            {
+              "acceptable_as_original": false,
+              "complete_text": null,
+              "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+              "grade": "machine_read_government_printed_copy",
+              "instrument_id": "EO:6631A",
+              "requires_page_check": false,
+              "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+              "text_path": "jobs/mabillon-held-printings/output/texts/EO_6631A.txt",
+              "text_sha256": "11a2a16c07e33687a5cfc1580d9745db303c126cbfdf5c46987de24074651e01",
+              "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_6480-6689.djvu"
+            }
+          ],
+          "record": {
+            "acceptable_as_original": false,
+            "complete_text_confirmed": true,
+            "confirmed": true,
+            "evidence": {
+              "complete_detail": {
+                "end_cue_kind": "signature",
+                "start_kind": "title_words"
+              },
+              "complete_route": "own_start_and_end",
+              "first_cue_snippet": "DEPOSITED BY THE  UNITED STATES 0:  APR 4  F AMERICA  a]  7 | AG  Executibe @rde",
+              "identity_detail": {},
+              "identity_route": "a_number_and_date",
+              "last_cue_snippet": "FRANKLIN D ROOSEVELT",
+              "matched_date": "March 6, 1934",
+              "matched_number": "No. 6631-A",
+              "pages_detail": {},
+              "register_date": "1934-03-06",
+              "register_number": "6631A",
+              "similarity": [
+                {
+                  "agrees": true,
+                  "grade": "mirror_transcription",
+                  "jaccard": 0.8215,
+                  "length_ratio": 1.109,
+                  "producer": "app-executive-orders",
+                  "sha256": "e5a63f369c4a00fa54644355fdfdd3c219acfbdf74fcff872d535fe6683b7064"
+                }
+              ],
+              "skipped_witnesses": [
+                {
+                  "grade": "official_printing",
+                  "text_path": "jobs/photius-gpo-volumes/output/texts/EO_6631A.txt",
+                  "why": "grade_not_in_working_text_policy"
+                }
+              ],
+              "text_chars": 2328
+            },
+            "grade": "machine_read_government_printed_copy",
+            "identity_confirmed": true,
+            "instrument_id": "EO:6631A",
+            "method": "machine",
+            "pages_confirmed": null,
+            "reasons": [],
+            "requires_page_check": false,
+            "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+            "schema": "eo-lachmann-confirmation/v1",
+            "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+            "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+            "text_path": "jobs/mabillon-held-printings/output/texts/EO_6631A.txt",
+            "text_sha256": "11a2a16c07e33687a5cfc1580d9745db303c126cbfdf5c46987de24074651e01",
+            "witnesses": [
+              {
+                "grade": "machine_read_government_printed_copy",
+                "producer": "mabillon-held-printings",
+                "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+                "text_path": "jobs/mabillon-held-printings/output/texts/EO_6631A.txt"
+              },
+              {
+                "grade": "mirror_transcription",
+                "producer": "app-executive-orders",
+                "sha256": "e5a63f369c4a00fa54644355fdfdd3c219acfbdf74fcff872d535fe6683b7064",
+                "text_path": "jobs/app-executive-orders/output/texts/executive-order-6631-approval-code-fair-competition-for-the-anti-hog-cholera-serum-and-hog.txt"
+              }
+            ]
+          },
+          "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+        },
+        "sha256": "a7dd99f4190ac051a7b03f7e693b6866344356f1d36be4f1696c9b3490de5fb4",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_6631A.txt",
+        "text_sha256": "11a2a16c07e33687a5cfc1580d9745db303c126cbfdf5c46987de24074651e01"
       },
       {
         "complete_text_confirmed": false,
