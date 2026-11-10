@@ -312,6 +312,18 @@ def controls(hathi, refs, official, register, df, n_docs):
             "passed": neg_bad == 0 and pos > 0 and pos_ok / pos >= 0.8}
 
 
+def verified_source_text(out, data):
+    """Map only this output's existing text after verifying its recorded byte hash."""
+    path = Path(data["text_path"])
+    if path.is_absolute():
+        raise ValueError("source text_path must be output-relative")
+    local = (Path(out) / path).resolve()
+    local.relative_to(Path(out).resolve())
+    if hashlib.sha256(local.read_bytes()).hexdigest() != data["text_sha256"]:
+        raise ValueError("source text bytes do not match recorded text_sha256")
+    return {"text_path": path.as_posix()}
+
+
 def main(out=None, root=REPO):
     out = Path(out or os.environ.get("OUTPUT_DIR", HERE / "output"))
     (out / "texts").mkdir(parents=True, exist_ok=True)
@@ -381,7 +393,8 @@ def main(out=None, root=REPO):
                         "page_or_item": d.get("page_or_item"), "grade": "machine_read_government_printed_copy",
                         "representation_type": "machine_read_government_printed_copy",
                         "acceptable_as_original": False, "needs_page_check": not strong, "route": h["route"],
-                        "held_by": "hathi-gpo-orders", "exact_source_text_sha256": data["text_sha256"]})
+                        "held_by": "hathi-gpo-orders", "exact_source_text_sha256": data["text_sha256"],
+                        **verified_source_text(out, data)})
 
     with open(out / "FRAGMENTS.jsonl", "w", encoding="utf-8") as f:
         for x in frags:
