@@ -13,8 +13,8 @@ Sources: `.ignore`
 
 ## A-20261110-nalimov-calibration (2026-11-10, Claude (Opus 5.5, Nalimov))
 
-Sign the Nalimov stage-0 calibration plan (research/nalimov/calibration/WAVE.json, plan sha256 6f03cb4309720c7543517d5858eaf61ccfe98862828f9930b0ba5b42c4b0f7f6: 8 script-drafted express-revocation claims through the Maudslay conveyor with typed controls, budget 600k units), and accept that a script is the producer on this route (its confirmations are mechanical checks; the blind arms are the source review; Respondendi starts it on its own audit probation)? It runs only after the conveyor's status-overlay stage is built; any plan edit needs a new signature.
+(1) Sign the Nalimov stage-0 calibration plan research/nalimov/calibration/WAVE.json, plan sha256 4c19799f9bbcb0cbfc84ee0a7d1303bf2ad79a33851e4679b2389b364d2dde96: the 8 script-drafted express-revocation claims (EO 10779, 11056, 11232, 11274, 11352, 11361, 12737, 13765) through the Maudslay conveyor (--producer nalimov, typed controls, status-overlay stage), budget 600k units; (2) accept that a script is the producer on this route (its confirmations are mechanical checks; the blind arms and the status reviewer are the source review; Respondendi gives it its own audit stratum); (3) decide whether the conveyor may give the kit's producer reconfirmation mechanically for MODEL producers too (today only for the script producer; the working dossier must equal the base dossier outside the status envelope). Any plan edit needs a new signature.
 
-*Why:* Augur refuses the plan only for the missing independent review (another model family or the owner). Projected 0.10-0.42 USD per adopted status against 7.71 measured on the full route; the pool on main is 8 orders.
+*Why:* Augur refuses the plan only for the missing independent review (owner or another model family). Projected 0.10-0.42 USD per adopted status against 7.71 measured; reach comes from research/nalimov/TALLY.json and POOL_TALLY.json, not from this batch (dozens of orders on this route; about 700-800 project-wide with one-question tiers).
 
 Sources: `research/nalimov/REPORT.md`

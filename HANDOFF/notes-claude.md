@@ -10,10 +10,18 @@
   per claim. Projected 0.10-0.42 USD per adopted status vs 7.71 measured. Kean F-20261110-nalimov-census.
 - **Review:** Fable 5.2 found 7 blocking defects in v1 (17 of 36 drafts wrong), then 2 small ones in v2. All fixed.
   Kean F-20261110-nalimov-review-v1. The independent review is in the side-session notes folder (`nalimov/REVIEW.md`).
-- **Waiting on the owner:** A-20261110-nalimov-calibration (sign the 8-order stage-0 plan; accept a script as
-  producer on this route).
-- **Next:** the conveyor's status-overlay stage (undecided members stop after `apply` today). After that, rebase onto
-  Accursius F3, F7, F5, F6 and F4 as they merge. Biggest unlock: official FR copies of 150 revoking orders.
+- **Conveyor status-overlay stage (in #279):** undecided orders now run status review, overlay-propose and working
+  claims, then the conveyor's unchanged review and completion stages, published as replacement_proposal. A delegated
+  Opus worker built it; Fable reviewed it (one blocker, O1, fixed). 76 conveyor tests and 36 Nalimov tests pass. It
+  has run only against the fake kit. Kean F-20261110-nalimov-overlay-stage.
+- **Reach (the real question):** this route covers dozens of orders: express 12 now, ≤19 with F3-F7, ≤41 with
+  sources. One-question tiers (measured, not built) reach about 201 express and about 700-800 project-wide (coarse
+  2,088). See `TALLY.json`, `TIERS.json`, `POOL_TALLY.json` and the two acquisition lists in `research/nalimov/`.
+- **Waiting on the owner:** A-20261110-nalimov-calibration rev 1. Sign plan sha `4c19799f…` (8 orders), accept a
+  script as producer, and decide whether a model producer's reconfirmation may be mechanical.
+- **Next:** run the calibration batch once signed (first real-kit test of the overlay path); rebase onto Larrey #280
+  and Accursius F3-F7 as they merge; then build the tiers in the coordinator-approved order: unlocated acting texts
+  (F4), one-time commands, recorded amendments, own terms before the end, current-law notes (F3).
 
 ## 2026-11-10 ET (Claude, overnight Codex wave failed; claim-kit admission guard, PR #265)
 
