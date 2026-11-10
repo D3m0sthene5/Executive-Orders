@@ -1,13 +1,13 @@
 {
  "schema": "larrey.triage/v1",
- "generated_at": "2026-11-10T18:22:01Z",
+ "generated_at": "2026-11-10T18:48:08Z",
  "inputs": {
   "claim_kit_summary_sha256": "39aa1b25df48aa3a1c7132969edd51eefc6290077af478fd6035124ff66230a7",
   "tracker_sha256": "8760db9e70c4c724cf40b2dd7e53f3139b2470afa8b43ae9bfe8c65a9df1cd6a"
  },
  "code_sha256": {
-  "jobs/larrey-triage/larrey.py": "2f4844cb5e1adccf11f90ee8450d639491c6acae62360042b4b6a501d9ed3f59",
-  "jobs/llull/kit_features.py": "2dd85b3cfa131e2887eee01705d295167e3a3b0f65a8378a71fe06496271883f",
+  "jobs/larrey-triage/larrey.py": "49c904be96963c5cd3215c92cfc8edbc270eb3858a812a9bd4cdfac9cf46de9d",
+  "jobs/llull/kit_features.py": "9fe51bf31bce988a7377b26010b0fe29c80e1db9d5411471abb8e1ffa855960d",
   "jobs/llull/llull.py": "1a549f4669671159f4c33fe0bf06d2f7057eb969985c6a1d206b3df6b0ba942f"
  },
  "routes": {
@@ -15,10 +15,10 @@
    "title": "undecided order, status-only tier (independent status review; no lifecycle sheet)",
    "hard": [
     "original_usable",
-    "no_page_check_owed",
     "status_basis_record"
    ],
    "soft": [
+    "no_page_check_owed",
     "later_order_text_held"
    ]
   },
@@ -26,11 +26,11 @@
    "title": "undecided order, status plus whole-lifecycle sheet (Haloander/Papinian overlay route)",
    "hard": [
     "original_usable",
-    "no_page_check_owed",
     "status_basis_record",
     "clause_inventory_present"
    ],
    "soft": [
+    "no_page_check_owed",
     "later_order_text_held"
    ]
   },
@@ -38,7 +38,6 @@
    "title": "decided (provisional YES/NO) order, whole-lifecycle dossier",
    "hard": [
     "original_usable",
-    "no_page_check_owed",
     "clause_inventory_present"
    ],
    "soft": [
@@ -48,33 +47,54 @@
  },
  "calibration": {
   "status_only": {
-   "file": "jobs/claim-kit/status_overlay.py",
-   "backtest": "jobs/larrey-triage/output/BACKTEST.json",
-   "backtested_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
-   "current_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
+   "files": {
+    "jobs/claim-kit/status_overlay.py": {
+     "backtested_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
+     "current_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da"
+    },
+    "jobs/claim-kit/build.py": {
+     "backtested_sha256": "7e78671bd701e05170a777e544458a92d90f843ff8883fc1d24f6be8876cd0ea",
+     "current_sha256": "7e78671bd701e05170a777e544458a92d90f843ff8883fc1d24f6be8876cd0ea"
+    }
+   },
    "successes_lost": 0,
+   "job_backtest_successes_lost": 0,
    "enforced": true
   },
   "undecided_full": {
-   "file": "jobs/claim-kit/status_overlay.py",
-   "backtest": "jobs/larrey-triage/output/BACKTEST.json",
-   "backtested_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
-   "current_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
+   "files": {
+    "jobs/claim-kit/status_overlay.py": {
+     "backtested_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da",
+     "current_sha256": "dffff6b4199b566656c8c2edc725559db10d7e258fc17cf983dc6b05363da9da"
+    },
+    "jobs/claim-kit/build.py": {
+     "backtested_sha256": "7e78671bd701e05170a777e544458a92d90f843ff8883fc1d24f6be8876cd0ea",
+     "current_sha256": "7e78671bd701e05170a777e544458a92d90f843ff8883fc1d24f6be8876cd0ea"
+    }
+   },
    "successes_lost": 0,
+   "job_backtest_successes_lost": 0,
    "enforced": true
   },
   "decided_lifecycle": {
-   "file": "jobs/claim-kit/assemble.py",
-   "backtest": "jobs/larrey-triage/output/BACKTEST.json",
-   "backtested_sha256": "537cc4a1d49ea92693f11459343f1820f7d866a538f4ba36de48283ef1660385",
-   "current_sha256": "537cc4a1d49ea92693f11459343f1820f7d866a538f4ba36de48283ef1660385",
+   "files": {
+    "jobs/claim-kit/assemble.py": {
+     "backtested_sha256": "537cc4a1d49ea92693f11459343f1820f7d866a538f4ba36de48283ef1660385",
+     "current_sha256": "537cc4a1d49ea92693f11459343f1820f7d866a538f4ba36de48283ef1660385"
+    },
+    "jobs/claim-kit/working_text.py": {
+     "backtested_sha256": "dc080946b792b437ae1f544583fa36800af215dd152e91501326ad67f6d3c761",
+     "current_sha256": "dc080946b792b437ae1f544583fa36800af215dd152e91501326ad67f6d3c761"
+    }
+   },
    "successes_lost": 0,
+   "job_backtest_successes_lost": 0,
    "enforced": true
   }
  },
  "orders_with_compiled_inputs": 14998,
  "tracker_orders": 14998,
- "gates_commit": "427f7cfad11f729079e3e40ef202a28bab69fca3",
+ "gates_commit": "838a5e8cf7b8f4c846584b90776f4608132df603",
  "kit_rules_loaded": [],
  "notice": "Deferral, not decision: a kept-out order is open until its missing input is held. No status, count or certification changed."
 }
