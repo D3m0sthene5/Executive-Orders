@@ -6,16 +6,16 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 
 - Claims checked: 1828 (parse errors: 0)
 - Orders with a claim (latest claim per order): 1530
-- All checks passed: 1659
-- Mechanical checks passed: 1745; with unverifiable items: 3; failed: 80
+- All checks passed: 1660
+- Mechanical checks passed: 1746; with unverifiable items: 2; failed: 80
 - Structural gate passed: 1738
 
 ## Source references
 
-- custody_record_only: 4
+- custody_record_only: 3
 - gpo_published_hash_match: 9367
 - held_bytes_in_release_or_repo: 103
-- held_bytes_verified: 12836
+- held_bytes_verified: 12837
 
 ## Quotations
 
