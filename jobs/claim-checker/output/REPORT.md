@@ -4,22 +4,22 @@ Mechanical checks of every claim in `research/readiness/claims/`. A pass means t
 sources are held, the quotations are word for word, the dates and order numbers are
 possible, and the Stage 19 gate's structure is met. **It is not a legal conclusion.**
 
-- Claims checked: 1828 (parse errors: 0)
-- Orders with a claim (latest claim per order): 1530
-- All checks passed: 1659
-- Mechanical checks passed: 1745; with unverifiable items: 3; failed: 80
-- Structural gate passed: 1738
+- Claims checked: 1897 (parse errors: 0)
+- Orders with a claim (latest claim per order): 1593
+- All checks passed: 1735
+- Mechanical checks passed: 1821; with unverifiable items: 2; failed: 74
+- Structural gate passed: 1807
 
 ## Source references
 
-- custody_record_only: 4
-- gpo_published_hash_match: 9367
+- custody_record_only: 3
+- gpo_published_hash_match: 9975
 - held_bytes_in_release_or_repo: 103
-- held_bytes_verified: 12836
+- held_bytes_verified: 13209
 
 ## Quotations
 
-- exact: 28627
+- exact: 29986
 - normalised: 11
 - not_found: 7
 
@@ -117,7 +117,7 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:21` | EO:8744 | structural_gate:clause_0_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:22` | EO:11911 | structural_gate:clause_0_state@-; structural_gate:clause_1_state@-; structural_gate:clause_2_state@-; structural_gate:clause_3_state@-; structural_gate:clause_4_state@-; structural_gate:clause_5_state@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:5` | EO:10440 | structural_gate:clause_7_first_end@-; structural_gate:unresolved_material_gaps@- |
-| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:12` | EO:11832 | working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0].later_events[0].source; working_text_policy:invalid_working_text@operative_clauses[0].later_events[0].source ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:12` | EO:11832 | working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[1].original_source; working_text_policy:invalid_working_text@operative_clauses[1].original_source ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:14` | EO:11482 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:15` | EO:11849 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:16` | EO:11971 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@-; structural_gate:clause_6_first_end@- ... |
@@ -130,6 +130,6 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 
 ## Source identity (is the cited original this order's?)
 
-- recorded_for_this_order: 9000
+- recorded_for_this_order: 9448
 
 Details: `CLAIM_CHECKS.csv` (one row per check that did not pass; mode `non_pass_rows`). Per claim: `PER_CLAIM.json`.

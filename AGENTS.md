@@ -6,6 +6,15 @@
 
 **Spend tokens where Bentham says (owner, 2026-11-05):** before any agent wave, read `jobs/bentham/output/PLAN.md` (rebuilt daily from measured yields, costs and the orders each action unlocks) and run ranked actions in rank order within the owner's budget. After each batch run `python3 -I jobs/bentham/bentham.py gate --action ID --batches FILE` and stop on STOP. When the wave ends, run `bentham.py usage --wave NAME --phase LABEL` and commit the sanitized output so the next plan is measured on it. See `jobs/bentham/README.md`.
 
+**No wave launches without Augur (proposed by Claude 2026-11-10, after the overnight Codex wave; in force when the owner merges):** write the wave as a plan (`WAVE.json`). It must pass `python -I jobs/augur-launch/augur.py check WAVE.json` before any agent spends, with:
+- an outcome objective, never spend or activity;
+- Bentham actions only;
+- a ramp from a 1-lane, 30-order stage 0 for any configuration not yet measured;
+- every matching Kean warning answered, and a pre-mortem;
+- a review by another model family or the owner, bound to the plan's hash.
+
+An unranked Bentham refusal is a stop, never advice. The claim kit refuses orders outside the named Bentham action (`jobs/claim-kit/admission.py`). The Savigny supervisor stops lanes on measured spend per verified claim. See `jobs/augur-launch/README.md`.
+
 **Lean tree (2026-11-08):** about 97% of the ~194,000 tracked files are job outputs, data, attempt receipts and frozen work papers. Never list or search the whole tree: no bare `git ls-files`, `find .`, `ls -R`, or root-wide `**` glob. Name the folder you need (`git ls-files -- jobs/<name> | head`, `rg term jobs/<name>`). The root `.ignore` makes ripgrep-based search skip outputs and data unless you name them; for Claude Code, `.claude/hooks/ockham_lean_tree.py` refuses the whole-tree commands. Check out only what you need (`git clone --filter=blob:none --sparse`, then `git sparse-checkout set --no-cone` with the folders).
 
 Before doing project work in any session, read `HANDOFF/README.md` and the latest relevant notes in `HANDOFF/`, beginning with the newest entries. Check the current GitHub `main` state; do not rely on an older conversational summary.

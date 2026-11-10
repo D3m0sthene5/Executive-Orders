@@ -411,8 +411,10 @@ def render_brief(repo, reg=None):
     w(f"## Owner decisions not yet carried out by the tools ({len(needs_work)})")
     w("")
     for d in needs_work:
-        w(f"- **{d['id']}** ({d['wiring'].replace('_', ' ')}): {_one(d['ruling'], 300)}"
-          + (f" {_one(d['wiring_note'], 260)}" if d.get("wiring_note") else ""))
+        # Short summaries: with 27+ open decisions the full 300+260 characters filled the 16 KB brief and blocked
+        # recording any new owner decision. The full ruling stays in the register and in `search`.
+        w(f"- **{d['id']}** ({d['wiring'].replace('_', ' ')}): {_one(d['ruling'], 180)}"
+          + (f" {_one(d['wiring_note'], 120)}" if d.get("wiring_note") else ""))
     if not needs_work:
         w("Nothing.")
     if unverified:
