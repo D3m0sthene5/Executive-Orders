@@ -6,8 +6,8 @@
   [#274](https://github.com/D3m0sthene5/Executive-Orders/pull/274) F5 OWN_TEXT basis,
   [#276](https://github.com/D3m0sthene5/Executive-Orders/pull/276) F6 working-text gate,
   [#275](https://github.com/D3m0sthene5/Executive-Orders/pull/275) F4 acting texts. All five are approved on
-  re-review with 0 blocking findings. All are drafts with
-  "Owner, after merging" lines. Report: `research/excavator/claude-accursius-2026-11-10/REPORT.md`.
+  re-review with 0 blocking findings. The owner merged #273, #272 and #274 on 2026-11-10. #276 and #275 are open drafts,
+  merged with main and mergeable. Each PR body has an "Owner, after merging" line. Report: `research/excavator/claude-accursius-2026-11-10/REPORT.md`.
 - **Reach on main** (undecided orders, machine leads):
   - F3: 1,063 get CURRENT records, 834 of them YES-eligible.
   - F5: 687 get OWN_TEXT records; blind precision 57 of 60.
@@ -21,7 +21,7 @@
   conflict on `UNDECIDED_ROUTES`; the second takes the union. One claim-kit rebuild after the compiler-file PRs,
   then re-prepare every packet. An fr-originals re-location run follows #273.
 - **Not done:**
-  - I could not mark the PRs ready: the permission classifier refused `gh pr ready`.
+  - I could not mark #275 and #276 ready: the permission classifier refused `gh pr ready`.
   - #272 also raises the Valla pilot job timeout from 30 to 40 minutes; the note extracts pushed it past 30.
   - Lifecycle claims on R37/P4 texts are still refused by `assemble` (`working_text.GRADES`).
   - Neighbour-page adoption (F7) was removed, to be redone strictly.
