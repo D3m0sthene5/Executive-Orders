@@ -1,0 +1,54 @@
+{
+  "instrument_id": "EO:393",
+  "claim_sha256": "e1dfbda896e33357fa315ba3e12b19fed7bf4c15ab219330859f77783f2a14f8",
+  "reviewer": "mommsen-2-b05-arm1-control-v2",
+  "model_family": "OpenAI",
+  "independent": true,
+  "separate_context": true,
+  "review_kind": "independent_ai_source_review",
+  "scope": "whole_case",
+  "verdict": "rejected",
+  "rationale": "The actual GPO printing, PDF page 80 / printed page 67, bears Theodore Roosevelt and The White House, January 12, 1906. Its sole operative sentence repeals the Executive Order of November 15, 1905 as to appointments to positions in the Isthmian Canal Commission service upon the Isthmus of Panama. The present operative repeal effects the legal transition on January 12, not January 13. Nothing in the full printed body supplies an administrative implementation period or future performance condition. The candidate first_end and whole_order_end dates of 1906-01-13, and its one-day administrative implementation explanation, are unsupported. Its original_representation also changes both the generated contents-date statement and the purported White House source quotation to January 13, contrary to the held text and the visually inspected original. This is a substantive source/date rejection, independently sufficient even apart from mechanical refusal.",
+  "inventory_check": "Full page 80 read visually: one repeal sentence plus signature/date. No second command, schedule, express savings or delayed-effective clause. The body-only scope is substantively complete.",
+  "identity_check": "The volume prints no EO number. Allowed IC1911_WPA_LORD_MATCH.csv row seq 35 identifies EO:393 by January 12, 1906 and repeal-of-appointments subject; IC1911_ORDERS.csv gives PDF 80, printed 67. Date, complete body and Theodore Roosevelt signature on the actual page agree with that identity. EO number is crosswalk metadata, not printed evidence.",
+  "effective_date_and_earlier_end_check": "January 12, 1906 is the supported immediate legal-transition date. It is an earlier supported completion candidate than the claimed January 13. No earlier completion of this repeal command before its own issuance is established. The November 15, 1905 date identifies the predecessor, not the cessation date of EO:393. No later cleanup is needed to execute the present repeal.",
+  "predecessor_context": "PDF page 75 / printed page 62, visually read in full, is signed Theodore Roosevelt and dated November 15, 1905. It permits the Civil Service Commission to allow temporary appointments when no register contains an eligible with the special qualifications requested, and permits permanence on the Isthmian Canal Commission certificate described there. This is conditional appointment authority, not proof that any appointment or certification actually occurred. EO:393 directly repeals that authority; its repeal does not depend on discovering an actual appointment.",
+  "independent_commands_and_savings": "EO:393 commands no appointment, removal, report, repayment or future administration. It contains no express savings. Its completed cancellation has continuing legal consequences; those consequences do not create a continuing prospective command or prove that prior appointments or independently existing rights were vacated. No determination of individual appointment rights is supplied by these pages.",
+  "mechanical_verification": {
+    "receipt": "MECHANICAL.json",
+    "exit_code": 1,
+    "ok": false,
+    "input_pin_checked": true,
+    "raw_path_missing_references": 5,
+    "additional_error": "quote_not_exact_slice at $.original_representation",
+    "qualification": "Refusal retained without card repair. Separate raw PDF hash and visual examination do not turn this report into a pass."
+  },
+  "source_examination": {
+    "raw_pdf_path": "releases/source_books/Isthmian_Canal_Commission_Executive_Orders_1904-1911_ufl1.ark+=13960=t3dz15k02.pdf",
+    "raw_pdf_sha256": "4151116ad1c3ae8b08a9216f8591ca14e0d71ef20805c9250405d88aa6365eda",
+    "visual_pages": [
+      {
+        "pdf_page": 80,
+        "printed_page": 67,
+        "render": "page80.png"
+      },
+      {
+        "pdf_page": 75,
+        "printed_page": 62,
+        "render": "page75.png"
+      }
+    ],
+    "method": "Existing pdftoppm, full-page PNGs inspected with view_image; supplied PDF was not copied or modified."
+  },
+  "limits": "Exact blinded candidate only. No genuine counterpart, seed, private key, other-arm review or producer report examined. Bounded supplied sources establish the specific rejection; candidate search summaries were not independently rerun or promoted into exhaustive current-law coverage. No human certification, status adoption or publication.",
+  "usage": {
+    "assigned_model": "gpt-6.1-sol",
+    "assigned_reasoning_effort": "medium",
+    "tokens": null,
+    "cash_usd": null,
+    "first_measured_clock_utc": "2026-11-10T06:27:44.587794+00:00",
+    "sealed_utc": "2026-11-10T06:30:01.485235+00:00",
+    "measured_interval_seconds": 136.897,
+    "clock_qualification": "First measured clock follows initial protocol reading; full session wall time unavailable."
+  }
+}

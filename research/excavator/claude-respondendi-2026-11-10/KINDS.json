@@ -1,0 +1,101 @@
+{
+ "undecided": 10691,
+ "rows": [
+  {
+   "kind": "express_named_revocation",
+   "text_basis": "original",
+   "state": "active",
+   "orders": 468,
+   "below_7532": 0,
+   "from_7532": 468
+  },
+  {
+   "kind": "express_named_revocation",
+   "text_basis": "working",
+   "state": "active; working text needs F6",
+   "orders": 2,
+   "below_7532": 0,
+   "from_7532": 2
+  },
+  {
+   "kind": "own_terms",
+   "text_basis": "original",
+   "state": "active",
+   "orders": 0,
+   "below_7532": 0,
+   "from_7532": 0
+  },
+  {
+   "kind": "own_terms",
+   "text_basis": "working",
+   "state": "active; working text needs F6",
+   "orders": 0,
+   "below_7532": 0,
+   "from_7532": 0
+  },
+  {
+   "kind": "ulpian_life_bound",
+   "text_basis": "original",
+   "state": "needs PR #271 on main (owner approved D-20261110-ulpian-life-bound)",
+   "orders": 1,
+   "below_7532": 1,
+   "from_7532": 0
+  },
+  {
+   "kind": "ulpian_life_bound",
+   "text_basis": "working",
+   "state": "needs PR #271 on main (owner approved D-20261110-ulpian-life-bound); working text needs F6",
+   "orders": 15,
+   "below_7532": 15,
+   "from_7532": 0
+  },
+  {
+   "kind": "spent_on_issue",
+   "text_basis": "original",
+   "state": "needs F5 (route own_text)",
+   "orders": 103,
+   "below_7532": 103,
+   "from_7532": 0
+  },
+  {
+   "kind": "spent_on_issue",
+   "text_basis": "working",
+   "state": "needs F5 (route own_text); working text needs F6",
+   "orders": 660,
+   "below_7532": 660,
+   "from_7532": 0
+  },
+  {
+   "kind": "yes_current",
+   "text_basis": "original",
+   "state": "needs F3 (route current)",
+   "orders": 234,
+   "below_7532": 0,
+   "from_7532": 234
+  },
+  {
+   "kind": "yes_current",
+   "text_basis": "working",
+   "state": "needs F3 (route current); working text needs F6",
+   "orders": 1,
+   "below_7532": 1,
+   "from_7532": 0
+  },
+  {
+   "kind": "no kind reaches it on held leads",
+   "text_basis": "",
+   "state": "",
+   "orders": 9207,
+   "below_7532": 5694,
+   "from_7532": 3513
+  }
+ ],
+ "rule_sha256": "e15ae99b3e5ae800e18d331cb2b5fe6ae233aa36052b13f512b86eabbec01423",
+ "limits": [
+  "second witness read only from the OFR catalog (EO 7532 and later); older orders need another catalog note in their frozen history",
+  "spent_on_issue counted from Pothier P1/P2 leads only (all below EO 7532); the F5 classifier itself reaches 763 undecided orders (246 spent_on_issue, 517 amends_parent; Accursius, branch accursius/f5-f6-overlay, measured precision 42 of 50)",
+  "dossier ACTOR_TEXT records are approximated by the compiled lead_actor_ids",
+  "machine leads: upper bounds, not findings"
+ ],
+ "basis": "origin/main 854514831e; claim-kit generation 2026-11-10T10:36Z"
+}

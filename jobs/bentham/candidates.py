@@ -33,6 +33,7 @@ POLYA_ACTIONS = "jobs/polya/output/CANDIDATE_ACTIONS.json"
 POLYA_COMPARE = "jobs/polya/output/COMPARE.json"
 DISPOSITION = "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
 TRIBONIAN_REPORT = "research/excavator/claude-tribonian-2026-11-04/REPORT.md"
+LINNAEUS_SUMMARY = "jobs/linnaeus-types/output/SUMMARY.json"
 
 # Blockers that describe steps the claim-ready stratum leaves open on purpose, or the Opus-media step, which
 # the stratum definition does not gate on. They never stop an order from joining the stratum.
@@ -381,7 +382,32 @@ def build(repo, write_ids=True):
         "evidence": evidence(repo, [(POLYA_COMPARE, '"frame": "F7_aux_current_predicate_table"'),
                                     (TRIBONIAN_REPORT, "The current texts of parent orders and statutes are not held")])})
 
-    inputs = [TRACKER_CSV, TRACKER_MD, SHARED_CSV, POLYA_ACTIONS, POLYA_COMPARE, DISPOSITION, TRIBONIAN_REPORT]
+    # Linnaeus (2026-11-10): the undecided orders with no ending or current-law lead, typed and matched to bulk
+    # sources (jobs/linnaeus-types). Cruden searches the 1936-1993 Federal Register and the Statutes at Large by
+    # order number for the unsourced ones. Undecided orders unlock no stratum until they have a status, and no
+    # measured yield exists yet, so the lift is listed, not counted.
+    try:
+        lt = json.loads(read_text(repo, LINNAEUS_SUMMARY))
+    except (OSError, ValueError):
+        lt = None
+    if lt:
+        actions.append({
+            "id": "acquire.cruden_fr_statute_concordance", "kind": "acquisition",
+            "description": ("Search the 1936-1993 Federal Register and the Statutes at Large by order number for undecided "
+                            "orders no held finding aid names with an ending word (jobs/cruden-fr-concordance; zero model tokens), so "
+                            "producers on the undecided route can cite the later instrument's own sentence."),
+            "orders": 0, "rate_key": "filed_per_attempt.undecided", "cost_key": None, "cost_override_usd": 0,
+            "unlocks": [], "overlaps_with": ["status_assignment.undecided"],
+            "yield_lift_not_counted": {"orders": lt.get("cruden_targets"), "applies_to": ["status_assignment.undecided"],
+                                       "why": "Undecided orders unlock no stratum until they have a status, and Cruden's "
+                                              "yield (orders gaining a located acting sentence) is unmeasured until its "
+                                              "first run's SUMMARY.json."},
+            "prerequisites": ["jobs/linnaeus-types output on the branch"],
+            "basis": "Target count from %s (cruden_targets)." % LINNAEUS_SUMMARY,
+            "evidence": evidence(repo, [(LINNAEUS_SUMMARY, '"cruden_targets"')])})
+
+    inputs = [TRACKER_CSV, TRACKER_MD, SHARED_CSV, POLYA_ACTIONS, POLYA_COMPARE, DISPOSITION, TRIBONIAN_REPORT,
+              LINNAEUS_SUMMARY]
     gen = {p: sha256(repo / p) for p in inputs if (repo / p).exists()}
     return {"generated_from": gen,
             "pool": {"decided_not_ready_orders": len(orders), "held_by_unretrieved_source_or_quarantine": held},

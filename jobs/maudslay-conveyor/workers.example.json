@@ -1,0 +1,10 @@
+{
+  "_note": "Copy and edit. 'command' is 'claude', 'codex' or an explicit argument list with {placeholders}; only the claude and codex families are accepted. Every call is a fresh session in its own folder outside the repository; the conveyor refuses -c, -r, --continue, --resume, resume, --last and --fork-session, and requires the budget and event flags. Placeholders: {model} {max_turns} {item_usd} {cwd} {repo} {auto_compact_tokens} {tool_output_tokens} {writable_roots} {network}. The prompt is sent on stdin. item_usd / item_tokens / item_timeout here override the batch-wide --item-* caps for that role. A codex role is refused unless it has item_tokens and prices_usd_per_mtok (from jobs/necker-costs/PRICES.json), and it is budgeted at no less than its item_usd.",
+  "producer": {"command": "claude", "model": "sonnet", "model_family": "Anthropic", "max_turns": 80, "item_usd": 3},
+  "reviewer_A": {"command": "claude", "model": "opus", "model_family": "Anthropic", "max_turns": 120, "item_usd": 12},
+  "reviewer_B": {"command": "claude", "model": "opus", "model_family": "Anthropic", "max_turns": 120, "item_usd": 12},
+  "_codex_reviewer_example": {"command": "codex", "model": "SET_CODEX_MODEL", "model_family": "OpenAI",
+                              "item_usd": 12, "item_tokens": 4000000,
+                              "auto_compact_tokens": 120000, "tool_output_tokens": 6000, "network": false,
+                              "prices_usd_per_mtok": {"input": null, "cached_input": null, "output": null}}
+}

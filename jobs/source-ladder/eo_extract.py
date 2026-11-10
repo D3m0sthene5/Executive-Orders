@@ -83,7 +83,7 @@ def eo_extract(wanted, route, att, fetcher, accept_low=True):
             return {"ok": False, "reason": "only a low-confidence location", "location": loc}
         a, b = loc["first_page"], loc["last_page"]
         body = "\n".join(f"=== PDF page {i} of {len(texts)} ===\n{texts[i - 1]}" for i in range(a, b + 1))
-        cite = citation or wanted.citation
+        cite = fr_pages.start_citation(loc, citation) or wanted.citation
         page_or_item = f"{cite}, PDF pages {a}-{b}"
         notes = (f"{name}: {len(texts)} PDF pages; located by {loc['method']}"
                  f"{', marker ' + loc['marker_kind'] if loc['marker_kind'] else ''}; confidence {loc['confidence']}")

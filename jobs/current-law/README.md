@@ -53,6 +53,7 @@ be reached even after a retry, that site is skipped and reported.
 | `ORDERS_CURRENT_LAW.csv` | order named anywhere | Roll-up counts per order, with its provisional status. |
 | `POSSIBLE_CONFLICTS.csv` | provisional **NO** order that current law still prints or cites | For review, strongest signal first: `1_printed_as_current_text_in_usc`, `2_cited_by_statute_or_regulation`, `3_printed_text_but_ending_statement_also_found`, `4_only_listed_as_amendment_of_a_printed_order`. |
 | `USC_EO_NOTES.jsonl` | order whose text the U.S. Code prints | The full note text, as printed by the Office of the Law Revision Counsel. This is a secondary copy, not the original. |
+| `usc-notes/<note id>.txt`, `usc-sections/<id>-<key>.txt` | U.S. Code note or section that carries a lead | The exact plain text of that one note or section as the scanner read it (UTF-8, LF line breaks between block elements). Each is declared in `SOURCES.jsonl` with route `usc_release_point_xml_zip_text_extract` by its own identity (`sha256` and `bytes` of the extract; `url` of the ZIP) with `extracted_from` = the release-point ZIP `url`, `sha256` and `bytes`, `page_or_item` (citation, note heading and USLM note id, member XML and its sha256), `text_path`, `text_sha256`, `item_extract: "page_or_item"` and `instrument_ids: []` (a note is not any order's own text; `printed_instrument_ids` names the orders it prints). `python usc_extracts.py output` rebuilds the printed-note extracts offline from `USC_EO_NOTES.jsonl`; a network run also writes the other notes and sections with a predicate lead. |
 | `ECFR_SEARCH_HITS.csv` | eCFR search hit | The point-in-time list of sections that matched each query. |
 | `SUMMARY.json` | — | All counts, the release point chosen and why, per-title sha256 values, any problems, and `fragment_codes` (what every code in `FRAGMENTS.jsonl` means). |
 | `FETCH_LOG.jsonl` | download attempt | Every request, cache hit, robots decision, rejected file and retry. |
@@ -92,8 +93,15 @@ Context only:
   * `current_predicate_candidates` entries: `legal_basis_candidate` (a short
     label and the citation), `basis_code` (the mention role), `where`,
     `edition`, `snippet`, `checked_through`, `currency_code`, `mention_id`,
-    `source`, and `text_path` for printed notes
-    (`USC_EO_NOTES.jsonl#note_id=...`).
+    `source`; for U.S. Code entries whose note or section is held as an
+    extract, `text_path` and `text_sha256` of the extract and, when the
+    snippet's words occur exactly once there, `text`, `char_start` and
+    `char_end`: an exact slice of the extract (usc_extracts.locate). The claim
+    kit (`current_evidence.py`) accepts the pointer only through the extract's
+    SOURCES.jsonl declaration: the lead's source must be the same ZIP
+    (`extracted_from`) and `page_or_item`, and the extract's bytes must match
+    both the lead's and the declaration's `text_sha256`. Only then does the
+    lead become a `CURRENT:` evidence record, which is still a lead.
   * `later_event_candidates` entries: `date_candidate`, `date_basis_code`,
     `actor_candidate`, `mechanism_candidate`, `event_type_candidate`,
     `scope_candidate`, `scope_hint`, `acting_instrument_id`, `acting_raw`,

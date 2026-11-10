@@ -87,6 +87,16 @@ merged too. A job with no output yet is simply skipped (the summary says so).
     (`DRAFT-PLACEHOLDER-no-clause-inventory`). An empty clause list would make
     the gate stop early, and the tracker would then count the steps it never
     checked. A unit test checks this with the tracker's own step mapping.
+  - **Machine search counts.** Each entry of `later_source_search_machine` carries
+    `machine_hits_for_this_order`: how many records of that search name the order. For the
+    `current-law:usc` and `current-law:ecfr` searches ("every citation of this order by number") it is
+    every `MENTIONS.csv` row of that system naming the order, predicate lead or not, so it can be larger
+    than the number of predicate leads. For every other search it is the number of fragment items that
+    job emitted for the order. Current-law entries also carry
+    `machine_fragment_items_for_this_order_all_systems`: every fragment item the whole current-law job
+    emitted for the order (both systems; predicate leads, event candidates and end candidates), the same
+    number on the usc and ecfr entries and not a per-search count. If the current-law input has no
+    `MENTIONS.csv`, `machine_hits_for_this_order` falls back to that fragment count.
   - `_draft` says which fields were machine-filled and from which job, which
     fields need judgment, what evidence is missing, the conflicts, the
     candidates to choose from (already in the claim's field shapes), the gate

@@ -1,0 +1,45 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "C:\\Users\\danie\\eo-wt\\mommsen-3\\research\\excavator\\mommsen3-2026-11-10-decided01\\mommsen3-decided01\\PACKET.json",
+  "seconds": 231.422,
+  "files_read": 40582,
+  "file_reads": 81174,
+  "packet_fingerprint": "cfdcb5c31f4e66cecf224c13aa05fc25887e294d37da8f48f375ba5d7a2c81e0",
+  "claims_checked": 1,
+  "defect_flags": 0,
+  "coverage_gaps": 3,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:6826",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "8fe913c66813d15f6ac2c6d6504b7dd82ab26998",
+          "tracked_files": 63287,
+          "verified_files": 40577,
+          "missing_or_changed_files": 22710,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
