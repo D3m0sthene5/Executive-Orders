@@ -19,6 +19,7 @@ import time
 
 from assemble import assemble, blank_sheet, canonical_sha, check_claim
 from build import package
+import own_text
 import working_text as W
 from inputs import COMPILER_FILES, STATUSES, UNIVERSE
 
@@ -31,6 +32,13 @@ COMPILED_STEMS = ("OVERLAY_INPUTS", "CLAUSES", "OWN_TERMS", "ACTING_PROVISIONS",
                   "CHAINS", "STATUS_LEADS", "TEXT_REPRESENTATIONS")
 SHA = re.compile(r"[0-9a-f]{64}\Z")
 CUTOFF = "2026-10-14"
+# Undecided-route status bases this module's gate makes live (Respondendi reads this constant from
+# origin/main to activate a lot kind; a route name appears only once its gate code has landed).
+#   current: a CURRENT: basis for YES (the gate below predates Accursius; the records come from F3, PR #272)
+#   own_text: OWN_TEXT basis for self-executing and amendment-only orders (Accursius F5, PR #274)
+#   working_text: a working text the tracker credits, or a Lachmann confirmation (Accursius F6, PR #276)
+UNDECIDED_ROUTES = frozenset({"current", "own_text", "working_text"})
+NO_BASIS_PREFIXES = ("ACT:", "TERM:", "ACTOR_TEXT:", "OWN_TEXT:")
 
 
 def _sha(raw):
@@ -276,7 +284,7 @@ def _actor_ids(inputs, acts):
 
 
 def _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads, clause, terms, acts, chain,
-                       actor_clauses, declared, stats):
+                       actor_clauses, declared, stats, parent_acts=()):
     """Everything after record selection: pure in the selected records, shared by single and batch freezing."""
     actor_ids = _actor_ids(inputs, acts)
     # A target's source is explicitly frozen by the compiler; select the same
@@ -343,6 +351,8 @@ def _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads
                                   for m in dossier["missing"]]
             stats["span_validation_file_opens"] += 1
             stats["span_validation_file_bytes"] += len(raw)
+    own_text.attach(dossier, iid, parent_acts)
+    _mark_working_text(dossier)
     dossier["fingerprint"] = canonical_sha(dossier)
     _source_pins(root, dossier, pins, stats)
     # Pin the actual held history sources as well as their typed records.
@@ -367,6 +377,54 @@ def _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads
                                   if any(n == s + ".jsonl" or n.startswith(s + ".part") for s in COMPILED_STEMS)}},
                   "base_dossier": dossier,
                   "notice": "Frozen machine evidence, not a provisional status or a lifecycle conclusion."})
+
+
+def _parent_candidates(root, iid, inputs):
+    """Order numbers printed in the selected original: the parents own_text may name (a superset)."""
+    target = inputs.get("selected") or {}
+    rel = target.get("text_path")
+    if not rel:
+        return set()
+    try:
+        text = _child(root, rel).read_bytes().decode("utf-8")
+    except (OSError, ValueError, UnicodeError):
+        return set()  # _held raises the precise error for the selected text later
+    return own_text.parent_candidates(iid, text)
+
+
+# Owner rulings carried out on this route (Accursius F6).
+WORKING_TEXT_RULINGS = {
+    "tracker_original_supported": ("D-20261106-photius-r37 (official_printing, page-checked)",
+                                   "D-20261106-photius-p4 (archival_replica_checked)"),
+    "lachmann_confirmation": ("research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+                              "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md"),
+}
+# Grades the owner's rulings themselves make a credited text: Photius R37 (official_printing, "an official
+# original witness ... once a page check confirms") and Photius P4 (archival_replica_checked, "credits the
+# original-text step"). Each counts only with no page check owed, the tracker's own rule for these producers
+# (needs_page_check false). Every other working-text grade (machine-read or printed government copies, mirror
+# and compiled transcriptions) needs a current Lachmann working-text confirmation (2026-10-31 ruling): the
+# tracker credits those orders, when it does, through a different fragment than the selected text
+# (independent F6 review, finding 2).
+TRACKER_CREDITED_GRADES = frozenset({"official_printing", "archival_replica_checked"})
+
+
+def working_text_basis(dossier):
+    """Why a non-original selected text may carry a status proposal, or None."""
+    original = dossier.get("evidence", {}).get(dossier.get("original_source_id"))
+    if not isinstance(original, dict) or original.get("acceptable_as_original") is not False:
+        return None
+    if dossier.get("working_text_confirmation") is not None and original.get("grade") in W.GRADES:
+        return "lachmann_confirmation"
+    if original.get("grade") in TRACKER_CREDITED_GRADES and not original.get("requires_page_check"):
+        return "tracker_original_supported"
+    return None
+
+
+def _mark_working_text(dossier):
+    basis = working_text_basis(dossier)
+    if basis is not None:
+        dossier["evidence"][dossier["original_source_id"]]["working_text_basis"] = basis
 
 
 def freeze_evidence(repo, output, packet, telemetry=None):
@@ -394,8 +452,13 @@ def freeze_evidence(repo, output, packet, telemetry=None):
                           if r.get("instrument_id") == iid], "CLAUSES:" + iid, required=False)
         terms = [r for r in _read_records(out, summary, "OWN_TERMS", stats)
                  if r.get("instrument_id") == iid]
-        acts = [r for r in _read_records(out, summary, "ACTING_PROVISIONS", stats)
-                if r.get("target_id") == iid]
+        candidates = _parent_candidates(root, iid, inputs)
+        acts, parent_acts = [], []
+        for r in _read_records(out, summary, "ACTING_PROVISIONS", stats):
+            if r.get("target_id") == iid:
+                acts.append(r)
+            elif r.get("target_id") in candidates:
+                parent_acts.append(r)
         chain = _unique([r for r in _read_records(out, summary, "CHAINS", stats)
                          if r.get("target_id") == iid], "CHAINS:" + iid)
         actor_ids = _actor_ids(inputs, acts)
@@ -404,7 +467,7 @@ def freeze_evidence(repo, output, packet, telemetry=None):
         declared = [r for r in _read_records(out, summary, "TEXT_REPRESENTATIONS", stats)
                     if r.get("instrument_id") in set(actor_ids + [iid])]
         return _assemble_evidence(root, out, summary, packet, iid, authority, inputs, leads, clause, terms, acts,
-                                  chain, actor_clauses, declared, stats)
+                                  chain, actor_clauses, declared, stats, parent_acts)
     finally:
         stats["wall_seconds"] = round(time.perf_counter() - started, 6)
         if telemetry is not None:
@@ -472,8 +535,12 @@ def prepare_evidence_many(repo, output, ids, telemetry_by_id=None):
                 raise ValueError("status_lead_must_be_undecided")
         found = _collect(out, summary, "OWN_TERMS", shared, "instrument_id", want)
         terms = {iid: [row for _, row in found.get(iid, [])] for iid in ids}
-        found = _collect(out, summary, "ACTING_PROVISIONS", shared, "target_id", want)
+        candidates = {iid: _parent_candidates(root, iid, inputs[iid]) for iid in ids}
+        found = _collect(out, summary, "ACTING_PROVISIONS", shared, "target_id",
+                         want.union(*candidates.values()))
         acts = {iid: [row for _, row in found.get(iid, [])] for iid in ids}
+        parent_acts = {iid: [row for _, row in sorted((pair for p in sorted(candidates[iid]) for pair in found.get(p, [])),
+                                                     key=lambda pair: pair[0])] for iid in ids}
         found = _collect(out, summary, "CHAINS", shared, "target_id", want)
         chain = {iid: one(found, iid, "CHAINS") for iid in ids}
         actors = {iid: _actor_ids(inputs[iid], acts[iid]) for iid in ids}
@@ -493,7 +560,7 @@ def prepare_evidence_many(repo, output, ids, telemetry_by_id=None):
                 result[iid] = _assemble_evidence(
                     root, out, summary, packets[iid], iid, authorities[iid], *deepcopy((
                         inputs[iid], leads[iid], clause, terms[iid], acts[iid], chain[iid], actor_clauses,
-                        declared)), stats[iid])
+                        declared)), stats[iid], deepcopy(parent_acts[iid]))
             finally:
                 own_seconds[iid] += time.perf_counter() - t
         return result
@@ -612,6 +679,7 @@ def extend_decision(packet, evidence, agent=""):
             "basis_evidence_ids": [], "basis_review_confirmed": False,
             "earlier_endings_checked": False, "partial_scope_checked": False, "savings_checked": False,
             "current_predicate_checked_through": None, "original_pages_confirmed": False,
+            "own_text_whole_order_confirmed": False,
             "notice": "Producer research decision only. Independent review and owner adoption remain separate."}
 
 
@@ -677,23 +745,69 @@ def _decision_errors(decision, evidence):
             errors.append("status_basis_not_exact_held_evidence:" + ident)
         elif record.get("kind") == "report_deadline":
             errors.append("report_deadline_cannot_establish_status:" + ident)
+        elif (ident.startswith("ACTOR_TEXT:") and (record.get("actor_kind") == "non_census_instrument"
+                                                     or not str(record.get("actor_id") or "").startswith("EO:"))
+              and record.get("basis_eligible") is not True):
+            # A held text of a non-census instrument (land order, statute, agency FR document) is a basis only
+            # as an official printing in which the lexical check found the order's number; otherwise a lead.
+            errors.append("non_census_actor_text_is_a_lead_not_a_basis:" + ident)
         elif (record.get("basis_code") == "ofr_codification_1989_in_force"
               or isinstance(record.get("meta"), dict)
               and record["meta"].get("basis_code") == "ofr_codification_1989_in_force"):
             errors.append("historical_editorial_snapshot_cannot_establish_status:" + ident)
-    if status == "no" and not any(ident.startswith(("ACT:", "TERM:", "ACTOR_TEXT:")) and ident in records for ident in basis):
+    dossier = evidence["base_dossier"]
+    own = [ident for ident in basis if ident.startswith("OWN_TEXT:")]
+    for ident in own:
+        # Re-derive from the frozen original: a hand-written OWN_TEXT record is never a basis.
+        if not own_text.verify(dossier, ident):
+            errors.append("own_text_basis_not_rederivable:" + ident)
+    if own and decision.get("own_text_whole_order_confirmed") is not True:
+        # The record's claim is a negative (no continuing command anywhere in the order); the producer
+        # must confirm it from the held original, beyond the generic scope flags (F5 review finding 1).
+        errors.append("producer_own_text_whole_order_confirmed_required")
+    for ident in (i for i in basis if i.startswith("PARENT_END:")):
+        record = records.get(ident) or {}
+        parents = {p for i in own if isinstance(records.get(i), dict) and own_text.verify(dossier, i)
+                   for p in records[i].get("parent_ids") or []}
+        # A parent's end is evidence for the surviving consequence, never the order's own end.
+        if record.get("role") != own_text.PARENT_ROLE or record.get("parent_id") not in parents:
+            errors.append("parent_end_requires_own_text_amends_parent_basis:" + ident)
+    valid_no = [ident for ident in basis if ident in records and (
+        ident.startswith(NO_BASIS_PREFIXES) and (not ident.startswith("OWN_TEXT:") or own_text.verify(dossier, ident))
+        # A held, hash-verified official SUPPLEMENT text that names the order (Accursius F4).
+        or ident.startswith("SUPPLEMENT:") and isinstance(records.get(ident), dict)
+        and records[ident].get("basis_eligible") is True)]
+    if status == "no" and not valid_no:
         errors.append("snapshot_only_or_missing_ending_basis")
     if status == "yes":
-        if not any(ident.startswith("CURRENT:") and ident in records for ident in basis):
+        current = [ident for ident in basis if ident.startswith("CURRENT:") and ident in records]
+        if not current:
             errors.append("snapshot_only_or_missing_current_predicate")
+        elif all(_amender_listing(records[ident]) for ident in current):
+            # A parent's U.S. Code status line that lists this order "as amended by" shows only the
+            # consequence living in the parent; the amending order's own command was spent on issue
+            # (owner answer to A-20261106-pothier, point 2). It never shows this order in force.
+            errors.append("amender_listing_cannot_establish_current_predicate")
         if decision.get("current_predicate_checked_through") != CUTOFF:
             errors.append("current_predicate_cutoff_confirmation_required")
-    original = records.get(evidence["base_dossier"].get("original_source_id"), {})
+    original = records.get(dossier.get("original_source_id"), {})
     if not original.get("acceptable_as_original"):
-        errors.append("acceptable_original_required_for_status_proposal")
+        # F6: a working text the rulings credit may carry a status proposal with the standing
+        # replace-and-recheck note. The stored basis must be the one the frozen record itself yields.
+        basis_kind = original.get("working_text_basis")
+        if basis_kind is None or basis_kind != working_text_basis(evidence["base_dossier"]):
+            errors.append("acceptable_original_required_for_status_proposal")
     if original.get("requires_page_check") and decision.get("original_pages_confirmed") is not True:
         errors.append("original_page_confirmation_required")
     return errors
+
+
+AMENDER_LISTING_CODES = frozenset({"amending_order_in_status_line", "amending_order_in_ended_status_line"})
+
+
+def _amender_listing(record):
+    meta = record.get("meta") if isinstance(record.get("meta"), dict) else {}
+    return (record.get("basis_code") or meta.get("basis_code")) in AMENDER_LISTING_CODES
 
 
 def _review_errors(review, decision, evidence):
@@ -756,6 +870,16 @@ def propose(repo, decision, review, evidence):
         proposal["history_basis"] = ("explicit empty history: no dated status observation or later event was located; "
                                      "the recommendation rests on the order's own terms and the recorded bounded "
                                      "searches (owner ruling 2026-11-05)")
+    original = evidence["base_dossier"]["evidence"].get(evidence["base_dossier"].get("original_source_id"), {})
+    if original.get("working_text_basis"):
+        # The status rests on a disclosed working text, never on an authenticated original.
+        proposal["working_text"] = {
+            "basis": original["working_text_basis"], "grade": original.get("grade"),
+            "acceptable_as_original": False, "rulings": list(WORKING_TEXT_RULINGS[original["working_text_basis"]]),
+            "standing_note": W.NOTE, "replacement_required": True, "quotation_recheck_required": True}
+        if original.get("grade") == "archival_replica_checked":
+            # Photius P4: the dependence on ProQuest bytes stays visible until M1118 or Hein facts re-point it.
+            proposal["working_text"]["informational_flags"] = ["REPLICA_CHECKED_PROQUEST_BYTES"]
     proposal["proposal_id"] = "status-overlay:" + evidence["instrument_id"] + ":" + canonical_sha(proposal)[:20]
     return _seal(proposal)
 

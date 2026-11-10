@@ -181,6 +181,16 @@ class CandidatesTest(unittest.TestCase):
             self.assertIn("overlaps_with", self.by[aid])
         self.assertEqual(self.by["acquire.nea_continuation_notices"]["yield_lift_not_counted"]["orders"], 1)
 
+    def test_cruden_listed_only_with_linnaeus_output(self):
+        self.assertNotIn("acquire.cruden_fr_statute_concordance", self.by)
+        p = self.root / C.LINNAEUS_SUMMARY
+        p.parent.mkdir(parents=True, exist_ok=True)
+        p.write_text('{"cruden_targets": 1995}' + chr(10), encoding="utf-8")
+        a = {x["id"]: x for x in C.build(self.root, write_ids=False)["actions"]}["acquire.cruden_fr_statute_concordance"]
+        self.assertEqual((a["orders"], a["unlocks"], a["cost_override_usd"]), (0, [], 0))
+        self.assertEqual(a["yield_lift_not_counted"]["orders"], 1995)
+        self.assertEqual(a["evidence"][0]["source"], C.LINNAEUS_SUMMARY)
+
     def test_zero_agent_and_evidence(self):
         z = self.by["zero_agent.opus_media_refetch"]
         self.assertEqual((z["kind"], z["cost_override_usd"], z["unlocks"]), ("zero_agent", 0, []))

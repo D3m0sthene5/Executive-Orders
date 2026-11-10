@@ -20,10 +20,13 @@ noted):
   read from the zip when it is on this machine, otherwise from the small
   committed index ``data/opus_manifest_index.csv.gz``).
 
-Nothing here downloads anything or changes any file outside the cache folder.
+Nothing here downloads anything or changes any file outside the cache folder, with one bounded exception: a
+source record that names a Pergamon store locator (``pergamon`` in SOURCES.jsonl) is fetched once into the cache
+folder and re-hashed (see ``TextReader.materialize``).
 """
 
 import collections
+import contextlib
 import csv
 import gzip
 import hashlib
@@ -98,19 +101,36 @@ def file_sha256(path):
 #   repo_file     a file committed in this repository (re-hashed when checked out here)
 #   opus_release  a member of the Opus Stage 11 Git LFS release (re-hashed when the zip is here)
 #   job_cache     another job's download cache, found on this machine (re-hashed here)
+#   pergamon_store the bytes are in the Pergamon store (GitHub Release assets, later R2); the record carries a
+#                 locator, and they are fetched and re-hashed here when reachable (else treated as unverified)
 #   record_only   only a custody record (hash, maybe text): the bytes are in no committed place
-CUSTODY_KINDS = ("repo_file", "opus_release", "job_cache", "record_only")
+CUSTODY_KINDS = ("repo_file", "opus_release", "job_cache", "pergamon_store", "record_only")
+
+# Palsgraf (palsgraf.py) sets this to its recorder while it traces a claim, so that a memo hit below replays
+# the file reads that filled the memo. The default does nothing.
+class _NoTrace:
+    def capture(self, key):
+        return contextlib.nullcontext()
+
+    def replay(self, key):
+        pass
+
+    def volatile(self, reason):
+        pass
+
+
+TRACE = _NoTrace()
 
 
 class HeldCopy:
     """One saved copy the project records."""
 
     __slots__ = ("origin", "sha256", "url", "bytes", "local_path", "text_path",
-                 "zip_members", "page_or_item", "instrument_ids", "note", "custody")
+                 "zip_members", "page_or_item", "instrument_ids", "note", "custody", "pergamon")
 
     def __init__(self, origin, sha256, url=None, nbytes=None, local_path=None,
                  text_path=None, zip_members=(), page_or_item=None,
-                 instrument_ids=(), note="", custody="repo_file"):
+                 instrument_ids=(), note="", custody="repo_file", pergamon=None):
         self.origin = origin
         self.sha256 = sha256
         self.url = url if isinstance(url, str) else None
@@ -122,6 +142,7 @@ class HeldCopy:
         self.instrument_ids = [i.strip() for i in instrument_ids if isinstance(i, str) and i.strip()]
         self.note = note if isinstance(note, str) else ""
         self.custody = custody if custody in CUSTODY_KINDS else "record_only"
+        self.pergamon = pergamon if isinstance(pergamon, dict) else None  # manifest record: backend, locator, ext
 
     @property
     def bytes_kept(self):
@@ -256,7 +277,7 @@ def load_job_sources(index, repo, cache_roots=(), exclude_jobs=()):
         # index, as before. Keep only fields this adapter consumes and release
         # each compact row as soon as it is processed.
         fields = ("sha256", "text_path", "cache_path", "instrument_ids", "url",
-                  "bytes", "page_or_item", "route")
+                  "bytes", "page_or_item", "route", "pergamon")
         try:
             bad_lines = []
             records = collections.deque(tuple(rec.get(k) for k in fields)
@@ -287,10 +308,14 @@ def load_job_sources(index, repo, cache_roots=(), exclude_jobs=()):
                         local = cand
                         break
                 ids = rec.get("instrument_ids")
+                pg = rec.get("pergamon")
+                pg = pg if (local is None and isinstance(pg, dict) and sha_hex(pg.get("sha256")) == sha
+                            and _str(pg.get("locator"))) else None
                 index.add(HeldCopy(f"jobs/{job}/output/SOURCES.jsonl", sha, rec.get("url"),
                                    _int(rec.get("bytes")), local, text, (), rec.get("page_or_item"),
                                    ids if isinstance(ids, list) else [], rec.get("route") or "",
-                                   custody="job_cache" if local is not None else "record_only"))
+                                   custody="job_cache" if local is not None else
+                                   "pergamon_store" if pg is not None else "record_only", pergamon=pg))
                 n += 1
                 local_found += local is not None
             except (TypeError, ValueError, AttributeError, OSError):
@@ -731,6 +756,7 @@ class TextReader:
         self.cache_dir = pathlib.Path(cache_dir) if cache_dir else None
         self.packed = packed or {}
         self._sha_of_path = {}
+        self._pergamon_left = None
         self._zip_ok = {}
         self._texts = collections.OrderedDict()
         self._pages_by_sha = collections.OrderedDict()
@@ -742,9 +768,48 @@ class TextReader:
             store.popitem(last=False)
 
     def _zip_usable(self, zpath):
+        key = ("zip", str(zpath))
         if zpath not in self._zip_ok:
-            self._zip_ok[zpath] = zpath.is_file() and not is_lfs_pointer(zpath) and zipfile.is_zipfile(zpath)
+            with TRACE.capture(key):
+                self._zip_ok[zpath] = zpath.is_file() and not is_lfs_pointer(zpath) and zipfile.is_zipfile(zpath)
+        else:
+            TRACE.replay(key)
         return self._zip_ok[zpath]
+
+    def materialize(self, copy):
+        """Fetch a Pergamon-stored copy into the cache folder once and point copy.local_path at it.
+
+        Only a copy with a store locator and no local file is touched. The bytes come back through
+        pergamon_store.Store.get_verified, which refuses anything that does not hash to copy.sha256; the usual
+        local re-hash in verify_bytes then runs on the saved file as for any other kept copy. Bounded per run by
+        CLAIM_CHECKER_PERGAMON_FETCHES (default 400; 0 disables); any failure leaves the copy unverified.
+        """
+        if copy.pergamon is None or self.cache_dir is None:
+            return
+        if copy.local_path is not None and copy.local_path.is_file():
+            return
+        ext = str(copy.pergamon.get("ext") or ".bin")
+        target = self.cache_dir / "pergamon" / copy.sha256[:2] / (copy.sha256 + (ext if re.fullmatch(r"\.[a-z0-9]{1,8}", ext) else ".bin"))
+        if not target.is_file():
+            left = self._pergamon_left
+            if left is None:
+                left = int(os.environ.get("CLAIM_CHECKER_PERGAMON_FETCHES", "400") or 0)
+            if left <= 0:
+                self._pergamon_left = 0
+                return
+            self._pergamon_left = left - 1
+            try:
+                import sys
+                sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / "_lib"))
+                import pergamon_store
+                data = pergamon_store.Store.from_env().get_verified(copy.pergamon)
+            except Exception:  # noqa: BLE001  (offline, refused, hash mismatch: stays unverified)
+                return
+            target.parent.mkdir(parents=True, exist_ok=True)
+            tmp = target.with_name(target.name + ".tmp")
+            tmp.write_bytes(data)
+            os.replace(tmp, target)
+        copy.local_path = target
 
     def local_sha(self, path):
         """SHA-256 of a local file, or None if it is not readable here."""
@@ -752,11 +817,15 @@ class TextReader:
             return None
         key = str(path)
         if key not in self._sha_of_path:
-            self._sha_of_path[key] = file_sha256(path)
+            with TRACE.capture(("sha", key)):
+                self._sha_of_path[key] = file_sha256(path)
+        else:
+            TRACE.replay(("sha", key))
         return self._sha_of_path[key]
 
     def read_bytes(self, copy):
         """(bytes, where) for a copy, or (None, reason)."""
+        self.materialize(copy)
         if copy.local_path is not None and copy.local_path.is_file() and not is_lfs_pointer(copy.local_path):
             return copy.local_path.read_bytes(), str(copy.local_path)
         for zpath, member in copy.zip_members:
@@ -774,6 +843,7 @@ class TextReader:
 
     def verify_bytes(self, copy):
         """True/False if the saved bytes are here and (do not) hash to the record; None if not here."""
+        self.materialize(copy)
         if copy.local_path is not None:
             sha = self.local_sha(copy.local_path)
             if sha is not None:
@@ -784,14 +854,17 @@ class TextReader:
             key = f"{zpath}:{member}"
             if key not in self._sha_of_path:
                 try:
-                    with zipfile.ZipFile(zpath) as z:
-                        h = hashlib.sha256()
-                        with z.open(member) as fh:
-                            for chunk in iter(lambda: fh.read(1 << 20), b""):
-                                h.update(chunk)
-                    self._sha_of_path[key] = h.hexdigest()
+                    with TRACE.capture(("sha", key)):
+                        with zipfile.ZipFile(zpath) as z:
+                            h = hashlib.sha256()
+                            with z.open(member) as fh:
+                                for chunk in iter(lambda: fh.read(1 << 20), b""):
+                                    h.update(chunk)
+                        self._sha_of_path[key] = h.hexdigest()
                 except KeyError:
                     continue
+            else:
+                TRACE.replay(("sha", key))
             return self._sha_of_path[key] == copy.sha256
         return None
 
@@ -816,10 +889,16 @@ class TextReader:
 
     def texts(self, copy):
         """List of (pages, how) text versions of a held copy; may be empty, with a reason."""
+        self.materialize(copy)
         key = (copy.origin, copy.sha256, str(copy.text_path), str(copy.local_path))
         if key in self._texts:
             self._texts.move_to_end(key)
+            TRACE.replay(("texts", key))
             return self._texts[key]
+        with TRACE.capture(("texts", key)):
+            return self._texts_uncached(copy, key)
+
+    def _texts_uncached(self, copy, key):
         out, reasons = [], []
         # 1. Extracted text recorded alongside the source (job SOURCES.jsonl text_path, Opus .txt).
         tp = copy.text_path
@@ -839,27 +918,37 @@ class TextReader:
             else:
                 reasons.append("recorded text_path not on this machine")
         # 2. Our own extraction from the saved bytes (after checking their hash).
-        cached = self._pages_by_sha.get(copy.sha256) or self._cached(copy.sha256)
+        cached = self._pages_by_sha.get(copy.sha256)
         if cached:
+            TRACE.replay(("pages", copy.sha256))
             self._remember(self._pages_by_sha, copy.sha256, cached)
             out.append(cached)
         else:
-            data, where = self.read_bytes(copy)
-            if data is None:
-                reasons.append(where)
-            elif hashlib.sha256(data).hexdigest() != copy.sha256:
-                reasons.append(f"saved bytes at {where} do not hash to the record; text not used")
-            else:
-                pages, how = bytes_to_pages(data)
-                if pages is None:
-                    reasons.append(how)
-                else:
-                    self._store(copy.sha256, pages, how)
-                    self._remember(self._pages_by_sha, copy.sha256, (pages, how))
-                    out.append((pages, how))
+            with TRACE.capture(("pages", copy.sha256)):
+                self._extract(copy, out, reasons)
         # 3. The committed Opus text pack (GitHub runs, where the Opus zip is absent).
         if not out and copy.sha256 in self.packed:
             out.append(self.packed[copy.sha256])
         result = (out, "; ".join(reasons))
         self._remember(self._texts, key, result)
         return result
+
+    def _extract(self, copy, out, reasons):
+        cached = self._cached(copy.sha256)
+        if cached:
+            self._remember(self._pages_by_sha, copy.sha256, cached)
+            out.append(cached)
+            return
+        data, where = self.read_bytes(copy)
+        if data is None:
+            reasons.append(where)
+        elif hashlib.sha256(data).hexdigest() != copy.sha256:
+            reasons.append(f"saved bytes at {where} do not hash to the record; text not used")
+        else:
+            pages, how = bytes_to_pages(data)
+            if pages is None:
+                reasons.append(how)
+            else:
+                self._store(copy.sha256, pages, how)
+                self._remember(self._pages_by_sha, copy.sha256, (pages, how))
+                out.append((pages, how))
