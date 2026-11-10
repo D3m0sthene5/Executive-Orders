@@ -218,6 +218,71 @@ def rows_for(rows, check, result=None):
 
 
 @unittest.skipUnless(REAL_GATE.is_file(), "research/stage19/code/claim_gate.py not checked out")
+class FusedFootnoteNumberTests(unittest.TestCase):
+    """EO 9446: the FR text layer prints "Order No. 84541 of June 26, 1940" (EO 8454 with footnote marker 1
+    fused to it); the checker failed a verbatim quote of the held original as an unknown order."""
+    FUSED = "Executive Order No. 90021 of January 1, 1949, is superseded."  # EO 9002 + footnote marker 1
+    UNKNOWN = "Executive Order No. 77777 of January 1, 1949, is superseded."
+
+    def make(self, printed):
+        clean = {k: v for k, v in os.environ.items() if not k.startswith("CLAIM_CHECKER_") and k not in ("JOB_LIMIT", "JOB_CACHE_DIR")}
+        clean["CLAIM_CHECKER_VERIFY_DOWNLOADS"] = "0"
+        patcher = mock.patch.dict(os.environ, clean, clear=True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        C._VERIFY.update(left=None, last=0.0)
+        text = ORIGINAL_TEXT.replace("Executive Order No. 90002 of January 1, 1949, is superseded.", printed)
+        self.assertNotEqual(text, ORIGINAL_TEXT)
+        p = mock.patch.object(sys.modules[__name__], "ORIGINAL_TEXT", text)
+        p.start()
+        self.addCleanup(p.stop)
+        self.tmp = tempfile.mkdtemp(prefix="claim-checker-test-")
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        repo, jobdir = build_repo(self.tmp)
+        with open(repo / C.P["universe"], "a", encoding="utf-8", newline="") as fh:
+            fh.write("EO:9002,1,1949\n")  # the order the fused number really names
+        ctx = C.Context(repo, jobdir, pathlib.Path(self.tmp) / "cache", today=C.dt.date(2026, 10, 17))
+        claim = good_claim()
+        claim["operative_clauses"][1]["original_operative_text"] = printed
+        return ctx, claim
+
+    def order_rows(self, rows):
+        return [r for r in rows if r["check"] == "order_exists" and r["field"] == "operative_clauses[1].original_operative_text"]
+
+    def test_fused_footnote_marker_resolves_when_the_printed_date_matches(self):
+        ctx, claim = self.make(self.FUSED)
+        rows, _, _ = C.check_claim(claim, ctx)
+        quote = [r for r in rows if r["check"] == "quote_verbatim" and r["field"] == "operative_clauses[1].original_operative_text"]
+        self.assertEqual(quote[0]["result"], "pass")
+        found = self.order_rows(rows)
+        self.assertEqual([(r["result"], r["status"]) for r in found], [("warn", "footnote_marker_fused_number")])
+        self.assertIn("EO:9002", found[0]["detail"])
+        self.assertEqual([r for r in rows if r["check"] == "order_exists" and r["result"] == "fail"], [])
+
+    def test_unknown_number_in_a_verbatim_quote_is_a_blocking_warning_never_an_order(self):
+        ctx, claim = self.make(self.UNKNOWN)
+        rows, errors, status = C.check_claim(claim, ctx)
+        found = self.order_rows(rows)
+        self.assertEqual([(r["result"], r["status"]) for r in found], [("warn", "out_of_universe_number_in_verbatim_quote")])
+        summ = C.summarise_claim("k", "f", 1, claim, rows, errors, status, ctx)
+        self.assertFalse(summ["all_checks_passed"])
+        self.assertEqual(summ["steps"]["clause_inventory"]["mechanical"], "pass_with_unverified")
+
+    def test_unknown_number_outside_a_quote_still_fails(self):
+        ctx, claim = self.make(self.FUSED)
+        claim["whole_order_end"]["actor"] = "EO:77777"
+        rows, _, _ = C.check_claim(claim, ctx)
+        fails = [r for r in rows if r["check"] == "order_exists" and r["result"] == "fail"]
+        self.assertTrue(any(r["field"] == "whole_order_end.actor" for r in fails), fails)
+
+    def test_date_that_disagrees_is_not_resolved(self):
+        ctx, claim = self.make(self.FUSED.replace("1949", "1951"))
+        rows, _, _ = C.check_claim(claim, ctx)
+        self.assertEqual([r["status"] for r in self.order_rows(rows)], ["out_of_universe_number_in_verbatim_quote"])
+
+
+
+@unittest.skipUnless(REAL_GATE.is_file(), "research/stage19/code/claim_gate.py not checked out")
 class CheckerTests(unittest.TestCase):
     def setUp(self):
         # Insulate from the caller's environment (job.py passes its own settings through).

@@ -22,7 +22,14 @@ DATE = r"(?:\d{4}-\d{2}-\d{2}|(?:January|February|March|April|May|June|July|Augu
 EO_NUMBER = r"\d(?:[ \t]*\d){0,4}[A-Z]?(?:½)?"
 EO_REF = re.compile(r"\bExecutive\s+Orders?\s*(?:(?:Nos?|Numbers?)\.?\s*)?(" + EO_NUMBER + r")(?![\w-]|,\d|[ \t]+\d)", re.I)
 CHANGE = re.compile(r"\b(revok(?:e[ds]?|ing)|supersed(?:e[ds]?|ing)|amend(?:s|ed|ing)?|transfer(?:s|red|ring)?|abolish(?:es|ed|ing)?|terminat(?:e[ds]?|ing)|rescind(?:s|ed|ing)?|reinstat(?:e[ds]?|ing))\b", re.I)
-HEADING = re.compile(r"(?m)^[ \t]*(?:(?P<section>(?:Sec(?:tion)?\.?\s+|SECTION\s+|SEC\.?\s+)(?P<sec>[0-9]+[A-Za-z]?)[ \t]*(?:[.):](?=\s|$)|(?=[ \t]*$)))|(?P<schedule>SCHEDULE(?:\s+[A-Z0-9IVX]+)?\b)|(?P<sub>\(\s*(?P<letter>[a-z])\s*\)(?!\s*[,;]))|(?P<item>(?:\(\s*(?P<number>[0-9]+|[ivx]{2,})\s*\)|(?P<decimal>[0-9]+)\s*\.(?=\s))))")
+# A section word as it is printed or as the held OCR spells it: "Sec.", "Section", "SEC.", "SECTION",
+# letter-spaced "S e c . 2 .", "S e c t io n 1.", "S ection 1." (EO 11202, 11813, 11575). The first letter is
+# always a capital S, so a wrapped lower-case "section 5." in running text is still not a heading.
+SECTION_WORD = r"S[ ]?(?:e[ ]?c(?:[ ]?t[ ]?i[ ]?o[ ]?n)?|E[ ]?C(?:[ ]?T[ ]?I[ ]?O[ ]?N)?)"
+SECTION_END = r"[ \t]*(?:[.):](?=\s|$)|(?=[ \t]*$))"
+# "Sec. 1-101." and the bare Carter-era "1-101." (EO 12072) are decimal section numbers; Part headings
+# ("PART 1", "Part II") carry the numbering that restarts inside each Part.
+HEADING = re.compile(r"(?m)^[ \t]*(?:(?P<section>(?:(?:[,;][ \t]*)?" + SECTION_WORD + r"[ ]?\.?\s+(?P<sec>[0-9]+(?:-[0-9]+)?[A-Za-z]?)" + SECTION_END + r"|(?P<dsec>[0-9]{1,2}-[0-9]{3})[ \t]*\.(?=[ \t]|$)))|(?P<part>(?:PART|Part)[ \t]+(?P<partnum>[0-9]+|[IVXLC]+)[ \t]*(?:[—–.:-]|$))|(?P<schedule>SCHEDULE(?:\s+[A-Z0-9IVX]+)?\b)|(?P<sub>\(\s*(?P<letter>[a-z])\s*\)(?!\s*[,;]))|(?P<item>(?:\(\s*(?P<number>[0-9]+|[ivx]{2,})\s*\)|(?P<decimal>[0-9]+)\s*\.(?=\s))))")
 WHITE_HOUSE = r"(?im)^[ \t]*T[ \t]*H[ \t]*E[ \t]+W[ \t]*H[ \t]*I[ \t]*T[ \t]*E[ \t]+H[ \t]*O[ \t]*U[ \t]*S[ \t]*E[ \t]*[,.;]?[ \t]*$"
 NUMBERS = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6, "seven": 7, "eight": 8, "nine": 9, "ten": 10, "twelve": 12, "thirty": 30, "sixty": 60, "ninety": 90}
 NUMBERS.update({"eleven": 11, "thirteen": 13, "fourteen": 14, "fifteen": 15, "sixteen": 16, "seventeen": 17, "eighteen": 18, "nineteen": 19, "twenty": 20, "forty": 40, "fifty": 50, "seventy": 70, "eighty": 80})
@@ -197,6 +204,17 @@ def segment(instrument_id, text, source):
         notes.append('Target extent uses clause-drafts closing-number locator; OCR wording, clause boundaries and completeness remain unverified.')
     body_start, end = _extent(instrument_id, text)
     headings = list(HEADING.finditer(text, body_start, end))
+    # Section numbers that restart inside each Part would collide, so the Part joins the scope id then.
+    # A Part heading is a boundary only in that case: elsewhere "PART 201" is quoted CFR text, as before.
+    seen_secs, restarts = set(), False
+    for h in headings:
+        if h["section"]:
+            number = (h["sec"] or h["dsec"]).lower()
+            restarts = restarts or number in seen_secs
+            seen_secs.add(number)
+    part_in_scope = restarts and any(h["part"] for h in headings)
+    if not part_in_scope:
+        headings = [h for h in headings if not h["part"]]
     operative = re.compile(r"\b(?:I\s+(?:hereby\s+)?(?:order|direct|extend|establish|revoke|amend)|it\s+is\s+(?:hereby\s+)?ordered|(?:is|are)\s+(?:hereby\s+)?(?:amended|revoked|established)|[A-Za-z]+\s+(?:shall|is hereby))\b", re.I).search(text, body_start, end)
     if headings:
         start = headings[0].start()
@@ -240,7 +258,7 @@ def segment(instrument_id, text, source):
             start = authority.start()
     marks = [h for h in headings if h.start() >= start]
     boundaries = sorted(set([start, end] + [h.start() for h in marks]))
-    clauses, section, subsection, schedule, seen = [], "", "", "", {}
+    clauses, section, subsection, schedule, seen, part = [], "", "", "", {}, ""
     for a, b in zip(boundaries, boundaries[1:]):
         tail = re.search(WHITE_HOUSE + r"|^\s*\[\s*(?:FR|F\.\s*R\.)\s+Doc", text[a:b])
         if tail:
@@ -252,17 +270,22 @@ def segment(instrument_id, text, source):
         label, kind, scope = "operative lead", "whole", "lead"
         if h:
             label = h.group().strip()
-            if h["section"]:
-                section, subsection = "sec" + h["sec"].lower(), ""
-                kind, scope = "section", "-".join(filter(None, [schedule, section]))
+            if h["part"]:
+                part, section, subsection = "part" + h["partnum"].lower(), "", ""
+                kind, scope = "part", part
+                if len(text[a:b]) <= 160:
+                    continue  # a bare Part title carries no operative text; its Part still scopes the sections after it
+            elif h["section"]:
+                section, subsection = "sec" + (h["sec"] or h["dsec"]).lower(), ""
+                kind, scope = "section", "-".join(filter(None, [part if part_in_scope else "", schedule, section]))
             elif h["schedule"]:
                 schedule, section, subsection = re.sub(r"\s+", "-", h["schedule"].lower()), "", ""
-                kind, scope = "schedule", schedule
+                kind, scope = "schedule", "-".join(filter(None, [part if part_in_scope else "", schedule]))
             elif h["sub"]:
                 subsection = h["letter"].lower()
-                kind, scope = "subsection", "-".join(filter(None, [schedule, section, subsection]))
+                kind, scope = "subsection", "-".join(filter(None, [part if part_in_scope else "", schedule, section, subsection]))
             else:
-                kind, scope = "item", "-".join(filter(None, [schedule, section, subsection, h["number"] or h["decimal"]]))
+                kind, scope = "item", "-".join(filter(None, [part if part_in_scope else "", schedule, section, subsection, h["number"] or h["decimal"]]))
         value = text[a:b]
         if re.search(r"\bamended\s+by\s+(?:adding|striking|deleting|inserting|substituting|revising|redesignating)", value, re.I):
             kind = "amendment_instruction"

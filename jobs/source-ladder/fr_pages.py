@@ -31,6 +31,7 @@ import re
 
 LOCATOR_VERSION = 2
 MAX_SPAN = 25          # pages searched for the closing filing line
+MAX_EXTENDED_SPAN = 80  # second search for the filing line of a long order printed in separate parts
 LONG_SPAN = 12         # longer page ranges are labelled medium (check the end)
 WINDOW_AFTER = 3       # pages after the cited page searched for the order's marker
 MIN_PAGES_FOR_WRONG_ISSUE = 3   # printed page numbers needed before calling a PDF the wrong issue
@@ -82,9 +83,13 @@ def marker_patterns(number: str):
     tail = r"(?![\d])" + ("" if re.search(r"[A-Za-z]$", number) else NO_SUFFIX)
     return [
         ("heading", re.compile(rf"E\s?X\s?E\s?C\s?U\s?T\s?I\s?V\s?E\s+O\s?R\s?D\s?E\s?R\s*(?:N\s?o\.?\s*)?{d}{tail}", re.I)),
-        # "[No. 7532]"; OCR often reads the closing bracket as 1, l, I or |
-        ("closing_number_tag", re.compile(rf"\[?\s*N\s?o\.?\s*{d}\s?[\]1lI|)](?![\d])", re.I)),
-        ("number_tag", re.compile(rf"\bN\s?o\.\s*{d}{tail}")),
+        # "[No. 7532]"; OCR often reads the closing bracket as 1, l, I or | ("[No. 75731") and
+        # spaces the abbreviation ("[N o .75731"). A trailing 1/l/I/| is a damaged bracket only
+        # when the number without it is the wanted order and no real "]" follows it
+        # ("[No. 13571]" is order 13571, never 1357). Same tolerance as claim-kit
+        # build.prints_order (that file is a claim-kit compiler pin; it is not imported here).
+        ("closing_number_tag", re.compile(rf"\[?\s*N\s?o\s?\.?\s*{d}\s?(?:\]|[1lI|)](?!\s*\]))(?![\d])", re.I)),
+        ("number_tag", re.compile(rf"\bN\s?o\s?\.\s*{d}{tail}")),
     ]
 
 
@@ -219,8 +224,9 @@ def filing_between(page_texts, idx, mi, mstart):
 def start_after_filing(page_texts, idx, mi, mstart):
     """For a closing tag that follows another document's filing line: the page of the
     'Executive Order' heading that starts the order after that filing line, if the
-    tag is on the cited page or the next one. None otherwise."""
-    if mi > idx + 1:
+    tag is within the search window after the cited page (EO 8332: the catalog cites 5 FR 313, the order
+    is on 315). None otherwise."""
+    if mi > idx + WINDOW_AFTER:
         return None
     last = None
     for j in range(idx + 1, mi + 1):
@@ -287,6 +293,139 @@ def find_marker(page_texts, number, pages, idx=None):
     return None, skipped
 
 
+CONTINUED = re.compile(r"Continued\s+on\s+next\s+page", re.I)
+# Closing tag lines of any order: "[No. 8108]", OCR "[No. 81081", "[N o .75731".
+ANY_CLOSING_TAG = re.compile(r"^[ \t]*\[?[ \t]*N\s?o\s?\.?[ \t]*(\d(?:[ ]?\d){2,5})[ \t]*[\]1lI|)]?[ \t]*$", re.M | re.I)
+CONTENTS_BOX = re.compile(r"^[ \t]*CONTENTS[ \t]*$", re.M)
+OWN_HEADING_LINE = re.compile(
+    r"^[ \t]*E\s?X\s?E\s?C\s?U\s?T\s?I\s?V\s?E[ \t]+O\s?R\s?D\s?E\s?R(?![A-Za-z]*[ \t]*:)(?:[ \t]*N\s?o\.?[ \t]*(\d(?:[ ]?\d){2,4}))?",
+    re.I | re.M)
+
+
+def _tag_values(text):
+    """Order numbers read from closing-tag lines on a page. A five-digit read of a four-digit
+    order may be a damaged bracket, so both the full read and the read without its last digit
+    are returned for each tag."""
+    out = []
+    for m in ANY_CLOSING_TAG.finditer(text):
+        digits = re.sub(r"\s", "", m.group(1))
+        vals = {int(digits)}
+        if len(digits) >= 5:
+            vals.add(int(digits[:-1]))
+        out.append(vals)
+    return out
+
+
+def continued_anchor(page_texts, idx, number):
+    """Offset on page idx just after the EXECUTIVE ORDER heading of an order that starts after
+    another document's filing line and runs on to the next page, or None.
+
+    Used only when the order's own number was not read anywhere (the low-confidence path),
+    where the old rule anchored on the page's FIRST heading and so ended the span at the
+    neighbour's filing line. Orders in one issue are printed in rising number order, so the
+    heading after the last filing line is taken only when no closing tag on the page is
+    certainly above the wanted number."""
+    text = page_texts[idx]
+    cut = CONTENTS_BOX.search(text)
+    body = text[:cut.start()] if cut else text
+    filings = [m.end() for pat in (FILING, BILLING) for m in pat.finditer(body)]
+    if not filings:
+        return None
+    last_filing = max(filings)
+    base = int(re.match(r"\d+", number).group(0))
+    if any(all(v > base for v in vals) for vals in _tag_values(body)):
+        return None
+    heads = [m for m in OWN_HEADING_LINE.finditer(body, last_filing)
+             if heading_context(body, m.start()) == "heading"
+             and (not m.group(1) or re.sub(r"\s", "", m.group(1)) == re.match(r"\d+", number).group(0))]
+    if not heads:
+        return None
+    return heads[0].end()
+
+
+def other_headings_before(page_texts, number, upto_page, upto_offset):
+    """True when another order's heading ('Executive Order N of ...' or a bare EXECUTIVE ORDER
+    heading) precedes the offset: the PDF holds more than one order."""
+    base = re.match(r"\d+", number).group(0)
+    for i in range(0, min(upto_page + 1, len(page_texts))):
+        text = page_texts[i]
+        cut = CONTENTS_BOX.search(text)
+        end = upto_offset if i == upto_page else (cut.start() if cut else len(text))
+        for m in OWN_HEADING_LINE.finditer(text, 0, end):
+            if heading_context(text, m.start()) != "heading":
+                continue
+            got = re.sub(r"\s", "", m.group(1) or "")
+            if got != base:
+                return True
+    return False
+
+
+def _filing_line_end(text, pos):
+    """Offset after the line that closes a filing notice ('[FR Doc. 39-1520; Filed, May 4, 1939;
+    11:37 a. m.]' wraps over two lines): through the next ']' within 120 characters, else the line."""
+    close = text.find("]", pos, pos + 120)
+    if close >= 0:
+        pos = close + 1
+    eol = text.find("\n", pos)
+    return len(text) if eol < 0 else eol + 1
+
+
+def neighbour_span(text, number):
+    """Offsets (start, end, complete) of one order inside a neighbouring order's saved page text, found
+    by its closing tag: from the end of the previous filing line (or the text start) to the
+    next filing line; complete is true when both filing lines were seen. None when the tag is not there. Used for an order the catalog gives no
+    citation, whose pages were extracted under the number of the order printed next to it."""
+    pat = dict(marker_patterns(number))["closing_number_tag"]
+    m = pat.search(text)
+    while m and not tag_context_ok(text, m.start()):
+        m = pat.search(text, m.end())
+    if not m:
+        return None
+    before = list(FILING.finditer(text, 0, m.start()))
+    start = _filing_line_end(text, before[-1].end()) if before else 0
+    after = FILING.search(text, m.end())
+    end = _filing_line_end(text, after.end()) if after else len(text)
+    return start, end, bool(before) and bool(after)
+
+
+def header_page_number(page_texts, i):
+    """Printed FR page of PDF page i read from its own running head ("15919Federal Register / Vol. 68 ...",
+    "FEDERAL REGISTER, VOL. 41 ... 7703"), or None. Accepted only when it does not contradict the same read
+    on a neighbouring page (one page apart = one printed page apart)."""
+    head = re.compile(r"(?im)^[ \t]*(\d{1,5})[ \t]*Federal[ \t]+Register\b"
+                      r"|Federal[ \t]+Register\b[^\n]{0,120}?[ \t](\d{1,5})[ \t]*$")
+
+    def read(k):
+        if not 0 <= k < len(page_texts):
+            return None
+        lines = [ln for ln in page_texts[k].splitlines() if ln.strip()]
+        for ln in lines[:3] + lines[-1:]:
+            m = head.search(ln)
+            if m:
+                return int(m.group(1) or m.group(2))
+        return None
+
+    mine = read(i)
+    if mine is None:
+        return None
+    for j in (i - 1, i + 1, i - 2, i + 2):
+        other = read(j)
+        if other is not None and other - j != mine - i:
+            return None
+    return mine
+
+
+def start_citation(loc, citation):
+    """The catalog citation with its page replaced by the printed page the order really starts
+    on, when the locator moved the start inside a PDF that holds several orders."""
+    printed = (loc or {}).get("start_printed_page")
+    m = re.fullmatch(r"\s*(\d+)\s*FR\s*(\d+)\s*", citation or "")
+    if printed and (loc or {}).get("start_moved") and m:
+        return f"{m.group(1)} FR {printed}"
+    return citation
+
+
+
 def locate_order(page_texts, number: str, fr_page: int | None = None, page_hint: int | None = None,
                  single_document: bool = False):
     """Locate an order. page_texts: list of page strings (index 0 = PDF page 1).
@@ -311,6 +450,18 @@ def locate_order(page_texts, number: str, fr_page: int | None = None, page_hint:
             res["marker_kind"] = marker[0]
             # In a per-document PDF the URL already names the document; any own marker is enough.
             res["confidence"] = "high"
+            # A PDF that bundles several orders: the order starts at its own heading, not at the
+            # PDF's first page, and the printed page is read from that page's running head.
+            kind, mi, mstart, mend, begin = marker
+            if kind == "heading" and other_headings_before(page_texts, number, mi, mstart):
+                end_hit = (first_match(page_texts, FILING, mi, n - 1, after=(mi, mend))
+                           or first_match(page_texts, BILLING, mi, n - 1, after=(mi, mend)))
+                res.update(first_page=mi + 1, last_page=(end_hit[0] if end_hit else n - 1) + 1,
+                           start_moved=mi > 0, shares_file_with_other_order=True,
+                           start_printed_page=header_page_number(page_texts, mi))
+                res["confidence"] = "medium"
+                res["notes"].append("medium because: the PDF holds more than one order; this order starts at its own "
+                                    f"heading on PDF page {mi + 1}, not at the PDF's first page")
         else:
             res["confidence"] = "medium"
             res["notes"].append(f"medium because: order number {number} not seen as a heading or tag in the text layer"
@@ -390,12 +541,20 @@ def locate_order(page_texts, number: str, fr_page: int | None = None, page_hint:
         after = (mi, mend if kind.startswith("heading") else mstart)
         end_hit = (first_match(page_texts, FILING, mi, min(n - 1, mi + MAX_SPAN), after=after)
                    or first_match(page_texts, BILLING, mi, min(n - 1, mi + MAX_SPAN), after=after))
+        if not end_hit and mi + MAX_SPAN < n - 1:
+            # A long order printed in separate parts can run past MAX_SPAN pages (EO 11905: about 36).
+            end_hit = (first_match(page_texts, FILING, mi, min(n - 1, mi + MAX_EXTENDED_SPAN), after=after)
+                       or first_match(page_texts, BILLING, mi, min(n - 1, mi + MAX_EXTENDED_SPAN), after=after))
+            if end_hit:
+                medium.append(f"no filing line within {MAX_SPAN} pages; the next one is on PDF page {end_hit[0] + 1}, "
+                              "so the order is taken to run that far (long order printed in separate parts)")
         if end_hit:
             end = end_hit[0]
         else:
             end = min(n - 1, mi + EXTRA_PAGES_IF_NO_END)
-            medium.append(f"no filing line ([F. R. Doc. ...]) found after the order; last page uncertain, "
-                          f"so {end - mi} following page(s) are included")
+            res["ends_without_filing_line"] = True
+            medium.append(f"no filing line ([F. R. Doc. ...]) found after the order; the text ends without a closing "
+                          f"filing line and may be cut short, so {end - mi} following page(s) are included")
         end = max(start, end)
         if end - start + 1 > LONG_SPAN:
             medium.append(f"long page range ({end - start + 1} pages); check where the order ends")
@@ -410,6 +569,14 @@ def locate_order(page_texts, number: str, fr_page: int | None = None, page_hint:
         h = HEADING_ANY.search(page_texts[idx])
         if h:
             anchor = (idx, h.end())
+        cont = continued_anchor(page_texts, idx, number)
+        if cont is not None:
+            # Another order's filing line precedes this heading on the cited page: this order starts
+            # after it and runs on to the next page(s) ("Continued on next page").
+            anchor = (idx, cont)
+            res["notes"].append("the cited page carries another order's filing line; the order is taken to start at the "
+                                "later EXECUTIVE ORDER heading and to run to the next filing line"
+                                + (" (the page says 'Continued on next page')" if CONTINUED.search(page_texts[idx]) else ""))
         end_hit = first_match(page_texts, FILING, idx, min(n - 1, idx + MAX_SPAN), after=anchor)
         end = end_hit[0] if end_hit else idx
         res.update(found=True, first_page=idx + 1, last_page=end + 1, confidence="low")

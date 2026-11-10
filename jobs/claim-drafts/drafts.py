@@ -317,6 +317,17 @@ class InputDir:
             if row.get("instrument_id") and row.get("search_id"):
                 self.search_coverage[(row["instrument_id"], row["search_id"])] = row
 
+    def mention_counts(self):
+        """{(system, instrument_id): rows} over every MENTIONS.csv row of the current-law job (predicate
+        lead or not), or None when this input is not current-law or holds no MENTIONS.csv. Read once."""
+        if self.job != "current-law":
+            return None
+        if not hasattr(self, "_mention_counts"):
+            rows = read_csv(self.path / "MENTIONS.csv")
+            self._mention_counts = None if rows is None else collections.Counter(
+                (r.get("system"), r.get("instrument_id")) for r in rows if r.get("instrument_id"))
+        return self._mention_counts
+
     def label(self):
         return f"{self.job}@{self.origin}"
 
@@ -1451,8 +1462,19 @@ def build_draft(iid, merged, rd, gate, step_for):
     searches_machine, searches_prop = [], []
     for s in merged.searches:
         e = dict(s["entry"])
-        hits = sum(len(f.get("data") or []) if isinstance(f.get("data"), list) else 1
-                   for kind, lst in merged.frags.get(iid, {}).items() for inp, f in lst if inp.job == s["job"])
+        # machine_hits_for_this_order = how many records of this search name the order. Generally that is the
+        # number of fragment items the job emitted for it. For the current-law usc/ecfr searches ("every
+        # citation of this order by number") it is every MENTIONS.csv row of that system naming the order,
+        # predicate lead or not (EO 10195 read 0 while two usc rows named it); the fragment count, which
+        # counts predicate leads only, stays in machine_predicate_leads_for_this_order.
+        hits = predicate_hits = sum(len(f.get("data") or []) if isinstance(f.get("data"), list) else 1
+                                    for kind, lst in merged.frags.get(iid, {}).items() for inp, f in lst if inp.job == s["job"])
+        mention_rows = None
+        if s["job"] == "current-law" and s["kind"] in ("usc", "ecfr"):
+            inp_cl = next((x for x in merged.inputs if x.job == s["job"]), None)
+            counts = inp_cl.mention_counts() if inp_cl else None
+            if counts is not None:
+                mention_rows = hits = counts[(s["kind"], iid)]
         coverage_row = None
         if s.get("per_order_coverage"):
             inp = next((x for x in merged.inputs if x.job == s["job"]), None)
@@ -1461,6 +1483,8 @@ def build_draft(iid, merged, rd, gate, step_for):
                 continue  # the search does not apply to this order (it searches for a person this order names)
         if s["complete"]:
             item = {"entry": e, "search_id": s["search_id"], "machine_hits_for_this_order": hits}
+            if mention_rows is not None:
+                item["machine_predicate_leads_for_this_order"] = predicate_hits
             if s["kind"] == "ofr_catalog" and year is not None and year < CATALOG_COVERAGE_START_YEAR:
                 item["coverage_warning"] = (f"order dated {year}: the OFR catalog starts in "
                                             f"{CATALOG_COVERAGE_START_YEAR}, so endings before then are not in it; "

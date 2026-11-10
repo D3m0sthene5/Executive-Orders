@@ -200,7 +200,7 @@ def reuse_stage21(repo, item, custody_row, fetcher):
         "sha256": sha, "bytes": path.stat().st_size, "content_type": "application/pdf",
         "retrieved_utc": normalise_utc(raw_time),
         "route": "reuse/stage21_original_sources",
-        "page_or_item": f"{rec.get('citation') or item['instrument_id']}, PDF pages {a}-{b}",
+        "page_or_item": f"{fr_pages.start_citation(loc, rec.get('citation')) or item['instrument_id']}, PDF pages {a}-{b}",
         "text_path": f"texts/{text_name(item['instrument_id'])}", "cache_path": None,
         "repo_path": custody_row["source_repository_path"],
         "notes": (f"Bytes already preserved in the repo at {custody_row['source_repository_path']} (Stage 21 custody; "
@@ -468,6 +468,65 @@ def _work_group(group):
     return out
 
 
+NEIGHBOUR_REASONS = ("ofr_index_has_no_fr_citation", "ofr_index_not_received_for_publication", "not_in_ofr_index")
+
+
+def adopt_neighbour_spans(ctx, plan, states, log=print):
+    """An order the OFR catalog gives no citation, or marks 'not received for publication' (EO 8965), can still be printed in the same
+    govinfo issue PDF whose pages were saved under the neighbouring order's number. When its own
+    closing tag '[No. N]' is inside such a saved page file, register that span as the order's
+    official representation, with the neighbour's source record (same PDF bytes, same SHA-256).
+    The grade follows fr-originals' rule: high only when the neighbour's location was high and
+    the filing lines before and after the tag were both seen, otherwise medium (page check)."""
+    import fr_pages
+    items = {it["instrument_id"]: it for it in plan}
+    adopted = []
+    for iid, st in sorted(states.items()):
+        nf = st.get("not_found") or {}
+        if st.get("status") != "not_found" or nf.get("reason") not in NEIGHBOUR_REASONS or iid not in items:
+            continue
+        m = re.fullmatch(r"EO:(\d+)", iid)
+        if not m:
+            continue
+        number, base = m.group(1), int(m.group(1))
+        for delta in (-1, 1, -2, 2, -3, 3):
+            sib_id = f"EO:{base + delta}"
+            sst = states.get(sib_id)
+            if not sst or sst.get("status") != "found" or not sst.get("text_file"):
+                continue
+            path = ctx["state_texts"] / sst["text_file"]
+            if not path.exists():
+                continue
+            text = path.read_text(encoding="utf-8")
+            span = fr_pages.neighbour_span(text, number)
+            if not span:
+                continue
+            start, end, complete = span
+            src = dict(sst["source"])
+            high = complete and src.get("location_confidence") == "high"
+            src.update(source_id=f"{PRODUCED_BY}:{iid}:{src['sha256'][:12]}", instrument_ids=[iid],
+                       route="fr-originals/neighbour_page_file",
+                       page_or_item=f"{src.get('page_or_item')} (order found by its closing tag inside the page file of {sib_id})",
+                       text_path=f"texts/{text_name(iid)}", location_confidence="high" if high else "medium",
+                       notes=("The OFR catalog gives this order no FR citation (reason recorded: " + nf.get("reason", "") + "). Its closing tag was found in the saved pages of "
+                              f"{sib_id}, same govinfo PDF (SHA-256 {src['sha256']}). Span is taken from the filing line before the "
+                              "tag to the filing line after it. Machine location lead; no person has checked the pages."))
+            it = items[iid]
+            body = text[start:end]
+            ctx["state_texts"].mkdir(parents=True, exist_ok=True)
+            fetch_ladder_write(ctx["state_texts"] / text_name(iid), text_header(iid, src) + body)
+            note = confidence_note({"confidence": src["location_confidence"]}, True)
+            new = {"state_version": STATE_VERSION, "instrument_id": iid, "status": "found", "permanent": True,
+                   "source": src, "fragment": fragment_for(it, src, note), "not_found": None, "attempts": [],
+                   "text_file": text_name(iid), "processed_utc": st.get("processed_utc")}
+            write_state(ctx["state_dir"], new)
+            states[iid] = new
+            adopted.append(iid)
+            log(f"{iid}: adopted from the page file of {sib_id} ({src['location_confidence']})")
+            break
+    return adopted
+
+
 def run(ctx, plan, limit=None, time_budget_s=None, retry_not_found=False, keep_pdfs=True, log=print,
         workers=1, ctx_spec=None):
     """Process the plan (resuming from state). Returns (states, run_stats).
@@ -516,8 +575,10 @@ def run(ctx, plan, limit=None, time_budget_s=None, retry_not_found=False, keep_p
         return st
 
     if workers > 1 and ctx_spec:
-        return _run_parallel(ctx, selected, by_issue, states, done_ids, stats, issue_bytes, fresh_seconds,
-                             t0, time_budget_s, keep_pdfs, log, workers, ctx_spec, len(finished))
+        result = _run_parallel(ctx, selected, by_issue, states, done_ids, stats, issue_bytes, fresh_seconds,
+                               t0, time_budget_s, keep_pdfs, log, workers, ctx_spec, len(finished))
+        result[1]["stats"]["adopted_from_neighbour_page_file"] = len(adopt_neighbour_spans(ctx, plan, result[0], log))
+        return result
     n = 0
     for it in selected:
         if it["instrument_id"] in done_ids:
@@ -546,6 +607,7 @@ def run(ctx, plan, limit=None, time_budget_s=None, retry_not_found=False, keep_p
                     if p and ctx["fetcher"].forget_body(p):
                         stats["issue_pdfs_deleted_after_use"] += 1
                 ctx["issue_blobs"].clear()
+    stats["adopted_from_neighbour_page_file"] = len(adopt_neighbour_spans(ctx, plan, states, log))
     pending = [it["instrument_id"] for it in selected if it["instrument_id"] not in done_ids]
     stats["seconds"] = round(time.time() - t0, 1)
     return states, {"stats": dict(stats), "pending": pending, "stopped": stopped, "selected": len(selected),
