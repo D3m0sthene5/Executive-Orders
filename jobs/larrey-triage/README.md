@@ -20,7 +20,12 @@ python3 -I jobs/larrey-triage/larrey.py project [--out FILE]              # proj
 python -m unittest discover -s jobs/larrey-triage -p "test_*.py"
 ```
 
-`triage` takes under a minute on the owner's PC (it reads about 1.4 GB of compiled claim-kit outputs).
+`triage` takes about 8 seconds on the owner's PC (it reads about 1.4 GB of compiled claim-kit outputs).
+
+**Output (Whitworth I1).** `output/GATES.jsonl` has one line per (order, route) with `instrument_id`, `route`,
+`pass`, `missing` (gate ids), `gates_commit`, and also `pass_hard`, `reasons` and `provisional_status`. Claim-kit
+admission, the Maudslay conveyor (through `kit.py next` and `prepare`) and Bentham read it. `REASONS.json` and
+`TODO.md` tally the reasons (`missing_gates_any` by gate id): that tally is the acquisition to-do list.
 
 ## Routes and gates
 
@@ -37,11 +42,13 @@ dossiers on every gate input.
 | `decided_lifecycle` | `production.claim_ready.*` | `original_usable`, `no_page_check_owed`, `clause_inventory_present` | `nea_notice_if_emergency` |
 
 - `original_usable`: an acceptable original. On the decided route a working text the transcription ruling credits
-  (`working_text.GRADES`) is usable too. On the undecided route only a frozen `working_text_basis` is
-  (Accursius F6, PR 276), because `status_overlay` requires an acceptable original today.
+  (`working_text.GRADES`) is usable too. On the undecided route a non-original is usable only when
+  `status_overlay.working_text_basis(dossier)` credits it (Accursius F6, PR 276), called when the kit has it.
 - `no_page_check_owed`: the selected original does not require a page or image check, which cannot be made from held text.
 - `status_basis_record`: an exact held ACT, TERM, ACTOR_TEXT or CURRENT record that is not a report deadline. These
-  are the only bases `status_overlay` accepts. OWN_TEXT and PARENT_END records (F5, PR 274) count once a dossier carries them.
+  are the only bases `status_overlay` accepts. CURRENT records follow `build.package` from `STATUS_LEADS`
+  `current_law_leads` (F3, PR 272). OWN_TEXT and PARENT_END records (F5, PR 274) are framed at freeze time,
+  so the gate calls `own_text.records(iid, original, clauses)` itself when the kit has it.
 - `clause_inventory_present`: the dossier has a clause inventory.
 - `later_order_text_held` (soft): a held text of a later instrument that acts on or cites the order.
 - `nea_notice_if_emergency` (soft): a provisional-YES order that invokes a national emergency declared before
@@ -114,7 +121,7 @@ the cutoff, so they need no continuation notice and pass.
 
 | Action | Members | Admitted | Hard gates only | Top reasons kept out |
 |---|---:|---:|---:|---|
-| status_assignment.undecided | 10,697 | 2,545 | 3,559 | no later-order text 6,374; original not usable 5,995; no status basis 3,800; page check 2,431 |
+| status_assignment.undecided | 10,697 | 2,546 | 3,560 | no later-order text 6,396; original not usable 5,995; no status basis 3,822; page check 2,431 |
 | production.claim_ready.yes.fr | 351 | 243 | 339 | NEA continuation notices 96; page check 12 |
 | production.claim_ready.no.fr | 1,034 | 966 | 966 | page check 67; original not usable 1 |
 | production.one_step_away, recovery.* | 250 | not triaged | | (corrections of existing claims; their routes are not modelled) |
@@ -134,10 +141,11 @@ worker dollars with attempted orders. Coordinator dollars are excluded.
 | Papinian undecided, per accepted status (16) | $2.89 | $2.38 | $1.51 |
 | Haloander probe (30 attempted, 3 proposals) | $4.04 per proposal | | $1.35 |
 | Papinian YES y01-y14 (347 attempted, 55 filed) | $3.29 per filed claim | $2.94 | $2.26 |
+| **All three waves (64 filed claims, $239.20 of workers)** | **$3.74 per filed claim** | **$3.19** | **$2.39** |
 
 Review is 61% of the undecided worker spend, so producer-side triage alone cuts about a sixth of the cost per adopted
 status. The larger lever is in Bentham's ranking. Its cost of the undecided action falls from $3,557 for 10,697 orders
-to $846 for 2,545, with projected dossiers 1,070 → 1,039, so dossiers per $100 go from 30.1 to 122.8. The YES
+to $846 for 2,546, with projected dossiers 1,070 → 1,039, so dossiers per $100 go from 30.1 to 122.8. The YES
 production action goes from 70.2 to 100.3.
 
 ## Wiring
@@ -154,19 +162,22 @@ production action goes from 70.2 to 100.3.
   - Cost is priced on admitted orders.
   - Yield is projected as the untriaged rate × members × the back-test's retained share, and labelled as such in the plan.
   - Bentham's strata keep every member, because admission applies Larrey itself.
-- **Calibration.** Each route records the sha256 of the kit file its gates mirror, as it was when back-tested:
-  `status_overlay.py` for the undecided routes and `assemble.py` for the decided route. When that file changes (for
-  example when an Accursius PR merges), the route turns advisory: it is not enforced, and Bentham notes it. Then
-  check that the gates still mirror the route, run `backtest` again and commit `BACKTEST.json`. A stale gate could
-  keep out orders a fixed route can finish, so the safe default is not to enforce it.
-- **Job.** `job.py` runs the tests, then `triage --no-pools` after `claim-kit` and `readiness-tracker` (`after.txt`).
-  Bentham runs after Larrey. Larrey does not read Bentham's strata in the job, so neither job is an input of the other.
+- **Calibration.** A route is enforced only while two things hold. First, the kit file its gates mirror
+  (`status_overlay.py` for the undecided routes, `assemble.py` for the decided route) is the one the back-test ran
+  on. Second, that back-test loses no success at the operating point.
+  - The job re-runs the back-test on every run (`output/BACKTEST.json`, which wins over the committed one), so a
+    merged route fix recalibrates without new code.
+  - A back-test that now loses a success turns the route advisory: it is not enforced, and Bentham notes it.
+  - A kit file that changed without a fresh back-test does the same.
+- **Job.** `job.py` runs the tests, re-runs the back-test (`needs.txt` lists the two wave folders), then runs
+  `triage --no-pools` after `claim-kit` and `readiness-tracker` (`after.txt`). Bentham runs after Larrey. Larrey does
+  not read Bentham's strata in the job, so neither job is an input of the other.
 
 ## Follow-ups
 
-- When F3 (CURRENT records), F5 (OWN_TEXT) and F6 (working-text basis) merge, the undecided routes turn advisory.
-  Extend `kit_features.from_overlay` to frame the records those fixes freeze, then recalibrate. Respondendi's
-  diagnosis says about 30 of the kept-out failures would then be decidable.
+- F3, F5 and F6 need no Larrey change. When they merge, the next job run applies them and re-runs the back-test.
+  Respondendi's diagnosis says about 30 of the kept-out failures should then be admitted. Check that on the first
+  post-merge run. F4 (routed ACTOR_TEXT) arrives through the compiled outputs once the kit is rebuilt.
 - The soft gates' lost yield can only be measured by dispatching soft-gated orders. Run a deliberate
   `LARREY_LEVEL=hard` probe of at most 30 such orders when the owner wants that measured.
 - `production.one_step_away` and `recovery.*` have their own blockers (custody, Opus media, quarantines) and are not
