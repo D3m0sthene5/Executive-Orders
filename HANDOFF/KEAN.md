@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (2)
+## Waiting for the owner (1)
 
-**A-20261108-lean-main**, **A-20261110-ulpian-outer-bound**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -18,7 +18,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 - **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
-## Owner decisions not yet carried out by the tools (26)
+## Owner decisions not yet carried out by the tools (28)
 
 - **D-20261021-report-deadline** (partly wired): A board order whose only command is to report within a deadline ends on its express revocation (usually EO 12553), not when the board reports; record the report date and standstil… Checked 2026-11-06 (Justinian F3): assemble.py:554 refuses a report deadline as an end; AGENT_PROTOCOL.md:47. No tool r…
 - **D-20261021-strike-and-insert** (not wired): A clause amended by striking and inserting words continues, amended, until the parent order ends; record the text before and after. 43 clauses in 26 committed claims that treat am… Checked 2026-11-06 (Justinian F3): no code or instruction; claim_gate/checker validate later_events structure only, wit…
@@ -46,6 +46,8 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261108-photius-recheck** (not wired): Run the remaining Photius-stale orders through the Haloander h01 route (producer comparison against the GPO printing, two blind arms with planted controls), never a scripted re-fr… Not yet run: the 2026-11-07 wave budget (75 USD) was spent; about 0.20 USD per order in workers plus coordination.
 - **D-20261109-impact-scoped-checks** (not wired): Never rerun claim-checker or another costly consumer over every claim when a change reaches only some: rerun only the affected claims; full runs only for the consumer's own code o… Not built; meanwhile pick affected claims by hand (checker.py --claims).
 - **D-20261110-papinian-board-bytes** (not wired): Owner: store the 101 NMB report PDFs in the Release-asset store with a claim-checker adapter; adopt corrected board claims by named decision. Upload and adapter not built.
+- **D-20261110-ulpian-life-bound** (partly wired): Approve jobs/ulpian-outer-bound/RULE.md v2 as the Respondendi lot ulpian-life-bound (one-person orders whose own text bounds the person's birth; end is the interval up to B + 44,7… ulpian.py tag now passes its approval check; adoption still runs through Respondendi, whose rule is not yet approved
+- **D-20261110-ulpian-jacquard-l1-correction** (not wired): Read each of the 42 Jacquard L1 statuses that rested on the at-least-14 premise; keep those whose own text quotes a sufficient fact, return the rest to undecided by a correction P… correction PR to be prepared by the Ulpian session
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure.
 
 <!-- kean:drift -->
@@ -59,4 +61,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-10 F-20261110-papinian-undecided-u01b **partly worked**: Papinian pool 4: 30-order status_assignment.undecided probe (EO >= 7532, seed papinian-2026-11-10-undecided)… Lesson: The undecided route needs claim-kit outputs compiled with the current status_overlay code; check prepare on one order before drawing a batch. Yield is bounded by owner adoption (ask A-20261110-papini…
 - 2026-11-10 F-20261110-papinian-report **worked**: Papinian lane report (research/excavator/claude-papinian-2026-11-10/REPORT.md): Bentham pools 7-10 and the un… Lesson: Read REPORT.md before re-running blocked YES orders: the blocks are listed by acquisition (NEA notices, EO 13286, board report bytes), and the blocked orders stay reserved for agent papinian.
 
-Register: 77 owner decisions, 48 answered questions, 302 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 80 owner decisions, 49 answered questions, 302 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
