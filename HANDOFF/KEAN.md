@@ -50,13 +50,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 301; `search` finds the rest)
+## Newest results (6 of 302; `search` finds the rest)
 
 - 2026-11-10 F-20261110-why-warnings-missed **analysis**: Checked what the project already knew before the overnight Codex wave launched (2026-11-09 21:45 ET), and why… Lesson: A lessons register stops nothing unless a gate enforces it at the decision point. jobs/augur-launch/augur.py refuses a wave unless: its objective is an outcome; its actions are Bentham's; it ramps fr…
+- 2026-11-10 F-20261110-whitworth-forecast **analysis**: Whitworth: fixed the interfaces between the six parts of the next production line (Linnaeus, Accursius, Larre… Lesson: Score the first batch against this forecast whatever the result; no larger batch before an end-to-end gauge test is green and the calibration batch is scored
 - 2026-11-10 F-20261110-papinian-wave **worked**: Papinian production lane (2026-11-10 two-lane wave, Opus coordinator): Bentham pools custody_stranded, one_st… Lesson: The YES stratum yields about 16% at about 3.3 USD per filed claim; reviewer cost (two Opus arms) is about 70% of worker cost. Most YES blocks are acquisitions, not research: NEA continuation notices…
 - 2026-11-10 F-20261110-papinian-undecided-u23 **stopped at gate**: Scale the undecided probe after the gate said CONTINUE: u02 and u03 (60 more EO >= 7532 orders, seed papinian… Lesson: Status review is the easy half: 16 of 17 NO statuses were accepted, but only 6 of 16 lifecycle claims survived both arms. Producers on the undecided route skip U.S. Code notes and later amendments; g…
 - 2026-11-10 F-20261110-papinian-undecided-u01b **partly worked**: Papinian pool 4: 30-order status_assignment.undecided probe (EO >= 7532, seed papinian-2026-11-10-undecided)… Lesson: The undecided route needs claim-kit outputs compiled with the current status_overlay code; check prepare on one order before drawing a batch. Yield is bounded by owner adoption (ask A-20261110-papini…
 - 2026-11-10 F-20261110-papinian-report **worked**: Papinian lane report (research/excavator/claude-papinian-2026-11-10/REPORT.md): Bentham pools 7-10 and the un… Lesson: Read REPORT.md before re-running blocked YES orders: the blocks are listed by acquisition (NEA notices, EO 13286, board report bytes), and the blocked orders stay reserved for agent papinian.
-- 2026-11-10 F-20261110-papinian-eo13286-mirror **analysis**: Papinian YES batches y03, y06, y11, y12, y13: orders amended by EO 13286 (2003, Homeland Security transfers) Lesson: One official copy of EO 13286 (68 FR 10619, 2003-03-05) held with bytes would likely unlock most of these; queue it with the NEA continuation notices (F-20261110-papinian-nea-notices) before re-runni…
 
-Register: 77 owner decisions, 48 answered questions, 301 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 77 owner decisions, 48 answered questions, 302 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
