@@ -1,3 +1,9 @@
+## 2026-11-10 turn5: PR262 C15 scope corrected and freshly validated
+
+- **Done:** Five claim-kit runtime files plus three tests only; zero tracker-folder diff against current main. Fresh127 focused tests pass; scoped checker finds0 affected existing replica claims. Native paired replay1156to1156 with identical per-order results and652 unchanged local input diagnostics. Full receipts: research/excavator/mommsen-4-2026-11-10/code-p4/c15-v2-validation/REPORT.md.
+- **Review:** Claude full-diff review and owner morning code merge required; lane never merges code. Earlier draft tests remain historical. Draft patch losses disclosed once in PR body; no further recovery work.
+- **Limits:** No source grade/status/codebook/claim/census change;0new claims and human certification0. Native source exceptions remain separate. **Recorded:** F-20261110-mommsen4-c15-final. **Asks:** @Owner: none.
+
 ## 2026-11-10 C15 scope-correction candidate, validation pending
 
 - ALL tracker runtime/test hunks restored to target main. Only five claim-kit runtime files and three focused test files remain. No prior test/replay approves this revised combined head.
