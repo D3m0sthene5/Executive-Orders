@@ -12,7 +12,7 @@ import subprocess
 import sys
 
 here = pathlib.Path(__file__).resolve().parent
-tests = subprocess.run([sys.executable, "-m", "unittest", "-v", "test_checker", "test_proquest_inputs"], cwd=here,
+tests = subprocess.run([sys.executable, "-m", "unittest", "-v", "test_checker", "test_proquest_inputs", "test_palsgraf"], cwd=here,
                        env={**os.environ, "PYTHONIOENCODING": "utf-8"})
 if tests.returncode:
     sys.exit("Unit tests failed; the claim checker was not run.")

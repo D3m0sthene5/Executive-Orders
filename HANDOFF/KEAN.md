@@ -44,7 +44,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261107-encyclopedie-youngstown** (partly wired): Owner approved, autonomously: the full anonymous Youngstown run over CourtListener's public bulk opinions and improved opinion-level holding detection. The owner creates the Court… Full run 42318378954 started on enc/courts; holding-detection work assigned; PR 206 open.
 - **D-20261108-board-rule** (partly wired): For R3 re-tagged Presidential Emergency Board orders: the board command ends by completion of its task on the held report's transmittal-letter date; the order's own no-change sent… No production run yet; next wave: pilot on the 79 held reports.
 - **D-20261108-photius-recheck** (not wired): Run the remaining Photius-stale orders through the Haloander h01 route (producer comparison against the GPO printing, two blind arms with planted controls), never a scripted re-fr… Not yet run: the 2026-11-07 wave budget (75 USD) was spent; about 0.20 USD per order in workers plus coordination.
-- **D-20261109-impact-scoped-checks** (not wired): Never rerun claim-checker or another costly consumer over every claim when a change reaches only some: rerun only the affected claims; full runs only for the consumer's own code o… Not built; meanwhile pick affected claims by hand (checker.py --claims).
+- **D-20261109-impact-scoped-checks** (partly wired): Never rerun claim-checker or another costly consumer over every claim when a change reaches only some: rerun only the affected claims; full runs only for the consumer's own code o… claim-checker: Palsgraf impact selection with recorded dependencies, planted controls, weekly reconciling full run (PR…
 - **D-20261110-papinian-board-bytes** (not wired): Owner: store the 101 NMB report PDFs in the Release-asset store with a claim-checker adapter; adopt corrected board claims by named decision. Upload and adapter not built.
 - **D-20261110-ulpian-life-bound** (partly wired): Approve jobs/ulpian-outer-bound/RULE.md v2 as the Respondendi lot ulpian-life-bound (one-person orders whose own text bounds the person's birth; end is the interval up to B + 44,7… ulpian.py tag now passes its approval check; adoption still runs through Respondendi, whose rule is not yet approved
 - **D-20261110-ulpian-jacquard-l1-correction** (partly wired): Read each of the 42 Jacquard L1 statuses that rested on the at-least-14 premise; keep those whose own text quotes a sufficient fact, return the rest to undecided by a correction P… Correction PR (claude/ulpian-jacquard-l1-correction): 42 read by two blind arms (Sonnet 5.5, Fable 5.2), 42/42 agreemen…
@@ -52,7 +52,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 342; `search` finds the rest)
+## Newest results (6 of 343; `search` finds the rest)
 
 - 2026-11-10 F-20261110-why-warnings-missed **analysis**: Checked what the project already knew before the overnight Codex wave launched (2026-11-09 21:45 ET), and why… Lesson: A lessons register stops nothing unless a gate enforces it at the decision point. jobs/augur-launch/augur.py refuses a wave unless: its objective is an outcome; its actions are Bentham's; it ramps fr…
 - 2026-11-10 F-20261110-whitworth-forecast **analysis**: Whitworth: fixed the interfaces between the six parts of the next production line (Linnaeus, Accursius, Larre… Lesson: Score the first batch against this forecast whatever the result; no larger batch before an end-to-end gauge test is green and the calibration batch is scored
@@ -61,4 +61,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-10 F-20261110-respondendi-wave **worked**: Owner-requested research workflow (Fable 5.2 on High) to lift the undecided-status bottleneck permanently and… Lesson: Fable 5.2 at high effort costs about 25-30 USD per deep-reading worker (cache reads at 1 USD per million dominate); a 14-worker research storm is about 255 USD. Use it for diagnosis that needs whole-…
 - 2026-11-10 F-20261110-respondendi-v2 **worked**: Respondendi v2 at the owner's request: one standing approval for every kind of undecided order (express revoc… Lesson: Breadth without a measured error bound is not breadth: each red-team screen removed a way to adopt a wrong status and cost reach (3,465 claimed in the v2 draft, 1,468 after). The reach that remains i…
 
-Register: 81 owner decisions, 51 answered questions, 342 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 82 owner decisions, 52 answered questions, 343 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
