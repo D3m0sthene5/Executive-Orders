@@ -16,6 +16,7 @@ import re
 import sys
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import working_text as W
+import fragment_cache as FC
 import factual_events as F
 
 
@@ -444,15 +445,17 @@ def _assemble(sheet, dossier, repo, interval_partial=False):
     grade += " " + " ".join(str(original.get(k, "")) for k in
                               ("source_grade", "kind", "role", "type", "origin"))
     provisional = original_record.get("acceptable_as_original") is False or original.get("acceptable_as_original") is False
+    replica_checked = (W.checked_replica(original, FC.shared(repo))
+                       if provisional and original.get("grade") == W.REPLICA_GRADE else False)
     if provisional:
-        if dossier.get("working_text_confirmation") is not None:
+        if dossier.get("working_text_confirmation") is not None and not replica_checked:
             try:
                 W.require_current_confirmation(dossier, repo)
             except ValueError:
                 errors.append("working_text:prior_confirmation_stale")
-        if original.get("grade") not in W.GRADES or original.get("acceptable_as_original") is not False:
+        if (not replica_checked and original.get("grade") not in W.GRADES) or original.get("acceptable_as_original") is not False:
             errors.append("lead_is_not_original:working_text_grade_required")
-        if not isinstance(sheet.get("working_text"), dict):
+        if not replica_checked and not isinstance(sheet.get("working_text"), dict):
             errors.append("working_text:disclosure_required")
     elif "richardson" in grade.lower() or "compiled_transcription_lead" in grade.lower():
         errors.append("lead_is_not_original")
@@ -629,6 +632,12 @@ def _assemble(sheet, dossier, repo, interval_partial=False):
         elif isinstance(claim["working_text"].get("confirmations"), list):
             claim["working_text"]["confirmations"] = [c for c in claim["working_text"]["confirmations"]
                 if isinstance(c, dict) and W.key(c) in used]
+    replica_refs = [ref for _, ref in W.references(claim) if ref.get("grade") == W.REPLICA_GRADE]
+    if replica_refs:
+        replica_index = FC.shared(repo)
+        if any(W.checked_replica(ref, replica_index) for ref in replica_refs):
+            flags = claim.get("informational_flags") if isinstance(claim.get("informational_flags"), list) else []
+            claim["informational_flags"] = flags + ([W.REPLICA_FLAG] if W.REPLICA_FLAG not in flags else [])
     checks = check_claim(claim, repo, dossier)
     if interval_partial:
         gate_errors = _gate(repo).validate_claim(claim, expected_status=dossier.get("whole_order_status"))

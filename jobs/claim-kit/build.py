@@ -64,6 +64,10 @@ def text_tier(r, registered=None):
     (inputs.load_corpus); without it a working-text grade label is taken as given."""
     if r.get('acceptable_as_original'):
         return 0
+    # A Photius P4 checked replica (archival_replica_checked) is not ranked above other texts here: it stays at
+    # tier 2 as on main, so a held Photius R37 official_printing of the same order keeps winning (545 orders
+    # would otherwise switch from an official printing to a ProQuest replica). Ranking official printings and
+    # replicas is a separate, measured change (Claude review of #262, blocking finding 1).
     if r.get('grade') in W.GRADES and (registered is None or
             (r.get('instrument_id'),r.get('text_path'),r.get('grade')) in registered):
         return 1
@@ -475,7 +479,9 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing, 
     if rec and rec.get('requires_page_check'):missing.append('Official-source page location requires a separate page/image check before original confirmation.')
     if not rec: missing.append('No attributed held text located for this order.')
     elif not rec.get('acceptable_as_original'):
-        if rec.get('grade') in W.GRADES:
+        if rec.get('grade') == W.REPLICA_GRADE:
+            missing.append('Checked ProQuest replica credits the text step; bytes remain ProQuest-dependent and original authentication is not established.')
+        elif rec.get('grade') in W.GRADES:
             missing.append('Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.')
         else:
             missing.append('Held representation is a lead; complete official original requires confirmation/acquisition.')

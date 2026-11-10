@@ -21,6 +21,36 @@ OFFICIAL_PRODUCERS = frozenset({'fr-originals', 'ofr-compilations',
 GRADES = frozenset({'compiled_transcription', 'compiled_transcription_lead',
     'mirror_transcription', 'government_printed_copy', 'machine_read_government_printed_copy',
     'government_printed_reproduction', 'archival_replica_scan_pending_codebook'})
+REPLICA_PATH = 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'
+REPLICA_GRADE = 'archival_replica_checked'
+REPLICA_FLAG = 'REPLICA_CHECKED_PROQUEST_BYTES'
+
+
+def replica_version(row, declaration_path):
+    data = row.get('data') if isinstance(row.get('data'), dict) else {}
+    return (declaration_path == REPLICA_PATH and row.get('kind') == 'original_representation'
+            and row.get('produced_by') == 'photius-replica-check'
+            and row.get('acceptable_as_original') is False
+            and data.get('acceptable_as_original') is False)
+
+
+def replica_declaration(row, declaration_path):
+    data = row.get('data') if isinstance(row.get('data'), dict) else {}
+    check = data.get('check') if isinstance(data.get('check'), dict) else {}
+    return (replica_version(row, declaration_path)
+            and row.get('grade') == data.get('grade') == REPLICA_GRADE
+            and data.get('needs_page_check') is False
+            and data.get('requires_page_check') is not True
+            and data.get('complete_text') is not False
+            and check.get('final') == 'pass')
+
+
+def checked_replica(ref, index):
+    if ref.get('grade') != REPLICA_GRADE or ref.get('acceptable_as_original') is not False:
+        return False
+    version = [r for r in index.match(ref) if r.get('replica_version')
+               and all(r.get(k) == ref.get(k) for k in ('instrument_id', 'sha256', 'text_sha256', 'text_path'))]
+    return bool(version) and all(r.get('checked_replica') for r in version)
 
 
 def _child(root, value, base=None):
@@ -105,6 +135,9 @@ class Index:
                            'declaration_path': path.relative_to(self.repo).as_posix(),
                            'requires_page_check': bool(data.get('needs_page_check') or data.get('requires_page_check')),
                            'complete_text': data.get('complete_text'), 'url': data.get('url')}
+                    if replica_version(row, rec['declaration_path']):
+                        rec['replica_version'] = True
+                        rec['checked_replica'] = replica_declaration(row, rec['declaration_path'])
                     if acceptable is False:
                         self.by_sha.setdefault(source_sha(rec), []).append(rec)
                     elif (acceptable is not False and (acceptable is True or row.get('produced_by') in OFFICIAL_PRODUCERS)
@@ -322,6 +355,25 @@ def blank(disclosed_refs, prior=None):
                               for ref in distinct.values()]}
 
 
+def _held_quote_errors(repo, path, ref):
+    """The held bytes hash to the reference's text_sha256 and contain its quote at its exact span."""
+    errors = []
+    try:
+        raw = _child(repo, ref.get('text_path')).read_bytes()
+        text = raw.decode('utf-8')
+        if hashlib.sha256(raw).hexdigest() != ref.get('text_sha256'):
+            errors.append(path + ':working_text_text_hash_mismatch')
+        start, end = ref.get('char_start'), ref.get('char_end')
+        if (type(start) is not int or type(end) is not int or not 0 <= start < end <= len(text)
+                or text[start:end] != ref.get('quote')):
+            errors.append(path + ':working_text_quote_mismatch')
+        if path == 'original_representation' and (start != 0 or end != len(text)):
+            errors.append(path + ':working_text_incomplete_representation_span')
+    except (OSError, ValueError, UnicodeError, TypeError):
+        errors.append(path + ':working_text_missing_bytes')
+    return errors
+
+
 def policy(claim, repo, index=None, flags=None):
     """Return (errors, exact dependent refs). Bytes/quotes are additional checks.
 
@@ -333,6 +385,12 @@ def policy(claim, repo, index=None, flags=None):
     """
     index = index or Index(repo)
     errors, dependent = [], []
+    replica_used = any(checked_replica(ref, index) for _, ref in references(claim))
+    if replica_used:
+        if REPLICA_FLAG not in (claim.get('informational_flags') or []):
+            errors.append('checked_replica:proquest_bytes_flag_required')
+    elif REPLICA_FLAG in (claim.get('informational_flags') or []):
+        errors.append('checked_replica:proquest_bytes_flag_without_pass')
     for path, ref in references(claim):
         matches = index.match(ref)
         known_derivative_hash = bool(index.by_sha.get(source_sha(ref)))
@@ -340,6 +398,15 @@ def policy(claim, repo, index=None, flags=None):
         # Recognition must not trust a claim-controlled path: an alias cannot
         # erase the derivative classification attached to the actual source hash.
         if (not known_derivative_hash and not flagged) or index.exact_official(ref):
+            continue
+        if checked_replica(ref, index):
+            # Photius P4: a checked replica needs no working-text grade, disclosure or confirmation, but it is
+            # still this order's text and its held bytes must still be exactly what the claim quotes
+            # (independent review of #284, blocking findings 1 and 2).
+            if path == 'original_representation' or path.endswith('.original_source'):
+                if ref.get('instrument_id') != claim.get('instrument_id'):
+                    errors.append(path + ':checked_replica_wrong_order')
+            errors.extend(_held_quote_errors(repo, path, ref))
             continue
         dependent.append(ref)
         if ref.get('acceptable_as_original') is not False or ref.get('grade') not in GRADES:
@@ -355,19 +422,7 @@ def policy(claim, repo, index=None, flags=None):
                 errors.append(path + ':working_text_wrong_order')
         if any(r.get('complete_text') is False for r in exact):
             errors.append(path + ':working_text_known_incomplete')
-        try:
-            raw = _child(repo, ref.get('text_path')).read_bytes()
-            text = raw.decode('utf-8')
-            if hashlib.sha256(raw).hexdigest() != ref.get('text_sha256'):
-                errors.append(path + ':working_text_text_hash_mismatch')
-            start, end = ref.get('char_start'), ref.get('char_end')
-            if (type(start) is not int or type(end) is not int or not 0 <= start < end <= len(text)
-                    or text[start:end] != ref.get('quote')):
-                errors.append(path + ':working_text_quote_mismatch')
-            if path == 'original_representation' and (start != 0 or end != len(text)):
-                errors.append(path + ':working_text_incomplete_representation_span')
-        except (OSError, ValueError, UnicodeError, TypeError):
-            errors.append(path + ':working_text_missing_bytes')
+        errors.extend(_held_quote_errors(repo, path, ref))
     for n, clause in enumerate(claim.get('operative_clauses', []) if isinstance(claim, dict) else []):
         if not isinstance(clause, dict):
             continue

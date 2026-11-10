@@ -338,12 +338,16 @@ class _Collector:
 
     def registered_grade(self, iid, ref):
         """The single working-text grade the producer registered for this exact text, if any."""
+        import working_text
         if self._registry is None:
-            import working_text
             self._registry = working_text.Index(self.repo)
             self._grades = working_text.GRADES
-        grades = {r["grade"] for r in self._registry.match(ref)
-                  if r["instrument_id"] == iid and r.get("text_sha256") in (None, ref.get("text_sha256"))}
+        matches = [r for r in self._registry.match(ref)
+                   if r["instrument_id"] == iid and r.get("text_sha256") in (None, ref.get("text_sha256"))]
+        if working_text.checked_replica(dict(ref, grade=working_text.REPLICA_GRADE,
+                                             acceptable_as_original=False, instrument_id=iid), self._registry):
+            return working_text.REPLICA_GRADE
+        grades = {r["grade"] for r in matches}
         if len(grades) == 1:
             (grade,) = grades
             if grade in self._grades:

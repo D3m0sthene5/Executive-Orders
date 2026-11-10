@@ -1,3 +1,15 @@
+## 2026-11-10 turn5: PR262 C15 scope corrected and freshly validated
+
+- **Done:** Five claim-kit runtime files plus three tests only; zero tracker-folder diff against current main. Fresh127 focused tests pass; scoped checker finds0 affected existing replica claims. Native paired replay1156to1156 with identical per-order results and652 unchanged local input diagnostics. Full receipts: research/excavator/mommsen-4-2026-11-10/code-p4/c15-v2-validation/REPORT.md.
+- **Review:** Claude full-diff review and owner morning code merge required; lane never merges code. Earlier draft tests remain historical. Draft patch losses disclosed once in PR body; no further recovery work.
+- **Limits:** No source grade/status/codebook/claim/census change;0new claims and human certification0. Native source exceptions remain separate. **Recorded:** F-20261110-mommsen4-c15-final. **Asks:** @Owner: none.
+
+## 2026-11-10 C15 scope-correction candidate, validation pending
+
+- ALL tracker runtime/test hunks restored to target main. Only five claim-kit runtime files and three focused test files remain. No prior test/replay approves this revised combined head.
+- Old d2 commit and all available packet artifacts retained; WIP17233-byte draft and0ed intermediate losses are disclosed separately and not reconstructed as originals.
+- Native focused gates, exact revised replay, append-only reconciliation, PR body/new-head publication and Claude full-diff review remain required in a fresh context. Owner code merge only.
+- **Asks:** @Owner: none.
 ## 2026-11-10 08:25 UTC: MOMMSEN-I turn2, pure255 rebuilt; new6750-6904 source-held
 
 - **Production:** EO6606G completed blocked; R05/R07 two successive substantive zero-claim cohorts stop old6000-6749. S-8-6 assigned NEW6750-6904, excluding all prior III keys/owners/Papinian strata. S01 reserved20, source pass1 EO6871; its fresh-gated medium Sol producer completed blocked/no claim,19others source-held. New range has one zero cohort, not a two-zero stop. No unattempted unreserved candidate remains in this range snapshot. Need new evidence/disjoint work; no source-held padding. Active producers0/reviewers0.

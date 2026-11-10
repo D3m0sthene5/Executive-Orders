@@ -22,9 +22,9 @@ from pathlib import Path
 import working_text as W
 
 FRAGMENT_GLOBS = ('jobs/*/output/FRAGMENTS*.jsonl', 'jobs/*/data/**/FRAGMENTS*.jsonl')
-CACHE_FORMAT = 'eo-fragment-index-cache/v2'
+CACHE_FORMAT = 'eo-fragment-index-cache/v4'
 CACHE_KEEP = 3
-_ROW_FIELDS = 11
+_ROW_FIELDS = 13
 
 
 def _realpath(joined, memo, resolutions):
@@ -131,7 +131,9 @@ def _raw_rows(lines):
                      sha, data.get('text_sha256'), data.get('text_path'),
                      data.get('needs_page_check') is False,
                      bool(data.get('needs_page_check') or data.get('requires_page_check')),
-                     data.get('complete_text'), data.get('url'), row.get('produced_by')])
+                     data.get('complete_text'), data.get('url'), row.get('produced_by'),
+                     W.replica_version(row, W.REPLICA_PATH),
+                     W.replica_declaration(row, W.REPLICA_PATH)])
     return rows
 
 
@@ -231,7 +233,7 @@ def resolve(repo, paths, files):
         base = str(path.parent)
         decl = path.relative_to(repo).as_posix()
         for (iid, grade, acceptable, sha, text_sha, raw_text_path, needs_false, requires, complete, url,
-             produced_by) in rows:
+             produced_by, replica_version, replica_pass) in rows:
             try:
                 text_path = child(raw_text_path, base)
                 # Some producers publish repo-relative text paths.
@@ -244,6 +246,9 @@ def resolve(repo, paths, files):
                    'sha256': sha, 'text_sha256': text_sha, 'text_path': rel,
                    'declaration_path': decl, 'requires_page_check': requires,
                    'complete_text': complete, 'url': url}
+            if decl == W.REPLICA_PATH and replica_version:
+                rec['replica_version'] = True
+                rec['checked_replica'] = replica_pass
             if acceptable is False:
                 by_sha.setdefault(W.source_sha(rec), []).append(rec)
             elif ((acceptable is True or produced_by in W.OFFICIAL_PRODUCERS)

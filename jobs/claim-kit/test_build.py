@@ -341,8 +341,6 @@ class BuildIntegrationTests(unittest.TestCase):
             K.load_dossier(self.out, "EO:1")
 
 
-if __name__ == "__main__":
-    unittest.main()
 
 
 class PrintedReferenceTests(unittest.TestCase):
@@ -413,3 +411,21 @@ class PrintedReferenceTests(unittest.TestCase):
         d2 = self.dossier("EO:2")
         self.assertIn(B.NAME_MATCH_LEAD + ": EO:7", d2["missing"])
         self.assertIn("ACTOR_TEXT:EO:7", d2["evidence"])
+
+
+class ReplicaRankTests(unittest.TestCase):
+    """Claude review of #262, blocking finding 1: a registered P4 checked replica must not outrank an
+    R37 official printing of the same order (545 orders on main would switch to the ProQuest replica)."""
+
+    def test_checked_replica_stays_below_an_official_printing(self):
+        replica = {"instrument_id": "EO:1", "grade": "archival_replica_checked", "acceptable_as_original": False,
+                   "text_path": "jobs/pinakes-proquest-ingest/output/texts/EO_1.txt"}
+        printing = {"instrument_id": "EO:1", "grade": "official_printing", "acceptable_as_original": False,
+                    "text_path": "jobs/photius-gpo-volumes/output/texts/EO_1.txt"}
+        registered = {("EO:1", replica["text_path"], "archival_replica_checked")}
+        self.assertEqual(B.text_tier(replica, registered), 2)
+        self.assertLess(B.rank_text(printing, registered), B.rank_text(replica, registered))
+
+
+if __name__ == "__main__":
+    unittest.main()

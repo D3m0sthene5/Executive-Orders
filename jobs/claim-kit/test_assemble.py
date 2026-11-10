@@ -447,6 +447,86 @@ class AssemblyTests(unittest.TestCase):
         # The official ending source is still official; the ruling does not relabel it.
         self.assertNotIn('acceptable_as_original', claim['whole_order_end']['source'])
 
+    def checked_replica_fixture(self, final='pass', producer='photius-replica-check',
+                                declaration='jobs/photius-replica-check/output/FRAGMENTS.jsonl'):
+        ref = self.working_fixture()
+        ref['grade'] = 'archival_replica_checked'
+        self.dossier['evidence']['ORIGINAL:EO:1']['grade'] = ref['grade']
+        for clause in self.dossier['clauses']:
+            clause['source']['grade'] = ref['grade']
+        self.fragment.unlink()
+        target = self.repo / declaration
+        target.parent.mkdir(parents=True, exist_ok=True)
+        row = {'kind': 'original_representation', 'instrument_id': 'EO:1',
+               'produced_by': producer, 'grade': ref['grade'], 'acceptable_as_original': False,
+               'data': dict(ref, needs_page_check=False, check={'final': final})}
+        target.write_text(json.dumps(row) + '\n', encoding='utf-8')
+        self.sheet.pop('working_text', None)
+        self.refresh()
+        self.sheet['dossier_sha256'] = self.dossier['fingerprint']
+        return row, target
+
+    def test_checked_replica_assembles_with_false_original_and_flag(self):
+        self.checked_replica_fixture()
+        claim, errors = self.assemble()
+        self.assertEqual(errors, [])
+        self.assertIs(claim['original_representation']['acceptable_as_original'], False)
+        self.assertEqual(claim['informational_flags'], ['REPLICA_CHECKED_PROQUEST_BYTES'])
+        self.assertEqual(A.check_claim(claim, self.repo, self.dossier), [])
+        claim.pop('informational_flags')
+        self.assertIn('checked_replica:proquest_bytes_flag_required', A.check_claim(claim, self.repo, self.dossier))
+
+    def test_checked_replica_refuses_fail_unsure_and_forged_provenance(self):
+        for final, producer, declaration in (
+                ('fail', 'photius-replica-check', 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'),
+                ('unsure', 'photius-replica-check', 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'),
+                ('pass', 'forged-producer', 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'),
+                ('pass', 'photius-replica-check', 'jobs/forged/output/FRAGMENTS.jsonl')):
+            with self.subTest(final=final, producer=producer, declaration=declaration):
+                self.setUp()
+                self.checked_replica_fixture(final, producer, declaration)
+                self.assertFails('lead_is_not_original')
+
+    def test_checked_replica_ending_source_sets_flag_with_official_original(self):
+        original = self.dossier['evidence']['ACT:EO:1>EO:2']
+        source = original['source']
+        actor_text = original['text']
+        actor_path = self.repo / 'actor.txt'
+        actor_path.write_text(actor_text, encoding='utf-8')
+        digest = hashlib.sha256(actor_path.read_bytes()).hexdigest()
+        original.update(char_start=0, char_end=len(actor_text))
+        source.update(instrument_id='EO:2', grade='archival_replica_checked', acceptable_as_original=False,
+                      sha256=digest, text_sha256=digest, text_path='actor.txt', local_path='actor.txt')
+        fragment = self.repo / 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'
+        fragment.parent.mkdir(parents=True)
+        fragment.write_text(json.dumps({
+            'kind': 'original_representation', 'instrument_id': 'EO:2',
+            'produced_by': 'photius-replica-check', 'grade': 'archival_replica_checked',
+            'acceptable_as_original': False,
+            'data': dict(source, needs_page_check=False, check={'final': 'pass'})}) + '\n', encoding='utf-8')
+        self.refresh()
+        self.sheet['dossier_sha256'] = self.dossier['fingerprint']
+        claim, errors = self.assemble()
+        self.assertEqual(errors, [])
+        self.assertEqual(claim['informational_flags'], ['REPLICA_CHECKED_PROQUEST_BYTES'])
+        self.assertEqual(A.check_claim(claim, self.repo, self.dossier), [])
+
+    def test_checked_replica_rejects_incomplete_page_debt_and_conflicting_version(self):
+        for field, value in (('complete_text', False), ('requires_page_check', True)):
+            with self.subTest(field=field):
+                self.setUp()
+                row, target = self.checked_replica_fixture()
+                row['data'][field] = value
+                target.write_text(json.dumps(row) + '\n', encoding='utf-8')
+                self.assertFails('lead_is_not_original')
+        self.setUp()
+        row, target = self.checked_replica_fixture()
+        conflict = deepcopy(row)
+        conflict['grade'] = conflict['data']['grade'] = 'archival_replica_check_failed_or_pending'
+        conflict['data']['check'] = {'final': 'fail'}
+        target.write_text(json.dumps(row) + '\n' + json.dumps(conflict) + '\n', encoding='utf-8')
+        self.assertFails('lead_is_not_original')
+
     def test_working_text_requires_identity_completeness_and_note(self):
         self.working_fixture()
         for field in ('identity_confirmed', 'complete_text_confirmed'):

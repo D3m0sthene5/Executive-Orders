@@ -1,0 +1,501 @@
+diff --git a/jobs/claim-checker/test_checker.py b/jobs/claim-checker/test_checker.py
+index 42e0a40c0b..c2de9b86f6 100644
+--- a/jobs/claim-checker/test_checker.py
++++ b/jobs/claim-checker/test_checker.py
+@@ -682,6 +682,31 @@ class CheckerTests(unittest.TestCase):
+         self.assertEqual(summary['text_evidence_tier'], 'transcription_dependent')
+         self.assertFalse(claim['original_representation']['acceptable_as_original'])
+ 
++    def test_checked_replica_passes_existing_checker_without_original_upgrade(self):
++        claim = self.working_claim()
++        source = claim['original_representation']
++        source['grade'] = 'archival_replica_checked'
++        for clause in claim['operative_clauses']:
++            clause['original_source']['grade'] = 'archival_replica_checked'
++        claim.pop('working_text')
++        claim['informational_flags'] = ['REPLICA_CHECKED_PROQUEST_BYTES']
++        old = self.repo / 'jobs/app-executive-orders/output/FRAGMENTS.jsonl'
++        old.unlink()
++        fragment = self.repo / 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'
++        fragment.parent.mkdir(parents=True)
++        fragment.write_text(json.dumps({'kind': 'original_representation', 'instrument_id': 'EO:90001',
++            'produced_by': 'photius-replica-check', 'grade': 'archival_replica_checked',
++            'acceptable_as_original': False,
++            'data': dict(source, needs_page_check=False, check={'final': 'pass'})}) + '\n')
++        self.ctx.working_text_index = C.W.Index(self.repo)
++        rows, errors, status = C.check_claim(claim, self.ctx)
++        summary = C.summarise_claim('test', 'test.jsonl', 1, claim, rows, errors, status, self.ctx)
++        self.assertTrue(summary['all_checks_passed'], summary)
++        self.assertIs(source['acceptable_as_original'], False)
++        claim.pop('informational_flags')
++        rows, _, _ = C.check_claim(claim, self.ctx)
++        self.assertTrue(rows_for(rows, 'working_text_policy', 'fail'))
++
+     def test_working_text_does_not_waive_custody_only_or_missing_ending(self):
+         claim = self.working_claim()
+         original_sha = claim['original_representation']['sha256']
+diff --git a/jobs/claim-kit/assemble.py b/jobs/claim-kit/assemble.py
+index 80986007f0..13edb29ec0 100644
+--- a/jobs/claim-kit/assemble.py
++++ b/jobs/claim-kit/assemble.py
+@@ -16,6 +16,7 @@ import re
+ import sys
+ sys.path.insert(0, str(Path(__file__).resolve().parent))
+ import working_text as W
++import fragment_cache as FC
+ import factual_events as F
+ 
+ 
+@@ -444,15 +445,17 @@ def _assemble(sheet, dossier, repo, interval_partial=False):
+     grade += " " + " ".join(str(original.get(k, "")) for k in
+                               ("source_grade", "kind", "role", "type", "origin"))
+     provisional = original_record.get("acceptable_as_original") is False or original.get("acceptable_as_original") is False
++    replica_checked = (W.checked_replica(original, FC.shared(repo))
++                       if provisional and original.get("grade") == W.REPLICA_GRADE else False)
+     if provisional:
+-        if dossier.get("working_text_confirmation") is not None:
++        if dossier.get("working_text_confirmation") is not None and not replica_checked:
+             try:
+                 W.require_current_confirmation(dossier, repo)
+             except ValueError:
+                 errors.append("working_text:prior_confirmation_stale")
+-        if original.get("grade") not in W.GRADES or original.get("acceptable_as_original") is not False:
++        if (not replica_checked and original.get("grade") not in W.GRADES) or original.get("acceptable_as_original") is not False:
+             errors.append("lead_is_not_original:working_text_grade_required")
+-        if not isinstance(sheet.get("working_text"), dict):
++        if not replica_checked and not isinstance(sheet.get("working_text"), dict):
+             errors.append("working_text:disclosure_required")
+     elif "richardson" in grade.lower() or "compiled_transcription_lead" in grade.lower():
+         errors.append("lead_is_not_original")
+@@ -629,6 +632,11 @@ def _assemble(sheet, dossier, repo, interval_partial=False):
+         elif isinstance(claim["working_text"].get("confirmations"), list):
+             claim["working_text"]["confirmations"] = [c for c in claim["working_text"]["confirmations"]
+                 if isinstance(c, dict) and W.key(c) in used]
++    replica_refs = [ref for _, ref in W.references(claim) if ref.get("grade") == W.REPLICA_GRADE]
++    if replica_refs:
++        replica_index = FC.shared(repo)
++        if any(W.checked_replica(ref, replica_index) for ref in replica_refs):
++            claim["informational_flags"] = [W.REPLICA_FLAG]
+     checks = check_claim(claim, repo, dossier)
+     if interval_partial:
+         gate_errors = _gate(repo).validate_claim(claim, expected_status=dossier.get("whole_order_status"))
+diff --git a/jobs/claim-kit/build.py b/jobs/claim-kit/build.py
+index 0ea8dd1811..580272bd96 100644
+--- a/jobs/claim-kit/build.py
++++ b/jobs/claim-kit/build.py
+@@ -64,6 +64,9 @@ def text_tier(r, registered=None):
+     (inputs.load_corpus); without it a working-text grade label is taken as given."""
+     if r.get('acceptable_as_original'):
+         return 0
++    if (r.get('grade') == W.REPLICA_GRADE and registered is not None and
++            (r.get('instrument_id'), r.get('text_path'), r.get('grade')) in registered):
++        return 0
+     if r.get('grade') in W.GRADES and (registered is None or
+             (r.get('instrument_id'),r.get('text_path'),r.get('grade')) in registered):
+         return 1
+@@ -249,7 +252,9 @@ def package(iid, corpus, selected, clause_rec, terms, acts, chain_rec, missing,
+     if rec and rec.get('requires_page_check'):missing.append('Official-source page location requires a separate page/image check before original confirmation.')
+     if not rec: missing.append('No attributed held text located for this order.')
+     elif not rec.get('acceptable_as_original'):
+-        if rec.get('grade') in W.GRADES:
++        if rec.get('grade') == W.REPLICA_GRADE:
++            missing.append('Checked ProQuest replica credits the text step; bytes remain ProQuest-dependent and original authentication is not established.')
++        elif rec.get('grade') in W.GRADES:
+             missing.append('Provisional working text requires identity, complete-text and any page-check confirmations; retain original-acquisition and quotation-recheck obligations.')
+         else:
+             missing.append('Held representation is a lead; complete official original requires confirmation/acquisition.')
+diff --git a/jobs/claim-kit/fragment_cache.py b/jobs/claim-kit/fragment_cache.py
+index c9f0f95d15..1bc7d0ce46 100644
+--- a/jobs/claim-kit/fragment_cache.py
++++ b/jobs/claim-kit/fragment_cache.py
+@@ -22,9 +22,9 @@ from pathlib import Path
+ import working_text as W
+ 
+ FRAGMENT_GLOBS = ('jobs/*/output/FRAGMENTS*.jsonl', 'jobs/*/data/**/FRAGMENTS*.jsonl')
+-CACHE_FORMAT = 'eo-fragment-index-cache/v2'
++CACHE_FORMAT = 'eo-fragment-index-cache/v4'
+ CACHE_KEEP = 3
+-_ROW_FIELDS = 11
++_ROW_FIELDS = 13
+ 
+ 
+ def _realpath(joined, memo, resolutions):
+@@ -131,7 +131,9 @@ def _raw_rows(lines):
+                      sha, data.get('text_sha256'), data.get('text_path'),
+                      data.get('needs_page_check') is False,
+                      bool(data.get('needs_page_check') or data.get('requires_page_check')),
+-                     data.get('complete_text'), data.get('url'), row.get('produced_by')])
++                     data.get('complete_text'), data.get('url'), row.get('produced_by'),
++                     W.replica_version(row, W.REPLICA_PATH),
++                     W.replica_declaration(row, W.REPLICA_PATH)])
+     return rows
+ 
+ 
+@@ -231,7 +233,7 @@ def resolve(repo, paths, files):
+         base = str(path.parent)
+         decl = path.relative_to(repo).as_posix()
+         for (iid, grade, acceptable, sha, text_sha, raw_text_path, needs_false, requires, complete, url,
+-             produced_by) in rows:
++             produced_by, replica_version, replica_pass) in rows:
+             try:
+                 text_path = child(raw_text_path, base)
+                 # Some producers publish repo-relative text paths.
+@@ -244,6 +246,9 @@ def resolve(repo, paths, files):
+                    'sha256': sha, 'text_sha256': text_sha, 'text_path': rel,
+                    'declaration_path': decl, 'requires_page_check': requires,
+                    'complete_text': complete, 'url': url}
++            if decl == W.REPLICA_PATH and replica_version:
++                rec['replica_version'] = True
++                rec['checked_replica'] = replica_pass
+             if acceptable is False:
+                 by_sha.setdefault(W.source_sha(rec), []).append(rec)
+             elif ((acceptable is True or produced_by in W.OFFICIAL_PRODUCERS)
+diff --git a/jobs/claim-kit/inputs.py b/jobs/claim-kit/inputs.py
+index 2e76c14ab2..37a1cf7482 100644
+--- a/jobs/claim-kit/inputs.py
++++ b/jobs/claim-kit/inputs.py
+@@ -274,12 +274,16 @@ class _Collector:
+ 
+     def registered_grade(self, iid, ref):
+         """The single working-text grade the producer registered for this exact text, if any."""
++        import working_text
+         if self._registry is None:
+-            import working_text
+             self._registry = working_text.Index(self.repo)
+             self._grades = working_text.GRADES
+-        grades = {r["grade"] for r in self._registry.match(ref)
+-                  if r["instrument_id"] == iid and r.get("text_sha256") in (None, ref.get("text_sha256"))}
++        matches = [r for r in self._registry.match(ref)
++                   if r["instrument_id"] == iid and r.get("text_sha256") in (None, ref.get("text_sha256"))]
++        if working_text.checked_replica(dict(ref, grade=working_text.REPLICA_GRADE,
++                                             acceptable_as_original=False, instrument_id=iid), self._registry):
++            return working_text.REPLICA_GRADE
++        grades = {r["grade"] for r in matches}
+         if len(grades) == 1:
+             (grade,) = grades
+             if grade in self._grades:
+diff --git a/jobs/claim-kit/test_assemble.py b/jobs/claim-kit/test_assemble.py
+index 073f64c30e..81a72ea0e1 100644
+--- a/jobs/claim-kit/test_assemble.py
++++ b/jobs/claim-kit/test_assemble.py
+@@ -447,6 +447,86 @@ class AssemblyTests(unittest.TestCase):
+         # The official ending source is still official; the ruling does not relabel it.
+         self.assertNotIn('acceptable_as_original', claim['whole_order_end']['source'])
+ 
++    def checked_replica_fixture(self, final='pass', producer='photius-replica-check',
++                                declaration='jobs/photius-replica-check/output/FRAGMENTS.jsonl'):
++        ref = self.working_fixture()
++        ref['grade'] = 'archival_replica_checked'
++        self.dossier['evidence']['ORIGINAL:EO:1']['grade'] = ref['grade']
++        for clause in self.dossier['clauses']:
++            clause['source']['grade'] = ref['grade']
++        self.fragment.unlink()
++        target = self.repo / declaration
++        target.parent.mkdir(parents=True, exist_ok=True)
++        row = {'kind': 'original_representation', 'instrument_id': 'EO:1',
++               'produced_by': producer, 'grade': ref['grade'], 'acceptable_as_original': False,
++               'data': dict(ref, needs_page_check=False, check={'final': final})}
++        target.write_text(json.dumps(row) + '\n', encoding='utf-8')
++        self.sheet.pop('working_text', None)
++        self.refresh()
++        self.sheet['dossier_sha256'] = self.dossier['fingerprint']
++        return row, target
++
++    def test_checked_replica_assembles_with_false_original_and_flag(self):
++        self.checked_replica_fixture()
++        claim, errors = self.assemble()
++        self.assertEqual(errors, [])
++        self.assertIs(claim['original_representation']['acceptable_as_original'], False)
++        self.assertEqual(claim['informational_flags'], ['REPLICA_CHECKED_PROQUEST_BYTES'])
++        self.assertEqual(A.check_claim(claim, self.repo, self.dossier), [])
++        claim.pop('informational_flags')
++        self.assertIn('checked_replica:proquest_bytes_flag_required', A.check_claim(claim, self.repo, self.dossier))
++
++    def test_checked_replica_refuses_fail_unsure_and_forged_provenance(self):
++        for final, producer, declaration in (
++                ('fail', 'photius-replica-check', 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'),
++                ('unsure', 'photius-replica-check', 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'),
++                ('pass', 'forged-producer', 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'),
++                ('pass', 'photius-replica-check', 'jobs/forged/output/FRAGMENTS.jsonl')):
++            with self.subTest(final=final, producer=producer, declaration=declaration):
++                self.setUp()
++                self.checked_replica_fixture(final, producer, declaration)
++                self.assertFails('lead_is_not_original')
++
++    def test_checked_replica_ending_source_sets_flag_with_official_original(self):
++        original = self.dossier['evidence']['ACT:EO:1>EO:2']
++        source = original['source']
++        actor_text = original['text']
++        actor_path = self.repo / 'actor.txt'
++        actor_path.write_text(actor_text, encoding='utf-8')
++        digest = hashlib.sha256(actor_path.read_bytes()).hexdigest()
++        original.update(char_start=0, char_end=len(actor_text))
++        source.update(instrument_id='EO:2', grade='archival_replica_checked', acceptable_as_original=False,
++                      sha256=digest, text_sha256=digest, text_path='actor.txt', local_path='actor.txt')
++        fragment = self.repo / 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'
++        fragment.parent.mkdir(parents=True)
++        fragment.write_text(json.dumps({
++            'kind': 'original_representation', 'instrument_id': 'EO:2',
++            'produced_by': 'photius-replica-check', 'grade': 'archival_replica_checked',
++            'acceptable_as_original': False,
++            'data': dict(source, needs_page_check=False, check={'final': 'pass'})}) + '\n', encoding='utf-8')
++        self.refresh()
++        self.sheet['dossier_sha256'] = self.dossier['fingerprint']
++        claim, errors = self.assemble()
++        self.assertEqual(errors, [])
++        self.assertEqual(claim['informational_flags'], ['REPLICA_CHECKED_PROQUEST_BYTES'])
++        self.assertEqual(A.check_claim(claim, self.repo, self.dossier), [])
++
++    def test_checked_replica_rejects_incomplete_page_debt_and_conflicting_version(self):
++        for field, value in (('complete_text', False), ('requires_page_check', True)):
++            with self.subTest(field=field):
++                self.setUp()
++                row, target = self.checked_replica_fixture()
++                row['data'][field] = value
++                target.write_text(json.dumps(row) + '\n', encoding='utf-8')
++                self.assertFails('lead_is_not_original')
++        self.setUp()
++        row, target = self.checked_replica_fixture()
++        conflict = deepcopy(row)
++        conflict['grade'] = conflict['data']['grade'] = 'archival_replica_check_failed_or_pending'
++        conflict['data']['check'] = {'final': 'fail'}
++        target.write_text(json.dumps(row) + '\n' + json.dumps(conflict) + '\n', encoding='utf-8')
++        self.assertFails('lead_is_not_original')
++
+     def test_working_text_requires_identity_completeness_and_note(self):
+         self.working_fixture()
+         for field in ('identity_confirmed', 'complete_text_confirmed'):
+diff --git a/jobs/claim-kit/test_lachmann_reuse.py b/jobs/claim-kit/test_lachmann_reuse.py
+index c4b95d30e7..7d42b3f353 100644
+--- a/jobs/claim-kit/test_lachmann_reuse.py
++++ b/jobs/claim-kit/test_lachmann_reuse.py
+@@ -40,6 +40,18 @@ class ReuseTests(unittest.TestCase):
+         prior = W.matching_confirmation(self.record, self.repo)
+         self.assertEqual(prior['record'], self.record)
+         self.assertEqual(prior['source_path'], W.CONFIRMATION_PATHS[0])
++        # Historical frozen prior_confirmation.fragments embeds the whole declaration.
++        # P4 metadata must not alter a non-Photius declaration's exact object shape.
++        expected_fragment = {'instrument_id': 'EO:7', 'grade': 'mirror_transcription',
++                             'acceptable_as_original': False, 'sha256': 'a' * 64,
++                             'text_sha256': self.record['text_sha256'], 'text_path': self.text_path,
++                             'declaration_path': 'jobs/source/output/FRAGMENTS.jsonl',
++                             'requires_page_check': True, 'complete_text': None, 'url': None}
++        self.assertEqual(prior['fragments'], [expected_fragment])
++        from fragment_cache import build
++        cached, _, _, _ = build(self.repo)
++        self.assertEqual(W.matching_confirmation(self.record, self.repo, index=cached)['fragments'],
++                         [expected_fragment])
+         self.assertTrue(W.blank([self.record], prior)['confirmations'][0]['pages_confirmed'])
+         dossier = {'instrument_id': 'EO:7', 'original_source_id': 'ORIGINAL:EO:7',
+                    'evidence': {'ORIGINAL:EO:7': {'source': self.record}},
+diff --git a/jobs/claim-kit/test_working_text_index.py b/jobs/claim-kit/test_working_text_index.py
+index 582810523e..a4098ada7b 100644
+--- a/jobs/claim-kit/test_working_text_index.py
++++ b/jobs/claim-kit/test_working_text_index.py
+@@ -53,6 +53,9 @@ def legacy(repo):
+                        'declaration_path': path.relative_to(repo).as_posix(),
+                        'requires_page_check': bool(data.get('needs_page_check') or data.get('requires_page_check')),
+                        'complete_text': data.get('complete_text'), 'url': data.get('url')}
++                if W.replica_version(row, rec['declaration_path']):
++                    rec['replica_version'] = True
++                    rec['checked_replica'] = W.replica_declaration(row, rec['declaration_path'])
+                 if acceptable is False:
+                     by_sha.setdefault(W.source_sha(rec), []).append(rec)
+                 elif (acceptable is not False and (acceptable is True or row.get('produced_by') in W.OFFICIAL_PRODUCERS)
+@@ -135,6 +138,24 @@ class Base(unittest.TestCase):
+ 
+ 
+ class IndexCacheTests(Base):
++    def test_checked_replica_pass_survives_cache_without_promoting_fail(self):
++        self.write('texts/a.txt', 'alpha')
++        good = row('EO:1', 1, 'texts/a.txt', acceptable=False, produced_by='photius-replica-check',
++                   grade='archival_replica_checked', check={'final': 'pass'})
++        good.update(grade='archival_replica_checked', acceptable_as_original=False)
++        bad = json.loads(json.dumps(good))
++        bad['instrument_id'] = 'EO:2'
++        bad['data']['check']['final'] = 'unsure'
++        self.provider(W.REPLICA_PATH, [good, bad])
++        first = built(self.repo)
++        hit = built(self.repo)
++        self.assertEqual(hit.cache_status, 'hit')
++        self.assertEqual(first.by_sha, hit.by_sha)
++        refs = [r for group in hit.by_sha.values() for r in group]
++        self.assertTrue(next(r for r in refs if r['instrument_id'] == 'EO:1')['checked_replica'])
++        self.assertFalse(next(r for r in refs if r['instrument_id'] == 'EO:2')['checked_replica'])
++        self.assertTrue(next(r for r in refs if r['instrument_id'] == 'EO:2')['replica_version'])
++
+     def test_cached_uncached_and_legacy_identical(self):
+         self.seed()
+         with mock.patch.dict(os.environ, {'CLAIM_KIT_INDEX_CACHE': '0'}):
+diff --git a/jobs/claim-kit/working_text.py b/jobs/claim-kit/working_text.py
+index 504c18d966..7757434130 100644
+--- a/jobs/claim-kit/working_text.py
++++ b/jobs/claim-kit/working_text.py
+@@ -21,6 +21,36 @@ OFFICIAL_PRODUCERS = frozenset({'fr-originals', 'ofr-compilations',
+ GRADES = frozenset({'compiled_transcription', 'compiled_transcription_lead',
+     'mirror_transcription', 'government_printed_copy', 'machine_read_government_printed_copy',
+     'government_printed_reproduction', 'archival_replica_scan_pending_codebook'})
++REPLICA_PATH = 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'
++REPLICA_GRADE = 'archival_replica_checked'
++REPLICA_FLAG = 'REPLICA_CHECKED_PROQUEST_BYTES'
++
++
++def replica_version(row, declaration_path):
++    data = row.get('data') if isinstance(row.get('data'), dict) else {}
++    return (declaration_path == REPLICA_PATH and row.get('kind') == 'original_representation'
++            and row.get('produced_by') == 'photius-replica-check'
++            and row.get('acceptable_as_original') is False
++            and data.get('acceptable_as_original') is False)
++
++
++def replica_declaration(row, declaration_path):
++    data = row.get('data') if isinstance(row.get('data'), dict) else {}
++    check = data.get('check') if isinstance(data.get('check'), dict) else {}
++    return (replica_version(row, declaration_path)
++            and row.get('grade') == data.get('grade') == REPLICA_GRADE
++            and data.get('needs_page_check') is False
++            and data.get('requires_page_check') is not True
++            and data.get('complete_text') is not False
++            and check.get('final') == 'pass')
++
++
++def checked_replica(ref, index):
++    if ref.get('grade') != REPLICA_GRADE or ref.get('acceptable_as_original') is not False:
++        return False
++    version = [r for r in index.match(ref) if r.get('replica_version')
++               and all(r.get(k) == ref.get(k) for k in ('instrument_id', 'sha256', 'text_sha256', 'text_path'))]
++    return bool(version) and all(r.get('checked_replica') for r in version)
+ 
+ 
+ def _child(root, value, base=None):
+@@ -105,6 +135,9 @@ class Index:
+                            'declaration_path': path.relative_to(self.repo).as_posix(),
+                            'requires_page_check': bool(data.get('needs_page_check') or data.get('requires_page_check')),
+                            'complete_text': data.get('complete_text'), 'url': data.get('url')}
++                    if replica_version(row, rec['declaration_path']):
++                        rec['replica_version'] = True
++                        rec['checked_replica'] = replica_declaration(row, rec['declaration_path'])
+                     if acceptable is False:
+                         self.by_sha.setdefault(source_sha(rec), []).append(rec)
+                     elif (acceptable is not False and (acceptable is True or row.get('produced_by') in OFFICIAL_PRODUCERS)
+@@ -333,13 +366,19 @@ def policy(claim, repo, index=None, flags=None):
+     """
+     index = index or Index(repo)
+     errors, dependent = [], []
++    replica_used = any(checked_replica(ref, index) for _, ref in references(claim))
++    if replica_used:
++        if claim.get('informational_flags') != [REPLICA_FLAG]:
++            errors.append('checked_replica:proquest_bytes_flag_required')
++    elif REPLICA_FLAG in (claim.get('informational_flags') or []):
++        errors.append('checked_replica:proquest_bytes_flag_without_pass')
+     for path, ref in references(claim):
+         matches = index.match(ref)
+         known_derivative_hash = bool(index.by_sha.get(source_sha(ref)))
+         flagged = ref.get('acceptable_as_original') is False or ref.get('grade') in GRADES
+         # Recognition must not trust a claim-controlled path: an alias cannot
+         # erase the derivative classification attached to the actual source hash.
+-        if (not known_derivative_hash and not flagged) or index.exact_official(ref):
++        if (not known_derivative_hash and not flagged) or index.exact_official(ref) or checked_replica(ref, index):
+             continue
+         dependent.append(ref)
+         if ref.get('acceptable_as_original') is not False or ref.get('grade') not in GRADES:
+diff --git a/jobs/readiness-tracker/test_tracker.py b/jobs/readiness-tracker/test_tracker.py
+index ea42f87633..1d241bc40c 100644
+--- a/jobs/readiness-tracker/test_tracker.py
++++ b/jobs/readiness-tracker/test_tracker.py
+@@ -246,11 +246,12 @@ class TrackerTest(unittest.TestCase):
+     def test_checked_proquest_replica_credits_the_text_step_with_a_flag(self):
+         # Photius P4 (2026-11-06): a replica a worker read and found to be the order counts for the text step; the row
+         # carries REPLICA_CHECKED_PROQUEST_BYTES; an unchecked or failed replica stays a lead.
+-        def frag(i, check, grade):
++        def frag(i, check, grade, *, final="pass"):
+             return json.dumps({"instrument_id": i, "kind": "original_representation", "produced_by": "photius-replica-check",
+                                "grade": grade, "acceptable_as_original": False,
+                                "data": {"url": "https://congressional.proquest.com/x", "sha256": "a" * 64,
+-                                        "page_or_item": "ProQuest replica", "needs_page_check": check, "grade": grade}})
++                                        "page_or_item": "ProQuest replica", "needs_page_check": check, "grade": grade,
++                                        "acceptable_as_original": False, "check": {"final": final}}})
+         pq = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "pinakes-proquest-ingest",
+                          "data": {"url": "https://congressional.proquest.com/x", "needs_page_check": True}})
+         nl = chr(10)
+@@ -270,6 +271,34 @@ class TrackerTest(unittest.TestCase):
+         self.assertEqual(orders["EO:1"]["informational_flags"], "")
+         self.assertEqual(s["text_step_from_checked_replica"], 0)
+ 
++    def test_checked_replica_requires_exact_pass_and_provenance(self):
++        rel = tracker.J["checked_replica_fragments"][0]
++        base = {"instrument_id": "EO:1", "kind": "original_representation",
++                "produced_by": "photius-replica-check", "grade": "archival_replica_checked",
++                "acceptable_as_original": False,
++                "data": {"grade": "archival_replica_checked", "acceptable_as_original": False,
++                         "needs_page_check": False, "check": {"final": "pass"}}}
++        for mutation in ({"data": {**base["data"], "check": {"final": "fail"}}},
++                         {"data": {**base["data"], "check": {"final": "unsure"}}},
++                         {"produced_by": "forged-producer"},
++                         {"grade": "archival_replica_check_failed_or_pending"},
++                         {"acceptable_as_original": True},
++                         {"data": {**base["data"], "acceptable_as_original": True}},
++                         {"data": {**base["data"], "complete_text": False}},
++                         {"data": {**base["data"], "requires_page_check": True}}):
++            with self.subTest(mutation=mutation):
++                row = {**base, **mutation}
++                orders, summary = self.run_tracker(files={rel: json.dumps(row) + "\n"})
++                self.assertEqual(orders["EO:1"]["step_original_text"], "open")
++                self.assertNotIn("REPLICA_CHECKED_PROQUEST_BYTES", orders["EO:1"]["informational_flags"])
++                self.assertEqual(summary["text_step_from_checked_replica"], 0)
++        conflicting = {**base, "grade": "archival_replica_check_failed_or_pending",
++                       "data": {**base["data"], "grade": "archival_replica_check_failed_or_pending",
++                                "check": {"final": "fail"}}}
++        orders, summary = self.run_tracker(files={rel: json.dumps(base) + "\n" + json.dumps(conflicting) + "\n"})
++        self.assertEqual(orders["EO:1"]["step_original_text"], "open")
++        self.assertEqual(summary["text_step_from_checked_replica"], 0)
++
+     def test_richardson_transcription_is_a_lead_never_the_original(self):
+         rec = json.dumps({"instrument_id": "EO:3", "kind": "original_representation", "produced_by": "richardson-volumes",
+                           "data": {"url": "https://hdl.handle.net/2027/ufl.31262091102953", "sha256": "f" * 64,
+diff --git a/jobs/readiness-tracker/tracker.py b/jobs/readiness-tracker/tracker.py
+index 75510a088b..cd34ccef1e 100644
+--- a/jobs/readiness-tracker/tracker.py
++++ b/jobs/readiness-tracker/tracker.py
+@@ -127,8 +127,7 @@ J = {
+     # a 5% sample adjudicated by Opus) is written with grade archival_replica_checked and needs_page_check false. It
+     # credits the text step like an official printing, and the row carries the flag REPLICA_CHECKED_PROQUEST_BYTES
+     # because the bytes are ProQuest's until NARA M1118 or the owner's Hein facts re-point them.
+-    "checked_replica_fragments": ["jobs/photius-replica-check/output/FRAGMENTS.jsonl",
+-                                  "jobs/montfaucon-page-check/output/FRAGMENTS_REPLICA.jsonl"],
++    "checked_replica_fragments": ["jobs/photius-replica-check/output/FRAGMENTS.jsonl"],
+     # Standalone working-text confirmations (jobs/lachmann). The agent-reviewed file is read second, so its line for an
+     # instrument replaces the machine line. They can only make the text step `provisional`, never an original.
+     "working_text_confirmations": ["jobs/lachmann/output/CONFIRMATIONS.jsonl",
+@@ -339,13 +338,25 @@ def load_job_outputs(root):
+         rows, more = read_jsonl(paths)
+         problems += more
+         ids = set()
++        versions = collections.defaultdict(list)
+         for r in rows:
+-            if job == 'montfaucon-page-check' and M.digest(r) not in montfaucon_valid['replica']:
+-                problems.append('INVALID_MONTFAUCON_REPLICA_FRAGMENT')
+-                continue
+-            if r.get("kind") == "original_representation" and isinstance(r.get("instrument_id"), str):
+-                checked_replica[r["instrument_id"]].append(r.get("data") if isinstance(r.get("data"), dict) else {})
+-                ids.add(r["instrument_id"])
++            data = r.get("data") if isinstance(r.get("data"), dict) else {}
++            check = data.get("check") if isinstance(data.get("check"), dict) else {}
++            if (r.get("kind") == "original_representation" and r.get("produced_by") == job
++                    and isinstance(r.get("instrument_id"), str)
++                    and r.get("acceptable_as_original") is False
++                    and data.get("acceptable_as_original") is False):
++                key = (r["instrument_id"], data.get("sha256"), data.get("text_sha256"), data.get("text_path"))
++                passed = (r.get("grade") == data.get("grade") == "archival_replica_checked"
++                          and data.get("needs_page_check") is False
++                          and data.get("requires_page_check") is not True
++                          and data.get("complete_text") is not False
++                          and check.get("final") == "pass")
++                versions[key].append((passed, data))
++        for key, records in versions.items():
++            if records and all(passed for passed, _ in records):
++                checked_replica[key[0]].append(records[0][1])
++                ids.add(key[0])
+         used[f"{job} (checked ProQuest replica: credits the text step, bytes ProQuest-dependent)"] = len(ids) if paths else None
+     replica = set()
+     for rel in J["archival_replica_fragments"]:
