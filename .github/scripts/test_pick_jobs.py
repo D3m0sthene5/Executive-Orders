@@ -52,6 +52,10 @@ class SchedulerTest(unittest.TestCase):
         self.old = Path.cwd()
         os.chdir(self.tmp.name)
         Path('jobs').mkdir()
+        # No test reaches GitHub; tests of the run-history lookup patch github() themselves.
+        history = patch.object(picker, 'previous_sweep_commit', return_value=None)
+        history.start()
+        self.addCleanup(history.stop)
 
     def tearDown(self):
         os.chdir(self.old)
@@ -152,8 +156,37 @@ class SchedulerTest(unittest.TestCase):
         self.job('producer')
         Path('jobs/producer/DAILY').touch()
         self.job('consumer', after=['producer'])
-        out = self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON)
+        # The daily run is also a sweep (2026-11-09), so it reads changes too; none here.
+        with patch.object(picker, 'sweep_changes', return_value=[]):
+            out = self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON)
         self.assertEqual(out, {'direct': 'producer', 'jobs': 'producer consumer'})
+
+    def test_daily_run_is_also_a_sweep(self):
+        # Every scheduled run is a sweep, so the previous scheduled run is always the previous sweep.
+        self.job('producer')
+        Path('jobs/producer/DAILY').touch()
+        self.job('edited')
+        self.job('reader', after=['edited'])
+        with patch.object(picker, 'sweep_changes', return_value=['jobs/edited/job.py']):
+            out = self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON)
+        self.assertEqual(set(out['jobs'].split()), {'producer', 'edited', 'reader'})
+        self.assertEqual(out.get('downstream'), 'reader')
+
+    def test_sweep_runs_jobs_whose_own_folder_changed(self):
+        # With no push trigger, the sweep is what runs a job edited on main.
+        self.job('edited')
+        self.job('reader', after=['edited'])
+        with patch.object(picker, 'sweep_changes', return_value=['jobs/edited/job.py', 'jobs/reader/output/X.csv']):
+            out = self.run_main(EVENT='schedule', SCHEDULE='47 */3 * * *')
+        self.assertEqual(out, {'direct': 'edited', 'jobs': 'edited reader', 'downstream': 'reader'})
+
+    def test_only_runs_exactly_the_named_jobs_and_publishes(self):
+        self.job('producer')
+        self.job('consumer', after=['producer'])
+        out = self.run_main(EVENT='workflow_dispatch', INPUT_JOB='producer', ONLY='true')
+        self.assertEqual(out, {'jobs': 'producer', 'direct': 'producer'})
+        out = self.run_main(EVENT='workflow_dispatch', INPUT_JOB='producer', ONLY='false')
+        self.assertEqual(out['jobs'], 'producer consumer')
 
     def test_dispatch_deduplicates_and_orders_consumers(self):
         self.job('producer')
@@ -217,7 +250,8 @@ class SchedulerTest(unittest.TestCase):
                 self.assertEqual(self.run_main(EVENT='push', AFTER='x'), {'direct': '', 'jobs': '', 'runtime_tests': 'claim-kit'})
             with patch.object(picker, 'recent_changes', return_value=runtime):
                 self.assertEqual(self.run_main(EVENT='schedule', SCHEDULE='47 */3 * * *'), {'direct': 'claim-kit', 'jobs': 'claim-kit'})
-            self.assertEqual(self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON), {'direct': 'claim-kit', 'jobs': 'claim-kit'})
+            with patch.object(picker, 'sweep_changes', return_value=[]):
+                self.assertEqual(self.run_main(EVENT='schedule', SCHEDULE=picker.DAILY_CRON), {'direct': 'claim-kit', 'jobs': 'claim-kit'})
             self.assertEqual(self.run_main(EVENT='workflow_dispatch', INPUT_JOB='claim-kit'), {'direct': 'claim-kit', 'jobs': 'claim-kit'})
 
 
@@ -248,16 +282,19 @@ class RepositoryWiringTest(unittest.TestCase):
                     missing.append(f'{name}: {dep}')
         self.assertEqual(missing, [], '\n'.join(missing))
 
-    def test_pushes_stay_light_and_the_sweep_is_scheduled(self):
-        # Pushes start a run only for job folders and the runner; triggers.txt patterns are honored by the
-        # three-hour sweep, which reads recent history and so needs no push filter.
+    def test_no_push_starts_runs_and_the_sweep_is_scheduled(self):
+        # Owner 2026-11-09 (Kean D-20261109-no-push-runs): only the schedule and manual runs start
+        # Run jobs. .github/scripts/test_workflow_triggers.py holds the full trigger policy.
         workflow = (ROOT / '.github/workflows/run-jobs.yml').read_text()
-        section = workflow.split('    paths:\n', 1)[1].split('  schedule:', 1)[0]
-        patterns = re.findall(r'^\s+- "([^"]+)"', section, flags=re.M)
-        self.assertEqual(sorted(patterns), ['.github/scripts/**', '.github/workflows/run-jobs.yml', 'jobs/**'])
+        on = workflow.split('\non:\n', 1)[1].split('\n\n', 1)[0]
+        self.assertNotRegex(on, r'(?m)^  (push|pull_request|workflow_run|workflow_call):')
         self.assertIn(f'cron: "{picker.DAILY_CRON}"', workflow)
         self.assertIn('cron: "47 */3 * * *"', workflow)
         self.assertIn('SCHEDULE: ${{ github.event.schedule }}', workflow)
+        self.assertIn('ONLY: ${{ github.event.inputs.only }}', workflow)
+        plan = workflow.split('\n  plan:\n', 1)[1].split('\n  execute:\n', 1)[0]
+        self.assertIn('      actions: read', plan.split('    outputs:', 1)[0])
+        self.assertIn('GITHUB_TOKEN: ${{ github.token }}', plan)
 
 
     def test_runtime_allowlist_excludes_conservative_compiler_closure(self):
@@ -345,6 +382,99 @@ class RepositoryWiringTest(unittest.TestCase):
         selected = picker.for_changes(['research/stage14/LORD/LORD_CHRONOLOGICAL_REVIEW_LEADS.csv'])
         for reader in ['early-ranger-original-items', 'early-ranger-1862-1906', 'census-candidates']:
             self.assertIn(reader, selected)
+
+
+class SweepRangeTest(unittest.TestCase):
+    """The sweep reads commits after the previous sweep's input, not a clock window."""
+
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.old = Path.cwd()
+        os.chdir(self.tmp.name)
+        self.addCleanup(os.chdir, self.old)
+        for args in (['init', '-q', '-b', 'main'], ['config', 'user.email', 't@example.invalid'], ['config', 'user.name', 't']):
+            picker.git(*args)
+
+    def commit(self, path, date=None):
+        Path(path).parent.mkdir(parents=True, exist_ok=True)
+        Path(path).write_text(path + str(len(list(Path('.').rglob('*')))))
+        picker.git('add', '-A')
+        env = {**os.environ, **({'GIT_COMMITTER_DATE': date, 'GIT_AUTHOR_DATE': date} if date else {})}
+        import subprocess
+        subprocess.run(['git', 'commit', '-qm', path], check=True, env=env)
+        return picker.git('rev-parse', 'HEAD').stdout.strip()
+
+    def test_old_dated_and_late_commits_after_the_previous_sweep_are_seen(self):
+        self.commit('jobs/before/job.py')
+        base = self.commit('jobs/seen-by-previous/job.py')
+        # A commit dated a week ago but pushed after the previous sweep: a time window misses it.
+        self.commit('jobs/old-dated/job.py', date='2026-11-01T00:00:00Z')
+        self.commit('research/readiness/claims/new.jsonl')
+        with patch.object(picker, 'previous_sweep_commit', return_value=base):
+            changed = picker.sweep_changes()
+        self.assertEqual(changed, ['jobs/old-dated/job.py', 'research/readiness/claims/new.jsonl'])
+        with patch.object(picker, 'previous_sweep_commit', return_value=base), \
+                patch.object(picker, 'recent_changes', side_effect=AssertionError('fallback used')):
+            picker.sweep_changes()
+
+    def test_unknown_or_foreign_previous_sweep_falls_back_to_the_window(self):
+        self.commit('jobs/a/job.py')
+        for previous in (None, '0' * 40, 'f' * 40):
+            with patch.object(picker, 'previous_sweep_commit', return_value=previous), \
+                    patch.object(picker, 'recent_changes', return_value=['window']) as window:
+                self.assertEqual(picker.sweep_changes(), ['window'])
+                window.assert_called_once()
+        # A commit that is not an ancestor (history rewritten) also falls back.
+        picker.git('checkout', '-q', '-b', 'other')
+        side = self.commit('jobs/side/job.py')
+        picker.git('checkout', '-q', 'main')
+        with patch.object(picker, 'previous_sweep_commit', return_value=side), \
+                patch.object(picker, 'recent_changes', return_value=['window']):
+            self.assertEqual(picker.sweep_changes(), ['window'])
+
+    def run_history(self, runs, jobs, run_id='900', **env):
+        def fake(path):
+            if '/actions/workflows/run-jobs.yml/runs?' in path:
+                self.assertIn('event=schedule', path)
+                self.assertIn('branch=main', path)
+                return {'workflow_runs': runs}
+            rid = re.search(r'/actions/runs/(\d+)/jobs', path).group(1)
+            return {'jobs': jobs[rid]}
+        values = {'GITHUB_REPOSITORY': 'o/r', 'GITHUB_TOKEN': 't', 'GITHUB_RUN_ID': run_id, **env}
+        with patch.dict(os.environ, values), patch.object(picker, 'github', side_effect=fake):
+            return picker.previous_sweep_commit()
+
+    def test_previous_sweep_is_the_newest_earlier_run_whose_plan_succeeded(self):
+        sha = lambda c: c * 40
+        runs = [
+            {'id': 900, 'created_at': '2026-11-09T12:47:00Z', 'status': 'in_progress', 'conclusion': None, 'head_sha': sha('9')},
+            {'id': 950, 'created_at': '2026-11-09T13:00:00Z', 'status': 'completed', 'conclusion': 'success', 'head_sha': sha('e')},
+            {'id': 890, 'created_at': '2026-11-09T09:47:00Z', 'status': 'in_progress', 'conclusion': None, 'head_sha': sha('8')},
+            {'id': 880, 'created_at': '2026-11-09T06:47:00Z', 'status': 'completed', 'conclusion': 'cancelled', 'head_sha': sha('7')},
+            {'id': 870, 'created_at': '2026-11-09T03:47:00Z', 'status': 'completed', 'conclusion': 'failure', 'head_sha': sha('6')},
+            {'id': 860, 'created_at': '2026-11-09T00:47:00Z', 'status': 'completed', 'conclusion': 'failure', 'head_sha': sha('5')},
+            {'id': 850, 'created_at': '2026-11-08T21:47:00Z', 'status': 'completed', 'conclusion': 'success', 'head_sha': sha('4')},
+        ]
+        jobs = {'870': [{'name': 'plan', 'conclusion': 'failure'}],
+                '860': [{'name': 'plan', 'conclusion': 'success'}, {'name': 'publish', 'conclusion': 'failure'}],
+                '850': [{'name': 'plan', 'conclusion': 'success'}]}
+        # Skips itself, a later run, an unfinished one, a cancelled one and one whose plan failed;
+        # a run refused at publish still planned, and its refused jobs were re-queued.
+        self.assertEqual(self.run_history(runs, jobs), sha('5'))
+
+    def test_run_history_failures_never_guess(self):
+        self.assertIsNone(self.run_history([], {}))
+        bad = [{'id': 1, 'created_at': '2026-11-09T00:00:00Z', 'status': 'completed', 'conclusion': 'success', 'head_sha': 'not-a-sha'}]
+        self.assertIsNone(self.run_history(bad, {'1': [{'name': 'plan', 'conclusion': 'success'}]}))
+        with patch.dict(os.environ, {'GITHUB_REPOSITORY': 'o/r', 'GITHUB_TOKEN': 't'}), \
+                patch.object(picker, 'github', side_effect=OSError('rate limited')):
+            self.assertIsNone(picker.previous_sweep_commit())
+        with patch.dict(os.environ, {'GITHUB_REPOSITORY': 'o/r', 'GITHUB_TOKEN': 't'}), \
+                patch.object(picker, 'github', return_value={'unexpected': 1}):
+            self.assertIsNone(picker.previous_sweep_commit())
+        with patch.dict(os.environ, {'GITHUB_TOKEN': ''}), patch.object(picker, 'github', side_effect=AssertionError):
+            self.assertIsNone(picker.previous_sweep_commit())
 
 
 if __name__ == '__main__':

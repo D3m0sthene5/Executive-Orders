@@ -49,7 +49,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 286; `search` finds the rest)
+## Newest results (6 of 287; `search` finds the rest)
 
 - 2026-11-09 F-20261109-valla-recertified-after-main **worked**: Confirm the PR #245 fix in production, then recompute Valla's certificates after merging main (run_jobs.py Ra… Lesson: Each merge of main that touches run_jobs.py or jobs/_lib restales the certificate; recompute it in the merge commit's follow-up, before the PR merges.
 - 2026-11-09 F-20261109-papebroch-mabillon-lachmann **worked**: Finish #185: Mabillon passage-alone texts, a Lachmann page rule, measured on real data Lesson: When a fix makes a new witness readable, measure what the selector picks, not just whether the witness verifies.
@@ -58,4 +58,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-09 F-20261109-gutenberg-tsiolkovsky **worked**: Gutenberg item 6: credit Tsiolkovsky's work-hours by channel (the lines each event changed in the moved step'… Lesson: Lines changed in a step's inputs are a proxy for evidence delivered, not proof of cause; a runner result's credit belongs to the campaign that changed the job's code or inputs.
 - 2026-11-09 F-20261109-gutenberg-skipped-witness **worked**: Gutenberg item 3: the narrowest correct stale-confirmation rule for working_text (prior_confirmation_stale),… Lesson: A skipped witness is information (an official printing now exists), not a change in what was confirmed: flag it for the h01 page check rather than void the confirmation. The switch is the owner's (A-…
 
-Register: 74 owner decisions, 45 answered questions, 286 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 75 owner decisions, 45 answered questions, 287 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

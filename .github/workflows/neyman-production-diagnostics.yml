@@ -7,6 +7,8 @@ on:
       - 'research/neyman/production-diagnostics/**'
       - '.github/workflows/neyman-production-diagnostics.yml'
   push:
+    # Branch pushes only: a tag push would match every path.
+    branches: [main]
     paths:
       - '.github/workflows/neyman-production-diagnostics.yml'
   workflow_dispatch:
