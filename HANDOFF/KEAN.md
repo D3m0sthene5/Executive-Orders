@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (6)
+## Waiting for the owner (5)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-nalimov-calibration**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-l1r-correction**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-l1r-correction**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -61,4 +61,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-10 F-20261110-respondendi-wave **worked**: Owner-requested research workflow (Fable 5.2 on High) to lift the undecided-status bottleneck permanently and… Lesson: Fable 5.2 at high effort costs about 25-30 USD per deep-reading worker (cache reads at 1 USD per million dominate); a 14-worker research storm is about 255 USD. Use it for diagnosis that needs whole-…
 - 2026-11-10 F-20261110-respondendi-v2 **worked**: Respondendi v2 at the owner's request: one standing approval for every kind of undecided order (express revoc… Lesson: Breadth without a measured error bound is not breadth: each red-team screen removed a way to adopt a wrong status and cost reach (3,465 claimed in the v2 draft, 1,468 after). The reach that remains i…
 
-Register: 82 owner decisions, 52 answered questions, 362 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 87 owner decisions, 53 answered questions, 362 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

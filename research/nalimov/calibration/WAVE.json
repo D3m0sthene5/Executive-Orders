@@ -26,14 +26,15 @@
  ],
  "configuration": {
   "orchestrator": "maudslay-conveyor",
-  "coordinator_model": "claude-opus-5-5",
+  "coordinator_model": "none-scripted (claude-opus-5-5 adjudicates disagreements only)",
   "producer_model": "nalimov-script",
   "verifier_models": {
-   "A": "claude-sonnet-5-5",
-   "B": "claude-opus-5-5",
-   "S": "claude-sonnet-5-5"
+   "A": "gpt-6.1-sol",
+   "B": "gpt-6.1-sol",
+   "S": "gpt-6.1-sol"
   },
-  "route": "jobs/maudslay-conveyor/conveyor.py run --producer nalimov --controls typed --replacement-proposal (status-overlay stage: status reviewer reviewer_S, overlay-propose, working claims; then the conveyor's blind arms, typed controls, reveal, agree, complete)"
+  "route": "jobs/maudslay-conveyor/conveyor.py run --producer nalimov --controls typed --replacement-proposal (status-overlay stage: status reviewer reviewer_S, overlay-propose, working claims; then the conveyor's blind arms, typed controls, reveal, agree, complete)",
+  "workers_note": "Claude workers are unavailable on the run machine (no claude CLI), so the status reader and both blind arms are Codex sessions (jobs/maudslay-conveyor/workers.codex.example.json, OpenAI API list prices). The producer is a script, so every reviewer is a different family from the producer; Respondendi's cross-family audits then use a non-OpenAI auditor."
  },
  "limits": {
   "chain_budget_units": 600000,
@@ -72,7 +73,9 @@
   "F-20261107-haloander-undecided-probe": "The action is now ranked with a measured rate (filed_per_attempt.undecided, 3 of 30). The transcription refusal does not bite here: every drafted order has an acceptable original with no page check owed; adoption is the named bound and goes to Respondendi or the owner.",
   "F-20261028-4": "Every order is prepared fresh from main's current claim-kit outputs right before drafting; no packet older than the kit generation is reused, and install refuses evidence whose fingerprint changed since drafting.",
   "F-20261018-7": "No fetching: the run reads only held, hashed texts already frozen in the kit's evidence, so there are no host success rates or URL hashes to forecast.",
-  "F-20261110-nalimov-review-v1": "All 8 drafts passed the kit's assembler, check_claim and every step of the actual claim checker (prescreen.py) before entering this plan; the drafter's tests use the reviewer's real OCR clause texts; the Papinian replay equals the owner-adopted claims for EO 11957 and 12348; packets.tells() and the conveyor's typed plants keep controls indistinguishable from genuine claims."
+  "F-20261110-nalimov-review-v1": "All 8 drafts passed the kit's assembler, check_claim and every step of the actual claim checker (prescreen.py) before entering this plan; the drafter's tests use the reviewer's real OCR clause texts; the Papinian replay equals the owner-adopted claims for EO 11957 and 12348; packets.tells() and the conveyor's typed plants keep controls indistinguishable from genuine claims.",
+  "F-20261110-mommsen3-undecided-probe01": "Not a scale-up: 8 orders, one lane, filed only as isolated replacement proposals (complete --replacement-proposal). No status is adopted here; adoption stays with Respondendi's audited lots or a named owner decision. Every draft carries its first end, scope, savings and current-predicate checks, and the independent status reviewer and both blind arms review them before anything files.",
+  "F-20261110-mommsen3-codex-core-sandbox": "The producer is a script, so no producer assignment depends on worker file tools. On 2026-11-10 a sandboxed codex exec worker with the conveyor's exact flags (workspace-write, its own folder as -C and only writable root) read a local file correctly on this host. Reviewers receive their bounded packet in their own folder; a worker whose file access fails is recorded unresolved and stops the batch rather than inferring anything."
  },
  "respondendi": {
   "lot_kind": "express_named_revocation",

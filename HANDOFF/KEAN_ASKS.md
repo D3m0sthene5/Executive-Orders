@@ -19,14 +19,6 @@ Larrey keeps 1,014 undecided orders out only on the soft gate later_order_text_h
 
 Sources: `jobs/larrey-triage/README.md`
 
-## A-20261110-nalimov-calibration (2026-11-10, Claude (Opus 5.5, Nalimov))
-
-(1) Sign the Nalimov stage-0 calibration plan research/nalimov/calibration/WAVE.json, plan sha256 4c19799f9bbcb0cbfc84ee0a7d1303bf2ad79a33851e4679b2389b364d2dde96: the 8 script-drafted express-revocation claims (EO 10779, 11056, 11232, 11274, 11352, 11361, 12737, 13765) through the Maudslay conveyor (--producer nalimov, typed controls, status-overlay stage), budget 600k units; (2) accept that a script is the producer on this route (its confirmations are mechanical checks; the blind arms and the status reviewer are the source review; Respondendi gives it its own audit stratum); (3) decide whether the conveyor may give the kit's producer reconfirmation mechanically for MODEL producers too (today only for the script producer; the working dossier must equal the base dossier outside the status envelope). Any plan edit needs a new signature.
-
-*Why:* Augur refuses the plan only for the missing independent review (owner or another model family). Projected 0.10-0.42 USD per adopted status against 7.71 measured; reach comes from research/nalimov/TALLY.json and POOL_TALLY.json, not from this batch (dozens of orders on this route; about 700-800 project-wide with one-question tiers).
-
-Sources: `research/nalimov/REPORT.md`
-
 ## A-20261110-respondendi-standing-rule (2026-11-10, Claude)
 
 Approve jobs/respondendi-adoption/RULE.md (sha256 85a990233d5cad3fb30870e4b80ed0c6102ae6232f7be595b28d545750250934) as a standing adoption rule, so that undecided-route status proposals in its lot are adopted without a per-order owner decision? The lot: express, named, unqualified whole-order revocations by a later order or proclamation (687 undecided orders have such a held ending on an acceptable original). Each order still needs the full route (admission in a Bentham action, independent status review accepted, both blind arms upholding the exact claim, at least 2 typed planted controls caught by every arm, the checker passing), and nothing reaches the ledger until a person or another model family has audited it: every member until the 95% upper bound on the error rate is 5% (59 audits with no confirmed error), then 20% of each lot. Disagreements are adjudicated; 2 confirmed errors in 59 audits stop the rule until you resume it; at most 60 orders a lot, 300 a week, one lot a day; any adoption can be reversed; you can suspend the rule at any time. Statuses stay provisional AI hypotheses and human-certified stays 0; count-changing pull requests still need your merge. Recommended: yes. To approve, the agent recording your answer commits an owner-ruling file and a Kean decision that both contain respondendi-rule-sha256:85a990233d5cad3fb30870e4b80ed0c6102ae6232f7be595b28d545750250934 (different numbers mean a new hash, which that agent computes).
