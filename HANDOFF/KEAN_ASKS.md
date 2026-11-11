@@ -42,3 +42,11 @@ Count service in a named war as a dated fact? Eight returned L1R orders (EO 437,
 *Why:* Such a person was certainly born before 1904; the rule's letter, not the evidence, keeps them open. 8 orders now; the same wording likely recurs in later one-person readings.
 
 Sources: `research/ulpian/jacquard-l1r-correction/README.md`, `jobs/ulpian-outer-bound/RULE.md`
+
+## A-20261111-film709-count (2026-11-11, Claude)
+
+NYU Film 709 (11 reels, EO 1-7403) is free to scan yourself at Bobst on the ScanPro stations, and NARA New York is closed. Count your own Film 709 scans as the R38 microfilm witness, like M1118? Bytes stay private (owner inbox, as with Hein); only hashes and page facts go public. Counting starts only after a pilot reel shows Film 709 matches the State Department file copy, compared frame by frame against a held NARA image.
+
+*Why:* A-20261106-dagron-nyu (answered no on 2026-11-09, 'revisit only if M1118 acquisition fails') keeps Film 709 uncounted. M1118 is not viewable in NYC, its roll list is not online, and digitized rolls cost about 25 each. 1,533 orders in the film's range have no located official source.
+
+Sources: `research/dagron/README.md`
