@@ -10,7 +10,7 @@ New York date: 2026-11-10. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42931910801-1:55c50b50df08f7dd522fc8d226a77b00f2cd0f29e54ca1df08617174ad5ef22f` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42935739969-1:43e0de771c83cfc8ad871930ed1ea31884e54731acfcb0cd8b28ece87ad23ee1` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -82,4 +82,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42931910801)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/42935739969)
