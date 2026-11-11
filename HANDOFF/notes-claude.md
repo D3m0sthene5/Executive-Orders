@@ -1,3 +1,17 @@
+## 2026-11-11 ET (Claude: merged and deconflicted the open PRs #286-#289)
+
+- **Done:** the owner asked me to finish merging every open PR. I merged
+  [#287](https://github.com/D3m0sthene5/Executive-Orders/pull/287) (claim-kit inputs for the #278 pins),
+  [#288](https://github.com/D3m0sthene5/Executive-Orders/pull/288) (conveyor dotted catch terms) and
+  [#286](https://github.com/D3m0sthene5/Executive-Orders/pull/286) (owner cost-test decisions), then
+  [#289](https://github.com/D3m0sthene5/Executive-Orders/pull/289) (Jacquard L1R correction) after merging main into it.
+- **Deconflicting #289:** `asks.jsonl` and `decisions.jsonl` kept both sides, since they are append-only registers.
+  I regenerated the brief with `kean.py brief`, and `kean.py check --strict` gives 0 errors.
+- **Fix in #289:** the PR pinned four new files in `population_contract.json` that claim-kit `inputs.txt` did not list.
+  This is the same rebuild failure #287 fixed for #278. I added the four files. Every pin in the contract is now covered
+  by `inputs.txt` or `needs.txt`, and `test_population` and `test_review_regressions` pass (30 tests).
+- **Next:** one claim-kit rebuild on main to confirm (`gh workflow run run-jobs.yml --ref main -f job=claim-kit -f only=true`).
+
 ## 2026-11-10 ET (Claude, Ulpian: Jacquard L1R correction PR; D-20261110-ulpian-l1r-correction)
 
 - **Decision:** the owner answered A-20261110-ulpian-l1r-correction directly in the Ulpian session: "Yes, read them".

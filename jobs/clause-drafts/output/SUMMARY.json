@@ -1,6 +1,6 @@
 {
   "job": "clause-drafts",
-  "generated_utc": "2026-11-10T22:28:43Z",
+  "generated_utc": "2026-11-11T00:02:20Z",
   "legal_cutoff": "2026-10-14",
   "job_limit": null,
   "job_ids": null,
@@ -33,18 +33,18 @@
     },
     "other_jobs": {
       "fr-originals": "6497 order-text candidates",
-      "source-ladder": "1358 order-text candidates"
+      "source-ladder": "1401 order-text candidates"
     },
     "app_transcriptions": {
       "DOCUMENTS.jsonl": "764 order-text candidates",
       "MIRROR_DOCUMENTS.jsonl": "9134 order-text candidates"
     },
-    "input_problems": 335
+    "input_problems": 342
   },
   "orders_in_universe": 14998,
-  "orders_with_candidate_text": 9946,
-  "orders_processed": 9946,
-  "fragments_written": 9789,
+  "orders_with_candidate_text": 9949,
+  "orders_processed": 9949,
+  "fragments_written": 9792,
   "orders_not_segmented": 148,
   "orders_identity_quarantined": 9,
   "identity_quarantine_reasons": {
@@ -52,22 +52,22 @@
     "body_cites_its_own_order_number_identity_doubtful": 2,
     "identity_doubt_signer": 6
   },
-  "clauses_total": 71277,
+  "clauses_total": 71401,
   "segmentation_quality": {
-    "partial": 3027,
-    "good": 6762
+    "partial": 3029,
+    "good": 6763
   },
   "by_source_grade": {
     "mirror_transcription_app": 5756,
-    "other_copy": 63,
+    "other_copy": 66,
     "official_fr_scan_ocr_text": 2459,
     "official_fr_pdf_text_layer": 1495,
     "official_fr_html_text": 16
   },
-  "fragments_from_app_transcription": 4976,
+  "fragments_from_app_transcription": 4975,
   "app_transcription_quality": {
     "partial": 198,
-    "good": 4778
+    "good": 4777
   },
   "segmentation_outcomes_by_input": {
     "measured_every_candidate": true,
@@ -81,13 +81,14 @@
         "unusable": 135
       },
       "job:mirror_transcription_app": {
-        "good": 1
+        "good": 3,
+        "not_located:body_only_refused_text_has_heading_for_other_order": 4
       },
       "job:official_fr_pdf_text_layer": {
-        "good": 811,
+        "good": 822,
         "identity_doubt": 15,
-        "not_located:body_only_refused_text_has_heading_for_other_order": 11,
-        "partial": 794,
+        "not_located:body_only_refused_text_has_heading_for_other_order": 15,
+        "partial": 804,
         "unusable": 6
       },
       "job:official_fr_scan_ocr_text": {
@@ -99,11 +100,11 @@
         "unusable": 1891
       },
       "job:other_copy": {
-        "good": 6,
+        "good": 7,
         "identity_doubt": 56,
         "not_located:body_only_refused_text_has_heading_for_other_order": 7,
         "not_located:order_not_located_in_text": 249,
-        "partial": 229
+        "partial": 233
       },
       "opus_zip:mirror_transcription_app": {
         "good": 1004,
@@ -139,7 +140,7 @@
     }
   },
   "by_structure": {
-    "unnumbered_paragraphs": 2794,
+    "unnumbered_paragraphs": 2797,
     "top_level_lettered_items": 224,
     "single_operative_paragraph": 2680,
     "sections": 2868,
@@ -147,7 +148,7 @@
     "dash_numbered_sections": 164
   },
   "by_clause_kind": {
-    "operative": 55724,
+    "operative": 55848,
     "operative_in_preamble": 3538,
     "revokes_or_amends_unnumbered_order": 40,
     "effective_date": 552,
@@ -161,15 +162,15 @@
   },
   "by_era": {
     "1862-1906": {
-      "orders": 5,
-      "clauses": 59,
-      "partial": 3,
+      "orders": 6,
+      "clauses": 71,
+      "partial": 4,
       "good": 2
     },
     "1907-1936": {
-      "orders": 2944,
-      "clauses": 18643,
-      "good": 2879,
+      "orders": 2945,
+      "clauses": 18645,
+      "good": 2880,
       "partial": 65
     },
     "1937-1989": {
@@ -185,27 +186,28 @@
       "partial": 638
     },
     "Unknown date": {
-      "orders": 25,
-      "clauses": 166,
+      "orders": 26,
+      "clauses": 276,
+      "partial": 1,
       "good": 25
     }
   },
-  "source_records_written": 9789,
+  "source_records_written": 9792,
   "source_records_bytes_unknown": 686,
   "ocr_fragments_with_candidate_fr_page": 58,
   "self_check": {
-    "clauses_checked": 71277,
-    "original_operative_text_is_exact_substring_of_saved_text": 71277,
+    "clauses_checked": 71401,
+    "original_operative_text_is_exact_substring_of_saved_text": 71401,
     "failures": 0,
-    "recheck_from_written_files_ok": 71277,
+    "recheck_from_written_files_ok": 71401,
     "recheck_from_written_files_failed": 0,
     "opus_text_member_sha256_vs_meta_text_hash_for_sources_used": {
-      "match": 855,
+      "match": 854,
       "recorded_hash_is_for_another_text_variant": 8,
       "not_recorded": 7
     },
     "passed": true
   },
-  "seconds": 221.4,
+  "seconds": 138.2,
   "what_this_is_not": "Draft clause boundaries from saved texts. Not legal conclusions; no status, ledger or count is changed."
 }

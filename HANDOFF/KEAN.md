@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (6)
+## Waiting for the owner (5)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-nalimov-calibration**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -62,4 +62,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-10 F-20261110-ulpian-jacquard-l1-correction **worked**: Re-read the 42 Jacquard L1 provisional NO statuses dated on or after 1904-05-03 (D-20261110-ulpian-jacquard-l… Lesson: A lot card's stated basis must be checked when the rule behind it changes: one declined premise reached about 570 merged statuses. When a planted control is built by appending a sentence, check first…
 - 2026-11-10 F-20261110-respondendi-wave **worked**: Owner-requested research workflow (Fable 5.2 on High) to lift the undecided-status bottleneck permanently and… Lesson: Fable 5.2 at high effort costs about 25-30 USD per deep-reading worker (cache reads at 1 USD per million dominate); a 14-worker research storm is about 255 USD. Use it for diagnosis that needs whole-…
 
-Register: 83 owner decisions, 53 answered questions, 363 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 88 owner decisions, 54 answered questions, 363 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
