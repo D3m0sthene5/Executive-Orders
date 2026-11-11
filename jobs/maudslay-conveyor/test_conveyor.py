@@ -1028,6 +1028,35 @@ class OverlayTests(ConveyorCase):
         self.assertEqual(b.workers["reviewer_S"]["reused_from"], "reviewer_A")
 
 
+class TypedCatchTermTests(unittest.TestCase):
+    """A reviewer naming the changed field as a dotted path catches its plant; a rejection for another kind misses."""
+    def rec(self, *defects):
+        return {"verdict": "rejected", "defects": list(defects)}
+
+    def test_dotted_field_paths(self):
+        T = C.TYPED_TERMS
+        swapped = self.rec({"field": "whole_order_end.source", "problem": "cites EO 12300's file, not EO 12222's"})
+        self.assertTrue(C.caught(swapped, T["ending_source_swapped"]))
+        clause = self.rec("operative_clauses[2].first_end.source does not hold this order's revoking sentence")
+        self.assertTrue(C.caught(clause, T["ending_source_swapped"]))
+        honest_partial = self.rec({"field": "whole_order_end.source.quote", "problem": "not found in the held text"})
+        self.assertTrue(C.caught(honest_partial, T["partial_as_whole"]))
+        wrong = self.rec({"field": "operative_clauses[0].original_source.quote", "problem": "not in this order's file"})
+        self.assertTrue(C.caught(wrong, T["wrong_order_text"]))
+
+    def test_other_kinds_still_miss(self):
+        T = C.TYPED_TERMS
+        date = self.rec({"field": "whole_order_end.date", "problem": "three years before the actor was signed"})
+        for kind in ("later_event_removed", "partial_as_whole", "wrong_order_text", "ending_source_swapped"):
+            self.assertFalse(C.caught(date, T[kind]), kind)
+        self.assertTrue(C.caught(date, T["date_shift"]))
+        events = self.rec({"field": "operative_clauses[1].later_events", "problem": "omits the 1975 amendment"})
+        self.assertFalse(C.caught(events, T["ending_source_swapped"]))
+        self.assertFalse(C.caught({"verdict": "upheld", "defects": []}, T["later_event_removed"]))
+        self.assertEqual(C.defect_words(["whole_order_end.source.quote"]) >= {"whole_order_end_source",
+                                                                          "whole_order_end_source_quote"}, True)
+
+
 class ControlAdjudicationTests(unittest.TestCase):
     def test_control_kind_and_rationale(self):
         date = C.control_adjudication({"planted": "p", "type": "date_shift_end", "defect": "moved"}, "EO:1", {}, "x")
