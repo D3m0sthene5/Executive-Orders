@@ -48,6 +48,8 @@ Each saver below has a tool a wave coordinator uses (`jobs/carnot-coordinator/PR
 | justinian | 7 | $27.67 | 100% | 241 |
 | photius | 289 | $749.24 | 67% | 1518 |
 | 2026-11-10-papinian |  | $296.95 | 17% | 0 |
+| 2026-11-10-respondendi |  | $272.57 | 7% | 0 |
+| accursius-2026-11-10 |  | $181.58 | 28% | 0 |
 | cujas-2026-11-08 |  | $23.27 | 34% | 0 |
 | haloander-2026-11-07 |  | $62.55 | 72% | 0 |
 
