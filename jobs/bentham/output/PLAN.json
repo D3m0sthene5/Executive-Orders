@@ -94,7 +94,7 @@
       "id": "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
       "kind": "acquisition",
       "orders": 0,
-      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2224 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2231 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "expected_now": 0.0,
       "fecundity": 0.1,
@@ -163,7 +163,7 @@
     {
       "id": "production.one_step_away",
       "kind": "production",
-      "orders": 215,
+      "orders": 218,
       "description": "Close the single open step of orders that already have a claim and exactly one applicable step open. Excludes recovery orders.",
       "notes": [],
       "rate": {
@@ -174,16 +174,16 @@
         "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 137.3,
+      "expected_now": 139.2,
       "fecundity": 0.0,
-      "value": 137.3,
-      "cost_usd": 71.49,
-      "cost_basis": "215 x 0.33 USD (attempted_order)",
-      "per_usd": 1.920489885501367,
+      "value": 139.2,
+      "cost_usd": 72.48,
+      "cost_basis": "218 x 0.33 USD (attempted_order)",
+      "per_usd": 1.9204898855013668,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 78.87,
-      "cumulative_value": 158.6,
+      "cumulative_usd": 79.86,
+      "cumulative_value": 160.5,
       "share_of_week": null
     },
     {
@@ -191,7 +191,9 @@
       "kind": "production",
       "orders": 296,
       "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "notes": [],
+      "notes": [
+        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
+      ],
       "rate": {
         "key": "filed_per_attempt.yes.fr",
         "value": 0.23333333333333334,
@@ -208,35 +210,37 @@
       "per_usd": 0.7017639141360342,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 177.29,
-      "cumulative_value": 227.7,
+      "cumulative_usd": 178.28,
+      "cumulative_value": 229.6,
       "share_of_week": null
     },
     {
       "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
       "orders": 0,
-      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 737 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 738 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "probe_cost_usd": 0.0,
       "expected_now": 0.0,
-      "fecundity": 1.3,
-      "value": 1.3,
-      "cost_usd": 3.74,
-      "cost_basis": "21 x 0.18 USD (attempted_order)",
-      "per_usd": 0.33948844893156427,
+      "fecundity": 1.2,
+      "value": 1.2,
+      "cost_usd": 3.56,
+      "cost_basis": "20 x 0.18 USD (attempted_order)",
+      "per_usd": 0.34732279775306185,
       "cost_key": "production.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 181.03,
-      "cumulative_value": 229.0,
+      "cumulative_usd": 181.84,
+      "cumulative_value": 230.8,
       "share_of_week": null
     },
     {
       "id": "status_assignment.undecided",
       "kind": "status_assignment",
-      "orders": 10691,
+      "orders": 11210,
       "description": "Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided (claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such.",
-      "notes": [],
+      "notes": [
+        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
+      ],
       "rate": {
         "key": "filed_per_attempt.undecided",
         "value": 0.1,
@@ -245,24 +249,26 @@
         "source": "research/excavator/claude-haloander-2026-11-07/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 1069.1,
+      "expected_now": 1121.0,
       "fecundity": 0.0,
-      "value": 1069.1,
-      "cost_usd": 3554.71,
-      "cost_basis": "10691 x 0.33 USD (attempted_order)",
-      "per_usd": 0.30075596320115755,
+      "value": 1121.0,
+      "cost_usd": 3727.27,
+      "cost_basis": "11210 x 0.33 USD (attempted_order)",
+      "per_usd": 0.3007559632011575,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 3735.74,
-      "cumulative_value": 1298.1,
+      "cumulative_usd": 3909.11,
+      "cumulative_value": 1351.8,
       "share_of_week": null
     },
     {
       "id": "production.claim_ready.no.fr",
       "kind": "production",
-      "orders": 1024,
+      "orders": 1019,
       "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "notes": [],
+      "notes": [
+        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
+      ],
       "rate": {
         "key": "filed_per_attempt.no.fr",
         "value": 0.03333333333333333,
@@ -271,16 +277,16 @@
         "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 34.1,
+      "expected_now": 34.0,
       "fecundity": 0.0,
-      "value": 34.1,
-      "cost_usd": 340.48,
-      "cost_basis": "1024 x 0.33 USD (attempted_order)",
+      "value": 34.0,
+      "cost_usd": 338.81,
+      "cost_basis": "1019 x 0.33 USD (attempted_order)",
       "per_usd": 0.10025198773371917,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 4076.22,
-      "cumulative_value": 1332.2,
+      "cumulative_usd": 4247.92,
+      "cumulative_value": 1385.8,
       "share_of_week": null
     },
     {
@@ -298,8 +304,8 @@
       "per_usd": 0.0,
       "cost_key": "production.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 4076.22,
-      "cumulative_value": 1332.2,
+      "cumulative_usd": 4247.92,
+      "cumulative_value": 1385.8,
       "share_of_week": null
     },
     {
@@ -316,8 +322,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4076.22,
-      "cumulative_value": 1332.2,
+      "cumulative_usd": 4247.92,
+      "cumulative_value": 1385.8,
       "share_of_week": null
     },
     {
@@ -334,8 +340,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4076.22,
-      "cumulative_value": 1332.2,
+      "cumulative_usd": 4247.92,
+      "cumulative_value": 1385.8,
       "share_of_week": null
     },
     {
@@ -352,8 +358,26 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4076.22,
-      "cumulative_value": 1332.2,
+      "cumulative_usd": 4247.92,
+      "cumulative_value": 1385.8,
+      "share_of_week": null
+    },
+    {
+      "id": "acquire.cruden_fr_statute_concordance",
+      "kind": "acquisition",
+      "orders": 0,
+      "description": "Search the 1936-1993 Federal Register and the Statutes at Large by order number for undecided orders no held finding aid names with an ending word (jobs/cruden-fr-concordance; zero model tokens), so producers on the undecided route can cite the later instrument's own sentence.",
+      "notes": [],
+      "expected_now": 0.0,
+      "fecundity": 0.0,
+      "value": 0.0,
+      "cost_usd": 0.0,
+      "cost_basis": "machine or zero-agent work: no model tokens",
+      "per_usd": 0.0,
+      "cost_key": null,
+      "within_budget": true,
+      "cumulative_usd": 4247.92,
+      "cumulative_value": 1385.8,
       "share_of_week": null
     }
   ],
@@ -395,7 +419,8 @@
         "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
         "zero_agent.opus_media_refetch",
         "acquire.nea_continuation_notices",
-        "acquire.current_law_sections"
+        "acquire.current_law_sections",
+        "acquire.cruden_fr_statute_concordance"
       ],
       "cache_read_weight_0.1": [
         "acquire.shared.EO_4314",
@@ -414,7 +439,8 @@
         "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
         "zero_agent.opus_media_refetch",
         "acquire.nea_continuation_notices",
-        "acquire.current_law_sections"
+        "acquire.current_law_sections",
+        "acquire.cruden_fr_statute_concordance"
       ]
     },
     "flips": [
@@ -589,6 +615,76 @@
   ],
   "kean_waves": [
     {
+      "wave": "2026-11-10-mommsen-1",
+      "finding": "F-20261110-mommsen1-wave-zturn2",
+      "usd_total": null,
+      "usd_basis": null,
+      "usd_by_role": {},
+      "usd_by_model": {},
+      "orders": {
+        "attempted": 288,
+        "filed": 7,
+        "submitted": 47
+      },
+      "controls": {
+        "missed": 0,
+        "planted": 5
+      },
+      "filed_per_attempt": 0.0243
+    },
+    {
+      "wave": "2026-11-10-mommsen-2",
+      "finding": "F-20261110-mommsen2-b07-source",
+      "usd_total": null,
+      "usd_basis": null,
+      "usd_by_role": {},
+      "usd_by_model": {},
+      "orders": {
+        "attempted": 0,
+        "filed": 0,
+        "submitted": 0
+      },
+      "controls": {
+        "missed": 0,
+        "planted": 0
+      }
+    },
+    {
+      "wave": "2026-11-10-mommsen-3",
+      "finding": "F-20261110-mommsen3-undecided-probe01",
+      "usd_total": null,
+      "usd_basis": null,
+      "usd_by_role": {},
+      "usd_by_model": {},
+      "orders": {
+        "attempted": 30,
+        "filed": 0,
+        "submitted": 0
+      },
+      "controls": {
+        "missed": 0,
+        "planted": 1
+      },
+      "filed_per_attempt": 0.0
+    },
+    {
+      "wave": "2026-11-10-mommsen-4-c15",
+      "finding": "F-20261110-mommsen4-c15-final",
+      "usd_total": null,
+      "usd_basis": null,
+      "usd_by_role": {},
+      "usd_by_model": {},
+      "orders": {
+        "attempted": 0,
+        "filed": 0,
+        "submitted": 0
+      },
+      "controls": {
+        "missed": 0,
+        "planted": 0
+      }
+    },
+    {
       "wave": "2026-11-10-papinian",
       "finding": "F-20261110-papinian-wave",
       "usd_total": 296.95,
@@ -614,6 +710,50 @@
       "usd_per_attempted": 0.6359,
       "usd_per_filed": 4.7135,
       "filed_per_attempt": 0.1349
+    },
+    {
+      "wave": "2026-11-10-respondendi",
+      "finding": "F-20261110-respondendi-wave",
+      "usd_total": 272.57,
+      "usd_basis": "list_price",
+      "usd_by_role": {
+        "coordinator": 18.04,
+        "worker": 254.53
+      },
+      "usd_by_model": {
+        "claude-fable-5-2": 254.53,
+        "claude-opus-5-5": 18.04
+      },
+      "orders": {
+        "attempted": 0,
+        "filed": 0,
+        "submitted": 0
+      },
+      "controls": {
+        "missed": 0,
+        "planted": 0
+      },
+      "coordinator_share": 0.0662
+    },
+    {
+      "wave": "accursius-2026-11-10",
+      "finding": "F-20261110-accursius-wave",
+      "usd_total": 181.58,
+      "usd_basis": "list_price",
+      "usd_by_role": {
+        "blind_readers": 2.04,
+        "coordinator": 51.6,
+        "reviewers": 70.69,
+        "workers": 57.25
+      },
+      "usd_by_model": {
+        "claude-fable-5-2": 70.69,
+        "claude-opus-5-5": 101.35,
+        "claude-sonnet-5-5": 9.54
+      },
+      "orders": {},
+      "controls": {},
+      "coordinator_share": 0.2842
     },
     {
       "wave": "cujas-2026-11-08",
