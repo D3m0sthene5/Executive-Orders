@@ -1,3 +1,34 @@
+## 2026-11-11 ET (Claude: merged and deconflicted the open PRs #286-#289)
+
+- **Done:** the owner asked me to finish merging every open PR. I merged
+  [#287](https://github.com/D3m0sthene5/Executive-Orders/pull/287) (claim-kit inputs for the #278 pins),
+  [#288](https://github.com/D3m0sthene5/Executive-Orders/pull/288) (conveyor dotted catch terms) and
+  [#286](https://github.com/D3m0sthene5/Executive-Orders/pull/286) (owner cost-test decisions), then
+  [#289](https://github.com/D3m0sthene5/Executive-Orders/pull/289) (Jacquard L1R correction) after merging main into it.
+- **Deconflicting #289:** `asks.jsonl` and `decisions.jsonl` kept both sides, since they are append-only registers.
+  I regenerated the brief with `kean.py brief`, and `kean.py check --strict` gives 0 errors.
+- **Fix in #289:** the PR pinned four new files in `population_contract.json` that claim-kit `inputs.txt` did not list.
+  This is the same rebuild failure #287 fixed for #278. I added the four files. Every pin in the contract is now covered
+  by `inputs.txt` or `needs.txt`, and `test_population` and `test_review_regressions` pass (30 tests).
+- **Next:** one claim-kit rebuild on main to confirm (`gh workflow run run-jobs.yml --ref main -f job=claim-kit -f only=true`).
+
+## 2026-11-10 ET (Claude, Ulpian: Jacquard L1R correction PR; D-20261110-ulpian-l1r-correction)
+
+- **Decision:** the owner answered A-20261110-ulpian-l1r-correction directly in the Ulpian session: "Yes, read them".
+  Recorded as D-20261110-ulpian-l1r-correction, with ruling `2026-11-10-ulpian-l1r-correction.md`.
+- **Done:** read 556 statuses resting on the declined "at least 14" premise: 553 wave-2 L1R rows and 3 undated wave-1
+  L1 rows.
+  - Method: 6 blind batches, each read by two arms (Sonnet 5.5 and Fable 5.2) with 3 planted controls.
+  - Agreement: 547 of 556 rows; both arms caught all 18 controls. I decided 13 rows and recorded each one.
+  - **70 kept, 486 returned.**
+  - On merge, decided goes from 4,274 to 3,788; the wave-2 entry from 714 to 231 and the wave-1 entry from 141 to 138.
+  - Files: `research/ulpian/jacquard-l1r-correction/`.
+  - Worker tokens: 1,469,701 across 12 arms.
+- **Judgment:** I returned 8 Civil War or Spanish-war veterans uniformly. They were certainly born before 1904, but
+  RULE.md v2 section 2 counts only facts whose date the text states.
+- **Asks:** @Owner: A-20261110-ulpian-named-war (count named-war service as a dated fact?). Kean
+  F-20261110-ulpian-l1r-correction.
+
 ## 2026-11-10 ET (Claude, ACCURSIUS: Respondendi claim-kit fixes F3-F7)
 
 - **Done:** five pull requests, each reviewed by a different model (Fable 5.2) and re-reviewed after fixes:
