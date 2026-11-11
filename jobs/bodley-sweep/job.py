@@ -22,13 +22,17 @@ def eo_numbers(*texts):
     return sorted(s)
 
 class Site:
-    def __init__(self, name, base, delay):
-        self.name, self.base, self.delay = name, base, delay
+    def __init__(self, name, base, delay, robots=False):
+        # robots=True for HTML page scraping; documented APIs (MediaWiki, SPARQL, IA scrape, Google Books, loc.gov JSON)
+        # follow their own API etiquette: identified User-Agent, low rate, back-off on 429/maxlag.
+        self.name, self.base, self.delay, self.robots = name, base, delay, robots
         self.calls = 0; self.leads = []; self.errors = []; self.notes = []; self.log = []
         self.rp = urllib.robotparser.RobotFileParser(); self.rp.set_url(base.rstrip("/") + "/robots.txt")
-        try: self.rp.read()
-        except Exception as e: self.notes.append(f"robots.txt unreadable: {e}")
+        if robots:
+            try: self.rp.read()
+            except Exception as e: self.notes.append(f"robots.txt unreadable: {e}")
     def allowed(self, url):
+        if not self.robots: return True
         try: return self.rp.can_fetch(UA, url)
         except Exception: return True
     def get(self, url, kind="json", tries=8):
@@ -198,7 +202,10 @@ def wikidata(S):
 
 SITES = [("commons", "https://commons.wikimedia.org", 1.5, commons), ("internet_archive", "https://archive.org", 1.0, internet_archive),
          ("loc", "https://www.loc.gov", 3.5, loc), ("google_books", "https://www.googleapis.com", 1.0, google_books),
-         ("hathitrust", "https://catalog.hathitrust.org", 4.0, hathitrust), ("wikidata", "https://www.wikidata.org", 2.0, wikidata)]
+         ("hathitrust", "https://catalog.hathitrust.org", 4.0, hathitrust, True), ("wikidata", "https://www.wikidata.org", 2.0, wikidata)]
+
+if os.environ.get("BODLEY_SITES"):  # local testing: a comma list of site names
+    SITES = [x for x in SITES if x[0] in os.environ["BODLEY_SITES"].split(",")]
 
 def run(S, fn):
     t0 = time.time()
@@ -208,10 +215,43 @@ def run(S, fn):
 
 sites = []
 threads = []
-for name, base, delay, fn in SITES:
-    S = Site(name, base, delay); sites.append(S)
+for spec in SITES:
+    name, base, delay, fn = spec[:4]
+    S = Site(name, base, delay, robots=len(spec) > 4 and spec[4]); sites.append(S)
     t = threading.Thread(target=run, args=(S, fn)); t.start(); threads.append(t)
 for t in threads: t.join()
+
+# ---------------- filter non-U.S.-presidential hits and mark what the project already knows ----------------
+NOT_US = re.compile(r"philippin|govph|governor[- ]general|civil governor|\bnovel\b|clancy|podcast|state of (?!the union)|"
+                    r"illinois|texas|california|new york state|puerto ric|hawaii|guam|royal|crown|canad|australia|"
+                    r"\bindia\b|ontario|obama|trump|biden|bush|clinton", re.I)
+def foreign(l):
+    blob = " ".join(str(l.get(k, "")) for k in ("title", "collection", "description", "mime"))
+    return bool(NOT_US.search(blob)) or l.get("mime") in ("audio", "movies", "etree")
+known_text = []
+for folder in ["research/pre-1937-sources", "research/mabillon", "research/photius", "research/montfaucon", "research/niebuhr",
+               "research/dagron", "jobs/photius-free-printings", "jobs/tischendorf-originals", "jobs/hathi-gpo-orders"]:
+    for f in (REPO / folder).rglob("*"):
+        if f.is_file() and f.suffix in (".md", ".json", ".csv", ".txt", ".py", ".jsonl") and f.stat().st_size < 30_000_000 and "/output/" not in str(f):
+            try: known_text.append(f.read_text(errors="ignore"))
+            except Exception: pass
+known_blob = "\n".join(known_text)
+known_tokens = set(re.split(r"[^A-Za-z0-9_.:\-]+", known_blob))
+def is_known(l):
+    key = str(l.get("id", ""))
+    if len(key) <= 5: return False
+    cands = {key, key.rsplit("/", 1)[-1], key.replace("File:", ""), str(l.get("url", "")).rstrip("/").rsplit("/", 1)[-1]}
+    if any(c and c in known_tokens for c in cands): return True
+    if l["site"] == "commons":
+        u = key.replace("File:", "").replace(" ", "_")[:40]
+        return u in known_blob or key.replace("File:", "")[:40] in known_blob
+    return False
+print(f"known-source text: {len(known_blob):,} chars, {len(known_tokens):,} tokens", flush=True)
+for S in sites:
+    for l in S.leads:
+        l["not_us_presidential_likely"] = foreign(l)
+        l["already_in_project"] = is_known(l)
+        if l["not_us_presidential_likely"]: l["eo_numbers_raw"] = l["eo_numbers"]; l["eo_numbers"] = []
 
 # ---------------- match against the gaps ----------------
 need = {}
@@ -241,28 +281,34 @@ for n, ls in sorted(by_num.items(), key=lambda kv: (int(re.match(r"\d+", kv[0]).
     rows.append({"eo": n, "in_tracker": bool(s), "needs_official_copy": s.get("needs_copy", False), "text_tier": s.get("tier", ""),
                  "provisional": s.get("provisional", ""), "film709_reel": reel.get(n, ""), "leads": len(ls),
                  "sites": ";".join(sorted({l["site"] for l in ls})), "kinds": ";".join(sorted({l["kind"] for l in ls})),
+                 "new_to_project": any(not l["already_in_project"] for l in ls),
                  "example": ls[0]["url"], "example_title": ls[0]["title"][:150]})
 with open(OUT / "ORDERS.csv", "w", newline="") as fh:
     w = csv.DictWriter(fh, fieldnames=list(rows[0]) if rows else ["eo"]); w.writeheader(); w.writerows(rows)
 needed = [r for r in rows if r["needs_official_copy"]]
-volumes = [l for S in sites for l in S.leads if l["kind"] == "volume"]
+volumes = [l for S in sites for l in S.leads if l["kind"] == "volume" and not l["not_us_presidential_likely"]]
 summary = {"sites": {S.name: {"calls": S.calls, "seconds": getattr(S, "seconds", None), "leads": len(S.leads),
                               "leads_with_eo_number": sum(1 for l in S.leads if l["eo_numbers"]),
-                              "volumes": sum(1 for l in S.leads if l["kind"] == "volume"),
+                              "volumes": sum(1 for l in S.leads if l["kind"] == "volume" and not l["not_us_presidential_likely"]),
+                              "new_volumes": sum(1 for l in S.leads if l["kind"] == "volume" and not l["not_us_presidential_likely"] and not l["already_in_project"]),
+                              "filtered_not_us": sum(1 for l in S.leads if l["not_us_presidential_likely"]),
                               "errors": len(S.errors), "notes": S.notes[:10], "first_errors": S.errors[:5]} for S in sites},
            "distinct_eo_numbers": len(rows), "in_tracker": sum(r["in_tracker"] for r in rows),
            "needing_official_copy_with_a_lead": len(needed),
+           "needing_official_copy_with_a_new_lead": sum(1 for r in needed if r["new_to_project"]),
            "needed_by_site": {S.name: sum(1 for r in needed if S.name in r["sites"].split(";")) for S in sites},
            "needed_by_film709_reel": {str(k): sum(1 for r in needed if r["film709_reel"] == k) for k in sorted({r["film709_reel"] for r in needed}, key=str)},
            "total_needing_official_copy": sum(1 for v in need.values() if v["needs_copy"])}
 (OUT / "SUMMARY.json").write_text(json.dumps(summary, indent=2) + "\n")
 with open(OUT / "VOLUMES.csv", "w", newline="") as fh:
-    w = csv.DictWriter(fh, fieldnames=["site", "title", "date", "url", "found_by"], extrasaction="ignore"); w.writeheader()
+    w = csv.DictWriter(fh, fieldnames=["site", "already_in_project", "title", "date", "url", "found_by"], extrasaction="ignore"); w.writeheader()
     for l in sorted(volumes, key=lambda l: (l["site"], l["title"])): w.writerow(l)
 rep = ["# Bodley: sweep of large public collections for executive orders", "",
        "Leads only. A hit is examined by a person before it counts as any witness; nothing here changes a status or count.", "",
        "```json", json.dumps(summary, indent=2), "```", "", "## Orders still needing an official copy that have a lead", "",
-       "| EO | reel | sites | kinds | example |", "|---|---|---|---|---|"]
-rep += [f"| {r['eo']} | {r['film709_reel']} | {r['sites']} | {r['kinds']} | {r['example']} |" for r in needed[:600]]
+       "| EO | reel | new | sites | kinds | example |", "|---|---|---|---|---|---|"]
+rep += [f"| {r['eo']} | {r['film709_reel']} | {'yes' if r['new_to_project'] else ''} | {r['sites']} | {r['kinds']} | {r['example']} |" for r in needed[:600]]
+rep += ["", "## New volumes (books and scans not yet named anywhere the project tracks sources)", ""]
+rep += [f"- {l['site']}: [{l['title'][:140]}]({l['url']}) {l.get('date','')}" for l in sorted(volumes, key=lambda l: (l['site'], l['title'])) if not l['already_in_project']][:500]
 (OUT / "REPORT.md").write_text("\n".join(rep) + "\n")
 print(json.dumps(summary, indent=2))
