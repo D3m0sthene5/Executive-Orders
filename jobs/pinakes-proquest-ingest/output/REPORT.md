@@ -1,6 +1,6 @@
 # Pinakes: ProQuest PDFs wired in
 
-Generated 2026-11-11T17:39:06Z.
+Generated 2026-11-11T18:38:27Z.
 
 **2806 PDF files** (2750 unique) in `ProQuest Pre-1937 Orders`, `research/pre-1937-sources/ProQuest Pre-1937 Orders` cover **2750 orders**, 2750 of them in the census. The owner's link list has 2765 links: 2750 now have a PDF, **15 are still missing** (`MISSING_FROM_UPLOAD.csv`); 0 PDFs are for orders not on the list.
 
