@@ -1,18 +1,18 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,256 of 14,998 orders (8.4%)**
+**Numbered series: ready for human review 1,255 of 14,998 orders (8.4%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `43058381342-1:9139fe63ccb1e5b800dad8a7776791eec6babb4d57fcb42ad2c8f5341046b081` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43068399593-1:600e718765ee6dbb27f75741dcd5e3ea005004235eb0bca572291f604551f545` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
 
-Orders with a provisional YES/NO status: 4,274. The other 10,724 have not been researched yet.
+Orders with a provisional YES/NO status: 3,788. The other 11,210 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 730, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
+Ready by text evidence: {'original_supported': 729, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 846; quotation rechecks: 846. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 252. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1551}.
@@ -21,12 +21,12 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
-| Has a provisional YES/NO status | 4,274 | 4,274 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 3,549 | 4,274 | 83.0% |
-| Complete inventory of the order's operative clauses | 1,499 | 4,274 | 35.1% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,288 | 4,274 | 30.1% |
-| Savings clauses and surviving effects closed | 1,486 | 4,274 | 34.8% |
-| Search for later contrary sources recorded, no open conflicts | 2,885 | 4,274 | 67.5% |
+| Has a provisional YES/NO status | 3,788 | 3,788 | 100.0% |
+| Original or explicitly reviewed provisional working text saved | 3,529 | 3,788 | 93.2% |
+| Complete inventory of the order's operative clauses | 1,498 | 3,788 | 39.5% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,287 | 3,788 | 34.0% |
+| Savings clauses and surviving effects closed | 1,485 | 3,788 | 39.2% |
+| Search for later contrary sources recorded, no open conflicts | 2,884 | 3,788 | 76.1% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 788 | 15.9% |
 
@@ -49,14 +49,14 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
-| `NO_PROVISIONAL_STATUS` | 0 | 10,724 |
-| `NO_CLAUSE_INVENTORY` | 2,670 | 2,670 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,670 | 2,670 |
-| `FIRST_END_UNPROVED` | 2,355 | 2,355 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 701 | 2,234 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 518 | 1,572 |
-| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,206 | 1,206 |
-| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 191 | 738 |
+| `NO_PROVISIONAL_STATUS` | 0 | 11,210 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 235 | 2,234 |
+| `NO_CLAUSE_INVENTORY` | 2,185 | 2,185 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,185 | 2,185 |
+| `FIRST_END_UNPROVED` | 1,870 | 1,870 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 126 | 1,572 |
+| `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 117 | 738 |
+| `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 721 | 721 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
 | `CURRENT_BASIS_UNPROVED` | 315 | 315 |
 | `FIRST_END_UNRESOLVED` | 184 | 184 |
