@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `42935739969-1:43e0de771c83cfc8ad871930ed1ea31884e54731acfcb0cd8b28ece87ad23ee1` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `42940725312-1:52b709df14f0fa82496c75ac226a61af646a8519baf75a87cd6f626372d0a25a` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -13,9 +13,9 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 Orders with a provisional YES/NO status: 4,274. The other 10,724 have not been researched yet.
 
 Ready by text evidence: {'original_supported': 726, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 851; quotation rechecks: 851. These remain work after readiness.
+Outstanding original replacement obligations: 883; quotation rechecks: 883. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 252. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1571}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 284. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1551}.
 
 ## Steps finished (orders with a provisional status)
 
@@ -34,7 +34,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Orders unblocked | Kind | Action |
 |---:|---|---|
-| 2,198 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
+| 2,166 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
 | 702 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 10 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
@@ -53,8 +53,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `NO_CLAUSE_INVENTORY` | 2,670 | 2,670 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,670 | 2,670 |
 | `FIRST_END_UNPROVED` | 2,355 | 2,355 |
-| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 696 | 2,198 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 518 | 1,572 |
+| `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 695 | 2,166 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 517 | 1,540 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 1,206 | 1,206 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 186 | 702 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
@@ -106,7 +106,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - photius-replica-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 2,557
 - montfaucon-page-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 0
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 2,750
-- lachmann working-text confirmations (provisional text step only, never an original): 2,349
+- lachmann working-text confirmations (provisional text step only, never an original): 2,361
 - opus-media-match status: 1,155
 - source-ladder: 963
 - claim-checker: 1,604
