@@ -478,6 +478,7 @@ class Searcher:
         self.reserved = 0  # fetches started; robots.txt reads are extra (one per host) and not counted here
         self.now = now or (lambda: dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
         # paid queries this searcher may still send (None: the per-run default; caps are applied by run_campaign)
+        self.robots_overrides = {}
         self.paid_allowance = _int_env(self.env, "EO_PAID_SEARCHES_PER_RUN", PAID_PER_RUN_DEFAULT) if paid_allowance is None else paid_allowance
         self.paid_used = {}
 
@@ -542,6 +543,28 @@ class Searcher:
         except Exception as exc:  # network errors are retryable facts, never findings
             return 0, b"", type(exc).__name__ + ": " + str(exc)[:120]
 
+    def _keyed_api_robots_4xx(self, engine, url):
+        """Owner, 2026-11-11 (extends A-20261107-courtlistener-robots): a robots.txt answered with 401/403 is
+        "unavailable" under RFC 9309 section 2.3.1.3, which permits access. For a paid search API called with the
+        owner's own key (Brave's api.search.brave.com answers its robots file with 403), proceed. Only keyed paid
+        engines, only on a 4xx robots answer: an explicit Disallow rule, a 5xx or a network failure still blocks."""
+        try:
+            self.pool.allowed(url)
+            return False
+        except Exception:
+            pass
+        try:
+            origin, _ = self.pool._origin(url)
+            rp = self.pool.robots.get(origin)
+        except Exception:
+            return False
+        if rp is not None and getattr(rp, "disallow_all", False) and getattr(rp, "wild", "x") is None:
+            rp.disallow_all = False
+            rp.allow_all = True
+            self.robots_overrides[engine["name"]] = "robots.txt answered 4xx (RFC 9309 unavailable); keyed API, owner ruling 2026-11-11"
+            return True
+        return False
+
     def search(self, engine, query, year=None):
         """One query on one engine -> {'engine','query','url','status','hits','error'}."""
         url = build_url(engine, query, year, self.env)
@@ -554,6 +577,8 @@ class Searcher:
                     "hits": [], "error": "deferred_this_run:" + self.engine_status[name]}
         if engine.get("paid") and not self._reserve_paid(name):
             return {"engine": name, "query": query, "url": shown, "status": 0, "hits": [], "error": "paid_cap_reached"}
+        if engine.get("paid") and engine.get("env"):
+            self._keyed_api_robots_4xx(engine, url)
         status, body, error = self._fetch(url, build_headers(engine, self.env))
         hits, perr = [], ""
         if status == 200 and body:

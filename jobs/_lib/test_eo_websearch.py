@@ -24,6 +24,8 @@ class FakeWeb:
         self.calls.append((url, dict(headers)))
         host = url.split("/")[2]
         if url.endswith("/robots.txt"):
+            if host in getattr(self, "robots_status", {}):
+                return self.robots_status[host], {}, io.BytesIO(b"")
             body = self.robots.get(host, "User-agent: *\nAllow: /\n").encode()
             return 200, {"content-type": "text/plain"}, io.BytesIO(body)
         if url in self.pages:
@@ -222,6 +224,27 @@ class SearchLayer(unittest.TestCase):
         return {"name": "fake_paid", "kind": "json", "paid": True, "env": ["PAID_KEY"],
                 "url": "https://paid.test/?key={ENV:PAID_KEY}&q={q}",
                 "json": {"items": "items", "title": "title", "url": "link", "snippet": "snippet"}}
+
+    def test_keyed_paid_api_proceeds_when_robots_answers_4xx_but_not_on_explicit_disallow(self):
+        # Owner 2026-11-11: api.search.brave.com answers robots.txt with 403 (RFC 9309: unavailable -> allowed).
+        paid = self._paid_engine()
+        t = {**TARGET, "id": "EO:7777", "number": 7777, "title": ""}
+        self.web.robots_status = {"paid.test": 403}
+        s = w.Searcher(os.path.join(self.tmp, "c4xx"), max_requests=50, transport=self.web, env={"PAID_KEY": "sekrit"},
+                       engines=ENGINES[:2] + [paid], now=lambda: "2026-10-21T00:00:00Z", paid_allowance=5)
+        w.advance(s, t, w.new_state(t), s.ready_engines())
+        paid_calls = [u for u, _ in self.web.calls if "paid.test" in u and not u.endswith("robots.txt")]
+        self.assertEqual(len(paid_calls), 1, "a 403 robots answer does not block the keyed API")
+        self.assertIn(paid["name"], s.robots_overrides)
+        # An explicit Disallow still blocks, even for a keyed paid engine.
+        self.web.robots_status = {}
+        self.web.robots["paid.test"] = "User-agent: *\nDisallow: /\n"
+        self.web.calls.clear()
+        s2 = w.Searcher(os.path.join(self.tmp, "cdis"), max_requests=50, transport=self.web, env={"PAID_KEY": "sekrit"},
+                        engines=ENGINES[:2] + [paid], now=lambda: "2026-10-21T00:00:00Z", paid_allowance=5)
+        w.advance(s2, t, w.new_state(t), s2.ready_engines())
+        self.assertFalse([u for u, _ in self.web.calls if "paid.test" in u and not u.endswith("robots.txt")])
+        self.assertEqual(s2.engine_status.get(paid["name"]), "blocked_by_robots_txt")
 
     def test_paid_engine_skipped_when_free_engines_found_something(self):
         paid = self._paid_engine()
