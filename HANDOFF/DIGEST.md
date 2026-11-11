@@ -10,7 +10,7 @@ New York date: 2026-11-11. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `43074379457-1:ac580e6ac9c50d7968c07c2e3100e1dba142f92ac27b0d7c410dd744f118f66f` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43079276845-1:7655f1f8f16754bf2517c032316ee3471943411a361db68cdb5e67079e8a6166` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -26,17 +26,20 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-10; intervening runs may be absent.
-- claim-checker: claims_all_checks_passed: 1740 → 1746; claims_mechanical_fail: 80 → 74; claims_mechanical_pass: 1826 → 1832; held_distinct_sha256: 58669 → 58819
+- claim-checker: claims_all_checks_passed: 1740 → 1746; claims_mechanical_fail: 80 → 74; claims_mechanical_pass: 1826 → 1832; held_distinct_sha256: 58669 → 58821
 - claim-drafts: decided_orders_with_draft: 4307 → 4274; fragment_orders_not_in_universe: 41 → 40; undecided_orders_with_draft: 10646 → 10679
+- clause-drafts: clauses_total: 71401 → 71430; fragments_from_app_transcription: 4975 → 4974; fragments_written: 9792 → 9795; orders_processed: 9949 → 9952
 - cruden-fr-concordance: bytes_downloaded: 22573230144 → 3608561552; fragments_carried_forward: 0 → 655; searches_made_this_run: 1976 → 0; units_attempted: 841 → 87
 - duodecim-tableiv: captures_discovered_unt: 0 → 2
-- family-rules: saved_texts_scanned: 82123 → 83082
+- family-rules: saved_texts_scanned: 82123 → 86512
 - gessner-cards: not_researched: 10724 → 11210; one_step_from_ready: 217 → 218; ready_for_human_review: 1252 → 1255; with_provisional_status: 4274 → 3788
 - kean: decisions: 75 → 88; findings: 292 → 364; open_owner_questions: 2 → 5
 - lachmann: assessed: 2349 → 2356; complete_text_confirmed: 1365 → 1366; confirmed: 776 → 777; identity_confirmed: 1148 → 1149
+- official-fixity: carried_forward: 7358 → 7355; checked_this_run: 0 → 1; files: 7358 → 7356; orders_with_a_gpo_matched_file: 5606 → 5607
 - readiness-tracker: orders_with_provisional_status: 4274 → 3788; original_replacement_obligations: 851 → 849; quotation_recheck_obligations: 851 → 849; ready_for_human_review: 1252 → 1255
 - selden-fr-citers: targets_total: 13220 → 13203
 - selden-statutes: attempted: 1941 → 1937; held: 1916 → 1912; orders_with_held_basis_statute: 4132 → 4124; page_number_printed: 1815 → 1811
+- source-ladder: attempts_logged: 61 → 79; bytes_downloaded: 27798224 → 67273510; distinct_new_source_hashes: 41 → 23; exhausted_proposed_items: 2 → 5
 - status-history: printed_snapshot_undecided_identities: 2230 → 2221; undecided_with_history: 4757 → 4748; undecided_with_own_observation: 4585 → 4576
 - theophilus-sources: cfr_targets_planned: 527 → 529; failures_total: 69 → 68
 - tischendorf-originals: bytes_downloaded: 893844547 → 1935046490; leads: 604 → 616; replacement_strong: 39 → 71; replacement_targets: 700 → 735
@@ -69,4 +72,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43074379457)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43079276845)
