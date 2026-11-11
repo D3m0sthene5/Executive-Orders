@@ -1,3 +1,15 @@
+## 2026-11-11 ET (Claude: Bodley sweep of large public collections, owner-requested)
+
+- **Started:** `jobs/bodley-sweep/` on branch `claude/bodley-commons-sweep`. It sweeps Wikimedia Commons, the
+  Internet Archive, the Library of Congress, Google Books (full view), the HathiTrust catalog and Wikidata
+  concurrently. It reads metadata only, at low rates, robots-checked, and matches each hit to the orders that still
+  lack an official copy.
+  - Why: the owner found that Commons had never been swept.
+  - Leads only: nothing it finds changes a status or count.
+  - Results are in `jobs/bodley-sweep/output/`.
+- **Found from this session (Kean F-20261111-nyu-cis-fiche):** NYU Bobst holds the CIS executive orders and
+  proclamations microfiche, 1789-1983, on site. Owner ask A-20261111-film709-count is open.
+
 ## 2026-11-11 ET (Claude: merged and deconflicted the open PRs #286-#289)
 
 - **Done:** the owner asked me to finish merging every open PR. I merged
