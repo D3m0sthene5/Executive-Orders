@@ -61,6 +61,19 @@ class PopulationInputTests(unittest.TestCase):
         self.assertEqual(result["authorized_additions"], 1)
         self.assertEqual(result["statuses"], {"EO:1": "yes", "EO:2": "no"})
 
+    def test_admissions_list_of_pinned_files(self):
+        """D-20261112-graunt-apply: admissions may be several pinned files; an id admitted twice is refused."""
+        a1, a2 = csv_bytes([{"id": "EO:9"}]), csv_bytes([{"id": "EO:10"}])
+        self.write("a1.csv", a1); self.write("a2.csv", a2)
+        self.write("census.csv", csv_bytes([{"id": "EO:1"}, {"id": "EO:2"}, {"id": "EO:3"}, {"id": "EO:9"}, {"id": "EO:10"}]))
+        self.contract["census"]["identity_sha256"] = P.canonical_sha(["EO:1", "EO:2", "EO:3"])
+        self.contract["census"]["admissions"] = [{"path": "a1.csv", "sha256": P.sha(a1), "count": 1},
+                                                 {"path": "a2.csv", "sha256": P.sha(a2), "count": 1}]
+        self.assertEqual(P.validate_inputs(self.repo, self.contract)["universe"], 5)
+        self.contract["census"]["admissions"][1] = {"path": "a1.csv", "sha256": P.sha(a1), "count": 1}
+        with self.assertRaises(ValueError):
+            P.validate_inputs(self.repo, self.contract)
+
     def test_admissions_and_alias_keep_original_pin(self):
         """Owner ruling R9: census = original pin + pinned admissions, with a renamed id mapped back."""
         adm = csv_bytes([{"id": "EO:9"}])

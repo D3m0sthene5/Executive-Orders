@@ -77,11 +77,15 @@ def validate_inputs(repo, contract=None):
     # population: admitted ids removed, renamed ids mapped back to their historical spelling.
     aliases = dict(census.get("id_aliases", {}))            # historical id -> current census id
     admitted_ids = set()
-    if census.get("admissions"):
-        admitted_ids = {(row.get("id") or row.get("instrument_id")) for row in
-                        read_csv(pinned_bytes(repo, census["admissions"]))}
-        require(len(admitted_ids) == census["admissions"]["count"], "Census admissions count changed")
-        require(admitted_ids <= set(identities), "Pinned admission absent from census")
+    admissions = census.get("admissions") or []
+    if isinstance(admissions, dict):   # R9 (one file); D-20261112-graunt-apply made it a list of pinned files
+        admissions = [admissions]
+    for entry in admissions:
+        ids_here = {(row.get("id") or row.get("instrument_id")) for row in read_csv(pinned_bytes(repo, entry))}
+        require(len(ids_here) == entry["count"], "Census admissions count changed")
+        require(ids_here <= set(identities), "Pinned admission absent from census")
+        require(not (ids_here & admitted_ids), "Census admission listed twice")
+        admitted_ids |= ids_here
     back = {new: old for old, new in aliases.items()}
     original = [back.get(i, i) for i in identities if i not in admitted_ids]
     require(len(original) == census["count"], "Census identity count changed")
