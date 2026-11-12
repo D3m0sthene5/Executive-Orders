@@ -67,3 +67,18 @@ documentary support. The missing suffix entries are 130A, 2687A, 5151A, 7010F an
 A document-level inventory of NARA RG 49 (General Land Office executive orders and proclamations), then Interior, War,
 Navy and Treasury approval records; for a missing-population estimate, an archival sampling frame stratified by era
 and agency.
+
+## Applied (owner D-20261112-graunt-apply)
+
+- **Unnumbered series:** counted from `jobs/domesday-register/data/GRAUNT_UNNUMBERED.csv`: 1,816 identities, or 1,405
+  without the inferred power-site groups.
+- **Numbered admissions:** EO 2539, 2703, 3493 and 3733 were admitted with checked official pages; the census now has
+  15,002 rows. Evidence is in `admissions/`, recorded in `research/stage15/CENSUS/ADMISSIONS_2026-11-12.csv` and pinned
+  in claim-kit's contract.
+  - The audit's "govinfo GPO printings" are GPO *Monthly Catalogue* listings (number, date, subject), not printed texts.
+  - EO 2103 is not found in the catalogue issue the audit cites.
+- **Still waiting for an official page (Kean F-20261112-graunt-admissions-checked):**
+  - EO 36, 38, 40, 43, 47, 51 and 92: Cleveland civil-service groups. Look in the CSC annual reports and Richardson
+    vol. IX.
+  - EO 130A, 2687A, 2103, 5151A, 6585, 7010F and 8606A.
+- **Corrections:** not yet applied.
