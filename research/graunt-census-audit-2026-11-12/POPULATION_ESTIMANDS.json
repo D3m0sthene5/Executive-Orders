@@ -1,0 +1,75 @@
+{
+  "schema": "population-estimands-update/v1",
+  "date": "2026-11-12",
+  "cutoff": "2026-10-14",
+  "supersedes_for_reporting": "research/stage15/CENSUS/POPULATION_ESTIMANDS.json (archived workpaper; left byte-identical)",
+  "source": "research/graunt-census-audit-2026-11-12/ (Astra audit; Kean F-20261112-graunt-census-audit; owner decision D-20261112-graunt-adopted)",
+  "estimands": [
+    {
+      "name": "numbered_census_rows",
+      "value": 14998,
+      "kind": "counted",
+      "note": "the series the tracker counts; unchanged until the owner rules"
+    },
+    {
+      "name": "numbered_catalog_labels",
+      "value": 15009,
+      "kind": "counted",
+      "note": "14,979 numbered census rows + 24 missing whole numbers + 5 suffix entries + EO 1-A alias"
+    },
+    {
+      "name": "numbered_directive_proxies",
+      "value": 14995,
+      "kind": "counted under provisional grouping",
+      "sensitivity": [
+        14992,
+        15007
+      ]
+    },
+    {
+      "name": "unnumbered_identified_proxies",
+      "value": 1816,
+      "conservative": 1405,
+      "kind": "counted",
+      "note": "1,405 without 411 power-site date groups whose presidential attribution is inferred"
+    },
+    {
+      "name": "identified_inventory",
+      "value": 16811,
+      "range_by_evidence_rule": [
+        16400,
+        16811
+      ],
+      "kind": "counted",
+      "truth_claim": "source-identified document proxies; not authenticated instruments; not an upper bound"
+    },
+    {
+      "name": "all_actual_executive_orders_1789_through_cutoff",
+      "value": null,
+      "kind": "not estimable",
+      "truth_claim": "the lost and never-catalogued unnumbered tail is not identified by available data; Lord's 15,000 and 50,000 are unsourced guesses"
+    }
+  ],
+  "numbered_labels_missing_from_census": [
+    "36-49",
+    "51-53",
+    "92",
+    "2103",
+    "2539",
+    "2703",
+    "3493",
+    "3733",
+    "6585",
+    "130A",
+    "2687A",
+    "5151A",
+    "7010F",
+    "8606A"
+  ],
+  "domesday_chapman_interval": "model output only: Lord compiled from the same Richardson, military-reservation and land-office sources used as the second list, so the lists are not independent; not a national estimate",
+  "open_owner_asks": [
+    "A-20261112-graunt-admit-numbered",
+    "A-20261112-graunt-corrections",
+    "A-20261112-graunt-unnumbered-seed"
+  ]
+}

@@ -1,3 +1,21 @@
+## 2026-11-12 ET (Claude: Graunt census audit adopted and spread through the project)
+
+- **Verified and adopted** (Kean F-20261112-graunt-census-audit, D-20261112-graunt-adopted): Astra's census audit is
+  archived in `research/graunt-census-audit-2026-11-12/`.
+  - Identified inventory: 16,400-16,811 executive orders, counted. The numbered series has 14,995 directive proxies
+    (15,009 catalog labels); the unnumbered series has 1,405-1,816.
+  - No finite estimate of every order ever issued is defensible.
+  - Claude checked the baseline hash, the 24 missing integers, the questioned unnumbered rows, EO 14435, the govinfo
+    printings and EO 25's date.
+- **Updated:** README two-denominator paragraph; `research/justinian/ESTIMAND.md`; the domesday-register README; the
+  dashboard unnumbered line, so the capture-recapture interval is now labelled a model output, not an estimate; the
+  journal (11 November day).
+  - New reporting estimands: `research/graunt-census-audit-2026-11-12/POPULATION_ESTIMANDS.json`. The archived Stage 15
+    file is left byte-identical.
+- **Carried over** from PR #292, which conflicted: F-20261111-nyc-free-film-access, F-20261111-nyu-cis-fiche and ask
+  A-20261111-film709-count.
+- **Asks:** @Owner: A-20261112-graunt-admit-numbered (29 numbered labels), A-20261112-graunt-corrections (78 rows),
+  A-20261112-graunt-unnumbered-seed. Also A-20261111-film709-count.
 ## 2026-11-12 ET (Claude: Bodley sweeps finished; runner deadline fix merged)
 
 - **Result (Kean F-20261112-bodley-web-pass):** a web search by name for all 2,288 orders without an official copy,
