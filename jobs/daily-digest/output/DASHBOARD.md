@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-11 21:59 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-12 04:32 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 Readiness below is the latest published tracker generation. Exact claim-receipt coverage is reported separately; matching versions alone does not verify every source or policy input.
 
@@ -8,19 +8,19 @@ Readiness below is the latest published tracker generation. Exact claim-receipt 
 
 | Measure | Count | Meaning |
 |---|---:|---|
-| Numbered series: working identities | 14,998 | Bibliographic inventory; historical census remains incomplete. Every proportion below is of this series |
-| Unnumbered series (catalogued_unnumbered), observed | 2,334 | Lower bound; estimated total 4,101 to 5,095 (95% interval); a separate denominator with no readiness count |
+| Numbered series: working identities | 15,002 | Bibliographic inventory; historical census remains incomplete. Every proportion below is of this series |
+| Unnumbered series (catalogued_unnumbered), observed | 2,334 | Raw catalogue identities; capture-recapture model output 4,101 to 5,095, not a national estimate; a separate denominator with no readiness count |
 | **Ready for human review, published** | **1,251** | Every applicable tracker step passed or was documented exhausted; independent human verification is separate |
 | Ready with original-supported text | 725 | Tracker's text-evidence tier |
 | Ready dependent on provisional transcriptions | 526 | Explicit working-text limitations remain |
 | Provisional YES / NO | 405 / 3,383 | Current status register, unique admitted identities |
-| Without a provisional status | 11,210 | Working identities without a recognized YES/NO |
+| Without a provisional status | 11,214 | Working identities without a recognized YES/NO |
 | Filed claim lines / distinct orders | 1,908 / 1,604 | Includes partial claims and replacement versions; not a completion measure |
 | Superseded or repeated claim lines | 304 | Difference between valid lines and unique orders |
 | Human-certified whole histories, published register | 0 | Separate Stage19 human-review record; never inferred from AI passes |
 
-Tracker generation: **2026-11-11 21:59 EST**; input commit `50adc250e88fc95c3d0dc1df74d2e0dd145e6b2a`.
-[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43139856564).
+Tracker generation: **2026-11-12 04:32 EST**; input commit `d2b09a886789e88db7cf78dcb499b9644f18ceda`.
+[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43184670717).
 
 ## Receipt coverage and freshness
 
@@ -63,12 +63,12 @@ File acquisition and machine text do not establish legal conclusions or independ
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `50adc250e88fc95c3d0dc1df74d2e0dd145e6b2a`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `d2b09a886789e88db7cf78dcb499b9644f18ceda`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
-| Readiness | 2026-11-11 21:59 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
-| Claim checker | 2026-11-11 21:58 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
+| Readiness | 2026-11-12 04:32 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
+| Claim checker | 2026-11-12 04:31 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
 | ProQuest ingestion | 2026-11-11 13:38 EST | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
 | Web-source custody | 2026-11-10 19:09 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
 

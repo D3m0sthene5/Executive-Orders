@@ -1,22 +1,22 @@
 # Daily research digest
 
-New York date: 2026-11-11. Generated mechanically; all findings remain provisional.
+New York date: 2026-11-12. Generated mechanically; all findings remain provisional.
 
 ## Tracker headline
 
 # Readiness tracker
 
-**Numbered series: ready for human review 1,251 of 14,998 orders (8.3%)**
+**Numbered series: ready for human review 1,251 of 15,002 orders (8.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `43139856564-1:d36f5e46f10c5d833e07de0dab00faac98fb3ff78bd2027fb8d1ff81978965c5` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43184670717-1:96e08f3c8e91fedb098cb158120f8ec44f258d80b8dbe87b317cde9f0f7399cf` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
 
-Orders with a provisional YES/NO status: 3,788. The other 11,210 have not been researched yet.
+Orders with a provisional YES/NO status: 3,788. The other 11,214 have not been researched yet.
 
 Ready by text evidence: {'original_supported': 725, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 851; quotation rechecks: 851. These remain work after readiness.
@@ -25,29 +25,10 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 ## Changes since the previous day
 
-Comparison snapshot: 2026-11-10; intervening runs may be absent.
-- claim-checker: held_distinct_sha256: 58669 → 58657
-- claim-drafts: decided_orders_with_draft: 4307 → 3788; fragment_orders_not_in_universe: 41 → 40; undecided_orders_with_draft: 10646 → 11165
-- clause-drafts: clauses_total: 71401 → 71430; fragments_from_app_transcription: 4975 → 4974; fragments_written: 9792 → 9795; orders_processed: 9949 → 9952
-- cruden-fr-concordance: bytes_downloaded: 22573230144 → 3608561552; fragments_carried_forward: 0 → 655; searches_made_this_run: 1976 → 0; units_attempted: 841 → 87
-- duodecim-tableiv: captures_discovered_unt: 0 → 2
-- family-rules: saved_texts_scanned: 82123 → 86512
-- gessner-cards: not_researched: 10724 → 11210; ready_for_human_review: 1252 → 1251; with_provisional_status: 4274 → 3788
-- kean: decisions: 75 → 88; findings: 292 → 364; open_owner_questions: 2 → 5
-- lachmann: assessed: 2349 → 2356; complete_text_confirmed: 1365 → 1366; confirmed: 776 → 777; identity_confirmed: 1148 → 1149
-- lambertini: counterevidence_records: 1244 → 721; decided_orders_with_draft: 4301 → 3788; packet_targets: 846 → 851; packets: 120 → 125
-- official-fixity: carried_forward: 7358 → 7355; checked_this_run: 0 → 1; files: 7358 → 7356; orders_with_a_gpo_matched_file: 5606 → 5607
-- readiness-tracker: orders_with_provisional_status: 4274 → 3788; ready_for_human_review: 1252 → 1251; working_text_confirmations_counting: 776 → 777
-- selden-fr-acting: bytes_downloaded: 1139195521 → 2729289189; requests: 82 → 129
-- selden-fr-citers: targets_total: 13220 → 13199
-- selden-statutes: attempted: 1941 → 1937; held: 1916 → 1912; orders_with_held_basis_statute: 4132 → 4123; page_number_printed: 1815 → 1811
-- shepard-citations: edges: 10667 → 10665; edges_with_census_actor: 6657 → 6655; edges_with_census_target: 7661 → 7659; reserves_resolved: 180 → 179
-- source-ladder: attempts_logged: 61 → 79; bytes_downloaded: 27798224 → 67273510; distinct_new_source_hashes: 41 → 23; exhausted_proposed_items: 2 → 5
-- status-history: printed_snapshot_undecided_identities: 2230 → 2221; undecided_with_history: 4757 → 4748; undecided_with_own_observation: 4585 → 4576
-- theophilus-sources: cfr_targets_planned: 527 → 529; failures_total: 69 → 68
-- tischendorf-originals: bytes_downloaded: 893844547 → 920039758; leads: 604 → 606; replacement_targets: 700 → 701; replacement_targets_ready: 520 → 521
-- tsiolkovsky-trajectory: W_hours: 6888.3 → 6841.3; a_hours_per_day2_latest: 4.87 → -13.96; days: 25 → 26; generations: 102 → 111
-- valla: active_claims: 1530 → 1604; shared_rationale_references: 783 → 831; textual_leads: 24 → 33
+Comparison snapshot: 2026-11-11; intervening runs may be absent.
+- gessner-cards: not_researched: 11210 → 11214; numbered_series_orders: 14998 → 15002; orders: 14998 → 15002; president_unknown_no_date: 63 → 67
+- readiness-tracker: numbered_series_orders: 14998 → 15002; orders_total: 14998 → 15002
+- selden-fr-citers: bytes_downloaded: 855827 → 0; requests: 71 → 0; targets_total: 13199 → 13203
 
 ## Top shared unlocks
 
@@ -66,6 +47,8 @@ Comparison snapshot: 2026-11-10; intervening runs may be absent.
 - A-20261110-respondendi-standing-rule (2026-11-10, Claude): Approve jobs/respondendi-adoption/RULE.md (sha256 85a990233d5cad3fb30870e4b80ed0c6102ae6232f7be595b28d545750250934) as a standing adoption rule, so that undecided-route status proposals in its lot are adopted without a per-order owner decision? The lot: express, named, unqualified whole-order revoca
 - A-20261110-respondendi-standing-rule-v2 (2026-11-10, Claude): Approve Respondendi rule version 2 (jobs/respondendi-adoption/RULE.md, sha256 e15ae99b3e5ae800e18d331cb2b5fe6ae233aa36052b13f512b86eabbec01423) as a standing rule covering every kind of undecided order, so that qualifying status proposals are adopted after the audits it requires, with no per-order o
 - A-20261110-ulpian-named-war (2026-11-10, Claude): Count service in a named war as a dated fact? Eight returned L1R orders (EO 437, 444, 453, 411 and four others; list in research/ulpian/jacquard-l1r-correction/COORDINATOR.jsonl) say the person is a veteran of the Civil War (1861-1865) or the Spanish war (1898) but print no date. RULE.md v2 section 
+- A-20261111-film709-count (2026-11-11, Claude): NYU Film 709 (11 reels, EO 1-7403) is free to scan yourself at Bobst on the ScanPro stations, and NARA New York is closed. Count your own Film 709 scans as the R38 microfilm witness, like M1118? Bytes stay private (owner inbox, as with Hein); only hashes and page facts go public. Counting starts onl
+- A-20261112-cis-unnumbered-check (2026-11-12, Claude): Check the 875 CIS unnumbered executive orders that fall on dates with no known order (research/graunt-census-audit-2026-11-12/cis-kaufman/CIS_UNNUMBERED_EO_GROUPS_PRE1937.csv) for admission to the unnumbered series? A pilot of 30 on the CIS fiche at Bobst or ProQuest would show how many are presiden
 
 ## Published output status
 
@@ -75,4 +58,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43139856564)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43184670717)
