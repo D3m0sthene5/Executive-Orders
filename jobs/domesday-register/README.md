@@ -1,5 +1,7 @@
 # Domesday register: every order the project knows was signed, and what it holds for each
 
+> **Census audit, 2026-11-12** (Kean F-20261112-graunt-census-audit, `research/graunt-census-audit-2026-11-12/`): the numbered census is 29 catalog labels short (EO 36-49, 51-53, 92, 2103, 2539, 2703, 3493, 3733, 6585 and 130A, 2687A, 5151A, 7010F, 8606A, each with a cited source), and 1,405-1,816 unnumbered orders are individually identified. The `catalogued_unnumbered` capture-recapture interval in `UNNUMBERED_SUMMARY.json` is a model output, not a national estimate: Lord compiled from the same sources used as its second list, so the lists are not independent. Seeding the unnumbered series from the audit waits for owner ask A-20261112-graunt-unnumbered-seed.
+
 One table, `output/REGISTER.csv`, with one row per order in the 14,972-order census: number, date, title and
 president from the best index the project has; every source held by class (official original, archival replica
 scan, compiled or volunteer transcription) and how many text files are on disk; the readiness tracker's

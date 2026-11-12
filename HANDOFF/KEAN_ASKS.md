@@ -42,3 +42,35 @@ Count service in a named war as a dated fact? Eight returned L1R orders (EO 437,
 *Why:* Such a person was certainly born before 1904; the rule's letter, not the evidence, keeps them open. 8 orders now; the same wording likely recurs in later one-person readings.
 
 Sources: `research/ulpian/jacquard-l1r-correction/README.md`, `jobs/ulpian-outer-bound/RULE.md`
+
+## A-20261111-film709-count (2026-11-11, Claude)
+
+NYU Film 709 (11 reels, EO 1-7403) is free to scan yourself at Bobst on the ScanPro stations, and NARA New York is closed. Count your own Film 709 scans as the R38 microfilm witness, like M1118? Bytes stay private (owner inbox, as with Hein); only hashes and page facts go public. Counting starts only after a pilot reel shows Film 709 matches the State Department file copy, compared frame by frame against a held NARA image.
+
+*Why:* A-20261106-dagron-nyu (answered no on 2026-11-09, 'revisit only if M1118 acquisition fails') keeps Film 709 uncounted. M1118 is not viewable in NYC, its roll list is not online, and digitized rolls cost about 25 each. 1,533 orders in the film's range have no located official source.
+
+Sources: `research/dagron/README.md`
+
+## A-20261112-graunt-admit-numbered (2026-11-12, Claude)
+
+Admit the 29 numbered labels missing from the census (EO 36-49, 51-53, 92, 2103, 2539, 2703, 3493, 3733, 6585, 130A, 2687A, 5151A, 7010F, 8606A)? Each has a cited source in research/graunt-census-audit-2026-11-12/FINDINGS.csv; 2103, 2703, 3493 and 3733 have govinfo GPO printings. Under the B1/R9 precedent each is admitted with a held official page checked by a person; this is a count-changing PR.
+
+*Why:* The numbered census is the tracker's denominator; admissions change counts and need the owner's merge.
+
+Sources: `research/graunt-census-audit-2026-11-12/README.md`
+
+## A-20261112-graunt-corrections (2026-11-12, Claude)
+
+Apply the 78 census corrections in CORRECTIONS.csv (4 count changes: EO 6 and 7 as Secretary Seward's certifications, EO 27-1 grouped with EO 27, the duplicated 1914-08-08 unnumbered row; 62 blank dates supplied from cited indexes; 12 date and crosswalk repairs)?
+
+*Why:* Corrections change census rows the tracker and claims read.
+
+Sources: `research/graunt-census-audit-2026-11-12/README.md`
+
+## A-20261112-graunt-unnumbered-seed (2026-11-12, Claude)
+
+Seed the catalogued_unnumbered series (R10) from the audit's 1,799 individually sourced unnumbered proxies, replacing the raw Lord-plus-cluster identities (2,334 observed) and retiring the capture-recapture interval as an estimate?
+
+*Why:* R10 chose the Lord 1943 seed; the audit's reconciled identities are a better seed but change the second denominator the dashboard reports.
+
+Sources: `research/graunt-census-audit-2026-11-12/README.md`

@@ -35,6 +35,7 @@ PATHS = {
 
 
 UNNUMBERED_PATH = "jobs/domesday-register/output/UNNUMBERED_SUMMARY.json"
+GRAUNT_UNNUMBERED = "1,405-1,816"  # counted, sourced; research/graunt-census-audit-2026-11-12/POPULATION_ESTIMANDS.json
 # Historical id -> current census id (owner ruling R9; same map as jobs/readiness-tracker ID_ALIASES).
 # The hash-pinned status register keeps the historical spelling.
 ID_ALIASES = {"EO:7933a": "EO:7933A"}
@@ -256,10 +257,13 @@ def number(value):
 def unnumbered_row(u):
     if u["observed"] is None:
         return "| Unnumbered series (catalogued_unnumbered), observed | unavailable | Second denominator; not measured until the domesday-register has run |"
-    est = (f"; estimated total {u['estimate_95'][0]:,.0f} to {u['estimate_95'][1]:,.0f} (95% interval)"
+    # Kean F-20261112-graunt-census-audit: the capture-recapture interval is a model output, not a national estimate
+    # (its two lists are not independent), and no finite estimate of every unnumbered order ever issued is defensible.
+    est = (f"; capture-recapture model output {u['estimate_95'][0]:,.0f} to {u['estimate_95'][1]:,.0f}, not a national estimate"
            if u["estimate_95"] else "")
-    return (f"| Unnumbered series (catalogued_unnumbered), observed | {number(u['observed'])} | Lower bound{est}; "
-            "a separate denominator with no readiness count |")
+    return (f"| Unnumbered series (catalogued_unnumbered), observed | {number(u['observed'])} | Raw catalogue identities{est}; "
+            f"the 2026-11-12 census audit identifies {GRAUNT_UNNUMBERED} individually sourced unnumbered orders "
+            "(research/graunt-census-audit-2026-11-12); a separate denominator with no readiness count |")
 
 
 def md_text(value):

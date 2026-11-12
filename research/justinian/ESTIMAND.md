@@ -70,3 +70,8 @@ the whole-order end is `[max(clause earliest), max(clause latest)]`, and it is b
 
 The single authoritative generated number is `ready_for_human_review` in
 `jobs/readiness-tracker/output/SUMMARY.json`, together with its `generation_id` (A3).
+
+
+## Census audit, 2026-11-12 (Graunt; Kean F-20261112-graunt-census-audit)
+
+The denominator of the headline (operative force at the 2026-10-14 cutoff) remains the numbered census the tracker counts until the owner rules on A-20261112-graunt-admit-numbered and A-20261112-graunt-corrections. The audit found that series 29 catalog labels short (15,009 labels; 14,995 directive proxies after grouping) and identified 1,405-1,816 unnumbered orders. Any statement about "all executive orders ever signed" must say that no finite estimate of the unnumbered tail is defensible; report counted inventory (16,400-16,811) and never a modelled total. See `research/graunt-census-audit-2026-11-12/README.md`.

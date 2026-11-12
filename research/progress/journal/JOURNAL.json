@@ -1,31 +1,32 @@
 {
   "schema": "eo-project-journal/v1",
   "title": "Project journal",
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "how_written": "One entry per project day, written from the dated Kean register (jobs/kean/register: findings, owner decisions, questions), the HANDOFF notes and the daily Mission checkpoints. Ready counts are the readiness tracker's 'ready for human review' on that day's last published generation; a day without a published generation shows none. Ready means a machine-complete dossier waiting for a person, not a certified result: certified whole lifecycles remain 0 throughout.",
   "headline": {
     "orders_in_census": 14998,
-    "ready_for_human_review": 1252,
-    "orders_with_provisional_status": 4274,
+    "ready_for_human_review": 1251,
+    "orders_with_provisional_status": 3788,
     "certified_whole_lifecycles": 0,
-    "as_of": "2026-11-10"
+    "as_of": "2026-11-11"
   },
   "meaning": [
-    "The project's question is the legally defensible life of every executive order from 1789 to the 14 October 2026 cutoff: when it began, what it commanded, whether and when each command ended, and what survives. In 25 days it went from no order ready for human review to 1,252 machine-complete dossiers, and from no settled status to a provisional yes or no for 4,274 orders.",
-    "Most of the value is not in the count but in the machinery that makes each next order cheaper and auditable: a census of 14,998 orders, a register of identities, held official printings for thousands of orders, a claim kit that turns research into checked claims, a checker that verifies every quotation against held bytes, a tracker that says exactly what each order still lacks, and Kean, which keeps every result and owner decision so no session starts from zero.",
+    "The project's question is the legally defensible life of every executive order from 1789 to the 14 October 2026 cutoff: when it began, what it commanded, whether and when each command ended, and what survives. In 26 days it went from no order ready for human review to 1,251 machine-complete dossiers, and from no settled status to a provisional yes or no for 3,788 orders.",
+    "Most of the value is not in the count but in the machinery that makes each next order cheaper and auditable: a census of 14,998 numbered orders (an audit on 12 November found it 29 catalog labels short and identified 1,405 to 1,816 unnumbered orders besides), a register of identities, held official printings for thousands of orders, a claim kit that turns research into checked claims, a checker that verifies every quotation against held bytes, a tracker that says exactly what each order still lacks, and Kean, which keeps every result and owner decision so no session starts from zero.",
     "The count has fallen as well as risen, and that is the system working: on 7 November newly found official GPO printings made 193 earlier transcription-based dossiers stale, and they left the ready count until rechecked against the printing. Rules get stricter as evidence improves; nothing is counted on convenience.",
-    "What it does not mean yet: no lifecycle has been independently certified by a person. The 1,252 are ready for that review, with their remaining obligations stated."
+    "What it does not mean yet: no lifecycle has been independently certified by a person. The 1,251 are ready for that review, with their remaining obligations stated."
   ],
   "last_48_hours": {
-    "from": "2026-11-08",
-    "to": "2026-11-10",
+    "from": "2026-11-09",
+    "to": "2026-11-11",
     "ready_start": 1083,
-    "ready_end": 1252,
+    "ready_end": 1251,
     "summary": [
-      "Ready rose from 1,083 (9 November) to 1,252 (10 November). Papinian contributed 63 canonical claims (PRs #257, #261), and the owner adopted six provisional NO statuses from its undecided probes. The Mabillon text-hash fix (Papebroch) and the P4 replica wiring also merged.",
-      "Ulpian: the owner declined a working-age floor, so adulthood counts only where an order's own text or another held source establishes it. The Jacquard L1 correction kept 9 of 42 statuses. Its L1R extension kept 70 of 556 and returns 486 to undecided (PR #289). The provisional-status count fell from 4,301 to 4,274 and falls further when #289 is reflected.",
-      "The overnight Codex wave spent about half the weekly Codex allowance and 97% of its input tokens were cache re-reads; it produced 12 claims on branches and none merged. The project already held the lessons, but nothing enforced them, so Augur now gates every wave: an outcome objective, Bentham actions only, a 1-lane 30-order first stage and a review by another model family or the owner.",
-      "Preparation for the next line: Accursius's F3-F7 claim-kit fixes (each reviewed by another model and fixed before approval), Respondendi's standing-approval design with two red-team rounds, Larrey's zero-token triage (0 of 130 past successes lost in back-test), Whitworth's registered cost forecast, and the owner's signatures on the Nalimov calibration and Codex smoke plans."
+      "Ready rose from 1,083 to 1,251: Papinian's 63 canonical claims and six adopted NO statuses, the Mabillon text fix and the P4 replica wiring.",
+      "Ulpian: no working-age floor. The Jacquard corrections kept 9 of 42 and 70 of 556 statuses and returned the rest to undecided, so provisional statuses fell from 4,301 to 3,788.",
+      "Augur now gates every agent wave, after the overnight Codex wave spent half a weekly allowance for no merged claim.",
+      "The open web holds almost no official copies of the pre-1936 gap orders: 2,130 Brave searches confirmed pages for 250 orders, nearly all transcriptions already held or other governments' same-number orders. The route is microfilm: NYU Film 709, the CIS fiche at Bobst and NARA M1118.",
+      "The Graunt census audit: an identified inventory of 16,400 to 16,811 executive orders, counted (numbered 14,995 directive proxies; unnumbered 1,405 to 1,816), and no defensible estimate of every order ever issued."
     ]
   },
   "days": [
@@ -232,6 +233,17 @@
         "Papinian: 63 claims merged",
         "Ulpian: no working-age floor",
         "Augur launch gate"
+      ]
+    },
+    {
+      "date": "2026-11-11",
+      "title": "Merges, the open web and the true count",
+      "ready": 1251,
+      "story": "The four open pull requests were merged and deconflicted. The Jacquard L1R correction returned 486 statuses to undecided, so orders with a provisional yes or no fell from 4,274 to 3,788. The live dashboard had been stuck on 2 November data because its relay did not serve the journal files; fixed. A search of the open web by name for all 2,288 orders without an official copy, plus a sweep of six large collections, found almost nothing new. Most confirmed pages were transcriptions already held, or state, city and foreign orders with the same number. The useful finds were offline: NYU holds the numbered orders on microfilm and the CIS executive-order microfiche. An owner-commissioned census audit (Graunt) found the numbered series 29 labels short and identified 1,405 to 1,816 unnumbered orders, and showed that no finite total of every order ever signed is defensible.",
+      "milestones": [
+        "#286-#289 merged",
+        "Dashboard live again",
+        "Graunt census audit"
       ]
     }
   ]
