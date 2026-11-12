@@ -153,6 +153,16 @@ class Run(unittest.TestCase):
                 body = [x for x in fh.read().splitlines() if not x.startswith("#")]
             self.assertEqual(body, ["CUN:M:GLO:2"])
             self.assertIn("assumptions", json.loads(open(os.path.join(out, "UNNUMBERED_SUMMARY.json")).read())["capture_recapture"])
+            self.assertIsNone(s["unnumbered_series_estimate_95"], "the model interval is never reported as an estimate")
+            self.assertEqual(s["raw_catalogue_identities"], 2)
+            # With the census audit's identities present, the series is counted from them (D-20261112-graunt-apply).
+            ad = os.path.join(root, "jobs", "domesday-register", "data"); os.makedirs(ad)
+            un.write_csv(os.path.join(ad, "GRAUNT_UNNUMBERED.csv"),
+                         [{"graunt_id": "A", "inferred_presidential_attribution": "no"}, {"graunt_id": "B", "inferred_presidential_attribution": "yes"},
+                          {"graunt_id": "C", "inferred_presidential_attribution": "no"}], ["graunt_id", "inferred_presidential_attribution"])
+            s2 = un.run(root, os.path.join(root, "_out2"), seed_path)
+            self.assertEqual((s2["unnumbered_series_observed"], s2["unnumbered_series_observed_conservative"]), (3, 2))
+            self.assertEqual(s2["raw_catalogue_identities"], 2)
         finally:
             shutil.rmtree(root)
 

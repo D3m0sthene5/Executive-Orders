@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (9)
+## Waiting for the owner (6)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-graunt-admit-numbered**, **A-20261112-graunt-corrections**, **A-20261112-graunt-unnumbered-seed**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -18,7 +18,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 - **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
-## Owner decisions not yet carried out by the tools (30)
+## Owner decisions not yet carried out by the tools (31)
 
 - **D-20261021-report-deadline** (partly wired): A board order whose only command is to report within a deadline ends on its express revocation (usually EO 12553), not when the board reports; record the report date and standstil… Checked 2026-11-06 (Justinian F3): assemble.py:554 refuses a report deadline as an end; AGENT_PROTOCOL.md:47. No tool r…
 - **D-20261021-strike-and-insert** (not wired): A clause amended by striking and inserting words continues, amended, until the parent order ends; record the text before and after. 43 clauses in 26 committed claims that treat am… Checked 2026-11-06 (Justinian F3): no code or instruction; claim_gate/checker validate later_events structure only, wit…
@@ -50,6 +50,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261110-ulpian-jacquard-l1-correction** (partly wired): Read each of the 42 Jacquard L1 statuses that rested on the at-least-14 premise; keep those whose own text quotes a sufficient fact, return the rest to undecided by a correction P… Correction PR (claude/ulpian-jacquard-l1-correction): 42 read by two blind arms (Sonnet 5.5, Fable 5.2), 42/42 agreemen…
 - **D-20261110-ulpian-l1r-correction** (partly wired): Owner, 2026-11-10, in the Ulpian session: 'Yes, read them'. Read the 527 wave-2 Jacquard L1R provisional NO statuses dated on or after 1904-05-03, the 26 undated L1R rows and the… Correction PR (claude/ulpian-l1r-correction): 556 read by two blind arms in 6 batches, 547/556 agreement, 18/18 control…
 - **D-20261112-graunt-adopted** (partly wired): Owner, 2026-11-12: if the Astra census audit did a good job, percolate its understanding through the whole project. Claude verified it and adopts it for reporting: counted identif… README, ESTIMAND.md, domesday README and the dashboard line updated; census admission, corrections and unnumbered seed…
+- **D-20261112-graunt-apply** (not wired): Owner, 2026-11-12, answering A-20261112-graunt-admit-numbered, A-20261112-graunt-corrections and A-20261112-graunt-unnumbered-seed: yes. (1) Admit the 29 numbered labels the audit… Applied in three PRs: unnumbered seed, numbered admissions, corrections
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure.
 
 <!-- kean:drift -->
@@ -63,4 +64,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-11 F-20261111-nyu-cis-fiche **analysis**: Search NYU's catalog (Primo public API, guest token) for every holding that could supply an official witness… Lesson: Search the library's own catalog for every format before planning acquisition: the CIS fiche at Bobst cover the unnumbered and post-7403 orders that Film 709 cannot, and are on site. Grade fiche scan…
 - 2026-11-11 F-20261111-nyc-free-film-access **analysis**: Owner asked: is there anywhere in NYC to get the pre-1936 executive-order records himself, free as an NYU stu… Lesson: NYU Film 709 is the free in-city route, but the blocker is the project's own rule: Film 709 images are not counted until the owner rules on them. Check the film's identity against a held NARA image b…
 
-Register: 89 owner decisions, 54 answered questions, 370 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 90 owner decisions, 57 answered questions, 370 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
