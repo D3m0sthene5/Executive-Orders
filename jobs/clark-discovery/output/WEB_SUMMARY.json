@@ -1,38 +1,38 @@
 {
-  "advanced_this_run": 1,
-  "cache_hits": 1,
-  "deferred_engine_queries": 0,
+  "advanced_this_run": 32,
+  "cache_hits": 91,
+  "deferred_engine_queries": 409,
   "engines": {
     "bing_api": "needs_key",
-    "bing_rss": "not_tried",
-    "brave_api": "not_tried",
-    "brave_html": "not_tried",
-    "duckduckgo_html": "error",
-    "duckduckgo_lite": "ok",
-    "federal_register_api": "not_tried",
-    "google_books": "not_tried",
+    "bing_rss": "blocked_by_robots_txt",
+    "brave_api": "blocked_by_robots_txt",
+    "brave_html": "blocked_by_robots_txt",
+    "duckduckgo_html": "http_403",
+    "duckduckgo_lite": "http_403",
+    "federal_register_api": "ok",
+    "google_books": "http_429",
     "google_cse": "needs_key",
-    "govinfo_search_page": "not_tried",
-    "hathitrust_catalog": "not_tried",
-    "internet_archive": "not_tried",
-    "loc_books": "not_tried",
-    "loc_manuscripts": "not_tried",
-    "loc_newspapers": "not_tried",
-    "marginalia": "not_tried",
-    "mojeek_html": "not_tried",
+    "govinfo_search_page": "blocked_by_robots_txt",
+    "hathitrust_catalog": "blocked_by_robots_txt",
+    "internet_archive": "ok",
+    "loc_books": "http_429",
+    "loc_manuscripts": "http_429",
+    "loc_newspapers": "http_429",
+    "marginalia": "error",
+    "mojeek_html": "blocked_by_robots_txt",
     "nara_catalog": "needs_key",
-    "presidency_project": "not_tried",
+    "presidency_project": "ok",
     "serpapi_google": "needs_key",
-    "wikipedia_search": "not_tried",
-    "wikisource_search": "not_tried",
-    "yandex_html": "not_tried"
+    "wikipedia_search": "blocked_by_robots_txt",
+    "wikisource_search": "blocked_by_robots_txt",
+    "yandex_html": "blocked_by_robots_txt"
   },
-  "fetches_budgeted": 2,
-  "hits_total": 3511,
+  "fetches_budgeted": 199,
+  "hits_total": 3515,
   "leads_page_confirmed": 115,
   "list_pages": {
     "not_in_census": 3,
-    "orders_named": 69,
+    "orders_named": 237,
     "pages_read": [
       {
         "error": "",
@@ -42,7 +42,7 @@
       },
       {
         "error": "",
-        "sha256": "ca566a27864682982c10a44dcf4c33bbe9b6e5e8d68748de998cf3ab3d44f765",
+        "sha256": "c14e8eeefc3006f8641f22110c05a36f178af266f5b316145667e9ca74d9ad9c",
         "status": 404,
         "url": "https://en.wikisource.org/wiki/Portal:Executive_orders_of_the_United_States"
       },
@@ -65,9 +65,9 @@
         "url": "https://www.federalregister.gov/presidential-documents/executive-orders"
       },
       {
-        "error": "",
-        "sha256": "71596a49027248bfd3bda3f5b758b7cc5cf6d16f6dad1268cfd16b43a63e44b3",
-        "status": 403,
+        "error": "robots unavailable: 429",
+        "sha256": "",
+        "status": 0,
         "url": "https://www.loc.gov/collections/chronicling-america/"
       },
       {
@@ -93,17 +93,317 @@
         "sha256": "20ff6fe1c7f69013244140c7915b271f3ba6d6fd5fc19c8392bc84babf991919",
         "status": 200,
         "url": "https://en.wikipedia.org/wiki/Executive_order_(United_States)"
+      },
+      {
+        "error": "",
+        "sha256": "a2dd5f55e3faf106d7682aac117f95cf3d05f9b700eec4e2e69d5fdb3232bfc9",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_10988"
+      },
+      {
+        "error": "",
+        "sha256": "6a8839253bb7b5ad7162e625df0c6c97e3a93eb2a25f6f5358487f2030060587",
+        "status": 404,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_10990?action=edit&redlink=1"
+      },
+      {
+        "error": "",
+        "sha256": "3d2bdbb0742158d03ed20a9f7eec6bd2dfb7ee9a28b1be582b66fa6bac7f1762",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12148"
+      },
+      {
+        "error": "",
+        "sha256": "a92bb023a214364e40e0d3f72e9cc4a42b64936459b901b987a87e8f3fbca6f2",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_11110"
+      },
+      {
+        "error": "",
+        "sha256": "804b13437db0195fbe9702a159e889761e4351cb74093c428c18182932696362",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_11246"
+      },
+      {
+        "error": "",
+        "sha256": "07a942fd28e3de4643281c370d1356a8d505b20c567ff1e902156c5e82098587",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_11478"
+      },
+      {
+        "error": "",
+        "sha256": "26108d2913ade808895aae4dbdc007a644cd9c065da8cee776145ce78cecf77d",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_13087"
+      },
+      {
+        "error": "",
+        "sha256": "75cf85c732dba9dd0bd3028a1be3b5ca1df0899be1d0c27c2a7a53cb51cab670",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_11850"
+      },
+      {
+        "error": "",
+        "sha256": "b60db2c3b81347d3fcc066dd934693c753bde4f6a27ec4519d6671c8657bb80b",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_11905"
+      },
+      {
+        "error": "",
+        "sha256": "86a41e265923e82e76e6acc45ced74271e28c2879c93b3a6cb9e3123375fffa5",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_11921"
+      },
+      {
+        "error": "",
+        "sha256": "31223c1dbbdee704f3e431358e442c6432d2379323e7846f75217ae55e6803ff",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12036"
+      },
+      {
+        "error": "",
+        "sha256": "6dcc00abe07d71819c047c7e57669e1620ecf723b80cf3c2d150409c223730ad",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12170"
+      },
+      {
+        "error": "",
+        "sha256": "d20a1c1a419b2539f20dd20e38370bdc05ea3335fe74368ec1fefe92c20b3aea",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12172"
+      },
+      {
+        "error": "",
+        "sha256": "2acacd82092ee12d6052759d0748004c416f92cc91f382f2b1cd25231d12f59d",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12333"
+      },
+      {
+        "error": "",
+        "sha256": "b1ac5c7ebfae07c079a59acc7833f32df21967812ee9a372f8b1690f0b1cb09e",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12564"
+      },
+      {
+        "error": "",
+        "sha256": "372825a99972a8bc8ed4370d979ef6ff22ecfaf7468b27e984b1f8d9e4325ed2",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/President"
+      },
+      {
+        "error": "",
+        "sha256": "214565dcc51a5d1daa5c0f7ba3365c394e1fcc32d1b9c799c4fcf1805f5e2525",
+        "status": 404,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12656?action=edit&redlink=1"
+      },
+      {
+        "error": "",
+        "sha256": "9f35754041e980aaccc87d85c537c0be14e561a35656d7a70e3c44a888d490dd",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Working_Group_on_Financial_Markets"
+      },
+      {
+        "error": "",
+        "sha256": "c178fa9b263386b649c182ac9f68e81123eb828aaa8a98dc34808b211c59dd0f",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12667"
+      },
+      {
+        "error": "",
+        "sha256": "25b8b285a2d1a6263bd694484b71d9005e1a6d84c70fa26cb05f4e49dcd84783",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_13233"
+      },
+      {
+        "error": "",
+        "sha256": "434124952d0c70c68683666688eb95458ab93e78a2bbe9c6157aedaa8fbd0294",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/List_of_executive_orders_in_the_first_presidency_of_Donald_Trump"
+      },
+      {
+        "error": "",
+        "sha256": "757c7a5fd879acb9d43051c52e1736730f7ee662107f86de349f8a0bd5588fcc",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/List_of_executive_orders_in_the_second_presidency_of_Donald_Trump"
+      },
+      {
+        "error": "",
+        "sha256": "1c95fc593081ec29f27f7d0b1a223334906e5bae3e84895170e421634b6c648a",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/statistics/data/executive-orders"
+      },
+      {
+        "error": "",
+        "sha256": "ac7926f3680001f68cced134326f63746660f6d06310715f434e57135fd89d79",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14438-decreasing-housing-costs-for-the-american-people"
+      },
+      {
+        "error": "",
+        "sha256": "f1271e8be421ac6207391086136f983c6eb71d56f0355cf82f1162b2b2cdf800",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14437-advancing-womens-health-improve-outcomes-all-phases-life"
+      },
+      {
+        "error": "",
+        "sha256": "3aa63369fd9a082743f3dc9f041dc0e12c61045d3a2ea1b2469479fe129c1ef6",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14436-implementing-the-lindsey-o-graham-sanctioning-russia-and-iran-act"
+      },
+      {
+        "error": "",
+        "sha256": "8a5ed1c414520029d796b43185541d7b25ac910e4c55f866e029430feee54bb9",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14435-emergency-tax-relief-diesel-fuel"
+      },
+      {
+        "error": "",
+        "sha256": "34495b5f8dc62a364ab0610dd1a044b2b76115d6b9146f7c6b116bf824fe85c9",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14432-streamlining-access-government-services-through-americagov"
+      },
+      {
+        "error": "",
+        "sha256": "16916374155d4f4eeee9b77692f3e83c29a922e70c1aa59d72e3114817000206",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14434-inaugurating-the-era-super-intelligence"
+      },
+      {
+        "error": "",
+        "sha256": "9e9653d537341aee99c18f341d427eb48598506bb967ca2909395830aa6d46ea",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14433-eliminating-disease-carrying-pests-and-restoring-enjoyment-the-great"
+      },
+      {
+        "error": "",
+        "sha256": "040b8cefd5fe8eadd6677df8e3a7cdadeea7b9dcc38c2b0b7f67344b888c5607",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14431-enhancing-program-integrity-and-interagency-coordination-the"
+      },
+      {
+        "error": "",
+        "sha256": "36b54825ff60b8b8a1c1fa679118a83cb2bc0ceef45ede3fe89d825c38412e0f",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14430-restoring-american-saltwater-angling-and-recreation"
+      },
+      {
+        "error": "",
+        "sha256": "275959b9f56b2b6d2b7732d2a7a0d060145937d8aeb72c2e22a9a16b3110a340",
+        "status": 200,
+        "url": "https://www.presidency.ucsb.edu/documents/executive-order-14429-reinvigorating-americas-hunting-heritage"
+      },
+      {
+        "error": "",
+        "sha256": "8fdfa8268316bc68b1a45b5fc7161d3a64f869507db409ddb9a7fea5161e182f",
+        "status": 200,
+        "url": "https://www.archives.gov/federal-register/executive-orders/disposition.html"
+      },
+      {
+        "error": "",
+        "sha256": "cdd9061d5277416d56c3a751a93ad493a01231de33e80a8999d831e9b3a045ae",
+        "status": 200,
+        "url": "https://www.archives.gov/federal-register/codification/"
+      },
+      {
+        "error": "",
+        "sha256": "e84fb336e78b229751345df2d7220e39b901011f9cb3f680d4160d1cb04e176d",
+        "status": 200,
+        "url": "https://www.archives.gov/federal-register/executive-orders/about.html"
+      },
+      {
+        "error": "",
+        "sha256": "5fd963fd645752324bdf7eaf7b87b096629d8302b72103f166c327a748233716",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_order_(disambiguation)"
+      },
+      {
+        "error": "",
+        "sha256": "0d89690722a263261da142a9efc2ba59e8a5b45a697c506e3250068f191fb6a4",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_10340"
+      },
+      {
+        "error": "",
+        "sha256": "7f19c637f6f681effb2c2d2c2b615f3fb394615a28629de2ecc8e3ad4ffac6d3",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/List_of_executive_orders_in_the_second_Trump_presidency"
+      },
+      {
+        "error": "",
+        "sha256": "39032ea14842f64c97c43d1b4cee9f9fd6850100e22a4ecd2291a88df489a731",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_6102"
+      },
+      {
+        "error": "",
+        "sha256": "84e209b0f321bb84e80062089b822554a1c548199e62473ba35fb6f3a7fc4384",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_9066"
+      },
+      {
+        "error": "",
+        "sha256": "3546e6e01d86f39a730172319b2519f5e0060eaea43a8fbf3e3de6318f1abcc9",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12866"
+      },
+      {
+        "error": "",
+        "sha256": "0bca1b4eace8bef1359585d9dd3a401affa55368c71a90a7880d1ce3a50a18ab",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/State_executive_order"
+      },
+      {
+        "error": "",
+        "sha256": "715599e2a0d7ebd7eb661786da0566902f43de206b3b39b9a6691f1513e2c66a",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_9835"
+      },
+      {
+        "error": "",
+        "sha256": "0d1f07dea02ff957371ab59523b956ac7986ef331f1ac688c8e4bf0fd0730ec3",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_12968"
+      },
+      {
+        "error": "",
+        "sha256": "cda8b4d076b8d10c57e4f7b0b53b10519d3e90ff5a05909119bd11301abba75a",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Category:Executive_orders_of_Dwight_D._Eisenhower"
+      },
+      {
+        "error": "",
+        "sha256": "4b9ebdddc158b896a0179cbd5e26be70fef5a66bca6ebd7cd6e9c653a1e91967",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Category:United_States_executive_orders_on_government_administration"
+      },
+      {
+        "error": "",
+        "sha256": "231a7bac18444a6f485f55faaf93e415e1f112e9d507b3c1baf8a41f844b5c54",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Executive_Order_10925"
+      },
+      {
+        "error": "",
+        "sha256": "6eb6ccb7fe2b30b9da34d832bdd518871fd9cca024a715fac99b215d6e9f9af2",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Category:United_States_executive_orders"
+      },
+      {
+        "error": "",
+        "sha256": "1aa84aab62fef683ad4abaddfb4d6276773c034c0c248240e47de1e805b18233",
+        "status": 200,
+        "url": "https://en.wikipedia.org/wiki/Category:Executive_orders_of_John_F._Kennedy"
       }
     ]
   },
-  "max_requests": 2,
+  "max_requests": 1100,
   "never_searched": 0,
   "numbers_named_not_in_census": 22,
   "paid_allowance_this_run": 100,
   "paid_queries_lifetime_this_job": 1,
   "paid_queries_this_run": 1,
   "prior_state_from": "git_head",
-  "requests_used": 2,
+  "requests_used": 113,
   "targets_total": 32,
   "targets_with_page_confirmed_lead": 45,
   "targets_with_state": 150,

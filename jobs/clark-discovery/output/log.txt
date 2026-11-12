@@ -20,7 +20,7 @@ test_number_gaps_with_windows_and_index_evidence (test_clark.SyntheticRepo.test_
 test_outputs_are_deterministic (test_clark.SyntheticRepo.test_outputs_are_deterministic) ... ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 5.644s
+Ran 20 tests in 5.939s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
@@ -41,7 +41,7 @@ test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLay
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 23.228s
+Ran 16 tests in 23.143s
 
 OK
 {
@@ -95,33 +95,33 @@ OK
 }
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 1,
-  "requests_used": 2,
-  "hits_total": 3511,
+  "advanced_this_run": 32,
+  "requests_used": 113,
+  "hits_total": 3515,
   "leads_page_confirmed": 115,
   "engines": {
-    "duckduckgo_html": "error",
-    "duckduckgo_lite": "ok",
-    "bing_rss": "not_tried",
-    "mojeek_html": "not_tried",
-    "brave_html": "not_tried",
-    "marginalia": "not_tried",
-    "yandex_html": "not_tried",
+    "duckduckgo_html": "http_403",
+    "duckduckgo_lite": "http_403",
+    "bing_rss": "blocked_by_robots_txt",
+    "mojeek_html": "blocked_by_robots_txt",
+    "brave_html": "blocked_by_robots_txt",
+    "marginalia": "error",
+    "yandex_html": "blocked_by_robots_txt",
     "google_cse": "needs_key",
     "bing_api": "needs_key",
-    "brave_api": "not_tried",
+    "brave_api": "blocked_by_robots_txt",
     "serpapi_google": "needs_key",
-    "loc_newspapers": "not_tried",
-    "loc_books": "not_tried",
-    "loc_manuscripts": "not_tried",
-    "internet_archive": "not_tried",
-    "google_books": "not_tried",
-    "hathitrust_catalog": "not_tried",
-    "federal_register_api": "not_tried",
-    "wikisource_search": "not_tried",
-    "wikipedia_search": "not_tried",
-    "presidency_project": "not_tried",
-    "govinfo_search_page": "not_tried",
+    "loc_newspapers": "http_429",
+    "loc_books": "http_429",
+    "loc_manuscripts": "http_429",
+    "internet_archive": "ok",
+    "google_books": "http_429",
+    "hathitrust_catalog": "blocked_by_robots_txt",
+    "federal_register_api": "ok",
+    "wikisource_search": "blocked_by_robots_txt",
+    "wikipedia_search": "blocked_by_robots_txt",
+    "presidency_project": "ok",
+    "govinfo_search_page": "blocked_by_robots_txt",
     "nara_catalog": "needs_key"
   }
 }
