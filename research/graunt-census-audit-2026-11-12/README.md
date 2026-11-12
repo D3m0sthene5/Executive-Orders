@@ -82,3 +82,7 @@ and agency.
     vol. IX.
   - EO 130A, 2687A, 2103, 5151A, 6585, 7010F and 8606A.
 - **Corrections:** 75 census rows changed through existing columns (`CORRECTIONS_APPLIED.csv`): 63 dates filled (marked `graunt_audit_*`), 5 year-only dates sharpened, one date corrected, EO 6 and 7 flagged as Secretary of State certifications, EO 3016C/K as delegated, EO 27-1 and the duplicate 1914-08-08 row as non-distinct (`deduplicated_document_proxy` 0; rows kept so claim-kit's pinned identities are intact). Three pre-1862 year_group corrections are notes only (B1 precedent).
+
+## Scholarship and the CIS cross-check (2026-11-12)
+
+See `cis-kaufman/README.md` (Kean F-20261112-count-literature): no study derives a total; the CIS Index, via Kaufman and Rogowski's CC0 deposit, suggests the identified unnumbered series may be 875-1,600 larger than 1,816, pending a page check (ask A-20261112-cis-unnumbered-check).
