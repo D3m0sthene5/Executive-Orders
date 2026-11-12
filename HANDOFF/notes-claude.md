@@ -1,3 +1,25 @@
+## 2026-11-12 ET, evening (Claude: claim-kit build repaired; fresh build verified; pilot finalized, not run)
+
+- **Repair** (PR #302, Kean F-20261112-claimkit-regex-runaway):
+  - The cause was exponential backtracking in `build.py` `_PRECEDES`.
+  - The fix (possessive digit run, atomic separator whitespace) accepts exactly the same citations: identical on
+    22,413 real pairs, and a grep oracle agrees on 242 of 242 windows the old code cannot finish.
+  - Branch run 43287422922: claim-kit built in 32 minutes, and Larrey read that generation.
+- **What F3-F7 enable** (F-20261112-fresh-build-reach), same order IDs:
+  - 1,526 of 11,214 undecided orders gained a record;
+  - 305 moved from hard-only to all gates, and 130 from failing a hard gate to all gates;
+  - fresh pools: 3,447 pass every gate, 1,834 only the hard gates.
+- **Larrey default is now hard gates only** (D-20261112-larrey-hard-default). Bentham applies the soft lifts only at
+  the soft level. The back-test was re-run honestly on the new kit with the diagnosis: unchanged.
+- **PR #301 is stacked on #302: merge #302 first.** After both merge, run `larrey-triage bentham` on main, verify it,
+  then `research/lind/stage0/draw.py`.
+- **Owner ask A-20261112-lind-stage0-v2:**
+  - $35 all-in cap, plus one adoption decision on the batch's upheld proposals;
+  - needs an Augur review of `WAVE.json`, sha256 f2b07a19..., by Codex, Astra or the owner;
+  - supersedes A-20261112-lind-stage0 and A-20261110-larrey-soft-probe.
+- **Deferred by the owner:** the runner-wide Rattle Watch runaway stop (patch kept outside the repo).
+- **Cost of this work:** about $31 of list-price allowance through 19:12 UTC, plus the checking since then.
+
 ## 2026-11-12 ET (Claude: Lind correction pass; low-yield root cause found; stage-0 test set up, not run)
 
 - **Root cause of low undecided yield** (Kean F-20261112-kit-not-rebuilt): the Accursius fixes F3-F7 merged

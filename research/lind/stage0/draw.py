@@ -6,7 +6,9 @@ Zero tokens. It only reads committed outputs and writes DRAW.json beside this fi
 It refuses to draw while the inputs are stale:
 - the claim-kit output must have been built after the last Accursius fix merged (PR #275, 2026-11-10T22:07:23Z); the
   output on main from 2026-11-10T10:36Z predates all five fixes (F3-F7);
-- Larrey's GATES.jsonl must have been built after that claim-kit output.
+- Larrey's GATES.jsonl must have been built after that claim-kit output;
+- Larrey must be current (its own staleness check) and enforced at the hard level, the default since 2026-11-12:
+  the soft gates are experimental, so the 15 soft-failing orders are admitted, never excluded.
 
 Usage: python3 -I research/lind/stage0/draw.py [--seed N] [--per-arm 15] [--check-only]
 """
@@ -40,6 +42,17 @@ def freshness():
                    "claim-kit on main first")
     if gates < kit:
         why.append(f"Larrey gates built {gates}, before the claim-kit output ({kit}): re-run larrey-triage")
+    if not why:
+        import os
+        sys.path.insert(0, str(REPO / "jobs/larrey-triage"))
+        import larrey  # noqa: E402
+        os.environ["LARREY_LEVEL"] = "hard"
+        try:
+            ok, _, rec = larrey.admitted(REPO, "status_assignment.undecided")
+        except ValueError as exc:
+            return [f"Larrey refuses: {exc}"]
+        if ok is None or not rec.get("larrey_enforced"):
+            why.append("Larrey route not enforced (calibration does not match the kit code)")
     return why
 
 
@@ -78,6 +91,10 @@ def main(argv=None):
         print("REFUSE: " + "; ".join(stale))
         return 2
     admitted, soft_only = strata()
+    sys.path.insert(0, str(REPO / "jobs/larrey-triage"))
+    import larrey  # noqa: E402
+    hard_ok, _, _ = larrey.admitted(REPO, "status_assignment.undecided")
+    assert set(admitted) | set(soft_only) <= hard_ok, "a drawn group member is not admitted at the hard level"
     print(f"pool: {len(admitted)} pass every gate, {len(soft_only)} pass hard gates only")
     if a.check_only:
         return 0
