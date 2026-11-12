@@ -2,8 +2,12 @@
   "actor_contexts": [
     {
       "actor_id": "EO:12333",
+      "evidence_ids": [],
+      "full_text_chars": 56201,
       "overflow": "actor-texts/EO_12333.json",
-      "text_sha256": "25984ca0eda4bca4ff95c66560fdc569dd309b0567bc52893f0b95d492f69aab"
+      "text_sha256": "25984ca0eda4bca4ff95c66560fdc569dd309b0567bc52893f0b95d492f69aab",
+      "window_bytes": 0,
+      "windows_omitted": 0
     },
     {
       "actor_id": "EO:13326",
@@ -15,7 +19,8 @@
     },
     {
       "actor_id": "EO:13385",
-      "evidence_id": "ACTOR_TEXT:EO:13385"
+      "evidence_id": "ACTOR_TEXT:EO:13385",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -201,7 +206,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13283",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13283"
@@ -1430,6 +1435,7 @@
       "char_end": 9941,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13385",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2039,7 +2045,7 @@
       "text": "Team members shall include personnel from agencies to the extent permitted \nby law and subject to the availability of personnel."
     }
   },
-  "fingerprint": "8c3bf3200f06491c13f8aacc3cb751e3f6f6d6ed3328ec944050e212a1f4fdae",
+  "fingerprint": "b1b2ce86f03aec511bdbbd48c49c27c75031b99de952105ec1ad8fc4f44c0f33",
   "instrument_id": "EO:13283",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2330,32 +2336,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2386,10 +2394,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "7b450ebf5f07cb63ce9df0a0b39e00dd4a1382d0c66ec74bd58135dd4c0870fc",
+    "fingerprint": "fe8f0014fef296069007b3db1ae175d727d9a9a33a7518fae25a9749d2a36235",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13283.json",
-    "history_sha256": "48b70b9cef0e0dc5b612152d343e69a1f050cf44a0d4bb11bec890f00dfbb945",
+    "history_sha256": "b1f4d16eb5b55521cca2393b9b766f38dc66fe9e72742ad528ff74b20f4d4e36",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

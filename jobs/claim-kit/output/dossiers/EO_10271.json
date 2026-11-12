@@ -6,8 +6,15 @@
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@47721"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 3294,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [
@@ -108,7 +115,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:10271",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10271"
@@ -150,11 +157,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 183,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 3819 note; note 'Ex. Ord. No. 10271. Delegation of President’s Authority' [USLM note id id992d572c-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "3103210a576503a5a9473c6ad47315b4e5a60aa750fe788a3f1f15463646f3d1",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id992d572c-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10271",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (50 U.S.C. 3819 note)",
@@ -164,10 +180,14 @@
       "source": {
         "page_or_item": "50 U.S.C. 3819 note; note 'Ex. Ord. No. 10271. Delegation of President’s Authority' [USLM note id id992d572c-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id992d572c-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "3103210a576503a5a9473c6ad47315b4e5a60aa750fe788a3f1f15463646f3d1",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id992d572c-b817-11f1-b12d-8c5a06520415",
+      "text": "Ex. Ord. No. 10271. Delegation of President’s Authority\nEx. Ord. No. 10271, July 7, 1951, 16 F.R. 6661, as amended by Ex. Ord. No. 13286, § 80, Feb. 28, 2003, 68 F.R. 10631, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id992d572c-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "3103210a576503a5a9473c6ad47315b4e5a60aa750fe788a3f1f15463646f3d1",
       "where": "USC 50 U.S.C. 3819 note"
     },
     {
@@ -219,7 +239,7 @@
         "snippet": "Ex. Ord. No. 10271. Delegation of President’s Authority | Ex. Ord. No. 10271, July 7, 1951, 16 F.R. 6661, as amended by Ex. Ord. No. 13286, § 80, Feb. 28, 2003, 68 F.R. 10631, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id992d572c-b817-11f1-b12d-8c5a06520415",
+        "text_path": "usc-notes/id992d572c-b817-11f1-b12d-8c5a06520415.txt",
         "where": "USC 50 U.S.C. 3819 note"
       },
       "proposal": {
@@ -1059,6 +1079,27 @@
       },
       "text": "Instrument: EO:12977\nSource: https://www.govinfo.gov/content/pkg/FR-1995-10-24/pdf/95-26497.pdf\nSHA-256 of the downloaded file: a6a34aa2401dec28f435458b91313c0d28e9c9787bd8a47c8c451202971bef66\nLocation: 60 FR 54411, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n54411\nFederal Register\nVol. 60, No. 205\nTuesday, October 24, 1995\nTitle 3—\nThe President\nExecutive Order 12977 of October 19, 1995\nInteragency Security Committee\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, and in order to enhance the quality\nand effectiveness of security in and protection of buildings and facilities\nin the United States occupied by Federal employees for nonmilitary activities\n(‘‘Federal facilities’’), and to provide a permanent body to address continuing\ngovernment-wide security for Federal facilities, it is hereby ordered as fol-\nlows:\nSection 1. Establishment. There is hereby established within the executive\nbranch the Interagency Security Committee (‘‘Committee’’). The Committee\nshall consist of: (a) the Administrator of General Services (‘‘Administrator’’);\n(b) representatives from the following agencies, appointed by the agency\nheads:\n(1) Department of State;\n(2) Department of the Treasury;\n(3) Department of Defense;\n(4) Department of Justice;\n(5) Department of the Interior;\n(6) Department of Agriculture;\n(7) Department of Commerce;\n(8) Department of Labor;\n(9) Department of Health and Human Services;\n(10) Department of Housing and Urban Development;\n(11) Department of Transportation;\n(12) Department of Energy;\n(13) Department of Education;\n(14) Department of Veterans Affairs;\n(15) Environmental Protection Agency;\n(16) Central Intelligence Agency; and\n(17) Office of Management and Budget;\n(c) the following individuals or their designees:\n(1) the Director, United States Marshals Service;\n(2) the Assistant Commissioner of the Federal Protective Service of the\nPublic Buildings Service, General Services Administration (‘‘Assistant Com-\nmissioner’’);\n(3) the Assistant to the President for National Security Affairs; and\n(4) the Director, Security Policy Board; and\n(d) such other Federal employees as the President shall appoint.\nSec. 2. Chair. The Committee shall be chaired by the Administrator, or\nthe designee of the Administrator.\nSec. 3. Working Groups. The Committee is authorized to establish interagency\nworking groups to perform such tasks as may be directed by the Committee.\n=== PDF page 2 of 2 ===\n54412 Federal Register / Vol. 60, No. 205 / Tuesday, October 24, 1995 / Presidential Documents\nSec. 4. Consultation. The Committee may consult with other parties, includ-\ning the Administrative Office of the United States Courts, to perform its\nresponsibilities under this order, and, at the discretion of the Committee,\nsuch other parties may participate in the working groups.\nSec. 5. Duties and Responsibilities. (a) The Committee shall: (1) establish\npolicies for security in and protection of Federal facilities;\n(2) develop and evaluate security standards for Federal facilities, develop\na strategy for ensuring compliance with such standards, and oversee the\nimplementation of appropriate security measures in Federal facilities; and\n(3) take such actions as may be necessary to enhance the quality and\neffectiveness of security and protection of Federal facilities, including but\nnot limited to:\n(A) encouraging agencies with security responsibilities to share security-\nrelated intelligence in a timely and cooperative manner;\n(B) assessing technology and information systems as a means of providing\ncost-effective improvements to security in Federal facilities;\n(C) developing long-term construction standards for those locations with\nthreat levels or missions that require blast resistant structures or other special-\nized security requirements;\n(D) evaluating standards for the location of, and special security related\nto, day care centers in Federal facilities; and\n(E) assisting the Administrator in developing and maintaining a centralized\nsecurity data base of all Federal facilities.\nSec. 6. Agency Support and Cooperation. (a) Administrative Support. To\nthe extent permitted by law and subject to the availability of appropriations,\nthe Administrator, acting by and through the Assistant Commissioner, shall\nprovide the Committee such administrative services, funds, facilities, staff\nand other support services as may be necessary for the performance of\nits functions under this order.\n(b) Cooperation. Each executive agency and department shall cooperate and\ncomply with the policies and recommendations of the Committee issued\npursuant to this order, except where the Director of Central Intelligence\ndetermines that compliance would jeopardize intelligence sources and meth-\nods. To the extent permitted by law and subject to the availability of appro-\npriations, executive agencies and departments shall provide such support\nas may be necessary to enable the Committee to perform its duties and\nresponsibilities under this order.\n(c) Compliance. The Administrator, acting by and through the Assistant\nCommissioner, shall be responsible for monitoring Federal agency compliance\nwith the policies and recommendations of the Committee.\nSec. 7. Judicial Review. This order is intended only to improve the internal\nmanagement of the Federal Government, and is not intended, and should\nnot be construed, to create any right or benefit, substantive or procedural,\nenforceable at law by a party against the United States, its agencies, its\nofficers, or its employees.\nœ–\nTHE WHITE HOUSE,\nOctober 19, 1995.\n[FR Doc. 95–26497\nFiled 10–20–95; 2:55 pm]\nBilling code 3195–01–P"
     },
+    "ACTOR_TEXT:EO:13286@47721": {
+      "actor_id": "EO:13286",
+      "char_end": 50803,
+      "char_start": 47721,
+      "id": "ACTOR_TEXT:EO:13286@47721",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "(b) striking ‘‘the Secretary of the Treasury ’’ in the title and in subsections \n1(j), 1(k), and 5, and inserting ‘‘the Secretary of Homeland Security ’’ in \nlieu thereof; and \n(c) striking subsection 1(r) and redesignating subsection 1(s) as subsection \n1(r). \nSec. 76. Executive Order 10631 of August 17, 1955 ( ‘‘Code of Conduct \nfor Members of the Armed Forces of the United States ’’), as amended, \nis further amended by: striking ‘‘the Secretary of Transportation ’’ and insert-\ning ‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 77. Executive Order 10554 of August 18, 1954 ( ‘‘Delegating the Authority \nof the President to Prescribe Regulations Authorizing Occasions Upon Which \nthe Uniform May Be Worn by Persons Who Have Served Honorably in \nthe Armed Forces in Time of War ’’), is amended by striking ‘‘the Secretary \nof the Treasury ’’ and inserting ‘‘the Secretary of Homeland Security ’’ in \nlieu thereof. \nSec. 78. Executive Order 10499 of November 4, 1953 ( ‘‘Delegating Functions \nConferred Upon the President by Section 8 of the Uniformed Services Contin-\ngency Option Act of 1953 ’’), as amended, is further amended by striking \n‘‘the Treasury ’’ in sections 1 and 2 and inserting ‘‘Homeland Security ’’ \nin lieu thereof. \nSec. 79. Executive Order 10448 of April 22, 1953 ( ‘‘Authorizing the National \nDefense Medal’’), as amended, is further amended by striking ‘‘the Secretary \nof Transportation’’ in sections 1 and 2 and inserting ‘‘the Secretary of Home-\nland Security’’ in lieu thereof. \nSec. 80. Executive Order 10271 of July 7, 1951 ( ‘‘Delegating the Authority \nof the President to Order Members and Units of Reserve Components of \nthe Armed Forces into Active Federal service ’’), is amended by striking \n‘‘the Secretary of the Treasury ’’ and inserting ‘‘the Secretary of Homeland \nSecurity’’ in lieu thereof. \nSec. 81. Executive Order 10179 of November 8, 1950 ( ‘‘Establishing the \nKorean Service Medal ’’), as amended, is further amended by striking ‘‘the \nSecretary of the Treasury ’’ in sections 1 and 2 and inserting ‘‘the Secretary \nof Homeland Security’’ in lieu thereof. \nSec. 82. Executive Order 10163 of September 25, 1950 ( ‘‘The Armed Forces \nReserve Medal’’), as amended, is further amended by striking ‘‘the Secretary \nof the Treasury’’ in sections 2 and 7 and inserting ‘‘the Secretary of Homeland \nSecurity’’ in lieu thereof. \nSec. 83. Executive Order 10113 of February 24, 1950 ( ‘‘Delegating the Author-\nity of the President to Prescribe Clothing Allowances, and Cash Allowances \nin lieu thereof, for Enlisted Men in the Armed Forces ’’), as amended, is \nfurther amended by striking ‘‘the Secretary of the Treasury ’’ in sections \n1 and 2 and inserting ‘‘the Secretary of Homeland Security ’’ in lieu thereof. \nVerDate Jan<31>2003 23:17 Mar 04, 2003 Jkt 200001 PO 00000 Frm 00015 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MRE0.SGM 05MRE0\n=== PDF page 14 of 15 ===\n10632 Federal Register / Vol. 68, No. 43 / Wednesday, March 5, 2003 / Presidential Documents \nSec. 84. Executive Order 4601 of March 1, 1927 ( ‘‘Distinguished Flying \n"
+    },
     "CLAUSES:EO:10271#whole": {
       "char_end": 16102,
       "char_start": 4096,
@@ -1080,6 +1121,42 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1951-07-10/pdf/FR-1951-07-10.pdf"
       },
       "text": "By virtue of the authority vested in me  \nby section 10 (c) of the Universal Mili­\ntary Training and Service Act (62 Stat.  \n621), as amended, and as President of  \nthe United States and Commander in  \nChief of the armed forces of the United  \nStates, it is ordered as follows:\nThere is hereby delegated to the Sec­\nretary of Defense the authority vested in  \nthe President by section 21 of the Uni­\nversal Military Training and Service Act  \n(64 Stat. 318), as amended by the 1951  \nAmendments to the Universal Military  \n(Continued on p. 6661)\nCO N TEN TS\nTHE PRESIDENT\nExecutive. Orders PaSe\nDirector of Defense Mobilization;  \ndelegation of authority to deter­\nmine, with respect to need for  \nschool facilities, areas which are  \ncritical by reason of national-\ndefense activities ____________ 6659\nExtension of enlistments in the\nArmed Forces of the U. S _____ 6659\nSecretary of Defense; delegation  \nof authority to order members  \nand units of Reserve compo­\nnents of the Armed Forces into  \nactive Federal service _____ 6659\nEXECUTIVE AGENCIES\nAgriculture Department  \nSee Dairy Industry Bureau; Pro­\nduction and Marketing Admin­\nistration.\nAl ien Property, Office of  \nNotices:\nVesting orders, etc.:\nBalthazar, Paula, et al ______ 6700\nBartenstein, Reinhold ______ 6700\nBlanchard, John A. and Arch­\nibald_________‘_______ _l 6697\nBrunner, Johanna, et al (2\ndocuments) _________ 6698, 6706\nElectro Metallurgical Co ___6707\nGarnier, Claude Etienne ____ 6708\nGuessefeldt, Richard _______ 6702\nHaller, Martha McMurtrie\nGregg------------------__------- 6698\nHamburger &  Co.’ s Bankiers- \nkantoor, N. V. (2 docu­\nments)__________________ 6705\nHarrassowitz, Otto _________ 6700\nHeck, Elsie J ______________ 6708\nHoffmann, Florenz Audrie _ _ 6708\nIshimoto, Shaw, et al _______ 6698\nJenny, Dr. Richard ________ 6708\nKano, Shiro, et al _________ 6699\nKessemeirer, Rudolf and Else.. 6699\nLambda, S. A _____________ 6701\nLeiser, Otto_. _____________ 6701\nLofberg, Gosta ____________ 6699\nLorry, Marguerite, et al ____ 6709\nMaison J. Hamelle _________ 6708\nSchumann, Paula, et al ____ 6706\nS h i o z a k i ,  Sannosuke and\nSada____________________ 6702\nSociété Française de Con­\nstruction de Bennes Auto­\nmatiques “Benoto” ______ 6709\nVivan, Marie ______________ 6708\n6659\n\n=== PDF page 2 of 52 ===\n6660 THE PRESIDENT\nF E D E R A ^ R E G IS T E R\n\\  l » 3 *\nPublished dally, except Sundays, Mondays,  \nand days following official Federal holidays,  \nby the Federal Register Division, National  \nArchives and Records Service, General Serv­\nices Administration, pursuant to the au­\nthority contained in the Federal Register  \nAct, approved July 26, 1935 (49 Stat. 500, as  \namended; 44 U. S. C., ch. 8B), under regula­\ntions prescribed by the Administrative Com­\nmittee of the Federal Register, approved by  \nthe President. Distribution is made only by  \nthe Superintendent of Documents, Govern­\nment Printing Office, Washington 25, D. C.\nThe regulatory material appearing herein  \nis keyed to the Code of Federal Regulations,  \nwhich is published, under 50 titles, pursuant  \nto section 11 of the Federal Register Act, as  \namended June 19, 1937.\nThe F ederal  R egister  will be furnished by  \nmail to subscribers, free of postage, for $1.50  \nper month or $15.00 per year, payable in  \nadvance. The charge for individual copies  \n(minimum 15tf) varies in proportion to the  \nsize of the issue. Remit check or money  \norder, made payable to the Superintendent  \nof Documents, directly to the Government  \nPrinting Office, Washington 25, D. C.\nThere are no restrictions on the republica­\ntion of material appearing in the F ederal  \nR egister .\nCO D E O F FEDERAL  \nREG U LA TIO N S \n1949 Edition\nPOCKET SUPPLEMENTS\n(For use during 1951)\nThe following Pocket Supplements are now  \navailable:\nTitle 46: Part 146 to end ($0.45)  \nTitle 49: Parts 91 to 164 ($0.30)  \nTitle 49: Part 165 to end ($0.35)\nPreviously announced: Titles 4— 5 ($0.35);  \nTitle 6 ($1.50); Title 7, Parts 1-209  \n($0.75); Parts 210-899 ($1.50); Part 900  \nto end ($1.25); Title 8 ($0.35); Title 9  \n($0.25); Titles 10-13 ($0.30); Title 14,  \nPart 400 to end ($0.45); Title 15 ($0.45);  \nTitle 16 ($0.40(; Title 17 ($0.25); Title 18  \n($0.35); Title 19 ($0.30); Title 20 ($0.30);  \nTitle 21 ($0.65); Titles 2 2 -2 3  ($0.35);  \nTitle 24 ($0.75); Title 25 ($0.25); Title  \n26: Parts 1-79 ($0.30); Parts 80-169  \n($0.25); Parts 170-182 ($0,501; Parts  \n183-299 ($1.25); Title 26: Parts 300 to  \nend; and Title 27 ($0.30); Titles 2 8 -2 9  \n($0.60); Titles 30-31 ($0.35); Title 32  \n($1.50); Title 33 ($0.45); Titles 3 5 -3 7  \n($0.30); Titles 40-42 ($0.35); Titles  \n4 7 -4 8  ($0.70)\nOrder from Superintendent of Documents,  \nGovernment Printing Office, Washington  \n25, D. C.\nCO N TEN TS— Continued\nCivil Aeronautics Board PaS*\nNotices:\nAmerican Air Transport appli­\ncation for exemption; notice  \nof oral argument __________ 6693\nCivil Service Commission  \nRules and regulations:\nAppointment of employees of  \nother agencies without re­\nemployment rights and of  \nformer Federal employees—  6661  \nAppointment through the com­\npetitive system ____________ 6661\nPromotion, demotion, and reas­\nsignment and movement of  \nemployees between agencies  \nwith reemployment rights _ _ 6661\nDairy Industry Bureau  \nProposed rule making:\nButter, processed or renovated;  \nsanitary inspection ________ 6686\nDisplaced Persons Commission  \nRules and regulations:\nSelection and eligibility; selec­\ntion of applicants-_________  6662\nEconomic Stabilization Agency  \nSee  Price Stabilization, Office of.\nFederal Communications Com­\nmission \nNotices:\nAmerican Telephone and Tele­\ngraph Co., and Associated  \nCompanies of Bell System;  \npostponement of hearing ___ 6693\nFederal Power Commission  \nNotices:\nHearings, etc.:\nBlack Hills Power and Light\nCo______________________ 6694\n-  Carrico, G. L____________—  6696\nGreenfield Gas Co., Inc., et al_ 6694\nLower Valley Power and\nLight, Inc ______________ 6695\nMinnesota Power &  Light Co_ 6694  \nMississippi Power and Light\nCo_____________________ 6694\nMontana-Dakota Utilities Co_ 6694  \nNorthern Natural Gas Co. (2\ndocuments) _________ 6694, 6695\nPacific Power &  Light Co. (2\ndocuments) _________ 6693, 6694\nStarkey, L. P., and Edna L.\nSelby __________________ 6696\nSwanson, Ernest O _________ 6694\nTennessee Gas Transmission\nCo. et al ________________ 6694\nTexas Eastern Transmission  \nCorp. et al__________   6695\nInterior Department \nNotices:\nCommissioner of Bureau of Rec­\nlamation; delegation of au­\nthority with respect to farm  \nunit plats ________________ 6693\nInterstate Commerce Commis­\nsion \nNotices:\nApplications for relief:\nAcrylonitrile from West Vir­\nginia to Lugoff, S. C ------4 8698\nCast iron pipe from points in  \nsouthern territory to New  \nMexico___ _- _ _. . . .------ 6698\nCO N TEN TS— Continued\nInterstate Commerce Commis- P age  \nsion— Continued \nNotices—Continued\nApplications for relief—Con.\nSoda from Trenton, Mich., to  \ncertain points in the South- 6696  \nChesapeake and Ohio Railroad  \nCo.; rerouting or diversion of  \ntraffic____________________ 6696\nJustice Department\nSee Alien Property, Office of.\nLabor Department\nSee Wage and Hour Division.\nNational Production Authority  \nRules and regulations!\nIron and steel (M -l) ------------- 6673\nMaintenance, repair, and oper­\nating supplies and minor cap­\nital additions (NPA Reg. 4) —  6673  \nMaintenance, repair, and oper­\nating supplies and minor cap­\nital additions under the Con­\ntrolled Materials Plan (CMP\nReg. 5 )_________   6666\nMarine maintenance, repair, \nand operating supplies and  \nminor capital additions (M-\n70) __________ _-_________ 6671\nRated orders for aluminum (M-\n5) _______________________ 6677\nRepair parts and materials for  \nrepairmen under the Con­\ntrolled Materials Plan (CMP\nReg. 7 )___   6669\nSteel shipping drums (M-75)— 6679\nPost Office Department  \nRules and regulations:\nProcedures of the Post Office\nDepartment ______________ 6682\nProcedures before the Solicitor- 6682\nPrice Stabilization, Office of  \nRules and regulations:\nExcepted services (GOR 14) —- 6664  \nExceptions for certain services\n(GCPR, SR 15)— ____- —  6664\nGeneral Ceiling Price Regula­\ntion; exemption of vegetable\nplants ___________________ 6663\nRetail coal dealers; coal bagged  \nfor Alaska (GCPR, SR 2, Rev.\n1 )_______________________ 6664\nProduction and Marketing Ad­\nministration \nNotices :\nDirector, dairy branch; delega­\ntion of authority to exercise  \ncertain powers and functions  \nrelating to grading and in­\nspection of dairy products—  6693  \nProposed rule making:\nMilk handling in Cedar Rapids,\nIowa, area ______________ 6687\nPotatoes, Irish, grown in New  \nJersey; proposed budget and\nrate of assessment ______— 6692\nRules and regulations:\nGrading and inspection of dairy  \nproducts; delegation of au­\nthority affecting regulations;\neditorial note______________ 6662\nPotatoes, Irish, grown in New  \nJersey; limitation of ship­\nments ____________— ------ 6662\n\n=== PDF page 3 of 52 ===\nTuesday, July 10, 1951 FEDERAL REGISTER 6661\nC O N T E N T S — Continued\nSecurities and Exchange Com- Page  \nmission \nNotices:\nCincinnati Stock Exchange;  \nplan filed for disposal of cer­\ntain documents ____________ 6697\nNew England Gas and Electric  \nAssn., and New Hampshire  \nElectric Co.; order releasing  \njurisdiction over fees and ex­\npenses ________ ________!_ _:  6697\nVeterans’ Administration  \nRules and regulations:\nVocational rehabilitation and  \ne d u c a t i o n ;  miscellaneous \namendments (2 documents)- 668-1  \nWage and Hour Division  \nRules and regulations:\nFrozen-food locker plants; re­\ntail or service establishment  \nand related exemptions ____ 6663\nC O D IFIC A T IO N  GU ID E\nA numerical list of the parts of the Code  \nof Federal Regulations affected by documents  \npublished in this issue. Proposed rules, as  \nopposed to final actions, are identified as  \nsuch.\nTitle 3 PaSe\nChapter II (Executive orders) :\n10269 ___________________—_ 6659\n10270 ______________________ 6659\n10271 ______________________ 6659\nTitle 5  \nChapter I:\nPart 2______________________ 6661\nC O D IFIC A T IO N  G U ID E --C o n .\nTitle 5— Continued Page\nChapter I—Continued\nPart 7— _ _    6661\nPart 8_______________!______ 6661\nTitle 7  \nChapter I:\nPart 58—_______- _________- 6662\nChapter IX:\nPart 931 (proposed) __________ 6687\nPart 998.........    6662\nProposed rules ___________- 6692\nTitle 8 \nChapter IV:\nPart 702.............. ...............1___ 6662\nTitle 9  \nChapter III:\nPart 301 (proposed) _ __________6686\nTitle 29  \nChapter V:\nPart 779 _______    6663\nTitle 32A\nChapter III (OPS):\nGCPR ________   6663\nGCPR, SR 2_________________ 6664\nGCPR, SR 15 _ _  6664\nGOR 14 _ ______________- 6664\nChapter VI (NPA) :\nCMP Reg. 5_ .............   6666\nCMP Reg. 7 _____________   6669\nM - l_______________________ 6673\nM-5 _____________   6677\nM -70_ _  6671\nM -75_____________  6679\nReg. 4 _____________________ 6673\nC O D IFIC A T IO N  G U ID E— Con.\nTitle 38 Page\nChapter I:\nPart 21 (2 documents) ________ 6681\nTitle 39  \nChapter I:\nPart 150 _________— —  6682\nPart 151_________   6682\nTraining and Service Act (65 Stat. 87;  \nPublic Law 51, 82d Congress), to order  \ninto the active military or naval service  \nof the United States for a period not to  \nexceed twenty-four months, with or  \nwithout their consent, any or all mem­\nbers and units of any or all Reserve com­\nponents of the Armed Forces of the  \nUnited States and retired personnel of  \nthe Regular Armed Forces: Provided,  \nthat so much of the authority of the  \nPresident under the said section 21, as  \namended, as relates to any Reserve com­\nponent of the United States Coast Guard  \nor to retired personnel of the Regular  \nCoast Guard is hereby delegated to the  \nSecretary of the Treasury.\nThe Secretary of Defense is hereby  \nauthorized to redelegate, subject to such  \nconditions as the Secretary may deem  \nappropriate, to the Secretaries of the  \nArmy, Navy, and Air Force such func­\ntions under this order as affect their  \nrespective services."
+    },
+    "CURRENT:EO:10271#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 183,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 3819 note; note 'Ex. Ord. No. 10271. Delegation of President’s Authority' [USLM note id id992d572c-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "3103210a576503a5a9473c6ad47315b4e5a60aa750fe788a3f1f15463646f3d1",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id992d572c-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:10271#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10271",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (50 U.S.C. 3819 note)",
+      "machine_lead": true,
+      "mention_id": "usc:584f0f8a1d92",
+      "snippet": "Ex. Ord. No. 10271. Delegation of President’s Authority | Ex. Ord. No. 10271, July 7, 1951, 16 F.R. 6661, as amended by Ex. Ord. No. 13286, § 80, Feb. 28, 2003, 68 F.R. 10631, provided:",
+      "source": {
+        "page_or_item": "50 U.S.C. 3819 note; note 'Ex. Ord. No. 10271. Delegation of President’s Authority' [USLM note id id992d572c-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id992d572c-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "3103210a576503a5a9473c6ad47315b4e5a60aa750fe788a3f1f15463646f3d1",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 10271. Delegation of President’s Authority\nEx. Ord. No. 10271, July 7, 1951, 16 F.R. 6661, as amended by Ex. Ord. No. 13286, § 80, Feb. 28, 2003, 68 F.R. 10631, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id992d572c-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "3103210a576503a5a9473c6ad47315b4e5a60aa750fe788a3f1f15463646f3d1",
+      "where": "USC 50 U.S.C. 3819 note"
     },
     "ORIGINAL:EO:10271": {
       "acceptable_as_original": true,
@@ -1295,7 +1372,7 @@
       "text": "The Secretary of Defense is hereby authorized to redelegated, subject to such conditions as the Secretary may deem appropriate, to the Secretaries of the Army, Navy, and Air Force such functions under this order as affect their respective services."
     }
   },
-  "fingerprint": "760b384fe112d8802a59497b1e83cb0ff3465e0db67c83ee2b258c703ac6d1fb",
+  "fingerprint": "f29630e52511f634140e4003f8da93536e9ca878f04cf2bbcdeab1aa0b2c3679",
   "instrument_id": "EO:10271",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1330,32 +1407,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1382,12 +1461,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "ebed55f4ca1c83b667797e3bf9be411fd8621827f3e10482ec19f0d2fed4ff48",
+    "fingerprint": "eb7ae49cd0cdf2d672d649a8095b6dff356d53a5c8ea093d54c67ea930fed28a",
     "flags": [
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_10271.json",
-    "history_sha256": "b99b0d59b7cfd90f187c5747722ad035cc7956c59a35fc6253f88df014287b24",
+    "history_sha256": "b33308a29280876bec6b4450e898678775bde78927f0cf9f2356e1c66fa90d6e",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

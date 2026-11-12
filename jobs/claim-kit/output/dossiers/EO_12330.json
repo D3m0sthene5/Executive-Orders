@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:12387",
-      "evidence_id": "ACTOR_TEXT:EO:12387"
+      "evidence_id": "ACTOR_TEXT:EO:12387",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -184,7 +185,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12330",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12330"
@@ -411,7 +412,7 @@
       "text": "(c) Judicial Salaries (28 U.S.C. 5, 44(d), 135,173, 213, 252, 792(b), and 11 U.S.C. \n68(a), and Section 401(a), 404(a), 404(b), and 404(d) of Public Law  95-598) at \nSchedule 8."
     },
     {
-      "char_end": 3218,
+      "char_end": 3042,
       "char_start": 2683,
       "id": "CLAUSES:EO:12330#sec4",
       "kind": "section",
@@ -430,7 +431,29 @@
         "text_sha256": "8a06e742ddce6b36e8f2bc576b0aba0e015a2f518b891488f9afa7109ea8cfea",
         "url": "https://www.govinfo.gov/content/pkg/FR-1981-10-16/pdf/FR-1981-10-16.pdf"
       },
-      "text": "Sec. 4. E ffe c t iv e  D a te. The adjustm ents in rates o f m onthly b a sic pay and \nallow ances for su bsistence and quarters for m em bers of uniformed services \nshall be effective on O ctober 1, 1981. A ll other adjustm ents of salary or pay \nshall be effective on the first day of the first applicable pay period beginning \non or after O ctober 1,1981.\nS ec. 5. S u p e r s e d e d  E x e c u tiv e  O rd ers. Executive O rder No. 12248 of O ctober \n16, 1980 and Executive O rder No, 12249 o f O ctober .25, 1980 are superseded."
+      "text": "Sec. 4. E ffe c t iv e  D a te. The adjustm ents in rates o f m onthly b a sic pay and \nallow ances for su bsistence and quarters for m em bers of uniformed services \nshall be effective on O ctober 1, 1981. A ll other adjustm ents of salary or pay \nshall be effective on the first day of the first applicable pay period beginning \non or after O ctober 1,1981."
+    },
+    {
+      "char_end": 3218,
+      "char_start": 3043,
+      "id": "CLAUSES:EO:12330#sec5",
+      "kind": "section",
+      "label": "S ec. 5.",
+      "pdf_page": 15,
+      "scope_id": "EO:12330#sec5",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "medium",
+        "location_verified": false,
+        "page_or_item": "46 FR 50921, 51591, PDF pages 15-20",
+        "requires_page_check": true,
+        "sha256": "beff8b6d94ef9ef5afdc3f6c15704a46afa2805d283ce00737f752e577307f07",
+        "signing_date": "1981-10-15",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12330.txt",
+        "text_sha256": "8a06e742ddce6b36e8f2bc576b0aba0e015a2f518b891488f9afa7109ea8cfea",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1981-10-16/pdf/FR-1981-10-16.pdf"
+      },
+      "text": "S ec. 5. S u p e r s e d e d  E x e c u tiv e  O rd ers. Executive O rder No. 12248 of O ctober \n16, 1980 and Executive O rder No, 12249 o f O ctober .25, 1980 are superseded."
     }
   ],
   "conflicts": [
@@ -442,11 +465,20 @@
   "current_law_leads": [
     {
       "basis_code": "statutory_note_reference",
+      "char_end": 2799,
+      "char_start": 2461,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "28 U.S.C. 153 note; note 'Salary Increases' [USLM note id idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
+        "sha256": "d9107764892c3435c6ec5d469b3d63cd019faf5d127138720f37e3c2418449b4",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12330",
       "legal_basis_candidate": "statutory note names the order (28 U.S.C. 153 note)",
@@ -456,18 +488,32 @@
       "source": {
         "page_or_item": "28 U.S.C. 153 note; note 'Salary Increases' [USLM note id idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f.txt",
+        "text_sha256": "d9107764892c3435c6ec5d469b3d63cd019faf5d127138720f37e3c2418449b4",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "cy (part-time) (maximum rate) increased to $61,200 and $30,600, respectively, effective on first day of first pay period beginning on or after Oct. 1, 1981, by Ex. Ord. No. 12330, Oct. 15, 1981, 46 F.R. 50921, formerly set out as a note under section 5332 of Title 5. Ex. Ord. No. 12330 further provided that pursuant to section 101(c) of",
+      "text_path": "jobs/current-law/output/usc-notes/idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f.txt",
+      "text_sha256": "d9107764892c3435c6ec5d469b3d63cd019faf5d127138720f37e3c2418449b4",
       "where": "USC 28 U.S.C. 153 note"
     },
     {
       "basis_code": "statutory_note_reference",
+      "char_end": 2695,
+      "char_start": 2357,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "28 U.S.C. 172 note; note 'Salary Increases' [USLM note id idd6f0128d-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
+        "sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idd6f0128d-b5bd-11f1-b464-c522e5d34a4f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12330",
       "legal_basis_candidate": "statutory note names the order (28 U.S.C. 172 note)",
@@ -477,9 +523,14 @@
       "source": {
         "page_or_item": "28 U.S.C. 172 note; note 'Salary Increases' [USLM note id idd6f0128d-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
+        "text_sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "e under section 5318 of Title 5.\n1981—Salaries of judges increased to $74,300 effective on first day of first pay period beginning on or after Oct. 1, 1981, by Ex. Ord. No. 12330, Oct. 15, 1981, 46 F.R. 50921, formerly set out as a note under section 5332 of Title 5.\nLimitations on use of funds for fiscal year ending Sept. 30, 1982, app",
+      "text_path": "jobs/current-law/output/usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
+      "text_sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
       "where": "USC 28 U.S.C. 172 note"
     },
     {
@@ -498,6 +549,7 @@
         "snippet": "...cy (part-time) (maximum rate) increased to $61,200 and $30,600, respectively, effective on first day of first pay period beginning on or after Oct. 1, 1981, by Ex. Ord. No. 12330, Oct. 15, 1981, 46 F.R. 50921, formerly set out as a note under section 5332 of Title 5. Ex. Ord. No. 12330 further pr ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f.txt",
         "where": "USC 28 U.S.C. 153 note"
       },
       "proposal": {
@@ -526,6 +578,7 @@
         "snippet": "...e under section 5318 of Title 5. 1981—Salaries of judges increased to $74,300 effective on first day of first pay period beginning on or after Oct. 1, 1981, by Ex. Ord. No. 12330, Oct. 15, 1981, 46 F.R. 50921, formerly set out as a note under section 5332 of Title 5. Limitations on use of funds f ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
         "where": "USC 28 U.S.C. 172 note"
       },
       "proposal": {
@@ -2261,6 +2314,7 @@
       "char_end": 30624,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12387",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2497,7 +2551,7 @@
       "text": "(c) Judicial Salaries (28 U.S.C. 5, 44(d), 135,173, 213, 252, 792(b), and 11 U.S.C. \n68(a), and Section 401(a), 404(a), 404(b), and 404(d) of Public Law  95-598) at \nSchedule 8."
     },
     "CLAUSES:EO:12330#sec4": {
-      "char_end": 3218,
+      "char_end": 3042,
       "char_start": 2683,
       "id": "CLAUSES:EO:12330#sec4",
       "kind": "section",
@@ -2516,7 +2570,101 @@
         "text_sha256": "8a06e742ddce6b36e8f2bc576b0aba0e015a2f518b891488f9afa7109ea8cfea",
         "url": "https://www.govinfo.gov/content/pkg/FR-1981-10-16/pdf/FR-1981-10-16.pdf"
       },
-      "text": "Sec. 4. E ffe c t iv e  D a te. The adjustm ents in rates o f m onthly b a sic pay and \nallow ances for su bsistence and quarters for m em bers of uniformed services \nshall be effective on O ctober 1, 1981. A ll other adjustm ents of salary or pay \nshall be effective on the first day of the first applicable pay period beginning \non or after O ctober 1,1981.\nS ec. 5. S u p e r s e d e d  E x e c u tiv e  O rd ers. Executive O rder No. 12248 of O ctober \n16, 1980 and Executive O rder No, 12249 o f O ctober .25, 1980 are superseded."
+      "text": "Sec. 4. E ffe c t iv e  D a te. The adjustm ents in rates o f m onthly b a sic pay and \nallow ances for su bsistence and quarters for m em bers of uniformed services \nshall be effective on O ctober 1, 1981. A ll other adjustm ents of salary or pay \nshall be effective on the first day of the first applicable pay period beginning \non or after O ctober 1,1981."
+    },
+    "CLAUSES:EO:12330#sec5": {
+      "char_end": 3218,
+      "char_start": 3043,
+      "id": "CLAUSES:EO:12330#sec5",
+      "kind": "section",
+      "label": "S ec. 5.",
+      "pdf_page": 15,
+      "scope_id": "EO:12330#sec5",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "medium",
+        "location_verified": false,
+        "page_or_item": "46 FR 50921, 51591, PDF pages 15-20",
+        "requires_page_check": true,
+        "sha256": "beff8b6d94ef9ef5afdc3f6c15704a46afa2805d283ce00737f752e577307f07",
+        "signing_date": "1981-10-15",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_12330.txt",
+        "text_sha256": "8a06e742ddce6b36e8f2bc576b0aba0e015a2f518b891488f9afa7109ea8cfea",
+        "url": "https://www.govinfo.gov/content/pkg/FR-1981-10-16/pdf/FR-1981-10-16.pdf"
+      },
+      "text": "S ec. 5. S u p e r s e d e d  E x e c u tiv e  O rd ers. Executive O rder No. 12248 of O ctober \n16, 1980 and Executive O rder No, 12249 o f O ctober .25, 1980 are superseded."
+    },
+    "CURRENT:EO:12330#0": {
+      "basis_code": "statutory_note_reference",
+      "char_end": 2799,
+      "char_start": 2461,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "28 U.S.C. 153 note; note 'Salary Increases' [USLM note id idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
+        "sha256": "d9107764892c3435c6ec5d469b3d63cd019faf5d127138720f37e3c2418449b4",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12330#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12330",
+      "legal_basis_candidate": "statutory note names the order (28 U.S.C. 153 note)",
+      "machine_lead": true,
+      "mention_id": "usc:564cc175d98b",
+      "snippet": "...cy (part-time) (maximum rate) increased to $61,200 and $30,600, respectively, effective on first day of first pay period beginning on or after Oct. 1, 1981, by Ex. Ord. No. 12330, Oct. 15, 1981, 46 F.R. 50921, formerly set out as a note under section 5332 of Title 5. Ex. Ord. No. 12330 further provided that pursuant to section 101(c) of...",
+      "source": {
+        "page_or_item": "28 U.S.C. 153 note; note 'Salary Increases' [USLM note id idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f.txt",
+        "text_sha256": "d9107764892c3435c6ec5d469b3d63cd019faf5d127138720f37e3c2418449b4",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "cy (part-time) (maximum rate) increased to $61,200 and $30,600, respectively, effective on first day of first pay period beginning on or after Oct. 1, 1981, by Ex. Ord. No. 12330, Oct. 15, 1981, 46 F.R. 50921, formerly set out as a note under section 5332 of Title 5. Ex. Ord. No. 12330 further provided that pursuant to section 101(c) of",
+      "text_path": "jobs/current-law/output/usc-notes/idd6eb57eb-b5bd-11f1-b464-c522e5d34a4f.txt",
+      "text_sha256": "d9107764892c3435c6ec5d469b3d63cd019faf5d127138720f37e3c2418449b4",
+      "where": "USC 28 U.S.C. 153 note"
+    },
+    "CURRENT:EO:12330#1": {
+      "basis_code": "statutory_note_reference",
+      "char_end": 2695,
+      "char_start": 2357,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "28 U.S.C. 172 note; note 'Salary Increases' [USLM note id idd6f0128d-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
+        "sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idd6f0128d-b5bd-11f1-b464-c522e5d34a4f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12330#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12330",
+      "legal_basis_candidate": "statutory note names the order (28 U.S.C. 172 note)",
+      "machine_lead": true,
+      "mention_id": "usc:e74e17f9c412",
+      "snippet": "...e under section 5318 of Title 5. 1981—Salaries of judges increased to $74,300 effective on first day of first pay period beginning on or after Oct. 1, 1981, by Ex. Ord. No. 12330, Oct. 15, 1981, 46 F.R. 50921, formerly set out as a note under section 5332 of Title 5. Limitations on use of funds for fiscal year ending Sept. 30, 1982, app...",
+      "source": {
+        "page_or_item": "28 U.S.C. 172 note; note 'Salary Increases' [USLM note id idd6f0128d-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
+        "text_sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "e under section 5318 of Title 5.\n1981—Salaries of judges increased to $74,300 effective on first day of first pay period beginning on or after Oct. 1, 1981, by Ex. Ord. No. 12330, Oct. 15, 1981, 46 F.R. 50921, formerly set out as a note under section 5332 of Title 5.\nLimitations on use of funds for fiscal year ending Sept. 30, 1982, app",
+      "text_path": "jobs/current-law/output/usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
+      "text_sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
+      "where": "USC 28 U.S.C. 172 note"
     },
     "ORIGINAL:EO:12330": {
       "acceptable_as_original": true,
@@ -2575,7 +2723,7 @@
       "text": "Arizona\nTelevision stations; table of assignments:\nFlorida\nKansas\nNOTICES\nRulemaking proceedings, filed, granted, denied, \netc.; petitions by various companies\nFederal Deposit Insurance Corporation\nNOTICES\nMeetings; Sunshine Act\nFederal Emergency Management Agency\nNOTICES\nFlood insurance:\nCommunities with special hazard areas subject \nto prohibition of Federal assistance\nFederal Energy Regulatory Commission\nNOTICES\n51110 Meetings; Sunshine Act\nFederal Home Loan Bank Board\nNOTICES\n51111 Meetings; Sunshine Act\nFederal Maritime Commission\nNOTICES\n51027 Agreements filed, etc."
     }
   },
-  "fingerprint": "791c3bf90cae7863f2f6914da3df8bc27775c79e67b9aa6aa0c614de964ab0b5",
+  "fingerprint": "6e9c1264611a69511bc606f05fe7fee38f8a8c6b57748ccb707fcb4d6a5f137d",
   "instrument_id": "EO:12330",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2760,7 +2908,7 @@
       "wording_features": []
     },
     {
-      "clause_sha256": "10abc7294e670e46714b95c0222f91f88cd8845f32e45b70daebfabd4fc35b5f",
+      "clause_sha256": "3e383b762e0f69fda303fe8ec904a2e5196d0dd59b285577bc1b30056c42f930",
       "established_ending": null,
       "human_certified": false,
       "instrument_id": "EO:12330",
@@ -2776,38 +2924,58 @@
       "scope_id": "EO:12330#sec4",
       "state": "requires_clause_specific_research",
       "wording_features": []
+    },
+    {
+      "clause_sha256": "b22494884e72e43b5699f87be9475b814e6d9377900ed706766d43b3158f771b",
+      "established_ending": null,
+      "human_certified": false,
+      "instrument_id": "EO:12330",
+      "later_actor_evidence_ids": [
+        "ACT:EO:12330>EO:12387"
+      ],
+      "own_term_evidence_ids": [],
+      "questions": [
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
+        "Investigate cessation before the later revocation/ending instrument; locating that instrument does not establish the first end."
+      ],
+      "schema": "eo-lifecycle-obligation/v1",
+      "scope_id": "EO:12330#sec5",
+      "state": "requires_clause_specific_research",
+      "wording_features": []
     }
   ],
   "machine_searches": [
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2818,7 +2986,6 @@
   ],
   "missing": [
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "Official-source page location requires a separate page/image check before original confirmation."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -2829,10 +2996,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "a38e63ffaf88539ff84017b8223f208313d4c1e517acff00391eb76cbafb70c1",
+    "fingerprint": "3106828b7d84bec166c8015adb0d91934971022af07b3d4bf999793305f302bf",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12330.json",
-    "history_sha256": "a79805903726e46420ceae3d78e8abaeac6b9bf92432a55be544503bb2aefa5f",
+    "history_sha256": "5f6160e238b080f41a5919899310a61623d683197cd625f931109df9bf1c6e29",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

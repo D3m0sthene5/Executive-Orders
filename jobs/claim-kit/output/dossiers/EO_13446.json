@@ -10,7 +10,18 @@
     },
     {
       "actor_id": "EO:13511",
-      "evidence_id": "ACTOR_TEXT:EO:13511"
+      "evidence_id": "ACTOR_TEXT:EO:13511",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2010-4842",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2010-4842",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:E8-9232",
+      "evidence_id": "ACTOR_TEXT:FRDOC:E8-9232",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -140,7 +151,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13446",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13446"
@@ -1018,11 +1029,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 263,
+      "char_start": 84,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 15001 note; note 'Ex. Ord. No. 12994. President’s Committee for People with Intellectual Disabilities' [USLM note id id3df2bb3c-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "bf0973b5be4a51f99ae4563f293b3b95df30d0f79bdc249308ff0f8d7b5d7de6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3df2bb3c-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13446",
       "legal_basis_candidate": "order amended a printed order (weak lead) (42 U.S.C. 15001 note)",
@@ -1032,9 +1052,14 @@
       "source": {
         "page_or_item": "42 U.S.C. 15001 note; note 'Ex. Ord. No. 12994. President’s Committee for People with Intellectual Disabilities' [USLM note id id3df2bb3c-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3df2bb3c-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "bf0973b5be4a51f99ae4563f293b3b95df30d0f79bdc249308ff0f8d7b5d7de6",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 12994, Mar. 21, 1996, 61 F.R. 13047, as amended by Ex. Ord. No. 13309, July 25, 2003, 68 F.R. 44851; Ex. Ord. No. 13446, § 5, Sept. 28, 2007, 72 F.R. 56176, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3df2bb3c-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "bf0973b5be4a51f99ae4563f293b3b95df30d0f79bdc249308ff0f8d7b5d7de6",
       "where": "USC 42 U.S.C. 15001 note"
     },
     {
@@ -1053,6 +1078,7 @@
         "snippet": "Ex. Ord. No. 12994, Mar. 21, 1996, 61 F.R. 13047, as amended by Ex. Ord. No. 13309, July 25, 2003, 68 F.R. 44851; Ex. Ord. No. 13446, § 5, Sept. 28, 2007, 72 F.R. 56176, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id3df2bb3c-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 15001 note"
       },
       "proposal": {
@@ -1607,6 +1633,7 @@
       "char_end": 4073,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13511",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1621,6 +1648,66 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2009-10-01/pdf/E9-23886.pdf"
       },
       "text": "Instrument: EO:13511\nSource: https://www.govinfo.gov/content/pkg/FR-2009-10-01/pdf/E9-23886.pdf\nSHA-256 of the downloaded file: ccd4b5f36171a56bdf1b39103fe093cc78916ee917f5272476d940a3e39631f3\nLocation: 74 FR 50909, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n50909 \nFederal Register \nVol. 74, No. 189 \nThursday, October 1, 2009 \nTitle 3— \nThe President \nExecutive Order 13511 of September 29, 2009 \nContinuance of Certain Federal Advisory Committees \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, and consistent with the provisions \nof the Federal Advisory Committee Act, as amended (5 U.S.C. App.), it \nis hereby ordered as follows: \nSection 1. Each advisory committee listed below is continued until September \n30, 2011. \n(a) Committee for the Preservation of the White House; Executive Order \n11145, as amended (Department of the Interior). \n(b) National Infrastructure Advisory Council; Executive Order 13231, as \namended (Department of Homeland Security). \n(c) Federal Advisory Council on Occupational Safety and Health; Executive \nOrder 12196, as amended (Department of Labor). \n(d) President’s Board of Advisors on Historically Black Colleges and Univer-\nsities; Executive Order 13256 (Department of Education). \n(e) President’s Board of Advisors on Tribal Colleges and Universities; \nExecutive Order 13270 (Department of Education). \n(f) President’s Commission on White House Fellowships; Executive Order \n11183, as amended (Office of Personnel Management). \n(g) President’s Committee for People with Intellectual Disabilities; Execu-\ntive Order 12994, as amended (Department of Health and Human Services). \n(h) President’s Committee on the Arts and the Humanities; Executive \nOrder 12367, as amended (National Endowment for the Arts). \n(i) President’s Committee on the International Labor Organization; Execu-\ntive Order 12216, as amended (Department of Labor). \n(j) President’s Committee on the National Medal of Science; Executive \nOrder 11287, as amended (National Science Foundation). \n(k) President’s Council on Physical Fitness and Sports; Executive Order \n13265 (Department of Health and Human Services). \n(l) President’s Council of Advisors on Science and Technology; Executive \nOrder 13226, as amended (Office of Science and Technology Policy). \n(m) President’s Export Council; Executive Order 12131, as amended (De-\npartment of Commerce). \n(n) President’s National Security Telecommunications Advisory Committee; \nExecutive Order 12382, as amended (Department of Homeland Security). \n(o) Trade and Environment Policy Advisory Committee; Executive Order \n12905 (Office of the United States Trade Representative). \nSec. 2. Notwithstanding the provisions of any other Executive Order, the \nfunctions of the President under the Federal Advisory Committee Act that \nare applicable to the committees listed in section 1 of this order shall \nbe performed by the head of the department or agency designated after \neach committee, in accordance with the guidelines and procedures estab-\nlished by the Administrator of General Services. \nVerDate Nov<24>2008 20:38 Sep 30, 2009 Jkt 217001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\01OCE0.SGM 01OCE0jlentini on DSKJ8SOYB1PROD with FRE0\n=== PDF page 2 of 2 ===\n50910 Federal Register / Vol. 74, No. 189 / Thursday, October 1, 2009 / Presidential Documents \nSec. 3. Sections 1 and 2 of Executive Order 13446 are superseded by sections \n1 and 2 of this order. \nSec. 4. This order shall be effective September 30, 2009. \nTHE WHITE HOUSE, \nSeptember 29, 2009. \n[FR Doc. E9–23886 \nFiled 9–30–09; 11:15 am] \nBilling code 3195–W9–P \nVerDate Nov<24>2008 20:38 Sep 30, 2009 Jkt 217001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\01OCE0.SGM 01OCE0\nOB#1.EPS</GPH>\njlentini on DSKJ8SOYB1PROD with FRE0"
+    },
+    "ACTOR_TEXT:FRDOC:2010-4842": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2010-4842",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 6762,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2010-4842",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2010-4842",
+        "page_or_item": "75 FR 10630; FR Doc. 2010-4842; Notice: Federal Advisory Council on Occupational Safety and Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "c177448b7f484047df0d0d9887e5dd36e21c78afc08046a7c3b3e809afd82010",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2010-4842.txt",
+        "text_sha256": "c177448b7f484047df0d0d9887e5dd36e21c78afc08046a7c3b3e809afd82010",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2010/03/08/2010-4842.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 75 Issue 44 (Monday, March 8, 2010)</title>\n</head>\n<body><pre>\n[Federal Register Volume 75, Number 44 (Monday, March 8, 2010)]\n[Notices]\n[Page 10630]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2010-4842]\n\n\n\n[[Page 10629]]\n\n-----------------------------------------------------------------------\n\nPart III\n\n\n\n\n\nDepartment of Labor\n\n\n\n\n\n-----------------------------------------------------------------------\n\n\n\nOccupational Safety and Health Administration\n\n\n\nFederal Advisory Council on Occupational Safety and Health; Notice\n\n\u0000\u0000Federal Register / Vol. 75, No. 44 / Monday, March 8, 2010 / \nNotices\u0000\u0000\n\n[[Page 10630]]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF LABOR\n\nOccupational Safety and Health Administration\n\n[Docket No. OSHA-2009-0038]\n\n\nFederal Advisory Council on Occupational Safety and Health\n\nAGENCY: Occupational Safety and Health Administration (OSHA), Labor.\n\nACTION: Reopening of the record and extension of the nominations \ndeadline.\n\n-----------------------------------------------------------------------\n\nSUMMARY: OSHA is reopening the record and extending the deadline for \nsubmitting nominations for membership on the Federal Advisory Council \non Occupational Safety and Health (FACOSH) until March 31, 2010.\n\nDATES: Nominations for FACOSH must be submitted (postmarked, sent, \ntransmitted, received) by March 31, 2010.\n\nADDRESSES: You may submit nominations for FACOSH, identified by Docket \nNo. OSHA-2009-0038, by any one of the following methods:\n    Electronically: Nominations, including attachments, may be \nsubmitted electronically at <a href=\"http://www.regulations.gov\">http://www.regulations.gov</a>, the Federal \neRulemaking Portal. Follow the online instructions for submitting \nnominations;\n    Facsimile: If the nomination, including attachments, does not \nexceed 10 pages, you may fax it to the OSHA Docket Office at (202) 693-\n1648;\n    Mail, express delivery, hand delivery, messenger or courier \nservice: Submit three copies of nominations to the OSHA Docket Office, \nDocket No. OSHA-2009-0038, Room N-2625, U.S. Department of Labor, 200 \nConstitution Avenue, NW., Washington, DC 20210; telephone (202) 693-\n2350 (TTY number (877) 889-5627). Deliveries (hand, express mail, \nmessenger and courier service) are accepted during the Department of \nLabor's and OSHA Docket Office's normal business hours, 8:15 a.m.-4:45 \np.m., e.t.\n    Instructions: All nominations for FACOSH must include the agency \nname and docket number for this Federal Register notice (Docket No. \nOSHA-2009-0038). Because of security-related procedures, submitting \nnominations by regular mail may result in a significant delay in their \nreceipt. Please contact the OSHA Docket Office, at the address above, \nfor information about security procedures for submitting nominations by \nhand delivery, express delivery, and messenger or courier service. For \nadditional information on submitting nominations, see 74 FR 66151.\n    Submissions in response to this Federal Register notice, including \npersonal information provided, will be posted without change at <a href=\"http://www.regulations.gov\">http://www.regulations.gov</a>. Therefore, OSHA cautions interested parties about \nsubmitting personal information such as social security numbers and \nbirth dates.\n    Electronic copies of this Federal Register notice as well as OSHA's \nDecember 14, 2009 notice requesting nominations for FACOSH membership \nare available at <a href=\"http://www.regulations.gov\">http://www.regulations.gov</a>. Both notices, as well as \nnews releases and other relevant information, are also available on \nOSHA's webpage at <a href=\"http://www.osha.gov\">http://www.osha.gov</a>.\n\nFOR FURTHER INFORMATION CONTACT: For press inquiries: Ms. Jennifer \nAshley, OSHA, Office of Communications, U.S. Department of Labor, Room \nN-3647, 200 Constitution Avenue, NW., Washington, DC 20210; telephone \n(202) 693-1999.\n    For general information: Mr. Francis Yebesi, OSHA, Office of \nFederal Agency Programs, U.S. Department of Labor, Room N-3622, 200 \nConstitution Avenue, NW., Washington, DC 20210; telephone (202) 693-\n2122; e-mail <a href=\"/cdn-cgi/l/email-protection#87e8e1e6f7c7e3e8eba9e0e8f1\"><span class=\"__cf_email__\" data-cfemail=\"93fcf5f2e3d3f7fcffbdf4fce5\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: \n    OSHA is reopening the record and extending the deadline for \nsubmitting nominations for membership on FACOSH until March 31, 2010. \nOSHA is extending the FACOSH nominations deadline because of weather-\nrelated Federal government closures during the week preceding the \ndeadline. For instructions and information about submitting \nnominations, see 74 FR 66151.\n    On December 14, 2009, OSHA published a Federal Register notice \ninviting interested parties to submit nominations for FACOSH membership \nby February 12, 2010 (74 FR 66151). OSHA requested nominations to fill \n10 vacancies on FACOSH, five labor and five management members. Five \nvacancies occurred during CY 2009 and five vacancies will occur in CY \n2010. The Secretary of Labor will appoint new members to two-year or \nthree-year terms depending on whether the member will be filling a CY \n2009 or CY 2010 vacancy.\n    FACOSH is authorized to advise the Secretary of Labor on all \nmatters relating to the occupational safety and health of Federal \nemployees (Occupational Safety and Health Act of 1970 (29 U.S.C. 688), \n5 U.S.C. 7902, Executive Order 13446). This includes providing advice \non how to reduce and keep at a minimum the number of injuries and \nillnesses in the Federal workforce and how to encourage the \nestablishment and maintenance of effective occupational safety and \nhealth programs in each Federal department and agency.\n    Authority and Signature: David Michaels, PhD MPH, Assistant \nSecretary of Labor for Occupational Safety and Health, directed the \npreparation of this notice under the authority granted by section 19 of \nthe Occupational Safety and Health Act of 1970 (29 U.S.C. 668), 5 \nU.S.C. 7902, the Federal Advisory Committee Act (5 U.S.C. App), \nExecutive Order 13511, 29 CFR part 1960 (Basic Program Elements of for \nFederal Employee Occupational Safety and Health Programs), 41 CFR part \n102-3, and Secretary of Labor's Order 5-2007 (72 FR 31160).\n\n    Signed at Washington, DC, this March 2, 2010.\nDavid Michaels,\nAssistant Secretary of Labor for Occupational Safety and Health.\n[FR Doc. 2010-4842 Filed 3-5-10; 8:45 am]\nBILLING CODE P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:E8-9232": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:E8-9232",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 4227,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:E8-9232",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:E8-9232",
+        "page_or_item": "73 FR 22950; FR Doc. E8-9232; Notice: Meeting of the President's Council on Physical Fitness and Sports",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "8caaaa73b5866a9e9c1ab503a11c6a9a662fa61e4f66af1ac6db5a2fbb8a7332",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-E8-9232.txt",
+        "text_sha256": "8caaaa73b5866a9e9c1ab503a11c6a9a662fa61e4f66af1ac6db5a2fbb8a7332",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2008/04/28/E8-9232.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 73 Issue 82 (Monday, April 28, 2008)</title>\n</head>\n<body><pre>\n[Federal Register Volume 73, Number 82 (Monday, April 28, 2008)]\n[Notices]\n[Pages 22950-22951]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: E8-9232]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the President's Council on Physical Fitness and Sports\n\nAGENCY: Department of Health and Human Services, Office of the \nSecretary, Office of Public Health and Science.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: As stipulated by the Federal Advisory Committee Act, the \nDepartment of Health and Human Services (DHHS) is hereby giving notice \nthat the President's Council on Physical Fitness and Sports will hold a \nmeeting. This meeting is open to the public. A description of the \nCouncil's functions is included also with this notice.\n\nDATES: May 14, 2008, from 9 a.m. to 4 p.m.\n\nADDRESSES: Department of Health and Human Services, Hubert H. Humphrey \nBuilding, Room 800, 200 Independence Avenue, SW., Washington, DC 20201.\n\nFOR FURTHER INFORMATION CONTACT: Melissa Johnson, Executive Director, \nPresident's Council on Physical Fitness and Sports, Hubert H. Humphrey \nBuilding, Room 738H, 200 Independence Avenue, SW., Washington, DC \n20201, (202) 690-5187.\n\nSUPPLEMENTARY INFORMATION: The President's Council on Physical Fitness \nand Sports (PCPFS) was established originally by Executive Order 10673, \ndated July 16, 1956. PCPFS was established by President Eisenhower \nafter published reports indicated that American boys and girls were \nunfit compared to the children of Western\n\n[[Page 22951]]\n\nEurope. The Council has undergone two name changes and several \nreorganizations. Authorization to continue Council operations has been \ngiven at appropriate intervals by subsequent Executive Orders. \nAuthority to continue Council operations was most recently directed by \nExecutive Order 13446, dated September 28, 2007. A program office to \nsupport PCPFS activities is located organizationally in the Office of \nPublic Health and Science within the Office of the Secretary, DHHS.\n    On June 6, 2002, President Bush signed Executive Order 13265 to \nreestablish the PCPFS. Executive Order 13265 was established to expand \nthe focus of the Council. This directive instructed the Secretary to \ndevelop and coordinate a national program to enhance physical activity \nand sports participation. The Council currently operates under the \nstipulations of the new directive. The primary functions of the Council \ninclude: (1) To advise the President, through the Secretary, on the \nprogress made in carrying out the provisions of the enacted directive \nand recommend actions to accelerate progress; (2) to advise the \nSecretary on ways and means to enhance opportunities for participation \nin physical fitness and sports, and, where possible, to promote and \nassist in the facilitation and/or implementation of such measures; (3) \nto advise the Secretary regarding opportunities to extend and improve \nphysical activity/fitness and sports programs and services at the \nnational, state, and local levels; and (4) to monitor the need for the \nenhancement of programs and educational and promotional materials \nsponsored, overseen, or disseminated by the Council and advise the \nSecretary, as necessary, concerning such needs. The PCPFS holds at a \nminimum, one meeting in the calendar year to (1) assess ongoing Council \nactivities and (2) discuss and plan future projects and programs.\n    Public attendance at the meeting is limited to space available. \nIndividuals must provide a photo ID for entry into the building. \nIndividuals who plan to attend and need special assistance, such as \nsign language interpretation or other reasonable accommodations, should \nnotify the designated contact person.\n\n    Dated: April 18, 2008.\nMelissa Johnson,\nExecutive Director, President's Council on Physical Fitness and Sports.\n [FR Doc. E8-9232 Filed 4-25-08; 8:45 am]\nBILLING CODE 4150-35-P\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:13446#sec1": {
       "char_end": 1101,
@@ -2480,6 +2567,42 @@
       },
       "text": "Sec. 6. This order shall be effective September 30, 2007."
     },
+    "CURRENT:EO:13446#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 263,
+      "char_start": 84,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 15001 note; note 'Ex. Ord. No. 12994. President’s Committee for People with Intellectual Disabilities' [USLM note id id3df2bb3c-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "bf0973b5be4a51f99ae4563f293b3b95df30d0f79bdc249308ff0f8d7b5d7de6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3df2bb3c-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13446#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13446",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (42 U.S.C. 15001 note)",
+      "machine_lead": true,
+      "mention_id": "usc:356ad8942a0d",
+      "snippet": "Ex. Ord. No. 12994, Mar. 21, 1996, 61 F.R. 13047, as amended by Ex. Ord. No. 13309, July 25, 2003, 68 F.R. 44851; Ex. Ord. No. 13446, § 5, Sept. 28, 2007, 72 F.R. 56176, provided:",
+      "source": {
+        "page_or_item": "42 U.S.C. 15001 note; note 'Ex. Ord. No. 12994. President’s Committee for People with Intellectual Disabilities' [USLM note id id3df2bb3c-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3df2bb3c-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "bf0973b5be4a51f99ae4563f293b3b95df30d0f79bdc249308ff0f8d7b5d7de6",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12994, Mar. 21, 1996, 61 F.R. 13047, as amended by Ex. Ord. No. 13309, July 25, 2003, 68 F.R. 44851; Ex. Ord. No. 13446, § 5, Sept. 28, 2007, 72 F.R. 56176, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3df2bb3c-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "bf0973b5be4a51f99ae4563f293b3b95df30d0f79bdc249308ff0f8d7b5d7de6",
+      "where": "USC 42 U.S.C. 15001 note"
+    },
     "ORIGINAL:EO:13446": {
       "acceptable_as_original": true,
       "actor_id": "EO:13446",
@@ -2600,7 +2723,7 @@
       "text": "Each advisory committee listed below is continued until September\n30, 2009."
     }
   },
-  "fingerprint": "ee00a26d1ad3b23dc2acd18ed9bfe3198d804f05ab7336e3bbce619d79780920",
+  "fingerprint": "ac4fd98abe13b31fcc3ec96d8fcb19a9085ba94705ce02792cb45e5197d0fd2e",
   "instrument_id": "EO:13446",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3330,32 +3453,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 16,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3367,7 +3492,6 @@
   "missing": [
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:13379",
     "target provision not located: EO:13386"
   ],
@@ -3381,12 +3505,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "f30833668ce62db93ec490a5ff1c36fb39a1e39cdf10aa86e58770d7e52223fb",
+    "fingerprint": "49714ab291a1248e5c340a545c00205082620a882e1b92d9e40e316092f88cf7",
     "flags": [
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_13446.json",
-    "history_sha256": "0433f6798e6c47f08b204d7cd95c8589859bc4e0c5518686dba8faf0c2d440e8",
+    "history_sha256": "cb1a2ba873b887b80afab4afd6cd79673c7da88105e692695b42a5e0a43ca446",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

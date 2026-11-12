@@ -6,11 +6,13 @@
     },
     {
       "actor_id": "EO:13225",
-      "evidence_id": "ACTOR_TEXT:EO:13225"
+      "evidence_id": "ACTOR_TEXT:EO:13225",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13226",
-      "evidence_id": "ACTOR_TEXT:EO:13226"
+      "evidence_id": "ACTOR_TEXT:EO:13226",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13227",
@@ -43,6 +45,11 @@
     {
       "actor_id": "EO:14327",
       "evidence_id": "ACTOR_TEXT:EO:14327"
+    },
+    {
+      "actor_id": "FRDOC:99-25957",
+      "evidence_id": "ACTOR_TEXT:FRDOC:99-25957",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -548,7 +555,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13138",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13138"
@@ -1668,11 +1675,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 386,
+      "char_start": 158,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 5195 note; note 'Ex. Ord. No. 13010. Critical Infrastructure Protection' [USLM note id id3b7f97d9-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "a7fec62fb0612fce07e8ea807ff9a26f6448428929851e2673107487e6740641",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3b7f97d9-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13138",
       "legal_basis_candidate": "order amended a printed order (weak lead) (42 U.S.C. 5195 note)",
@@ -1682,18 +1698,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 5195 note; note 'Ex. Ord. No. 13010. Critical Infrastructure Protection' [USLM note id id3b7f97d9-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3b7f97d9-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "a7fec62fb0612fce07e8ea807ff9a26f6448428929851e2673107487e6740641",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": ".R. 58623; Ex. Ord. No. 13041, Apr. 3, 1997, 62 F.R. 17039; Ex. Ord. No. 13064, Oct. 11, 1997, 62 F.R. 53711; Ex. Ord. No. 13077, Mar. 10, 1998, 63 F.R. 12381; Ex. Ord. No. 13138, § 3(c), Sept. 30, 1999, 64 F.R. 53880, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3b7f97d9-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "a7fec62fb0612fce07e8ea807ff9a26f6448428929851e2673107487e6740641",
       "where": "USC 42 U.S.C. 5195 note"
     },
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 382,
+      "char_start": 47,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4601 note; note 'Ex. Ord. No. 12131. President’s Export Council' [USLM note id id9968d94c-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "d612b6aaeade097244e01773ae9575132899e058e7b05e6384992327e09a1846",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id9968d94c-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13138",
       "legal_basis_candidate": "order amended a printed order (weak lead) (50 U.S.C. 4601 note)",
@@ -1703,9 +1733,14 @@
       "source": {
         "page_or_item": "50 U.S.C. 4601 note; note 'Ex. Ord. No. 12131. President’s Export Council' [USLM note id id9968d94c-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id9968d94c-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "d612b6aaeade097244e01773ae9575132899e058e7b05e6384992327e09a1846",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 12131, May 4, 1979, 44 F.R. 26841, as amended by Ex. Ord. No. 12551, Feb. 21, 1986, 21 F.R. 6509; Ex. Ord. No. 12991, Mar. 6, 1996, 61 F.R. 9587; Ex. Ord. No. 13138, § 5, Sept. 30, 1999, 64 F.R. 53880; Ex. Ord. No. 13316, § 5, Sept. 17, 2003, 68 F.R. 55256; Ex. Ord. No. 13596, § 1, Dec. 19, 2011, 76 F.R. 80725, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id9968d94c-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "d612b6aaeade097244e01773ae9575132899e058e7b05e6384992327e09a1846",
       "where": "USC 50 U.S.C. 4601 note"
     },
     {
@@ -1799,6 +1834,7 @@
         "snippet": "....R. 58623; Ex. Ord. No. 13041, Apr. 3, 1997, 62 F.R. 17039; Ex. Ord. No. 13064, Oct. 11, 1997, 62 F.R. 53711; Ex. Ord. No. 13077, Mar. 10, 1998, 63 F.R. 12381; Ex. Ord. No. 13138, § 3(c), Sept. 30, 1999, 64 F.R. 53880, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id3b7f97d9-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 5195 note"
       },
       "proposal": {
@@ -1827,6 +1863,7 @@
         "snippet": "Ex. Ord. No. 12131, May 4, 1979, 44 F.R. 26841, as amended by Ex. Ord. No. 12551, Feb. 21, 1986, 21 F.R. 6509; Ex. Ord. No. 12991, Mar. 6, 1996, 61 F.R. 9587; Ex. Ord. No. 13138, § 5, Sept. 30, 1999, 64 F.R. 53880; Ex. Ord. No. 13316, § 5, Sept. 17, 2003, 68 F.R. 55256; Ex. Ord. No. 13596, § 1, Dec. ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/id9968d94c-b817-11f1-b12d-8c5a06520415.txt",
         "where": "USC 50 U.S.C. 4601 note"
       },
       "proposal": {
@@ -3470,6 +3507,7 @@
       "char_end": 4933,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13225",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -3490,6 +3528,7 @@
       "char_end": 4005,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13226",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -3664,6 +3703,36 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2025-08-06/pdf/2025-15011.pdf"
       },
       "text": "Instrument: EO:14327\nSource: https://www.govinfo.gov/content/pkg/FR-2025-08-06/pdf/2025-15011.pdf\nSHA-256 of the downloaded file: 5034ae3d8b04856c190e49aa7e2ec9d210b71b934f5220a796ec2227183aae7e\nLocation: 90 FR 37993, PDF pages 1-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 4 ===\nPresidential Documents\n37993 Federal Register / Vol. 90, No. 149 / Wednesday, August 6, 2025 / Presidential Documents \nExecutive Order 14327 of July 31, 2025 \nPresident’s Council on Sports, Fitness, and Nutrition, and the \nReestablishment of the Presidential Fitness Test \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, and to promote the economic, academic, \nand social benefits of youth sports, fitness, and nutrition, it is hereby ordered: \nSection 1. Revocation. Executive Order 13824 of February 26, 2018 (Presi-\ndent’s Council on Sports, Fitness, and Nutrition), is hereby revoked. \nSec. 2. Amendment. Executive Order 13265 of June 6, 2002 (President’s \nCouncil on Physical Fitness and Sports), is hereby amended as follows: \n(a) The title is revised to read as follows: ‘‘President’s Council on Sports, \nFitness, and Nutrition, and the Reestablishment of the Presidential Fitness \nTest’’. \n(b) The preamble is revised to read as follows: ‘‘By the authority vested \nin me as President by the Constitution and the laws of the United States \nof America, and to establish the President’s Council on Sports, Fitness, \nand Nutrition, and to reestablish the Presidential Fitness Test, it is hereby \nordered:’’. \n(c) Sections 1 through 5 are revised to read as follows: \n‘‘Section 1. Purpose. As the United States prepares to celebrate its \nsemiquincentennial anniversary in 2026, we must address the threat to the \nvitality and longevity of our country that is posed by America’s declining \nhealth and physical fitness. For far too long, the physical and mental health \nof the American people has been neglected. Rates of obesity, chronic disease, \ninactivity, and poor nutrition are at crisis levels, particularly among our \nchildren. These trends weaken our economy, military readiness, academic \nperformance, and national morale. President Eisenhower recognized this \nissue when he created the President’s Council on Youth Fitness in response \nto reports on the poor state of youth fitness in America. As President- \nelect, John F. Kennedy famously published an essay titled ‘‘The Soft Amer-\nican,’’ which outlined the imperative for improved health in order to maintain \na strong and vital America. During my first term, I renamed the council \nthe ‘‘President’s Council on Sports, Fitness, and Nutrition’’ and directed \nthe development of a National Youth Sports Strategy, among other activities. \nMy Administration has taken decisive action to reverse this health crisis. \nIn the first month of my second term, I created the President’s Make America \nHealthy Again Commission to restore the urgency of improving the health \nof Americans. Now, we build further. To advance this commitment, I hereby \nreestablish the Presidential Fitness Test, which shall be administered by \nthe Secretary of Health and Human Services with the support of the Secretary \nof Education. \nWith this order, I revitalize the President’s Council on Sports, Fitness, and \nNutrition as a cornerstone of our national health renewal. In 2026, we \nwill celebrate the 250th anniversary of our great Nation, honor the 70th \nanniversary of the original President’s Council on Youth Fitness, and show-\ncase America’s continued global dominance in sports. Over the next 3 years, \nAmerica will host the Ryder Cup, the President’s Cup, the FIFA World \nCup, and the Olympic Games—the world’s premiere sporting competitions. \nThese events will provide inspiration for all generations of Americans. \nSec. 2. Policy. It is the policy of my Administration to: \nVerDate Sep<11>2014 17:21 Aug 05, 2025 Jkt 265001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\06AUE2.SGM 06AUE2khammond on DSK9W7S144PROD with PRESDOC3\n=== PDF page 2 of 4 ===\n37994 Federal Register / Vol. 90, No. 149 / Wednesday, August 6, 2025 / Presidential Documents \n(a) prioritize and expand children’s participation in youth sports and \nactive play; \n(b) promote the physical, mental, and civic benefits of daily movement, \nexercise, and good nutrition; and \n(c) engage every sector—public and private, civilian and military—in cre-\nating a national culture of strength, vitality, and excellence. \nSec. 3. President’s Council on Sports, Fitness, and Nutrition. (a) There is \nhereby established the President’s Council on Sports, Fitness, and Nutrition \n(Council). \n(b) The Council shall consist of up to 30 members appointed by the \nPresident. Members shall serve for a term of 2 years, shall be eligible \nfor reappointment, and may continue to serve after the expiration of their \nterms until the appointment of a successor. The President may designate \none or more of the members as Chair or Vice Chair. \n(c) The President shall designate an Executive Director of the Council \nwho shall manage day-to-day operations; serve as a liaison to the President \non matters and activities pertaining to the Council; and oversee engagement \nwith executive departments and agencies, athletic institutions, and commu-\nnity partners. \nSec. 4. Functions of the Council. (a) The Council shall advise the President \nconcerning progress made in carrying out the provisions of this order and \nshall recommend to the President actions to accelerate such progress. \n(b) In advising the President pursuant to subsection (a) of this section, \nthe Council shall recommend: \n(i) strategies for reestablishing the Presidential Fitness Test, with any \nappropriate improvements, as the main assessment tool for a Presidential \nFitness Award; \n(ii) strategies for the development and promotion of Presidential challenges \nand school-based programs that reward excellence in physical education; \n(iii) actions to expand opportunities at the global, national, State, and \nlocal levels for participation in sports and engagement in physical fitness; \n(iv) bold and innovative fitness goals for American youth with the aim \nof fostering a new generation of healthy, active citizens; \n(v) campaigns and events that elevate American sports, military readiness, \nand health traditions; \n(vi) opportunities at the global, national, State, and local levels that expand \nparticipation in sports and emphasize the importance of an active lifestyle \nand good nutrition, which should include partnerships with professional \nathletes, sports organizations, player’s associations, influential figures, non-\nprofit organizations, and community groups to inspire all Americans, \namong other initiatives; and \n(vii) strategies to address the growing national security threat posed by \nthe increasing rates of childhood obesity, chronic diseases, and sedentary \nlifestyles, which threaten the future readiness of the United States work-\nforce and military. \nSec. 5. Administration. (a) Each executive department and agency shall, \nto the extent permitted by law and subject to the availability of funds, \nfurnish such information and assistance to the Council as it may request. \n(b) Members of the Council shall serve without compensation but may \nreceive travel reimbursement, including per diem in lieu of subsistence, \nas allowed under applicable law (5 U.S.C. 5701–5707), consistent with the \navailability of funds. \n(c) The Department of Health and Human Services shall provide such \nfunding and administrative and technical support as the Council may require, \nto the extent permitted by law and as authorized by existing appropriations. \n(d) The Council may, with the approval of the President, establish sub-\ncommittees as appropriate to aid in its work. \nVerDate Sep<11>2014 17:21 Aug 05, 2025 Jkt 265001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\06AUE2.SGM 06AUE2khammond on DSK9W7S144PROD with PRESDOC3\n=== PDF page 3 of 4 ===\n37995 Federal Register / Vol. 90, No. 149 / Wednesday, August 6, 2025 / Presidential Documents \n(e) The seal prescribed by Executive Order 10830 of July 24, 1959 (Estab-\nlishing a Seal for the President’s Council on Physical Fitness and Sports), \nas amended, shall be modified to reflect the name of the Council as estab-\nlished by this order. \n(f) Insofar as the Federal Advisory Committee Act, as amended (5 U.S.C. \n1001 et seq.) (the ‘‘Act’’), may apply to the administration of any portion \nof this order, any functions of the President under the Act, except that \nof reporting to the Congress, shall be performed by the Secretary of Health \nand Human Services in accordance with the guidelines and procedures \nissued by the Administrator of General Services. \n(g) In accordance with the Act, the Council shall terminate 2 years from \nthe date of this order, unless extended by the President. \n(h) Executive Order 12345 of February 2, 1982 (Physical Fitness and \nSports), as amended, is revoked.’’. \n(d) A new section 6 is added to read as follows: \n‘‘Sec. 6. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person.’’. \nSec. 3. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nVerDate Sep<11>2014 17:21 Aug 05, 2025 Jkt 265001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\06AUE2.SGM 06AUE2khammond on DSK9W7S144PROD with PRESDOC3\n=== PDF page 4 of 4 ===\n37996 Federal Register / Vol. 90, No. 149 / Wednesday, August 6, 2025 / Presidential Documents \n(d) The costs for publication of this order shall be borne by the Department \nof Education. \nTHE WHITE HOUSE, \nJuly 31, 2025. \n[FR Doc. 2025–15011 \nFiled 8–5–25; 11:15 am] \nBilling code 4000–01–P \nVerDate Sep<11>2014 17:21 Aug 05, 2025 Jkt 265001 PO 00000 Frm 00004 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\06AUE2.SGM 06AUE2\nTrump.EPS</GPH>\nkhammond on DSK9W7S144PROD with PRESDOC3"
+    },
+    "ACTOR_TEXT:FRDOC:99-25957": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:99-25957",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5609,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:99-25957",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:99-25957",
+        "page_or_item": "64 FR 53877; FR Doc. 99-25957; Presidential Document: 100th Anniversary of the Veterans of Foreign Wars",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "2fe75e13c4c59b49cfacc1a1ae323fbe31f66a5c33ca69c6211e36b4d81a5a5f",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-99-25957.txt",
+        "text_sha256": "2fe75e13c4c59b49cfacc1a1ae323fbe31f66a5c33ca69c6211e36b4d81a5a5f",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1999/10/04/99-25957.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 64 Issue 191 (Monday, October 4, 1999)</title>\n</head>\n<body><pre>[Federal Register Volume 64, Number 191 (Monday, October 4, 1999)]\n[Presidential Documents]\n[Pages 53877-53878]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 99-25957]\n\n\n\n[[Page 53875]]\n\n_______________________________________________________________________\n\nPart VII\n\n\n\n\n\nThe President\n\n\n\n\n\n_______________________________________________________________________\n\n\n\nProclamation 7227--100th Anniversary of the Veterans of Foreign Wars\n\n\n\nExecutive Order 13138--Continuance of Certain Federal Advisory \nCommittees\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 64, No. 191 / Monday, October 4, 1999 / \nPresidential Documents\u0000\u0000\n\n\u0000___________________________________________________________________\n\n\u0000Title 3--\n\u0000The President\n\n[[Page 53877]]\n\n                Proclamation 7227 of September 30, 1999\n\n                \n100th Anniversary of the Veterans of Foreign Wars\n\n                By the President of the United States of America\n\n                A Proclamation\n\n                As a free Nation, we must always remember that our \n                achievements in peace have been built on the sacrifices \n                of our veterans in war. We owe a profound debt to brave \n                Americans like the members of the Veterans of Foreign \n                Wars of the United States who knew their duty and did \n                it well--even at the risk of their freedom and their \n                lives, and we are proud to honor the VFW as it \n                celebrates its 100th anniversary.\n\n                Each VFW member has given double service to our Nation \n                by answering the call to duty in the Armed Forces and \n                by joining the VFW. Whether raising the morale of our \n                men and women in uniform, helping veterans receive \n                their much-deserved benefits, providing scholarships \n                for our youth, or bringing hope and help to families \n                and communities in need, these veterans have upheld the \n                highest standards of service and citizenship. Perhaps \n                most important, they are the living reminder of the \n                countless men and women who have served and sacrificed \n                throughout past decades to defend our Nation and \n                preserve the liberties we hold so dear. VFW members and \n                their fallen comrades have carried the torch of freedom \n                both at home and in distant lands, and America remains \n                forever grateful.\n\n                We have a solemn responsibility to ensure that all our \n                veterans enjoy the quality of life they deserve. On \n                Veterans Day last year, I was proud to sign into law \n                the Veterans Programs Enhancement Act. This legislation \n                improves a wide range of benefits and programs, \n                including an increase in compensation payments to \n                veterans with disabilities as well as benefits to the \n                survivors of Americans who died serving our country.\n\n                The small groups of Spanish-American War veterans who \n                first banded together in 1899 could not have envisioned \n                that their numbers would grow to more than two million \n                strong, or that the VFW would come to have such an \n                enormous positive influence on the lives of generations \n                of veterans, their families, and communities throughout \n                our Nation. As we celebrate the centennial of the VFW, \n                we honor these veterans for all they have done to build \n                a proud past for our Nation and to ensure a brighter \n                future for us all.\n\n                Recognizing the contribution of the Veterans of Foreign \n                Wars to the continued strength of our country and \n                success of our democracy, the Congress, by H.J. Res. \n                34, has called on the President to issue a proclamation \n                in observance of September 29, 1999, as the ``100th \n                Anniversary of the Veterans of Foreign Wars.'' On this \n                day, let us reflect with pride on our great country and \n                remember with gratitude the contributions of the many \n                loyal and courageous veterans who have given so much of \n                themselves both at home and around the world to \n                preserve our freedom.\n\n                NOW, THEREFORE, I, WILLIAM J. CLINTON, President of the \n                United States of America, do hereby proclaim September \n                29, 1999, as the 100th Anniversary of the Veterans of \n                Foreign Wars. I urge all Americans to recognize this \n                day with appropriate programs, ceremonies, and \n                activities.\n\n[[Page 53878]]\n\n                IN WITNESS WHEREOF, I have hereunto set my hand this \n                twenty-ninth day of September, in the year of our Lord \n                nineteen hundred and ninety-nine, and of the \n                Independence of the United States of America the two \n                hundred and twenty-fourth.\n\n                    (Presidential Sig.)<Clinton1><Clinton2>\n\n[FR Doc. 99-25957\nFiled 10-1-99; 9:23 am]\nBilling code 3195-01-P\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:13138#sec1": {
       "char_end": 1035,
@@ -4765,6 +4834,78 @@
       },
       "text": "Sec. 9. This order shall be effective September 30, 1999.\nœ–"
     },
+    "CURRENT:EO:13138#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 386,
+      "char_start": 158,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 5195 note; note 'Ex. Ord. No. 13010. Critical Infrastructure Protection' [USLM note id id3b7f97d9-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "a7fec62fb0612fce07e8ea807ff9a26f6448428929851e2673107487e6740641",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3b7f97d9-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13138#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13138",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (42 U.S.C. 5195 note)",
+      "machine_lead": true,
+      "mention_id": "usc:636157fd5879",
+      "snippet": "....R. 58623; Ex. Ord. No. 13041, Apr. 3, 1997, 62 F.R. 17039; Ex. Ord. No. 13064, Oct. 11, 1997, 62 F.R. 53711; Ex. Ord. No. 13077, Mar. 10, 1998, 63 F.R. 12381; Ex. Ord. No. 13138, § 3(c), Sept. 30, 1999, 64 F.R. 53880, provided:",
+      "source": {
+        "page_or_item": "42 U.S.C. 5195 note; note 'Ex. Ord. No. 13010. Critical Infrastructure Protection' [USLM note id id3b7f97d9-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3b7f97d9-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "a7fec62fb0612fce07e8ea807ff9a26f6448428929851e2673107487e6740641",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": ".R. 58623; Ex. Ord. No. 13041, Apr. 3, 1997, 62 F.R. 17039; Ex. Ord. No. 13064, Oct. 11, 1997, 62 F.R. 53711; Ex. Ord. No. 13077, Mar. 10, 1998, 63 F.R. 12381; Ex. Ord. No. 13138, § 3(c), Sept. 30, 1999, 64 F.R. 53880, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3b7f97d9-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "a7fec62fb0612fce07e8ea807ff9a26f6448428929851e2673107487e6740641",
+      "where": "USC 42 U.S.C. 5195 note"
+    },
+    "CURRENT:EO:13138#1": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 382,
+      "char_start": 47,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4601 note; note 'Ex. Ord. No. 12131. President’s Export Council' [USLM note id id9968d94c-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "d612b6aaeade097244e01773ae9575132899e058e7b05e6384992327e09a1846",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id9968d94c-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13138#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13138",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (50 U.S.C. 4601 note)",
+      "machine_lead": true,
+      "mention_id": "usc:28ad2391b9c4",
+      "snippet": "Ex. Ord. No. 12131, May 4, 1979, 44 F.R. 26841, as amended by Ex. Ord. No. 12551, Feb. 21, 1986, 21 F.R. 6509; Ex. Ord. No. 12991, Mar. 6, 1996, 61 F.R. 9587; Ex. Ord. No. 13138, § 5, Sept. 30, 1999, 64 F.R. 53880; Ex. Ord. No. 13316, § 5, Sept. 17, 2003, 68 F.R. 55256; Ex. Ord. No. 13596, § 1, Dec. 19, 2011, 76 F.R. 80725, provided:",
+      "source": {
+        "page_or_item": "50 U.S.C. 4601 note; note 'Ex. Ord. No. 12131. President’s Export Council' [USLM note id id9968d94c-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id9968d94c-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "d612b6aaeade097244e01773ae9575132899e058e7b05e6384992327e09a1846",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12131, May 4, 1979, 44 F.R. 26841, as amended by Ex. Ord. No. 12551, Feb. 21, 1986, 21 F.R. 6509; Ex. Ord. No. 12991, Mar. 6, 1996, 61 F.R. 9587; Ex. Ord. No. 13138, § 5, Sept. 30, 1999, 64 F.R. 53880; Ex. Ord. No. 13316, § 5, Sept. 17, 2003, 68 F.R. 55256; Ex. Ord. No. 13596, § 1, Dec. 19, 2011, 76 F.R. 80725, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id9968d94c-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "d612b6aaeade097244e01773ae9575132899e058e7b05e6384992327e09a1846",
+      "where": "USC 50 U.S.C. 4601 note"
+    },
     "ORIGINAL:EO:13138": {
       "acceptable_as_original": true,
       "actor_id": "EO:13138",
@@ -5166,7 +5307,7 @@
       "text": "Each member shall serve a term of 2 years and may continue to serve after the expiration of their term until a successor is appointed."
     }
   },
-  "fingerprint": "72e578c1084c8750083b296175061473c549abe656fa229345d8256af0d2c17e",
+  "fingerprint": "6c0c59622eb9a7d4b4f76d709edba4e46085a074cd9f597ea61e5bec08bcf48c",
   "instrument_id": "EO:13138",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -6254,32 +6395,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 23,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -6311,12 +6454,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "100e678104fca27e78644d95256b2741fd9ee1c7668761741edb98326ac6bc48",
+    "fingerprint": "044200980adb89e2165b0928411de8fa7fd4535b1204216cf5f80e50a2faa2d0",
     "flags": [
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_13138.json",
-    "history_sha256": "167590d416bb8d50b513c9e6401921170cca17372a9ba4ee6c928f50173dad93",
+    "history_sha256": "5afc7253fedafd3df3fe6361a123d5d0029fa0801f172ca26f234389e136e296",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

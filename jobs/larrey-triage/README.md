@@ -59,7 +59,7 @@ dossiers on every gate input. The independent review found one later recompile (
   2025-10-14 needs a National Emergencies Act continuation notice through the 2026-10-14 cutoff (50 U.S.C. 1622(d)).
   No such notice is held in the repository yet.
 
-`LARREY_LEVEL=hard` applies only the hard gates, for example to run a deliberate, measured probe of soft-gated orders.
+Since 2026-11-12 the default applies only the hard gates (the soft gates are predictors fitted on the back-test sample and stay experimental until a prospective test, Kean F-20261112-soft-gates-untested); `LARREY_LEVEL=soft` adds them.
 There is no "off" setting.
 
 ## Back-test on real outcomes (`BACKTEST.json`)

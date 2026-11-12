@@ -1,10 +1,21 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "FRDOC:2010-28709",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2010-28709",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2011-21275",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2011-21275",
+      "prints_number_lexical": true
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11311",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11311"
@@ -103,11 +114,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 149,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "19 U.S.C. 2051 note; note 'Ex. Ord. No. 11311. Implementation of Beirut Agreement Relating to Audio-Visual Materials' [USLM note id idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "6244aac4651e93dd7448866b7ec5374abe06c383987c73a8ab86c0cbb0d68971",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11311",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (19 U.S.C. 2051 note)",
@@ -117,10 +137,14 @@
       "source": {
         "page_or_item": "19 U.S.C. 2051 note; note 'Ex. Ord. No. 11311. Implementation of Beirut Agreement Relating to Audio-Visual Materials' [USLM note id idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1.txt",
+        "text_sha256": "6244aac4651e93dd7448866b7ec5374abe06c383987c73a8ab86c0cbb0d68971",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1",
+      "text": "Ex. Ord. No. 11311. Implementation of Beirut Agreement Relating to Audio-Visual Materials\nEx. Ord. No. 11311, Oct. 14, 1966, 31 F.R. 13413, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1.txt",
+      "text_sha256": "6244aac4651e93dd7448866b7ec5374abe06c383987c73a8ab86c0cbb0d68971",
       "where": "USC 19 U.S.C. 2051 note"
     },
     {
@@ -221,7 +245,7 @@
         "snippet": "Ex. Ord. No. 11311. Implementation of Beirut Agreement Relating to Audio-Visual Materials | Ex. Ord. No. 11311, Oct. 14, 1966, 31 F.R. 13413, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1",
+        "text_path": "usc-notes/idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1.txt",
         "where": "USC 19 U.S.C. 2051 note"
       },
       "proposal": {
@@ -312,6 +336,66 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:FRDOC:2010-28709": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2010-28709",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 13060,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2010-28709",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2010-28709",
+        "page_or_item": "75 FR 69583; FR Doc. 2010-28709; Rule: Technical Corrections to Customs and Border Protection Regulations",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "f035cd0d057105467435539e688b3ab0333eb4201c60a4bd8f2bf3b06da8ff02",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2010-28709.txt",
+        "text_sha256": "f035cd0d057105467435539e688b3ab0333eb4201c60a4bd8f2bf3b06da8ff02",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2010/11/15/2010-28709.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 75 Issue 219 (Monday, November 15, 2010)</title>\n</head>\n<body><pre>\n[Federal Register Volume 75, Number 219 (Monday, November 15, 2010)]\n[Rules and Regulations]\n[Pages 69583-69585]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2010-28709]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HOMELAND SECURITY\n\nU.S. Customs and Border Protection\n\n19 CFR Parts 4 and 10\n\n[CBP Dec. 10-33]\n\n\nTechnical Corrections to Customs and Border Protection \nRegulations\n\nAGENCY: Customs and Border Protection, Department of Homeland Security.\n\nACTION: Final rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: Customs and Border Protection (CBP) periodically reviews its \nregulations to ensure that they are current, correct, and consistent. \nThrough this review process, CBP discovered a number of discrepancies. \nThis document amends various sections of title 19 of the Code of \nFederal\n\n[[Page 69584]]\n\nRegulations to remedy those discrepancies.\n\nDATES: The final rule is effective November 15, 2010.\n\nFOR FURTHER INFORMATION CONTACT: Robert Shervette, Trade and Commercial \nRegulations Branch, Regulations and Rulings, Office of International \nTrade, (202) 325-0274.\n\nSUPPLEMENTARY INFORMATION:\n\nBackground\n\n    It is the policy of Customs and Border Protection (CBP) to \nperiodically review title 19 of the Code of Federal Regulations (19 \nCFR) to ensure that it is accurate and up-to-date so that the importing \nand general public is aware of CBP programs, requirements, and \nprocedures regarding import-related activities. As part of this review \npolicy, CBP has determined that certain corrections to 19 CFR parts 4 \nand 10 are necessary.\n\nDiscussion of Changes\n\nPart 4\n\n    Sections 4.2, 4.3, 4.9, and 4.60 of the CBP regulations (19 CFR \n4.2, 4.3, 4.9, and 4.60) govern the arrival, entry, and clearance of \nvessels. Currently, these regulatory provisions require, in part, that \nU.S. vessels carrying bonded merchandise must report their arrival, \nmake formal entry, and obtain formal clearance, when arriving or \ndeparting a port or place within the United States. These regulatory \nprovisions are not in conformance with their respective controlling \nstatutes. Sections 1452(a)(1), (2), and (3) of the Tariff Suspension \nand Trade Act of 2000 (``Trade Act'') (Pub. L. 106-476, 114 Stat. 2167 \n(2000)) amended 19 U.S.C. 1433(a)(1)(C), 19 U.S.C. 1434(a)(3), and 46 \nU.S.C. 60105(a)(2) \\1\\ to exempt arriving and departing vessels of the \nUnited States that are carrying bonded merchandise from these arrival, \nentry, and clearance requirements. Accordingly, this document makes \nconforming changes to Sec. Sec.  4.2(a), 4.3(a)(3), 4.9(b), and \n4.60(a)(3) to reflect these statutory amendments.\n---------------------------------------------------------------------------\n\n    \\1\\ The Trade Act amended 46 U.S.C. App. 91. However, 46 U.S.C. \nApp. 91 was recodified to 46 U.S.C. 60105 by statute (Pub. L. 109-\n304, 120 Stat. 1675 (Oct. 9, 2006)).\n---------------------------------------------------------------------------\n\nPart 10\n\n    Section 10.121 of the CBP regulations (19 CFR 10.121) governs CBP's \nrole in administering the duty-free importation of qualifying visual \nand auditory materials under the ``Agreement for Facilitating the \nInternational Circulation of Visual and Auditory Materials of an \nEducational, Scientific, and Cultural Character'' made at Beirut, \nLebanon in 1948 (also referred to as the ``Beirut Agreement of 1948'') \n(Pub. L. 89-634, 80 Stat. 879 (October 8, 1966)). Executive Order \n11311, 31 FR 13413 (Oct. 18, 1966), implemented the United States' \nobligations under the Agreement and designated the United States \nInformation Agency (USIA) to carry out its provisions. The USIA was \nabolished in 1999 by the Foreign Affairs Reform and Restructuring Act \nof 1998 (Pub. L. 105-277, 112 Stat. 2681-776 (1998)), and its functions \ntransferred to the U.S. Department of State. This document amends 19 \nCFR 10.121 to reflect this fact.\n    This document also amends Sec.  10.121(a) to reflect the changes \nmade to subheading 9817.00.40 of the Harmonized Tariff Schedule of the \nUnited States (HTSUS), and to the U.S. Notes in Subchapter XVII, \nChapter 98, HTSUS. Subheading 9817.00.40, HTSUS, permits duty-free \ntreatment for certain articles that are determined to be visual or \nauditory materials of an educational, scientific, or cultural character \nwithin the meaning of Article I of the Agreement. The U.S. Notes to \nSubchapter XVII were changed by Presidential Proclamation. See \nProclamation No. 5978, 54 FR 21187 (May 17, 1989). The note related to \nthe Agreement for subheading 9817.00.40, HTSUS, was changed from ``note \n1'' to ``note 1(a)(i)''. Section 10.121(a) currently references ``U.S. \nNote 1,'' which is amended to reference ``U.S. note 1(a)(i).''\n    In addition, this document amends Sec.  10.121(b) to remove the \nword ``shall'' in the first, second and last sentences and to replace \nit with the word ``will'' in order to conform this regulation with the \nplain English mandate. Lastly, the word ``immediately'' is deleted from \nthe last sentence because the use of this term conflicts with the \nphrase ``in the ordinary course'' as a consumption entry would \nliquidate on a set schedule and not immediately as the sentence \ncurrently reads.\n\nOther Changes\n\n    This document also makes non-substantive amendments to 19 CFR to \nreflect the nomenclature changes made necessary by the transfer of the \nlegacy U.S. Customs Service of the Department of the Treasury to the \nDepartment of Homeland Security (DHS) and DHS's subsequent renaming of \nthe agency as U.S. Customs and Border Protection on March 31, 2007 (see \n72 FR 20131 (April 23, 2007)).\n\nInapplicability of Notice and Delayed Effective Date\n\n    Because the technical corrections set forth in this document merely \nconform to existing law and regulation, CBP finds that good cause \nexists for dispensing with notice and public procedure as unnecessary \nunder 5 U.S.C. 553(b)(B). For this same reason, pursuant to 5 U.S.C. \n553(d)(3), CBP finds that good cause exists for dispensing with the \nrequirement for a delayed effective date.\n\nRegulatory Flexibility Act\n\n    Because this document is not subject to the notice and public \nprocedure requirements of 5 U.S.C. 553, it is not subject to the \nprovisions of the Regulatory Flexibility Act (5 U.S.C. 601 et seq.).\n\nExecutive Order 12866\n\n    These amendments do not meet the criteria for a ``significant \nregulatory action'' as specified in Executive Order 12866.\n\nSigning Authority\n\n    This document is limited to technical corrections of the CBP \nregulations. Accordingly, it is being signed under the authority of 19 \nCFR 0.1(b)(1).\n\nList of Subjects\n\n19 CFR Part 4\n\n    Administrative practice and procedure, Arrival, Bonds, Cargo \nvessels, Customs duties and inspection, Entry, Imports, Merchandise, \nReporting and recordkeeping requirements, Shipping, Vessels.\n\n19 CFR Part 10\n\n    Customs duties and inspection, Entry, Imports, Preference programs, \nReporting and recordkeeping requirements, Trade agreements.\n\nAmendments to the Regulations\n\n0\nFor the reasons set forth above, parts 4 and 10 of the CBP regulations \n(19 CFR parts 4 and 10) are amended as set forth below.\n\nPART 4--VESSELS IN FOREIGN AND DOMESTIC TRADES\n\n0\n1. The general and specific authority citations for part 4 continue to \nread as follows:\n\n    Authority:  5. U.S.C. 301; 19 U.S.C. 66, 1431, 1433, 1434, 1624, \n2071 note; 46 U.S.C. 501, 60105.\n\n* * * * *\n    Section 4.2 also issued under 19 U.S.C. 1441, 1486;\n\n[[Page 69585]]\n\n    Section 4.3 also issued under 19 U.S.C. 288, 1441;\n* * * * *\n    Section 4.9 also issued under 42 U.S.C. 269;\n* * * * *\n\n\nSec.  4.2  [Amended]\n\n0\n2. In Sec.  4.2:\n0\na. Paragraph (a) is amended: by removing the word ``Customs'' each time \nthat it appears and adding in its place the term ``CBP''; in the first \nsentence, by removing the words ``bonded merchandise or'', and by \nremoving the word ``shall'' and adding in its place the word ``must'', \nand; in the second sentence, by removing the word ``shall'' and adding \nin its place the word ``may'';\n0\nb. Paragraph (b) is amended by removing the word ``Customs'' and adding \nin its place the word ``customs'';\n0\nc. Paragraph (c) is amended, in the first sentence, by removing the \nword ``may'' and adding in its place the word ``must'', and by removing \nthe word ``shall'' and adding in its place the word ``must''; and; in \nthe last sentence, by removing the word ``shall'' and adding in its \nplace the word ``will'', and by removing the word ``may'' and adding in \nits place the word ``must''; and\n0\nd. Paragraph (d) is amended by removing the word ``shall'' and adding \nin its place the word ``must''.\n\n\nSec.  4.3  [Amended]\n\n0\n3. In Sec.  4.3:\n0\na. Paragraph (a)(3) is amended by removing the words ``merchandise on \nboard which is being transported in-bond (not including bonded ship's \nstores or supplies), or'', and adding the words ``on board'' after the \nwords ``foreign merchandise''; and\n0\nb. Paragraph (b)(2) is amended by removing the word ``Customs'' each \ntime that it appears and adding in its place the term ``CBP''.\n\n\nSec.  4.9  [Amended]\n\n0\n4. In Sec.  4.9:\n0\na. Paragraph (a) is amended by removing the word ``Customs'' each time \nthat it appears and adding in its place the term ``CBP''; and\n0\nb. Paragraph (b) is amended in the second sentence by removing the \nwords ``when they have merchandise aboard which is being transported \nin-bond, or'', by removing the third and fourth sentences, and by \nremoving the word ``Customs'' in the last sentence and adding in its \nplace the term ``CBP''.\n\n\nSec.  4.60  [Amended]\n\n0\n5. In Sec.  4.60:\n0\na. Paragraph (a) is amended by removing the words ``the Customs \nService'' and adding in their place the term ``CBP'';\n0\nb. Paragraph (a)(3) is amended by removing the words ``merchandise on \nboard that is being transported in-bond (not including bonded ship's \nstores or supplies), or'';\n0\nc. Paragraph (b)(1) is amended by removing the word ``Customs'' and \nadding in its place the word ``customs'';\n0\nd. Paragraph (c) is amended by removing the word ``shall'' and adding \nin its place the word ``will'';\n0\ne. Paragraph (d) is amended, in the first sentence, by removing the \nwords ``shall be reported'' and adding in their place the words ``must \nbe reported'', and by removing the words ``shall note'' and adding in \ntheir place the words ``will note'', and; in the last sentence, by \nremoving the word ``shall'' each time that it appears and adding in its \nplace the word ``must''; and\n0\nf. Paragraph (e) is amended by removing the word ``shall'' and adding \nin its place the word ``will''.\n\nPART 10--ARTICLES CONDITIONALLY FREE, SUBJECT TO A REDUCED RATE, \nETC.\n\n0\n6. The general authority citation for part 10 continues to read as \nfollows:\n\n    Authority:  19 U.S.C. 66, 1202 (General Note 3(i), Harmonized \nTariff Schedule of the United States (HTSUS)), 1321, 1481, 1484, \n1498, 1508, 1623, 1624, 3314.\n* * * * *\n\n0\n7. Sec.  10.121 is revised to read as follows:\n\n\nSec.  10.121  Visual or auditory materials of an educational, \nscientific, or cultural character.\n\n    (a) Where photographic film and other articles described in \nsubheading 9817.00.40, Harmonized Tariff Schedule of the United States \n(HTSUS), are claimed to be free of duty under subheading 9817.00.40, \nHTSUS, there must be filed, in connection with the entry covering such \narticles, a document issued by the U.S. Department of State certifying \nthat it has determined that the articles are visual or auditory \nmaterials of an educational, scientific, or cultural character within \nthe meaning of the Agreement for Facilitating the International \nCirculation of Visual and Auditory Materials of an Educational, \nScientific, and Cultural Character as required by U.S. note 1(a)(i), \nSubchapter XVII, chapter 98, HTSUS.\n    (b) Articles entered under subheading 9817.00.40, HTSUS, will be \nreleased from CBP custody prior to submission of the document required \nin paragraph (a) of this section only upon the deposit of estimated \nduties with the port director. Liquidation of an entry covering \nmerchandise which has been released under this procedure will be \nsuspended for a period of 90 days from the date of entry or until the \nrequired document is submitted, whichever occurs first. In the event \nthat the director of the port of entry does not receive the required \ndocument within the 90-day period, the merchandise will be classified \nand liquidated in the ordinary course, without regard to subheading \n9817.00.40, HTSUS.\n\n    Dated: November 9, 2010.\nDavid V. Aguilar,\nActing Commissioner, U.S. Customs and Border Protection.\n[FR Doc. 2010-28709 Filed 11-12-10; 8:45 am]\nBILLING CODE 9111-14-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2011-21275": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2011-21275",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 14455,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2011-21275",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2011-21275",
+        "page_or_item": "76 FR 51914; FR Doc. 2011-21275; Proposed Rule: Duty-Free Treatment of Certain Visual and Auditory Materials",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "b7c5067ae1a091383a7754db6ed15b101ab1874e5f0ae938bf505baaa76c1e74",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2011-21275.txt",
+        "text_sha256": "b7c5067ae1a091383a7754db6ed15b101ab1874e5f0ae938bf505baaa76c1e74",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2011/08/19/2011-21275.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 76 Issue 161 (Friday, August 19, 2011)</title>\n</head>\n<body><pre>\n[Federal Register Volume 76, Number 161 (Friday, August 19, 2011)]\n[Proposed Rules]\n[Pages 51914-51916]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2011-21275]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HOMELAND SECURITY\n\nU.S. Customs and Border Protection\n\nDEPARTMENT OF THE TREASURY\n\n19 CFR Parts 10 and 163\n\n[USCBP-2011-0030]\nRIN 1515-AD75\n\n\nDuty-Free Treatment of Certain Visual and Auditory Materials\n\nAGENCY: U.S. Customs and Border Protection, Department of Homeland \nSecurity; Department of the Treasury.\n\nACTION: Notice of proposed rulemaking.\n\n-----------------------------------------------------------------------\n\nSUMMARY: This document proposes to amend the U.S. Customs and Border \nProtection (CBP) regulations pertaining to the filing of documentation \nrelated to free entry of certain merchandise under Chapter 98 of the \nHarmonized Tariff Schedule of the United States (HTSUS). The proposed \namendment would permit an applicant to file the documentation required \nfor duty-free treatment of certain visual and auditory materials of an \neducational, scientific, or cultural character under subheading \n9817.00.40, HTSUS, at any time prior to the liquidation of the entry. \nThe regulation currently requires the filing of this documentation \nwithin 90 days of the date of entry. The proposed change would provide \nmore time for the importer to provide the necessary certification \ndocumentation to CBP and would serve to align the filing of required \ncertification documentation with a change in CBP policy that extended \nthe liquidation cycle for entries in the ordinary course of business \nfrom 90 days to 314 days after the date of entry. The change is \nconsistent with other regulations that govern the duty-free treatment \nof merchandise under Chapter 98, HTSUS.\n\nDATES: Written comments must be received on or before October 18, 2011.\n\nADDRESSES: You may submit comments, identified by docket number, by one \nof the following methods:\n    <bullet> Federal eRulemaking Portal: <a href=\"http://www.regulations.gov\">http://www.regulations.gov</a>. \nFollow the instructions for submitting comments via Docket No. USCBP \n2011-0030.\n    <bullet> Mail: Trade and Commercial Regulations Branch, Regulations \nand Rulings, U.S. Customs and Border Protection, 799 9th Street, NW., \n(Mint Annex), Washington, DC 20229-1179.\n    Instructions: All submissions received must include the agency name \nand docket number for this rulemaking. All comments received will be \nposted without change to <a href=\"http://www.regulations.gov\">http://www.regulations.gov</a>, including any \npersonal information provided. For detailed instructions on submitting \ncomments and additional information on the rulemaking process, see the \n``Public Participation'' heading of the SUPPLEMENTARY INFORMATION \nsection of this document.\n    Docket: For access to the docket to read background documents or \ncomments received, go to <a href=\"http://www.regulations.gov\">http://www.regulations.gov</a>. Submitted comments \nmay also be inspected during regular business days between the hours of \n9 a.m. and 4:30 p.m. at the Trade and Commercial Regulations Branch, \nRegulations and Rulings, Office of International Trade, U.S. Customs \nand Border Protection, 799 9th Street, NW., 5th Floor, Washington, DC. \nArrangements to inspect submitted comments should be made in advance by \ncalling Joseph Clark at (202) 325-0118.\n\nFOR FURTHER INFORMATION CONTACT: Robert Dinerstein, Valuation and \nSpecial Programs Branch, Regulations and Rulings, Office of \nInternational Trade, (202) 325-0132.\n\nSUPPLEMENTARY INFORMATION: \n\nPublic Participation\n\n    Interested persons are invited to participate in this rulemaking by \nsubmitting written data, views, or arguments on all aspects of this \nproposed rule. U.S. Customs and Border Protection (CBP) also invites \ncomments that relate to the economic, environmental, or federalism \neffects that might result from this proposed rule. Comments that will \nprovide the most assistance to CBP in developing these procedures will \nreference a specific portion of the proposed rule, explain the reason \nfor any recommended change, and include data, information, or authority \nthat supports such recommended change. See ADDRESSES above for \ninformation on how to submit comments.\n\nBackground\n\n    The United States signed the ``Agreement for Facilitating the \nInternational Circulation of Visual and Auditory Materials of an \nEducational, Scientific, and Cultural Character'' made at Beirut, \nLebanon (also referred to as the ``Beirut Agreement'') in 1948. By \nPublic Law 89-634, 80 Stat. 879, 19 U.S.C. 2501 (October 8, 1966), \nwhich amended the Tariff Schedules of the United States, and Executive \nOrder 11311, 31 FR 13413 (Oct. 18, 1966), the United States implemented \nits obligations under the Agreement to\n\n[[Page 51915]]\n\nallow certain qualifying visual and auditory materials to be imported \ninto the United States duty-free. The provision for duty-free treatment \nfor these materials is now set forth under subheading 9817.00.40 of the \nHarmonized Tariff Schedule of the United States (HTSUS).\n    CBP coordinates with the U.S. Department of State in administering \nthe obligations of the United States under the Beirut Agreement. The \nDepartment of State is the agency responsible for determining whether \narticles qualify under the Agreement for duty-free treatment under \nsubheading 9817.00.40 of the HTSUS, and CBP is responsible for ensuring \nthat duty-free treatment for merchandise entered under that HTSUS \nsubheading is provided only if the Department of State has certified \nthat the articles qualify. The relevant regulations of the Department \nof State are set forth in 22 CFR part 61 and the regulation detailing \nthe Department of State's issuance of the certification document is set \nforth at 22 CFR 61.8. The relevant CBP regulation is 19 CFR 10.121. As \nthe program currently is administered, an applicant is required to file \nthe Department of State's certification document in connection with an \nentry covering articles for which duty-free treatment is sought. See 19 \nCFR 10.121(a).\n    This document proposes to amend the CBP regulation regarding the \ntime period in which a party seeking duty-free treatment under \nsubheading 9817.00.40 of the HTSUS must provide certification from the \nDepartment of State. If the required documentation has not been filed \nwith CBP at the time of entry for merchandise entered under subheading \n9817.00.40, HTSUS, section 10.121(b) of the CBP regulations permits \nliquidation to be suspended for 90 days after entry to allow an \napplicant time to obtain the certifying Department of State document. \nThis proposed amendment would permit more time for the importer to \nprovide the necessary certification documentation to CBP.\n    This document proposes to amend 19 CFR 10.121(b) by removing the \nlanguage which provides for the suspension of liquidation of an entry \nfor 90 days and to provide, instead, that the required documentation \nmay be filed with CBP any time prior to liquidation. This 90-day \nsuspension provision was promulgated in 1966 and section 10.121(b) does \nnot reflect the subsequent amendments to 19 U.S.C. 1504 or changes to \nCBP policy regarding liquidation. Under current law, CBP has up to one \nyear to liquidate an entry before it is deemed liquidated by operation \nof law. See 19 U.S.C. 1504. Historically, the majority of entries were \nliquidated within 90 days in the ordinary course of business; however, \nthis policy was changed by the agency when the volume of trade \nincreased by extending the liquidation cycle from 90 days after entry \nto 314 days after entry. See 314-Day Liquidation Cycle-Trade Notice, \nCSMS <greek-i>97-000727 (Aug. 3, 1997). It is noted that there is no \nstatutory provision preventing CBP from liquidating an entry at any \ntime during the one-year period after entry of the merchandise and \nprior to the conclusion of the 314-day liquidation cycle if all the \nrequired documentation has been filed.\n    Section 10.112 of title 19 CFR (19 CFR 10.112) permits the filing \nof documentation related to free entry of merchandise under Chapter 98, \nHTSUS, at any time prior to liquidation of an entry or, if liquidated, \nbefore the liquidation becomes final. Section 10.121(b) is proposed to \nbe amended to be consistent with 19 CFR 10.112 and the change in CBP's \ncurrent liquidation practice. Therefore, the suspension of liquidation \nof an entry for a period of 90 days from the date of entry to allow an \napplicant to file the required documentation in order to qualify for an \nexemption from duty under subheading 9817.00.40, HTSUS, would be \nreplaced with a suspension of liquidation of an entry for a period of \n314 days from the date of entry.\n    Lastly, we note that this proposed change to 19 CFR 10.121(b) is \nalso consistent with other CBP regulations that govern the duty free \ntreatment of merchandise under Chapter 98, HTSUS. For instance, the \nregulations implementing the Florence Agreement on scientific \ninstruments and apparatus were amended to merely required that the \nDepartment of Commerce's certifying documentation be submitted to CBP \nprior to liquidation. See 19 CFR 10.112 and 15 CFR 301.8 (74 FR 30462, \nJune 26, 2009).\n\nOther Changes\n\n    This document also proposes to make a non-substantive change to a \nlisting in the Appendix to part 163--Interim (a)(1)(A) List. The \nlisting ``Sec.  10.121 Certificate from USIA for visual/auditory \nmaterials'' currently references USIA (United States Information \nAgency). Since USIA was abolished in 1999 by the Foreign Affairs Reform \nand Restructuring Act of 1998, and its functions were transferred to \nthe U.S. Department of State, this listing is outdated. This document \nwill amend the listing in the Appendix to Part 163 to reflect the State \nDepartment rather than USIA.\n\nRegulatory Flexibility Act\n\n    Under the Regulatory Flexibility Act (5 U.S.C. 601 et seq.), we \nhave considered whether this proposed rule would have a significant \nimpact on a substantial number of small entities. A small entity may be \na small business (defined as any independently owned and operated \nbusiness not dominant in its field that qualifies as a small business \nper the Small Business Act); a small not-for-profit organization; or a \nsmall governmental jurisdiction (locality with fewer than 50,000 \npeople).\n    As this proposed amendment would provide more time for an importer \nto obtain the State Department certificate, CBP certifies under 5 \nU.S.C. 605(b) that the proposed amendments, if adopted, will not have a \nsignificant economic impact on a substantial number of small entities. \nCBP welcomes any comments regarding this finding.\n\nExecutive Order 12866\n\n    This proposed rule is not a ``significant regulatory action'' as \ndefined by Executive Order 12866.\n\nPaperwork Reduction Act\n\n    In accordance with the Paperwork Reduction Act of 1995 (44 U.S.C. \n3507), an agency may not conduct, and a person is not required to \nrespond to, a collection of information unless the collection of \ninformation displays a valid control number assigned by Office of \nManagement and Budget (OMB). The information collected under 19 CFR \n10.121 is included under OMB control number 1651-0067. There are no new \ncollections of information proposed in this document.\n\nSigning Authority\n\n    This regulation is being issued in accordance with 19 CFR 0.1(a)(1) \npertaining to the authority of the Secretary of the Treasury (or his/\nher delegate) to approve regulations pertaining to certain customs \nrevenue functions.\n\nList of Subjects\n\n19 CFR Part 10\n\n    Customs duties and inspection, Entry, Imports, Preference programs, \nReporting and recordkeeping requirements, Trade agreements.\n\n19 CFR Part 163\n\n    Administrative practice and procedure, Customs duties and \ninspection, Exports, Imports, Reporting and recordkeeping requirements, \nTrade agreements.\n\n[[Page 51916]]\n\nProposed Amendments to the CBP Regulations\n\n    For the reasons set forth above, it is proposed to amend parts 10 \nand 163 of title 19 of the Code of Federal Regulations as set forth \nbelow.\n\nPART 10--ARTICLES CONDITIONALLY FREE, SUBJECT TO A REDUCED RATE, \nETC.\n\n    1. The general authority citation for part 10 continues to read and \na specific authority is added for Sec.  10.121 as follows:\n\n    Authority:  19 U.S.C. 66, 1202 (General Note 3(i), Harmonized \nTariff Schedule of the United States (HTSUS)), 1321, 1481, 1484, \n1498, 1508, 1623, 1624, 3314.\n\n* * * * *\n    Section 10.121 also issued under 19 U.S.C. 2501;\n* * * * *\n\n    2. Section 10.121(b) is revised to read as follows:\n\n\nSec.  10.121  Visual or auditory materials of an educational, \nscientific, or cultural character.\n\n* * * * *\n    (b) Articles entered under subheading 9817.00.40, HTSUS, will be \nreleased from CBP custody prior to submission of the document required \nin paragraph (a) of this section only upon the deposit of estimated \nduties with the port director. Liquidation of an entry which has been \nreleased under this procedure will be suspended for a period of 314 \ndays from the date of entry or until the required document is \nsubmitted, whichever comes first. In the event that documentation is \nnot submitted before liquidation, the merchandise will be classified \nand liquidated in the ordinary course, without regard to subheading \n9817.00.40, HTSUS.\n\nPART 163--RECORDKEEPING\n\n    3. The authority citation for part 163 continues to read as \nfollows:\n\n    Authority: 5 U.S.C. 301; 19 U.S.C. 66, 1484, 1508, 1509, 1510, \n1624.\n* * * * *\n\nAppendix to Part 163--[Amended]\n\n    4. Section IV is amended by removing the listing ``Sec.  10.121 \nCertificate from USIA for visual/auditory materials'' and adding in its \nplace the listing ``Sec.  10.121 Certificate from the U.S. Department \nof State for visual/auditory materials''.\n\nAlan D. Bersin,\nCommissioner, U.S. Customs and Border Protection.\n    Approved: August 16, 2011.\n\nTimothy E. Skud,\nDeputy Assistant Secretary of the Treasury.\n[FR Doc. 2011-21275 Filed 8-18-11; 8:45 am]\nBILLING CODE 9111-14-P\n\n\n</pre></body>\n</html>"
+    },
     "CLAUSES:EO:11311#1": {
       "char_end": 1190,
       "char_start": 914,
@@ -400,6 +484,42 @@
       },
       "text": "I  hereby order and proclaim that—"
     },
+    "CURRENT:EO:11311#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 149,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "19 U.S.C. 2051 note; note 'Ex. Ord. No. 11311. Implementation of Beirut Agreement Relating to Audio-Visual Materials' [USLM note id idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "6244aac4651e93dd7448866b7ec5374abe06c383987c73a8ab86c0cbb0d68971",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11311#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11311",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (19 U.S.C. 2051 note)",
+      "machine_lead": true,
+      "mention_id": "usc:b58241575806",
+      "snippet": "Ex. Ord. No. 11311. Implementation of Beirut Agreement Relating to Audio-Visual Materials | Ex. Ord. No. 11311, Oct. 14, 1966, 31 F.R. 13413, provided:",
+      "source": {
+        "page_or_item": "19 U.S.C. 2051 note; note 'Ex. Ord. No. 11311. Implementation of Beirut Agreement Relating to Audio-Visual Materials' [USLM note id idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1.txt",
+        "text_sha256": "6244aac4651e93dd7448866b7ec5374abe06c383987c73a8ab86c0cbb0d68971",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 11311. Implementation of Beirut Agreement Relating to Audio-Visual Materials\nEx. Ord. No. 11311, Oct. 14, 1966, 31 F.R. 13413, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idb91fb70d-ac5f-11f1-86f8-df17c10eb1e1.txt",
+      "text_sha256": "6244aac4651e93dd7448866b7ec5374abe06c383987c73a8ab86c0cbb0d68971",
+      "where": "USC 19 U.S.C. 2051 note"
+    },
     "ORIGINAL:EO:11311": {
       "acceptable_as_original": true,
       "actor_id": "EO:11311",
@@ -424,99 +544,6 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1966-10-18/pdf/FR-1966-10-18.pdf"
       },
       "text": "Instrument: EO:11311\nSource: https://www.govinfo.gov/content/pkg/FR-1966-10-18/pdf/FR-1966-10-18.pdf\nSHA-256 of the downloaded file: 28c731eac574fbd684f7ed7d0218339b7925b1debdfd1b463b007f8dceb42a6f\nLocation: 31 FR 13413, PDF pages 5-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 52 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 11311\nCARRYING OUT PROVISIONS OF THE BEIRUT AGREEMENT OF 1948  \nRELATING TO AUDIO-VISUAL MATERIALS\nBy virtue of the authority vested in me as President of the United \nStates, including the provisions of the Joint Resolution of October 8, \n1966, Public Law 89-634, and section 301 of Title 3 of the United States \nCode, I  hereby order and proclaim that—\n1. Pursuant to section 3(b) of the Joint Resolution, the amendments \nto the Tariff Schedules of the United States made by section 3(a) of \nthe Joint Resolution shall apply with respect to articles entered, or \nwithdrawn from warehouse, for consumption, on and after January 1, \n1967.\n2. Pursuant to the “Agreement for Facilitating the International \nCirculation of Visual' and Auditory Materials of an Educational, \nScientific and Cultural Character”, made at Beirut in 1948, the Joint \nResolution, and headnote 1 to schedule 8, part fi of the Tariff Schedules \nof the United States, the United States Inform ation Agency is hereby \ndesignated as the agency to carry out the provisions of the Agreement \narid related protocol, and to make any determinations and to prescribe \nany regulations required by headnote 1.\nL yndon  B. J ohnson\nT h e W h it e H ouse ,\nOctober  I J ,  1966.\n[F.R. Doc. 66-11337; Filed, Oct. 14, 1966 ; 3:11 p.m.]\nFEDERAL REGISTER, VOL. 31, NO. 202— TUESDAY, OCTOBER 18, 1966\n"
-    },
-    "TERM:EO:11311:2ead828b7cc88cb4@1cfc6c255c697a75": {
-      "actor_id": "EO:11311",
-      "char_end": 8339,
-      "char_start": 8066,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11311:2ead828b7cc88cb4@1cfc6c255c697a75",
-      "instrument_id": "EO:11311",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11311#c-4",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11311",
-        "page_or_item": "22 CFR part 61",
-        "requires_page_check": false,
-        "sha256": "1cfc6c255c697a75d517ab4201b57165409c0c3586ad7d34b68a14243ef2015c",
-        "signing_date": "1966-10-14",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t22-part61.txt",
-        "text_sha256": "1cfc6c255c697a75d517ab4201b57165409c0c3586ad7d34b68a14243ef2015c",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-22/part-61"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(4) It does not augment international understanding and goodwill, unless its primary purpose or effect is not to instruct or inform through the development of a subject or an aspect of a subject and its content is not such as to maintain, increase, or diffuse knowledge; or"
-    },
-    "TERM:EO:11311:b4ffd176f5a29125@1cfc6c255c697a75": {
-      "actor_id": "EO:11311",
-      "char_end": 8065,
-      "char_start": 7843,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11311:b4ffd176f5a29125@1cfc6c255c697a75",
-      "instrument_id": "EO:11311",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11311#c-3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11311",
-        "page_or_item": "22 CFR part 61",
-        "requires_page_check": false,
-        "sha256": "1cfc6c255c697a75d517ab4201b57165409c0c3586ad7d34b68a14243ef2015c",
-        "signing_date": "1966-10-14",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t22-part61.txt",
-        "text_sha256": "1cfc6c255c697a75d517ab4201b57165409c0c3586ad7d34b68a14243ef2015c",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-22/part-61"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(3) It is not representative, authentic, or accurate or does not represent the current state of factual knowledge of a subject or aspect of a subject unless the material contains widespread and gross misstatements of fact;"
-    },
-    "TERM:EO:11311:baa10fe03bce372f@dd7ed23319a6f288": {
-      "actor_id": "EO:11311",
-      "char_end": 1426,
-      "char_start": 1195,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11311:baa10fe03bce372f@dd7ed23319a6f288",
-      "instrument_id": "EO:11311",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11311#3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11311",
-        "page_or_item": "19 U.S.C. 2051",
-        "requires_page_check": false,
-        "sha256": "dd7ed23319a6f2884844489510d854162a7d72e6186f71d2d20b57944e872b2c",
-        "signing_date": "1966-10-14",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2051.txt",
-        "text_sha256": "dd7ed23319a6f2884844489510d854162a7d72e6186f71d2d20b57944e872b2c",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2051&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(3)\n because it is not representative, authentic, or accurate or does not represent the current state of factual knowledge of a subject or aspect of a subject unless the material contains widespread and gross misstatements of fact;"
     },
     "TERM:EO:11311:c45744a7ca72ac9d@d947c3067aa2b951": {
       "actor_id": "EO:11311",
@@ -548,40 +575,9 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(4) It does not augment international  \nunderstanding and goodwill, unless its  \nprimary purpose or effect is not to in -\nstruct or inform through the develop -\nment of a subject or an aspect of a sub -\nject and its content is not such as to  \nmaintain, increase, or diffuse knowl -\nedge; or"
-    },
-    "TERM:EO:11311:e4bb338cd3309796@dd7ed23319a6f288": {
-      "actor_id": "EO:11311",
-      "char_end": 1709,
-      "char_start": 1427,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11311:e4bb338cd3309796@dd7ed23319a6f288",
-      "instrument_id": "EO:11311",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11311#4",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11311",
-        "page_or_item": "19 U.S.C. 2051",
-        "requires_page_check": false,
-        "sha256": "dd7ed23319a6f2884844489510d854162a7d72e6186f71d2d20b57944e872b2c",
-        "signing_date": "1966-10-14",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2051.txt",
-        "text_sha256": "dd7ed23319a6f2884844489510d854162a7d72e6186f71d2d20b57944e872b2c",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2051&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(4)\n because it does not augment international understanding and goodwill, unless its primary purpose or effect is not to instruct or inform through the development of a subject or an aspect of a subject and its content is not such as to maintain, increase, or diffuse knowledge; or"
     }
   },
-  "fingerprint": "9c4fa2af5b257f86994ef5766b9fe33e630743cd13a171368f6a747b16345d0c",
+  "fingerprint": "0b52e1ce2a442efcd42e90721c55bb68d136e3053290e50ac663991ff91b4f34",
   "instrument_id": "EO:11311",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -650,32 +646,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -692,11 +690,7 @@
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:11311",
   "own_terms": [
-    "TERM:EO:11311:c45744a7ca72ac9d@d947c3067aa2b951",
-    "TERM:EO:11311:b4ffd176f5a29125@1cfc6c255c697a75",
-    "TERM:EO:11311:2ead828b7cc88cb4@1cfc6c255c697a75",
-    "TERM:EO:11311:baa10fe03bce372f@dd7ed23319a6f288",
-    "TERM:EO:11311:e4bb338cd3309796@dd7ed23319a6f288"
+    "TERM:EO:11311:c45744a7ca72ac9d@d947c3067aa2b951"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {

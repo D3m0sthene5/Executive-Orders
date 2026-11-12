@@ -17,7 +17,7 @@ Larrey triage (jobs/larrey-triage, 2026-11-10): an order the action lists is sti
 check finds that it lacks an input its route needs (a usable original, no page check owed, a status basis record, a
 clause inventory, ...), so that no agent is paid to discover that. The refusal names the missing input. A checkout
 that carries jobs/larrey-triage/larrey.py but no current triage output is refused (re-run `larrey.py triage`);
-`LARREY_LEVEL=hard` applies only the gates the route itself requires. Actions Larrey does not triage, and routes
+By default only the gates the route itself requires apply (hard); `LARREY_LEVEL=soft` adds the experimental soft gates. Actions Larrey does not triage, and routes
 whose kit code changed since Larrey's back-test, are unchanged.
 
 A checkout without jobs/bentham/ (the kit's own test fixtures) is not checked. A checkout that has jobs/bentham/

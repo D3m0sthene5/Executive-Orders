@@ -2,11 +2,13 @@
   "actor_contexts": [
     {
       "actor_id": "EO:11943",
-      "evidence_id": "ACTOR_TEXT:EO:11943"
+      "evidence_id": "ACTOR_TEXT:EO:11943",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:12010",
-      "evidence_id": "ACTOR_TEXT:EO:12010"
+      "evidence_id": "ACTOR_TEXT:EO:12010",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -253,7 +255,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11941",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11941"
@@ -599,11 +601,20 @@
   "current_law_leads": [
     {
       "basis_code": "statutory_note_reference",
+      "char_end": 5772,
+      "char_start": 5434,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "28 U.S.C. 172 note; note 'Salary Increases' [USLM note id idd6f0128d-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
+        "sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idd6f0128d-b5bd-11f1-b464-c522e5d34a4f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11941",
       "legal_basis_candidate": "statutory note names the order (28 U.S.C. 172 note)",
@@ -613,9 +624,14 @@
       "source": {
         "page_or_item": "28 U.S.C. 172 note; note 'Salary Increases' [USLM note id idd6f0128d-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
+        "text_sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "n 358 of Title 2, The Congress.\n1976—Salaries of judges increased to $46,800 effective on first day of first pay period beginning on or after Oct. 1, 1976, see Ex. Ord. No. 11941, Oct. 1, 1976, 41 F.R. 43889, formerly set out as a note under section 5332 of Title 5, Government Organization and Employees. Ex. Ord. No. 11941, further prov",
+      "text_path": "jobs/current-law/output/usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
+      "text_sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
       "where": "USC 28 U.S.C. 172 note"
     },
     {
@@ -634,6 +650,7 @@
         "snippet": "...n 358 of Title 2, The Congress. 1976—Salaries of judges increased to $46,800 effective on first day of first pay period beginning on or after Oct. 1, 1976, see Ex. Ord. No. 11941, Oct. 1, 1976, 41 F.R. 43889, formerly set out as a note under section 5332 of Title 5, Government Organization and Em ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
         "where": "USC 28 U.S.C. 172 note"
       },
       "proposal": {
@@ -1648,6 +1665,7 @@
       "char_end": 1163,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:11943",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1668,6 +1686,7 @@
       "char_end": 2436,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12010",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2013,6 +2032,42 @@
       },
       "text": "73. p0 3.90\n228.60\n212.40\n198.30 \n183.00\n168.30 \n147.90\n128.40\n128.40\n128.40\n!• Payment of the full* rate of basic allowance for quarters at these* rates for members of the  \nuniformed services to personnel without dependents is authorized by 37 U.S.C. 403 and Part XV  \nof Executive Order Mo. 11157# as amended.\n2 Payment of the partial rate of basic allowance for quarters at these rates to members of the  \nuniformed services without dependents who# under 37 U.S.C. 403(b) or 403(c)# are not entitled  \nto the full rate of basic allowance for quarters# As authorized by 37 U.S.C. 1009(d) and Part XV  \nof Executive Order No. 11157# as amended.\nFEDERAL REGISTER, V O L  4 1 , N O . 194— TU ESDAY, OCTOBER 5 , 19 76\n\n=== PDF page 16 of 132 ===\n43894 THE PRESIDENT\nSchedule 5 - VICE PRESIDENT AND THE EXECUTIVE SCHEDULE\nVice President  \nLevel I \nLevel II\n$68,800*\n$66, 000**\n$46,800***\nLevel III \nLevel IV \nLevel V\n$44,000****\n$41,800*****\n$39,600******\nPursuant to the Legislative Branch Appropriation Act, 1977, funds are not availabi«  \nto pay a salary at a rate which exceeds the rate in effect on September 30, 1976#  \nas follows:\n*$65,600.\n**$63,000.***$44,600.\n****$42,000.\n*****$39,900.\n******$37,800.\nSchedule 6 - CONGRESSIONAL SALARIES\nSenator\nMember of the House of Representatives  \nDelegate to the House of Représentatives  \nResident Commissioner from Puerto Rico~\nPresident pro tempore.of the Senate  \nMajority leader and minority leader of Senate\nMajority leader and minority leader of House of Representatives  \nSpeaker of the House of Representatives\nPursuant to the Legislative Branch Appropriation Act, 1977, funds are not'available  \nto pay a salary at a rate which exceeds the rate in effect on September 30, 1976,  \nas follows:\n*$44,600.\n•*$52,000.\n•**$65,600.\n$46,800*\n$46,800*\n$46,800*\n$46,800*\n$54,500**\n$54,500**\n$54,500**\n$68,800***\nSchedule 7 * JUDICIAL SALARIES\nChief Justice of the United States\nAssociate Justices of the Supreme Court\nCircuit Judges\nDistrict Judges\nJudges of the Court of Claims\nJudges of the Court of Customs and Patent Appeals  \nJudges of the Customs Court ( >\nCommissioners of the Court of Claims  \nReferees in Bankruptcy (full-time)\n$68,800*\n$66, 000**\n$46,800***\n$44,000****\n$46,800***\n$46,800***\n$44,000****\n$39,600*****\n$39,600*****\nPursuant to the Legislative Branch Appropriation Act, 1977, funds are not availabi«  \nto pay a salary at a rate which exceeds the rate in effect on September 30, 1976,  \nas follows:\n*$65,600.\n**$63,000.\n***$44,600.\n****$42,000.\n*****$37,800."
     },
+    "CURRENT:EO:11941#0": {
+      "basis_code": "statutory_note_reference",
+      "char_end": 5772,
+      "char_start": 5434,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "28 U.S.C. 172 note; note 'Salary Increases' [USLM note id idd6f0128d-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
+        "sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idd6f0128d-b5bd-11f1-b464-c522e5d34a4f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11941#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11941",
+      "legal_basis_candidate": "statutory note names the order (28 U.S.C. 172 note)",
+      "machine_lead": true,
+      "mention_id": "usc:7e4c0d9b1056",
+      "snippet": "...n 358 of Title 2, The Congress. 1976—Salaries of judges increased to $46,800 effective on first day of first pay period beginning on or after Oct. 1, 1976, see Ex. Ord. No. 11941, Oct. 1, 1976, 41 F.R. 43889, formerly set out as a note under section 5332 of Title 5, Government Organization and Employees. Ex. Ord. No. 11941, further prov...",
+      "source": {
+        "page_or_item": "28 U.S.C. 172 note; note 'Salary Increases' [USLM note id idd6f0128d-b5bd-11f1-b464-c522e5d34a4f]; usc28.xml (sha256 ff6ab8a3aa69070cc5d8f795b6131a661c595049389fbaab2577bd020f74e91d) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
+        "text_sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "n 358 of Title 2, The Congress.\n1976—Salaries of judges increased to $46,800 effective on first day of first pay period beginning on or after Oct. 1, 1976, see Ex. Ord. No. 11941, Oct. 1, 1976, 41 F.R. 43889, formerly set out as a note under section 5332 of Title 5, Government Organization and Employees. Ex. Ord. No. 11941, further prov",
+      "text_path": "jobs/current-law/output/usc-notes/idd6f0128d-b5bd-11f1-b464-c522e5d34a4f.txt",
+      "text_sha256": "bf717cd8738c05358705bc2ce85d7bc3e90de47216a562819f00b6278c0645e6",
+      "where": "USC 28 U.S.C. 172 note"
+    },
     "ORIGINAL:EO:11941": {
       "acceptable_as_original": true,
       "actor_id": "EO:11941",
@@ -2068,7 +2123,7 @@
       "text": "Does not apply to commissioned officers who have been credited with over 4 years* active service as enlisted  members.\n* P*y- is limited by Section 5308 of Title 5 of the United States Code, as added by the Federal Pay Com»\npayability Act of 1970, to the rate for level V of the Executive Schedule which is. as of the effective daté of  \nthis schedule, $3300.00 per month."
     }
   },
-  "fingerprint": "b557d3a451f965c6140b14d2479ab1752c58c2a473fa266f8c2ae447cf07dfb2",
+  "fingerprint": "122923d4acd7c1ef23a667d4f31daa51d5b4bff3e3f6042f776abd38ae296ac4",
   "instrument_id": "EO:11941",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2352,32 +2407,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2387,8 +2444,7 @@
     }
   ],
   "missing": [
-    "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
+    "Current-law lead lacks an original-source sha256."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:11941",
@@ -2398,10 +2454,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "8f2daece43d8946943454853b4f240defa1c8355b934618f733c113e865d48c0",
+    "fingerprint": "6e0c5cb1a63dcd1f5781ce7d41d766e5b55b28133710257ee4d1e2ba3469f2a2",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11941.json",
-    "history_sha256": "f09b59ff23e32c8bf74728586403926e5a5b0ff86c6a5eba6f12e191866d745e",
+    "history_sha256": "0d25ae0adda0351ee7e30501a4d76b5dba0edb880495f53d000870397c305c0f",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

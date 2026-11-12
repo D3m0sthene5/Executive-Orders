@@ -1,7 +1,7 @@
 test_backtest_operating_points_are_the_route_gates (test_larrey.ActionRouteTests.test_backtest_operating_points_are_the_route_gates) ... ok
 test_every_route_gate_is_registered_in_llull_with_a_reason (test_larrey.ActionRouteTests.test_every_route_gate_is_registered_in_llull_with_a_reason) ... ok
 test_routes (test_larrey.ActionRouteTests.test_routes) ... ok
-test_a_backtest_that_loses_a_success_turns_the_route_advisory (test_larrey.AdmittedTests.test_a_backtest_that_loses_a_success_turns_the_route_advisory) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/larrey.py:373: UserWarning: Larrey triage is advisory for undecided_full (kit code changed since the committed back-test, or the back-test loses a success): status_assignment.undecided is not triaged; see jobs/larrey-triage/README.md
+test_a_backtest_that_loses_a_success_turns_the_route_advisory (test_larrey.AdmittedTests.test_a_backtest_that_loses_a_success_turns_the_route_advisory) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/larrey.py:376: UserWarning: Larrey triage is advisory for undecided_full (kit code changed since the committed back-test, or the back-test loses a success): status_assignment.undecided is not triaged; see jobs/larrey-triage/README.md
   warnings.warn(f"Larrey triage is advisory for {route} (kit code changed since the committed back-test, or "
 ok
 test_admitted_sets_and_levels (test_larrey.AdmittedTests.test_admitted_sets_and_levels) ... ok
@@ -10,7 +10,7 @@ test_changed_gate_code_makes_the_output_stale (test_larrey.AdmittedTests.test_ch
 test_claim_kit_admission_applies_larrey (test_larrey.AdmittedTests.test_claim_kit_admission_applies_larrey) ... ok
 test_missing_or_stale_output_is_refused (test_larrey.AdmittedTests.test_missing_or_stale_output_is_refused) ... ok
 test_refusal_names_the_missing_input_and_fails_closed (test_larrey.AdmittedTests.test_refusal_names_the_missing_input_and_fails_closed) ... ok
-test_untriaged_action_and_changed_kit_code_are_not_enforced (test_larrey.AdmittedTests.test_untriaged_action_and_changed_kit_code_are_not_enforced) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/larrey.py:373: UserWarning: Larrey triage is advisory for undecided_full (kit code changed since the committed back-test, or the back-test loses a success): status_assignment.undecided is not triaged; see jobs/larrey-triage/README.md
+test_untriaged_action_and_changed_kit_code_are_not_enforced (test_larrey.AdmittedTests.test_untriaged_action_and_changed_kit_code_are_not_enforced) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/larrey.py:376: UserWarning: Larrey triage is advisory for undecided_full (kit code changed since the committed back-test, or the back-test loses a success): status_assignment.undecided is not triaged; see jobs/larrey-triage/README.md
   warnings.warn(f"Larrey triage is advisory for {route} (kit code changed since the committed back-test, or "
 ok
 test_basis_kinds_mirror_status_overlay (test_larrey.FeatureTests.test_basis_kinds_mirror_status_overlay) ... ok
@@ -26,10 +26,10 @@ test_pools_per_bentham_action_keep_out_orders_without_a_verdict (test_larrey.Tri
 test_verdicts_and_reasons (test_larrey.TriageTests.test_verdicts_and_reasons) ... ok
 
 ----------------------------------------------------------------------
-Ran 22 tests in 0.562s
+Ran 22 tests in 0.653s
 
 OK
 back-test re-run on the current kit code -> /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/output/BACKTEST.json
 decided_lifecycle: 3562 of 3788 admitted (3661 on hard gates only)
-status_only: 3076 of 11210 admitted (5149 on hard gates only)
-undecided_full: 3076 of 11210 admitted (5149 on hard gates only)
+status_only: 3508 of 11214 admitted (5370 on hard gates only)
+undecided_full: 3508 of 11214 admitted (5370 on hard gates only)

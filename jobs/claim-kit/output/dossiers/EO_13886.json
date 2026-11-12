@@ -7,13 +7,23 @@
     {
       "actor_id": "EO:14294",
       "evidence_id": "ACTOR_TEXT:EO:14294"
+    },
+    {
+      "actor_id": "FRDOC:2020-21059",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2020-21059",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2026-20525",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2026-20525",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13886",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13886"
@@ -442,23 +452,35 @@
   "current_law_leads": [
     {
       "basis_code": "cfr_authority_citation",
+      "char_end": 614,
+      "char_start": 404,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR part 594",
+        "sha256": "5ca096a17329d2b600dfedc7d9385e78e69280a5c242b4891bb9686e08c71db3",
+        "source_id": "cfr:t31:part594",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/part-594"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13886",
       "legal_basis_candidate": "regulation authority citation lists the order (31 CFR part 594)",
       "machine_lead": true,
-      "mention_id": "ecfr:6f6a8786742f",
+      "mention_id": "ecfr:71987ba2541b",
       "snippet": "...786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
       "source": {
-        "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.44)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.44)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part594.txt",
+        "text_sha256": "5ca096a17329d2b600dfedc7d9385e78e69280a5c242b4891bb9686e08c71db3",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
       "where": "CFR 31 CFR part 594"
     },
     {
@@ -488,18 +510,17 @@
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:6f6a8786742f",
+        "mention_id": "ecfr:71987ba2541b",
         "snippet": "...786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -509,8 +530,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (31 CFR part 594)",
         "source": {
-          "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.44)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.44)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
@@ -604,6 +625,66 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2025-05-14/pdf/2025-08681.pdf"
       },
       "text": "Instrument: EO:14294\nSource: https://www.govinfo.gov/content/pkg/FR-2025-05-14/pdf/2025-08681.pdf\nSHA-256 of the downloaded file: 321edf5e8a852f20338acd36aa64695cef357d09d23d334cbff8994aad51f4a2\nLocation: 90 FR 20363, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 3 ===\nPresidential Documents\n20363 Federal Register / Vol. 90, No. 92 / Wednesday, May 14, 2025 / Presidential Documents \nExecutive Order 14294 of May 9, 2025 \nFighting Overcriminalization in Federal Regulations \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, it is hereby ordered: \nSection 1. Purpose. The United States is drastically overregulated. The Code \nof Federal Regulations contains over 48,000 sections, stretching over 175,000 \npages—far more than any citizen can possibly read, let alone fully under-\nstand. Worse, many carry potential criminal penalties for violations. The \nsituation has become so dire that no one—likely including those charged \nwith enforcing our criminal laws at the Department of Justice—knows how \nmany separate criminal offenses are contained in the Code of Federal Regula-\ntions, with at least one source estimating hundreds of thousands of such \ncrimes. Many of these regulatory crimes are ‘‘strict liability’’ offenses, mean-\ning that citizens need not have a guilty mental state to be convicted of \na crime. \nThis status quo is absurd and unjust. It allows the executive branch to \nwrite the law, in addition to executing it. That situation can lend itself \nto abuse and weaponization by providing Government officials tools to target \nunwitting individuals. It privileges large corporations, which can afford to \nhire expensive legal teams to navigate complex regulatory schemes and \nfence out new market entrants, over average Americans. \nThe purpose of this order is to ease the regulatory burden on everyday \nAmericans and ensure no American is transformed into a criminal for vio-\nlating a regulation they have no reason to know exists. \nSec. 2. Policy. It is the policy of the United States that: \n(a) Criminal enforcement of criminal regulatory offenses is disfavored. \n(b) Prosecution of criminal regulatory offenses is most appropriate for \npersons who know or can be presumed to know what is prohibited or \nrequired by the regulation and willingly choose not to comply, thereby \ncausing or risking substantial public harm. Prosecutions of criminal regu-\nlatory offenses should focus on matters where a putative defendant is alleged \nto have known his conduct was unlawful. \n(c) Strict liability offenses are ‘‘generally disfavored.’’ United States v. \nUnited States Gypsum, Co., 438 U.S. 422, 438 (1978). Where enforcement \nis appropriate, agencies should consider civil rather than criminal enforce-\nment of strict liability regulatory offenses or, if appropriate and consistent \nwith due process and the right to jury trial, see Jarkesy v. Securities and \nExchange Commission, 603 U.S. 109 (2024), administrative enforcement. \n(d) Agencies promulgating regulations potentially subject to criminal en-\nforcement should explicitly describe the conduct subject to criminal enforce-\nment, the authorizing statutes, and the mens rea standard applicable to \nthose offenses. \nSec. 3. Definitions. For purposes of this order: \n(a) ‘‘Agency’’ has the meaning given to ‘‘Executive agency’’ in section \n105 of title 5, United States Code; \n(b) ‘‘Criminal regulatory offense’’ means a Federal regulation that is enforce-\nable by a criminal penalty; and \n(c) ‘‘Mens rea’’ means the state of mind that by law must be proven \nto convict a particular defendant of a particular crime. \nVerDate Sep<11>2014 18:48 May 13, 2025 Jkt 265001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\14MYE0.SGM 14MYE0lotter on DSK11XQN23PROD with FR_PREZDOC3\n=== PDF page 2 of 3 ===\n20364 Federal Register / Vol. 90, No. 92 / Wednesday, May 14, 2025 / Presidential Documents \nSec. 4. Report on Criminal Regulatory Offenses. (a) Within 365 days of \nthe date of this order, the head of each agency, in consultation with the \nAttorney General, shall provide to the Director of the Office of Management \nand Budget (OMB) a report containing: \n(i) a list of all criminal regulatory offenses enforceable by the agency \nor the Department of Justice; and \n(ii) for each criminal regulatory offense identified in subsection (a)(i) of \nthis section, the range of potential criminal penalties for a violation and \nthe applicable mens rea standard for the criminal regulatory offense. \n(b) At the same time the head of each agency provides to the Director \nof OMB the report required by subsection (a) of this section, the agency \nhead shall publicly post the report on its agency webpage. \n(c) The head of each agency shall periodically, but not less than once \na year, update the report described in subsection (a) of this section. \n(d) Criminal enforcement of any criminal regulatory offense not identified \nin the report described in subsection (a) of this section is strongly discour-\naged. The head of each agency shall consider whether a criminal regulatory \noffense is included in an agency’s public report when considering whether \nto make a criminal referral to the Department of Justice or, where applicable, \nto the agency’s Inspector General. Further, the Attorney General shall con-\nsider whether a criminal regulatory offense is included in an agency’s public \nreport before initiating an investigation or initiating criminal proceedings \nfor violating regulatory standards. \nSec. 5. Promoting Regulatory Transparency. (a) Following issuance of this \norder, all future notices of proposed rulemaking (NPRMs) and final rules \npublished in the Federal Register, the violation of which may constitute \ncriminal regulatory offenses, should include a statement identifying that \nthe rule or proposed rule is a criminal regulatory offense and the authorizing \nstatute. Agencies should draft this statement in consultation with the Depart-\nment of Justice. \n(b) The regulatory text of all NPRMs and final rules with criminal con-\nsequences published in the Federal Register after the date of this order \nshould explicitly state a mens rea requirement for each element of a criminal \nregulatory offense, accompanied by citations to the relevant provisions of \nthe authorizing statute. \n(c) Strict liability criminal regulatory offenses are disfavored. Any proposed \nor final criminal regulatory offense that includes a strict liability mens \nrea for the offense shall be treated as a ‘‘significant regulatory action’’ and \nsubmitted to the Administrator of the Office of Information and Regulatory \nAffairs for the review applicable to significant regulatory actions under \nExecutive Order 12866 of September 30, 1993 (Regulatory Planning and \nReview), or any successor process. \nSec. 6. Default Mens Rea for Criminal Regulatory Offenses. (a) The head \nof each agency, in consultation with the Attorney General, shall examine \nthe agency’s statutory authorities and determine whether there is authority \nto adopt a background mens rea standard for criminal regulatory offenses \nthat applies unless a specific regulation states an alternative mens rea. \n(b) Within 30 days of the submission of the report described in section \n4(a) of this order, the head of each agency, in consultation with the Attorney \nGeneral, shall submit a report to the Director of OMB summarizing the \ninformation submitted under section 4(a) of this order and assessing whether \nthe applicable mens rea standards for criminal regulatory offenses enforced \nby the agency are appropriate. If consistent with the statutory authorities \nidentified pursuant to the review described in subsection (a) of this section, \nthe report should present a plan for changing the applicable mens rea \nstandards and adopting a generally applicable background mens rea standard, \nand provide a justification for each criminal regulatory offense for which \nthe agency proposes to deviate from its default mens rea standard. \nSec. 7. Agency Referrals for Potential Criminal Enforcement. Within 45 \ndays of the date of this order, and in consultation with the Attorney General, \nVerDate Sep<11>2014 18:48 May 13, 2025 Jkt 265001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\14MYE0.SGM 14MYE0lotter on DSK11XQN23PROD with FR_PREZDOC3\n=== PDF page 3 of 3 ===\n20365 Federal Register / Vol. 90, No. 92 / Wednesday, May 14, 2025 / Presidential Documents \neach agency should publish guidance in the Federal Register describing \nits plan to address criminally liable regulatory offenses. Each agency’s guid-\nance should make clear that when the agency is deciding whether to refer \nalleged violations of criminal regulatory offenses to the Department of Justice, \nthe agency should consider factors such as: \n(a) the harm or risk of harm, pecuniary or otherwise, caused by the \nalleged offense; \n(b) the potential gain to the putative defendant that could result from \nthe offense; \n(c) whether the putative defendant held specialized knowledge, expertise, \nor was licensed in an industry related to the rule or regulation at issue; \nand \n(d) evidence, if any is available, of the putative defendant’s general aware-\nness of the unlawfulness of his conduct as well as his knowledge or lack \nthereof of the regulation at issue. \nSec. 8. Effect on Immigration Enforcement and National Security Functions . \nNothing in this order shall apply to the enforcement of the immigration \nlaws or regulations promulgated to implement such laws, nor shall it apply \nto the enforcement of laws or regulations related to national security or \ndefense. \nSec. 9. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nMay 9, 2025. \n[FR Doc. 2025–08681 \nFiled 5–13–25; 8:45 am] \nBilling code 3395–F4–P \nVerDate Sep<11>2014 18:48 May 13, 2025 Jkt 265001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\14MYE0.SGM 14MYE0\nTrump.EPS</GPH>\nlotter on DSK11XQN23PROD with FR_PREZDOC3"
+    },
+    "ACTOR_TEXT:FRDOC:2020-21059": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2020-21059",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 3811,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2020-21059",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2020-21059",
+        "page_or_item": "85 FR 59641; FR Doc. 2020-21059; Presidential Document: Continuation of the National Emergency With Respect to Persons Who Commit, Threaten To Commit, or Support Terrorism",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "0681c9802c7978e40d2b307f3f3ebe5af9e11e886eb8320629fdcd3461940b9f",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2020-21059.txt",
+        "text_sha256": "0681c9802c7978e40d2b307f3f3ebe5af9e11e886eb8320629fdcd3461940b9f",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2020/09/22/2020-21059.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 85 Issue 184 (Tuesday, September 22, 2020)</title>\n</head>\n<body><pre>\n[Federal Register Volume 85, Number 184 (Tuesday, September 22, 2020)]\n[Presidential Documents]\n[Pages 59641-59642]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2020-21059]\n\n\n\n[[Page 59639]]\n\nVol. 85\n\nTuesday,\n\nNo. 184\n\nSeptember 22, 2020\n\nPart III\n\n\n\n\n\nThe President\n\n\n\n\n\n-----------------------------------------------------------------------\n\n\n\nNotice of September 18, 2020--Continuation of the National Emergency \nWith Respect to Persons Who Commit, Threaten To Commit, or Support \nTerrorism\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 85 , No. 184 / Tuesday, September 22, 2020 / \nPresidential Documents\u0000\u0000\n\n\u0000___________________________________________________________________\n\n\u0000Title 3--\n\u0000The President\n\n[[Page 59641]]\n\n                Notice of September 18, 2020\n\n                \nContinuation of the National Emergency With \n                Respect to Persons Who Commit, Threaten To Commit, or \n                Support Terrorism\n\n                On September 23, 2001, by Executive Order 13224, the \n                President declared a national emergency with respect to \n                persons who commit, threaten to commit, or support \n                terrorism, pursuant to the International Emergency \n                Economic Powers Act (50 U.S.C. 1701-1706) to deal with \n                the unusual and extraordinary threat to the national \n                security, foreign policy, and economy of the United \n                States constituted by the grave acts of terrorism and \n                threats of terrorism committed by foreign terrorists, \n                including the terrorist attacks on September 11, 2001, \n                in New York and Pennsylvania and against the Pentagon, \n                and the continuing and immediate threat of further \n                attacks against United States nationals or the United \n                States.\n\n                On September 9, 2019, I signed Executive Order 13886 to \n                strengthen and consolidate sanctions to combat the \n                continuing threat posed by international terrorism and \n                to take additional steps to deal with the national \n                emergency declared in Executive Order 13224.\n\n                The actions of persons who commit, threaten to commit, \n                or support terrorism continue to pose an unusual and \n                extraordinary threat to the national security, foreign \n                policy, and economy of the United States. For this \n                reason, the national emergency declared in Executive \n                Order 13224 of September 23, 2001, as amended, and the \n                measures adopted to deal with that emergency, must \n                continue in effect beyond September 23, 2020. \n                Therefore, in accordance with section 202(d) of the \n                National Emergencies Act (50 U.S.C. 1622(d)), I am \n                continuing for 1 year the national emergency with \n                respect to persons who commit, threaten to commit, or \n                support terrorism declared in Executive Order 13224, as \n                amended.\n\n[[Page 59642]]\n\n                This notice shall be published in the Federal Register \n                and transmitted to the Congress.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\n                THE WHITE HOUSE,\n\n                    September 18, 2020.\n\n[FR Doc. 2020-21059\nFiled 9-21-20; 11:15 am]\nBilling code 3295-F0-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2026-20525": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-20525",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 6355,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-20525",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-20525",
+        "page_or_item": "91 FR 64223; FR Doc. 2026-20525; Notice: Notice of OFAC Sanctions Action",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "200270deef1e39864221869613d112783dc7c800727e08a266ba7574e3fea4d4",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-20525.txt",
+        "text_sha256": "200270deef1e39864221869613d112783dc7c800727e08a266ba7574e3fea4d4",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/10/07/2026-20525.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 91 Issue 193 (Wednesday, October 7, 2026)</title>\n</head>\n<body><pre>\n[Federal Register Volume 91, Number 193 (Wednesday, October 7, 2026)]\n[Notices]\n[Pages 64223-64224]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2026-20525]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF THE TREASURY\n\nOffice of Foreign Assets Control\n\n\nNotice of OFAC Sanctions Action\n\nAGENCY: Office of Foreign Assets Control, Treasury.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The U.S. Department of the Treasury's Office of Foreign Assets \nControl (OFAC) is publishing the names of one or more persons that have \nbeen\n\n[[Page 64224]]\n\nplaced on OFAC's Specially Designated Nationals and Blocked Persons \nList (SDN List) based on OFAC's determination that one or more \napplicable legal criteria were satisfied. All property and interests in \nproperty subject to U.S. jurisdiction of these persons are blocked, and \nU.S. persons are generally prohibited from engaging in transactions \nwith them.\n\nDATES: This action was issued on October 2, 2026. See SUPPLEMENTARY \nINFORMATION for relevant dates.\n\nFOR FURTHER INFORMATION CONTACT: OFAC: Associate Director for Global \nTargeting, 202-622-2420; Assistant Director for Licensing, 202-622-\n2480; Assistant Director for Sanctions Compliance, 202-622-2490 or \n<a href=\"https://ofac.treasury.gov/contact-ofac\">https://ofac.treasury.gov/contact-ofac</a>.\n\nSUPPLEMENTARY INFORMATION:\n\nElectronic Availability\n\n    The SDN List and additional information concerning OFAC sanctions \nprograms are available on OFAC's website: <a href=\"https://ofac.treasury.gov\">https://ofac.treasury.gov</a>.\n\nNotice of OFAC Actions\n\n    On October 2, 2026, OFAC determined that the property and interests \nin property subject to U.S. jurisdiction of the following persons are \nblocked under the relevant sanctions authority listed below.\n\nIndividuals\n[GRAPHIC] [TIFF OMITTED] TN07OC26.000\n\n    Designated pursuant to section 1(a)(iii)(A) of Executive Order \n(E.O.) 13224 of September 23, 2001, ``Blocking Property and Prohibiting \nTransactions With Persons Who Commit, Threaten To Commit, or Support \nTerrorism,'' as amended by Executive Order 13886 of September 9, 2019, \n``Modernizing Sanctions To Combat Terrorism'' (E.O. 13224, as amended), \nfor being owned, controlled, or directed by, or having acted or \npurported to act for or on behalf of, directly or indirectly, Hamas, a \nperson whose property and interests in property are blocked pursuant to \nE.O. 13224, as amended.\n    2. BARIKA, Faouzi, 227 Chemin de Bois Milon, St. Andrew de Cubzac \n33240, France; 6 Impasse Marie Louise Gachet, St. Andrew de Cubzac \n33240, France; DOB 13 Feb 1991; POB Tebessa, Algeria; nationality \nFrance; Gender Male; Secondary sanctions risk: section 1(b) of \nExecutive Order 13224, as amended by Executive Order 13886; Passport \n14CV66604 (France); Driver's License No. 140968401047 (France) \n(individual) [SDGT] (Linked To: HAMAS).\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, Hamas, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    3. OUALID, Amel (a.k.a. BOUCHEKIF, Amel), 58 rue Parmentier, Saint \nEtienne 42100, France; 52 BD Antonia Vivaldi, Saint Etienne 42000, \nFrance; 37 rue de Molina, Saint Etienne, France; DOB 03 Jul 1987; POB \nOran, Algeria; nationality Algeria; Gender Female; Secondary sanctions \nrisk: section 1(b) of Executive Order 13224, as amended by Executive \nOrder 13886; Driver's License No. 180642351327 (France) (individual) \n[SDGT] (Linked To: AL-ZAQ, Saleem Abdallah Saleem).\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, Saleem Abdallah Saleem Al-Zaq, a person whose \nproperty and interests in property are blocked pursuant to E.O. 13224, \nas amended.\n    4. ASSOCIATION BARAKA, 6 Impasse Marie Louise Gachet, St. Andrew de \nCubzac 33240, France; website associationbaraka.fr; Email Address \n<a href=\"/cdn-cgi/l/email-protection#4c2f2322382d2f380c2d3f3f232f252d382523222e2d3e2d272d622a3e\"><span class=\"__cf_email__\" data-cfemail=\"25464a4b51444651654456564a464c44514c4a4b474457444e440b4357\">[email&#160;protected]</span></a>; Secondary sanctions risk: section 1(b) of \nExecutive Order 13224, as amended by Executive Order 13886; \nOrganization Established Date 13 Oct 2023; Target Type Charity or \nNonprofit Organization; Registered Charity No. W331005557 (France) \n[SDGT] (Linked To: BARIKA, Faouzi).\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Faouzi \nBarika, a person whose property and interests in property are blocked \npursuant to E.O. 13224, as amended.\n    5. ENSEMBLE C MIEUX (a.k.a. ``TOGETHER IT'S BETTER''), 58 rue \nParmentier, Saint Etienne 42100, France; Secondary sanctions risk: \nsection 1(b) of Executive Order 13224, as amended by Executive Order \n13886; Organization Established Date 01 Jul 2024; Target Type Charity \nor Nonprofit Organization; Registered Charity No. W423015492 (France) \n[SDGT] (Linked To: OUALID, Amel).\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Amel \nQualid, a person whose property and interests in property are blocked \npursuant to E.O. 13224, as amended.\n\n(Authority: E.O. 13224, as amended)\n\nLisa M. Palluconi,\nDeputy Director, Office of Foreign Assets Control.\n[FR Doc. 2026-20525 Filed 10-6-26; 8:45 am]\nBILLING CODE 4810-AL-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
     },
     "CLAUSES:EO:13886#lead": {
       "char_end": 2551,
@@ -1023,6 +1104,40 @@
       },
       "text": "Sec. 4. This order is effective at 12:01 a.m. eastern daylight time on September \n10, 2019."
     },
+    "CURRENT:EO:13886#0": {
+      "basis_code": "cfr_authority_citation",
+      "char_end": 614,
+      "char_start": 404,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR part 594",
+        "sha256": "5ca096a17329d2b600dfedc7d9385e78e69280a5c242b4891bb9686e08c71db3",
+        "source_id": "cfr:t31:part594",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/part-594"
+      },
+      "id": "CURRENT:EO:13886#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13886",
+      "legal_basis_candidate": "regulation authority citation lists the order (31 CFR part 594)",
+      "machine_lead": true,
+      "mention_id": "ecfr:71987ba2541b",
+      "snippet": "...786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
+      "source": {
+        "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.44)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part594.txt",
+        "text_sha256": "5ca096a17329d2b600dfedc7d9385e78e69280a5c242b4891bb9686e08c71db3",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
+      "where": "CFR 31 CFR part 594"
+    },
     "ORIGINAL:EO:13886": {
       "acceptable_as_original": true,
       "actor_id": "EO:13886",
@@ -1237,7 +1352,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
     }
   },
-  "fingerprint": "c860b57955e70cd851df83e42a30c3f60f6efa14fde89434ec75d276414ff014",
+  "fingerprint": "9e007b631cf9928baa9f910e7c2f402215b0c9bc73406a549f2fb72e83d6d615",
   "instrument_id": "EO:13886",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1548,23 +1663,25 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 1,
       "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:ecfr"
@@ -1572,8 +1689,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1590,6 +1707,12 @@
     "Acting identity absent from census: NOTICE:2024-09-18",
     "Acting identity absent from census: NOTICE:2025-09-08",
     "Acting identity absent from census: NOTICE:2026-09-11",
+    "Acting text of FRDOC:2021-20351: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2021-20351.txt",
+    "Acting text of FRDOC:2022-20582: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2022-20582.txt",
+    "Acting text of FRDOC:2023-19744: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2023-19744.txt",
+    "Acting text of FRDOC:2024-21722: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2024-21722.txt",
+    "Acting text of FRDOC:2025-17552: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2025-17552.txt",
+    "Acting text of FRDOC:2026-19053: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2026-19053.txt",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
@@ -1609,10 +1732,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "72278dab2745153c9e02f1e53377a27a20c1d0ffd41e3ee35bcc247209f4a220",
+    "fingerprint": "c07dc451f2dc158fc465b1e16603e82abf470d58e00caa53dde7213a29059316",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13886.json",
-    "history_sha256": "491ea034313c02fde312635b9f350b28826b066a9ada08709b5a3564583613e9",
+    "history_sha256": "e925e5b92adafde61ffe9431a67d8984acb593748cf3f55f23b7eab23407fa63",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

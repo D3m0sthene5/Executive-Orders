@@ -6,16 +6,25 @@
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@45250"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 3201,
+      "windows_omitted": 0
     },
     {
       "actor_id": "EO:13870",
-      "evidence_id": "ACTOR_TEXT:EO:13870"
+      "evidence_id": "ACTOR_TEXT:EO:13870",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:14085",
-      "evidence_id": "ACTOR_TEXT:EO:14085"
+      "evidence_id": "ACTOR_TEXT:EO:14085",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -233,7 +242,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:10694",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10694"
@@ -332,11 +341,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 397,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 10694. Authorizing the Secretaries of the Army, Navy, and Air Force to Issue ' [USLM note id ida8989a53-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "b6fa3dabb658a9fdad3ebfb0405be44dfbd8fc2b5f5734c069fb7101a0dcc0ac",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a53-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10694",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
@@ -346,10 +364,14 @@
       "source": {
         "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 10694. Authorizing the Secretaries of the Army, Navy, and Air Force to Issue ' [USLM note id ida8989a53-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a53-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "b6fa3dabb658a9fdad3ebfb0405be44dfbd8fc2b5f5734c069fb7101a0dcc0ac",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=ida8989a53-3a6f-11f1-a58a-d8db54b14ab5",
+      "text": "Ex. Ord. No. 10694. Authorizing the Secretaries of the Army, Navy, and Air Force to Issue Citations in the Name of the President of the United States to Military and Naval Units for Outstanding Performance in Action\nEx. Ord. No. 10694, Jan. 10, 1957, 22 F.R. 253, as amended by Ex. Ord. No. 13286, § 74, Feb. 28, 2003, 68 F.R. 10631; Ex. Ord. No. 14085, § 3, Oct. 3, 2022, 87 F.R. 60542, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a53-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "b6fa3dabb658a9fdad3ebfb0405be44dfbd8fc2b5f5734c069fb7101a0dcc0ac",
       "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
     },
     {
@@ -368,7 +390,7 @@
         "snippet": "Ex. Ord. No. 10694. Authorizing the Secretaries of the Army, Navy, and Air Force to Issue Citations in the Name of the President of the United States to Military and Naval Units for Outstanding Performance in Action | Ex. Ord. No. 10694, Jan. 10, 1957, 22 F.R. 253, as amended by Ex. Ord. No. 13286,  ...",
         "snippet_truncated": true,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=ida8989a53-3a6f-11f1-a58a-d8db54b14ab5",
+        "text_path": "usc-notes/ida8989a53-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
       },
       "proposal": {
@@ -1565,11 +1587,33 @@
       },
       "text": "Instrument: EO:12977\nSource: https://www.govinfo.gov/content/pkg/FR-1995-10-24/pdf/95-26497.pdf\nSHA-256 of the downloaded file: a6a34aa2401dec28f435458b91313c0d28e9c9787bd8a47c8c451202971bef66\nLocation: 60 FR 54411, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n54411\nFederal Register\nVol. 60, No. 205\nTuesday, October 24, 1995\nTitle 3—\nThe President\nExecutive Order 12977 of October 19, 1995\nInteragency Security Committee\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, and in order to enhance the quality\nand effectiveness of security in and protection of buildings and facilities\nin the United States occupied by Federal employees for nonmilitary activities\n(‘‘Federal facilities’’), and to provide a permanent body to address continuing\ngovernment-wide security for Federal facilities, it is hereby ordered as fol-\nlows:\nSection 1. Establishment. There is hereby established within the executive\nbranch the Interagency Security Committee (‘‘Committee’’). The Committee\nshall consist of: (a) the Administrator of General Services (‘‘Administrator’’);\n(b) representatives from the following agencies, appointed by the agency\nheads:\n(1) Department of State;\n(2) Department of the Treasury;\n(3) Department of Defense;\n(4) Department of Justice;\n(5) Department of the Interior;\n(6) Department of Agriculture;\n(7) Department of Commerce;\n(8) Department of Labor;\n(9) Department of Health and Human Services;\n(10) Department of Housing and Urban Development;\n(11) Department of Transportation;\n(12) Department of Energy;\n(13) Department of Education;\n(14) Department of Veterans Affairs;\n(15) Environmental Protection Agency;\n(16) Central Intelligence Agency; and\n(17) Office of Management and Budget;\n(c) the following individuals or their designees:\n(1) the Director, United States Marshals Service;\n(2) the Assistant Commissioner of the Federal Protective Service of the\nPublic Buildings Service, General Services Administration (‘‘Assistant Com-\nmissioner’’);\n(3) the Assistant to the President for National Security Affairs; and\n(4) the Director, Security Policy Board; and\n(d) such other Federal employees as the President shall appoint.\nSec. 2. Chair. The Committee shall be chaired by the Administrator, or\nthe designee of the Administrator.\nSec. 3. Working Groups. The Committee is authorized to establish interagency\nworking groups to perform such tasks as may be directed by the Committee.\n=== PDF page 2 of 2 ===\n54412 Federal Register / Vol. 60, No. 205 / Tuesday, October 24, 1995 / Presidential Documents\nSec. 4. Consultation. The Committee may consult with other parties, includ-\ning the Administrative Office of the United States Courts, to perform its\nresponsibilities under this order, and, at the discretion of the Committee,\nsuch other parties may participate in the working groups.\nSec. 5. Duties and Responsibilities. (a) The Committee shall: (1) establish\npolicies for security in and protection of Federal facilities;\n(2) develop and evaluate security standards for Federal facilities, develop\na strategy for ensuring compliance with such standards, and oversee the\nimplementation of appropriate security measures in Federal facilities; and\n(3) take such actions as may be necessary to enhance the quality and\neffectiveness of security and protection of Federal facilities, including but\nnot limited to:\n(A) encouraging agencies with security responsibilities to share security-\nrelated intelligence in a timely and cooperative manner;\n(B) assessing technology and information systems as a means of providing\ncost-effective improvements to security in Federal facilities;\n(C) developing long-term construction standards for those locations with\nthreat levels or missions that require blast resistant structures or other special-\nized security requirements;\n(D) evaluating standards for the location of, and special security related\nto, day care centers in Federal facilities; and\n(E) assisting the Administrator in developing and maintaining a centralized\nsecurity data base of all Federal facilities.\nSec. 6. Agency Support and Cooperation. (a) Administrative Support. To\nthe extent permitted by law and subject to the availability of appropriations,\nthe Administrator, acting by and through the Assistant Commissioner, shall\nprovide the Committee such administrative services, funds, facilities, staff\nand other support services as may be necessary for the performance of\nits functions under this order.\n(b) Cooperation. Each executive agency and department shall cooperate and\ncomply with the policies and recommendations of the Committee issued\npursuant to this order, except where the Director of Central Intelligence\ndetermines that compliance would jeopardize intelligence sources and meth-\nods. To the extent permitted by law and subject to the availability of appro-\npriations, executive agencies and departments shall provide such support\nas may be necessary to enable the Committee to perform its duties and\nresponsibilities under this order.\n(c) Compliance. The Administrator, acting by and through the Assistant\nCommissioner, shall be responsible for monitoring Federal agency compliance\nwith the policies and recommendations of the Committee.\nSec. 7. Judicial Review. This order is intended only to improve the internal\nmanagement of the Federal Government, and is not intended, and should\nnot be construed, to create any right or benefit, substantive or procedural,\nenforceable at law by a party against the United States, its agencies, its\nofficers, or its employees.\nœ–\nTHE WHITE HOUSE,\nOctober 19, 1995.\n[FR Doc. 95–26497\nFiled 10–20–95; 2:55 pm]\nBilling code 3195–01–P"
     },
+    "ACTOR_TEXT:EO:13286@45250": {
+      "actor_id": "EO:13286",
+      "char_end": 48347,
+      "char_start": 45250,
+      "id": "ACTOR_TEXT:EO:13286@45250",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "21 and inserting ‘‘Department of Homeland Security ’’ in lieu thereof; and \n(b) inserting at the end thereof the following new Part:\n‘‘Part III—Coordination with Other Authorities\n25. After March 1, 2003, no executive department or agency shall exercise \nauthority granted under paragraph 1A of this order with respect to any \nmatter that has been, or could be, designated by the Secretary of Homeland \nSecurity as a qualified anti-terrorism technology as defined in section 865 \nof the Homeland Security Act of 2002, unless— \n(a) in the case of the Department of Defense, the Secretary of Defense \nhas, after consideration of the authority provided under subtitle G of title \nVIII of the Homeland Security Act of 2002, determined that the exercise \nof authority under this order is necessary for the timely and effective conduct \nof United States military or intelligence activities; and \n(b) in the case of any other executive department or agency that has \nauthority under this order, (i) the Secretary of Homeland Security has advised \nwhether the use of the authority provided under subtitle G of title VIII \nVerDate Jan<31>2003 23:17 Mar 04, 2003 Jkt 200001 PO 00000 Frm 00014 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MRE0.SGM 05MRE0\n=== PDF page 13 of 15 ===\n10631Federal Register / Vol. 68, No. 43 / Wednesday, March 5, 2003 / Presidential Documents \nof the Homeland Security Act of 2002 would be appropriate, and (ii) the \nDirector of the Office and Management and Budget has approved the exercise \nof authority under this order.’’. \nSec. 74. Executive Order 10694 of January 10, 1957 ( ‘‘Authorizing the Secre-\ntaries of the Army, Navy, and Air Force to Issue Citations in the Name \nof the President of the United States to Military and Naval Units for Out-\nstanding Performance in Action ’’), is amended by adding at the end thereof \nthe following new section: ‘‘5. The Secretary of the Department in which \nthe Coast Guard is operating may exercise the same authority with respect \nto the Coast Guard under this order as the Secretary of the Navy may \nexercise with respect to the Navy and the Marine Corps under this order. ’’. \nSec. 75. Executive Order 10637 of September 16, 1955 ( ‘‘Delegating to the \nSecretary of the Treasury Certain Functions of the President Relating to \nthe United States Coast Guard’’), is amended by: \n(a) striking ‘‘The Secretary of the Treasury ’’ in sections 1 and 2 and \ninserting ‘‘The Secretary of Homeland Security’’ in lieu thereof; \n(b) striking ‘‘the Secretary of the Treasury ’’ in the title and in subsections \n1(j), 1(k), and 5, and inserting ‘‘the Secretary of Homeland Security ’’ in \nlieu thereof; and \n(c) striking subsection 1(r) and redesignating subsection 1(s) as subsection \n1(r). \nSec. 76. Executive Order 10631 of August 17, 1955 ( ‘‘Code of Conduct \nfor Members of the Armed Forces of the United States ’’), as amended, \nis further amended by: striking ‘‘the Secretary of Transportation ’’ and insert-\ning ‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 77. Executive Order 10554 of August 18, 1954 ( ‘‘Delegating the Authority \n"
+    },
     "ACTOR_TEXT:EO:13870": {
       "actor_id": "EO:13870",
       "char_end": 18876,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13870",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1590,6 +1634,7 @@
       "char_end": 8840,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14085",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1693,6 +1738,42 @@
       },
       "text": "4. This order supersedes Executive Or­\nders No. 9050 of February 6, 1942, and \nNo. 9396 of November 22, 1943."
     },
+    "CURRENT:EO:10694#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 397,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 10694. Authorizing the Secretaries of the Army, Navy, and Air Force to Issue ' [USLM note id ida8989a53-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "b6fa3dabb658a9fdad3ebfb0405be44dfbd8fc2b5f5734c069fb7101a0dcc0ac",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a53-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:10694#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10694",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
+      "machine_lead": true,
+      "mention_id": "usc:4f61a558ad76",
+      "snippet": "Ex. Ord. No. 10694. Authorizing the Secretaries of the Army, Navy, and Air Force to Issue Citations in the Name of the President of the United States to Military and Naval Units for Outstanding Performance in Action | Ex. Ord. No. 10694, Jan. 10, 1957, 22 F.R. 253, as amended by Ex. Ord. No. 13286, § 74, Feb. 28, 2003, 68 F.R. 10631; Ex. Ord. No. 14085, § 3, Oct. 3, 2022, 87 F.R. 60542, provided:",
+      "source": {
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 10694. Authorizing the Secretaries of the Army, Navy, and Air Force to Issue ' [USLM note id ida8989a53-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a53-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "b6fa3dabb658a9fdad3ebfb0405be44dfbd8fc2b5f5734c069fb7101a0dcc0ac",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 10694. Authorizing the Secretaries of the Army, Navy, and Air Force to Issue Citations in the Name of the President of the United States to Military and Naval Units for Outstanding Performance in Action\nEx. Ord. No. 10694, Jan. 10, 1957, 22 F.R. 253, as amended by Ex. Ord. No. 13286, § 74, Feb. 28, 2003, 68 F.R. 10631; Ex. Ord. No. 14085, § 3, Oct. 3, 2022, 87 F.R. 60542, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a53-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "b6fa3dabb658a9fdad3ebfb0405be44dfbd8fc2b5f5734c069fb7101a0dcc0ac",
+      "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
+    },
     "ORIGINAL:EO:10694": {
       "acceptable_as_original": true,
       "actor_id": "EO:10694",
@@ -1784,7 +1865,7 @@
       "text": "Such citations may also be issued to units of armed forces of co-belligerent nations serving with the armed forces of the United States for outstanding performance in action on or after December 7, 1941; provided that such units shall meet the standards established for the armed forces of the United States."
     }
   },
-  "fingerprint": "ac33957f5a71197878a09241c30f296b42556656970f47364421da14729412e0",
+  "fingerprint": "0793e1ae9d4cdffa05175292aaab4fcbd71e7cc9a0fa4ca554c8668dcaa12364",
   "instrument_id": "EO:10694",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1864,11 +1945,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 3,
       "machine_hits_for_this_order": 3,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -1876,20 +1958,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1902,7 +1985,6 @@
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "Large actor context must be read at actor-texts/EO_13286.json before deciding scope/savings.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:13870"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -1914,10 +1996,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "2bd95137a6e61057909ae798db2871de02cbe83823e20af6e68cede59c296e76",
+    "fingerprint": "297957d00ac1e25a004f7dbbd97e8f60a62ea241028f94dfc64706fe7224595c",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_10694.json",
-    "history_sha256": "8a34709baf5180792b532e1d556d6fd9553c2491e9cd964a5963a42c090ce47f",
+    "history_sha256": "00028de76543e74fe9769a728341b36a010ecda4eec069f7c78ab4c08219d61c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

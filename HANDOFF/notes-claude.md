@@ -1,3 +1,57 @@
+## 2026-11-12 ET, evening (Claude: claim-kit build repaired; fresh build verified; pilot finalized, not run)
+
+- **Repair** (PR #302, Kean F-20261112-claimkit-regex-runaway):
+  - The cause was exponential backtracking in `build.py` `_PRECEDES`.
+  - The fix (possessive digit run, atomic separator whitespace) accepts exactly the same citations: identical on
+    22,413 real pairs, and a grep oracle agrees on 242 of 242 windows the old code cannot finish.
+  - Branch run 43287422922: claim-kit built in 32 minutes, and Larrey read that generation.
+- **What F3-F7 enable** (F-20261112-fresh-build-reach), same order IDs:
+  - 1,526 of 11,214 undecided orders gained a record;
+  - 305 moved from hard-only to all gates, and 130 from failing a hard gate to all gates;
+  - fresh pools: 3,447 pass every gate, 1,834 only the hard gates.
+- **Larrey default is now hard gates only** (D-20261112-larrey-hard-default). Bentham applies the soft lifts only at
+  the soft level. The back-test was re-run honestly on the new kit with the diagnosis: unchanged.
+- **PR #301 is stacked on #302: merge #302 first.** After both merge, run `larrey-triage bentham` on main, verify it,
+  then `research/lind/stage0/draw.py`.
+- **Owner ask A-20261112-lind-stage0-v2:**
+  - $35 all-in cap, plus one adoption decision on the batch's upheld proposals;
+  - needs an Augur review of `WAVE.json`, sha256 f2b07a19..., by Codex, Astra or the owner;
+  - supersedes A-20261112-lind-stage0 and A-20261110-larrey-soft-probe.
+- **Deferred by the owner:** the runner-wide Rattle Watch runaway stop (patch kept outside the repo).
+- **Cost of this work:** about $31 of list-price allowance through 19:12 UTC, plus the checking since then.
+
+## 2026-11-12 ET (Claude: Lind correction pass; low-yield root cause found; stage-0 test set up, not run)
+
+- **Root cause of low undecided yield** (Kean F-20261112-kit-not-rebuilt): the Accursius fixes F3-F7 merged
+  2026-11-10 21:16-22:07 UTC, but `jobs/claim-kit/output` on main is still the 10:36 UTC build from that morning.
+  - Every rebuild since failed (a missing test fixture, now on main) or was cancelled.
+  - 30 of the 87 back-test failures are orders a fix targets; 0 of them hold a new record today.
+  - Larrey's gates are computed on the same pre-fix records.
+- **Soft vs hard gates** (F-20261112-soft-gates-untested):
+  - Hard gates keep out 22 and lose nothing: enforce them.
+  - Soft gates keep out 40 more. The main soft gate was fitted on the same sample, and 16 of the 40 failed on defects
+    a merged fix targets. Use the soft gates to order the queue, not to exclude, until tested.
+- **Corrections to PR #301** (`research/lind/DECISION_2026-11-12.md`):
+  - the 62 kept out are 50 failed after dispatch and 12 dispatch-blocked (43 and 19 were the two waves);
+  - 9 ready are now separated from 13 accepted and 11 producer-only statuses;
+  - observed, allocated, assumed and projected figures are labelled;
+  - Haloander's coordinator cost includes a one-time repair;
+  - the projected savings of about $3,860 and $4,150 are withdrawn;
+  - Kean F-20261112-lind-decision and F-20261111-nyc-free-film-access are repaired as rev 1, because shell expansion
+    had eaten their dollar amounts.
+- **Set up, not run:**
+  - `research/lind/stage0/draw.py` (refuses on a stale kit);
+  - `fix_reach.py` (zero tokens);
+  - `WAVE.json` (Augur passes except the review binding).
+- **Owner asks:**
+  - A-20261112-lind-stage0: $35 cap, plus an Augur review by another model family or the owner. It replaces
+    A-20261110-larrey-soft-probe.
+  - Still open: A-20261111-film709-count, A-20261112-cis-unnumbered-check, A-20261110-respondendi-standing-rule-v2.
+- **Next, in order:**
+  1. claim-kit rebuild publishes;
+  2. re-run larrey-triage, then `fix_reach.py`, and commit both;
+  3. once the ask is approved, run stage 0.
+
 ## 2026-11-12 ET (Claude: Graunt census audit adopted and spread through the project)
 
 - **Verified and adopted** (Kean F-20261112-graunt-census-audit, D-20261112-graunt-adopted): Astra's census audit is

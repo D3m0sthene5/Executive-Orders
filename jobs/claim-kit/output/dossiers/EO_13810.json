@@ -23,13 +23,34 @@
     {
       "actor_id": "EO:14294",
       "evidence_id": "ACTOR_TEXT:EO:14294"
+    },
+    {
+      "actor_id": "FRDOC:2018-04113",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:2018-04113@2315",
+        "ACTOR_TEXT:FRDOC:2018-04113@11451",
+        "ACTOR_TEXT:FRDOC:2018-04113@17177",
+        "ACTOR_TEXT:FRDOC:2018-04113@20908",
+        "ACTOR_TEXT:FRDOC:2018-04113@52915"
+      ],
+      "full_text_chars": 165265,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-2018-04113.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+      "window_bytes": 19016,
+      "windows_omitted": 6
+    },
+    {
+      "actor_id": "FRDOC:2026-05114",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2026-05114",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13810",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13810"
@@ -1079,11 +1100,20 @@
   "current_law_leads": [
     {
       "basis_code": "statutory_note_reference",
+      "char_end": 2122,
+      "char_start": 1778,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 9203 note; note 'North Korea Strategy' [USLM note id iddfd957fd-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "8709e7e6534a9688d71d994ea7ade22ab380f79f6ac08d419fefe682237d297a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddfd957fd-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13810",
       "legal_basis_candidate": "statutory note names the order (22 U.S.C. 9203 note)",
@@ -1093,93 +1123,146 @@
       "source": {
         "page_or_item": "22 U.S.C. 9203 note; note 'North Korea Strategy' [USLM note id iddfd957fd-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddfd957fd-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "8709e7e6534a9688d71d994ea7ade22ab380f79f6ac08d419fefe682237d297a",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "blocking the property of the Government of North Korea and the Workers’ Party of Korea, and prohibiting certain transactions with respect to North Korea), and Executive Order No. 13810 (82 Fed. Reg. 44705; relating to imposing additional sanctions with respect to North Korea) [50 U.S.C. 1701 note], as such Executive orders are in effect on th",
+      "text_path": "jobs/current-law/output/usc-notes/iddfd957fd-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "8709e7e6534a9688d71d994ea7ade22ab380f79f6ac08d419fefe682237d297a",
       "where": "USC 22 U.S.C. 9203 note"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 545,
+      "char_start": 204,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 510.106",
+        "sha256": "0e1007cdc45c8d8d8cc10bd7d2c91c0905af7395063a6a0a213dab6828a880b5",
+        "source_id": "cfr:t31:510.106",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-510.106"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13810",
       "legal_basis_candidate": "regulation text names the order (31 CFR 510.106)",
       "machine_lead": true,
-      "mention_id": "ecfr:abfc4b090941",
+      "mention_id": "ecfr:90c7b0dc228b",
       "snippet": "...ive Order 13551 of August 30, 2010, Executive Order 13570 of April 18, 2011, Executive Order 13687 of January 2, 2015, Executive Order 13722 of March 15, 2016, Executive Order 13810 of September 20, 2017, and any further Executive orders relating to the national emergency declared in Executive Order 13466 of June 26, 2008, and any action t...",
       "source": {
-        "page_or_item": "31 CFR 510.106 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.4.1.1.6)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR 510.106 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4.1.1.6)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-510.106.txt",
+        "text_sha256": "0e1007cdc45c8d8d8cc10bd7d2c91c0905af7395063a6a0a213dab6828a880b5",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "ive Order 13551 of August 30, 2010, Executive Order 13570 of April 18, 2011, Executive Order 13687 of January 2, 2015, Executive Order 13722 of March 15, 2016, Executive Order 13810 of September 20, 2017, and any further Executive orders relating to the national emergency declared in Executive Order 13466 of June 26, 2008, and any action t",
       "where": "CFR 31 CFR 510.106"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 6461,
+      "char_start": 6132,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 510.201",
+        "sha256": "f1d2d171242fc9093b34dbbd90e8fca7a77b219b69ab17594d48d275deeae079",
+        "source_id": "cfr:t31:510.201",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-510.201"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13810",
       "legal_basis_candidate": "regulation text names the order (31 CFR 510.201)",
       "machine_lead": true,
-      "mention_id": "ecfr:ae21d9a9080c",
+      "mention_id": "ecfr:19f8b4750543",
       "snippet": "...(a)(3)(iv) of this section; or (I) To have attempted to engage in any of the activities described in paragraphs (a)(3)(iv)(A) through (H) of this section; (v) E.O. 13810 section 1. Any person determined by the Secretary of the Treasury, in consultation with the Secretary of State: (A) To operate in the construction, energy, fin...",
       "source": {
-        "page_or_item": "31 CFR 510.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.4.2.1.1)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR 510.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4.2.1.1)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-510.201.txt",
+        "text_sha256": "f1d2d171242fc9093b34dbbd90e8fca7a77b219b69ab17594d48d275deeae079",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "(a)(3)(iv) of this section; or\n(I) To have attempted to engage in any of the activities described in paragraphs (a)(3)(iv)(A) through (H) of this section;\n(v) E.O. 13810 section 1. Any person determined by the Secretary of the Treasury, in consultation with the Secretary of State:\n(A) To operate in the construction, energy, fin",
       "where": "CFR 31 CFR 510.201"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 946,
+      "char_start": 606,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 510.210",
+        "sha256": "5c92d2b734a267c072c75ea0118b9e9dc899970c3482fd2e76abe7c1f0d8477a",
+        "source_id": "cfr:t31:510.210",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-510.210"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13810",
       "legal_basis_candidate": "regulation text names the order (31 CFR 510.210)",
       "machine_lead": true,
-      "mention_id": "ecfr:196c6bad7541",
+      "mention_id": "ecfr:829d16155abe",
       "snippet": "...nconsistent with any strict condition imposed and in effect pursuant to this section. (b) Sanctionable activity by foreign financial institutions prohibited by Executive Order 13810. The Secretary of the Treasury, in consultation with the Secretary of State, may determine that a foreign financial institution has, on or after September 21,...",
       "source": {
-        "page_or_item": "31 CFR 510.210 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.4.2.1.10)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR 510.210 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4.2.1.10)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-510.210.txt",
+        "text_sha256": "5c92d2b734a267c072c75ea0118b9e9dc899970c3482fd2e76abe7c1f0d8477a",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "nconsistent with any strict condition imposed and in effect pursuant to this section.\n(b) Sanctionable activity by foreign financial institutions prohibited by Executive Order 13810. The Secretary of the Treasury, in consultation with the Secretary of State, may determine that a foreign financial institution has, on or after September 21,",
       "where": "CFR 31 CFR 510.210"
     },
     {
       "basis_code": "cfr_authority_citation",
+      "char_end": 603,
+      "char_start": 393,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR part 510",
+        "sha256": "b91a6a1d9aed7bab92bdff3fe0d42c3ff6c3b6f8bee8e53b30dc1a007f245b90",
+        "source_id": "cfr:t31:part510",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/part-510"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13810",
       "legal_basis_candidate": "regulation authority citation lists the order (31 CFR part 510)",
       "machine_lead": true,
-      "mention_id": "ecfr:6f2a4bef43a8",
+      "mention_id": "ecfr:a593975e88ef",
       "snippet": "...242; E.O. 13570, 76 FR 22291, 3 CFR, 2011 Comp., p. 233; E.O. 13687, 80 FR 819, 3 CFR, 2015 Comp., p. 259; E.O. 13722, 81 FR 14943, 3 CFR, 2016 Comp., p. 446; E.O. 13810, 82 FR 44705, 3 CFR, 2017 Comp., p. 379.",
       "source": {
-        "page_or_item": "31 CFR part 510 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.4)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR part 510 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part510.txt",
+        "text_sha256": "b91a6a1d9aed7bab92bdff3fe0d42c3ff6c3b6f8bee8e53b30dc1a007f245b90",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "242; E.O. 13570, 76 FR 22291, 3 CFR, 2011 Comp., p. 233; E.O. 13687, 80 FR 819, 3 CFR, 2015 Comp., p. 259; E.O. 13722, 81 FR 14943, 3 CFR, 2016 Comp., p. 446; E.O. 13810, 82 FR 44705, 3 CFR, 2017 Comp., p. 379.",
       "where": "CFR 31 CFR part 510"
     },
     {
@@ -1197,7 +1280,7 @@
       "snippet": "Significant transaction(s). | transaction(s) on the objectives of Executive Order 13810 including the economic or other",
       "source": {
         "page_or_item": "31 CFR 510.413 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 3)",
-        "sha256": "fff45daffe405ca553248a72648b36cae16d4691684d5d060c6c29c37015f435",
+        "sha256": "0f5b98b0157f223fc1099de82bcec6d1a54695b468079c6f26d03353851bd0ff",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=3"
       },
       "system": "ecfr",
@@ -1218,7 +1301,7 @@
       "snippet": "...August … August 30, 2010, Executive Order 13570 of April 18, 2011, Executive Order 13687 of January … January 2, 2015, Executive Order 13722 of March 15, 2016, Executive Order 13810 of September",
       "source": {
         "page_or_item": "31 CFR 510.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-        "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
+        "sha256": "daa632fa845a048bb6b5983ca593b5c5ea59a9df2200962e58ec9d3fc0941623",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
       },
       "system": "ecfr",
@@ -1251,18 +1334,17 @@
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:6f2a4bef43a8",
+        "mention_id": "ecfr:a593975e88ef",
         "snippet": "...242; E.O. 13570, 76 FR 22291, 3 CFR, 2011 Comp., p. 233; E.O. 13687, 80 FR 819, 3 CFR, 2015 Comp., p. 259; E.O. 13722, 81 FR 14943, 3 CFR, 2016 Comp., p. 446; E.O. 13810, 82 FR 44705, 3 CFR, 2017 Comp., p. 379.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1272,26 +1354,25 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (31 CFR part 510)",
         "source": {
-          "page_or_item": "31 CFR part 510 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.4)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR part 510 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:abfc4b090941",
+        "mention_id": "ecfr:90c7b0dc228b",
         "snippet": "...ive Order 13551 of August 30, 2010, Executive Order 13570 of April 18, 2011, Executive Order 13687 of January 2, 2015, Executive Order 13722 of March 15, 2016, Executive Order 13810 of September 20, 2017, and any further Executive orders relating to the national emergency declared in Executive Or ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1301,26 +1382,25 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (31 CFR 510.106)",
         "source": {
-          "page_or_item": "31 CFR 510.106 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.4.1.1.6)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR 510.106 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4.1.1.6)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:ae21d9a9080c",
+        "mention_id": "ecfr:19f8b4750543",
         "snippet": "...(a)(3)(iv) of this section; or (I) To have attempted to engage in any of the activities described in paragraphs (a)(3)(iv)(A) through (H) of this section; (v) E.O. 13810 section 1. Any person determined by the Secretary of the Treasury, in consultation with the Secretary of State: (A) To operate  ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1330,26 +1410,25 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (31 CFR 510.201)",
         "source": {
-          "page_or_item": "31 CFR 510.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.4.2.1.1)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR 510.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4.2.1.1)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:196c6bad7541",
+        "mention_id": "ecfr:829d16155abe",
         "snippet": "...nconsistent with any strict condition imposed and in effect pursuant to this section. (b) Sanctionable activity by foreign financial institutions prohibited by Executive Order 13810. The Secretary of the Treasury, in consultation with the Secretary of State, may determine that a foreign financial ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1359,8 +1438,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (31 CFR 510.210)",
         "source": {
-          "page_or_item": "31 CFR 510.210 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.4.2.1.10)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR 510.210 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4.2.1.10)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
@@ -1388,7 +1467,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 510.413)",
         "source": {
           "page_or_item": "31 CFR 510.413 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 3)",
-          "sha256": "fff45daffe405ca553248a72648b36cae16d4691684d5d060c6c29c37015f435",
+          "sha256": "0f5b98b0157f223fc1099de82bcec6d1a54695b468079c6f26d03353851bd0ff",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=3"
         }
       }
@@ -1416,7 +1495,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (31 CFR 510.802)",
         "source": {
           "page_or_item": "31 CFR 510.802 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-          "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
+          "sha256": "daa632fa845a048bb6b5983ca593b5c5ea59a9df2200962e58ec9d3fc0941623",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
         }
       }
@@ -1437,6 +1516,7 @@
         "snippet": "...blocking the property of the Government of North Korea and the Workers’ Party of Korea, and prohibiting certain transactions with respect to North Korea), and Executive Order No. 13810 (82 Fed. Reg. 44705; relating to imposing additional sanctions with respect to North Korea) [50 U.S.C. 1701 note ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/iddfd957fd-b816-11f1-963c-e4c4db8c41be.txt",
         "where": "USC 22 U.S.C. 9203 note"
       },
       "proposal": {
@@ -1642,6 +1722,185 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2025-05-14/pdf/2025-08681.pdf"
       },
       "text": "Instrument: EO:14294\nSource: https://www.govinfo.gov/content/pkg/FR-2025-05-14/pdf/2025-08681.pdf\nSHA-256 of the downloaded file: 321edf5e8a852f20338acd36aa64695cef357d09d23d334cbff8994aad51f4a2\nLocation: 90 FR 20363, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 3 ===\nPresidential Documents\n20363 Federal Register / Vol. 90, No. 92 / Wednesday, May 14, 2025 / Presidential Documents \nExecutive Order 14294 of May 9, 2025 \nFighting Overcriminalization in Federal Regulations \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, it is hereby ordered: \nSection 1. Purpose. The United States is drastically overregulated. The Code \nof Federal Regulations contains over 48,000 sections, stretching over 175,000 \npages—far more than any citizen can possibly read, let alone fully under-\nstand. Worse, many carry potential criminal penalties for violations. The \nsituation has become so dire that no one—likely including those charged \nwith enforcing our criminal laws at the Department of Justice—knows how \nmany separate criminal offenses are contained in the Code of Federal Regula-\ntions, with at least one source estimating hundreds of thousands of such \ncrimes. Many of these regulatory crimes are ‘‘strict liability’’ offenses, mean-\ning that citizens need not have a guilty mental state to be convicted of \na crime. \nThis status quo is absurd and unjust. It allows the executive branch to \nwrite the law, in addition to executing it. That situation can lend itself \nto abuse and weaponization by providing Government officials tools to target \nunwitting individuals. It privileges large corporations, which can afford to \nhire expensive legal teams to navigate complex regulatory schemes and \nfence out new market entrants, over average Americans. \nThe purpose of this order is to ease the regulatory burden on everyday \nAmericans and ensure no American is transformed into a criminal for vio-\nlating a regulation they have no reason to know exists. \nSec. 2. Policy. It is the policy of the United States that: \n(a) Criminal enforcement of criminal regulatory offenses is disfavored. \n(b) Prosecution of criminal regulatory offenses is most appropriate for \npersons who know or can be presumed to know what is prohibited or \nrequired by the regulation and willingly choose not to comply, thereby \ncausing or risking substantial public harm. Prosecutions of criminal regu-\nlatory offenses should focus on matters where a putative defendant is alleged \nto have known his conduct was unlawful. \n(c) Strict liability offenses are ‘‘generally disfavored.’’ United States v. \nUnited States Gypsum, Co., 438 U.S. 422, 438 (1978). Where enforcement \nis appropriate, agencies should consider civil rather than criminal enforce-\nment of strict liability regulatory offenses or, if appropriate and consistent \nwith due process and the right to jury trial, see Jarkesy v. Securities and \nExchange Commission, 603 U.S. 109 (2024), administrative enforcement. \n(d) Agencies promulgating regulations potentially subject to criminal en-\nforcement should explicitly describe the conduct subject to criminal enforce-\nment, the authorizing statutes, and the mens rea standard applicable to \nthose offenses. \nSec. 3. Definitions. For purposes of this order: \n(a) ‘‘Agency’’ has the meaning given to ‘‘Executive agency’’ in section \n105 of title 5, United States Code; \n(b) ‘‘Criminal regulatory offense’’ means a Federal regulation that is enforce-\nable by a criminal penalty; and \n(c) ‘‘Mens rea’’ means the state of mind that by law must be proven \nto convict a particular defendant of a particular crime. \nVerDate Sep<11>2014 18:48 May 13, 2025 Jkt 265001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\14MYE0.SGM 14MYE0lotter on DSK11XQN23PROD with FR_PREZDOC3\n=== PDF page 2 of 3 ===\n20364 Federal Register / Vol. 90, No. 92 / Wednesday, May 14, 2025 / Presidential Documents \nSec. 4. Report on Criminal Regulatory Offenses. (a) Within 365 days of \nthe date of this order, the head of each agency, in consultation with the \nAttorney General, shall provide to the Director of the Office of Management \nand Budget (OMB) a report containing: \n(i) a list of all criminal regulatory offenses enforceable by the agency \nor the Department of Justice; and \n(ii) for each criminal regulatory offense identified in subsection (a)(i) of \nthis section, the range of potential criminal penalties for a violation and \nthe applicable mens rea standard for the criminal regulatory offense. \n(b) At the same time the head of each agency provides to the Director \nof OMB the report required by subsection (a) of this section, the agency \nhead shall publicly post the report on its agency webpage. \n(c) The head of each agency shall periodically, but not less than once \na year, update the report described in subsection (a) of this section. \n(d) Criminal enforcement of any criminal regulatory offense not identified \nin the report described in subsection (a) of this section is strongly discour-\naged. The head of each agency shall consider whether a criminal regulatory \noffense is included in an agency’s public report when considering whether \nto make a criminal referral to the Department of Justice or, where applicable, \nto the agency’s Inspector General. Further, the Attorney General shall con-\nsider whether a criminal regulatory offense is included in an agency’s public \nreport before initiating an investigation or initiating criminal proceedings \nfor violating regulatory standards. \nSec. 5. Promoting Regulatory Transparency. (a) Following issuance of this \norder, all future notices of proposed rulemaking (NPRMs) and final rules \npublished in the Federal Register, the violation of which may constitute \ncriminal regulatory offenses, should include a statement identifying that \nthe rule or proposed rule is a criminal regulatory offense and the authorizing \nstatute. Agencies should draft this statement in consultation with the Depart-\nment of Justice. \n(b) The regulatory text of all NPRMs and final rules with criminal con-\nsequences published in the Federal Register after the date of this order \nshould explicitly state a mens rea requirement for each element of a criminal \nregulatory offense, accompanied by citations to the relevant provisions of \nthe authorizing statute. \n(c) Strict liability criminal regulatory offenses are disfavored. Any proposed \nor final criminal regulatory offense that includes a strict liability mens \nrea for the offense shall be treated as a ‘‘significant regulatory action’’ and \nsubmitted to the Administrator of the Office of Information and Regulatory \nAffairs for the review applicable to significant regulatory actions under \nExecutive Order 12866 of September 30, 1993 (Regulatory Planning and \nReview), or any successor process. \nSec. 6. Default Mens Rea for Criminal Regulatory Offenses. (a) The head \nof each agency, in consultation with the Attorney General, shall examine \nthe agency’s statutory authorities and determine whether there is authority \nto adopt a background mens rea standard for criminal regulatory offenses \nthat applies unless a specific regulation states an alternative mens rea. \n(b) Within 30 days of the submission of the report described in section \n4(a) of this order, the head of each agency, in consultation with the Attorney \nGeneral, shall submit a report to the Director of OMB summarizing the \ninformation submitted under section 4(a) of this order and assessing whether \nthe applicable mens rea standards for criminal regulatory offenses enforced \nby the agency are appropriate. If consistent with the statutory authorities \nidentified pursuant to the review described in subsection (a) of this section, \nthe report should present a plan for changing the applicable mens rea \nstandards and adopting a generally applicable background mens rea standard, \nand provide a justification for each criminal regulatory offense for which \nthe agency proposes to deviate from its default mens rea standard. \nSec. 7. Agency Referrals for Potential Criminal Enforcement. Within 45 \ndays of the date of this order, and in consultation with the Attorney General, \nVerDate Sep<11>2014 18:48 May 13, 2025 Jkt 265001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\14MYE0.SGM 14MYE0lotter on DSK11XQN23PROD with FR_PREZDOC3\n=== PDF page 3 of 3 ===\n20365 Federal Register / Vol. 90, No. 92 / Wednesday, May 14, 2025 / Presidential Documents \neach agency should publish guidance in the Federal Register describing \nits plan to address criminally liable regulatory offenses. Each agency’s guid-\nance should make clear that when the agency is deciding whether to refer \nalleged violations of criminal regulatory offenses to the Department of Justice, \nthe agency should consider factors such as: \n(a) the harm or risk of harm, pecuniary or otherwise, caused by the \nalleged offense; \n(b) the potential gain to the putative defendant that could result from \nthe offense; \n(c) whether the putative defendant held specialized knowledge, expertise, \nor was licensed in an industry related to the rule or regulation at issue; \nand \n(d) evidence, if any is available, of the putative defendant’s general aware-\nness of the unlawfulness of his conduct as well as his knowledge or lack \nthereof of the regulation at issue. \nSec. 8. Effect on Immigration Enforcement and National Security Functions . \nNothing in this order shall apply to the enforcement of the immigration \nlaws or regulations promulgated to implement such laws, nor shall it apply \nto the enforcement of laws or regulations related to national security or \ndefense. \nSec. 9. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nMay 9, 2025. \n[FR Doc. 2025–08681 \nFiled 5–13–25; 8:45 am] \nBilling code 3395–F4–P \nVerDate Sep<11>2014 18:48 May 13, 2025 Jkt 265001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\14MYE0.SGM 14MYE0\nTrump.EPS</GPH>\nlotter on DSK11XQN23PROD with FR_PREZDOC3"
+    },
+    "ACTOR_TEXT:FRDOC:2018-04113@11451": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2018-04113",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 17177,
+      "char_start": 11451,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2018-04113@11451",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2018-04113",
+        "page_or_item": "83 FR 9182; FR Doc. 2018-04113; Rule: North Korea Sanctions Regulations",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2018-04113.txt",
+        "text_sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2018/03/05/2018-04113.txt"
+      },
+      "text": "The exportation or reexportation, direct or indirect, from the United \nStates, or by a U.S. person, wherever located, of any goods, services, \nor technology to North Korea; (ii) new investment in North Korea by a \nU.S. person, wherever located; and (iii) any approval, financing, \nfacilitation, or guarantee by a U.S. person, wherever located, of a \ntransaction by a foreign person where the transaction by that foreign \nperson would be prohibited by section 3(a) of E.O. 13722 if performed \nby a U.S. person or within the United States. The new exportation and \nreexportation prohibition operates in conjunction with preexisting \ncomprehensive controls on North Korea that are maintained by the U.S. \nDepartment of Commerce under the Export Administration Regulations, 15 \nCFR parts 730-774 (EAR). The Department of Commerce requires a license \nfor the export from the United States of all items subject to the EAR \n(other than food or medicine) that are destined for North Korea, \nwhether by U.S. persons or non-U.S. persons. It also requires a license \nfor the reexport to North Korea from a third country of all items \nsubject to the EAR, whether by U.S. persons or non-U.S. persons. \nSection 3(a) of E.O. 13722, in effect, complements the restrictions \nmaintained by the Department of Commerce and enhances those \nrestrictions by adding a prohibition against the reexportation to North \nKorea by a U.S. person, wherever located, of items that are not subject \nto the EAR, including, for example, purely foreign-origin items.\n    E.O. 13810. On September 20, 2017, the President, invoking the \nauthority of, inter alia, IEEPA and the UNPA, and in view of UNSCR 2321 \nof November 30, 2016, UNSCR 2356 of June 2, 2017, UNSCR 2371 of August \n5, 2017, and UNSCR 2375 of September 11, 2017, issued E.O. 13810 to \ntake further steps with respect to the national emergency declared in \nE.O. 13466, as modified in scope by and relied upon for additional \nsteps in subsequent orders.\n    Section 1(a) of E.O. 13810 blocks, with certain exceptions, all \nproperty and interests in property that are in the United States, that \ncome within the United States, or that are or come within the \npossession or control of any U.S. person of any person determined by \nthe Secretary of the Treasury, in consultation with the Secretary of \nState to have engaged in at least one significant importation from or \nexportation to North Korea of any goods, services, or technology, or to \nmeet other criteria set forth in E.O. 13810.\n    Section 2 of E.O. 13810 prohibits, with certain limited exceptions: \n(a) Any aircraft in which a foreign person has an interest that has \nlanded at a place in North Korea from landing at a place in the United \nStates within 180 days after departure from North Korea; and (b) any \nvessel in which a foreign person has an interest that has called at a \nport in North Korea within the previous 180 days, or that has engaged \nin a ship-to-ship transfer with such a vessel within the previous 180 \ndays, from calling at a port in the United States.\n    Section 3(a) of E.O. 13810 blocks, with certain exceptions, all \nfunds that are in the United States, that come within the United \nStates, or that are or come within the possession or control of any \nU.S. person and that originate from, are destined for, or pass through \na foreign bank account that has been determined by the Secretary of the \nTreasury to be owned or controlled by a North Korean person or to have \nbeen used to transfer funds in which any North Korean person has an \ninterest. The funds described above may not be transferred, paid, \nexported, withdrawn, or otherwise dealt in.\n    Section 4 of E.O. 13810 authorizes the Secretary of the Treasury, \nin consultation with the Secretary of State, to impose the sanctions \ndescribed below on any foreign financial institution determined by the \nSecretary of the Treasury, in consultation with the Secretary of State, \nto have: (i) Knowingly conducted or facilitated any significant \ntransaction on behalf of any person whose property and interests in \nproperty are blocked pursuant to E.O. 13551, E.O. 13687, E.O. 13722, or \nE.O. 13810, or of any person whose property and interests in property \nare blocked pursuant to Executive Order 13382 (70 FR 38567, July 1, \n2005) (``Blocking Property of Weapons of Mass Destruction Proliferators \nand Their Supporters'') in connection with North Korea-related \nactivities; or (ii) knowingly conducted or facilitated any significant \ntransaction in connection with trade with North Korea. With respect to \na foreign financial institution determined to meet the criteria above, \nthe Secretary of the Treasury, in consultation with the Secretary of \nState, may: (i) Prohibit the opening and prohibit or impose strict \nconditions on the maintenance of correspondent accounts or payable-\nthrough accounts in the United States by such foreign financial \ninstitution; or (ii) block all\n\n[[Page 9185]]\n\nproperty and interests in property that are in the United States, that \ncome within the United States, or that are or come within the \npossession or control of any U.S. person of such foreign financial \ninstitution, and such property and interests in property may not be \ntransferred, paid, exported, withdrawn, or otherwise dealt in.\n    Other Executive Order provisions. In section 1(b) of E.O. 13551, \nsection 2 of E.O. 13687, section 5 of E.O. 13722, and section 1(c) of \nE.O. 13810, the President determined that the making of donations of \ncertain articles, such as food, clothing, and medicine, intended to be \nused to relieve human suffering, as specified in section 203(b)(2) of \nIEEPA (50 U.S.C. 1702(b)(2)), by, to, or for the benefit of any person \n"
+    },
+    "ACTOR_TEXT:FRDOC:2018-04113@17177": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2018-04113",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 20553,
+      "char_start": 17177,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2018-04113@17177",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2018-04113",
+        "page_or_item": "83 FR 9182; FR Doc. 2018-04113; Rule: North Korea Sanctions Regulations",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2018-04113.txt",
+        "text_sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2018/03/05/2018-04113.txt"
+      },
+      "text": "whose property and interests in property are blocked pursuant to those \norders would seriously impair the President's ability to deal with the \nnational emergency declared in E.O. 13466, as modified in scope by and \nrelied upon for additional steps in the subsequent orders. The \nPresident therefore prohibited the donation of such items unless \nauthorized by OFAC.\n    Section 1(c) of E.O. 13551, section 3 of E.O. 13687, section 6 of \nE.O. 13722, and section 1(d) of E.O. 13810 provide that the prohibition \non any transaction or dealing in blocked property or interests in \nproperty includes the making of any contribution or provision of funds, \ngoods, or services by, to, or for the benefit of any person whose \nproperty and interests in property are blocked pursuant to those \norders, and the receipt of any contribution or provision of funds, \ngoods, or services from any such person.\n    Section 3 of E.O. 13466, section 2 of E.O. 13551, section 2 of E.O. \n13570, section 5 of E.O. 13687, section 7 of E.O. 13722, and section 6 \nof E.O. 13810 prohibit any transaction by a U.S. person or within the \nUnited States that evades or avoids, has the purpose of evading or \navoiding, or attempts to violate any of the prohibitions set forth in \nthose orders, as well as any conspiracy formed to violate such \nprohibitions. Pursuant to a 2007 amendment of IEEPA clarifying that it \nis illegal to cause a violation of IEEPA, section 2 of E.O. 13551, \nsection 2 of E.O. 13570, section 5 of E.O. 13687, section 7 of E.O. \n13722, and section 6 of E.O. 13810 further prohibit any transaction by \na U.S. person or within the United States that causes a violation of \nany of those orders.\n    Section 5 of E.O. 13466, section 6 of E.O. 13551, section 5 of E.O. \n13570, section 8 of E.O. 13687, section 11 of E.O. 13722, and section \n10 of E.O. 13810 authorize the Secretary of the Treasury, in \nconsultation with the Secretary of State, to take such actions, \nincluding the promulgation of rules and regulations, and to employ all \npowers granted to the President by IEEPA, and, where relevant, the \nUNPA, as may be necessary to carry out the purposes of those orders. \nThese sections also provide that the Secretary of the Treasury may \nredelegate any of these functions to other officers and agencies of the \nU.S. government.\n    NKSPEA. On February 18, 2016, the President signed NKSPEA into law. \nAmong other things, section 104(a) of NKSPEA provides that the \nPresident, with certain exceptions, shall block and prohibit all \ntransactions in property and interests in property that are in the \nUnited States, that come within the United States, or that are or come \nwithin control or possession of a U.S. person of: The Government of \nNorth Korea, the Workers' Party of Korea, and certain other persons the \nPresident determines knowingly engage in certain North Korea-related \nactivities.\n    Section 404(a) of NKSPEA provides authority for the President to \npromulgate regulations as may be necessary to carry out the provisions \nof NKSPEA. Pursuant to Presidential Memorandum of May 18, 2016: \nDelegation of Certain Functions and Authorities under the North Korea \nSanctions and Policy Enhancement Act of 2016, the President delegated \nto the Secretary of the Treasury, in consultation with the Secretary of \nState, the functions and authorities vested in the President by \n"
+    },
+    "ACTOR_TEXT:FRDOC:2018-04113@20908": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2018-04113",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 26830,
+      "char_start": 20908,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2018-04113@20908",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2018-04113",
+        "page_or_item": "83 FR 9182; FR Doc. 2018-04113; Rule: North Korea Sanctions Regulations",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2018-04113.txt",
+        "text_sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2018/03/05/2018-04113.txt"
+      },
+      "text": "Title III of CAATSA, among other things, amends NKSPEA. Section 311(a) \nof CAATSA amends section 104(a) of NKSPEA to provide that the President \nshall, with certain exceptions, block and prohibit all transactions in \nproperty and interests in property that are in the United States, that \ncome into the United States, or that are or come into the possession of \nU.S. persons of any person the President determines knowingly, directly \nor indirectly: imports, exports, or reexports to or from North Korea \nany defense article or defense service or engages in certain other \nNorth Korea-related activities.\n    Section 333(a) of CAATSA provides that the President shall, not \nlater than 180 days after the date of enactment, promulgate regulations \nas necessary for the implementation of and amendments made by title III \nof CAATSA. Pursuant to Presidential Memorandum of September 29, 2017: \nDelegation of Certain Functions and Authorities under the Countering \nAmerica's Adversaries Through Sanctions Act of 2017, the Ukraine \nFreedom Support Act of 2014, and the Support for the Sovereignty, \nIntegrity, Democracy, and Economic Stability of Ukraine Act of 2014, \nthe President delegated to the Secretary of the Treasury, in \nconsultation with the Secretary of State, the relevant functions and \nauthorities vested in the President by section 321(b), with respect to \nsection 302B(a) and (b) of the NKSPEA, as amended by CAATSA, and \nsection 333 of CAATSA.\n    The President, through the issuance of E.O. 13466, E.O. 13551, E.O. \n13570, E.O. 13687, E.O. 13722, and E.O. 13810, has put in place \nprohibitions and designation criteria that encompass all of the \nprohibitions and designation criteria contained in the provisions of \nNKSPEA and CAATSA discussed above and has thereby already taken the \nsteps necessary to implement those provisions. While it is not legally \nnecessary to take further steps, OFAC is issuing these amended \nRegulations to further implement the many provisions of E.O. 13466, \nE.O. 13551, E.O. 13570, E.O. 13687, E.O. 13722, and E.O. 13810.\n\nRegulatory Structure\n\n    Subpart A of the Regulations clarifies the relation of this part to \nother laws and regulations. Subpart B of the Regulations implements the \nprohibitions contained in the various Executive Orders. See, e.g., \nSec. Sec.  510.201 and 510.208. Persons identified in the Annex to E.O. \n13551, designated for blocking by or under the authority of the \nSecretary of the Treasury pursuant to E.O. 13551, E.O. 13687, E.O. \n13722, or E.O. 13810, or otherwise subject to the blocking provisions \nof those orders, are referred to throughout the Regulations as \n``persons whose property and interests in property are blocked pursuant \nto Sec.  510.201(a).'' The names of persons listed in or designated \npursuant to these orders are published on OFAC's Specially Designated \nNationals and Blocked Persons List (SDN List), which is accessible via \nOFAC's website. Those names also are published in the Federal Register \nas they are added to the SDN List.\n    Section 510.201 of subpart B implements the many blocking \nprohibitions contained in the Executive Orders. Sections 510.202 and \n510.203 of subpart B detail the effect of transfers of\n\n[[Page 9186]]\n\nblocked property in violation of the Regulations and set forth the \nrequirement to hold blocked funds, such as currency, bank deposits, or \nliquidated financial obligations, in interest-bearing blocked accounts. \nSection 510.204 of subpart B provides that all expenses incident to the \nmaintenance of blocked physical property shall be the responsibility of \nthe owners and operators of such property, and that such expenses shall \nnot be met from blocked funds, unless otherwise authorized. Section \n510.204 further provides that blocked property may, in OFAC's \ndiscretion, be sold or liquidated and the net proceeds placed in a \nblocked, interest-bearing account in the name of the owner of the \nproperty.\n    Sections 510.205 through 510.209 and 510.211 set forth additional \nprohibitions pursuant to E.O. 13570, E.O. 13687, E.O. 13722, and E.O. \n13810, including prohibitions on certain North Korea-related vessel and \naircraft transactions, the importation and exportation of goods, \nservices, or technology to or from North Korea, and new investment in \nNorth Korea.\n    Section 510.210 of subpart B implements the non-blocking provisions \nof section 4 of E.O. 13810 regarding the opening or maintenance of \ncorrespondent accounts or payable through accounts in the United States \n(the blocking provisions of section 4 of E.O. 13810 are implemented in \nSec.  510.201 of subpart B). The names of foreign financial \ninstitutions that are determined by the Secretary of the Treasury, in \nconsultation with the Secretary of State, to engage in the activities \ndescribed in Sec.  510.210, and which are determined to be subject to \nprohibitions or strict conditions on the opening or maintaining of \ncorrespondent or payable-through accounts in the United States, will be \nlisted on the Correspondent Account or Payable-Through Account \nSanctions (CAPTA) List, which is accessible via OFAC's website \n(<a href=\"http://www.treasury.gov/ofac\">www.treasury.gov/ofac</a>) and published in the Federal Register. This \nlist also will state the prohibition or strict condition(s) that \napplies with respect to each sanctioned foreign financial institution, \nand the relevant or applicable sanctions program. The names of foreign \nfinancial institutions that meet these same criteria but whose property \nand interests in property are instead determined to be blocked pursuant \nto Sec.  510.201 will be published on the SDN List, which is also \naccessible via OFAC's website.\n    Section 510.212 of subpart B implements the prohibitions of E.O. \n13466, E.O. 13551, E.O. 13570, E.O. 13687, E.O. 13722, and E.O. 13810 \non any transaction by a U.S. person or within the United States that \n"
+    },
+    "ACTOR_TEXT:FRDOC:2018-04113@2315": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2018-04113",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5541,
+      "char_start": 2315,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2018-04113@2315",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2018-04113",
+        "page_or_item": "83 FR 9182; FR Doc. 2018-04113; Rule: North Korea Sanctions Regulations",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2018-04113.txt",
+        "text_sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2018/03/05/2018-04113.txt"
+      },
+      "text": "available from OFAC's website (<a href=\"http://www.treasury.gov/ofac\">www.treasury.gov/ofac</a>).\n\nBackground\n\nRegulatory History and This Action\n\n    On November 4, 2010, OFAC issued the North Korea Sanctions \nRegulations, 31 CFR part 510 (75 FR 67912, November 4, 2010) (the \n``Regulations''), to implement Executive Order 13466 of June 26, 2008 \n(73 FR 36787, June 27, 2008) (E.O. 13466) and Executive Order 13551 of \nAugust 30, 2010 (75 FR 53837, September 1, 2010) (E.O. 13551) pursuant \nto authorities delegated to the Secretary of the Treasury in those \norders. The Regulations were initially issued in abbreviated form for \nthe purpose of providing immediate guidance to the public. On June 20, \n2011, OFAC amended the Regulations to implement Executive Order 13570 \nof April 18, 2011 (76 FR 22291, April 20, 2011) (E.O. 13570) pursuant \nto authorities delegated to the Secretary of the Treasury in that order \n(76 FR 35740, June 20, 2011).\n    Today, OFAC is amending the Regulations and reissuing them in their \nentirety. As set forth in more detail below, OFAC is implementing three \nrecent Executive orders: Executive Order 13687 of January 2, 2015 \n(``Imposing Additional Sanctions with Respect to North Korea'') (80 FR \n819, January 6, 2015) (E.O. 13687), Executive Order 13722 of March 15, \n2016 (``Blocking Property of the Government of North Korea and the \nWorkers' Party of Korea, and Prohibiting Certain Transactions With \nRespect to North Korea'') (81 FR 14943, March 18, 2016) (E.O. 13722), \nand Executive Order 13810 of September 20, 2017 (``Imposing Additional \nSanctions With Respect to North Korea'') (82 FR 44705, September 25, \n2017) (E.O. 13810). In addition, OFAC is amending the Regulations to \nreference the North Korea Sanctions and Policy Enhancement Act of 2016, \nPublic Law 114-122, 130 Stat. 93 (22 U.S.C. 9201 note) (NKSPEA), and \nTitle III of the Countering America's Adversaries Through Sanctions \nAct, Public Law 115-44, Aug. 2, 2017, 131 Stat. 886 (22 U.S.C. 9401 et \nseq.) (CAATSA). Additionally, OFAC is incorporating into the \nRegulations several new general licenses that have, until now, appeared \nonly on OFAC's website on the North Korea Sanctions page, adding \nseveral new general licenses, and adding and expanding provisions to \nissue a more comprehensive set of regulations that will provide further \nguidance to the public. Finally, OFAC is updating certain regulatory \nprovisions and making other technical and conforming changes. Due to \nthe number of regulatory sections being updated or added, OFAC is \nreissuing the North Korea Sanctions Regulations in their entirety.\n\nExecutive and Statutory Authorities\n\n    E.O. 13466. On June 26, 2008, the President, invoking the authority \nof, inter alia, the International Emergency Economic Powers Act (50 \nU.S.C. 1701-1706) (IEEPA), issued E.O. 13466. In E.O. 13466, the \nPresident found that the existence and risk of the proliferation of \nweapons-usable fissile material on the Korean Peninsula constitute an \nunusual and extraordinary threat to the national security and foreign \npolicy of the United States and declared a national emergency to deal \nwith that threat. The President further found that it is necessary to \n"
+    },
+    "ACTOR_TEXT:FRDOC:2018-04113@52915": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2018-04113",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 53681,
+      "char_start": 52915,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2018-04113@52915",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2018-04113",
+        "page_or_item": "83 FR 9182; FR Doc. 2018-04113; Rule: North Korea Sanctions Regulations",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2018-04113.txt",
+        "text_sha256": "9a981906f433628e7285157408edd231559730e8168b0027d3b43d16ca71c769",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2018/03/05/2018-04113.txt"
+      },
+      "text": "Federal Register or incorporated into the SDN List.\n\n\n    Note 4 to paragraph (a): The International Emergency Economic \nPowers Act (50 U.S.C. 1701-1706), in Section 203 (50 U.S.C. 1702), \nauthorizes the blocking of property and interests in property of a \nperson during the pendency of an investigation. The names of persons \nwhose property and interests in property are blocked pending \ninvestigation pursuant to paragraph (a) of this section also are \npublished in the Federal Register and incorporated into the SDN List \nwith the identifier ``BPI-DPRK.''\n\n\n    Note 5 to paragraph (a): Sections 501.806 and 501.807 of this \nchapter describe the procedures to be followed by persons seeking, \nrespectively, the unblocking of funds that they believe were blocked \n"
+    },
+    "ACTOR_TEXT:FRDOC:2026-05114": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-05114",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 11136,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-05114",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-05114",
+        "page_or_item": "91 FR 12904; FR Doc. 2026-05114; Notice: Notice of OFAC Sanctions Action",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "3c51aad162df113de0b59fc4f281cff9648cf4d11bf6cd677670d582bf4267cd",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-05114.txt",
+        "text_sha256": "3c51aad162df113de0b59fc4f281cff9648cf4d11bf6cd677670d582bf4267cd",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/03/17/2026-05114.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 91 Issue 51 (Tuesday, March 17, 2026)</title>\n</head>\n<body><pre>\n[Federal Register Volume 91, Number 51 (Tuesday, March 17, 2026)]\n[Notices]\n[Pages 12904-12907]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2026-05114]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF THE TREASURY\n\nOffice of Foreign Assets Control\n\n\nNotice of OFAC Sanctions Action\n\nAGENCY: Office of Foreign Assets Control, Treasury.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The U.S. Department of the Treasury's Office of Foreign Assets \nControl (OFAC) is publishing the names of one or more persons that have \nbeen placed on OFAC's Specially Designated Nationals and Blocked \nPersons List (SDN List) based on OFAC's determination that one or more \napplicable legal criteria were satisfied. All property and interests in \nproperty subject to U.S. jurisdiction of these persons are blocked, and \nU.S. persons are generally prohibited from engaging in transactions \nwith them. Additionally, OFAC is publishing updates to the identifying \ninformation of one person currently included on the SDN List.\n\nDATES: This action was issued on March 12, 2026. See SUPPLEMENTARY \nINFORMATION for relevant dates.\n\nFOR FURTHER INFORMATION CONTACT: OFAC: Associate Director for Global \nTargeting, 202-622-2420; Assistant Director for Sanctions Compliance, \n202-622-2490 or <a href=\"https://ofac.treasury.gov/contact-ofac\">https://ofac.treasury.gov/contact-ofac</a>.\n\nSUPPLEMENTARY INFORMATION:\n\nElectronic Availability\n\n    The SDN List and additional information concerning OFAC sanctions \nprograms are available on OFAC's website: <a href=\"https://ofac.treasury.gov\">https://ofac.treasury.gov</a>.\n\nNotice of OFAC Actions\n\n    A. On March 12, 2026, OFAC determined that the property and \ninterests in property subject to U.S. jurisdiction of the following \npersons are blocked under the relevant sanctions authorities listed \nbelow.\n\nIndividuals\n\n    1. DO, Phi Khanh, Hanoi, Vietnam; DOB 04 Mar 1980; POB Hanoi, \nVietnam; nationality Vietnam; Gender Male; Secondary sanctions risk: \nNorth Korea Sanctions Regulations, sections 510.201 and 510.210; \nTransactions Prohibited For Persons Owned or Controlled By U.S. \nFinancial Institutions: North Korea Sanctions Regulations section \n510.214; Passport B7083978 (Vietnam) issued 27 Aug 2012 expires 27 Aug \n2022; National ID No. 111534690 (Vietnam) (individual) [NPWMD] (Linked \nTo: KIM, Se Un).\n    Designated pursuant to section 1(a)(iii) of Executive Order 13382 \nof June 28, 2005, ``Blocking Property of Weapons of Mass Destruction \nProliferators and Their Supporters,'' 70 FR 38567, 3 CFR, 2005 Comp., \np. 170 (July 1, 2005) (E.O. 13382) for having provided, or attempted to \nprovide, financial, material, technological or other support for, or \ngoods or services in support of, KIM SE UN, a person whose property and \ninterests in property are blocked pursuant to E.O. 13382.\n    2. HOANG, Van Nguyen, Vietnam; DOB 20 Jul 1980; POB Nghe An, \nVietnam; nationality Vietnam; Gender Male; Secondary sanctions risk: \nNorth Korea Sanctions Regulations, sections 510.201 and 510.210; \nTransactions Prohibited For Persons Owned or Controlled By U.S. \nFinancial Institutions: North Korea Sanctions Regulations section \n510.214; Passport C7177903 (Vietnam) issued 18 Apr 2019 expires 18 Apr \n2029; National ID No. 013564395 (Vietnam) (individual) [NPWMD] (Linked \nTo: KIM, Se Un).\n    Designated pursuant to section 1(a)(iii) of E.O. 13382 for having \nprovided, or attempted to provide, financial, material, technological \nor other support for, or goods or services in support of, KIM SE UN, a \nperson whose property and interests in property are blocked pursuant to \nE.O. 13382.\n    3. NGUYEN, Quang Viet, Vietnam; DOB 12 Oct 1993; nationality \nVietnam; Gender Male; Secondary sanctions risk:\n\n[[Page 12905]]\n\nNorth Korea Sanctions Regulations, sections 510.201 and 510.210; \nTransactions Prohibited For Persons Owned or Controlled By U.S. \nFinancial Institutions: North Korea Sanctions Regulations section \n510.214; National ID No. 122094898 (Vietnam) (individual) [DPRK4] \n(Linked To: AMNOKGANG TECHNOLOGY DEVELOPMENT COMPANY).\n    Designated pursuant to section 1(a)(v) of Executive Order 13810 of \nSeptember 20, 2017, ``Imposing Additional Sanctions With Respect to \nNorth Korea'' 82 FR 44705, 3 CFR, 2017 Comp., p. 379 (September 25, \n2017) (E.O. 13810) for having materially assisted, sponsored, or \nprovided financial, material, or technological support for, or goods or \nservices to or in support of, AMNOKGANG TECHNOLOGY DEVELOPMENT COMPANY, \na person whose property and interests in property are blocked pursuant \nto E.O. 13810.\n    4. CELESTINO HERRERA, York Louis, Barcelona, Spain; DOB 07 Nov \n1996; POB La Vega, Dominican Republic; nationality Dominican Republic; \nalt. nationality Spain; Gender Male; Secondary sanctions risk: North \nKorea Sanctions Regulations, sections 510.201 and 510.210; Transactions \nProhibited For Persons Owned or Controlled By U.S. Financial \nInstitutions: North Korea Sanctions Regulations section 510.214; \nPassport XDB250498 (Spain); alt. Passport EM0642806 (Dominican \nRepublic) issued 28 Feb 2013 expires 28 Feb 2019; National ID No. \n24558183W (Dominican Republic) (individual) [DPRK4] (Linked To: YUN, \nSong Guk).\n    Designated pursuant to section 1(a)(v) of E.O. 13810 for having \nmaterially assisted, sponsored, or provided financial, material, or \ntechnological support for, or goods or services to or in support of, \nYUN SONG GUK, a person whose property and interests in property are \nblocked pursuant to E.O. 13810.\n    5. HOANG, Minh Quang, Hanoi, Vietnam; DOB 16 Nov 1993; POB Hanoi, \nVietnam; nationality Vietnam; Gender Male; Digital Currency Address--\nXBT bc1qyy5pt5cx3zth8xlj92lq5y87dh8xv3nwgs4ncq; Secondary sanctions \nrisk: North Korea Sanctions Regulations, sections 510.201 and 510.210; \nTransactions Prohibited For Persons Owned or Controlled By U.S. \nFinancial Institutions: North Korea Sanctions Regulations section \n510.214; National ID No. 001093019421 (Vietnam) (individual) [DPRK4] \n(Linked To: YUN, Song Guk).\n    Designated pursuant to section 1(a)(v) of E.O. 13810 for having \nmaterially assisted, sponsored, or provided financial, material, or \ntechnological support for, or goods or services to or in support of, \nYUN SONG GUK, a person whose property and interests in property are \nblocked pursuant to E.O. 13810.\n    6. YUN, Song Guk (a.k.a. YUN, So'ng-kuk), Boten, Laos; DOB 27 Jul \n1969; nationality Korea, North; Gender Male; Digital Currency Address--\nETH 0xb637f84b66876ebf609c2a4208905f9ddac9d075; alt. Digital Currency \nAddress--ETH 0x95584C303FCd48AF5c6B9873015f2AD0ca84EaE3; Secondary \nsanctions risk: North Korea Sanctions Regulations, sections 510.201 and \n510.210; Transactions Prohibited For Persons Owned or Controlled By \nU.S. Financial Institutions: North Korea Sanctions Regulations section \n510.214; Passport 180131469 (Korea, North) (individual) [DPRK4].\n    Designated pursuant to section 1(a)(iv) of E.O. 13810 for being a \nNorth Korean person, including a North Korean person that has engaged \nin commercial activity that generates revenue for the Government of \nNorth Korea or the Workers' Party of Korea.\n\nEntities\n\n[[Page 12906]]\n\n[GRAPHIC] [TIFF OMITTED] TN17MR26.000\n\n    2. QUANGVIETDNBG INTERNATIONAL SERVICES COMPANY LIMITED (a.k.a. \nSHOPAR INTERNATIONAL E-TRADE COMPANY LIMITED), 37C Alley 2/69 Hoang \nLiet Street, Hoang Liet Ward, Hanoi, Vietnam; Secondary sanctions risk: \nNorth Korea Sanctions Regulations, sections 510.201 and 510.210; \nTransactions Prohibited For Persons Owned or Controlled By U.S. \nFinancial Institutions: North Korea Sanctions Regulations section \n510.214; Organization Established Date 04 Jul 2022; Tax ID No. \n0110050211 (Vietnam) [DPRK4] (Linked To: NGUYEN, Quang Viet).\n    Designated pursuant to section 1(a)(vi) of E.O. 13810 for being \nowned or controlled by, or having acted or purported to act for or on \nbehalf of, directly or indirectly, NGUYEN QUANG VIET, a person whose \nproperty and interests in property are blocked pursuant to E.O. 13810.\n    B. On March 12, 2026, OFAC updated the SDN List entry for the \nfollowing person, whose property and interests in property subject to \nU.S. jurisdiction continue to be blocked. The listing below reflects \nthe amended entry on the SDN List.\n\n--From--\n\n    SIM, Hyon Sop (a.k.a. SIM, Hyo'n-so'p), Dandong, China; DOB 25 Nov \n1983; POB Pyongyang, North Korea; nationality Korea, North; Gender \nMale; Digital Currency Address--ETH \n0x4f47bc496083c727c5fbe3ce9cdf2b0f6496270c; Secondary sanctions risk: \nNorth Korea Sanctions Regulations, sections 510.201 and 510.210; \nTransactions Prohibited For Persons Owned or Controlled By U.S. \nFinancial Institutions: North Korea Sanctions Regulations section \n510.214; Digital Currency Address--ARB \n0x4f47bc496083c727c5fbe3ce9cdf2b0f6496270c; Digital Currency Address--\nBSC 0x4f47bc496083c727c5fbe3ce9cdf2b0f6496270c; Passport 109484100 \n(Korea, North) expires 24 Dec 2024 (individual) [NPWMD] (Linked To: \nKOREA KWANGSON BANKING CORP).\n\n--To--\n\n    SIM, Hyon Sop (a.k.a. SIM, Hyo'n-so'p), Dandong, China; DOB 25 Nov \n1983; POB Pyongyang, North Korea; nationality Korea, North; Gender \nMale; Digital Currency Address--ETH \n0x4f47bc496083c727c5fbe3ce9cdf2b0f6496270c; alt. Digital Currency \nAddress--ETH 0xd04E33461FEA8302c5E1e13895b60cEe8AEfda7F; alt. Digital \nCurrency Address--ETH 0x76EA76CA4Eb727f18956aB93445a94c5280412B9; alt. \nDigital Currency Address--ETH \n0xFb3eFf152ea55D1BfA04Dbdd509A80fD7b72cdEB; alt. Digital Currency \nAddress--ETH 0xFda1Ec4A6178d4916b001a065422D31EBE5F62FF; alt. Digital \nCurrency Address--ETH 0x747AFB5c7A7fc34B547cD0FDEbf9b91759C5a52b; \nSecondary sanctions risk: North Korea Sanctions Regulations, sections \n510.201 and 510.210; Transactions Prohibited For Persons Owned or \nControlled By U.S. Financial Institutions: North Korea Sanctions \nRegulations section 510.214; Digital Currency Address--TRX \nTPDLpXxPcaSsupEZ3yrVksmNkYP5SLeKxu; alt. Digital Currency\n\n[[Page 12907]]\n\nAddress--TRX TGXE9dGWawjfd3xqFSho1h1bRbRv9wUGrF; alt. Digital Currency \nAddress--TRX TNTFhgFoKH4srBMiWbfrVFqP2AThSmdwf1; alt. Digital Currency \nAddress--TRX TXhf9nU9bjo1j9z5qEesHdr6gtdndfnA4T; alt. Digital Currency \nAddress--TRX TK17wfSPp32RWrnzZPrGpv7TxdNFvvvE2s; alt. Digital Currency \nAddress--TRX TYeQD2VddTZ9NkFkAnT9DD8cUGetGUQZB2; Digital Currency \nAddress--ARB 0x4f47bc496083c727c5fbe3ce9cdf2b0f6496270c; Digital \nCurrency Address--BSC 0x4f47bc496083c727c5fbe3ce9cdf2b0f6496270c; \nPassport 109484100 (Korea, North) expires 24 Dec 2024 (individual) \n[NPWMD] (Linked To: KOREA KWANGSON BANKING CORP).\n\n(Authority: E.O. 13382; E.O. 13810.)\n\nBradley T. Smith,\nDirector, Office of Foreign Assets Control.\n[FR Doc. 2026-05114 Filed 3-16-26; 8:45 am]\nBILLING CODE 4810-AL-P\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:13810#sec1": {
       "char_end": 3030,
@@ -2677,6 +2936,178 @@
       },
       "text": "Sec. 9. For those persons whose property and interests in property are \nblocked pursuant to this order who might have a constitutional presence \nin the United States, I find that because of the ability to transfer funds \nor other assets instantaneously, prior notice to such persons of measures \nto be taken pursuant to this order would render those measures ineffectual. \nI therefore determine that for these measures to be effective in addressing \nthe national emergency declared in Executive Order 13466, there need be \nno prior notice of a listing or determination made pursuant to this order."
     },
+    "CURRENT:EO:13810#0": {
+      "basis_code": "statutory_note_reference",
+      "char_end": 2122,
+      "char_start": 1778,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 9203 note; note 'North Korea Strategy' [USLM note id iddfd957fd-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "8709e7e6534a9688d71d994ea7ade22ab380f79f6ac08d419fefe682237d297a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddfd957fd-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13810#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13810",
+      "legal_basis_candidate": "statutory note names the order (22 U.S.C. 9203 note)",
+      "machine_lead": true,
+      "mention_id": "usc:33e9156ed35c",
+      "snippet": "...blocking the property of the Government of North Korea and the Workers’ Party of Korea, and prohibiting certain transactions with respect to North Korea), and Executive Order No. 13810 (82 Fed. Reg. 44705; relating to imposing additional sanctions with respect to North Korea) [50 U.S.C. 1701 note], as such Executive orders are in effect on th...",
+      "source": {
+        "page_or_item": "22 U.S.C. 9203 note; note 'North Korea Strategy' [USLM note id iddfd957fd-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddfd957fd-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "8709e7e6534a9688d71d994ea7ade22ab380f79f6ac08d419fefe682237d297a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "blocking the property of the Government of North Korea and the Workers’ Party of Korea, and prohibiting certain transactions with respect to North Korea), and Executive Order No. 13810 (82 Fed. Reg. 44705; relating to imposing additional sanctions with respect to North Korea) [50 U.S.C. 1701 note], as such Executive orders are in effect on th",
+      "text_path": "jobs/current-law/output/usc-notes/iddfd957fd-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "8709e7e6534a9688d71d994ea7ade22ab380f79f6ac08d419fefe682237d297a",
+      "where": "USC 22 U.S.C. 9203 note"
+    },
+    "CURRENT:EO:13810#1": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 545,
+      "char_start": 204,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 510.106",
+        "sha256": "0e1007cdc45c8d8d8cc10bd7d2c91c0905af7395063a6a0a213dab6828a880b5",
+        "source_id": "cfr:t31:510.106",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-510.106"
+      },
+      "id": "CURRENT:EO:13810#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13810",
+      "legal_basis_candidate": "regulation text names the order (31 CFR 510.106)",
+      "machine_lead": true,
+      "mention_id": "ecfr:90c7b0dc228b",
+      "snippet": "...ive Order 13551 of August 30, 2010, Executive Order 13570 of April 18, 2011, Executive Order 13687 of January 2, 2015, Executive Order 13722 of March 15, 2016, Executive Order 13810 of September 20, 2017, and any further Executive orders relating to the national emergency declared in Executive Order 13466 of June 26, 2008, and any action t...",
+      "source": {
+        "page_or_item": "31 CFR 510.106 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4.1.1.6)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-510.106.txt",
+        "text_sha256": "0e1007cdc45c8d8d8cc10bd7d2c91c0905af7395063a6a0a213dab6828a880b5",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "ive Order 13551 of August 30, 2010, Executive Order 13570 of April 18, 2011, Executive Order 13687 of January 2, 2015, Executive Order 13722 of March 15, 2016, Executive Order 13810 of September 20, 2017, and any further Executive orders relating to the national emergency declared in Executive Order 13466 of June 26, 2008, and any action t",
+      "where": "CFR 31 CFR 510.106"
+    },
+    "CURRENT:EO:13810#2": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 6461,
+      "char_start": 6132,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 510.201",
+        "sha256": "f1d2d171242fc9093b34dbbd90e8fca7a77b219b69ab17594d48d275deeae079",
+        "source_id": "cfr:t31:510.201",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-510.201"
+      },
+      "id": "CURRENT:EO:13810#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13810",
+      "legal_basis_candidate": "regulation text names the order (31 CFR 510.201)",
+      "machine_lead": true,
+      "mention_id": "ecfr:19f8b4750543",
+      "snippet": "...(a)(3)(iv) of this section; or (I) To have attempted to engage in any of the activities described in paragraphs (a)(3)(iv)(A) through (H) of this section; (v) E.O. 13810 section 1. Any person determined by the Secretary of the Treasury, in consultation with the Secretary of State: (A) To operate in the construction, energy, fin...",
+      "source": {
+        "page_or_item": "31 CFR 510.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4.2.1.1)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-510.201.txt",
+        "text_sha256": "f1d2d171242fc9093b34dbbd90e8fca7a77b219b69ab17594d48d275deeae079",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "(a)(3)(iv) of this section; or\n(I) To have attempted to engage in any of the activities described in paragraphs (a)(3)(iv)(A) through (H) of this section;\n(v) E.O. 13810 section 1. Any person determined by the Secretary of the Treasury, in consultation with the Secretary of State:\n(A) To operate in the construction, energy, fin",
+      "where": "CFR 31 CFR 510.201"
+    },
+    "CURRENT:EO:13810#3": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 946,
+      "char_start": 606,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 510.210",
+        "sha256": "5c92d2b734a267c072c75ea0118b9e9dc899970c3482fd2e76abe7c1f0d8477a",
+        "source_id": "cfr:t31:510.210",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-510.210"
+      },
+      "id": "CURRENT:EO:13810#3",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13810",
+      "legal_basis_candidate": "regulation text names the order (31 CFR 510.210)",
+      "machine_lead": true,
+      "mention_id": "ecfr:829d16155abe",
+      "snippet": "...nconsistent with any strict condition imposed and in effect pursuant to this section. (b) Sanctionable activity by foreign financial institutions prohibited by Executive Order 13810. The Secretary of the Treasury, in consultation with the Secretary of State, may determine that a foreign financial institution has, on or after September 21,...",
+      "source": {
+        "page_or_item": "31 CFR 510.210 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4.2.1.10)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-510.210.txt",
+        "text_sha256": "5c92d2b734a267c072c75ea0118b9e9dc899970c3482fd2e76abe7c1f0d8477a",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "nconsistent with any strict condition imposed and in effect pursuant to this section.\n(b) Sanctionable activity by foreign financial institutions prohibited by Executive Order 13810. The Secretary of the Treasury, in consultation with the Secretary of State, may determine that a foreign financial institution has, on or after September 21,",
+      "where": "CFR 31 CFR 510.210"
+    },
+    "CURRENT:EO:13810#4": {
+      "basis_code": "cfr_authority_citation",
+      "char_end": 603,
+      "char_start": 393,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR part 510",
+        "sha256": "b91a6a1d9aed7bab92bdff3fe0d42c3ff6c3b6f8bee8e53b30dc1a007f245b90",
+        "source_id": "cfr:t31:part510",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/part-510"
+      },
+      "id": "CURRENT:EO:13810#4",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13810",
+      "legal_basis_candidate": "regulation authority citation lists the order (31 CFR part 510)",
+      "machine_lead": true,
+      "mention_id": "ecfr:a593975e88ef",
+      "snippet": "...242; E.O. 13570, 76 FR 22291, 3 CFR, 2011 Comp., p. 233; E.O. 13687, 80 FR 819, 3 CFR, 2015 Comp., p. 259; E.O. 13722, 81 FR 14943, 3 CFR, 2016 Comp., p. 446; E.O. 13810, 82 FR 44705, 3 CFR, 2017 Comp., p. 379.",
+      "source": {
+        "page_or_item": "31 CFR part 510 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.4)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part510.txt",
+        "text_sha256": "b91a6a1d9aed7bab92bdff3fe0d42c3ff6c3b6f8bee8e53b30dc1a007f245b90",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "242; E.O. 13570, 76 FR 22291, 3 CFR, 2011 Comp., p. 233; E.O. 13687, 80 FR 819, 3 CFR, 2015 Comp., p. 259; E.O. 13722, 81 FR 14943, 3 CFR, 2016 Comp., p. 446; E.O. 13810, 82 FR 44705, 3 CFR, 2017 Comp., p. 379.",
+      "where": "CFR 31 CFR part 510"
+    },
     "ORIGINAL:EO:13810": {
       "acceptable_as_original": true,
       "actor_id": "EO:13810",
@@ -2797,7 +3228,7 @@
       "text": "Such persons shall be treated \nas persons covered by section 1 of Proclamation 8693 of July 24, 2011 \n(Suspension of Entry of Aliens Subject to United Nations Security Council \nTravel Bans and International Emergency Economic Powers Act Sanctions)."
     }
   },
-  "fingerprint": "25574268f125624a37cccb3fcf6a3a4295ff7fe4c1c73f186adfd2970679defa",
+  "fingerprint": "7fc7003308edff936e45af72243408f94ced9bb750767421537d43d55ca7e479",
   "instrument_id": "EO:13810",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3532,32 +3963,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 7,
+      "machine_fragment_items_for_this_order_all_systems": 7,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 7,
+      "machine_fragment_items_for_this_order_all_systems": 7,
+      "machine_hits_for_this_order": 8,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3576,8 +4009,18 @@
     "Acting identity absent from census: NOTICE:2024-06-13",
     "Acting identity absent from census: NOTICE:2025-06-20",
     "Acting identity absent from census: NOTICE:2026-06-22",
+    "Acting text of FRDOC:2018-13801: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2018-13801.txt",
+    "Acting text of FRDOC:2019-13596: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2019-13596.txt",
+    "Acting text of FRDOC:2020-13450: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2020-13450.txt",
+    "Acting text of FRDOC:2021-13536: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2021-13536.txt",
+    "Acting text of FRDOC:2022-13035: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2022-13035.txt",
+    "Acting text of FRDOC:2023-13420: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2023-13420.txt",
+    "Acting text of FRDOC:2024-13362: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2024-13362.txt",
+    "Acting text of FRDOC:2025-11683: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2025-11683.txt",
+    "Acting text of FRDOC:2026-12836: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2026-12836.txt",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
+    "Large acting text of FRDOC:2018-04113: 6 more passages are not cited; read the held text at jobs/selden-fr-citers/output/texts/fr-2018-04113.txt.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:13382",
     "target provision not located: EO:13466",
@@ -3596,10 +4039,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 7,
-    "fingerprint": "c709f7e1e643e21fbf31ef3af928dbab82b0319c353588dc40137b4d121a50c7",
+    "fingerprint": "360122496ed3172cd59bbb406610b06c394da1d53b46a4a111ef4f3dbc54668c",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13810.json",
-    "history_sha256": "36ed6a139138ab410fb3b77958446fb4a98375f83be0c600ebda006559e8699f",
+    "history_sha256": "7789c0ac82b90b4632809ea393892004c40cb750769f68bf8430b0910327b0c4",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

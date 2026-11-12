@@ -2,11 +2,13 @@
   "actor_contexts": [
     {
       "actor_id": "EO:12868",
-      "evidence_id": "ACTOR_TEXT:EO:12868"
+      "evidence_id": "ACTOR_TEXT:EO:12868",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:12869",
-      "evidence_id": "ACTOR_TEXT:EO:12869"
+      "evidence_id": "ACTOR_TEXT:EO:12869",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -132,7 +134,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12774",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12774"
@@ -544,11 +546,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 340,
+      "char_start": 120,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "19 U.S.C. 2901 note; note 'Ex. Ord. No. 12661. Implementing Omnibus Trade and Competitiveness Act of 1988 and Related' [USLM note id idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "9598bf864cb0fe6747e38d093735deeaa0d4cbadfa249da02144822573d785a7",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12774",
       "legal_basis_candidate": "order amended a printed order (weak lead) (19 U.S.C. 2901 note)",
@@ -558,9 +569,14 @@
       "source": {
         "page_or_item": "19 U.S.C. 2901 note; note 'Ex. Ord. No. 12661. Implementing Omnibus Trade and Competitiveness Act of 1988 and Related' [USLM note id idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1.txt",
+        "text_sha256": "9598bf864cb0fe6747e38d093735deeaa0d4cbadfa249da02144822573d785a7",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "x. Ord. No. 12661, Dec. 27, 1988, 54 F.R. 779, as amended by Ex. Ord. No. 12697, Dec. 22, 1989, 54 F.R. 53037; Ex. Ord. No. 12716, May 24, 1990, 55 F.R. 21831; Ex. Ord. No. 12774, Sept. 27, 1991, 56 F.R. 49835, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1.txt",
+      "text_sha256": "9598bf864cb0fe6747e38d093735deeaa0d4cbadfa249da02144822573d785a7",
       "where": "USC 19 U.S.C. 2901 note"
     },
     {
@@ -604,6 +620,7 @@
         "snippet": "...x. Ord. No. 12661, Dec. 27, 1988, 54 F.R. 779, as amended by Ex. Ord. No. 12697, Dec. 22, 1989, 54 F.R. 53037; Ex. Ord. No. 12716, May 24, 1990, 55 F.R. 21831; Ex. Ord. No. 12774, Sept. 27, 1991, 56 F.R. 49835, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1.txt",
         "where": "USC 19 U.S.C. 2901 note"
       },
       "proposal": {
@@ -1141,6 +1158,7 @@
       "char_end": 7082,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12868",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1161,6 +1179,7 @@
       "char_end": 4537,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12869",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1572,6 +1591,42 @@
       },
       "text": "Sec. 5. This order shall be effective Septem ber 30,1991.\n[FR D oc. 91-23839 \nF ile d  9-30-91; 12:57 pm ] \nB illin g  code 3195-01-M"
     },
+    "CURRENT:EO:12774#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 340,
+      "char_start": 120,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "19 U.S.C. 2901 note; note 'Ex. Ord. No. 12661. Implementing Omnibus Trade and Competitiveness Act of 1988 and Related' [USLM note id idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "9598bf864cb0fe6747e38d093735deeaa0d4cbadfa249da02144822573d785a7",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12774#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12774",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (19 U.S.C. 2901 note)",
+      "machine_lead": true,
+      "mention_id": "usc:a931638be321",
+      "snippet": "...x. Ord. No. 12661, Dec. 27, 1988, 54 F.R. 779, as amended by Ex. Ord. No. 12697, Dec. 22, 1989, 54 F.R. 53037; Ex. Ord. No. 12716, May 24, 1990, 55 F.R. 21831; Ex. Ord. No. 12774, Sept. 27, 1991, 56 F.R. 49835, provided:",
+      "source": {
+        "page_or_item": "19 U.S.C. 2901 note; note 'Ex. Ord. No. 12661. Implementing Omnibus Trade and Competitiveness Act of 1988 and Related' [USLM note id idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1.txt",
+        "text_sha256": "9598bf864cb0fe6747e38d093735deeaa0d4cbadfa249da02144822573d785a7",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "x. Ord. No. 12661, Dec. 27, 1988, 54 F.R. 779, as amended by Ex. Ord. No. 12697, Dec. 22, 1989, 54 F.R. 53037; Ex. Ord. No. 12716, May 24, 1990, 55 F.R. 21831; Ex. Ord. No. 12774, Sept. 27, 1991, 56 F.R. 49835, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idb996e3dd-ac5f-11f1-86f8-df17c10eb1e1.txt",
+      "text_sha256": "9598bf864cb0fe6747e38d093735deeaa0d4cbadfa249da02144822573d785a7",
+      "where": "USC 19 U.S.C. 2901 note"
+    },
     "ORIGINAL:EO:12774": {
       "acceptable_as_original": true,
       "actor_id": "EO:12774",
@@ -1692,7 +1747,7 @@
       "text": "Each advisory committee listed below is continued until September 30, 1993."
     }
   },
-  "fingerprint": "5b1d15f57a417959bf1c3863c294a6cd853cbeca580abc34f012b631463c2fe6",
+  "fingerprint": "1e32a60655c2df346c9c6335cb43fe2d976d9325d47fc86ebdda01b254d5b181",
   "instrument_id": "EO:12774",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2039,32 +2094,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 12,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2088,10 +2145,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "88868621d5c1b2b9df60ae27a9699618173c1d2716ba1933f1d26116cf60c595",
+    "fingerprint": "7d24adbd87de6e09b56835224c2ef9ed860998e2ae01abce1ba6874e48899992",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12774.json",
-    "history_sha256": "66de36dd284b8cfd6a767774e108bbbb30fbc476c5ed18179f7cb2550048d4a2",
+    "history_sha256": "ef07f9972bd106089ebc6d8e2f1314a27a1912137327a271f749142c11bf1dac",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

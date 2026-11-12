@@ -2,15 +2,22 @@
   "actor_contexts": [
     {
       "actor_id": "EO:12013",
-      "evidence_id": "ACTOR_TEXT:EO:12013"
+      "evidence_id": "ACTOR_TEXT:EO:12013",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:12318",
-      "evidence_id": "ACTOR_TEXT:EO:12318"
+      "evidence_id": "ACTOR_TEXT:EO:12318",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:12518",
       "evidence_id": "ACTOR_TEXT:EO:12518"
+    },
+    {
+      "actor_id": "FRDOC:2016-15598",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2016-15598",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -242,7 +249,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11961",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11961"
@@ -341,11 +348,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 287,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 3101 note; note 'Ex. Ord. No. 11961. International Investment and Trade in Services' [USLM note id iddee61e75-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "5d8ad12315cc953187a6e148defe75c2c54841640c7b0717c7e62121503d2e69",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddee61e75-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11961",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (22 U.S.C. 3101 note)",
@@ -355,19 +371,32 @@
       "source": {
         "page_or_item": "22 U.S.C. 3101 note; note 'Ex. Ord. No. 11961. International Investment and Trade in Services' [USLM note id iddee61e75-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddee61e75-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "5d8ad12315cc953187a6e148defe75c2c54841640c7b0717c7e62121503d2e69",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=iddee61e75-b816-11f1-963c-e4c4db8c41be",
+      "text": "Ex. Ord. No. 11961. International Investment and Trade in Services\nEx. Ord. No. 11961, Jan. 19, 1977, 42 F.R. 4321, as amended by Ex. Ord. No. 12013, Oct. 7, 1977, 42 F.R. 54931; Ex. Ord. No. 12318, Aug. 21, 1981, 46 F.R. 42833; Ex. Ord. No. 12518, June 3, 1985, 50 F.R. 23661, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/iddee61e75-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "5d8ad12315cc953187a6e148defe75c2c54841640c7b0717c7e62121503d2e69",
       "where": "USC 22 U.S.C. 3101 note"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 1149,
+      "char_start": 799,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 3141; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "6685d07ecc238c5d05edd00a45b0d589fda0028aa1c3286be28748ecc70987b3",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t22/s3141",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11961",
       "legal_basis_candidate": "statute text names the order (22 U.S.C. 3141)",
@@ -377,18 +406,32 @@
       "source": {
         "page_or_item": "22 U.S.C. 3141; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t22_s3141-dc31e957d7.txt",
+        "text_sha256": "6685d07ecc238c5d05edd00a45b0d589fda0028aa1c3286be28748ecc70987b3",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "nited States with other business enterprises operating within the same industry can be accomplished under sections 3101(b) and 3104(c) of this title, and under Executive Order Numbered 11961, without the need to collect additional information, by sharing with other authorized Government agencies the employer identification numbers maintained by the",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t22_s3141-dc31e957d7.txt",
+      "text_sha256": "6685d07ecc238c5d05edd00a45b0d589fda0028aa1c3286be28748ecc70987b3",
       "where": "USC 22 U.S.C. 3141"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 130,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 3141 note; note 'References in Text' [USLM note id iddee88edc-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "796eccdd4cd0ed7349c0260303478756813836999e134de20b7e3fe5be66327a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddee88edc-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11961",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (22 U.S.C. 3141 note)",
@@ -398,48 +441,65 @@
       "source": {
         "page_or_item": "22 U.S.C. 3141 note; note 'References in Text' [USLM note id iddee88edc-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddee88edc-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "796eccdd4cd0ed7349c0260303478756813836999e134de20b7e3fe5be66327a",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order Numbered 11961, referred to in par. (4), is set out as a note under section 3101 of this title.",
+      "text_path": "jobs/current-law/output/usc-notes/iddee88edc-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "796eccdd4cd0ed7349c0260303478756813836999e134de20b7e3fe5be66327a",
       "where": "USC 22 U.S.C. 3141 note"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 394,
+      "char_start": 64,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 128.1",
+        "sha256": "06d70af85c7f611861c037347296b5ae57ffcad18de2e3969d1ef2077c70a737",
+        "source_id": "cfr:t31:128.1",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-128.1"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11961",
       "legal_basis_candidate": "regulation text names the order (31 CFR 128.1)",
       "machine_lead": true,
-      "mention_id": "ecfr:6e03f1e75f63",
+      "mention_id": "ecfr:785a97fbb7f4",
       "snippet": "...l transactions and positions. (1) In order to implement the International Investment and Trade in Services Survey Act, as amended (22 U.S.C. 3101 et seq.); and E.O. 11961, and to obtain information requested by the International Monetary Fund under the articles of agreement of the Fund pursuant to section 8(a) of the Bretton Woo...",
       "source": {
-        "page_or_item": "31 CFR 128.1 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:1.2.1.1.9.1.16.1)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR 128.1 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:1.2.1.1.9.1.16.1)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-128.1.txt",
+        "text_sha256": "06d70af85c7f611861c037347296b5ae57ffcad18de2e3969d1ef2077c70a737",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "l transactions and positions. (1) In order to implement the International Investment and Trade in Services Survey Act, as amended (22 U.S.C. 3101 et seq.); and E.O. 11961, and to obtain information requested by the International Monetary Fund under the articles of agreement of the Fund pursuant to section 8(a) of the Bretton Woo",
       "where": "CFR 31 CFR 128.1"
     },
     {
       "basis_code": "cfr_authority_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11961",
       "legal_basis_candidate": "regulation authority citation lists the order (15 CFR part 801)",
       "machine_lead": true,
-      "mention_id": "ecfr:f8dd99e74905",
+      "mention_id": "ecfr:59bee397b352",
       "snippet": "Authority: 5 U.S.C. 301; 15 U.S.C. 4908; 22 U.S.C. 3101-3108; E.O. 11961 (3 CFR, 1977 Comp., p. 86), as amended by E.O. 12318 (3 CFR, 1981 Comp. p. 173); and E.O. 12518 (3 CFR, 1985 Comp. p. 348).",
       "source": {
-        "page_or_item": "15 CFR part 801 (part_authority; GovInfo eCFR XML title 15, amended through 2026-11-04; NODE 15:4.1.1.1.2)",
-        "sha256": "80ce51ba4b62a0a6d6e00d02155fe5a040d0d484c25a140491767caf265687ad",
+        "page_or_item": "15 CFR part 801 (part_authority; GovInfo eCFR XML title 15, amended through 2026-11-09; NODE 15:4.1.1.1.2)",
+        "sha256": "e1f16fff52e47692cf45b509729f6971ef24831beb6ed3d54ef6809e838d511f",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
       },
       "system": "ecfr",
@@ -449,18 +509,18 @@
       "basis_code": "cfr_authority_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11961",
       "legal_basis_candidate": "regulation authority citation lists the order (31 CFR part 129)",
       "machine_lead": true,
-      "mention_id": "ecfr:16e4c48bd6c5",
+      "mention_id": "ecfr:fea0d2284b3a",
       "snippet": "Authority: 22 U.S.C. 3101 et seq.; E.O. 11961, 42 FR 4321, 3 CFR, 1977 Comp., p. 86.",
       "source": {
-        "page_or_item": "31 CFR part 129 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:1.2.1.1.10)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR part 129 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:1.2.1.1.10)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
@@ -508,10 +568,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:f8dd99e74905",
+        "mention_id": "ecfr:59bee397b352",
         "snippet": "Authority: 5 U.S.C. 301; 15 U.S.C. 4908; 22 U.S.C. 3101-3108; E.O. 11961 (3 CFR, 1977 Comp., p. 86), as amended by E.O. 12318 (3 CFR, 1981 Comp. p. 173); and E.O. 12518 (3 CFR, 1985 Comp. p. 348).",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -521,26 +581,25 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (15 CFR part 801)",
         "source": {
-          "page_or_item": "15 CFR part 801 (part_authority; GovInfo eCFR XML title 15, amended through 2026-11-04; NODE 15:4.1.1.1.2)",
-          "sha256": "80ce51ba4b62a0a6d6e00d02155fe5a040d0d484c25a140491767caf265687ad",
+          "page_or_item": "15 CFR part 801 (part_authority; GovInfo eCFR XML title 15, amended through 2026-11-09; NODE 15:4.1.1.1.2)",
+          "sha256": "e1f16fff52e47692cf45b509729f6971ef24831beb6ed3d54ef6809e838d511f",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
         }
       }
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:16e4c48bd6c5",
+        "mention_id": "ecfr:fea0d2284b3a",
         "snippet": "Authority: 22 U.S.C. 3101 et seq.; E.O. 11961, 42 FR 4321, 3 CFR, 1977 Comp., p. 86.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -550,26 +609,25 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (31 CFR part 129)",
         "source": {
-          "page_or_item": "31 CFR part 129 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:1.2.1.1.10)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR part 129 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:1.2.1.1.10)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:6e03f1e75f63",
+        "mention_id": "ecfr:785a97fbb7f4",
         "snippet": "...l transactions and positions. (1) In order to implement the International Investment and Trade in Services Survey Act, as amended (22 U.S.C. 3101 et seq.); and E.O. 11961, and to obtain information requested by the International Monetary Fund under the articles of agreement of the Fund pursuant t ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -579,8 +637,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (31 CFR 128.1)",
         "source": {
-          "page_or_item": "31 CFR 128.1 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:1.2.1.1.9.1.16.1)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR 128.1 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:1.2.1.1.9.1.16.1)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
@@ -601,6 +659,7 @@
         "snippet": "...nited States with other business enterprises operating within the same industry can be accomplished under sections 3101(b) and 3104(c) of this title, and under Executive Order Numbered 11961, without the need to collect additional information, by sharing with other authorized Government agencies  ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t22_s3141-dc31e957d7.txt",
         "where": "USC 22 U.S.C. 3141"
       },
       "proposal": {
@@ -629,6 +688,7 @@
         "snippet": "References in Text Executive Order Numbered 11961, referred to in par. (4), is set out as a note under section 3101 of this title.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/iddee88edc-b816-11f1-963c-e4c4db8c41be.txt",
         "where": "USC 22 U.S.C. 3141 note"
       },
       "proposal": {
@@ -657,7 +717,7 @@
         "snippet": "Ex. Ord. No. 11961. International Investment and Trade in Services | Ex. Ord. No. 11961, Jan. 19, 1977, 42 F.R. 4321, as amended by Ex. Ord. No. 12013, Oct. 7, 1977, 42 F.R. 54931; Ex. Ord. No. 12318, Aug. 21, 1981, 46 F.R. 42833; Ex. Ord. No. 12518, June 3, 1985, 50 F.R. 23661, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=iddee61e75-b816-11f1-963c-e4c4db8c41be",
+        "text_path": "usc-notes/iddee61e75-b816-11f1-963c-e4c4db8c41be.txt",
         "where": "USC 22 U.S.C. 3101 note"
       },
       "proposal": {
@@ -1761,6 +1821,7 @@
       "char_end": 7388,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12013",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1781,6 +1842,7 @@
       "char_end": 5257,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12318",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1815,6 +1877,36 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1985-06-05/pdf/FR-1985-06-05.pdf"
       },
       "text": "Instrument: EO:12518\nSource: https://www.govinfo.gov/content/pkg/FR-1985-06-05/pdf/FR-1985-06-05.pdf\nSHA-256 of the downloaded file: 2038a665f02e541d00127c3af6385727c3eff166bd70f3d4ff6d2770a9b2960b\nLocation: 50 FR 23661, PDF pages 7-7 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 7 of 138 ===\nFederal Register \nV o l. 50, No. 108 \nWednesday, June 5, 1985\nPresidential Documents\n2 3 6 6 1\nTitle 3—\nThe President\nExecutive Order 12518 of June 3, 1985\nTrade in Services\nBy the authority vested in me by the International Investment and Trade in  \nServices Survey A ct (Public Law  94-472, as amended by Section 306 of Public  \nLaw  98-573), and in order to assure that information necessary for developing,  \nformulating and implementing United States policy concerning trade in serv­\nices is collected, analyzed and disseminated, it is hereby ordered that E xecu ­\ntive Order No. 11961 of January 19, 1977, as amended, is redesignated \"Inter­\nnational Investment and Trade in Services” and is further amended by (1)  \nsubstituting \"International Investment and Trade in Services Survey A ct” for  \n“International Investment Survey A ct of 1976” w herever it appears; (2) substi­\ntuting \"(5)” for “(4)” in Section 2; (3) adding “and trade in services” after  \n\"investm ent” in Section 3; and (4) adding \", (5)” after \"(4)” in Section 3.\nTHE W H ITE HOUSE,  \nJu n e  3, 1985.\n[FR D o c. 8 5 -1 3 6 9 4  \nFiled 6 -4 -8 5 ; 10:15 am ] \nBilling code 3 1 9 5 -0 1 -M\n"
+    },
+    "ACTOR_TEXT:FRDOC:2016-15598": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2016-15598",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 27804,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2016-15598",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2016-15598",
+        "page_or_item": "81 FR 43126; FR Doc. 2016-15598; Proposed Rule: Direct Investment Surveys: BE-13, Survey of New Foreign Direct Investment in the United States, and Changes to Private Fund Reporting on Direct Investment Surveys",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "65118bd71e172f904c0de085d48696aa270f3b75ad46c7da9c63258d679ca649",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2016-15598.txt",
+        "text_sha256": "65118bd71e172f904c0de085d48696aa270f3b75ad46c7da9c63258d679ca649",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2016/07/01/2016-15598.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 81 Issue 127 (Friday, July 1, 2016)</title>\n</head>\n<body><pre>\n[Federal Register Volume 81, Number 127 (Friday, July 1, 2016)]\n[Proposed Rules]\n[Pages 43126-43130]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2016-15598]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF COMMERCE\n\nBureau of Economic Analysis\n\n15 CFR Part 801\n\n[Docket No. 160531475-6475-01]\nRIN 0691-AA85\n\n\nDirect Investment Surveys: BE-13, Survey of New Foreign Direct \nInvestment in the United States, and Changes to Private Fund Reporting \non Direct Investment Surveys\n\nAGENCY: Bureau of Economic Analysis, Commerce.\n\nACTION: Notice of proposed rulemaking.\n\n-----------------------------------------------------------------------\n\nSUMMARY: This proposed rule would amend regulations of the Department \nof Commerce's Bureau of Economic Analysis (BEA) to set forth the \nreporting requirements for the BE-13, Survey of New Foreign Direct \nInvestment in the United States. This proposed rule also provides \ninformation about, and an opportunity to comment on, plans to amend the \nreporting requirements for certain private funds on BEA's surveys of \nforeign direct investment in the United States, including the BE-605, \nQuarterly Survey of Foreign Direct Investment in the United States; the \nBE-15, Annual Survey of Foreign Direct Investment in the United States; \nand the BE-13, Survey of New Foreign Direct Investment in the United \nStates.\n    The BE-13 survey collects information on the acquisition or \nestablishment of U.S. business enterprises by foreign investors, and \ninformation on expansions by existing U.S. affiliates of foreign \ncompanies. The data collected through the survey are used to measure \nthe amount of new foreign direct investment in the United States and \nensure complete coverage of BEA's other foreign direct investment \nstatistics. BEA proposes several changes to the survey that will \nsimplify reporting and provide more complete information for use in \nBEA's direct investment statistics. BEA also proposes\n\n[[Page 43127]]\n\nchanges in survey form design and accompanying instructions to improve \nthe quality of the data collected and reduce respondent burden. This \nmandatory BE-13 survey is required from persons subject to the \nreporting requirements, whether or not they are contacted by BEA.\n\nDATES: Comments on this proposed rule will receive consideration if \nsubmitted in writing on or before 5:00 p.m. August 30, 2016.\n\nADDRESSES: You may submit comments, identified by RIN 0691- AA85, and \nreferencing the agency name (Bureau of Economic Analysis), by any of \nthe following methods:\n    <bullet> Federal eRulemaking Portal: <a href=\"http://www.regulations.gov\">http://www.regulations.gov</a>. \nFollow the instructions for submitting comments. For Keyword or ID, \nenter ``EAB-2016-0001.''\n    <bullet> Email: <a href=\"/cdn-cgi/l/email-protection#afffcedbddc6ccc6ce81eecdceddc0ceefcdcace81c8c0d9\"><span class=\"__cf_email__\" data-cfemail=\"86d6e7f2f4efe5efe7a8c7e4e7f4e9e7c6e4e3e7a8e1e9f0\">[email&#160;protected]</span></a>.\n    <bullet> Mail: Office of the Chief, Direct Investment Division, \nU.S. Department of Commerce, Bureau of Economic Analysis, BE-49, \nWashington, DC 20233.\n    <bullet> Hand Delivery/Courier: Office of the Chief, Direct \nInvestment Division, U.S. Department of Commerce, Bureau of Economic \nAnalysis, BE-49, 4600 Silver Hill Road, Suitland, MD 20746.\n    Written comments regarding the burden-hour estimates or other \naspects of the collection-of-information requirements contained in the \nproposed rule should be sent to BEA through any of the methods above \nand also to the Office of Management and Budget (OMB), OIRA, Paperwork \nReduction Project 0608-0035, Attention PRA Desk Officer for BEA, via \nemail at <a href=\"/cdn-cgi/l/email-protection#502032253737103f3d327e353f207e373f26\"><span class=\"__cf_email__\" data-cfemail=\"3a4a584f5d5d7a555758145f554a145d554c\">[email&#160;protected]</span></a>, or by FAX at 202-395-7245.\n    Public Inspection: All comments received are a part of the public \nrecord and will generally be posted to <a href=\"http://www.regulations.gov\">http://www.regulations.gov</a> \nwithout change. All personal identifying information (for example, \nname, address, etc.) voluntarily submitted by the commentator may be \npublicly accessible. Do not submit confidential business information or \notherwise sensitive or protected information. BEA will accept anonymous \ncomments (enter N/A in required fields if you wish to remain \nanonymous). Attachments to electronic comments will be accepted in \nMicrosoft Word, Excel, or Adobe portable document file (pdf) formats \nonly.\n\nFOR FURTHER INFORMATION CONTACT: Patricia Abaroa, Chief, Direct \nInvestment Division (BE-49), Bureau of Economic Analysis, U.S. \nDepartment of Commerce, 4600 Silver Hill Road, Washington, DC 20233; \nphone (301) 278-9591.\n\nSUPPLEMENTARY INFORMATION: BEA will conduct the BE-13 survey under the \nauthority of the International Investment and Trade in Services Survey \nAct (22 U.S.C. 3101-3108). Section 4(a) of the Act provides that the \nPresident shall, to the extent he deems necessary and feasible,\n    (1) conduct a regular data collection program to secure current \ninformation on international capital flows and information related to \ninternational investment and trade in services, including (but not \nlimited to) such information as may be necessary for computing and \nanalyzing the United States balance of payments, employment and taxes \nof United States parents and affiliates, and the international \ninvestment and trade in services position of the United States;\n    (2) conduct such studies and surveys as may be necessary to prepare \nreports in a timely manner on specific aspects of international \ninvestment and trade in services which may have significant \nimplications for the economic welfare and national security of the \nUnited States.\n    In Section 3 of Executive Order 11961, the President delegated the \nresponsibility for performing functions under the Act concerning direct \ninvestment to the Secretary of Commerce, who has redelegated the \nresponsibility to BEA.\n    The purpose of the BE-13 survey is to collect data on the \nacquisition or establishment of U.S. business enterprises by foreign \ninvestors and the expansion of existing U.S. affiliates of foreign \ncompanies to establish a new facility where business is conducted. The \ndata collected on the survey are used to measure the amount of new \nforeign direct investment in the United States, assess the impact on \nthe U.S. economy, and based on this assessment, make informed policy \ndecisions regarding foreign direct investment in the United States. \nForeign direct investment in the United States is defined as the \nownership or control, directly or indirectly, by one foreign person \n(foreign parent) of 10 percent or more of the voting securities of an \nincorporated U.S. business enterprise, or an equivalent interest of an \nunincorporated U.S. business enterprise, including a branch.\n    BEA will make the survey available via eFile, BEA's electronic \nfiling system. Notifications will be mailed to respondents as BEA \nbecomes aware of a potentially reportable investment or when annual \ncost updates are needed. A response is required whether or not the \nrespondent is contacted by BEA. The forms are due no later than 45 days \nafter the acquisition is completed, the new U.S. business enterprise is \nestablished, the expansion is begun, the cost update is requested, or a \nnotification letter is received from BEA by a U.S. business enterprise \nthat does not meet the filing requirements for the survey.\n    This proposed rule would amend 15 CFR 801.7 to set forth the \nreporting requirements for the BE-13, Survey of New Foreign Direct \nInvestment in the United States. The Department of Commerce, as part of \nits continuing effort to reduce paperwork and respondent burden, \ninvites the general public and other Federal agencies to comment on \nproposed and/or continuing information collections, as required by the \nPaperwork Reduction Act of 1995, 44 U.S.C. 3501-3520 (PRA).\n\nDescription of Changes\n\n    BEA proposes to change the reporting requirements for certain \nprivate funds that file BEA's surveys of foreign direct investment in \nthe United States: The BE-605, Quarterly Survey of Foreign Direct \nInvestment in the United States; BE-15, Annual Survey of Foreign Direct \nInvestment in the United States; and the BE-13, Survey of New Foreign \nDirect Investment in the United States. The BE-12, Benchmark Survey of \nForeign Direct Investment in the United States, will also be affected \nby this change but will be addressed in a separate proposed rule in \n2017.\n    BEA, in cooperation with the Treasury Department, proposes to \ninstruct reporters of investments in private funds that meet the \ndefinition of direct investment (that is, ownership by one person of 10 \npercent or more of the voting interest of a business enterprise) but \ndisplay characteristics of portfolio investment (specifically, \ninvestors who do not intend to control or influence the management of \nan operating company) to report through the Treasury International \nCapital (TIC) reporting system, where other related portfolio \ninvestments are already being reported, and not to report on BEA's \ndirect investment surveys. Direct investment in operating companies, \nincluding investment by and through private funds, will continue to be \nreported to BEA. This change will align the U.S. direct investment and \nportfolio investment data more closely with the intent of the \ninvestment. In addition, it will reduce burden for respondents, many of \nwhom now report both to the TIC reporting system and to BEA's direct \ninvestment reporting system. Under the planned change, U.S.\n\n[[Page 43128]]\n\naffiliates that are private funds but do not own, directly or \nindirectly, 10 percent or more of the voting interest of another \nbusiness enterprise that is not also a private fund or holding company, \nwill no longer be required to report on BEA surveys of foreign direct \ninvestment in the United States.\n    The proposed changes also amend the regulations and the survey \nforms for the BE-13 survey. These amendments include changes in \nreporting requirements and questionnaire design and instructions as \nwell as data items collected. The following changes are specific to the \nBE-13.\n    BEA proposes to combine Forms BE-13A, Report for Acquisition of a \nU.S. Business Enterprise That Remains a Separate Entity, and BE-13C, \nReport for Acquisition of a U.S. Business Enterprise That is Merged \nWith an Existing U.S. Affiliate, into one form and discontinue the use \nof Form BE-13C. BEA proposes that these acquisitions be filed on Form \nBE-13A along with acquired U.S. business enterprises that will operate \nas a separate legal entity after the acquisition. The revised Form BE-\n13A will be a report for a U.S. business enterprise when a foreign \nentity acquires a voting interest (directly, or indirectly through an \nexisting U.S. affiliate) in that U.S. business enterprise (including \nsegments, operating units, or real estate) and (1) the total cost of \nthe acquisition is greater than $3 million; and (2) by this \nacquisition, the foreign entity now owns at least 10 percent of the \nvoting interest (directly, or indirectly through an existing U.S. \naffiliate) in the acquired U.S. business enterprise. BEA originally \noffered separate forms to alleviate burden on the merging entities by \nnot asking unnecessary questions. BEA found that companies often did \nnot understand the difference between the forms and consequently \nreported on the wrong one, resulting in resubmissions. Combining the \nforms will eliminate confusion and the need for resubmission. BEA \nproposes to redesign Form BE-13A--adding, deleting, and revising \nquestions--to limit the burden for the merging entities. These changes \nwill not affect the data reported on the survey.\n    BEA proposes to add an instruction to eliminate the requirement to \nfile two forms--Form BE-13B (establishment) and Form BE-13A \n(acquisition)--when a new U.S. business enterprise is established to \nfacilitate a single U.S. acquisition that takes place within 30 days. \nThe U.S. business enterprise will be asked to consolidate the new U.S. \nbusiness enterprise with the acquired U.S. business enterprise and \nsubmit a single Form BE-13A. The additional Form BE-13B did not provide \nany benefit to BEA's data collection and the elimination of the BE-13B \nfiling requirement will be a reduction of burden on respondents. A \nquestion will be added to Form BE-13A to capture the names of both the \nestablished and acquired entities in this scenario.\n    BEA proposes to clarify the reporting requirements for Form BE-13E, \nCost Update for Projects Originally Reported on Forms BE-13B or BE-13D, \nby removing the reference to the established or expanded business \nenterprise still being under construction. At least one Form BE-13E \nmust be filed for each reported BE-13B or BE-13D form to obtain actual \ncosts since the cost data provided on these forms may not be final when \nfiled.\n    BEA is not proposing any changes to the reporting requirements for \nForm BE-13D, Report for the Expansion of an Existing U.S. Affiliate, or \nForm BE-13 Claim for Exemption.\n    BEA proposes to modify the questions on existing U.S. affiliates in \nthe ownership chain between the acquired or established U.S. business \nenterprise and the foreign parent to narrow the focus to the specific \naffiliates needed for analysis and to improve the sample frames of the \nother BEA surveys. Currently, the questions about existing U.S. \naffiliates are part of the foreign parent section, which is repeated \nfor each foreign parent, creating duplicate entries for existing U.S. \naffiliates that have multiple foreign parents. The revised survey forms \nwill eliminate this duplication by creating a new section for reporting \nownership by existing U.S. affiliates. The updated questions increase \nthe value of the collected information, reduce processing time, and \nreduce burden on respondents by greatly reducing the likelihood they \nprovide duplicate or otherwise unneeded information.\n    BEA proposes to restructure and rephrase the cost questions to more \naccurately capture any funding from the affiliated foreign group to \nfacilitate the new foreign direct investment and to determine whether \nthe funding was in the form of a loan or capital contribution. These \ndata are needed to support BEA's U.S. International Transactions \nAccounts.\n    BEA proposes to add an instruction on Forms BE-13B and BE-13D to \ndirect U.S. businesses to report total expected costs by year based on \ntheir fiscal year end. Previously, the form did not specify whether to \nreport costs on a calendar or fiscal year end basis.\n    BEA proposes to add an instruction on Form BE-13 Claim for \nExemption to direct U.S. businesses that are reporting expansions to \nskip the questions asking for U.S. affiliates' total assets, total \nliabilities, and net income (loss). These questions are not asked on \nForm BE-13D, Report for the Expansion of an Existing U.S. Affiliate, \nwhere expected costs are greater than $3 million, so they are not \nrequired for expansions with expected costs of $3 million or less. This \nwas an oversight when BEA created the survey form. U.S. affiliate total \nsales, number of employees, industry code, country of foreign parent, \nand country of ultimate beneficial owner will still be required.\n    BEA proposes to eliminate ``lease'' and ``construction'' from the \nlist of expected costs on Forms BE-13B and BE-13D. BEA will continue to \ncollect data on land; property, plant, and equipment (PP&E); \nintellectual property rights; fees, taxes, permits, and licenses; and \nother costs. Since leased equipment can also be classified as \nconstruction costs or PP&E, respondents struggled with these questions \nand the data BEA collected had costs inconsistently classified. BEA \ndetermined that any capitalized lease or construction costs could be \ncollected as PP&E, so lease and construction can be eliminated. Any \nconstruction costs that are not to be capitalized can be combined with \nother costs.\n    BEA proposes to add a question to Form BE-13D to collect the name \nof the expanding U.S. affiliate and to Form BE-13 Claim for Exemption \nto collect the name of the acquired, established, or expanding U.S. \nbusiness enterprise. BEA has found that the name of the company filing \nthese forms is often different than the name of the acquired, \nestablished, or expanding U.S. business enterprise. Obtaining the name \nof the U.S. business enterprise would help BEA evaluate respondent \ncompliance.\n    BEA proposes to add a question to Form BE-13 Claim for Exemption to \ncollect the state where the new investment is located in cases when \nthis form is being filed to report a new investment that met all the \nrequirements for filing on Forms BE-13A, BE-13B, or BE-13D except the \n$3 million reporting threshold. This addition will improve BEA's data \non new investment by state.\n\nExecutive Order 12866\n\n    This proposed rule has been determined to be not significant for \npurposes of E.O. 12866.\n\nExecutive Order 13132\n\n    This proposed rule does not contain policies with Federalism \nimplications\n\n[[Page 43129]]\n\nsufficient to warrant preparation of a Federalism assessment under E.O. \n13132.\n\nPaperwork Reduction Act\n\n    This proposed rule contains a collection-of-information requirement \nsubject to review and approval by OMB under the PRA. The requirement \nwill be submitted to OMB for approval as a reinstatement, with change, \nof a previously approved collection under OMB control number 0608-0035.\n    Notwithstanding any other provisions of the law, no person is \nrequired to respond to, nor shall any person be subject to a penalty \nfor failure to comply with, a collection of information subject to the \nrequirements of the PRA unless that collection displays a currently \nvalid OMB control number.\n    The BE-13 survey, as proposed, is expected to result in the filing \nof reports from approximately 2,550 U.S. affiliates each year. The \nrespondent burden for this collection of information will vary from one \ncompany to another, but is estimated to average 1.1 hours per response, \nincluding time for reviewing instructions, searching existing data \nsources, gathering and maintaining the data needed, and completing and \nreviewing the collection of information. Thus the total respondent \nburden for this survey is estimated at 2,805 hours, compared to 2,160 \nhours for the previous BE-13 survey estimate. The increase in burden \nhours is due to the increase in the number of respondents expected to \nfile. The previous estimate of the number of respondents was made \nbefore the survey was launched; the revised estimate is based on two \nyears of data collection.\n    Comments are requested concerning: (a) Whether the proposed \ncollection of information is necessary for the proper performance of \nthe functions of the agency, including whether the information will \nhave practical utility; (b) The accuracy of the burden estimate; (c) \nWays to enhance the quality, utility, and clarity of the information \ncollected; and (d) Ways to minimize the burden of the collection of \ninformation on the respondents, including the use of automated \ncollection techniques or other forms of information technology.\n    Written comments regarding the burden-hour estimates or other \naspects of the collection-of-information requirements contained in the \nproposed rule should be sent to both BEA and OMB following the \ninstructions given in the ADDRESSES section above.\n\nRegulatory Flexibility Act\n\n    The Chief Counsel for Regulation, Department of Commerce, has \ncertified to the Chief Counsel for Advocacy, Small Business \nAdministration, under the provisions of the Regulatory Flexibility Act \n(RFA), 5 U.S.C. 605(b), that this proposed rulemaking, if adopted, will \nnot have a significant economic impact on a substantial number of small \nentities.\n    Most of the U.S. business enterprises that are required to file the \nsurvey are units of multinational enterprises. In order to qualify as a \nsmall business, the multinational enterprise as a whole must be \nevaluated when determining if the business meets the size standards set \nby the Small Business Administration. While BEA only collects \ninformation on the U.S. portion of the multinational enterprise, BEA \nestimates, based on private subscription-based databases, that fewer \nthan 2 percent of the U.S. businesses required to file the BE-13 survey \nare units of foreign multinational enterprises that would be considered \nsmall businesses.\n    For the few small businesses that meet the reporting requirements \nof the survey, BEA has attempted to keep burden to a minimum by asking \nonly those questions that are considered essential. The questions \nrequired are for data items that a company would ordinarily have \nobtained when planning an acquisition, establishment, or expansion and \ntherefore the answers are likely to be readily available from the \nexisting records of the business.\n    Because few small businesses are required to file the survey and \nbecause those that are impacted are subject to only a minimal reporting \nburden, the Chief Counsel for Regulation certifies that this proposed \nrule will not have a significant economic impact on a substantial \nnumber of small entities.\n\nList of Subjects in 15 CFR Part 801\n\n    Economic statistics, Foreign investment in the United States, \nInternational transactions, Penalties, Reporting and record keeping \nrequirements.\n\n    Dated: June 17, 2016.\nBrian Moyer,\nDirector, Bureau of Economic Analysis.\n\n    For reasons set forth in the preamble, BEA proposes to amend 15 CFR \npart 801 as follows:\n\nPART 801--SURVEY OF INTERNATIONAL TRADE IN SERVICES BETWEEN U.S. \nAND FOREIGN PERSONS AND SURVEYS OF DIRECT INVESTMENT\n\n0\n1. The authority citation for 15 CFR part 801 continues to read as \nfollows:\n\n    Authority: 5 U.S.C. 301; 15 U.S.C. 4908; 22 U.S.C. 3101-3108; \nE.O. 11961 (3 CFR, 1977 Comp., p. 86), as amended by E.O. 12318 (3 \nCFR, 1981 Comp. p. 173); and E.O. 12518 (3 CFR, 1985 Comp. p. 348).\n0\n2. Amend Sec.  801.7 to read as follows:\n\n\nSec.  801.7  Rules and regulations for the BE-13, Survey of New Foreign \nDirect Investment in the United States.\n\n    The BE-13, Survey of New Foreign Direct Investment in the United \nStates, is conducted to collect data on the acquisition or \nestablishment of U.S. business enterprises by foreign investors and the \nexpansion of existing U.S. affiliates of foreign companies to establish \nnew facilities where business is conducted. Foreign direct investment \nis defined as the ownership or control by one foreign person (foreign \nparent) of 10 percent or more of the voting securities of an \nincorporated U.S. business enterprise, or an equivalent interest of an \nunincorporated U.S. business enterprise, including a branch. All legal \nauthorities, provisions, definitions, and requirements contained in \nSec. Sec.  801.1 through 801.2 and Sec. Sec.  801.4 through 801.6 are \napplicable to this survey. Specific additional rules and regulations \nfor the BE-13 survey are given in paragraphs (a) through (d) of this \nsection. More detailed instructions are given on the report forms and \ninstructions.\n    (a) Response required. A response is required from persons subject \nto the reporting requirements of the BE-13, Survey of New Foreign \nDirect Investment in the United States, contained herein, whether or \nnot they are contacted by BEA. Also, a person, or their agent, who is \ncontacted by BEA about reporting in this survey, either by sending them \na report form or by written inquiry, must respond in writing pursuant \nto this section. This may be accomplished by filing the properly \ncompleted BE-13 report (BE-13A, BE-13B, BE-13D, BE-13E, or BE-13 Claim \nfor Exemption).\n    (b) Who must report. A BE-13 report is required of any U.S. \nbusiness enterprise, except certain private funds, see exception in \nitem (b.4.), in which:\n    (1) A foreign direct investment in the United States relationship \nis created;\n    (2) An existing U.S. affiliate of a foreign parent establishes a \nnew U.S. business enterprise, expands its U.S. operations, or acquires \na U.S. business enterprise, or;\n    (3) BEA requests a cost update (Form BE-13E) for a U.S. business \nenterprise that previously filed Form BE-13B or BE-13D.\n    (4) Certain private funds are exempt from reporting on the BE-13 \nsurvey. If a U.S. business enterprise is a private\n\n[[Page 43130]]\n\nfund and does not own, directly or indirectly, 10 percent or more of \nanother business enterprise that is not also a private fund or a \nholding company, it is not required to file any BE-13 report except to \nindicate exemption from the survey if contacted by BEA.\n    (c) Forms to be filed. Depending on the type of investment \ntransaction, U.S. affiliates would report their information on one of \nfive forms--BE-13A, BE-13B, BE-13D, BE-13E, or BE-13 Claim for \nExemption.\n    (1) Form BE-13A--Report for a U.S. business enterprise when a \nforeign entity acquires a voting interest (directly, or indirectly \nthrough an existing U.S. affiliate) in that U.S. business enterprise \nincluding segments, operating units, or real estate; and\n    (i) The total cost of the acquisition is greater than $3 million; \nand\n    (ii) By this acquisition, the foreign entity now owns at least 10 \npercent of the voting interest (directly, or indirectly through an \nexisting U.S. affiliate) in the acquired U.S. business enterprise.\n    (2) Form BE-13B--Report for a U.S. business enterprise when it is \nestablished by a foreign entity or by an existing U.S. affiliate of a \nforeign parent; and\n    (i) The expected total cost to establish the new U.S. business \nenterprise is greater than $3 million; and\n    (ii) The foreign entity owns at least 10 percent of the voting \ninterest (directly, or indirectly through an existing U.S. affiliate) \nin the new U.S. business enterprise.\n    (3) Form BE-13D--Report for an existing U.S. affiliate of a foreign \nparent when it expands its operations to include a new facility where \nbusiness is conducted and the expected total cost of the expansion is \ngreater than $3 million.\n    (4) Form BE-13E--Report for a U.S. business enterprise that \npreviously filed Form BE-13B or BE-13D. Form BE-13E collects updated \ncost information and will be collected annually until the establishment \nor expansion of the U.S. business enterprise is complete.\n    (5) Form BE-13 Claim for Exemption--Report for a U.S. business \nenterprise that:\n    (i) was contacted by BEA but does not meet the requirements for \nfiling Forms BE-13A, BE-13B, or BE-13D; or\n    (ii) whether or not contacted by BEA, met all requirements for \nfiling Forms BE-13A, BE-13B, or BE-13D except the $3 million reporting \nthreshold.\n    (d) Due date. The BE-13 forms are due no later than 45 calendar \ndays after the acquisition is completed, the new U.S. business \nenterprise is established, the expansion is begun, the cost update is \nrequested, or a notification letter is received from BEA by a U.S. \nbusiness enterprise that does not meet the filing requirements for the \nsurvey.\n\n[FR Doc. 2016-15598 Filed 6-30-16; 8:45 am]\nBILLING CODE 3510-06-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
     },
     "CLAUSES:EO:11961#sec1": {
       "char_end": 1457,
@@ -1903,6 +1995,148 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1977-01-24/pdf/FR-1977-01-24.pdf"
       },
       "text": "Sec. 4. Subject to the provisions of section 1  of this order, and in the absence of \nany contrary delegation or direction by the Director, the Council bn International \nEconomic Policy shall perform the function of making periodic reports to the Com­\nmittees of the Congress as set forth in Section 4(a) (3) of the Act."
+    },
+    "CURRENT:EO:11961#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 287,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 3101 note; note 'Ex. Ord. No. 11961. International Investment and Trade in Services' [USLM note id iddee61e75-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "5d8ad12315cc953187a6e148defe75c2c54841640c7b0717c7e62121503d2e69",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddee61e75-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11961#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11961",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (22 U.S.C. 3101 note)",
+      "machine_lead": true,
+      "mention_id": "usc:3b64dc7e5e67",
+      "snippet": "Ex. Ord. No. 11961. International Investment and Trade in Services | Ex. Ord. No. 11961, Jan. 19, 1977, 42 F.R. 4321, as amended by Ex. Ord. No. 12013, Oct. 7, 1977, 42 F.R. 54931; Ex. Ord. No. 12318, Aug. 21, 1981, 46 F.R. 42833; Ex. Ord. No. 12518, June 3, 1985, 50 F.R. 23661, provided:",
+      "source": {
+        "page_or_item": "22 U.S.C. 3101 note; note 'Ex. Ord. No. 11961. International Investment and Trade in Services' [USLM note id iddee61e75-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddee61e75-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "5d8ad12315cc953187a6e148defe75c2c54841640c7b0717c7e62121503d2e69",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 11961. International Investment and Trade in Services\nEx. Ord. No. 11961, Jan. 19, 1977, 42 F.R. 4321, as amended by Ex. Ord. No. 12013, Oct. 7, 1977, 42 F.R. 54931; Ex. Ord. No. 12318, Aug. 21, 1981, 46 F.R. 42833; Ex. Ord. No. 12518, June 3, 1985, 50 F.R. 23661, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/iddee61e75-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "5d8ad12315cc953187a6e148defe75c2c54841640c7b0717c7e62121503d2e69",
+      "where": "USC 22 U.S.C. 3101 note"
+    },
+    "CURRENT:EO:11961#1": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 1149,
+      "char_start": 799,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 3141; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "6685d07ecc238c5d05edd00a45b0d589fda0028aa1c3286be28748ecc70987b3",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t22/s3141",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11961#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11961",
+      "legal_basis_candidate": "statute text names the order (22 U.S.C. 3141)",
+      "machine_lead": true,
+      "mention_id": "usc:5956d5542ab2",
+      "snippet": "...nited States with other business enterprises operating within the same industry can be accomplished under sections 3101(b) and 3104(c) of this title, and under Executive Order Numbered 11961, without the need to collect additional information, by sharing with other authorized Government agencies the employer identification numbers maintained by the...",
+      "source": {
+        "page_or_item": "22 U.S.C. 3141; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t22_s3141-dc31e957d7.txt",
+        "text_sha256": "6685d07ecc238c5d05edd00a45b0d589fda0028aa1c3286be28748ecc70987b3",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "nited States with other business enterprises operating within the same industry can be accomplished under sections 3101(b) and 3104(c) of this title, and under Executive Order Numbered 11961, without the need to collect additional information, by sharing with other authorized Government agencies the employer identification numbers maintained by the",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t22_s3141-dc31e957d7.txt",
+      "text_sha256": "6685d07ecc238c5d05edd00a45b0d589fda0028aa1c3286be28748ecc70987b3",
+      "where": "USC 22 U.S.C. 3141"
+    },
+    "CURRENT:EO:11961#2": {
+      "basis_code": "references_in_text_note",
+      "char_end": 130,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 3141 note; note 'References in Text' [USLM note id iddee88edc-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "796eccdd4cd0ed7349c0260303478756813836999e134de20b7e3fe5be66327a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddee88edc-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11961#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11961",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (22 U.S.C. 3141 note)",
+      "machine_lead": true,
+      "mention_id": "usc:521d09cdee10",
+      "snippet": "References in Text Executive Order Numbered 11961, referred to in par. (4), is set out as a note under section 3101 of this title.",
+      "source": {
+        "page_or_item": "22 U.S.C. 3141 note; note 'References in Text' [USLM note id iddee88edc-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddee88edc-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "796eccdd4cd0ed7349c0260303478756813836999e134de20b7e3fe5be66327a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order Numbered 11961, referred to in par. (4), is set out as a note under section 3101 of this title.",
+      "text_path": "jobs/current-law/output/usc-notes/iddee88edc-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "796eccdd4cd0ed7349c0260303478756813836999e134de20b7e3fe5be66327a",
+      "where": "USC 22 U.S.C. 3141 note"
+    },
+    "CURRENT:EO:11961#3": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 394,
+      "char_start": 64,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 128.1",
+        "sha256": "06d70af85c7f611861c037347296b5ae57ffcad18de2e3969d1ef2077c70a737",
+        "source_id": "cfr:t31:128.1",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-128.1"
+      },
+      "id": "CURRENT:EO:11961#3",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11961",
+      "legal_basis_candidate": "regulation text names the order (31 CFR 128.1)",
+      "machine_lead": true,
+      "mention_id": "ecfr:785a97fbb7f4",
+      "snippet": "...l transactions and positions. (1) In order to implement the International Investment and Trade in Services Survey Act, as amended (22 U.S.C. 3101 et seq.); and E.O. 11961, and to obtain information requested by the International Monetary Fund under the articles of agreement of the Fund pursuant to section 8(a) of the Bretton Woo...",
+      "source": {
+        "page_or_item": "31 CFR 128.1 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:1.2.1.1.9.1.16.1)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-128.1.txt",
+        "text_sha256": "06d70af85c7f611861c037347296b5ae57ffcad18de2e3969d1ef2077c70a737",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "l transactions and positions. (1) In order to implement the International Investment and Trade in Services Survey Act, as amended (22 U.S.C. 3101 et seq.); and E.O. 11961, and to obtain information requested by the International Monetary Fund under the articles of agreement of the Fund pursuant to section 8(a) of the Bretton Woo",
+      "where": "CFR 31 CFR 128.1"
     },
     "ORIGINAL:EO:11961": {
       "acceptable_as_original": true,
@@ -2306,7 +2540,7 @@
       "text": "Subject to the provisions of section 1  of this order, and in the absence of \nany contrary delegation or direction by the Director, the Secretary of Commerce, with \nrespect to direct investment, shall perform the functions set forth in sections 4(a)"
     }
   },
-  "fingerprint": "dbadcc19f4291dbcc284daa6243433b4b4669e8c0ec164fe82455f103517b9ee",
+  "fingerprint": "b2c06e504ad2959dca5f1260fe1c755e7c7c11a4e56f8debfbab033e9df371e1",
   "instrument_id": "EO:11961",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2396,32 +2630,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 10,
+      "machine_fragment_items_for_this_order_all_systems": 10,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 10,
+      "machine_fragment_items_for_this_order_all_systems": 10,
+      "machine_hits_for_this_order": 3,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2454,10 +2690,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "7f6ef057d2d0463baeb1ecf7013eaaa6b8f2831648ea47f9444da8fe59b5c321",
+    "fingerprint": "b8151edd93a7ac0e1d485e19c9d69a4e267ac7cc54eb70e6f566cf6aff43dd7e",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11961.json",
-    "history_sha256": "a6bf2fec9cc39d23559c4eccb837ce40cc6a6691173d5e2a3a58ca783a8a3cb3",
+    "history_sha256": "b67767d7fccac6ddb8f534090ba9bbd35db01ccdaf48630448c51b69e334ed7d",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

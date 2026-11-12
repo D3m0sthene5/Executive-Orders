@@ -10,11 +10,13 @@
     },
     {
       "actor_id": "EO:9829",
-      "evidence_id": "ACTOR_TEXT:EO:9829"
+      "evidence_id": "ACTOR_TEXT:EO:9829",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:9903",
-      "evidence_id": "ACTOR_TEXT:EO:9903"
+      "evidence_id": "ACTOR_TEXT:EO:9903",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -140,7 +142,7 @@
         "verb": "terminate"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:9177",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9177"
@@ -244,11 +246,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 146,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2031, 2032 note; note 'Ex. Ord. No. 9829. Extension of Executive Order No. 9177 to Atomic Energy Committee' [USLM note id id3a5325f9-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "b55ec8322385562f716927934cc39a66da190204ca91eca4a8a6cbde895713fa",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a5325f9-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9177",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 2031, 2032 note)",
@@ -258,10 +269,14 @@
       "source": {
         "page_or_item": "42 U.S.C. 2031, 2032 note; note 'Ex. Ord. No. 9829. Extension of Executive Order No. 9177 to Atomic Energy Committee' [USLM note id id3a5325f9-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a5325f9-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "b55ec8322385562f716927934cc39a66da190204ca91eca4a8a6cbde895713fa",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id3a5325f9-c3e9-11f1-bd73-d95596aaa024",
+      "text": "Ex. Ord. No. 9829. Extension of Executive Order No. 9177 to Atomic Energy Committee\nEx. Ord. No. 9829, eff. Feb. 21, 1947, 12 F.R. 1259, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3a5325f9-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "b55ec8322385562f716927934cc39a66da190204ca91eca4a8a6cbde895713fa",
       "where": "USC 42 U.S.C. 2031, 2032 note"
     },
     {
@@ -280,7 +295,7 @@
         "snippet": "Ex. Ord. No. 9829. Extension of Executive Order No. 9177 to Atomic Energy Committee | Ex. Ord. No. 9829, eff. Feb. 21, 1947, 12 F.R. 1259, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id3a5325f9-c3e9-11f1-bd73-d95596aaa024",
+        "text_path": "usc-notes/id3a5325f9-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 2031, 2032 note"
       },
       "proposal": {
@@ -762,6 +777,7 @@
       "char_end": 6107,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:9829",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -782,6 +798,7 @@
       "char_end": 5590,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:9903",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -884,6 +901,42 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1942-06-03/pdf/FR-1942-06-03.pdf"
       },
       "text": "5. Any provision of any Executive Or­\nder, and any provision, rule, or regula­\ntion of any officer, department, board,\nCONTENTS \nTHE PRESIDENT\nExecutive  O rders :\nEmergency purchases of war \nmaterial abroad; addi­\ntional functions, etc., of Sec­\nretaries of War, Treasury, \nAgriculture, and Recon­\nstruction Finance Corpora­\ntion ______________________ 4195\nHelium development and pro­\nduction program, Secretary \nof Interior authorizèd to \nacquire and dispose of \nproperty--------------------------- 4196\nREGULATIONS\nB itum inous  C oal D iv is io n:\nMinimum price sch ed u les \namended:\nDistrict 3____________________ 4196\nDistrict 13 ___  4197\nCivil  A eronautics  A dministrator : \nNiagara Falls municipal airport, \ndesignation as control air­\nport --------------------------------- 4196\nC oast G uard :\nWage basis for seamen’s allot­\nments _____________________ 4205\nNational  W ar L abor B oard :\nRules of procedure; transcripts. 4196 \nW ar P roduction  B oard :\nAllocation classification system,\nestablishment-_____________ 4198\nCommunications, interpreta­\ntion of conservation order. 4202 \nCopper, conservation order cor­\nrected-------------------------------- 4205\nHand trucks, limitation order\ncorrected__________________ 4205\nMetal signs, limitation order\namended__________________ 4201\nOffice machinery, limitation or­\nders (2 documents) ________ 4202\nRailroad equipment, limitation\norder corrected ___________ 4205\nStrategic materials, imports\norders (2 documents) _. 4198,4201 \n(Continued on next page)\n4195\n\n=== PDF page 2 of 18 ===\n4196 FEDERAL REGISTER, Wednesday , June 3, 1942\nFEDERALKREGISTER\nPublished daily, except Sundays, Mondays, \nand days following legal holidays by the \nDivision of the Federal Register, The National \nArchives, pursuant to the authority con­\ntained in the Federal Register Act, approved \nJuly 26, 1935 (49 Stat. 500), under regula­\ntions prescribed by the Administrative Com­\nmittee, approved by the President.\nThe Administrative Committee consists o f \nthe Archivist or Acting Archivist, an officer \nof the Department o f Justice designated by \nthe Attorney General, and the Public Printer \nor Acting Public Printer.\nThe daily issue of the Federal R egister \nwill be furnished by mail to subscribers, free \no f postage, for $1.25 per month or $12.50 per \nyear, payable in advance. Remit money or­\nder payable to the Superintendent o f Docu­\nments directly to the Government Printing \nOffice, Washington, D. C. The charge for \nsingle copies (minimum, 10(5) varies in pro­\nportion to the size o f the issue.\nCONTENTS—Continued \nNOTICES\nB ituminous  C oal D iv is iq n:\nConco Building Products, Inc.,\ncancellation of registra-\ntion__ -------------------------____ 4206\nFreebrook Corp., application \nfor disposition without\nhearing___________________ 4205\nHearings:\nDowling Coal Co ____________ 4207\nPublic Service Co. of Indiana. 4206 \nMiller Coal Co., code member­\nship restoration ___________ 4208\nProceedings dismissed:\nAbbott, Jake _____:___________ 4208\nTaylor, Claude E ____________ 4206\nSchulthies, Philip, Jr., cease and\ndesist order ____________  4206\nCivil  A eronautics  B oard :\nAerovias Nacionales P u erto \nRico, Inc., and Caribbean- \nAtlantic Airlines, Inc., hear­\ning .......................  4210\nF ederal T rade C om m issio n:\nHearings:\nN-A Co ______________________ 4211\nNational Coin Corp __________ 4210\nStuart, F. A., Co., and Benson\n&  Dali, Inc______________ 4211\nR ural E lectrification  A d m in is­\ntration :\nAllocation of funds for loans (4\ndocuments) _______________ 4210\nChange in designations of allo­\ncations______- _____________ 4209\ncommission, bureau, agency or instru­\nmentality of the Government of the \nUnited States conflicting with this order \nare superseded to the extent of such \nconflict."
+    },
+    "CURRENT:EO:9177#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 146,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2031, 2032 note; note 'Ex. Ord. No. 9829. Extension of Executive Order No. 9177 to Atomic Energy Committee' [USLM note id id3a5325f9-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "b55ec8322385562f716927934cc39a66da190204ca91eca4a8a6cbde895713fa",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a5325f9-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:9177#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:9177",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 2031, 2032 note)",
+      "machine_lead": true,
+      "mention_id": "usc:0246cf73d6aa",
+      "snippet": "Ex. Ord. No. 9829. Extension of Executive Order No. 9177 to Atomic Energy Committee | Ex. Ord. No. 9829, eff. Feb. 21, 1947, 12 F.R. 1259, provided:",
+      "source": {
+        "page_or_item": "42 U.S.C. 2031, 2032 note; note 'Ex. Ord. No. 9829. Extension of Executive Order No. 9177 to Atomic Energy Committee' [USLM note id id3a5325f9-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a5325f9-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "b55ec8322385562f716927934cc39a66da190204ca91eca4a8a6cbde895713fa",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 9829. Extension of Executive Order No. 9177 to Atomic Energy Committee\nEx. Ord. No. 9829, eff. Feb. 21, 1947, 12 F.R. 1259, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3a5325f9-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "b55ec8322385562f716927934cc39a66da190204ca91eca4a8a6cbde895713fa",
+      "where": "USC 42 U.S.C. 2031, 2032 note"
     },
     "ORIGINAL:EO:9177": {
       "acceptable_as_original": true,
@@ -1099,7 +1152,7 @@
       "text": "This order shall become effective as of the date hereof, shall continue in force and effect until the termination of Title I of the First War Powers Act, 1941, and shall authorize or ratify any emergency purchase of war materials abroad heretofore or hereafter made by or for the account of any of the said departments, the said agency, or such corporations, and any such war material so purchased may be entered, or withdrawn from warehouse, for consumption free of duty during the effective period of this order."
     }
   },
-  "fingerprint": "a77d98e381bd961c049141ff5fea876bb0cffa4df9fe8ad94de988455b118e67",
+  "fingerprint": "38a3d2872679da51bb45399001dba0a5edec7fe9389a1ee554924b1b2f23535b",
   "instrument_id": "EO:9177",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1198,11 +1251,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 1,
       "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -1210,20 +1264,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1234,7 +1289,6 @@
   ],
   "missing": [
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:9495",
     "target provision not located: EO:9768",
     "target provision not located: EO:9829"
@@ -1252,10 +1306,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 5,
-    "fingerprint": "29e0dae73b4385815847ecd4f38dfe6b0de3a972e6f7258e7a58c6e12bbbf868",
+    "fingerprint": "c8fc44e41fe416de1b0e344a2436d679153b959347190d5ad289c68b4353c99a",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_9177.json",
-    "history_sha256": "09d07ed1cae62acef55909484d6ad392ed0240dd09bb4309056fa2a6c071862d",
+    "history_sha256": "8fb3c8d5c0472ba80b8c7138db172163ff6804806863a7e82d21606147152f33",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

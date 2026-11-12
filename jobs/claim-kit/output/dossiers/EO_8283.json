@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:8243",
-      "evidence_id": "ACTOR_TEXT:EO:8243"
+      "evidence_id": "ACTOR_TEXT:EO:8243",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:8356",
@@ -14,12 +15,17 @@
     },
     {
       "actor_id": "EO:8363",
-      "evidence_id": "ACTOR_TEXT:EO:8363"
+      "evidence_id": "ACTOR_TEXT:EO:8363",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:9830",
+      "evidence_ids": [],
+      "full_text_chars": 92143,
       "overflow": "actor-texts/EO_9830.json",
-      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+      "window_bytes": 0,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [
@@ -215,7 +221,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:8283",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:8283"
@@ -6412,6 +6418,7 @@
       "char_end": 8042,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:8243",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -6472,6 +6479,7 @@
       "char_end": 6447,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:8363",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -6779,7 +6787,7 @@
       "text": "Any \nsuch person who fails to meet the above- \nstated requirements of this section shall \nbe separated from the service within \nthirty days (exclusive of leave to which \nhe is entitled) after the Commission re­\nports that he is ineligible to acquire a \nclassified (competitive) status unless the \nhead of the department or agency con­\ncerned certifies to the Commission that \nsuch person has rendered satisfactory \nservice and that he should be retained \nalthough without acquiring such status.”\nThe provisions of this order shall also \napply to the incumbents of positions here­\ntofore or hereafter covered into the clas­\nsified (competitive) service by section 1  \nof Executive Order No. 79162  of June 24, \n1938, and section 3 of that order is modi­\nfied accordingly."
     }
   },
-  "fingerprint": "8623614c02f322f0abe9cb96caf74a4a67424d2c9b6fd0ae365419d774fad5a4",
+  "fingerprint": "2156e358295168d7934d520d3d1e7af44cd79498624b97b3e0a339537f60bc22",
   "instrument_id": "EO:8283",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -6833,11 +6841,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 0,
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -6845,11 +6854,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 0,
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
@@ -6857,8 +6867,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -6887,10 +6897,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "02ecd795b3e2ce2360221fe7aa5dbffe695be43f7f10f00748ba297ce8e823ab",
+    "fingerprint": "6560c9d3488f91d31ec055b5d88f330eea63a2f6c227e86479dcf3a5371fb0d6",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_8283.json",
-    "history_sha256": "17796a06dbc643b3d6cdd0be71d49a48c4023d46176c86ea9c5e159a4c421c17",
+    "history_sha256": "0ae28902c7a3dc194510635b10ca43be1ef2e161cee26a89e677dc10d92d4768",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

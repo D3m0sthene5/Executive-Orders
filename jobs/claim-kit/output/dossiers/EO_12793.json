@@ -6,16 +6,25 @@
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@23106"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 3378,
+      "windows_omitted": 0
     },
     {
       "actor_id": "EO:13373",
-      "evidence_id": "ACTOR_TEXT:EO:13373"
+      "evidence_id": "ACTOR_TEXT:EO:13373",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:14131",
-      "evidence_id": "ACTOR_TEXT:EO:14131"
+      "evidence_id": "ACTOR_TEXT:EO:14131",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -534,7 +543,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12793",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12793"
@@ -655,11 +664,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 269,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 12793. Presidential Service Certificate and Presidential Service Badge' [USLM note id ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "9c4521576bf82ea2b4e78696d2fe1aba554506bc2dfc7d88a09be0faffea5d32",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12793",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
@@ -669,10 +687,14 @@
       "source": {
         "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 12793. Presidential Service Certificate and Presidential Service Badge' [USLM note id ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "9c4521576bf82ea2b4e78696d2fe1aba554506bc2dfc7d88a09be0faffea5d32",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5",
+      "text": "Ex. Ord. No. 12793. Presidential Service Certificate and Presidential Service Badge\nEx. Ord. No. 12793, Mar. 20, 1992, 57 F.R. 10281, as amended by Ex. Ord. No. 13286, § 31, Feb. 28, 2003, 68 F.R. 10625; Ex. Ord. No. 14131, § 1, Dec. 20, 2024, 89 F.R. 105377, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "9c4521576bf82ea2b4e78696d2fe1aba554506bc2dfc7d88a09be0faffea5d32",
       "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
     },
     {
@@ -724,7 +746,7 @@
         "snippet": "Ex. Ord. No. 12793. Presidential Service Certificate and Presidential Service Badge | Ex. Ord. No. 12793, Mar. 20, 1992, 57 F.R. 10281, as amended by Ex. Ord. No. 13286, § 31, Feb. 28, 2003, 68 F.R. 10625; Ex. Ord. No. 14131, § 1, Dec. 20, 2024, 89 F.R. 105377, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5",
+        "text_path": "usc-notes/ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
       },
       "proposal": {
@@ -2697,11 +2719,33 @@
       },
       "text": "Instrument: EO:12977\nSource: https://www.govinfo.gov/content/pkg/FR-1995-10-24/pdf/95-26497.pdf\nSHA-256 of the downloaded file: a6a34aa2401dec28f435458b91313c0d28e9c9787bd8a47c8c451202971bef66\nLocation: 60 FR 54411, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n54411\nFederal Register\nVol. 60, No. 205\nTuesday, October 24, 1995\nTitle 3—\nThe President\nExecutive Order 12977 of October 19, 1995\nInteragency Security Committee\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, and in order to enhance the quality\nand effectiveness of security in and protection of buildings and facilities\nin the United States occupied by Federal employees for nonmilitary activities\n(‘‘Federal facilities’’), and to provide a permanent body to address continuing\ngovernment-wide security for Federal facilities, it is hereby ordered as fol-\nlows:\nSection 1. Establishment. There is hereby established within the executive\nbranch the Interagency Security Committee (‘‘Committee’’). The Committee\nshall consist of: (a) the Administrator of General Services (‘‘Administrator’’);\n(b) representatives from the following agencies, appointed by the agency\nheads:\n(1) Department of State;\n(2) Department of the Treasury;\n(3) Department of Defense;\n(4) Department of Justice;\n(5) Department of the Interior;\n(6) Department of Agriculture;\n(7) Department of Commerce;\n(8) Department of Labor;\n(9) Department of Health and Human Services;\n(10) Department of Housing and Urban Development;\n(11) Department of Transportation;\n(12) Department of Energy;\n(13) Department of Education;\n(14) Department of Veterans Affairs;\n(15) Environmental Protection Agency;\n(16) Central Intelligence Agency; and\n(17) Office of Management and Budget;\n(c) the following individuals or their designees:\n(1) the Director, United States Marshals Service;\n(2) the Assistant Commissioner of the Federal Protective Service of the\nPublic Buildings Service, General Services Administration (‘‘Assistant Com-\nmissioner’’);\n(3) the Assistant to the President for National Security Affairs; and\n(4) the Director, Security Policy Board; and\n(d) such other Federal employees as the President shall appoint.\nSec. 2. Chair. The Committee shall be chaired by the Administrator, or\nthe designee of the Administrator.\nSec. 3. Working Groups. The Committee is authorized to establish interagency\nworking groups to perform such tasks as may be directed by the Committee.\n=== PDF page 2 of 2 ===\n54412 Federal Register / Vol. 60, No. 205 / Tuesday, October 24, 1995 / Presidential Documents\nSec. 4. Consultation. The Committee may consult with other parties, includ-\ning the Administrative Office of the United States Courts, to perform its\nresponsibilities under this order, and, at the discretion of the Committee,\nsuch other parties may participate in the working groups.\nSec. 5. Duties and Responsibilities. (a) The Committee shall: (1) establish\npolicies for security in and protection of Federal facilities;\n(2) develop and evaluate security standards for Federal facilities, develop\na strategy for ensuring compliance with such standards, and oversee the\nimplementation of appropriate security measures in Federal facilities; and\n(3) take such actions as may be necessary to enhance the quality and\neffectiveness of security and protection of Federal facilities, including but\nnot limited to:\n(A) encouraging agencies with security responsibilities to share security-\nrelated intelligence in a timely and cooperative manner;\n(B) assessing technology and information systems as a means of providing\ncost-effective improvements to security in Federal facilities;\n(C) developing long-term construction standards for those locations with\nthreat levels or missions that require blast resistant structures or other special-\nized security requirements;\n(D) evaluating standards for the location of, and special security related\nto, day care centers in Federal facilities; and\n(E) assisting the Administrator in developing and maintaining a centralized\nsecurity data base of all Federal facilities.\nSec. 6. Agency Support and Cooperation. (a) Administrative Support. To\nthe extent permitted by law and subject to the availability of appropriations,\nthe Administrator, acting by and through the Assistant Commissioner, shall\nprovide the Committee such administrative services, funds, facilities, staff\nand other support services as may be necessary for the performance of\nits functions under this order.\n(b) Cooperation. Each executive agency and department shall cooperate and\ncomply with the policies and recommendations of the Committee issued\npursuant to this order, except where the Director of Central Intelligence\ndetermines that compliance would jeopardize intelligence sources and meth-\nods. To the extent permitted by law and subject to the availability of appro-\npriations, executive agencies and departments shall provide such support\nas may be necessary to enable the Committee to perform its duties and\nresponsibilities under this order.\n(c) Compliance. The Administrator, acting by and through the Assistant\nCommissioner, shall be responsible for monitoring Federal agency compliance\nwith the policies and recommendations of the Committee.\nSec. 7. Judicial Review. This order is intended only to improve the internal\nmanagement of the Federal Government, and is not intended, and should\nnot be construed, to create any right or benefit, substantive or procedural,\nenforceable at law by a party against the United States, its agencies, its\nofficers, or its employees.\nœ–\nTHE WHITE HOUSE,\nOctober 19, 1995.\n[FR Doc. 95–26497\nFiled 10–20–95; 2:55 pm]\nBilling code 3195–01–P"
     },
+    "ACTOR_TEXT:EO:13286@23106": {
+      "actor_id": "EO:13286",
+      "char_end": 26232,
+      "char_start": 23106,
+      "id": "ACTOR_TEXT:EO:13286@23106",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "10625Federal Register / Vol. 68, No. 43 / Wednesday, March 5, 2003 / Presidential Documents \nSec. 26. Executive Order 12870 of September 30, 1993 ( ‘‘Trade Promotion \nCoordinating Committee’’), is amended by: \n(a) inserting ‘‘(j) Department of Homeland Security; ’’ after ‘‘(i) Department \nof the Interior;’’ in section 1; and \n(b) relettering the subsequent subsections in section 1 appropriately. \nSec. 27. Executive Order 12835 of January 25, 1993 ( ‘‘Establishment of \nthe National Economic Council’’), is amended by: \n(a) inserting ‘‘(k) Secretary of Homeland Security; ’’ after ‘‘(j) Secretary \nof Energy;’’ in section 2; and \n(b) relettering the subsequent subsections in section 2 appropriately. \nSec. 28. Executive Order 12830 of January 9, 1993 ( ‘‘Establishing the Military \nOutstanding Volunteer Service Medal ’’), is amended by striking ‘‘the Sec-\nretary of Transportation ’’ wherever it appears and inserting ‘‘the Secretary \nof Homeland Security’’ in lieu thereof. \nSec. 29. Executive Order 12824 of December 7, 1992 ( ‘‘Establishing the \nTransportation Distinguished Service Medal’’), is amended by: \n(a) striking ‘‘Transportation’’ in the title and inserting ‘‘Homeland Security’’ \nin lieu thereof; and \n(b) striking ‘‘Transportation’’ wherever it appears and inserting ‘‘Homeland \nSecurity’’ in lieu thereof. \nSec. 30. Executive Order 12807 of May 24, 1992 ( ‘‘Interdiction of Illegal \nAliens’’), is amended by striking ‘‘the Attorney General ’’ in section 2(c)(3) \nand inserting ‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 31. Executive Order 12793 of March 20, 1992 ( ‘‘Continuing the Presi-\ndential Service Certificate and Presidential Service Badge ’’), is amended \nby striking ‘‘the Secretary of Transportation ’’ in section 1 and inserting \n‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 32. Executive Order 12789 of February 10, 1992 ( ‘‘Delegation of Report-\ning Functions Under the Immigration Reform and Control Act of 1986 ’’), \nis amended by striking ‘‘The Attorney General ’’ in section 1 and inserting \n‘‘The Secretary of Homeland Security’’ in lieu thereof. \nSec. 33. Executive Order 12788 of January 15, 1992 ( ‘‘Defense Economic \nAdjustment Program’’), is amended by: \n(a) inserting ‘‘(15) Secretary of Homeland Security; ’’ after ‘‘(14) Secretary \nof Veterans Affairs;’’ in section 4(a); and \n(b) renumbering the subsequent subsections in section 4(a) appropriately. \nSec. 34. Executive Order 12777 of October 18, 1991 ( ‘‘Implementation of \nSection 311 of the Federal Water Pollution Control Act of October 18, \n1972, as Amended, and the Oil Pollution Act of 1990 ’’), is amended by: \n(a) inserting ‘‘and the Secretary of the Department in which the Coast \nGuard is operating’’ after ‘‘the Secretary of Transportation’’ in sections 2(b)(2) \nand 2(d)(2); \n(b) striking ‘‘the Secretary of Transportation ’’ in section 2(e)(2) and wher-\never it appears in sections 5 and 8 and inserting ‘‘the Secretary of the \nDepartment in which the Coast Guard is operating ’’ in lieu thereof; and \n(c) inserting ‘‘the Secretary of the Department in which the Coast Guard \n"
+    },
     "ACTOR_TEXT:EO:13373": {
       "actor_id": "EO:13373",
       "char_end": 4390,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13373",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2722,6 +2766,7 @@
       "char_end": 7943,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14131",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2847,6 +2892,42 @@
       },
       "text": "Sec. 5. This order shall supersede Executive Order No. 1 0 8 7 9  of June 1 , 1960, \nas amended.\nBilling code 3195-01-M\nCs"
     },
+    "CURRENT:EO:12793#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 269,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 12793. Presidential Service Certificate and Presidential Service Badge' [USLM note id ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "9c4521576bf82ea2b4e78696d2fe1aba554506bc2dfc7d88a09be0faffea5d32",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12793#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12793",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
+      "machine_lead": true,
+      "mention_id": "usc:4ae8fc75c675",
+      "snippet": "Ex. Ord. No. 12793. Presidential Service Certificate and Presidential Service Badge | Ex. Ord. No. 12793, Mar. 20, 1992, 57 F.R. 10281, as amended by Ex. Ord. No. 13286, § 31, Feb. 28, 2003, 68 F.R. 10625; Ex. Ord. No. 14131, § 1, Dec. 20, 2024, 89 F.R. 105377, provided:",
+      "source": {
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 12793. Presidential Service Certificate and Presidential Service Badge' [USLM note id ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "9c4521576bf82ea2b4e78696d2fe1aba554506bc2dfc7d88a09be0faffea5d32",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12793. Presidential Service Certificate and Presidential Service Badge\nEx. Ord. No. 12793, Mar. 20, 1992, 57 F.R. 10281, as amended by Ex. Ord. No. 13286, § 31, Feb. 28, 2003, 68 F.R. 10625; Ex. Ord. No. 14131, § 1, Dec. 20, 2024, 89 F.R. 105377, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a5a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "9c4521576bf82ea2b4e78696d2fe1aba554506bc2dfc7d88a09be0faffea5d32",
+      "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
+    },
     "ORIGINAL:EO:12793": {
       "acceptable_as_original": true,
       "actor_id": "EO:12793",
@@ -2967,7 +3048,7 @@
       "text": "Such assignment must be for a period of at least one year, subsequent to January 21, 1989."
     }
   },
-  "fingerprint": "60f426432700278f06d309a26bb86fcec9b8ba04529223efbc65211b8aef7d81",
+  "fingerprint": "522d85ac66905c74a094003d378c3d9b0e51de84e66b5c24291171aa5ad1fc5c",
   "instrument_id": "EO:12793",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3060,11 +3141,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 3,
       "machine_hits_for_this_order": 3,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -3072,20 +3154,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3110,10 +3193,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "3ed5d49e6ead30feae7480d8ef22e4e86d6f3a40f1a8839a3529bc1e0b5cbd95",
+    "fingerprint": "405512072088707da65cd4f1f36368c7f170abe291fe23a427f20ec90704763b",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12793.json",
-    "history_sha256": "d1ce9d20504ba8e11bb43d82d5ee47d3553ebe69047f1221e0556eed8f130a73",
+    "history_sha256": "2bf7e947b6d910b7d70ab5000bda2a5a04e300088064be8690ae97ca986e407d",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

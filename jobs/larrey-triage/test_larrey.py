@@ -268,13 +268,15 @@ class AdmittedTests(_Base):
 
     def test_admitted_sets_and_levels(self):
         self.run_triage()
-        ok, why, rec = L.admitted(self.tmp.name, "status_assignment.undecided")
-        self.assertEqual(ok, {"EO:8001"})
-        self.assertTrue(rec["larrey_enforced"])
-        os.environ["LARREY_LEVEL"] = "hard"
-        ok, _, rec = L.admitted(self.tmp.name, "probe.status_assignment.undecided")
+        # Default: hard gates only; soft gates are experimental (F-20261112-soft-gates-untested).
+        ok, why, rec = L.admitted(self.tmp.name, "probe.status_assignment.undecided")
         self.assertEqual(ok, {"EO:8001", "EO:8002", "EO:8005", "EO:8006"})
+        self.assertTrue(rec["larrey_enforced"])
         self.assertEqual(rec["larrey_level"], "hard")
+        os.environ["LARREY_LEVEL"] = "soft"
+        ok, _, rec = L.admitted(self.tmp.name, "status_assignment.undecided")
+        self.assertEqual(ok, {"EO:8001"})
+        self.assertEqual(rec["larrey_level"], "soft")
         os.environ["LARREY_LEVEL"] = "off"
         with self.assertRaisesRegex(ValueError, "LARREY_LEVEL"):
             L.admitted(self.tmp.name, "status_assignment.undecided")
@@ -343,10 +345,11 @@ class AdmittedTests(_Base):
             admission.admit(root, "status_assignment.undecided", ["EO:8001"], {})
         code.write_bytes(saved)
         self.run_triage()
-        self.assertEqual(admission.admit(root, "status_assignment.undecided", ["EO:8001"], {}), {"EO:8001"})
+        self.assertEqual(admission.admit(root, "status_assignment.undecided", ["EO:8001"], {}), {"EO:8001", "EO:8002"})
         with self.assertRaisesRegex(ValueError, "kept out of status_assignment.undecided by Larrey"):
             admission.admit(root, "status_assignment.undecided", ["EO:8001", "EO:8003"], {})
-        self.assertEqual(admission.capacity(root, "status_assignment.undecided", {})[0], {"EO:8001"})
+        # Default level is hard: EO:8002 fails only a soft gate and is admitted (F-20261112-soft-gates-untested).
+        self.assertEqual(admission.capacity(root, "status_assignment.undecided", {})[0], {"EO:8001", "EO:8002"})
         admission.record(root / "packet", "status_assignment.undecided", ["EO:8001"], "a", root)
         rec = json.loads((root / "packet/ADMISSION.json").read_text(encoding="utf-8"))
         self.assertTrue(rec["triage"]["larrey_enforced"])
@@ -364,6 +367,14 @@ class AdmittedTests(_Base):
                     "order_ids_path": "jobs/bentham/output/strata/status_assignment.undecided.txt",
                     "rate_key": "r", "cost_key": "c"},
                    {"id": "production.one_step_away", "kind": "production", "orders": 1}]
+        candidates.apply_triage(Path(self.tmp.name), actions)
+        hard = actions[0]
+        # Default (hard): the hard-pass orders are priced, and no soft-fitted lift is assumed.
+        self.assertEqual((hard["orders"], hard["triage"]["level"], hard["triage"]["lifts"]), (2, "hard", None))
+        os.environ["LARREY_LEVEL"] = "soft"
+        actions[0] = {"id": "status_assignment.undecided", "kind": "status_assignment", "orders": 4,
+                      "order_ids_path": "jobs/bentham/output/strata/status_assignment.undecided.txt",
+                      "rate_key": "r", "cost_key": "c"}
         note = candidates.apply_triage(Path(self.tmp.name), actions)
         a = actions[0]
         self.assertEqual((a["orders"], a["orders_before_triage"], a["triage"]["kept_out"]), (1, 4, 3))

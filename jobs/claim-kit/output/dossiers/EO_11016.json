@@ -2,11 +2,13 @@
   "actor_contexts": [
     {
       "actor_id": "EO:11382",
-      "evidence_id": "ACTOR_TEXT:EO:11382"
+      "evidence_id": "ACTOR_TEXT:EO:11382",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:12464",
-      "evidence_id": "ACTOR_TEXT:EO:12464"
+      "evidence_id": "ACTOR_TEXT:EO:12464",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:12977",
@@ -14,18 +16,26 @@
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@42824"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 3311,
+      "windows_omitted": 0
     },
     {
       "actor_id": "EO:13758",
-      "evidence_id": "ACTOR_TEXT:EO:13758"
+      "evidence_id": "ACTOR_TEXT:EO:13758",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
     "ACT:EO:11016>EO:11382",
-    "ACT:EO:11016>EO:11382@d70b65c8b146063f",
-    "ACT:EO:11016>EO:11382@066ff8bd139f58dd",
+    "ACT:EO:11016>EO:11382@202a39aa66414a1e",
+    "ACT:EO:11016>EO:11382@d0333219c88d3cf1",
     "ACT:EO:11016>EO:12464",
     "ACT:EO:11016>EO:12464@720d52d53c86fdd0",
     "ACT:EO:11016>EO:12464@6e0155f046ea316e",
@@ -410,7 +420,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11016",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11016"
@@ -707,11 +717,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 343,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 1129 note; note 'Ex. Ord. No. 11016. Authorizing Award of the Purple Heart' [USLM note id ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "59e66e34ed11b424a341abc8104f07b80afddaaf9d6f95bd3eab4fd8a7c55a5a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11016",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. 1129 note)",
@@ -721,19 +740,32 @@
       "source": {
         "page_or_item": "10 U.S.C. 1129 note; note 'Ex. Ord. No. 11016. Authorizing Award of the Purple Heart' [USLM note id ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "59e66e34ed11b424a341abc8104f07b80afddaaf9d6f95bd3eab4fd8a7c55a5a",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5",
+      "text": "Ex. Ord. No. 11016. Authorizing Award of the Purple Heart\nEx. Ord. No. 11016, Apr. 25, 1962, 27 F.R. 4139, as amended by Ex. Ord. No. 11382, § 13(4), Nov. 28, 1967, 32 F.R. 16247; Ex. Ord. No. 12464, Feb. 23, 1984, 49 F.R. 7099; Ex. Ord. No. 13286, § 71, Feb. 28, 2003, 68 F.R. 10630; Ex. Ord. No. 13758, Jan. 12, 2017, 82 F.R. 5321, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "59e66e34ed11b424a341abc8104f07b80afddaaf9d6f95bd3eab4fd8a7c55a5a",
       "where": "USC 10 U.S.C. 1129 note"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 323,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 1131; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "7be5ea4643c708919ea245d5344783166aabdc6e2e8b2ae5c22f4cc85858c753",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t10/s1131",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11016",
       "legal_basis_candidate": "statute text names the order (10 U.S.C. 1131)",
@@ -743,18 +775,32 @@
       "source": {
         "page_or_item": "10 U.S.C. 1131; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s1131-36fe3aff73.txt",
+        "text_sha256": "7be5ea4643c708919ea245d5344783166aabdc6e2e8b2ae5c22f4cc85858c753",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "§ 1131.\nPurple Heart: limitation to members of the armed forces\nThe decoration known as the Purple Heart (authorized to be awarded pursuant to Executive Order 11016) may only be awarded to a person who is a member of the armed forces at the time the person is killed or wounded under circumstances otherwise qualifying that",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s1131-36fe3aff73.txt",
+      "text_sha256": "7be5ea4643c708919ea245d5344783166aabdc6e2e8b2ae5c22f4cc85858c753",
       "where": "USC 10 U.S.C. 1131"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 175,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 1131 note; note 'References in Text' [USLM note id ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "3d8854a0783a6a1fd28a2843d9c26430426be389b65e92e8b71b9e0fd1450826",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11016",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (10 U.S.C. 1131 note)",
@@ -764,9 +810,14 @@
       "source": {
         "page_or_item": "10 U.S.C. 1131 note; note 'References in Text' [USLM note id ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "3d8854a0783a6a1fd28a2843d9c26430426be389b65e92e8b71b9e0fd1450826",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order 11016, referred to in text, is Ex. Ord. No. 11016, Apr. 25, 1962, 27 F.R. 4139, which is set out as a note under section 1129 of this title.",
+      "text_path": "jobs/current-law/output/usc-notes/ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "3d8854a0783a6a1fd28a2843d9c26430426be389b65e92e8b71b9e0fd1450826",
       "where": "USC 10 U.S.C. 1131 note"
     },
     {
@@ -818,6 +869,7 @@
         "snippet": "§ 1131. Purple Heart: limitation to members of the armed forces The decoration known as the Purple Heart (authorized to be awarded pursuant to Executive Order 11016) may only be awarded to a person who is a member of the armed forces at the time the person is killed or wounded under circumstances ot ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t10_s1131-36fe3aff73.txt",
         "where": "USC 10 U.S.C. 1131"
       },
       "proposal": {
@@ -846,6 +898,7 @@
         "snippet": "References in Text Executive Order 11016, referred to in text, is Ex. Ord. No. 11016, Apr. 25, 1962, 27 F.R. 4139, which is set out as a note under section 1129 of this title.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. 1131 note"
       },
       "proposal": {
@@ -874,7 +927,7 @@
         "snippet": "Ex. Ord. No. 11016. Authorizing Award of the Purple Heart | Ex. Ord. No. 11016, Apr. 25, 1962, 27 F.R. 4139, as amended by Ex. Ord. No. 11382, § 13(4), Nov. 28, 1967, 32 F.R. 16247; Ex. Ord. No. 12464, Feb. 23, 1984, 49 F.R. 7099; Ex. Ord. No. 13286, § 71, Feb. 28, 2003, 68 F.R. 10630; Ex. Ord. No.  ...",
         "snippet_truncated": true,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5",
+        "text_path": "usc-notes/ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. 1129 note"
       },
       "proposal": {
@@ -1017,10 +1070,10 @@
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:11016>EO:11382@d70b65c8b146063f",
+          "id": "ACT:EO:11016>EO:11382@202a39aa66414a1e",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-          "provision_label": "Sec. 2.",
+          "provision_label": "S ec. 13.",
           "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -1056,10 +1109,10 @@
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:11016>EO:11382@066ff8bd139f58dd",
+          "id": "ACT:EO:11016>EO:11382@d0333219c88d3cf1",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-          "provision_label": "Sec. 2.",
+          "provision_label": "S ec. 13.",
           "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -1086,7 +1139,7 @@
       "id": "ACT:EO:11016>EO:11382",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "Sec. 2.",
+      "provision_label": "S ec. 13.",
       "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -1127,16 +1180,17 @@
       },
       "text": "All orders, determinations, rules, regulations, \npermits, contracts, agreements, interpretations, rulings, directives, \ncertificates, circulars, policies, licenses, privileges, awards, and other \nactions relating to any function affected by this order shall remain in \neffect according to their terms, except for the substitution of the \nappropriate official by or under the authority of this order, until \nmodified, terminated, superseded, set aside, amended, or revoked by \nappropriate authority, and nothing in this order shall affect the valid­\nity or force of anything done under previous delegations or other \nassignments of the functions affected by this order."
     },
-    "ACT:EO:11016>EO:11382@066ff8bd139f58dd": {
+    "ACT:EO:11016>EO:11382@202a39aa66414a1e": {
       "actor_id": "EO:11382",
       "actor_source": {
         "filing_date": null,
         "location_confidence": "high",
+        "location_verified": false,
         "page_or_item": "32 FR 16247, PDF pages 5-8",
         "requires_page_check": false,
         "sha256": "390330b19bec1492c58ba66e0b199e7f965a0f5a493755cbf533cee92085285d",
         "signing_date": "1967-11-28",
-        "text_path": "jobs/fr-originals/output/texts/EO_11382.txt",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11382.txt",
         "text_sha256": "12eebae9718a140856e64c9cf974d113234e4017d68b296a6d1613b9c2129d96",
         "url": "https://www.govinfo.gov/content/pkg/FR-1967-11-29/pdf/FR-1967-11-29.pdf"
       },
@@ -1154,10 +1208,10 @@
       ],
       "exceptions_text": [],
       "filing_date": null,
-      "id": "ACT:EO:11016>EO:11382@066ff8bd139f58dd",
+      "id": "ACT:EO:11016>EO:11382@202a39aa66414a1e",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "Sec. 2.",
+      "provision_label": "S ec. 13.",
       "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -1166,11 +1220,12 @@
       "source": {
         "filing_date": null,
         "location_confidence": "high",
+        "location_verified": false,
         "page_or_item": "32 FR 16247, PDF pages 5-8",
         "requires_page_check": false,
         "sha256": "390330b19bec1492c58ba66e0b199e7f965a0f5a493755cbf533cee92085285d",
         "signing_date": "1967-11-28",
-        "text_path": "jobs/fr-originals/output/texts/EO_11382.txt",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11382.txt",
         "text_sha256": "12eebae9718a140856e64c9cf974d113234e4017d68b296a6d1613b9c2129d96",
         "url": "https://www.govinfo.gov/content/pkg/FR-1967-11-29/pdf/FR-1967-11-29.pdf"
       },
@@ -1178,17 +1233,16 @@
       "text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
       "verb": "amend"
     },
-    "ACT:EO:11016>EO:11382@d70b65c8b146063f": {
+    "ACT:EO:11016>EO:11382@d0333219c88d3cf1": {
       "actor_id": "EO:11382",
       "actor_source": {
         "filing_date": null,
         "location_confidence": "high",
-        "location_verified": false,
         "page_or_item": "32 FR 16247, PDF pages 5-8",
         "requires_page_check": false,
         "sha256": "390330b19bec1492c58ba66e0b199e7f965a0f5a493755cbf533cee92085285d",
         "signing_date": "1967-11-28",
-        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11382.txt",
+        "text_path": "jobs/fr-originals/output/texts/EO_11382.txt",
         "text_sha256": "12eebae9718a140856e64c9cf974d113234e4017d68b296a6d1613b9c2129d96",
         "url": "https://www.govinfo.gov/content/pkg/FR-1967-11-29/pdf/FR-1967-11-29.pdf"
       },
@@ -1206,10 +1260,10 @@
       ],
       "exceptions_text": [],
       "filing_date": null,
-      "id": "ACT:EO:11016>EO:11382@d70b65c8b146063f",
+      "id": "ACT:EO:11016>EO:11382@d0333219c88d3cf1",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "Sec. 2.",
+      "provision_label": "S ec. 13.",
       "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -1218,12 +1272,11 @@
       "source": {
         "filing_date": null,
         "location_confidence": "high",
-        "location_verified": false,
         "page_or_item": "32 FR 16247, PDF pages 5-8",
         "requires_page_check": false,
         "sha256": "390330b19bec1492c58ba66e0b199e7f965a0f5a493755cbf533cee92085285d",
         "signing_date": "1967-11-28",
-        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11382.txt",
+        "text_path": "jobs/fr-originals/output/texts/EO_11382.txt",
         "text_sha256": "12eebae9718a140856e64c9cf974d113234e4017d68b296a6d1613b9c2129d96",
         "url": "https://www.govinfo.gov/content/pkg/FR-1967-11-29/pdf/FR-1967-11-29.pdf"
       },
@@ -2734,6 +2787,7 @@
       "char_end": 13567,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:11382",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2754,6 +2808,7 @@
       "char_end": 2371,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12464",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2789,11 +2844,33 @@
       },
       "text": "Instrument: EO:12977\nSource: https://www.govinfo.gov/content/pkg/FR-1995-10-24/pdf/95-26497.pdf\nSHA-256 of the downloaded file: a6a34aa2401dec28f435458b91313c0d28e9c9787bd8a47c8c451202971bef66\nLocation: 60 FR 54411, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n54411\nFederal Register\nVol. 60, No. 205\nTuesday, October 24, 1995\nTitle 3—\nThe President\nExecutive Order 12977 of October 19, 1995\nInteragency Security Committee\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, and in order to enhance the quality\nand effectiveness of security in and protection of buildings and facilities\nin the United States occupied by Federal employees for nonmilitary activities\n(‘‘Federal facilities’’), and to provide a permanent body to address continuing\ngovernment-wide security for Federal facilities, it is hereby ordered as fol-\nlows:\nSection 1. Establishment. There is hereby established within the executive\nbranch the Interagency Security Committee (‘‘Committee’’). The Committee\nshall consist of: (a) the Administrator of General Services (‘‘Administrator’’);\n(b) representatives from the following agencies, appointed by the agency\nheads:\n(1) Department of State;\n(2) Department of the Treasury;\n(3) Department of Defense;\n(4) Department of Justice;\n(5) Department of the Interior;\n(6) Department of Agriculture;\n(7) Department of Commerce;\n(8) Department of Labor;\n(9) Department of Health and Human Services;\n(10) Department of Housing and Urban Development;\n(11) Department of Transportation;\n(12) Department of Energy;\n(13) Department of Education;\n(14) Department of Veterans Affairs;\n(15) Environmental Protection Agency;\n(16) Central Intelligence Agency; and\n(17) Office of Management and Budget;\n(c) the following individuals or their designees:\n(1) the Director, United States Marshals Service;\n(2) the Assistant Commissioner of the Federal Protective Service of the\nPublic Buildings Service, General Services Administration (‘‘Assistant Com-\nmissioner’’);\n(3) the Assistant to the President for National Security Affairs; and\n(4) the Director, Security Policy Board; and\n(d) such other Federal employees as the President shall appoint.\nSec. 2. Chair. The Committee shall be chaired by the Administrator, or\nthe designee of the Administrator.\nSec. 3. Working Groups. The Committee is authorized to establish interagency\nworking groups to perform such tasks as may be directed by the Committee.\n=== PDF page 2 of 2 ===\n54412 Federal Register / Vol. 60, No. 205 / Tuesday, October 24, 1995 / Presidential Documents\nSec. 4. Consultation. The Committee may consult with other parties, includ-\ning the Administrative Office of the United States Courts, to perform its\nresponsibilities under this order, and, at the discretion of the Committee,\nsuch other parties may participate in the working groups.\nSec. 5. Duties and Responsibilities. (a) The Committee shall: (1) establish\npolicies for security in and protection of Federal facilities;\n(2) develop and evaluate security standards for Federal facilities, develop\na strategy for ensuring compliance with such standards, and oversee the\nimplementation of appropriate security measures in Federal facilities; and\n(3) take such actions as may be necessary to enhance the quality and\neffectiveness of security and protection of Federal facilities, including but\nnot limited to:\n(A) encouraging agencies with security responsibilities to share security-\nrelated intelligence in a timely and cooperative manner;\n(B) assessing technology and information systems as a means of providing\ncost-effective improvements to security in Federal facilities;\n(C) developing long-term construction standards for those locations with\nthreat levels or missions that require blast resistant structures or other special-\nized security requirements;\n(D) evaluating standards for the location of, and special security related\nto, day care centers in Federal facilities; and\n(E) assisting the Administrator in developing and maintaining a centralized\nsecurity data base of all Federal facilities.\nSec. 6. Agency Support and Cooperation. (a) Administrative Support. To\nthe extent permitted by law and subject to the availability of appropriations,\nthe Administrator, acting by and through the Assistant Commissioner, shall\nprovide the Committee such administrative services, funds, facilities, staff\nand other support services as may be necessary for the performance of\nits functions under this order.\n(b) Cooperation. Each executive agency and department shall cooperate and\ncomply with the policies and recommendations of the Committee issued\npursuant to this order, except where the Director of Central Intelligence\ndetermines that compliance would jeopardize intelligence sources and meth-\nods. To the extent permitted by law and subject to the availability of appro-\npriations, executive agencies and departments shall provide such support\nas may be necessary to enable the Committee to perform its duties and\nresponsibilities under this order.\n(c) Compliance. The Administrator, acting by and through the Assistant\nCommissioner, shall be responsible for monitoring Federal agency compliance\nwith the policies and recommendations of the Committee.\nSec. 7. Judicial Review. This order is intended only to improve the internal\nmanagement of the Federal Government, and is not intended, and should\nnot be construed, to create any right or benefit, substantive or procedural,\nenforceable at law by a party against the United States, its agencies, its\nofficers, or its employees.\nœ–\nTHE WHITE HOUSE,\nOctober 19, 1995.\n[FR Doc. 95–26497\nFiled 10–20–95; 2:55 pm]\nBilling code 3195–01–P"
     },
+    "ACTOR_TEXT:EO:13286@42824": {
+      "actor_id": "EO:13286",
+      "char_end": 45927,
+      "char_start": 42824,
+      "id": "ACTOR_TEXT:EO:13286@42824",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "inserting ‘‘The Secretary of Homeland Security’’ in lieu thereof. \nSec. 66. Executive Order 11231 of July 8, 1965 ( ‘‘Establishing the Vietnam \nService Medal’’), as amended, is further amended by striking ‘‘the Secretary \nof Transportation ’’ in section 1 and inserting ‘‘the Secretary of Homeland \nSecurity’’ in lieu thereof. \nSec. 67. Executive Order 11190 of December 29, 1964 ( ‘‘Providing for the \nScreening of the Ready Reserve of the Armed Forces ’’), as amended, is \nfurther amended by striking ‘‘the Secretary of Transportation ’’ in section \n1 and inserting ‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 68. Executive Order 11139 of January 7, 1964 ( ‘‘Authorizing Acceptance \nof the United Nations Medal and Service Ribbon ’’), is amended by striking \n‘‘the Secretary of the Treasury ’’ and inserting ‘‘the Secretary of Homeland \nSecurity’’ in lieu thereof. \nSec. 69. Executive Order 11079 of January 25, 1963 ( ‘‘Providing for the \nPrescribing of Regulations under which Members of the Armed Forces and \nOthers May Accept Fellowships, Scholarships or Grants ’’), as amended, is \nfurther amended by striking ‘‘the Secretary of Transportation ’’ and inserting \n‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 70. Executive Order 11046 of August 24, 1962 ( ‘‘Authorizing Award \nof the Bronze Star Medal ’’), as amended, is further amended by striking \n‘‘the Secretary of Transportation ’’ in section 1 and inserting ‘‘the Secretary \nof Homeland Security’’ in lieu thereof. \nSec. 71. Executive Order 11016 of April 25, 1962 ( ‘‘Authorizing Award \nof the Purple Heart ’’), as amended, is further amended by striking ‘‘the \nSecretary of Transportation ’’ in sections 1 and 2 and inserting ‘‘the Secretary \nof Homeland Security’’ in lieu thereof. \nSec. 72. Executive Order 10977 of December 4, 1961 ( ‘‘Establishing the \nArmed Forces Expeditionary Medal ’’), as amended, is further amended by \nstriking ‘‘the Secretary of Transportation ’’ in section 2 and inserting ‘‘the \nSecretary of Homeland Security’’ in lieu thereof. \nSec. 73. Executive Order 10789 of November 14, 1958 (‘‘Authorizing Agencies \nof the Government To Exercise Certain Contracting Authority in Connection \nWith National-Defense Functions and Prescribing Regulations Governing the \nExercise of Such Authority’’), as amended, is further amended by: \n(a) striking ‘‘The Federal Emergency Management Agency ’’ in paragraph \n21 and inserting ‘‘Department of Homeland Security ’’ in lieu thereof; and \n(b) inserting at the end thereof the following new Part:\n‘‘Part III—Coordination with Other Authorities\n25. After March 1, 2003, no executive department or agency shall exercise \nauthority granted under paragraph 1A of this order with respect to any \nmatter that has been, or could be, designated by the Secretary of Homeland \nSecurity as a qualified anti-terrorism technology as defined in section 865 \nof the Homeland Security Act of 2002, unless— \n(a) in the case of the Department of Defense, the Secretary of Defense \nhas, after consideration of the authority provided under subtitle G of title \n"
+    },
     "ACTOR_TEXT:EO:13758": {
       "actor_id": "EO:13758",
       "char_end": 5587,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13758",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -3095,6 +3172,114 @@
       },
       "text": "8. This order supersedes Executive Order No. 10409 of November 12, \n1952, entitled “Award of the Purple Heart to Persons Serving with \nthe Navy, Marine Corps, or Coast Guard of the United States” . How­\never, existing regulations prescribed pursuant to that order, together \nwith regulations prescribed under the authority of General Orders No. \n3, W ar Department, February 22, 1932, shall, so far as they are not \ninconsistent with this order, remain in effect until modified or revoked \nby regulations prescribed by the Secretary o f the department con­\ncerned under this order."
     },
+    "CURRENT:EO:11016#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 343,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 1129 note; note 'Ex. Ord. No. 11016. Authorizing Award of the Purple Heart' [USLM note id ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "59e66e34ed11b424a341abc8104f07b80afddaaf9d6f95bd3eab4fd8a7c55a5a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11016#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11016",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. 1129 note)",
+      "machine_lead": true,
+      "mention_id": "usc:398a107b31cf",
+      "snippet": "Ex. Ord. No. 11016. Authorizing Award of the Purple Heart | Ex. Ord. No. 11016, Apr. 25, 1962, 27 F.R. 4139, as amended by Ex. Ord. No. 11382, § 13(4), Nov. 28, 1967, 32 F.R. 16247; Ex. Ord. No. 12464, Feb. 23, 1984, 49 F.R. 7099; Ex. Ord. No. 13286, § 71, Feb. 28, 2003, 68 F.R. 10630; Ex. Ord. No. 13758, Jan. 12, 2017, 82 F.R. 5321, provided:",
+      "source": {
+        "page_or_item": "10 U.S.C. 1129 note; note 'Ex. Ord. No. 11016. Authorizing Award of the Purple Heart' [USLM note id ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "59e66e34ed11b424a341abc8104f07b80afddaaf9d6f95bd3eab4fd8a7c55a5a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 11016. Authorizing Award of the Purple Heart\nEx. Ord. No. 11016, Apr. 25, 1962, 27 F.R. 4139, as amended by Ex. Ord. No. 11382, § 13(4), Nov. 28, 1967, 32 F.R. 16247; Ex. Ord. No. 12464, Feb. 23, 1984, 49 F.R. 7099; Ex. Ord. No. 13286, § 71, Feb. 28, 2003, 68 F.R. 10630; Ex. Ord. No. 13758, Jan. 12, 2017, 82 F.R. 5321, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida89b0bdb-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "59e66e34ed11b424a341abc8104f07b80afddaaf9d6f95bd3eab4fd8a7c55a5a",
+      "where": "USC 10 U.S.C. 1129 note"
+    },
+    "CURRENT:EO:11016#1": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 323,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 1131; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "7be5ea4643c708919ea245d5344783166aabdc6e2e8b2ae5c22f4cc85858c753",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t10/s1131",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11016#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11016",
+      "legal_basis_candidate": "statute text names the order (10 U.S.C. 1131)",
+      "machine_lead": true,
+      "mention_id": "usc:52ee009419e4",
+      "snippet": "§ 1131. Purple Heart: limitation to members of the armed forces The decoration known as the Purple Heart (authorized to be awarded pursuant to Executive Order 11016) may only be awarded to a person who is a member of the armed forces at the time the person is killed or wounded under circumstances otherwise qualifying that...",
+      "source": {
+        "page_or_item": "10 U.S.C. 1131; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s1131-36fe3aff73.txt",
+        "text_sha256": "7be5ea4643c708919ea245d5344783166aabdc6e2e8b2ae5c22f4cc85858c753",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "§ 1131.\nPurple Heart: limitation to members of the armed forces\nThe decoration known as the Purple Heart (authorized to be awarded pursuant to Executive Order 11016) may only be awarded to a person who is a member of the armed forces at the time the person is killed or wounded under circumstances otherwise qualifying that",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s1131-36fe3aff73.txt",
+      "text_sha256": "7be5ea4643c708919ea245d5344783166aabdc6e2e8b2ae5c22f4cc85858c753",
+      "where": "USC 10 U.S.C. 1131"
+    },
+    "CURRENT:EO:11016#2": {
+      "basis_code": "references_in_text_note",
+      "char_end": 175,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 1131 note; note 'References in Text' [USLM note id ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "3d8854a0783a6a1fd28a2843d9c26430426be389b65e92e8b71b9e0fd1450826",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11016#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11016",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (10 U.S.C. 1131 note)",
+      "machine_lead": true,
+      "mention_id": "usc:888307b91181",
+      "snippet": "References in Text Executive Order 11016, referred to in text, is Ex. Ord. No. 11016, Apr. 25, 1962, 27 F.R. 4139, which is set out as a note under section 1129 of this title.",
+      "source": {
+        "page_or_item": "10 U.S.C. 1131 note; note 'References in Text' [USLM note id ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "3d8854a0783a6a1fd28a2843d9c26430426be389b65e92e8b71b9e0fd1450826",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order 11016, referred to in text, is Ex. Ord. No. 11016, Apr. 25, 1962, 27 F.R. 4139, which is set out as a note under section 1129 of this title.",
+      "text_path": "jobs/current-law/output/usc-notes/ida89b0bff-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "3d8854a0783a6a1fd28a2843d9c26430426be389b65e92e8b71b9e0fd1450826",
+      "where": "USC 10 U.S.C. 1131 note"
+    },
     "ORIGINAL:EO:11016": {
       "acceptable_as_original": true,
       "actor_id": "EO:11016",
@@ -3154,130 +3339,6 @@
       "stated_end_date": null,
       "text": "The regulations of the Secretaries of the departments with respect to the award of the Purple Heart shall, so far as practicable, be uniform, and those of the military departments shall be subject to the approval of the Secretary of Defense."
     },
-    "TERM:EO:11016:31039cc245d5fed7@be8ee66628e60ba5": {
-      "actor_id": "EO:11016",
-      "char_end": 2411,
-      "char_start": 1685,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11016:31039cc245d5fed7@be8ee66628e60ba5",
-      "instrument_id": "EO:11016",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11016#c",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11016",
-        "page_or_item": "10 U.S.C. 1129",
-        "requires_page_check": false,
-        "sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "signing_date": "1962-04-25",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t10-s1129.txt",
-        "text_sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title10-section1129&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "A, title V, § 584(a), Dec. 23, 2022, 136 Stat. 2611, provided that: \n“Not later than 180 days after the date of the enactment of this Act [Dec. 23, 2022], each Chief of an Armed Force shall publish on a publicly available website of such Armed Force includes [sic] a link to—\n“(1)\n a description of the background of the Purple Heart;\n“(2)\n the eligibility criteria for awarding the Purple Heart; and\n“(3)\n contact information for the awards and decorations liaison of such Armed Force to facilitate confirmation, by a veteran or a veteran’s next of kin, whether a veteran was awarded the Purple Heart after December 31, 2002.”\nAward of Purple Heart to Persons Wounded While Held as Prisoners of War Before April 25, 1962\nPub."
-    },
-    "TERM:EO:11016:34d24017d6ec88d8@be8ee66628e60ba5": {
-      "actor_id": "EO:11016",
-      "char_end": 10902,
-      "char_start": 10529,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11016:34d24017d6ec88d8@be8ee66628e60ba5",
-      "instrument_id": "EO:11016",
-      "kind": "until_event",
-      "mechanism": "own_terms_until_event",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11016#d-9",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11016",
-        "page_or_item": "10 U.S.C. 1129",
-        "requires_page_check": false,
-        "sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "signing_date": "1962-04-25",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t10-s1129.txt",
-        "text_sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title10-section1129&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "However, existing regulations prescribed pursuant to that order, together with regulations prescribed under the authority of General Orders No. 3, War Department, February 22, 1932, shall, so far as they are not inconsistent with this order, remain in effect until modified or revoked by regulations prescribed by the Secretary of the department concerned under this order."
-    },
-    "TERM:EO:11016:7e21d028a57dc66e@be8ee66628e60ba5": {
-      "actor_id": "EO:11016",
-      "char_end": 10333,
-      "char_start": 10092,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11016:7e21d028a57dc66e@be8ee66628e60ba5",
-      "instrument_id": "EO:11016",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11016#d-8",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11016",
-        "page_or_item": "10 U.S.C. 1129",
-        "requires_page_check": false,
-        "sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "signing_date": "1962-04-25",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t10-s1129.txt",
-        "text_sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title10-section1129&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The regulations of the Secretaries of the departments with respect to the award of the Purple Heart shall, so far as practicable, be uniform, and those of the military departments shall be subject to the approval of the Secretary of Defense."
-    },
-    "TERM:EO:11016:89c0bf3b2c1430d7@be8ee66628e60ba5": {
-      "actor_id": "EO:11016",
-      "char_end": 653,
-      "char_start": 345,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11016:89c0bf3b2c1430d7@be8ee66628e60ba5",
-      "instrument_id": "EO:11016",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11016#b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11016",
-        "page_or_item": "10 U.S.C. 1129",
-        "requires_page_check": false,
-        "sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "signing_date": "1962-04-25",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t10-s1129.txt",
-        "text_sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title10-section1129&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b)\n A member described in this subsection is a member who is killed or wounded in action by weapon fire while directly engaged in armed conflict, other than as the result of an act of an enemy of the United States, unless (in the case of a wound) the wound is the result of willful misconduct of the member."
-    },
     "TERM:EO:11016:96e4385364c22074@79ff3ffb4fc51935": {
       "actor_id": "EO:11016",
       "char_end": 4125,
@@ -3311,37 +3372,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "However, existing regulations prescribed pursuant to that order, together with regulations prescribed under the authority of General Orders No. 3, War Department, February 22, 1932, shall, so far as they are not inconsistent with this order, remain in effect until modified or revoked by regulations prescribed by the Secretary of the department concerned under this order."
-    },
-    "TERM:EO:11016:986f790cce8ecce7@31dee35735bd3fd8": {
-      "actor_id": "EO:11016",
-      "char_end": 1026,
-      "char_start": 717,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11016:986f790cce8ecce7@31dee35735bd3fd8",
-      "instrument_id": "EO:11016",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11016#whole",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11016",
-        "page_or_item": "10 U.S.C. 1131",
-        "requires_page_check": false,
-        "sha256": "31dee35735bd3fd8efa80e8a09bc7ece3dea9c1f5df06b036bb793a1824d2d2c",
-        "signing_date": "1962-04-25",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t10-s1131.txt",
-        "text_sha256": "31dee35735bd3fd8efa80e8a09bc7ece3dea9c1f5df06b036bb793a1824d2d2c",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title10-section1131&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "A, title V, § 571(b), Nov. 18, 1997, 111 Stat. 1756, provided that: “Section 1131 of title 10, United States Code, as added by subsection (a), shall apply with respect to persons who are killed or wounded after the end of the 180-day period beginning on the date of the enactment of this Act [Nov. 18, 1997].”"
     },
     "TERM:EO:11016:c0030f6ac7febbb9@325d08edb5c7e41e": {
       "actor_id": "EO:11016",
@@ -3462,40 +3492,9 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "How­\never, existing regulations prescribed pursuant to that order, together \nwith regulations prescribed under the authority of General Orders No. \n3, W ar Department, February 22, 1932, shall, so far as they are not \ninconsistent with this order, remain in effect until modified or revoked \nby regulations prescribed by the Secretary o f the department con­\ncerned under this order."
-    },
-    "TERM:EO:11016:d36f956e2b89612f@be8ee66628e60ba5": {
-      "actor_id": "EO:11016",
-      "char_end": 4688,
-      "char_start": 2514,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11016:d36f956e2b89612f@be8ee66628e60ba5",
-      "instrument_id": "EO:11016",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11016#c",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11016",
-        "page_or_item": "10 U.S.C. 1129",
-        "requires_page_check": false,
-        "sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "signing_date": "1962-04-25",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t10-s1129.txt",
-        "text_sha256": "be8ee66628e60ba576b7fd9fbbfa04b99a3b658ea7801cc3083862b7678dfb20",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title10-section1129&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "A, title V, § 544, Nov. 24, 2003, 117 Stat. 1478, provided that:\n“(a)\n Award of Purple Heart.—\nFor purposes of the award of the Purple Heart, the Secretary concerned (as defined in section 101 of title 10, United States Code) shall treat a former prisoner of war who was wounded before April 25, 1962, while held as a prisoner of war (or while being taken captive) in the same manner as a former prisoner of war who is wounded on or after that date while held as a prisoner of war (or while being taken captive).\n“(b)\n Standards for Award.—\nAn award of the Purple Heart under subsection (a) shall be made in accordance with the standards in effect on the date of the enactment of this Act [Feb. 10, 1996] for the award of the Purple Heart to persons wounded on or after April 25, 1962.\n“(c)\n Eligible Former Prisoners of War.—\nA person shall be considered to be a former prisoner of war for purposes of this section if the person is eligible for the prisoner-of-war medal under section 1128 of title 10, United States Code.\n“(d)\n Procedures for Award.—\nIn determining whether a former prisoner of war who submits an application for the award of the Purple Heart under subsection (a) is eligible for that award, the Secretary concerned shall apply the following procedures:\n“(1)\n Failure of the applicant to provide any documentation as required by the Secretary shall not in itself disqualify the application from being considered.\n“(2)\n In evaluating the application, the Secretary shall consider (A) historical information as to the prison camp or other circumstances in which the applicant was held captive, and (B) the length of time that the applicant was held captive.\n“(3)\n To the extent that information is readily available, the Secretary shall assist the applicant in obtaining information or identifying the sources of information referred to in paragraph (2).\n“(4)\n The Secretary shall review a completed application under this section based upon the totality of the information presented, taking into account the length of time between the period during which the applicant was held as a prisoner of war and the date of the application.”\nExecutive Documents\nEx."
     }
   },
-  "fingerprint": "9138971160639b577a828896e387d1d2f8d7003fcb58e5ed72902f5e8727da60",
+  "fingerprint": "70f71986c0ecd7813119818543748303f45396225ca5ab4914cb6855b9132d6f",
   "instrument_id": "EO:11016",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3535,18 +3534,14 @@
       "human_certified": false,
       "instrument_id": "EO:11016",
       "later_actor_evidence_ids": [],
-      "own_term_evidence_ids": [
-        "TERM:EO:11016:89c0bf3b2c1430d7@be8ee66628e60ba5"
-      ],
+      "own_term_evidence_ids": [],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:11016#b",
       "state": "requires_clause_specific_research",
-      "wording_features": [
-        "condition"
-      ]
+      "wording_features": []
     },
     {
       "clause_sha256": "6aa6d682061ba6d9fcde1e09ff22ccae85ff9745239b0946aa2db694e7dee865",
@@ -3554,19 +3549,14 @@
       "human_certified": false,
       "instrument_id": "EO:11016",
       "later_actor_evidence_ids": [],
-      "own_term_evidence_ids": [
-        "TERM:EO:11016:31039cc245d5fed7@be8ee66628e60ba5",
-        "TERM:EO:11016:d36f956e2b89612f@be8ee66628e60ba5"
-      ],
+      "own_term_evidence_ids": [],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:11016#c",
       "state": "requires_clause_specific_research",
-      "wording_features": [
-        "condition"
-      ]
+      "wording_features": []
     },
     {
       "clause_sha256": "2ab736de53b1d120dc4cd95c90485598b0813a85443b30e6977820158d897af3",
@@ -3726,32 +3716,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 7,
+      "machine_fragment_items_for_this_order_all_systems": 7,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 7,
+      "machine_fragment_items_for_this_order_all_systems": 7,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3774,21 +3766,15 @@
     "TERM:EO:11016:074020573fcbb4a5@79ff3ffb4fc51935",
     "TERM:EO:11016:96e4385364c22074@79ff3ffb4fc51935",
     "TERM:EO:11016:c0030f6ac7febbb9@325d08edb5c7e41e",
-    "TERM:EO:11016:d206291ae0be3903@325d08edb5c7e41e",
-    "TERM:EO:11016:89c0bf3b2c1430d7@be8ee66628e60ba5",
-    "TERM:EO:11016:31039cc245d5fed7@be8ee66628e60ba5",
-    "TERM:EO:11016:d36f956e2b89612f@be8ee66628e60ba5",
-    "TERM:EO:11016:7e21d028a57dc66e@be8ee66628e60ba5",
-    "TERM:EO:11016:34d24017d6ec88d8@be8ee66628e60ba5",
-    "TERM:EO:11016:986f790cce8ecce7@31dee35735bd3fd8"
+    "TERM:EO:11016:d206291ae0be3903@325d08edb5c7e41e"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 8,
-    "fingerprint": "2db2d5dad14242ba6cd6da073f74df461432c962336d77204d6d1c2ead2966c6",
+    "fingerprint": "d752fff2a345485deb60fc4a0b75a5426c6cf6598cf6a0c27ed9caf4a1bbc3bd",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11016.json",
-    "history_sha256": "c6b743e7504f5207302e9c7a8232f12e0f578e3930fcaf4eab602491d0ec2901",
+    "history_sha256": "d44dba515b18582efc7d40e659b6f2f4c950fbb907a56f0235fd000972c111dd",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

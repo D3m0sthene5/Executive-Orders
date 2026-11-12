@@ -58,3 +58,19 @@ Check the 875 CIS unnumbered executive orders that fall on dates with no known o
 *Why:* CIS (1987) is an independent, more complete frame than Lord; if most of the 875 are presidential, the identified unnumbered series grows by up to about 1,600.
 
 Sources: `research/graunt-census-audit-2026-11-12/cis-kaufman/README.md`
+
+## A-20261112-lind-stage0 (2026-11-12, Claude)
+
+After the claim-kit rebuild publishes, may Claude run one Lind stage-0 batch: 30 undecided orders (15 passing every Larrey gate, 15 passing only the hard gates, drawn by research/lind/stage0/draw.py), Papinian configuration, one pooled review set, hard cap $35 list-price allowance? It also needs an Augur review of research/lind/stage0/WAVE.json by another model family (Codex or Astra) or you, bound to its hash. This replaces A-20261110-larrey-soft-probe.
+
+*Why:* It decides whether the soft gates exclude worthwhile work (2,073 orders) and whether the rebuilt kit lifts undecided yield; every result row has an action in DECISION_2026-11-12.md section 6.3. Cost: about $22-26 expected, $35 cap, plus your adoption decisions.
+
+Sources: `research/lind/DECISION_2026-11-12.md`
+
+## A-20261112-lind-stage0-v2 (2026-11-12, Claude)
+
+Approve the Lind stage-0 pilot exactly as research/lind/stage0/WAVE.json (sha256 f2b07a1923354e3484a9f510a3419fbb2d882150ce68cce9dc02f6ff0d3b8a1d): 30 undecided orders, 15 drawn at random from the 3,447 that pass every Larrey gate and 15 from the 1,834 that pass only the hard gates (never attempted), hard gates only, Papinian configuration, one pooled blind review set, cap $35 list-price allowance all-in (setup 1, coordination 6, production 7, review 17, correction 2, integration 2), with the stop and decision rules in DECISION_2026-11-12.md section 7.3? Approving also commits you to one adoption decision on the batch's upheld proposals (as A-20261110-papinian-adopt-u01b), so the endpoint is ready (6/6), not proposals. Preconditions: merge PR #302 then #301; the main run of larrey-triage and bentham publishes; an Augur review of the plan by another model family (Codex or Astra) or you, bound to that hash. Supersedes A-20261112-lind-stage0 and A-20261110-larrey-soft-probe.
+
+*Why:* It measures whether the repaired workflow produces ready dossiers cheaply, and whether soft-filtered orders are worth processing, each group reported separately; every outcome, including inconclusive, has a stated next spending decision.
+
+Sources: `research/lind/stage0/WAVE.json`
