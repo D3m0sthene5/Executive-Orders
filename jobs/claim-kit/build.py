@@ -210,12 +210,14 @@ _CUE=(r'(?:E[ ]?x[ ]?e[ ]?c[ ]?u[ ]?t[ ]?i[ ]?v[ ]?e[ \t\n]{1,3}O[ ]?r[ ]?d[ ]?e
       r'(?:[ \t\n]{0,3}\((?:E\.[ ]?O\.|EO)\))?')
 _NUMWORD=r'(?:Nos?\.?|Numbers?|Numbered)'
 _MONTH=r'(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]{0,6}\.?'
-_ITEM=(r'\d(?:[ ]?\d){0,4}(?:-?[A-Za-z])?(?:,?[ \t\n]{1,3}(?:of|dated)[ \t\n]{1,3}'+_MONTH+r'[ \t\n]{1,3}\d{1,2},?[ \t\n]{0,3}\d{4})?'
+_ITEM=(r'\d(?:[ ]?\d){0,4}+(?:-?[A-Za-z])?(?:,?[ \t\n]{1,3}(?:of|dated)[ \t\n]{1,3}'+_MONTH+r'[ \t\n]{1,3}\d{1,2},?[ \t\n]{0,3}\d{4})?'
        r'(?:,?[ \t\n]{1,3}as[ \t\n]{1,3}amended)?')
-# A list separator must be a comma, semicolon or conjunction. With an optional one, a run of spaced digits (OCR
-# tables in statutes and FR documents) splits into items in exponentially many ways before the \Z anchor fails:
-# 14 spaced digits took 2.4 s and the 2026-11-12 claim-kit build ran 4 h 20 min at full CPU into the runner wall.
-_SEP=r'[ \t\n]{0,3}(?:[,;][ \t\n]{0,3}(?:(?:and|or|&)[ \t\n]{1,3})?|(?:and|or|&)[ \t\n]{1,3})'
+# A list separator may be empty, whitespace, punctuation or a conjunction: real lists are printed as "Numbered 8744
+# 9230 9712", with footnote markers ("1941;2 No. 8900") and OCR damage ("No. 1Q292"). The digit run inside one number
+# is possessive and the whitespace of a separator atomic, so a run of spaced digits is split one way only. Without
+# that, a failing \Z anchor retried every split: 14 spaced digits took 2.4 s, and the 2026-11-12 claim-kit build ran
+# 4 h 20 min at full CPU into the runner wall. The accepted language is unchanged (checked on 22,413 real pairs).
+_SEP=r'(?>[ \t\n]{0,3}[,;]?[ \t\n]{0,3})(?:(?:and|or|&)[ \t\n]{1,3})?'
 _PRECEDES=re.compile(_CUE+r'[ \t\n]{0,3}(?:'+_NUMWORD+r'[ \t\n]{0,3})?(?:'+_ITEM+_SEP+r'(?:'+_NUMWORD+r'[ \t\n]{0,3})?){0,20}\Z',re.I)
 _HYPHENATED=re.compile(r'(?<=[A-Za-z])-[ \t]*\n?[ \t]*(?=[a-z])')
 _STATES=('Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|'

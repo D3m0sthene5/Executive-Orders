@@ -193,9 +193,14 @@ class TargetMentionTests(unittest.TestCase):
         self.assertTrue(self.names("EO:8790", text))
         B.target_mentions("EO:56", text)
         self.assertLess(time.monotonic() - started, 1.0)
-        # Lists still need a real separator between items.
+        # The speed fix must not narrow real lists: separated, whitespace-only, footnoted and OCR-damaged ones
+        # (EO 12107, EO 9128 and EO 11563 print these).
         self.assertTrue(self.names("EO:13355", "Executive Orders 13354; 13355 of August 27, 2004, are"))
         self.assertTrue(self.names("EO:13355", "Executive Orders 13354, and 13355 of August 27, 2004, are"))
+        self.assertTrue(self.names("EO:9961", "Executive Orders Numbered\n8744\n9230\n9712\n9830\n9932\n9961, except for"))
+        self.assertTrue(self.names("EO:8900", "Executive Orders No. 8839 of July 30, 1941;2 No. 8900 of September 15, 1941"))
+        self.assertTrue(self.names("EO:10659", "Executive Orders No. 10001 of September 17, 1948, No. 1Q292 of "
+                                               "September 25,1951, No. 10659 of February 15, 1956"))
 
     def test_printed_date_must_match_the_signing_year(self):
         self.assertFalse(self.names("EO:1318", "Executive Order 1318 of March 31, 1999, and", "1911-03-02"))
