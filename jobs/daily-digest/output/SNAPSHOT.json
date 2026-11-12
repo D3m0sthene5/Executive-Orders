@@ -4090,7 +4090,7 @@
           "pass": 1818
         },
         "working_text_policy": {
-          "fail": 1074,
+          "fail": 962,
           "pass": 648
         }
       },
@@ -4098,8 +4098,8 @@
         "max_mb": 50.0,
         "mode": "non_pass_rows",
         "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts",
-        "rows_total": 127602,
-        "rows_written": 1817
+        "rows_total": 127490,
+        "rows_written": 1705
       },
       "claim_files": [
         "astra-2026-10-17-p12553a.jsonl",
@@ -4290,12 +4290,12 @@
         "papinian-2026-11-10-y14.jsonl"
       ],
       "claim_lines_found": 1908,
-      "claims_all_checks_passed": 1740,
+      "claims_all_checks_passed": 1746,
       "claims_checked": 1908,
       "claims_checker_errors": 0,
       "claims_gate_passed": 1818,
-      "claims_mechanical_fail": 80,
-      "claims_mechanical_pass": 1826,
+      "claims_mechanical_fail": 74,
+      "claims_mechanical_pass": 1832,
       "claims_mechanical_unverified": 2,
       "claims_parse_errors": 0,
       "establishes": "nothing legal: mechanical custody, identity, quotation, date, order-number and structure checks only",
@@ -4323,7 +4323,7 @@
         "jobs/isthmian-canal-1911/data/PROVENANCE.json": 1,
         "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": 105,
         "jobs/later-events/output/SOURCES.jsonl": 17753,
-        "jobs/lewis-originals/output/SOURCES.jsonl": 7,
+        "jobs/lewis-originals/output/SOURCES.jsonl": 529,
         "jobs/mabillon-held-printings/output/SOURCES.jsonl": 2037,
         "jobs/numbered-early-orders/output/SOURCES.jsonl": 197,
         "jobs/ofr-codification-1989/data/PROVENANCE.json": 1,
@@ -4354,7 +4354,7 @@
         "stage21_acquisition_log": 406,
         "stage21_custody": 385
       },
-      "held_distinct_sha256": 58676,
+      "held_distinct_sha256": 59194,
       "job": "claim-checker",
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
@@ -4390,11 +4390,11 @@
         "held_bytes_verified": "pass"
       },
       "steps_checker_passed_effective_claims": {
-        "clause_inventory": 1494,
-        "counterevidence": 1482,
-        "ending_or_current_basis": 1457,
-        "original_text": 1505,
-        "savings_residuals": 1481
+        "clause_inventory": 1499,
+        "counterevidence": 1487,
+        "ending_or_current_basis": 1462,
+        "original_text": 1510,
+        "savings_residuals": 1486
       }
     },
     "claim-drafts": {
@@ -7647,52 +7647,52 @@
       "collections": {
         "nyu-film709": {
           "by_group": {
-            "1_missing_accepted_original_witness": 2673,
-            "2_missing_accepted_working_text_only": 3190,
-            "3_unnumbered_or_ambiguous_identity": 55,
-            "4_edge_numbered_after_last_unit_within_dates": 76
+            "1_missing_accepted_original_witness": 2695,
+            "2_missing_accepted_working_text_only": 3180,
+            "3_unnumbered_or_ambiguous_identity": 51,
+            "4_edge_numbered_after_last_unit_within_dates": 54
           },
-          "rows": 5994
+          "rows": 5980
         }
       },
-      "commit": "eb3b4366ea33dd292a066ef11f2f79200f89a17a",
+      "commit": "718765287e49cfd895ec821c3ed1f1fea8506843",
       "schema": "dagron-collection-manifest/v1"
     },
     "domesday-register": {
       "by_best_held": {
         "archival_replica_scan": 152,
-        "nothing": 66,
-        "official_found_page_check_pending": 94,
-        "official_original_counted": 12436,
-        "transcription_only": 2250
+        "nothing": 70,
+        "official_found_page_check_pending": 69,
+        "official_original_counted": 12470,
+        "transcription_only": 2241
       },
       "by_era": {
-        "1862\u20131906": 620,
-        "1907\u20131936": 7342,
-        "1937\u20131989": 5204,
+        "1862\u20131906": 632,
+        "1907\u20131936": 7396,
+        "1937\u20131989": 5205,
         "1990\u20132026": 1737,
-        "Unknown date": 95
+        "Unknown date": 32
       },
       "candidates_not_in_register": {
         "by_strength": {
-          "": 4,
+          "": 1,
           "cited": 6,
-          "strong": 18,
+          "strong": 17,
           "weak": 5
         },
-        "total": 33
+        "total": 29
       },
       "clark": {
-        "classed": 22,
-        "web_confirmed_page": 27
+        "classed": 26,
+        "web_confirmed_page": 28
       },
-      "generated_utc": "2026-11-11T21:26:06Z",
+      "generated_utc": "2026-11-12T22:00:16Z",
       "job": "domesday-register",
       "lewis": {
-        "routed": 2487,
-        "web_confirmed_page": 74
+        "routed": 2454,
+        "web_confirmed_page": 81
       },
-      "orders": 14998,
+      "orders": 15002,
       "problems": [],
       "proquest": {
         "link_supplied": 2765,
@@ -7700,8 +7700,8 @@
       },
       "what_this_is_not": "A survey of what is held. No identity, custody grade, readiness count or legal status changes here.",
       "with_any_text_file": 14908,
-      "with_date": 14986,
-      "with_title": 14943
+      "with_date": 14996,
+      "with_title": 14947
     },
     "duodecim-tableiv": {
       "capture_failures": [],
@@ -8416,35 +8416,27 @@
     },
     "gessner-cards": {
       "date_rule_check_against_register": {
-        "agree": 9949,
+        "agree": 9953,
         "disagree": 0
       },
       "human_certified": 0,
       "not_researched": 11214,
       "numbered_series_orders": 15002,
-      "one_step_from_ready": 217,
+      "one_step_from_ready": 218,
       "orders": 15002,
       "president_left_uncertain_transition_day": 1,
-      "president_unknown_no_date": 67,
-      "presidents_derived_from_date": 4947,
-      "presidents_from_register": 9987,
-      "readiness_rows_missing_from_register": [
-        "EO:2539",
-        "EO:2703",
-        "EO:3493",
-        "EO:3733"
-      ],
-      "ready_for_human_review": 1251,
-      "register_generated_utc": "2026-11-11T21:26:06Z",
-      "tracker_commit": "718765287e49cfd895ec821c3ed1f1fea8506843",
-      "tracker_finished_utc": "2026-11-12T22:26:30Z",
+      "president_unknown_no_date": 57,
+      "presidents_derived_from_date": 4953,
+      "presidents_from_register": 9991,
+      "readiness_rows_missing_from_register": [],
+      "ready_for_human_review": 1255,
+      "register_generated_utc": "2026-11-12T22:00:16Z",
+      "tracker_commit": "2509f3ce16651eb7ac5cbbafa8a42e39443ef343",
+      "tracker_finished_utc": "2026-11-12T23:14:54Z",
       "tracker_result": "succeeded",
-      "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43313399457",
-      "unnumbered_series_estimate_95": [
-        4101,
-        5095
-      ],
-      "unnumbered_series_observed": 2334,
+      "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43314468189",
+      "unnumbered_series_estimate_95": null,
+      "unnumbered_series_observed": 1816,
       "with_provisional_status": 3788
     },
     "gratian-niebuhr-leads": {
@@ -9409,17 +9401,17 @@
     },
     "lewis-originals": {
       "by_owner": {
-        "agent_check": 323,
-        "machine_job": 15,
-        "owner": 2166
+        "agent_check": 287,
+        "machine_job": 4,
+        "owner": 2179
       },
       "fragments_written": 0,
-      "generated_utc": "2026-11-11T21:25:15Z",
+      "generated_utc": "2026-11-12T21:57:52Z",
       "handoff": {
-        "all_proposals": 93,
+        "all_proposals": 67,
         "states": {
-          "queued_result_not_published": 15,
-          "retrieval_recorded_needs_review": 78
+          "queued_result_not_published": 4,
+          "retrieval_recorded_needs_review": 63
         },
         "unqueued_proposals": 0
       },
@@ -9427,8 +9419,8 @@
         "clark_handoff_rows": 18,
         "dated_orders": 15031,
         "ofr_catalog_rows": 6941,
-        "readiness_rows": 14998,
-        "universe": 14998
+        "readiness_rows": 15002,
+        "universe": 15002
       },
       "job": "lewis-originals",
       "problems": [],
@@ -9455,22 +9447,22 @@
       },
       "pypdf_available": true,
       "routes": {
-        "federal_register:fr_era_not_in_ofr_catalog": 81,
-        "federal_register:in_ofr_catalog_no_citation": 16,
-        "federal_register:queued_result_not_published": 15,
-        "federal_register:retrieval_recorded_needs_review": 78,
+        "federal_register:fr_era_not_in_ofr_catalog": 65,
+        "federal_register:in_ofr_catalog_no_citation": 11,
+        "federal_register:queued_result_not_published": 4,
+        "federal_register:retrieval_recorded_needs_review": 63,
         "gpo_bound_volumes:in_volume_range_not_found": 6,
         "proquest_local:pinakes_file_record_pages_unchecked": 142,
-        "proquest_phrase_search:manual_lead": 2165,
+        "proquest_phrase_search:manual_lead": 2178,
         "proquest_supplied_link:awaiting_acquisition": 1
       },
       "scope": {
         "by_reason": {
-          "clark_identified": 1,
-          "clark_identified_not_in_universe": 17,
-          "transcription_only": 2486
+          "clark_identified": 2,
+          "clark_identified_not_in_universe": 16,
+          "transcription_only": 2452
         },
-        "orders": 2504
+        "orders": 2470
       },
       "what_this_is_not": "Leads and byte facts only. No readiness step, count, custody grade or legal status changes here."
     },
@@ -13544,19 +13536,19 @@
       },
       "decided_by_steps_done": {
         "1/6": 214,
-        "1/7": 4,
-        "2/6": 591,
-        "2/7": 60,
+        "1/7": 5,
+        "2/6": 594,
+        "2/7": 61,
         "2/8": 3,
-        "3/6": 741,
-        "3/7": 411,
+        "3/6": 733,
+        "3/7": 410,
         "3/8": 32,
         "4/6": 28,
-        "4/7": 57,
+        "4/7": 56,
         "4/8": 156,
-        "5/6": 198,
+        "5/6": 199,
         "5/8": 21,
-        "6/6": 1218,
+        "6/6": 1222,
         "6/7": 11,
         "6/8": 1,
         "7/7": 29,
@@ -13565,31 +13557,31 @@
       },
       "decided_orders_blocked_by": {
         "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 0,
-        "CLAIM_CHECK_FAILED": 71,
+        "CLAIM_CHECK_FAILED": 66,
         "CLAIM_INCOMPLETE": 82,
         "CURRENT_BASIS_UNPROVED": 315,
         "FIRST_END_UNPROVED": 1870,
         "FIRST_END_UNRESOLVED": 184,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
         "NO_CLAUSE_INVENTORY": 2185,
-        "NO_OFFICIAL_SOURCE_LOCATED": 124,
+        "NO_OFFICIAL_SOURCE_LOCATED": 125,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 721,
         "NO_PROVISIONAL_STATUS": 0,
-        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 229,
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 236,
         "OPEN_SOURCE_AUDIT": 6,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 161,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
         "OPUS_MEDIA_REFETCH_NEEDED": 431,
-        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 113,
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 119,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 2185,
         "SHARED_SOURCE_NOT_RETRIEVED": 24,
-        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 68
+        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 63
       },
       "formal_revocation_after_earlier_cessation": 33,
-      "generation_id": "43313399457-1:c7181aa37e0adf15b69041455a07a70475b1f14dade379d6ccc479cdcc2b4168",
+      "generation_id": "43314468189-1:a93be3f47baec6ceccb72462a3f87c78cdd362e5a1ccbc7245c31c7e5210817c",
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
         "LOC_items_with_original_page_images": 3,
         "LOC_transcribed_items": 0,
@@ -13605,18 +13597,10 @@
         "STALE_SOURCE_AUDIT_HOLD:EO:11040: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
         "STALE_SOURCE_AUDIT_HOLD:EO:11078: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
         "STALE_SOURCE_AUDIT_HOLD:EO:9922: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:1:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:2:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:3:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:4:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:5:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:6:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:7:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:8:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:9:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:10:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:11:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-panama-1922.jsonl:13:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:2:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:4:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:5:source fragment changed or ambiguous",
@@ -13625,16 +13609,6 @@
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:11:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:12:source fragment changed or ambiguous",
         "MONTFAUCON_REJECTED:research/montfaucon/checks/m001-trading-1920.jsonl:13:source fragment changed or ambiguous",
-        "MONTFAUCON_REJECTED:research/montfaucon/checks/m008-mixed-held-originals.jsonl:6:source fragment changed or ambiguous",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
-        "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
         "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
         "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
         "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
@@ -13686,7 +13660,7 @@
           "lachmann working-text confirmations (provisional text step only, never an original)": 2360,
           "mabillon-held-printings": 2037,
           "machine later-source search": 6938,
-          "montfaucon-page-check": 185,
+          "montfaucon-page-check": 194,
           "montfaucon-page-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent)": 0,
           "numbered-early-orders (lead only, never counted as the original)": 184,
           "ofr-compilations": 500,
@@ -13699,7 +13673,7 @@
           "pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade)": 2750,
           "richardson-volumes (lead only, never counted as the original)": 68,
           "source-ladder": 1022,
-          "tischendorf-originals": 722,
+          "tischendorf-originals": 691,
           "wikisource-texts (lead only, never counted as the original)": 1639
         },
         "media": "research/stage20/output/MEDIA_BATCH_ASSOCIATION_AUDIT.csv",
@@ -13768,41 +13742,41 @@
       ],
       "orders_blocked_by": {
         "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 10,
-        "CLAIM_CHECK_FAILED": 71,
+        "CLAIM_CHECK_FAILED": 66,
         "CLAIM_INCOMPLETE": 82,
         "CURRENT_BASIS_UNPROVED": 315,
         "FIRST_END_UNPROVED": 1870,
         "FIRST_END_UNRESOLVED": 184,
         "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
         "NO_CLAUSE_INVENTORY": 2185,
-        "NO_OFFICIAL_SOURCE_LOCATED": 1543,
+        "NO_OFFICIAL_SOURCE_LOCATED": 1575,
         "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 721,
         "NO_PROVISIONAL_STATUS": 11214,
-        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2168,
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2236,
         "OPEN_SOURCE_AUDIT": 6,
         "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
         "OPUS_MEDIA_NONE_CITED": 161,
         "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
         "OPUS_MEDIA_PARTLY_RESOLVED": 52,
         "OPUS_MEDIA_REFETCH_NEEDED": 431,
-        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 705,
+        "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 741,
         "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
         "SAVINGS_RESIDUALS_NOT_CLOSED": 2185,
         "SHARED_SOURCE_NOT_RETRIEVED": 24,
-        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 68
+        "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 63
       },
       "orders_total": 15002,
       "orders_with_provisional_status": 3788,
-      "original_replacement_obligations": 883,
-      "quotation_recheck_obligations": 883,
+      "original_replacement_obligations": 846,
+      "quotation_recheck_obligations": 846,
       "ready_by_text_evidence_tier": {
-        "original_supported": 725,
+        "original_supported": 729,
         "transcription_dependent": 526
       },
       "ready_by_tier": {
-        "complete_claim": 1251
+        "complete_claim": 1255
       },
-      "ready_for_human_review": 1251,
+      "ready_for_human_review": 1255,
       "rejected_working_text_confirmations": {
         "grade_not_a_working_text_grade": 2,
         "not_confirmed": 1550
@@ -13812,13 +13786,13 @@
           "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
           "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND",
           "kind": "machine_job",
-          "orders_unblocked": 2168
+          "orders_unblocked": 2236
         },
         {
           "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
           "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
           "kind": "agent_check",
-          "orders_unblocked": 705
+          "orders_unblocked": 741
         },
         {
           "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
@@ -13873,7 +13847,7 @@
       "step_done_among_decided": {
         "clause_inventory": {
           "applicable": 3788,
-          "done": 1493
+          "done": 1498
         },
         "counterevidence": {
           "applicable": 3788,
@@ -13881,7 +13855,7 @@
         },
         "ending_or_current_basis": {
           "applicable": 3788,
-          "done": 1283
+          "done": 1287
         },
         "opus_media": {
           "applicable": 788,
@@ -13889,8 +13863,8 @@
         },
         "original_text": {
           "applicable": 3788,
-          "done": 3534,
-          "provisional": 17
+          "done": 3528,
+          "provisional": 16
         },
         "provisional_status": {
           "applicable": 3788,
@@ -13898,7 +13872,7 @@
         },
         "savings_residuals": {
           "applicable": 3788,
-          "done": 1480
+          "done": 1485
         },
         "shared_sources": {
           "applicable": 236,
@@ -13906,12 +13880,9 @@
         }
       },
       "text_step_from_checked_replica": 1968,
-      "text_step_provisional_working_text": 284,
-      "unnumbered_series_estimate_95": [
-        4101,
-        5095
-      ],
-      "unnumbered_series_observed": 2334,
+      "text_step_provisional_working_text": 252,
+      "unnumbered_series_estimate_95": null,
+      "unnumbered_series_observed": 1816,
       "whole_end_date_kind": {
         "exact": 1254,
         "not_later_than": 184
@@ -15891,15 +15862,14 @@
     "tischendorf-originals": {
       "by_route_and_verdict": {
         "corroborate/fr-originals|lead": 7,
-        "corroborate/fr-originals|strong": 25,
         "corroborate/isthmian-canal-1911|lead": 1,
-        "lead/ia_fulltext|lead": 575,
-        "official/fr_issue_by_date|lead": 10,
-        "official/fr_issue_by_date|strong": 90,
-        "official/ia_fulltext|lead": 13,
-        "official/ia_fulltext|strong": 1
+        "lead/ia_fulltext|lead": 576,
+        "official/fr_issue_by_date|lead": 12,
+        "official/fr_issue_by_date|strong": 70,
+        "official/ia_fulltext|lead": 21,
+        "official/ia_fulltext|strong": 4
       },
-      "bytes_downloaded": 920039758,
+      "bytes_downloaded": 2075521032,
       "controls": {
         "accepted_negatives": [],
         "negatives": 119,
@@ -15910,37 +15880,37 @@
       },
       "counted_by_tracker": false,
       "job": "tischendorf-originals",
-      "leads": 606,
+      "leads": 617,
       "order_errors": 0,
       "prior_state_from": "git_head",
-      "replacement_strong": 39,
-      "replacement_targets": 701,
+      "replacement_strong": 71,
+      "replacement_targets": 735,
       "replacement_targets_ready": 521,
       "request_caps": {
         "fr_by_date": 1500,
         "ia_fulltext": 7500,
         "total": 9000
       },
-      "requests": 151,
+      "requests": 324,
       "requests_by_route": {
-        "fr_by_date": 125,
-        "ia_fulltext": 19
+        "fr_by_date": 95,
+        "ia_fulltext": 182
       },
       "run_counts": {
-        "attempted_corroborate": 94,
-        "attempted_fr_by_date": 62,
-        "attempted_ia_fulltext": 2376,
+        "attempted_corroborate": 69,
+        "attempted_fr_by_date": 45,
+        "attempted_ia_fulltext": 2389,
         "carried_strong": 36,
         "ia_not_distinctive": 66
       },
-      "seconds": 264,
-      "strong": 116,
+      "seconds": 755,
+      "strong": 74,
       "strong_rules": "own number heading or closing tag on the pages (an OCR-damaged or mid-line heading only with a text score >= 0.6; in a compilation that prints no numbers, the signing date), text fingerprint score >= 0.5, distinctive fingerprint (>= 8 rare shingles), government-printed source, and no planted control failed this run",
-      "targets": 2932,
+      "targets": 2903,
       "targets_by_route": {
-        "corroborate": 94,
-        "fr_by_date": 395,
-        "ia_fulltext": 2443
+        "corroborate": 69,
+        "fr_by_date": 378,
+        "ia_fulltext": 2456
       },
       "what_this_is_not": "No status, identity, census, codebook or readiness change. Strong finds are machine locations; the tracker counts them only after this job is registered there.",
       "workers": 24
