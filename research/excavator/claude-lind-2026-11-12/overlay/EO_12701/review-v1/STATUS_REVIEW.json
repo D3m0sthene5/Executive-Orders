@@ -1,15 +1,20 @@
 {
-  "checked_evidence_ids": [],
-  "decision": null,
+  "checked_evidence_ids": [
+    "ORIGINAL:EO:12701",
+    "OWN_TEXT:EO:12701#700",
+    "PARENT_END:EO:12701>EO:12334>EO:12863",
+    "ACTOR_TEXT:EO:12863"
+  ],
+  "decision": "accept",
   "decision_sha256": "ed2a6d0e17c88d3f5539301680e2bd5c26a2fc409f77067e41bf33a51deb461b",
   "evidence_sha256": "a828848d117f7711ecc3d838cdef3bf864eabc7bd70e0cc614db5140e0d103c5",
   "history_sha256": "38db7c63667aa80437f6391ba951409caa6f6269a385cce2e6784427f0f23651",
-  "independence_confirmed": false,
+  "independence_confirmed": true,
   "instrument_id": "EO:12701",
   "notice": "Independent research review only; never an eo-lifecycle-review/v1 certification.",
-  "rationale": "",
+  "rationale": "Review 2026-11-12T21:11:56Z to 2026-11-12T21:16:36Z UTC. All cited text files re-hashed with one script against their recorded text_sha256 and every source_fingerprints entry; all matched. cruden.py number search (snapshot 28504e0c..., 49,073 readable sources) run for the order. Identity: held FR text (55 FR 5953) prints Executive Order 12701 of February 14, 1990, Amending Executive Order No. 12334. Own text: read in full; its sole command deletes the second sentence of sec. 1 of EO 12334 and inserts 'One member shall be designated by the President as Chairman.' No other clause, no continuing command: spent on issue (OWN_TEXT record confirmed against the original). Parent end: sec. 3.3 of EO 12863 (September 13, 1993) revokes 'Executive Order No. 12334 of December 4, 1981, as amended'; read both in the APP capture cited by the PARENT_END record and in the held FR text (58 FR 48441), which agree. So the inserted sentence ended with the parent in 1993. Earlier end/partial scope: cruden found only the order's own page; no flags, no savings, no revival. Accept.",
   "reviewer": "claude-status-reviewer-lind",
   "reviewer_role": "independent_ai",
   "schema": "eo-status-overlay-review/v1",
-  "source_checks_confirmed": false
+  "source_checks_confirmed": true
 }
