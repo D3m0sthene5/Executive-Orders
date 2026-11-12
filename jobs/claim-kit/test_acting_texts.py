@@ -184,6 +184,19 @@ class TargetMentionTests(unittest.TestCase):
         self.assertTrue(self.names("EO:5327", "lands in the State of Montana withdrawn by Executive Order No. 5327 dated April 15, 1930, are"))
         self.assertTrue(agency("EO:5158", "The Cedar Keys National Wildlife Refuge was established by Executive Order 5158 on July 16, 1929"))
 
+    def test_spaced_digit_runs_stay_fast(self):
+        # 2026-11-12: an optional list separator made OCR digit runs backtrack exponentially (14 digits 2.4 s); the
+        # claim-kit build then ran 4 h 20 min at full CPU into the runner wall. A whole run must stay well under 1 s.
+        import time
+        text = "Executive Orders " + " ".join("1234567890" * 4) + " 5 and Executive Order No. 8790 of June 13, 1941"
+        started = time.monotonic()
+        self.assertTrue(self.names("EO:8790", text))
+        B.target_mentions("EO:56", text)
+        self.assertLess(time.monotonic() - started, 1.0)
+        # Lists still need a real separator between items.
+        self.assertTrue(self.names("EO:13355", "Executive Orders 13354; 13355 of August 27, 2004, are"))
+        self.assertTrue(self.names("EO:13355", "Executive Orders 13354, and 13355 of August 27, 2004, are"))
+
     def test_printed_date_must_match_the_signing_year(self):
         self.assertFalse(self.names("EO:1318", "Executive Order 1318 of March 31, 1999, and", "1911-03-02"))
         self.assertFalse(self.names("EO:1322", "through Executive Order 1322 of August 17, 2001 (3 CFR", "1911-04-01"))
