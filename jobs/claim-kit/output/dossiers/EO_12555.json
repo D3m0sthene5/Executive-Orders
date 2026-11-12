@@ -6,8 +6,30 @@
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@30912"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 3271,
+      "windows_omitted": 0
+    },
+    {
+      "actor_id": "FRDOC:00-22662",
+      "evidence_id": "ACTOR_TEXT:FRDOC:00-22662",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:94-14458",
+      "evidence_id": "ACTOR_TEXT:FRDOC:94-14458",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:94-24144",
+      "evidence_id": "ACTOR_TEXT:FRDOC:94-24144",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -109,7 +131,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12555",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12555"
@@ -516,11 +538,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 180,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "19 U.S.C. 2602 note; note 'Ex. Ord. No. 12555. Protection of Cultural Property' [USLM note id idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "9c7a2d1381dfeac5577e073ab221658adfcf4f227aaadfe6d21cb58bc870aee0",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12555",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (19 U.S.C. 2602 note)",
@@ -530,10 +561,14 @@
       "source": {
         "page_or_item": "19 U.S.C. 2602 note; note 'Ex. Ord. No. 12555. Protection of Cultural Property' [USLM note id idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1.txt",
+        "text_sha256": "9c7a2d1381dfeac5577e073ab221658adfcf4f227aaadfe6d21cb58bc870aee0",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1",
+      "text": "Ex. Ord. No. 12555. Protection of Cultural Property\nEx. Ord. No. 12555, Mar. 10, 1986, 51 F.R. 8475, as amended by Ex. Ord. No. 13286, § 44, Feb. 28, 2003, 68 F.R. 10627, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1.txt",
+      "text_sha256": "9c7a2d1381dfeac5577e073ab221658adfcf4f227aaadfe6d21cb58bc870aee0",
       "where": "USC 19 U.S.C. 2602 note"
     },
     {
@@ -585,7 +620,7 @@
         "snippet": "Ex. Ord. No. 12555. Protection of Cultural Property | Ex. Ord. No. 12555, Mar. 10, 1986, 51 F.R. 8475, as amended by Ex. Ord. No. 13286, § 44, Feb. 28, 2003, 68 F.R. 10627, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1",
+        "text_path": "usc-notes/idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1.txt",
         "where": "USC 19 U.S.C. 2602 note"
       },
       "proposal": {
@@ -1441,6 +1476,117 @@
       },
       "text": "Instrument: EO:12977\nSource: https://www.govinfo.gov/content/pkg/FR-1995-10-24/pdf/95-26497.pdf\nSHA-256 of the downloaded file: a6a34aa2401dec28f435458b91313c0d28e9c9787bd8a47c8c451202971bef66\nLocation: 60 FR 54411, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n54411\nFederal Register\nVol. 60, No. 205\nTuesday, October 24, 1995\nTitle 3—\nThe President\nExecutive Order 12977 of October 19, 1995\nInteragency Security Committee\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, and in order to enhance the quality\nand effectiveness of security in and protection of buildings and facilities\nin the United States occupied by Federal employees for nonmilitary activities\n(‘‘Federal facilities’’), and to provide a permanent body to address continuing\ngovernment-wide security for Federal facilities, it is hereby ordered as fol-\nlows:\nSection 1. Establishment. There is hereby established within the executive\nbranch the Interagency Security Committee (‘‘Committee’’). The Committee\nshall consist of: (a) the Administrator of General Services (‘‘Administrator’’);\n(b) representatives from the following agencies, appointed by the agency\nheads:\n(1) Department of State;\n(2) Department of the Treasury;\n(3) Department of Defense;\n(4) Department of Justice;\n(5) Department of the Interior;\n(6) Department of Agriculture;\n(7) Department of Commerce;\n(8) Department of Labor;\n(9) Department of Health and Human Services;\n(10) Department of Housing and Urban Development;\n(11) Department of Transportation;\n(12) Department of Energy;\n(13) Department of Education;\n(14) Department of Veterans Affairs;\n(15) Environmental Protection Agency;\n(16) Central Intelligence Agency; and\n(17) Office of Management and Budget;\n(c) the following individuals or their designees:\n(1) the Director, United States Marshals Service;\n(2) the Assistant Commissioner of the Federal Protective Service of the\nPublic Buildings Service, General Services Administration (‘‘Assistant Com-\nmissioner’’);\n(3) the Assistant to the President for National Security Affairs; and\n(4) the Director, Security Policy Board; and\n(d) such other Federal employees as the President shall appoint.\nSec. 2. Chair. The Committee shall be chaired by the Administrator, or\nthe designee of the Administrator.\nSec. 3. Working Groups. The Committee is authorized to establish interagency\nworking groups to perform such tasks as may be directed by the Committee.\n=== PDF page 2 of 2 ===\n54412 Federal Register / Vol. 60, No. 205 / Tuesday, October 24, 1995 / Presidential Documents\nSec. 4. Consultation. The Committee may consult with other parties, includ-\ning the Administrative Office of the United States Courts, to perform its\nresponsibilities under this order, and, at the discretion of the Committee,\nsuch other parties may participate in the working groups.\nSec. 5. Duties and Responsibilities. (a) The Committee shall: (1) establish\npolicies for security in and protection of Federal facilities;\n(2) develop and evaluate security standards for Federal facilities, develop\na strategy for ensuring compliance with such standards, and oversee the\nimplementation of appropriate security measures in Federal facilities; and\n(3) take such actions as may be necessary to enhance the quality and\neffectiveness of security and protection of Federal facilities, including but\nnot limited to:\n(A) encouraging agencies with security responsibilities to share security-\nrelated intelligence in a timely and cooperative manner;\n(B) assessing technology and information systems as a means of providing\ncost-effective improvements to security in Federal facilities;\n(C) developing long-term construction standards for those locations with\nthreat levels or missions that require blast resistant structures or other special-\nized security requirements;\n(D) evaluating standards for the location of, and special security related\nto, day care centers in Federal facilities; and\n(E) assisting the Administrator in developing and maintaining a centralized\nsecurity data base of all Federal facilities.\nSec. 6. Agency Support and Cooperation. (a) Administrative Support. To\nthe extent permitted by law and subject to the availability of appropriations,\nthe Administrator, acting by and through the Assistant Commissioner, shall\nprovide the Committee such administrative services, funds, facilities, staff\nand other support services as may be necessary for the performance of\nits functions under this order.\n(b) Cooperation. Each executive agency and department shall cooperate and\ncomply with the policies and recommendations of the Committee issued\npursuant to this order, except where the Director of Central Intelligence\ndetermines that compliance would jeopardize intelligence sources and meth-\nods. To the extent permitted by law and subject to the availability of appro-\npriations, executive agencies and departments shall provide such support\nas may be necessary to enable the Committee to perform its duties and\nresponsibilities under this order.\n(c) Compliance. The Administrator, acting by and through the Assistant\nCommissioner, shall be responsible for monitoring Federal agency compliance\nwith the policies and recommendations of the Committee.\nSec. 7. Judicial Review. This order is intended only to improve the internal\nmanagement of the Federal Government, and is not intended, and should\nnot be construed, to create any right or benefit, substantive or procedural,\nenforceable at law by a party against the United States, its agencies, its\nofficers, or its employees.\nœ–\nTHE WHITE HOUSE,\nOctober 19, 1995.\n[FR Doc. 95–26497\nFiled 10–20–95; 2:55 pm]\nBilling code 3195–01–P"
     },
+    "ACTOR_TEXT:EO:13286@30912": {
+      "actor_id": "EO:13286",
+      "char_end": 33947,
+      "char_start": 30912,
+      "id": "ACTOR_TEXT:EO:13286@30912",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "(f) striking ‘‘and’’ after ‘‘State’’ in section 701(6) and inserting a comma \nin lieu thereof; \n(g) inserting ‘‘, and Homeland Security ’’ after ‘‘Defense’’ in section 701(6); \n(h) striking ‘‘the Director of the Federal Emergency Management Agency, ’’ \nin section 701(6); and \n(i) striking ‘‘Federal Emergency Management Agency ’’ in the title of Part \n17 and inserting ‘‘Department of Homeland Security’’ in lieu thereof. \nWithout prejudice to subsections (a) through (i) of this section, all respon-\nsibilities assigned to specific Federal officials pursuant to Executive Order \n12656 that are substantially the same as any responsibility assigned to, \nor function transferred to, the Secretary of Homeland Security pursuant \nto the Homeland Security Act of 2002 (regardless of whether such responsi-\nbility or function is expressly required to be carried out through another \nofficial of the Department of Homeland Security or not pursuant to such \nAct), or intended or required to be carried out by an agency or an agency \ncomponent transferred to the Department of Homeland Security pursuant \nto such Act, are hereby reassigned to the Secretary of Homeland Security. \nSec. 43. Executive Order 12580 of January 23, 1987 ( ‘‘Superfund Implementa-\ntion’’), as amended, is further amended by: \n(a) inserting ‘‘Department of Homeland Security, ’’ after Department of \nEnergy,’’ in section 1(a)(2); and \n(b) striking ‘‘Federal Emergency Management Agency ’’ in section 1(a)(2). \nSec. 44. Executive Order 12555 of November 15, 1985 (‘‘Protection of Cultural \nProperty’’), as amended, is further amended by: \n(a) striking ‘‘the Secretary of the Treasury ’’ in sections 1, 2, and 3, and \ninserting ‘‘the Secretary of Homeland Security’’ in lieu thereof; and \n(b) striking ‘‘The Department of the Treasury ’’ in the heading of section \n3 and inserting ‘‘The Department of Homeland Security ’’ in lieu thereof. \nSec. 45. Executive Order 12501 of January 28, 1985 ( ‘‘Arctic Research ’’), \nis amended by: \n(a) inserting ‘‘(i) Department of Homeland Security; ’’ after ‘‘(h) Department \nof Health and Human Services;’’ in section 8; and \n(b) relettering the subsequent subsections in section 8 appropriately. \nSec. 46. Executive Order 12472 of April 3, 1984 ( ‘‘Assignment of National \nSecurity and Emergency Preparedness Telecommunications Functions ’’), is \namended by: \n(a) inserting ‘‘the Homeland Security Council, ’’ after ‘‘National Security \nCouncil,’’ in sections 1(b), 1(e)(4), 1(f)(3), and 2(c)(4); \n(b) striking ‘‘The Secretary of Defense ’’ in section 1(e) and inserting ‘‘The \nSecretary of Homeland Security’’ in lieu thereof; \n(c) striking ‘‘Federal Emergency Management Agency ’’ in sections 1(e)(3) \nand 3(j) and inserting ‘‘Department of Homeland Security ’’ in lieu thereof; \n(d) inserting ‘‘, in consultation with the Homeland Security Council, ’’ \nafter ‘‘National Security Council’’ in section 2(b)(1); \n(e) inserting ‘‘, the Homeland Security Council, ’’ after ‘‘National Security \nCouncil’’ in sections 2(d) and 2(e); \n"
+    },
+    "ACTOR_TEXT:FRDOC:00-22662": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:00-22662",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 3950,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:00-22662",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:00-22662",
+        "page_or_item": "65 FR 53795; FR Doc. 00-22662; Notice: Delegation by the Under Secretary for Public Diplomacy and Public Affairs of Certain Functions to the Assistant Secretary for Educational and Cultural Affairs or in the Absence Thereof, to the Principal Deputy Assistant Secretary and Deputy Assistant Secretary for Policy and Resources",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "9c204acd5c3cce1f798c7f67b2b09588a9d71f4b75a004b1344258cf20af1e92",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-00-22662.txt",
+        "text_sha256": "9c204acd5c3cce1f798c7f67b2b09588a9d71f4b75a004b1344258cf20af1e92",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2000/09/05/00-22662.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 65 Issue 172 (Tuesday, September 5, 2000)</title>\n</head>\n<body><pre>\n[Federal Register Volume 65, Number 172 (Tuesday, September 5, 2000)]\n[Notices]\n[Page 53795]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 00-22662]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF STATE\n\n[Delegation of Authority No. 236-3]\n\n\nDelegation by the Under Secretary for Public Diplomacy and Public \nAffairs of Certain Functions to the Assistant Secretary for Educational \nand Cultural Affairs or in the Absence Thereof, to the Principal Deputy \nAssistant Secretary and Deputy Assistant Secretary for Policy and \nResources\n\n    By virtue of the authority vested in me as the Under Secretary of \nState for Public Diplomacy and Public Affairs by law, including by \nDelegation of Authority No. 234 of October 1, 1999, and the Foreign \nAffairs Reform and Restructuring Act of 1998 (112 Stat. 2681 et seq.), \nand to the extent permitted by law, I hereby delegate to the Assistant \nSecretary for Educational and Cultural Affairs:\n    a. The functions in P.L. 89-259 (79 Stat. 985) (22 U.S.C. 2459) \n(providing for immunity from judicial seizure for cultural objects \nimported into the U.S. for temporary exhibits).\n    b. The functions in sections 101(1)(15)(J) and 212(j) of the \nImmigration and Nationality Act (8 U.S.C. 1101(a)(15)(J) and 1182(J)), \nand section 641 of P.L. 104-208 (8 U.S.C. 1372(h)(2)(A)) (relating to \nthe designation of exchange visitor programs and related functions).\n    c. The functions in the North/South Center Act of 1991 (22 U.S.C. \n2075) (relating to the operation of the Center for Cultural and \nTechnical Interchange Between North and South).\n    d. The functions in the Center for Cultural and Technical \nInterchange Between East and West Act of 1960 (22 U.S.C. 2054) \n(relating to the operation of the Center for Cultural and Technical \nInterchange Between East and West).\n    e. The functions in Executive Order 12555 of March 10, 1986 \n(delegating functions under the Convention on Cultural Property \nImplementation Act (19 U.S.C. 2601)).\n    f. The functions in the Arts and Artifacts Indemnity Act (20 U.S.C. \n971) (relating to the certification of national interest for exhibits \nto provide indemnification).\n    g. Representation of the Secretary of State on the Federal Council \non the Arts and Humanities (pursuant to 20 U.S.C. 958).\n    h. Representation of the Secretary of State on the United States \nPanel of the Joint Committee on United States-Japan Cultural and \nEducational Cooperation/Japan-United States Friendship Commission \n(pursuant to 22 U.S.C. 2901; one of two Department of State members).\n    i. The functions in section 102 of the Mutual Educational and \nCultural Exchange Act of 1961, as amended (22 U.S.C. 2452) (relating to \nthe provision by grant, contract or otherwise for a wide variety of \neducational and cultural exchanges).\n    Notwithstanding any other provision of this Order, the Under \nSecretary of State for Public Diplomacy and Public Affairs and Public \nAffairs may at any time exercise any function or authority delegated or \nreserved by this delegation of authority.\n    Functions delegated by this delegation of authority may be \nredelegated, to the extent consistent with law.\n    Any reference in this delegation of authority to any statute or \ndelegation of authority shall be deemed to be a reference to such \nstatute or delegation of authority as amended from time to time.\n    This delegation shall be published in the Federal Register.\n    Delegation of Authority No. 236-2 is hereby superseded.\n\n    Dated: August 28, 2000.\nEvelyn S. Lieberman,\nUnder Secretary for Public Diplomacy and Public Affairs, U.S. \nDepartment of State.\n[FR Doc. 00-22662 Filed 9-1-00; 8:45 am]\nBILLING CODE 4710-08-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:94-14458": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:94-14458",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 3671,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:94-14458",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:94-14458",
+        "page_or_item": "; FR Doc. 94-14458; Uncategorized Document: Convention on Cultural Property Implementation Act (Pub. L. 97- 446); Import Restriction on Archaeological Material of the Moche Period From the Sipan Archaeological Region, Peru",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "fb6a25b9c4c99571c3fb8b72518eedc7d9523e045a60ca2627f5c39d53803554",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-94-14458.txt",
+        "text_sha256": "fb6a25b9c4c99571c3fb8b72518eedc7d9523e045a60ca2627f5c39d53803554",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1994/06/14/94-14458.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 59 Issue 113 (Tuesday, June 14, 1994)</title>\n</head>\n<body><pre>\n[Federal Register Volume 59, Number 113 (Tuesday, June 14, 1994)]\n[Unknown Section]\n[Page 0]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 94-14458]\n\n\n[[Page Unknown]]\n\n[Federal Register: June 14, 1994]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nUNITED STATES INFORMATION AGENCY\n\n \n\nConvention on Cultural Property Implementation Act (Pub. L. 97-\n446); Import Restriction on Archaeological Material of the Moche Period \nFrom the Sipan Archaeological Region, Peru\n\nAGENCY: United States Information Agency.\n\nACTION: Determination to Extend Emergency Restriction on Moche Material \nfrom the Sipan Archaeological Region, Peru.\n\n-----------------------------------------------------------------------\n\n    Pursuant to the authority vested in me under Executive Order 12555 \nand Delegation Order No. 86-3 of March 18, 1986 (51 FR 10137),\n    I find:\n    Pursuant to the requirements of section 304(c) (3) of the Act, 19 \nU.S.C. 2603(c)(3), with respect to the extension of an emergency import \nrestriction on Moche artifacts from the Sipan Archaeological Region, \nPeru, and pursuant to the emergency provisions under section 304, \nsubsections (a)(2) and (a)(3); and pursuant to a unanimous favorable \nrecommendation from the Cultural Property Advisory Committee,\n    (1) That the material is archaeological and is identifiable as \ncoming from sites in the Sipan Archaeological Region, an area \nrecognized to be of high cultural significance, for it contains \nevidence of the Moche culture at the apogee of its development; that an \nambience conducive to further pillage continues to exist in this region \ncausing continued jeopardy from pillage, dismantling, dispersal, or \nfragmentation which is, of threatens to be, of crisis proportions;\n    (2) That the material is part of the remains of the Moche culture \n(approximately A.D. 100-800) which did not develop a writing system and \nabout which little is known except from scientific excavation of intact \nremains; that an ambience conducive to further pillage continues to \nexist relative to these remains of the Moche culture, the record of \nwhich continues to be in jeopardy from pillage, dismantling, dispersal, \nor fragmentation which is, or threatens to be, of crisis proportions;\n    (3) That the application of the import restriction set forth on a \ntemporary basis would continue, in whole or in part, to reduce the \nincentive for pillage, for it has been established that the emergency \nimport restriction in place since 1990 has resulted in a diminution to \nsystematic clandestine pillage of the sites in the Sipan Archaeological \nRegion.\n\nDetermination\n\n    Therefore, in accordance with the aforementioned authority vested \nin me, and pursuant to section 304(c)(3) of the Act, 19 U.S.C. \n2603(c)(3), and consistent with a favorable recommendation from the \nCultural Property Advisory Committee, I determine:\n    (1) That the emergency condition continues to apply with respect to \nMoche artifacts from the Sipan Archaeological Region in the Lambayeque \nValley of northern Peru.\n    (2) That the emergency import restriction that went into effect on \nMay 7, 1990, is extended for a period of three more years effective \nJune 15, 1994.\n\n    Dated: June 9, 1994.\nPenn Kemble,\nDeputy Director, United States Information Agency.\n[FR Doc. 94-14458 Filed 6-13-94; 8:45 am]\nBILLING CODE 8230-01-M\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:94-24144": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:94-24144",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 2815,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:94-24144",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:94-24144",
+        "page_or_item": "; FR Doc. 94-24144; Uncategorized Document: Convention on Cultural Property Implementation Act (Pub. L. 97- 446; Import Restriction on Maya Artifacts From the Peten Region, Guatemala",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "2fcfccffa9855c33eaf328fbff47718c706748d37df996a520e981bb110f3141",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-94-24144.txt",
+        "text_sha256": "2fcfccffa9855c33eaf328fbff47718c706748d37df996a520e981bb110f3141",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1994/09/30/94-24144.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 59 Issue 189 (Friday, September 30, 1994)</title>\n</head>\n<body><pre>[Federal Register Volume 59, Number 189 (Friday, September 30, 1994)]\n[Unknown Section]\n[Page 0]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 94-24144]\n\n\n[[Page Unknown]]\n\n[Federal Register: September 30, 1994]\n\n\n-----------------------------------------------------------------------\n\n\nUNITED STATES INFORMATION AGENCY\n \n\nConvention on Cultural Property Implementation Act (Pub. L. 97-\n446; Import Restriction on Maya Artifacts From the Peten Region, \nGuatemala\n\nAGENCY: United States Information Agency.\n\nACTION: Determination to Extend Emergency Restriction on Maya Artifacts \nfrom the Peten Region, Guatemala.\n\n-----------------------------------------------------------------------\n\n    Pursuant to the authority vested in me under Executive Order 12555 \nand Delegation Order No. 86-3 of March 18, 1986 (51 FR 10137),\n    I find: Pursuant to the requirements of Section 304(c)(3) of the \nAct, 19 U.S.C. 2603(c)(3), with respect to the extension of an \nemergency import restriction on Maya artifacts from the Peten Region, \nGuatemala, and pursuant to the emergency provisions under Section \n304(a)(3); and pursuant to a favorable recommendation from the Cultural \nProperty Advisory Committee,--\n    (1) That the material is archaeological and is identifiable as part \nof the remains of the Maya civilization (approximately 1200 B.C.-1500 \nA.D) which developed a writing system and about which little is known \nexcept from limited scientific excavation of intact remains; that \npillage continues to exist relative to these remains of the Maya \nculture, the record of which continues to be in jeopardy from pillage, \ndismantling, dispersal, or fragmentation which is, or threatens to be, \nof crisis proportions;\n    (2) That the application of the import restriction set forth on a \ntemporary basis would continue, in whole or in part, to reduce the \nincentive for pillage.\n\nDetermination\n\n    Therefore, in accordance with the aforementioned authority vested \nin me, and pursuant to Section 304(c)(3) of the Act, 19 U.S.C. \n2603(c)(3), and consistent with a favorable recommendation from the \nCultural Property Advisory Committee, I determine:\n    (1) That the emergency condition continues to apply with respect to \nMaya artifacts from the Peten Region of Guatemala,\n    (2) That the emergency import restriction that went into effect on \nApril 15, 1991, is extended for a period of three more years effective \nOctober 3, 1994.\n\n    Dated: September 23, 1994.\nPenn Kemble,\nDeputy Director, United States Information Agency.\n[FR Doc. 94-24144 Filed 9-29-94; 8:45 am]\nBILLING CODE 8230-01-M\n\n\n</pre></body>\n</html>"
+    },
     "CLAUSES:EO:12555#a": {
       "char_end": 1500,
       "char_start": 1332,
@@ -1837,6 +1983,42 @@
       },
       "text": "Sec. 4. E n fo rce m e n t in  T e rrito rie s a n d  O th e r A r e a s . The Secretary of the \nInterior is designated to carry out the enforcement functions in section 314."
     },
+    "CURRENT:EO:12555#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 180,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "19 U.S.C. 2602 note; note 'Ex. Ord. No. 12555. Protection of Cultural Property' [USLM note id idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "9c7a2d1381dfeac5577e073ab221658adfcf4f227aaadfe6d21cb58bc870aee0",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12555#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12555",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (19 U.S.C. 2602 note)",
+      "machine_lead": true,
+      "mention_id": "usc:6277c96c55b0",
+      "snippet": "Ex. Ord. No. 12555. Protection of Cultural Property | Ex. Ord. No. 12555, Mar. 10, 1986, 51 F.R. 8475, as amended by Ex. Ord. No. 13286, § 44, Feb. 28, 2003, 68 F.R. 10627, provided:",
+      "source": {
+        "page_or_item": "19 U.S.C. 2602 note; note 'Ex. Ord. No. 12555. Protection of Cultural Property' [USLM note id idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1.txt",
+        "text_sha256": "9c7a2d1381dfeac5577e073ab221658adfcf4f227aaadfe6d21cb58bc870aee0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12555. Protection of Cultural Property\nEx. Ord. No. 12555, Mar. 10, 1986, 51 F.R. 8475, as amended by Ex. Ord. No. 13286, § 44, Feb. 28, 2003, 68 F.R. 10627, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idb9861ad2-ac5f-11f1-86f8-df17c10eb1e1.txt",
+      "text_sha256": "9c7a2d1381dfeac5577e073ab221658adfcf4f227aaadfe6d21cb58bc870aee0",
+      "where": "USC 19 U.S.C. 2602 note"
+    },
     "ORIGINAL:EO:12555": {
       "acceptable_as_original": true,
       "actor_id": "EO:12555",
@@ -1890,37 +2072,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(g) The functions conferred by section 304(c)(3) to the extent that they involve \ndeterminations to be m ade and the receipt and consideration o f an advisory \nreport from the Cultural Property A dvisory Com mittee by the President prior \nto extensions o f emergency import restrictions."
-    },
-    "TERM:EO:12555:295a214e90d8b6e4@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 12607,
-      "char_start": 12398,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:295a214e90d8b6e4@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#sec2-e",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(e) The functions conferred by section 304(c)(4) [19 U.S.C. 2603(c)(4)] to the extent that they involve the negotiation and conclusion of agreements subject to advice and consent to ratification by the Senate."
     },
     "TERM:EO:12555:2ded9d7b53b7b6b9@1b7ecaeb78889945": {
       "actor_id": "EO:12555",
@@ -1979,68 +2130,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(f) The functions conferred by section 304(b) to the extent that they involve \ndeterminations by the President that an emergency condition applies with \nrespect to any archaeological or ethnological m aterial o f any State Party to the \nConvention, subject to the lim itations o f sections 304(c)(1), 304(c)(2), and \n304(c)(3)."
-    },
-    "TERM:EO:12555:3848ace50edba7af@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 10719,
-      "char_start": 10380,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:3848ace50edba7af@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#sec1-f",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(f) The functions conferred by section 304(b) [19 U.S.C. 2603(b)] to the extent that they involve determinations by the President that an emergency condition applies with respect to any archaeological or ethnological material of any State Party to the Convention, subject to the limitations of sections 304(c)(1), 304(c)(2), and 304(c)(3)."
-    },
-    "TERM:EO:12555:3f320abc68768954@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 1500,
-      "char_start": 974,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:3f320abc68768954@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#i-ii",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(ii)\n remedies less drastic than the application of the restrictions set forth in such section are not available; and\n(D)\n that the application of the import restrictions set forth in section 2606 of this title in the particular circumstances is consistent with the general interest of the international community in the interchange of cultural property among nations for scientific, cultural, and educational purposes;\nthe President may, subject to the provisions of this chapter, take the actions described in paragraph (2)."
     },
     "TERM:EO:12555:3fdedd0f51d4071c@654401cd148aa500": {
       "actor_id": "EO:12555",
@@ -2172,68 +2261,6 @@
       "stated_end_date": null,
       "text": "(a) Subject to subsection (b) of Section 1 above, the functions conferred by section 303(d) to the extent that they involve the suspension of import restrictions."
     },
-    "TERM:EO:12555:4f6584c9155647b0@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 5285,
-      "char_start": 4917,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:4f6584c9155647b0@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "until_event",
-      "mechanism": "own_terms_until_event",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#d-2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(2)\n are not implementing such restrictions satisfactorily with the result that no substantial benefit in deterring a serious situation of pillage in the State Party concerned is being obtained,\nthe President shall suspend the implementation of the import restrictions under section 2606 of this title until such time as the nations take appropriate corrective action."
-    },
-    "TERM:EO:12555:530d763f2abc1a4c@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 10999,
-      "char_start": 10720,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:530d763f2abc1a4c@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#sec1-g",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(g) The functions conferred by section 304(c)(3) to the extent that they involve determinations to be made and the receipt and consideration of an advisory report from the Cultural Property Advisory Committee by the President prior to extensions of emergency import restrictions."
-    },
     "TERM:EO:12555:530d763f2abc1a4c@654401cd148aa500": {
       "actor_id": "EO:12555",
       "char_end": 2484,
@@ -2327,37 +2354,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(e) The functions conferred by section 304(c)(4) to the extent that they involve \n. the negotiation and conclusion o f agreements subject to advice and consent to\nratification by the Senate."
-    },
-    "TERM:EO:12555:62cad5d9c9258f1c@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 6683,
-      "char_start": 6274,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:62cad5d9c9258f1c@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#f-3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(3)\n consider, in taking action on the request or proposal, the views and recommendations contained in any Committee report—\n(A)\n required under section 2605(f)(1) or (2) of this title, and\n(B)\n submitted to the President before the close of the one-hundred-and-fifty-day period beginning on the day on which the President submitted information on the request or proposal to the Committee under paragraph (2)."
     },
     "TERM:EO:12555:7763fcfac8d3960b@654401cd148aa500": {
       "actor_id": "EO:12555",
@@ -2518,68 +2514,6 @@
       "stated_end_date": null,
       "text": "(a) The functions conferred by section 303(a)(2) relating to the negotiation and \nconclusion o f bilateral or m ultilateral agreements under the A c t, subject to the \nrestrictions o f section 303(c)."
     },
-    "TERM:EO:12555:9a71ce933e5b8adf@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 7691,
-      "char_start": 7365,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:9a71ce933e5b8adf@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#g-3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(3)\n Information relating to committee recommendations\nIf any Committee report required to be considered by the President recommends that an agreement be entered into, but no such agreement is entered into, the President shall submit to the Congress a report which contains the reasons why such agreement was not entered into."
-    },
-    "TERM:EO:12555:9b6768ca73b03b58@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 3695,
-      "char_start": 3142,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:9b6768ca73b03b58@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#c-1",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(1)\n In general\nThe President may not enter into a bilateral or multilateral agreement authorized by subsection (a) unless the application of the import restrictions set forth in section 2606 of this title with respect to archaeological or ethnological material of the State Party making a request to the United States under article 9 of the Convention will be applied in concert with similar restrictions implemented, or to be implemented, by those nations (whether or not State Parties) individually having a significant import trade in such material."
-    },
     "TERM:EO:12555:9d0cd84b228ae575@654401cd148aa500": {
       "actor_id": "EO:12555",
       "char_end": 3328,
@@ -2645,37 +2579,6 @@
       "stated_end_date": null,
       "text": "(a) The functions conferred by section 303(a)(2) relating to the negotiation and conclusion of bilateral or multilateral agreements under the Act, subject to the restrictions of section 303(c)."
     },
-    "TERM:EO:12555:9e1ddea8ed3c670c@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 11895,
-      "char_start": 11679,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:9e1ddea8ed3c670c@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#sec2-a",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(a) The functions conferred by section 303(a)(2) [19 U.S.C. 2602(a)(2)] relating to the negotiation and conclusion of bilateral or multilateral agreements under the Act, subject to the restrictions of section 303(c)."
-    },
     "TERM:EO:12555:a0979c7b03248e98@1b7ecaeb78889945": {
       "actor_id": "EO:12555",
       "char_end": 5650,
@@ -2704,102 +2607,9 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(b) Subject to subsection (f) and (g) o f Section 1 above, the functions conferred \nby section 304 to the extent that they involve the application of import \nrestrictions set forth in section 307 and the extension o f such import restric­\ntions pursuant to section 304(c)(3)."
-    },
-    "TERM:EO:12555:ce6f19b14a1ce72d@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 13097,
-      "char_start": 12915,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:ce6f19b14a1ce72d@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#sec3-a",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(a) Subject to subsection (b) of Section 1 above, the functions conferred by section 303(d) [19 U.S.C. 2602(d)] to the extent that they involve the suspension of import restrictions."
-    },
-    "TERM:EO:12555:f0b68ea214534b1b@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 5500,
-      "char_start": 5286,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:f0b68ea214534b1b@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "fixed_term",
-      "mechanism": "own_terms_fixed_term",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#e",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(e)\n Extension of agreements\nThe President may extend any agreement that enters into force with respect to the United States for additional periods of not more than five years each if the President determines that—"
-    },
-    "TERM:EO:12555:ffd6ffbf171f147b@396e40aefd231e77": {
-      "actor_id": "EO:12555",
-      "char_end": 13404,
-      "char_start": 13098,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12555:ffd6ffbf171f147b@396e40aefd231e77",
-      "instrument_id": "EO:12555",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12555#sec3-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12555",
-        "page_or_item": "19 U.S.C. 2602",
-        "requires_page_check": false,
-        "sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "signing_date": "1986-03-10",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s2602.txt",
-        "text_sha256": "396e40aefd231e77eba28852c42a92867bd030296154e8d5dd977fb480fe59ba",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section2602&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) Subject to subsection[s] (f) and (g) of Section 1 above, the functions conferred by section 304 [19 U.S.C. 2603] to the extent that they involve the application of import restrictions set forth in section 307 [19 U.S.C. 2606] and the extension of such import restrictions pursuant to section 304(c)(3)."
     }
   },
-  "fingerprint": "0903b9d7b26dc6353dca8231afb98a1429676021e895cc58aa3728a17d535964",
+  "fingerprint": "8b8560b3f79f85faa96f96135a3c26d2fa0959d8c4dd38586e9a44623ace6dd9",
   "instrument_id": "EO:12555",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2869,19 +2679,14 @@
       "human_certified": false,
       "instrument_id": "EO:12555",
       "later_actor_evidence_ids": [],
-      "own_term_evidence_ids": [
-        "TERM:EO:12555:f0b68ea214534b1b@396e40aefd231e77"
-      ],
+      "own_term_evidence_ids": [],
       "questions": [
-        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
-        "Confirm the relevant event or operative sunset, scope, extensions and renewals; a detected date remains a candidate."
+        "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
       ],
       "schema": "eo-lifecycle-obligation/v1",
       "scope_id": "EO:12555#e",
       "state": "requires_clause_specific_research",
-      "wording_features": [
-        "fixed_term"
-      ]
+      "wording_features": []
     },
     {
       "clause_sha256": "df235b63182e3860937a500a9bfe2ee4f4f120d41a7ee17b7cc336ef41c49e67",
@@ -2976,7 +2781,6 @@
       "own_term_evidence_ids": [
         "TERM:EO:12555:91626b0606c997ad@1b7ecaeb78889945",
         "TERM:EO:12555:9d0cd84b228ae575@dd5265d7e557059f",
-        "TERM:EO:12555:9e1ddea8ed3c670c@396e40aefd231e77",
         "TERM:EO:12555:9d0cd84b228ae575@654401cd148aa500"
       ],
       "questions": [
@@ -3028,7 +2832,6 @@
       "own_term_evidence_ids": [
         "TERM:EO:12555:62ae5c09004150ae@1b7ecaeb78889945",
         "TERM:EO:12555:7763fcfac8d3960b@dd5265d7e557059f",
-        "TERM:EO:12555:295a214e90d8b6e4@396e40aefd231e77",
         "TERM:EO:12555:7763fcfac8d3960b@654401cd148aa500"
       ],
       "questions": [
@@ -3065,7 +2868,6 @@
       "own_term_evidence_ids": [
         "TERM:EO:12555:2ded9d7b53b7b6b9@1b7ecaeb78889945",
         "TERM:EO:12555:4b9343cb1efd88a9@dd5265d7e557059f",
-        "TERM:EO:12555:ce6f19b14a1ce72d@396e40aefd231e77",
         "TERM:EO:12555:4b9343cb1efd88a9@654401cd148aa500"
       ],
       "questions": [
@@ -3087,7 +2889,6 @@
       "own_term_evidence_ids": [
         "TERM:EO:12555:a0979c7b03248e98@1b7ecaeb78889945",
         "TERM:EO:12555:9130d74c8e676731@dd5265d7e557059f",
-        "TERM:EO:12555:ffd6ffbf171f147b@396e40aefd231e77",
         "TERM:EO:12555:9130d74c8e676731@654401cd148aa500"
       ],
       "questions": [
@@ -3120,32 +2921,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 6,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3175,18 +2978,6 @@
     "TERM:EO:12555:7763fcfac8d3960b@dd5265d7e557059f",
     "TERM:EO:12555:4b9343cb1efd88a9@dd5265d7e557059f",
     "TERM:EO:12555:9130d74c8e676731@dd5265d7e557059f",
-    "TERM:EO:12555:3f320abc68768954@396e40aefd231e77",
-    "TERM:EO:12555:9b6768ca73b03b58@396e40aefd231e77",
-    "TERM:EO:12555:4f6584c9155647b0@396e40aefd231e77",
-    "TERM:EO:12555:f0b68ea214534b1b@396e40aefd231e77",
-    "TERM:EO:12555:62cad5d9c9258f1c@396e40aefd231e77",
-    "TERM:EO:12555:9a71ce933e5b8adf@396e40aefd231e77",
-    "TERM:EO:12555:3848ace50edba7af@396e40aefd231e77",
-    "TERM:EO:12555:530d763f2abc1a4c@396e40aefd231e77",
-    "TERM:EO:12555:9e1ddea8ed3c670c@396e40aefd231e77",
-    "TERM:EO:12555:295a214e90d8b6e4@396e40aefd231e77",
-    "TERM:EO:12555:ce6f19b14a1ce72d@396e40aefd231e77",
-    "TERM:EO:12555:ffd6ffbf171f147b@396e40aefd231e77",
     "TERM:EO:12555:3fdedd0f51d4071c@654401cd148aa500",
     "TERM:EO:12555:530d763f2abc1a4c@654401cd148aa500",
     "TERM:EO:12555:9d0cd84b228ae575@654401cd148aa500",
@@ -3197,10 +2988,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "efd81cde0e369384d36e489085fc8fb3d3f965d7be21f05cd4a5c027493ad413",
+    "fingerprint": "42173302aea1b4b6488e222157211509f0b705f469bd6cb9f622325034ac5d10",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12555.json",
-    "history_sha256": "f7bda6b1b1df75b63f1b625e1eb329a156ad399af25d8989f8d14d5230616ef9",
+    "history_sha256": "a6e47bec0d452fe49baa2e1f2dbca73f97b3bb6b926ade3faf9a4b7eae585120",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

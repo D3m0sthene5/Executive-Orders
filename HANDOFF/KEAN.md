@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (7)
+## Waiting for the owner (9)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-cis-unnumbered-check**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-cis-unnumbered-check**, **A-20261112-lind-stage0**, **A-20261112-lind-stage0-v2**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -65,3 +65,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-12 F-20261112-gap-has-copies **analysis**: Count, for the 2,276 orders whose tracker blockers ask for an official copy, how many have any copy at all Lesson: The gap is mostly not missing text but a missing official printing to confirm text already held. The cheapest lifts are: identify the printed source the Wikisource transcriptions were typed from; ful…
 
 Register: 90 owner decisions, 57 answered questions, 374 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+## Newest results (6 of 377; `search` finds the rest)
+
+- 2026-11-12 F-20261112-soft-gates-untested **analysis**: Owner: does Larrey filtering avoid waste or exclude worthwhile work? Split the 62 back-test exclusions into h… Lesson: Enforce hard gates; use soft gates to order the queue, not to exclude, until a stratified prospective test on the rebuilt kit measures orders kept out. A sample of admitted orders cannot measure fals…
+- 2026-11-12 F-20261112-runner-deadline **failed**: Run the Bodley web pass (one web search per order for 2,251 orders lacking an official copy) as a single job… Lesson: Never guess a job's run time: time 5-10 real items first (locally or a diagnostic run) and multiply. If the projection is over 4 hours, shard it across jobs or let it stop at 4.5 h and continue next…
+- 2026-11-12 F-20261112-lind-decision **analysis**: Owner: choose, from current evidence, the intervention that lowers the total cost of finishing without weaken… Lesson: Price undecided work with undecided measurements, all-in including the coordinator, at the readiness endpoint; triage before spending; keep coordination lean and measured per attempt. Prospective che…
+- 2026-11-12 F-20261112-kit-not-rebuilt **failed**: Owner: critically investigate and fix what causes the low undecided yield. Compared the merge times of the Ac… Lesson: A merged kit fix is not in effect until claim-kit is rebuilt and published on main; check jobs/claim-kit/output/STATUS.json finished_utc against the fix merge time before any undecided production or…
+- 2026-11-12 F-20261112-graunt-census-audit **worked**: Owner-commissioned open audit of how many executive orders presidents signed, 1789 to the 2026-10-14 cutoff,… Lesson: Report the count as counted inventory plus an honest 'not estimable' for the unseen tail, never as a modelled total. The numbered series is nearly complete; the unnumbered series is where the count m…
+- 2026-11-12 F-20261112-graunt-admissions-checked **partly worked**: Admit the Graunt audit's 29 missing numbered labels to the census, each with a held official page checked fir… Lesson: Check what a cited 'official printing' actually is before admitting: a GPO Monthly Catalogue entry proves an order was printed (number, date, subject) but holds no text. It is accepted here as an off…
+
+Register: 91 owner decisions, 57 answered questions, 377 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:14428",
-      "evidence_id": "ACTOR_TEXT:EO:14428"
+      "evidence_id": "ACTOR_TEXT:EO:14428",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -244,7 +245,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13508",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13508"
@@ -1690,11 +1691,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 120,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "33 U.S.C. 1267 note; note 'Ex. Ord. No. 13508. Chesapeake Bay Protection and Restoration' [USLM note id id6bab4360-3a70-11f1-9100-cf79f4fb4b3e]; usc33.xml (sha256 3c4aba3d9d7aa6413ca82154c36bf38dcf35e623f6475117a57c434d7a56d5ef) in xml_uscAll@119-121.zip",
+        "sha256": "003b6e1ad231bfa5a0762136aa4550ba23728ff76a5793d3d567390407880bee",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id6bab4360-3a70-11f1-9100-cf79f4fb4b3e",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13508",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (33 U.S.C. 1267 note)",
@@ -1704,19 +1714,32 @@
       "source": {
         "page_or_item": "33 U.S.C. 1267 note; note 'Ex. Ord. No. 13508. Chesapeake Bay Protection and Restoration' [USLM note id id6bab4360-3a70-11f1-9100-cf79f4fb4b3e]; usc33.xml (sha256 3c4aba3d9d7aa6413ca82154c36bf38dcf35e623f6475117a57c434d7a56d5ef) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id6bab4360-3a70-11f1-9100-cf79f4fb4b3e.txt",
+        "text_sha256": "003b6e1ad231bfa5a0762136aa4550ba23728ff76a5793d3d567390407880bee",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id6bab4360-3a70-11f1-9100-cf79f4fb4b3e",
+      "text": "Ex. Ord. No. 13508. Chesapeake Bay Protection and Restoration\nEx. Ord. No. 13508, May 12, 2009, 74 F.R. 23099, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id6bab4360-3a70-11f1-9100-cf79f4fb4b3e.txt",
+      "text_sha256": "003b6e1ad231bfa5a0762136aa4550ba23728ff76a5793d3d567390407880bee",
       "where": "USC 33 U.S.C. 1267 note"
     },
     {
       "basis_code": "statutory_note_reference",
+      "char_end": 5758,
+      "char_start": 5418,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "33 U.S.C. 1267 note; note 'Chesapeake Bay Accountability and Recovery' [USLM note id id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e]; usc33.xml (sha256 3c4aba3d9d7aa6413ca82154c36bf38dcf35e623f6475117a57c434d7a56d5ef) in xml_uscAll@119-121.zip",
+        "sha256": "826921eaf1b60474587226b9daa7957d36c5850bbb7844c91c1838dfbefcc138",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13508",
       "legal_basis_candidate": "statutory note names the order (33 U.S.C. 1267 note)",
@@ -1726,9 +1749,14 @@
       "source": {
         "page_or_item": "33 U.S.C. 1267 note; note 'Chesapeake Bay Accountability and Recovery' [USLM note id id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e]; usc33.xml (sha256 3c4aba3d9d7aa6413ca82154c36bf38dcf35e623f6475117a57c434d7a56d5ef) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e.txt",
+        "text_sha256": "826921eaf1b60474587226b9daa7957d36c5850bbb7844c91c1838dfbefcc138",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "“(K)\nalignment with the existing Chesapeake Bay Agreement, Chesapeake Executive Council goals and priorities, and Annual Action Plan required by section 205 of Executive Order 13508 (33 U.S.C. 1267 note; relating to Chesapeake Bay protection and restoration).\n“(b)\nMinimum Funding Levels.—\nIn describing restoration activities in the report",
+      "text_path": "jobs/current-law/output/usc-notes/id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e.txt",
+      "text_sha256": "826921eaf1b60474587226b9daa7957d36c5850bbb7844c91c1838dfbefcc138",
       "where": "USC 33 U.S.C. 1267 note"
     },
     {
@@ -1780,6 +1808,7 @@
         "snippet": "...“(K) alignment with the existing Chesapeake Bay Agreement, Chesapeake Executive Council goals and priorities, and Annual Action Plan required by section 205 of Executive Order 13508 (33 U.S.C. 1267 note; relating to Chesapeake Bay protection and restoration). “(b) Minimum Funding Levels.— In desc ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e.txt",
         "where": "USC 33 U.S.C. 1267 note"
       },
       "proposal": {
@@ -1808,7 +1837,7 @@
         "snippet": "Ex. Ord. No. 13508. Chesapeake Bay Protection and Restoration | Ex. Ord. No. 13508, May 12, 2009, 74 F.R. 23099, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id6bab4360-3a70-11f1-9100-cf79f4fb4b3e",
+        "text_path": "usc-notes/id6bab4360-3a70-11f1-9100-cf79f4fb4b3e.txt",
         "where": "USC 33 U.S.C. 1267 note"
       },
       "proposal": {
@@ -2720,6 +2749,7 @@
       "char_end": 7882,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14428",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -4165,6 +4195,78 @@
       },
       "text": "Sec. 901. The Secretaries of Commerce and the Interior shall, to the extent \npermitted by law, identify and prioritize critical living resources of the \nChesapeake Bay and its watershed, conduct collaborative research and habitat \nprotection activities that address expected outcomes for these species, and \ndevelop a report addressing these topics as required in section 202 of this \norder. The Secretaries of Commerce and the Interior shall coordinate agency \nactivities related to living resources in estuarine waters to ensure maximum \nbenefit to the Chesapeake Bay resources. \nPART 10—EXCEPTIONS"
     },
+    "CURRENT:EO:13508#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 120,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "33 U.S.C. 1267 note; note 'Ex. Ord. No. 13508. Chesapeake Bay Protection and Restoration' [USLM note id id6bab4360-3a70-11f1-9100-cf79f4fb4b3e]; usc33.xml (sha256 3c4aba3d9d7aa6413ca82154c36bf38dcf35e623f6475117a57c434d7a56d5ef) in xml_uscAll@119-121.zip",
+        "sha256": "003b6e1ad231bfa5a0762136aa4550ba23728ff76a5793d3d567390407880bee",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id6bab4360-3a70-11f1-9100-cf79f4fb4b3e",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13508#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13508",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (33 U.S.C. 1267 note)",
+      "machine_lead": true,
+      "mention_id": "usc:3d98aad1b4b4",
+      "snippet": "Ex. Ord. No. 13508. Chesapeake Bay Protection and Restoration | Ex. Ord. No. 13508, May 12, 2009, 74 F.R. 23099, provided:",
+      "source": {
+        "page_or_item": "33 U.S.C. 1267 note; note 'Ex. Ord. No. 13508. Chesapeake Bay Protection and Restoration' [USLM note id id6bab4360-3a70-11f1-9100-cf79f4fb4b3e]; usc33.xml (sha256 3c4aba3d9d7aa6413ca82154c36bf38dcf35e623f6475117a57c434d7a56d5ef) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id6bab4360-3a70-11f1-9100-cf79f4fb4b3e.txt",
+        "text_sha256": "003b6e1ad231bfa5a0762136aa4550ba23728ff76a5793d3d567390407880bee",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13508. Chesapeake Bay Protection and Restoration\nEx. Ord. No. 13508, May 12, 2009, 74 F.R. 23099, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id6bab4360-3a70-11f1-9100-cf79f4fb4b3e.txt",
+      "text_sha256": "003b6e1ad231bfa5a0762136aa4550ba23728ff76a5793d3d567390407880bee",
+      "where": "USC 33 U.S.C. 1267 note"
+    },
+    "CURRENT:EO:13508#1": {
+      "basis_code": "statutory_note_reference",
+      "char_end": 5758,
+      "char_start": 5418,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "33 U.S.C. 1267 note; note 'Chesapeake Bay Accountability and Recovery' [USLM note id id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e]; usc33.xml (sha256 3c4aba3d9d7aa6413ca82154c36bf38dcf35e623f6475117a57c434d7a56d5ef) in xml_uscAll@119-121.zip",
+        "sha256": "826921eaf1b60474587226b9daa7957d36c5850bbb7844c91c1838dfbefcc138",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13508#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13508",
+      "legal_basis_candidate": "statutory note names the order (33 U.S.C. 1267 note)",
+      "machine_lead": true,
+      "mention_id": "usc:fee5520b66a5",
+      "snippet": "...“(K) alignment with the existing Chesapeake Bay Agreement, Chesapeake Executive Council goals and priorities, and Annual Action Plan required by section 205 of Executive Order 13508 (33 U.S.C. 1267 note; relating to Chesapeake Bay protection and restoration). “(b) Minimum Funding Levels.— In describing restoration activities in the report...",
+      "source": {
+        "page_or_item": "33 U.S.C. 1267 note; note 'Chesapeake Bay Accountability and Recovery' [USLM note id id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e]; usc33.xml (sha256 3c4aba3d9d7aa6413ca82154c36bf38dcf35e623f6475117a57c434d7a56d5ef) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e.txt",
+        "text_sha256": "826921eaf1b60474587226b9daa7957d36c5850bbb7844c91c1838dfbefcc138",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "“(K)\nalignment with the existing Chesapeake Bay Agreement, Chesapeake Executive Council goals and priorities, and Annual Action Plan required by section 205 of Executive Order 13508 (33 U.S.C. 1267 note; relating to Chesapeake Bay protection and restoration).\n“(b)\nMinimum Funding Levels.—\nIn describing restoration activities in the report",
+      "text_path": "jobs/current-law/output/usc-notes/id6ba8f96c-3a70-11f1-9100-cf79f4fb4b3e.txt",
+      "text_sha256": "826921eaf1b60474587226b9daa7957d36c5850bbb7844c91c1838dfbefcc138",
+      "where": "USC 33 U.S.C. 1267 note"
+    },
     "ORIGINAL:EO:13508": {
       "acceptable_as_original": true,
       "actor_id": "EO:13508",
@@ -4972,7 +5074,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "976a0dca755ca1f5325befb984c198b8241f5852eaaa37987494c2c6401915e0",
+  "fingerprint": "f101928f3915eacd63f0e21948e7930684f6a7347397eed9ef1197f101b4a75b",
   "instrument_id": "EO:13508",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -6219,11 +6321,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 2,
       "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -6231,20 +6334,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -6289,10 +6393,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "41b1f6df1ff80c030aa3ef74396c70939ee793e82fffeecae3ef87040eeb9574",
+    "fingerprint": "76aa08f12c2f1dc65a26d5bf9a9eef3cd88225c67ad28130c83c1435edd0b4f2",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13508.json",
-    "history_sha256": "3a569484f16f7a63043b80003af566c6c4cd866a671b737d22792123c6b28027",
+    "history_sha256": "beb9f7f4a25d073b27f8571d1ab880e359d9d93e037532c3581327d9286fa96c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

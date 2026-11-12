@@ -1,0 +1,120 @@
+{
+ "wave": "lind-stage0-2026-11-12",
+ "author": "claude-opus-5-5",
+ "stage": 0,
+ "objective": {
+  "metric": "ready_gain_per_unit",
+  "text": "Orders brought to ready (6/6, after owner adoption) per dollar, reported separately for 15 orders that pass every Larrey gate and 15 that pass only the hard gates, on the repaired claim kit"
+ },
+ "actions": [
+  {
+   "id": "status_assignment.undecided",
+   "orders": 30,
+   "lanes": 1
+  }
+ ],
+ "configuration": {
+  "orchestrator": "claude-scripted",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "claude-sonnet-5-5",
+  "status_reviewer_model": "claude-opus-5-5",
+  "lifecycle_review": "two fresh blind claude-opus-5-5 arms, one planted control, both-uphold rule",
+  "review_set": "one pooled set for all submissions; per-order verdicts kept; arms blind to group and to each other",
+  "larrey_level": "hard"
+ },
+ "limits": {
+  "chain_budget_units": 6000000,
+  "spend_per_claim_units": 3000000,
+  "no_claim_minutes": 40,
+  "context_kill_tokens": 120000,
+  "reviews_per_hour": 6,
+  "coordinator_units_per_hour": 1000000
+ },
+ "premortem": [
+  {
+   "failure": "The claim-kit output is still the pre-fix build, so the test measures the old kit",
+   "guard": "draw.py refuses unless claim-kit finished after 2026-11-10T22:07Z and Larrey gates after that"
+  },
+  {
+   "failure": "Soft-failing orders are dispatch-blocked and waste producer time",
+   "guard": "kit dispatch check runs before assignment; blocked orders are recorded, not retried"
+  },
+  {
+   "failure": "Coordinator overhead grows as in Haloander",
+   "guard": "stop production if coordinator dollars exceed 0.25 per attempt after 10 orders (bentham usage)"
+  },
+  {
+   "failure": "A review error is read as yield",
+   "guard": "planted control, two fresh blind Opus arms, both-uphold rule; every disagreement adjudicated against held text"
+  },
+  {
+   "failure": "Spend runs past the cap",
+   "guard": "Savigny stops on measured spend; hard cap 35 USD list price across all agents"
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261110-papinian-undecided-u23": "Producer brief adds the YES-route current-law and later-event checklist for both arms; ready (6/6), not accepted status, is the primary endpoint.",
+  "F-20261110-papinian-undecided-u01b": "draw.py refuses until claim-kit is rebuilt after the F3-F7 merges and Larrey re-run; one-order prepare check before the draw; adoption asks filed per proposal.",
+  "F-20261110-mommsen3-undecided-probe01": "Status proposals stay isolated for owner adoption; stage 0 only, no scaling; the a+h<=1 row stops and diagnoses before any stage 1.",
+  "F-20261110-mommsen3-codex-core-sandbox": "Not a Codex or Windows run: Claude Agent-tool workers in a Linux session read the pinned packet; results are checked against the packet by kit.py.",
+  "F-20261110-mommsen-unranked-pools": "Only Bentham action status_assignment.undecided, which is ranked; claim-kit admission with LARREY_LEVEL=hard; 30 orders on one lane.",
+  "F-20261107-haloander-undecided-probe": "Bentham now has filed_per_attempt.undecided and ranks the action; the transcription refusal was fixed (Accursius F6); adoption remains the owner's step.",
+  "F-20261028-4": "Packets are prepared fresh from the rebuilt claim-kit output; nothing is reused from earlier packets or supplements.",
+  "F-20261018-7": "No URL forecasting: every source is a held file with a hash in the packet; the forecast uses measured undecided yields only.",
+  "F-20261112-kit-not-rebuilt": "draw.py refuses unless claim-kit was built after the F3-F7 merges, Larrey gates after that, and Larrey is current and enforced; the draw runs only on the merged main build.",
+  "F-20261112-soft-gates-untested": "Hard gates only (LARREY_LEVEL=hard, the default per D-20261112-larrey-hard-default); the 15 soft-failing orders are admitted and reported as their own group."
+ },
+ "review": {
+  "reviewer": "",
+  "verdict": "",
+  "plan_sha256": ""
+ },
+ "groups": {
+  "all_gates": {
+   "orders": 15,
+   "pool_at_draw": "Bentham-listed, never attempted, pass every gate (3,447 on the 2026-11-12 branch build)"
+  },
+  "hard_only": {
+   "orders": 15,
+   "pool_at_draw": "Bentham-listed, never attempted, pass the hard gates and fail a soft gate (1,834 on the 2026-11-12 branch build)"
+  },
+  "draw": "research/lind/stage0/draw.py, seed 20261112, after the merged main build; arm key held by the coordinator, never in packets, prompts or review sets",
+  "historical_regression_cases": "excluded (the 120 attempted orders are not drawn); reported only in FIX_REACH, never as prospective yield",
+  "extrapolation": "none in the decision; any population figure weights each group by its own pool size"
+ },
+ "cap_usd_list_price_all_in": {
+  "total": 35,
+  "setup": 1,
+  "coordination": 6,
+  "production": 7,
+  "review": 17,
+  "correction": 2,
+  "integration": 2,
+  "basis": "current comparable workflow (Papinian undecided, lean coordinator 0.109/attempt, producers 0.201/attempt, review sets 12.6-15.5); not Haloander's one-time repair",
+  "outside_the_cap_and_reported": "owner minutes (adoption decision, plan sign-off); runner minutes; human certification (not measured)"
+ },
+ "stop_rules": [
+  "stop production when measured spend reaches 20 USD before review",
+  "stop production if coordinator dollars exceed 0.25 per attempt after 10 orders (bentham usage)",
+  "stop and adjudicate if either arm misses the planted control",
+  "hard stop at 35 USD all-in (Savigny measured spend)"
+ ],
+ "endpoint_path": [
+  "producer status proposal and lifecycle sheet (overlay route)",
+  "independent status review",
+  "two blind lifecycle arms uphold",
+  "one owner adoption decision for the batch (as A-20261110-papinian-adopt-u01b)",
+  "readiness-tracker run",
+  "ready (6/6)"
+ ],
+ "decision_rules": {
+  "a": "ready among the 15 all-gates orders",
+  "h": "ready among the 15 hard-only orders",
+  "success": "a >= 3 and all-in dollars per ready in the all-gates group <= 9.30 (Papinian's measured lean figure): propose an Augur stage 1 on the all-gates pool",
+  "soft_gates_exclude_worthwhile_work": "h >= 2 and the hard-only group's dollars per ready <= 1.5x the all-gates group's: stage 1 draws from both pools in proportion to their sizes; the soft gates stop being a queue order",
+  "soft_gates_hold_for_now": "h <= 1 while a >= 2: soft gates stay a queue order, never an exclusion; stage 1 keeps 1 in 5 orders from the hard-only pool so false exclusion keeps being measured",
+  "unsuccessful": "a + h <= 1: no stage 1; diagnose the 30 at zero production cost (Respondendi method) before any further undecided spend",
+  "inconclusive": "a = 2 with h <= 1, or an arm disagreement that changes a count, or adoption not decided: no stage 1; adjudicate each disagreement against the held text and record why; at most one repeat stage-0 batch at the same cap, only on a new owner approval",
+  "not_decided_by_this_pilot": "population yield, campaign cost, human certification"
+ }
+}

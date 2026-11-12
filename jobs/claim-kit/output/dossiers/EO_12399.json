@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:12534",
-      "evidence_id": "ACTOR_TEXT:EO:12534"
+      "evidence_id": "ACTOR_TEXT:EO:12534",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -73,7 +74,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12399",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12399"
@@ -749,11 +750,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 350,
+      "char_start": 79,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 2501 note; note 'Ex. Ord. No. 12137. Administration of Peace Corps as an Agency Within ACTION' [USLM note id idde7d22ea-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "3aee2c2b59812bbfb69964d689aa717eec82a476cfe63274f2c4267a24aa369a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idde7d22ea-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12399",
       "legal_basis_candidate": "order amended a printed order (weak lead) (22 U.S.C. 2501 note)",
@@ -763,18 +773,32 @@
       "source": {
         "page_or_item": "22 U.S.C. 2501 note; note 'Ex. Ord. No. 12137. Administration of Peace Corps as an Agency Within ACTION' [USLM note id idde7d22ea-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idde7d22ea-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "3aee2c2b59812bbfb69964d689aa717eec82a476cfe63274f2c4267a24aa369a",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": ". Ord. No. 12137, May 16, 1979, 44 F.R. 29023, as amended by Ex. Ord. No. 12245, Oct. 6, 1980, 45 F.R. 66769; Ex. Ord. No. 12292, Feb. 23, 1981, 46 F.R. 13968; Ex. Ord. No. 12399, Dec. 31, 1982, 48 F.R. 379; Ex. Ord. No. 13724, § 1, Apr. 8, 2016, 81 F.R. 22021, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idde7d22ea-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "3aee2c2b59812bbfb69964d689aa717eec82a476cfe63274f2c4267a24aa369a",
       "where": "USC 22 U.S.C. 2501 note"
     },
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 200,
+      "char_start": 80,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 6601 note; note 'Ex. Ord. No. 12039. Transfer of Certain Science and Technology Policy Functions' [USLM note id id3bf479f1-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "f1f2137065c43c614ac06dda081e1624b690bd98221167ad84661f2a10862919",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3bf479f1-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12399",
       "legal_basis_candidate": "order amended a printed order (weak lead) (42 U.S.C. 6601 note)",
@@ -784,9 +808,14 @@
       "source": {
         "page_or_item": "42 U.S.C. 6601 note; note 'Ex. Ord. No. 12039. Transfer of Certain Science and Technology Policy Functions' [USLM note id id3bf479f1-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3bf479f1-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "f1f2137065c43c614ac06dda081e1624b690bd98221167ad84661f2a10862919",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 12039, Feb. 24, 1978, 43 F.R. 8095, as amended by Ex. Ord. No. 12399, Dec. 31, 1982, 48 F.R. 379, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3bf479f1-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "f1f2137065c43c614ac06dda081e1624b690bd98221167ad84661f2a10862919",
       "where": "USC 42 U.S.C. 6601 note"
     },
     {
@@ -855,6 +884,7 @@
         "snippet": ".... Ord. No. 12137, May 16, 1979, 44 F.R. 29023, as amended by Ex. Ord. No. 12245, Oct. 6, 1980, 45 F.R. 66769; Ex. Ord. No. 12292, Feb. 23, 1981, 46 F.R. 13968; Ex. Ord. No. 12399, Dec. 31, 1982, 48 F.R. 379; Ex. Ord. No. 13724, § 1, Apr. 8, 2016, 81 F.R. 22021, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/idde7d22ea-b816-11f1-963c-e4c4db8c41be.txt",
         "where": "USC 22 U.S.C. 2501 note"
       },
       "proposal": {
@@ -883,6 +913,7 @@
         "snippet": "Ex. Ord. No. 12039, Feb. 24, 1978, 43 F.R. 8095, as amended by Ex. Ord. No. 12399, Dec. 31, 1982, 48 F.R. 379, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id3bf479f1-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 6601 note"
       },
       "proposal": {
@@ -1287,6 +1318,7 @@
       "char_end": 5083,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12534",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1962,6 +1994,78 @@
       },
       "text": "Sec. 6. This Order shall be effective December 31,1982."
     },
+    "CURRENT:EO:12399#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 350,
+      "char_start": 79,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 2501 note; note 'Ex. Ord. No. 12137. Administration of Peace Corps as an Agency Within ACTION' [USLM note id idde7d22ea-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "3aee2c2b59812bbfb69964d689aa717eec82a476cfe63274f2c4267a24aa369a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idde7d22ea-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12399#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12399",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (22 U.S.C. 2501 note)",
+      "machine_lead": true,
+      "mention_id": "usc:c729e53f5bbd",
+      "snippet": ".... Ord. No. 12137, May 16, 1979, 44 F.R. 29023, as amended by Ex. Ord. No. 12245, Oct. 6, 1980, 45 F.R. 66769; Ex. Ord. No. 12292, Feb. 23, 1981, 46 F.R. 13968; Ex. Ord. No. 12399, Dec. 31, 1982, 48 F.R. 379; Ex. Ord. No. 13724, § 1, Apr. 8, 2016, 81 F.R. 22021, provided:",
+      "source": {
+        "page_or_item": "22 U.S.C. 2501 note; note 'Ex. Ord. No. 12137. Administration of Peace Corps as an Agency Within ACTION' [USLM note id idde7d22ea-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idde7d22ea-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "3aee2c2b59812bbfb69964d689aa717eec82a476cfe63274f2c4267a24aa369a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": ". Ord. No. 12137, May 16, 1979, 44 F.R. 29023, as amended by Ex. Ord. No. 12245, Oct. 6, 1980, 45 F.R. 66769; Ex. Ord. No. 12292, Feb. 23, 1981, 46 F.R. 13968; Ex. Ord. No. 12399, Dec. 31, 1982, 48 F.R. 379; Ex. Ord. No. 13724, § 1, Apr. 8, 2016, 81 F.R. 22021, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idde7d22ea-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "3aee2c2b59812bbfb69964d689aa717eec82a476cfe63274f2c4267a24aa369a",
+      "where": "USC 22 U.S.C. 2501 note"
+    },
+    "CURRENT:EO:12399#1": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 200,
+      "char_start": 80,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 6601 note; note 'Ex. Ord. No. 12039. Transfer of Certain Science and Technology Policy Functions' [USLM note id id3bf479f1-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "f1f2137065c43c614ac06dda081e1624b690bd98221167ad84661f2a10862919",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3bf479f1-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12399#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12399",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (42 U.S.C. 6601 note)",
+      "machine_lead": true,
+      "mention_id": "usc:612d5c38ebc3",
+      "snippet": "Ex. Ord. No. 12039, Feb. 24, 1978, 43 F.R. 8095, as amended by Ex. Ord. No. 12399, Dec. 31, 1982, 48 F.R. 379, provided:",
+      "source": {
+        "page_or_item": "42 U.S.C. 6601 note; note 'Ex. Ord. No. 12039. Transfer of Certain Science and Technology Policy Functions' [USLM note id id3bf479f1-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3bf479f1-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "f1f2137065c43c614ac06dda081e1624b690bd98221167ad84661f2a10862919",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12039, Feb. 24, 1978, 43 F.R. 8095, as amended by Ex. Ord. No. 12399, Dec. 31, 1982, 48 F.R. 379, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3bf479f1-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "f1f2137065c43c614ac06dda081e1624b690bd98221167ad84661f2a10862919",
+      "where": "USC 42 U.S.C. 6601 note"
+    },
     "ORIGINAL:EO:12399": {
       "acceptable_as_original": true,
       "actor_id": "EO:12399",
@@ -2238,7 +2342,7 @@
       "text": "The following advisory committee is continued until December 31, 1983: President's National Security Telecommunications Advisory Committee; Executive Order No. 12382 (Department of Defense)."
     }
   },
-  "fingerprint": "1762b30118cbb931a148ad5050a7b6929b16b8119e2afe942e32435c1467b9e3",
+  "fingerprint": "56be7f27b98530d5a624a1d7355a3889f154c5ff541910df558f679a405803e4",
   "instrument_id": "EO:12399",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2811,32 +2915,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 19,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2864,10 +2970,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "f1300899bc315a1f1e6492a1b1934c999d446daf909df288821a17410dbda398",
+    "fingerprint": "a393b6226304daa8599aa48753b6adf7d82a44a7c0cf782b647fce3ed3920418",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12399.json",
-    "history_sha256": "2e01b6e0160ff4f4ea40987f6ed0c61254ba7c8c68e43313c4054944d7feb27b",
+    "history_sha256": "1d59f2ed73b074eda539259fe3e21f8716cda687b92f613bdc805f4e11fc49a5",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

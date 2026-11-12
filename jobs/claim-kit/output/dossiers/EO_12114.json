@@ -1,10 +1,32 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "FRDOC:2026-12862",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:2026-12862@6120",
+        "ACTOR_TEXT:FRDOC:2026-12862@10616",
+        "ACTOR_TEXT:FRDOC:2026-12862@63113",
+        "ACTOR_TEXT:FRDOC:2026-12862@156948",
+        "ACTOR_TEXT:FRDOC:2026-12862@161589"
+      ],
+      "full_text_chars": 170362,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-2026-12862.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+      "window_bytes": 17081,
+      "windows_omitted": 1
+    },
+    {
+      "actor_id": "FRDOC:2026-15011",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2026-15011",
+      "prints_number_lexical": true
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12114",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12114"
@@ -741,11 +763,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 131,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 4321 note; note 'Ex. Ord. No. 12114. Environmental Effects Abroad of Major Federal Actions' [USLM note id id3b203abe-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "464ec9f2de3ee13a4fbf5fc80023e113b77077e4babcb289f21757d367fe1670",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3b203abe-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 4321 note)",
@@ -755,10 +786,14 @@
       "source": {
         "page_or_item": "42 U.S.C. 4321 note; note 'Ex. Ord. No. 12114. Environmental Effects Abroad of Major Federal Actions' [USLM note id id3b203abe-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3b203abe-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "464ec9f2de3ee13a4fbf5fc80023e113b77077e4babcb289f21757d367fe1670",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id3b203abe-c3e9-11f1-bd73-d95596aaa024",
+      "text": "Ex. Ord. No. 12114. Environmental Effects Abroad of Major Federal Actions\nEx. Ord. No. 12114, Jan. 4, 1979, 44 F.R. 1957, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3b203abe-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "464ec9f2de3ee13a4fbf5fc80023e113b77077e4babcb289f21757d367fe1670",
       "where": "USC 42 U.S.C. 4321 note"
     },
     {
@@ -786,18 +821,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation text names the order (15 CFR 971.606)",
       "machine_lead": true,
-      "mention_id": "ecfr:96ebfe0fab51",
+      "mention_id": "ecfr:12f06076b328",
       "snippet": "...paragraphs (a)(1)-(3) and (5) of this section also apply if approval of processing outside the United States is requested by the applicant, in accordance with Executive Order 12114 which requires the environmental review of major Federal actions abroad. Information detailing the socio-economic impacts of foreign processing activities is n...",
       "source": {
-        "page_or_item": "15 CFR 971.606 (section_text; GovInfo eCFR XML title 15, amended through 2026-11-04; NODE 15:4.1.2.4.21.6.33.7)",
-        "sha256": "80ce51ba4b62a0a6d6e00d02155fe5a040d0d484c25a140491767caf265687ad",
+        "page_or_item": "15 CFR 971.606 (section_text; GovInfo eCFR XML title 15, amended through 2026-11-09; NODE 15:4.1.2.4.21.6.33.7)",
+        "sha256": "e1f16fff52e47692cf45b509729f6971ef24831beb6ed3d54ef6809e838d511f",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
       },
       "system": "ecfr",
@@ -807,18 +842,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation text names the order (21 CFR 25.60)",
       "machine_lead": true,
-      "mention_id": "ecfr:d350de746063",
+      "mention_id": "ecfr:bd5fe4e15ca7",
       "snippet": "§ 25.60 Environmental effects abroad of major agency actions. (a) In accordance with Executive Order 12114, “Environmental Effects Abroad of Major Federal Actions” of January 4, 1979 (44 FR 1957, January 9, 1979), the responsible agency official, in analyzing action...",
       "source": {
-        "page_or_item": "21 CFR 25.60 (section_text; GovInfo eCFR XML title 21, amended through 2026-11-04; NODE 21:1.0.1.1.18.6.98.1)",
-        "sha256": "102b050ee9804e4df540d95a0c33c3e2e8652a029469f58409b88325f1bf4ea7",
+        "page_or_item": "21 CFR 25.60 (section_text; GovInfo eCFR XML title 21, amended through 2026-11-06; NODE 21:1.0.1.1.18.6.98.1)",
+        "sha256": "259668d6d47bf9668e4932a2b44551851228bb4f8fadf8f739309f46aa8d3ca4",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-21/ECFR-title21.xml"
       },
       "system": "ecfr",
@@ -975,18 +1010,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation text names the order (33 CFR 148.737)",
       "machine_lead": true,
-      "mention_id": "ecfr:0f1b83b54524",
+      "mention_id": "ecfr:098c3a0dd4e3",
       "snippet": "...531, et. seq.; Energy Efficiency and Water Conservation at Federal Facilities, E.O. 12902, 59 FR 11463; Environmental Effects Abroad of Major Federal Agencies, E.O. 12114, 44 FR 1957; Environmental Quality Improvement Act, Pub. L. 98-581, 42 U.S.C. 4371, et. seq.; Farmlands Protection Policy Act, Pub. L. 97-98, 7 U.S.C. 4201, et...",
       "source": {
-        "page_or_item": "33 CFR 148.737 (section_text; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:2.0.1.4.16.7.41.14)",
-        "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+        "page_or_item": "33 CFR 148.737 (section_text; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:2.0.1.4.16.7.41.14)",
+        "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
       },
       "system": "ecfr",
@@ -994,23 +1029,35 @@
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 1238,
+      "char_start": 984,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "33 CFR 335.6",
+        "sha256": "5c63f30bed0b0cca7bdd44ad75d8bf38303b862325c43aae4086c8e18993db52",
+        "source_id": "cfr:t33:335.6",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-33/section-335.6"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation text names the order (33 CFR 335.6)",
       "machine_lead": true,
-      "mention_id": "ecfr:d0fd7c159c19",
+      "mention_id": "ecfr:d5f6623a4a49",
       "snippet": "...24, 1977, (42 FR 26961, May 25, 1977). (m) Executive Order 12372, Intergovernmental Review of Federal Programs, July 14, 1982, (47 FR 3959, July 16, 1982). (n) Executive Order 12114, Environmental Effects Abroad of Major Federal Actions, January 4, 1979.",
       "source": {
-        "page_or_item": "33 CFR 335.6 (section_text; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:3.0.1.1.29.0.1.6)",
-        "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+        "page_or_item": "33 CFR 335.6 (section_text; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:3.0.1.1.29.0.1.6)",
+        "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t33-335.6.txt",
+        "text_sha256": "5c63f30bed0b0cca7bdd44ad75d8bf38303b862325c43aae4086c8e18993db52",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
       },
       "system": "ecfr",
+      "text": "24, 1977, (42 FR 26961, May 25, 1977).\n(m) Executive Order 12372, Intergovernmental Review of Federal Programs, July 14, 1982, (47 FR 3959, July 16, 1982).\n(n) Executive Order 12114, Environmental Effects Abroad of Major Federal Actions, January 4, 1979.",
       "where": "CFR 33 CFR 335.6"
     },
     {
@@ -1038,18 +1085,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation text names the order (40 CFR 6.400)",
       "machine_lead": true,
-      "mention_id": "ecfr:1576f2d946e6",
+      "mention_id": "ecfr:0f6ebd634189",
       "snippet": "§ 6.400 Purpose and policy. (a) Purpose. On January 4, 1979, the President signed Executive Order 12114 entitled “Environmental Effects Abroad of Major Federal Actions.” The purpose of this Executive Order is to enable responsible Federal officials in carrying ou...",
       "source": {
-        "page_or_item": "40 CFR 6.400 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-03; NODE 40:1.0.1.1.6.4.1.1)",
-        "sha256": "71e5ed46a5b670af5302a567a25ceca3e773cba074ff8b39df81849f51aa5ea0",
+        "page_or_item": "40 CFR 6.400 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-09; NODE 40:1.0.1.1.6.4.1.1)",
+        "sha256": "9dfef7d7d35c9447f51169a9ade99c7d5594ece49be885d8bcef6651cca13d33",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-40/ECFR-title40.xml"
       },
       "system": "ecfr",
@@ -1059,18 +1106,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation text names the order (40 CFR 6.403)",
       "machine_lead": true,
-      "mention_id": "ecfr:2e175543fec8",
+      "mention_id": "ecfr:fb4da228482b",
       "snippet": "...24) and Prevention of Significant Deterioration (PSD) regulations (40 CFR part 52) shall satisfy the environmental document requirement under Section 2-4(b) of Executive Order 12114. Compliance with applicable requirements in part 124 of the consolidated permit regulations (40 CFR part 124) shall be sufficient to satisfy the requirements t...",
       "source": {
-        "page_or_item": "40 CFR 6.403 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-03; NODE 40:1.0.1.1.6.4.1.4)",
-        "sha256": "71e5ed46a5b670af5302a567a25ceca3e773cba074ff8b39df81849f51aa5ea0",
+        "page_or_item": "40 CFR 6.403 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-09; NODE 40:1.0.1.1.6.4.1.4)",
+        "sha256": "9dfef7d7d35c9447f51169a9ade99c7d5594ece49be885d8bcef6651cca13d33",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-40/ECFR-title40.xml"
       },
       "system": "ecfr",
@@ -1080,18 +1127,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation text names the order (40 CFR 6.404)",
       "machine_lead": true,
-      "mention_id": "ecfr:d3e6b3088ce1",
+      "mention_id": "ecfr:63b345799716",
       "snippet": "§ 6.404 Lead or cooperating agency. (a) Lead Agency. Section 3-3 of Executive Order 12114 requires the creation of a lead agency whenever an action involves more than one Federal agency. In implementing section 3-3, EPA shall, to the fullest extent...",
       "source": {
-        "page_or_item": "40 CFR 6.404 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-03; NODE 40:1.0.1.1.6.4.1.5)",
-        "sha256": "71e5ed46a5b670af5302a567a25ceca3e773cba074ff8b39df81849f51aa5ea0",
+        "page_or_item": "40 CFR 6.404 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-09; NODE 40:1.0.1.1.6.4.1.5)",
+        "sha256": "9dfef7d7d35c9447f51169a9ade99c7d5594ece49be885d8bcef6651cca13d33",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-40/ECFR-title40.xml"
       },
       "system": "ecfr",
@@ -1101,18 +1148,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-05)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation text names the order (45 CFR 641.10)",
       "machine_lead": true,
-      "mention_id": "ecfr:6cec652b6d98",
+      "mention_id": "ecfr:52d98ac7c29e",
       "snippet": "...before reaching final decisions on whether or how to proceed with proposed actions. These procedures are consistent with and implement the requirements of: (a) Executive Order 12114 as it relates to NSF's Antarctic activities, and (b) the environmental assessment provisions of the Protocol on Environmental Protection to the Antarctic Treat...",
       "source": {
-        "page_or_item": "45 CFR 641.10 (section_text; GovInfo eCFR XML title 45, amended through 2026-11-03; NODE 45:4.1.2.5.18.0.1.1)",
-        "sha256": "017ac4c5803ffedd722968b917868e7575bb59ce9169fae0be502402d490b1e0",
+        "page_or_item": "45 CFR 641.10 (section_text; GovInfo eCFR XML title 45, amended through 2026-11-05; NODE 45:4.1.2.5.18.0.1.1)",
+        "sha256": "6e651c68a2c6323720597d542266481366a7c3fd98ae892c02274be95f276878",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-45/ECFR-title45.xml"
       },
       "system": "ecfr",
@@ -1122,18 +1169,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-05)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation text names the order (45 CFR 641.14)",
       "machine_lead": true,
-      "mention_id": "ecfr:cdad92e61a3b",
+      "mention_id": "ecfr:ed102c71658d",
       "snippet": "...review by the parties to the Protocol, and committees established under the Protocol for that purpose, and the public, as applicable. (i) Executive Order means Executive Order 12114, Environmental Effects Abroad of Major Federal Actions, 44 FR 1957. (j) Initial Environmental Evaluation or IEE means a study of the reasonably foreseeable pot...",
       "source": {
-        "page_or_item": "45 CFR 641.14 (section_text; GovInfo eCFR XML title 45, amended through 2026-11-03; NODE 45:4.1.2.5.18.0.1.5)",
-        "sha256": "017ac4c5803ffedd722968b917868e7575bb59ce9169fae0be502402d490b1e0",
+        "page_or_item": "45 CFR 641.14 (section_text; GovInfo eCFR XML title 45, amended through 2026-11-05; NODE 45:4.1.2.5.18.0.1.5)",
+        "sha256": "6e651c68a2c6323720597d542266481366a7c3fd98ae892c02274be95f276878",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-45/ECFR-title45.xml"
       },
       "system": "ecfr",
@@ -1164,18 +1211,18 @@
       "basis_code": "cfr_authority_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation authority citation lists the order (21 CFR part 25)",
       "machine_lead": true,
-      "mention_id": "ecfr:9ffa27ed57f7",
+      "mention_id": "ecfr:78571ddf5f3f",
       "snippet": "...1, 4332; 40 CFR parts 1500-1508; E.O. 11514, 35 FR 4247, 3 CFR, 1971 Comp., p. 531-533 as amended by E.O. 11991, 42 FR 26967, 3 CFR, 1978 Comp., p. 123-124 and E.O. 12114, 44 FR 1957, 3 CFR, 1980 Comp., p. 356-360.",
       "source": {
-        "page_or_item": "21 CFR part 25 (part_authority; GovInfo eCFR XML title 21, amended through 2026-11-04; NODE 21:1.0.1.1.18)",
-        "sha256": "102b050ee9804e4df540d95a0c33c3e2e8652a029469f58409b88325f1bf4ea7",
+        "page_or_item": "21 CFR part 25 (part_authority; GovInfo eCFR XML title 21, amended through 2026-11-06; NODE 21:1.0.1.1.18)",
+        "sha256": "259668d6d47bf9668e4932a2b44551851228bb4f8fadf8f739309f46aa8d3ca4",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-21/ECFR-title21.xml"
       },
       "system": "ecfr",
@@ -1185,18 +1232,18 @@
       "basis_code": "cfr_authority_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation authority citation lists the order (40 CFR part 6)",
       "machine_lead": true,
-      "mention_id": "ecfr:4d8067fc57cd",
+      "mention_id": "ecfr:fc828b9bc760",
       "snippet": "Authority: 42 U.S.C. 4321, note, E.O. 12114, 44 FR 1979, 3 CFR, 1979 Comp., p. 356.",
       "source": {
-        "page_or_item": "40 CFR part 6 (part_authority; GovInfo eCFR XML title 40, amended through 2026-11-03; NODE 40:1.0.1.1.6.4)",
-        "sha256": "71e5ed46a5b670af5302a567a25ceca3e773cba074ff8b39df81849f51aa5ea0",
+        "page_or_item": "40 CFR part 6 (part_authority; GovInfo eCFR XML title 40, amended through 2026-11-09; NODE 40:1.0.1.1.6.4)",
+        "sha256": "9dfef7d7d35c9447f51169a9ade99c7d5594ece49be885d8bcef6651cca13d33",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-40/ECFR-title40.xml"
       },
       "system": "ecfr",
@@ -1206,18 +1253,18 @@
       "basis_code": "cfr_authority_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-05)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation authority citation lists the order (45 CFR part 641)",
       "machine_lead": true,
-      "mention_id": "ecfr:15e3110d8c6c",
+      "mention_id": "ecfr:29b4ccecaf0c",
       "snippet": "Authority: E.O. 12114, 44 FR 1957, 3 CFR 1979 Comp., p. 356.",
       "source": {
-        "page_or_item": "45 CFR part 641 (part_authority; GovInfo eCFR XML title 45, amended through 2026-11-03; NODE 45:4.1.2.5.18)",
-        "sha256": "017ac4c5803ffedd722968b917868e7575bb59ce9169fae0be502402d490b1e0",
+        "page_or_item": "45 CFR part 641 (part_authority; GovInfo eCFR XML title 45, amended through 2026-11-05; NODE 45:4.1.2.5.18)",
+        "sha256": "6e651c68a2c6323720597d542266481366a7c3fd98ae892c02274be95f276878",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-45/ECFR-title45.xml"
       },
       "system": "ecfr",
@@ -1227,18 +1274,18 @@
       "basis_code": "cfr_authority_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12114",
       "legal_basis_candidate": "regulation authority citation lists the order (7 CFR part 1b)",
       "machine_lead": true,
-      "mention_id": "ecfr:3918383e370e",
+      "mention_id": "ecfr:8f8969e28d0a",
       "snippet": "Authority: 5 U.S.C. 301; 42 U.S.C. 4321-4347; E.O. 11514, 3 CFR, 1966-1970 Comp., p. 902, as amended by E.O. 11991, 3 CFR, 1978 Comp., p. 123; E.O. 12114, 3 CFR, 1980 Comp., p. 356; 40 CFR 1507.3.",
       "source": {
-        "page_or_item": "7 CFR part 1b (part_authority; GovInfo eCFR XML title 7, amended through 2026-10-29; NODE 7:1.1.1.1.3)",
-        "sha256": "9caedb2f22babcb6e19a009952a2fd1dda106c257dd4457e261d79fb53783e9f",
+        "page_or_item": "7 CFR part 1b (part_authority; GovInfo eCFR XML title 7, amended through 2026-11-09; NODE 7:1.1.1.1.3)",
+        "sha256": "66767643eb344a5f46a797da34be8da706f5693b1ce197d13ec9584b6075de85",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-7/ECFR-title7.xml"
       },
       "system": "ecfr",
@@ -1349,10 +1396,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:9ffa27ed57f7",
+        "mention_id": "ecfr:78571ddf5f3f",
         "snippet": "...1, 4332; 40 CFR parts 1500-1508; E.O. 11514, 35 FR 4247, 3 CFR, 1971 Comp., p. 531-533 as amended by E.O. 11991, 42 FR 26967, 3 CFR, 1978 Comp., p. 123-124 and E.O. 12114, 44 FR 1957, 3 CFR, 1980 Comp., p. 356-360.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1362,8 +1409,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (21 CFR part 25)",
         "source": {
-          "page_or_item": "21 CFR part 25 (part_authority; GovInfo eCFR XML title 21, amended through 2026-11-04; NODE 21:1.0.1.1.18)",
-          "sha256": "102b050ee9804e4df540d95a0c33c3e2e8652a029469f58409b88325f1bf4ea7",
+          "page_or_item": "21 CFR part 25 (part_authority; GovInfo eCFR XML title 21, amended through 2026-11-06; NODE 21:1.0.1.1.18)",
+          "sha256": "259668d6d47bf9668e4932a2b44551851228bb4f8fadf8f739309f46aa8d3ca4",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-21/ECFR-title21.xml"
         }
       }
@@ -1377,10 +1424,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:4d8067fc57cd",
+        "mention_id": "ecfr:fc828b9bc760",
         "snippet": "Authority: 42 U.S.C. 4321, note, E.O. 12114, 44 FR 1979, 3 CFR, 1979 Comp., p. 356.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1390,8 +1437,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (40 CFR part 6)",
         "source": {
-          "page_or_item": "40 CFR part 6 (part_authority; GovInfo eCFR XML title 40, amended through 2026-11-03; NODE 40:1.0.1.1.6.4)",
-          "sha256": "71e5ed46a5b670af5302a567a25ceca3e773cba074ff8b39df81849f51aa5ea0",
+          "page_or_item": "40 CFR part 6 (part_authority; GovInfo eCFR XML title 40, amended through 2026-11-09; NODE 40:1.0.1.1.6.4)",
+          "sha256": "9dfef7d7d35c9447f51169a9ade99c7d5594ece49be885d8bcef6651cca13d33",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-40/ECFR-title40.xml"
         }
       }
@@ -1405,10 +1452,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-05)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:15e3110d8c6c",
+        "mention_id": "ecfr:29b4ccecaf0c",
         "snippet": "Authority: E.O. 12114, 44 FR 1957, 3 CFR 1979 Comp., p. 356.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1418,8 +1465,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (45 CFR part 641)",
         "source": {
-          "page_or_item": "45 CFR part 641 (part_authority; GovInfo eCFR XML title 45, amended through 2026-11-03; NODE 45:4.1.2.5.18)",
-          "sha256": "017ac4c5803ffedd722968b917868e7575bb59ce9169fae0be502402d490b1e0",
+          "page_or_item": "45 CFR part 641 (part_authority; GovInfo eCFR XML title 45, amended through 2026-11-05; NODE 45:4.1.2.5.18)",
+          "sha256": "6e651c68a2c6323720597d542266481366a7c3fd98ae892c02274be95f276878",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-45/ECFR-title45.xml"
         }
       }
@@ -1433,10 +1480,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:3918383e370e",
+        "mention_id": "ecfr:8f8969e28d0a",
         "snippet": "Authority: 5 U.S.C. 301; 42 U.S.C. 4321-4347; E.O. 11514, 3 CFR, 1966-1970 Comp., p. 902, as amended by E.O. 11991, 3 CFR, 1978 Comp., p. 123; E.O. 12114, 3 CFR, 1980 Comp., p. 356; 40 CFR 1507.3.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1446,8 +1493,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (7 CFR part 1b)",
         "source": {
-          "page_or_item": "7 CFR part 1b (part_authority; GovInfo eCFR XML title 7, amended through 2026-10-29; NODE 7:1.1.1.1.3)",
-          "sha256": "9caedb2f22babcb6e19a009952a2fd1dda106c257dd4457e261d79fb53783e9f",
+          "page_or_item": "7 CFR part 1b (part_authority; GovInfo eCFR XML title 7, amended through 2026-11-09; NODE 7:1.1.1.1.3)",
+          "sha256": "66767643eb344a5f46a797da34be8da706f5693b1ce197d13ec9584b6075de85",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-7/ECFR-title7.xml"
         }
       }
@@ -1489,10 +1536,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:96ebfe0fab51",
+        "mention_id": "ecfr:12f06076b328",
         "snippet": "...paragraphs (a)(1)-(3) and (5) of this section also apply if approval of processing outside the United States is requested by the applicant, in accordance with Executive Order 12114 which requires the environmental review of major Federal actions abroad. Information detailing the socio-economic im ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1502,8 +1549,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (15 CFR 971.606)",
         "source": {
-          "page_or_item": "15 CFR 971.606 (section_text; GovInfo eCFR XML title 15, amended through 2026-11-04; NODE 15:4.1.2.4.21.6.33.7)",
-          "sha256": "80ce51ba4b62a0a6d6e00d02155fe5a040d0d484c25a140491767caf265687ad",
+          "page_or_item": "15 CFR 971.606 (section_text; GovInfo eCFR XML title 15, amended through 2026-11-09; NODE 15:4.1.2.4.21.6.33.7)",
+          "sha256": "e1f16fff52e47692cf45b509729f6971ef24831beb6ed3d54ef6809e838d511f",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
         }
       }
@@ -1517,10 +1564,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:d350de746063",
+        "mention_id": "ecfr:bd5fe4e15ca7",
         "snippet": "§ 25.60 Environmental effects abroad of major agency actions. (a) In accordance with Executive Order 12114, “Environmental Effects Abroad of Major Federal Actions” of January 4, 1979 (44 FR 1957, January 9, 1979), the responsible agency official, in analyzing action...",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1530,8 +1577,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (21 CFR 25.60)",
         "source": {
-          "page_or_item": "21 CFR 25.60 (section_text; GovInfo eCFR XML title 21, amended through 2026-11-04; NODE 21:1.0.1.1.18.6.98.1)",
-          "sha256": "102b050ee9804e4df540d95a0c33c3e2e8652a029469f58409b88325f1bf4ea7",
+          "page_or_item": "21 CFR 25.60 (section_text; GovInfo eCFR XML title 21, amended through 2026-11-06; NODE 21:1.0.1.1.18.6.98.1)",
+          "sha256": "259668d6d47bf9668e4932a2b44551851228bb4f8fadf8f739309f46aa8d3ca4",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-21/ECFR-title21.xml"
         }
       }
@@ -1744,10 +1791,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:0f1b83b54524",
+        "mention_id": "ecfr:098c3a0dd4e3",
         "snippet": "...531, et. seq.; Energy Efficiency and Water Conservation at Federal Facilities, E.O. 12902, 59 FR 11463; Environmental Effects Abroad of Major Federal Agencies, E.O. 12114, 44 FR 1957; Environmental Quality Improvement Act, Pub. L. 98-581, 42 U.S.C. 4371, et. seq.; Farmlands Protection Policy Act, ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1757,8 +1804,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (33 CFR 148.737)",
         "source": {
-          "page_or_item": "33 CFR 148.737 (section_text; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:2.0.1.4.16.7.41.14)",
-          "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+          "page_or_item": "33 CFR 148.737 (section_text; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:2.0.1.4.16.7.41.14)",
+          "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
         }
       }
@@ -1772,10 +1819,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:d0fd7c159c19",
+        "mention_id": "ecfr:d5f6623a4a49",
         "snippet": "...24, 1977, (42 FR 26961, May 25, 1977). (m) Executive Order 12372, Intergovernmental Review of Federal Programs, July 14, 1982, (47 FR 3959, July 16, 1982). (n) Executive Order 12114, Environmental Effects Abroad of Major Federal Actions, January 4, 1979.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1785,8 +1832,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (33 CFR 335.6)",
         "source": {
-          "page_or_item": "33 CFR 335.6 (section_text; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:3.0.1.1.29.0.1.6)",
-          "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+          "page_or_item": "33 CFR 335.6 (section_text; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:3.0.1.1.29.0.1.6)",
+          "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
         }
       }
@@ -1829,10 +1876,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:1576f2d946e6",
+        "mention_id": "ecfr:0f6ebd634189",
         "snippet": "§ 6.400 Purpose and policy. (a) Purpose. On January 4, 1979, the President signed Executive Order 12114 entitled “Environmental Effects Abroad of Major Federal Actions.” The purpose of this Executive Order is to enable responsible Federal officials in carrying ou...",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1842,8 +1889,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (40 CFR 6.400)",
         "source": {
-          "page_or_item": "40 CFR 6.400 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-03; NODE 40:1.0.1.1.6.4.1.1)",
-          "sha256": "71e5ed46a5b670af5302a567a25ceca3e773cba074ff8b39df81849f51aa5ea0",
+          "page_or_item": "40 CFR 6.400 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-09; NODE 40:1.0.1.1.6.4.1.1)",
+          "sha256": "9dfef7d7d35c9447f51169a9ade99c7d5594ece49be885d8bcef6651cca13d33",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-40/ECFR-title40.xml"
         }
       }
@@ -1857,10 +1904,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:2e175543fec8",
+        "mention_id": "ecfr:fb4da228482b",
         "snippet": "...24) and Prevention of Significant Deterioration (PSD) regulations (40 CFR part 52) shall satisfy the environmental document requirement under Section 2-4(b) of Executive Order 12114. Compliance with applicable requirements in part 124 of the consolidated permit regulations (40 CFR part 124) shall ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1870,8 +1917,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (40 CFR 6.403)",
         "source": {
-          "page_or_item": "40 CFR 6.403 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-03; NODE 40:1.0.1.1.6.4.1.4)",
-          "sha256": "71e5ed46a5b670af5302a567a25ceca3e773cba074ff8b39df81849f51aa5ea0",
+          "page_or_item": "40 CFR 6.403 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-09; NODE 40:1.0.1.1.6.4.1.4)",
+          "sha256": "9dfef7d7d35c9447f51169a9ade99c7d5594ece49be885d8bcef6651cca13d33",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-40/ECFR-title40.xml"
         }
       }
@@ -1885,10 +1932,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:d3e6b3088ce1",
+        "mention_id": "ecfr:63b345799716",
         "snippet": "§ 6.404 Lead or cooperating agency. (a) Lead Agency. Section 3-3 of Executive Order 12114 requires the creation of a lead agency whenever an action involves more than one Federal agency. In implementing section 3-3, EPA shall, to the fullest extent...",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1898,8 +1945,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (40 CFR 6.404)",
         "source": {
-          "page_or_item": "40 CFR 6.404 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-03; NODE 40:1.0.1.1.6.4.1.5)",
-          "sha256": "71e5ed46a5b670af5302a567a25ceca3e773cba074ff8b39df81849f51aa5ea0",
+          "page_or_item": "40 CFR 6.404 (section_text; GovInfo eCFR XML title 40, amended through 2026-11-09; NODE 40:1.0.1.1.6.4.1.5)",
+          "sha256": "9dfef7d7d35c9447f51169a9ade99c7d5594ece49be885d8bcef6651cca13d33",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-40/ECFR-title40.xml"
         }
       }
@@ -1913,10 +1960,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-05)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:6cec652b6d98",
+        "mention_id": "ecfr:52d98ac7c29e",
         "snippet": "...before reaching final decisions on whether or how to proceed with proposed actions. These procedures are consistent with and implement the requirements of: (a) Executive Order 12114 as it relates to NSF's Antarctic activities, and (b) the environmental assessment provisions of the Protocol on Env ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1926,8 +1973,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (45 CFR 641.10)",
         "source": {
-          "page_or_item": "45 CFR 641.10 (section_text; GovInfo eCFR XML title 45, amended through 2026-11-03; NODE 45:4.1.2.5.18.0.1.1)",
-          "sha256": "017ac4c5803ffedd722968b917868e7575bb59ce9169fae0be502402d490b1e0",
+          "page_or_item": "45 CFR 641.10 (section_text; GovInfo eCFR XML title 45, amended through 2026-11-05; NODE 45:4.1.2.5.18.0.1.1)",
+          "sha256": "6e651c68a2c6323720597d542266481366a7c3fd98ae892c02274be95f276878",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-45/ECFR-title45.xml"
         }
       }
@@ -1941,10 +1988,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-05)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:cdad92e61a3b",
+        "mention_id": "ecfr:ed102c71658d",
         "snippet": "...review by the parties to the Protocol, and committees established under the Protocol for that purpose, and the public, as applicable. (i) Executive Order means Executive Order 12114, Environmental Effects Abroad of Major Federal Actions, 44 FR 1957. (j) Initial Environmental Evaluation or IEE mea ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1954,8 +2001,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (45 CFR 641.14)",
         "source": {
-          "page_or_item": "45 CFR 641.14 (section_text; GovInfo eCFR XML title 45, amended through 2026-11-03; NODE 45:4.1.2.5.18.0.1.5)",
-          "sha256": "017ac4c5803ffedd722968b917868e7575bb59ce9169fae0be502402d490b1e0",
+          "page_or_item": "45 CFR 641.14 (section_text; GovInfo eCFR XML title 45, amended through 2026-11-05; NODE 45:4.1.2.5.18.0.1.5)",
+          "sha256": "6e651c68a2c6323720597d542266481366a7c3fd98ae892c02274be95f276878",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-45/ECFR-title45.xml"
         }
       }
@@ -2068,6 +2115,186 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:FRDOC:2026-12862@10616": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-12862",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 14010,
+      "char_start": 10616,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-12862@10616",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-12862",
+        "page_or_item": "91 FR 38359; FR Doc. 2026-12862; Proposed Rule: Update of Procedures for Implementing the National Environmental Policy Act and Assessing the Environmental Effects Abroad of EPA Actions",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-12862.txt",
+        "text_sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/06/25/2026-12862.txt"
+      },
+      "text": "content of an EIS prepared pursuant to subparts E through I. Subpart C \ndescribed the requirements for coordination of applicable environmental \nlaws and certain executive orders with the environmental review \nprocedures. It provided a brief recitation of the provisions of those \nlaws or executive orders and EPA implementing procedures. Subpart D \ndescribed the public information requirements to be undertaken in \nconjunction with the environmental review requirements under subparts E \nthrough I. Subparts E through I established specific criteria for \nconducting environmental reviews for particular types of actions and \ncategorical exclusions applicable to those actions. Specifically, \nsubpart E established NEPA environmental review procedures for the \nWastewater Treatment Construction Grants Program of the Clean Water \nAct; subpart F for the issuance of new source NPDES permits; subpart G \nfor research and development program actions; subpart H for solid waste \ndemonstration projects; and subpart I for EPA actions for\n\n[[Page 38361]]\n\nconstruction of special purpose facilities or facility renovations. The \nEPA's ``Statement of Procedures on Floodplain Management and Wetlands \nProtection,'' dated January 5, 1979, was included as Appendix A to \nclarify the effective date and to emphasize the importance of this \nStatement of Procedures.\n    In 1981, Subpart J, ``Assessing the Environmental Effects Abroad of \nEPA Actions,'' was added as the EPA's general policy, criteria, and \nprocedures for implementing E.O. 12114, ``Environmental Effects Abroad \nof Major Federal Actions'' (see 46 FR 3364). E.O. 12114 does not impose \nNEPA compliance requirements on Federal agencies, rather it ``furthers \nthe purpose'' of NEPA and identifies the documents, including EISs and \nEAs, to be used when conducting assessments under E.O. 12114.\n    In 1982, the Agency revised its Part 6 NEPA regulations by removing \nCEQ from the consultation process on requests to segment wastewater \ntreatment facility construction grant projects (see 47 FR 9831). In \n1983, the EPA revised the categorical exclusions and the criteria for \nnot granting an exclusion and corrected a factual error on the \nresponsibility for preparing a final EA (see 48 FR 1012).\n    In 1985, the Agency promulgated procedural amendments and minor \nsubstantive amendments to its Part 6 NEPA regulations to accommodate \nchanges in EPA's regulations for the construction grants program found \nat 40 CFR part 35 (see 50 FR 26310). The modifications in the \nconstruction grants program changed the process that EPA grant \nrecipients followed in planning and building wastewater treatment \nfacilities. The amendments to Subpart E and related sections of the EPA \nNEPA regulations streamlined and clarified the criteria and process for \nan environmental review and for preparing an EIS, including \npartitioning of the review process and the public involvement \nrequirements. These amendments also included office name and technical \nchanges to reflect an Agency reorganization.\n    In 1986, the EPA amended its Part 6 NEPA regulations to clarify and \nstreamline procedures for partitioning and re-evaluating environmental \nreviews, making categorical exclusion determinations, providing for \npublic participation, and producing and distributing environmental \nreview documents; and to make various technical changes including \n"
+    },
+    "ACTOR_TEXT:FRDOC:2026-12862@156948": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-12862",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 161589,
+      "char_start": 156948,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-12862@156948",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-12862",
+        "page_or_item": "91 FR 38359; FR Doc. 2026-12862; Proposed Rule: Update of Procedures for Implementing the National Environmental Policy Act and Assessing the Environmental Effects Abroad of EPA Actions",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-12862.txt",
+        "text_sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/06/25/2026-12862.txt"
+      },
+      "text": "the environmental document. Major changes to the schedule will be \ndocumented in writing.\n    (b) In order to make a decision on the action, the Responsible \nOfficial must independently evaluate the information submitted in the \nEA or EIS and any associated documents and issue an EA or EIS. After \nreview of, and appropriate changes to, the EA or EIS submitted by the \napplicant, the Responsible Official may accept it as EPA's document. \nThe Responsible Official is responsible for the scope, accuracy, and \ncontents of the EA or EIS and any associated documents.\n    (c) The terms of the contract between the applicant and the \napplicant-hired contractor must ensure that the contractor does not \nhave recourse to EPA for financial or other claims arising under the \ncontract, and that the Responsible Official, or other EPA designee, may \ngive technical advice to the contractor.\n    (d) Project sponsors intending to pay a fee for an expedited EIS or \nEA deadline, pursuant to NEPA section 112 for which EPA would be the \nlead agency, should consult with the EPA Responsible Official before \nsubmitting a request to the CEQ. EPA will use such consultation to \ndetermine an accurate description of the proposed action, the \nanticipated scope of environmental review including whether to prepare \nan EA or EIS, and the anticipated EIS or EA-associated costs.\n\nSubpart D--Assessing the Environmental Effects Abroad of EPA \nActions\n\n\nSec.  6.400  Purpose and policy.\n\n    (a) Purpose. On January 4, 1979, the President signed Executive \nOrder 12114 titled ``Environmental Effects Abroad of Major Federal \nActions.'' The purpose of this Executive Order is to enable responsible \nFederal officials in carrying out or approving major Federal actions \nwhich affect foreign nations or the global commons to be informed of\n\n[[Page 38381]]\n\npertinent environmental considerations and to consider fully the \nenvironmental impacts of the actions undertaken. While based on \nindependent authority, this Order furthers the purpose of the National \nEnvironmental Policy Act (NEPA) (42 U.S.C. 4321 et seq.) and the Marine \nProtection, Research, and Sanctuaries Act (MPRSA) (33 U.S.C. 1401 et \nseq.). The procedures set forth below reflect EPA's responsibilities as \nunder the Executive Order and satisfy the requirement for issuance of \nprocedures under section 2-1 of the Executive Order.\n    (b) Policy. It shall be the policy of this Agency to carry out the \npurpose and requirements of the Executive Order to the fullest extent \npossible. EPA, within the realm of its expertise, shall work with the \nDepartment of State and the Council on Environmental Quality to provide \ninformation to other Federal agencies and foreign nations to heighten \nawareness of and interest in the environment. EPA shall further \ncooperate to the extent possible with Federal agencies to lend special \nexpertise and assistance in the preparation of required environmental \ndocuments under the Executive Order. EPA shall perform environmental \nreviews of activities significantly affecting the global commons and \nforeign nations as required under Executive Order 12114, applicable \nFederal statutes, and as set forth under this subpart.\n\n\nSec.  6.401  Applicability.\n\n    (a) Administrative actions requiring environmental review under \nthis subpart. The environmental review requirements apply to the \nactivities of EPA as follows:\n    (1) Major research or demonstration projects which affect the \nglobal commons or a foreign nation.\n    (2) Ocean dumping activities carried out under section 102 of the \nMPRSA which affect the related environment.\n    (3) Major permitting or licensing by EPA of facilities which affect \nthe global commons or the environment of a foreign nation. This may \ninclude such actions as the issuance by EPA of hazardous waste \ntreatment, storage, or disposal facility permits pursuant to section \n3005 of the Resource Conservation and Recovery Act (42 U.S.C. 6925), \nNPDES permits pursuant to section 402 of the Clean Water Act (33 U.S.C. \n1342), and prevention of significant deterioration approvals pursuant \nto Part C of the Clean Air Act (42 U.S.C. 7470 et seq.).\n    (4) Wastewater Treatment Construction Grants Program under section \n201 of the Clean Water Act when activities addressed in the facility \nplan would have environmental effects abroad.\n    (5) Other EPA activities as determined by the Federal Activities \nDivision (FAD) and Office of International and Tribal Affairs (OITA) \n(see Sec.  6.406(c)).\n    (b) [Reserved]\n\n\nSec.  6.402   Definitions.\n\n    As used in this subpart, environment means the natural and physical \n"
+    },
+    "ACTOR_TEXT:FRDOC:2026-12862@161589": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-12862",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 163650,
+      "char_start": 161589,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-12862@161589",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-12862",
+        "page_or_item": "91 FR 38359; FR Doc. 2026-12862; Proposed Rule: Update of Procedures for Implementing the National Environmental Policy Act and Assessing the Environmental Effects Abroad of EPA Actions",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-12862.txt",
+        "text_sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/06/25/2026-12862.txt"
+      },
+      "text": "environment and excludes social, economic and other environments (as \nstated in Executive Order 12114); global commons is that area (land, \nair, water) outside the jurisdiction of any nation; and the Responsible \nOfficial is either the EPA Assistant Administrator or Regional \nAdministrator as appropriate for the particular EPA program. Also, an \naction significantly affects the environment if it does significant \nharm to the environment even though on balance the action may be \nbeneficial to the environment (as stated in Executive Order 12114). To \nthe extent applicable, the Responsible Official shall address the \nconsiderations set forth in the EPA regulations under subparts A \nthrough C of Part 6 in determining significant effect.\n\n\nSec.  6.403   Environmental review and assessment requirements.\n\n    (a) Research and demonstration projects. The appropriate Assistant \nAdministrator is responsible for performing the necessary degree of \nenvironmental review on research and demonstration projects undertaken \nby EPA. If the research or demonstration project affects the \nenvironment of the global commons, the applicant shall prepare an \nenvironmental analysis. This will assist the Responsible Official in \ndetermining whether an EIS is necessary. If it is determined that the \naction significantly affects the environment of the global commons, \nthen an EIS shall be prepared. If the undertaking significantly affects \na foreign nation, EPA shall prepare a unilateral, bilateral or \nmultilateral environmental study. EPA shall afford the affected foreign \nnation or international body or organization an opportunity to \nparticipate in this study. This environmental study shall discuss the \nneed for the action, analyze the environmental impact of the various \nalternatives considered and list the agencies and other parties \nconsulted.\n    (b) Ocean dumping activities. The Assistant Administrator for Water \nshall ensure the preparation of appropriate environmental documents \nrelating to ocean dumping activities in the global commons under \n"
+    },
+    "ACTOR_TEXT:FRDOC:2026-12862@6120": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-12862",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 9534,
+      "char_start": 6120,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-12862@6120",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-12862",
+        "page_or_item": "91 FR 38359; FR Doc. 2026-12862; Proposed Rule: Update of Procedures for Implementing the National Environmental Policy Act and Assessing the Environmental Effects Abroad of EPA Actions",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-12862.txt",
+        "text_sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/06/25/2026-12862.txt"
+      },
+      "text": "consider to be Confidential Business Information (CBI), Proprietary \nBusiness Information (PBI), or other information whose disclosure is \nrestricted by statute. Multimedia submissions (audio, video, etc.) must \nbe accompanied by a written comment. The written comment is considered \nthe official comment and should include discussion of all points you \nwish to make. The EPA will generally not consider comments or comment \ncontents located outside of the primary submission (i.e., on the web, \ncloud, or other file sharing system). For additional submission \nmethods, the full EPA public comment policy, information about CBI, \nPBI, or multimedia submissions, and general guidance on making \neffective comments, please visit <a href=\"https://www.epa.gov/dockets/commenting-epa-dockets\">https://www.epa.gov/dockets/commenting-epa-dockets</a>.\n\nII. General Information\n\nDoes this proposed rule apply to me?\n\n    Those subject to the proposed rule include EPA employees who must \ncomply with NEPA, and certain funding and permit applicants (1) who \nmust submit environmental information documentation for the EPA's use \nin its NEPA review process or (2) who are preparing an environmental \nassessment (EA) or environmental impact statement (EIS) for their \nproposed projects. To determine whether your project would be subject \nto these proposed procedures, you should carefully examine the \napplicability criteria in 40 CFR 6.101, subpart C of the part 6 NEPA \nimplementing procedures, and Sec.  6.401 regarding E.O. 12114 \nimplementing procedures in this proposed rule.\n\nIII. Introduction\n\nA. Statutory Authority\n\n    NEPA, as amended, 42 U.S.C. 4321-4347, establishes a national \nenvironmental policy for protection of the environment and requires all \nFederal agencies to assess the environmental impact of their actions. \n42 U.S.C. 4332(2)(C).\n    E.O. 12114, Environmental Effects Abroad of Major Federal Actions \n(44 FR 1957, Jan. 4, 1979), is the basis for EPA's policy, criteria, \nand procedures contained in Subpart D of the proposed rule entitled \n``Assessing the Environmental Effects Abroad of EPA Actions.''\n    The EPA is also issuing this proposed rule under its housekeeping \nauthority. 5 U.S.C. 301 authorizes an agency head to prescribe \nregulations governing their department and the performance of its \nbusiness, among other purposes. The EPA gained all housekeeping \nauthorities under 5 U.S.C. 301 through the Reorganization Plan No. 3 of \n1970, 84 Stat. 2086 (July 9, 1970), codified at 5 U.S.C. App. 189, as \nrecognized by the U.S. Department of Justice Office of Legal Counsel. \nSee ``Authority of EPA to Hold Employees Liable for Negligent Loss, \nDamage, or Destruction of Government Personal Property,'' 32 O.L.C. 79, \n2008 WL 4422366 at *4 (May 28, 2008).\n\nB. Background\n\n    The EPA initially established its NEPA implementing regulations as \n40 CFR part 6 (part 6), subparts A through H on April 14, 1975 (see 40 \nFR 16823). Subpart I was added on January 11, 1977 (see 42 FR 2450). On \nMay 24, 1977, President Carter issued E.O. 11991, Relating to \nProtection and Enhancement of Environmental Quality, which amended E.O. \n11514, Protection and Enhancement of Environmental Quality, by \nrequiring CEQ to issue Governmentwide regulations for the \nimplementation of section 102(2) of NEPA and requiring agencies to \ncomply with these CEQ-issued regulations except where such compliance \n"
+    },
+    "ACTOR_TEXT:FRDOC:2026-12862@63113": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-12862",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 66684,
+      "char_start": 63113,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-12862@63113",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-12862",
+        "page_or_item": "91 FR 38359; FR Doc. 2026-12862; Proposed Rule: Update of Procedures for Implementing the National Environmental Policy Act and Assessing the Environmental Effects Abroad of EPA Actions",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-12862.txt",
+        "text_sha256": "d55d373932d3c580c02d8fb194162a64369a81d5d9facfd8186b4490966d89fb",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/06/25/2026-12862.txt"
+      },
+      "text": "and is believed to result in no changes to the information collection \nrequirements.\n\nE. Regulatory Flexibility Act\n\n    The EPA certifies that this action will not have a significant \neconomic impact on a substantial number of small entities under the \nRegulatory Flexibility Act. This action will not impose any new \nrequirements on small entities. The proposed rule applies to the EPA \nand its procedures for implementing the provisions of NEPA.\n\nF. Unfunded Mandates Reform Act\n\n    This action does not contain any unfunded mandate as described in \nUnfunded Mandate Reform Act, 2 U.S.C. 1531-1538, and does not \nsignificantly or uniquely affect small governments. The action imposes \nno enforceable duty on any state, local or Tribal governments or the \nprivate sector.\n\nG. Executive Order 13132: Federalism\n\n    This action does not have federalism implications. It will not have \nsubstantial direct effects on the states, on the relationship between \nthe national government and the states, or on the distribution of power \nand responsibilities among the various levels of government.\n\n[[Page 38368]]\n\nH. Executive Order 13175: Consultation and Coordination With Indian \nTribal Governments\n\n    This action does not have tribal implications as expected under \nE.O. 13175, entitled ``Consultation and Coordination with Indian Tribal \nGovernments'' (65 FR 67249, Nov. 9, 2000).\n    Neither the proposed amendments to EPA's NEPA implementing \nregulations nor the minor, technical amendments to EPA's procedures \nimplementing E.O. 12114 impose new regulatory obligations on Tribes. \nThey will not have substantial direct effects on Tribes, on the \nrelationship between the Federal Government and Tribes, or on the \ndistribution of power and responsibilities between the Federal \nGovernment and Tribes. Under EPA's current regulations, as well as the \nproposed rule, Tribes are required to submit environmental information \nonly when the Tribes are project-applicants for EPA actions subject to \nNEPA or E.O. 12114, for example, when Tribes apply for grants for \nspecial projects identified in EPA's State and Tribal Assistance \naccount, or for new source NPDES permits issued by the EPA. The \nrequirement to submit environmental information to the EPA for the \nenvironmental review process does not impose substantial compliance \ncosts because it is not likely to result in the expenditure by State, \nlocal, and Tribal governments in the aggregate of $100 million or more \nin any one year. Further, these requirements do not preempt Tribal law. \nThus, E.O. 13175 does not apply to this proposed rule.\n    Although this proposed rule does not have E.O. 13175 implications, \nas with EPA's current rule, some parts of the proposed NEPA regulations \nmight require the EPA to involve Tribes in the environmental review \nprocess. For example, Sec.  6.202 would encourage early coordination \nand cooperation with Federal, State, Tribal and local agencies with \njurisdiction by law or special expertise. Proposed Sec.  6.203 requires \nthe Responsible Official to ensure meaningful public participation. The \nEPA anticipates that Tribes would engage in the public participation \nprocess as appropriate. Proposed Sec.  6.204 lists extraordinary \ncircumstances that would bar the Responsible Official from determining \nthat a categorical exclusion applies to the action. The Responsible \nOfficial may ask the relevant Tribe(s) for assistance in determining \nwhether the proposed action meets these criteria.\n    The EPA specifically solicits additional comment on this proposed \n"
+    },
+    "ACTOR_TEXT:FRDOC:2026-15011": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-15011",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 2349,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-15011",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-15011",
+        "page_or_item": "91 FR 46777; FR Doc. 2026-15011; Notice: Notice of Availability of Record of Decision for the Surveillance Towed Array Sensor System Low-Frequency Active Sonar Training and Testing Supplemental Environmental Impact Statement/Overseas Environmental Impact Statement in the Western North Pacific and Indian Oceans (ID# SEIS-007-17-USN-1727716941)",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "e967251af5f9d979969b221523197adc5989de32e21b6d3e1a956a14a0484a01",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-15011.txt",
+        "text_sha256": "e967251af5f9d979969b221523197adc5989de32e21b6d3e1a956a14a0484a01",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/07/24/2026-15011.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 91 Issue 141 (Friday, July 24, 2026)</title>\n</head>\n<body><pre>\n[Federal Register Volume 91, Number 141 (Friday, July 24, 2026)]\n[Notices]\n[Page 46777]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2026-15011]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF DEFENSE\n\nDepartment of the Navy\n\n\nNotice of Availability of Record of Decision for the Surveillance \nTowed Array Sensor System Low-Frequency Active Sonar Training and \nTesting Supplemental Environmental Impact Statement/Overseas \nEnvironmental Impact Statement in the Western North Pacific and Indian \nOceans (ID# SEIS-007-17-USN-1727716941)\n\nAGENCY: Department of the Navy (DoN), Department of Defense (DoD).\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with the National Environmental Policy Act \n(NEPA) and Executive Order 12114, the DoN announces its decision to \nconduct training and testing activities within the Surveillance Towed \nArray Sensor System Low-Frequency Active (SURTASS LFA) Sonar Training \nand Testing Study Area in the Western North Pacific and Indian Oceans, \nas described in Alternative 1 of the SURTASS LFA Final Supplemental \nEnvironmental Impact Statement/Overseas Environmental Impact Statement \n(SEIS/OEIS).\n\nSUPPLEMENTARY INFORMATION: Alternative 1 is the DoN's preferred \nalternative and is representative of an annual level of SURTASS LFA \ntraining and testing activities. The complete text of the Record of \nDecision (ROD) and the SURTASS LFA Final SEIS/OEIS is available on the \nproject website at <a href=\"http://www.nepa.navy.mil/surtass-lfa/\">www.nepa.navy.mil/surtass-lfa/</a> along with supporting \ndocuments. Single copies of the ROD are available upon request by \ncontacting: U.S. Pacific Fleet Command, Attention: SURTASS LFA SEIS/\nOEIS Project Manager (N46), 250 Makalapa Drive, Pearl Harbor, HI 96860-\n3131.\n\n    Dated: July 22, 2026.\nT.M. Onik,\nLieutenant Commander, Judge Advocate General's Corps, U.S. Navy, \nFederal Register Liaison Officer.\n[FR Doc. 2026-15011 Filed 7-23-26; 8:45 am]\nBILLING CODE 3810-FF-P\n\n\n</pre></body>\n</html>"
+    },
     "CLAUSES:EO:12114#sec1": {
       "char_end": 1968,
       "char_start": 944,
@@ -2794,6 +3021,76 @@
       },
       "text": "(vii) disaster and emergency relief action."
     },
+    "CURRENT:EO:12114#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 131,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 4321 note; note 'Ex. Ord. No. 12114. Environmental Effects Abroad of Major Federal Actions' [USLM note id id3b203abe-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "464ec9f2de3ee13a4fbf5fc80023e113b77077e4babcb289f21757d367fe1670",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3b203abe-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12114#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12114",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 4321 note)",
+      "machine_lead": true,
+      "mention_id": "usc:515207446143",
+      "snippet": "Ex. Ord. No. 12114. Environmental Effects Abroad of Major Federal Actions | Ex. Ord. No. 12114, Jan. 4, 1979, 44 F.R. 1957, provided:",
+      "source": {
+        "page_or_item": "42 U.S.C. 4321 note; note 'Ex. Ord. No. 12114. Environmental Effects Abroad of Major Federal Actions' [USLM note id id3b203abe-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3b203abe-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "464ec9f2de3ee13a4fbf5fc80023e113b77077e4babcb289f21757d367fe1670",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12114. Environmental Effects Abroad of Major Federal Actions\nEx. Ord. No. 12114, Jan. 4, 1979, 44 F.R. 1957, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3b203abe-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "464ec9f2de3ee13a4fbf5fc80023e113b77077e4babcb289f21757d367fe1670",
+      "where": "USC 42 U.S.C. 4321 note"
+    },
+    "CURRENT:EO:12114#12": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 1238,
+      "char_start": 984,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "33 CFR 335.6",
+        "sha256": "5c63f30bed0b0cca7bdd44ad75d8bf38303b862325c43aae4086c8e18993db52",
+        "source_id": "cfr:t33:335.6",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-33/section-335.6"
+      },
+      "id": "CURRENT:EO:12114#12",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12114",
+      "legal_basis_candidate": "regulation text names the order (33 CFR 335.6)",
+      "machine_lead": true,
+      "mention_id": "ecfr:d5f6623a4a49",
+      "snippet": "...24, 1977, (42 FR 26961, May 25, 1977). (m) Executive Order 12372, Intergovernmental Review of Federal Programs, July 14, 1982, (47 FR 3959, July 16, 1982). (n) Executive Order 12114, Environmental Effects Abroad of Major Federal Actions, January 4, 1979.",
+      "source": {
+        "page_or_item": "33 CFR 335.6 (section_text; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:3.0.1.1.29.0.1.6)",
+        "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t33-335.6.txt",
+        "text_sha256": "5c63f30bed0b0cca7bdd44ad75d8bf38303b862325c43aae4086c8e18993db52",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
+      },
+      "system": "ecfr",
+      "text": "24, 1977, (42 FR 26961, May 25, 1977).\n(m) Executive Order 12372, Intergovernmental Review of Federal Programs, July 14, 1982, (47 FR 3959, July 16, 1982).\n(n) Executive Order 12114, Environmental Effects Abroad of Major Federal Actions, January 4, 1979.",
+      "where": "CFR 33 CFR 335.6"
+    },
     "ORIGINAL:EO:12114": {
       "acceptable_as_original": true,
       "actor_id": "EO:12114",
@@ -3073,7 +3370,7 @@
       "text": "Recommendations to the President under this subsection shall be accompanied by the views of the Council on Environmental Quality and the Secretary of State.\n2-4."
     }
   },
-  "fingerprint": "881b27555dde42562a70bc8a9d645f27df521e5825ec8c7819f973dd733af0af",
+  "fingerprint": "749321428d1bb24c693cc14712b804849a8261a40939689645fe50c9cc071474",
   "instrument_id": "EO:12114",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3593,32 +3890,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 27,
+      "machine_fragment_items_for_this_order_all_systems": 27,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 27,
+      "machine_fragment_items_for_this_order_all_systems": 27,
+      "machine_hits_for_this_order": 44,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3630,6 +3929,7 @@
   "missing": [
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
+    "Large acting text of FRDOC:2026-12862: 1 more passages are not cited; read the held text at jobs/selden-fr-citers/output/texts/fr-2026-12862.txt.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",

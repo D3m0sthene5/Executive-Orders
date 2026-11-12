@@ -10,7 +10,7 @@ New York date: 2026-11-12. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `43220155141-1:471058e66223f2c83391601280ea06c1a9e4649789fd2436b01122d26ededb78` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43290372543-1:6210e6e38905864eedb6e75f7e81113275eeee235f863deae088134e75cc5b7d` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -26,11 +26,18 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-11; intervening runs may be absent.
+- claim-checker: held_distinct_sha256: 58657 → 58673
 - claim-drafts: fragment_orders_not_in_universe: 40 → 39; orders_with_draft: 14953 → 14954; undecided_orders_with_draft: 11165 → 11166
+- clause-drafts: clauses_total: 71430 → 71749; fragments_from_app_transcription: 4974 → 4958; fragments_written: 9795 → 9796; orders_in_universe: 14998 → 15002
+- family-rules: saved_texts_scanned: 86512 → 86549
 - gessner-cards: not_researched: 11210 → 11214; numbered_series_orders: 14998 → 15002; orders: 14998 → 15002; president_unknown_no_date: 63 → 67
+- gratian-niebuhr-leads: date_leads_in_census: 36 → 40
+- kean: decisions: 88 → 90; findings: 364 → 372; open_owner_questions: 5 → 7
 - lachmann: assessed: 2356 → 2360; complete_text_confirmed: 1366 → 1397; confirmed: 777 → 808; identity_confirmed: 1149 → 1147
+- official-fixity: carried_forward: 7355 → 7356; files: 7356 → 7357; premis_bytes_read_this_run: 196608 → 262144
 - readiness-tracker: numbered_series_orders: 14998 → 15002; orders_total: 14998 → 15002; original_replacement_obligations: 851 → 883; quotation_recheck_obligations: 851 → 883
 - selden-fr-citers: bytes_downloaded: 855827 → 0; requests: 71 → 0; targets_total: 13199 → 13203
+- source-ladder: attempts_logged: 79 → 63; bytes_downloaded: 67273510 → 183071370; distinct_new_source_hashes: 23 → 32; exhausted_proposed_items: 5 → 13
 - status-history: census_identities: 14998 → 15002
 
 ## Top shared unlocks
@@ -61,4 +68,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43220155141)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43290372543)

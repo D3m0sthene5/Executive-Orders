@@ -37,7 +37,7 @@ GATES_FILE = "GATES.jsonl"
 
 # Each route lists its gates (names in Llull's GATES registry). Hard gates are what the route itself requires:
 # without them the kit cannot accept the result whatever the agent finds. Soft gates are measured predictors,
-# chosen from the back-test curve (BACKTEST.json); `LARREY_LEVEL=hard` applies the hard gates only.
+# chosen from the back-test curve (BACKTEST.json); the default level applies the hard gates only; `LARREY_LEVEL=soft` adds the soft gates (experimental).
 # A page check is soft, not hard: status_overlay and assemble accept a producer's page confirmation, and 296 filed
 # orders still carry requires_page_check. On the decided route it is no gate at all (independent review, S1).
 ROUTES = {
@@ -111,9 +111,12 @@ def _llull():
 
 
 def level():
-    v = os.environ.get("LARREY_LEVEL", "soft").strip().lower() or "soft"
+    """Hard gates only by default (owner, 2026-11-12, Kean F-20261112-soft-gates-untested): the hard gates are
+    inputs the route requires; the soft gates are predictors fitted on the back-test sample and stay experimental
+    until a prospective test measures what they exclude. LARREY_LEVEL=soft opts in to soft exclusions."""
+    v = os.environ.get("LARREY_LEVEL", "hard").strip().lower() or "hard"
     if v not in ("soft", "hard"):
-        raise ValueError("LARREY_LEVEL must be soft (default: hard and soft gates) or hard (hard gates only)")
+        raise ValueError("LARREY_LEVEL must be hard (default: hard gates only) or soft (hard and soft gates)")
     return v
 
 

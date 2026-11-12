@@ -6,11 +6,13 @@
     },
     {
       "actor_id": "EO:10657",
-      "evidence_id": "ACTOR_TEXT:EO:10657"
+      "evidence_id": "ACTOR_TEXT:EO:10657",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:11105",
-      "evidence_id": "ACTOR_TEXT:EO:11105"
+      "evidence_id": "ACTOR_TEXT:EO:11105",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:9001",
@@ -19,8 +21,8 @@
   ],
   "actor_provisions": [
     "ACT:EO:9816>EO:10657",
-    "ACT:EO:9816>EO:10657@e5a0fc3b6887c0c3",
-    "ACT:EO:9816>EO:10657@33973d5e5ff3dee3",
+    "ACT:EO:9816>EO:10657@be071514268e75f5",
+    "ACT:EO:9816>EO:10657@ffd9cd0975287a21",
     "ACT:EO:9816>EO:10657@1b8d342a7ebd6861",
     "ACT:EO:9816>EO:10657@c668e4858b7b6139",
     "ACT:EO:9816>EO:11105",
@@ -257,7 +259,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:9816",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9816"
@@ -585,11 +587,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 146,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2031, 2032 note; note 'Ex. Ord. No. 9816. Transfer of Property and Personnel to the Atomic Energy Commission' [USLM note id id3a5325f8-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "3b0b86b8b460495d008d2667ed1746b83ed14822da83a1d3c5306dc23416f12b",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a5325f8-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9816",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 2031, 2032 note)",
@@ -599,10 +610,14 @@
       "source": {
         "page_or_item": "42 U.S.C. 2031, 2032 note; note 'Ex. Ord. No. 9816. Transfer of Property and Personnel to the Atomic Energy Commission' [USLM note id id3a5325f8-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a5325f8-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "3b0b86b8b460495d008d2667ed1746b83ed14822da83a1d3c5306dc23416f12b",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id3a5325f8-c3e9-11f1-bd73-d95596aaa024",
+      "text": "Ex. Ord. No. 9816. Transfer of Property and Personnel to the Atomic Energy Commission\nEx. Ord. No. 9816, eff. Dec. 31, 1946, 12 F.R. 37, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3a5325f8-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "3b0b86b8b460495d008d2667ed1746b83ed14822da83a1d3c5306dc23416f12b",
       "where": "USC 42 U.S.C. 2031, 2032 note"
     },
     {
@@ -654,7 +669,7 @@
         "snippet": "Ex. Ord. No. 9816. Transfer of Property and Personnel to the Atomic Energy Commission | Ex. Ord. No. 9816, eff. Dec. 31, 1946, 12 F.R. 37, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id3a5325f8-c3e9-11f1-bd73-d95596aaa024",
+        "text_path": "usc-notes/id3a5325f8-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 2031, 2032 note"
       },
       "proposal": {
@@ -817,10 +832,10 @@
             "to  \nthe extent that it may be inconsistent  \nwith this order"
           ],
           "filing_date": null,
-          "id": "ACT:EO:9816>EO:10657@e5a0fc3b6887c0c3",
+          "id": "ACT:EO:9816>EO:10657@be071514268e75f5",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-          "provision_label": "Sec. 2.",
+          "provision_label": "S ec. 6.",
           "provision_text": "Executive Order No. 9816 of  \nDecember 31,1946, is hereby amended to  \nthe extent that it may be inconsistent  \nwith this order.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -868,10 +883,10 @@
             "to  \nthe extent that it may be inconsistent  \nwith this order"
           ],
           "filing_date": null,
-          "id": "ACT:EO:9816>EO:10657@33973d5e5ff3dee3",
+          "id": "ACT:EO:9816>EO:10657@ffd9cd0975287a21",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-          "provision_label": "Sec. 2.",
+          "provision_label": "S ec. 6.",
           "provision_text": "Executive Order No. 9816 of  \nDecember 31,1946, is hereby amended to  \nthe extent that it may be inconsistent  \nwith this order.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -1019,7 +1034,7 @@
       "id": "ACT:EO:9816>EO:10657",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "Sec. 2.",
+      "provision_label": "S ec. 6.",
       "provision_text": "Executive Order No. 9816 of  \nDecember 31,1946, is hereby amended to  \nthe extent that it may be inconsistent  \nwith this order.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -1171,16 +1186,17 @@
       "text": "Executive Order No. 9816 of December 31, 1946, is hereby amended to the extent that it may be inconsistent with this order.",
       "verb": "amend"
     },
-    "ACT:EO:9816>EO:10657@33973d5e5ff3dee3": {
+    "ACT:EO:9816>EO:10657@be071514268e75f5": {
       "actor_id": "EO:10657",
       "actor_source": {
         "filing_date": null,
         "location_confidence": "high",
+        "location_verified": false,
         "page_or_item": "21 FR 1063, PDF pages 1-2",
         "requires_page_check": false,
         "sha256": "419f3c3d0486f14761a77f4f9e3dd59685c3ab70b5f5be210a08dd612234de11",
         "signing_date": "1956-02-14",
-        "text_path": "jobs/fr-originals/output/texts/EO_10657.txt",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10657.txt",
         "text_sha256": "82c2dd226b59be836891dbdcaa5569b1a9eb0e2614626a945fa039b780b136e3",
         "url": "https://www.govinfo.gov/content/pkg/FR-1956-02-16/pdf/FR-1956-02-16.pdf"
       },
@@ -1210,10 +1226,10 @@
         "to  \nthe extent that it may be inconsistent  \nwith this order"
       ],
       "filing_date": null,
-      "id": "ACT:EO:9816>EO:10657@33973d5e5ff3dee3",
+      "id": "ACT:EO:9816>EO:10657@be071514268e75f5",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "Sec. 2.",
+      "provision_label": "S ec. 6.",
       "provision_text": "Executive Order No. 9816 of  \nDecember 31,1946, is hereby amended to  \nthe extent that it may be inconsistent  \nwith this order.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -1222,11 +1238,12 @@
       "source": {
         "filing_date": null,
         "location_confidence": "high",
+        "location_verified": false,
         "page_or_item": "21 FR 1063, PDF pages 1-2",
         "requires_page_check": false,
         "sha256": "419f3c3d0486f14761a77f4f9e3dd59685c3ab70b5f5be210a08dd612234de11",
         "signing_date": "1956-02-14",
-        "text_path": "jobs/fr-originals/output/texts/EO_10657.txt",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10657.txt",
         "text_sha256": "82c2dd226b59be836891dbdcaa5569b1a9eb0e2614626a945fa039b780b136e3",
         "url": "https://www.govinfo.gov/content/pkg/FR-1956-02-16/pdf/FR-1956-02-16.pdf"
       },
@@ -1301,17 +1318,16 @@
       "text": "Executive Order No. 9816 of December 31, 1946, is hereby amended to the extent that it may be inconsistent with this order.",
       "verb": "amend"
     },
-    "ACT:EO:9816>EO:10657@e5a0fc3b6887c0c3": {
+    "ACT:EO:9816>EO:10657@ffd9cd0975287a21": {
       "actor_id": "EO:10657",
       "actor_source": {
         "filing_date": null,
         "location_confidence": "high",
-        "location_verified": false,
         "page_or_item": "21 FR 1063, PDF pages 1-2",
         "requires_page_check": false,
         "sha256": "419f3c3d0486f14761a77f4f9e3dd59685c3ab70b5f5be210a08dd612234de11",
         "signing_date": "1956-02-14",
-        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10657.txt",
+        "text_path": "jobs/fr-originals/output/texts/EO_10657.txt",
         "text_sha256": "82c2dd226b59be836891dbdcaa5569b1a9eb0e2614626a945fa039b780b136e3",
         "url": "https://www.govinfo.gov/content/pkg/FR-1956-02-16/pdf/FR-1956-02-16.pdf"
       },
@@ -1341,10 +1357,10 @@
         "to  \nthe extent that it may be inconsistent  \nwith this order"
       ],
       "filing_date": null,
-      "id": "ACT:EO:9816>EO:10657@e5a0fc3b6887c0c3",
+      "id": "ACT:EO:9816>EO:10657@ffd9cd0975287a21",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "Sec. 2.",
+      "provision_label": "S ec. 6.",
       "provision_text": "Executive Order No. 9816 of  \nDecember 31,1946, is hereby amended to  \nthe extent that it may be inconsistent  \nwith this order.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -1353,12 +1369,11 @@
       "source": {
         "filing_date": null,
         "location_confidence": "high",
-        "location_verified": false,
         "page_or_item": "21 FR 1063, PDF pages 1-2",
         "requires_page_check": false,
         "sha256": "419f3c3d0486f14761a77f4f9e3dd59685c3ab70b5f5be210a08dd612234de11",
         "signing_date": "1956-02-14",
-        "text_path": "jobs/fr-originals/data/full_run/texts/EO_10657.txt",
+        "text_path": "jobs/fr-originals/output/texts/EO_10657.txt",
         "text_sha256": "82c2dd226b59be836891dbdcaa5569b1a9eb0e2614626a945fa039b780b136e3",
         "url": "https://www.govinfo.gov/content/pkg/FR-1956-02-16/pdf/FR-1956-02-16.pdf"
       },
@@ -1995,6 +2010,7 @@
       "char_end": 12964,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:10657",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2015,6 +2031,7 @@
       "char_end": 6337,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:11105",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2358,6 +2375,42 @@
       },
       "text": "By virtue of the authority vested in \nme by the Constitution and the statutes, \nincluding the Atomic Energy Act of 1946, \nand as President of the United States and \nCommander in Chief of the Army and the \nNavy, it is hereby ordered and directed \nas follows:"
     },
+    "CURRENT:EO:9816#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 146,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2031, 2032 note; note 'Ex. Ord. No. 9816. Transfer of Property and Personnel to the Atomic Energy Commission' [USLM note id id3a5325f8-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "3b0b86b8b460495d008d2667ed1746b83ed14822da83a1d3c5306dc23416f12b",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a5325f8-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:9816#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:9816",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 2031, 2032 note)",
+      "machine_lead": true,
+      "mention_id": "usc:64f7a567cd7a",
+      "snippet": "Ex. Ord. No. 9816. Transfer of Property and Personnel to the Atomic Energy Commission | Ex. Ord. No. 9816, eff. Dec. 31, 1946, 12 F.R. 37, provided:",
+      "source": {
+        "page_or_item": "42 U.S.C. 2031, 2032 note; note 'Ex. Ord. No. 9816. Transfer of Property and Personnel to the Atomic Energy Commission' [USLM note id id3a5325f8-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a5325f8-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "3b0b86b8b460495d008d2667ed1746b83ed14822da83a1d3c5306dc23416f12b",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 9816. Transfer of Property and Personnel to the Atomic Energy Commission\nEx. Ord. No. 9816, eff. Dec. 31, 1946, 12 F.R. 37, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3a5325f8-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "3b0b86b8b460495d008d2667ed1746b83ed14822da83a1d3c5306dc23416f12b",
+      "where": "USC 42 U.S.C. 2031, 2032 note"
+    },
     "ORIGINAL:EO:9816": {
       "acceptable_as_original": true,
       "actor_id": "EO:9816",
@@ -2695,7 +2748,7 @@
       "text": "R doc. 45-22112; Piled, Dec. 31, 1946;\n(2 documents) _____________ 42 5:05 p. m.]\nTitle 31— Money and Finance: — — ....................— -------------------------\n.Chapter ¿ — M onetary O ffices: j TITLE 7-AGRICULTURE\n^ Part 131—General licenses ------- 43 Chapter XI— Production and M arket-\nTitle 32— National Defense ing Administration (War Food Dis-\nx Chapter VIII—Office of Interna- j tribution Orders)\nJ  Part 801-G eneral regulations-.  43 (  P “ T  1590 - Susp£nsion O rders\nnP art 802 — General licenses ____ 44 1 allied  m o la sses co., in c.\n4 Part 816-Lim ited distribution Pursuant to an order of the Acting\nlicense for women s and chil- Administrator, Production and Market-\ndren s finished and unfinished \\ jng Administration, dated December 3,\nnylon hosiery --------------------- 43 J 1946 ( n  f . r . 14131), a hearing was ac-\nChapter IX —Office of Temporary corded the Allied Molasses Company, J\nControls, Civilian Production Inc., on December 6, 1946, for the pur-\nAdministration: pose of v affording that company an op-\nNote: Regulations and orders ap- portunity to present evidence in sup-\npearing under this chapter are listed port of its contention that third parties\nonly in the Table of Contents, supra. who in the past have purchased its prod­\nucts have suffered undue and unreason- \nChapter X I—Office of Temporary a.ble hardship by reason of a suspension\nControls, Office of Price Ad- order heretofore issued against the corn-\nministration: pany on August 16, 1946 (11 F."
     }
   },
-  "fingerprint": "2727ef9aba1118f588a347f1ce93a305e43bf220e96fe099b6c5f8d583b2d3ce",
+  "fingerprint": "22c1f7a9f75a65b5218f4f53f928067a1c34a88bb47cbba5455e02a334ada779",
   "instrument_id": "EO:9816",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2938,11 +2991,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 1,
       "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -2950,20 +3004,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2995,12 +3050,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 5,
-    "fingerprint": "2b47d64773384c12491a4f13065fe799a6a59d2a4177fa29175e88c3a7e3f946",
+    "fingerprint": "fb741097ee582f90e64beaecfd40d2a43f1dbc96b45ee8bbba4b555464a3170a",
     "flags": [
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_9816.json",
-    "history_sha256": "1386a72bd64b717e0b5e2c41d701a131ce31df51f3401cedded95740e2a3c8f9",
+    "history_sha256": "5fc355101d9f812bc28db8c39a8444cb941c5ae5a3fdecee04ced58d4bdf8e5a",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -184,6 +184,24 @@ class TargetMentionTests(unittest.TestCase):
         self.assertTrue(self.names("EO:5327", "lands in the State of Montana withdrawn by Executive Order No. 5327 dated April 15, 1930, are"))
         self.assertTrue(agency("EO:5158", "The Cedar Keys National Wildlife Refuge was established by Executive Order 5158 on July 16, 1929"))
 
+    def test_spaced_digit_runs_stay_fast(self):
+        # 2026-11-12: an optional list separator made OCR digit runs backtrack exponentially (14 digits 2.4 s); the
+        # claim-kit build then ran 4 h 20 min at full CPU into the runner wall. A whole run must stay well under 1 s.
+        import time
+        text = "Executive Orders " + " ".join("1234567890" * 4) + " 5 and Executive Order No. 8790 of June 13, 1941"
+        started = time.monotonic()
+        self.assertTrue(self.names("EO:8790", text))
+        B.target_mentions("EO:56", text)
+        self.assertLess(time.monotonic() - started, 1.0)
+        # The speed fix must not narrow real lists: separated, whitespace-only, footnoted and OCR-damaged ones
+        # (EO 12107, EO 9128 and EO 11563 print these).
+        self.assertTrue(self.names("EO:13355", "Executive Orders 13354; 13355 of August 27, 2004, are"))
+        self.assertTrue(self.names("EO:13355", "Executive Orders 13354, and 13355 of August 27, 2004, are"))
+        self.assertTrue(self.names("EO:9961", "Executive Orders Numbered\n8744\n9230\n9712\n9830\n9932\n9961, except for"))
+        self.assertTrue(self.names("EO:8900", "Executive Orders No. 8839 of July 30, 1941;2 No. 8900 of September 15, 1941"))
+        self.assertTrue(self.names("EO:10659", "Executive Orders No. 10001 of September 17, 1948, No. 1Q292 of "
+                                               "September 25,1951, No. 10659 of February 15, 1956"))
+
     def test_printed_date_must_match_the_signing_year(self):
         self.assertFalse(self.names("EO:1318", "Executive Order 1318 of March 31, 1999, and", "1911-03-02"))
         self.assertFalse(self.names("EO:1322", "through Executive Order 1322 of August 17, 2001 (3 CFR", "1911-04-01"))

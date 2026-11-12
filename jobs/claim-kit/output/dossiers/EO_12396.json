@@ -10,7 +10,8 @@
     },
     {
       "actor_id": "EO:13321",
-      "evidence_id": "ACTOR_TEXT:EO:13321"
+      "evidence_id": "ACTOR_TEXT:EO:13321",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -80,7 +81,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12396",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12396"
@@ -509,11 +510,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 126,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 12396. Delegation of Functions to Secretary of Defense' [USLM note id id3719e9a2-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "29cfd7babf184779921eef4297169ae6a501b75c1c68c22197004e2350c87099",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3719e9a2-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12396",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (3 U.S.C. 301 note)",
@@ -523,19 +533,32 @@
       "source": {
         "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 12396. Delegation of Functions to Secretary of Defense' [USLM note id id3719e9a2-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3719e9a2-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "29cfd7babf184779921eef4297169ae6a501b75c1c68c22197004e2350c87099",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id3719e9a2-2930-11f1-b70e-e9fd6f164ed0",
+      "text": "Ex. Ord. No. 12396. Delegation of Functions to Secretary of Defense\nEx. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3719e9a2-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "29cfd7babf184779921eef4297169ae6a501b75c1c68c22197004e2350c87099",
       "where": "USC 3 U.S.C. 301 note"
     },
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 286,
+      "char_start": 68,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 10621. Delegation of Functions to Secretary of Defense' [USLM note id id37152e9c-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "8e74d8404d5b25b1489f95e9243522d0e170ffcc260ec982471b4dae90d4ea31",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id37152e9c-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12396",
       "legal_basis_candidate": "order amended a printed order (weak lead) (3 U.S.C. 301 note)",
@@ -545,18 +568,32 @@
       "source": {
         "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 10621. Delegation of Functions to Secretary of Defense' [USLM note id id37152e9c-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id37152e9c-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "8e74d8404d5b25b1489f95e9243522d0e170ffcc260ec982471b4dae90d4ea31",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 10621, July 1, 1955, 20 F.R. 4759, as amended by Ex. Ord. No. 11294, Aug. 4, 1966, 31 F.R. 10601; Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897; Ex. Ord. No. 12561, July 1, 1986, 51 F.R. 24299, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id37152e9c-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "8e74d8404d5b25b1489f95e9243522d0e170ffcc260ec982471b4dae90d4ea31",
       "where": "USC 3 U.S.C. 301 note"
     },
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 288,
+      "char_start": 68,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 11390. Delegation of Functions to Secretary of Defense' [USLM note id id37177896-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "749ffd7a70b892754fc4017e5e8a0c4cc1faa47c427731c0e51286c85e350dfe",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id37177896-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12396",
       "legal_basis_candidate": "order amended a printed order (weak lead) (3 U.S.C. 301 note)",
@@ -566,9 +603,14 @@
       "source": {
         "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 11390. Delegation of Functions to Secretary of Defense' [USLM note id id37177896-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id37177896-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "749ffd7a70b892754fc4017e5e8a0c4cc1faa47c427731c0e51286c85e350dfe",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 11390, Jan. 22, 1968, 33 F.R. 841, as amended by Ex. Ord. No. 11601, June 29, 1971, 36 F.R. 12473; Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897; Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id37177896-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "749ffd7a70b892754fc4017e5e8a0c4cc1faa47c427731c0e51286c85e350dfe",
       "where": "USC 3 U.S.C. 301 note"
     },
     {
@@ -620,7 +662,7 @@
         "snippet": "Ex. Ord. No. 12396. Delegation of Functions to Secretary of Defense | Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id3719e9a2-2930-11f1-b70e-e9fd6f164ed0",
+        "text_path": "usc-notes/id3719e9a2-2930-11f1-b70e-e9fd6f164ed0.txt",
         "where": "USC 3 U.S.C. 301 note"
       },
       "proposal": {
@@ -649,6 +691,7 @@
         "snippet": "Ex. Ord. No. 10621, July 1, 1955, 20 F.R. 4759, as amended by Ex. Ord. No. 11294, Aug. 4, 1966, 31 F.R. 10601; Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897; Ex. Ord. No. 12561, July 1, 1986, 51 F.R. 24299, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id37152e9c-2930-11f1-b70e-e9fd6f164ed0.txt",
         "where": "USC 3 U.S.C. 301 note"
       },
       "proposal": {
@@ -677,6 +720,7 @@
         "snippet": "Ex. Ord. No. 11390, Jan. 22, 1968, 33 F.R. 841, as amended by Ex. Ord. No. 11601, June 29, 1971, 36 F.R. 12473; Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897; Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id37177896-2930-11f1-b70e-e9fd6f164ed0.txt",
         "where": "USC 3 U.S.C. 301 note"
       },
       "proposal": {
@@ -923,6 +967,7 @@
       "char_end": 1966,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13321",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1356,6 +1401,114 @@
       },
       "text": "(c) Executive Order N o . 12239 is revoked."
     },
+    "CURRENT:EO:12396#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 126,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 12396. Delegation of Functions to Secretary of Defense' [USLM note id id3719e9a2-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "29cfd7babf184779921eef4297169ae6a501b75c1c68c22197004e2350c87099",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3719e9a2-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12396#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12396",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (3 U.S.C. 301 note)",
+      "machine_lead": true,
+      "mention_id": "usc:0c6bd283b592",
+      "snippet": "Ex. Ord. No. 12396. Delegation of Functions to Secretary of Defense | Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897, provided:",
+      "source": {
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 12396. Delegation of Functions to Secretary of Defense' [USLM note id id3719e9a2-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3719e9a2-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "29cfd7babf184779921eef4297169ae6a501b75c1c68c22197004e2350c87099",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12396. Delegation of Functions to Secretary of Defense\nEx. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3719e9a2-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "29cfd7babf184779921eef4297169ae6a501b75c1c68c22197004e2350c87099",
+      "where": "USC 3 U.S.C. 301 note"
+    },
+    "CURRENT:EO:12396#1": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 286,
+      "char_start": 68,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 10621. Delegation of Functions to Secretary of Defense' [USLM note id id37152e9c-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "8e74d8404d5b25b1489f95e9243522d0e170ffcc260ec982471b4dae90d4ea31",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id37152e9c-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12396#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12396",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (3 U.S.C. 301 note)",
+      "machine_lead": true,
+      "mention_id": "usc:0ab1e55dc2a2",
+      "snippet": "Ex. Ord. No. 10621, July 1, 1955, 20 F.R. 4759, as amended by Ex. Ord. No. 11294, Aug. 4, 1966, 31 F.R. 10601; Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897; Ex. Ord. No. 12561, July 1, 1986, 51 F.R. 24299, provided:",
+      "source": {
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 10621. Delegation of Functions to Secretary of Defense' [USLM note id id37152e9c-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id37152e9c-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "8e74d8404d5b25b1489f95e9243522d0e170ffcc260ec982471b4dae90d4ea31",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 10621, July 1, 1955, 20 F.R. 4759, as amended by Ex. Ord. No. 11294, Aug. 4, 1966, 31 F.R. 10601; Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897; Ex. Ord. No. 12561, July 1, 1986, 51 F.R. 24299, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id37152e9c-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "8e74d8404d5b25b1489f95e9243522d0e170ffcc260ec982471b4dae90d4ea31",
+      "where": "USC 3 U.S.C. 301 note"
+    },
+    "CURRENT:EO:12396#2": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 288,
+      "char_start": 68,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 11390. Delegation of Functions to Secretary of Defense' [USLM note id id37177896-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "749ffd7a70b892754fc4017e5e8a0c4cc1faa47c427731c0e51286c85e350dfe",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id37177896-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12396#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12396",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (3 U.S.C. 301 note)",
+      "machine_lead": true,
+      "mention_id": "usc:9c76ea0c1e9e",
+      "snippet": "Ex. Ord. No. 11390, Jan. 22, 1968, 33 F.R. 841, as amended by Ex. Ord. No. 11601, June 29, 1971, 36 F.R. 12473; Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897; Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "source": {
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 11390. Delegation of Functions to Secretary of Defense' [USLM note id id37177896-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id37177896-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "749ffd7a70b892754fc4017e5e8a0c4cc1faa47c427731c0e51286c85e350dfe",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 11390, Jan. 22, 1968, 33 F.R. 841, as amended by Ex. Ord. No. 11601, June 29, 1971, 36 F.R. 12473; Ex. Ord. No. 12396, Dec. 9, 1982, 47 F.R. 55897; Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id37177896-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "749ffd7a70b892754fc4017e5e8a0c4cc1faa47c427731c0e51286c85e350dfe",
+      "where": "USC 3 U.S.C. 301 note"
+    },
     "ORIGINAL:EO:12396": {
       "acceptable_as_original": true,
       "actor_id": "EO:12396",
@@ -1570,7 +1723,7 @@
       "text": "(b) The authority delegated to the Secretary of Defense by this Section may not be exercised during the time of a national emergency declared by the President, unless the exercise of any such authority is specifically directed by the President in accordance with Section 301 of the National Emergencies Act (50 U.S.C. 1631)."
     }
   },
-  "fingerprint": "998173b824357ffb9a3879559e7dcd5d6abe836ddb3b68d51515b843310d2049",
+  "fingerprint": "c97ae3af5576ed7d51e9e68e135e23cc38c20bde7ee9a60852693f690cc27860",
   "instrument_id": "EO:12396",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1879,32 +2032,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 15,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1932,10 +2087,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "3e2a73b73c5733d36dcbfb698bbd6338d7c251974f8b350fe6ae4cae9b724dac",
+    "fingerprint": "c7e5259e4920a761dafb73e1d497aebf42ed81fbc89c13b93f59e5bb46327fd1",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12396.json",
-    "history_sha256": "7c6ad52898664d7d62ca9596c5ca4c89ac42a51c3df81b84bdf1bc0890544c4f",
+    "history_sha256": "01f21bc4ed08529984fff042cb42d5d4a8ac06de23885be4d37fa8da74cf74d3",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

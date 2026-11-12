@@ -19,6 +19,43 @@
     {
       "actor_id": "EO:14294",
       "evidence_id": "ACTOR_TEXT:EO:14294"
+    },
+    {
+      "actor_id": "FRDOC:2012-1316",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2012-1316",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2013-01296",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2013-01296",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2013-04158",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:2013-04158@2469"
+      ],
+      "full_text_chars": 60229,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-2013-04158.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "3b87e7669ad0cf3be197a6b1357125b516109063654e2d04e063b120984f78a0",
+      "window_bytes": 3104,
+      "windows_omitted": 0
+    },
+    {
+      "actor_id": "FRDOC:2013-15424",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2013-15424",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2014-01414",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2014-01414",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2020-04851",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2020-04851",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -55,7 +92,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13372",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13372"
@@ -220,23 +257,35 @@
   "current_law_leads": [
     {
       "basis_code": "cfr_authority_citation",
+      "char_end": 614,
+      "char_start": 352,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR part 594",
+        "sha256": "5ca096a17329d2b600dfedc7d9385e78e69280a5c242b4891bb9686e08c71db3",
+        "source_id": "cfr:t31:part594",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/part-594"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13372",
       "legal_basis_candidate": "regulation authority citation lists the order (31 CFR part 594)",
       "machine_lead": true,
-      "mention_id": "ecfr:f62504b5a274",
+      "mention_id": "ecfr:f304e1267c24",
       "snippet": "...te); E.O. 13224, 66 FR 49079, 3 CFR, 2001 Comp., p. 786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
       "source": {
-        "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.44)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.44)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part594.txt",
+        "text_sha256": "5ca096a17329d2b600dfedc7d9385e78e69280a5c242b4891bb9686e08c71db3",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "te); E.O. 13224, 66 FR 49079, 3 CFR, 2001 Comp., p. 786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
       "where": "CFR 31 CFR part 594"
     },
     {
@@ -266,18 +315,17 @@
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:f62504b5a274",
+        "mention_id": "ecfr:f304e1267c24",
         "snippet": "...te); E.O. 13224, 66 FR 49079, 3 CFR, 2001 Comp., p. 786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -287,8 +335,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (31 CFR part 594)",
         "source": {
-          "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.44)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.44)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
@@ -588,6 +636,186 @@
       },
       "text": "Instrument: EO:14294\nSource: https://www.govinfo.gov/content/pkg/FR-2025-05-14/pdf/2025-08681.pdf\nSHA-256 of the downloaded file: 321edf5e8a852f20338acd36aa64695cef357d09d23d334cbff8994aad51f4a2\nLocation: 90 FR 20363, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 3 ===\nPresidential Documents\n20363 Federal Register / Vol. 90, No. 92 / Wednesday, May 14, 2025 / Presidential Documents \nExecutive Order 14294 of May 9, 2025 \nFighting Overcriminalization in Federal Regulations \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, it is hereby ordered: \nSection 1. Purpose. The United States is drastically overregulated. The Code \nof Federal Regulations contains over 48,000 sections, stretching over 175,000 \npages—far more than any citizen can possibly read, let alone fully under-\nstand. Worse, many carry potential criminal penalties for violations. The \nsituation has become so dire that no one—likely including those charged \nwith enforcing our criminal laws at the Department of Justice—knows how \nmany separate criminal offenses are contained in the Code of Federal Regula-\ntions, with at least one source estimating hundreds of thousands of such \ncrimes. Many of these regulatory crimes are ‘‘strict liability’’ offenses, mean-\ning that citizens need not have a guilty mental state to be convicted of \na crime. \nThis status quo is absurd and unjust. It allows the executive branch to \nwrite the law, in addition to executing it. That situation can lend itself \nto abuse and weaponization by providing Government officials tools to target \nunwitting individuals. It privileges large corporations, which can afford to \nhire expensive legal teams to navigate complex regulatory schemes and \nfence out new market entrants, over average Americans. \nThe purpose of this order is to ease the regulatory burden on everyday \nAmericans and ensure no American is transformed into a criminal for vio-\nlating a regulation they have no reason to know exists. \nSec. 2. Policy. It is the policy of the United States that: \n(a) Criminal enforcement of criminal regulatory offenses is disfavored. \n(b) Prosecution of criminal regulatory offenses is most appropriate for \npersons who know or can be presumed to know what is prohibited or \nrequired by the regulation and willingly choose not to comply, thereby \ncausing or risking substantial public harm. Prosecutions of criminal regu-\nlatory offenses should focus on matters where a putative defendant is alleged \nto have known his conduct was unlawful. \n(c) Strict liability offenses are ‘‘generally disfavored.’’ United States v. \nUnited States Gypsum, Co., 438 U.S. 422, 438 (1978). Where enforcement \nis appropriate, agencies should consider civil rather than criminal enforce-\nment of strict liability regulatory offenses or, if appropriate and consistent \nwith due process and the right to jury trial, see Jarkesy v. Securities and \nExchange Commission, 603 U.S. 109 (2024), administrative enforcement. \n(d) Agencies promulgating regulations potentially subject to criminal en-\nforcement should explicitly describe the conduct subject to criminal enforce-\nment, the authorizing statutes, and the mens rea standard applicable to \nthose offenses. \nSec. 3. Definitions. For purposes of this order: \n(a) ‘‘Agency’’ has the meaning given to ‘‘Executive agency’’ in section \n105 of title 5, United States Code; \n(b) ‘‘Criminal regulatory offense’’ means a Federal regulation that is enforce-\nable by a criminal penalty; and \n(c) ‘‘Mens rea’’ means the state of mind that by law must be proven \nto convict a particular defendant of a particular crime. \nVerDate Sep<11>2014 18:48 May 13, 2025 Jkt 265001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\14MYE0.SGM 14MYE0lotter on DSK11XQN23PROD with FR_PREZDOC3\n=== PDF page 2 of 3 ===\n20364 Federal Register / Vol. 90, No. 92 / Wednesday, May 14, 2025 / Presidential Documents \nSec. 4. Report on Criminal Regulatory Offenses. (a) Within 365 days of \nthe date of this order, the head of each agency, in consultation with the \nAttorney General, shall provide to the Director of the Office of Management \nand Budget (OMB) a report containing: \n(i) a list of all criminal regulatory offenses enforceable by the agency \nor the Department of Justice; and \n(ii) for each criminal regulatory offense identified in subsection (a)(i) of \nthis section, the range of potential criminal penalties for a violation and \nthe applicable mens rea standard for the criminal regulatory offense. \n(b) At the same time the head of each agency provides to the Director \nof OMB the report required by subsection (a) of this section, the agency \nhead shall publicly post the report on its agency webpage. \n(c) The head of each agency shall periodically, but not less than once \na year, update the report described in subsection (a) of this section. \n(d) Criminal enforcement of any criminal regulatory offense not identified \nin the report described in subsection (a) of this section is strongly discour-\naged. The head of each agency shall consider whether a criminal regulatory \noffense is included in an agency’s public report when considering whether \nto make a criminal referral to the Department of Justice or, where applicable, \nto the agency’s Inspector General. Further, the Attorney General shall con-\nsider whether a criminal regulatory offense is included in an agency’s public \nreport before initiating an investigation or initiating criminal proceedings \nfor violating regulatory standards. \nSec. 5. Promoting Regulatory Transparency. (a) Following issuance of this \norder, all future notices of proposed rulemaking (NPRMs) and final rules \npublished in the Federal Register, the violation of which may constitute \ncriminal regulatory offenses, should include a statement identifying that \nthe rule or proposed rule is a criminal regulatory offense and the authorizing \nstatute. Agencies should draft this statement in consultation with the Depart-\nment of Justice. \n(b) The regulatory text of all NPRMs and final rules with criminal con-\nsequences published in the Federal Register after the date of this order \nshould explicitly state a mens rea requirement for each element of a criminal \nregulatory offense, accompanied by citations to the relevant provisions of \nthe authorizing statute. \n(c) Strict liability criminal regulatory offenses are disfavored. Any proposed \nor final criminal regulatory offense that includes a strict liability mens \nrea for the offense shall be treated as a ‘‘significant regulatory action’’ and \nsubmitted to the Administrator of the Office of Information and Regulatory \nAffairs for the review applicable to significant regulatory actions under \nExecutive Order 12866 of September 30, 1993 (Regulatory Planning and \nReview), or any successor process. \nSec. 6. Default Mens Rea for Criminal Regulatory Offenses. (a) The head \nof each agency, in consultation with the Attorney General, shall examine \nthe agency’s statutory authorities and determine whether there is authority \nto adopt a background mens rea standard for criminal regulatory offenses \nthat applies unless a specific regulation states an alternative mens rea. \n(b) Within 30 days of the submission of the report described in section \n4(a) of this order, the head of each agency, in consultation with the Attorney \nGeneral, shall submit a report to the Director of OMB summarizing the \ninformation submitted under section 4(a) of this order and assessing whether \nthe applicable mens rea standards for criminal regulatory offenses enforced \nby the agency are appropriate. If consistent with the statutory authorities \nidentified pursuant to the review described in subsection (a) of this section, \nthe report should present a plan for changing the applicable mens rea \nstandards and adopting a generally applicable background mens rea standard, \nand provide a justification for each criminal regulatory offense for which \nthe agency proposes to deviate from its default mens rea standard. \nSec. 7. Agency Referrals for Potential Criminal Enforcement. Within 45 \ndays of the date of this order, and in consultation with the Attorney General, \nVerDate Sep<11>2014 18:48 May 13, 2025 Jkt 265001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\14MYE0.SGM 14MYE0lotter on DSK11XQN23PROD with FR_PREZDOC3\n=== PDF page 3 of 3 ===\n20365 Federal Register / Vol. 90, No. 92 / Wednesday, May 14, 2025 / Presidential Documents \neach agency should publish guidance in the Federal Register describing \nits plan to address criminally liable regulatory offenses. Each agency’s guid-\nance should make clear that when the agency is deciding whether to refer \nalleged violations of criminal regulatory offenses to the Department of Justice, \nthe agency should consider factors such as: \n(a) the harm or risk of harm, pecuniary or otherwise, caused by the \nalleged offense; \n(b) the potential gain to the putative defendant that could result from \nthe offense; \n(c) whether the putative defendant held specialized knowledge, expertise, \nor was licensed in an industry related to the rule or regulation at issue; \nand \n(d) evidence, if any is available, of the putative defendant’s general aware-\nness of the unlawfulness of his conduct as well as his knowledge or lack \nthereof of the regulation at issue. \nSec. 8. Effect on Immigration Enforcement and National Security Functions . \nNothing in this order shall apply to the enforcement of the immigration \nlaws or regulations promulgated to implement such laws, nor shall it apply \nto the enforcement of laws or regulations related to national security or \ndefense. \nSec. 9. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nMay 9, 2025. \n[FR Doc. 2025–08681 \nFiled 5–13–25; 8:45 am] \nBilling code 3395–F4–P \nVerDate Sep<11>2014 18:48 May 13, 2025 Jkt 265001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\14MYE0.SGM 14MYE0\nTrump.EPS</GPH>\nlotter on DSK11XQN23PROD with FR_PREZDOC3"
     },
+    "ACTOR_TEXT:FRDOC:2012-1316": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2012-1316",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 3332,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2012-1316",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2012-1316",
+        "page_or_item": "77 FR 3067; FR Doc. 2012-1316; Presidential Document: Continuation of the National Emergency With Respect to Terrorists Who Threaten To Disrupt the Middle East Peace Process",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "cea4af6d48e1d6277be5b238fbd014a785e4f388bd348647def2c55dcaf8b952",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2012-1316.txt",
+        "text_sha256": "cea4af6d48e1d6277be5b238fbd014a785e4f388bd348647def2c55dcaf8b952",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2012/01/20/2012-1316.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 77 Issue 13 (Friday, January 20, 2012)</title>\n</head>\n<body><pre>\n[Federal Register Volume 77, Number 13 (Friday, January 20, 2012)]\n[Presidential Documents]\n[Page 3067]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2012-1316]\n\n\n\n[[Page 3065]]\n\nVol. 77\n\nFriday,\n\nNo. 13\n\nJanuary 20, 2012\n\nPart III\n\n\n\n\n\nThe President\n\n\n\n\n\n-----------------------------------------------------------------------\n\n\n\nNotice of January 19, 2012--Continuation of the National Emergency With \nRespect to Terrorists Who Threaten To Disrupt the Middle East Peace \nProcess\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 77, No. 13 / Friday, January 20, 2012 / \nPresidential Documents\u0000\u0000\n\n\u0000___________________________________________________________________\n\n\u0000Title 3--\n\u0000The President\n\n[[Page 3067]]\n\n                Notice of January 19, 2012\n\n                \nContinuation of the National Emergency With \n                Respect to Terrorists Who Threaten To Disrupt the \n                Middle East Peace Process\n\n                On January 23, 1995, by Executive Order 12947, the \n                President declared a national emergency pursuant to the \n                International Emergency Economic Powers Act (50 U.S.C. \n                1701-1706) to deal with the unusual and extraordinary \n                threat to the national security, foreign policy, and \n                economy of the United States constituted by grave acts \n                of violence committed by foreign terrorists who \n                threaten to disrupt the Middle East peace process. On \n                August 20, 1998, by Executive Order 13099, the \n                President modified the Annex to Executive Order 12947 \n                to identify four additional persons who threaten to \n                disrupt the Middle East peace process. On February 16, \n                2005, by Executive Order 13372, the President clarified \n                the steps taken in Executive Order 12947.\n\n                Because these terrorist activities continue to threaten \n                the Middle East peace process and to pose an unusual \n                and extraordinary threat to the national security, \n                foreign policy, and economy of the United States, the \n                national emergency declared on January 23, 1995, and \n                the measures adopted to deal with that emergency must \n                continue in effect beyond January 23, 2012. Therefore, \n                in accordance with section 202(d) of the National \n                Emergencies Act (50 U.S.C. 1622(d)), I am continuing \n                for 1 year the national emergency with respect to \n                foreign terrorists who threaten to disrupt the Middle \n                East peace process.\n\n                This notice shall be published in the Federal Register \n                and transmitted to the Congress.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\n                THE WHITE HOUSE,\n\n                    January 19, 2012.\n\n[FR Doc. 2012-1316\nFiled 1-19-12; 2:00 pm]\nBilling code 3295-F2-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2013-01296": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2013-01296",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 2933,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2013-01296",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2013-01296",
+        "page_or_item": "78 FR 4303; FR Doc. 2013-01296; Presidential Document: Continuation of the National Emergency With Respect to Terrorists Who Threaten To Disrupt the Middle East Peace Process",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "5b5b37e28327412cae0fc1c90ac24b84a30fe90095e7bb8b626412ca3dbde089",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2013-01296.txt",
+        "text_sha256": "5b5b37e28327412cae0fc1c90ac24b84a30fe90095e7bb8b626412ca3dbde089",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2013/01/22/2013-01296.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 78 Issue 14 (Tuesday, January 22, 2013)</title>\n</head>\n<body><pre>\n[Federal Register Volume 78, Number 14 (Tuesday, January 22, 2013)]\n[Presidential Documents]\n[Page 4303]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2013-01296]\n\n\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 78, No. 14 / Tuesday, January 22, 2013 / \nPresidential Documents\u0000\u0000\n\n[[Page 4303]]\n\n\n                Notice of January 17, 2013\n\n                \nContinuation of the National Emergency With \n                Respect to Terrorists Who Threaten To Disrupt the \n                Middle East Peace Process\n\n                On January 23, 1995, by Executive Order 12947, the \n                President declared a national emergency pursuant to the \n                International Emergency Economic Powers Act (50 U.S.C. \n                1701-1706) to deal with the unusual and extraordinary \n                threat to the national security, foreign policy, and \n                economy of the United States constituted by grave acts \n                of violence committed by foreign terrorists who \n                threaten to disrupt the Middle East peace process. On \n                August 20, 1998, by Executive Order 13099, the \n                President modified the Annex to Executive Order 12947 \n                to identify four additional persons who threaten to \n                disrupt the Middle East peace process. On February 16, \n                2005, by Executive Order 13372, the President clarified \n                the steps taken in Executive Order 12947.\n\n                Because these terrorist activities continue to threaten \n                the Middle East peace process and to pose an unusual \n                and extraordinary threat to the national security, \n                foreign policy, and economy of the United States, the \n                national emergency declared on January 23, 1995, and \n                the measures adopted to deal with that emergency must \n                continue in effect beyond January 23, 2013. Therefore, \n                in accordance with section 202(d) of the National \n                Emergencies Act (50 U.S.C. 1622(d)), I am continuing \n                for 1 year the national emergency with respect to \n                foreign terrorists who threaten to disrupt the Middle \n                East peace process.\n\n                This notice shall be published in the Federal Register \n                and transmitted to the Congress.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\n                THE WHITE HOUSE,\n\n                    Washington, January 17, 2013.\n\n[FR Doc. 2013-01296\nFiled 1-18-13; 8:45 am]\nBilling code 3295-F3\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2013-04158@2469": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2013-04158",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5573,
+      "char_start": 2469,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2013-04158@2469",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2013-04158",
+        "page_or_item": "78 FR 13463; FR Doc. 2013-04158; Rule: Editorial Corrections to the Export Administration Regulations",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "3b87e7669ad0cf3be197a6b1357125b516109063654e2d04e063b120984f78a0",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2013-04158.txt",
+        "text_sha256": "3b87e7669ad0cf3be197a6b1357125b516109063654e2d04e063b120984f78a0",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2013/02/28/2013-04158.txt"
+      },
+      "text": "66513, November 5, 2012), which is the most recent such annual notice.\n    On September 23, 2001, by Executive Order 13224 (66 FR 49079, 3 \nCFR, 2001 Comp., p. 786), pursuant to the International Emergency \nEconomic Powers Act (50 U.S.C. 1701-1706), the President declared a \nnational emergency with respect to persons who commit, threaten to \ncommit, or support terrorism. The authority for part 730 of the EAR \nrests in part on that executive order and the annual notices continuing \nthe international emergency declared therein. This rule also revises \nthe authority citations paragraphs to part 730 of the EAR (15 CFR part \n730) to include citations to the President's Notice of September 11, \n2012--Continuation of the National Emergency With Respect to Persons \nWho Commit, Threaten To Commit, or Support Terrorism (77 FR 56519, \nSeptember 12, 2012), which is the most recent such annual notice.\n    On January 25, 1995, by Executive Order 12947 (60 FR 5079, 3 CFR, \n1995 Comp., p. 356), the President declared a national emergency with \nrespect to the unusual and extraordinary threat to the national \nsecurity, foreign policy and economy of the United States posed by \ngrave acts of violence committed by terrorists who threaten to disrupt \nthe Middle East process. On August 20, 1998, by Executive Order 13099 \n(63 FR 45167, 3 CFR, 1998 Comp., p. 208), the President modified the \nAnnex to Executive Order 12947 to identify four additional persons who \nthreaten to disrupt the Middle East peace process. On February 16, \n2005, by Executive Order 13372, the President clarified the steps taken \nin Executive Order 12947. The national emergency declared in Executive \nOrder 12947 has been continued in effect through successive annual \npresidential notices. The authority for Parts 730 and 744 of the EAR \n(15 CFR parts 730 and 744) rests in part on Executive Order 12947, as \namended and clarified, and on the successive annual notices continuing \nthe emergency declared in that Executive Order. This rule revises the \nauthority citation paragraphs in those parts of the CFR to include a \ncitation to the President's Notice of January 17, 2013 (Continuation of \nthe National Emergency With Respect to Terrorists Who Threaten to \nDisrupt the Middle East Peace Process (78 FR 4303, January 22, 2013), \nwhich is the most recent such annual Presidential notice.\n\nCorrections\n\n    This final rule updates seventeen parts of the EAR to correct \nspelling and typographical errors, inaccurate internal references, and \nincorrect paragraph designations.\n    This rule amends the EAR to update the mailing address for the \nBureau of Industry and Security (BIS). The BIS mailroom is no longer \nRoom 2705. Mail for BIS should now be directed to Room 2099B. \nConsistent with this room change, this rule makes seventeen changes in \nchapter VII, subchapter C of title 15 of the Code of Federal \nRegulations, the Export Administration Regulations (EAR). Specifically, \nthis rule changes all references to ``Room 2705'', ``Room H2705'', or \n``Room H 2705'', wherever they appear in chapter VII, subchapter C, to \n"
+    },
+    "ACTOR_TEXT:FRDOC:2013-15424": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2013-15424",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 20893,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2013-15424",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2013-15424",
+        "page_or_item": "78 FR 38574; FR Doc. 2013-15424; Rule: Technical Amendments to Counter-Terrorism Sanctions Regulations Implemented by OFAC",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "f8f48aaccaa9c617a6c8b330666f13ecd3776d280b9fbc8623e3a231a86a94c1",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2013-15424.txt",
+        "text_sha256": "f8f48aaccaa9c617a6c8b330666f13ecd3776d280b9fbc8623e3a231a86a94c1",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2013/06/27/2013-15424.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 78 Issue 124 (Thursday, June 27, 2013)</title>\n</head>\n<body><pre>\n[Federal Register Volume 78, Number 124 (Thursday, June 27, 2013)]\n[Rules and Regulations]\n[Pages 38574-38577]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2013-15424]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF THE TREASURY\n\nOffice of Foreign Assets Control\n\n31 CFR Parts 594, 595, and 597\n\n\nTechnical Amendments to Counter-Terrorism Sanctions Regulations \nImplemented by OFAC\n\nAGENCY: Office of Foreign Assets Control, Treasury.\n\nACTION: Final rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The Office of Foreign Assets Control (``OFAC'') of the U.S. \nDepartment of the Treasury is amending the Global Terrorism Sanctions \nRegulations and the Terrorism Sanctions Regulations (the ``TSR'') to \nclarify the scope of prohibitions on the making of donations contained \nin the underlying Executive orders and that a person whose property and \ninterests in property are blocked pursuant to those programs has an \ninterest in all property and interests in property of an entity in \nwhich it owns, directly or indirectly, a 50 percent or greater \ninterest. In addition, OFAC is amending the TSR to add a definition of \nthe term ``financial, material, or technological support'' and to set \nat 180 days the maximum term of maturity for instruments in which funds \nmay be invested or held within a blocked interest-bearing account. \nFinally, OFAC is correcting a clerical error within the Foreign \nTerrorist Organizations Sanctions Regulations.\n\nDATES: Effective: June 27, 2013.\n\nFOR FURTHER INFORMATION CONTACT: Assistant Director for Sanctions \nCompliance & Evaluation, tel.: 202-622-2490, Assistant Director for \nLicensing, tel.: 202-622-2480, Assistant Director for Policy, tel.: \n202-622-2746, Assistant Director for Regulatory Affairs, tel.: 202-622-\n4855, Office of Foreign Assets Control, or Chief Counsel (Foreign \nAssets Control), tel.: 202-622-2410, Office of the General Counsel, \nDepartment of the Treasury, Washington, DC 20220 (not toll free \nnumbers).\n\nSUPPLEMENTARY INFORMATION: \n\nElectronic and Facsimile Availability\n\n    This document and additional information concerning OFAC are \navailable from OFAC's Web site (<a href=\"http://www.treasury.gov/ofac\">www.treasury.gov/ofac</a>). Certain general \ninformation pertaining to OFAC's sanctions programs also is available \nvia facsimile through a 24-hour fax-on-demand service, tel.: 202/622-\n0077.\n\nBackground\n\n    The Office of Foreign Assets Control (``OFAC'') administers three \nsanctions programs with respect to terrorists and terrorist \norganizations. The Terrorism Sanctions Regulations, 31 CFR part 595 \n(the ``TSR''), implement Executive Order 12947 of January 23, 1995, in \nwhich the President declared a national emergency with respect to \n``grave acts of violence committed by foreign terrorists that disrupt \nthe Middle East peace process.'' The Global Terrorism Sanctions \nRegulations, 31 CFR part 594 (the ``GTSR''), implement Executive Order \n13224 of September 23, 2001, in which the President declared a national \nemergency more generally with respect to ``grave acts of terrorism and \nthreats of terrorism committed by foreign terrorists.'' The Foreign \nTerrorist Organizations Sanctions Regulations, 31 CFR part 597 (the \n``FTOSR''), implement provisions of the Antiterrorism and Effective \nDeath Penalty Act of 1996.\n    Executive Order 13372 of February 16, 2005, amended section 3 of \nExecutive Order 12947 and section 4 of Executive Order 13224 to clarify \nthat the prohibitions contained in those sections on the making of \ndonations of the types of articles specified in section 203(b)(2) of \nthe International Emergency Economic Powers Act (50 U.S.C. 1702(b)(2)) \napply to donations ``by, to, or for the benefit of'' and not just \n``to'' persons whose property and interests in property are blocked \npursuant to those orders. OFAC is amending sections 594.204 and 594.409 \nof the GTSR and sections 595.204 and 595.408 of the TSR to incorporate \nthis clarification into its regulations.\n    OFAC also is adding new interpretive sections 594.412 and 595.410 \nto the GTSR and TSR, respectively, to clarify that a person whose \nproperty and interests in property are blocked pursuant to those \nprograms has an interest in all property and interests in property of \nan entity in which it owns, directly or indirectly, a 50 percent or \ngreater interest. The property and interests in property of such an \nentity, therefore, are blocked, and such an entity is a person whose \nproperty and interests in property are blocked pursuant to the relevant \nsanctions\n\n[[Page 38575]]\n\nprogram, regardless of whether the entity itself is listed in an annex \nto an Executive order or designated pursuant to statutory or regulatory \nauthorities. Further, OFAC is adding references to these new \ninterpretive sections to note 2 to paragraph (a) of section 594.201 of \nthe GTSR and new note 1 to section 595.311 of the TSR.\n    OFAC is amending the TSR to define the term ``financial, material, \nor technological support,'' as used in those regulations. Paragraph \n(a)(2)(ii) of section 595.311 of the TSR implements section 1(a)(ii)(B) \nof Executive Order 12947 by including within the definition of \n``specially designated terrorist'' foreign persons designated by the \nSecretary of State, in coordination with the Secretary of the Treasury \nand the Attorney General, because they are found to have assisted in, \nsponsored, or provided financial, material, or technological support \nfor, or services in support of, acts of violence that have the purpose \nor effect of disrupting the Middle East peace process.\n    New section 595.317 in subpart C of the TSR defines the term \n``financial, material, or technological support'' to mean any property, \ntangible or intangible, and includes a list of specific examples. The \ncorresponding definition already appears in the GTSR, in existing \nsection 594.317. The term is not used in the FTOSR.\n    In addition, OFAC is revising paragraph (b) of section 595.203 of \nthe TSR to set at 180 days the maximum term of maturity for instruments \nin which funds within an interest-bearing account, as defined within \nthat paragraph, may be invested or held. Previously, the maximum term \nof maturity for such instruments was set at 90 days, which is not \nconsistent with the maximum term of maturity set out in analogous \nprovisions under the regulations for other OFAC-administered sanctions \nprograms contained in the various parts of 31 CFR chapter V.\n    Finally, OFAC is making certain technical edits to definitions \ncontained in the GTSR and TSR and revising the note to section 597.301 \nof the FTOSR to correct a clerical error.\n\nPublic Participation\n\n    Because these amendments to 31 CFR parts 594, 595, and 597 involve \na foreign affairs function, Executive Order 12866 and the provisions of \nthe Administrative Procedure Act (5 U.S.C. 553) requiring notice of \nproposed rulemaking, opportunity for public participation, and delay in \neffective date are inapplicable. Because no notice of proposed \nrulemaking is required for this rule, the Regulatory Flexibility Act (5 \nU.S.C. 601-612) does not apply.\n\nList of Subjects 31 CFR Parts 594, 595, and 597\n\n    Administrative practice and procedure, Banks, Banking, Blocking of \nassets, Terrorism.\n\n    For the reasons set forth in the preamble, the Department of the \nTreasury's Office of Foreign Assets Control amends 31 CFR parts 594, \n595, and 597 as follows:\n\nPART 594--GLOBAL TERRORISM SANCTIONS REGULATIONS\n\n0\n1. The authority citation for part 594 is revised to read as follows:\n\n    Authority:  3 U.S.C. 301; 22 U.S.C. 287c; 31 U.S.C. 321(b); 50 \nU.S.C. 1601-1651, 1701-1706; Pub. L. 101-410, 104 Stat. 890 (28 \nU.S.C. 2461 note); Pub. L. 110-96, 121 Stat. 1011; E.O. 13224, 66 FR \n49079, 3 CFR, 2001 Comp., p. 786; E.O. 13268, 67 FR 44751, 3 CFR, \n2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. \n161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159.\n\nSubpart B--Prohibitions\n\n0\n2. In Sec.  594.201, revise Note 2 to paragraph (a) to read as follows:\n\n\nSec.  594.201  Prohibited transactions involving blocked property.\n\n* * * * *\n\n    Note 2 to paragraph (a) of Sec.  594.201: The names of persons \nwhose property and interests in property are blocked pursuant to \nSec.  594.201(a) are published in the Federal Register and \nincorporated into the Office of Foreign Assets Control's Specially \nDesignated Nationals and Blocked Persons List (``SDN List'') with \nthe identifier ``[SDGT].'' The SDN List is accessible through the \nfollowing page on the Office of Foreign Assets Control's Web site: \n<a href=\"http://www.treasury.gov/sdn\">http://www.treasury.gov/sdn</a>. Additional information pertaining to \nthe SDN List can be found in appendix A to this chapter. See Sec.  \n594.412 concerning entities that may not be listed on the SDN List \nbut whose property and interests in property are nevertheless \nblocked pursuant to paragraph (a) of this section.\n\n* * * * *\n\n0\n3. Revise Sec.  594.204 to read as follows:\n\n\nSec.  594.204  Prohibited transaction or dealing in property; \ncontributions of funds, goods, or services.\n\n    Except as otherwise authorized, no U.S. person may engage in any \ntransaction or dealing in property or interests in property of persons \nwhose property and interests in property are blocked pursuant to Sec.  \n594.201(a), including but not limited to the following transactions:\n    (a) The making of any contribution or provision of funds, goods, or \nservices by, to, or for the benefit of any person whose property and \ninterests in property are blocked pursuant to Sec.  594.201(a); and\n    (b) The receipt of any contribution or provision of funds, goods, \nor services from any person whose property and interests in property \nare blocked pursuant to Sec.  594.201(a).\n\nSubpart C--General Definitions\n\n0\n4. Revise Sec.  594.310 to read as follows:\n\n\nSec.  594.310  Specially designated global terrorist; SDGT.\n\n    The term specially designated global terrorist or SDGT means any \nperson whose property and interests in property are blocked pursuant to \nSec.  594.201(a).\n\nSubpart D--Interpretations\n\n0\n5. Revise Sec.  594.409 to read as follows:\n\n\nSec.  594.409  Charitable contributions.\n\n    Unless specifically authorized by the Office of Foreign Assets \nControl pursuant to this part, no charitable contribution or donation \nof funds, goods, services, or technology, including contributions or \ndonations to relieve human suffering, such as food, clothing, or \nmedicine, may be made by, to, or for the benefit of, or received from, \nany person whose property and interests in property are blocked \npursuant to Sec.  594.201(a). For the purposes of this part, a \ncontribution or donation is made by, to, or for the benefit of, or \nreceived from, any person whose property and interests in property are \nblocked pursuant to Sec.  594.201(a) if made by, to, or in the name of, \nor received from or in the name of, such a person; if made by, to, or \nin the name of, or received from or in the name of, an entity or \nindividual acting for or on behalf of, or owned or controlled by, such \na person; or if made in an attempt to violate, to evade, or to avoid \nthe bar on the provision of contributions or donations by, to, or for \nthe benefit of such a person, or the receipt of contributions or \ndonations from any such person.\n\n0\n6. Add Sec.  594.412 to subpart D to read as follows:\n\n\nSec.  594.412  Entities owned by a person whose property and interests \nin property are blocked.\n\n    A person whose property and interests in property are blocked \npursuant to Sec.  594.201(a) has an interest in all property and \ninterests in property of an entity in which it owns, directly or \nindirectly, a 50 percent or greater interest. The property and \ninterests in property of such an entity, therefore, are\n\n[[Page 38576]]\n\nblocked, and such an entity is a person whose property and interests in \nproperty are blocked pursuant to Sec.  594.201(a), regardless of \nwhether the entity itself is listed in the Annex to Executive Order \n13224, as amended, or designated pursuant to Sec.  594.201(a).\n\nPART 595--TERRORISM SANCTIONS REGULATIONS\n\n0\n7. The authority citation for part 595 is revised to read as follows:\n\n    Authority:  3 U.S.C. 301; 31 U.S.C. 321(b); 50 U.S.C. 1601-1651, \n1701-1706; Pub. L. 101-410, 104 Stat. 890 (28 U.S.C. 2461 note); \nPub. L. 110-96, 121 Stat. 1011; E.O. 12947, 60 FR 5079, 3 CFR, 1995 \nComp., p. 319; E.O. 13099, 63 FR 45167, 3 CFR, 1998 Comp., p. 208; \nE.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159.\n\nSubpart B--Prohibitions\n\n0\n8. In Sec.  595.203, revise paragraph (b) to read as follows:\n\n\nSec.  595.203  Holding of certain types of blocked property in \ninterest-bearing accounts.\n\n* * * * *\n    (b) For purposes of this section, the term interest-bearing account \nmeans a blocked account in a U.S. financial institution earning \ninterest at rates that are commercially reasonable for the amount of \nfunds in the account. Except as otherwise authorized, the funds may not \nbe invested or held in instruments the maturity of which exceeds 180 \ndays.\n* * * * *\n\n0\n9. Revise Sec.  595.204 to read as follows:\n\n\nSec.  595.204  Prohibited transaction or dealing in property; \ncontributions of funds, goods, or services.\n\n    Except as otherwise authorized, no U.S. person may deal in property \nor interests in property of a specially designated terrorist, including \nbut not limited to the following transactions:\n    (a) The making of any contribution or provision of funds, goods, or \nservices by, to, or for the benefit of a specially designated \nterrorist; and\n    (b) The receipt of any contribution or provision of funds, goods, \nor services from a specially designated terrorist.\n\nSubpart C--General Definitions\n\n0\n10. In Sec.  595.311, revise paragraph (a)(1), remove the Note to Sec.  \n595.311, and add Notes 1, 2, and 3 to read as follows:\n\n\nSec.  595.311  Specially designated terrorist.\n\n    (a) * * *\n    (1) Persons listed in the Annex to Executive Order 12947 of January \n23, 1995, as amended;\n* * * * *\n\n    Note 1 to Sec.  595.311: The names of persons determined to fall \nwithin this definition, whose property and interests in property \ntherefore are blocked pursuant to this part, are published in the \nFederal Register and incorporated into the Office of Foreign Assets \nControl's Specially Designated Nationals and Blocked Persons List \n(``SDN List'') with the identifier ``[SDT].'' The SDN List is \naccessible through the following page on the Office of Foreign \nAssets Control's Web site: <a href=\"http://www.treasury.gov/sdn\">http://www.treasury.gov/sdn</a>. Additional \ninformation pertaining to the SDN List can be found in appendix A to \nthis chapter. See Sec.  595.410 concerning entities that may not be \nlisted on the SDN List but whose property and interests in property \nare nevertheless blocked pursuant to this part.\n\n\n    Note 2 to Sec.  595.311:  The International Emergency Economic \nPowers Act (50 U.S.C. 1701-1706), in Section 203 (50 U.S.C. 1702), \nauthorizes the blocking of property and interests in property of a \nperson during the pendency of an investigation. The names of persons \nwhose property and interests in property are blocked pending \ninvestigation pursuant to this part also are published in the \nFederal Register and incorporated into the SDN List with the \nidentifier ``[BPI-SDT].''\n\n\n    Note 3 to Sec.  595.311: Section 501.807 of this chapter sets \nforth the procedures to be followed by persons seeking \nadministrative reconsideration of their designation, or who wish to \nassert that the circumstances resulting in the designation are no \nlonger applicable.\n\n\n0\n11. Add Sec.  595.317 to subpart C to read as follows:\n\n\nSec.  595.317  Financial, material, or technological support.\n\n    The term financial, material, or technological support, as used in \nSec.  595.311(a)(2)(ii) of this part, means any property, tangible or \nintangible, including but not limited to currency, financial \ninstruments, securities, or any other transmission of value; weapons or \nrelated materiel; chemical or biological agents; explosives; false \ndocumentation or identification; communications equipment; computers; \nelectronic or other devices or equipment; technologies; lodging; safe \nhouses; facilities; vehicles or other means of transportation; or \ngoods. ``Technologies'' as used in this definition means specific \ninformation necessary for the development, production, or use of a \nproduct, including related technical data such as blueprints, plans, \ndiagrams, models, formulae, tables, engineering designs and \nspecifications, manuals, or other recorded instructions.\n\nSubpart D--Interpretations\n\n0\n12. Revise Sec.  595.408 to read as follows:\n\n\nSec.  595.408  Charitable contributions.\n\n    (a) Unless specifically authorized by the Office of Foreign Assets \nControl pursuant to this part, no charitable contribution or donation \nof funds, goods, services, or technology, including contributions or \ndonations to relieve human suffering, such as food, clothing, or \nmedicine, may be made by, to, or for the benefit of, or received from, \nany specially designated terrorist. For the purposes of this part, a \ncontribution or donation is made by, to, or for the benefit of, or \nreceived from, a specially designated terrorist if made by, to, or in \nthe name of, or received from or in the name of, a specially designated \nterrorist; if made by, to, or in the name of, or received from or in \nthe name of, an entity or individual acting for or on behalf of, or \nowned or controlled by, a specially designated terrorist; or if made in \nan attempt to violate, to evade, or to avoid the bar on the provision \nof contributions or donations by, to, or for the benefit of a specially \ndesignated terrorist, or the receipt of contributions or donations from \na specially designated terrorist.\n    (b) Individuals and organizations who donate or contribute funds, \ngoods, services, or technology without knowledge or reason to know that \nthe donation or contribution is destined to or for the benefit of a \nspecially designated terrorist shall not be subject to penalties for \nsuch donation or contribution.\n\n0\n13. Add Sec.  595.410 to subpart D to read as follows:\n\n\nSec.  595.410  Entities owned by a person whose property and interests \nin property are blocked.\n\n    A person who is determined to fall within the definition of \nspecially designated terrorist as set forth in Sec.  595.311, whose \nproperty and interests in property therefore are blocked pursuant to \nthis part, has an interest in all property and interests in property of \nan entity in which it owns, directly or indirectly, a 50 percent or \ngreater interest. The property and interests in property of such an \nentity, therefore, are blocked, and such an entity is a person whose \nproperty and interests in property are blocked pursuant to this part, \nregardless of whether the entity itself is listed in the Annex to \nExecutive Order 12947, as amended, or designated pursuant to this part.\n\nPART 597--FOREIGN TERRORIST ORGANIZATIONS SANCTIONS REGULATIONS\n\n0\n14. The authority citation for part 597 continues to read as follows:\n\n\n[[Page 38577]]\n\n\n    Authority:  31 U.S.C. 321(b); Pub. L. 101-410, 104 Stat. 890 (28 \nU.S.C. 2461 note); Pub. L. 104-132, 110 Stat. 1214, 1248-53 (8 \nU.S.C. 1189, 18 U.S.C. 2339B).\n\nSubpart C--General Definitions\n\n0\n15. In Sec.  597.301, revise the Note to read as follows:\n\n\nSec.  597.301  Agent.\n\n* * * * *\n\n    Note to Sec.  597.301: The names of persons designated as \nforeign terrorist organizations or determined to fall within this \ndefinition are published in the Federal Register and incorporated \ninto the Office of Foreign Assets Control's Specially Designated \nNationals and Blocked Persons List (``SDN List'') with the \nidentifier ``[FTO].'' The SDN List is accessible through the \nfollowing page on the Office of Foreign Assets Control's Web site: \n<a href=\"http://www.treasury.gov/sdn\">http://www.treasury.gov/sdn</a>. Additional information pertaining to \nthe SDN List can be found in appendix A to this chapter. Section \n501.807 of this chapter sets forth the procedures to be followed by \na person seeking administrative reconsideration of a determination \nthat the person falls within this definition, or who wishes to \nassert that the circumstances resulting in such a determination are \nno longer applicable.\n\n\n    Dated: June 21, 2013.\nAdam J. Szubin,\nDirector, Office of Foreign Assets Control.\n[FR Doc. 2013-15424 Filed 6-26-13; 8:45 am]\nBILLING CODE 4810-AL-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2014-01414": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2014-01414",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 2929,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2014-01414",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2014-01414",
+        "page_or_item": "79 FR 3721; FR Doc. 2014-01414; Presidential Document: Continuation of the National Emergency With Respect to Terrorists Who Threaten To Disrupt the Middle East Peace Process",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "be9c293dc49a52faccadbe914b4f65388b4c45277b3217110016193072ee534b",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2014-01414.txt",
+        "text_sha256": "be9c293dc49a52faccadbe914b4f65388b4c45277b3217110016193072ee534b",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2014/01/22/2014-01414.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 79 Issue 14 (Wednesday, January 22, 2014)</title>\n</head>\n<body><pre>\n[Federal Register Volume 79, Number 14 (Wednesday, January 22, 2014)]\n[Presidential Documents]\n[Page 3721]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2014-01414]\n\n\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 79 , No. 14 / Wednesday, January 22, 2014 / \nPresidential Documents\u0000\u0000\n\n[[Page 3721]]\n\n\n                Notice of January 21, 2014\n\n                \nContinuation of the National Emergency With \n                Respect to Terrorists Who Threaten To Disrupt the \n                Middle East Peace Process\n\n                On January 23, 1995, by Executive Order 12947, the \n                President declared a national emergency pursuant to the \n                International Emergency Economic Powers Act (50 U.S.C. \n                1701-1706) to deal with the unusual and extraordinary \n                threat to the national security, foreign policy, and \n                economy of the United States constituted by grave acts \n                of violence committed by foreign terrorists who \n                threaten to disrupt the Middle East peace process. On \n                August 20, 1998, by Executive Order 13099, the \n                President modified the Annex to Executive Order 12947 \n                to identify four additional persons who threaten to \n                disrupt the Middle East peace process. On February 16, \n                2005, by Executive Order 13372, the President clarified \n                the steps taken in Executive Order 12947.\n\n                Because these terrorist activities continue to threaten \n                the Middle East peace process and to pose an unusual \n                and extraordinary threat to the national security, \n                foreign policy, and economy of the United States, the \n                national emergency declared on January 23, 1995, and \n                the measures adopted to deal with that emergency must \n                continue in effect beyond January 23, 2014. Therefore, \n                in accordance with section 202(d) of the National \n                Emergencies Act (50 U.S.C. 1622(d)), I am continuing \n                for 1 year the national emergency with respect to \n                foreign terrorists who threaten to disrupt the Middle \n                East peace process.\n\n                This notice shall be published in the Federal Register \n                and transmitted to the Congress.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\n                THE WHITE HOUSE,\n\n                    January 21, 2014.\n\n[FR Doc. 2014-01414\nFiled 1-21-14; 11:15 am]\nBilling code 3295-F4\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2020-04851": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2020-04851",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 6342,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2020-04851",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2020-04851",
+        "page_or_item": "85 FR 13746; FR Doc. 2020-04851; Rule: Removal of Terrorism Sanctions Regulations",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "e6a74cbc4b925b0b9632838757ed11cae3eb1bcd9160d4c2d5a2cc71f1e195eb",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2020-04851.txt",
+        "text_sha256": "e6a74cbc4b925b0b9632838757ed11cae3eb1bcd9160d4c2d5a2cc71f1e195eb",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2020/03/10/2020-04851.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 85 Issue 47 (Tuesday, March 10, 2020)</title>\n</head>\n<body><pre>\n[Federal Register Volume 85, Number 47 (Tuesday, March 10, 2020)]\n[Rules and Regulations]\n[Pages 13746-13747]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2020-04851]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF THE TREASURY\n\nOffice of Foreign Assets Control\n\n31 CFR Part 595\n\n\nRemoval of Terrorism Sanctions Regulations\n\nAGENCY: Office of Foreign Assets Control, Treasury.\n\nACTION: Final rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The Department of the Treasury's Office of Foreign Assets \nControl (OFAC) is removing from the Code of Federal Regulations the \nTerrorism Sanctions Regulations as a result of the termination of the \nnational emergency on which the regulations were based.\n\nDATES: Effective Date: March 10, 2020.\n\nFOR FURTHER INFORMATION CONTACT: OFAC: Assistant Director for \nLicensing, 202-622-2480; Assistant Director for Regulatory Affairs, \n202-622-4855; or Assistant Director for Sanctions Compliance & \nEvaluation, 202-622-2490.\n\nSUPPLEMENTARY INFORMATION: \n\nElectronic Availability\n\n    This document and additional information concerning OFAC are \navailable on OFAC's website (<a href=\"http://www.treasury.gov/ofac\">www.treasury.gov/ofac</a>).\n\nBackground\n\n    On January 23, 1995, the President issued Executive Order 12947, \n``Prohibiting Transactions With Terrorists Who Threaten To Disrupt the \nMiddle East Peace Process'' (E.O. 12947), declaring a national \nemergency with respect to ``grave acts of violence committed by foreign \nterrorists that disrupt the Middle East peace process,'' and invoking \nthe authority, inter alia, of the International Emergency Economic \nPowers Act (50 U.S.C. 1701-1706). In E.O. 12947, the President blocked \nall property and interests in property of (1) persons listed in the \nAnnex to E.O. 12947; (2) foreign persons designated by the Secretary of \nState, in coordination with the Secretary of the Treasury and the \nAttorney General, because they are found (a) to have committed, or to \npose a significant risk of committing, acts of violence that have the \npurpose or effect of disrupting the Middle East peace process, or (b) \nto assist in, sponsor, or provide financial, material, or technological \nsupport for, or services in support of, such acts of violence; and (3) \npersons determined by the Secretary of the Treasury, in coordination \nwith the Secretary of State and the Attorney General, to be owned or \ncontrolled by, or to act for or on behalf of, any of the foregoing \npersons.\n    On February 2, 1996, OFAC issued the Terrorism Sanctions \nRegulations, 31 CFR part 595 (the ``Regulations''), as a final rule to \nimplement E.O. 12947. The Regulations were amended on several \noccasions.\n    On August 20, 1998, the President issued Executive Order 13099, \n``Prohibiting Transactions With Terrorists Who Threaten To Disrupt the \nMiddle East Peace Process'' (E.O. 13099), amending the Annex to E.O. \n12947 in order to take additional steps with respect to the national \nemergency declared in E.O. 12947. On February 16, 2005, the President \nissued Executive Order 13372, ``Clarification of Certain Executive \nOrders Blocking Property and Prohibiting Certain Transactions,'' \nfurther amending E.O. 12947 in order to clarify steps taken in E.O. \n12947 as amended by E.O. 13099.\n    On September 9, 2019, the President issued Executive Order 13886, \n``Modernizing Sanctions To Combat Terrorism'' (E.O. 13886). In E.O. \n13886, the President found that it was necessary to consolidate and \nenhance sanctions to combat acts of terrorism and threats of terrorism \nby foreign terrorists. Accordingly, he terminated the national \nemergency declared in E.O. 12947, as amended, and revoked that order.\n    As a result, OFAC is removing the Regulations from the Code of \nFederal Regulations. Pursuant to section 202 of the National \nEmergencies Act (50 U.S.C. 1622), termination of the national emergency \ndeclared in E.O. 12947, as amended, shall not affect any action taken \nor proceeding pending and not finally concluded or determined as of \n12:01 a.m. eastern daylight time on September 10, 2019 (the effective \ndate of E.O. 13886), any action or proceeding based on any act \ncommitted prior to the effective date, or any rights or duties that \nmatured or penalties that were incurred prior to the effective date.\n\nPublic Participation\n\n    Because the Regulations involve a foreign affairs function, the \nprovisions of Executive Order 12866 and the Administrative Procedure \nAct (5 U.S.C. 553) requiring notice of proposed rulemaking, opportunity \nfor public participation, and delay in effective date, as well as the \nprovisions of Executive Order 13771, are inapplicable. Because no \nnotice of proposed rulemaking is required for this rule, the Regulatory \nFlexibility Act (5 U.S.C. 601-612) does not apply.\n\nPaperwork Reduction Act\n\n    The Paperwork Reduction Act does not apply because this rule does \nnot impose information collection requirements that would require the \napproval of the Office of Management and Budget under 44 U.S.C. 3501 et \nseq.\n\nList of Subjects in 31 CFR Part 595\n\n    Administrative practice and procedure, Banks, Banking and finance, \nBlocking of assets, Fines and penalties, Reporting and recordkeeping \nrequirements, Specially designated terrorists, Terrorism, Transfer of \nassets.\n\nPART 595--[REMOVED]\n\n0\nFor the reasons set forth in the preamble, and under the authority of 3 \nU.S.C. 301; 31 U.S.C. 321(b); 50 U.S.C. 1601-1651, 1701-1706; Public \nLaw 101-410, 104 Stat. 890 (28 U.S.C. 2461 note); Public Law 110-96, \n121 Stat.1011; E.O. 12947, 60 FR 5079, 3 CFR, 1995 Comp., p. 319; E.O. \n13099, 63 FR 45167, 3 CFR, 1998 Comp., p. 208; E.O. 13372, 70 FR 8499, \n3 CFR, 2006 Comp., p. 159; and E.O. 13886, 84 FR 48041 (September 12, \n2019), OFAC\n\n[[Page 13747]]\n\namends 31 CFR chapter V by removing part 595.\n\n    Dated: March 5, 2020.\nAndrea Gacki,\nDirector, Office of Foreign Assets Control.\n[FR Doc. 2020-04851 Filed 3-9-20; 8:45 am]\n BILLING CODE 4810-AL-P\n\n\n</pre></body>\n</html>"
+    },
     "CLAUSES:EO:13372#sec1": {
       "char_end": 2761,
       "char_start": 1646,
@@ -741,6 +969,40 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2005-02-18/pdf/05-3385.pdf"
       },
       "text": "Sec. 5. This order shall be transmitted to the Congress and published in \nthe Federal Register.\nW"
+    },
+    "CURRENT:EO:13372#0": {
+      "basis_code": "cfr_authority_citation",
+      "char_end": 614,
+      "char_start": 352,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR part 594",
+        "sha256": "5ca096a17329d2b600dfedc7d9385e78e69280a5c242b4891bb9686e08c71db3",
+        "source_id": "cfr:t31:part594",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/part-594"
+      },
+      "id": "CURRENT:EO:13372#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13372",
+      "legal_basis_candidate": "regulation authority citation lists the order (31 CFR part 594)",
+      "machine_lead": true,
+      "mention_id": "ecfr:f304e1267c24",
+      "snippet": "...te); E.O. 13224, 66 FR 49079, 3 CFR, 2001 Comp., p. 786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
+      "source": {
+        "page_or_item": "31 CFR part 594 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.44)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part594.txt",
+        "text_sha256": "5ca096a17329d2b600dfedc7d9385e78e69280a5c242b4891bb9686e08c71db3",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "te); E.O. 13224, 66 FR 49079, 3 CFR, 2001 Comp., p. 786; E.O. 13268, 67 FR 44751, 3 CFR, 2002 Comp., p. 240; E.O. 13284, 68 FR 4075, 3 CFR, 2003 Comp., p. 161; E.O. 13372, 70 FR 8499, 3 CFR, 2006 Comp., p. 159; E.O. 13886, 84 FR 48041, 3 CFR, 2019 Comp., p. 356.",
+      "where": "CFR 31 CFR part 594"
     },
     "ORIGINAL:EO:13372": {
       "acceptable_as_original": true,
@@ -956,7 +1218,7 @@
       "text": "Furthermore, I hereby determine \nthat the Trade Sanctions Reform and Export Enhancement Act of 2000 \n(Title IX, Public Law 106–387) shall not affect the imposition or the continu-\nation of the imposition of any unilateral agricultural sanction or unilateral \nmedical sanction on any person determined to be subject to this order \nbecause imminent involvement of the Armed Forces of the United States \nin hostilities is clearly indicated by the circumstances.’’"
     }
   },
-  "fingerprint": "312be287d0bbdfe111b77db41df0ce365cc268ff6d704cfef1f737293c783257",
+  "fingerprint": "29ad4b50b9cecb6356d5c8c7f4da1a187a1dfa3dd898b9cfc6f83347beb293ce",
   "instrument_id": "EO:13372",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1104,23 +1366,25 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 1,
       "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:ecfr"
@@ -1128,8 +1392,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1147,6 +1411,11 @@
     "Acting identity absent from census: NOTICE:2017-01-13",
     "Acting identity absent from census: NOTICE:2018-01-17",
     "Acting identity absent from census: NOTICE:2019-01-16",
+    "Acting text of FRDOC:2015-01283: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2015-01283.txt",
+    "Acting text of FRDOC:2016-01427: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2016-01427.txt",
+    "Acting text of FRDOC:2017-01359: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2017-01359.txt",
+    "Acting text of FRDOC:2018-01024: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2018-01024.txt",
+    "Acting text of FRDOC:2019-00079: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2019-00079.txt",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
@@ -1168,10 +1437,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "8f8dc9811b62ef808a717a15bd00a0977951498fc9a4772f68b49a3b9d4c1e25",
+    "fingerprint": "2ef5d15d8f0f2df995bee7fabfea4e3f1e34d8f4734b9b2940dd06011f8fbbc0",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13372.json",
-    "history_sha256": "1600977b269b7f4c496ebd04f92d84922c0cb91861f91b5b0ece8006f18ac46a",
+    "history_sha256": "80bf4691c0d419bab1869ec8b54d67ffaa7e532935811a5b3046b0f2a196b389",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

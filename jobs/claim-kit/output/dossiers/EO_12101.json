@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:12608",
-      "evidence_id": "ACTOR_TEXT:EO:12608"
+      "evidence_id": "ACTOR_TEXT:EO:12608",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -130,7 +131,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12101",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12101"
@@ -163,11 +164,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 264,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 254c note; note 'Ex. Ord. No. 12101. Delegation of Functions to Secretary of State Respecting Privileges an' [USLM note id iddd400eaa-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "dc314e80dffa3dca700cb01dd6c6e041da451b954b23aebff7f5e62da987cbaa",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddd400eaa-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12101",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (22 U.S.C. 254c note)",
@@ -177,10 +187,14 @@
       "source": {
         "page_or_item": "22 U.S.C. 254c note; note 'Ex. Ord. No. 12101. Delegation of Functions to Secretary of State Respecting Privileges an' [USLM note id iddd400eaa-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddd400eaa-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "dc314e80dffa3dca700cb01dd6c6e041da451b954b23aebff7f5e62da987cbaa",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=iddd400eaa-b816-11f1-963c-e4c4db8c41be",
+      "text": "Ex. Ord. No. 12101. Delegation of Functions to Secretary of State Respecting Privileges and Immunities for Diplomatic Missions and Personnel\nEx. Ord. No. 12101, Nov. 17, 1978, 43 F.R. 54195, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/iddd400eaa-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "dc314e80dffa3dca700cb01dd6c6e041da451b954b23aebff7f5e62da987cbaa",
       "where": "USC 22 U.S.C. 254c note"
     },
     {
@@ -232,7 +246,7 @@
         "snippet": "Ex. Ord. No. 12101. Delegation of Functions to Secretary of State Respecting Privileges and Immunities for Diplomatic Missions and Personnel | Ex. Ord. No. 12101, Nov. 17, 1978, 43 F.R. 54195, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=iddd400eaa-b816-11f1-963c-e4c4db8c41be",
+        "text_path": "usc-notes/iddd400eaa-b816-11f1-963c-e4c4db8c41be.txt",
         "where": "USC 22 U.S.C. 254c note"
       },
       "proposal": {
@@ -711,6 +725,7 @@
       "char_end": 14639,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12608",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -748,6 +763,42 @@
       },
       "text": "By the authority vested in me as President of the United States of America  \nby the Diplomatic Relations Act (Public Law 95-393, 92 Stat. 808; 22 U.S.C.  \n254a et seq.) and Section 301 of Title 3 of the United States Code, in order to  \nimplement the liability insurance and other requirements relating to diplomat­\nic personnel, I hereby designate and empower the Secretary of State to  \nperform, without the approval, ratification, or other action of the President,  \nthe functions vested or to be vested in the President by Sections 4 and 6 of  \nthe Diplomatic Relations Act (92 Stat. 809; 22 U.S.C. 254c and 254e)."
     },
+    "CURRENT:EO:12101#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 264,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 254c note; note 'Ex. Ord. No. 12101. Delegation of Functions to Secretary of State Respecting Privileges an' [USLM note id iddd400eaa-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "dc314e80dffa3dca700cb01dd6c6e041da451b954b23aebff7f5e62da987cbaa",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddd400eaa-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12101#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12101",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (22 U.S.C. 254c note)",
+      "machine_lead": true,
+      "mention_id": "usc:5bf749703556",
+      "snippet": "Ex. Ord. No. 12101. Delegation of Functions to Secretary of State Respecting Privileges and Immunities for Diplomatic Missions and Personnel | Ex. Ord. No. 12101, Nov. 17, 1978, 43 F.R. 54195, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "source": {
+        "page_or_item": "22 U.S.C. 254c note; note 'Ex. Ord. No. 12101. Delegation of Functions to Secretary of State Respecting Privileges an' [USLM note id iddd400eaa-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddd400eaa-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "dc314e80dffa3dca700cb01dd6c6e041da451b954b23aebff7f5e62da987cbaa",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12101. Delegation of Functions to Secretary of State Respecting Privileges and Immunities for Diplomatic Missions and Personnel\nEx. Ord. No. 12101, Nov. 17, 1978, 43 F.R. 54195, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/iddd400eaa-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "dc314e80dffa3dca700cb01dd6c6e041da451b954b23aebff7f5e62da987cbaa",
+      "where": "USC 22 U.S.C. 254c note"
+    },
     "ORIGINAL:EO:12101": {
       "acceptable_as_original": true,
       "actor_id": "EO:12101",
@@ -774,7 +825,7 @@
       "text": "Instrument: EO:12101\nSource: https://www.govinfo.gov/content/pkg/FR-1978-11-21/pdf/FR-1978-11-21.pdf\nSHA-256 of the downloaded file: 5509f055c53e9d8890d247f5ccf785bb0e58ecb4e4e19e48e979bffd119978c4\nLocation: 43 FR 54195, PDF pages 17-17 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 17 of 440 ===\nTHE PRESIDENT 54195\n[3195-01-M ]\nExecutive Order 12101 November 17, 1978\nPrivileges, Immunities and Liability Insurance for Diplomatic Missions and Personnel\nBy the authority vested in me as President of the United States of America  \nby the Diplomatic Relations Act (Public Law 95-393, 92 Stat. 808; 22 U.S.C.  \n254a et seq.) and Section 301 of Title 3 of the United States Code, in order to  \nimplement the liability insurance and other requirements relating to diplomat­\nic personnel, I hereby designate and empower the Secretary of State to  \nperform, without the approval, ratification, or other action of the President,  \nthe functions vested or to be vested in the President by Sections 4 and 6 of  \nthe Diplomatic Relations Act (92 Stat. 809; 22 U.S.C. 254c and 254e).\nT h e W h i t e H o u s e,\nNovember 17, 1978.\n[FR Doc. 78-32799 Filed 11-17-78; 4:24 pmJ\nFEDERAL REGISTER, VOL. 43, NO. 225— TUESDAY, NOVEMBER 21, 1978\n"
     }
   },
-  "fingerprint": "785a2a23567360a48e8b306fa4d2c16834440c6c8f3a50ea4d3dc45d999faca8",
+  "fingerprint": "833360161e072a72c92d4822170cae242b4fd8f6356198636a0c33ef1561dd53",
   "instrument_id": "EO:12101",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -798,32 +849,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -833,6 +886,7 @@
     }
   ],
   "missing": [
+    "Acting text of FRDOC:2024-19192: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2024-19192.txt",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
@@ -843,10 +897,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "972838bf965d1e9f46e246b74fe556c1f33efd1c75ec799d70852efdcfa6a381",
+    "fingerprint": "36eac14458e794798c029c93a49325b3fc217b1ce29bf57cf36297e3e475eaec",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12101.json",
-    "history_sha256": "73613f99fe1cff4037c2bccdc02893fb291c0aa579e6c471cd2e498e2151a2b5",
+    "history_sha256": "21be1d7a0a5c738c508be74e2b6cb8fca3c58cba92d19f37bfce7379b5a3c580",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

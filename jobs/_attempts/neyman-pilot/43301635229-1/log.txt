@@ -1,0 +1,26 @@
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpmx6wi0k9/research/bentham/usage/w-csv/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+../home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpdx8piwyn/research/bentham/usage/w/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp52fcao4v/research/bentham/usage/heavy/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmp52fcao4v/research/bentham/usage/lean/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+./home/runner/work/Executive-Orders/Executive-Orders/jobs/junto/evidence.py:147: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmphwdt0bw7/research/bentham/usage/w/AGENT_USAGE.csv' mode='r' encoding='utf-8'>
+  rows = list(csv.DictReader(path.open(encoding="utf-8", newline="")))
+ResourceWarning: Enable tracemalloc to get the object allocation traceback
+.........................................
+----------------------------------------------------------------------
+Ran 45 tests in 1.675s
+
+OK
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/neyman-pilot/job.py", line 26, in <module>
+    check_pins(root,manifest['input_hashes'])
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/neyman/survey.py", line 88, in check_pins
+    raise ValueError('stale sampling inputs: '+', '.join(changed[:12]))
+ValueError: stale sampling inputs: jobs/claim-checker/output/PER_CLAIM.json, jobs/claim-kit/population.py, jobs/claim-kit/test_population.py, jobs/claim-kit/test_review_regressions.py, jobs/lachmann/output/CONFIRMATIONS.jsonl, jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl, jobs/readiness-tracker/output/READINESS_BY_ORDER.csv, jobs/readiness-tracker/output/SUMMARY.json, jobs/source-ladder/output/RESULTS.csv, jobs/source-ladder/output/SOURCES.jsonl, jobs/status-history/output/INDEX.json, research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13101.audit.v1.json

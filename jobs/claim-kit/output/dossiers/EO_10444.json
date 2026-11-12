@@ -2,11 +2,13 @@
   "actor_contexts": [
     {
       "actor_id": "EO:10445",
-      "evidence_id": "ACTOR_TEXT:EO:10445"
+      "evidence_id": "ACTOR_TEXT:EO:10445",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:14085",
-      "evidence_id": "ACTOR_TEXT:EO:14085"
+      "evidence_id": "ACTOR_TEXT:EO:14085",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:9323",
@@ -106,7 +108,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:10444",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10444"
@@ -139,11 +141,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 258,
+      "char_start": 38,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 8809. Good Conduct Medal' [USLM note id ida8989a51-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "1aec293ad97ebf6b4716b21d12d3d93f9491dfe027ffef04d14966a2c6ea35ff",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a51-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10444",
       "legal_basis_candidate": "order amended a printed order (weak lead) (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
@@ -153,9 +164,14 @@
       "source": {
         "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 8809. Good Conduct Medal' [USLM note id ida8989a51-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a51-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "1aec293ad97ebf6b4716b21d12d3d93f9491dfe027ffef04d14966a2c6ea35ff",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 8809, June 28, 1941, 6 F.R. 3209, as amended by Ex. Ord. No. 9323, Mar. 31, 1943, 8 F.R. 4225; Ex. Ord. No. 10444, Apr. 10, 1953, 18 F.R. 2069; Ex. Ord. No. 14085, § 2, Oct. 3, 2022, 87 F.R. 60541, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a51-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "1aec293ad97ebf6b4716b21d12d3d93f9491dfe027ffef04d14966a2c6ea35ff",
       "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
     },
     {
@@ -174,6 +190,7 @@
         "snippet": "Ex. Ord. No. 8809, June 28, 1941, 6 F.R. 3209, as amended by Ex. Ord. No. 9323, Mar. 31, 1943, 8 F.R. 4225; Ex. Ord. No. 10444, Apr. 10, 1953, 18 F.R. 2069; Ex. Ord. No. 14085, § 2, Oct. 3, 2022, 87 F.R. 60541, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/ida8989a51-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
       },
       "proposal": {
@@ -1884,6 +1901,7 @@
       "char_end": 18991,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:10445",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1904,6 +1922,7 @@
       "char_end": 8840,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14085",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1960,6 +1979,42 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1953-04-14/pdf/FR-1953-04-14.pdf"
       },
       "text": "EXECUTIVE ORDER 10444\nAmendment  op E xecutive  O rder N o.\n88091  op J une  28, 1941, Establishing\nthe G ood C onduct  M edal, as\nAmended by  E xecutive  O rder N o.\n93233  of M arch 31, 1943\nExecutive Order No. 8809 of June 28, \n1941, establishing the Good Conduct \nMedal, as amended by Executive Order \nNo. 9323 of March 31, 1943, is hereby \nfurther amended to read as follows:\n“By virtue of the authority vested in \nme as President of the United States and \nas Commander in Chief of the Armed \nForces of the United States, it is ordered \nas follows:\n“There is hereby established the Good \nConduct Medal, which shall include \nsuitable appurtenances. Such medal \nmay be ^warded for exemplary behavior, \nefficiency, and fidelity, under such regu­\nlations as the Secretary of the Army and \nthe Secretary of the Air Force shall \nseverally prescribe, to those enlisted \nmen of the Army of the United States \nand the'United States Air Force who on \nor after August 27, 1940, had or shall \nhave honorably completed three years of \nactive Federal military service, or who \nafter December 7, 1941, have or shall- \nhave honorably served one year of active \nFederal military service while the \nUnited States is at war, or who at the \ntime of the termination of their active \nFederal military service have not previ­\nously been awarded a Good Conduct \nMedal and have completed a period of \nhonorable service of less than three \nyears if any part of that period of service \nhas been performed after June 27, 1950: \nProvided,  that no persons, except per­\nsons ¡separated from the active Federal \nmilitary service by reason of physical \ndisability incurred in line of duty, shall, \nbe awarded such medal for a period of \nservice of less than one year.”"
+    },
+    "CURRENT:EO:10444#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 258,
+      "char_start": 38,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 8809. Good Conduct Medal' [USLM note id ida8989a51-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "1aec293ad97ebf6b4716b21d12d3d93f9491dfe027ffef04d14966a2c6ea35ff",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a51-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:10444#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10444",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
+      "machine_lead": true,
+      "mention_id": "usc:52d2603f9233",
+      "snippet": "Ex. Ord. No. 8809, June 28, 1941, 6 F.R. 3209, as amended by Ex. Ord. No. 9323, Mar. 31, 1943, 8 F.R. 4225; Ex. Ord. No. 10444, Apr. 10, 1953, 18 F.R. 2069; Ex. Ord. No. 14085, § 2, Oct. 3, 2022, 87 F.R. 60541, provided:",
+      "source": {
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 8809. Good Conduct Medal' [USLM note id ida8989a51-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a51-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "1aec293ad97ebf6b4716b21d12d3d93f9491dfe027ffef04d14966a2c6ea35ff",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 8809, June 28, 1941, 6 F.R. 3209, as amended by Ex. Ord. No. 9323, Mar. 31, 1943, 8 F.R. 4225; Ex. Ord. No. 10444, Apr. 10, 1953, 18 F.R. 2069; Ex. Ord. No. 14085, § 2, Oct. 3, 2022, 87 F.R. 60541, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a51-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "1aec293ad97ebf6b4716b21d12d3d93f9491dfe027ffef04d14966a2c6ea35ff",
+      "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
     },
     "ORIGINAL:EO:10444": {
       "acceptable_as_original": true,
@@ -2081,7 +2136,7 @@
       "text": "Such medal may be awarded for exemplary behavior, efficiency, and fidelity, under such regulations as the Secretary of the Army and the Secretary of the Air Force shall severally prescribe, to those enlisted men of the Army of the United States and the United States Air Force who on or after August 27, 1940, had or shall have honorably completed three years of active Federal military service, or who after December 7, 1941, have or shall have honorably served one year of active Federal military service while the United States is at war, or who at the time of the termination of their active Federal military service have not previously been awarded a Good Conduct Medal and have completed a period of honorable service of less than three years if any part of that period of service has been performed after June 27, 1950: Provided, that no persons, except persons separated from the active Federal military service by reason of physical disability incurred in line of duty, shall be awarded such medal for a period of service of less than one year.\""
     }
   },
-  "fingerprint": "64907d3575a98a51f4619ec26222b04c48c1d0cf42d899fcd87a8993d51a8369",
+  "fingerprint": "050a70ad52d11de702080f4acd3a4a3209880f2604e7f2644d8ceecc1873aec3",
   "instrument_id": "EO:10444",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2114,11 +2169,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 1,
       "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -2126,20 +2182,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2151,7 +2208,6 @@
   "missing": [
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:14085",
     "target provision not located: EO:9323"
   ],
@@ -2165,10 +2221,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "4754c08c2b7459a7f667bf6a6740d5b6fb2294a438251dd9ed3b17be87fb8075",
+    "fingerprint": "5b413bbada72635b2fbc210408e738b036b26adb38c93b7ca4c01cdaa41a14b5",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_10444.json",
-    "history_sha256": "5c7b318adc4fe38a00f47c1e794d9911616e37807ca9eee70dd8dc692c6afd5a",
+    "history_sha256": "c308a8093fb2c7f19366b4b56f9ba5cb3924c062ea0cf2bcda821b5273708c9c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

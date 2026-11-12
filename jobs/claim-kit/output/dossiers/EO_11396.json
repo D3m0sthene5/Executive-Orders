@@ -1,10 +1,23 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "FRDOC:2025-01159",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:2025-01159@4647"
+      ],
+      "full_text_chars": 116139,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-2025-01159.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "119fa991b18341673364373f0dba8f135939bd9cae4e57b6bb457b61f97356e3",
+      "window_bytes": 3077,
+      "windows_omitted": 0
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11396",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11396"
@@ -169,11 +182,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 167,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "34 U.S.C. subtitle I, ch. 101 note; note 'Ex. Ord. No. 11396. Coordination By Attorney General of Federal Law Enforcement and Crime ' [USLM note id id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d]; usc34.xml (sha256 1174c9fb0d5fc2a503fbf6fa13f91476f827eb66bf7f286faa4b4c280ae81abf) in xml_uscAll@119-121.zip",
+        "sha256": "e5ca71a98809678ba544fbc004717a12d8d9fe721f8f0dff626bbd460c37f5a6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11396",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (34 U.S.C. subtitle I, ch. 101 note)",
@@ -183,10 +205,14 @@
       "source": {
         "page_or_item": "34 U.S.C. subtitle I, ch. 101 note; note 'Ex. Ord. No. 11396. Coordination By Attorney General of Federal Law Enforcement and Crime ' [USLM note id id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d]; usc34.xml (sha256 1174c9fb0d5fc2a503fbf6fa13f91476f827eb66bf7f286faa4b4c280ae81abf) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d.txt",
+        "text_sha256": "e5ca71a98809678ba544fbc004717a12d8d9fe721f8f0dff626bbd460c37f5a6",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d",
+      "text": "Ex. Ord. No. 11396. Coordination By Attorney General of Federal Law Enforcement and Crime Prevention Programs\nEx. Ord. No. 11396, Feb. 7, 1968, 33 F.R. 2689, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d.txt",
+      "text_sha256": "e5ca71a98809678ba544fbc004717a12d8d9fe721f8f0dff626bbd460c37f5a6",
       "where": "USC 34 U.S.C. subtitle I, ch. 101 note"
     },
     {
@@ -238,7 +264,7 @@
         "snippet": "Ex. Ord. No. 11396. Coordination By Attorney General of Federal Law Enforcement and Crime Prevention Programs | Ex. Ord. No. 11396, Feb. 7, 1968, 33 F.R. 2689, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d",
+        "text_path": "usc-notes/id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d.txt",
         "where": "USC 34 U.S.C. subtitle I, ch. 101 note"
       },
       "proposal": {
@@ -328,6 +354,36 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:FRDOC:2025-01159@4647": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2025-01159",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 7724,
+      "char_start": 4647,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2025-01159@4647",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2025-01159",
+        "page_or_item": "90 FR 6879; FR Doc. 2025-01159; Proposed Rule: Homicide Victims' Families' Rights Act",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "119fa991b18341673364373f0dba8f135939bd9cae4e57b6bb457b61f97356e3",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2025-01159.txt",
+        "text_sha256": "119fa991b18341673364373f0dba8f135939bd9cae4e57b6bb457b61f97356e3",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2025/01/21/2025-01159.txt"
+      },
+      "text": "``HVFRA''), which was enacted on August 3, 2022, Public Law 117-164, \n136 Stat. 1358, provides a system for the review of case files, and for \ncarrying out further investigation as warranted, in murder cases \ninvestigated by Federal law enforcement agencies that have gone \nunsolved for over three years. The general objective of the Act is to \nfacilitate the identification of the perpetrators of these ``cold \ncase'' murders and thereby help to bring the perpetrators to justice \nand provide closure for the victims' families.\n    The Act specifically provides for carrying out case file reviews in \ncold case murder investigations on application by certain family \nmembers of the victim, and for further investigation if the case file \nreview concludes that a full reinvestigation would result in probative \ninvestigative leads. The Act also directs the collection and \npublication of statistics on the number of cold case murders and \nreports to the House and Senate Judiciary Committees on the operation \nand results of the system established by the Act.\n    This proposed rule would add a new part 95 to title 28 of the Code \nof Federal Regulations to implement the Act. The new part would explain \nthe Act's requirements and key concepts, and it would specify \nassignments of responsibility and procedures to ensure that the Act is \neffectively carried out.\n\nIII. Legal Authority\n\n    The Department of Justice is issuing this rule pursuant to the \nHVFRA and the authority of the Attorney General under Executive Order \n11396, 33 FR 2689 (Feb. 7, 1968).\n\n[[Page 6880]]\n\nIV. Section-by-Section Analysis\n\n    The proposed rule would provide a statement of purpose in Sec.  \n95.1 and define key terms in Sec.  95.2. Section 95.3 would explain \nwhat is required in cold case murder file reviews. Section 95.4 would \nset out procedures for victims' family members to apply for file \nreviews and for action on the applications by the responsible \ninvestigative agencies. Section 95.5 would explain the Act's \nrequirements relating to full reinvestigations. Section 95.6 would \ndirect that case file reviews and reinvestigations be carried out in a \ncohesive manner when multiple agencies are involved. Section 95.7 would \naddress consulting with and informing applicants, and keeping them up \nto date about case file reviews and reinvestigations. Section 95.8 \nwould articulate the Act's timing rules for successive applications. \nSections 95.9, 95.10, and 95.11 would address the Act's requirements \nrelating to compliance, data collection, and annual reports. Section \n95.12 would incorporate a provision of the Act that allows the \nwithholding of information whose disclosure would have serious adverse \neffects or be unlawful. More detailed descriptions of these provisions \nfollow.\n\nA. Section 95.1--Purpose\n\n    The Act creates a system for reviewing and, as warranted, \nreinvestigating murder cases previously investigated by Federal \nagencies in which ``all probative investigative leads have been \nexhausted'' and ``no likely perpetrator has been identified'' after \n"
+    },
     "CLAUSES:EO:11396#a": {
       "char_end": 6867,
       "char_start": 6341,
@@ -482,6 +538,42 @@
       },
       "text": "Pursuant to the Atomic Energy Act of \n1954, as amended, the Administrative \nProcedure Act of 1946, as amended, and \n1  CFR 17.2, the following amendments \nto 1 0  CFR Part 1  are published as a docu­\nment, subject to codification to be effec­\ntive upon publication in the F ederal  \nR egister .\n§ 1.10 [Amended]\n- 1 . In §  1.10, paragraph (d) is amended \nto read as follows:"
     },
+    "CURRENT:EO:11396#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 167,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "34 U.S.C. subtitle I, ch. 101 note; note 'Ex. Ord. No. 11396. Coordination By Attorney General of Federal Law Enforcement and Crime ' [USLM note id id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d]; usc34.xml (sha256 1174c9fb0d5fc2a503fbf6fa13f91476f827eb66bf7f286faa4b4c280ae81abf) in xml_uscAll@119-121.zip",
+        "sha256": "e5ca71a98809678ba544fbc004717a12d8d9fe721f8f0dff626bbd460c37f5a6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11396#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11396",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (34 U.S.C. subtitle I, ch. 101 note)",
+      "machine_lead": true,
+      "mention_id": "usc:fc29a365284a",
+      "snippet": "Ex. Ord. No. 11396. Coordination By Attorney General of Federal Law Enforcement and Crime Prevention Programs | Ex. Ord. No. 11396, Feb. 7, 1968, 33 F.R. 2689, provided:",
+      "source": {
+        "page_or_item": "34 U.S.C. subtitle I, ch. 101 note; note 'Ex. Ord. No. 11396. Coordination By Attorney General of Federal Law Enforcement and Crime ' [USLM note id id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d]; usc34.xml (sha256 1174c9fb0d5fc2a503fbf6fa13f91476f827eb66bf7f286faa4b4c280ae81abf) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d.txt",
+        "text_sha256": "e5ca71a98809678ba544fbc004717a12d8d9fe721f8f0dff626bbd460c37f5a6",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 11396. Coordination By Attorney General of Federal Law Enforcement and Crime Prevention Programs\nEx. Ord. No. 11396, Feb. 7, 1968, 33 F.R. 2689, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id4c8ffeb0-5dcd-11f1-b11b-9e551e93f87d.txt",
+      "text_sha256": "e5ca71a98809678ba544fbc004717a12d8d9fe721f8f0dff626bbd460c37f5a6",
+      "where": "USC 34 U.S.C. subtitle I, ch. 101 note"
+    },
     "ORIGINAL:EO:11396": {
       "acceptable_as_original": true,
       "actor_id": "EO:11396",
@@ -537,7 +629,7 @@
       "text": "Pursuant to the Atomic Energy Act of \n1954, as amended, the Administrative \nProcedure Act of 1946, as amended, and \n1  CFR 17.2, the following amendments \nto 1 0  CFR Part 1  are published as a docu­\nment, subject to codification to be effec­\ntive upon publication in the F ederal  \nR egister .\n§ 1.10 [Amended]\n- 1 ."
     }
   },
-  "fingerprint": "63139234a9e7f62ad146095b411d29f5416635f373a416ec26b1aa806c0853eb",
+  "fingerprint": "04b87ed1fdabc262f6043462a953f2063be42454caf0bb4e11143b4e3f82f343",
   "instrument_id": "EO:11396",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -661,32 +753,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -708,12 +802,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "7cfe87bddb7edc28c9a7ffc2503e0ed8aea29d47a237d76b4a027c247cd42fef",
+    "fingerprint": "3cecb203cbf3081937e92250e0a0e7dd104e5c7e15688a355fb6b0515dcc94b2",
     "flags": [
       "EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT"
     ],
     "history_path": "jobs/status-history/output/histories/EO_11396.json",
-    "history_sha256": "3544854aaf587ad0cbd7784f39ea0564f97b98297f28b74edaa7419e1921cef4",
+    "history_sha256": "6e329d6dd67b5c6e6570f80047a5b6e0be81d12e2ffca5b27c00e373343d2cf7",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

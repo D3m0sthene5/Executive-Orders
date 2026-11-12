@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:13188",
-      "evidence_id": "ACTOR_TEXT:EO:13188"
+      "evidence_id": "ACTOR_TEXT:EO:13188",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13210",
@@ -10,7 +11,8 @@
     },
     {
       "actor_id": "EO:13218",
-      "evidence_id": "ACTOR_TEXT:EO:13218"
+      "evidence_id": "ACTOR_TEXT:EO:13218",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13227",
@@ -22,7 +24,13 @@
     },
     {
       "actor_id": "EO:13316",
-      "evidence_id": "ACTOR_TEXT:EO:13316"
+      "evidence_id": "ACTOR_TEXT:EO:13316",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2026-17962",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2026-17962",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -479,7 +487,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13111",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13111"
@@ -1573,11 +1581,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 342,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "5 U.S.C. 4103 note; note 'Ex. Ord. No. 13111. Using Technology To Improve Training Opportunities for Federal Governm' [USLM note id id278b0a39-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "0bcad82e4de227993d30bff6f3024a209dcb70e35d4e4c4d8435488a61673aab",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id278b0a39-ac5f-11f1-a76e-9d053fb5b48a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13111",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (5 U.S.C. 4103 note)",
@@ -1587,10 +1604,14 @@
       "source": {
         "page_or_item": "5 U.S.C. 4103 note; note 'Ex. Ord. No. 13111. Using Technology To Improve Training Opportunities for Federal Governm' [USLM note id id278b0a39-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id278b0a39-ac5f-11f1-a76e-9d053fb5b48a.txt",
+        "text_sha256": "0bcad82e4de227993d30bff6f3024a209dcb70e35d4e4c4d8435488a61673aab",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id278b0a39-ac5f-11f1-a76e-9d053fb5b48a",
+      "text": "Ex. Ord. No. 13111. Using Technology To Improve Training Opportunities for Federal Government Employees\nEx. Ord. No. 13111, Jan. 12, 1999, 64 F.R. 2793, as amended by Ex. Ord. No. 13188, Jan. 12, 2001, 66 F.R. 5419; Ex. Ord. No. 13218, § 3(a), June 20, 2001, 66 F.R. 33628; Ex. Ord. No. 13316, § 3(a), Sept. 17, 2003, 68 F.R. 55255, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id278b0a39-ac5f-11f1-a76e-9d053fb5b48a.txt",
+      "text_sha256": "0bcad82e4de227993d30bff6f3024a209dcb70e35d4e4c4d8435488a61673aab",
       "where": "USC 5 U.S.C. 4103 note"
     },
     {
@@ -1642,7 +1663,7 @@
         "snippet": "Ex. Ord. No. 13111. Using Technology To Improve Training Opportunities for Federal Government Employees | Ex. Ord. No. 13111, Jan. 12, 1999, 64 F.R. 2793, as amended by Ex. Ord. No. 13188, Jan. 12, 2001, 66 F.R. 5419; Ex. Ord. No. 13218, § 3(a), June 20, 2001, 66 F.R. 33628; Ex. Ord. No. 13316, § 3( ...",
         "snippet_truncated": true,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id278b0a39-ac5f-11f1-a76e-9d053fb5b48a",
+        "text_path": "usc-notes/id278b0a39-ac5f-11f1-a76e-9d053fb5b48a.txt",
         "where": "USC 5 U.S.C. 4103 note"
       },
       "proposal": {
@@ -3553,6 +3574,7 @@
       "char_end": 1454,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13188",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -3593,6 +3615,7 @@
       "char_end": 8763,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13218",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -3653,6 +3676,7 @@
       "char_end": 5729,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13316",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -3667,6 +3691,36 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2003-09-23/pdf/03-24217.pdf"
       },
       "text": "Instrument: EO:13316\nSource: https://www.govinfo.gov/content/pkg/FR-2003-09-23/pdf/03-24217.pdf\nSHA-256 of the downloaded file: 2c61fa55bd860b31aa4d1dbd9cd3100a57e71bafd15795ea610fa045ab71e2f6\nLocation: 68 FR 55255, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n55255Federal Register / Vol. 68, No. 184 / Tuesday, September 23, 2003 / Presidential Documents \nExecutive Order 13316 of September 17, 2003\nContinuance of Certain Federal Advisory Committees \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, and in accordance with the provisions \nof the Federal Advisory Committee Act, as amended (5 U.S.C. App.), it \nis hereby ordered as follows: \nSection 1. Each advisory committee listed below is continued until September \n30, 2005. \n(a) Committee for the Preservation of the White House; Executive Order \n11145, as amended (Department of the Interior). \n(b) National Infrastructure Advisory Council; Section 3 of Executive Order \n13231, as amended (Department of Homeland Security). \n(c) Federal Advisory Council on Occupational Safety and Health; Executive \nOrder 12196, as amended (Department of Labor). \n(d) President’s Board of Advisors on Historically Black Colleges and Univer-\nsities; Executive Order 13256 (Department of Education). \n(e) President’s Board of Advisors on Tribal Colleges and Universities; \nExecutive Order 13270 (Department of Education). \n(f) President’s Commission on White House Fellowships; Executive Order \n11183, as amended (Office of Personnel Management). \n(g) President’s Committee on the Arts and the Humanities; Executive Order \n12367, as amended (National Endowment for the Arts). \n(h) President’s Committee on the International Labor Organization; Execu-\ntive Order 12216, as amended (Department of Labor). \n(i) President’s Committee on the National Medal of Science; Executive \nOrder 11287, as amended (National Science Foundation). \n(j) President’s Council on Bioethics; Executive Order 13237 (Department \nof Health and Human Services). \n(k) President’s Council on Physical Fitness and Sports; Executive Order \n13265 (Department of Health and Human Services). \n(l) President’s Export Council; Executive Order 12131, as amended (Depart-\nment of Commerce). \n(m) President’s National Security Telecommunications Advisory Com-\nmittee; Executive Order 12382, as amended (Department of Homeland Secu-\nrity). \n(n) Trade and Environment Policy Advisory Committee; Executive Order \n12905 (Office of the United States Trade Representative). \nSec. 2. Notwithstanding the provisions of any other Executive Order, the \nfunctions of the President under the Federal Advisory Committee Act that \nare applicable to the committees listed in section 1 of this order shall \nbe performed by the head of the department or agency designated after \neach committee, in accordance with the guidelines and procedures estab-\nlished by the Administrator of General Services. \nSec. 3. The following Executive Orders, or sections thereof, which established \ncommittees that have terminated or whose work is completed, are revoked: \n(a) Sections 5 through 7 of Executive Order 13111, as amended by Executive \nOrder 13188 and Section 3(a) of Executive Order 13218, pertaining to the \nVerDate jul<14>2003 15:52 Sep 22, 2003 Jkt 200001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\23SEE0.SGM 23SEE0\n=== PDF page 2 of 2 ===\n55256 Federal Register / Vol. 68, No. 184 / Tuesday, September 23, 2003 / Presidential Documents \nestablishment of the Advisory Committee on Expanding Training Opportuni-\nties; \n(b) Executive Order 12975, as amended by Executive Orders 13018, 13046, \nand 13137, establishing the National Bioethics Advisory Commission; \n(c) Executive Order 13227, as amended by Executive Order 13255, estab-\nlishing the President ’s Commission on Excellence in Special Education; \n(d) Executive Order 13278, establishing the President ’s Commission on \nthe United States Postal Service; \n(e) Executive Order 13210, establishing the President ’s Commission to \nStrengthen Social Security; \n(f) Sections 5 through 8 of Executive Order 13177, pertaining to the \nestablishment of the President ’s Council on the Use of Offsets in Commercial \nTrade; \n(g) Executive Order 13263, establishing the President ’s New Freedom Com-\nmission on Mental Health; \n(h) Executive Order 13214, establishing the President ’s Task Force to \nImprove Health Care Delivery for Our Nation’s Veterans; and \n(i) Executive Order 13147, as amended by Executive Order 13167, estab-\nlishing the White House Commission on Complementary and Alternative \nMedicine Policy. \nSec. 4. Executive Order 13225 is superseded. \nSec. 5. Section 1 –102(a) of Executive Order 12131, as amended, is further \namended to read as follows: \n‘‘(a) The heads of the following executive agencies or their representatives: \n(1) Department of State. \n(2) Department of the Treasury. \n(3) Department of Agriculture. \n(4) Department of Commerce. \n(5) Department of Labor. \n(6) Department of Energy. \n(7) Department of Homeland Security. \n(8) Office of the United States Trade Representative. \n(9) Export-Import Bank of the United States. \n(10) Small Business Administration.’’\nSec. 6. This order shall be effective September 30, 2003.\nW\nTHE WHITE HOUSE, \nSeptember 17, 2003. \n[FR Doc. 03 –24217\nFiled 9 –22–03; 11:38 am] \nBilling code 3195 –01–P \nVerDate jul<14>2003 15:52 Sep 22, 2003 Jkt 200001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\23SEE0.SGM 23SEE0"
+    },
+    "ACTOR_TEXT:FRDOC:2026-17962": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-17962",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 27831,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-17962",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-17962",
+        "page_or_item": "91 FR 56476; FR Doc. 2026-17962; Notice: Privacy Act of 1974; Systems of Records",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "d944e277c42ac390a1541e4c564a0bbb5cb4e1733b18acdc08fdae2784f32dbd",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-17962.txt",
+        "text_sha256": "d944e277c42ac390a1541e4c564a0bbb5cb4e1733b18acdc08fdae2784f32dbd",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/09/02/2026-17962.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 91 Issue 169 (Wednesday, September 2, 2026)</title>\n</head>\n<body><pre>\n[Federal Register Volume 91, Number 169 (Wednesday, September 2, 2026)]\n[Notices]\n[Pages 56476-56480]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2026-17962]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF JUSTICE\n\n[CPCLO Order No. 006-2026]\n\n\nPrivacy Act of 1974; Systems of Records\n\nAGENCY: United States Department of Justice.\n\nACTION: Notice of a new system of records.\n\n-----------------------------------------------------------------------\n\nSUMMARY: Pursuant to the Privacy Act of 1974 and Office of Management \nand Budget (OMB) Circular No. A-108, notice is hereby given that the \nDepartment of Justice (Department or DOJ) proposes to develop a new \nsystem of records titled ``Department of Justice Learning Management \nand Training Records, JUSTICE/DOJ-023,'' which contains training \nrecords, forms, requests, surveys, and learning modules. Currently, DOJ \nlearning management and training records are covered by the government-\nwide SORN OPM/GOVT-1, General Personnel Records. However, OPM/GOVT-01 \nonly covers records related to current and former Federal employees. \nThe DOJ proposes to establish this system of records to include \nlearning management and training records related to both DOJ personnel, \nincluding contractors, volunteers, interns and grantees, as well as \nguest lecturers, partner law enforcement officers, members of the \npublic, and the press who participate in and/or facilitate learning and \ntraining functions for the Department. The records in this system may \ninclude enrollment and participation information, class schedules, \nprograms, names, business or personal contact information, and feedback \nabout the training provided. Much of the information in the records, \nsuch as learning and training requests, completed training, and \ntraining feedback, will be supplied by the individuals to which the \ninformation pertains.\n\nDATES: In accordance with 5 U.S.C. 552a(e)(4) and (11), this notice is \neffective upon publication, subject to a 30-day period in which to \ncomment on the routine uses, described below. Please submit any \ncomments by October 2, 2026.\n\nADDRESSES: The public, OMB, and Congress are invited to submit any \ncomments by mail to the United States Department of Justice, Office of \nPrivacy and Civil Liberties, ATTN: Privacy Analyst, Two Constitution \nSquare, 145 N St. NE, Suite 8W-300, Washington, DC 20530; by facsimile \nat 202-307- 0693; or by email at <a href=\"/cdn-cgi/l/email-protection#ed9d9f849b8c8e94c38e82809d81848c838e88ad989e898287c38a829b\"><span class=\"__cf_email__\" data-cfemail=\"89f9fbe0ffe8eaf0a7eae6e4f9e5e0e8e7eaecc9fcfaede6e3a7eee6ff\">[email&#160;protected]</span></a>. To \nensure proper handling, please refer to the above CPCLO Order No. in \nyour correspondence.\n\nFOR FURTHER INFORMATION CONTACT: William N. Taylor II, Deputy Assistant \nAttorney General, Policy, Management, and Procurement, 950 Pennsylvania \nAvenue NW, Washington, DC 20530-0001, (202) 514-3102.\n\nSUPPLEMENTARY INFORMATION: The U.S. Department of Justice Learning \nManagement and Training system of records supports DOJ efforts related \nto Executive Order 13111, the President's Management Agenda (PMA)--\nStrategic Management of Human Capital, and the e-Government Human \nResources Line of Business--Human Resources Development (HR LOB/HRD). \nThe system is designed to facilitate the delivery and record-keeping of \ntraining to DOJ personnel, various DOJ partners, and members of the \npublic.\n    This system of records captures information identifying individual \nusers and the DOJ-sponsored training they take. This system of records \nis maintained to provide educational and training programs, including \naccess to commercial and component-specific web-based courseware, \nmanagement of an online catalog of course offerings, automated training \nregistration and approval processes, online individual development \nplanning, online testing and surveys, tracking of training resources, \nmanagement of and reporting on training data, and tracking of training \ncompletion.\n    OPM policy requires the collection and reporting of training data \nfor all Federal employees, as outlined in the OPM Guide to Human \nResources Reporting (available at <a href=\"https://www.opm.gov/policy-data-oversight/data-analysis-documentation/data-policy-guidance/hr-reporting/ghrr4-4.pdf\">https://www.opm.gov/policy-data-oversight/data-analysis-documentation/data-policy-guidance/hr-reporting/ghrr4-4.pdf</a>). In addition, maintaining detailed records about \nthe training offered and\n\n[[Page 56477]]\n\nthe individuals that have participated as instructors, attendees, and/\nor observers, as well as feedback and satisfaction surveys, is \nnecessary to measure human resource development program effectiveness, \nas well as respond to Department and Government training records \nrequests and reporting requirements.\n    Pursuant to 5 U.S.C. 552a(b)(13), records maintained in this system \nof records may be disclosed to a consumer reporting agency without the \nprior written consent of the individual to whom the record pertains. \nSuch disclosures will only be made in accordance with 31 U.S.C. \n3711(e).\n    In accordance with 5 U.S.C. 552a(r), the Department has provided a \nreport to OMB and Congress on this new system of records.\n\n    Dated: August 27, 2026.\nLaurence E. Rothenberg,\nChief Privacy and Civil Liberties Officer, United States Department of \nJustice.\nJUSTICE/DOJ-023\n\nSYSTEM NAME AND NUMBER:\n    Department of Justice Learning Management and Training Records, \nJUSTICE/DOJ-023.\n\nSECURITY CLASSIFICATION:\n    Classified and unclassified.\n\nSYSTEM LOCATION:\n    Records may be maintained at all locations where the Department of \nJustice (DOJ) or its contractors operate, or where DOJ operations are \nsupported, including the Robert F. Kennedy Main Justice Department \nBuilding, 950 Pennsylvania Avenue NW, Washington, DC 20530-0001.\n    Additionally, records may be maintained electronically at one or \nmore DOJ data centers, including, but not limited to, the Department's \nCore Enterprise Facilities (CEF), the Department's CEF East, in \nClarksburg, WV 26306, and CEF West, Pocatello, ID 83201. Records may \nalso be transferred to a DOJ-authorized cloud service provider within \nthe Continental United States.\n    Access to these electronic records may occur from any location the \nDOJ operates or other locations where DOJ Office of the Chief \nInformation Officer (OCIO) operations are supported. Some or all of the \nrecords in the system may be duplicated at other locations where the \nDepartment has granted direct access to support DOJ operations, system \nbackup, emergency preparedness, and/or continuity of operations.\n    Training records maintained in a former Federal employee's Official \nPersonnel Folder (OPF), which is generally electronic, are located at \nthe National Personnel Records Center, National Archives and Records \nAdministration (NARA).\n\nSYSTEM MANAGER(S):\n    For all DOJ offices and agencies other than Federal Bureau of \nInvestigation (FBI) and Federal Bureau of Prisons (FBOP): William N. \nTaylor, II, Deputy Assistant Attorney General, Policy, Management, and \nProcurement, 950 Pennsylvania Avenue NW, Washington, DC 20530-0001, \n202-514-3102.\n    For the FBI: Virtual Academy System Owner, Unit Chief, Learning \nSystems Unit, Curriculum Management Section, Training Division, Federal \nBureau of Investigation, Quantico, VA 22135, 703-632-1000.\n    For the FBOP: Chung-Hi Grace, Associate General Counsel, Branch \nChief, Office of General Counsel, 320 First Street NW, Washington, DC \n20156, 202-307-2804.\n\nAUTHORITY FOR MAINTENANCE OF THE SYSTEM:\n    44 U.S.C. 3101; the Government Employees Training Act (GETA), 5 \nU.S.C. 4101-4118; 5 CFR 410.311 and 410.601; Executive Order 11348, as \namended by Executive Order 12107; and DOJ Order 1200.1, Human \nResources.\n\nPURPOSE(S) OF THE SYSTEM:\n    The purpose of this system of records is to capture records \nnecessary to manage DOJ-sponsored training programs. The records in \nthis system of records are maintained to provide educational and \ntraining programs, including access to commercial and component-\nspecific web-based courseware, management of online catalogs of course \nofferings, automated training registration and approval processes, \nonline individual development planning, online testing and surveys, \ntracking of training resources, management of and reporting on training \ndata, and tracking of training completion.\n    OPM policy requires the collection and reporting of training data \nfor all Federal employees, as outlined in the OPM Guide to Human \nResources Reporting (available at <a href=\"https://www.opm.gov/policy-data-oversight/data-analysis-documentation/data-policy-guidance/hr-reporting/ghrr4-4.pdf\">https://www.opm.gov/policy-data-oversight/data-analysis-documentation/data-policy-guidance/hr-reporting/ghrr4-4.pdf</a>). Maintaining detailed records about training \noffered and the individuals who have participated as instructors, \nattendees, and/or observers is also necessary to measure human resource \ndevelopment program effectiveness, and to respond to Department and \ngovernment-wide training information requests or reporting \nrequirements.\n    Summary data from the system is used to track specific measures \noutlined in the Department of Justice Human Capital Strategic Plan. \nDemographic data, such as race and national origin, is collected to \nmeet obligations under EEOC Management Directive 715. User data, such \nas promotion date and entry on position, is used to identify groups of \nindividuals with specific training requirements and to facilitate \nassignment of curricula. Mandatory training information is tracked for \nprofessional development purposes. Instructor data is collected by the \nDepartment to identify instructors, assign them to scheduled offerings, \nand track instructor utilization. Attendee and observer information is \ncollected to administer satisfaction surveys and to facilitate training \nlogistics and planning functions. Administrator data is collected to \nidentify administrators, track their roles, and review their access to \nand use of the system containing records in this system of records. The \nDepartment employs data minimization practices (e.g., truncated SSNs, \nhealth data relating to accommodations) to further protect Personally \nIdentifiable Information (PII).\n\nCATEGORIES OF INDIVIDUALS COVERED BY THE SYSTEM:\n    Current and former Federal employees as defined in 5 U.S.C. 2105; \nother DOJ personnel, including contractors, volunteers, interns and \ngrantees; other non-DOJ individuals who attend, participate in, or \nobserve DOJ training, including (but not limited to) military, tribal, \nstate, and local law enforcement, investigators, attorneys, social \nwelfare professionals, inmates, and members of the press and public; \ntraining instructors and support staff; possible emergency contacts \nand/or supervisors whose names are collected from attendees; and \nindividuals affiliated with training business processes in connection \nwith training facilities, conferences, and trainings at or with \nlaboratories, vehicles, and firearms.\n\nCATEGORIES OF RECORDS IN THE SYSTEM:\n    Records in this system include information pertaining to the \ntraining, development, and performance of its learners, instructors, \nparticipants, observers, and administrators, including support staff. \nThese records may include:\n    Personal information (e.g., name, date of birth, race/ethnicity, \nnational origin, sex, partial Social Security numbers, business and \npersonal contact\n\n[[Page 56478]]\n\ninformation, emergency contact information, photographic images of \ntrainees); education information (e.g., learning history, including \ndates and locations of institutions or courses attended. date \nregistered, internal and external courses taken or taught, internal and \nexternal requests or applications for training); professional \ndevelopment information (e.g., professional development plans, progress \nreviews); select personal health information (e.g., medical \naccommodation information, fitness for duty measures); employment \ninformation (e.g., current or previous positions held, job title, \nscale, grade and salary, professional licenses and certifications, work \nspecialty code, performance evaluations and reviews, supervisory \ninformation for approvals); course and training data (e.g., course \ndescriptions, course numbers, dates offered, education credits earned \nevaluation reports, attendance records, survey results and other \nfeedback); and other information as needed or required for training or \nlearning management. The system also includes administrative and audit \ndata to include user identification credentials, internet protocol (IP) \naddresses, and access dates and times.\n\nRECORD SOURCE CATEGORIES:\n    Information in this system of records is obtained from the \nfollowing sources:\n    A. The individual about whom the record pertains; training \npersonnel and entities; Department officials; records collected from \nother federal, state, local, tribal, and territorial agencies and other \nauthorized individuals or entities; personnel records; and other \nexisting systems of records, including but not limited to OPM/GOVT-01, \nGeneral Personnel Records, DOJ-014, Department of Justice Employee \nDirectory Systems, DOJ/USM-006, United States Marshals Service Training \nFiles, and DOJ/DEA-015, Training Files.\n    B. DOJ's Global Address List (GAL), National Finance Center, and \nthe U.S. Department of Treasury's HR Connect, which populate user \nprofiles for federal employees and contractors.\n    C. Information collected directly from non-DOJ individuals by DOJ \nemployees to create accounts in the learning management IT system for \nthe purpose of tracking training and development.\n\nROUTINE USES OF RECORDS MAINTAINED IN THE SYSTEM, INCLUDING CATEGORIES \nOF USERS AND THE PURPOSES OF SUCH USES:\n    In addition to those disclosures generally permitted under 5 U.S.C. \n552a(b), all or a portion of the records or information contained in \nthis system of records may be disclosed as a routine use pursuant to 5 \nU.S.C. 552a(b)(3) under the circumstances or for the purposes described \nbelow, to the extent such disclosures are compatible with the purposes \nfor which the information was collected:\n    Records may be disclosed for the following purposes:\n    A. To government training facilities (federal, state, and local) \nand non-government training entities or facilities (e.g., private \nvendors of training courses or programs) for training purposes.\n    B. To the trained individual's employer or sponsor for the \ntraining, and to organizations responsible for tracking or maintaining \nrecords of training certifications and compliance.\n    C. To appropriate federal, state, local, territorial, tribal, or \nforeign law enforcement authorities, or other appropriate entities, \nwhere a record--alone or in conjunction with other information--\nindicates a violation or potential violation of law (criminal, civil, \nor regulatory in nature), and that referred entity is charged with \ninvestigating, prosecuting, or enforcing or implementing such law.\n    D. To any person or entity that the Department has reason to \nbelieve possesses information regarding a matter within the \njurisdiction of the Department, to the extent deemed necessary by the \nDepartment to elicit such information or cooperation from the recipient \nfor use in the performance of an authorized activity.\n    E. To a court, grand jury, or administrative or adjudicative body \nin any appropriate proceeding where the Department of Justice \ndetermines the records are arguably relevant to the proceeding; or in \nan appropriate proceeding before an administrative or adjudicative body \nwhen the adjudicator determines the records to be relevant to the \nproceeding.\n    F. An actual or potential party to litigation or the party's \nauthorized representative, for purposes of settlement negotiations, \nplea bargaining, or informal discovery proceedings.\n    G. The news media and the public, including disclosures pursuant to \n28 CFR 50.2, unless it is determined that release of the specific \ninformation in the context of a particular case would constitute an \nunwarranted invasion of personal privacy.\n    H. Contractors, grantees, experts, consultants, students, and \nothers performing or working on a contract, service, grant, cooperative \nagreement, or other assignment for the agency, when necessary to \naccomplish an agency function related to this system of records.\n    I. Designated officers and employees of state, local, territorial, \nor tribal law enforcement or detention agencies, in connection with the \nhiring or continued employment of an employee or contractor who would \noccupy, or does occupy, a position of public trust as a law enforcement \nofficer or detention officer having direct contact with the public or \nwith prisoners/detainees, to the extent that the information is \nrelevant and necessary to the recipient agency's decision.\n    J. Appropriate officials and employees of a Federal agency or \nentity, including the White House, that require information relevant to \na decision concerning hiring, appointment, or retention of an employee; \nassignment, detail, or deployment of an employee; issuance, renewal, \nsuspension, or revocation of a security clearance; execution of a \nsecurity or suitability investigation; letting of a contract, or the \nissuance of a grant or benefit.\n    K. A former employee of the Department, for purposes of: responding \nto an official inquiry by a federal, state, or local government entity \nor professional licensing authority, or to facilitate communications \nwith a former employee that may be necessary for personal related or \nother official purposes where the Department requires information and/\nor consultation assistance from the former employee regarding a matter \nwithin that person's former area of responsibility, in accordance with \napplicable Department regulations.\n    L. Federal, state, local, territorial, tribal, foreign, or \ninternational licensing agencies or associations that require \ninformation concerning an individual's suitability or eligibility for a \nlicense or permit.\n    M. A Member of Congress or staff acting upon the Member's behalf \nwhen the request is made on behalf of, and at the request of, the \nindividual who is the subject of the record.\n    N. The National Archives and Records Administration, for records \nmanagement inspections conducted under 44 U.S.C. 2904 and 2906.\n    O. Appropriate agencies, entities, and persons when: (1) the \nDepartment suspects or has confirmed that there has been a breach of \nthe system of records; (2) the Department has determined that as a \nresult of the suspected or confirmed breach there is a risk of harm to \nindividuals, the Department (including its information systems, \nprograms, and operations), the Federal Government, or national \nsecurity; and (3) the disclosure made to such agencies, entities, and \npersons is reasonably necessary to assist in connection with the \nDepartment's\n\n[[Page 56479]]\n\nefforts to respond to the suspected or confirmed breach or to prevent, \nminimize, or remedy such harm.\n    P. Another Federal agency or Federal entity, when the Department \ndetermines that information from this system of records is reasonably \nnecessary to assist the recipient agency or entity in (1) responding to \na suspected or confirmed breach, or (2) preventing, minimizing, or \nremedying the risk of harm to individuals, the recipient agency or \nentity (including its information systems, programs, and operations), \nthe Federal Government, or national security, resulting from a \nsuspected or confirmed breach.\n    Q. To any agency, organization, or individual, such as the \nGovernment Accountability Office, the Department's Office of the \nInspector General, or the Office of Special Counsel, for the purpose of \nperforming authorized audit or oversight operations of the Department, \nincluding those related to fraud, waste, and abuse, and meeting related \nreporting requirements.\n    R. Recipients under circumstances and procedures as mandated by \nfederal statutes or treaties.\n    S. An organization or individual in either the public or private \nsector, where there is reason to believe the recipient is or could \nbecome the target of a particular criminal activity or conspiracy, to \nthe extent the information is relevant to the protection of life or \nproperty.\n    T. Individuals and organizations, to the extent necessary, to \nverify their qualifications or eligibility for training.\n    U. Treasury Department, Alcohol and Tobacco Tax and Trade Bureau \nemployees, when necessary to accomplish a Treasury Department or \nDepartment of Justice function related to this system of records.\n    V. Unions recognized as exclusive bargaining representatives in \naccordance with provisions contained in the Civil Service Reform Act of \n1978, 5 U.S.C. 7111 and 7114.\n\nPOLICIES AND PRACTICES FOR STORAGE OF RECORDS:\n    All records in this system of records are maintained either in \nelectronic or paper form and are stored in compliance with applicable \nexecutive orders, statutes, regulations, and agency implementing \nrecommendations. Electronic records are stored in databases or on hard \ndisks, removable storage devices, or other electronic media.\n\nPOLICIES AND PRACTICES FOR RETRIEVAL OF RECORDS:\n    The Department will retrieve records by any category of records, \nincluding name, component, course name, course number, and date \nregistered.\n\nPOLICIES AND PRACTICES FOR RETENTION AND DISPOSAL OF RECORDS:\n    Records in this system are maintained and disposed of in accordance \nwith all applicable statutory and regulatory requirements, including \napplicable records schedules issued by the National Archives and \nRecords Administration. After the appropriate retention period, records \nwill be destroyed/deleted in accordance with appropriate media \nsanitization procedures.\n    To the extent that records in this system are a part of the OPF, \nthose records are maintained in the OPF for the period of the \nemployee's service in the agency. They are then, if in a paper format, \ntransferred to the National Personnel Records Center for storage or, as \nappropriate, to the next employing Federal agency. If the OPF is \nmaintained in an electronic format, the transfer and storage are in \naccordance with the requirements of the electronic system. Other \nrecords are either retained at the agency for various lengths of time \nin accordance with the NARA records schedules or destroyed when they \nhave served their purpose or when the employee leaves the agency.\n\nADMINISTRATIVE, TECHNICAL, AND PHYSICAL SAFEGUARDS:\n    This system of records meets all DOJ requirements for authorization \nto operate per DOJ Order 0904, Cybersecurity Program. Specifically, \ninformation in this system is maintained in accordance with applicable \nlaws, rules, and policies on protecting individual privacy. Electronic \nfiles and working copies are safeguarded in accordance with DOJ rules \nand policy governing information systems security and access. The \nsystem is protected by physical security methods, administrative \nprocesses, and electronic means, including dissemination and access \ncontrols. Records and technical equipment are maintained in secure \nareas with restricted access. Cloud Service Providers maintain system \nbackup information in accordance with a government contract that \nrequires adherence to applicable laws, rules, and policies.\n    Internet connections are protected by multiple firewalls. Role-\nbased access controls are employed to allocate logical access to a \nspecific job function or area of responsibility. Users of individual \nDOJ computers can only gain access to that computer by a valid user \nidentification and password or other method of authentication. Security \npersonnel conduct periodic vulnerability scans using DOJ-approved \nsoftware to ensure security compliance, and security logs are enabled \nfor all computers to assist in troubleshooting and forensics analysis \nduring incident investigations. Additionally, an automated log of \nqueries is maintained on all systems.\n\nRECORD ACCESS PROCEDURES:\n    All requests for access to records must be in writing and should be \naddressed to the Justice Management Division, ATTN: FOIA Contact, \nDepartment of Justice, Rm. 1111, 950 Pennsylvania Avenue NW, \nWashington, DC 20530, phone: 202-616-0253, email: <a href=\"/cdn-cgi/l/email-protection#99d3d4dddfd6d0d8d9eceafdf6f3b7fef6ef\"><span class=\"__cf_email__\" data-cfemail=\"773d3a3331383e3637020413181d59101801\">[email&#160;protected]</span></a>. \nThe envelope and letter should be clearly marked ``Privacy Act Access \nRequest.'' The letter must include the requester's full name, current \naddress, and date of birth. The request must include a general \ndescription of the records sought in sufficient detail to enable \nDepartment personnel to locate them with a reasonable amount of effort. \nThe request must be signed and either notarized or submitted under \npenalty of perjury.\n    Although no specific form is required, you may obtain forms for \nthis purpose from the FOIA/Privacy Act Mail Referral Unit, United \nStates Department of Justice, 950 Pennsylvania Avenue NW, Washington, \nDC 20530, or on the Department of Justice website at <a href=\"https://www.justice.gov/oip/oip-request.html\">https://www.justice.gov/oip/oip-request.html</a>.\n    More information regarding the Department's procedures for \naccessing records in accordance with the Privacy Act can be found at 28 \nCFR part 16 Subpart D, ``Protection of Privacy and Access to Individual \nRecords Under the Privacy Act of 1974.''\n\nCONTESTING RECORD PROCEDURES:\n    Individuals seeking to contest or amend records maintained in this \nsystem of records must direct their requests to the address indicated \nin the ``RECORD ACCESS PROCEDURES'' paragraph above. All requests to \ncontest or amend records must be in writing, and the envelope and \nletter should be clearly marked ``Privacy Act Amendment Request.'' All \nrequests must state clearly and concisely what record is being \ncontested, the reasons for contesting it, and the proposed amendment to \nthe record.\n    More information regarding the Department's procedures for amending \nor contesting records in accordance with the Privacy Act can be found \nat 28 CFR 16.46, ``Requests for Amendment or Correction of Records.''\n\n[[Page 56480]]\n\nNOTIFICATION PROCEDURES:\n    Individuals may be notified if a record in this system of records \npertains to them when the individuals request information utilizing the \nsame procedures as those identified in the ``RECORD ACCESS PROCEDURES'' \nparagraph above.\n\nEXEMPTIONS PROMULGATED FOR THE SYSTEM:\n    None.\n\nHISTORY:\n    Individual SORNs pertaining to this system of records have also \nbeen published by the Bureau of Alcohol, Tobacco, Firearms and \nExplosives (ATF), the Drug Enforcement Administration (DEA), and the \nU.S. Marshalls Service (USMS) and cover certain training records in \ntheir components (ATF-010, Training and Professional Development Record \nSystem, 68 FR 3562 (Jan. 24, 2003); DEA-015, Training Files, 52 FR \n47217 (Dec. 11, 1987); and USM-006, United States Marshals Service \nTraining Files, 72 FR 33515 (June 18, 2007)).\n\n[FR Doc. 2026-17962 Filed 9-1-26; 8:45 am]\nBILLING CODE 4410-JK-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
     },
     "CLAUSES:EO:13111#sec1": {
       "char_end": 3632,
@@ -4746,6 +4800,42 @@
       },
       "text": "Sec. 9. Judicial Review. This order does not create any enforceable rights\nagainst the United States, its agencies, its officers, or any person.\nœ–"
     },
+    "CURRENT:EO:13111#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 342,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "5 U.S.C. 4103 note; note 'Ex. Ord. No. 13111. Using Technology To Improve Training Opportunities for Federal Governm' [USLM note id id278b0a39-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "0bcad82e4de227993d30bff6f3024a209dcb70e35d4e4c4d8435488a61673aab",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id278b0a39-ac5f-11f1-a76e-9d053fb5b48a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13111#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13111",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (5 U.S.C. 4103 note)",
+      "machine_lead": true,
+      "mention_id": "usc:24614426e14c",
+      "snippet": "Ex. Ord. No. 13111. Using Technology To Improve Training Opportunities for Federal Government Employees | Ex. Ord. No. 13111, Jan. 12, 1999, 64 F.R. 2793, as amended by Ex. Ord. No. 13188, Jan. 12, 2001, 66 F.R. 5419; Ex. Ord. No. 13218, § 3(a), June 20, 2001, 66 F.R. 33628; Ex. Ord. No. 13316, § 3(a), Sept. 17, 2003, 68 F.R. 55255, provided:",
+      "source": {
+        "page_or_item": "5 U.S.C. 4103 note; note 'Ex. Ord. No. 13111. Using Technology To Improve Training Opportunities for Federal Governm' [USLM note id id278b0a39-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id278b0a39-ac5f-11f1-a76e-9d053fb5b48a.txt",
+        "text_sha256": "0bcad82e4de227993d30bff6f3024a209dcb70e35d4e4c4d8435488a61673aab",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13111. Using Technology To Improve Training Opportunities for Federal Government Employees\nEx. Ord. No. 13111, Jan. 12, 1999, 64 F.R. 2793, as amended by Ex. Ord. No. 13188, Jan. 12, 2001, 66 F.R. 5419; Ex. Ord. No. 13218, § 3(a), June 20, 2001, 66 F.R. 33628; Ex. Ord. No. 13316, § 3(a), Sept. 17, 2003, 68 F.R. 55255, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id278b0a39-ac5f-11f1-a76e-9d053fb5b48a.txt",
+      "text_sha256": "0bcad82e4de227993d30bff6f3024a209dcb70e35d4e4c4d8435488a61673aab",
+      "where": "USC 5 U.S.C. 4103 note"
+    },
     "ORIGINAL:EO:13111": {
       "acceptable_as_original": true,
       "actor_id": "EO:13111",
@@ -5430,7 +5520,7 @@
       "text": "(f) The Committee shall terminate 2 years from the date of this order unless extended by the President prior to such date."
     }
   },
-  "fingerprint": "241316f4721217b4ab3fea76109cf719c9cae13a18cf9f7f53c8bf16e0fa24da",
+  "fingerprint": "e70fff6e1f3f4dcb9dd7b48b80a1ef796cf2f83649fad07e58bc3abc10afc705",
   "instrument_id": "EO:13111",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -6525,32 +6615,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -6592,12 +6684,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "d6559e5738e50ba6bbc7da105a2dc5b8b7d3f74b7335da7224329d111860b756",
+    "fingerprint": "857f9c856b92c53c935d04c80946c9773a95ed08f12bebdebe187afe57af4d36",
     "flags": [
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_13111.json",
-    "history_sha256": "740bfafc9a75e4b58601d1b72688001b7abf0e523eb85d1a9f83c8d9b3b8ca19",
+    "history_sha256": "01efabbb54475d2aeeca56f9f6565294ac429dbda6c38868703d0924088da3e5",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

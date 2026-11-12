@@ -2,12 +2,17 @@
   "actor_contexts": [
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 0,
+      "windows_omitted": 0
     },
     {
       "actor_id": "EO:14131",
-      "evidence_id": "ACTOR_TEXT:EO:14131"
+      "evidence_id": "ACTOR_TEXT:EO:14131",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -45,7 +50,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13373",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13373"
@@ -320,11 +325,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 292,
+      "char_start": 52,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 11926. Vice Presidential Service Badge' [USLM note id ida8989a57-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "4e1fb6ab3c173ab680075be800c80d10efd7a6383b2d7067116c2048809502e5",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a57-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13373",
       "legal_basis_candidate": "order amended a printed order (weak lead) (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
@@ -334,9 +348,14 @@
       "source": {
         "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 11926. Vice Presidential Service Badge' [USLM note id ida8989a57-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a57-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "4e1fb6ab3c173ab680075be800c80d10efd7a6383b2d7067116c2048809502e5",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 11926, July 19, 1976, 41 F.R. 29805, as amended by Ex. Ord. No. 13286, § 56, Feb. 28, 2003, 68 F.R. 10629; Ex. Ord. No. 13373, § 1, Mar. 10, 2005, 70 F.R. 12579; Ex. Ord. No. 14131, § 2, Dec. 20, 2024, 89 F.R. 105377, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a57-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "4e1fb6ab3c173ab680075be800c80d10efd7a6383b2d7067116c2048809502e5",
       "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
     },
     {
@@ -380,6 +399,7 @@
         "snippet": "Ex. Ord. No. 11926, July 19, 1976, 41 F.R. 29805, as amended by Ex. Ord. No. 13286, § 56, Feb. 28, 2003, 68 F.R. 10629; Ex. Ord. No. 13373, § 1, Mar. 10, 2005, 70 F.R. 12579; Ex. Ord. No. 14131, § 2, Dec. 20, 2024, 89 F.R. 105377, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/ida8989a57-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
       },
       "proposal": {
@@ -500,6 +520,7 @@
       "char_end": 7943,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14131",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -779,6 +800,42 @@
       },
       "text": "Sec. 2. This order is not intended to, and does not, create any right or \nbenefit, substantive or procedural, enforceable at law or in equity by any \nparty against the United States, its departments, agencies, entities, officers, \nemployees or agents, or any other person.\nW"
     },
+    "CURRENT:EO:13373#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 292,
+      "char_start": 52,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 11926. Vice Presidential Service Badge' [USLM note id ida8989a57-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "4e1fb6ab3c173ab680075be800c80d10efd7a6383b2d7067116c2048809502e5",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a57-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13373#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13373",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
+      "machine_lead": true,
+      "mention_id": "usc:c1379bff97df",
+      "snippet": "Ex. Ord. No. 11926, July 19, 1976, 41 F.R. 29805, as amended by Ex. Ord. No. 13286, § 56, Feb. 28, 2003, 68 F.R. 10629; Ex. Ord. No. 13373, § 1, Mar. 10, 2005, 70 F.R. 12579; Ex. Ord. No. 14131, § 2, Dec. 20, 2024, 89 F.R. 105377, provided:",
+      "source": {
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 11926. Vice Presidential Service Badge' [USLM note id ida8989a57-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a57-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "4e1fb6ab3c173ab680075be800c80d10efd7a6383b2d7067116c2048809502e5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 11926, July 19, 1976, 41 F.R. 29805, as amended by Ex. Ord. No. 13286, § 56, Feb. 28, 2003, 68 F.R. 10629; Ex. Ord. No. 13373, § 1, Mar. 10, 2005, 70 F.R. 12579; Ex. Ord. No. 14131, § 2, Dec. 20, 2024, 89 F.R. 105377, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a57-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "4e1fb6ab3c173ab680075be800c80d10efd7a6383b2d7067116c2048809502e5",
+      "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
+    },
     "ORIGINAL:EO:13373": {
       "acceptable_as_original": true,
       "actor_id": "EO:13373",
@@ -993,7 +1050,7 @@
       "text": "(h) in section 6, by inserting ‘‘, unless otherwise directed by the Director \nof the White House Military Office in the case of personnel in military \nunits or support facilities to which section 1 of Executive Order 12793, \nas amended, refers,’’ after ‘‘is authorized’’;"
     }
   },
-  "fingerprint": "031d22988d44cf6539731aca07df584c6ca555bb34f4291ef88e4684e344b5a8",
+  "fingerprint": "84d320d6dd3ad047278b1f1f0a9eee1a94b4637cf4d3d9cc0073615955203e70",
   "instrument_id": "EO:13373",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1197,11 +1254,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 1,
       "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -1209,20 +1267,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1252,10 +1311,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "35761aec29a54f57046b3d17ee8d12ac34eabd0598af18ba65f95f7d2e715da0",
+    "fingerprint": "727d292b01840fb05b70a38d419d0dff7e6324ea6e43724442f95e3497750ec2",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13373.json",
-    "history_sha256": "5f70082c5bee85b47b4352ed7ff6b54308d1f8ce3e8ffc1a8a74192d645abcad",
+    "history_sha256": "e2b517d9a0d5aa2d2bf93b82bac73cff20e23610cf880cd08a7d0312fbea06fd",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

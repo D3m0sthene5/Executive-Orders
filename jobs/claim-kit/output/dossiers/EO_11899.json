@@ -6,7 +6,8 @@
     },
     {
       "actor_id": "EO:12608",
-      "evidence_id": "ACTOR_TEXT:EO:12608"
+      "evidence_id": "ACTOR_TEXT:EO:12608",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -132,7 +133,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11899",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11899"
@@ -231,11 +232,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 348,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "25 U.S.C. 5323 note; note 'Ex. Ord. No. 11899. Providing for Protection of Certain Civil Service Employment Rights of' [USLM note id id62e281fe-4962-11f1-add1-b56d3fa293fa]; usc25.xml (sha256 768378aadc7d58062cc547c2e39a6de3ff9fe4939485cb61fe153fc7e9c8bf3d) in xml_uscAll@119-121.zip",
+        "sha256": "ada2761bd8700a4225dca9db1ad1db69a577e3456f52e402c2231126a92a1779",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id62e281fe-4962-11f1-add1-b56d3fa293fa",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11899",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (25 U.S.C. 5323 note)",
@@ -245,49 +255,65 @@
       "source": {
         "page_or_item": "25 U.S.C. 5323 note; note 'Ex. Ord. No. 11899. Providing for Protection of Certain Civil Service Employment Rights of' [USLM note id id62e281fe-4962-11f1-add1-b56d3fa293fa]; usc25.xml (sha256 768378aadc7d58062cc547c2e39a6de3ff9fe4939485cb61fe153fc7e9c8bf3d) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id62e281fe-4962-11f1-add1-b56d3fa293fa.txt",
+        "text_sha256": "ada2761bd8700a4225dca9db1ad1db69a577e3456f52e402c2231126a92a1779",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id62e281fe-4962-11f1-add1-b56d3fa293fa",
+      "text": "Ex. Ord. No. 11899. Providing for Protection of Certain Civil Service Employment Rights of Federal Personnel Who Leave Federal Employment To Be Employed by Tribal Organizations\nEx. Ord. No. 11899, Jan. 26, 1976, 41 F.R. 3459, as amended by Ex. Ord. No. 12107, Dec. 28, 1978, 44 F.R. 1055; Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id62e281fe-4962-11f1-add1-b56d3fa293fa.txt",
+      "text_sha256": "ada2761bd8700a4225dca9db1ad1db69a577e3456f52e402c2231126a92a1779",
       "where": "USC 25 U.S.C. 5323 note"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 243,
+      "char_start": 11,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 352.701",
+        "sha256": "a32f8e1c0812b189f01f2b4d03c1cf679f8151cd07f8bf60cdf1dffe0ce7132f",
+        "source_id": "cfr:t5:352.701",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-352.701"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11899",
       "legal_basis_candidate": "regulation text names the order (5 CFR 352.701)",
       "machine_lead": true,
-      "mention_id": "ecfr:62ecbbd740af",
+      "mention_id": "ecfr:54201f6ac4da",
       "snippet": "...urpose. This subpart governs reemployment rights authorized by section 105(i) of the Indian Self-Determination Act (88 Stat. 2210; Pub. L. 93-638, the Act) and E.O. 11899 after service in an Indian tribal organization under the Act.",
       "source": {
-        "page_or_item": "5 CFR 352.701 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.55.7.20.1)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR 352.701 (section_text; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.55.7.20.1)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-352.701.txt",
+        "text_sha256": "a32f8e1c0812b189f01f2b4d03c1cf679f8151cd07f8bf60cdf1dffe0ce7132f",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
+      "text": "urpose.\nThis subpart governs reemployment rights authorized by section 105(i) of the Indian Self-Determination Act (88 Stat. 2210; Pub. L. 93-638, the Act) and E.O. 11899 after service in an Indian tribal organization under the Act.",
       "where": "CFR 5 CFR 352.701"
     },
     {
       "basis_code": "cfr_authority_citation",
       "checked_through": null,
       "currency_code": "ecfr_bulk_changed_or_unknown",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11899",
       "legal_basis_candidate": "regulation authority citation lists the order (5 CFR part 352)",
       "machine_lead": true,
-      "mention_id": "ecfr:45378c10277f",
+      "mention_id": "ecfr:507c5b6be2e2",
       "snippet": "Authority: Sec. 105(i), Pub. L. 93-638, 88 Stat. 2210 (25 U.S.C. 450); E.O. 11899; 41 FR 3459; Section 352.707 also issued under 5 U.S.C. 7701, et seq.",
       "source": {
-        "page_or_item": "5 CFR part 352 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.55.7)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR part 352 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.55.7)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
@@ -335,10 +361,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:62ecbbd740af",
+        "mention_id": "ecfr:54201f6ac4da",
         "snippet": "...urpose. This subpart governs reemployment rights authorized by section 105(i) of the Indian Self-Determination Act (88 Stat. 2210; Pub. L. 93-638, the Act) and E.O. 11899 after service in an Indian tribal organization under the Act.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -348,8 +374,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (5 CFR 352.701)",
         "source": {
-          "page_or_item": "5 CFR 352.701 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.55.7.20.1)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR 352.701 (section_text; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.55.7.20.1)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -363,10 +389,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_changed_or_unknown",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:45378c10277f",
+        "mention_id": "ecfr:507c5b6be2e2",
         "snippet": "Authority: Sec. 105(i), Pub. L. 93-638, 88 Stat. 2210 (25 U.S.C. 450); E.O. 11899; 41 FR 3459; Section 352.707 also issued under 5 U.S.C. 7701, et seq.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -376,8 +402,8 @@
         "checked_through": null,
         "legal_basis": "regulation authority citation lists the order (5 CFR part 352)",
         "source": {
-          "page_or_item": "5 CFR part 352 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.55.7)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR part 352 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.55.7)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -398,7 +424,7 @@
         "snippet": "Ex. Ord. No. 11899. Providing for Protection of Certain Civil Service Employment Rights of Federal Personnel Who Leave Federal Employment To Be Employed by Tribal Organizations | Ex. Ord. No. 11899, Jan. 26, 1976, 41 F.R. 3459, as amended by Ex. Ord. No. 12107, Dec. 28, 1978, 44 F.R. 1055; Ex. Ord.  ...",
         "snippet_truncated": true,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id62e281fe-4962-11f1-add1-b56d3fa293fa",
+        "text_path": "usc-notes/id62e281fe-4962-11f1-add1-b56d3fa293fa.txt",
         "where": "USC 25 U.S.C. 5323 note"
       },
       "proposal": {
@@ -899,6 +925,7 @@
       "char_end": 14639,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12608",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1002,6 +1029,76 @@
       },
       "text": "Sec. 3. The Secretary of Labor is hereby designated and empowered to exer­\ncise, without approval, ratification, or other action by the President, the authority \nvested in the President by section 105 (i) of the act to issue regulations necessary to \ncarry out the provisions of section 105(e) (1) of the act, except as provided in section \n1  of this order.\nas follows :"
     },
+    "CURRENT:EO:11899#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 348,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "25 U.S.C. 5323 note; note 'Ex. Ord. No. 11899. Providing for Protection of Certain Civil Service Employment Rights of' [USLM note id id62e281fe-4962-11f1-add1-b56d3fa293fa]; usc25.xml (sha256 768378aadc7d58062cc547c2e39a6de3ff9fe4939485cb61fe153fc7e9c8bf3d) in xml_uscAll@119-121.zip",
+        "sha256": "ada2761bd8700a4225dca9db1ad1db69a577e3456f52e402c2231126a92a1779",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id62e281fe-4962-11f1-add1-b56d3fa293fa",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11899#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11899",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (25 U.S.C. 5323 note)",
+      "machine_lead": true,
+      "mention_id": "usc:07681d866368",
+      "snippet": "Ex. Ord. No. 11899. Providing for Protection of Certain Civil Service Employment Rights of Federal Personnel Who Leave Federal Employment To Be Employed by Tribal Organizations | Ex. Ord. No. 11899, Jan. 26, 1976, 41 F.R. 3459, as amended by Ex. Ord. No. 12107, Dec. 28, 1978, 44 F.R. 1055; Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "source": {
+        "page_or_item": "25 U.S.C. 5323 note; note 'Ex. Ord. No. 11899. Providing for Protection of Certain Civil Service Employment Rights of' [USLM note id id62e281fe-4962-11f1-add1-b56d3fa293fa]; usc25.xml (sha256 768378aadc7d58062cc547c2e39a6de3ff9fe4939485cb61fe153fc7e9c8bf3d) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id62e281fe-4962-11f1-add1-b56d3fa293fa.txt",
+        "text_sha256": "ada2761bd8700a4225dca9db1ad1db69a577e3456f52e402c2231126a92a1779",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 11899. Providing for Protection of Certain Civil Service Employment Rights of Federal Personnel Who Leave Federal Employment To Be Employed by Tribal Organizations\nEx. Ord. No. 11899, Jan. 26, 1976, 41 F.R. 3459, as amended by Ex. Ord. No. 12107, Dec. 28, 1978, 44 F.R. 1055; Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id62e281fe-4962-11f1-add1-b56d3fa293fa.txt",
+      "text_sha256": "ada2761bd8700a4225dca9db1ad1db69a577e3456f52e402c2231126a92a1779",
+      "where": "USC 25 U.S.C. 5323 note"
+    },
+    "CURRENT:EO:11899#1": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 243,
+      "char_start": 11,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 352.701",
+        "sha256": "a32f8e1c0812b189f01f2b4d03c1cf679f8151cd07f8bf60cdf1dffe0ce7132f",
+        "source_id": "cfr:t5:352.701",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-352.701"
+      },
+      "id": "CURRENT:EO:11899#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11899",
+      "legal_basis_candidate": "regulation text names the order (5 CFR 352.701)",
+      "machine_lead": true,
+      "mention_id": "ecfr:54201f6ac4da",
+      "snippet": "...urpose. This subpart governs reemployment rights authorized by section 105(i) of the Indian Self-Determination Act (88 Stat. 2210; Pub. L. 93-638, the Act) and E.O. 11899 after service in an Indian tribal organization under the Act.",
+      "source": {
+        "page_or_item": "5 CFR 352.701 (section_text; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.55.7.20.1)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-352.701.txt",
+        "text_sha256": "a32f8e1c0812b189f01f2b4d03c1cf679f8151cd07f8bf60cdf1dffe0ce7132f",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
+      },
+      "system": "ecfr",
+      "text": "urpose.\nThis subpart governs reemployment rights authorized by section 105(i) of the Indian Self-Determination Act (88 Stat. 2210; Pub. L. 93-638, the Act) and E.O. 11899 after service in an Indian tribal organization under the Act.",
+      "where": "CFR 5 CFR 352.701"
+    },
     "ORIGINAL:EO:11899": {
       "acceptable_as_original": true,
       "actor_id": "EO:11899",
@@ -1026,102 +1123,9 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1976-01-23/pdf/FR-1976-01-23.pdf"
       },
       "text": "Instrument: EO:11899\nSource: https://www.govinfo.gov/content/pkg/FR-1976-01-23/pdf/FR-1976-01-23.pdf\nSHA-256 of the downloaded file: 65cb3cf5044d2fd6fc415c9620e8084b1b2d169cde5d0848fdb15e9f9c332ff4\nLocation: 41 FR 3459, PDF pages 15-15 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 15 of 272 ===\nTHE PRESIDENT 3459\nExecutive Order 11899 January 22, 1976\nProviding for the Protection of Certain Civil Service Employment Rights of \nFederal Personnel Who Leave Federal Employment To Be Employed by Tribal \nOrganizations Pursuant to the Indian Self-Determination and Education \nAssistance Act\nBy virtue of the authority vested in me by section 105 ( i) 'o f  the Indian Self- \nDetermination and Education Assistance Act (88 Stat. 2210, 25 U.S.C. 4 5 0 (i)), \nsection 3301 of title 5 of the United States Code, section 301 of title 3 of the United \nStates Code, and as President of the United States of America, it is hereby ordered\nSection 1. The United States Civil Service Commission is hereby designated \nand empowered to exercise, without approval, ratification, or other action by the \nPresident, but after consultation with the Department of the Interior and the Depart­\nment of Health, Education, and Welfare, the authority vested in the President by \nSection 105 (i) of the Indian Self-Determination and Education Assistance Act \n(hereinafter referred to as the A ct), to issue regulations necessary to carry out the \nprovisions of subsections (e)(2), (e) (3), (e)(4), (f),  (g)  and (h)  of section 105 \nof the act, to carry out the provisions of subsection (e) (1) of section 105 of the act \nto the extent subsection (e) (1) pertains to section 8151 of title 5 of the United States \nCode, and to protect and assure any other civil service employment rights which it \nfinds appropriate.\nSec. 2. The United States Civil Service Commission shall, after consultation \nwith the Department of the Interior and the Department of Health, Education, and \nWelfare, issue regulations, as it deems appropriate, providing for the establishment, \ngranting, and exercise of reemployment rights for employees who leave Federal \nemployment for employment by an Indian tribal organization under provisions of the \nact.\nSec. 3. The Secretary of Labor is hereby designated and empowered to exer­\ncise, without approval, ratification, or other action by the President, the authority \nvested in the President by section 105 (i) of the act to issue regulations necessary to \ncarry out the provisions of section 105(e) (1) of the act, except as provided in section \n1  of this order.\nas follows :\nT he W hite H ouse ,\nJanuary 22,1976.\n[FR Doc.76-2270 Filed 1-22— 76;12:12 pm]\nFEDERAL REGISTER, VOL. 41, N O . 16— FRIDAY, JANUARY 23, 1976\n"
-    },
-    "TERM:EO:11899:29be32fda86b2948@c3eef84dcc032d04": {
-      "actor_id": "EO:11899",
-      "char_end": 483,
-      "char_start": 126,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11899:29be32fda86b2948@c3eef84dcc032d04",
-      "instrument_id": "EO:11899",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11899#e",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11899",
-        "page_or_item": "25 U.S.C. 5323",
-        "requires_page_check": false,
-        "sha256": "c3eef84dcc032d045b5e131df0440a3e371741a2549c64f878648134fd868ebf",
-        "signing_date": "1976-01-22",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t25-s5323.txt",
-        "text_sha256": "c3eef84dcc032d045b5e131df0440a3e371741a2549c64f878648134fd868ebf",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title25-section5323&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(e)\n Eligible employees; Federal employee programs subject to retention\nNotwithstanding the provisions of sections 8347(o), 8713, and 8914 of title 5, executive order, or administrative regulation, an employee serving under an appointment not limited to one year or less who leaves Federal employment to be employed by a tribal organization, the city of St."
-    },
-    "TERM:EO:11899:76d1b110aa5c1a9d@c3eef84dcc032d04": {
-      "actor_id": "EO:11899",
-      "char_end": 13290,
-      "char_start": 12723,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11899:76d1b110aa5c1a9d@c3eef84dcc032d04",
-      "instrument_id": "EO:11899",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11899#m",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11899",
-        "page_or_item": "25 U.S.C. 5323",
-        "requires_page_check": false,
-        "sha256": "c3eef84dcc032d045b5e131df0440a3e371741a2549c64f878648134fd868ebf",
-        "signing_date": "1976-01-22",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t25-s5323.txt",
-        "text_sha256": "c3eef84dcc032d045b5e131df0440a3e371741a2549c64f878648134fd868ebf",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title25-section5323&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "L. 98–129, § 2, Oct. 14, 1983, 97 Stat. 844, provided that: “Notwithstanding any other provision of law, any Native of the Pribilof Islands employed by the Federal government on October 28, 1983, shall be deemed to have been covered under chapters 81, 83, 85 and 87 of title 5, United States Code, on such date for the purposes of determining eligibility for continuity of benefits under section 105(e) of the Act of January 4, 1975 (Public Law 93–638), known as the Indian Self-Determination and Education Assistance Act [25 U.S.C. 5323(e)].”\nExecutive Documents\nEx."
-    },
-    "TERM:EO:11899:91223c297b2a5526@c3eef84dcc032d04": {
-      "actor_id": "EO:11899",
-      "char_end": 12674,
-      "char_start": 12009,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11899:91223c297b2a5526@c3eef84dcc032d04",
-      "instrument_id": "EO:11899",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11899#m",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11899",
-        "page_or_item": "25 U.S.C. 5323",
-        "requires_page_check": false,
-        "sha256": "c3eef84dcc032d045b5e131df0440a3e371741a2549c64f878648134fd868ebf",
-        "signing_date": "1976-01-22",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t25-s5323.txt",
-        "text_sha256": "c3eef84dcc032d045b5e131df0440a3e371741a2549c64f878648134fd868ebf",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title25-section5323&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "L. 110–81, title I, § 105(d), Sept. 14, 2007, 121 Stat. 741, provided that: “The amendments made by section 104 [amending this section and section 207 of Title 18, Crimes and Criminal Procedure] shall take effect on the date of the enactment of this Act [Sept. 14, 2007], except that section 104(j)(2) of the Indian Self-Determination and Education Assistance Act [25 U.S.C. 5323(j)(2)] (as amended by section 104(b)) shall apply to individuals who leave Federal office or employment to which such amendments apply on or after the 60th day after the date of the enactment of this Act.”\nPribilof Island Natives Employed by Federal Government on October 28, 1983\nPub."
     }
   },
-  "fingerprint": "1ec379b31471178fdb614f0170e89f6c3d4cee0a4567bd8fd81c3a6bb0e89b0e",
+  "fingerprint": "57e3830fc3c0d009b076069529f1f20745f14f24e00c1c9653113916b43063d9",
   "instrument_id": "EO:11899",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1193,32 +1197,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 5,
+      "machine_fragment_items_for_this_order_all_systems": 5,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 5,
+      "machine_fragment_items_for_this_order_all_systems": 5,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1235,18 +1241,14 @@
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:11899",
-  "own_terms": [
-    "TERM:EO:11899:29be32fda86b2948@c3eef84dcc032d04",
-    "TERM:EO:11899:91223c297b2a5526@c3eef84dcc032d04",
-    "TERM:EO:11899:76d1b110aa5c1a9d@c3eef84dcc032d04"
-  ],
+  "own_terms": [],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "89bea99913c71c8af33de8e29eeadd35473dd18766927adcdb9421c09076a5ba",
+    "fingerprint": "61832e981e149c4605f957b3daee0ed52d906a3968451eb5f1b9d4d327e120cd",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11899.json",
-    "history_sha256": "efee6c4280141db8122ecf2dd27006dd446c749288971fcb6e1d060b90d8d6dd",
+    "history_sha256": "93fe1070f9599ecdf317fd8437908dd1f44d2ecda679d27a77196679c9dd308c",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

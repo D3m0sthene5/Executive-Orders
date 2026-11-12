@@ -2,11 +2,13 @@
   "actor_contexts": [
     {
       "actor_id": "EO:12122",
-      "evidence_id": "ACTOR_TEXT:EO:12122"
+      "evidence_id": "ACTOR_TEXT:EO:12122",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:12134",
-      "evidence_id": "ACTOR_TEXT:EO:12134"
+      "evidence_id": "ACTOR_TEXT:EO:12134",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -16,10 +18,10 @@
     "ACT:EO:12028>EO:12122@7448c63b9a006c1e",
     "ACT:EO:12028>EO:12122@954d291e288458b9",
     "ACT:EO:12028>EO:12134",
-    "ACT:EO:12028>EO:12134@be6a7c4b083bde62",
-    "ACT:EO:12028>EO:12134@843e475002b86ad1",
-    "ACT:EO:12028>EO:12134@789f9e187ba3c4e4",
-    "ACT:EO:12028>EO:12134@62b9ca6f7a0e1eaa"
+    "ACT:EO:12028>EO:12134@e69e742f514b69d2",
+    "ACT:EO:12028>EO:12134@36567057a8939185",
+    "ACT:EO:12028>EO:12134@47bc461f68440b7d",
+    "ACT:EO:12028>EO:12134@a8bed79ecb6f0ca1"
   ],
   "chain": {
     "confidence": "medium",
@@ -253,7 +255,7 @@
         "verb": "transfer"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12028",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12028"
@@ -704,11 +706,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 201,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. ch. 2 note; note 'Ex. Ord. No. 12028. Office of Administration in Executive Office of President' [USLM note id id37092095-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "34d255cd12dfce1b69389ea589e9346f76271b341ae29c6f84de8f60665b88fe",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id37092095-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12028",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (3 U.S.C. ch. 2 note)",
@@ -718,10 +729,14 @@
       "source": {
         "page_or_item": "3 U.S.C. ch. 2 note; note 'Ex. Ord. No. 12028. Office of Administration in Executive Office of President' [USLM note id id37092095-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id37092095-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "34d255cd12dfce1b69389ea589e9346f76271b341ae29c6f84de8f60665b88fe",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id37092095-2930-11f1-b70e-e9fd6f164ed0",
+      "text": "Ex. Ord. No. 12028. Office of Administration in Executive Office of President\nEx. Ord. No. 12028, Dec. 12, 1977, 42 F.R. 62895, as amended by Ex. Ord. No. 12122, Feb. 26, 1979, 44 F.R. 11197, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id37092095-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "34d255cd12dfce1b69389ea589e9346f76271b341ae29c6f84de8f60665b88fe",
       "where": "USC 3 U.S.C. ch. 2 note"
     },
     {
@@ -773,7 +788,7 @@
         "snippet": "Ex. Ord. No. 12028. Office of Administration in Executive Office of President | Ex. Ord. No. 12028, Dec. 12, 1977, 42 F.R. 62895, as amended by Ex. Ord. No. 12122, Feb. 26, 1979, 44 F.R. 11197, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id37092095-2930-11f1-b70e-e9fd6f164ed0",
+        "text_path": "usc-notes/id37092095-2930-11f1-b70e-e9fd6f164ed0.txt",
         "where": "USC 3 U.S.C. ch. 2 note"
       },
       "proposal": {
@@ -1301,10 +1316,10 @@
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:12028>EO:12134@be6a7c4b083bde62",
+          "id": "ACT:EO:12028>EO:12134@e69e742f514b69d2",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-          "provision_label": "",
+          "provision_label": "1-101.",
           "provision_text": "(a) The primary responsibility for performing the common and usual \nadm inistrative support and services that are related to printing and duplica­\ntion and that are assigned to the O ffice of Adm inistration in the Executive \nO ffice of the President by Section 3(b)(5) of Executive Order No. 12028, as \namended, is transferred and reassigned to the D epartm ent of the Navy.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -1340,10 +1355,10 @@
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:12028>EO:12134@843e475002b86ad1",
+          "id": "ACT:EO:12028>EO:12134@36567057a8939185",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-          "provision_label": "",
+          "provision_label": "1-101.",
           "provision_text": "(a) The primary responsibility for performing the common and usual \nadm inistrative support and services that are related to printing and duplica­\ntion and that are assigned to the O ffice of Adm inistration in the Executive \nO ffice of the President by Section 3(b)(5) of Executive Order No. 12028, as \namended, is transferred and reassigned to the D epartm ent of the Navy.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -1384,10 +1399,10 @@
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:12028>EO:12134@789f9e187ba3c4e4",
+          "id": "ACT:EO:12028>EO:12134@47bc461f68440b7d",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Express effective-date candidate; agent must confirm it reaches this provision.",
-          "provision_label": "",
+          "provision_label": "1-101.",
           "provision_text": "(a) The primary responsibility for performing the common and usual administrative support and services that are related to printing and duplication and that are assigned to the Office of Administration in the Executive Office of the President by Section 3(b) (5) of Executive Order No. 12028, as amended, is transferred and reassigned to the Department of the Navy.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -1425,10 +1440,10 @@
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:12028>EO:12134@62b9ca6f7a0e1eaa",
+          "id": "ACT:EO:12028>EO:12134@a8bed79ecb6f0ca1",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-          "provision_label": "",
+          "provision_label": "1-101.",
           "provision_text": "(a) The primary responsibility for performing the common and usual \nadm inistrative support and services that are related to printing and duplica­\ntion and that are assigned to the O ffice of Adm inistration in the Executive \nO ffice of the President by Section 3(b)(5) of Executive Order No. 12028, as \namended, is transferred and reassigned to the D epartm ent of the Navy.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -1455,7 +1470,7 @@
       "id": "ACT:EO:12028>EO:12134",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "",
+      "provision_label": "1-101.",
       "provision_text": "(a) The primary responsibility for performing the common and usual \nadm inistrative support and services that are related to printing and duplica­\ntion and that are assigned to the O ffice of Adm inistration in the Executive \nO ffice of the President by Section 3(b)(5) of Executive Order No. 12028, as \namended, is transferred and reassigned to the D epartm ent of the Navy.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -1496,19 +1511,17 @@
       },
       "text": "Such transfers shall be effective on M ay 6,1979."
     },
-    "ACT:EO:12028>EO:12134@62b9ca6f7a0e1eaa": {
+    "ACT:EO:12028>EO:12134@36567057a8939185": {
       "actor_id": "EO:12134",
       "actor_source": {
-        "acceptable_as_original": false,
         "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12134",
+        "location_confidence": "high",
         "page_or_item": "44 FR 27637, PDF pages 11-11",
         "requires_page_check": false,
         "sha256": "797003f318513fdf58ba44c98501b5125f1cce19c89094801d7a31d672c647f4",
         "signing_date": "1979-05-09",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-12134-797003f318.txt",
-        "text_sha256": "3dbe36baeed2de09e03d63b11d99c535be69138b6e7db2d6f8fcc44355766c14",
+        "text_path": "jobs/fr-originals/output/texts/EO_12134.txt",
+        "text_sha256": "4e1e2bf2fb64873d35a98894805e4f4add59528785a951ba2268ee9baa8577ea",
         "url": "https://www.govinfo.gov/content/pkg/FR-1979-05-11/pdf/FR-1979-05-11.pdf"
       },
       "char_end": 1647,
@@ -1525,33 +1538,31 @@
       ],
       "exceptions_text": [],
       "filing_date": null,
-      "id": "ACT:EO:12028>EO:12134@62b9ca6f7a0e1eaa",
+      "id": "ACT:EO:12028>EO:12134@36567057a8939185",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "",
+      "provision_label": "1-101.",
       "provision_text": "(a) The primary responsibility for performing the common and usual \nadm inistrative support and services that are related to printing and duplica­\ntion and that are assigned to the O ffice of Adm inistration in the Executive \nO ffice of the President by Section 3(b)(5) of Executive Order No. 12028, as \namended, is transferred and reassigned to the D epartm ent of the Navy.",
       "reaches_target_via": "",
       "savings_phrases": [],
       "scope": "partial",
       "signing_date": "1979-05-09",
       "source": {
-        "acceptable_as_original": false,
         "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12134",
+        "location_confidence": "high",
         "page_or_item": "44 FR 27637, PDF pages 11-11",
         "requires_page_check": false,
         "sha256": "797003f318513fdf58ba44c98501b5125f1cce19c89094801d7a31d672c647f4",
         "signing_date": "1979-05-09",
-        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-12134-797003f318.txt",
-        "text_sha256": "3dbe36baeed2de09e03d63b11d99c535be69138b6e7db2d6f8fcc44355766c14",
+        "text_path": "jobs/fr-originals/output/texts/EO_12134.txt",
+        "text_sha256": "4e1e2bf2fb64873d35a98894805e4f4add59528785a951ba2268ee9baa8577ea",
         "url": "https://www.govinfo.gov/content/pkg/FR-1979-05-11/pdf/FR-1979-05-11.pdf"
       },
       "target_id": "EO:12028",
       "text": "(a) The primary responsibility for performing the common and usual \nadm inistrative support and services that are related to printing and duplica­\ntion and that are assigned to the O ffice of Adm inistration in the Executive \nO ffice of the President by Section 3(b)(5) of Executive Order No. 12028, as \namended, is transferred and reassigned to the D epartm ent of the Navy.",
       "verb": "transfer"
     },
-    "ACT:EO:12028>EO:12134@789f9e187ba3c4e4": {
+    "ACT:EO:12028>EO:12134@47bc461f68440b7d": {
       "actor_id": "EO:12134",
       "actor_source": {
         "acceptable_as_original": false,
@@ -1583,10 +1594,10 @@
       ],
       "exceptions_text": [],
       "filing_date": null,
-      "id": "ACT:EO:12028>EO:12134@789f9e187ba3c4e4",
+      "id": "ACT:EO:12028>EO:12134@47bc461f68440b7d",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Express effective-date candidate; agent must confirm it reaches this provision.",
-      "provision_label": "",
+      "provision_label": "1-101.",
       "provision_text": "(a) The primary responsibility for performing the common and usual administrative support and services that are related to printing and duplication and that are assigned to the Office of Administration in the Executive Office of the President by Section 3(b) (5) of Executive Order No. 12028, as amended, is transferred and reassigned to the Department of the Navy.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -1612,17 +1623,19 @@
       "text": "(a) The primary responsibility for performing the common and usual administrative support and services that are related to printing and duplication and that are assigned to the Office of Administration in the Executive Office of the President by Section 3(b) (5) of Executive Order No. 12028, as amended, is transferred and reassigned to the Department of the Navy.",
       "verb": "transfer"
     },
-    "ACT:EO:12028>EO:12134@843e475002b86ad1": {
+    "ACT:EO:12028>EO:12134@a8bed79ecb6f0ca1": {
       "actor_id": "EO:12134",
       "actor_source": {
+        "acceptable_as_original": false,
         "filing_date": null,
-        "location_confidence": "high",
+        "grade": "held_text_lead",
+        "instrument_id": "EO:12134",
         "page_or_item": "44 FR 27637, PDF pages 11-11",
         "requires_page_check": false,
         "sha256": "797003f318513fdf58ba44c98501b5125f1cce19c89094801d7a31d672c647f4",
         "signing_date": "1979-05-09",
-        "text_path": "jobs/fr-originals/output/texts/EO_12134.txt",
-        "text_sha256": "4e1e2bf2fb64873d35a98894805e4f4add59528785a951ba2268ee9baa8577ea",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-12134-797003f318.txt",
+        "text_sha256": "3dbe36baeed2de09e03d63b11d99c535be69138b6e7db2d6f8fcc44355766c14",
         "url": "https://www.govinfo.gov/content/pkg/FR-1979-05-11/pdf/FR-1979-05-11.pdf"
       },
       "char_end": 1647,
@@ -1639,31 +1652,33 @@
       ],
       "exceptions_text": [],
       "filing_date": null,
-      "id": "ACT:EO:12028>EO:12134@843e475002b86ad1",
+      "id": "ACT:EO:12028>EO:12134@a8bed79ecb6f0ca1",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "",
+      "provision_label": "1-101.",
       "provision_text": "(a) The primary responsibility for performing the common and usual \nadm inistrative support and services that are related to printing and duplica­\ntion and that are assigned to the O ffice of Adm inistration in the Executive \nO ffice of the President by Section 3(b)(5) of Executive Order No. 12028, as \namended, is transferred and reassigned to the D epartm ent of the Navy.",
       "reaches_target_via": "",
       "savings_phrases": [],
       "scope": "partial",
       "signing_date": "1979-05-09",
       "source": {
+        "acceptable_as_original": false,
         "filing_date": null,
-        "location_confidence": "high",
+        "grade": "held_text_lead",
+        "instrument_id": "EO:12134",
         "page_or_item": "44 FR 27637, PDF pages 11-11",
         "requires_page_check": false,
         "sha256": "797003f318513fdf58ba44c98501b5125f1cce19c89094801d7a31d672c647f4",
         "signing_date": "1979-05-09",
-        "text_path": "jobs/fr-originals/output/texts/EO_12134.txt",
-        "text_sha256": "4e1e2bf2fb64873d35a98894805e4f4add59528785a951ba2268ee9baa8577ea",
+        "text_path": "jobs/clause-drafts/output/texts/cd-job-fr-originals-12134-797003f318.txt",
+        "text_sha256": "3dbe36baeed2de09e03d63b11d99c535be69138b6e7db2d6f8fcc44355766c14",
         "url": "https://www.govinfo.gov/content/pkg/FR-1979-05-11/pdf/FR-1979-05-11.pdf"
       },
       "target_id": "EO:12028",
       "text": "(a) The primary responsibility for performing the common and usual \nadm inistrative support and services that are related to printing and duplica­\ntion and that are assigned to the O ffice of Adm inistration in the Executive \nO ffice of the President by Section 3(b)(5) of Executive Order No. 12028, as \namended, is transferred and reassigned to the D epartm ent of the Navy.",
       "verb": "transfer"
     },
-    "ACT:EO:12028>EO:12134@be6a7c4b083bde62": {
+    "ACT:EO:12028>EO:12134@e69e742f514b69d2": {
       "actor_id": "EO:12134",
       "actor_source": {
         "filing_date": null,
@@ -1691,10 +1706,10 @@
       ],
       "exceptions_text": [],
       "filing_date": null,
-      "id": "ACT:EO:12028>EO:12134@be6a7c4b083bde62",
+      "id": "ACT:EO:12028>EO:12134@e69e742f514b69d2",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "",
+      "provision_label": "1-101.",
       "provision_text": "(a) The primary responsibility for performing the common and usual \nadm inistrative support and services that are related to printing and duplica­\ntion and that are assigned to the O ffice of Adm inistration in the Executive \nO ffice of the President by Section 3(b)(5) of Executive Order No. 12028, as \namended, is transferred and reassigned to the D epartm ent of the Navy.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -1721,6 +1736,7 @@
       "char_end": 2445,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12122",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1741,6 +1757,7 @@
       "char_end": 2828,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12134",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2196,6 +2213,42 @@
       },
       "text": "(b) Such transfers shall become effective on April I, 1978, or at such earlier \ntime or times as the Director of the Office of Management and Budget determines, \nafter consultation with the Director of the Office of Administration and other appropri­\nate. units within' the Exectutove Office o f the President."
     },
+    "CURRENT:EO:12028#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 201,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. ch. 2 note; note 'Ex. Ord. No. 12028. Office of Administration in Executive Office of President' [USLM note id id37092095-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "34d255cd12dfce1b69389ea589e9346f76271b341ae29c6f84de8f60665b88fe",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id37092095-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12028#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12028",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (3 U.S.C. ch. 2 note)",
+      "machine_lead": true,
+      "mention_id": "usc:840d9d9fc243",
+      "snippet": "Ex. Ord. No. 12028. Office of Administration in Executive Office of President | Ex. Ord. No. 12028, Dec. 12, 1977, 42 F.R. 62895, as amended by Ex. Ord. No. 12122, Feb. 26, 1979, 44 F.R. 11197, provided:",
+      "source": {
+        "page_or_item": "3 U.S.C. ch. 2 note; note 'Ex. Ord. No. 12028. Office of Administration in Executive Office of President' [USLM note id id37092095-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id37092095-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "34d255cd12dfce1b69389ea589e9346f76271b341ae29c6f84de8f60665b88fe",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12028. Office of Administration in Executive Office of President\nEx. Ord. No. 12028, Dec. 12, 1977, 42 F.R. 62895, as amended by Ex. Ord. No. 12122, Feb. 26, 1979, 44 F.R. 11197, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id37092095-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "34d255cd12dfce1b69389ea589e9346f76271b341ae29c6f84de8f60665b88fe",
+      "where": "USC 3 U.S.C. ch. 2 note"
+    },
     "ORIGINAL:EO:12028": {
       "acceptable_as_original": true,
       "actor_id": "EO:12028",
@@ -2316,7 +2369,7 @@
       "text": "(a) Subject to such direction or approval that the President may provide \nor require, the Director shall:"
     }
   },
-  "fingerprint": "1a8e97d579f94a26933fbbec1b728596ae04f1c31591b36ff52ebfa069b6523a",
+  "fingerprint": "05e65279b60fe656f49b43773aab25dd6f1a8e9065e6df3463fee62f96c48781",
   "instrument_id": "EO:12028",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2637,11 +2690,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 2,
       "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -2649,20 +2703,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2686,10 +2741,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "411289cf16a4606d74e6fcee8d94740b7e61080323c3be17f308829a92f1bacd",
+    "fingerprint": "205788467c6d802abb32d4869ecb67001505fafb716fd8d6f63366a9b938e797",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12028.json",
-    "history_sha256": "d0731619bba7d86c4875c3da5016dae3879cdeb5abab50e87b0b614303eb95f9",
+    "history_sha256": "43953a046ab77f0b53d4ecdbf84f1ea23f44cca568332c7ba77a6c90ad4b05a1",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

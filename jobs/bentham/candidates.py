@@ -475,7 +475,10 @@ def apply_triage(repo, actions):
         a["orders"] = len(reach)
         a["triage"] = {"applied": True, "route": receipt["larrey_route"], "level": receipt["larrey_level"],
                        "kept_out": len(ids) - len(reach), "top_reasons": dict(reasons.most_common(6)),
-                       "lifts": lifts.get(receipt["larrey_route"]), "source": LARREY_VERDICTS}
+                       # The back-test's lifts were fitted at the soft operating point; at the hard (default) level
+                       # no lift is assumed, so the hard-gated pool is priced at the measured untriaged rate.
+                       "lifts": lifts.get(receipt["larrey_route"]) if receipt["larrey_level"] == "soft" else None,
+                       "source": LARREY_VERDICTS}
         applied.append(a["id"])
     if not applied and not skipped:
         return None

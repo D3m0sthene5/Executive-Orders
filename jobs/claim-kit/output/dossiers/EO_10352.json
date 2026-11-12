@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:11249",
-      "evidence_id": "ACTOR_TEXT:EO:11249"
+      "evidence_id": "ACTOR_TEXT:EO:11249",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13143",
@@ -142,7 +143,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:10352",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10352"
@@ -175,62 +176,86 @@
   "current_law_leads": [
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 1086,
+      "char_start": 762,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-02)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "29 CFR 1915.2",
+        "sha256": "e18d479d75f7bd91822b3de7126e85c0f2937056629f6fa5e4e6eacc898b9bd1",
+        "source_id": "cfr:t29:1915.2",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-29/section-1915.2"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10352",
       "legal_basis_candidate": "regulation text names the order (29 CFR 1915.2)",
       "machine_lead": true,
-      "mention_id": "ecfr:3f413ba7ecc5",
+      "mention_id": "ecfr:fc6a5aebed6a",
       "snippet": "...7, 1917, as amended (50 U.S.C. 191 et seq.; 22 U.S.C. 401 et seq.); including the provisions of Executive Order 10173, as amended by Executive Orders 10277 and 10352 (3 CFR, 1949-1953 Comp., pp. 356, 778 and 873); or to matters within the regulatory authority of the United States Coast Guard with respect to lights, warning...",
       "source": {
-        "page_or_item": "29 CFR 1915.2 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-02; NODE 29:7.1.1.1.5.1.6.2)",
-        "sha256": "67159e14387382894615b6fc6eacbf7fade1891a3ba8bf75a11499d70baaf2e1",
+        "page_or_item": "29 CFR 1915.2 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-09; NODE 29:7.1.1.1.5.1.6.2)",
+        "sha256": "e798a01cbd1013405db5481103fc7b16a2f7e9a3b472ba24e477055026791fe6",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t29-1915.2.txt",
+        "text_sha256": "e18d479d75f7bd91822b3de7126e85c0f2937056629f6fa5e4e6eacc898b9bd1",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml"
       },
       "system": "ecfr",
+      "text": "7, 1917, as amended (50 U.S.C. 191 et seq.; 22 U.S.C. 401 et seq.); including the provisions of Executive Order 10173, as amended by Executive Orders 10277 and 10352 (3 CFR, 1949-1953 Comp., pp. 356, 778 and 873); or to matters within the regulatory authority of the United States Coast Guard with respect to lights, warning",
       "where": "CFR 29 CFR 1915.2"
     },
     {
       "basis_code": "cfr_authority_citation",
+      "char_end": 325,
+      "char_start": 112,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "33 CFR part 125",
+        "sha256": "6c579d128a1894335b9e1a03e27f5ee0cf01b7c8d3ca697701f07ca1b43fcbfc",
+        "source_id": "cfr:t33:part125",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-33/part-125"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10352",
       "legal_basis_candidate": "regulation authority citation lists the order (33 CFR part 125)",
       "machine_lead": true,
-      "mention_id": "ecfr:2c59a0f5e151",
+      "mention_id": "ecfr:ba19bcc58345",
       "snippet": "....S. 4517, 4518, secs. 19, 2, 23 Stat. 58, 118, sec. 7, 49 Stat. 1936, sec. 1, 40 Stat. 220; 46 U.S.C. 570-572, 2, 689, 70051 and 70105; E.O. 10173, E.O. 10277, E.O. 10352, 3 CFR, 1949-1953 Comp. pp. 356, 778, 873.",
       "source": {
-        "page_or_item": "33 CFR part 125 (part_authority; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:2.0.1.1.1)",
-        "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+        "page_or_item": "33 CFR part 125 (part_authority; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:2.0.1.1.1)",
+        "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t33-part125.txt",
+        "text_sha256": "6c579d128a1894335b9e1a03e27f5ee0cf01b7c8d3ca697701f07ca1b43fcbfc",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
       },
       "system": "ecfr",
+      "text": ".S. 4517, 4518, secs. 19, 2, 23 Stat. 58, 118, sec. 7, 49 Stat. 1936, sec. 1, 40 Stat. 220; 46 U.S.C. 570-572, 2, 689, 70051 and 70105; E.O. 10173, E.O. 10277, E.O. 10352, 3 CFR, 1949-1953 Comp. pp. 356, 778, 873.",
       "where": "CFR 33 CFR part 125"
     },
     {
       "basis_code": "cfr_source_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10352",
       "legal_basis_candidate": "regulation source citation lists the order (33 CFR 6.10-1)",
       "machine_lead": true,
-      "mention_id": "ecfr:eba616fcaa6c",
+      "mention_id": "ecfr:d43930e4c0d4",
       "snippet": "[E.O. 10352, 17 FR 4624, May 21, 1952]",
       "source": {
-        "page_or_item": "33 CFR 6.10-1 (section_source_citation; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:1.0.1.1.6.3.1.1)",
-        "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+        "page_or_item": "33 CFR 6.10-1 (section_source_citation; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:1.0.1.1.6.3.1.1)",
+        "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
       },
       "system": "ecfr",
@@ -245,10 +270,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:2c59a0f5e151",
+        "mention_id": "ecfr:ba19bcc58345",
         "snippet": "....S. 4517, 4518, secs. 19, 2, 23 Stat. 58, 118, sec. 7, 49 Stat. 1936, sec. 1, 40 Stat. 220; 46 U.S.C. 570-572, 2, 689, 70051 and 70105; E.O. 10173, E.O. 10277, E.O. 10352, 3 CFR, 1949-1953 Comp. pp. 356, 778, 873.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -258,8 +283,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (33 CFR part 125)",
         "source": {
-          "page_or_item": "33 CFR part 125 (part_authority; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:2.0.1.1.1)",
-          "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+          "page_or_item": "33 CFR part 125 (part_authority; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:2.0.1.1.1)",
+          "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
         }
       }
@@ -273,10 +298,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-02)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:3f413ba7ecc5",
+        "mention_id": "ecfr:fc6a5aebed6a",
         "snippet": "...7, 1917, as amended (50 U.S.C. 191 et seq.; 22 U.S.C. 401 et seq.); including the provisions of Executive Order 10173, as amended by Executive Orders 10277 and 10352 (3 CFR, 1949-1953 Comp., pp. 356, 778 and 873); or to matters within the regulatory authority of the United States Coast Guard with ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -286,8 +311,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (29 CFR 1915.2)",
         "source": {
-          "page_or_item": "29 CFR 1915.2 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-02; NODE 29:7.1.1.1.5.1.6.2)",
-          "sha256": "67159e14387382894615b6fc6eacbf7fade1891a3ba8bf75a11499d70baaf2e1",
+          "page_or_item": "29 CFR 1915.2 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-09; NODE 29:7.1.1.1.5.1.6.2)",
+          "sha256": "e798a01cbd1013405db5481103fc7b16a2f7e9a3b472ba24e477055026791fe6",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml"
         }
       }
@@ -301,10 +326,10 @@
         "basis_code": "cfr_source_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:eba616fcaa6c",
+        "mention_id": "ecfr:d43930e4c0d4",
         "snippet": "[E.O. 10352, 17 FR 4624, May 21, 1952]",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -314,8 +339,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation source citation lists the order (33 CFR 6.10-1)",
         "source": {
-          "page_or_item": "33 CFR 6.10-1 (section_source_citation; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:1.0.1.1.6.3.1.1)",
-          "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+          "page_or_item": "33 CFR 6.10-1 (section_source_citation; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:1.0.1.1.6.3.1.1)",
+          "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
         }
       }
@@ -535,6 +560,7 @@
       "char_end": 4849,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:11249",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -631,6 +657,74 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1952-05-21/pdf/FR-1952-05-21.pdf"
       },
       "text": "By virtue of the authority vested in me  \nby the act of August 9, 1950, 64 Stat.  \n427, which amended section 1, Title H  \nof the act of June 15, 1917, 40 Stat. 220  \n(50 U. S. C. 191), and as President of  \nthe United States, I hereby prescribe the  \nfollowing amendment of the regulations  \nprescribed by Executive Order No. 10173 \nof October 18, 1950, as amended by  \nExecutive Order No. 10277 of August 1,  \n1951, which regulations constitute Part  \n6, Subchapter A, Chapter I, Title 33 of  \nthe Code of Federal Regulations:  \nSection 6.10-1 is amended to read as  follows:\n§  6.10-1 Issuance of documents and  \nemployment of persons aboard vessels.  \nNo person shall be issued a document  \nrequired for employment on a merchant  \nvessel of the United States nor shall any  \nperson be employed on a merchant ves­\nsel of the United States unless the Com­\nmandant is satisfied that the character  \nand habits of life of such person are  \nsuch as to authorize the belief that the  \npresence of the individual on board  \nwould not be inimical to the security of  \nthe United States: Provided,  that the  \nCommandant may designate categories  \nof merchant vessels to which the fore­\ngoing shall not apply."
+    },
+    "CURRENT:EO:10352#0": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 1086,
+      "char_start": 762,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "29 CFR 1915.2",
+        "sha256": "e18d479d75f7bd91822b3de7126e85c0f2937056629f6fa5e4e6eacc898b9bd1",
+        "source_id": "cfr:t29:1915.2",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-29/section-1915.2"
+      },
+      "id": "CURRENT:EO:10352#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10352",
+      "legal_basis_candidate": "regulation text names the order (29 CFR 1915.2)",
+      "machine_lead": true,
+      "mention_id": "ecfr:fc6a5aebed6a",
+      "snippet": "...7, 1917, as amended (50 U.S.C. 191 et seq.; 22 U.S.C. 401 et seq.); including the provisions of Executive Order 10173, as amended by Executive Orders 10277 and 10352 (3 CFR, 1949-1953 Comp., pp. 356, 778 and 873); or to matters within the regulatory authority of the United States Coast Guard with respect to lights, warning...",
+      "source": {
+        "page_or_item": "29 CFR 1915.2 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-09; NODE 29:7.1.1.1.5.1.6.2)",
+        "sha256": "e798a01cbd1013405db5481103fc7b16a2f7e9a3b472ba24e477055026791fe6",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t29-1915.2.txt",
+        "text_sha256": "e18d479d75f7bd91822b3de7126e85c0f2937056629f6fa5e4e6eacc898b9bd1",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml"
+      },
+      "system": "ecfr",
+      "text": "7, 1917, as amended (50 U.S.C. 191 et seq.; 22 U.S.C. 401 et seq.); including the provisions of Executive Order 10173, as amended by Executive Orders 10277 and 10352 (3 CFR, 1949-1953 Comp., pp. 356, 778 and 873); or to matters within the regulatory authority of the United States Coast Guard with respect to lights, warning",
+      "where": "CFR 29 CFR 1915.2"
+    },
+    "CURRENT:EO:10352#1": {
+      "basis_code": "cfr_authority_citation",
+      "char_end": 325,
+      "char_start": 112,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "33 CFR part 125",
+        "sha256": "6c579d128a1894335b9e1a03e27f5ee0cf01b7c8d3ca697701f07ca1b43fcbfc",
+        "source_id": "cfr:t33:part125",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-33/part-125"
+      },
+      "id": "CURRENT:EO:10352#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10352",
+      "legal_basis_candidate": "regulation authority citation lists the order (33 CFR part 125)",
+      "machine_lead": true,
+      "mention_id": "ecfr:ba19bcc58345",
+      "snippet": "....S. 4517, 4518, secs. 19, 2, 23 Stat. 58, 118, sec. 7, 49 Stat. 1936, sec. 1, 40 Stat. 220; 46 U.S.C. 570-572, 2, 689, 70051 and 70105; E.O. 10173, E.O. 10277, E.O. 10352, 3 CFR, 1949-1953 Comp. pp. 356, 778, 873.",
+      "source": {
+        "page_or_item": "33 CFR part 125 (part_authority; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:2.0.1.1.1)",
+        "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t33-part125.txt",
+        "text_sha256": "6c579d128a1894335b9e1a03e27f5ee0cf01b7c8d3ca697701f07ca1b43fcbfc",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
+      },
+      "system": "ecfr",
+      "text": ".S. 4517, 4518, secs. 19, 2, 23 Stat. 58, 118, sec. 7, 49 Stat. 1936, sec. 1, 40 Stat. 220; 46 U.S.C. 570-572, 2, 689, 70051 and 70105; E.O. 10173, E.O. 10277, E.O. 10352, 3 CFR, 1949-1953 Comp. pp. 356, 778, 873.",
+      "where": "CFR 33 CFR part 125"
     },
     "ORIGINAL:EO:10352": {
       "acceptable_as_original": true,
@@ -750,40 +844,9 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "No person shall be issued a document  \nrequired for employment on a merchant  \nvessel of the United States nor shall any  \nperson be employed on a merchant ves­\nsel of the United States unless the Com­\nmandant is satisfied that the character  \nand habits of life of such person are  \nsuch as to authorize the belief that the  \npresence of the individual on board  \nwould not be inimical to the security of  \nthe United States: Provided,  that the  \nCommandant may designate categories  \nof merchant vessels to which the fore­\ngoing shall not apply."
-    },
-    "TERM:EO:10352:e0b6bc8e332c9f19@f612e673de52641a": {
-      "actor_id": "EO:10352",
-      "char_end": 634,
-      "char_start": 73,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:10352:e0b6bc8e332c9f19@f612e673de52641a",
-      "instrument_id": "EO:10352",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:10352#whole",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:10352",
-        "page_or_item": "33 CFR 6.10-1",
-        "requires_page_check": false,
-        "sha256": "f612e673de52641a920c46ef5d0475579b2195da5979aae3c8b67b9648946f71",
-        "signing_date": "1952-05-19",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t33-6.10-1.txt",
-        "text_sha256": "f612e673de52641a920c46ef5d0475579b2195da5979aae3c8b67b9648946f71",
-        "url": "https://www.ecfr.gov/on/2026-11-06/title-33/section-6.10-1"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "No person shall be issued a document required for employment on a merchant vessel of the United States nor shall any person be employed on a merchant vessel of the United States unless the Commandant is satisfied that the character and habits of life of such person are such as to authorize the belief that the presence of the individual on board would not be inimical to the security of the United States: Provided, That the Commandant may designate categories of merchant vessels to which the foregoing shall not apply. \n[E.O. 10352, 17 FR 4624, May 21, 1952]"
     }
   },
-  "fingerprint": "13bb2d6b02e3acf8c16121c1f6f4472ca44c25f17d826e45682e0ee7e2379f3b",
+  "fingerprint": "355cf22aa8e552c0881df9fb14878c363fe50ec5585d90b8f87f7c92eb02921b",
   "instrument_id": "EO:10352",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -796,7 +859,6 @@
       "own_term_evidence_ids": [
         "TERM:EO:10352:d5657523b4813911@3ca838c9a331028b",
         "TERM:EO:10352:275fac4b0b094b53@1827c7cba8e1e06f",
-        "TERM:EO:10352:e0b6bc8e332c9f19@f612e673de52641a",
         "TERM:EO:10352:275fac4b0b094b53@fbee115bf84850f0"
       ],
       "questions": [
@@ -818,32 +880,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -863,16 +927,15 @@
   "own_terms": [
     "TERM:EO:10352:d5657523b4813911@3ca838c9a331028b",
     "TERM:EO:10352:275fac4b0b094b53@1827c7cba8e1e06f",
-    "TERM:EO:10352:e0b6bc8e332c9f19@f612e673de52641a",
     "TERM:EO:10352:275fac4b0b094b53@fbee115bf84850f0"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "eba9a0b8d2df80b5e47d5a71051afc34aadc8bcdc2b99534f343ffecfc60b66d",
+    "fingerprint": "e33295768eccb55d5377875b2403a9c5c2d1829d1138a04b2b5d49737d8ef533",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_10352.json",
-    "history_sha256": "e6cf420dffd16a78a4cbd514cf9b566d12efe2d24c071f13ad8a5602459569d0",
+    "history_sha256": "382ce15c8df4fc77119da7fbd8faaecba6d84e3937fe7ba73e9362ade03f7191",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

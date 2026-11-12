@@ -6,7 +6,8 @@
     },
     {
       "actor_id": "EO:11230",
-      "evidence_id": "ACTOR_TEXT:EO:11230"
+      "evidence_id": "ACTOR_TEXT:EO:11230",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:12608",
@@ -219,7 +220,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11164",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11164"
@@ -257,11 +258,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 950,
+      "char_start": 612,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 10530. Providing for the Performance of Certain Functions Vested in or Subjec' [USLM note id id37152e92-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "07f7947507dee2f176f9d15c4d6cb9d6824a95f5af5627925e2c24080a922cfe",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id37152e92-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11164",
       "legal_basis_candidate": "order amended a printed order (weak lead) (3 U.S.C. 301 note)",
@@ -271,9 +281,14 @@
       "source": {
         "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 10530. Providing for the Performance of Certain Functions Vested in or Subjec' [USLM note id id37152e92-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id37152e92-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "07f7947507dee2f176f9d15c4d6cb9d6824a95f5af5627925e2c24080a922cfe",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "6 F.R. 7823; Ex. Ord. No. 10970, Oct. 27, 1961, 26 F.R. 10149; Ex. Ord. No. 11012, Mar. 27, 1962, 27 F.R. 2983; Ex. Ord. No. 11116, Aug. 5, 1963, 28 F.R. 8075; Ex. Ord. No. 11164, Aug. 1, 1964, 29 F.R. 11257; Ex. Ord. No. 11184, Oct. 13, 1964, 29 F.R. 14155; Ex. Ord. No. 11196, Feb. 2, 1965, 30 F.R. 1171; Ex. Ord. No. 11222, May 8, 1965",
+      "text_path": "jobs/current-law/output/usc-notes/id37152e92-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "07f7947507dee2f176f9d15c4d6cb9d6824a95f5af5627925e2c24080a922cfe",
       "where": "USC 3 U.S.C. 301 note"
     },
     {
@@ -317,6 +332,7 @@
         "snippet": "...6 F.R. 7823; Ex. Ord. No. 10970, Oct. 27, 1961, 26 F.R. 10149; Ex. Ord. No. 11012, Mar. 27, 1962, 27 F.R. 2983; Ex. Ord. No. 11116, Aug. 5, 1963, 28 F.R. 8075; Ex. Ord. No. 11164, Aug. 1, 1964, 29 F.R. 11257; Ex. Ord. No. 11184, Oct. 13, 1964, 29 F.R. 14155; Ex. Ord. No. 11196, Feb. 2, 1965, 30 F ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/id37152e92-2930-11f1-b70e-e9fd6f164ed0.txt",
         "where": "USC 3 U.S.C. 301 note"
       },
       "proposal": {
@@ -953,6 +969,7 @@
       "char_end": 15772,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:11230",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1009,6 +1026,42 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1964-08-05/pdf/FR-1964-08-05.pdf"
       },
       "text": "=== PDF page 5 of 72 ===\n\"Wednesday, A u g u st 5, 1964 FEDERAL REGISTER 11257\nE x e cu tiv e  O r d e r  11164\nAM EN DIN G EXECUTIVE ORDER N O . 10530,1  RELATING TO  THE PER­\nFORMANCE BY THE DIRECTOR OF THE BUREAU OF THE BUDGET OF\nCERTAIN FUNCTIONS VESTED IN THE PRESIDENT\nB y  virtue o f  the authority vested in me b y  Section 301 o f T itle 3 \no f  the U nited States C ode, and as President o f the U nited States, \nSection l(p)  o f E xecutive O rder N o. 10530 o f M ay 10, 1954, entitled \n“ P rov id in g  fo r  the Perform ance o f Certain Functions Vested in or \nSubject to  the A p p rova l o f  the President,”  as amended, is hereby \namended to read as fo llo w s :\n“ (p ) T he authority vested in the President by Section 4 5 (a ) o f \nthe A laska Om nibus A ct, approved June 25, 1959 (73 Stat. 152), as \namended, (1 ) to determ ine that any function perform ed by the F ed­\neral Governm ent in A laska has been term inated or curtailed by the \nF ederal Governm ent and that perform ance o f such function or sub­\nstantially the same fun ction  has been or w ill be assumed by the \nState o f A laska, and (2 ) in his discretion, to transfer and convey to \nthe State o f A laska, w ithout reimbursement, any property or interest \nin  property, rea l or personal, situated in A laska and as otherwise \ndescribed in  Section 4 5 (a ). T he provisions o f this paragraph shall \nn ot be construed to affect the authority delegated to the Secretary o f \nthe In terior by E xecutive O rder N o. 10857 o f Decem ber 29, 1959, \nw ith respect to the transfer and conveyance o f property described in \nSection 2 o f  that order.”"
+    },
+    "CURRENT:EO:11164#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 950,
+      "char_start": 612,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 10530. Providing for the Performance of Certain Functions Vested in or Subjec' [USLM note id id37152e92-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "07f7947507dee2f176f9d15c4d6cb9d6824a95f5af5627925e2c24080a922cfe",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id37152e92-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11164#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11164",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (3 U.S.C. 301 note)",
+      "machine_lead": true,
+      "mention_id": "usc:fdf607436539",
+      "snippet": "...6 F.R. 7823; Ex. Ord. No. 10970, Oct. 27, 1961, 26 F.R. 10149; Ex. Ord. No. 11012, Mar. 27, 1962, 27 F.R. 2983; Ex. Ord. No. 11116, Aug. 5, 1963, 28 F.R. 8075; Ex. Ord. No. 11164, Aug. 1, 1964, 29 F.R. 11257; Ex. Ord. No. 11184, Oct. 13, 1964, 29 F.R. 14155; Ex. Ord. No. 11196, Feb. 2, 1965, 30 F.R. 1171; Ex. Ord. No. 11222, May 8, 1965...",
+      "source": {
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 10530. Providing for the Performance of Certain Functions Vested in or Subjec' [USLM note id id37152e92-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id37152e92-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "07f7947507dee2f176f9d15c4d6cb9d6824a95f5af5627925e2c24080a922cfe",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "6 F.R. 7823; Ex. Ord. No. 10970, Oct. 27, 1961, 26 F.R. 10149; Ex. Ord. No. 11012, Mar. 27, 1962, 27 F.R. 2983; Ex. Ord. No. 11116, Aug. 5, 1963, 28 F.R. 8075; Ex. Ord. No. 11164, Aug. 1, 1964, 29 F.R. 11257; Ex. Ord. No. 11184, Oct. 13, 1964, 29 F.R. 14155; Ex. Ord. No. 11196, Feb. 2, 1965, 30 F.R. 1171; Ex. Ord. No. 11222, May 8, 1965",
+      "text_path": "jobs/current-law/output/usc-notes/id37152e92-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "07f7947507dee2f176f9d15c4d6cb9d6824a95f5af5627925e2c24080a922cfe",
+      "where": "USC 3 U.S.C. 301 note"
     },
     "ORIGINAL:EO:11164": {
       "acceptable_as_original": true,
@@ -1195,7 +1248,7 @@
       "text": "=== PDF page 5 of 72 ===\n\"Wednesday, A u g u st 5, 1964 FEDERAL REGISTER 11257\nE x e cu tiv e  O r d e r  11164\nAM EN DIN G EXECUTIVE ORDER N O . 10530,1  RELATING TO  THE PER­\nFORMANCE BY THE DIRECTOR OF THE BUREAU OF THE BUDGET OF\nCERTAIN FUNCTIONS VESTED IN THE PRESIDENT\nB y  virtue o f  the authority vested in me b y  Section 301 o f T itle 3 \no f  the U nited States C ode, and as President o f the U nited States, \nSection l(p)  o f E xecutive O rder N o. 10530 o f M ay 10, 1954, entitled \n“ P rov id in g  fo r  the Perform ance o f Certain Functions Vested in or \nSubject to  the A p p rova l o f  the President,”  as amended, is hereby \namended to read as fo llo w s :\n“ (p ) T he authority vested in the President by Section 4 5 (a ) o f \nthe A laska Om nibus A ct, approved June 25, 1959 (73 Stat. 152), as \namended, (1 ) to determ ine that any function perform ed by the F ed­\neral Governm ent in A laska has been term inated or curtailed by the \nF ederal Governm ent and that perform ance o f such function or sub­\nstantially the same fun ction  has been or w ill be assumed by the \nState o f A laska, and (2 ) in his discretion, to transfer and convey to \nthe State o f A laska, w ithout reimbursement, any property or interest \nin  property, rea l or personal, situated in A laska and as otherwise \ndescribed in  Section 4 5 (a )."
     }
   },
-  "fingerprint": "af5f7408d1f6e639512a5ed2425d0809eafaaf6b29e8077b3178cdad78339a77",
+  "fingerprint": "bd6e82356103ca5dea98d846c2b821672d8a8f743f85e91e3821d360c0d84efa",
   "instrument_id": "EO:11164",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1232,11 +1285,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 1,
       "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -1244,20 +1298,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1282,10 +1337,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "ca562f52431cec33fc817a440d9f29236ccd9ee8797e5cb27998aeb56fa7d678",
+    "fingerprint": "293543653bbbcf3ece2dbddb68c78fb06ac8e0d2d9a193859cc140bb45ac25fe",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11164.json",
-    "history_sha256": "d14e15743c4e96217fa17b34f03a2716a9c9f45f9d1b70b37e1692dded281a58",
+    "history_sha256": "2010ec66f22b091eb818b242474a69fee24322390272550ee0674a1ad67658d8",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

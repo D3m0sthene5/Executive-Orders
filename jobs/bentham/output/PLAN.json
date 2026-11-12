@@ -94,18 +94,18 @@
       "id": "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
       "kind": "acquisition",
       "orders": 0,
-      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2231 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 2168 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "expected_now": 0.0,
-      "fecundity": 0.1,
-      "value": 0.1,
+      "fecundity": 0.0,
+      "value": 0.0,
       "cost_usd": 0.0,
       "cost_basis": "machine or zero-agent work: no model tokens",
       "per_usd": Infinity,
       "cost_key": null,
       "within_budget": true,
       "cumulative_usd": 0.0,
-      "cumulative_value": 0.9,
+      "cumulative_value": 0.8,
       "share_of_week": null
     },
     {
@@ -131,7 +131,7 @@
       "cost_key": "review.per_submitted",
       "within_budget": true,
       "cumulative_usd": 1.38,
-      "cumulative_value": 4.7,
+      "cumulative_value": 4.6,
       "share_of_week": null
     },
     {
@@ -157,13 +157,13 @@
       "cost_key": "review.per_submitted",
       "within_budget": true,
       "cumulative_usd": 7.38,
-      "cumulative_value": 21.3,
+      "cumulative_value": 21.2,
       "share_of_week": null
     },
     {
       "id": "production.one_step_away",
       "kind": "production",
-      "orders": 218,
+      "orders": 217,
       "description": "Close the single open step of orders that already have a claim and exactly one applicable step open. Excludes recovery orders.",
       "notes": [],
       "rate": {
@@ -174,16 +174,16 @@
         "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 139.2,
+      "expected_now": 138.6,
       "fecundity": 0.0,
-      "value": 139.2,
-      "cost_usd": 72.48,
-      "cost_basis": "218 x 0.33 USD (attempted_order)",
-      "per_usd": 1.9204898855013668,
+      "value": 138.6,
+      "cost_usd": 72.15,
+      "cost_basis": "217 x 0.33 USD (attempted_order)",
+      "per_usd": 1.9204898855013672,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 79.86,
-      "cumulative_value": 160.5,
+      "cumulative_usd": 79.53,
+      "cumulative_value": 159.8,
       "share_of_week": null
     },
     {
@@ -191,9 +191,7 @@
       "kind": "production",
       "orders": 296,
       "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "notes": [
-        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
-      ],
+      "notes": [],
       "rate": {
         "key": "filed_per_attempt.yes.fr",
         "value": 0.23333333333333334,
@@ -210,37 +208,35 @@
       "per_usd": 0.7017639141360342,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 178.28,
-      "cumulative_value": 229.6,
+      "cumulative_usd": 177.95,
+      "cumulative_value": 228.9,
       "share_of_week": null
     },
     {
       "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
       "orders": 0,
-      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 738 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 705 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
       "probe_cost_usd": 0.0,
       "expected_now": 0.0,
-      "fecundity": 1.2,
-      "value": 1.2,
-      "cost_usd": 3.56,
-      "cost_basis": "20 x 0.18 USD (attempted_order)",
-      "per_usd": 0.34732279775306185,
+      "fecundity": 1.1,
+      "value": 1.1,
+      "cost_usd": 3.03,
+      "cost_basis": "17 x 0.18 USD (attempted_order)",
+      "per_usd": 0.3763559727974355,
       "cost_key": "production.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 181.84,
-      "cumulative_value": 230.8,
+      "cumulative_usd": 180.98,
+      "cumulative_value": 230.0,
       "share_of_week": null
     },
     {
       "id": "status_assignment.undecided",
       "kind": "status_assignment",
-      "orders": 11210,
+      "orders": 5370,
       "description": "Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided (claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such.",
-      "notes": [
-        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
-      ],
+      "notes": [],
       "rate": {
         "key": "filed_per_attempt.undecided",
         "value": 0.1,
@@ -249,26 +245,24 @@
         "source": "research/excavator/claude-haloander-2026-11-07/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 1121.0,
+      "expected_now": 537.0,
       "fecundity": 0.0,
-      "value": 1121.0,
-      "cost_usd": 3727.27,
-      "cost_basis": "11210 x 0.33 USD (attempted_order)",
-      "per_usd": 0.3007559632011575,
+      "value": 537.0,
+      "cost_usd": 1785.5,
+      "cost_basis": "5370 x 0.33 USD (attempted_order)",
+      "per_usd": 0.30075596320115755,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 3909.11,
-      "cumulative_value": 1351.8,
+      "cumulative_usd": 1966.48,
+      "cumulative_value": 767.0,
       "share_of_week": null
     },
     {
       "id": "production.claim_ready.no.fr",
       "kind": "production",
-      "orders": 1019,
+      "orders": 1028,
       "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "notes": [
-        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
-      ],
+      "notes": [],
       "rate": {
         "key": "filed_per_attempt.no.fr",
         "value": 0.03333333333333333,
@@ -277,16 +271,16 @@
         "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 34.0,
+      "expected_now": 34.3,
       "fecundity": 0.0,
-      "value": 34.0,
-      "cost_usd": 338.81,
-      "cost_basis": "1019 x 0.33 USD (attempted_order)",
+      "value": 34.3,
+      "cost_usd": 341.81,
+      "cost_basis": "1028 x 0.33 USD (attempted_order)",
       "per_usd": 0.10025198773371917,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 4247.92,
-      "cumulative_value": 1385.8,
+      "cumulative_usd": 2308.29,
+      "cumulative_value": 801.3,
       "share_of_week": null
     },
     {
@@ -304,8 +298,8 @@
       "per_usd": 0.0,
       "cost_key": "production.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 4247.92,
-      "cumulative_value": 1385.8,
+      "cumulative_usd": 2308.29,
+      "cumulative_value": 801.3,
       "share_of_week": null
     },
     {
@@ -322,8 +316,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4247.92,
-      "cumulative_value": 1385.8,
+      "cumulative_usd": 2308.29,
+      "cumulative_value": 801.3,
       "share_of_week": null
     },
     {
@@ -340,8 +334,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4247.92,
-      "cumulative_value": 1385.8,
+      "cumulative_usd": 2308.29,
+      "cumulative_value": 801.3,
       "share_of_week": null
     },
     {
@@ -358,8 +352,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4247.92,
-      "cumulative_value": 1385.8,
+      "cumulative_usd": 2308.29,
+      "cumulative_value": 801.3,
       "share_of_week": null
     },
     {
@@ -376,8 +370,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4247.92,
-      "cumulative_value": 1385.8,
+      "cumulative_usd": 2308.29,
+      "cumulative_value": 801.3,
       "share_of_week": null
     }
   ],
@@ -408,7 +402,6 @@
         "acquire.shared.EO_6964",
         "acquire.shared.EO_6910",
         "acquire.shared.CFR_26_CFR_458.324",
-        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "recovery.working_text_stale",
         "recovery.custody_stranded",
@@ -416,6 +409,7 @@
         "production.claim_ready.yes.fr",
         "status_assignment.undecided",
         "production.claim_ready.no.fr",
+        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
         "zero_agent.opus_media_refetch",
         "acquire.nea_continuation_notices",
@@ -428,7 +422,6 @@
         "acquire.shared.EO_6964",
         "acquire.shared.EO_6910",
         "acquire.shared.CFR_26_CFR_458.324",
-        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "recovery.working_text_stale",
         "recovery.custody_stranded",
@@ -436,6 +429,7 @@
         "production.claim_ready.yes.fr",
         "status_assignment.undecided",
         "production.claim_ready.no.fr",
+        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
         "zero_agent.opus_media_refetch",
         "acquire.nea_continuation_notices",
@@ -444,6 +438,83 @@
       ]
     },
     "flips": [
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "recovery.custody_stranded"
+        ],
+        "window_order": [
+          "recovery.custody_stranded",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "recovery.working_text_stale"
+        ],
+        "window_order": [
+          "recovery.working_text_stale",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "production.one_step_away"
+        ],
+        "window_order": [
+          "production.one_step_away",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "production.claim_ready.yes.fr"
+        ],
+        "window_order": [
+          "production.claim_ready.yes.fr",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+        ],
+        "window_order": [
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "status_assignment.undecided"
+        ],
+        "window_order": [
+          "status_assignment.undecided",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_1.0",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "production.claim_ready.no.fr"
+        ],
+        "window_order": [
+          "production.claim_ready.no.fr",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
       {
         "weight": "cache_read_weight_1.0",
         "usd_order": [
@@ -497,6 +568,83 @@
         "window_order": [
           "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
           "production.claim_ready.yes.fr"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "recovery.custody_stranded"
+        ],
+        "window_order": [
+          "recovery.custody_stranded",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "recovery.working_text_stale"
+        ],
+        "window_order": [
+          "recovery.working_text_stale",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "production.one_step_away"
+        ],
+        "window_order": [
+          "production.one_step_away",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "production.claim_ready.yes.fr"
+        ],
+        "window_order": [
+          "production.claim_ready.yes.fr",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+        ],
+        "window_order": [
+          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "status_assignment.undecided"
+        ],
+        "window_order": [
+          "status_assignment.undecided",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
+        ]
+      },
+      {
+        "weight": "cache_read_weight_0.1",
+        "usd_order": [
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+          "production.claim_ready.no.fr"
+        ],
+        "window_order": [
+          "production.claim_ready.no.fr",
+          "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND"
         ]
       },
       {

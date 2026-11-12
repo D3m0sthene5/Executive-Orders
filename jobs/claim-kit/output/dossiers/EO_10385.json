@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:10385",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10385"
@@ -42,11 +42,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 149,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 1589a note; note 'Ex. Ord. No. 10385. Extension of Time Relating to the Removal of Certain Temporary Housing' [USLM note id id39b36425-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "d31f36b9dbf63812fb4f048094c70d2819773e2af88c166ad6bd4f57e41deddc",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id39b36425-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10385",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 1589a note)",
@@ -56,19 +65,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 1589a note; note 'Ex. Ord. No. 10385. Extension of Time Relating to the Removal of Certain Temporary Housing' [USLM note id id39b36425-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id39b36425-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "d31f36b9dbf63812fb4f048094c70d2819773e2af88c166ad6bd4f57e41deddc",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id39b36425-c3e9-11f1-bd73-d95596aaa024",
+      "text": "Ex. Ord. No. 10385. Extension of Time Relating to the Removal of Certain Temporary Housing\nEx. Ord. No. 10385, Aug. 16, 1952, 17 F.R. 7525, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id39b36425-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "d31f36b9dbf63812fb4f048094c70d2819773e2af88c166ad6bd4f57e41deddc",
       "where": "USC 42 U.S.C. 1589a note"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 2004,
+      "char_start": 1666,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 1553; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "306e9fe2939ec84d4ea5d34f01efa424af2f9bd66fb305bf59d4fa27b9d79582",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s1553",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10385",
       "legal_basis_candidate": "statute text names the order (42 U.S.C. 1553)",
@@ -78,9 +100,14 @@
       "source": {
         "page_or_item": "42 U.S.C. 1553; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s1553-da18268dd1.txt",
+        "text_sha256": "306e9fe2939ec84d4ea5d34f01efa424af2f9bd66fb305bf59d4fa27b9d79582",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "; amended June 28, 1948, ch. 688, § 4, 62 Stat. 1064; Oct. 25, 1949, ch. 729, § 5, 63 Stat. 906; Apr. 20, 1950, ch. 94, title II, §§ 202, 204, 64 Stat. 72, 73; Ex. Ord. No. 10385, Aug. 18, 1952, 17 F.R. 7525; Pub. L. 89–174, § 5(a), Sept. 9, 1965, 79 Stat. 669.)\nEditorial Notes\nStatutory Notes and Related Subsidiaries\nExecutive Document",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s1553-da18268dd1.txt",
+      "text_sha256": "306e9fe2939ec84d4ea5d34f01efa424af2f9bd66fb305bf59d4fa27b9d79582",
       "where": "USC 42 U.S.C. 1553"
     },
     {
@@ -132,6 +159,7 @@
         "snippet": "...; amended June 28, 1948, ch. 688, § 4, 62 Stat. 1064; Oct. 25, 1949, ch. 729, § 5, 63 Stat. 906; Apr. 20, 1950, ch. 94, title II, §§ 202, 204, 64 Stat. 72, 73; Ex. Ord. No. 10385, Aug. 18, 1952, 17 F.R. 7525; Pub. L. 89–174, § 5(a), Sept. 9, 1965, 79 Stat. 669.) Editorial Notes Statutory Notes an ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t42_s1553-da18268dd1.txt",
         "where": "USC 42 U.S.C. 1553"
       },
       "proposal": {
@@ -160,7 +188,7 @@
         "snippet": "Ex. Ord. No. 10385. Extension of Time Relating to the Removal of Certain Temporary Housing | Ex. Ord. No. 10385, Aug. 16, 1952, 17 F.R. 7525, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id39b36425-c3e9-11f1-bd73-d95596aaa024",
+        "text_path": "usc-notes/id39b36425-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 1589a note"
       },
       "proposal": {
@@ -239,6 +267,78 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1952-08-19/pdf/FR-1952-08-19.pdf"
       },
       "text": "(b) Support rates for flaxseed in ap­\nproved warehouse-storage at other than  \ndesignated terminal markets.  (1) The \nsupport rate for flaxseed stored in ap­\nproved warehouses (other than those \nsituated in the designated terminal mar­\nkets) which is shipped by rail or water, \nshall be determined by deducting from \nthe appropriate designated terminal \nmarket rate an amount equal to the \ntransit balance, if any (plus tax) of the \nthrough-freight rate from point of origin \nfor such flaxseed to such terminal mar­\nket: Provided, That on any flaxseed \nshipped at other than the domestic in­\nterstate freight rate, the support rate \nshall be further reduced by the differ­\nence between the freight paid (plus tax) \nand the domestic interstate freight rate \n(plus tax) from the point of origin of \nsuch flaxseed to the point of storage: \nAnd provided further,  That in the case \nof flaxseed stored at any railroad transit \npoint, taking a penalty by reason of out- \nof-line movement, or for any other rea­\nson, to the appropriate designated \nmarket, there shall be added to such \ntransit balance an amount equal to any \nout-of-line costs or other costs incurred \nin storing flaxseed in such position.\n(Sec. 4, 62 Stat. 1070, as amended; 15 U. S. C.  \nSups., 714b. Interpret or apply sec. 5, 62 Stat.  \n1072, secs. 301, 401, 63 Stat. 1053; 15 U. S. C.  \nSup. 714c, 7 U. S. C. Sup. 1447, 1421)\nIssued this 14th day of August 1952.\n[seal] J ohn H. D ean,\nActing Vice President,  \nCommodity Credit Corporation.\nApproved: -\nHarold K. H ill ,\nActing President,\nCommodity Credit Corporation."
+    },
+    "CURRENT:EO:10385#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 149,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 1589a note; note 'Ex. Ord. No. 10385. Extension of Time Relating to the Removal of Certain Temporary Housing' [USLM note id id39b36425-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "d31f36b9dbf63812fb4f048094c70d2819773e2af88c166ad6bd4f57e41deddc",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id39b36425-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:10385#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10385",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 1589a note)",
+      "machine_lead": true,
+      "mention_id": "usc:91eb920387df",
+      "snippet": "Ex. Ord. No. 10385. Extension of Time Relating to the Removal of Certain Temporary Housing | Ex. Ord. No. 10385, Aug. 16, 1952, 17 F.R. 7525, provided:",
+      "source": {
+        "page_or_item": "42 U.S.C. 1589a note; note 'Ex. Ord. No. 10385. Extension of Time Relating to the Removal of Certain Temporary Housing' [USLM note id id39b36425-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id39b36425-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "d31f36b9dbf63812fb4f048094c70d2819773e2af88c166ad6bd4f57e41deddc",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 10385. Extension of Time Relating to the Removal of Certain Temporary Housing\nEx. Ord. No. 10385, Aug. 16, 1952, 17 F.R. 7525, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id39b36425-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "d31f36b9dbf63812fb4f048094c70d2819773e2af88c166ad6bd4f57e41deddc",
+      "where": "USC 42 U.S.C. 1589a note"
+    },
+    "CURRENT:EO:10385#1": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 2004,
+      "char_start": 1666,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 1553; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "306e9fe2939ec84d4ea5d34f01efa424af2f9bd66fb305bf59d4fa27b9d79582",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s1553",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:10385#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10385",
+      "legal_basis_candidate": "statute text names the order (42 U.S.C. 1553)",
+      "machine_lead": true,
+      "mention_id": "usc:813064969e70",
+      "snippet": "...; amended June 28, 1948, ch. 688, § 4, 62 Stat. 1064; Oct. 25, 1949, ch. 729, § 5, 63 Stat. 906; Apr. 20, 1950, ch. 94, title II, §§ 202, 204, 64 Stat. 72, 73; Ex. Ord. No. 10385, Aug. 18, 1952, 17 F.R. 7525; Pub. L. 89–174, § 5(a), Sept. 9, 1965, 79 Stat. 669.) Editorial Notes Statutory Notes and Related Subsidiaries Executive Document...",
+      "source": {
+        "page_or_item": "42 U.S.C. 1553; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s1553-da18268dd1.txt",
+        "text_sha256": "306e9fe2939ec84d4ea5d34f01efa424af2f9bd66fb305bf59d4fa27b9d79582",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "; amended June 28, 1948, ch. 688, § 4, 62 Stat. 1064; Oct. 25, 1949, ch. 729, § 5, 63 Stat. 906; Apr. 20, 1950, ch. 94, title II, §§ 202, 204, 64 Stat. 72, 73; Ex. Ord. No. 10385, Aug. 18, 1952, 17 F.R. 7525; Pub. L. 89–174, § 5(a), Sept. 9, 1965, 79 Stat. 669.)\nEditorial Notes\nStatutory Notes and Related Subsidiaries\nExecutive Document",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s1553-da18268dd1.txt",
+      "text_sha256": "306e9fe2939ec84d4ea5d34f01efa424af2f9bd66fb305bf59d4fa27b9d79582",
+      "where": "USC 42 U.S.C. 1553"
     },
     "ORIGINAL:EO:10385": {
       "acceptable_as_original": true,
@@ -331,7 +431,7 @@
       "text": "The time stipulated in section 313 of the said act approved October 14, 1940, as amended, within which, subject to the qualification stated in the said section 313, housing of a temporary character under the jurisdiction of the Housing and Home Finance Administration and constructed under certain laws must be removed is hereby extended form December 31, 1952, to July 1, 1954."
     }
   },
-  "fingerprint": "c75a7f047514f36e46d2a97378c07f582f7b276f49dc421e6a3f5c6de3a93be6",
+  "fingerprint": "de41143a8f384df42829d0bb9f7503bf67bc8f01f7462bca021f075c24bf40da",
   "instrument_id": "EO:10385",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -362,32 +462,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 3,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
