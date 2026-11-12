@@ -1,0 +1,169 @@
+{
+  "attempted": 7,
+  "claims_published": 0,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:9447",
+      "planted_claim_sha256": "2813015c1f69818748d2385ca78e114a43f6021c737a7df1d5dc157d052c01e0",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 6,
+    "rejected_mechanical": 1
+  },
+  "eligible": [],
+  "eligible_per_attempt": 0.0,
+  "exceptions": 1,
+  "finished_utc": "2026-11-12T21:31:30.415755+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:9447",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"operative_clauses[A1b, A2b, A3b].first_end.source\", \"claim_says\": \"quote span 0-13355 of jobs/fr-originals/data/full_run/texts/EO_9447.txt (the entire file: header, the preceding EO 9446 and neighbouring Federal Register matter)\", \"source_says\": \"the ending language is each row's 'For the fiscal year 1945' wording\", \"problem\": \"cited ending quote is not the ending language and does not locate it\"}, {\"field\": \"operative_clauses (all).first_end and whole_order_end\", \"claim_says\": \"the rewritten subsections are this order's clauses and end at their fiscal-year-1945 limit or at EO 9744B's supersession (1946-07-01)\", \"source_says\": \"EO 9447 is amendment-only ('be, and they are hereby, amended to read as follows'; 'This order shall become effective July 1, 1944'). The A-20261106-pothier P2 answer and D-20261028-evidence-decides treat the amending order's command as spent on issue and the inserted text as a surviving consequence inside EO 9356\", \"problem\": \"the earlier end (performance of the amendment, 1944-06-08 signing / 1944-07-01 effective) is not tested or recorded. The surviving text's ends are given as the order's first ends, unlike the treatment of EO 11943 and EO 12701 in the same batch\"}]}"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:11294",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"operative_clauses[EO:11294#sec4].first_end\", \"claim_says\": \"1986-07-01 express_revocation by EO 12561, while judgment_reason says 'The supersession of EO 10970 took effect on issue on August 4, 1966 and is an accrued effect'\", \"source_says\": \"Sec. 4: 'To the extent not heretofore superseded, Executive Order No. 10970 of October 27,1961, is hereby superseded.' (31 FR 10601), a command performed on issue\", \"problem\": \"claim identifies an earlier end (performance on issue, 1966-08-04) and records a later one; first_end inconsistent with its own reasons and with D-20261028-evidence-decides / pothier P2\"}, {\"field\": \"operative_clauses[EO:11294#sec1, #sec3].first_end\", \"claim_says\": \"sec1 ends 1986-07-01 (EO 12561 revocation); sec3 ends 1971-07-22 (EO 11609 supersession)\", \"source_says\": \"sec1 adds paragraph (o) to EO 10621 and sec3 substitutes paragraph (9) of EO 11230; per the A-20261106-pothier P2 answer an amending command is spent on issue and the inserted text survives in the parent until the parent provision ends\", \"problem\": \"the amending commands' earlier end on issue (1966-08-04) is not tested; the ends of the inserted text are recorded as the clauses' first ends\"}]}"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:11943",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"B\": [{\"field\": \"savings_residuals.reason\", \"claim_says\": \"EO 12010 ... its new schedules took effect October 1, 1977\", \"source_says\": \"EO 12010 sec. 3: only the uniformed-services pay and allowance adjustments are effective October 1, 1977; 'All other adjustments of salary or pay shall be effective on the first day of the first applicable pay period beginning on or after October 1, 1977' - which governs Schedule 3 (VA Department of Medicine and Surgery), the schedule that replaced the one EO 11943 corrected.\"}]}"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:12437",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"research_rationale\", \"claim_says\": \"the held U.S. Code text at jobs/theophilus-sources/output/texts/usc-t42-s8373.txt recites that EO 12217 was revoked by this order ... and a search of the held texts for its number found no citation in any other held text\", \"source_says\": \"usc-t42-s8373.txt (held, in the searched corpus) reads 'was revoked by Ex. Ord. No. 12437, Aug. 11, 1983, 48 F.R. 36801'; the number search missed the 'Ex. Ord. No.' form\", \"problem\": \"search result described as showing no citation in any other held text, contradicted by the held text the claim itself cites; search not honestly described\"}]}"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:12701",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"research_rationale\", \"claim_says\": \"EO 12334 (the President's Foreign Intelligence Advisory Board order of December 4, 1981)\", \"source_says\": \"held text of EO 12334 (46 FR 59955): 'Executive Order 12334 of December 4, 1981 / President's Intelligence Oversight Board ... there is hereby established ... the President's Intelligence Oversight Board'\", \"problem\": \"parent order misidentified\"}, {\"field\": \"research_rationale.savings_check\", \"claim_says\": \"a federal advisory board that was itself abolished by revoking EO 12334\", \"source_says\": \"EO 12863 (September 13, 1993) re-established the Intelligence Oversight Board as a standing committee of the PFIAB in the same order that revoked EO 12334\", \"problem\": \"statement of fact about the board is wrong\"}], \"B\": [{\"field\": \"research_rationale\", \"claim_says\": \"EO 12334 (the President's Foreign Intelligence Advisory Board order of December 4, 1981)\", \"source_says\": \"The held FR text of EO 12334 (46 FR 59955) is titled 'President's Intelligence Oversight Board' and establishes that Board; the 1989 codification and the held 1998 FR document fr-98-4206 also list EO 12334 as the Intelligence Oversight Board. The PFIAB order revoked alongside it by EO 12863 sec. 3.3 is EO 12537 of October 28, 1985. The claim misidentifies the amended parent order.\"}]}"
+    },
+    {
+      "after_reveal": false,
+      "authoritative_status": null,
+      "canonical_filing_allowed": false,
+      "checker": [
+        {
+          "all_checks_passed": false,
+          "check_counts": {
+            "date_after_signing": {
+              "pass": 2
+            },
+            "date_valid": {
+              "pass": 10
+            },
+            "factual_event_policy": {},
+            "order_exists": {
+              "pass": 4
+            },
+            "quote_verbatim": {
+              "pass": 6
+            },
+            "source_held": {
+              "pass": 3,
+              "skip": 2
+            },
+            "source_identity": {
+              "pass": 2
+            },
+            "structural_gate": {
+              "pass": 1
+            },
+            "working_text_policy": {
+              "pass": 1
+            }
+          },
+          "claim_key": "research/excavator/claude-lind-2026-11-12/completion/complete-v1/CLAIMS.selected.jsonl:1",
+          "claim_sha256": "47f70df6a7bd46779226dec23b0b10f6adb3445bf93bfd5b08f145165e682d2b",
+          "effective_for_tracker": true,
+          "failures": [],
+          "failures_total": 0,
+          "file": "research/excavator/claude-lind-2026-11-12/completion/complete-v1/CLAIMS.selected.jsonl",
+          "gate_claim_level_errors": [],
+          "gate_errors": [],
+          "gate_passed": true,
+          "instrument_id": "EO:12753",
+          "line": 1,
+          "mechanical_result": "pass_with_unverified",
+          "provisional_status": null,
+          "steps": {
+            "clause_inventory": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "counterevidence": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "ending_or_current_basis": {
+              "checker_passed": false,
+              "gate": "pass",
+              "mechanical": "pass_with_unverified",
+              "present": true
+            },
+            "original_text": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "savings_residuals": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            }
+          },
+          "text_evidence_tier": "transcription_dependent",
+          "unverified": [
+            "source_held:custody_record_only@operative_clauses[0].first_end.source",
+            "source_held:custody_record_only@whole_order_end.source"
+          ],
+          "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+        }
+      ],
+      "claim_sha256": "47f70df6a7bd46779226dec23b0b10f6adb3445bf93bfd5b08f145165e682d2b",
+      "experimental_status_overlay": true,
+      "gate_errors": [],
+      "instrument_id": "EO:12753",
+      "outcome": "rejected_mechanical",
+      "owner_adoption_required": true,
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13476",
+      "outcome": "blocked",
+      "reason": "Not upheld by both independent arms: {\"A\": [{\"field\": \"research_rationale\", \"claim_says\": \"The inventory is the machine segmentation of the order (31 scopes) ... All 31 inventoried scopes (sections 1 through 4(d) ...)\", \"source_says\": \"operative_clauses holds 34 scopes (EO:13476#sec1 through #sec4-d), and the dossier lists 34 clauses\", \"problem\": \"stated inventory count contradicts the claim's own clause list\"}, {\"field\": \"operative_clauses[EO:13476#sec4].first_end\", \"claim_says\": \"date 2009-02-20, mechanism own_terms_sunset_date; judgment_reason says the supersession of EO 13176 'accrued when EO 13476 issued on October 9, 2008 and does not depend on EO 13476 continuing', and the rationale calls it 'a performed command'\", \"source_says\": \"Sec. 4(a): 'this order supersedes Executive Order 13176 of November 27, 2000' (73 FR 60606), a command performed on issue; under D-20261028-evidence-decides and the A-20261106-pothier P2 answer the exhausted command ends on issue and only its consequence survives\", \"problem\": \"the claim's own analysis establishes an earlier end (performance on issue, 2008-10-09) yet records the sunset date; first_end date and mechanism are inconsistent with the stated reasons\"}], \"B\": [{\"field\": \"research_rationale\", \"claim_says\": \"The inventory is the machine segmentation of the order (31 scopes)\", \"source_says\": \"operative_clauses holds 34 scopes (sec1 ... sec4-d), matching the dossier's 34 clauses; the rationale's count is wrong and inconsistent with the claim's own inventory.\"}]}"
+    }
+  ],
+  "packet_loads": {},
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 1,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-12T21:30:00.635378+00:00",
+  "submitted": 1,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 89.78039566799998
+}
