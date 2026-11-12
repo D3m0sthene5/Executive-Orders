@@ -10,7 +10,7 @@ New York date: 2026-11-11. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `43131686037-1:08e297ec3c4c496a0c957101c1d6faf761eb7350656d5a3b272a53f2a1968c40` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43136475258-1:2dea9d04916cfdca46531cfd018ac4f75bc37516e090b1a0cbc2eac30a8dac5b` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -26,7 +26,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-10; intervening runs may be absent.
-- claim-checker: held_distinct_sha256: 58669 → 58461
+- claim-checker: held_distinct_sha256: 58669 → 58657
 - claim-drafts: decided_orders_with_draft: 4307 → 3788; fragment_orders_not_in_universe: 41 → 40; undecided_orders_with_draft: 10646 → 11165
 - clause-drafts: clauses_total: 71401 → 71430; fragments_from_app_transcription: 4975 → 4974; fragments_written: 9792 → 9795; orders_processed: 9949 → 9952
 - cruden-fr-concordance: bytes_downloaded: 22573230144 → 3608561552; fragments_carried_forward: 0 → 655; searches_made_this_run: 1976 → 0; units_attempted: 841 → 87
@@ -75,4 +75,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43131686037)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43136475258)
