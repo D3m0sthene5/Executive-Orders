@@ -50,3 +50,11 @@ NYU Film 709 (11 reels, EO 1-7403) is free to scan yourself at Bobst on the Scan
 *Why:* A-20261106-dagron-nyu (answered no on 2026-11-09, 'revisit only if M1118 acquisition fails') keeps Film 709 uncounted. M1118 is not viewable in NYC, its roll list is not online, and digitized rolls cost about 25 each. 1,533 orders in the film's range have no located official source.
 
 Sources: `research/dagron/README.md`
+
+## A-20261112-cis-unnumbered-check (2026-11-12, Claude)
+
+Check the 875 CIS unnumbered executive orders that fall on dates with no known order (research/graunt-census-audit-2026-11-12/cis-kaufman/CIS_UNNUMBERED_EO_GROUPS_PRE1937.csv) for admission to the unnumbered series? A pilot of 30 on the CIS fiche at Bobst or ProQuest would show how many are presidential, distinct and not departmental, before any bulk work.
+
+*Why:* CIS (1987) is an independent, more complete frame than Lord; if most of the 875 are presidential, the identified unnumbered series grows by up to about 1,600.
+
+Sources: `research/graunt-census-audit-2026-11-12/cis-kaufman/README.md`

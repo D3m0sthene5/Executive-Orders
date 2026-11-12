@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (6)
+## Waiting for the owner (7)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-cis-unnumbered-check**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -55,13 +55,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 371; `search` finds the rest)
+## Newest results (6 of 372; `search` finds the rest)
 
 - 2026-11-12 F-20261112-runner-deadline **failed**: Run the Bodley web pass (one web search per order for 2,251 orders lacking an official copy) as a single job… Lesson: Never guess a job's run time: time 5-10 real items first (locally or a diagnostic run) and multiply. If the projection is over 4 hours, shard it across jobs or let it stop at 4.5 h and continue next…
 - 2026-11-12 F-20261112-graunt-census-audit **worked**: Owner-commissioned open audit of how many executive orders presidents signed, 1789 to the 2026-10-14 cutoff,… Lesson: Report the count as counted inventory plus an honest 'not estimable' for the unseen tail, never as a modelled total. The numbered series is nearly complete; the unnumbered series is where the count m…
 - 2026-11-12 F-20261112-graunt-admissions-checked **partly worked**: Admit the Graunt audit's 29 missing numbered labels to the census, each with a held official page checked fir… Lesson: Check what a cited 'official printing' actually is before admitting: a GPO Monthly Catalogue entry proves an order was printed (number, date, subject) but holds no text. It is accepted here as an off…
 - 2026-11-12 F-20261112-gap-has-copies **analysis**: Count, for the 2,276 orders whose tracker blockers ask for an official copy, how many have any copy at all Lesson: The gap is mostly not missing text but a missing official printing to confirm text already held. The cheapest lifts are: identify the printed source the Wikisource transcriptions were typed from; ful…
+- 2026-11-12 F-20261112-count-literature **worked**: Owner-requested: find the academic and government research that has tried to count every executive order, and… Lesson: The CIS Index (1987) is the most complete compilation of unnumbered orders and now exists as a free accession list; use it as the second, independent frame for the unnumbered series, and check its la…
 - 2026-11-12 F-20261112-bodley-web-pass **worked**: Owner-requested: search the open web by name for every order lacking an accepted official copy (2,288 numbere… Lesson: The open web does not hold official copies of the pre-1936 gap orders: a number search returns same-number state, city and foreign orders, and the federal hits are transcriptions already held. Do not…
-- 2026-11-11 F-20261111-nyu-cis-fiche **analysis**: Search NYU's catalog (Primo public API, guest token) for every holding that could supply an official witness… Lesson: Search the library's own catalog for every format before planning acquisition: the CIS fiche at Bobst cover the unnumbered and post-7403 orders that Film 709 cannot, and are on site. Grade fiche scan…
 
-Register: 90 owner decisions, 57 answered questions, 371 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 90 owner decisions, 57 answered questions, 372 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
