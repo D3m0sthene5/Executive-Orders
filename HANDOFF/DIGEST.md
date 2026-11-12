@@ -10,7 +10,7 @@ New York date: 2026-11-12. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `43304573666-1:1cef4f55050117e6d83a542d535b39711468ddb2e05389956ea2ffb870a37b1a` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43309358019-1:3b679490134365b810bc7a64037e6d9700da424eeeb64d3f45f071afd09c1279` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -38,6 +38,7 @@ Comparison snapshot: 2026-11-11; intervening runs may be absent.
 - niebuhr-verify: requests_used: 186 → 185
 - official-fixity: carried_forward: 7355 → 7356; files: 7356 → 7357; premis_bytes_read_this_run: 196608 → 262144
 - readiness-tracker: numbered_series_orders: 14998 → 15002; orders_total: 14998 → 15002; original_replacement_obligations: 851 → 883; quotation_recheck_obligations: 851 → 883
+- selden-fr-acting: bytes_downloaded: 2729289189 → 1036730315; requests: 129 → 95
 - selden-fr-citers: bytes_downloaded: 855827 → 468; requests: 71 → 5; targets_searched_this_run: 0 → 4; targets_searched_total: 13533 → 13537
 - shepard-citations: edges: 10665 → 10667; edges_with_census_actor: 6655 → 6657; edges_with_census_target: 7659 → 7661; targets: 8575 → 8579
 - source-ladder: attempts_logged: 79 → 63; bytes_downloaded: 67273510 → 183071370; distinct_new_source_hashes: 23 → 32; exhausted_proposed_items: 5 → 13
@@ -73,4 +74,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43304573666)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43309358019)
