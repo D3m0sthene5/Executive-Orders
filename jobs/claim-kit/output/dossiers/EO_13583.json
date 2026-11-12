@@ -22,15 +22,18 @@
     },
     {
       "actor_id": "EO:13714",
-      "evidence_id": "ACTOR_TEXT:EO:13714"
+      "evidence_id": "ACTOR_TEXT:EO:13714",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:14035",
-      "evidence_id": "ACTOR_TEXT:EO:14035"
+      "evidence_id": "ACTOR_TEXT:EO:14035",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:14100",
-      "evidence_id": "ACTOR_TEXT:EO:14100"
+      "evidence_id": "ACTOR_TEXT:EO:14100",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:14171",
@@ -38,7 +41,8 @@
     },
     {
       "actor_id": "EO:14173",
-      "evidence_id": "ACTOR_TEXT:EO:14173"
+      "evidence_id": "ACTOR_TEXT:EO:14173",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -164,7 +168,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13583",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13583"
@@ -202,23 +206,35 @@
   "current_law_leads": [
     {
       "basis_code": "cfr_authority_citation",
+      "char_end": 3481,
+      "char_start": 3222,
       "checked_through": null,
       "currency_code": "ecfr_bulk_changed_or_unknown",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR part 250",
+        "sha256": "6117e8ba657e625e40962bc491656f8109c5d0ca5c13120a43290771f58b6cce",
+        "source_id": "cfr:t5:part250",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/part-250"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13583",
       "legal_basis_candidate": "regulation authority citation lists the order (5 CFR part 250)",
       "machine_lead": true,
-      "mention_id": "ecfr:160d6f0d430a",
+      "mention_id": "ecfr:bb4d88cf72c1",
       "snippet": "...1 U.S.C. 1115(f); 31 U.S.C. 1116(c)(5); Public Law 103-62; Public Law 107-296; Public Law 108-136, 1128; Public Law 111-352; 5 CFR 10.2; FR Doc No: 2011—19844; E.O. 13583; E.O. 13583, Sec 2(b)(ii). Link to an amendment published at 91 FR 68024, Oct. 29, 2026.",
       "source": {
-        "page_or_item": "5 CFR part 250 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.27.2)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR part 250 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.27.2)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-part250.txt",
+        "text_sha256": "6117e8ba657e625e40962bc491656f8109c5d0ca5c13120a43290771f58b6cce",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
+      "text": "1 U.S.C. 1115(f); 31 U.S.C. 1116(c)(5); Public Law 103-62; Public Law 107-296; Public Law 108-136, 1128; Public Law 111-352; 5 CFR 10.2; FR Doc No: 2011—19844; E.O. 13583; E.O. 13583, Sec 2(b)(ii).\nLink to an amendment published at 91 FR 68024, Oct. 29, 2026.",
       "where": "CFR 5 CFR part 250"
     },
     {
@@ -255,10 +271,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_changed_or_unknown",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:160d6f0d430a",
+        "mention_id": "ecfr:bb4d88cf72c1",
         "snippet": "...1 U.S.C. 1115(f); 31 U.S.C. 1116(c)(5); Public Law 103-62; Public Law 107-296; Public Law 108-136, 1128; Public Law 111-352; 5 CFR 10.2; FR Doc No: 2011—19844; E.O. 13583; E.O. 13583, Sec 2(b)(ii). Link to an amendment published at 91 FR 68024, Oct. 29, 2026.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -268,8 +284,8 @@
         "checked_through": null,
         "legal_basis": "regulation authority citation lists the order (5 CFR part 250)",
         "source": {
-          "page_or_item": "5 CFR part 250 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.27.2)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR part 250 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.27.2)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -959,6 +975,7 @@
       "char_end": 17862,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13714",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -979,6 +996,7 @@
       "char_end": 42784,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14035",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -999,6 +1017,7 @@
       "char_end": 23784,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14100",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1039,6 +1058,7 @@
       "char_end": 12703,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14173",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1075,6 +1095,40 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2011-08-23/pdf/2011-21704.pdf"
       },
       "text": "Section 1. Policy. Our Nation derives strength from the diversity of its \npopulation and from its commitment to equal opportunity for all. We are \nat our best when we draw on the talents of all parts of our society, and \nour greatest accomplishments are achieved when diverse perspectives are \nbrought to bear to overcome our greatest challenges. \nA commitment to equal opportunity, diversity, and inclusion is critical \nfor the Federal Government as an employer. By law, the Federal Government’s \nrecruitment policies should ‘‘endeavor to achieve a work force from all \nsegments of society.’’ (5 U.S.C. 2301(b)(1)). As the Nation’s largest employer, \nthe Federal Government has a special obligation to lead by example. Attaining \na diverse, qualified workforce is one of the cornerstones of the merit-based \ncivil service. \nPrior Executive Orders, including but not limited to those listed below, \nhave taken a number of steps to address the leadership role and obligations \nof the Federal Government as an employer. For example, Executive Order \n13171 of October 12, 2000 (Hispanic Employment in the Federal Govern-\nment), directed executive departments and agencies to implement programs \nfor recruitment and career development of Hispanic employees and estab-\nlished a mechanism for identifying best practices in doing so. Executive \nOrder 13518 of November 9, 2009 (Employment of Veterans in the Federal \nGovernment), required the establishment of a Veterans Employment Initiative."
+    },
+    "CURRENT:EO:13583#0": {
+      "basis_code": "cfr_authority_citation",
+      "char_end": 3481,
+      "char_start": 3222,
+      "checked_through": null,
+      "currency_code": "ecfr_bulk_changed_or_unknown",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR part 250",
+        "sha256": "6117e8ba657e625e40962bc491656f8109c5d0ca5c13120a43290771f58b6cce",
+        "source_id": "cfr:t5:part250",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/part-250"
+      },
+      "id": "CURRENT:EO:13583#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13583",
+      "legal_basis_candidate": "regulation authority citation lists the order (5 CFR part 250)",
+      "machine_lead": true,
+      "mention_id": "ecfr:bb4d88cf72c1",
+      "snippet": "...1 U.S.C. 1115(f); 31 U.S.C. 1116(c)(5); Public Law 103-62; Public Law 107-296; Public Law 108-136, 1128; Public Law 111-352; 5 CFR 10.2; FR Doc No: 2011—19844; E.O. 13583; E.O. 13583, Sec 2(b)(ii). Link to an amendment published at 91 FR 68024, Oct. 29, 2026.",
+      "source": {
+        "page_or_item": "5 CFR part 250 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.27.2)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-part250.txt",
+        "text_sha256": "6117e8ba657e625e40962bc491656f8109c5d0ca5c13120a43290771f58b6cce",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
+      },
+      "system": "ecfr",
+      "text": "1 U.S.C. 1115(f); 31 U.S.C. 1116(c)(5); Public Law 103-62; Public Law 107-296; Public Law 108-136, 1128; Public Law 111-352; 5 CFR 10.2; FR Doc No: 2011—19844; E.O. 13583; E.O. 13583, Sec 2(b)(ii).\nLink to an amendment published at 91 FR 68024, Oct. 29, 2026.",
+      "where": "CFR 5 CFR part 250"
     },
     "ORIGINAL:EO:13583": {
       "acceptable_as_original": true,
@@ -1136,7 +1190,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "e9140da2b05e9994dbd748190a67872b790365e1ed7829760989b581054beae1",
+  "fingerprint": "809b85018748271fe0a001f6f0cf2f6ebd4ab75147c6fccc1e837d30b879765c",
   "instrument_id": "EO:13583",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1163,32 +1217,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1220,10 +1276,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 8,
-    "fingerprint": "5a2faa808fd0735b41dae9710e88c3e7fbc669719c8ad611c7a45e258988b0a4",
+    "fingerprint": "27e64fc76e955370f8b2965d287423fa528a5210070d7e08add790d607861b13",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13583.json",
-    "history_sha256": "fbed60c0566723bb08c29861a2e6db5d1e6fba0294ec8fb3fc5a1c2e5c91e0f2",
+    "history_sha256": "812c9777edf326758c6915323fbd8186c0827d68d8fecb4fbb021a98066e1325",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

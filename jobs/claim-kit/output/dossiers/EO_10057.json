@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:10087",
-      "evidence_id": "ACTOR_TEXT:EO:10087"
+      "evidence_id": "ACTOR_TEXT:EO:10087",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -41,7 +42,7 @@
         "verb": "transfer"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:10057",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10057"
@@ -118,11 +119,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 217,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "36 U.S.C. 2111 note; note 'Ex. Ord. No. 10057. Transfer of Certain Functions Pertaining to United States Military Cem' [USLM note id id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7]; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
+        "sha256": "ce2847ac079bc62e3922b4ecbe7946bdae06b98b5f73428aa5cd4ab099c9e104",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10057",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (36 U.S.C. 2111 note)",
@@ -132,19 +142,32 @@
       "source": {
         "page_or_item": "36 U.S.C. 2111 note; note 'Ex. Ord. No. 10057. Transfer of Certain Functions Pertaining to United States Military Cem' [USLM note id id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7]; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7.txt",
+        "text_sha256": "ce2847ac079bc62e3922b4ecbe7946bdae06b98b5f73428aa5cd4ab099c9e104",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7",
+      "text": "Ex. Ord. No. 10057. Transfer of Certain Functions Pertaining to United States Military Cemeteries\nEx. Ord. No. 10057, May 14, 1949, 14 F.R. 2585, as amended by Ex. Ord. No. 10087, Dec. 3, 1949, 14 F.R. 7287, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7.txt",
+      "text_sha256": "ce2847ac079bc62e3922b4ecbe7946bdae06b98b5f73428aa5cd4ab099c9e104",
       "where": "USC 36 U.S.C. 2111 note"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 905,
+      "char_start": 565,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "36 U.S.C. 2111; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
+        "sha256": "5395496ea13a86a9bb00251f48bf1a6ab1882d7224d9be51e207909b6792c5cb",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t36/s2111",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10057",
       "legal_basis_candidate": "statute text names the order (36 U.S.C. 2111)",
@@ -154,18 +177,32 @@
       "source": {
         "page_or_item": "36 U.S.C. 2111; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t36_s2111-79cc1c4f81.txt",
+        "text_sha256": "5395496ea13a86a9bb00251f48bf1a6ab1882d7224d9be51e207909b6792c5cb",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "United States and the territories and possessions of the United States that were transferred to the Commission by Executive Order 6614, February 26, 1934, and Executive Order 10057, May 14, 1949, as amended by Executive Order 10087, December 3, 1949; and\n(B)\nsupplies, material, and equipment located in the permanent military cemetery or i",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t36_s2111-79cc1c4f81.txt",
+      "text_sha256": "5395496ea13a86a9bb00251f48bf1a6ab1882d7224d9be51e207909b6792c5cb",
       "where": "USC 36 U.S.C. 2111"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 180,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "36 U.S.C. 2111 note; note 'References in Text' [USLM note id id7459b49d-3a70-11f1-9d9e-dfac6d46cab7]; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
+        "sha256": "1bef13187482275a70e5a9e473a618bc29d110bf02ef470cb0feef191e72de8a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id7459b49d-3a70-11f1-9d9e-dfac6d46cab7",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10057",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (36 U.S.C. 2111 note)",
@@ -175,9 +212,14 @@
       "source": {
         "page_or_item": "36 U.S.C. 2111 note; note 'References in Text' [USLM note id id7459b49d-3a70-11f1-9d9e-dfac6d46cab7]; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id7459b49d-3a70-11f1-9d9e-dfac6d46cab7.txt",
+        "text_sha256": "1bef13187482275a70e5a9e473a618bc29d110bf02ef470cb0feef191e72de8a",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order 6614, referred to in subsec. (b)(1)(A), is not classified to the Code.\nExecutive Order 10057, referred to in subsec. (b)(1)(A), is set out below.",
+      "text_path": "jobs/current-law/output/usc-notes/id7459b49d-3a70-11f1-9d9e-dfac6d46cab7.txt",
+      "text_sha256": "1bef13187482275a70e5a9e473a618bc29d110bf02ef470cb0feef191e72de8a",
       "where": "USC 36 U.S.C. 2111 note"
     },
     {
@@ -229,6 +271,7 @@
         "snippet": "...United States and the territories and possessions of the United States that were transferred to the Commission by Executive Order 6614, February 26, 1934, and Executive Order 10057, May 14, 1949, as amended by Executive Order 10087, December 3, 1949; and (B) supplies, material, and equipment loca ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t36_s2111-79cc1c4f81.txt",
         "where": "USC 36 U.S.C. 2111"
       },
       "proposal": {
@@ -257,6 +300,7 @@
         "snippet": "References in Text Executive Order 6614, referred to in subsec. (b)(1)(A), is not classified to the Code. Executive Order 10057, referred to in subsec. (b)(1)(A), is set out below.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id7459b49d-3a70-11f1-9d9e-dfac6d46cab7.txt",
         "where": "USC 36 U.S.C. 2111 note"
       },
       "proposal": {
@@ -285,7 +329,7 @@
         "snippet": "Ex. Ord. No. 10057. Transfer of Certain Functions Pertaining to United States Military Cemeteries | Ex. Ord. No. 10057, May 14, 1949, 14 F.R. 2585, as amended by Ex. Ord. No. 10087, Dec. 3, 1949, 14 F.R. 7287, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7",
+        "text_path": "usc-notes/id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7.txt",
         "where": "USC 36 U.S.C. 2111 note"
       },
       "proposal": {
@@ -555,6 +599,7 @@
       "char_end": 6425,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:10087",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -636,6 +681,114 @@
       },
       "text": "3. There shall be transferred to the  \nAmerican Battle Monuments Commis­\nsion so much of the unexpended balances  \nof appropriations now, or which may be­\ncome, available to the Department of the  \nArmy for the performance of the func­\ntions transferred by the provisions of this  \norder as the Director of the Bureau of  \nthe Budget may deem necessary for use  \nprior to July 1, 1949, in connection with  \nsuch functions."
     },
+    "CURRENT:EO:10057#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 217,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "36 U.S.C. 2111 note; note 'Ex. Ord. No. 10057. Transfer of Certain Functions Pertaining to United States Military Cem' [USLM note id id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7]; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
+        "sha256": "ce2847ac079bc62e3922b4ecbe7946bdae06b98b5f73428aa5cd4ab099c9e104",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:10057#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10057",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (36 U.S.C. 2111 note)",
+      "machine_lead": true,
+      "mention_id": "usc:b9d95f561163",
+      "snippet": "Ex. Ord. No. 10057. Transfer of Certain Functions Pertaining to United States Military Cemeteries | Ex. Ord. No. 10057, May 14, 1949, 14 F.R. 2585, as amended by Ex. Ord. No. 10087, Dec. 3, 1949, 14 F.R. 7287, provided:",
+      "source": {
+        "page_or_item": "36 U.S.C. 2111 note; note 'Ex. Ord. No. 10057. Transfer of Certain Functions Pertaining to United States Military Cem' [USLM note id id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7]; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7.txt",
+        "text_sha256": "ce2847ac079bc62e3922b4ecbe7946bdae06b98b5f73428aa5cd4ab099c9e104",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 10057. Transfer of Certain Functions Pertaining to United States Military Cemeteries\nEx. Ord. No. 10057, May 14, 1949, 14 F.R. 2585, as amended by Ex. Ord. No. 10087, Dec. 3, 1949, 14 F.R. 7287, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id7459b4a0-3a70-11f1-9d9e-dfac6d46cab7.txt",
+      "text_sha256": "ce2847ac079bc62e3922b4ecbe7946bdae06b98b5f73428aa5cd4ab099c9e104",
+      "where": "USC 36 U.S.C. 2111 note"
+    },
+    "CURRENT:EO:10057#1": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 905,
+      "char_start": 565,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "36 U.S.C. 2111; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
+        "sha256": "5395496ea13a86a9bb00251f48bf1a6ab1882d7224d9be51e207909b6792c5cb",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t36/s2111",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:10057#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10057",
+      "legal_basis_candidate": "statute text names the order (36 U.S.C. 2111)",
+      "machine_lead": true,
+      "mention_id": "usc:15ae96201995",
+      "snippet": "...United States and the territories and possessions of the United States that were transferred to the Commission by Executive Order 6614, February 26, 1934, and Executive Order 10057, May 14, 1949, as amended by Executive Order 10087, December 3, 1949; and (B) supplies, material, and equipment located in the permanent military cemetery or i...",
+      "source": {
+        "page_or_item": "36 U.S.C. 2111; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t36_s2111-79cc1c4f81.txt",
+        "text_sha256": "5395496ea13a86a9bb00251f48bf1a6ab1882d7224d9be51e207909b6792c5cb",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "United States and the territories and possessions of the United States that were transferred to the Commission by Executive Order 6614, February 26, 1934, and Executive Order 10057, May 14, 1949, as amended by Executive Order 10087, December 3, 1949; and\n(B)\nsupplies, material, and equipment located in the permanent military cemetery or i",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t36_s2111-79cc1c4f81.txt",
+      "text_sha256": "5395496ea13a86a9bb00251f48bf1a6ab1882d7224d9be51e207909b6792c5cb",
+      "where": "USC 36 U.S.C. 2111"
+    },
+    "CURRENT:EO:10057#2": {
+      "basis_code": "references_in_text_note",
+      "char_end": 180,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "36 U.S.C. 2111 note; note 'References in Text' [USLM note id id7459b49d-3a70-11f1-9d9e-dfac6d46cab7]; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
+        "sha256": "1bef13187482275a70e5a9e473a618bc29d110bf02ef470cb0feef191e72de8a",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id7459b49d-3a70-11f1-9d9e-dfac6d46cab7",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:10057#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10057",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (36 U.S.C. 2111 note)",
+      "machine_lead": true,
+      "mention_id": "usc:fc3f43ce2500",
+      "snippet": "References in Text Executive Order 6614, referred to in subsec. (b)(1)(A), is not classified to the Code. Executive Order 10057, referred to in subsec. (b)(1)(A), is set out below.",
+      "source": {
+        "page_or_item": "36 U.S.C. 2111 note; note 'References in Text' [USLM note id id7459b49d-3a70-11f1-9d9e-dfac6d46cab7]; usc36.xml (sha256 c1bc69b35032b0f9bc5d83aff152216055aa18402755d3fba1ad724ba5c95f72) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id7459b49d-3a70-11f1-9d9e-dfac6d46cab7.txt",
+        "text_sha256": "1bef13187482275a70e5a9e473a618bc29d110bf02ef470cb0feef191e72de8a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order 6614, referred to in subsec. (b)(1)(A), is not classified to the Code.\nExecutive Order 10057, referred to in subsec. (b)(1)(A), is set out below.",
+      "text_path": "jobs/current-law/output/usc-notes/id7459b49d-3a70-11f1-9d9e-dfac6d46cab7.txt",
+      "text_sha256": "1bef13187482275a70e5a9e473a618bc29d110bf02ef470cb0feef191e72de8a",
+      "where": "USC 36 U.S.C. 2111 note"
+    },
     "ORIGINAL:EO:10057": {
       "acceptable_as_original": true,
       "actor_id": "EO:10057",
@@ -662,7 +815,7 @@
       "text": "Instrument: EO:10057\nSource: https://www.govinfo.gov/content/pkg/FR-1949-05-17/pdf/FR-1949-05-17.pdf\nSHA-256 of the downloaded file: acad50fbf972525692f2ac552ea35742220fd9b88519ab575a27d5df40ee2159\nLocation: 14 FR 2585, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 20 ===\n.XON AL ^  \nr  t o r - —? e  ^\nVOLUME 14 » 9 3 4  ^*  O a j i tBD * NUMBER 94\nWashington, Tuesday, May 17, 1949\nTITLE 3— THE PRESIDENT\nEXECUTIVE ORDER 10057\nT ransferring to the A merican B attle\nMonuments  C ommission  F unctions\nP ertaining to C ertain U nited S tates\nMilitary  C emeteries\nBy virtue of the authority vested in  \nme by section 12 of the act of March 4,  \n1923, 42 Stat. 1509, as amended by the  \nact of June 26, 1946, 60 Stat. 318, and  \nas President of the United States, it is  \nhereby ordered as follows:\n1. All functions of administration  \npertaining to World War II United  \nStates Military Cemeteries located in or  \nnear Cambridge, England; Margraten,  \nthe Netherlands; Hamm, Luxembourg;  \nHenri-Chapelle, Belgium;  Neuville-en-  \nCondroz, Belgium; St. Laurent, France;  \nSt. James, France; Epinal, France; St.  \nAvoid, France; Draguignan, France;  \nNettuno (Anzio), Italy; Florence, Italy;  \nTunis (Carthage), Tunisia; and Ft. Mc­\nKinley, Philippine Islands, now vested  \nin or exercised by the Secretary of the  \nArmy pursuant to the act of May 16,  \n1946, c. 261, 60 Stat. 182, as amended by  \nthe act of August 5,1947, c. 497, 61 Stat.  \n779, together with (a) such supplies,,  \nequipment, temporary structures, utili­\nties and facilities pertaining thereto as  \nare located therein or are in depots or  \nother places under the jurisdiction of  \nthe American Graves Registration Serv­\nice which are in excess of the needs of  \nthe Department of the Army and are  \nrequested by the American Battle Mon­\numents Commission, and (b) the cem­\netery records currently maintained for  \nthe operation of such cemeteries, includ­\ning records pertinent to the acquisition  \nof real estate upon which the cemeteries  \nand their appurtenances are situated,  \nare hereby transferred to the American  \nBattle Monuments Commission; such  \ntransfer to become effective as to any  \nparticular cemetery or group of cem­\neteries upon the completion of the oper­\national mission of the Department of  \nthe Army with respect to such cemetery  \nor group of cemeteries, but in no in­\nstance later than December 31, 1951, or  \nat such earlier date as may be deter­\nmined by the President or the Congress  \npursuant to the said act of May 16,1946,  \nas amended by the act of August 5,1947.\n2. The Department of the Army shall  \nhave the right to re-enter any of such  \ncemeteries subsequent to the effective\ndate of the transfer of functions with  \nrespect thereto for the purpose of mak­\ning exhumations or reinterments should  \nany such action become necessary.\n3. There shall be transferred to the  \nAmerican Battle Monuments Commis­\nsion so much of the unexpended balances  \nof appropriations now, or which may be­\ncome, available to the Department of the  \nArmy for the performance of the func­\ntions transferred by the provisions of this  \norder as the Director of the Bureau of  \nthe Budget may deem necessary for use  \nprior to July 1, 1949, in connection with  \nsuch functions.\nHarry S. T ruman\nT he W hite H ouse ,\nMay 14, 1949.\n[P. R. Doc. 49-3961; Piled, May 16, 1949;\n10:22 a. m.)\nTITLE 6—-AGRICULTURAL CREDIT\nChapter IV— Production and Market­\ning Administration and Commodity \nCredit Corporation, Department of  \nAgriculture\nSubchapter C — Loans, Purchases, and Other \nOperations\nPart 610—Dairy P roducts\nSUBPART— MANUFACTURING M ILK PRICE \nSUPPORT PROGRAM\nllie  U. S. Department of Agriculture  \nwill support prices of milk going into  \nmanufacturing uses during 1949 at a na­\ntional average of 90 percent of the parity  \nequivalent price for manufacturing milk,  \nin accordance with the Agricultural Act \nof 1948. This program will be carried  \nout through purchases of butter as pre­\nviously announced (14 F. R. 1703), and  \npurchases of nonfat dry milk solids as  \nprovided herein.\n§  610.111 Price support program for  \nmanufacturing milk,  (a) Commodity  \nCredit Corporation (hereinafter called  \nCCC) will purchase, during the remain­\nder of 1949, nonfat dry milk solids of  \nU. S. Extra Grade, f. o. b. offered de­\nlivery points at any location in the  \nUnited States, at the following prices for  \nspray and roller nonfat dry milk solids  \ndelivered to CCC during the periods in­\ndicated :\n(Continued on next page)\nCONTENTS\nTHE PRESIDENT\nExecutive Order Pase\nTransferring to American Battle  \nMonuments Commission func­\ntions pertaining to certain U. S.  \nMilitary Cemeteries ____--------- 2585\nEXECUTIVE AGENCIES\nAgriculture Department \nProposed rule making:\nMarket agencies at Mississippi  \nValley Stock Yards; petition  \nfor continuance and modifica­\ntion of temporary rates ------- 2590\nPecans in Georgia, Alabama,  \nFlorida, Mississippi, and\nSouth Carolina (Corr.) _____ 2590\nRules and regulations:\nDairy products; manufacturing'  \nmilk price support program—  2585 \nOilseeds; 1948 flaxseed purchase  \nagreement program ________ 2586\nAlien Property, Office of  \nNotices:\nVesting orders, etc.:\nEtschenberg, Rev. Lawrence. 2602\nMuller, Katherine __________ 2603\nTakehara, S ____________—  2602\nTemple, Lottie Edith, et al __ 2604\nvon Zedlitz, Anna M ________ 2603\nCivil Aeronautics Board  \nNotices:\nInstructions for applications for\nindividual exemptions ______ 2599\nRules and regulations:\nAirplane airworthiness trans­\nport categories; flap position  \nin the approach configura­\ntion____________-______.— 2587\nClassifications and exemptions;  \nirregular air carriers ______  2587\nCoast Guard  \nNotices:\nApproval of equipment ----------- 2590\nFederal Power Commission  \nNotices:\nHearings, etc.;\nLouisiana Nevada Transit Co_ 2600\nTelluride Power Co_________ 2600\nTennessee Gas Transmission  \nCo________________   2600\nFederal Trade Commission  \nRules and regulations:\nCotton Converting Industry ;  \npromulgation of amended  \ntrade practice rules ------------ 2587\n2585\n"
     }
   },
-  "fingerprint": "0a2158f282fbe9b685e14275f3955a5fd3edee409b3ef3458dfa047c393c66bb",
+  "fingerprint": "518755f6f6b620a2bafe284ece9164d726dced2ba6559d79227a892d0390e69e",
   "instrument_id": "EO:10057",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -716,32 +869,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 3,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },

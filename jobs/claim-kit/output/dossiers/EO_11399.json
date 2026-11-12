@@ -2,11 +2,18 @@
   "actor_contexts": [
     {
       "actor_id": "EO:11551",
-      "evidence_id": "ACTOR_TEXT:EO:11551"
+      "evidence_id": "ACTOR_TEXT:EO:11551",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:11688",
-      "evidence_id": "ACTOR_TEXT:EO:11688"
+      "evidence_id": "ACTOR_TEXT:EO:11688",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "PL:91-125",
+      "evidence_id": "ACTOR_TEXT:PL:91-125",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -249,7 +256,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11399",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11399"
@@ -287,11 +294,20 @@
   "current_law_leads": [
     {
       "basis_code": "statutory_note_reference",
+      "char_end": 306,
+      "char_start": 132,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "25 U.S.C. ch. 1 note; note 'National Council on Indian Opportunity; Appropriations Authorization; Termination Date' [USLM note id id62098636-4962-11f1-add1-b56d3fa293fa]; usc25.xml (sha256 768378aadc7d58062cc547c2e39a6de3ff9fe4939485cb61fe153fc7e9c8bf3d) in xml_uscAll@119-121.zip",
+        "sha256": "31f789fd8ab33884ea3c450d2f3f663fcf5c52ab8009cf19ecbe56e40b2ebac8",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id62098636-4962-11f1-add1-b56d3fa293fa",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11399",
       "legal_basis_candidate": "statutory note names the order (25 U.S.C. ch. 1 note)",
@@ -301,9 +317,14 @@
       "source": {
         "page_or_item": "25 U.S.C. ch. 1 note; note 'National Council on Indian Opportunity; Appropriations Authorization; Termination Date' [USLM note id id62098636-4962-11f1-add1-b56d3fa293fa]; usc25.xml (sha256 768378aadc7d58062cc547c2e39a6de3ff9fe4939485cb61fe153fc7e9c8bf3d) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id62098636-4962-11f1-add1-b56d3fa293fa.txt",
+        "text_sha256": "31f789fd8ab33884ea3c450d2f3f663fcf5c52ab8009cf19ecbe56e40b2ebac8",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "provided for annual appropriations of $300,000 and a termination date of Nov. 26, 1974 for the National Council on Indian Opportunity which was established by Ex. Ord. 11399.",
+      "text_path": "jobs/current-law/output/usc-notes/id62098636-4962-11f1-add1-b56d3fa293fa.txt",
+      "text_sha256": "31f789fd8ab33884ea3c450d2f3f663fcf5c52ab8009cf19ecbe56e40b2ebac8",
       "where": "USC 25 U.S.C. ch. 1 note"
     },
     {
@@ -322,6 +343,7 @@
         "snippet": "...provided for annual appropriations of $300,000 and a termination date of Nov. 26, 1974 for the National Council on Indian Opportunity which was established by Ex. Ord. 11399.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id62098636-4962-11f1-add1-b56d3fa293fa.txt",
         "where": "USC 25 U.S.C. ch. 1 note"
       },
       "proposal": {
@@ -1135,6 +1157,7 @@
       "char_end": 1810,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:11551",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1155,6 +1178,7 @@
       "char_end": 2793,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:11688",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1169,6 +1193,36 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1972-12-05/pdf/FR-1972-12-05.pdf"
       },
       "text": "Instrument: EO:11688\nSource: https://www.govinfo.gov/content/pkg/FR-1972-12-05/pdf/FR-1972-12-05.pdf\nSHA-256 of the downloaded file: f697dfad9be2aec01dd169930ac125f0d67fe5ab221ad22d7bdd9dd8047bc5cf\nLocation: 37 FR 25815, PDF pages 7-7 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 7 of 104 ===\nPresidential Documents\nTitle 3—The President\nE X E C U T I V E  O R D E R  1 1 6 8 8\nAm ending Executive O rder N o . 11399 W ith  Respect to the M em bership \no f the N ational Council on Indian Opportunity\nExecutive Order No. 11399 1  of March 6, 1968, as amended by Execu­\ntive Order No. 11551 of August 11, 1970, provides that the National \nCouncil on Indian Opportunity shall consist of the Vice President of the \nUnited States, who serves as the Chairman of the Council, the Attorney \nGeneral, the Secretary of the Interior, the Secretary of Agriculture, the \nSecretary of Commerce, the Secretary of Labor, the Secretary of Health, \nEducation, and Welfare, the Secretary of Housing and Urban Develop­\nment, the Director of the Office of Economic Opportunity, and eight \nIndian leaders appointed by the' President of the United States for terms \nof two years. Experience has demonstrated that it would be advisable to \nstagger the ternjs of the Indian-leader members of the Council so that \nthe terms of only four of those members will expire in any year. That \nchange would provide continuity in the Indian-leader membership of \nthe Council.\nN O W , T H E R EF O R E, by virtue of the authority vested in me as \nPresident of the United States, section 1  of Executive Order No. 11399 \nof March 6, 1968, as amended, is hereby further amended by adding, \nat its end, the following:\n“ In order to provide staggered terms for Indian-leader members of the \nCouncil appointed after August 31, 1972, the President shall, notwith­\nstanding the terms prescribed by the last phrase of the preceding sentence, \nappoint four Indian-leaders to serve as members of the Council for terms \nending August 31, 1973, and four for terms ending August 31, 1974. \nEach of their successors shall be appointed for a term of two years from \nthe date of the expiration of the term for which his predecessor was \nappointed. Any Indian-leader member appointed to fill a vacancy \noccurring prior to the expiration of the term for which his predecessor \nwas appointed shall be appointed only for the remainder of such term.”\nT h e W h it e H o u s e,\nDecember 1, 1972.\n[FR Doc.72-20968 Filed 12-4-72^9:39 am]\n»32 F.R. 4245; 3 CFR, 1966-1970 Comp., p. 717.\nFEDERAL REGISTER, VOL. 37, NO. 234— TUESDAY, DECEMBER 5, 1972\n"
+    },
+    "ACTOR_TEXT:PL:91-125": {
+      "acceptable_as_original": false,
+      "actor_id": "PL:91-125",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": true,
+      "char_end": 2289,
+      "char_start": 0,
+      "grade": "government_printed_statutes_at_large (govinfo digitized Statutes at Large granule PDF; text is its text layer)",
+      "id": "ACTOR_TEXT:PL:91-125",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": true,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "government_printed_statutes_at_large (govinfo digitized Statutes at Large granule PDF; text is its text layer)",
+        "instrument_id": "PL:91-125",
+        "page_or_item": "STATUTE-83-Pg220-2 (PL:91-125)",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "f84a79fb0dbbd948c34a817cb88aa25e4ba9d4a564f7ae056c3952f017753890",
+        "signing_date": null,
+        "text_path": "jobs/selden-statutes/output/texts/STATUTE-83-Pg220-2.txt",
+        "text_sha256": "69ed3a145ff75bc4e2eebf2fef5a5c29ad4d45da7a7a62f3875b9430b37d80a2",
+        "url": "https://www.govinfo.gov/content/pkg/STATUTE-83/pdf/STATUTE-83-Pg220-2.pdf"
+      },
+      "text": "Selden statute text. Wanted: PL:91-125; granule STATUTE-83-Pg220-2; https://www.govinfo.gov/content/pkg/STATUTE-83/pdf/STATUTE-83-Pg220-2.pdf sha256 f84a79fb0dbbd948c34a817cb88aa25e4ba9d4a564f7ae056c3952f017753890 (1 PDF pages).\n\n=== PDF page 1 of 1 ===\n79 Stat. 561. \n220 PUBLIC LAW 91-124-NOV. 26, 1969 [83 STAT. \nbe eligible to meet the requirement of section 403(a) (1) (B) of \n79 Stat. 562. iy,\\a A pf 55 \n42 use 3171. -t^^l. _ _ _ ^ \n80 Stat. 1477. (b) Subsectlon (b) (3) of such section 401 is amended by inserting \n42 use 3161. after \"(a) (3) \"the following: \"or (a) (6)\". \n(c) Subsection (b) (4) of such section 401 is amended by striking \nout \"and (a) (4)\" and inserting in lieu thereof the following: \"(a) (4) \nand (a) (6)\". \n(d) The second sentence of subsection (d) of such section 401 is \namended by inserting immediately after \"any other subsection of this \nsection\" the following: \"other than subsection (a)(6)\". \nApproved November 25, 1969. \nPublic Law 91-124 \nNovember 26, 1969 AN ACT \n[H.R. 14001] rp^ amend the Military Selective Service Act of 1967 to authorize modifications \nof the system of selecting persons for induction into the Armed Forces under \nthis Act. \nBe it enacted hy the Senate and House of Representatives of the \nicf^A^e'ndmenr\" ^^''^^ted States of America in Congress assembled^ That this Act may \nAct of 1969. \" be cited as the \"Selective Service Amendment Act of 1969.\" \nK^p^ai. gEC. 2. Section 5(a)(2) of the Military Selective Service Act of \n81 Stat. 100. -^gg^ ^g^ ^pp^ U.S.C. 455(a) (2)) is hereby repealed. \nApproved November 26, 1969. \nPublic Law 91-125 \nNovember 26, 1969 JOINT RESOLUTION \n[S.J. Res. 121] TQ authorize appropriations for expenses of the National Council on Indian \nOpportunity. \nResolved hy the Senate and House of Representatives of the United \nAppropriation.^ ^fdfgg QJ America in Congress assembled, That there is hereby author­\nized to be appropriated not to exceed $300,000 annually for the \nexpenses of the National Council on Indian Opportunity, established \nby Executive Order Numbered 11399 of March 6,1968. \nSEC. 2. The National Council on Indian Opportunity shall termi­\nnate five years from the date of this Act unless it is extended by an Act \nof Congress. \nApproved November 26, 1969. \n25 use prec. \n1 note. "
     },
     "CLAUSES:EO:11399#whole": {
       "char_end": 3284,
@@ -1191,6 +1245,42 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1968-03-07/pdf/FR-1968-03-07.pdf"
       },
       "text": "Executive Order 11399"
+    },
+    "CURRENT:EO:11399#0": {
+      "basis_code": "statutory_note_reference",
+      "char_end": 306,
+      "char_start": 132,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "25 U.S.C. ch. 1 note; note 'National Council on Indian Opportunity; Appropriations Authorization; Termination Date' [USLM note id id62098636-4962-11f1-add1-b56d3fa293fa]; usc25.xml (sha256 768378aadc7d58062cc547c2e39a6de3ff9fe4939485cb61fe153fc7e9c8bf3d) in xml_uscAll@119-121.zip",
+        "sha256": "31f789fd8ab33884ea3c450d2f3f663fcf5c52ab8009cf19ecbe56e40b2ebac8",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id62098636-4962-11f1-add1-b56d3fa293fa",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11399#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11399",
+      "legal_basis_candidate": "statutory note names the order (25 U.S.C. ch. 1 note)",
+      "machine_lead": true,
+      "mention_id": "usc:8f2aaf83f9c2",
+      "snippet": "...provided for annual appropriations of $300,000 and a termination date of Nov. 26, 1974 for the National Council on Indian Opportunity which was established by Ex. Ord. 11399.",
+      "source": {
+        "page_or_item": "25 U.S.C. ch. 1 note; note 'National Council on Indian Opportunity; Appropriations Authorization; Termination Date' [USLM note id id62098636-4962-11f1-add1-b56d3fa293fa]; usc25.xml (sha256 768378aadc7d58062cc547c2e39a6de3ff9fe4939485cb61fe153fc7e9c8bf3d) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id62098636-4962-11f1-add1-b56d3fa293fa.txt",
+        "text_sha256": "31f789fd8ab33884ea3c450d2f3f663fcf5c52ab8009cf19ecbe56e40b2ebac8",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "provided for annual appropriations of $300,000 and a termination date of Nov. 26, 1974 for the National Council on Indian Opportunity which was established by Ex. Ord. 11399.",
+      "text_path": "jobs/current-law/output/usc-notes/id62098636-4962-11f1-add1-b56d3fa293fa.txt",
+      "text_sha256": "31f789fd8ab33884ea3c450d2f3f663fcf5c52ab8009cf19ecbe56e40b2ebac8",
+      "where": "USC 25 U.S.C. ch. 1 note"
     },
     "ORIGINAL:EO:11399": {
       "acceptable_as_original": true,
@@ -1218,7 +1308,7 @@
       "text": "Instrument: EO:11399\nSource: https://www.govinfo.gov/content/pkg/FR-1968-03-07/pdf/FR-1968-03-07.pdf\nSHA-256 of the downloaded file: da66f437e92fe9f0b00dfbba8f97753d153c31ae66ea3b59be70d4d68195e01f\nLocation: 33 FR 4245, PDF pages 5-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 64 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nESTABLISHING THE NATIONAL COUNCIL ON INDIAN OPPORTUNITY\nW H E R E A S the United States has initiated a number of programs \nin various Departments that should be made available for the develop­\nment and benefit of the Indian population; and\nW H E R E A S these programs should be adapted and coordinated in \nsuch manner that Indians will participate in and be benefited by them:\nNOW, TH E R E FO R E , by virtue of the authority vested in me as \nPresident of the United States, it is ordered as follow s:\nS ection  1. Establishment of Council. There is hereby established \nThe National Council on Indian Opportunity (hereinafter referred \nto as the “ Council” ). The Council shall have membership as follows: \nThe Vice President of the United States who shall be the chairman \no f the Council, the Secretary of the Interior, the Secretary of Agricul­\nture, the Secretary of Commerce, the Secretary of Labor, the Secretary \nof Health, Education, and Welfare, the Secretary of Housing and \nUrban Development, the Director of the Office of Economic Oppor­\ntunity, and six Indian leaders appointed by the President of the \nUnited States for terms of two years.\nS ec. 2. Functions of the Council. The Council shall:\n(a) Encourage full'use of Federal programs to benefit the Indian \npopulation, adapting them where necessary to be available to Indians \non reservations in a meaningful way.\n(b) Encourage interagency coordination and cooperation in carry­\ning out Federal programs as they relate to Indians.\n(c) Appraise the impact and progress of Federal programs for \nIndians.\n(d) Suggest ways to improve such programs.\nSec. 3. Compensation and per diem. Members of the Council who are \nofficers of the Federal government shall receive no additional compen­\nsation by reason of this order. Other members of the Council shall \nbe entitled to receive compensation and travel expenses, including per \ndiem in lieu of subsistence, as authorized by law for persons in the \ngovernment service employed intermittently (5 U.S.C., §§ 3109, 5703).\nSec. 4. Assistance to the Council,  (a) Each Federal department \nand agency- represented on the Council shall furnish such necessary \nassistance to the Council as may be authorized by section 214 of the \nAct of May 3, 1945, 59 Stat. 134 (31 U.S.C. 691), or other law. The \nDepartment o f the Interior shall furnish necessary administrative \nservices for the Council.\n(b) The staff o f the Council shall include an Executive Director, \nwho shall be appointed by the chairman of the Council, and such other \nemployees as may be necessary, who shall be assigned by the depart­\nments and agencies represented on the Council.\nSec. 5. Meetings. The Council shall meet on call of the chairman.\nExecutive Order 11399\nT he  W hite  H ouse,\nMarch 6 ,  1968.\n[F.R. Doc. 68-2935; Filed, Mar, 6, 1968; 11:45 a.m.]\nFEDERAL REGISTER, V O L 33, NO. 46— THURSDAY, MARCH 7, 1968\n"
     }
   },
-  "fingerprint": "38f83c5c06fd759e61ef2b2e7b4e1d569b7c1230907da15e8956e8494263f67e",
+  "fingerprint": "6b9c5afa836ae5ad42a611c3f98284700da812f89fd731db08d41cf1ea3a927d",
   "instrument_id": "EO:11399",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1242,32 +1332,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1277,9 +1369,7 @@
     }
   ],
   "missing": [
-    "Acting identity absent from census: PL:91-125",
-    "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
+    "Current-law lead lacks an original-source sha256."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:11399",
@@ -1287,12 +1377,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 5,
-    "fingerprint": "04a9912eba381a0e5894be3021c05fcb47164bc73a4049a907c97941bbdf0f79",
+    "fingerprint": "1ce4bdb20002f1bac14ad927e1b29c457daff7b4e91d2500dcd995212d0f9ce0",
     "flags": [
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_11399.json",
-    "history_sha256": "f47b0bfae0e4d39a03421c561a527e7b6b06dc2bf5c4cda72b854a26a640d696",
+    "history_sha256": "6f8e9114b287e479fd69001bfccf1e0ffa46a5ee1e4ea8c84e80645a79f4f1d7",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

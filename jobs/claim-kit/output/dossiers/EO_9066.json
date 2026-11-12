@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:9102",
-      "evidence_id": "ACTOR_TEXT:EO:9102"
+      "evidence_id": "ACTOR_TEXT:EO:9102",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:9353",
@@ -10,7 +11,54 @@
     },
     {
       "actor_id": "EO:9489",
-      "evidence_id": "ACTOR_TEXT:EO:9489"
+      "evidence_id": "ACTOR_TEXT:EO:9489",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:01-2100",
+      "evidence_id": "ACTOR_TEXT:FRDOC:01-2100",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2015-04352",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2015-04352",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2022-04103",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2022-04103",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2024-03250",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2024-03250",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:96-14638",
+      "evidence_id": "ACTOR_TEXT:FRDOC:96-14638",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:96-9505",
+      "evidence_id": "ACTOR_TEXT:FRDOC:96-9505",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:97-10498",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:97-10498@0",
+        "ACTOR_TEXT:FRDOC:97-10498@25662",
+        "ACTOR_TEXT:FRDOC:97-10498@33024",
+        "ACTOR_TEXT:FRDOC:97-10498@36947",
+        "ACTOR_TEXT:FRDOC:97-10498@48489"
+      ],
+      "full_text_chars": 50817,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-97-10498.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+      "window_bytes": 16830,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [
@@ -166,7 +214,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:9066",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9066"
@@ -204,11 +252,20 @@
   "current_law_leads": [
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 19912,
+      "char_start": 19564,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "5 U.S.C. 8332; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "962666a1ccee30912790309c4fa24ec2d65b8e8013d13b37359d9619c12ba343",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t5/s8332",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9066",
       "legal_basis_candidate": "statute text names the order (5 U.S.C. 8332)",
@@ -218,18 +275,32 @@
       "source": {
         "page_or_item": "5 U.S.C. 8332; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t5_s8332-0d126c4ea3.txt",
+        "text_sha256": "962666a1ccee30912790309c4fa24ec2d65b8e8013d13b37359d9619c12ba343",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "the United States respecting individuals of Japanese ancestry which was established during World War II in the interests of national security pursuant to—\n(i)\nExecutive Order Numbered 9066, dated February 19, 1942;\n(ii)\nsection 67 of the Act entitled “An Act to provide a government for the Territory of Hawaii”, approved April 30, 1900 (chapter 33",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t5_s8332-0d126c4ea3.txt",
+      "text_sha256": "962666a1ccee30912790309c4fa24ec2d65b8e8013d13b37359d9619c12ba343",
       "where": "USC 5 U.S.C. 8332"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 490,
+      "char_start": 142,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4212; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "d0bd1d393c421ab21fc0aa6600ad02ae4b77c04f3b229582fc45e0b886e98072",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t50/s4212",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9066",
       "legal_basis_candidate": "statute text names the order (50 U.S.C. 4212)",
@@ -239,18 +310,32 @@
       "source": {
         "page_or_item": "50 U.S.C. 4212; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s4212-59dc941fed.txt",
+        "text_sha256": "d0bd1d393c421ab21fc0aa6600ad02ae4b77c04f3b229582fc45e0b886e98072",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "an individual living on August 10, 1988, was, while a United States citizen or permanent resident alien of Japanese ancestry, convicted of a violation of—\n(1)\nExecutive Order Numbered 9066, dated February 19, 1942;\n(2)\nthe Act entitled “An Act to provide a penalty for violation of restrictions or orders with respect to persons entering, remaining",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s4212-59dc941fed.txt",
+      "text_sha256": "d0bd1d393c421ab21fc0aa6600ad02ae4b77c04f3b229582fc45e0b886e98072",
       "where": "USC 50 U.S.C. 4212"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 811,
+      "char_start": 462,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4218; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "9e459407b1df23989cdbc123af5ab4cc87e363b7ee80b3f7eee167a184da9230",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t50/s4218",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9066",
       "legal_basis_candidate": "statute text names the order (50 U.S.C. 4218)",
@@ -260,18 +345,32 @@
       "source": {
         "page_or_item": "50 U.S.C. 4218; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s4218-0608926c11.txt",
+        "text_sha256": "9e459407b1df23989cdbc123af5ab4cc87e363b7ee80b3f7eee167a184da9230",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "s citizen or a permanent resident alien; and\n(B)\n(i)\nwas confined, held in custody, relocated, or otherwise deprived of liberty or property as a result of—\n(I)\nExecutive Order Numbered 9066, dated February 19, 1942;\n(II)\nthe Act entitled “An Act to provide a penalty for violation of restrictions or orders with respect to persons entering, remainin",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s4218-0608926c11.txt",
+      "text_sha256": "9e459407b1df23989cdbc123af5ab4cc87e363b7ee80b3f7eee167a184da9230",
       "where": "USC 50 U.S.C. 4218"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 208,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4212 note; note 'References in Text' [USLM note id id993df944-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "2f8688724c6eb3e082007e8f00f2b7dbf03aa6095dd5fa38f25b44ce7d52f6f2",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id993df944-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9066",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (50 U.S.C. 4212 note)",
@@ -281,18 +380,32 @@
       "source": {
         "page_or_item": "50 U.S.C. 4212 note; note 'References in Text' [USLM note id id993df944-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id993df944-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "2f8688724c6eb3e082007e8f00f2b7dbf03aa6095dd5fa38f25b44ce7d52f6f2",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order Numbered 9066, dated February 19, 1942, referred to in subsec. (a)(1), is not classified to the Code.\nThe Act entitled “An Act to provide a penalty for violation of restrict",
+      "text_path": "jobs/current-law/output/usc-notes/id993df944-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "2f8688724c6eb3e082007e8f00f2b7dbf03aa6095dd5fa38f25b44ce7d52f6f2",
       "where": "USC 50 U.S.C. 4212 note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 208,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4218 note; note 'References in Text' [USLM note id id993df9bd-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6f7898f9d79288519becebb68ed81ad490453f16ead4b52a21df8b2d73e76a9",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id993df9bd-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9066",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (50 U.S.C. 4218 note)",
@@ -302,9 +415,14 @@
       "source": {
         "page_or_item": "50 U.S.C. 4218 note; note 'References in Text' [USLM note id id993df9bd-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id993df9bd-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "c6f7898f9d79288519becebb68ed81ad490453f16ead4b52a21df8b2d73e76a9",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order Numbered 9066, dated February 19, 1942, referred to in par. (2)(B)(i)(I), is not classified to the Code.\nThe Act entitled “An Act to provide a penalty for violation of restr",
+      "text_path": "jobs/current-law/output/usc-notes/id993df9bd-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "c6f7898f9d79288519becebb68ed81ad490453f16ead4b52a21df8b2d73e76a9",
       "where": "USC 50 U.S.C. 4218 note"
     },
     {
@@ -372,6 +490,7 @@
         "snippet": "...the United States respecting individuals of Japanese ancestry which was established during World War II in the interests of national security pursuant to— (i) Executive Order Numbered 9066, dated February 19, 1942; (ii) section 67 of the Act entitled “An Act to provide a government for the Territ ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t5_s8332-0d126c4ea3.txt",
         "where": "USC 5 U.S.C. 8332"
       },
       "proposal": {
@@ -400,6 +519,7 @@
         "snippet": "...an individual living on August 10, 1988, was, while a United States citizen or permanent resident alien of Japanese ancestry, convicted of a violation of— (1) Executive Order Numbered 9066, dated February 19, 1942; (2) the Act entitled “An Act to provide a penalty for violation of restrictions or ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t50_s4212-59dc941fed.txt",
         "where": "USC 50 U.S.C. 4212"
       },
       "proposal": {
@@ -428,6 +548,7 @@
         "snippet": "...s citizen or a permanent resident alien; and (B) (i) was confined, held in custody, relocated, or otherwise deprived of liberty or property as a result of— (I) Executive Order Numbered 9066, dated February 19, 1942; (II) the Act entitled “An Act to provide a penalty for violation of restrictions  ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t50_s4218-0608926c11.txt",
         "where": "USC 50 U.S.C. 4218"
       },
       "proposal": {
@@ -456,6 +577,7 @@
         "snippet": "References in Text Executive Order Numbered 9066, dated February 19, 1942, referred to in subsec. (a)(1), is not classified to the Code. The Act entitled “An Act to provide a penalty for violation of restrict...",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id993df944-b817-11f1-b12d-8c5a06520415.txt",
         "where": "USC 50 U.S.C. 4212 note"
       },
       "proposal": {
@@ -484,6 +606,7 @@
         "snippet": "References in Text Executive Order Numbered 9066, dated February 19, 1942, referred to in par. (2)(B)(i)(I), is not classified to the Code. The Act entitled “An Act to provide a penalty for violation of restr...",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id993df9bd-b817-11f1-b12d-8c5a06520415.txt",
         "where": "USC 50 U.S.C. 4218 note"
       },
       "proposal": {
@@ -3119,6 +3242,7 @@
       "char_end": 13393,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:9102",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -3159,6 +3283,7 @@
       "char_end": 13520,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:9489",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -3173,6 +3298,336 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1944-10-26/pdf/FR-1944-10-26.pdf"
       },
       "text": "Instrument: EO:9489\nSource: https://www.govinfo.gov/content/pkg/FR-1944-10-26/pdf/FR-1944-10-26.pdf\nSHA-256 of the downloaded file: d8ab6ce62493958fe75c17c1eed1b4493f9add850f462bc5ce139aa82549585d\nLocation: 9 FR 12831, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 28 ===\nFEDERALREbIST\nVOLUME 9\n%, 1934 ¿¡p\n^UA/jtED* NUMBER 214\nWashington, Thursday, October 26, 1944\nThe President\nPROCLAMATION 2627\nTermination of M artial L aw in  the \nT erritory of Hawaii\nBY T H E PR E SID E N T  O F  T H E U N ITED  S T A T E S \nO F A M E R IC A \nA  P R O C L A M A T IO N\nWHEREAS the armed forces of the \nEmpire of Japan having attacked and in­\nvaded the Territory of Hawaii, and the \npublic safety requiring it, the Governor \nof the Territory of Hawaii, acting under \nthe authority vested in him by section \n67 of the act of April 30, 1900, 31 Stat. \n153 (48 U. S. C. 532), did, by proclama­\ntion dated December 7,1941, suspend the \nprivilege of the writ of habeas corpus and \ndid place the said Territory under mar­\ntial law until communication could be \nhad with the President and his decision \nthereon made known; and\nWHEREAS communication was had \nwith the President and his decision ap­\nproving the said action of the Governor \nof the Territory of Hawaii was made \nknown to the Governor on December 9, \n1941; and\nWHEREAS the public safety no longer \nrequires that the privilege of the writ of \nhabeas corpus remain suspended or that \nmartial law continue in the said Terri­\ntory:\nNOW, THEREFORE, T , FRANKLIN D. \nROOSEVELT, President of the United \nStates of America, acting under and by \nvirtue of the authority vested in me by \nthe said act of April 30,1900, do proclaim \nthat the privilege of the writ of habeas \ncorpus is hereby restored and that \nmartial law is hereby terminated in the \nTerritory of Hawaii, and I do hereby di­\nrect the Governor of the Territory of \nHawaii so to proclaim to the people of \nthe Territory of Hawaii.\nThis Proclamation shall become effec­\ntive October 24, 1944.\nIN WITNESS WHEREOF, I have here­\nunto set my hand and caused the seal \nof the United States of America to be \naffixed.\nDONE at the City of Washington this \n19th day of October in the year of \nour Lord nineteen hundred and \n[seal ] forty-four, and of the Independ­\nence of the United States of \nAmerica the one hundred and sixty- \nninth.\nF ranklin D Roosevelt \nBy the President:\nCordell H ull,\nSecretary of State.\n[F. R. Doc. 44-16384; Filed, Oct. 24, 1944;  \n4:23 p. m.]\nEXECUTIVE ORDER 9489\nAuthorizing and Directing the S ecretary \nof W ar to D esignate a M ilitary C om­\nmander for the T erritory of H awaii \nand A uthorizing the M ilitary C om­\nmander to P rescribe S aid T erritory, \nor A ny  P art T hereof, as a M ilitary \nArea, and for O ther P urposes\nWHEREAS the defense of the Terri­\ntory of Hawaii and the successful prose­\ncution of the war require every possible \nprotection against espionage and sabo­\ntage, the maintenance of internal se­\ncurity, and the efficient utilization of \navailable facilities in that territory: \nNOW, THEREFORE, by virtue of the \nauthority vested in me by the Constitu­\ntion, the laws of the United States, in­\ncluding the act of March 21, 1942, c. 191, \n56 Stat. 173 (18 U.S.C. 97a), and Title \nHI of the Second War Powers Act, 1942, \nand as Commander in Chief of the Army \nand Navy and as President of the United \nStates, I order as follows:\n1. I hereby authorize and direct the \nSecretary of War to designate the Com­\nmanding General, United States Army \nForces, Pacific Ocean Areas, as the mili­\ntary commander within the meaning of \nthe act of March 21, 1942. The military \ncommander may prescribe the Territory \nof Hawaii or any part thereof as a mili­\ntary area, from which any and all per­\nsons may be excluded and with respect \nto which the right of any person to enter, \nremain in, or leave shall be subject to \nwhatever restrictions or orders the said \nmilitary commander may impose as \nhereinafter authorized.\n(Continued on next page)\nCONTENTS\nTHE PRESIDENT\nProclamation: paSe\nHawaii, Territory of; termina­\ntion of martial law ---------- 12831\nExecutive O rder:\nHawaii, Territory of; authoriza­\ntion to Secretary of War to \ndesignate military com­\nmander and authorization \nto military commander to \nprescribe military areas—  12831\nREGULATIONS AND NOTICES\nF ederal T rade C ommission :\nSorbtex Foundation, Inc.; ap­\npointing trial examiner and \nfixing time and place for\ntaking testimony ________ 12850\nI nterstate C ommerce C ommission : \nReconsignment permits:\nApples, Kansas City, Mo ----- 12851\nCelery, Kansas City, Mo— .. 12851\nGrapes, Chicago, 1 1 1_____  12851\nOnions, Chicago, 1 1 1---------- 12851\nPears, Chicago, 1 1 1_________ 12851\nOffice of C ontract S ettlement .\nSee Office of War Mobilization \nand Reconversion.\nOffice of Economic Stabilization :\nPrice stabilization; rough rice. 12850 \nOffice of P rice A dministration : \nAdjustments:\nColin &  Co_______________ 12853\nCommercial Furniture Co ___ 12854\nJohnson, Carlyle A _________12854\nMoore Corp_______________ 12852\nMylan Furniture Co________ 12853\nRyder-Taaffe Mfg. Co --------- 12852\nToccoa Construction Co ____ 12852\nParaffin wax (RPS 42, Am. 6)__ 12843\nPine lumber, southern (2d Rev.\nMPR 19, Am. 5) ________ 12843\nRegional and district office or­\nders; community ceiling \nprices, list of orders filed __ 12855\nOffice of W ar M obilization and \nR econversion :\nContract termination; proces­\nsing of uncompleted items, \nretention of work-in-proc­\ness by contractor, and tak­\ning over of contracts by \nother agencies or govern­\nment-1_________________ 12850\n(Continued on next page)\n12831\nJk\n\n=== PDF page 2 of 28 ===\nFEDERAL REGISTER, Thursday, October12832\nFEßERALitpEGISTER\niw  '» 3 *\nPublished daily, except Sundays, Mondays,  \nand days following legal holidays, by the  \nDivision of the Federal Register, The National  \nArchives, pursuant to the authority contained  \nin the Federal Register Act, approved July 26,  \n1935 (49 Stat. 500, as amended; 44 U.S.C.,  \nch. 8B), under regulations prescribed by the  \nAdministrative Committee, approved by the  \nPresident. Distribution is made only by the  \nSuperintendent of Documents, Government  \nPrinting Office, Washington, D. C.\nThe regulatory material appearing herein is  \nkeyed to the Code of Federal Regulations,  \nwhich is published, under 50 titles, pursuant  \nto section 11 of the Federal Register Act, as  \namended June 19, 1937.\nThe F ederal R egister  will be furnished by  \nmail to subscribers, free of postage, for $1.50  \nper month or $15.00 per year, payable in ad­\nvance. The charge for individual copies  \n(minimum 15i) varies in  proportion to the  \nsize of the issue. Remit check 6r money  \norder, made payable to the Superintendent  \nof Documents, directly to the Government  \nPrinting Office, Washington, D. C.\nThere are no restrictions on the republica­\ntion of material appearing in the F ederal \nR egister .\nCONTENTS— Continued\nPetroleum A dministration  for\nWar: Pa«e\nPetroleum industry; supply pro­\ngram for District 3 ------------ 12843\nS ecurities and E xchange C ommis­\nsion :\nHearings, etc.:\nAmerican Light &  Traction\nCo., et al _____________ 12858\nMetropolitan Edison Co., et\nal____________________ 12857\nW ar C ontracts P rice A djustment  \nB oard:\nRenegotiation regulations:\nAgreements and statements—  12847 \nAuthority and organization—  12845\nForms_____________   12847\nProcedure— _________   12845\nImpasse________________ 12847\nRenegotiate business and\ncosts, determination ____ 12846\nText of statutes, orders, joint \nregulations and direc­\ntives __________-_-_ _ 12850\nW ar P roduction B oard:\nCertification to Attorney Gen­\neral;- supply program in \nDistrict 3, approval of pe-\ntroleum directive (Cert.\n208)___________________ 12858\nControlled materials plan; al­\nlotment symbols not requir­\ning quarterly identifica­\ntion (CMP Reg. 1, Int. 25) _ 12833 \nCotton fabric, preference ra t­\nings and restrictions (M-\n317A)_________________ 12834\nKnit underwear, sweat shirts\nand T shirts (L-247, Rev.) —  12834\nCONTENTS— Continued\nW ar P roduction B oard—Con. Pase\nPacking quotas, unlimited for \ncertain items in Sch. I (M-\n61, Dir. 6) ______________ 12834\nPaperboard (M-378) ------------- 12841\nPhthalic alkyd resins (M-139,\nRev.; M-300, Sch. 59) (2\ndocuments) _______ 12833, 12838\nSuspension orders:\nGaultney, Charles _________ 12832\nGuardian Steel Corp ---------- 12833\nTextile, clothing and leather \n(M-328B, Sch. A to Supp.\nVIII) __________________ 12840\n2. In the military area prescribed un­\nder the authority of this order, the mili­\ntary commander may, whenever military \nnecessity therefor exists and the military \ncommander so finds:\na. Establish blackout and curfew pe­\nriods and restrict and regulate the ac­\ntions of all persons during such period.\nb. Establish air raid precautions.\nc. Regulate the conduct of enemy \naliens.\nd. Evacuate or exclude, and detain in­\ncident thereto, any or all persons from \nthe military area or from any part there­\nof, whenever the evacuation or exclusion, \nor the detention incident thereto, is \nnecessary to prevent espionage or sabo­\ntage, and the military commander so \nfinds.\ne. Regulate or prohibit possession or \nuse of firearms or other weapons.\nf. Define, for the purposes of this or­\nder, what shall constitute military serv­\nice with the armed forces of nations \nother than the United States and require \nall persons who have had such military \nservice with the armed forces of nations \nother than the United’States to register \nsuch military service.\ng. Issue regulations to assure adequate \nprotection of the following: ports and \nharbors, dockage and stevedoring, \nbarges, tugs and floating equipment, \ntransportation of ship cargoes and pas­\nsengers, and disposition of all cargoes \nuntil removed from dock areas at docks \nand wharves.\nh. Regulate, restrict, or prohibit travel \nwithin, into, or from the military area \nwhenever such regulation, restriction, \nor prohibition is necessary for military \nsecurity, and the military commander so \nfinds.\ni. Whenever necessary to prevent es­\npionage or sabotage, and the military \ncommander so finds, regulate the publi­\ncation of any newspapers and periodicals \nthat are published in a foreign language \nor in dual languages, regulate, restrict, or \nprohibit the possession or use of radio \ntransmission sets or the transmission of \ninformation (by any means other than \nnewspapers) between the military area \nand points outside of the said area, and \nbetween the islands within the said \nmilitary area.\n3. Whenever the military commander \nfinds it to be in the interests of national \ndefense and the successful prosecution \nof the war, he may, to the extent that\n26, 1944\nhe deems it necessary to carry out the \npurposes of this order, perform the func­\ntions and exercise power and authprity \nconferred on the President by Title III \nof the Second War Powers Act, 1942 (50 \nU.S.C., app. 633) insofar as they relate \nto priorities and allocation of the \nfollowing in the Territory of Hawaii: \nPorts and harbors, dockage and steve­\ndoring, barges, tugs, floating equipment \nand all travel facilities; and fixing of \nover-all quotas to vessels of all commer­\ncial cargo.\n4. Nothing in this order shall be con­\nstrued to modify or revoke any of the \nprovisions of Executive Order No. 9066, \ndated February 19, 1942. Any designa­\ntion of the military commander and of \nthe Territory of Hawaii or any part \nthereof as a military area under para­\ngraph 1  hereof shall constitute designa­\ntion of such military commander as the \nmilitary commander, and of such Ter­\nritory or such part thereof as a military \narea for the purposes of the said Execu­\ntive Order No. 9066, and shall vest the \nmilitary commander with the powers \nprovided in that order.\n5. Unless sooner terminated, the au­\nthority herein conferred shall expire \nthirty days after the cessation of hostili­\nties between the Empire of Japan and the \nUnited States.\n6. All prior Executive orders, insofar \nas they are in conflict herewith, are \namended accordingly.\n7. This order shall become effective on \nOctober 2 4Jflf, 1944.\nF ranklin D R oosevelt\nT he W hite H ouse,\nOctober 18,1944.\n[F. R. Doc. 44-16385; Filed, Oct. 24, 1944;\n4:23 p. m.]\nRegulations\nTITLE 32— NATIONAL DEFENSE \nChapter IX— War Production Board \nAuthority: Regulations in this chapter,  \nunless otherwise noted at the end of docu­\nments affected, issued under sec. 2 (a), 54  \nStat. 676, as amended by 55 Stat. 236 and 56  \nStat. 177; E.O. 9024, 7 F.R. 329; E.O. 9040, 7  \nF.R. 527; E.O. 9125, 7 F.R. 2719; W.P.B. Reg. 1 \nas amended Dec. 31, 1943, 9 FR. 64.\nP art 1010—S uspension  O rders \n[Suspension Order S-642]\nC H A R L E S G A U L T N E Y\nCharles Gaultney, 3637 Globe Avenue, \nLos Angeles, California, is a general \nbuilding contractor. On or about July \n26, 1943, he began construction consist­\ning of remodeling and rebuilding two old \nservice station structures for conversion \ninto a combination dwelling and nursery, \nat an estimated cost of $425; the actual \ncost proved to be $1,800. On or about \nSeptember 20, 1943, he began construc­\ntion consisting of remodeling and reno­\nvating a four-tenant store building, esti­\nmated at $300; the actual cost proved to \nbe $1,360. On or about September 21, \n1943, he began construction of a barn,\n"
+    },
+    "ACTOR_TEXT:FRDOC:01-2100": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:01-2100",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 9886,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:01-2100",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:01-2100",
+        "page_or_item": "66 FR 7347; FR Doc. 01-2100; Presidential Document: Establishment of the Minidoka Internment National Monument",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "d56eb72759537e56d87020286c9482bc3d8238575577adf19549aa8bed560020",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-01-2100.txt",
+        "text_sha256": "d56eb72759537e56d87020286c9482bc3d8238575577adf19549aa8bed560020",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2001/01/22/01-2100.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 66 Issue 14 (Monday, January 22, 2001)</title>\n</head>\n<body><pre>\n[Federal Register Volume 66, Number 14 (Monday, January 22, 2001)]\n[Presidential Documents]\n[Pages 7347-7350]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 01-2100]\n\n\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 66, No. 14 / Monday, January 22, 2001 / \nPresidential Documents\u0000\u0000\n\n\u0000___________________________________________________________________\n\n[[Page 7347]]\n\n\n                Proclamation 7395 of January 17, 2001\n\n                \n Establishment of the Minidoka Internment \n                National Monument\n\n                By the President of the United States of America\n\n                A Proclamation\n\n                The Minidoka Internment National Monument is a unique \n                and irreplaceable historical resource which protects \n                historic structures and objects that provide \n                opportunities for public education and interpretation \n                of an important chapter in American history--the \n                internment of Japanese Americans during World War II.\n\n                On February 19, 1942, President Franklin D. Roosevelt \n                signed Executive Order 9066, authorizing the Secretary \n                of War and military commanders to designate military \n                areas from which ``any or all persons may be excluded'' \n                and to ``provide for residents of any such area who are \n                excluded therefrom, such transportation, food, shelter, \n                and other accommodations as may be necessary.''\n\n                Starting in early 1942, military authorities began \n                designating military exclusion areas in the States of \n                California, Washington, Oregon, and Arizona, and the \n                territory of Alaska. Following the signing of Executive \n                Order 9066, American citizens and resident aliens of \n                Japanese ancestry living in the designated exclusion \n                areas were ordered to evacuate their homes and \n                businesses and report to temporary assembly centers \n                located at fairgrounds, horse racetracks, and other \n                make-shift facilities.\n\n                To provide more permanent accommodations for the \n                evacuees, President Roosevelt established the War \n                Relocation Authority (WRA) in March 1942. The WRA \n                oversaw the construction of ten relocation centers on \n                Federally owned lands in remote areas of six western \n                States and Arkansas, including the Minidoka Relocation \n                Center in Idaho. Alaskan Native residents of the \n                Aleutian and Pribiloff Islands and members of other \n                ethnic and religious groups were also relocated or \n                interned during the course of the war.\n\n                Established in August 1942, the Minidoka Relocation \n                Center, also known as the Hunt Site, was located on \n                Federal lands in Jerome County, in south central Idaho. \n                During its operation from August 1942 to October 1945, \n                the population reached a peak of 9,397 Japanese \n                Americans from Washington State, Oregon, and Alaska. \n                The Center included over 33,000 acres of land with \n                administrative and residential facilities located on \n                approximately 950 acres. The Center had more than 600 \n                buildings including administrative, religious, \n                residential, educational, mess, medical, manufacturing, \n                warehouse, security, and other structures.\n\n                Living conditions at Minidoka and the other centers \n                were harsh. Internees were housed in crude barracks and \n                cramped quarters, and they shared communal facilities. \n                Internees engaged in irrigated agriculture, livestock \n                production, and light manufacturing to produce food and \n                garments for the camp. Approximately 1,000 internees \n                from Minidoka served in the U.S. military. Fifty-four \n                Japanese American servicemen from Minidoka were killed \n                in action.\n\n                Section 2 of the Act of June 8, 1906 (34 Stat. 225, 16 \n                U.S.C. 431), authorizes the President, in his \n                discretion, to declare by public proclamation historic\n\n[[Page 7348]]\n\n                landmarks, historic and prehistoric structures, and \n                other objects of historic or scientific interest that \n                are situated upon lands owned or controlled by the \n                Government of the United States to be national \n                monuments, and to reserve as a part thereof parcels of \n                lands, the limits of which in all cases shall be \n                confined to the smallest area compatible with the \n                proper care and management of the objects to be \n                protected.\n\n                WHEREAS it appears that it would be in the public \n                interest to reserve such lands as a national monument \n                to be known as the Minidoka Internment National \n                Monument:\n\n                NOW, THEREFORE, I, WILLIAM J. CLINTON, President of the \n                United States of America, by the authority vested in me \n                by section 2 of the Act of June 8, 1906 (34 Stat. 225, \n                U.S.C. 431), do proclaim that there are hereby set \n                apart and reserved as the Minidoka Internment National \n                Monument for the purpose of protecting the historic \n                structures and objects of historic interest contained \n                therein, all lands and interests in lands owned or \n                controlled by the United States within the boundaries \n                of the area described on the map entitled ``Minidoka \n                Internment National Monument'' attached to and forming \n                a part of this proclamation. The Federal lands and \n                interests in land reserved consist of approximately \n                72.75 acres, which is the smallest area compatible with \n                the proper care and management of the structures and \n                objects to be protected.\n\n                All Federal lands and interests in lands within the \n                boundaries of this monument are hereby appropriated and \n                withdrawn from all forms of entry, location, selection, \n                sale, or leasing or other disposition under the public \n                land or other Federal laws, including but not limited \n                to withdrawal from location, entry, and patent under \n                the mining laws, and from disposition under all laws \n                relating to mineral and geothermal leasing.\n\n                The Secretary of the Interior, pursuant to legal \n                authorities, shall manage the monument and shall \n                transfer administration of the monument to the National \n                Park Service to implement the purposes of this \n                proclamation.\n\n                To carry out the purposes of this proclamation and to \n                interpret the relocation and internment of Japanese \n                Americans during World War II, the Secretary of the \n                Interior, through the National Park Service, shall \n                prepare a management plan for the monument within 3 \n                years of this date.\n\n                This proclamation does not reserve water as a matter of \n                Federal law nor relinquish any water rights held by the \n                Federal Government existing on this date. The Secretary \n                shall work with appropriate State authorities to ensure \n                that any water resources needed for monument purposes \n                are available.\n\n                The establishment of this monument is subject to valid \n                existing rights, provided that nothing in this \n                proclamation shall interfere with the operation and \n                maintenance of the Northside Canal to the extent that \n                any such activities, that are not valid existing \n                rights, are consistent with the purposes of the \n                proclamation.\n\n                Nothing in this proclamation shall be deemed to enlarge \n                or diminish the rights of any Indian tribe.\n\n                Nothing in this proclamation shall be deemed to revoke \n                any existing withdrawal, reservation, or appropriation; \n                however the national monument shall be the dominant \n                reservation.\n\n                Warning is hereby given to all unauthorized persons not \n                to appropriate, injure, destroy, or remove any feature \n                of this monument and not to locate or settle upon any \n                of the lands thereof.\n\n                IN WITNESS WHEREOF, I have hereunto set my hand this \n                seventeenth day of January, in the year of our Lord two \n                thousand one, and of the\n\n[[Page 7349]]\n\n                Independence of the United States of America the two \n                hundred and twenty-fifth.\n\n                    (Presidential Sig.)<Clinton1><Clinton2>\n\nBilling code 3195-01-P\n\n[[Page 7350]]\n\n[GRAPHIC] [TIFF OMITTED] TD22JA01.181\n\n\n[FR Doc. 01-2100 Filed 1-19-01; 8:45 am]\nBilling code 3195-01-C\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2015-04352": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2015-04352",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 18492,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2015-04352",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2015-04352",
+        "page_or_item": "80 FR 11069; FR Doc. 2015-04352; Presidential Document: Establishment of the Honouliuli National Monument",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "aada3c2ebb4cfbbb235ab503b5b40d0d85e791d0831ab5ab2ad2334599fdb048",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2015-04352.txt",
+        "text_sha256": "aada3c2ebb4cfbbb235ab503b5b40d0d85e791d0831ab5ab2ad2334599fdb048",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2015/02/27/2015-04352.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 80 Issue 39 (Friday, February 27, 2015)</title>\n</head>\n<body><pre>\n[Federal Register Volume 80, Number 39 (Friday, February 27, 2015)]\n[Presidential Documents]\n[Pages 11069-11073]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2015-04352]\n\n\n\n[[Page 11067]]\n\nVol. 80\n\nFriday,\n\nNo. 39\n\nFebruary 27, 2015\n\nPart VII\n\n\n\n\n\nThe President\n\n\n\n\n\n-----------------------------------------------------------------------\n\n\n\nProclamation 9234--Establishment of the Honouliuli National Monument\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 80 , No. 39 / Friday, February 27, 2015 / \nPresidential Documents\u0000\u0000\n\n\u0000___________________________________________________________________\n\n\u0000Title 3--\n\u0000The President\n\n[[Page 11069]]\n\n                Proclamation 9234 of February 24, 2015\n\n                \nEstablishment of the Honouliuli National Monument\n\n                By the President of the United States of America\n\n                A Proclamation\n\n                The Honouliuli Internment Camp (Honouliuli) serves as a \n                powerful reminder of the need to protect civil \n                liberties in times of conflict, and the effects of \n                martial law on civil society. Honouliuli is nationally \n                significant for its central role during World War II as \n                an internment site for a population that included \n                American citizens, resident immigrants, other \n                civilians, enemy soldiers, and labor conscripts co-\n                located by the U.S. military for internment or \n                detention. While the treatment of Japanese Americans in \n                Hawai'i differed from the treatment of Japanese \n                Americans on the U.S. mainland in ways that are \n                detailed below, the legacy of racial prejudice, wartime \n                hysteria, and failure of political leadership during \n                this period is common to the history of both Hawai'i \n                and the mainland United States.\n\n                Early on December 7, 1941, Japanese air and naval \n                forces attacked Pearl Harbor and other military \n                installations on O'ahu. Before martial law was invoked, \n                government officials began selectively rounding up \n                Hawai'i residents on suspicion of disloyalty. They were \n                confined at local jails, courthouses, and other \n                facilities on six of the main Hawaiian Islands before \n                being transported to the U.S. Immigration Station and \n                Sand Island Detention Camp on O'ahu. Nearly all of the \n                internees were of Japanese descent, including leaders \n                in the Japanese American community who were educated, \n                were teachers or priests, or were distinguished by \n                virtue of their access to means of communication with \n                Japan or to transportation from Hawai'i. Most would be \n                sent to the mainland to be held for the duration of the \n                war in Department of Justice and War Relocation \n                Authority camps. Despite the government's allegations \n                of disloyalty, none of the Japanese American internees \n                from Hawai'i was ever found guilty of sabotage, \n                espionage, or overt acts against the United States, and \n                all later received formal apologies and many received \n                redress compensation from the United States.\n\n                On the Island of O'ahu, the U.S. War Department sought \n                a place removed from the active combat areas of Pearl \n                Harbor for internment of individuals. The War \n                Department chose Honouliuli Gulch, the bottom of which \n                was hidden from view by the gulch's steep walls. The \n                Honouliuli Internment Camp opened on March 2, 1943, \n                with the transfer of internees from Sand Island and \n                rapidly swelled in population with the influx of \n                prisoners of war. Managed by the U.S. Army, it was the \n                largest and longest used confinement site in Hawai'i.\n\n                Honouliuli is significant for having been used as both \n                a civilian internment camp and a prisoner of war camp, \n                with a population of approximately 400 civilian \n                internees and 4,000 prisoners of war over the course of \n                its use. Honouliuli was divided into seven compounds: \n                one compound for administration and guards, one for \n                civilian internees, and eventually five compounds for \n                prisoners of war. The civilian compound was further \n                divided into sections for male civilian internees of \n                Japanese ancestry, female civilian internees of \n                Japanese ancestry, and civilian internees of European \n                ancestry. Historic documents indicate there were 175 \n                buildings, 14 guard towers, and over 400 tents among \n                the 7 compounds on 160 acres. Many internees referred \n                to Honouliuli as Jigoku-Dani (Hell Valley) because its \n                secluded\n\n[[Page 11070]]\n\n                location at the bottom of a deep gulch trapped heat and \n                moisture and reinforced the internees' sense of \n                isolation and unjust confinement.\n\n                The majority of Honouliuli's civilian internees were \n                American citizens or permanent resident aliens--\n                predominantly Japanese Americans who were citizens by \n                birth--interned on suspicion of disloyalty. The \n                remaining group comprised predominantly German \n                Americans, though there were also Americans and aliens \n                of Italian, Irish, Russian, and Scandinavian descent. \n                Honouliuli also held women and children who were \n                Japanese civilians displaced from the Pacific.\n\n                The 4,000 prisoners of war in Honouliuli included enemy \n                soldiers and labor conscripts from Japan, Korea, \n                Okinawa, Taiwan, and Italy. The prisoner of war \n                compounds were guarded by an African American infantry \n                unit as well as units of Japanese Americans from the \n                mainland.\n\n                Honouliuli closed in 1945 for civilian internees and in \n                1946 for prisoners of war. With the closing of the \n                camp, fast-growing vegetation quickly took over the \n                site. Honouliuli was forgotten as Americans celebrated \n                the victories of World War II and focused attention on \n                the valor displayed by Americans at Pearl Harbor and \n                abroad.\n\n                While both mainland and Hawaiian internment camps are \n                sobering examples of wartime prejudice and injustice, \n                Honouliuli reminds us of the differences in the way \n                that forced removal was approached in Hawai'i and on \n                the mainland.\n\n                The primary difference between the Japanese American \n                experience on the mainland and on Hawai'i is that the \n                internment in Hawai'i targeted a relatively small \n                percentage of the ethnic Japanese population on the \n                islands. Less than one percent of Hawai'i's ethnic \n                Japanese population was interned in Hawai'i. This \n                contrasts with the mass exclusion of all 120,000 \n                Japanese Americans on the West Coast of the mainland. \n                In Hawai'i, the Japanese American citizenry and \n                immigrant population were over one third of the \n                territory's total population. Without their \n                participation in the labor force, the economy of the \n                territory could not have been sustained and the war \n                effort in the islands would have been crippled. Both \n                the policies in Hawai'i and those on the mainland \n                devastated Japanese Americans and their families and \n                created a social stigma that was borne by Japanese \n                Americans during and after the war. The selective \n                nature of the internment in Hawai'i also sowed division \n                within the Japanese American community in Hawai'i, \n                leading to ostracism and other backlash against the \n                targeted individuals and their families that would last \n                their lifetimes.\n\n                The declaration of martial law served as the basis to \n                authorize internment in Hawai'i, as opposed to the \n                mainland where mass exclusion was authorized by \n                Executive Order 9066. During the period of martial law \n                from December 7, 1941, to October 24, 1944, the U.S. \n                Army issued hundreds of military orders, some of which \n                were applicable only to persons of Japanese ancestry \n                and enemy aliens. For example, people of Japanese \n                ancestry were restricted from residing in certain areas \n                of O'ahu and were forcibly removed from their \n                properties. These types of discriminatory policies \n                created an atmosphere of fear and suspicion.\n\n                Finally, Honouliuli is significant because of the \n                comparatively lower level of public understanding and \n                awareness of the history of internment of civilians in \n                Hawai'i during World War II. On the mainland during \n                World War II, mass exclusion was well known. In \n                contrast, the internment in Hawai'i was largely kept \n                secret during World War II, and has only recently \n                become the subject of scholarship and awareness \n                campaigns. It was not until 1998 that information about \n                Honouliuli resurfaced. After 4 years of research and \n                exploration, the site was uncovered in 2002. In 2008, \n                an archeological research survey was conducted at the \n                site. Honouliuli remains an object of archeological \n                interest.\n\n                Honouliuli serves to remind every American about the \n                critical importance of safeguarding civil liberties and \n                maintaining our values during times of\n\n[[Page 11071]]\n\n                crisis. It is important to recognize Honouliuli as a \n                part of our shared national heritage and national \n                consciousness. It is a place to reflect on wartime \n                experiences and recommit ourselves to the pursuit of \n                freedom and justice.\n\n                WHEREAS section 320301 of title 54, United States Code \n                (known as the ``Antiquities Act''), authorizes the \n                President, in his discretion, to declare by public \n                proclamation historic landmarks, historic and \n                prehistoric structures, and other objects of historic \n                or scientific interest that are situated upon the lands \n                owned or controlled by the Federal Government to be \n                national monuments, and to reserve as a part thereof \n                parcels of land, the limits of which shall be confined \n                to the smallest area compatible with the proper care \n                and management of the objects to be protected;\n\n                WHEREAS Honouliuli's objects of historic interest were \n                listed in the National Register of Historic Places in \n                2012 as nationally significant for their association \n                with events that have made a significant contribution \n                to the broad patterns of our history;\n\n                WHEREAS, for the purpose of establishing a national \n                monument to be administered by the National Park \n                Service, the Monsanto Company has donated certain lands \n                at Honouliuli to the United States, and the University \n                of Hawai'i-West O'ahu has agreed to provide access \n                across its property to those lands;\n\n                WHEREAS it is in the public interest to preserve and \n                protect the historic objects at Honouliuli;\n\n                NOW, THEREFORE, I, BARACK OBAMA, President of the \n                United States of America, by the authority vested in me \n                by section 320301 of title 54, United States Code, \n                hereby proclaim the objects identified above that are \n                situated upon lands and interests in lands owned or \n                controlled by the Federal Government to be the \n                Honouliuli National Monument (monument) and, for the \n                purpose of protecting those objects, reserve as a part \n                thereof all lands and interests in lands owned or \n                controlled by the Federal Government within the \n                boundaries described on the accompanying map entitled, \n                ``Honouliuli National Monument,'' which is attached to \n                and forms a part of this proclamation. The reserved \n                Federal lands and interests in lands encompass \n                approximately 123.0 acres, together with appurtenant \n                easements for all necessary purposes. The boundaries \n                described on the accompanying map are confined to the \n                smallest area compatible with the proper care and \n                management of the objects to be protected.\n\n                All Federal lands and interests in lands within the \n                boundaries described on the accompanying map are hereby \n                appropriated and withdrawn from all forms of entry, \n                location, selection, sale, leasing or other disposition \n                under the public land laws, from location, entry, and \n                patent under the mining laws, and from disposition \n                under all laws relating to mineral and geothermal \n                leasing.\n\n                The establishment of the monument is subject to valid \n                existing rights. Lands and interests in lands not owned \n                or controlled by the Federal Government within the \n                boundaries described on the accompanying map shall be \n                reserved as a part of the monument, and objects \n                identified above that are situated upon those lands and \n                interests in lands shall be part of the monument, upon \n                acquisition of ownership or control by the Federal \n                Government.\n\n                The Secretary of the Interior (Secretary) shall manage \n                the monument through the National Park Service, \n                pursuant to applicable legal authorities, consistent \n                with the purposes and provisions of this proclamation. \n                The Secretary shall prepare a management plan for the \n                monument, with full public involvement, within 3 years \n                of the date of this proclamation. The management plan \n                shall ensure that the monument fulfills the following \n                purposes for the benefit of present and future \n                generations: (1) to preserve and protect the objects of \n                historic interest associated with Honouliuli Internment \n                Camp, and (2) to study and interpret the history of \n                World War II internment and detention in Hawai'i. The \n                management plan shall set forth the desired \n                relationship\n\n[[Page 11072]]\n\n                of the monument to other related resources, programs, \n                and organizations associated with World War II \n                internment, detention, and exclusion.\n\n                The National Park Service shall use available \n                authorities, as appropriate, to enter into agreements \n                to provide for access to the monument. The National \n                Park Service shall also use available authorities, as \n                appropriate, to enter into agreements with governmental \n                and nongovernmental organizations to provide for \n                research, preservation, interpretation, and education \n                at Honouliuli and additional sites associated with \n                World War II internment in Hawai'i and exclusion \n                elsewhere. The National Park Service shall also \n                coordinate management with World War II Valor in the \n                Pacific National Monument, which commemorates the \n                broader story of the war in the Pacific and its impacts \n                on Hawai'i.\n\n                Nothing in this proclamation shall be deemed to revoke \n                any existing withdrawal, reservation, or appropriation; \n                however, the monument shall be the dominant \n                reservation.\n\n                Warning is hereby given to all unauthorized persons not \n                to appropriate, injure, destroy, or remove any feature \n                of this monument and not to locate or settle upon any \n                of the lands thereof.\n\n                IN WITNESS WHEREOF, I have hereunto set my hand this \n                twenty-fourth day of February, in the year of our Lord \n                two thousand fifteen, and of the Independence of the \n                United States of America the two hundred and thirty-\n                ninth.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\nBilling code 3295-F5-P\n\n\n\n[[Page 11073]]\n\n[GRAPHIC] [TIFF OMITTED] TD27FE15.005\n\n\n[FR Doc. 2015-04352\nFiled 2-26-15; 11:15 am]\nBilling code 4310-10-C\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2022-04103": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2022-04103",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 8943,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2022-04103",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2022-04103",
+        "page_or_item": "87 FR 10677; FR Doc. 2022-04103; Presidential Document: Day of Remembrance of Japanese American Incarceration During World War II",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "e96ef71a1e81649d6b7c5bac06b2d4aa834e2710a17551a54384b7595e393a6f",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2022-04103.txt",
+        "text_sha256": "e96ef71a1e81649d6b7c5bac06b2d4aa834e2710a17551a54384b7595e393a6f",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2022/02/24/2022-04103.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 87 Issue 37 (Thursday, February 24, 2022)</title>\n</head>\n<body><pre>\n[Federal Register Volume 87, Number 37 (Thursday, February 24, 2022)]\n[Presidential Documents]\n[Pages 10677-10679]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2022-04103]\n\n\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 87 , No. 37 / Thursday, February 24, 2022 / \nPresidential Documents\u0000\u0000\n\n[[Page 10677]]\n\n\n                Proclamation 10341 of February 18, 2022\n\n                \nDay of Remembrance of Japanese American \n                Incarceration During World War II\n\n                By the President of the United States of America\n\n                A Proclamation\n\n                Eighty years ago, on February 19, 1942, President \n                Franklin D. Roosevelt signed Executive Order 9066, \n                stripping people of Japanese descent of their civil \n                rights. That order and the subsequent actions carried \n                out by the Federal Government represent one of the most \n                shameful chapters in our Nation's history. On this Day \n                of Remembrance of Japanese American Incarceration \n                During World War II, we acknowledge the unjust \n                incarceration of some 120,000 Japanese Americans, \n                approximately two-thirds of whom were born in the \n                United States.\n\n                Despite never being charged with a crime, and without \n                due process, Japanese Americans were forcibly removed \n                from their homes and communities and incarcerated, \n                simply because of their heritage. For years, many \n                Japanese Americans lived in harsh, overcrowded \n                conditions, surrounded by barbed wire fences and armed \n                guards. Not only did they lose their homes, businesses, \n                property, and savings--they also lost their liberty, \n                security, and the fundamental freedoms that belong to \n                all Americans in equal measure.\n\n                I have always believed that great nations do not ignore \n                their most painful moments--they confront them with \n                honesty and, in doing so, learn from them and grow \n                stronger as a result. The incarceration of Japanese \n                Americans 80 years ago is a reminder to us today of the \n                tragic consequences we invite when we allow racism, \n                fear, and xenophobia to fester.\n\n                Today, we reaffirm the Federal Government's formal \n                apology to Japanese Americans whose lives were \n                irreparably harmed during this dark period of our \n                history, and we solemnly reflect on our collective \n                moral responsibility to ensure that our Nation never \n                again engages in such un-American acts. We acknowledge \n                the intergenerational trauma and loss that the \n                incarceration of Japanese Americans has caused. We also \n                uplift the courage and resilience of brave Japanese \n                Americans who, despite being unjustly incarcerated, \n                formed powerful communities and marshalled incredible \n                dignity and strength.\n\n                Many of those whose families were incarcerated \n                volunteered or were drafted to serve in combat--\n                courageously serving in the 100th Infantry Battalion, \n                Military Intelligence Service, Women's Army Auxiliary \n                Corps, Army Nurse Corps, and the 442nd Regimental \n                Combat Team with unwavering patriotism. The all-\n                Japanese American 100th Infantry Battalion and the \n                442nd Regimental Combat Team became two of the most \n                decorated and distinguished military units in our \n                Nation's history. Countless Japanese Americans carry \n                forward this legacy of extraordinary service today, and \n                their work to preserve the history of this period \n                strengthens our Nation and our democracy.\n\n                We reflect on the bravery of civil rights leaders like \n                Fred Korematsu, Minoru Yasui, Gordon Hirabayashi, and \n                Mitsuye Endo, and that of every Japanese American who \n                organized and sought redress. Their efforts helped \n                bring about the first Day of Remembrance, led President \n                Jimmy Carter to sign the law creating the Commission on \n                Wartime Relocation and Internment of Civilians, and \n                spurred President Ronald Reagan to sign the Civil \n                Liberties Act of 1988, which provided monetary \n                reparations to living survivors and\n\n[[Page 10678]]\n\n                an official apology to the Japanese American community. \n                At the same time, we also acknowledge the painful \n                reality that Japanese Latin Americans, who were taken \n                from their Central and South American homes and \n                incarcerated by the United States Government during \n                World War II, were excluded from the Civil Liberties \n                Act of 1988.\n\n                Today, the National Park Service helps preserve several \n                Japanese American incarceration camps. These tangible \n                reminders of our history provide important spaces for \n                reflection and learning about the injustices born of \n                prejudice. Preserving incarceration sites as national \n                parks and historic landmarks is proof of our Nation's \n                commitment to facing the wrongs of our past, to healing \n                the pain still felt by survivors and their descendants, \n                and to ensuring that we always remember why it matters \n                that we never stop fighting for equality and justice \n                for all. My Administration is committed to maintaining \n                these national parks and landmarks for future \n                generations and to combating xenophobia, hate, and \n                intolerance--including through the reestablished White \n                House Initiative on Asian Americans, Native Hawaiians, \n                and Pacific Islanders. In the words of Dr. Frank \n                Kitamoto, who was incarcerated as a child, ``This is \n                not just a Japanese American story but an American \n                story with implications for the world.''\n\n                The words we use to describe the historical and present \n                treatment of communities of color and other underserved \n                communities have profound meaning. Today, we recognize \n                that euphemistic terms that we have collectively used \n                in the past--such as ``assembly centers,'' \n                ``relocation,'' or ``internment''--do not adequately \n                describe the injustice experienced by some 120,000 \n                people; we recognize the forced removal and mass \n                incarceration of Japanese Americans and others during \n                World War II; and we reaffirm our commitment to Nidoto \n                Nai Yoni, which translates to ``Let It Not Happen \n                Again.''\n\n                NOW, THEREFORE, I, JOSEPH R. BIDEN JR., President of \n                the United States of America, by virtue of the \n                authority vested in me by the Constitution and the laws \n                of the United States, do hereby proclaim February 19, \n                2022, as a Day of Remembrance of Japanese American \n                Incarceration During World War II. I call upon the \n                people of the United States to commemorate this \n                injustice against civil liberties and civil rights \n                during World War II; to honor the sacrifice of those \n                who defended the democratic ideals of this Nation; and \n                to commit together to eradicate systemic racism to heal \n                generational trauma in our communities.\n\n[[Page 10679]]\n\n                IN WITNESS WHEREOF, I have hereunto set my hand this \n                eighteenth day of February, in the year of our Lord two \n                thousand twenty-two, and of the Independence of the \n                United States of America the two hundred and forty-\n                sixth.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\n[FR Doc. 2022-04103\nFiled 2-23-22; 11:15 am]\nBilling code 3395-F2-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2024-03250": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2024-03250",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 2832,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2024-03250",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2024-03250",
+        "page_or_item": "89 FR 12379; FR Doc. 2024-03250; Notice: Amache National Historic Site",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "71bc7c6d673955ff4ec6ba166bcbccf7dbaebc135f6201d8f92e25def877fb12",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2024-03250.txt",
+        "text_sha256": "71bc7c6d673955ff4ec6ba166bcbccf7dbaebc135f6201d8f92e25def877fb12",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2024/02/16/2024-03250.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 89 Issue 33 (Friday, February 16, 2024)</title>\n</head>\n<body><pre>\n[Federal Register Volume 89, Number 33 (Friday, February 16, 2024)]\n[Notices]\n[Page 12379]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2024-03250]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF THE INTERIOR\n\nNational Park Service\n\n[NPS-IMR-AMCH-NPS0036797; ACCT Number: PPIMAMCH00//PPMPSAS1Z.Y00000]\n\n\nAmache National Historic Site\n\nAGENCY: National Park Service, Interior.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: As authorized by the Amache National Historic Site Act, the \nNational Park Service announces that the Secretary of the Interior has \nestablished, in the State of Colorado, the Amache National Historic \nSite as a unit of the National Park System.\n\nFOR FURTHER INFORMATION CONTACT: Brian Carlstrom, Deputy Regional \nDirector, NPS, Intermountain Region at 720-616-9266.\n\nADDRESSES: A color version and more detailed area maps depicting the \nboundary are available here: <a href=\"https://www.nps.gov/amch/planyourvisit/maps.htm\">https://www.nps.gov/amch/planyourvisit/maps.htm</a>.\n\nSUPPLEMENTARY INFORMATION: On March 18, 2022, President Biden signed \ninto law Public Law 117-106, which provides for the designation of the \nGranada Relocation Center in Prowers County, Colorado, as Amache \nNational Historic Site. Amache was one of 10 incarceration camps \nestablished by the War Relocation Authority during World War II (WWII) \nto unjustly incarcerate Japanese Americans who were forcibly removed \nfrom their communities on the West Coast under the provisions of \nExecutive Order 9066.\n    The statute provides that Amache National Historic Site shall be \nestablished as a unit of the National Park System once the Secretary \ndetermines that a sufficient quantity of land, or interests in land, \nhas been acquired to constitute a manageable park unit, and that the \nSecretary must publish notice of such establishment in the Federal \nRegister.\n    The National Park Service has acquired 410 acres within the \nproposed historic site boundary, encompassing the core of the former \nbuilt-up area of Amache. On February 9, 2024, the Secretary of the \nInterior signed a Decision Memorandum determining that a sufficient \nquantity of land, or interests in land, had been acquired to constitute \na manageable park unit. With the signing of this Decision Memorandum by \nthe Secretary and the publication of this notice in the Federal \nRegister, Amache National Historic Site is established.\n\nCharles F. Sams III,\nDirector, National Park Service.\n[FR Doc. 2024-03250 Filed 2-15-24; 8:45 am]\nBILLING CODE P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:96-14638": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:96-14638",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 4501,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:96-14638",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:96-14638",
+        "page_or_item": "61 FR 29715; FR Doc. 96-14638; Proposed Rule: Redress Provisions for Persons of Japanese Ancestry: Guidelines Under Ishida v. United States",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "dbff9116da62fc6f45a81960fc655fac61c9800c8ae5932f6d15f98fbee15896",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-96-14638.txt",
+        "text_sha256": "dbff9116da62fc6f45a81960fc655fac61c9800c8ae5932f6d15f98fbee15896",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1996/06/12/96-14638.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 61 Issue 114 (Wednesday, June 12, 1996)</title>\n</head>\n<body><pre>[Federal Register Volume 61, Number 114 (Wednesday, June 12, 1996)]\n[Proposed Rules]\n[Pages 29715-29716]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 96-14638]\n\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF JUSTICE\n\n28 CFR Part 74\n\n\nRedress Provisions for Persons of Japanese Ancestry: Guidelines \nUnder Ishida v. United States\n\nAGENCY: Department of Justice.\n\nACTION: Notice of extension of deadline for public comment.\n\n-----------------------------------------------------------------------\n\nSUMMARY: On April 22, 1996, the Department of Justice published in the \nFederal Register (61 FR 17667) a proposed rule to amend the \nDepartment's regulation governing redress provisions for persons of \nJapanese ancestry. This change will amend the standards of the Civil \nLiberties Act of 1988 to make eligible for payments of $20,000 those \npersons who were born after their parents ``voluntarily'' evacuated \nfrom the prohibited military zones of the West Coast of the United \nStates as a result of military proclamations issued pursuant to \nExecutive Order 9066. This change will also make eligible for redress \nthose persons who were born outside the prohibited military zones in \nthe United States after their parents were released from internment \ncamps during the defined war period and whose parents had resided in \nthe prohibited military zones on the West Coast immediately prior to \ntheir internment.\n    The period for accepting comments was published as ending on June \n6, 1996. Due to a clerical mistake, however, the period for accepting \ncomments should end on June 20, 1996, upon the expiration of the \nstandard sixty day comment period. Due to this mistake and requests \nfrom interested parties to have the full sixty day period in which to \nsubmit comments, the comment period is extended through June 20, 1996.\n\nDATES: The comment period is extended to June 20, 1996.\n\nADDRESSES: Written comments may be mailed to the Office of Redress \nAdministration, P.O. Box 66260, Washington, D.C. 20035-6260.\n\nFOR FURTHER INFORMATION CONTACT: Tink D. Cooper or Emlei M. Kuboyama, \nOffice of Redress Administration, Civil Rights Division, U.S. \nDepartment of Justice, P.O. Box 66260, Washington, D.C. 20035-6260; \n(202) 219-6900 (voice) or (202) 219-4710 (TDD). These are not toll-free \nnumbers.\n\nSUPPLEMENTARY INFORMATION: The proposed rule published in the Federal \nRegister on April 22, 1996, would amend the regulation of the \nDepartment of Justice governing redress provisions for persons of \nJapanese ancestry. A number of persons have asserted claims for redress \nbased on their parents' evacuation or internment by the United States \nGovernment prior to their birth and their subsequent inability to \nlegally return to their parents' original place of residence in the \nprohibited military zones on the West Coast. Based on section 108 of \nthe Civil Liberties Act of 1988, Public Law No. 100-383 (codified at 50 \nU.S.C. app 1989 et seq., as amended) and 28 CFR 74.4, the Civil Rights \nDivision found these persons ineligible for redress. Approximately \n1,000 persons who were born after their parents ``voluntarily'' \nevacuated from the prohibited military zones or after their parents \nwere released from internment camps claimed compensation under the Act. \nMost of these claimants were born prior to midnight on January 2, 1945, \nthe effective date of Proclamation Number 21, which rescinded the \nprohibited military zones on the West Coast and lifted the general \nexclusion restrictions on persons of Japanese ancestry. However, the \nUnited States Court of Appeals for the Federal Circuit determined that \nthe Civil Rights Division's policy of denying such claims was \ninconsistent with the terms of the Act. Ishida v. U.S., No. 94-5151 \n(Fed. Cir., July 6, 1995). In order to conform to the court decision, \nthe Civil Rights Division proposed this revision to the regulation.\n\n[[Page 29716]]\n\n    To be assured of consideration, comments must be in writing and \nmust be received on or before June 20, 1996.\n * * * * *\n    Dated: June 4, 1996.\nDeval Patrick,\nAssistant Attorney General.\n[FR Doc. 96-14638 Filed 6-11-96; 8:45 am]\nBILLING CODE 4410-01-M\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:96-9505": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:96-9505",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 15065,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:96-9505",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:96-9505",
+        "page_or_item": "61 FR 17667; FR Doc. 96-9505; Proposed Rule: Redress Provisions for Persons of Japanese Ancestry",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "6db338ef976df7b0ff73a000ed252b4adf6f1591a674a63c3f530418675a8d21",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-96-9505.txt",
+        "text_sha256": "6db338ef976df7b0ff73a000ed252b4adf6f1591a674a63c3f530418675a8d21",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1996/04/22/96-9505.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 61 Issue 78 (Monday, April 22, 1996)</title>\n</head>\n<body><pre>[Federal Register Volume 61, Number 78 (Monday, April 22, 1996)]\n[Proposed Rules]\n[Pages 17667-17669]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 96-9505]\n\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF JUSTICE\n\n28 CFR Part 74\n\n[Order No. 2017-96]\n\n\nRedress Provisions for Persons of Japanese Ancestry\n\nAGENCY: Department of Justice.\n\nACTION: Proposed rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The Department of Justice hereby proposes a change to the \nregulations governing redress provisions for persons of Japanese \nancestry. This change will amend the standards of the Civil Liberties \nAct of 1988 to make eligible for payments of $20,000 those persons who \nwere born after their parents ``voluntarily'' evacuated from the \nprohibited military zones of the West Coast of the United States as a \nresult of military proclamations issued pursuant to Executive Order \n9066. This change will also make eligible for redress those persons who \nwere born outside the prohibited military zones in the United States \nafter their parents were released from internment camps during the \ndefined war period and\n\n[[Page 17668]]\n\nwhose parents had resided in the prohibited military zones on the West \nCoast immediately prior to their internment. In practice, this \namendment will make potentially eligible those persons who were born \nafter their parents were evacuated, relocated, or interned by the \nUnited States Government, and who could not legally return to their \nparents' original place of residence within the prohibited military \nzones on the West Coast.\n\nDATES: Comments must be submitted on or before June 6, 1996.\n\nADDRESSES: Comments may be mailed to the Office of Redress \nAdministration, P.O. Box 66260, Washington, DC 20035-6260.\n\nFOR FURTHER INFORMATION CONTACT:\nTink D. Cooper or Emlei M. Kuboyama, Office of Redress Administration, \nCivil Rights Division, U.S. Department of Justice, P.O. Box 66260, \nWashington, DC 20035-6260; (202) 219-6900 (voice) or (202) 219-4710 \n(TDD). These are not toll-free numbers.\n\nSUPPLEMENTARY INFORMATION: \n\nI. Background\n\n    The Civil Liberties Act of 1988, Pub. L. No. 100-383 (codified at \n50 U.S.C. app. 1989 et. seq., as amended) (``the Act''), enacted into \nlaw the recommendations of the Commission on Wartime Relocation and \nInternment of Civilians established by Congress in 1980. See Commission \non Wartime Relocation and Internment of Civilians Act, Pub. L. No. 96-\n317 (1980). This bipartisan commission was established: (1) To review \nthe facts and circumstances surrounding Executive Order 9066, issued \nFebruary 19, 1942, and the impact of that Executive order on American \ncitizens and permanent resident aliens of Japanese ancestry; (2) to \nreview directives of United States military forces requiring the \nrelocation and, in some cases, detention in internment camps of these \nAmerican citizens and permanent resident aliens; and (3) to recommend \nappropriate remedies. The Commission submitted to Congress in February \n1983 a unanimous report, Personal Justice Denied, which extensively \nreviewed the history and circumstances of the decisions to exclude, \nremove, and then to detain Japanese-Americans and Japanese resident \naliens from the West Coast, as well as the treatment of Aleuts during \nWorld War II. The final part of the Commission's report, Personal \nJustice Denied Part 2: Recommendations, concluded that these events \nwere influenced by racial prejudice, war hysteria, and a failure of \npolitical leadership, and recommended remedial action to be taken by \nCongress and the President.\n    On August 10, 1988, President Ronald Reagan signed the Civil \nLiberties Act of 1988 into law. The purposes of the Act were to \nacknowledge and apologize for the fundamental injustice of the \nevacuation, relocation, and internment of Japanese-Americans and \npermanent resident aliens of Japanese ancestry, to make restitution, \nand to fund a public education program to prevent the recurrence of any \nsimilar event in the future.\n    Section 105 of the Act makes the Attorney General responsible for \nidentifying, locating, and authorizing payment of redress to eligible \nindividuals. 50 U.S.C. app. 1989b-4. The Attorney General delegated \nthese responsibilities and duties assigned to her to the Assistant \nAttorney General for Civil Rights, who, in keeping with precedent, has \ndesignated the Office of Redress Administration (``ORA'') in the Civil \nRights Division to carry out the responsibilities and duties mandated \nby the Act.\n    The ORA is charged with identifying and locating persons eligible \nunder the Act. To date, restitution has been paid to a total of 79,832 \nJapanese-Americans and permanent resident aliens of Japanese ancestry.\n    In the preamble of the final regulation, the Civil Rights Division \nstated that ``while children born in assembly centers, relocations \n[sic] camps and internment camps are included as eligible for \ncompensation, the regulations do not include as eligible children born \nafter their parents had voluntarily relocated from prohibited military \nzones or from assembly centers, relocation camps, or internment \ncamps.'' 54 Fed. Reg. 34160 (1989). A number of these persons asserted \nclaims for redress based on their parents' evacuation or internment by \nthe United States Government prior to their birth and their subsequent \ninability to legally return to their parents' original place of \nresidence in the prohibited military zones on the West Coast. However, \nbased on section 108 of the Act and 28 CFR 74.4, ORA found these \npersons ineligible for redress. In all, approximately 900 persons who \nwere born after their parents ``voluntarily'' evacuated from the \nprohibited military zones or after their parents were released from \ninternment camps claimed compensation under the Act. Most of these \nclaimants were born prior to midnight on January 2, 1945, the effective \ndate of Proclamation No. 21, which rescinded the prohibited military \nzones on the West Coast and lifted the general exclusion restrictions \non persons of Japanese ancestry. ORA's denial of redress to these \nclaimants was upheld during the administrative appeal process set forth \nin 28 CFR 74.17 and in some decisions of the U.S. Court of Federal \nClaims. See Ishida v. United States, 31 Fed. Cl. 280 (1994); Tanihara \nv. United States, 32 Fed. Cl. 805 (1995). However, the United States \nCourt of Appeals for the Federal Circuit recently determined that ORA's \npolicy of denying such claims was inconsistent with the terms of the \nAct. Ishida v. United States, 59 F.3d 1224 (Fed. Cir. 1995); Consolo v. \nU.S., No. 94-5150 (Fed. Cir., July 10, 1995) (unpubl.).\n\nII. Revised Interpretation\n\n    In order to conform to these recent decisions, the Civil Rights \nDivision proposes to revise its interpretation regarding the \neligibility for redress of persons who either were born after their \nparents ``voluntarily'' evacuated from the prohibited military zones on \nthe West Coast or who were born after a parent had been evacuated from \nthe prohibited military zones on the West Coast and interned. \nSpecifically, the regulation would reverse the Civil Rights Division's \ncurrent policy of denying redress to such persons who were prevented by \nlaw from returning to a parent's original place of residence in the \nprohibited military zones on the West Coast, and who are otherwise \neligible under these regulations.\n    The appellant in Ishida was born on November 23, 1942, in Ohio, \nafter his parents had voluntarily evacuated from California in March \n1942. His claim of deprivation was based on his inability to return to \nCalifornia during World War II. The Department's determination of \nineligibility was affirmed by the U.S. Court of Federal Claims. \nHowever, as mentioned above, on July 6, 1995, the U.S. Court of Appeals \nfor the Federal Circuit reversed, holding that persons such as Ishida, \nwho were excluded by law ``from the parents' original place of \nresidence or the family home'' in a prohibited military zone were \ndeprived of liberty as a result of the laws and orders specified in the \nAct and were eligible to receive compensation under the Act. In the \ncompanion case, Consolo, the court affirmed the trial court, holding \nthat for the reasons set forth in Ishida, the appellee, who was born in \nUtah on April 11, 1943, after her parents had voluntarily evacuated \nfrom California in March 1942, was also eligible to receive redress \nunder the Act.\n    The Civil Rights Division proposes that it be guided by certain \nprinciples in applying the modified standard discussed above. First, \nthe Civil Rights\n\n[[Page 17669]]\n\nDivision proposes to apply the standard not only to persons similarly \nsituated to the plaintiffs in Ishida and Consolo, who were born after \ntheir parents ``voluntarily'' evacuated the prohibited military zones \non the West Coast pursuant to military proclamations, but also to \npersons who were born after their parents had been evacuated from the \nprohibited military zones on the West Coast and interned. These latter \npersons, who were born outside of the prohibited military zones after \ntheir parents were released from internment camps, also could not \nreturn to their parents' original places of residence in the prohibited \nmilitary zones on the West Coast. Because, consistent with the Federal \nCircuit's reasoning, persons in this category can also be deemed to \nhave been deprived of liberty, based solely on their Japanese ancestry, \nas a result of certain Federal Government actions, the Civil Rights \nDivision proposes to make redress available to them. Accordingly, \nredress will be made available to persons born outside of the \nprohibited military zones after their parents were interned where at \nleast one parent's original place of residence immediately prior to his \nor her internment was in the prohibited military zones of the West \nCoast. However, this change will not affect those persons born outside \nof the prohibited military zones after their parents were released from \ninternment camps during the defined war period where such parents had \nresided outside of the prohibited military zones on the West Coast \nimmediately prior to their internment.\n    Second, the Civil Rights Division proposes to limit eligibility \nunder this policy to claimants born prior to January 3, 1945, the \neffective date of Proclamation No. 21 (midnight on January 2, 1945). \nProclamation No. 21 lifted the general restrictions that had prevented \npersons of Japanese ancestry from returning to their original places of \nresidence in the prohibited military zones on the West Coast. \nAccordingly, persons born on or after January 3, 1945, could legally \nreturn to their parents' original residence on the West Coast.\n    Historical evidence indicates that persons of Japanese ancestry \nwere, in fact, allowed to return to the West Coast without any \nrestrictions as early as December 17, 1944, the date on which \nProclamation No. 21 was issued and the War Department publicly \nannounced the lifting of the general exclusion orders. In addition, on \nDecember 18, 1944, the Secretary of the Interior issued a press release \nstating that the blanket exclusion orders for persons of Japanese \nancestry on the Pacific Coast were revoked. Moreover, War Relocation \nAuthority (``WRA'') records indicate that 26 people of Japanese \nancestry left WRA internment camps and returned to California between \nDecember 17, 1944 and January 3, 1945. However, because the \nproclamation might not have been fully implemented or fully publicized \nat the time of its issuance, ORA will not use the earlier date of \nissuance but will use the effective date of Proclamation No. 21.\n    Third, the West Coast is defined as those geographic areas in the \nState of California, the western portions of Washington and Oregon, and \nthe southern portion of Arizona, where persons of Japanese ancestry \nwere initially required to reside and later barred from entering, \npursuant to several proclamations. Proclamation No. 4 prohibited \npersons of Japanese ancestry from leaving parts of the West Coast while \nthe United States Government was preparing to forcibly evacuate them. \nSubsequent proclamations were issued to exclude those of Japanese \nancestry from these defined West Coast areas. For example, persons of \nJapanese ancestry were excluded from Military Area No. 1 pursuant to \nProclamation No. 7, dated June 8, 1942, and excluded from the \nCalifornia portion of Military Area No. 2 pursuant to Proclamation No. \n11, dated August 18, 1942.\n\nIII. Regulatory Impact Analysis\n\n    The Attorney General has determined that this proposed rule is not \na significant regulatory action under Executive Order No. 12866, and \naccordingly this proposed rule has not been reviewed by the Office of \nManagement and Budget.\n\nList of Subjects in 28 CFR Part 74\n\n    Administrative practice and procedure, Aliens, Archives and \nrecords, Citizenship and naturalization, Civil rights, Indemnity \npayments, Minority groups, Nationality, War claims.\n\n    For the reasons set forth in the preamble and by the authority \nvested in me, including 28 U.S.C. 509 and 510, chapter I of title 28 of \nthe Code of Federal Regulations is proposed to be amended by revising \npart 74 to read as follows:\n\nPART 74--CIVIL LIBERTIES ACT REDRESS PROVISION\n\n    1. The authority citation for Part 74 continues to read as follows:\n\n    Authority: 50 U.S.C. app. 1989b.\n\n    2. In Subpart B, section 74.3 is amended by adding paragraph (b)(9) \nto read as follows:\n\nSubpart B--Standards of Eligibility\n\n\nSec. 74.3  Eligibility determinations.\n\n    (a) * * *\n    (b) * * *\n    (9) Individuals born after a parent had been evacuated, relocated, \nor interned pursuant to paragraph (a)(4) of this section, and whose \nparent's or parents' original place of residence was in the prohibited \nmilitary zones on the West Coast on or after March 2, 1942, and who \ncould not legally return to their parent's or parents' original place \nof residence in the prohibited military zones on the West Coast prior \nto January 3, 1945. This also includes those individuals who were born \nafter a parent had ``voluntarily'' evacuated pursuant to paragraph \n(b)(3), and whose parent's or parents' original place of residence was \nin the prohibited military zones on the West Coast immediately prior to \ntheir evacuation, and who could not legally return to their parent's or \nparents' original place of residence in the prohibited military zones \non the West Coast prior to January 3, 1945.\n* * * * *\n    Dated: April 9, 1996.\nJanet Reno,\nAttorney General.\n[FR Doc. 96-9505 Filed 4-19-96; 8:45 am]\nBILLING CODE 4410-10-M\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:97-10498@0": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:97-10498",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 4520,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:97-10498@0",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:97-10498",
+        "page_or_item": "62 FR 19928; FR Doc. 97-10498; Rule: Redress Provisions for Persons of Japanese Ancestry: Guidelines Under Ishida v. United States",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-97-10498.txt",
+        "text_sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1997/04/24/97-10498.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 62 Issue 79 (Thursday, April 24, 1997)</title>\n</head>\n<body><pre>[Federal Register Volume 62, Number 79 (Thursday, April 24, 1997)]\n[Rules and Regulations]\n[Pages 19928-19934]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 97-10498]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF JUSTICE\n\n28 CFR Part 74\n\n[Order No. 2077-97]\n\n\nRedress Provisions for Persons of Japanese Ancestry: Guidelines \nUnder Ishida v. United States\n\nAGENCY: Department of Justice.\n\nACTION: Final rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The Department of Justice (``Department'') hereby adopts a \nchange to the regulations governing redress provisions for persons of \nJapanese ancestry. This change will amend the standards of the Civil \nLiberties Act of 1988, which authorizes the Attorney General to \nidentify, locate, and make payments of $20,000 to eligible persons of \nJapanese ancestry. This change will amend the Act's standards to make \neligible those persons who were born outside the prohibited military \nzones on the West Coast after their parents ``voluntarily'' evacuated \nas a result of military proclamations issued pursuant to Executive \nOrder 9066. This change will also make eligible for redress those \npersons who were born outside the prohibited military zones in the \nUnited States after their parents were released from internment camps \nand whose parents had resided in areas that became part of the \nprohibited military zones on the West Coast immediately prior to their \ninternment. In practice, this amendment will make potentially eligible \nthose persons who were born after their parents were evacuated, \nrelocated, or interned by the United States Government, and who were \nlegally excluded from their parents' original place of residence in the \nprohibited military zones on the West Coast.\n\nEFFECTIVE DATE: May 27, 1997.\n\nFOR FURTHER INFORMATION CONTACT:\nTink D. Cooper or Emlei M. Kuboyama, Office of Redress Administration, \nCivil Rights Division, U.S. Department of Justice, P.O. Box 66260, \nWashington, D.C. 20035-6260; (888) 219-6900 (voice) (toll-free) or \n(202) 219-4710 (TDD).\n\nSUPPLEMENTARY INFORMATION: \n\nI. Background\n\n    The Civil Liberties Act of 1988, Pub. L. No. 100-383, 102 Stat. 903 \n(codified at 50 U.S.C. app. 1989b-4) (``the Act''), enacted into law \nthe recommendations of the Commission on Wartime Relocation and \nInternment of Civilians established by Congress in 1980. See Commission \non Wartime Relocation and Internment of Civilians Act, Pub. L. No. 96-\n317, 94 Stat. 964 (1980). This bipartisan commission was established: \n(1) to review the facts and circumstances surrounding Executive Order \n9066, issued February 19, 1942 (E.O. 9066''), and the impact of that \nExecutive Order on American citizens and permanent resident aliens of \nJapanese ancestry; (2) to review directives of United States military \nforces requiring the relocation and, in some cases, detention in \ninternment camps of these American citizens and permanent resident \naliens; and (3) to recommend appropriate remedies. The Commission \nsubmitted to Congress in June 1983 a unanimous report, Personal Justice \nDenied Part 2: Recommendations, which extensively reviewed the history \nand circumstances of the decisions to exclude, to remove, and then to \ndetain Japanese-Americans and Japanese resident aliens from the West \nCoast, as well as the treatment of Aleuts during World War II. The \nfinal part of the Commission's report, Personal Justice Denied Part 2: \nRecommendations, concluded that these events were influenced by racial \nprejudice, war hysteria, and a failure of political leadership, and \nrecommended remedial action to be taken by Congress and the President.\n    On August 10, 1988, President Ronald Reagan signed the Act into \nlaw. The purposes of the Act were to acknowledge and apologize for the \nfundamental injustice of the evacuation, relocation, and internment of \nJapanese-Americans and permanent resident aliens of Japanese ancestry, \nto make restitution, and to fund a public education program to prevent \nthe recurrence of any similar event in the future.\n    Section 105 of the Act makes the Attorney General responsible for \nidentifying, locating, and authorizing payment of redress to eligible \n"
+    },
+    "ACTOR_TEXT:FRDOC:97-10498@25662": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:97-10498",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 29507,
+      "char_start": 25662,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:97-10498@25662",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:97-10498",
+        "page_or_item": "62 FR 19928; FR Doc. 97-10498; Rule: Redress Provisions for Persons of Japanese Ancestry: Guidelines Under Ishida v. United States",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-97-10498.txt",
+        "text_sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1997/04/24/97-10498.txt"
+      },
+      "text": "rescission dates of the zone from which their parents were dislocated, \nand otherwise satisfy all other threshold requirements under the Act, \nthen they will be potentially eligible for redress under the Ishida \nstandard. ORA will determine specific threshold dates for eligibility \non an individual basis by reference to the historical records in Alaska \nand for different areas determined to be the equivalent of prohibited \nmilitary zones in Hawaii (those exclusion zones were lifted not by \nProclamation No. 21, but by equivalent military orders).\n    A third issue raised by a majority of the comments was the request \nfor an extension of the threshold date for eligibility, proposed as \nJanuary 3, 1945, to a later date. There were several suggestions for \ndifferent dates of eligibility to serve as the standard for notice of \nthe lifting of the prohibited military zones on the West Coast. In \ndetermining the date that will serve as the standard, however, we must \napply the legal standard set forth by the court in Ishida. The Ishida \ncourt established the standard for redress eligibility for persons who \nwere never interned or evacuated based on the deprivation of liberty \ninflicted on children who were at birth ``excluded by law'' from \n``their parents' original place of residence.'' Ishida, 59 F.3d at \n1226. The court stated:\n\n    [W]e hold the Act entitles to compensation all children who were \ndeprived of liberty because they were excluded from their family \nhomes as a result of Executive Order 9066 and who could not return \nto their homes without committing a crime under the criminal \nstatute.\n\n    Id. at 1230. The court also stated that ``Congress intended to \ncover those excluded from their `home' or `original place of residence' \nin a prohibited military zone * * * directly as a result of the \ngovernment's actions''. Id. at 1233. The court's focus was on E.O. 9066 \nand the related military orders issued pursuant to its authority. Thus, \nonce the United States Government action was canceled (i.e., the \nmilitary proclamations were rescinded) there was no legal bar to the \nreturn of such persons to the West Coast. Proclamation No. 21, issued \non December 17, 1944, and effective January 2, 1945, rescinded the \ngeneral legal exclusion enforced under E.O. 9066 excluding individuals \nof Japanese ancestry from the West Coast. Under Proclamation No. 21, \nthis legal bar was canceled, except for the six small zones maintained \nby the Army until January 20, 1945.\n    The Department recognizes that there were hardships involved in \nreturning to\n\n[[Page 19932]]\n\nthe West Coast. However, it must determine which date is legally \nsufficient under Ishida. The Department initially proposed an \neligibility threshold date of January 3, 1945, the date upon which \nrescission of the general West Coast exclusion zones became effective. \nSeveral different threshold dates, ranging from spring 1945 to December \n1946, were proposed by the comments, while a few comments suggested \napproval of the rule without suggesting a threshold date. The summer of \n1945 was mentioned as an appropriate date due to the fact that anti-\nJapanese public sentiment waned in the exclusion zones as the war began \nwinding down. The end of the war, on September 2, 1945, was also \nsuggested as an appropriate date due to the difficulties of travel, as \nwell as the anti-Japanese public sentiment that existed during wartime. \nThe majority of comments, however, suggested a threshold eligibility \ndate of June 30, 1946, the date upon which the WRA, the agency created \nto supervise the internment camps, was abolished by Executive Order. \nThe date of June 30, 1946 was also used as the end date of the \ninternment period as defined by the Act. A comment from one \norganization suggested an alternative date of March 20, 1946, which was \n"
+    },
+    "ACTOR_TEXT:FRDOC:97-10498@33024": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:97-10498",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 36071,
+      "char_start": 33024,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:97-10498@33024",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:97-10498",
+        "page_or_item": "62 FR 19928; FR Doc. 97-10498; Rule: Redress Provisions for Persons of Japanese Ancestry: Guidelines Under Ishida v. United States",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-97-10498.txt",
+        "text_sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1997/04/24/97-10498.txt"
+      },
+      "text": "responsible members of our communities, to do whatever we can to see \nthat the attitudes, too, of people are such as to allow the \nJapanese-Americans to live in safety and peace in the areas in which \nthey resettle.\n\nKatherine Luomala, ``California Takes Back Its Japanese Evacuees,'' 5 \nNo. 3 Applied Anthropology, 25, 35 (1946).\n    As additional evidence of harassment, one comment referred to a New \nYork Times article, dated June 2, 1945, which reported a light sentence \ngiven by a California state judge to a man arrested in an attack on a \nreturning Japanese-American. Another comment also referred to the 1945-\n46 Annual Report published by the American Civil Liberties Union, which \nwas sharply critical of the state of California's efforts to protect \nJapanese-Americans. However, the report also stated that by mid-July \n1945, the ``terrorism virtually subsided.'' ACLU of Northern \nCalifornia, 1945-46 Annual Report at 7 (1946). Again, efforts were made \nby state and local authorities to stop such incidents. In fact, the \nAttorney General forwarded a letter to Governor Warren of California, \ndated February 2, 1945, requesting that he ``take every possible step \nto see that the returning Japanese are assured protection.'' Letter \nfrom Francis Biddle, Attorney General, to Earl Warren, Governor of \nCalifornia (Feb. 2, 1945) (on file with ORA). Unfortunately, some \nincidents of harassment occurred; but hostile acts taken by private \nindividuals were not the result of any federal government action under \nE.O. 9066 or related government action respecting the evacuation, \nrelocation, and internment program.\n    Further, with regard to the depressed economic conditions in the \nformer exclusion zones, it is the Department's position that this was a \nmatter beyond governmental control and is not the type of action the \ncourt in Ishida intended to cover. However, we would point to evidence \nthat the United States Government did extend resettlement assistance to \nreturning Japanese-Americans. WRA reported that the Social Security \nBoard's program of ``Aid to Enemy Aliens and Others Affected by \nRestrictive Action of Government'' extended:\n\n    Aid to families while they reestablished themselves or while \nresidence was being confirmed for them. The greatest need was in \nCalifornia since families requiring assistance had been encouraged \nto return to their place of previous residence. All counties in \nCalifornia continued to cooperate with the WRA in granting \ncounseling, welfare assistance, and medical attention to the needy * \n* * Under the ``Aid to Enemy Alien'' funds special counsellors \n[interviewed] persons not on relief who were in hostels and \ntemporary installations in order to determine what their plans were \nand to counsel them in finding jobs and housing. U.S. Dept. of \nInterior, WRA Semi-Annual Report, Jan. 1 to June 30, 1946 at 12-13 \n(emphasis added).\n\n    The Pacific Citizen noted on its front page that federal and state \nassistance was promised for Japanese-Americans returning to the West \n"
+    },
+    "ACTOR_TEXT:FRDOC:97-10498@36947": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:97-10498",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 40037,
+      "char_start": 36947,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:97-10498@36947",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:97-10498",
+        "page_or_item": "62 FR 19928; FR Doc. 97-10498; Rule: Redress Provisions for Persons of Japanese Ancestry: Guidelines Under Ishida v. United States",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-97-10498.txt",
+        "text_sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1997/04/24/97-10498.txt"
+      },
+      "text": "transportation for the general civilian population in the United \nStates, particularly in certain areas. Military servicemen, after being \nreleased from active service, were returning to the United States from \nthe Pacific theater of war in significant numbers. To meet the shortage \nof housing, hostels and temporary installations were operated by WRA in \ncooperation with the Federal Public Housing Authority, and provided \nhousing for returnees. U.S. Dept. of Interior, WRA Semi-Annual Report, \nJan. 1 to June 30, 1946 at 13. Some hostels also provided job-seeking \nassistance. ``Hostel Opened in Los Angeles to Aid Evacuee \nResettlement,'' Pacific Citizen, March 3, 1945, at 3. Eight hostels \nwere serving those returning to Los Angeles by July 1945. ``Eight \nHostels Serve Evacuees Returning to Los Angeles,'' Pacific Citizen, \nJuly 28, 1945, at 8. Another 1,300 evacuees received temporary housing \nin trailers and barracks in Los Angeles by November 1945. ``1,300 \nEvacuees Get Temporary Housing in Los Angeles Area,'' Pacific Citizen, \nNov. 17, 1945, at 3.\n    As a result of the hardships noted above, the majority of comments \nsuggested a threshold eligibility date of June 30, 1946, the \ntermination of the internment period as defined by the Act. Again, even \nthough on that date there continued to be hardships faced by returning \nevacuees, it is clear that there was no longer a legal impediment \nimposed by the United States Government in their relocation to the West \nCoast. The court's focus in Ishida was on E.O. 9066 and the related \nmilitary orders issued pursuant to its authority, which excluded \npersons of Japanese ancestry. Once the United States Government action \nwas canceled (i.e., the military proclamations were rescinded) there \nexisted no legal bar to their return to any portion of the West Coast.\n    Although persons suffered hardships, they returned to the West \nCoast in large numbers prior to June 30, 1946. These numbers further \ndemonstrate the lifting of the legal bar that allowed persons of \nJapanese ancestry to return to the area. Over 47,000 persons returned \nin 1945 alone, while another 10,000 persons returned during the first \nsix months of 1946. U.S. Dept. of the Interior, WRA Semi-Annual Report, \nJuly 1 to Dec. 31, 1945, at Statistical App. Table I; U.S. Dept. of \nInterior, WRA Semi-Annual Report, January 1 to June 30, 1946, at 11 \n(1946).\n    Some comments asserted that, unless the June 30, 1946 date is \napplied, the Department's policy will result in placing one group of \nchildren, those who resided in free areas through 1946, at a \ndisadvantage vis-a-vis another group of children, those who were \nconfined in internment camps through June 1946. However, persons born \nin internment camps and under WRA jurisdiction qualified for redress \nprior to the Ishida decision based on their own internment. Nothing in \nthese regulations will affect their eligibility. They will continue to \nqualify. As for persons born at liberty but outside of their parents' \noriginal places of residence, the court in Ishida indicated a standard \n"
+    },
+    "ACTOR_TEXT:FRDOC:97-10498@48489": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:97-10498",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 50817,
+      "char_start": 48489,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:97-10498@48489",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:97-10498",
+        "page_or_item": "62 FR 19928; FR Doc. 97-10498; Rule: Redress Provisions for Persons of Japanese Ancestry: Guidelines Under Ishida v. United States",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-97-10498.txt",
+        "text_sha256": "da6f09b14d84a73ac626381936a61974a754020be6b9a6bdb415c467d2f753fa",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1997/04/24/97-10498.txt"
+      },
+      "text": "compete with foreign-based companies in domestic and export markets.\n    Nor will this rule result in the expenditure by state, local and \ntribal governments, in the aggregate, or by the private sector, of \n$100,000,000 or more in any one year, and it will not significantly or \nuniquely affect small governments. Therefore, no actions were deemed \nnecessary under the provisions of the Unfunded Mandates Reform Act of \n1995.\n\nList of Subjects in 28 CFR Part 74\n\n    Administrative practice and procedure, Aliens, Archives and \nrecords, Citizenship and naturalization, Civil rights, Indemnity \npayments, Minority groups, Nationality, War claims.\n    For the reasons set forth in the preamble and by the authority \nvested in me, including 28 U.S.C. 509 and 510, chapter I of title 28 of \nthe Code of Federal Regulations is amended as follows:\n\nPART 74--CIVIL LIBERTIES ACT REDRESS PROVISION\n\n    1. The authority citation for Part 74 continues to read as follows:\n\n    Authority: 50 U.S.C. app. 1989b.\n\n    2. In Subpart B, Sec. 74.3 is amended by adding paragraph (b)(9) to \nread as follows:\n\n\nSec. 74.3   Eligibility determinations.\n\n    (a) * * *\n    (b) * * *\n    (9) Individuals born on or before January 20, 1945, to a parent or \nparents who had been evacuated, relocated, or interned from his or her \noriginal place of residence in the prohibited military zones on the \nWest Coast, on or after March 2, 1942, pursuant to paragraph (a)(4) of \nthis section, and who were excluded by Executive Order 9066 or military \nproclamations issued under its authority, from their parent's or \nparents' original place of residence in the prohibited military zones \non the West Coast. This also includes those individuals who were born \nto a parent or parents who had ``voluntarily'' evacuated from his or \nher original place of residence in the prohibited military zones on the \nWest Coast, on or after March 2, 1942, pursuant to paragraph (b)(3) of \nthis section, and who were excluded by Executive Order 9066 or military \nproclamations issued under its authority, from their parent's or \nparents' original place of residence in the prohibited military zones \non the West Coast.\n* * * * *\n    Dated: April 14, 1997.\nJanet Reno,\nAttorney General.\n[FR Doc. 97-10498 Filed 4-23-97; 8:45 am]\nBILLING CODE 4410-13-M\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:9066#whole": {
       "char_end": 4116,
@@ -3195,6 +3650,186 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1942-02-25/pdf/FR-1942-02-25.pdf"
       },
       "text": "EXECUTIVE ORDER\nAuthorizing the S ecretary op W ar tq \nPrescribe  M ilitary  A reas\nWHEREAS the successful prosecution \nof the war requires every possible pro­\ntection against espionage and against \nsabotage to national-defense material, \nnational-defense premises, and national- \ndefense utilities as defined in Section 4, \nAct of April 20, 1918, 40 Stat. 533, as \namended by the Act of November 30,1940, \n54 Stat. 1220, and the Act of August 21, \n1941, 55 Stat. 655 (U.S.C., Title 50, Sec. \n104):\nNOW, THEREFORE, by virtue of the \nauthority vested in me as President of \nthe United States, and Commander in \nChief of the Army and Navy, I hereby \nauthorize and direct the Secretary of \nWar, and the Military Commanders \nwhom he may from time to time desig­\nnate, whenever he or any designated \nCommander deems such action necessary \nor desirable, to prescribe military areas \nin such places and of such extent as he \nor the appropriate Military Commander \nmay determine, from which any or all \npersons may be excluded, and with re­\nspect to which, the right of any person \nto enter, remain in, or leave shall be \nsubject to whatever restrictions the Sec­\nretary of War or the appropriate Mili­\ntary Commander may impose in his dis­\ncretion. The Secretary of War is hereby \nauthorized to provide for residents of any \nsuch area who are excluded therefrom, \nsuch transportation, food, shelter, and \nother accommodations as may be neces­\nsary, in the judgment of the Secretary \nof War or the said Military Commander, \nand until other arrangements are made, \nto accomplish the purpose of this order. \nThe designation of military areas in any \nregion or locality shall supersede desig­\nnations of prohibited and restricted areas \nby the Attorney General under the Proc­\nlamations of December 7 and 8,1941,1  and \nshall supersede the responsibility and au­\nthority of the Attorney General under \nthe said Proclamations in respect of such \nprohibited and restricted areas.\nI hereby further authorize and direct \nthe Secretary of War and the said Mili­\ntary Commanders to take such other\nsteps as he or the appropriate Military \nCommander may deem advisable to en­\nforce compliance with the restrictions \napplicable to each Military area herein­\nabove authorized to be designated, in­\ncluding the use of Federal troops and \nother Federal Agencies, with authority \nto accept assistance of state and local \nagencies.\nI hereby further authorize and direct \nall Executive Departments,» independent \nestablishments and other Federal Agen­\ncies, to assist the Secretary of War or \nthe said Military Commanders in carry­\ning out this Executive Order, including \nthe furnishing of medical aid, hospital­\nization, food, clothing, transportation, \nuse of land, shelter* and other supplies, \nequipment, utilities, facilities, and serv­\nices.\nThis order shall not be construed as \nmodifying or limiting in any way the \nauthority heretofore granted under Ex­\necutive Order No. 8972/ dated December \n12,1941, nor shall it be construed as lim­\niting or modifying the duty and respon­\nsibility of the Federal Bureau of Investi­\ngation, with respect to the investigation \nof alleged acts of sabotage or the duty \nand responsibility of the Attorney Gen­\neral and the Department of Justice un­\nder the Proclamations of December 7 and \n8, 1941, prescribing regulations for the \nconduct and control of alien enemies, \nexcept as such duty and responsibility is \nsuperseded by the designation of military \nareas hereunder."
+    },
+    "CURRENT:EO:9066#0": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 19912,
+      "char_start": 19564,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "5 U.S.C. 8332; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "962666a1ccee30912790309c4fa24ec2d65b8e8013d13b37359d9619c12ba343",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t5/s8332",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:9066#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:9066",
+      "legal_basis_candidate": "statute text names the order (5 U.S.C. 8332)",
+      "machine_lead": true,
+      "mention_id": "usc:d733df22e1b7",
+      "snippet": "...the United States respecting individuals of Japanese ancestry which was established during World War II in the interests of national security pursuant to— (i) Executive Order Numbered 9066, dated February 19, 1942; (ii) section 67 of the Act entitled “An Act to provide a government for the Territory of Hawaii”, approved April 30, 1900 (chapter 33...",
+      "source": {
+        "page_or_item": "5 U.S.C. 8332; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t5_s8332-0d126c4ea3.txt",
+        "text_sha256": "962666a1ccee30912790309c4fa24ec2d65b8e8013d13b37359d9619c12ba343",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "the United States respecting individuals of Japanese ancestry which was established during World War II in the interests of national security pursuant to—\n(i)\nExecutive Order Numbered 9066, dated February 19, 1942;\n(ii)\nsection 67 of the Act entitled “An Act to provide a government for the Territory of Hawaii”, approved April 30, 1900 (chapter 33",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t5_s8332-0d126c4ea3.txt",
+      "text_sha256": "962666a1ccee30912790309c4fa24ec2d65b8e8013d13b37359d9619c12ba343",
+      "where": "USC 5 U.S.C. 8332"
+    },
+    "CURRENT:EO:9066#1": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 490,
+      "char_start": 142,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4212; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "d0bd1d393c421ab21fc0aa6600ad02ae4b77c04f3b229582fc45e0b886e98072",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t50/s4212",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:9066#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:9066",
+      "legal_basis_candidate": "statute text names the order (50 U.S.C. 4212)",
+      "machine_lead": true,
+      "mention_id": "usc:b53b1598154d",
+      "snippet": "...an individual living on August 10, 1988, was, while a United States citizen or permanent resident alien of Japanese ancestry, convicted of a violation of— (1) Executive Order Numbered 9066, dated February 19, 1942; (2) the Act entitled “An Act to provide a penalty for violation of restrictions or orders with respect to persons entering, remaining...",
+      "source": {
+        "page_or_item": "50 U.S.C. 4212; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s4212-59dc941fed.txt",
+        "text_sha256": "d0bd1d393c421ab21fc0aa6600ad02ae4b77c04f3b229582fc45e0b886e98072",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "an individual living on August 10, 1988, was, while a United States citizen or permanent resident alien of Japanese ancestry, convicted of a violation of—\n(1)\nExecutive Order Numbered 9066, dated February 19, 1942;\n(2)\nthe Act entitled “An Act to provide a penalty for violation of restrictions or orders with respect to persons entering, remaining",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s4212-59dc941fed.txt",
+      "text_sha256": "d0bd1d393c421ab21fc0aa6600ad02ae4b77c04f3b229582fc45e0b886e98072",
+      "where": "USC 50 U.S.C. 4212"
+    },
+    "CURRENT:EO:9066#2": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 811,
+      "char_start": 462,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4218; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "9e459407b1df23989cdbc123af5ab4cc87e363b7ee80b3f7eee167a184da9230",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t50/s4218",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:9066#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:9066",
+      "legal_basis_candidate": "statute text names the order (50 U.S.C. 4218)",
+      "machine_lead": true,
+      "mention_id": "usc:31ccd7314811",
+      "snippet": "...s citizen or a permanent resident alien; and (B) (i) was confined, held in custody, relocated, or otherwise deprived of liberty or property as a result of— (I) Executive Order Numbered 9066, dated February 19, 1942; (II) the Act entitled “An Act to provide a penalty for violation of restrictions or orders with respect to persons entering, remainin...",
+      "source": {
+        "page_or_item": "50 U.S.C. 4218; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s4218-0608926c11.txt",
+        "text_sha256": "9e459407b1df23989cdbc123af5ab4cc87e363b7ee80b3f7eee167a184da9230",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "s citizen or a permanent resident alien; and\n(B)\n(i)\nwas confined, held in custody, relocated, or otherwise deprived of liberty or property as a result of—\n(I)\nExecutive Order Numbered 9066, dated February 19, 1942;\n(II)\nthe Act entitled “An Act to provide a penalty for violation of restrictions or orders with respect to persons entering, remainin",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s4218-0608926c11.txt",
+      "text_sha256": "9e459407b1df23989cdbc123af5ab4cc87e363b7ee80b3f7eee167a184da9230",
+      "where": "USC 50 U.S.C. 4218"
+    },
+    "CURRENT:EO:9066#3": {
+      "basis_code": "references_in_text_note",
+      "char_end": 208,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4212 note; note 'References in Text' [USLM note id id993df944-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "2f8688724c6eb3e082007e8f00f2b7dbf03aa6095dd5fa38f25b44ce7d52f6f2",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id993df944-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:9066#3",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:9066",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (50 U.S.C. 4212 note)",
+      "machine_lead": true,
+      "mention_id": "usc:5c18b7264099",
+      "snippet": "References in Text Executive Order Numbered 9066, dated February 19, 1942, referred to in subsec. (a)(1), is not classified to the Code. The Act entitled “An Act to provide a penalty for violation of restrict...",
+      "source": {
+        "page_or_item": "50 U.S.C. 4212 note; note 'References in Text' [USLM note id id993df944-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id993df944-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "2f8688724c6eb3e082007e8f00f2b7dbf03aa6095dd5fa38f25b44ce7d52f6f2",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order Numbered 9066, dated February 19, 1942, referred to in subsec. (a)(1), is not classified to the Code.\nThe Act entitled “An Act to provide a penalty for violation of restrict",
+      "text_path": "jobs/current-law/output/usc-notes/id993df944-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "2f8688724c6eb3e082007e8f00f2b7dbf03aa6095dd5fa38f25b44ce7d52f6f2",
+      "where": "USC 50 U.S.C. 4212 note"
+    },
+    "CURRENT:EO:9066#4": {
+      "basis_code": "references_in_text_note",
+      "char_end": 208,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4218 note; note 'References in Text' [USLM note id id993df9bd-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6f7898f9d79288519becebb68ed81ad490453f16ead4b52a21df8b2d73e76a9",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id993df9bd-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:9066#4",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:9066",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (50 U.S.C. 4218 note)",
+      "machine_lead": true,
+      "mention_id": "usc:11fea308da2c",
+      "snippet": "References in Text Executive Order Numbered 9066, dated February 19, 1942, referred to in par. (2)(B)(i)(I), is not classified to the Code. The Act entitled “An Act to provide a penalty for violation of restr...",
+      "source": {
+        "page_or_item": "50 U.S.C. 4218 note; note 'References in Text' [USLM note id id993df9bd-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id993df9bd-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "c6f7898f9d79288519becebb68ed81ad490453f16ead4b52a21df8b2d73e76a9",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order Numbered 9066, dated February 19, 1942, referred to in par. (2)(B)(i)(I), is not classified to the Code.\nThe Act entitled “An Act to provide a penalty for violation of restr",
+      "text_path": "jobs/current-law/output/usc-notes/id993df9bd-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "c6f7898f9d79288519becebb68ed81ad490453f16ead4b52a21df8b2d73e76a9",
+      "where": "USC 50 U.S.C. 4218 note"
     },
     "ORIGINAL:EO:9066": {
       "acceptable_as_original": true,
@@ -3410,7 +4045,7 @@
       "text": "EXECUTIVE ORDER\nAuthorizing the S ecretary op W ar tq \nPrescribe  M ilitary  A reas\nWHEREAS the successful prosecution \nof the war requires every possible pro­\ntection against espionage and against \nsabotage to national-defense material, \nnational-defense premises, and national- \ndefense utilities as defined in Section 4, \nAct of April 20, 1918, 40 Stat. 533, as \namended by the Act of November 30,1940, \n54 Stat. 1220, and the Act of August 21, \n1941, 55 Stat. 655 (U.S.C., Title 50, Sec. \n104):\nNOW, THEREFORE, by virtue of the \nauthority vested in me as President of \nthe United States, and Commander in \nChief of the Army and Navy, I hereby \nauthorize and direct the Secretary of \nWar, and the Military Commanders \nwhom he may from time to time desig­\nnate, whenever he or any designated \nCommander deems such action necessary \nor desirable, to prescribe military areas \nin such places and of such extent as he \nor the appropriate Military Commander \nmay determine, from which any or all \npersons may be excluded, and with re­\nspect to which, the right of any person \nto enter, remain in, or leave shall be \nsubject to whatever restrictions the Sec­\nretary of War or the appropriate Mili­\ntary Commander may impose in his dis­\ncretion."
     }
   },
-  "fingerprint": "791d7e53e629102d6ba8bc7177f43575067d0c18d22bd0dcccb27c9a6132d4a4",
+  "fingerprint": "c5e5c8336c702ed9e8b1e91f9e36f6f78753b094d431bf9355dfaa7d1f9c8079",
   "instrument_id": "EO:9066",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3452,32 +4087,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 6,
+      "machine_fragment_items_for_this_order_all_systems": 6,
+      "machine_hits_for_this_order": 5,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 6,
+      "machine_fragment_items_for_this_order_all_systems": 6,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3509,10 +4146,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "86fdf33bf4623b39eef9b6666dee2a8e7ed22df6cb15422baeeadbdaabe07d7a",
+    "fingerprint": "f729d88250e08fca5ffbc4d0e4753c3d93f2f0ef391a5408cd413201cb55ae8e",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_9066.json",
-    "history_sha256": "07563815d8dc0f71c49ae7ba31cef484252558c3ba3721c4bc929c4d9e0f73d2",
+    "history_sha256": "e64c272377e0b7e65de668660a065781677d56b46e5b9491a9874ee82701f469",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

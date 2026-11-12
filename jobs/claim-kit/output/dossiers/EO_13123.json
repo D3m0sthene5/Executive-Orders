@@ -2,11 +2,13 @@
   "actor_contexts": [
     {
       "actor_id": "EO:13148",
-      "evidence_id": "ACTOR_TEXT:EO:13148"
+      "evidence_id": "ACTOR_TEXT:EO:13148",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13423",
-      "evidence_id": "ACTOR_TEXT:EO:13423"
+      "evidence_id": "ACTOR_TEXT:EO:13423",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -161,7 +163,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13123",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13123"
@@ -2355,11 +2357,20 @@
   "current_law_leads": [
     {
       "basis_code": "references_in_text_note",
+      "char_end": 857,
+      "char_start": 581,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 8255 note; note 'References in Text' [USLM note id id3cc18e46-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "0c36115e48768e9493b17cd141e24c375aad01a710ce473ed6458f2f56efce3e",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3cc18e46-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13123",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 8255 note)",
@@ -2369,9 +2380,14 @@
       "source": {
         "page_or_item": "42 U.S.C. 8255 note; note 'References in Text' [USLM note id id3cc18e46-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3cc18e46-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "0c36115e48768e9493b17cd141e24c375aad01a710ce473ed6458f2f56efce3e",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "rred to in par. (2), is Ex. Ord. No. 12759, April 17, 1991, 56 F.R. 16257, which was set out as a note under section 6201 of this title, prior to revocation by Ex. Ord. No. 13123, § 604, June 3, 1999, 64 F.R. 30859, formerly set out as a note under section 8251 of this title.",
+      "text_path": "jobs/current-law/output/usc-notes/id3cc18e46-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "0c36115e48768e9493b17cd141e24c375aad01a710ce473ed6458f2f56efce3e",
       "where": "USC 42 U.S.C. 8255 note"
     },
     {
@@ -2389,7 +2405,7 @@
       "snippet": "...t sustainable development principles must Federal agencies apply to the siting, design, and construction of new facilities? | In keeping with the objectives of Executive Order 13123, “Greening of the Government Through … Through Efficient Energy Management,” and Executive Order 13101, “Greening of the Government",
       "source": {
         "page_or_item": "41 CFR 102-76.55 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-        "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
+        "sha256": "daa632fa845a048bb6b5983ca593b5c5ea59a9df2200962e58ec9d3fc0941623",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
       },
       "system": "ecfr",
@@ -2418,7 +2434,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (41 CFR 102-76.55)",
         "source": {
           "page_or_item": "41 CFR 102-76.55 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 1)",
-          "sha256": "9ee19146a785f5c16b0adc6648b6f29d51ff9732da7fe6f0c9c33a14f12bf645",
+          "sha256": "daa632fa845a048bb6b5983ca593b5c5ea59a9df2200962e58ec9d3fc0941623",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=1"
         }
       }
@@ -2439,6 +2455,7 @@
         "snippet": "...rred to in par. (2), is Ex. Ord. No. 12759, April 17, 1991, 56 F.R. 16257, which was set out as a note under section 6201 of this title, prior to revocation by Ex. Ord. No. 13123, § 604, June 3, 1999, 64 F.R. 30859, formerly set out as a note under section 8251 of this title.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id3cc18e46-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 8255 note"
       },
       "proposal": {
@@ -3124,6 +3141,7 @@
       "char_end": 46441,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13148",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -3144,6 +3162,7 @@
       "char_end": 18483,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13423",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -5337,6 +5356,42 @@
       },
       "text": "Sec. 714. ‘‘Utility energy-efficiency service’’ means demand side management\nservices provided by a utility to improve the efficiency of use of the com-\nmodity (electricity, gas, etc.) being distributed. Services can include, but\nare not limited to, energy efficiency and renewable energy project auditing,\nfinancing, design, installation, operation, maintenance, and monitoring.\nœ–"
     },
+    "CURRENT:EO:13123#0": {
+      "basis_code": "references_in_text_note",
+      "char_end": 857,
+      "char_start": 581,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 8255 note; note 'References in Text' [USLM note id id3cc18e46-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "0c36115e48768e9493b17cd141e24c375aad01a710ce473ed6458f2f56efce3e",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3cc18e46-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13123#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13123",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 8255 note)",
+      "machine_lead": true,
+      "mention_id": "usc:bd529ba1d08a",
+      "snippet": "...rred to in par. (2), is Ex. Ord. No. 12759, April 17, 1991, 56 F.R. 16257, which was set out as a note under section 6201 of this title, prior to revocation by Ex. Ord. No. 13123, § 604, June 3, 1999, 64 F.R. 30859, formerly set out as a note under section 8251 of this title.",
+      "source": {
+        "page_or_item": "42 U.S.C. 8255 note; note 'References in Text' [USLM note id id3cc18e46-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3cc18e46-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "0c36115e48768e9493b17cd141e24c375aad01a710ce473ed6458f2f56efce3e",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "rred to in par. (2), is Ex. Ord. No. 12759, April 17, 1991, 56 F.R. 16257, which was set out as a note under section 6201 of this title, prior to revocation by Ex. Ord. No. 13123, § 604, June 3, 1999, 64 F.R. 30859, formerly set out as a note under section 8251 of this title.",
+      "text_path": "jobs/current-law/output/usc-notes/id3cc18e46-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "0c36115e48768e9493b17cd141e24c375aad01a710ce473ed6458f2f56efce3e",
+      "where": "USC 42 U.S.C. 8255 note"
+    },
     "ORIGINAL:EO:13123": {
       "acceptable_as_original": true,
       "actor_id": "EO:13123",
@@ -5739,7 +5794,7 @@
       "text": "The Department of Defense (DOD) is subject to this order to the extent that it does not impair or adversely affect military operations and training (including tactical aircraft, ships, weapons systems, combat training, and border security)."
     }
   },
-  "fingerprint": "bcebce5ae7869a73dc1d859b13b4c9fecb6cc018a54077b1507ec0ec138b1962",
+  "fingerprint": "0dd4265297065619c4f6671e9bc419da33d0ff71d1a7778fa3551801fb5e8464",
   "instrument_id": "EO:13123",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -7645,32 +7700,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 5,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -7703,10 +7760,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "8fa352eaa625522ae4e00d7e3154641b13a6a63b4b2bd97c92b004abd6196d54",
+    "fingerprint": "2958047448d91b549d00ffa99e27c6006abb3886c4c67eb6184db92ec6ead8b4",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13123.json",
-    "history_sha256": "eda7dff5fbe58aff334166337c19e4d3b75dc71bf21d151fc7f9de871280e0e0",
+    "history_sha256": "da4a349dd58472bbd1ffe3a5f1a2b727cdbf654f3b3ad83f5a40dd0cd6f126b0",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

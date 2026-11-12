@@ -6,7 +6,8 @@
     },
     {
       "actor_id": "EO:13065",
-      "evidence_id": "ACTOR_TEXT:EO:13065"
+      "evidence_id": "ACTOR_TEXT:EO:13065",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13081",
@@ -14,7 +15,13 @@
     },
     {
       "actor_id": "EO:13138",
-      "evidence_id": "ACTOR_TEXT:EO:13138"
+      "evidence_id": "ACTOR_TEXT:EO:13138",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:99-22727",
+      "evidence_id": "ACTOR_TEXT:FRDOC:99-22727",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -108,7 +115,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13062",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13062"
@@ -726,11 +733,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 222,
+      "char_start": 94,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 3310 note; note 'Ex. Ord. No. 13054. Eligibility of Certain Overseas Employees for Noncompetitive Appointme' [USLM note id iddeefba97-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "1ccedbbe252f7b60590904224388c8d528e28543f95d4e7cdd7fbdb533029583",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddeefba97-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13062",
       "legal_basis_candidate": "order amended a printed order (weak lead) (22 U.S.C. 3310 note)",
@@ -740,9 +756,14 @@
       "source": {
         "page_or_item": "22 U.S.C. 3310 note; note 'Ex. Ord. No. 13054. Eligibility of Certain Overseas Employees for Noncompetitive Appointme' [USLM note id iddeefba97-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddeefba97-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "1ccedbbe252f7b60590904224388c8d528e28543f95d4e7cdd7fbdb533029583",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 13054, July 7, 1997, 62 F.R. 36965, as amended by Ex. Ord. No. 13062, § 6, Sept. 29, 1997, 62 F.R. 51756, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/iddeefba97-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "1ccedbbe252f7b60590904224388c8d528e28543f95d4e7cdd7fbdb533029583",
       "where": "USC 22 U.S.C. 3310 note"
     },
     {
@@ -811,6 +832,7 @@
         "snippet": "Ex. Ord. No. 13054, July 7, 1997, 62 F.R. 36965, as amended by Ex. Ord. No. 13062, § 6, Sept. 29, 1997, 62 F.R. 51756, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/iddeefba97-b816-11f1-963c-e4c4db8c41be.txt",
         "where": "USC 22 U.S.C. 3310 note"
       },
       "proposal": {
@@ -1142,6 +1164,7 @@
       "char_end": 1480,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13065",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1182,6 +1205,7 @@
       "char_end": 8665,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13138",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1196,6 +1220,36 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1999-10-04/pdf/99-25958.pdf"
       },
       "text": "Instrument: EO:13138\nSource: https://www.govinfo.gov/content/pkg/FR-1999-10-04/pdf/99-25958.pdf\nSHA-256 of the downloaded file: dad8da2858e80af84a22cb6255fee337010290cdc3946b55688b1d8f89f22889\nLocation: 64 FR 53879, PDF pages 1-3 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 3 ===\nPresidential Documents\n53879Federal Register / Vol. 64, No. 191 / Monday, October 4, 1999 / Presidential Documents\nExecutive Order 13138 of September 30, 1999\nContinuance of Certain Federal Advisory Committees\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, and in accordance with the provisions\nof the Federal Advisory Committee Act, as amended (5 U.S.C. App.), it\nis hereby ordered as follows:\nSection 1. Each advisory committee listed below is continued until September\n30, 2001.\n(a) Committee for the Preservation of the White House; Executive Order\n11145, as amended (Department of the Interior).\n(b) Federal Advisory Council on Occupational Safety and Health; Executive\nOrder 12196, as amended (Department of Labor).\n(c) National Partnership Council; Executive Order 12871, as amended\n(Office of Personnel Management).\n(d) President’s Advisory Commission on Educational Excellence for His-\npanic Americans; Executive Order 12900 (Department of Education).\n(e) President’s Board of Advisors on Historically Black Colleges and Univer-\nsities; Executive Order 12876 (Department of Education).\n(f) President’s Board of Advisors on Tribal Colleges and Universities;\nExecutive Order 13021, as amended (Department of Education).\n(g) President’s Commission on White House Fellowships; Executive Order\n11183, as amended (Office of Personnel Management).\n(h) President’s Committee of Advisors on Science and Technology; Execu-\ntive Order 12882 (Office of Science and Technology Policy).\n(i) President’s Committee on the Arts and the Humanities; Executive Order\n12367, as amended (National Endowment for the Arts).\n(j) President’s Committee on the International Labor Organization; Execu-\ntive Order 12216, as amended (Department of Labor).\n(k) President’s Committee on the National Medal of Science; Executive\nOrder 11287, as amended (National Science Foundation).\n(l) President’s Committee on Mental Retardation, Executive Order 12994\n(Department of Health and Human Services).\n(m) President’s Council on Physical Fitness and Sports; Executive Order\n12345, as amended (Department of Health and Human Services).\n(n) President’s National Security Telecommunications Advisory Committee,\nExecutive Order 12382, as amended (Department of Defense).\n(o) Trade and Environment Policy Advisory Committee; Executive Order\n12905 (Office of the United States Trade Representative).\n(p) President’s Export Council; Executive Order 12131, as amended (Depart-\nment of Commerce).\nSec. 2. Notwithstanding the provisions of any other Executive order, the\nfunctions of the President under the Federal Advisory Committee Act that\nare applicable to the committees listed in section 1 of this order, except\nthat of reporting annually to the Congress, shall be performed by the head\nof the department or agency designated after each committee, in accordance\nVerDate 22-SEP-99 13:58 Oct 01, 1999 Jkt 183247 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\04OCE0.XXX pfrm02 PsN: 04OCE0\n=== PDF page 2 of 3 ===\n53880 Federal Register / Vol. 64, No. 191 / Monday, October 4, 1999 / Presidential Documents\nwith the guidelines and procedures established by the Administrator of\nGeneral Services.\nSec. 3. The following Executive orders, or sections thereof, which established\ncommittees that have terminated and whose work is completed, are revoked:\n(a) Executive Order 13017, as amended by Executive Orders 13040 and\n13056, establishing the Advisory Commission on Consumer Protection and\nQuality in the Health Care Industry;\n(b) Executive Order 13038, establishing the Advisory Committee on Public\nInterest Obligation of Digital Television Broadcasters, as amended by section\n5 of Executive Order 13062, and Executive Orders 13065, 13081, and 13102;\n(c) Section 5 and that part of section 6(f) of Executive Order 13010,\nas amended by section 3 of Executive Order 13025, Executive Order 13041,\nsections 1, 2, and that part of section 3 of Executive Order 13064, and\nExecutive Order 13077, establishing the Advisory Committee to the Presi-\ndent’s Commission on Critical Infrastructure Protection;\n(d) Executive Order 13037, as amended by Executive Orders 13066 and\n13108, establishing the Commission to Study Capital Budgeting;\n(e) Executive Order 13050, establishing the President’s Advisory Board\non Race;\n(f) Executive Order 12852, as amended by Executive Orders 12855, 12965,\n12980, 13053, and 13114, establishing the President’s Council on Sustainable\nDevelopment; and\n(g) Executive Order 12961, as amended by Executive Order 13034, estab-\nlishing the Presidential Advisory Committee on Gulf War Veterans’ Illnesses.\nSec. 4. Sections 1 through 4 of Executive Order 13062 are superseded.\nSec. 5. Executive Order 12131, as amended, is further amended by adding\nin section 1-102(a) a new paragraph as follows: ‘‘(9) Department of Energy.’’\nSec. 6. Executive Order 13115 is amended by adding the Department of\nthe Treasury and the Office of National Drug Control Policy to the Interagency\nTask Force on the Roles and Mission of the United States Coast Guard,\nso that the list in section 1(b) of that order shall read as follows:\n‘‘(1) Department of State;\n(2) Department of the Treasury;\n(3) Department of Defense;\n(4) Department of Justice;\n(5) Department of Commerce;\n(6) Department of Labor;\n(7) Department of Transportation;\n(8) Environmental Protection Agency;\n(9) Office of Management and Budget;\n(10) National Security Council;\n(11) Office of National Drug Control Policy;\n(12) Council on Environmental Quality;\n(13) Office of Cabinet Affairs;\n(14) National Economic Council;\n(15) Domestic Policy Council; and\n(16) United States Coast Guard.’’\nSec. 7. Executive Order 12367, as amended, is further amended as follows:\n(a) in section 1, the text ‘‘the director of the International Communication\nAgency,’’ is deleted;\n(b) in section 2, delete the first sentence and insert in lieu thereof ‘‘The\nCommittee shall advise, provide recommendations to, and assist the Presi-\nVerDate 22-SEP-99 13:58 Oct 01, 1999 Jkt 183247 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\04OCE0.XXX pfrm02 PsN: 04OCE0\n=== PDF page 3 of 3 ===\n53881Federal Register / Vol. 64, No. 191 / Monday, October 4, 1999 / Presidential Documents\ndent, the National Endowment of the Arts, the National Endowment for\nthe Humanities, and the Institute of Museum and Library Services on matters\nrelating to the arts and the humanities. The Committee shall initiate and\nassist in the development of (i) ways to promote public understanding\nand appreciation of the arts and the humanities; (ii) ways to promote private\nsector support for the arts and humanities; (iii) ways to evaluate the effective-\nness of Federal support for the arts and humanities and their relationship\nwith the private sector; (iv) the planning and coordination of appropriate\nparticipation (including productions and projects) in major national cultural\nevents, including the Millennium; (v) activities that incorporate the arts\nand the humanities in government objectives; and (vi) ways to promote\nthe recognition of excellence in the fields of the arts and the humanities.’’;\nand\n(c) in section 3(b), add the following sentence after the first sentence:\n‘‘Private funds accepted under the National Endowment for the Arts’ or\nthe National Endowment for the Humanities’ gift authority may also be\nused to pay expenses of the Committee.’’\nSec. 8. Executive Order 12345, as amended, is further amended by deleting\nthe first sentence of section 2(b) and inserting in lieu thereof the following\nthree sentences. ‘‘The council shall be composed of twenty members ap-\npointed by the President. Each member shall serve a term of 2 years and\nmay continue to serve after the expiration of their term until a successor\nis appointed. A member appointed to fill an unexpired term will be appointed\nfor the remainder of such term.’’\nSec. 9. This order shall be effective September 30, 1999.\nœ–\nTHE WHITE HOUSE,\nSeptember 30, 1999.\n[FR Doc. 99–25958\nFiled 10–1–99; 9:23 am]\nBilling code 3195–01–P\nVerDate 22-SEP-99 13:58 Oct 01, 1999 Jkt 183247 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\04OCE0.XXX pfrm02 PsN: 04OCE0"
+    },
+    "ACTOR_TEXT:FRDOC:99-22727": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:99-22727",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 2016,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:99-22727",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:99-22727",
+        "page_or_item": "64 FR 47767; FR Doc. 99-22727; Notice: President's Export Council: Meeting of the President's Export Council",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "0ac2435c0aacc523e7bf8e64961f42ac7edbf29af9421a6dcb118e461afc70f0",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-99-22727.txt",
+        "text_sha256": "0ac2435c0aacc523e7bf8e64961f42ac7edbf29af9421a6dcb118e461afc70f0",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1999/09/01/99-22727.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 64 Issue 169 (Wednesday, September 1, 1999)</title>\n</head>\n<body><pre>[Federal Register Volume 64, Number 169 (Wednesday, September 1, 1999)]\n[Notices]\n[Page 47767]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 99-22727]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF COMMERCE\n\nInternational Trade Administration\n\n\nPresident's Export Council: Meeting of the President's Export \nCouncil\n\nAGENCY: International Trade Administration, U.S. Department of \nCommerce.\n\nACTION: Notice of an open meeting.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The President's Export Council (PEC) will hold a full Council \nmeeting to discuss topics related to export expansion. The meeting will \ninclude briefings on trade priorities and issues, the World Trade \nOrganization, economic sanctions and Virtual Trade Mission activities. \nThe PEC was established on December 20, 1973, and reconstituted May 4, \n1979, to advise the President on matters relating to U.S. trade. It was \nmost recently renewed by Executive Order 13062.\n\nDATES: September 22, 1999.\n\nTIME: 9:45 a.m. to 3:30 p.m.\n\nADDRESSES: U.S. Capitol, Room SC-5, Washington, DC, 20510. This program \nis physically accessible to people with disabilities. Requests for sign \nlanguage interpretation or other auxiliary aids should be submitted no \nlater than September 8, 1999, to J. Marc Chittum, President's Export \nCouncil, Room 2015B, Washington, DC, 20230. Seating is limited and will \nbe on a first come first serve basis.\n\nFOR FURTHER INFORMATION CONTACT: J. Marc Chittum, President's Export \nCouncil, Room 2015B, Washington, DC, 20230 (Phone: 202-482-1124).\n\n    Dated August 25, 1999.\nJ. Marc Chittum,\nStaff Director and Executive Secretary, President's Export Council.\n[FR Doc. 99-22727 Filed 8-31-99; 8:45 am]\nBILLING CODE 3510-DR-U\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:13062#sec1": {
       "char_end": 1172,
@@ -1791,6 +1845,42 @@
       },
       "text": "Sec. 7. This order shall be effective September 30, 1997.\nœ–"
     },
+    "CURRENT:EO:13062#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 222,
+      "char_start": 94,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 3310 note; note 'Ex. Ord. No. 13054. Eligibility of Certain Overseas Employees for Noncompetitive Appointme' [USLM note id iddeefba97-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "1ccedbbe252f7b60590904224388c8d528e28543f95d4e7cdd7fbdb533029583",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddeefba97-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13062#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13062",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (22 U.S.C. 3310 note)",
+      "machine_lead": true,
+      "mention_id": "usc:4183484b8a5c",
+      "snippet": "Ex. Ord. No. 13054, July 7, 1997, 62 F.R. 36965, as amended by Ex. Ord. No. 13062, § 6, Sept. 29, 1997, 62 F.R. 51756, provided:",
+      "source": {
+        "page_or_item": "22 U.S.C. 3310 note; note 'Ex. Ord. No. 13054. Eligibility of Certain Overseas Employees for Noncompetitive Appointme' [USLM note id iddeefba97-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddeefba97-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "1ccedbbe252f7b60590904224388c8d528e28543f95d4e7cdd7fbdb533029583",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13054, July 7, 1997, 62 F.R. 36965, as amended by Ex. Ord. No. 13062, § 6, Sept. 29, 1997, 62 F.R. 51756, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/iddeefba97-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "1ccedbbe252f7b60590904224388c8d528e28543f95d4e7cdd7fbdb533029583",
+      "where": "USC 22 U.S.C. 3310 note"
+    },
     "ORIGINAL:EO:13062": {
       "acceptable_as_original": true,
       "actor_id": "EO:13062",
@@ -1815,37 +1905,6 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1997-10-02/pdf/97-26364.pdf"
       },
       "text": "Instrument: EO:13062\nSource: https://www.govinfo.gov/content/pkg/FR-1997-10-02/pdf/97-26364.pdf\nSHA-256 of the downloaded file: 9d07849b94e259a259fb81828fe502bbe0860671d9dd962788b4bb0a42f42026\nLocation: 62 FR 51755, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n51755\nFederal Register\nVol. 62, No. 191\nThursday, October 2, 1997\nTitle 3—\nThe President\nFederal Register / Vol. 62, No. 191 / Thursday, October 2, 1997 / Presidential Documents\nExecutive Order 13062 of September 29, 1997\nContinuance of Certain Federal Advisory Committees and\nAmendments to Executive Orders 13038 and 13054\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, and in accordance with the provisions\nof the Federal Advisory Committee Act, as amended (5 U.S.C. App.), it\nis hereby ordered as follows:\nSection 1. Each advisory committee listed below is continued until September\n30, 1999.\n(a) Committee for the Preservation of the White House; Executive Order\n11145, as amended (Department of the Interior).\n(b) Federal Advisory Council on Occupational Safety and Health; Executive\nOrder 12196, as amended (Department of Labor).\n(c) National Partnership Council; Executive Order 12871, as amended\n(Office of Personnel Management).\n(d) President’s Advisory Commission on Education Excellence for Hispanic\nAmericans; Executive Order 12900 (Department of Education).\n(e) President’s Board of Advisors on Historically Black Colleges and Univer-\nsities; Executive Order 12876 (Department of Education).\n(f) President’s Commission on White House Fellowships; Executive Order\n11183, as amended (Office of Personnel Management).\n(g) President’s Committee of Advisors on Science and Technology; Execu-\ntive Order 12882 (Office of Science and Technology Policy).\n(h) President’s Committee on the Arts and the Humanities; Executive\nOrder 12367, as amended (National Endowment for the Arts).\n(i) President’s Committee on the International Labor Organization; Execu-\ntive Order 12216 (Department of Labor).\n(j) President’s Committee on the National Medal of Science; Executive\nOrder 11287, as amended (National Science Foundation).\n(k) President’s Committee on Mental Retardation; Executive Order 12994\n(Department of Health and Human Services).\n(l) President’s Council on Physical Fitness and Sports; Executive Order\n12345, as amended (Department of Health and Human Services).\n(m) President’s Export Council; Executive Order 12131, as amended (De-\npartment of Commerce).\n(n) President’s National Security Telecommunications Advisory Committee;\nExecutive Order 12382, as amended (Department of Defense).\n(o) Trade and Environment Policy Advisory Committee; Executive Order\n12905 (Office of the United States Trade Representative).\nSec. 2. Notwithstanding the provisions of any other Executive order, the\nfunctions of the President under the Federal Advisory Committee Act that\nare applicable to the committees listed in section 1 of this order, except\nthat of reporting annually to the Congress, shall be performed by the head\nof the department or agency designated after each committee, in accordance\nwith the guidelines and procedures established by the Administrator of\nGeneral Services.\n=== PDF page 2 of 2 ===\n51756 Federal Register / Vol. 62, No. 191 / Thursday, October 2, 1997 / Presidential Documents\nSec. 3. The following Executive orders which established committees that\nhave terminated and whose work is completed, are revoked:\n(a) Executive Order 12891, establishing the Advisory Committee on Human\nRadiation Experiments;\n(b) Executive Order 12964, as amended by Executive Orders 12987 and\n13032, establishing the Commission on United States-Pacific Trade and In-\nvestment Policy;\n(c) Executive Order 12946, establishing the President’s Advisory Board\non Arms Proliferation Policy;\n(d) Executive Order 12864, as amended by Executive Orders 12890, 12921,\nand 12970, establishing the United States Advisory Council on the National\nInformation Infrastructure; and\n(e) Executive Order 13015, establishing the White House Commission on\nAviation Safety and Security.\nSec. 4. Executive Order 12974 is superseded.\nSec. 5. In Executive Order 13038, the second sentence of section 1 is amended\nby deleting ‘‘15’’ and inserting ‘‘22’’ in lieu thereof.\nSec. 6. Executive Order 13054 is amended by revising section 1 to read\nas follows: ‘‘A United States citizen who is a family member of a Federal\ncivilian employee who has separated from Federal service to accept employ-\nment with the American Institute in Taiwan pursuant to section 11 of\nPublic Law 96–8 (22 U.S.C. 3310(a)) may be appointed noncompetitively\nin a manner similar to noncompetitive appointments under Executive Order\n12721 and implementing regulations of the Office of Personnel Management\nto a competitive service position in the executive branch, provided such\nfamily member meets the qualifications and other requirements established\nby the Director of the Office of Personnel Management, including an appro-\npriate period of satisfactory overseas employment with the American Institute\nin Taiwan.’’\nSec. 7. This order shall be effective September 30, 1997.\nœ–\nTHE WHITE HOUSE,\nSeptember 29, 1997.\n[FR Doc. 97–26364\nFiled 10–1–97; 8:45 am]\nBilling code 3195–01–P"
-    },
-    "TERM:EO:13062:10c44382294e0c07@47cd3711d7c915d0": {
-      "actor_id": "EO:13062",
-      "char_end": 992,
-      "char_start": 795,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13062:10c44382294e0c07@47cd3711d7c915d0",
-      "instrument_id": "EO:13062",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13062#a-2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13062",
-        "page_or_item": "22 U.S.C. 3310",
-        "requires_page_check": false,
-        "sha256": "47cd3711d7c915d001f7dd8cd0513bbbbc0455314bd91cd45ce613e336e558c3",
-        "signing_date": "1997-09-29",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t22-s3310.txt",
-        "text_sha256": "47cd3711d7c915d001f7dd8cd0513bbbbc0455314bd91cd45ce613e336e558c3",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title22-section3310&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Probably should be “which”.\n the officer or employee would have had or acquired had he or she not been so separated, subject to such time period and other conditions as the President may prescribe."
     },
     "TERM:EO:13062:ad1fd5cf27e636b8@356d0ec029b2cd64": {
       "actor_id": "EO:13062",
@@ -1973,7 +2032,7 @@
       "text": "Each advisory committee listed below is continued until September 30, 1999."
     }
   },
-  "fingerprint": "c0b8d416d86012059a5b62a4b453fb6045275d910201766f540723add7060a3f",
+  "fingerprint": "bb3a0bc50915b0419e2a18b65a306ea54ad004ebb16f8a2b547d07b6e256f698",
   "instrument_id": "EO:13062",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2483,32 +2542,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 17,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2531,19 +2592,18 @@
     "TERM:EO:13062:ad1fd5cf27e636b8@356d0ec029b2cd64",
     "TERM:EO:13062:ea81b35c26bbb304@4c1149578d995984",
     "TERM:EO:13062:ad1fd5cf27e636b8@d3898628fe0b3ea8",
-    "TERM:EO:13062:ad1fd5cf27e636b8@509f245181925cf6",
-    "TERM:EO:13062:10c44382294e0c07@47cd3711d7c915d0"
+    "TERM:EO:13062:ad1fd5cf27e636b8@509f245181925cf6"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 6,
-    "fingerprint": "30d3f3b5c1a365e4972994c6bf568f7d0a81b08b0e91c757a5f9d53902a61cf7",
+    "fingerprint": "b7e902ecd2f9f836fd19a84712c306373497a59dec4cd4a92607d835fc404d84",
     "flags": [
       "EVENT_QUOTE_NOT_VERIFIED_AGAINST_HELD_RAW_API",
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_13062.json",
-    "history_sha256": "6cc72cd15caafa0e653720089222a736fd1083f5f5794b8c06d52be98a8aabd2",
+    "history_sha256": "ffcf9f4b8995f864d5d83a434ce43155f5b240440ddfe497fee0f55c7a911578",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:14148",
-      "evidence_id": "ACTOR_TEXT:EO:14148"
+      "evidence_id": "ACTOR_TEXT:EO:14148",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -10,7 +11,8 @@
     "ACT:EO:13986>EO:14148@314a0947a90d2374",
     "ACT:EO:13986>EO:14148@2a9d3fe3d202c0a1",
     "ACT:EO:13986>EO:14148@33d749ebffea2f23",
-    "ACT:EO:13986>EO:14148@8ccc1b29d840b031"
+    "ACT:EO:13986>EO:14148@8ccc1b29d840b031",
+    "ACT:EO:13986>EO:14148@611d12bf06d54db0"
   ],
   "chain": {
     "confidence": "medium",
@@ -126,9 +128,37 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-28/pdf/2025-01901.pdf"
         },
         "verb": "revoke"
+      },
+      {
+        "actor_id": "EO:14148",
+        "char_end": 2383,
+        "char_start": 1992,
+        "confidence": "medium",
+        "how_named": "direct",
+        "id": "CHAIN:EO:13986#5",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "Sec. 2. Revocation of Orders and Actions. The following executive actions \nare hereby revoked: \n(a) Executive Order 13985 of January 20, 2021 (Advancing Racial Equity \nand Support for Underserved Communities Through the Federal Govern-\nment). \n(b) Executive Order 13986 of January 20, 2021 (Ensuring a Lawful and \nAccurate Enumeration and Apportionment Pursuant to the Decennial Cen-\nsus). \n",
+        "sections_touched": [
+          "whole"
+        ],
+        "signing_date": "2025-01-20",
+        "source": {
+          "acceptable_as_original": false,
+          "filing_date": null,
+          "grade": "held_text_lead",
+          "instrument_id": "EO:14148",
+          "page_or_item": "Exact source version d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072; 2025-01901.pdf PDF pages 1-5 of 5",
+          "requires_page_check": false,
+          "sha256": "d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072",
+          "signing_date": "2025-01-20",
+          "text_path": "jobs/source-ladder/output/texts/queue_EO_14148_Exact_source_version_d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072_41d74fa1b6.txt",
+          "text_sha256": "fcd25301f277094f62109f6c08dc7f0ee48a6a97d13f2f5d5e8526676f38d255",
+          "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-28/pdf/2025-01901.pdf"
+        },
+        "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13986",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13986"
@@ -386,11 +416,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 172,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "13 U.S.C. 141 note; note 'Ex. Ord. No. 13986. Ensuring a Lawful and Accurate Enumeration and Apportionment Pursuant ' [USLM note id idbd080d39-76cd-11f0-842a-a3c49cc8bf0c]; usc13.xml (sha256 9a69f622eebc0fc69b5be94396fcc6e48f9fae90371aaca3bf0febf0f399980a) in xml_uscAll@119-121.zip",
+        "sha256": "31810efaba5a7c4d4fd2cca8cf1689d613050181cce0ade131558c83c898aa21",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idbd080d39-76cd-11f0-842a-a3c49cc8bf0c",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13986",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (13 U.S.C. 141 note)",
@@ -400,10 +439,14 @@
       "source": {
         "page_or_item": "13 U.S.C. 141 note; note 'Ex. Ord. No. 13986. Ensuring a Lawful and Accurate Enumeration and Apportionment Pursuant ' [USLM note id idbd080d39-76cd-11f0-842a-a3c49cc8bf0c]; usc13.xml (sha256 9a69f622eebc0fc69b5be94396fcc6e48f9fae90371aaca3bf0febf0f399980a) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idbd080d39-76cd-11f0-842a-a3c49cc8bf0c.txt",
+        "text_sha256": "31810efaba5a7c4d4fd2cca8cf1689d613050181cce0ade131558c83c898aa21",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=idbd080d39-76cd-11f0-842a-a3c49cc8bf0c",
+      "text": "Ex. Ord. No. 13986. Ensuring a Lawful and Accurate Enumeration and Apportionment Pursuant to the Decennial Census\nEx. Ord. No. 13986, Jan. 20, 2021, 86 F.R. 7015, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idbd080d39-76cd-11f0-842a-a3c49cc8bf0c.txt",
+      "text_sha256": "31810efaba5a7c4d4fd2cca8cf1689d613050181cce0ade131558c83c898aa21",
       "where": "USC 13 U.S.C. 141 note"
     },
     {
@@ -455,7 +498,7 @@
         "snippet": "Ex. Ord. No. 13986. Ensuring a Lawful and Accurate Enumeration and Apportionment Pursuant to the Decennial Census | Ex. Ord. No. 13986, Jan. 20, 2021, 86 F.R. 7015, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=idbd080d39-76cd-11f0-842a-a3c49cc8bf0c",
+        "text_path": "usc-notes/idbd080d39-76cd-11f0-842a-a3c49cc8bf0c.txt",
         "where": "USC 13 U.S.C. 141 note"
       },
       "proposal": {
@@ -712,6 +755,52 @@
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
           "provision_label": "Section 1.",
           "provision_text": " Sec. 2. Revocation of Orders and Actions. The following \n executive actions are hereby revoked:\n\n (a) Executive Order 13985 of January 20, 2021 \n (Advancing Racial Equity and Support for Underserved \n Communities Through the Federal Government).\n (b) Executive Order 13986 of January 20, 2021 \n (Ensuring a Lawful and Accurate Enumeration and \n Apportionment Pursuant to the Decennial Census).\n",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "whole",
+          "signing_date": "2025-01-20",
+          "target_id": "EO:13986",
+          "verb": "revoke"
+        },
+        {
+          "actor_id": "EO:14148",
+          "actor_source": {
+            "acceptable_as_original": false,
+            "filing_date": null,
+            "grade": "held_text_lead",
+            "instrument_id": "EO:14148",
+            "page_or_item": "Exact source version d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072; 2025-01901.pdf PDF pages 1-5 of 5",
+            "requires_page_check": false,
+            "sha256": "d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072",
+            "signing_date": "2025-01-20",
+            "text_path": "jobs/source-ladder/output/texts/queue_EO_14148_Exact_source_version_d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072_41d74fa1b6.txt",
+            "text_sha256": "fcd25301f277094f62109f6c08dc7f0ee48a6a97d13f2f5d5e8526676f38d255",
+            "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-28/pdf/2025-01901.pdf"
+          },
+          "char_end": 2383,
+          "char_start": 1992,
+          "confidence": "medium",
+          "effective_class": "unknown",
+          "effective_date": null,
+          "effective_wording": [
+            {
+              "char_end": 2622,
+              "char_start": 2383,
+              "text": "(c) Executive Order 13987 of January 20, 2021 (Organizing and Mobilizing \nthe United States Government To Provide a Unified and Effective Response \nTo Combat COVID–19 and To Provide United States Leadership on Global \nHealth and Security)."
+            },
+            {
+              "char_end": 9088,
+              "char_start": 8925,
+              "text": "(vv) Executive Order 14074 of May 25, 2022 (Advancing Effective, Account-\nable Policing and Criminal Justice Practices To Enhance Public Trust and \nPublic Safety)."
+            }
+          ],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:13986>EO:14148@611d12bf06d54db0",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
+          "provision_label": "Section 1.",
+          "provision_text": "Sec. 2. Revocation of Orders and Actions. The following executive actions \nare hereby revoked: \n(a) Executive Order 13985 of January 20, 2021 (Advancing Racial Equity \nand Support for Underserved Communities Through the Federal Govern-\nment). \n(b) Executive Order 13986 of January 20, 2021 (Ensuring a Lawful and \nAccurate Enumeration and Apportionment Pursuant to the Decennial Cen-\nsus). \n",
           "reaches_target_via": "",
           "savings_phrases": [],
           "scope": "whole",
@@ -982,6 +1071,66 @@
       "text": "Sec. 2. Revocation of Orders and Actions. The following executive actions are hereby revoked:\n\n(a) Executive Order 13985 of January 20, 2021 (Advancing Racial Equity and Support for Underserved Communities Through the Federal Government).\n\n(b) Executive Order 13986 of January 20, 2021 (Ensuring a Lawful and Accurate Enumeration and Apportionment Pursuant to the Decennial Census).\n\n",
       "verb": "revoke"
     },
+    "ACT:EO:13986>EO:14148@611d12bf06d54db0": {
+      "actor_id": "EO:14148",
+      "actor_source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14148",
+        "page_or_item": "Exact source version d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072; 2025-01901.pdf PDF pages 1-5 of 5",
+        "requires_page_check": false,
+        "sha256": "d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072",
+        "signing_date": "2025-01-20",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_14148_Exact_source_version_d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072_41d74fa1b6.txt",
+        "text_sha256": "fcd25301f277094f62109f6c08dc7f0ee48a6a97d13f2f5d5e8526676f38d255",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-28/pdf/2025-01901.pdf"
+      },
+      "char_end": 2383,
+      "char_start": 1992,
+      "confidence": "medium",
+      "effective_class": "unknown",
+      "effective_date": null,
+      "effective_wording": [
+        {
+          "char_end": 2622,
+          "char_start": 2383,
+          "text": "(c) Executive Order 13987 of January 20, 2021 (Organizing and Mobilizing \nthe United States Government To Provide a Unified and Effective Response \nTo Combat COVID–19 and To Provide United States Leadership on Global \nHealth and Security)."
+        },
+        {
+          "char_end": 9088,
+          "char_start": 8925,
+          "text": "(vv) Executive Order 14074 of May 25, 2022 (Advancing Effective, Account-\nable Policing and Criminal Justice Practices To Enhance Public Trust and \nPublic Safety)."
+        }
+      ],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:13986>EO:14148@611d12bf06d54db0",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
+      "provision_label": "Section 1.",
+      "provision_text": "Sec. 2. Revocation of Orders and Actions. The following executive actions \nare hereby revoked: \n(a) Executive Order 13985 of January 20, 2021 (Advancing Racial Equity \nand Support for Underserved Communities Through the Federal Govern-\nment). \n(b) Executive Order 13986 of January 20, 2021 (Ensuring a Lawful and \nAccurate Enumeration and Apportionment Pursuant to the Decennial Cen-\nsus). \n",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "whole",
+      "signing_date": "2025-01-20",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14148",
+        "page_or_item": "Exact source version d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072; 2025-01901.pdf PDF pages 1-5 of 5",
+        "requires_page_check": false,
+        "sha256": "d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072",
+        "signing_date": "2025-01-20",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_14148_Exact_source_version_d658f5158a27f6d4a220ce2ec854bdbd596ecc841fb16884954a2e2ee39ab072_41d74fa1b6.txt",
+        "text_sha256": "fcd25301f277094f62109f6c08dc7f0ee48a6a97d13f2f5d5e8526676f38d255",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-28/pdf/2025-01901.pdf"
+      },
+      "target_id": "EO:13986",
+      "text": "Sec. 2. Revocation of Orders and Actions. The following executive actions \nare hereby revoked: \n(a) Executive Order 13985 of January 20, 2021 (Advancing Racial Equity \nand Support for Underserved Communities Through the Federal Govern-\nment). \n(b) Executive Order 13986 of January 20, 2021 (Ensuring a Lawful and \nAccurate Enumeration and Apportionment Pursuant to the Decennial Cen-\nsus). \n",
+      "verb": "revoke"
+    },
     "ACT:EO:13986>EO:14148@8ccc1b29d840b031": {
       "actor_id": "EO:14148",
       "actor_source": {
@@ -1047,6 +1196,7 @@
       "char_end": 16084,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14148",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1304,6 +1454,42 @@
       },
       "text": "(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \nVerDate Sep<11>2014 20:56 Jan 22, 2021 Jkt 253001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\25JAE6.SGM 25JAE6jbell on DSKJLSW7X2PROD with EXECORD6\n=== PDF page 3 of 3 ===\n7017 Federal Register / Vol. 86, No. 14 / Monday, January 25, 2021 / Presidential Documents"
     },
+    "CURRENT:EO:13986#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 172,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "13 U.S.C. 141 note; note 'Ex. Ord. No. 13986. Ensuring a Lawful and Accurate Enumeration and Apportionment Pursuant ' [USLM note id idbd080d39-76cd-11f0-842a-a3c49cc8bf0c]; usc13.xml (sha256 9a69f622eebc0fc69b5be94396fcc6e48f9fae90371aaca3bf0febf0f399980a) in xml_uscAll@119-121.zip",
+        "sha256": "31810efaba5a7c4d4fd2cca8cf1689d613050181cce0ade131558c83c898aa21",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idbd080d39-76cd-11f0-842a-a3c49cc8bf0c",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13986#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13986",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (13 U.S.C. 141 note)",
+      "machine_lead": true,
+      "mention_id": "usc:eb8e2823fce8",
+      "snippet": "Ex. Ord. No. 13986. Ensuring a Lawful and Accurate Enumeration and Apportionment Pursuant to the Decennial Census | Ex. Ord. No. 13986, Jan. 20, 2021, 86 F.R. 7015, provided:",
+      "source": {
+        "page_or_item": "13 U.S.C. 141 note; note 'Ex. Ord. No. 13986. Ensuring a Lawful and Accurate Enumeration and Apportionment Pursuant ' [USLM note id idbd080d39-76cd-11f0-842a-a3c49cc8bf0c]; usc13.xml (sha256 9a69f622eebc0fc69b5be94396fcc6e48f9fae90371aaca3bf0febf0f399980a) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idbd080d39-76cd-11f0-842a-a3c49cc8bf0c.txt",
+        "text_sha256": "31810efaba5a7c4d4fd2cca8cf1689d613050181cce0ade131558c83c898aa21",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13986. Ensuring a Lawful and Accurate Enumeration and Apportionment Pursuant to the Decennial Census\nEx. Ord. No. 13986, Jan. 20, 2021, 86 F.R. 7015, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idbd080d39-76cd-11f0-842a-a3c49cc8bf0c.txt",
+      "text_sha256": "31810efaba5a7c4d4fd2cca8cf1689d613050181cce0ade131558c83c898aa21",
+      "where": "USC 13 U.S.C. 141 note"
+    },
     "ORIGINAL:EO:13986": {
       "acceptable_as_original": true,
       "actor_id": "EO:13986",
@@ -1394,6 +1580,37 @@
       "stated_end_date": null,
       "text": "In preparing the report to the President\nrequired under section 141(b) of title 13, United States Code, the Secretary\nshall report the tabulation of total population by State that reflects the\nwhole number of persons whose usual residence was in each State as of\nthe designated census date in section 141(a) of title 13, United States Code,\nwithout regard to immigration status."
     },
+    "TERM:EO:13986:68bb94c3d99281a0@0ce98af7392f8861": {
+      "actor_id": "EO:13986",
+      "char_end": 9109,
+      "char_start": 8991,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13986:68bb94c3d99281a0@0ce98af7392f8861",
+      "instrument_id": "EO:13986",
+      "kind": "condition",
+      "mechanism": "own_terms_condition",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13986#sec6-b",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13986",
+        "page_or_item": "Exact source version bb19066c37c34bbb32a045538974747bef2d369ce8e564b5a575aa601c778dfd; 2021-01755.pdf PDF pages 1-3 of 3",
+        "requires_page_check": false,
+        "sha256": "bb19066c37c34bbb32a045538974747bef2d369ce8e564b5a575aa601c778dfd",
+        "signing_date": "2021-01-20",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_13986_Exact_source_version_bb19066c37c34bbb32a045538974747bef2d369ce8e564b5a575aa601c778dfd_f66565f4e4.txt",
+        "text_sha256": "0ce98af7392f88613fe91bbc41ab59ccf0adeb0b0ab08352d641f6a330119b3c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-01-25/pdf/2021-01755.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
+    },
     "TERM:EO:13986:68bb94c3d99281a0@59bef87132e3c8dc": {
       "actor_id": "EO:13986",
       "char_end": 9022,
@@ -1422,6 +1639,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
+    },
+    "TERM:EO:13986:705c5eb090901d43@0ce98af7392f8861": {
+      "actor_id": "EO:13986",
+      "char_end": 3396,
+      "char_start": 3080,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13986:705c5eb090901d43@0ce98af7392f8861",
+      "instrument_id": "EO:13986",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13986#sec1",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13986",
+        "page_or_item": "Exact source version bb19066c37c34bbb32a045538974747bef2d369ce8e564b5a575aa601c778dfd; 2021-01755.pdf PDF pages 1-3 of 3",
+        "requires_page_check": false,
+        "sha256": "bb19066c37c34bbb32a045538974747bef2d369ce8e564b5a575aa601c778dfd",
+        "signing_date": "2021-01-20",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_13986_Exact_source_version_bb19066c37c34bbb32a045538974747bef2d369ce8e564b5a575aa601c778dfd_f66565f4e4.txt",
+        "text_sha256": "0ce98af7392f88613fe91bbc41ab59ccf0adeb0b0ab08352d641f6a330119b3c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-01-25/pdf/2021-01755.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "(2 U.S.C. 2a(b).) \nFinally, within 1 year of the decennial census date, the Secretary must \nalso report to the Governor and officers or public bodies having responsibility \nfor legislative apportionment or districting of each State the population \ntabulations to be used for apportioning districts within that State."
     },
     "TERM:EO:13986:705c5eb090901d43@59bef87132e3c8dc": {
       "actor_id": "EO:13986",
@@ -1485,6 +1733,37 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(2 U.S.C. 2a(b).) Finally, within 1 year of the decennial census date, the Secretary must also report to the Governor and officers or public bodies having responsibility for legislative apportionment or districting of each State the population tabulations to be used for apportioning districts within that State."
+    },
+    "TERM:EO:13986:983610162cd040f1@0ce98af7392f8861": {
+      "actor_id": "EO:13986",
+      "char_end": 7423,
+      "char_start": 7040,
+      "computed_end_candidate": null,
+      "confidence": "medium",
+      "effective_date": null,
+      "id": "TERM:EO:13986:983610162cd040f1@0ce98af7392f8861",
+      "instrument_id": "EO:13986",
+      "kind": "report_deadline",
+      "mechanism": "own_terms_report_deadline",
+      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
+      "notes": "Machine wording lead; no cessation or occurrence inferred.",
+      "scope_id": "EO:13986#sec3",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:13986",
+        "page_or_item": "Exact source version bb19066c37c34bbb32a045538974747bef2d369ce8e564b5a575aa601c778dfd; 2021-01755.pdf PDF pages 1-3 of 3",
+        "requires_page_check": false,
+        "sha256": "bb19066c37c34bbb32a045538974747bef2d369ce8e564b5a575aa601c778dfd",
+        "signing_date": "2021-01-20",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_13986_Exact_source_version_bb19066c37c34bbb32a045538974747bef2d369ce8e564b5a575aa601c778dfd_f66565f4e4.txt",
+        "text_sha256": "0ce98af7392f88613fe91bbc41ab59ccf0adeb0b0ab08352d641f6a330119b3c",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2021-01-25/pdf/2021-01755.pdf"
+      },
+      "start_date": null,
+      "stated_end_date": null,
+      "text": "In preparing the report to the President \nrequired under section 141(b) of title 13, United States Code, the Secretary \nshall report the tabulation of total population by State that reflects the \nwhole number of persons whose usual residence was in each State as of \nthe designated census date in section 141(a) of title 13, United States Code, \nwithout regard to immigration status."
     },
     "TERM:EO:13986:983610162cd040f1@59bef87132e3c8dc": {
       "actor_id": "EO:13986",
@@ -1612,7 +1891,7 @@
       "text": "(2 U.S.C. 2a(b).)\nFinally, within 1 year of the decennial census date, the Secretary must\nalso report to the Governor and officers or public bodies having responsibility\nfor legislative apportionment or districting of each State the population\ntabulations to be used for apportioning districts within that State."
     }
   },
-  "fingerprint": "dabb107141652f8c2e39647b7f8358441f950dc136c65f9e27429327aac1b8f1",
+  "fingerprint": "9511ac9eb0b272cc2cab21fbe393bb8fc4c93a524cc010b9989bf290da062790",
   "instrument_id": "EO:13986",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1645,7 +1924,8 @@
       "own_term_evidence_ids": [
         "TERM:EO:13986:705c5eb090901d43@59bef87132e3c8dc",
         "TERM:EO:13986:761e05d04445c242@62ce781567e56922",
-        "TERM:EO:13986:bceafc25208f47cd@011860e965a9d84e"
+        "TERM:EO:13986:bceafc25208f47cd@011860e965a9d84e",
+        "TERM:EO:13986:705c5eb090901d43@0ce98af7392f8861"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -1690,7 +1970,8 @@
       "own_term_evidence_ids": [
         "TERM:EO:13986:983610162cd040f1@59bef87132e3c8dc",
         "TERM:EO:13986:10470e02dda0e2ef@62ce781567e56922",
-        "TERM:EO:13986:6817f5086e78fa12@011860e965a9d84e"
+        "TERM:EO:13986:6817f5086e78fa12@011860e965a9d84e",
+        "TERM:EO:13986:983610162cd040f1@0ce98af7392f8861"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -1805,7 +2086,8 @@
       "own_term_evidence_ids": [
         "TERM:EO:13986:68bb94c3d99281a0@59bef87132e3c8dc",
         "TERM:EO:13986:9adc7c9f4d76832c@62ce781567e56922",
-        "TERM:EO:13986:b42b4eca5866e12c@011860e965a9d84e"
+        "TERM:EO:13986:b42b4eca5866e12c@011860e965a9d84e",
+        "TERM:EO:13986:68bb94c3d99281a0@0ce98af7392f8861"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects.",
@@ -1841,32 +2123,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 3,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1890,15 +2174,18 @@
     "TERM:EO:13986:9adc7c9f4d76832c@62ce781567e56922",
     "TERM:EO:13986:bceafc25208f47cd@011860e965a9d84e",
     "TERM:EO:13986:6817f5086e78fa12@011860e965a9d84e",
-    "TERM:EO:13986:b42b4eca5866e12c@011860e965a9d84e"
+    "TERM:EO:13986:b42b4eca5866e12c@011860e965a9d84e",
+    "TERM:EO:13986:705c5eb090901d43@0ce98af7392f8861",
+    "TERM:EO:13986:983610162cd040f1@0ce98af7392f8861",
+    "TERM:EO:13986:68bb94c3d99281a0@0ce98af7392f8861"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "35974e179caa4cb79fa8e2e6102cfd2fdc176c0e1ade95ef4a821acf4f8f8cec",
+    "fingerprint": "6d3229fcb97e7522bc0485430b8e7ef5bccc38a0038e8b7f819c5ed2f93eebfa",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13986.json",
-    "history_sha256": "72a722661ec37355a018252a04eb756297f2701e27d5b40ba48cfae10c0bb09d",
+    "history_sha256": "affd826c24e20a79f8278c047ee12850363b3ad160d9f5c5875458032db7a3e2",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

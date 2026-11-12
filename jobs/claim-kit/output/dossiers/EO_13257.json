@@ -10,12 +10,30 @@
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@1861"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 3266,
+      "windows_omitted": 0
     },
     {
       "actor_id": "EO:13333",
-      "evidence_id": "ACTOR_TEXT:EO:13333"
+      "evidence_id": "ACTOR_TEXT:EO:13333",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:05-20549",
+      "evidence_id": "ACTOR_TEXT:FRDOC:05-20549",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:06-9855",
+      "evidence_id": "ACTOR_TEXT:FRDOC:06-9855",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -238,7 +256,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13257",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13257"
@@ -887,11 +905,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 277,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 7103 note; note 'Ex. Ord. No. 13257. President’s Interagency Task Force To Monitor and Combat Trafficking i' [USLM note id iddf8a9b7b-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "3836e0134f5cafd29edcc92ad3aa75bddae29be649e5a47b5d6b3996e5cc82bf",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddf8a9b7b-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13257",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (22 U.S.C. 7103 note)",
@@ -901,19 +928,32 @@
       "source": {
         "page_or_item": "22 U.S.C. 7103 note; note 'Ex. Ord. No. 13257. President’s Interagency Task Force To Monitor and Combat Trafficking i' [USLM note id iddf8a9b7b-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddf8a9b7b-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "3836e0134f5cafd29edcc92ad3aa75bddae29be649e5a47b5d6b3996e5cc82bf",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=iddf8a9b7b-b816-11f1-963c-e4c4db8c41be",
+      "text": "Ex. Ord. No. 13257. President’s Interagency Task Force To Monitor and Combat Trafficking in Persons\nEx. Ord. No. 13257, Feb. 13, 2002, 67 F.R. 7259, as amended by Ex. Ord. No. 13286, § 5, Feb. 28, 2003, 68 F.R. 10619; Ex. Ord. No. 13333, Mar. 18, 2004, 69 F.R. 13455, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/iddf8a9b7b-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "3836e0134f5cafd29edcc92ad3aa75bddae29be649e5a47b5d6b3996e5cc82bf",
       "where": "USC 22 U.S.C. 7103 note"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 13392,
+      "char_start": 13048,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 7103; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "89af750f48453d0e1ba0b13228f9190a13a135c1fbee70b51d78e0a1d8756845",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t22/s7103",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13257",
       "legal_basis_candidate": "statute text names the order (22 U.S.C. 7103)",
@@ -923,18 +963,32 @@
       "source": {
         "page_or_item": "22 U.S.C. 7103; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t22_s7103-f754217854.txt",
+        "text_sha256": "89af750f48453d0e1ba0b13228f9190a13a135c1fbee70b51d78e0a1d8756845",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "(A)\nIn general\nThe Operating Group shall consist of the senior officials designated as representatives of the appointed members of the Task Force (pursuant to Executive Order No. 13257 of February 13, 2002).\n(B)\nChairperson\nThe Operating Group shall be chaired by the Director of the Office to Monitor and Combat Trafficking of the Department o",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t22_s7103-f754217854.txt",
+      "text_sha256": "89af750f48453d0e1ba0b13228f9190a13a135c1fbee70b51d78e0a1d8756845",
       "where": "USC 22 U.S.C. 7103"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 1909,
+      "char_start": 1662,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 7103 note; note 'References in Text' [USLM note id iddf8a9b75-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "7dffcd7acac6b9f86db257228f80e0de28f28960ac1218287be186cfc8f20eff",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddf8a9b75-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13257",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (22 U.S.C. 7103 note)",
@@ -944,18 +998,32 @@
       "source": {
         "page_or_item": "22 U.S.C. 7103 note; note 'References in Text' [USLM note id iddf8a9b75-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddf8a9b75-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "7dffcd7acac6b9f86db257228f80e0de28f28960ac1218287be186cfc8f20eff",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "34 related to grants made by the Secretary of Health and Human Services for assistance programs for victims of trafficking occurring within the United States.\nExecutive Order No. 13257, referred to in subsec. (g)(2)(A), is set out as a note below.",
+      "text_path": "jobs/current-law/output/usc-notes/iddf8a9b75-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "7dffcd7acac6b9f86db257228f80e0de28f28960ac1218287be186cfc8f20eff",
       "where": "USC 22 U.S.C. 7103 note"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 422,
+      "char_start": 98,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
       "edition": "eCFR (GovInfo bulk, amended through 2026-08-17)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "32 CFR 245.9",
+        "sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
+        "source_id": "cfr:t32:245.9",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-32/section-245.9"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13257",
       "legal_basis_candidate": "regulation text names the order (32 CFR 245.9)",
@@ -965,9 +1033,12 @@
       "source": {
         "page_or_item": "32 CFR 245.9 (section_text; GovInfo eCFR XML title 32, amended through 2026-08-17; NODE 32:2.1.1.1.41.3.1.2)",
         "sha256": "981e75d8686b9b4ea73e7fff568a3cac7a56bfbc7752b9314b4b9d71caf5a877",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t32-245.9.txt",
+        "text_sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-32/ECFR-title32.xml"
       },
       "system": "ecfr",
+      "text": "s to Federal departments and agencies.\n(b) E.O. 13074, Amendment to E.O. 12656, February 9, 1998.\n(c) E.O. 13286, Amendment of E.O. 13276, 13274, 13271, 13260, 13257, 13254, and 13231, and Other Actions, in Connection With the Transfer of Certain Functions to the Secretary of Homeland Security, February 28, 2003.\n(d) Title",
       "where": "CFR 32 CFR 245.9"
     },
     {
@@ -1097,6 +1168,7 @@
         "snippet": "...(A) In general The Operating Group shall consist of the senior officials designated as representatives of the appointed members of the Task Force (pursuant to Executive Order No. 13257 of February 13, 2002). (B) Chairperson The Operating Group shall be chaired by the Director of the Office to Mon ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t22_s7103-f754217854.txt",
         "where": "USC 22 U.S.C. 7103"
       },
       "proposal": {
@@ -1125,6 +1197,7 @@
         "snippet": "...34 related to grants made by the Secretary of Health and Human Services for assistance programs for victims of trafficking occurring within the United States. Executive Order No. 13257, referred to in subsec. (g)(2)(A), is set out as a note below.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/iddf8a9b75-b816-11f1-963c-e4c4db8c41be.txt",
         "where": "USC 22 U.S.C. 7103 note"
       },
       "proposal": {
@@ -1153,7 +1226,7 @@
         "snippet": "Ex. Ord. No. 13257. President’s Interagency Task Force To Monitor and Combat Trafficking in Persons | Ex. Ord. No. 13257, Feb. 13, 2002, 67 F.R. 7259, as amended by Ex. Ord. No. 13286, § 5, Feb. 28, 2003, 68 F.R. 10619; Ex. Ord. No. 13333, Mar. 18, 2004, 69 F.R. 13455, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=iddf8a9b7b-b816-11f1-963c-e4c4db8c41be",
+        "text_path": "usc-notes/iddf8a9b7b-b816-11f1-963c-e4c4db8c41be.txt",
         "where": "USC 22 U.S.C. 7103 note"
       },
       "proposal": {
@@ -2381,11 +2454,33 @@
       },
       "text": "Instrument: EO:13228\nSource: https://www.govinfo.gov/content/pkg/FR-2001-10-10/pdf/01-25677.pdf\nSHA-256 of the downloaded file: d8f87eede10c237102c7a0802a566a2a86ed39d6a3ab77bba77c43e4983286bc\nLocation: 66 FR 51812, PDF pages 1-6 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 6 ===\nPresidential Documents\n51812 Federal Register / Vol. 66, No. 196 / Wednesday, October 10, 2001 / Presidential Documents\nExecutive Order 13228 of October 8, 2001\nEstablishing the Office of Homeland Security and the Home-\nland Security Council\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, it is hereby ordered as follows:\nSection 1. Establishment. I hereby establish within the Executive Office\nof the President an Office of Homeland Security (the ‘‘Office’’) to be headed\nby the Assistant to the President for Homeland Security.\nSec. 2. Mission. The mission of the Office shall be to develop and coordinate\nthe implementation of a comprehensive national strategy to secure the United\nStates from terrorist threats or attacks. The Office shall perform the functions\nnecessary to carry out this mission, including the functions specified in\nsection 3 of this order.\nSec. 3. Functions. The functions of the Office shall be to coordinate the\nexecutive branch’s efforts to detect, prepare for, prevent, protect against,\nrespond to, and recover from terrorist attacks within the United States.\n(a) National Strategy. The Office shall work with executive departments\nand agencies, State and local governments, and private entities to ensure\nthe adequacy of the national strategy for detecting, preparing for, preventing,\nprotecting against, responding to, and recovering from terrorist threats or\nattacks within the United States and shall periodically review and coordinate\nrevisions to that strategy as necessary.\n(b) Detection. The Office shall identify priorities and coordinate efforts\nfor collection and analysis of information within the United States regarding\nthreats of terrorism against the United States and activities of terrorists\nor terrorist groups within the United States. The Office also shall identify,\nin coordination with the Assistant to the President for National Security\nAffairs, priorities for collection of intelligence outside the United States\nregarding threats of terrorism within the United States.\n(i) In performing these functions, the Office shall work with Federal,\nState, and local agencies, as appropriate, to:\n(A) facilitate collection from State and local governments and\nprivate entities of information pertaining to terrorist threats\nor activities within the United States;\n(B) coordinate and prioritize the requirements for foreign intel-\nligence relating to terrorism within the United States of ex-\necutive departments and agencies responsible for homeland\nsecurity and provide these requirements and priorities to the\nDirector of Central Intelligence and other agencies respon-\nsible for collection of foreign intelligence;\n(C) coordinate efforts to ensure that all executive departments\nand agencies that have intelligence collection responsibilities\nhave sufficient technological capabilities and resources to\ncollect intelligence and data relating to terrorist activities or\npossible terrorist acts within the United States, working with\nthe Assistant to the President for National Security Affairs,\nas appropriate;\n(D) coordinate development of monitoring protocols and equip-\nment for use in detecting the release of biological, chemical,\nand radiological hazards; and\nVerDate 11<MAY>2000 14:47 Oct 09, 2001 Jkt 197001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\10OCE0.SGM pfrm04 PsN: 10OCE0\n=== PDF page 2 of 6 ===\n51813Federal Register / Vol. 66, No. 196 / Wednesday, October 10, 2001 / Presidential Documents\n(E) ensure that, to the extent permitted by law, all appropriate\nand necessary intelligence and law enforcement information\nrelating to homeland security is disseminated to and ex-\nchanged among appropriate executive departments and agen-\ncies responsible for homeland security and, where appro-\npriate for reasons of homeland security, promote exchange\nof such information with and among State and local govern-\nments and private entities.\n(ii) Executive departments and agencies shall, to the extent permitted\nby law, make available to the Office all information relating to ter-\nrorist threats and activities within the United States.\n(c) Preparedness. The Office of Homeland Security shall coordinate na-\ntional efforts to prepare for and mitigate the consequences of terrorist threats\nor attacks within the United States. In performing this function, the Office\nshall work with Federal, State, and local agencies, and private entities,\nas appropriate, to:\n(i) review and assess the adequacy of the portions of all Federal emer-\ngency response plans that pertain to terrorist threats or attacks\nwithin the United States;\n(ii) coordinate domestic exercises and simulations designed to assess\nand practice systems that would be called upon to respond to a\nterrorist threat or attack within the United States and coordinate\nprograms and activities for training Federal, State, and local em-\nployees who would be called upon to respond to such a threat\nor attack;\n(iii) coordinate national efforts to ensure public health preparedness for\na terrorist attack, including reviewing vaccination policies and re-\nviewing the adequacy of and, if necessary, increasing vaccine and\npharmaceutical stockpiles and hospital capacity;\n(iv) coordinate Federal assistance to State and local authorities and\nnongovernmental organizations to prepare for and respond to ter-\nrorist threats or attacks within the United States;\n(v) ensure that national preparedness programs and activities for ter-\nrorist threats or attacks are developed and are regularly evaluated\nunder appropriate standards and that resources are allocated to im-\nproving and sustaining preparedness based on such evaluations;\nand\n(vi) ensure the readiness and coordinated deployment of Federal re-\nsponse teams to respond to terrorist threats or attacks, working\nwith the Assistant to the President for National Security Affairs,\nwhen appropriate.\n(d) Prevention. The Office shall coordinate efforts to prevent terrorist\nattacks within the United States. In performing this function, the Office\nshall work with Federal, State, and local agencies, and private entities,\nas appropriate, to:\n(i) facilitate the exchange of information among such agencies relating\nto immigration and visa matters and shipments of cargo; and,\nworking with the Assistant to the President for National Security\nAffairs, ensure coordination among such agencies to prevent the\nentry of terrorists and terrorist materials and supplies into the\nUnited States and facilitate removal of such terrorists from the\nUnited States, when appropriate;\n(ii) coordinate efforts to investigate terrorist threats and attacks within\nthe United States; and\n(iii) coordinate efforts to improve the security of United States borders,\nterritorial waters, and airspace in order to prevent acts of terrorism\nwithin the United States, working with the Assistant to the Presi-\ndent for National Security Affairs, when appropriate.\n(e) Protection. The Office shall coordinate efforts to protect the United\nStates and its critical infrastructure from the consequences of terrorist attacks.\nIn performing this function, the Office shall work with Federal, State, and\nlocal agencies, and private entities, as appropriate, to:\nVerDate 11<MAY>2000 14:47 Oct 09, 2001 Jkt 197001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\10OCE0.SGM pfrm04 PsN: 10OCE0\n=== PDF page 3 of 6 ===\n51814 Federal Register / Vol. 66, No. 196 / Wednesday, October 10, 2001 / Presidential Documents\n(i) strengthen measures for protecting energy production, transmission,\nand distribution services and critical facilities; other utilities; tele-\ncommunications; facilities that produce, use, store, or dispose of\nnuclear material; and other critical infrastructure services and crit-\nical facilities within the United States from terrorist attack;\n(ii) coordinate efforts to protect critical public and privately owned in-\nformation systems within the United States from terrorist attack;\n(iii) develop criteria for reviewing whether appropriate security meas-\nures are in place at major public and privately owned facilities\nwithin the United States;\n(iv) coordinate domestic efforts to ensure that special events deter-\nmined by appropriate senior officials to have national significance\nare protected from terrorist attack;\n(v) coordinate efforts to protect transportation systems within the\nUnited States, including railways, highways, shipping, ports and\nwaterways, and airports and civilian aircraft, from terrorist attack;\n(vi) coordinate efforts to protect United States livestock, agriculture,\nand systems for the provision of water and food for human use\nand consumption from terrorist attack; and\n(vii) coordinate efforts to prevent unauthorized access to, development\nof, and unlawful importation into the United States of, chemical,\nbiological, radiological, nuclear, explosive, or other related mate-\nrials that have the potential to be used in terrorist attacks.\n(f) Response and Recovery. The Office shall coordinate efforts to respond\nto and promote recovery from terrorist threats or attacks within the United\nStates. In performing this function, the Office shall work with Federal,\nState, and local agencies, and private entities, as appropriate, to:\n(i) coordinate efforts to ensure rapid restoration of transportation sys-\ntems, energy production, transmission, and distribution systems;\ntelecommunications; other utilities; and other critical infrastructure\nfacilities after disruption by a terrorist threat or attack;\n(ii) coordinate efforts to ensure rapid restoration of public and private\ncritical information systems after disruption by a terrorist threat or\nattack;\n(iii) work with the National Economic Council to coordinate efforts to\nstabilize United States financial markets after a terrorist threat or\nattack and manage the immediate economic and financial con-\nsequences of the incident;\n(iv) coordinate Federal plans and programs to provide medical, finan-\ncial, and other assistance to victims of terrorist attacks and their\nfamilies; and\n(v) coordinate containment and removal of biological, chemical, radio-\nlogical, explosive, or other hazardous materials in the event of a\nterrorist threat or attack involving such hazards and coordinate ef-\nforts to mitigate the effects of such an attack.\n(g) Incident Management. The Assistant to the President for Homeland\nSecurity shall be the individual primarily responsible for coordinating the\ndomestic response efforts of all departments and agencies in the event of\nan imminent terrorist threat and during and in the immediate aftermath\nof a terrorist attack within the United States and shall be the principal\npoint of contact for and to the President with respect to coordination of\nsuch efforts. The Assistant to the President for Homeland Security shall\ncoordinate with the Assistant to the President for National Security Affairs,\nas appropriate.\n(h) Continuity of Government. The Assistant to the President for Homeland\nSecurity, in coordination with the Assistant to the President for National\nSecurity Affairs, shall review plans and preparations for ensuring the con-\ntinuity of the Federal Government in the event of a terrorist attack that\nthreatens the safety and security of the United States Government or its\nleadership.\nVerDate 11<MAY>2000 14:47 Oct 09, 2001 Jkt 197001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\10OCE0.SGM pfrm04 PsN: 10OCE0\n=== PDF page 4 of 6 ===\n51815Federal Register / Vol. 66, No. 196 / Wednesday, October 10, 2001 / Presidential Documents\n(i) Public Affairs. The Office, subject to the direction of the White House\nOffice of Communications, shall coordinate the strategy of the executive\nbranch for communicating with the public in the event of a terrorist threat\nor attack within the United States. The Office also shall coordinate the\ndevelopment of programs for educating the public about the nature of terrorist\nthreats and appropriate precautions and responses.\n(j) Cooperation with State and Local Governments and Private Entities.\nThe Office shall encourage and invite the participation of State and local\ngovernments and private entities, as appropriate, in carrying out the Office ’s\nfunctions.\n(k) Review of Legal Authorities and Development of Legislative Proposals.\nThe Office shall coordinate a periodic review and assessment of the legal\nauthorities available to executive departments and agencies to permit them\nto perform the functions described in this order. When the Office determines\nthat such legal authorities are inadequate, the Office shall develop, in con-\nsultation with executive departments and agencies, proposals for presidential\naction and legislative proposals for submission to the Office of Management\nand Budget to enhance the ability of executive departments and agencies\nto perform those functions. The Office shall work with State and local\ngovernments in assessing the adequacy of their legal authorities to permit\nthem to detect, prepare for, prevent, protect against, and recover from terrorist\nthreats and attacks.\n(l) Budget Review. The Assistant to the President for Homeland Security,\nin consultation with the Director of the Office of Management and Budget\n(the ‘‘Director’’) and the heads of executive departments and agencies, shall\nidentify programs that contribute to the Administration ’s strategy for home-\nland security and, in the development of the President ’s annual budget\nsubmission, shall review and provide advice to the heads of departments\nand agencies for such programs. The Assistant to the President for Homeland\nSecurity shall provide advice to the Director on the level and use of funding\nin departments and agencies for homeland security-related activities and,\nprior to the Director ’s forwarding of the proposed annual budget submission\nto the President for transmittal to the Congress, shall certify to the Director\nthe funding levels that the Assistant to the President for Homeland Security\nbelieves are necessary and appropriate for the homeland security-related\nactivities of the executive branch.\nSec. 4. Administration.\n(a) The Office of Homeland Security shall be directed by the Assistant\nto the President for Homeland Security.\n(b) The Office of Administration within the Executive Office of the Presi-\ndent shall provide the Office of Homeland Security with such personnel,\nfunding, and administrative support, to the extent permitted by law and\nsubject to the availability of appropriations, as directed by the Chief of\nStaff to carry out the provisions of this order.\n(c) Heads of executive departments and agencies are authorized, to the\nextent permitted by law, to detail or assign personnel of such departments\nand agencies to the Office of Homeland Security upon request of the Assistant\nto the President for Homeland Security, subject to the approval of the\nChief of Staff.\nSec. 5. Establishment of Homeland Security Council.\n(a) I hereby establish a Homeland Security Council (the ‘‘Council’’), which\nshall be responsible for advising and assisting the President with respect\nto all aspects of homeland security. The Council shall serve as the mechanism\nfor ensuring coordination of homeland security-related activities of executive\ndepartments and agencies and effective development and implementation\nof homeland security policies.\n(b) The Council shall have as its members the President, the Vice President,\nthe Secretary of the Treasury, the Secretary of Defense, the Attorney General,\nthe Secretary of Health and Human Services, the Secretary of Transportation,\nVerDate 11<MAY>2000 14:47 Oct 09, 2001 Jkt 197001 PO 00000 Frm 00004 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\10OCE0.SGM pfrm04 PsN: 10OCE0\n=== PDF page 5 of 6 ===\n51816 Federal Register / Vol. 66, No. 196 / Wednesday, October 10, 2001 / Presidential Documents\nthe Director of the Federal Emergency Management Agency, the Director\nof the Federal Bureau of Investigation, the Director of Central Intelligence,\nthe Assistant to the President for Homeland Security, and such other officers\nof the executive branch as the President may from time to time designate.\nThe Chief of Staff, the Chief of Staff to the Vice President, the Assistant\nto the President for National Security Affairs, the Counsel to the President,\nand the Director of the Office of Management and Budget also are invited\nto attend any Council meeting. The Secretary of State, the Secretary of\nAgriculture, the Secretary of the Interior, the Secretary of Energy, the Sec-\nretary of Labor, the Secretary of Commerce, the Secretary of Veterans Affairs,\nthe Administrator of the Environmental Protection Agency, the Assistant\nto the President for Economic Policy, and the Assistant to the President\nfor Domestic Policy shall be invited to attend meetings pertaining to their\nresponsibilities. The heads of other executive departments and agencies\nand other senior officials shall be invited to attend Council meetings when\nappropriate.\n(c) The Council shall meet at the President ’s direction. When the President\nis absent from a meeting of the Council, at the President ’s direction the\nVice President may preside. The Assistant to the President for Homeland\nSecurity shall be responsible, at the President ’s direction, for determining\nthe agenda, ensuring that necessary papers are prepared, and recording\nCouncil actions and Presidential decisions.\nSec. 6. Original Classification Authority. I hereby delegate the authority\nto classify information originally as Top Secret, in accordance with Executive\nOrder 12958 or any successor Executive Order, to the Assistant to the\nPresident for Homeland Security.\nSec. 7. Continuing Authorities. This order does not alter the existing authori-\nties of United States Government departments and agencies. All executive\ndepartments and agencies are directed to assist the Council and the Assistant\nto the President for Homeland Security in carrying out the purposes of\nthis order.\nSec. 8. General Provisions.\n(a) This order does not create any right or benefit, substantive or procedural,\nenforceable at law or equity by a party against the United States, its depart-\nments, agencies or instrumentalities, its officers or employees, or any other\nperson.\n(b) References in this order to State and local governments shall be con-\nstrued to include tribal governments and United States territories and other\npossessions.\n(c) References to the ‘‘United States’’ shall be construed to include United\nStates territories and possessions.\nSec. 9. Amendments to Executive Order 12656. Executive Order 12656 of\nNovember 18, 1988, as amended, is hereby further amended as follows:\n(a) Section 101(a) is amended by adding at the end of the fourth sentence:\n‘‘, except that the Homeland Security Council shall be responsible for admin-\nistering such policy with respect to terrorist threats and attacks within\nthe United States.’’\n(b) Section 104(a) is amended by adding at the end: ‘‘, except that the\nHomeland Security Council is the principal forum for consideration of policy\nrelating to terrorist threats and attacks within the United States.’’\n(c) Section 104(b) is amended by inserting the words ‘‘and the Homeland\nSecurity Council’’ after the words ‘‘National Security Council.’’\n(d) The first sentence of section 104(c) is amended by inserting the words\n‘‘and the Homeland Security Council ’’ after the words ‘‘National Security\nCouncil.’’\n(e) The second sentence of section 104(c) is replaced with the following\ntwo sentences: ‘‘Pursuant to such procedures for the organization and man-\nagement of the National Security Council and Homeland Security Council\nVerDate 11<MAY>2000 14:47 Oct 09, 2001 Jkt 197001 PO 00000 Frm 00005 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\10OCE0.SGM pfrm04 PsN: 10OCE0\n=== PDF page 6 of 6 ===\n51817Federal Register / Vol. 66, No. 196 / Wednesday, October 10, 2001 / Presidential Documents\nprocesses as the President may establish, the Director of the Federal Emer-\ngency Management Agency also shall assist in the implementation of and\nmanagement of those processes as the President may establish. The Director\nof the Federal Emergency Management Agency also shall assist in the imple-\nmentation of national security emergency preparedness policy by coordi-\nnating with the other Federal departments and agencies and with State\nand local governments, and by providing periodic reports to the National\nSecurity Council and the Homeland Security Council on implementation\nof national security emergency preparedness policy.’’\n(f) Section 201(7) is amended by inserting the words ‘‘and the Homeland\nSecurity Council’’ after the words ‘‘National Security Council.’’\n(g) Section 206 is amended by inserting the words ‘‘and the Homeland\nSecurity Council’’ after the words ‘‘National Security Council.’’\n(h) Section 208 is amended by inserting the words ‘‘or the Homeland\nSecurity Council’’ after the words ‘‘National Security Council.’’\nW\nTHE WHITE HOUSE,\nOctober 8, 2001.\n[FR Doc. 01 –25677\nFiled 10 –9–01; 12:12 pm]\nBilling code 3195 –01–P\nVerDate 11<MAY>2000 14:47 Oct 09, 2001 Jkt 197001 PO 00000 Frm 00006 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\10OCE0.SGM pfrm04 PsN: 10OCE0"
     },
+    "ACTOR_TEXT:EO:13286@1861": {
+      "actor_id": "EO:13286",
+      "char_end": 4927,
+      "char_start": 1861,
+      "id": "ACTOR_TEXT:EO:13286@1861",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "Sec. 2. Executive Order 13274 of September 18, 2002 (‘‘Environmental Stew-\nardship and Transportation Infrastructure Project Reviews’’), is amended \nby inserting ‘‘Secretary of Homeland Security,’’ after ‘‘Secretary of Defense,’’ \nin section 3(b). \nSec. 3. Executive Order 13271 of July 9, 2002 (‘‘Establishment of the Corporate \nFraud Task Force’’), is amended by: \n(a) inserting ‘‘(b) the Secretary of Homeland Security;’’ after ‘‘(a) the Sec-\nretary of the Treasury;’’ in section 4; and \n(b) relettering the subsequent subsections in section 4 appropriately. \nSec. 4. Executive Order 13260 of March 19, 2002 (‘‘Establishing the Presi-\ndent’s Homeland Security Advisory Council and Senior Advisory Committees \nfor Homeland Security’’), is amended by: \n(a) striking ‘‘the Assistant to the President for Homeland Security (Assist-\nant)’’ in section 1(c) and inserting ‘‘the Secretary of Homeland Security \n(Secretary)’’ in lieu thereof; \n(b) striking ‘‘the Assistant’’ wherever it appears in sections 2 and 3 and \ninserting ‘‘the Secretary’’ in lieu thereof; \n(c) striking ‘‘the Office of Administration’’ in section 3(d) and inserting \n‘‘the Department of Homeland Security’’ in lieu thereof; \n(d) striking ‘‘the Administrator of General Services’’ in section 4(a) and \ninserting ‘‘the Secretary of Homeland Security’’ in lieu thereof; and \n(e) inserting ‘‘of General Services’’ after ‘‘Administrator’’ in section 4(a). \nExecutive Order 13260 of March 19, 2002, is hereby revoked effective as \nof March 31, 2003. \nSec. 5. Executive Order 13257 of February 13, 2002 (‘‘President’s Interagency \nTask Force to Monitor and Combat Trafficking in Persons’’), is amended \nby: \n(a) inserting ‘‘(v) the Secretary of Homeland Security;’’ after ‘‘(iv) the \nSecretary of Health and Human Services;’’ in section 1(b); and \nVerDate Jan<31>2003 23:17 Mar 04, 2003 Jkt 200001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MRE0.SGM 05MRE0\n=== PDF page 2 of 15 ===\n10620 Federal Register / Vol. 68, No. 43 / Wednesday, March 5, 2003 / Presidential Documents \n(b) renumbering the subsequent subsections in section 1(b) appropriately. \nSec. 6. Executive Order 13254 of January 29, 2002 ( ‘‘Establishing the USA \nFreedom Corps’’), is amended by striking ‘‘Director of the Federal Emergency \nManagement Agency;’’ in section 3(b)(viii) and inserting ‘‘Secretary of Home-\nland Security;’’ in lieu thereof. \nSec. 7. Executive Order 13231 of October 16, 2001 ( ‘‘Critical Infrastructure \nProtection in the Information Age ’’), as amended, is further amended to \nread in its entirety as follows: \n‘‘Critical Infrastructure Protection in the Information Age \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, and in order to ensure protection \nof information systems for critical infrastructure, including emergency pre-\nparedness communications and the physical assets that support such systems, \nin the information age, it is hereby ordered as follows: \nSection 1. Policy. The information technology revolution has changed the \n"
+    },
     "ACTOR_TEXT:EO:13333": {
       "actor_id": "EO:13333",
       "char_end": 5923,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13333",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2400,6 +2495,66 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2004-03-23/pdf/04-6622.pdf"
       },
       "text": "Instrument: EO:13333\nSource: https://www.govinfo.gov/content/pkg/FR-2004-03-23/pdf/04-6622.pdf\nSHA-256 of the downloaded file: 63ed79109b8a6f64776fe433a9b510770ab64c3780e223fd7677946919eaa443\nLocation: 69 FR 13455, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n13455\nFederal Register \nVol. 69, No. 56\nTuesday, March 23, 2004\nTitle 3— \nThe President \nExecutive Order 13333 of March 18, 2004\nAmending Executive Order 13257 To Implement the \nTrafficking Victims Protection Reauthorization Act of 2003\nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the Trafficking Victims \nProtection Act of 2000 (22 U.S.C. 7101 et seq .) (the ‘‘Act’’), as amended \nby the Trafficking Victims Protection Reauthorization Act of 2003 (Public \nLaw 108–193), and section 301 of title 3, United States Code, it is hereby \nordered that Executive Order 13257 of February 13, 2002, is amended as \nfollows: \nSection 1. The preamble is amended by: (a) deleting ‘‘7103’’ and inserting \nin lieu thereof ‘‘7101 et seq.’’; and (b) after the phrase ‘‘(the ‘‘Act’’),’’ inserting \n‘‘and section 301 of title 3, United States Code,’’. \nSec. 2. Section 4 is redesignated as section 8. \nSec. 3. After section 3, the following new sections are added: \n‘‘Sec. 4. Guidelines, Policies, and Regulations. (a) The Senior Policy Operating \nGroup (SPOG), described in subsection 105(f) of the Act, shall (i) establish \nguidelines and policies to coordinate the activities of executive branch depart-\nments and agencies regarding policies (including grants and grant policies) \ninvolving the international trafficking in persons and (ii) advise the Secretary \nof State what regulations may be necessary to implement section 105 of \nthe Act, including such regulations as may be necessary to carry out the \nsharing of information on all matters relating to grants, grant policies, or \nother significant actions regarding the international trafficking in persons \nas set forth in subsection 105(f)(4) of the Act, to the extent permitted by \nlaw. \n(b) The Secretary of State, in consultation with the members of the Task \nForce or their representatives, shall promulgate regulations to implement \nsection 105 of the Act. \nSec. 5. Enhanced Prevention of Trafficking in Persons. (a) The Secretary \nof State, in consultation with the members of the Task Force or their rep-\nresentatives, shall carry out the functions under subsection 106(c) and sub-\nsection 106(d) of the Act. \n(b) The Secretary of State shall have the authority to determine, under \nsection 106(e)(1) of the Act, foreign destinations where sex tourism is signifi-\ncant. The Secretary of Homeland Security, in consultation with the members \nof the Task Force or their representatives and appropriate officials of the \nDepartments of Commerce and Transportation, shall carry out all other func-\ntions under subsection 106(e) of the Act, including promulgation of any \nappropriate regulations relating to the distribution of the materials described \nin subsection 106(e). \n(c) The head of each executive branch agency responsible for the establish-\nment and conduct of initiatives and programs described in subsections 106(a) \nthrough (e) of the Act shall consult with appropriate nongovernmental organi-\nzations consistent with section 106(f) of the Act. \n(d) The Secretary of State shall have responsibility to initiate appropriate \nregulatory implementation of the requirements set out in section 106(g) \nof the Act with respect to contracts, including proposing appropriate amend-\nments to the Federal Acquisition Regulation. Each affected executive branch \ndepartment or agency shall implement, within that department or agency, \nVerDate jul<14>2003 12:15 Mar 22, 2004 Jkt 203001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\23MRE0.SGM 23MRE0\n=== PDF page 2 of 2 ===\n13456 Federal Register / Vol. 69, No. 56 / Tuesday, March 23, 2004 / Presidential Documents \nthe requirements set out in section 106(g) of the Act with respect to grants \nand cooperative agreements. \nSec. 6. Research on Trafficking in Persons. The entities named in section \n112A of the Act shall carry out the research initiatives required by section \n112A of the Act, and shall award grants according to such policies and \nguidelines as may be established by the SPOG described in section 105(f) \nof the Act, as well as any applicable agency rules and regulations. \nSec. 7. Guidance for Exercising Authority and Performing Duties. In exer-\ncising authority delegated by, or performing functions assigned in, this order, \nofficers of the United States shall ensure that all actions taken by them \nare consistent with the President’s constitutional authority to: \n(a) conduct the foreign affairs of the United States; \n(b) withhold information the disclosure of which could impair the for-\neign relations, the national security, the deliberative processes of \nthe Executive, or the performance of the Executive ’s constitutional \nduties; \n(c) recommend for congressional consideration such measures as the \nPresident may judge necessary or expedient; and \n(d) supervise the unitary Executive Branch. ’’\nSec. 4. Judicial Review. This order is not intended to, and does not, create \nany right or benefit, substantive or procedural, enforceable at law or in \nequity, by a party against the United States, its departments, agencies, entities, \nofficers, employees or agents, or any other person.\nW\nTHE WHITE HOUSE, \nMarch 18, 2004. \n[FR Doc. 04 –6622\nFiled 3 –22–04; 8:45 am] \nBilling code 3195 –01–P \nVerDate jul<14>2003 12:15 Mar 22, 2004 Jkt 203001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\23MRE0.SGM 23MRE0"
+    },
+    "ACTOR_TEXT:FRDOC:05-20549": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:05-20549",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 10865,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:05-20549",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:05-20549",
+        "page_or_item": "70 FR 59654; FR Doc. 05-20549; Rule: International Trafficking in Persons: Interagency Sharing of Information and Coordination of Activities",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "4ab6eb914cfe74d0ddf2ae61564cb7edc48769b523ae73ee3837b5ad7a8233d0",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-05-20549.txt",
+        "text_sha256": "4ab6eb914cfe74d0ddf2ae61564cb7edc48769b523ae73ee3837b5ad7a8233d0",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2005/10/13/05-20549.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 70 Issue 197 (Thursday, October 13, 2005)</title>\n</head>\n<body><pre>\n[Federal Register Volume 70, Number 197 (Thursday, October 13, 2005)]\n[Rules and Regulations]\n[Pages 59654-59655]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 05-20549]\n\n\n\n[[Page 59654]]\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF STATE\n\n22 CFR Part 96\n\n[Public Notice: PN-5200]\nRIN 1400-AC00\n\n\nInternational Trafficking in Persons: Interagency Sharing of \nInformation and Coordination of Activities\n\nAGENCY: State Department.\n\nACTION: Final rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: This rule implements Section 105 of the Trafficking Victims \nProtection Act of 2000, as amended by the Trafficking Victims \nProtection Reauthorization Act of 2003. In particular, this rule \nestablishes guidelines to carry out the sharing of information on all \nmatters relating to grants, grant policies, or other significant \nactions regarding the international trafficking in persons, to the \nextent permitted by law. The intended effect of this rule is to enhance \ninteragency communication on policies and programs that address \ninternational trafficking in persons.\n\nDATES: This rule is effective September 22, 2005.\n\nADDRESSES: You may submit comments, identified by any of the following \nmethods:\n    <bullet> E-mail: <a href=\"/cdn-cgi/l/email-protection#dd89948dadafb2baafbcb0ae9daea9bca9b8f3bab2ab\"><span class=\"__cf_email__\" data-cfemail=\"80d4c9d0f0f2efe7f2e1edf3c0f3f4e1f4e5aee7eff6\">[email&#160;protected]</span></a> You must include the RIN in \nthe subject line of your message.\n    <bullet> Mail (paper, disk, or CD-ROM submissions): Department of \nState, Office to Monitor and Combat Trafficking in Persons (SA-22), \n1800 G St. NW., Suite 2201, Washington, DC 20520.\n    <bullet> Fax: 202-312-9637\n    <bullet> Hand Delivery or Courier: Department of State, Office to \nMonitor and Combat Trafficking in Persons (SA-22), 1800 G St. NW., \nSuite 2201, Washington, DC 20520.\n    Persons with access to the internet may also view this notice by \ngoing to the <a href=\"http://regulations.gov\">regulations.gov</a> web site at: <a href=\"http://www.regulations.gov/index.cfm\">http://www.regulations.gov/index.cfm</a>.\n\nFOR FURTHER INFORMATION CONTACT: Department of State, Office to Monitor \nand Combat Trafficking in Persons (SA-22), 1800 G St. NW., Suite 2201, \nWashington, DC 20520; <a href=\"/cdn-cgi/l/email-protection#45110c1535372a22372428360536312431206b222a33\"><span class=\"__cf_email__\" data-cfemail=\"6d39243d1d1f020a1f0c001e2d1e190c1908430a021b\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Trafficking Victims Protection \nReauthorization Act of 2003 created a requirement that the President \npromulgate regulations to implement Section 105 of the Trafficking \nVictims Protection Act of 2000, as amended (``the Act'').\n    Section 105 of the Act calls for the President to establish an \nInteragency Task Force to Monitor and Combat Trafficking and a Senior \nPolicy Operating Group consisting of senior officials designated as \nrepresentatives of the appointed members of the Task Force. By \nExecutive Order 13257, dated February 13, 2002, the President \nestablished the President's Interagency Task Force to Monitor and \nCombat Trafficking in Persons (``the Task Force''), which is chaired by \nthe Secretary of State and includes the Administrator of the United \nStates Agency for International Development, the Attorney General, the \nSecretary of Labor, the Secretary of Health and Human Services, the \nDirector of Central Intelligence, and the Director of the Office of \nManagement and Budget. Executive Order 13257 lays out the \nresponsibilities of the Task Force including, among other things, \ncoordinating the implementation of the Act. The Secretary of Homeland \nSecurity was added to the Task Force by Executive Order 13286 of \nFebruary 28, 2003. The Task Force created the Senior Policy Operating \nGroup on December 8, 2003, to coordinate agency activities regarding \npolicies, including grants and grant policies, involving the \ninternational trafficking in persons and the implementation of the Act. \nThe Trafficking Victims Protection Reauthorization Act of 2003 amended \nthe Trafficking Victims Protection Act, including by setting out the \nduties of the Senior Policy Operating Group and requiring the President \nto promulgate regulations to implement Section 105 (22 U.S.C. \n7103(f)(5)).\n    Executive Order 13333 of March 18, 2004 amends Executive Order \n13257 and delegates the task of issuing such regulations to the \nSecretary of State, and instructs the Senior Policy Operating Group to \nadvise the Secretary of State as to what regulations may be necessary \nto implement Section 105, including such regulations as may be \nnecessary to carry out the sharing of information on all matters \nrelating to grants, grant policies, or other significant actions \nregarding the international trafficking in persons (Executive Order \n13333, section 4(b)).\n\nRegulatory Findings\n\nAdministrative Procedure Act\n\n    This rule is exempt from notice-and-comment rulemaking in \naccordance with 5 U.S.C. 553(a)(2), since it concerns ``a matter \nrelating to agency management or personnel or to public property, \nloans, grants, benefits, or contracts.''\n\nRegulatory Flexibility Act and Executive Order 13272\n\n    This rule falls outside the definition of ``rule'' set forth in the \nRegulatory Flexibility Act (5 U.S.C. 601(2)) and incorporated in \nExecutive Order 13272, Proper Consideration of Small Entities in Agency \nRulemaking. Nevertheless, the Department of State has reviewed this \nrule in accordance with the criteria set forth in the Act (5 U.S.C. \n605(b)) and Section 3(b) of the Executive Order, and, by approving it, \ncertifies that this rule will not have a significant economic impact on \na substantial number of small entities.\n\nUnfunded Mandates Reform Act of 1995\n\n    This rule will not result in the expenditure by State, local, and \ntribal governments, in the aggregate, or by the private sector, of $100 \nmillion or more in any year and it will not significantly or uniquely \naffect small governments. Moreover, the rule falls outside the \ndefinition of ``rule'' set forth in the Unfunded Mandates Reform Act of \n1996 (2 U.S.C. 658(10), incorporating the definition set forth in the \nRegulatory Flexibility Act. Therefore, no actions were deemed necessary \nunder the provisions of the Unfunded Mandates Reform Act of 1995.\n\nSmall Business Regulatory Enforcement Fairness Act of 1996\n\n    This rule is not a ``major rule'' as defined by 5 U.S.C. 804(2), \nfor purposes of congressional review of agency rulemaking under the \nSmall Business Regulatory Enforcement Act of 1996 (5 U.S.C. 801-808). \nThis rule will not result in an annual effect on the economy of $100 \nmillion or more; a major increase in costs or prices for consumers, \nindividual industries, Federal, State, or local government agencies, or \ngeographic regions; or significant adverse effects on competition, \nemployment, investment, productivity, innovation, or on the ability of \nUnited States-based companies to compete with foreign based companies \nin domestic and export markets.\n\nExecutive Order 12866\n\n    The Department of State does not consider this rule to be a \n``rule'' within the meaning of section 3(d) of Executive Order 12866, \nRegulatory Planning and Review, nor is it a ``significant regulatory \naction'' under Executive Order 12866, section 3(f). While this \nrulemaking is exempt from Executive Order 12866, the Department has \nnevertheless reviewed the rule to ensure its consistency with the \nregulatory\n\n[[Page 59655]]\n\nphilosophy and principles set forth in that Executive Order.\n\nExecutive Orders 12372 and 13132: Federalism\n\n    This rule will not have substantial direct effects on the States, \non the relationship between the national government and the States, or \non the distribution of power and responsibilities among the various \nlevels of government. Nor would the rule have federalism implications \nwarranting the application of Executive Orders 12372 and 13132.\n\nExecutive Order 12988: Civil Justice Reform\n\n    The Department of State has reviewed this rule in light of sections \n3(a) and 3(b)(2) of Executive Order 12988 to eliminate ambiguity, \nminimize litigation, establish clear legal standards, and reduce \nburden.\n\nPaperwork Reduction Act\n\n    This rule does not impose any new reporting or record-keeping \nrequirements subject to the Paperwork Reduction Act, 44 U.S.C. Chapter \n35.\n\nList of Subjects\n\n    Administrative practice and procedure.\n\n\n0\nAccordingly, for the reasons set forth in the preamble, 22 CFR Part 96 \nis added to read as follows:\n\nPART 96--INTERNATIONAL TRAFFICKING IN PERSONS: INTERAGENCY \nCOORDINATION OF ACTIVITIES AND SHARING OF INFORMATION\n\nSec.\n96.1 Coordination of Implementation of the Trafficking Victims \nProtection Act of 2000, as amended.\n96.2 Sharing of Information Regarding International Trafficking in \nPersons.\n\n    Authority: 22 U.S.C. 7103(f)(5); Executive Order 13257 (as \namended by Executive Order 13333).\n\n\nSec.  96.1  Coordination of Implementation of the Trafficking Victims \nProtection Act of 2000, as amended.\n\n    The Director of the Office to Monitor and Combat Trafficking in \nPersons of the Department of State, who is the Chairperson of the \nSenior Policy Operating Group of the President's Interagency Task Force \nto Monitor and Combat Trafficking in Persons, shall call meetings of \nthe Senior Policy Operating Group on a regular basis to coordinate \nactivities of Federal departments and agencies regarding policies \n(including grants and grant policies) involving the international \ntrafficking in persons and the implementation of the Trafficking \nVictims Protection Act of 2000, as amended.\n\n\nSec.  96.2  Sharing of Information Regarding International Trafficking \nin Persons.\n\n    Each Federal Department or agency represented on the Senior Policy \nOperating Group shall, to the extent permitted by law, share \ninformation on all matters relating to grants, grant policies, or other \nsignificant actions regarding the international trafficking in persons. \nIn its coordinating role, the Senior Policy Operating Group shall \nestablish appropriate mechanisms to effect such information sharing.\n\n    Dated: September 22, 2005.\nRobert B. Zoellick,\nDeputy Secretary of State, Department of State.\n[FR Doc. 05-20549 Filed 10-12-05; 8:45 am]\nBILLING CODE 4710-08-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:06-9855": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:06-9855",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 18738,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:06-9855",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:06-9855",
+        "page_or_item": "71 FR 77560; FR Doc. 06-9855; Notice: Delegation of Authority and Assignment of Responsibilities for International Affairs",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "801b1df55d09bb3ad983cc3aecc8c0ec131dc8a2e118b48af234a74827abdff5",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-06-9855.txt",
+        "text_sha256": "801b1df55d09bb3ad983cc3aecc8c0ec131dc8a2e118b48af234a74827abdff5",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2006/12/26/06-9855.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 71 Issue 247 (Tuesday, December 26, 2006)</title>\n</head>\n<body><pre>\n[Federal Register Volume 71, Number 247 (Tuesday, December 26, 2006)]\n[Notices]\n[Pages 77560-77562]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 06-9855]\n\n\n\n[[Page 77559]]\n\n-----------------------------------------------------------------------\n\nPart IV\n\n\n\n\n\nDepartment of Labor\n\n\n\n\n\n-----------------------------------------------------------------------\n\n\n\nDelegation of Authority and Assignment of Responsibilities for \nInternational Affairs; Notice\n\n\u0000\u0000Federal Register / Vol. 71, No. 247 / Tuesday, December 26, 2006 / \nNotices\u0000\u0000\n\n[[Page 77560]]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF LABOR\n\nOffice of the Secretary\n\n[Secretary's Order 18-2006]\n\n\nDelegation of Authority and Assignment of Responsibilities for \nInternational Affairs\n\n    1. Purpose. To delegate authority and assign responsibilities to \nthe Deputy Undersecretary for International Affairs.\n    2. Authority and Directives Affected. This Order is issued pursuant \nto 5 U.S.C. 301; 5 U.S.C. 551 et seq.; and Reorganization Plan No. 6 of \n1950 (5 U.S.C. Appendix 1); additional authorities are listed in \nParagraph 4 of this Order. This Order supersedes Secretary's Order 01-\n95.\n    3. Background. This Order delegates authority and assigns \nresponsibilities to the Deputy Undersecretary for International Affairs \nfor carrying out international responsibilities of the Secretary of \nLabor. The Order delegates authority and assigns responsibilities under \nstatutes, regulations, executive orders, interagency memoranda and \nagreements. This Order is being issued in order to delegate additional \nresponsibilities granted to the Secretary of Labor since issuance of \nSecretary's Order 01-95.\n    4. Delegation of Authority and Assignment of Responsibilities to \nthe Deputy Undersecretary for International Affairs.\n    A. The Deputy Undersecretary for International Affairs is delegated \nauthority for carrying out responsibilities vested in the Secretary of \nLabor for international activities except for those functions \nspecifically reserved to the Secretary by statute or Executive Order. \nThe Deputy Undersecretary for International Affairs carries out the \nSecretary's international responsibilities as provided for in this \nOrder through the Bureau of International Labor Affairs (ILAB) and \nvarious Department of Labor agencies. In exercising these \nresponsibilities, the Deputy Undersecretary shall provide oversight and \nserve as the coordinator of the Department's international activities \nand will consult with affected Departmental agencies and other U.S. \nGovernment agencies as appropriate. The authority delegated and \nresponsibilities assigned to the Deputy Undersecretary for \nInternational Affairs cover the following functions:\n    (1) Supervising ILAB, and providing coordination, oversight, and \nforeign policy guidance for the international programs and activities \nof the other agencies of the Department of Labor.\n    (2) Developing Departmental policy and programs relating to \ninternational labor activities, and serving as the coordinator for all \nof the Department's international activities involving other U.S. \nGovernment agencies, intergovernmental organizations, and \nnongovernmental organizations.\n    (3) Coordinating all Department representations to international \nmeetings and maintaining appropriate records of these meetings.\n    (4) Obtaining necessary White House and Department of State \nclearances, and approving and monitoring all foreign travel by \nDepartment employees, excluding the Office of the Inspector General.\n    (5) Coordinating relations between the Secretary of Labor and \nrepresentative organizations of workers and employers on all \ninternational issues and between the Secretary of Labor and \ninternational or foreign trade union and employer institutions.\n    (6) Under the Trade Expansion Act of 1962, the Trade Act of 1974, \nthe Trade Agreements Act of 1979, the Omnibus Trade and Competitiveness \nAct of 1988, the North American Free Trade Agreement Implementation Act \nof 1993, the Trade Act of 2000, and the Trade Act of 2002; Executive \nOrders 11846, 40 FR 14291 (1975), as amended, reprinted in 19 U.S.C. \n2111 note, 12188, 45 FR 989 (1980), as amended, reprinted in 19 U.S.C. \n2171 note, and 13277, 67 FR 70305 (2002), as amended, reprinted in 19 \nU.S.C. 3801; and Reorganization Plan No. 3 of 1979, 44 FR 69273 (1979), \nas amended, reprinted in 19 U.S.C. 2171 note:\n    a. Participating in the negotiation of, advising the Secretary on, \nand providing information sought from the Department concerning \nprospective trade agreements (Section 132 of the Trade Act of 1974, as \ncodified at 19 U.S.C. 2152 and Executive Order 12188);\n    b. Advising the Secretary on policy issues related to the \nadministration of the Trade Agreements Program (Executive Order 11846);\n    c. Organizing, jointly with the Office of the U.S. Trade \nRepresentative, and administering the Labor Advisory Committee for \nTrade Negotiations and Trade Policy, in order that representatives of \nU.S. labor may provide advice on matters relating to the negotiation \nand operation of trade agreements, and on the development, \nimplementation, and administration of U.S. trade policy (Sec.  135 of \nthe Trade Act of 1974, as codified at 19 U.S.C. 2155(c), and Executive \nOrder 11846);\n    d. Reviewing and reporting to Congress on the extent to which \nbeneficiary countries under the Generalized System of Preferences (GSP) \nimplement their international commitments to eliminate the worst forms \nof child labor (section 412 of the Trade Act of 2000, as codified at 19 \nU.S.C. 2464);\n    e. Reviewing and reporting to Congress on the impact of future free \ntrade agreements on U.S. employment, including labor markets, and \nmaking those findings available to the public (section 2102 of the \nTrade Act of 2002, as codified at 19 U.S.C. 3802 and Executive Order \n13277);\n    f. Consulting with any country seeking a trade agreement with the \nUnited States concerning that country's labor laws and providing \ntechnical assistance to that country if needed, in consultation with \nthe Secretary of State (section 2102 of the Trade Act of 2002, as \ncodified at 19 U.S.C. 3802 and Executive Order 13277);\n    g. Preparing and submitting to Congress, in consultation with the \nSecretary of State and the U.S. Trade Representative, a meaningful \nlabor rights report of the country or countries with respect to which \nthe President is negotiating a free trade agreement (section 2102 of \nthe Trade Act of 2002, as codified at 19 U.S.C. 3802 and Executive \nOrder 13277);\n    h. Preparing and submitting to Congress, in consultation with the \nSecretary of State and the U.S. Trade Representative, a report with \nrespect to any trade agreement that the President seeks to implement \nunder trade authorities procedures, describing the extent to which a \ncountry or countries that are parties to the agreement, have in effect \nlaws governing exploitative child labor (section 2102 of the Trade Act \nof 2002, as codified at 19 U.S.C. 3802 and Executive Order 13277);\n    i. Consulting with the Department of Homeland Security and the \nDepartment of State concerning regulations governing the admission of \nnon-immigrant professionals under the North American Free Trade \nAgreement (section 341 of the North American Free Trade Agreement \nImplementation Act, as codified at 8 U.S.C. 1184);\n    j. Serving as the Secretary's designee on the Interagency Trade \nData Advisory Committee (section 5402 of the Omnibus Trade and \nCompetitiveness Act of 1988, as codified at 15 U.S.C. 4902);\n    k. Assisting in interagency administration of GSP (Executive Order \n11846);\n    l. Assisting in matters pertaining to the Secretary's membership on \nthe interagency Trade Policy Committee and the Trade Negotiating \nCommittee (section 242 of the Trade Expansion Act\n\n[[Page 77561]]\n\nof 1962, as codified at 19 U.S.C. 1872(a)(3), and Executive Orders \n11846 and 12188);\n    m. Providing information and advice sought from the Department and \nconsulting with the Secretary of Commerce in investigations to \ndetermine the effects on national security of imports of articles \n(section 232 of the Trade Expansion Act of 1962, as codified at 19 \nU.S.C. 1862); and\n    n. Participating in appropriate consultations between the Secretary \nand the U.S. Trade Representative concerning enforcement of U.S. rights \nunder trade agreements and responses to certain foreign trade practices \n(section 301 of the Trade Act of 1974, as codified at 19 U.S.C. 2411 \n(c)(2)(C)).\n    (7) Preparing and publishing in the Federal Register a list of \nproducts, identified by their country of origin, which the Departments \nof Labor, State, and Treasury have a reasonable basis to believe might \nhave been mined, produced, or manufactured by forced or indentured \nchild labor (Executive Order 13126, 64 FR 32383 (1999), reprinted in 41 \nU.S.C. 35 note).\n    (8) Participating in formulating international economic, trade, \ninvestment, and monetary policy in connection with the Secretary's \nmembership on the National Economic Council (Executive Order 12835, 58 \nFR 6189 (1993), reprinted in 15 U.S.C. 1023 note).\n    (9) Serving as the Secretary's representative on the Tourism Policy \nCouncil when the Assistant Secretary for Policy is unable participate. \n(section 301 of the International Travel Act of 1961, as codified at 22 \nU.S.C. 2124).\n    (10) Assisting the Secretary of Homeland Security in the \npreparation of immigration reports, including the Triennial \nComprehensive Report on Immigration (8 U.S.C. 1364), the Reports on \nUnauthorized Alien Employment (8 U.S.C. 1324a note), and the Reports on \nLegalization Program (8 U.S.C. 1255a note) under the Immigration \nTechnical Corrections Act of 1991 and the Immigration Reform and \nControl Act of 1986 (8 U.S.C. 1101 et seq.) (Executive Order 12789, 57 \nFR 5225 (1992), reprinted in 8 U.S.C. 1364 note).\n    (11) Consulting with the Department of Homeland Security and the \nDepartment of State concerning the admission of non-immigrant \nprofessionals under the U.S.-Chile Free Trade Agreement, the U.S.-\nSingapore Free Trade Agreement, and the General Agreement on Trade in \nServices (GATS).\n    (12) Assisting in the coordination of information on immigration \nand migration policy within the Department and coordinating the \nDepartment's participation in international forums on discussions of \nmigration and immigration.\n    (13) Participating in the interagency administration of the GSP (19 \nU.S.C. 2461 et seq.), the Caribbean Basin Economic Recovery Act of 1983 \n(CBERA) (19 U.S.C 2701 et seq.), the Andean Trade Preference Act (ATPA) \n(19 U.S.C. 3201 et seq.), the Overseas Private Investment Corporation \n(OPIC) (22 U.S.C. 2191 et seq.), and the African Growth and Opportunity \nAct (19 U.S.C. 3701 et seq.), including:\n    a. Assisting in providing interagency information on the extent to \nwhich trade preference beneficiary countries recognize and enforce \ninternationally recognized worker rights;\n    b. Conducting a continuing review and analysis on the impact that \nthe implementation of the ATPA has with respect to U.S. labor, and \npreparing annual reports to Congress on such review and analysis; and\n    c. Assisting the Department's representative on the Board of OPIC.\n    (14) Coordinating the Secretary's participation on the Trade \nPromotion Coordinating Committee (TPCC) and representing the Department \non TPCC working groups under section 201 of the Export Enhancement Act \nof 1992, as codified at 15 U.S.C. 4727, and Executive Order 12870, 58 \nFR 51753 (1993), reprinted in 15 U.S.C. 4727 note.\n    (15) Under the North American Agreement on Labor Cooperation and \nthe labor provisions of free trade agreements to which the United \nStates is or may become a party, including implementing legislation \nthereof:\n    a. Coordinating and providing support for the Secretary's \nmembership on the Council governing the Commission for Labor \nCooperation and its activities, including those related to cooperative \nconsultations and evaluations and dispute settlement;\n    b. Administering and managing the responsibilities of the Office of \nTrade and Labor Affairs;\n    c. Coordinating multinational labor cooperation activities;\n    d. Participating in meetings, working groups, task forces, and \nother multinational bodies; and\n    e. Assisting in the preparation of reports.\n    (16) Serving as the Secretary's liaison with the members of the \nTrade Policy Committee.\n    (17) Carrying out activities under section 309 of the Defense \nProduction Act, as amended, as codified at 50 App. U.S.C. 2099, and \nExecutive Order 10480, 18 FR 4939 (1953), including assisting in the \npreparation of the annual report on offsets in military export sales.\n    (18) Representing the Secretary in the interagency team established \nunder section 7 of the Defense Production Act Reauthorization of 2003, \nas codified at 50 App. U.S.C. 2099 note.\n    (19) Carrying out activities under section 204 of the Agricultural \nAct of 1956, as amended, as codified at 7 U.S.C. 1854, including \nrepresenting the Department on the Committee for the Implementation of \nTextile Agreements (Executive Order 11651, 37 FR 4699 (1972), as \namended, reprinted in 7 U.S.C. 1854 note).\n    (20) Under the Foreign Service Act of 1980, as amended, 22 U.S.C. \n3901 et seq.:\n    a. Serving as the Department's representative on the Board of the \nForeign Service (22 U.S.C. Sec.  3930 and Executive Order 12293, 46 FR \n13969 (1981), as amended, reprinted in 22 U.S.C. 3901 note);\n    b. Directing the Foreign Service functions of the Department;\n    c. Participating in formulating management policies related to the \nadministration and personnel management of the Foreign Service of the \nUnited States; and\n    d. Collaborating with the Department of State in the management of \nthe U.S. Labor Attach[eacute] Program.\n    (21) Providing international technical assistance, direct cultural \nexchange activities, and other services and information as authorized \nby Congress in ILAB appropriations language and through relationships \nwith the Department of State, the U.S. Agency for International \nDevelopment, the U.S. Information Agency, and other organizations under \nthe United States Information and Educational Exchange Act of 1948, as \namended, 22 U.S.C. 1431 et seq.; the Foreign Assistance Act of 1961, as \namended, 22 U.S.C. 2151 et seq.; the Mutual Educational and Cultural \nExchange Act of 1961, 22 U.S.C. 2451 et seq.; the March 19, 1965, \nGeneral Agreement between the Department of Labor and the U.S. Agency \nfor International Development; and the Secretary's Memorandum of \nFebruary 10, 1978, on International Technical Assistance;\n    (22) Administering international technical assistance grants, \nincluding child labor grants, as authorized in paragraph 4.A(21) above.\n    (23) Participating in development assistance policy formulation by \nrepresenting the Department on the Development Coordination Committee \n(22 U.S.C. 2399c and Executive Order 12163, 44 FR 56673 (1979), as \namended, reprinted in 22 U.S.C. 2381 note).\n\n[[Page 77562]]\n\n    (24) As required by the People's Republic of China Trade Relations \nAct, as codified at 22 U.S.C. 6901 et seq.\n    a. Providing support to the Department's representative on the \nCongressional-Executive Commission on the People's Republic of China \n(22 U.S.C. 6913);\n    b. Establishing a program to conduct rule of law training and \ntechnical assistance related to the protection of internationally \nrecognized worker rights in the People's Republic of China (22 U.S.C. \n6981).\n    (25) As required by Joint Resolution 131 of June 1934, as codified \nat 22 U.S.C. 271, Executive Order 12216, 45 FR 41619 (1980) and \nExecutive Order 13385, 70 FR 57989 (2005), as amended, reprinted in 22 \nU.S.C. 271 note:\n    a. Providing advice and staff work required by the Secretary as \nChairman of the President's Committee on the International Labor \nOrganization (ILO);\n    b. Providing for U.S. Government representation and development of \nsubstantive policies for U.S. participation in the ILO.\n    (26) Coordinating and directing participation of the Department in \nactivities of the United Nations and other international organizations.\n    (27) Providing for U.S. government representation and developing \nsubstantive positions for U.S. participation in the Organization for \nEconomic Cooperation and Development's Employment, Labor and Social \nAffairs Committee and its subsidiary bodies.\n    (28) Participating in the Department of Labor-European Union \nWorking Group on Employment and Labor-related issues under the \nMemorandum of Understanding signed by the Secretary and the European \nUnion Commissioner for Social Affairs on May 2, 1996.\n    (29) Supporting the Secretary's participation in the President's \nInteragency Task Force to Monitor and Combat Trafficking in Persons and \nparticipating, as appropriate, as the Secretary's representative at the \nSenior Policy Operating Group (Sec.  105 of the Trafficking Victims \nProtection Act of 2000, as amended, and codified at 22 U.S.C. 7103 and \nExecutive Order 13257, 67 FR 7259 (2002), reprinted in 22 U.S.C. 7103).\n    (30) As directed by the Secretary, carrying out such other \nresponsibilities that may be assigned from time-to-time to the \nSecretary or the Department under other Federal acts, executive orders, \ninteragency memoranda, or otherwise, which are similar to those listed \nunder paragraphs (1) through (29) of this section.\n    B. Department of Labor Agency Heads are responsible for providing \ntechnical resources and staff to carry out the Department's \ninternational program objectives, including participation in intra and \ninteragency committees, overseas diagnostic and technical missions, and \ninternational conferences and meetings.\n    C. The Solicitor of Labor has responsibility for providing legal \nadvice and assistance to all officers of the Department relating to \ninternational affairs and functions described in section 4 of this \nOrder.\n    5. Redelegation of Authority. The authority delegated and \nresponsibilities assigned to the Deputy Undersecretary for \nInternational Affairs by this Order may be further redelegated.\n    6. Effective Date. This Order is effective immediately.\n\n    Dated: December 19, 2006.\nElaine L. Chao,\nSecretary of Labor.\n[FR Doc. 06-9855 Filed 12-22-06; 8:45 am]\nBILLING CODE 4510-23-P\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:13257#sec1": {
       "char_end": 1304,
@@ -3039,6 +3194,148 @@
       },
       "text": "Sec. 4. Judicial Review. This order does not create any rights or benefits,\nenforceable at law or equity, against the United States, its departments,\nits agencies, or other entities, its officers or employees, or any other person.\nW"
     },
+    "CURRENT:EO:13257#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 277,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 7103 note; note 'Ex. Ord. No. 13257. President’s Interagency Task Force To Monitor and Combat Trafficking i' [USLM note id iddf8a9b7b-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "3836e0134f5cafd29edcc92ad3aa75bddae29be649e5a47b5d6b3996e5cc82bf",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddf8a9b7b-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13257#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13257",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (22 U.S.C. 7103 note)",
+      "machine_lead": true,
+      "mention_id": "usc:c3b26dad4c0f",
+      "snippet": "Ex. Ord. No. 13257. President’s Interagency Task Force To Monitor and Combat Trafficking in Persons | Ex. Ord. No. 13257, Feb. 13, 2002, 67 F.R. 7259, as amended by Ex. Ord. No. 13286, § 5, Feb. 28, 2003, 68 F.R. 10619; Ex. Ord. No. 13333, Mar. 18, 2004, 69 F.R. 13455, provided:",
+      "source": {
+        "page_or_item": "22 U.S.C. 7103 note; note 'Ex. Ord. No. 13257. President’s Interagency Task Force To Monitor and Combat Trafficking i' [USLM note id iddf8a9b7b-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddf8a9b7b-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "3836e0134f5cafd29edcc92ad3aa75bddae29be649e5a47b5d6b3996e5cc82bf",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13257. President’s Interagency Task Force To Monitor and Combat Trafficking in Persons\nEx. Ord. No. 13257, Feb. 13, 2002, 67 F.R. 7259, as amended by Ex. Ord. No. 13286, § 5, Feb. 28, 2003, 68 F.R. 10619; Ex. Ord. No. 13333, Mar. 18, 2004, 69 F.R. 13455, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/iddf8a9b7b-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "3836e0134f5cafd29edcc92ad3aa75bddae29be649e5a47b5d6b3996e5cc82bf",
+      "where": "USC 22 U.S.C. 7103 note"
+    },
+    "CURRENT:EO:13257#1": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 13392,
+      "char_start": 13048,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 7103; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "89af750f48453d0e1ba0b13228f9190a13a135c1fbee70b51d78e0a1d8756845",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t22/s7103",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13257#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13257",
+      "legal_basis_candidate": "statute text names the order (22 U.S.C. 7103)",
+      "machine_lead": true,
+      "mention_id": "usc:a60d3e8fbcf7",
+      "snippet": "...(A) In general The Operating Group shall consist of the senior officials designated as representatives of the appointed members of the Task Force (pursuant to Executive Order No. 13257 of February 13, 2002). (B) Chairperson The Operating Group shall be chaired by the Director of the Office to Monitor and Combat Trafficking of the Department o...",
+      "source": {
+        "page_or_item": "22 U.S.C. 7103; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t22_s7103-f754217854.txt",
+        "text_sha256": "89af750f48453d0e1ba0b13228f9190a13a135c1fbee70b51d78e0a1d8756845",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "(A)\nIn general\nThe Operating Group shall consist of the senior officials designated as representatives of the appointed members of the Task Force (pursuant to Executive Order No. 13257 of February 13, 2002).\n(B)\nChairperson\nThe Operating Group shall be chaired by the Director of the Office to Monitor and Combat Trafficking of the Department o",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t22_s7103-f754217854.txt",
+      "text_sha256": "89af750f48453d0e1ba0b13228f9190a13a135c1fbee70b51d78e0a1d8756845",
+      "where": "USC 22 U.S.C. 7103"
+    },
+    "CURRENT:EO:13257#2": {
+      "basis_code": "references_in_text_note",
+      "char_end": 1909,
+      "char_start": 1662,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 7103 note; note 'References in Text' [USLM note id iddf8a9b75-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "7dffcd7acac6b9f86db257228f80e0de28f28960ac1218287be186cfc8f20eff",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:iddf8a9b75-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13257#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13257",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (22 U.S.C. 7103 note)",
+      "machine_lead": true,
+      "mention_id": "usc:1d85acdf0bf2",
+      "snippet": "...34 related to grants made by the Secretary of Health and Human Services for assistance programs for victims of trafficking occurring within the United States. Executive Order No. 13257, referred to in subsec. (g)(2)(A), is set out as a note below.",
+      "source": {
+        "page_or_item": "22 U.S.C. 7103 note; note 'References in Text' [USLM note id iddf8a9b75-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/iddf8a9b75-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "7dffcd7acac6b9f86db257228f80e0de28f28960ac1218287be186cfc8f20eff",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "34 related to grants made by the Secretary of Health and Human Services for assistance programs for victims of trafficking occurring within the United States.\nExecutive Order No. 13257, referred to in subsec. (g)(2)(A), is set out as a note below.",
+      "text_path": "jobs/current-law/output/usc-notes/iddf8a9b75-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "7dffcd7acac6b9f86db257228f80e0de28f28960ac1218287be186cfc8f20eff",
+      "where": "USC 22 U.S.C. 7103 note"
+    },
+    "CURRENT:EO:13257#3": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 422,
+      "char_start": 98,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-08-17)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "32 CFR 245.9",
+        "sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
+        "source_id": "cfr:t32:245.9",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-32/section-245.9"
+      },
+      "id": "CURRENT:EO:13257#3",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13257",
+      "legal_basis_candidate": "regulation text names the order (32 CFR 245.9)",
+      "machine_lead": true,
+      "mention_id": "ecfr:c373f93138be",
+      "snippet": "...s to Federal departments and agencies. (b) E.O. 13074, Amendment to E.O. 12656, February 9, 1998. (c) E.O. 13286, Amendment of E.O. 13276, 13274, 13271, 13260, 13257, 13254, and 13231, and Other Actions, in Connection With the Transfer of Certain Functions to the Secretary of Homeland Security, February 28, 2003. (d) Title...",
+      "source": {
+        "page_or_item": "32 CFR 245.9 (section_text; GovInfo eCFR XML title 32, amended through 2026-08-17; NODE 32:2.1.1.1.41.3.1.2)",
+        "sha256": "981e75d8686b9b4ea73e7fff568a3cac7a56bfbc7752b9314b4b9d71caf5a877",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t32-245.9.txt",
+        "text_sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-32/ECFR-title32.xml"
+      },
+      "system": "ecfr",
+      "text": "s to Federal departments and agencies.\n(b) E.O. 13074, Amendment to E.O. 12656, February 9, 1998.\n(c) E.O. 13286, Amendment of E.O. 13276, 13274, 13271, 13260, 13257, 13254, and 13231, and Other Actions, in Connection With the Transfer of Certain Functions to the Secretary of Homeland Security, February 28, 2003.\n(d) Title",
+      "where": "CFR 32 CFR 245.9"
+    },
     "ORIGINAL:EO:13257": {
       "acceptable_as_original": true,
       "actor_id": "EO:13257",
@@ -3063,164 +3360,9 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2002-02-19/pdf/02-4071.pdf"
       },
       "text": "Instrument: EO:13257\nSource: https://www.govinfo.gov/content/pkg/FR-2002-02-19/pdf/02-4071.pdf\nSHA-256 of the downloaded file: 1039a2429560efe2e6a90bbfa53af69994639fc2e5aa2bb8dfd71ae57961c0f7\nLocation: 67 FR 7259, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n7259\nFederal Register\nVol. 67, No. 33\nTuesday, February 19, 2002\nTitle 3—\nThe President\nExecutive Order 13257 of February 13, 2002\nPresident’s Interagency Task Force To Monitor and Combat\nTrafficking in Persons\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, including the Trafficking Victims\nProtection Act of 2000, (22 U.S.C. 7103) (the ‘‘Act’’), and in order to combat\ntrafficking in persons, a contemporary manifestation of slavery whose victims\nare predominantly women and children, to ensure just and effective punish-\nment of traffickers, and to protect their victims, it is hereby ordered as\nfollows:\nSection 1. (a) The President’s Interagency Task Force to Monitor and Combat\nTrafficking in Persons is hereby established.\n(b) The Task Force shall consist of:\n(i) the Secretary of State;\n(ii) the Attorney General;\n(iii) the Secretary of Labor;\n(iv) the Secretary of Health and Human Services;\n(v) the Director of Central Intelligence;\n(vi) the Director of the Office of Management and Budget;\n(vii) the Administrator of the United States Agency for International\nDevelopment; and\n(viii) any additional officers or employees of the United States as may\nbe designated by the President.\n(c) The Task Force shall be chaired by the Secretary of State.\nSec. 2. Activities. The Task Force shall, consistent with applicable law\nand the constitutional authorities and duties of the President, carry out\nthe following activities:\n(a) coordinate the implementation of the Act;\n(b) measure and evaluate progress of the United States and other countries\nin the areas of trafficking in persons prevention, protection, and assistance\nto victims of trafficking in persons, and prosecutions and other enforcement\nefforts against traffickers, including the role of public corruption in facili-\ntating trafficking in persons;\n(c) assist the Secretary of State in the preparation of the annual reports\ndescribed in section 110 of the Act;\n(d) expand interagency procedures to collect and organize data, including\nsignificant research and resource information on domestic and international\ntrafficking in persons, while ensuring that any data collection procedures\ninvolved, respect the confidentiality of victims of trafficking in persons;\n(e) engage in efforts to facilitate cooperation among countries of origin,\ntransit, and destination, and such efforts shall aim to strengthen local and\nregional capacities to prevent trafficking in persons, prosecute traffickers\nand assist trafficking victims; shall include initiatives to enhance cooperative\nefforts between destination countries, transit countries, and countries of\norigin; and shall assist in the appropriate reintegration of stateless victims\nof trafficking in persons;\nVerDate 11<MAY>2000 08:15 Feb 15, 2002 Jkt 197001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\19FEE0.SGM pfrm07 PsN: 19FEE0\n=== PDF page 2 of 2 ===\n7260 Federal Register / Vol. 67, No. 33 / Tuesday, February 19, 2002 / Presidential Documents\n(f) examine the role of the international ‘‘sex tourism ’’ industry in the\ntrafficking of persons and in the sexual exploitation of women and children\naround the world;\n(g) engage in consultation and advocacy with governmental and nongovern-\nmental organizations, among other entities, to advance the purposes of the\nAct; and\n(h) address such other matters related to the purposes of the Act as\nthe President may determine.\nSec. 3. Administration. (a) The Department of State shall provide funding\nand administrative support for the Task Force, except as otherwise provided\nby the Act.\n(b) At the call of the Chair, the Task Force shall meet as necessary\nto accomplish its mission.\n(c) Task Force members may designate representatives from their respective\nagencies to represent them at Task Force meetings.\n(d) Whenever the work of the Task Force involves a matter committed\nby law or Presidential directive to the consideration of the National Security\nCouncil, or by Executive Order 13228 of October 8, 2001, to the consideration\nof the Homeland Security Council, that work shall be undertaken, and\nany communication by the Secretary of State to the President shall be\nundertaken, in a manner consistent with such law, Presidential directive,\nor Executive Order.\n(e) The Task Force shall have no directive authority or other substantial\nindependent authority.\n(f) As necessary and appropriate, the Task Force shall report to the Presi-\ndent, through the Secretary of State, the following:\n(i) progress on the implementation of the Act; and\n(ii) recommendations for United States policy to monitor and eliminate\ntrafficking in persons and to protect the victims of trafficking in persons.\nSec. 4. Judicial Review. This order does not create any rights or benefits,\nenforceable at law or equity, against the United States, its departments,\nits agencies, or other entities, its officers or employees, or any other person.\nW\nTHE WHITE HOUSE,\nFebruary 13, 2002.\n[FR Doc. 02 –4071\nFiled 2 –15–02; 8:45 am]\nBilling code 3195 –01–P\nVerDate 11<MAY>2000 08:15 Feb 15, 2002 Jkt 197001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\19FEE0.SGM pfrm07 PsN: 19FEE0"
-    },
-    "TERM:EO:13257:103e646a3259fb77@208f021b441efedd": {
-      "actor_id": "EO:13257",
-      "char_end": 265,
-      "char_start": 207,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13257:103e646a3259fb77@208f021b441efedd",
-      "instrument_id": "EO:13257",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13257#whole",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13257",
-        "page_or_item": "22 CFR part 104",
-        "requires_page_check": false,
-        "sha256": "208f021b441efedd69d4578fea1a082b6125adda9282639e2bd2ab7dd341d3d5",
-        "signing_date": "2002-02-13",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t22-part104.txt",
-        "text_sha256": "208f021b441efedd69d4578fea1a082b6125adda9282639e2bd2ab7dd341d3d5",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-22/part-104"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Source:70 FR 59655, Oct. 13, 2005, unless otherwise noted."
-    },
-    "TERM:EO:13257:1d016b49a237cfe6@94740bcd2bea459c": {
-      "actor_id": "EO:13257",
-      "char_end": 24605,
-      "char_start": 24263,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13257:1d016b49a237cfe6@94740bcd2bea459c",
-      "instrument_id": "EO:13257",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13257#g-5",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13257",
-        "page_or_item": "22 U.S.C. 7103",
-        "requires_page_check": false,
-        "sha256": "94740bcd2bea459c6fb4fa176c58b9f4d7bf2779ca9e5ca2415074948df289ac",
-        "signing_date": "2002-02-13",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t22-s7103.txt",
-        "text_sha256": "94740bcd2bea459c6fb4fa176c58b9f4d7bf2779ca9e5ca2415074948df289ac",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title22-section7103&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "L. 108–193, § 6(b)(2), Dec. 19, 2003, 117 Stat. 2881, provided that: “The individual who holds the position of Director of the Office to Monitor and Combat Trafficking of the Department of State may continue to hold such position notwithstanding the amendment made by paragraph (1) [amending this section].”\nSenior Policy Operating Group\nPub."
-    },
-    "TERM:EO:13257:39d020c6abc356ac@94740bcd2bea459c": {
-      "actor_id": "EO:13257",
-      "char_end": 20281,
-      "char_start": 20001,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13257:39d020c6abc356ac@94740bcd2bea459c",
-      "instrument_id": "EO:13257",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13257#g-5",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13257",
-        "page_or_item": "22 U.S.C. 7103",
-        "requires_page_check": false,
-        "sha256": "94740bcd2bea459c6fb4fa176c58b9f4d7bf2779ca9e5ca2415074948df289ac",
-        "signing_date": "2002-02-13",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t22-s7103.txt",
-        "text_sha256": "94740bcd2bea459c6fb4fa176c58b9f4d7bf2779ca9e5ca2415074948df289ac",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title22-section7103&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "L. 115–392, § 18(a), inserted “and providing an annual report on the case referrals received from the national human trafficking hotline by Federal departments and agencies” after “international trafficking” and “and reporting requirements” after “Any data collection procedures”."
-    },
-    "TERM:EO:13257:ad1f89b1fda7985d@94740bcd2bea459c": {
-      "actor_id": "EO:13257",
-      "char_end": 1728,
-      "char_start": 1423,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13257:ad1f89b1fda7985d@94740bcd2bea459c",
-      "instrument_id": "EO:13257",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13257#d-3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13257",
-        "page_or_item": "22 U.S.C. 7103",
-        "requires_page_check": false,
-        "sha256": "94740bcd2bea459c6fb4fa176c58b9f4d7bf2779ca9e5ca2415074948df289ac",
-        "signing_date": "2002-02-13",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t22-s7103.txt",
-        "text_sha256": "94740bcd2bea459c6fb4fa176c58b9f4d7bf2779ca9e5ca2415074948df289ac",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title22-section7103&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(3)\n Expand interagency procedures to collect and organize data, including significant research and resource information on domestic and international trafficking and providing an annual report on the case referrals received from the national human trafficking hotline by Federal departments and agencies."
-    },
-    "TERM:EO:13257:e7f783b1c5fc5f67@94740bcd2bea459c": {
-      "actor_id": "EO:13257",
-      "char_end": 6588,
-      "char_start": 3107,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13257:e7f783b1c5fc5f67@94740bcd2bea459c",
-      "instrument_id": "EO:13257",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13257#d-7",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13257",
-        "page_or_item": "22 U.S.C. 7103",
-        "requires_page_check": false,
-        "sha256": "94740bcd2bea459c6fb4fa176c58b9f4d7bf2779ca9e5ca2415074948df289ac",
-        "signing_date": "2002-02-13",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t22-s7103.txt",
-        "text_sha256": "94740bcd2bea459c6fb4fa176c58b9f4d7bf2779ca9e5ca2415074948df289ac",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title22-section7103&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Probably should be followed by a comma.\n the Committee on Financial Services,,2\n2\n So in original.\n and the Committee on the Judiciary of the House of Representatives and the Committee on Finance, the Committee on Foreign Relations, the Committee on Banking, Housing, and Urban Affairs, and the Committee on the Judiciary of the Senate, a report on Federal agencies that are implementing any provision of this chapter, or any amendment made by this chapter, which shall include, at a minimum, information on—\n(A)\n the number of persons who received benefits or other services under subsections (b) and (f) 3\n3\n See References in Text note below.\n of section 7105 of this title in connection with programs or activities funded or administered by the Secretary of Health and Human Services, the Secretary of Labor, the Attorney General, the Board of Directors of the Legal Services Corporation, and other appropriate Federal agencies during the preceding fiscal year;\n(B)\n the number of persons who have been granted continued presence in the United States under section 7105(c)(3) of this title during the preceding fiscal year and the mean and median time taken to adjudicate applications submitted under such section, including the time from the receipt of an application by law enforcement to the issuance of continued presence, and a description of any efforts being taken to reduce the adjudication and processing time while ensuring the safe and competent processing of the applications;\n(C)\n the number of persons who have applied for, been granted, or been denied a visa or otherwise provided status under subparagraph (T)(i) or (U)(i) of section 1101(a)(15) of title 8 during the preceding fiscal year;\n(D)\n the number of persons who have applied for, been granted, or been denied a visa or status under clause (ii) of section 1101(a)(15)(T) of title 8 during the preceding fiscal year, broken down by the number of such persons described in subclauses (I), (II), and (III) of such clause (ii);\n(E)\n the amount of Federal funds expended in direct benefits paid to individuals described in subparagraph (D) in conjunction with T visa status;\n(F)\n the number of persons who have applied for, been granted, or been denied a visa or status under section 1101(a)(15)(U)(i) of title 8 during the preceding fiscal year;\n(G)\n the mean and median time in which it takes to adjudicate applications submitted under the provisions of law set forth in subparagraph (C), including the time between the receipt of an application and the issuance of a visa and work authorization;\n(H)\n any efforts being taken to reduce the adjudication and processing time, while ensuring the safe and competent processing of the applications;\n(I)\n the number of persons who have been charged or convicted under one or more of sections 1581, 1583, 1584, 1589, 1590, 1591, 1592, or 1594 of title 18 during the preceding fiscal year and the sentences imposed against each such person;\n(J)\n the amount, recipient, and purpose of each grant issued by any Federal agency to carry out the purposes of sections 7104 and 7105 of this title, or section 2152d of this title, during the preceding fiscal year;\n(K)\n the nature of training conducted pursuant to section 7105(c)(4) of this title during the preceding fiscal year;\n(L)\n the amount, recipient, and purpose of each grant under sections 20702 and 20705 of title 34; 3\n(M)\n activities by the Department of Defense to combat trafficking in persons, including—"
     }
   },
-  "fingerprint": "d5878d892b6e5e18dcbdcfd4f783537372676415f592b85ab70c25b5b22eb4e2",
+  "fingerprint": "35da4f7d442ec8719d2c6a0c3d7f7942045ce5c49f89905495cf3ff2c431a098",
   "instrument_id": "EO:13257",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3670,32 +3812,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 7,
+      "machine_fragment_items_for_this_order_all_systems": 7,
+      "machine_hits_for_this_order": 6,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 7,
+      "machine_fragment_items_for_this_order_all_systems": 7,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3713,20 +3857,14 @@
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:13257",
-  "own_terms": [
-    "TERM:EO:13257:103e646a3259fb77@208f021b441efedd",
-    "TERM:EO:13257:ad1f89b1fda7985d@94740bcd2bea459c",
-    "TERM:EO:13257:e7f783b1c5fc5f67@94740bcd2bea459c",
-    "TERM:EO:13257:39d020c6abc356ac@94740bcd2bea459c",
-    "TERM:EO:13257:1d016b49a237cfe6@94740bcd2bea459c"
-  ],
+  "own_terms": [],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "7e46568a153c2e156ae973fa7f1f580e9cda9343e33c134d25cb426f2b443adc",
+    "fingerprint": "00f7963c2e07877a11f56b2722dc0507573a772d589bdbc836c12f150cf63a4b",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13257.json",
-    "history_sha256": "ab180adaff7de5140436d210984d72f29d248d8ef9b88b2ca7ca66fa92e58284",
+    "history_sha256": "aceb34b3dc96d2e8c920ed56d6fa65c3fa123446946e99136583890dc9220d72",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

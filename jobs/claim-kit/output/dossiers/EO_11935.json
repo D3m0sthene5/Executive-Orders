@@ -6,14 +6,32 @@
     },
     {
       "actor_id": "EO:13940",
-      "evidence_id": "ACTOR_TEXT:EO:13940"
+      "evidence_id": "ACTOR_TEXT:EO:13940",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2026-13154",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:2026-13154@45668"
+      ],
+      "full_text_chars": 161818,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-2026-13154.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "62b0d9dd08d920f13f419ec1727e4eb546f13b62f7d58c53d2a317b58a949399",
+      "window_bytes": 3101,
+      "windows_omitted": 0
+    },
+    {
+      "actor_id": "FRDOC:E9-19340",
+      "evidence_id": "ACTOR_TEXT:FRDOC:E9-19340",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11935",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11935"
@@ -46,44 +64,68 @@
   "current_law_leads": [
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 475,
+      "char_start": 144,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-02)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "29 CFR 1606.5",
+        "sha256": "86030a58207ab3058a4bd1841eabb01ceca61ef37eb662b98f78e910c7f3455d",
+        "source_id": "cfr:t29:1606.5",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-29/section-1606.5"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11935",
       "legal_basis_candidate": "regulation text names the order (29 CFR 1606.5)",
       "machine_lead": true,
-      "mention_id": "ecfr:924cfee1b96f",
+      "mention_id": "ecfr:ee4d74bb1e48",
       "snippet": "...st an individual on the basis of national origin, they are prohibited by title VII. 2 2 See Espinoza v. Farah Mfg. Co., Inc., 414 U.S. 86, 92 (1973). See also, E.O. 11935, 5 CFR 7.4; and 31 U.S.C. 699(b), for citizenship requirements in certain Federal employment. (b) Some State laws prohibit the employment of non-citizens. Wher...",
       "source": {
-        "page_or_item": "29 CFR 1606.5 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-02; NODE 29:4.1.4.1.7.0.21.5)",
-        "sha256": "67159e14387382894615b6fc6eacbf7fade1891a3ba8bf75a11499d70baaf2e1",
+        "page_or_item": "29 CFR 1606.5 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-09; NODE 29:4.1.4.1.7.0.21.5)",
+        "sha256": "e798a01cbd1013405db5481103fc7b16a2f7e9a3b472ba24e477055026791fe6",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t29-1606.5.txt",
+        "text_sha256": "86030a58207ab3058a4bd1841eabb01ceca61ef37eb662b98f78e910c7f3455d",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml"
       },
       "system": "ecfr",
+      "text": "st an individual on the basis of national origin, they are prohibited by title VII. \n2\n2 See Espinoza v. Farah Mfg. Co., Inc., 414 U.S. 86, 92 (1973). See also, E.O. 11935, 5 CFR 7.4; and 31 U.S.C. 699(b), for citizenship requirements in certain Federal employment.\n(b) Some State laws prohibit the employment of non-citizens. Wher",
       "where": "CFR 29 CFR 1606.5"
     },
     {
       "basis_code": "cfr_source_citation",
+      "char_end": 639,
+      "char_start": 544,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 7.3",
+        "sha256": "65a29fd1d0b1437b4265ca4591e0501c24728e7eb5c6decd4999554fc8df83b1",
+        "source_id": "cfr:t5:7.3",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-7.3"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11935",
       "legal_basis_candidate": "regulation source citation lists the order (5 CFR 7.3)",
       "machine_lead": true,
-      "mention_id": "ecfr:a7dc80518046",
+      "mention_id": "ecfr:359db2308c5a",
       "snippet": "[E.O. 11935, 41 FR 37301, Sept. 3, 1976. Redesignated by E.O. 13197, 66 FR 7853, Jan. 25, 2001]",
       "source": {
-        "page_or_item": "5 CFR 7.3 (section_source_citation; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.1.7.0.1.3)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR 7.3 (section_source_citation; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.1.7.0.1.3)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-7.3.txt",
+        "text_sha256": "65a29fd1d0b1437b4265ca4591e0501c24728e7eb5c6decd4999554fc8df83b1",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
+      "text": "[E.O. 11935, 41 FR 37301, Sept. 3, 1976. Redesignated by E.O. 13197, 66 FR 7853, Jan. 25, 2001]",
       "where": "CFR 5 CFR 7.3"
     },
     {
@@ -95,10 +137,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-02)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:924cfee1b96f",
+        "mention_id": "ecfr:ee4d74bb1e48",
         "snippet": "...st an individual on the basis of national origin, they are prohibited by title VII. 2 2 See Espinoza v. Farah Mfg. Co., Inc., 414 U.S. 86, 92 (1973). See also, E.O. 11935, 5 CFR 7.4; and 31 U.S.C. 699(b), for citizenship requirements in certain Federal employment. (b) Some State laws prohibit the ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -108,8 +150,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (29 CFR 1606.5)",
         "source": {
-          "page_or_item": "29 CFR 1606.5 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-02; NODE 29:4.1.4.1.7.0.21.5)",
-          "sha256": "67159e14387382894615b6fc6eacbf7fade1891a3ba8bf75a11499d70baaf2e1",
+          "page_or_item": "29 CFR 1606.5 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-09; NODE 29:4.1.4.1.7.0.21.5)",
+          "sha256": "e798a01cbd1013405db5481103fc7b16a2f7e9a3b472ba24e477055026791fe6",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml"
         }
       }
@@ -123,10 +165,10 @@
         "basis_code": "cfr_source_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:a7dc80518046",
+        "mention_id": "ecfr:359db2308c5a",
         "snippet": "[E.O. 11935, 41 FR 37301, Sept. 3, 1976. Redesignated by E.O. 13197, 66 FR 7853, Jan. 25, 2001]",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -136,8 +178,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation source citation lists the order (5 CFR 7.3)",
         "source": {
-          "page_or_item": "5 CFR 7.3 (section_source_citation; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.1.7.0.1.3)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR 7.3 (section_source_citation; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.1.7.0.1.3)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -184,6 +226,7 @@
       "char_end": 5861,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13940",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -198,6 +241,66 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2020-08-06/pdf/2020-17363.pdf"
       },
       "text": "Instrument: EO:13940\nSource: https://www.govinfo.gov/content/pkg/FR-2020-08-06/pdf/2020-17363.pdf\nSHA-256 of the downloaded file: 73a3fd4a719a74e2a01ae34650a1ad5ff2ed84b975aee2fe075a40f5d529bd1c\nLocation: 85 FR 47879, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n47879 \nFederal Register \nVol. 85, No. 152 \nThursday, August 6, 2020 \nTitle 3— \nThe President \nExecutive Order 13940 of August 3, 2020 \nAligning Federal Contracting and Hiring Practices With the \nInterests of American Workers \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, it is hereby ordered as follows: \nSection 1. Policy. It is the policy of the executive branch to create opportuni-\nties for United States workers to compete for jobs, including jobs created \nthrough Federal contracts. These opportunities, particularly in regions where \nthe Federal Government remains the largest employer, are especially critical \nduring the economic dislocation caused by the 2019 novel coronavirus \n(COVID–19) pandemic. When employers trade American jobs for temporary \nforeign labor, for example, it reduces opportunities for United States workers \nin a manner inconsistent with the role guest-worker programs are meant \nto play in the Nation’s economy. \nSec. 2. Review of Contracting and Hiring Practices. (a) The head of each \nexecutive department and agency (agency) that enters into contracts shall \nreview, to the extent practicable, performance of contracts (including sub-\ncontracts) awarded by the agency in fiscal years 2018 and 2019 to assess: \n(i) whether contractors (including subcontractors) used temporary foreign \nlabor for contracts performed in the United States, and, if so, the nature \nof the work performed by temporary foreign labor on such contracts; \nwhether opportunities for United States workers were affected by such \nhiring; and any potential effects on the national security caused by such \nhiring; and \n(ii) whether contractors (including subcontractors) performed in foreign \ncountries services previously performed in the United States, and, if so, \nwhether opportunities for United States workers were affected by such \noffshoring; whether affected United States workers were eligible for assist-\nance under the Trade Adjustment Assistance program authorized by the \nTrade Act of 1974; and any potential effects on the national security \ncaused by such offshoring. \n(b) The head of each agency that enters into contracts shall assess any \nnegative impact of contractors’ and subcontractors’ temporary foreign labor \nhiring practices or offshoring practices on the economy and efficiency of \nFederal procurement and on the national security, and propose action, if \nnecessary and as appropriate and consistent with applicable law, to improve \nthe economy and efficiency of Federal procurement and protect the national \nsecurity. \n(c) The head of each agency shall, in coordination with the Director \nof the Office of Personnel Management, review the employment policies \nof the agency to assess the agency’s compliance with Executive Order 11935 \nof September 2, 1976 (Citizenship Requirements for Federal Employment), \nand section 704 of the Consolidated Appropriations Act, 2020, Public Law \n116–93. \n(d) Within 120 days of the date of this order, the head of each agency \nshall submit a report to the Director of the Office of Management and \nBudget summarizing the results of the reviews required by subsections (a) \nthrough (c) of this section; recommending, if necessary, corrective actions \nthat may be taken by the agency and timeframes to implement such actions; \nand proposing any Presidential actions that may be appropriate. \nVerDate Sep<11>2014 18:24 Aug 05, 2020 Jkt 250001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\06AUE0.SGM 06AUE0jbell on DSKJLSW7X2PROD with EXECORD\n=== PDF page 2 of 2 ===\n47880 Federal Register / Vol. 85, No. 152 / Thursday, August 6, 2020 / Presidential Documents \nSec. 3. Measures to Prevent Adverse Effects on United States Workers. Within \n45 days of the date of this order, the Secretaries of Labor and Homeland \nSecurity shall take action, as appropriate and consistent with applicable \nlaw, to protect United States workers from any adverse effects on wages \nand working conditions caused by the employment of H–1B visa holders \nat job sites (including third-party job sites), including measures to ensure \nthat all employers of H–1B visa holders, including secondary employers, \nadhere to the requirements of section 212(n)(1) of the Immigration and \nNationality Act (8 U.S.C. 1182(n)(1)). \nSec. 4. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nAugust 3, 2020. \n[FR Doc. 2020–17363 \nFiled 8–5–20; 11:15 am] \nBilling code 3295–F0–P \nVerDate Sep<11>2014 18:24 Aug 05, 2020 Jkt 250001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\06AUE0.SGM 06AUE0\nTrump.EPS</GPH>\njbell on DSKJLSW7X2PROD with EXECORD"
+    },
+    "ACTOR_TEXT:FRDOC:2026-13154@45668": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-13154",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 48769,
+      "char_start": 45668,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-13154@45668",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-13154",
+        "page_or_item": "91 FR 39361; FR Doc. 2026-13154; Rule: Suitability and Fitness",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "62b0d9dd08d920f13f419ec1727e4eb546f13b62f7d58c53d2a317b58a949399",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-13154.txt",
+        "text_sha256": "62b0d9dd08d920f13f419ec1727e4eb546f13b62f7d58c53d2a317b58a949399",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/06/30/2026-13154.txt"
+      },
+      "text": "combine these two factors into a single factor to clearly convey the \nintent, eliminate confusion, and sufficiently cover impediments to \nlawful employment. The combined factor reads: ``Any statutory or \nregulatory bar or any other provision of law, regulation, Executive \norder, or\n\n[[Page 39367]]\n\nother binding legal authority that prevents the lawful employment of \nthe individual in the position in question, such as citizenship or \nnationality requirements.''\n    Some commenters focused on the references to citizenship and \nnationality requirements, believing that persons lawfully admitted to \nthe United States for permanent residence and seeking U.S. citizenship \nare eligible for Federal employment based on the definition of \n``protected individual'' in 8 U.S.C. 1324b(a)(3)(B). See Comment 029. \nThis law explains the prohibition of discrimination based on national \norigin or citizenship status. While the definition of protected \nindividuals in this law includes aliens who are lawfully admitted for \npermanent residence, certain aliens admitted for temporary residence, \nand certain refugees and asylees, 8 U.S.C. 1324b(a)(2)(C) includes an \nexception for discrimination because of citizenship status which is \notherwise required in order to comply with law, regulation, or \nexecutive order, or required by Federal, State, or local government \ncontract, or which the Attorney General determines to be essential for \nan employer to do business with an agency or department of the Federal, \nState, or local government. As explained in Executive Order 11935, an \nindividual cannot be admitted to competitive examination or given an \nappointment in the competitive service unless he or she is a citizen or \nnational of the United States. In exceptional circumstances, including \ntemporary appointments, a foreign national may be appointed to \npositions in the competitive service when necessary to promote the \nefficiency of the service, as described in 5 CFR 316.601, unless the \nappointment is prohibited by statute. Some statutes governing agencies \nand positions, such as national security positions, mandate U.S. \ncitizenship by law. As such, OPM believes the reference to citizenship \nand nationality requirements is appropriate and will retain the \nexamples.\nIII.B.2 OPM's Proposal for Post-Appointment Conduct-Based Suitability \nActions\n    OPM proposed changes to Sec. Sec.  731.103, 731.105, 731.106, \n731.203, and 731.301 to exercise its authority to make final \nsuitability determinations and take suitability actions under part 731 \nin any case involving an employee in the competitive service or in a \ncareer appointment to a position in the Senior Executive Service. OPM \nproposed that it would retain sole jurisdiction to make these final \nsuitability determinations and take suitability actions in any case \ninvolving an employee for post-appointment conduct. Although OPM \nproposed to retain sole jurisdiction to make final suitability \ndeterminations and take suitability actions in these cases, OPM \nproposed that it would only make such determinations and take such \n"
+    },
+    "ACTOR_TEXT:FRDOC:E9-19340": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:E9-19340",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 48952,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:E9-19340",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:E9-19340",
+        "page_or_item": "74 FR 40471; FR Doc. E9-19340; Rule: Noncompetitive Appointment of Certain Military Spouses",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "d96d0a3210aa4989a90d4130e2459ef054e4acb0079996084ccef527d6222bf5",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-E9-19340.txt",
+        "text_sha256": "d96d0a3210aa4989a90d4130e2459ef054e4acb0079996084ccef527d6222bf5",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2009/08/12/E9-19340.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 74 Issue 154 (Wednesday, August 12, 2009)</title>\n</head>\n<body><pre>\n[Federal Register Volume 74, Number 154 (Wednesday, August 12, 2009)]\n[Rules and Regulations]\n[Pages 40471-40477]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: E9-19340]\n\n\n\n\u0000========================================================================\n\u0000Rules and Regulations\n\u0000                                                Federal Register\n\u0000________________________________________________________________________\n\u0000\n\u0000This section of the FEDERAL REGISTER contains regulatory documents \n\u0000having general applicability and legal effect, most of which are keyed \n\u0000to and codified in the Code of Federal Regulations, which is published \n\u0000under 50 titles pursuant to 44 U.S.C. 1510.\n\u0000\n\u0000The Code of Federal Regulations is sold by the Superintendent of Documents. \n\u0000Prices of new books are listed in the first FEDERAL REGISTER issue of each \n\u0000week.\n\u0000\n\u0000========================================================================\n\u0000\n\n\u0000\u0000Federal Register / Vol. 74, No. 154 / Wednesday, August 12, 2009 / \nRules and Regulations\u0000\u0000\n\n[[Page 40471]]\n\n\n\nOFFICE OF PERSONNEL MANAGEMENT\n\n5 CFR Parts 315 and 316\n\nRIN 3206-AL73\n\n\nNoncompetitive Appointment of Certain Military Spouses\n\nAGENCY: U.S. Office of Personnel Management.\n\nACTION: Final rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The U.S. Office of Personnel Management (OPM) is issuing final \nregulations which establish a noncompetitive hiring authority for \ncertain military spouses to positions in the competitive service. These \nregulations implement Executive Order 13473 dated September 25, 2008, \nwhich authorizes noncompetitive appointments in the civil service for \nspouses of certain members of the armed forces. The intended effect of \nthis rule is to facilitate the entry of military spouses into the \nFederal civil service as part of an effort to recruit and retain \nskilled and experienced members of the armed forces and to recognize \nand honor the service of members injured, disabled, or killed in \nconnection with their service.\n\nDATES: This rule is effective September 11, 2009.\n\nFOR FURTHER INFORMATION CONTACT: Jacquelyn A. Carrington at (202) 606-\n0960, FAX at (202) 606-2329, TDD at (202) 418-3134, or e-mail at \n<a href=\"/cdn-cgi/l/email-protection#177d76746662727b6e7939747665657e79706378795778677a39707861\"><span class=\"__cf_email__\" data-cfemail=\"422823213337272e3b2c6c212330302b2c25362d2c022d322f6c252d34\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: On December 5, 2008, OPM issued proposed \nregulations in the Federal Register at 73 FR 74071 to regulate the \nnoncompetitive appointment of certain military spouses in parts 315 and \n316 of title 5, Code of Federal Regulations (CFR). We requested \ncomments on the proposed rule to be submitted by January 5, 2009.\n    OPM received comments from 43 individuals, 10 Federal agencies, and \n1 military family organization that were pertinent to the proposed \nchanges. A discussion of the comments we received is categorized below \ninto the following areas: Agency Authority, Definitions, Eligibility, \nConditions, Proof of Eligibility, Acquisition of Competitive Status, \nand Miscellaneous.\n\nAgency Authority\n\n    An individual asked OPM to explain the circumstances under which \neligible spouses can be appointed under this authority. The \ncircumstances under which spouses may be appointed are listed at Sec.  \n315.612(a). Agencies may use this authority to noncompetitively appoint \nto the competitive service eligible spouses to temporary, term, or \npermanent positions consistent with the provisions of Sec.  315.612 and \n5 CFR part 316. For more specifics concerning the use of this \nauthority, OPM will issue supplemental guidance on the use of this \nauthority, which will be available at <a href=\"http://www.opm.gov\">http://www.opm.gov</a>.\n\nDefinitions\n\n    One agency commented that the Merit Systems Protection Board \ndecision in Edward Thomas Hesse v. Department of the Army (104 M.S.P.R. \n647, 2007) may impact the definition of ``active duty'' in Sec.  \n315.612(b)(1). OPM does not agree with the agency's comment. The Hesse \ndecision related to the definition of ``disabled veteran'' under 5 \nU.S.C. 2108(2). The term ``active duty'' in Sec.  315.612(b) is defined \nusing the language from Executive Order 13473. Neither the Executive \nOrder nor the regulation changes the statutory definition of ``disabled \nveteran.''\n    Two agencies suggested revising the definition of ``member of the \narmed forces or service member'' in Sec.  315.612(b)(4)(ii) to clarify \nthat a service member's 100 percent disability must be military-related \nor service-connected. OPM agrees clarification is needed and we have \namended section 315.612(b)(4)(ii) accordingly.\n    One agency suggested that OPM modify the definition of ``member of \nthe armed forces or service member'' in section 315.612(b)(4)(ii) to \ninclude the spouse of a military member who has been declared \ncatastrophically injured by his or her attending physician, but whose \nformal disability rating is not yet finalized. OPM cannot adopt this \nsuggestion because section 2(e) of E.O. 13473 defines a totally \ndisabled veteran as having a disability rating of 100 percent from the \nappropriate military entity.\n    A national military family association suggested that OPM expand \nsection 315.612(b)(4)(i) to include a service member who receives \nfollow-on orders to a military command in the same geographic area to \nwhich he or she is already stationed. OPM is not adopting this \nsuggestion because E.O. 13473 does not authorize noncompetitive \nappointment eligibility for service members who receive follow-on \norders.\n    The same organization suggested that OPM expand section \n315.612(b)(4)(i) to include the spouse of a National Guard or Reserve \nservice member activated for more than 180 days who did not receive \npermanent change of station (PCS) orders when activated. OPM cannot \nadopt this suggestion because section 3(a) of E.O. 13473 limits \neligibility under this authority to spouses of service members in \nreceipt of PCS orders (except in cases in which the service member \nincurs a 100 percent service-connected disability or is killed while on \nactive duty).\n    One individual suggested OPM delete the provision in section \n315.612(b)(ii) requiring a 100 percent disability rating for certain \nservice members with a service-connected disability. OPM cannot adopt \nthis suggestion because section 2(e)(i) of E.O. 13473 specifies that a \n100 percent disability is required for an individual with a service-\nconnected disability.\n    An individual suggested that OPM delete the period at the end of \nsection 315.612(b)(4)(ii) to better clarify the definition of a \n``member of the armed services or service member.'' We agree that \nclarity is needed and have modified the punctuation in section \n315.612(b)(4) to make clear that a ``member of the armed services or \nservice member'' means an individual who meets any of the three \ncriteria contained in the definition instead of having to meet all \nthree criteria.\n    One individual and one national military family association asked \nwhether eligibility under this authority is limited to spouses of \ninjured service members or those killed while on active duty. Section \n315.612(a) explains that eligibility under this authority, in \naccordance with the other provisions of\n\n[[Page 40472]]\n\nthis rule, applies to the spouse of a service member serving on active \nduty in the armed forces who has received PCS orders; the spouse of a \n100 percent disabled service member whose disability resulted from \nactive duty in the armed forces; and, the un-remarried widow or widower \nof a service member who was killed while on active duty in the armed \nforces.\n    One commenter asked whether a service member must have been killed \nin combat, as opposed to being killed while on active duty but not in \ncombat, in order for the spouse of that service member to be eligible \nunder this authority. One agency asked whether the service member must \nhave been performing actual duty or simply have been in an active duty \nstatus for the spouse to be eligible. Section 3(c) of the E.O. states \nthat the unmarried widow or widower of a member of the Armed Forces who \nwas killed while performing active duty are eligible for non-\ncompetitive appointment under this authority. Because the intent of the \nE.O. is to help widows and widowers of spouses killed in the service of \nour nation, OPM is applying the E.O. language broadly to include \nspouses of anyone killed while in active duty status (i.e., the \nindividual need not have been killed in ``combat'').\n    Two individuals and one national military family association \nsuggested that an individual who marries after his or her military \nspouse receives PCS orders should be eligible for noncompetitive \nappointment under this authority. OPM is not adopting this suggestion. \nThe intent of E.O. 13473 is to provide employment opportunities for \nindividuals who are married to service members at the time these \nservice members receive their orders to relocate, become 100 percent \ndisabled, or are killed.\n    One individual suggested that this authority apply to spouses of \nindividuals on training duty or who are attending military service \nschools. Section 2(c) of E.O. 13473 specifically excludes training \nduties and attendance at service schools from coverage under this \nauthority.\n\nEligibility\n\n    One individual and two agencies recommended revising section \n315.612(c)(3) to clarify that the geographical limitation applies only \nto the spouse of a member of the armed services or service member \ndefined in section 315.612(b)(4)(i). We agree that clarification is \nneeded and have modified section 315.612(c)(3) accordingly.\n    One individual and three agencies asked whether the spouse of a \nservice member must relocate with the service member in order to be \neligible for noncompetitive appointment under this authority, for \nexample, if the service member goes on an unaccompanied tour. As stated \nin section 3(a) of the E.O., the spouse must relocate with the service \nmember in order to be eligible for appointment under this authority.\n    Another individual recommended providing eligibility for the widow \nor widower of a service member who dies after separation or medical \nretirement as a result of injury sustained on active duty. OPM cannot \nadopt this recommendation because section 3(c) of E.O. 13473 specifies \nthat eligibility is provided for service members who are killed while \nperforming active duty.\n    One agency asked whether agencies can use this authority to appoint \nan individual whose service member spouse dies while assigned to an \nunaccompanied tour. Although the spouse was not eligible for \nappointment under section 315.612(c)(1) because the military member was \non an unaccompanied tour, the spouse could become eligible under \nsection 315.612(c)(3) as the un-remarried widow or widower of a service \nmember killed while on active duty.\n    One agency recommended revising section 315. 612(c)(1) to provide \neligibility for individuals who wait to marry until they have orders to \nrelocate, or subsequently marry after the relocation. The agency \nsuggests that the two-year eligibility period should be predicated on \nthe military member's orders and proof of marriage, regardless of when \nor where the marriage takes place. OPM cannot adopt this \nrecommendation. Section 3 of E.O. 13473 specifies that eligibility for \nappointment under this authority is limited to spouses who relocate to \nthe service member's new permanent duty station. To be eligible for the \nnoncompetitive appointment in this scenario, the spouse must accompany \nthe military member on permanent change of station orders. In order to \nprove his or her eligibility, the spouse must present documentation \nauthorizing him or her to accompany the service member to the new duty \nstation along with a copy of the PCS orders. Military orders, however, \nonly authorize dependent travel if the service member is married at the \ntime the orders are processed. For this reason, individuals who wait to \nmarry after their spouse relocates are not eligible for noncompetitive \nappointment under this authority.\n    Five agencies and one individual commented on the geographic \nlimitation contained in section 315.612(c)(3). One of the agencies \nrecommended revising the language in this paragraph to add that the \nagency head's designee at the Chief Human Capital Officer (CHCO) level, \nor comparable level in a non-CHCO agency, may waive the geographic \nlimitation. OPM agrees that the head of the agency could delegate the \nwaiver authority to his or her designee, and we have modified the \nlanguage in paragraph (c)(3) accordingly.\n    The individual commenter suggested removing the geographic \nrestriction from section 315.612(c)(3) because some spouses may not be \nable to relocate due to family obligations. OPM is not adopting this \nsuggestion. Section 3(a) of E.O. 13473 specifically states spouses are \neligible to be appointed under this authority provided that the spouse \nrelocates to the member's new permanent duty station.\n    Two of the agencies suggested the term ``geographic area'' be \nfurther defined, e.g., by establishing a mileage standard as the basis \nfor determining the geographic area within which the noncompetitive \nappointing authority will apply. OPM is not adopting these suggestions. \nEstablishing a definitive mileage standard may adversely affect certain \nspouses' eligibility for appointment. We believe the agency is in the \nbest position to determine the reasonableness of commuting distance \nwithin its location. In fact, most agencies have defined ``commuting \narea'' in their merit promotion plans established under 5 CFR part 335. \nAlso, the parameters in section 315.612(c)(3) specify that the \ngeographic limit is based on the duty station specified on the service \nmember's PCS orders. (OPM notes that we have clarified language in \nparagraph (c)(3) to specify the geographic limitation applies only to \nspouses who relocated with their spouses and are eligible for \nappointment under section 315.612(b)(1).)\n    One of these same agencies recommended modifying section \n315.612(c)(3) to waive the geographic limitation if no Federal agency \nexists in the geographic area to which the military member is relocated \nor there are none that employs the occupational specialty for which the \nspouse qualifies, e.g., a nursing assistant or health care information \ntechnology specialist. OPM is not adopting this suggestion. The intent \nof these provisions is to provide employment opportunities for \nindividuals negatively impacted by their military spouse's relocation, \nnot to provide employment opportunities\n\n[[Page 40473]]\n\nwithin the spouse's occupational specialty.\n    The other agency suggested OPM provide guidance on applying the \ngeographic limitation. OPM will address this concern in supplemental \nguidance material which will be available on the OPM Web site at <a href=\"http://www.opm.gov\">http://www.opm.gov</a>.\n\nConditions\n\n    Five individuals, ten agencies, and one national military family \norganization suggested the 2-year eligibility period specified in \nsection 315.612(d)(1) should be eliminated or extended. OPM is not \nadopting this suggestion because the intent of this hiring authority is \nto provide employment access for certain individuals negatively \nimpacted by their military spouses' relocation, incapacitation, or \ndeath. We believe 2 years is a reasonable time period for affected \nindividuals to obtain Federal employment via this authority. We note \nthat spouses of 100 percent disabled service members and service \nmembers killed while on active duty will have a veterans' preference \nentitlement in addition to eligibility under this appointing authority.\n    Two agencies asked whether the 2 year time limit specified under \nsection 315.612(d)(1) is extended if the eligible individual is \nappointed to a temporary or term appointment. The 2 year time limit \ncannot be extended for individuals appointed to temporary or term \npositions under this authority. The intent of this hiring authority is \nto provide employment access for certain individuals. The 2 year time \nlimit is consistent with other noncompetitive appointing authorities. \nWe also note again that spouses of 100 percent disabled service members \nand service members killed while on active duty will have a veterans' \npreference entitlement in addition to eligibility under this appointing \nauthority.\n    One agency commented that the date in section 315.612(d)(1)(i) \nshould be revised from 2 years from the date of the service member's \nPCS orders to 2 years from the reporting or effective date stated in \nthe orders, to eliminate any confusion, as some may think this is the \nissuance date. OPM is not adopting this suggestion. We believe a 2 year \nperiod from the date the orders are issued provides consistency and \nequitable treatment of affected individuals because individuals' \nreporting times may vary.\n    Two agencies and one individual commented on section 315.612(d)(3), \nwhich would have provided eligibility to spouses who relocated with a \nservice member within 1 year prior to the effective date of the final \nregulations. One of these agencies recommended removing this \nretroactive eligibility. The other agency recommended extending the \nperiod to 2 years, and the individual commenter suggested extending the \nperiod back to September 11, 2001. OPM is adopting the recommendation \nto delete this provision from the final regulation. The separate 1-year \nretroactive provision is not needed for spouses who have already \nrelocated with the service member because their eligibility has been \nestablished under section 315.612(d)(1). This section provides \neligibility for 2 years from the date of the member's PCS orders. E.O. \n13473 does not contain a grandfather provision for service members who \nmay have met the eligibility criteria in prior years. We have replaced \nthe language in paragraph (d)(3) with the language in paragraph (d)(4) \nof the proposed regulations and deleted paragraph (d)(4).\n    One agency asked if there is a limit on the number of \nnoncompetitive appointments a spouse of a 100 percent disabled or \ndeceased service member may receive. There is no limit on the number of \nappointments a spouse of a 100 percent disabled veteran or the widow or \nwidower of a deceased service member may receive under this authority; \nhowever, these spouses remain subject to the 2-year period specified in \nsection 315.612(d)(1)(ii). Spouses of relocating service members are \nlimited to only one appointment under this authority per PCS order.\n    Three agencies asked whether the 2-year eligibility period \nspecified in section 315.612(d)(1) begins on the date of the PCS orders \nor the date the eligible spouse relocates to the new duty station. \nSection 315.612(d)(1)(i) states that the 2-year eligibility period \nbegins on the date of the service member's PCS orders.\n    One agency and one individual suggested OPM eliminate the \nrequirement in section 315.612(d)(2), which limits an individual's \neligibility to one appointment per PCS relocation. OPM is not adopting \nthis suggestion because the intent of this rule is to provide \nemployment opportunities to individuals negatively impacted by a PCS \nmove.\n\nProof of Eligibility\n\n    Two agencies suggested we modify section 315.612(e)(1)(c) to \nspecify that documentation must verify an individual's current marriage \nto a service member. OPM is not adopting this suggestion because we do \nnot believe this clarification is necessary. Section 315.612(b)(6) \ndefines a spouse as the husband or wife of a member of the armed \nforces. This definition implies that a spouse is a current spouse. \nAgencies also commented that the regulations should ensure the currency \nand reliability of documentation of death or disability. OPM believes \nthat the proof of eligibility requirements in section 315.612(e) is \nsufficiently detailed. It is incumbent on each agency to accept \neligibility documents from military spouses seeking noncompetitive \nappointment that are as reliable as the eligibility documents submitted \nby applicants for veterans preference. See Instructions on \nDocumentation Required accompanying the Standard Form 15, Application \nfor 10-Point Veterans Preference, available at <a href=\"http://www.opm.gov/forms\">http://www.opm.gov/forms</a>.\n    One of these agencies also suggested we modify the parenthetical \nexamples in section 315.612(e)(1)(ii) and (iii) by changing the ``or'' \nto ``and'' in these examples. We are not adopting this suggestion \nbecause there are valid forms of documentation, other than a marriage \nlicense, which some individuals may be able to produce in lieu of a \nmarriage license in order to prove their eligibility under this \nauthority. Our intention is provide individuals with as much \nflexibility as possible when proving their eligibility.\n    One agency asked whether the documentation of 100 percent service-\nconnected disability rating applies regardless of how long the member \nhas been retired from active duty. The amount of time a member has been \nseparated or retired from active duty due to service-connected \ndisability is not a factor when considering a spouse's eligibility \nunder this authority.\n    One agency recommended revising section 315.612(e)(2)(ii) to add at \nthe end, ``resulting from active duty'' to ensure the disability \nresulted from active duty, a military-related cause, and not another \ncause. OPM is not adopting this suggestion because the documentation \nspecified in paragraph (b)(4)(ii) is sufficient to prove a service-\nconnected disability.\n\nAcquisition of Competitive Status and Tenure on Appointment\n\n    One agency asked for confirmation that the noncompetitive \nappointing authority does not apply to appointments made under the \nFederal Career Intern Program (FCIP) because section 315.612 requires a \ncareer-conditional appointment, unless the appointee has already \ncompleted the service requirements for career tenure. The agency is \ncorrect. Appointments under the FCIP authority are made in the excepted \nservice.\n\n[[Page 40474]]\n\n    One agency asked whether spouses convert to career appointments \nafter 1 year or 3 years of appointment under this authority because \nsection 315.612(g) specifies that an eligible military spouse hired \nunder this authority has a career-conditional appointment until the \nemployee fulfills the requirements for career tenure. The agency \nmisread the requirement. Section 315.612(g) reads: ``An appointment \nunder paragraph (a) of this section is career-conditional unless the \nappointee has already satisfied the requirements for career tenure or \nis exempt from the service requirement pursuant to Sec.  315.201.''\n\nMiscellaneous\n\n    One agency asked whether agencies must rate and rank eligible \nspouses when making appointments using this authority. Because this is \na noncompetitive hiring authority, agencies are not required to rate \nand rank individuals when using this authority. Agencies must evaluate \neligible spouses to determine whether they meet the qualifications for \nthe positions being filled.\n    One individual asked whether this appointing authority applies only \nto positions being filled in the competitive service. Similarly, one \nagency asked if it is correct to say that the authority under section \n315.612 is no different than a VRA or the Student Employment Education \nProgram and other Schedule A appointing authorities. A noncompetitive \nappointment is an appointment to, or placement in, a position in the \ncompetitive service that is not made by selection from an open \ncompetitive examination and that is usually based on current or prior \nFederal service. This authority applies only to positions being filled \nin the competitive service.\n    One individual commented that this authority is not necessary \nbecause there is already an Executive order for family members \nreturning from overseas appointments. The hiring authority provided by \nsection 315.608 for certain former overseas employees is a separate \nnoncompetitive hiring authority established under Executive Order \n11219. The new authority provided by section 315.612 established under \nExecutive Order 13473 does not affect or take precedence over other \navailable appointing authorities.\n    One individual suggested that OPM change the rules pertaining to \ncitizenship requirements for Federal employment to allow foreign \nmilitary spouses to be eligible under this appointing authority. \nExecutive Order 11935, signed on September 2, 1976, restricts the \nemployment of non-citizens in competitive service positions covered by \ntitle 5 of the U.S. Code. Executive Order 13473, which provides for the \nnoncompetitive appointment of certain military spouses, does not amend \nE.O. 11935, nor does it provide OPM with any authority to supersede the \ncitizenship requirement.\n    One commenter asked whether OPM will specify the qualifications \nrequirements pertaining to the various positions agencies may fill \nunder this authority. Agencies use Governmentwide qualification \nstandards when filling positions in the competitive service. The \nqualification requirements will vary depending on the specific position \nan agency is seeking to fill. Agencies will identify the qualification \nrequirements in the vacancy announcement advertising the specific \nposition to be filled. This authority is not limited to specific \npositions, and may be used to fill any position in the competitive \nservice.\n    The same individual asked whether agencies will be required to \nreport, via Central Personnel Data File (CPDF), appointments made under \nthis authority. Agencies must submit hiring activity reports for this \nauthority to CPDF the same as when making other appointments. OPM will \nthen capture this CPDF data on the use of this authority to monitor, on \nan ad hoc basis, the use of this authority.\n    Three agencies asked OPM to clarify whether agencies are required \nto post a Federal vacancy announcement prior to appointing individuals \nunder this authority. If a vacancy announcement is required, two of \nthese agencies suggested that OPM eliminate this requirement in \nconjunction with use of this appointing authority. Per 5 U.S.C. \n3330(b), agencies must follow public notice requirements (i.e., posting \nof a vacancy announcement on the USAJOBS Web site) when using this \nauthority to fill permanent or term positions, or temporary positions \nlasting more than 1-year. In addition, 5 CFR part 330 requires agencies \nto advertise jobs lasting more than 120 days. In response to a \ncommenter's question, these vacancy announcement requirements apply to \ncompetitive service positions in the National Security Personnel System \n(NSPS). OPM will issue question and answer guidance which will include \ninformation on the use of this appointing authority for NSPS positions.\n    Another individual asked how eligible spouses can find out about \nemployment opportunities under this authority. Spouses may find out \nabout job opportunities under this authority on OPM's USAJOBS Web site \n(<a href=\"http://www.usajobs.gov\">http://www.usajobs.gov</a>). In addition, some agencies may choose to have \ninformation on their Web sites specific to positions being filled \nthrough this authority. Job seekers should, therefore, check the Web \nsites of agencies in which they may wish to work, in addition to \nUSAJOBS.\n    Two individuals inquired about the type of vacancy announcements \neligible spouses may respond to in applying for employment under this \nauthority. Eligible spouses may apply for positions advertised as being \nopen to the ``public,'' ``all sources,'' or ``status candidates.'' Use \nof this authority, however, is at the discretion of the hiring agency.\n    One individual asked whether this authority will have any affect on \nother veterans' hiring authorities, such as Veterans Recruitment Act \n(VRA) appointments. OPM cannot predict the impact of this appointing \nauthority because use of this authority is at the discretion of hiring \nagencies.\n    One agency suggested that this noncompetitive hiring authority \nshould not apply in overseas locations because of the possible \ndifficulty in administering rotation programs. OPM is not adopting the \nsuggestion to limit applicability of this authority. Depending on the \ncircumstances surrounding the location of the position, use of any \ncompetitive service appointing authority may be problematic (for \nexample, when a treaty with a host nation restricts appointing U.S. \ncitizens abroad). As a noncompetitive hiring authority, this authority \nis available for agencies to use at their discretion.\n    One agency asked whether there is a selection priority if more than \none eligible applies under this authority or if multiple candidates \neligible for noncompetitive appointments apply for a position. Agencies \nhave the discretion to select and appoint individuals under any \navailable appointing authority. In accordance with 5 CFR 335.103(b)(4), \nagency merit promotion plans must provide for management's right to \nselect from other appropriate sources. This authority is one among many \nother sources authorized and available to agencies, such as other \nnoncompetitive authorities, competitive examining, merit promotion, and \nexcepted authorities under 5 CFR part 213. OPM will issue question and \nanswer guidance on the use of noncompetitive authorities generally. The \nguidance will address appropriate consideration of applicants who have \neligibility for noncompetitive appointment, and who are also eligible\n\n[[Page 40475]]\n\nfor consideration under competitive or merit promotion procedures.\n    One individual asked whether any mechanisms will be put in place to \nprevent personnel officers and military commanders from hiring their \nspouses regardless of whether the spouses are qualified. Another person \nsuggested that oversight mechanisms were needed at military \ninstallations to safeguard against abuses by these entities when using \nthis authority. Mechanisms such as nepotism rules, merit system \nprinciples, and prohibited personnel practices are currently in place \nto ensure administrative probity with respect to agencies' use of this \nappointing authority. Oversight at local military installations is the \nresponsibility of the Installation Commander or his or her designee. In \naddition, OPM conducts periodic audits of agencies' hiring practices to \nensure agencies are using the various appointing authorities \nappropriately and in a manner consistent with all applicable laws and \nregulations.\n    The same individual noted his belief that this authority provides a \nhiring preference for eligible military spouses. OPM disagrees with \nthis assertion. This authority is a noncompetitive hiring mechanism; it \ndoes not establish or constitute a hiring preference for eligible \nspouses, nor does it create an entitlement to a Federal job for an \neligible spouse. Use of this authority is completely at the discretion \nof hiring agencies. As a result, it is one of many hiring tools \nagencies may use to recruit needed individuals.\n    One individual and one agency asked whether an unmarried widow or \nwidower (i.e., eligible for appointment under section \n315.612(c)(1)(ii)) who accepts an appointment under this authority and \nremarries after being employed under this authority will be permitted \nto remain employed. Yes, individuals eligible under section \n315.612(c)(1)(ii) who remarry after becoming employed under this \nauthority will not lose their jobs because of their remarriage.\n    One agency asked OPM to explain the effect of telework arrangements \non the geographic limitations specified in section 315.612(c)(3). \nSpouses eligible under paragraph (b)(4)(i) of this section must \nrelocate with their service member spouse per paragraph (c)(1)(ii). \nUpon relocation, these individuals are subject to the same agency \nworkplace flexibility policies as are other employees of that agency. \nWe wish to remind readers the intent of the proposal was to benefit \nindividuals negatively impacted by their military spouses' relocation. \nIndividuals eligible under paragraph (b)(4)(i) should not be allowed to \nleverage this authority unless they have actually relocated per the \nintent of E.O. 13473.\n    One individual asked whether there are any grade-level limitations \nfor positions filled through this appointing authority. OPM is not \nimposing any grade-level limitation on positions filled through this \nhiring authority.\n    Another individual asked whether the spouse of a 100 percent \ndisabled Vietnam Veteran has eligibility under this rule. Spouses of \nany 100 percent disabled veteran have a 2-year eligibility period from \nthe date of the documentation verifying the service member is 100 \npercent disabled, per section 315.612(d)(1)(ii). Spouses of 100 percent \ndisabled Vietnam Veterans who are not eligible under this appointing \nauthority may be eligible for veterans' preference based on their \nmilitary spouses' disability. For more information, we encourage such \nspouses to visit VETSINFO Guide at <a href=\"http://www.opm.gov/veterans/html/vetsinfo.asp\">http://www.opm.gov/veterans/html/vetsinfo.asp</a>.\n    One agency asked how agencies will know if the military spouse has \nused his or her eligibility and been selected for another position in \nthe local commuting area. OPM advises agencies to ensure they ask \npotential appointees under this authority whether they have used the \none-time eligibility under section 315.612(d)(3). OPM will address this \nissue further in the supplemental guidance.\n    One agency asked how spouses of relocated service members should be \ntreated after they are appointed under this authority. This agency also \nasked whether the spouse would be available for a new excepted \nappointment if he or she resigned from an appointment under this \nauthority and reapplied. OPM believes the regulation is clear as \nwritten. The authority under section 315.612(g) provides that a \nselectee is appointed under a career-conditional appointment, unless \nthe selectee meets or is exempt from the service requirement for career \ntenure pursuant to section 315.201. Once appointed, the selectee is \ntreated as any other career or career-conditional employee. Again, \nagencies appoint individuals selected under this authority to the \ncompetitive, not the excepted, service.\n    One agency commented that OPM needs to issue clear guidance on how \nhuman resources (HR) offices are to properly refer applicants who are \neligible under multiple appointment authorities, particularly when one \nor more eligibilities afford/s an applicant veterans' preference and \none or more do not. The agency also urged OPM to address separately \ngeneral procedures to be followed by HR offices conducting recruitment \nfor applicants with status and special appointment eligibility, and by \nHR offices conducting delegated examining. OPM agrees and will issue \nsupplemental guidance, which will be available on the OPM Web site at \n<a href=\"http://www.opm.gov\">http://www.opm.gov</a>.\n    Another individual asked whether agencies are required to establish \ntraining programs in conjunction with filling positions using this \nhiring authority. OPM is not requiring agencies to establish or utilize \ntraining programs when filling positions under this authority. We \nremind readers this authority is simply a noncompetitive hiring \nmechanism for positions in the competitive service; it is not a \ntraining and development program for eligible spouses.\n    The same individual asked whether this authority would have any \nimpact on agencies' use of mobility agreements. Use of this authority \nhas no impact on an agency's decision to use mobility agreements (which \nare applicable to an agency's current employees, not those eligible \nunder this rule).\n    Three individuals were opposed to the proposed rule because they \nare opposed to the policy reflected in E.O. 13473 One of these \nindividuals only supports eligibility for noncompetitive appointment of \nonly individuals defined in section 315.612(b)(4)(ii) and (iii). OPM \ncannot implement this comment because we are obligated to issue \nregulations that implement the E.O.\n    Three individuals commented only to support the proposed rule.\n    One individual asked when the proposed rule would become effective. \nThe effective date of this rule will be 30 days from the date the final \nrules are published in the Federal Register.\n    One individual asked whether this rule applies to retired service \nmembers who are married to individuals serving on active duty. Prior \nmilitary service, in and of itself, does not prohibit an individual \nfrom meeting the definition of ``spouse'' in section 315.612(b)(6). \nProvided they meet all applicable rules, such individuals are eligible \nunder this authority.\n    The same individual asked whether agencies may use this authority \nto appoint eligible spouses who currently have a Federal job. Yes, \nagencies may use this authority to noncompetitively appoint eligible \nspouses who currently have a Federal job, consistent with all \napplicable provisions.\n    The same individual also asked whether agencies must apply \nveterans' preference when making appointments under this authority. \nWhen a\n\n[[Page 40476]]\n\nnoncompetitive list is used in conjunction with a competitive list, \nthere is no obligation to exhaust preference eligibles from the \ncompetitive list before making selections from the noncompetitive list. \nIn addition, once an agency has determined to make the selection from \nthe noncompetitive list, there is no ability to apply veterans' \npreference. Veterans' preference requirements apply only when positions \nare filled from a list prepared through a competitive hiring process or \nwhen positions are filled pursuant to part 302 of OPM's regulations.\n    One agency asked whether eligibles being considered under this \nauthority may be appointed to the excepted service if they do not have \nall of the required documentation. The authority under section 315.612 \nis for appointments in the competitive service only.\n    OPM received 8 comments that were outside the scope of this \nregulation.\n\nRegulatory Flexibility Act\n\n    I certify that these regulations will not have a significant \neconomic impact on a substantial number of small entities because the \nregulations pertain only to Federal employees and agencies.\n\nPaperwork Reduction Act\n\n    The information collection requirements contained in this final \nrule are currently approved by OMB under RIN 3206-AL73. This final \nregulation does not modify this approved collection.\n\nExecutive Order 12866, Regulatory Review\n\n    This rule has been reviewed by the Office of Management and Budget \nin accordance with Executive Order 12866.\n\nList of Subjects in 5 CFR Parts 315 and 316\n\n    Government employees.\n\nOffice of Personnel Management.\nJohn Berry,\nDirector.\n\n0\nAccordingly, OPM is issuing final regulations to amend title 5, Code of \nFederal Regulations, part 315, subpart F, and part 316, as follows:\n\nPART 315--CAREER AND CAREER-CONDITIONAL EMPLOYMENT\n\nSubpart F--Career or Career-Conditional Appointment Under Special \nAuthorities\n\n0\n1. The authority citation for part 315 is revised to read as follows:\n\n    Authority: 5 U.S.C. 1302, 3301, and 3302; E.O. 10577, 3 CFR, \n1954-1958 Comp. p. 218, unless otherwise noted; and E.O. 13162. \nSecs. 315.601 and 315.609 also issued under 22 U.S.C. 3651 and 3652. \nSecs. 315.602 and 315.604 also issued under 5 U.S.C. 1104. Sec. \n315.603 also issued under 5 U.S.C. 8151. Sec. 315.605 also issued \nunder E.O. 12034, 3 CFR, 1978 Comp. p. 111. Sec. 315.606 also issued \nunder E.O. 11219, 3 CFR, 1964-1965 Comp. p. 303. Sec. 315.607 also \nissued under 22 U.S.C. 2506. Sec. 315.608 also issued under E.O. \n12721, 3 CFR, 1990 Comp. p. 293. Sec. 315.610 also issued under 5 \nU.S.C. 3304(c). Sec. 315.611 also issued under 5 U.S.C. 3304(f). \nSec. 315.612 also issued under E.O. 13473. Sec. 315.708 also issued \nunder E.O. 13318, 3 CFR, 2004 Comp. p. 265. Sec. 315.710 also issued \nunder E.O. 12596, 3 CFR, 1987 Comp. p. 229. Subpart I also issued \nunder 5 U.S.C. 3321, E.O. 12107, 3 CFR, 1978 Comp. p. 264.\n\n\n0\n2. Add Sec.  315.612 to subpart F to read as follows:\n\n\nSec.  315.612  Noncompetitive appointment of certain military spouses.\n\n    (a) Agency authority. In accordance with the provisions of this \nsection, an agency may appoint noncompetitively a spouse of a member of \nthe armed forces serving on active duty who has orders specifying a \npermanent change of station (not for training), a spouse of a 100 \npercent disabled service member injured while on active duty, or the \nun-remarried widow or widower of a service member who was killed while \nperforming active duty.\n    (b) Definitions. (1) Active duty means full-time duty in the armed \nforces, including full-time National Guard duty, except that for \nReserve Component members the term ``active duty'' does not include \ntraining duties or attendance at service schools.\n    (2) Armed forces has the meaning given that term in 10 U.S.C. 101.\n    (3) Duty station means the permanent location to which a member of \nthe armed forces is assigned for duty as specified on the individual's \npermanent change of station (PCS) orders.\n    (4) Member of the armed forces or service member means an \nindividual who:\n    (i) Is serving on active duty in the armed forces under orders \nspecifying the individual is called or ordered to active duty for more \nthan 180 consecutive days, has been issued orders for a permanent \nchange of station, and is authorized for dependent travel (i.e., the \ntravel of the service member's family members) as part of the orders \nspecifying the individual's permanent change of station;\n    (ii) Retired from active duty in the armed forces with a service-\nconnected disability rating of 100 percent as documented by a branch of \nthe armed forces, or retired or was released or discharged from active \nduty in the armed forces and has a disability rating of 100 percent as \ndocumented by the Department of Veterans Affairs; or\n    (iii) Was killed while serving on active duty in the armed forces.\n    (5) Permanent change of station means the assignment, reassignment, \nor transfer of a member of the armed forces from his or her present \nduty station or location without return to the previous duty station or \nlocation.\n    (6) Spouse means the husband or wife of a member of the armed \nforces.\n    (c) Eligibility. (1) A spouse of a member of the armed forces as \ndefined in paragraph (b)(4)(i) of this section must have:\n    (i) Married the member of the armed forces on, or prior to, the \ndate of the service member's orders authorizing a permanent change of \nstation; and\n    (ii) Relocated with the member of the armed forces to the new duty \nstation specified in the documentation ordering a permanent change of \nstation.\n    (2) A spouse of a member of the armed forces as defined in \nparagraph (b)(4)(iii) of this section must be the un-remarried widow or \nwidower of the member of the armed forces killed on active duty in the \narmed forces.\n    (3) For spouses eligible under paragraph (b)(4)(i) of this section, \nnoncompetitive appointment under this section is limited to the \ngeographic area, as specified on the service member's permanent change \nof station orders. It includes the service member's duty station and \nthe surrounding area from which people reasonably can be expected to \ntravel daily to and from work. The head of an agency, or his or her \ndesignee, may waive this limitation (i.e., accept applications from \nspouses) if no Federal agency exists in the spouse's geographic area. \nSpouses of active duty military members who are on retirement or \nseparation PCS orders from active duty are not eligible to be appointed \nusing this authority unless the service member is injured with a 100 \npercent disability.\n    (4) Spouses of retired or separated active duty members who have a \n100 percent disability are not restricted to a geographical location.\n    (d) Conditions. (1) In accordance with the provisions of this \nsection, spouses are eligible for noncompetitive appointment for a \nmaximum of 2 years from the date of:\n    (i) The service member's permanent change of station orders;\n    (ii) Documentation verifying the member of the armed forces is 100 \npercent disabled; or\n\n[[Page 40477]]\n\n    (iii) Documentation verifying the member of the armed forces was \nkilled while on active duty.\n    (2) A spouse may receive only one noncompetitive appointment under \nthis section to a permanent position per the service member's orders \nauthorizing a permanent change of station.\n    (3) Any law, Executive order, or regulation that disqualifies an \napplicant for appointment also disqualifies a spouse for appointment \nunder this section.\n    (e) Proof of Eligibility. (1) Prior to appointment, the spouse of a \nmember of the armed forces as defined in paragraph (b)(4)(i) of this \nsection must submit to the employing agency:\n    (i) A copy of the service member's active duty orders which \nauthorize a permanent change of station. This authorization must \ninclude:\n    (A) A statement authorizing the service member's spouse to \naccompany the member to the new permanent duty station;\n    (B) The specific location to which the member of the armed forces \nis to be assigned, reassigned, or transferred pursuant to permanent \nchange of station orders; and\n    (C) The effective date of the permanent change of station; and\n    (ii) Documentation verifying marriage to the member of the armed \nforces (i.e., a marriage license or other legal documentation verifying \nmarriage).\n    (2) Prior to appointment, the spouse of a member of the armed \nforces as defined in paragraph (b)(4)(ii) of this section must submit \nto the employing agency copies of:\n    (i) Documentation showing the member of the armed forces was \nreleased or discharged from active duty due to a service-connected \ndisability;\n    (ii) Documentation showing the member of the armed forces retired, \nor was released or discharged from active duty, with a disability \nrating of 100 percent; and\n    (iii) Documentation verifying marriage to the member of the armed \nforces (i.e., a marriage license or other legal documentation verifying \nmarriage).\n    (3) Prior to appointment, the spouse of a member of the armed \nforces as defined in paragraph (b)(4)(iii) of this section must submit \nto the employing agency copies of:\n    (i) Documentation showing the individual was released or discharged \nfrom active duty due to his or her death while on active duty;\n    (ii) Documentation verifying the member of the armed forces was \nkilled while serving on active duty; and\n    (iii) Documentation verifying marriage to the member of the armed \nforces (i.e., a marriage license or other legal documentation verifying \nmarriage); and\n    (iv) A statement certifying that he or she is the un-remarried \nwidow or widower of the service member.\n    (f) Acquisition of competitive status. A person appointed under \nparagraph (a) of this section acquires competitive status automatically \nupon completion of probation.\n    (g) Tenure on appointment. An appointment under paragraph (a) of \nthis section is career-conditional unless the appointee has already \nsatisfied the requirements for career tenure or is exempt from the \nservice requirement pursuant to Sec.  315.201.\n\nPART 316--TEMPORARY AND TERM EMPLOYMENT\n\n0\n3. The authority citation for part 316 continues to read as follows:\n\n    Authority: 5 U.S.C. 3301, 3302; E.O. 10577, 3 CFR, 1954-1958 \nComp., p. 218.\n\n\n0\n4. Section 316.302(b)(3) is revised to read as follows:\n\n\nSec.  316.302  Selection of term employees.\n\n* * * * *\n    (b) * * *\n    (3) Career-conditional appointment under Sec.  315.601, 315.604, \n315.605, 315.606, 315.607, 315.608, 315.609, 315.612, or 315.711 of \nthis chapter;\n* * * * *\n\n0\n5. Section 316.402(b)(3) is revised to read as follows:\n\n\nSec.  316.402  Procedures for making temporary appointments.\n\n* * * * *\n    (b) * * *\n    (3) Career-conditional appointment under Sec.  315.601, 315.604, \n315.605, 315.606, 315.607, 315.608, 315.609, 315.612, 315.703, or \n315.711 of this chapter.\n* * * * *\n[FR Doc. E9-19340 Filed 8-11-09; 8:45 am]\nBILLING CODE 6325-39-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
     },
     "CLAUSES:EO:11935#whole": {
       "char_end": 1549,
@@ -220,6 +323,74 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1976-09-03/pdf/FR-1976-09-03.pdf"
       },
       "text": "By virtue of the authority vested in me by the Constitution and statutes of the  \nUnited States of America, including Sections 3301 and 3302 of Title 5 of the United  \nStates Code, and as President of the United States of America, Civil Service Rule V II  \n(5 CFR Part 7) is hereby amended by adding thereto the following new section:\n“S ection  7.4 Citizenship.\n“ (a) No person shall be admitted to competitive examination unless such person  \nis a citizen or national of the United States.\n“ (b) No person shall be given any appointment in the competitive service unless  \nsuch person is a citizen or national of the United States.\n“ (c) The Commission may, as an exception to this rule and to the extent per­\nmitted by law, authorize the appointment of aliens to positions in the competitive  \nservice when necessary to promote the efficiency of the service in specific cases or for  \ntemporary appointments.”."
+    },
+    "CURRENT:EO:11935#0": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 475,
+      "char_start": 144,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "29 CFR 1606.5",
+        "sha256": "86030a58207ab3058a4bd1841eabb01ceca61ef37eb662b98f78e910c7f3455d",
+        "source_id": "cfr:t29:1606.5",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-29/section-1606.5"
+      },
+      "id": "CURRENT:EO:11935#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11935",
+      "legal_basis_candidate": "regulation text names the order (29 CFR 1606.5)",
+      "machine_lead": true,
+      "mention_id": "ecfr:ee4d74bb1e48",
+      "snippet": "...st an individual on the basis of national origin, they are prohibited by title VII. 2 2 See Espinoza v. Farah Mfg. Co., Inc., 414 U.S. 86, 92 (1973). See also, E.O. 11935, 5 CFR 7.4; and 31 U.S.C. 699(b), for citizenship requirements in certain Federal employment. (b) Some State laws prohibit the employment of non-citizens. Wher...",
+      "source": {
+        "page_or_item": "29 CFR 1606.5 (section_text; GovInfo eCFR XML title 29, amended through 2026-11-09; NODE 29:4.1.4.1.7.0.21.5)",
+        "sha256": "e798a01cbd1013405db5481103fc7b16a2f7e9a3b472ba24e477055026791fe6",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t29-1606.5.txt",
+        "text_sha256": "86030a58207ab3058a4bd1841eabb01ceca61ef37eb662b98f78e910c7f3455d",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-29/ECFR-title29.xml"
+      },
+      "system": "ecfr",
+      "text": "st an individual on the basis of national origin, they are prohibited by title VII. \n2\n2 See Espinoza v. Farah Mfg. Co., Inc., 414 U.S. 86, 92 (1973). See also, E.O. 11935, 5 CFR 7.4; and 31 U.S.C. 699(b), for citizenship requirements in certain Federal employment.\n(b) Some State laws prohibit the employment of non-citizens. Wher",
+      "where": "CFR 29 CFR 1606.5"
+    },
+    "CURRENT:EO:11935#1": {
+      "basis_code": "cfr_source_citation",
+      "char_end": 639,
+      "char_start": 544,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 7.3",
+        "sha256": "65a29fd1d0b1437b4265ca4591e0501c24728e7eb5c6decd4999554fc8df83b1",
+        "source_id": "cfr:t5:7.3",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-7.3"
+      },
+      "id": "CURRENT:EO:11935#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11935",
+      "legal_basis_candidate": "regulation source citation lists the order (5 CFR 7.3)",
+      "machine_lead": true,
+      "mention_id": "ecfr:359db2308c5a",
+      "snippet": "[E.O. 11935, 41 FR 37301, Sept. 3, 1976. Redesignated by E.O. 13197, 66 FR 7853, Jan. 25, 2001]",
+      "source": {
+        "page_or_item": "5 CFR 7.3 (section_source_citation; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.1.7.0.1.3)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-7.3.txt",
+        "text_sha256": "65a29fd1d0b1437b4265ca4591e0501c24728e7eb5c6decd4999554fc8df83b1",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
+      },
+      "system": "ecfr",
+      "text": "[E.O. 11935, 41 FR 37301, Sept. 3, 1976. Redesignated by E.O. 13197, 66 FR 7853, Jan. 25, 2001]",
+      "where": "CFR 5 CFR 7.3"
     },
     "ORIGINAL:EO:11935": {
       "acceptable_as_original": true,
@@ -245,37 +416,6 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1976-09-03/pdf/FR-1976-09-03.pdf"
       },
       "text": "Instrument: EO:11935\nSource: https://www.govinfo.gov/content/pkg/FR-1976-09-03/pdf/FR-1976-09-03.pdf\nSHA-256 of the downloaded file: d8168fb4ccf3791e76230b2b039087f5102c39241055036362debbc913a30ec2\nLocation: 41 FR 37301, PDF pages 11-11 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 11 of 264 ===\npresidential docum ents\nTitle 3—The President\nExecutive Order 11935 September 2, 1976\nCitizenship Requirements for Federai Employment\nBy virtue of the authority vested in me by the Constitution and statutes of the  \nUnited States of America, including Sections 3301 and 3302 of Title 5 of the United  \nStates Code, and as President of the United States of America, Civil Service Rule V II  \n(5 CFR Part 7) is hereby amended by adding thereto the following new section:\n“S ection  7.4 Citizenship.\n“ (a) No person shall be admitted to competitive examination unless such person  \nis a citizen or national of the United States.\n“ (b) No person shall be given any appointment in the competitive service unless  \nsuch person is a citizen or national of the United States.\n“ (c) The Commission may, as an exception to this rule and to the extent per­\nmitted by law, authorize the appointment of aliens to positions in the competitive  \nservice when necessary to promote the efficiency of the service in specific cases or for  \ntemporary appointments.”.\nT h e W hite  H ouse ,\nSeptember 2,1976.\n[FR Doc.76-26189 Füed 9-2-76 ;11:56 am]\nFEDERAL REGISTER, V O L  41, NO. 173— FRIDAY, SEPTEMBER 3, 1976\n"
-    },
-    "TERM:EO:11935:0aa9f8cda6fb9183@65a29fd1d0b1437b": {
-      "actor_id": "EO:11935",
-      "char_end": 282,
-      "char_start": 145,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11935:0aa9f8cda6fb9183@65a29fd1d0b1437b",
-      "instrument_id": "EO:11935",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11935#b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11935",
-        "page_or_item": "5 CFR 7.3",
-        "requires_page_check": false,
-        "sha256": "65a29fd1d0b1437b4265ca4591e0501c24728e7eb5c6decd4999554fc8df83b1",
-        "signing_date": "1976-09-02",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-7.3.txt",
-        "text_sha256": "65a29fd1d0b1437b4265ca4591e0501c24728e7eb5c6decd4999554fc8df83b1",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-5/section-7.3"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) No person shall be given any appointment in the competitive service unless such person is a citizen or national of the United States."
     },
     "TERM:EO:11935:653f1dbc3dd7b621@546008398f638dc6": {
       "actor_id": "EO:11935",
@@ -435,40 +575,9 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "\"(b) No person shall be given any appointment in the competitive service unless such person is a citizen or national of the United States."
-    },
-    "TERM:EO:11935:d8e275dedd00751d@65a29fd1d0b1437b": {
-      "actor_id": "EO:11935",
-      "char_end": 143,
-      "char_start": 19,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:11935:d8e275dedd00751d@65a29fd1d0b1437b",
-      "instrument_id": "EO:11935",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:11935#a",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:11935",
-        "page_or_item": "5 CFR 7.3",
-        "requires_page_check": false,
-        "sha256": "65a29fd1d0b1437b4265ca4591e0501c24728e7eb5c6decd4999554fc8df83b1",
-        "signing_date": "1976-09-02",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-7.3.txt",
-        "text_sha256": "65a29fd1d0b1437b4265ca4591e0501c24728e7eb5c6decd4999554fc8df83b1",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-5/section-7.3"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(a) No person shall be admitted to competitive examination unless such person is a citizen or national of the United States."
     }
   },
-  "fingerprint": "212edcc07c44c40cf52ecf10fe377d5b13323e67373aad88b6ff35d2e4e23f02",
+  "fingerprint": "9cfb06e6fc0115b1dfcb0d4afb7c3ec7bd31f6fbc2f9240cfc0745eaf95f7ff8",
   "instrument_id": "EO:11935",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -502,11 +611,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 2,
       "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -514,11 +624,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 2,
       "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:ecfr"
@@ -526,8 +637,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -539,7 +650,6 @@
   "missing": [
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:12107",
     "target provision not located: EO:13940"
   ],
@@ -549,18 +659,16 @@
     "TERM:EO:11935:653f1dbc3dd7b621@546008398f638dc6",
     "TERM:EO:11935:8f440921d09a2057@d9a5ff89d46dace3",
     "TERM:EO:11935:92f5332778b7dda2@d9a5ff89d46dace3",
-    "TERM:EO:11935:d8e275dedd00751d@65a29fd1d0b1437b",
-    "TERM:EO:11935:0aa9f8cda6fb9183@65a29fd1d0b1437b",
     "TERM:EO:11935:8f440921d09a2057@19f5f1b279a9c3d7",
     "TERM:EO:11935:92f5332778b7dda2@19f5f1b279a9c3d7"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "6d992ec31d7fb7fb61ba5944994a982ff172d4978f9ddfbdd6d7abad87f2f0b8",
+    "fingerprint": "c927b493222f54ec715d5b630e844eabdb91fd773d401c95cd0b05153561a9fe",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11935.json",
-    "history_sha256": "f591b98980877772a9c6c4c808ae78528a139c3fd6ce3992bd81da33fdfebd8f",
+    "history_sha256": "755115967f2c75e6080e8cc563e2a6b9ffcddda200f5fef804601cc7af86cb47",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -1,10 +1,23 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "FRDOC:2016-04230",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:2016-04230@127224"
+      ],
+      "full_text_chars": 202027,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-2016-04230.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "48d3a84abe6236a372104d6ff7fe56629ed87029f1477236c4a25f74ef715979",
+      "window_bytes": 3036,
+      "windows_omitted": 0
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12465",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12465"
@@ -279,11 +292,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 160,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "51 U.S.C. 50903 note; note 'Ex. Ord. No. 12465. Coordination and Encouragement of Commercial Expendable Launch Vehicle' [USLM note id idebfb0243-3a70-11f1-9081-fe88c1712d53]; usc51.xml (sha256 38870c44627202cfa3f3360cb2cf27013661405f242f4f332f6baf8a3062b18f) in xml_uscAll@119-121.zip",
+        "sha256": "374ddfce5060711ecedd24b99de600a594525c265355c0d57b23dcefc9407ac8",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idebfb0243-3a70-11f1-9081-fe88c1712d53",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12465",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (51 U.S.C. 50903 note)",
@@ -293,10 +315,14 @@
       "source": {
         "page_or_item": "51 U.S.C. 50903 note; note 'Ex. Ord. No. 12465. Coordination and Encouragement of Commercial Expendable Launch Vehicle' [USLM note id idebfb0243-3a70-11f1-9081-fe88c1712d53]; usc51.xml (sha256 38870c44627202cfa3f3360cb2cf27013661405f242f4f332f6baf8a3062b18f) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idebfb0243-3a70-11f1-9081-fe88c1712d53.txt",
+        "text_sha256": "374ddfce5060711ecedd24b99de600a594525c265355c0d57b23dcefc9407ac8",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=idebfb0243-3a70-11f1-9081-fe88c1712d53",
+      "text": "Ex. Ord. No. 12465. Coordination and Encouragement of Commercial Expendable Launch Vehicle Activities\nEx. Ord. No. 12465, Feb. 24, 1984, 49 F.R. 7211, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idebfb0243-3a70-11f1-9081-fe88c1712d53.txt",
+      "text_sha256": "374ddfce5060711ecedd24b99de600a594525c265355c0d57b23dcefc9407ac8",
       "where": "USC 51 U.S.C. 50903 note"
     },
     {
@@ -397,7 +423,7 @@
         "snippet": "Ex. Ord. No. 12465. Coordination and Encouragement of Commercial Expendable Launch Vehicle Activities | Ex. Ord. No. 12465, Feb. 24, 1984, 49 F.R. 7211, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=idebfb0243-3a70-11f1-9081-fe88c1712d53",
+        "text_path": "usc-notes/idebfb0243-3a70-11f1-9081-fe88c1712d53.txt",
         "where": "USC 51 U.S.C. 50903 note"
       },
       "proposal": {
@@ -494,6 +520,36 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:FRDOC:2016-04230@127224": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2016-04230",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 130260,
+      "char_start": 127224,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2016-04230@127224",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2016-04230",
+        "page_or_item": "81 FR 19818; FR Doc. 2016-04230; Rule: Organization and Delegation of Powers and Duties",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "48d3a84abe6236a372104d6ff7fe56629ed87029f1477236c4a25f74ef715979",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2016-04230.txt",
+        "text_sha256": "48d3a84abe6236a372104d6ff7fe56629ed87029f1477236c4a25f74ef715979",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2016/04/05/2016-04230.txt"
+      },
+      "text": "those functions related to the promotion of the aerospace industry.\n    (c) Carry out the functions vested in the Secretary by part B of \ntitle II of the Clean Air Act, as amended (Pub. L. 91-604, sec. 11, 84 \nStat. 1703), and by 40 CFR part 87 as it relates to exemptions from \naircraft air pollution standards.\n    (d)(1) Except as delegated to the Under Secretary of Transportation \nfor Policy by Sec.  1.25, carry out the functions vested in the \nSecretary by 49 U.S.C. 5121(a), (b), (c), and (d), 5122, 5123, and \n5124, relating to the transportation or shipment of hazardous materials \nby air.\n    (2) Carry out the functions vested in the Secretary by 49 U.S.C. \n5114, relating to the establishment of procedures for monitoring and \nenforcing regulations with respect to the transportation of radioactive \nmaterials on passenger-carrying aircraft.\n    (3) Participate, with the Administrator of the Pipeline and \nHazardous Materials Safety Administration, in the Dangerous Goods Panel \nat the International Civil Aviation Organization, under the authority \nvested in the Secretary by 49 U.S.C. 5120.\n    (e) Serve, or designate a representative to serve, as Vice Chairman \nand alternate Department of Transportation member of the Interagency \nGroup on International Aviation (IGIA) pursuant to the interagency \nagreement of December 9, 1960, and Executive Order 11382, and provide \nfor the administrative operation of the IGIA Secretariat.\n    (f) Carry out the functions assigned to the Secretary by Executive \nOrder 12465 relating to commercial expendable launch vehicle \nactivities.\n    (g) Carry out the functions vested in the Secretary by the National \nAeronautics and Space Administration Authorization Act, Fiscal Year \n1993 (Pub. L. 102-588, 106 Stat 5119, November 4, 1992).\n\n\nSec.  1.84  The Federal Highway Administration.\n\n    Is responsible for:\n    (a) Improving mobility on our Nation's highways through national \nleadership, innovation, and program delivery.\n    (b) Developing safety strategies using a data-driven, systematic \napproach to address safety for motorists, bicyclists, and pedestrians \nfrom engineering, education, enforcement, and emergency medical \nservices perspectives and coordinating with FMCSA and NHTSA as \nappropriate.\n    (c) Planning, in cooperation with the States, the nation's highway \nsystem.\n    (d) Improving, in cooperation with the States (via the provision of \ngrants), infrastructure condition, safety, mobility and freight \nmovement roads on the National Highway System, including the Interstate \nSystem and to other federal-aid roads and other surface transportation \ninfrastructure.\n    (e) Identifying and deploying innovation aimed at shortening \nproject delivery, enhancing the safety of our roadways, and protecting \nthe environment.\n    (f) Surveying and constructing Federal lands transportation \nfacilities, Federal\n\n[[Page 19836]]\n\nlands access transportation facilities, tribal transportation \nfacilities, defense highways and access roads, and parkways and roads \n"
+    },
     "CLAUSES:EO:12465#sec1": {
       "char_end": 1249,
       "char_start": 1043,
@@ -758,6 +814,42 @@
       },
       "text": "Sec. 4. R e s p o n s i b i li t i e s  o f  O t h e r  A g e n c i e s . All executive departments and  \nagencies shall assist the Secretary of Transportation in carrying out this  \nOrder. To the extent permitted by law and in consultation with the Secretary  \nof Transportation, they shall:\n\n=== PDF page 10 of 146 ===\n7212 Federal Register /  Vol. 49, No. 40 /  Tuesday, February 28,1984 / Presidential Documents"
     },
+    "CURRENT:EO:12465#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 160,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "51 U.S.C. 50903 note; note 'Ex. Ord. No. 12465. Coordination and Encouragement of Commercial Expendable Launch Vehicle' [USLM note id idebfb0243-3a70-11f1-9081-fe88c1712d53]; usc51.xml (sha256 38870c44627202cfa3f3360cb2cf27013661405f242f4f332f6baf8a3062b18f) in xml_uscAll@119-121.zip",
+        "sha256": "374ddfce5060711ecedd24b99de600a594525c265355c0d57b23dcefc9407ac8",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idebfb0243-3a70-11f1-9081-fe88c1712d53",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12465#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12465",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (51 U.S.C. 50903 note)",
+      "machine_lead": true,
+      "mention_id": "usc:913eaeae082e",
+      "snippet": "Ex. Ord. No. 12465. Coordination and Encouragement of Commercial Expendable Launch Vehicle Activities | Ex. Ord. No. 12465, Feb. 24, 1984, 49 F.R. 7211, provided:",
+      "source": {
+        "page_or_item": "51 U.S.C. 50903 note; note 'Ex. Ord. No. 12465. Coordination and Encouragement of Commercial Expendable Launch Vehicle' [USLM note id idebfb0243-3a70-11f1-9081-fe88c1712d53]; usc51.xml (sha256 38870c44627202cfa3f3360cb2cf27013661405f242f4f332f6baf8a3062b18f) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idebfb0243-3a70-11f1-9081-fe88c1712d53.txt",
+        "text_sha256": "374ddfce5060711ecedd24b99de600a594525c265355c0d57b23dcefc9407ac8",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12465. Coordination and Encouragement of Commercial Expendable Launch Vehicle Activities\nEx. Ord. No. 12465, Feb. 24, 1984, 49 F.R. 7211, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idebfb0243-3a70-11f1-9081-fe88c1712d53.txt",
+      "text_sha256": "374ddfce5060711ecedd24b99de600a594525c265355c0d57b23dcefc9407ac8",
+      "where": "USC 51 U.S.C. 50903 note"
+    },
     "ORIGINAL:EO:12465": {
       "acceptable_as_original": true,
       "actor_id": "EO:12465",
@@ -782,37 +874,6 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1984-02-28/pdf/FR-1984-02-28.pdf"
       },
       "text": "Instrument: EO:12465\nSource: https://www.govinfo.gov/content/pkg/FR-1984-02-28/pdf/FR-1984-02-28.pdf\nSHA-256 of the downloaded file: 603cb6954ff88017d214b4344614b236825d243d93cd5e148aa516cf7d9930eb\nLocation: 49 FR 7211, PDF pages 9-10 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 146 ===\n7211\nFederal Register \nVol. 49, No. 40\nPresidential Documents\nTuesday, February 28, 1984\nTitle 3— Executive Order 12465 of February 24, 1984\nThe P re sid e n t C o m m e rcia l E x p e n d a b le  L a u n ch  V e h icle  A c tiv itie s\nBy the authority vested in me as President by the Constitution and laws of the  \nUnited States of America, and in order to encourage, facilitate and coordinate  \nthe development of commercial expendable launch vehicle (ELV) operations  \nby private United States enterprises, it is hereby ordered as follows:\nSection 1. The Department of Transportation is designated as the lead agency  \nwithin the Federal government for encouraging and facilitating commercial  \nELV activities by the United States private sector.\nSec. 2 . R e s p o n s i b i li t i e s  o f  L e a d  A g e n c y . The Secretary of Transportation shall,  \nto the extent permitted by law and subject to the availability of appropri­\nations, perform the following functions:\n(a) act as a focal point within the Federal government for private sector space  \nlaunch contacts related to commercial ELV operations;\n(b) promote and encourage commercial ELV operations in the same manner  \nthat other private United States commercial enterprises are promoted by  \nUnited States agencies;\n(c) provide leadership in the establishment, within affected departments and  \nagencies, of procedures that expedite the processing of private sector requests  \nto obtain licenses necessary fbr commercial ELV launches and the establish­\nment and operation of commercial launch ranges;\n(d) consult with other affected agencies to promote consistent application of  \nELV licensing requirements for the private sector and assure fair and equita­\nble treatment for all private sector applicants;\n(e) serve as a single point of contact for collection and dissemination of  \ndocumentation related to commercial ELV licensing applications;\n(f) make recommendations to affected agencies and, as appropriate, to the  \nPresident, concerning administrative measures to streamline Federal govern­\nment procedures for licensing of commercial ELV activities;\n(g) identify Federal statutes, treaties, regulations and policies which may have  \nan adverse impact on ELV commercialization efforts and recommend appro­\npriate changes to affected agencies and, as appropriate, to the President; and\n(h) conduct appropriate planning regarding long-term effects of Federal activi­\nties related to ELV commercialization.\nSec. 3. An interagency group, chaired by the Secretary of Transportation and  \ncomposed of representatives from the Department of State, the Department of  \nDefense, the Department of Commerce, the Federal Communications Commis­\nsion, and the National Aeronautics and Space Administration, is hereby  \nestablished. This group shall meet at the call of the Chair and shall advise and  \nassist the Department of Transportation in performing its responsibilities  \nunder this Order.\nSec. 4. R e s p o n s i b i li t i e s  o f  O t h e r  A g e n c i e s . All executive departments and  \nagencies shall assist the Secretary of Transportation in carrying out this  \nOrder. To the extent permitted by law and in consultation with the Secretary  \nof Transportation, they shall:\n\n=== PDF page 10 of 146 ===\n7212 Federal Register /  Vol. 49, No. 40 /  Tuesday, February 28,1984 / Presidential Documents\n[FR Doc. 84-5388  \nFiled 2-24-84; 3:25 pm]  \nBilling code 3195-01-M\n(a) provide the Secretary of Transportation with information concerning  \nagency regulatory actions which may affect development of commercial ELV  \noperations;\n(b) review and revise their regulations and procedures to eliminate unneces­\nsary regulatory obstacles to the development of commercial ELV operations  \nand to ensure that those regulations and procedures found essential are  \nadministered as efficiently as possible; and\n(c) establish timetables for the expeditious handling of and response to  \napplications for licenses and approvals for commercial ELV activities.\nSec. 5. The powers granted to the Secretary of Transportation to encourage,  \nfacilitate and coordinate the overall ELV commercialization process shall not  \ndiminish or abrogate any statutory or operational authority exercised by any  \nother Federal agency.\nSec. 6. Nothing contained in this Order or in any procedures promulgated  \nhereunder shall confer any substantive or procedural right or privilege on any  \nperson or organization, enforceable against the United States, its agencies, its  \nofficers or any person.\nSec. 7. This Order shall be effective immediately.\nEditorial Note: For the President’s remarks of Feb. 24, 1983, on signing EO 12485, see the Weekly \nCompilation of Presidential Documents (vol. 20, no. 8).\nTHE WHITE HOUSE,  \nF e b ru a ry  24, 1984.\n"
-    },
-    "TERM:EO:12465:09eb7ce93a5a07d8@833870791f4676db": {
-      "actor_id": "EO:12465",
-      "char_end": 3896,
-      "char_start": 3017,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12465:09eb7ce93a5a07d8@833870791f4676db",
-      "instrument_id": "EO:12465",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12465#d",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12465",
-        "page_or_item": "51 U.S.C. 50903",
-        "requires_page_check": false,
-        "sha256": "833870791f4676db5d05b3c6b04dd1bc945f67fa14c43534845292a380e0f64f",
-        "signing_date": "1984-02-24",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t51-s50903.txt",
-        "text_sha256": "833870791f4676db5d05b3c6b04dd1bc945f67fa14c43534845292a380e0f64f",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title51-section50903&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "L. 110–422, title VI, § 621, Oct. 15, 2008, 122 Stat. 4801, provided that:\n“(a)\n In General.—\nIn preparation for the award of contracts to follow up on the current NASA [National Aeronautics and Space Administration] Launch Services (NLS) contracts, the Administrator shall develop a strategy for providing domestic commercial launch services in support of NASA’s small and medium-sized Science, Space Operations, and Exploration missions, consistent with current law and policy.\n“(b)\n Report.—\nThe Administrator [of NASA] shall transmit a report to the Committee on Science and Technology [now Committee on Science, Space, and Technology] of the House of Representatives and the Committee on Commerce, Science, and Transportation of the Senate describing the strategy developed under subsection (a) not later than 90 days after the date of enactment of this Act [Oct. 15, 2008]."
     },
     "TERM:EO:12465:2151d69e061c52c8@5790291d147b6c0e": {
       "actor_id": "EO:12465",
@@ -876,40 +937,9 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "The Secretary of Transportation shall, to the extent permitted by law and subject to the availability of appropriations, perform the following functions:"
-    },
-    "TERM:EO:12465:a9f50f47f5d281d4@833870791f4676db": {
-      "actor_id": "EO:12465",
-      "char_end": 5409,
-      "char_start": 5256,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12465:a9f50f47f5d281d4@833870791f4676db",
-      "instrument_id": "EO:12465",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12465#sec2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12465",
-        "page_or_item": "51 U.S.C. 50903",
-        "requires_page_check": false,
-        "sha256": "833870791f4676db5d05b3c6b04dd1bc945f67fa14c43534845292a380e0f64f",
-        "signing_date": "1984-02-24",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t51-s50903.txt",
-        "text_sha256": "833870791f4676db5d05b3c6b04dd1bc945f67fa14c43534845292a380e0f64f",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title51-section50903&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The Secretary of Transportation shall, to the extent permitted by law and subject to the availability of appropriations, perform the following functions:"
     }
   },
-  "fingerprint": "37a6c246edaa313ee206a389db45a2489873d0733cc10daefb6a5557c488694e",
+  "fingerprint": "534012dc2da3c67e287630d75a927ea9b48a6e4be0c26764eba048aec546a710",
   "instrument_id": "EO:12465",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -936,8 +966,7 @@
       "later_actor_evidence_ids": [],
       "own_term_evidence_ids": [
         "TERM:EO:12465:2151d69e061c52c8@5790291d147b6c0e",
-        "TERM:EO:12465:a9f50f47f5d281d4@1ad8fb8d18680185",
-        "TERM:EO:12465:a9f50f47f5d281d4@833870791f4676db"
+        "TERM:EO:12465:a9f50f47f5d281d4@1ad8fb8d18680185"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -1104,11 +1133,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 2,
       "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -1116,11 +1146,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 2,
       "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:ecfr"
@@ -1128,8 +1159,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1147,19 +1178,17 @@
   "original_source_id": "ORIGINAL:EO:12465",
   "own_terms": [
     "TERM:EO:12465:2151d69e061c52c8@5790291d147b6c0e",
-    "TERM:EO:12465:a9f50f47f5d281d4@1ad8fb8d18680185",
-    "TERM:EO:12465:09eb7ce93a5a07d8@833870791f4676db",
-    "TERM:EO:12465:a9f50f47f5d281d4@833870791f4676db"
+    "TERM:EO:12465:a9f50f47f5d281d4@1ad8fb8d18680185"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 0,
-    "fingerprint": "fa63bb3fcc164357030f66d35b1162d031126d2d3668f64f3b8a0593f7a8681a",
+    "fingerprint": "101fd9979a62d1c8ad7af3fae173dc1c9c27849d7f3bbc4973ec14b3fa826253",
     "flags": [
       "EMPTY_CATALOG_NOTE_DOES_NOT_ESTABLISH_CURRENT_EFFECT"
     ],
     "history_path": "jobs/status-history/output/histories/EO_12465.json",
-    "history_sha256": "2afa222245309c9f54bcab0a426f885eba58504bc95baa989966add379c3cf8e",
+    "history_sha256": "757792d1a3071d20130b519ebd7b823bf15417dd65b5009f409bbd4bae9077bd",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

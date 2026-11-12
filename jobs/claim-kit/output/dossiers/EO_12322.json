@@ -2,7 +2,20 @@
   "actor_contexts": [
     {
       "actor_id": "EO:12608",
-      "evidence_id": "ACTOR_TEXT:EO:12608"
+      "evidence_id": "ACTOR_TEXT:EO:12608",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:E8-26584",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:E8-26584@87433"
+      ],
+      "full_text_chars": 92606,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-E8-26584.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "baad32ccdc979fc07fa5cb556cec10c670040725541554e7de582b9b82b5c2b4",
+      "window_bytes": 3090,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [
@@ -128,7 +141,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12322",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12322"
@@ -315,11 +328,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 189,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 1962 note; note 'Ex. Ord. No. 12322. Water Resources Programs and Projects Review' [USLM note id id3a19ee43-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "11f51e151c0c1786fdeb11da1d2e58086db8099eadeda8b61f7b5aad96ee01f0",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a19ee43-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12322",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 1962 note)",
@@ -329,19 +351,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 1962 note; note 'Ex. Ord. No. 12322. Water Resources Programs and Projects Review' [USLM note id id3a19ee43-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a19ee43-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "11f51e151c0c1786fdeb11da1d2e58086db8099eadeda8b61f7b5aad96ee01f0",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id3a19ee43-c3e9-11f1-bd73-d95596aaa024",
+      "text": "Ex. Ord. No. 12322. Water Resources Programs and Projects Review\nEx. Ord. No. 12322, Sept. 17, 1981, 46 F.R. 46561, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3a19ee43-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "11f51e151c0c1786fdeb11da1d2e58086db8099eadeda8b61f7b5aad96ee01f0",
       "where": "USC 42 U.S.C. 1962 note"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 430,
+      "char_start": 89,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
       "edition": "eCFR (GovInfo bulk, amended through 2026-10-27)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "43 CFR 404.51",
+        "sha256": "9d786166949c6e9090a3eb1402aa2b4f1e08e871a2dae75940f1f8f4692f73e7",
+        "source_id": "cfr:t43:404.51",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-43/section-404.51"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12322",
       "legal_basis_candidate": "regulation text names the order (43 CFR 404.51)",
@@ -351,9 +386,12 @@
       "source": {
         "page_or_item": "43 CFR 404.51 (section_text; GovInfo eCFR XML title 43, amended through 2026-10-27; NODE 43:1.2.1.1.3.4.163.5)",
         "sha256": "af37c999186037c83d15ea9a0c3ab18b5016af9c8fa982e5643f02e9ebf9033a",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t43-404.51.txt",
+        "text_sha256": "9d786166949c6e9090a3eb1402aa2b4f1e08e871a2dae75940f1f8f4692f73e7",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-43/ECFR-title43.xml"
       },
       "system": "ecfr",
+      "text": "istration?\nYes. The Administration will review all projects proposed for funding under the Reclamation's Rural Water Supply Program. This includes review under Executive Order 12322 to determine whether the project is consistent with the policies and programs of the President. This review will occur before the feasibility report is finaliz",
       "where": "CFR 43 CFR 404.51"
     },
     {
@@ -433,7 +471,7 @@
         "snippet": "Ex. Ord. No. 12322. Water Resources Programs and Projects Review | Ex. Ord. No. 12322, Sept. 17, 1981, 46 F.R. 46561, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id3a19ee43-c3e9-11f1-bd73-d95596aaa024",
+        "text_path": "usc-notes/id3a19ee43-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 1962 note"
       },
       "proposal": {
@@ -919,6 +957,7 @@
       "char_end": 14639,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12608",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -933,6 +972,36 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1987-09-14/pdf/FR-1987-09-14.pdf"
       },
       "text": "Instrument: EO:12608\nSource: https://www.govinfo.gov/content/pkg/FR-1987-09-14/pdf/FR-1987-09-14.pdf\nSHA-256 of the downloaded file: 429b06a708d8792ace665a54f0419258f77598139d1c83e1b98375c3f93e80df\nLocation: 52 FR 34617, PDF pages 9-13 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 160 ===\nFederal Register \nVoi. 52, No. 177 \nMonday, September 14» 1987\nPresidential Documents\n34617\nTitle 3—\nThe President\nExecutive Order 12608 o f September 9, 1987\nElimination of Unnecessary Executive Orders and Technical  \nAmendments to Others\nBy the authority vested in me as President by the Constitution and laws of the \nUnited States of America, and in order to eliminate certain Executive Orders \nthat are no longer necessary, and to make technical amendments in others to \ncorrect outdated agency references or obsolete legal citations, it is hereby \nordered as follows:\nSection 1. The following Executive Orders are revoked:\n8744 Authorizing certain employees of the Government to ac­\nquire a classified civil service status\n10880 Permitting certain employees to be given career or career\nconditional appointments\n11377 Providing for Tariff Commission reports regarding the esti­\nmated consumption of certain brooms \n11911 Providing for preservation of endangered species\n12034 Providing for the appointment of former ACTION coopera­\ntive volunteers to the civilian career service \n12295 Extending nuclear cooperation with EURATOM\n12426 Establishing the President’s Advisory Committee on\nWomen’s Business Ownership\nNotwithstanding the revocation of Executive Orders Nos. 8744, 10880, and \n12034, benefits already conferred under these Executive Orders before revoca­\ntion shall not be affected.\nSec. 2. Each of the Executive Orders, as amended, listed in this section, and \nany other order that relates to functions or areas of responsibility delegated to \nthe Office of Management and Budget, are amended by deleting the words \n“Bureau of the Budget” wherever they occur and inserting in lieu thereof \n“Office of Management and Budget”, and by deleting the word “Bureau” and \ninserting in lieu thereof “O ffice” wherever the word \"Bureau” is used as a \nreference to the Office of Management and Budget:\n8248 10903 11044\n9830 11012 11047\n10582 11030 11060\n10624 11034 11140\n11480\nSec. 3. Executive Order No. 9979 is amended by revoking paragraph 1 and \ndeleting the “2.” introducing the remaining paragraph.\nSec. 4. Executive Order No. 10289, as amended, is further amended as follows:\n(a) In Section 1(c), by deleting the words “section 2 of the Act of August 18, \n1914, c. 256, 38 Stat. 699 (46 U.S.C. 82),” and inserting in lieu thereof “section 1 \no f the Act of August 26,1985, Public Law 98-89, 97 Stat. 510 (46 U.S.C. 3101);”\n\n=== PDF page 10 of 160 ===\n34618 Federal Register /  Vol. 52, No. 177 /  Monday, September 14, 1987 /  Presidential Documents\nand by deleting the words “survey, inspection, and measurement o f ’ and \ninserting in lieu thereof “the inspection of.”\n(b) In Section 1(d), by deleting the words “(46 U.S.C. 104),” and inserting in \nlieu thereof “(46 U.S.C. Appendix 104),**;\n(c) In Section 1(e), by deleting the words “(46 U.S.C. 134),” and inserting in lieu \nthereof “(46 U.S.C. Appendix 134),”;\n(d) In Section 1(f), by deleting the words “(46 U.S.C. 141),”, “(46 U.S.C. 121),\" \nand “(46 U.S.C. 146),” and inserting in lieu thereof “(46 U.S.C. Appendix 141),” \n“(46 U.S.C. Appendix 121),” and “(46 U.S.C. Appendix 146),”;\n(e) By revoking Sections 1(g) and l(j), and renumbering Sections 1(h) and l(i) \nas Sections 1(g) and 1(h), respectively;\n(f) Adding a new subsection (i) to Section 1:\n“(i) The authority vested in the President by Section 5318 of the Revised \nStatutes, as amended (19 U.S.C. 540), to employ suitable vessels other than \nCoast Guard cutters in the execution of law s providing for the collection of \nduties on imports and tonnage;”\n(g) In Section 2(e), by deleting the words “, exclusive of the territory and \nwaters of the Canal Zone”; and\n(h) By revoking Section 2(f).\nSec. 5. Part V of Executive Order No. 10530, as amended, is further amended \nas follows:\n(a) By deleting the words “Administrator of General Services” wherever they \nappear and inserting in lieu thereof “Archivist of the United States”;\n(b) By deleting the words “(44 U.S.C. 305(a))” and inserting in lieu thereof “(44 \nU.S.C. 1505(a)),”;\n(c) By deleting the words “(44 U.S.C. 306; 311(a); and 311(f)),” and inserting in \nlieu thereof “(44 U.S.C. 1506; 1510(a) and 1510(f)),”;\n(d) Adding the words “(44 U.S.C. 1505(b)),” following the words “section 5(b) \nof the act,”;\n(e) Adding thé words “(44 U.S.C. 1510(a)),” following the words “in the said \nsection 11(a),”; and\n(f) Adding the words “(44 U.S.C. 1510)”, following the words “provisions of \nsection 11”.\nSec. 6. Executive Order No. 10608 is amended by deleting the words “Foreign \nService Act of 1946 (60 Stat. 999)” and inserting in lieu thereof “Foreign \nService Act of 1980 (94 Stat. 2071)”.\nSec. 7. Executive Order No. 10624, as amended, is further amended as follows:\n(a) In the preamble, by deleting the words “sections 602(d), 603, and 605 of \nTitle VI of the Act of August 28, 1954, 68 Stat. 908, 909” and inserting in lieu \nthereof “sections 605, 606B and 606D of Title VI of the Act of August 28,1954, \nas amended, (7 U.S.C. 1765,1766a, and 1766c)”; and\n(b) In Section 1(a), by deleting the words “The provisions of Part II— \nProcedures for Coordination Abroad— of Executive Order No. 10575 of No­\nvember 6, 1954,” and inserting in lieu thereof “The provisions of section 207 of \nthe Foreign Service Act of 1980 (22 U.S.C. 3927)”.\nSec. 8. Executive Order No. 10840, as amended, is further amended by \nreplacing the first paragraph and the provisions it presents with the following: \n“W hereas the Assignment of Claims Act of 1940 (54 Stat. 1029), as amended \nby the A ct of September 13, 1982, 96 Stat. 976 (31 U.S.C. 3727), contains the \nfollowing provisions:\n“During a war or national emergency proclaimed by the President or \ndeclared by law and ended by proclamation or law, a contract with the\n\n=== PDF page 11 of 160 ===\nFederal Register /  Vol. 52, No. 177 /  Monday, September 14, 1987 /  Presidential Documents 34619\nDepartment of Defense, the General Services Administration, the Department \nof Energy (when carrying out duties and powers formerly carried out by the \nAtomic Energy Commission), or other agency the President designates may \nprovide, or mey be changed without consideration to provide, that a future \npayment under the contract to an assignee is not subject to reduction or setoff. \nA payment subsequently due under the contract (even after the war or \nemergency is ended} shall be paid to the assignee without a reduction or setoff \nfor liability of the assignor—\n(1) to the Government independent of the contract; or\n(2) because of renegotiation! fine, penalty (except an amount that may be \ncollected or withheld under, or because the assignor does not comply with, the \ncontract), taxes, social security contributions, or withholding or failing to \nwithhold taxes or social security contributions, arising from, or independent \nof, the contract.\n“An assignee under this section does not have to make restitution of, refund, \nor repay the amount received because of the liability of the assignor to the \nGovernment that arises from or is independent of, the contract.\n“The Government may not collect or reclaim money paid to a person \nreceiving an amount under an assignment or allotment of pay or allowances \nauthorized by law when liability may’  exist because of the death of the person \nmaking the assignment or allotment.”\nSec. 9. Sections 2(a) and 2(b) of Executive Order No. 10841, as amended, are \nfurther amended by deleting the .words “Atomic Energy Commission” and \ninserting in lieu thereof “Secretary of Energy”.\nSec. 10. Executive Order No. 11023 is amended by deleting the words “Coast \nand Geodetic Survey” except in citing the “Coast and Geodetic Survey \nCommissioned Officers Act of 1948”, and inserting in lieu thereof “National \nOceanic and Atmospheric Administration”.\nSec. 11. Executive Order No. 11030, as amended, is further amended as \nfollows:\n(a) In Section 2(c), by deleting the words “National Archives and Records \nService, General Services Administration” and inserting in lieu thereof “Na­\ntional Archives and Records Administration”;\n(b) In Section 5, by deleting the words “44 U.S.C. 312” and inserting in lieu \nthereof “44 U.S.C. 1511”;\n(c) In Section 6, by deleting the words \"44 U.S.C. 305(a)” and inserting in lieu \nthereof “44 U.S.C. 1505(a)”.\nSec. 12. Executive Orders No. 11034 and 12048 are amended by deleting the \nwords “Health, Education, and W elfare” wherever they appear and inserting \nin lieu thereof “Education”.\nSec. 13. Executive Order No. 11047 and any other Executive order that relates \nto functions or areas of responsibility delegated to the Federal Aviation \nAdministration are amended by deleting the words \"Federal Aviation \nAgency” and “Agency” wherever they appear and inserting in lieu thereof \n“Federal Aviation Administration” and “Administration”.\nSec. 14. Executive Order No. 11077, as amended, is further amended as \nfollows:\n(a) By deleting the second sentence in Section 1(b);\n(b) By deleting the words “the Department of Health, Education, and W elfare, \nand o f ’ in Section 1(c);\n(c) By revoking Section 2; v '  '\n(d) By renumbering Sections 3, 4, 5, 6, and 7 as Sections 2, 3, 4, 5, and 6 \nrespectively; and\n\n=== PDF page 12 of 160 ===\n34620 Federal Register /  Vol. 52, No. 177 /  Monday, September 14, 1987 /  Presidential Documents\n(e) By deleting in renumbered Sections 2(a) and 2(b), the words “and the \nSecretary of Health, Education, and W elfare may each” and inserting in lieu \nthereof “may”.\nSec. Ì5. Each of the Executive Orders, as amended, listed in this Section and \nany other order that relates to functions or areas of responsibility delegated to \nthe Department of Health and Human Services, is amended and revised by \ndeleting the words “Department of Health, Education, and W elfare” wherever \nthey occur and inserting in lieu thereof “Department of Health and Human \nServices”, and by deleting the words “Secretary of Health, Education, and \nW elfare\" wherever they appear and inserting in lieu thereof “Secretary of \nHealth and Human Services”:\n11079 11609 12049\n11140 11623 12086\n11157 11687 12138\n11480 11776 12146\n11490 11800 12154\n11583 11899 12196\n12208\nSec. 16. Executive Order No. 11390, as amended, is further amended as \nfollows:\n(a) By revoking Section 1(1);\n(b) By revoking Section 1(7); and\n(c) In Section 1(4), by deleting the words “by sections 565, 599, 3450, and 8450” \nand inserting in lieu thereof “by sections 565 and 599”.\nSec. 17. Executive Order No. 11440, as amended, is further amended by \ndeleting the words “Administrator of General Services” and the word “Ad­\nministrator” wherever they appear, and inserting in lieu thereof “Archivist of \nthe United States” and “Archivist\".\nSec. 18. Section 2 of Executive Order No. 11467 is amended by deleting the \nwords “Secretary of the Interior” and inserting the words \"Secretary of \nCommerce”.\nSec. 19. Executive Order No. 11561, as amended, is amended by deleting the \nwords “Foreign Service Act of 1946” and inserting in lieu thereof “Foreign \nService Act of 1980”.\nSec. 20. Executive Order No. 11580 is amended by deleting the words “Admin­\nistrator of the National Credit Union Administration” and inserting in lieu \nthereof “National Credit Union Administration Board” in the first paragraph.\nSec. 21. Section 7 of Executive Order No. 11644, as amended, is further \namended by deleting the words “Atomic Energy Commission” and inserting in \nlieu thereof “Secretary of Energy and the Nuclear Regulatory Commission”.\nSec. 22. Executive Order No, 11747 is amended by revoking Section 1 and \ndeleting the words “Sec. 2.”.\nSec, 23. Section 1(a) of Executive Order No, 11755 is amended by adding the \nwords “the Commonwealth of the Northern Mariana Islands,” after the words \n“American Samoa,” wherever they appear.\nSec. 24. Section 4 of Executive Order No. 11758, as amended, is further \namended by deleting the words “Federal Procurement Regulations, the Armed \nServices Procurement Regulations,” and inserting in lieu thereof “Federal \nAcquisition Regulations”.\nSec. 25. Executive Order No. 11845 is amended as follows:\n\n=== PDF page 13 of 160 ===\nFederaM tegister /  Vol. 52, No. 177 /  Monday, September 14, 1987 /  Presidential Documents 31621\n(a) By inserting, after the words “88 Stat. 332,”, the words “(2 U.S.C. 681 e t\n(b) By inserting, after the words “section 1012 or 1013”, the words ‘‘(2 U.S.C. \n683 and 684)”; and\n(c) By inserting, after the words “section 1014(e) of the A ct”, the words “(2 \nU.S.C. 685(e))”.\nSec. 26. Executive Order No. 11880 is amended by deleting the words \"Under \nSecretary of Commerce” and inserting in lieu thereof “Deputy Secretary of \nCommerce”.\nSec. 27. Executive Order No. 11899, as amended, is further amended by \ndeleting the words “(88 Stat. 2210, 25 U.S.C. 450(i)},” and inserting in lieu \nthereof “(88 Stat. 2210, 25 U.S.C. 450 i),”.\nSec. 28. Section 6 of Executive Order No. 11990 is amended by deleting the \nwords “and the W ater Resources Council”.\nSec. 29. Executive Order No. 12101 is amended by deleting the words “Sec­\ntions 4 and 6 of the Diplomatic Relations Act (92 Stat. 809; 22 U.S.C. 254c and \n254e)” and inserting in lieu thereof “Section 4 of Diplomatic Relations Act (92 \nStat. 809; 22 U.S.C. 254c).”\nSec. 30. Section l-201(a) of Executive Order No. 12163, as amended, is further \namended by revoking paragraphs (23) and (24), and by renumbering para­\ngraphs (25), (26), (27), and (28) as paragraphs (23), (24), (25), and (26) respec­\ntively. •\nSec. 31. Executive Order No. 12322 is amended by deleting the words \"Princi­\nples and Standards for W ater and Related Land Resources Planning (Part 711 \nof Title 18 of the Code of Federal Regulations (45 F.R. 64366)),” and inserting in \nlieu thereof \"Economic and Environmental Principles and Guidelines for \nW ater and Related Land Resources Implementation Studies”.\nSec. 32. Executive Order No. 12328 is amended by deleting the words “(25 CFR \n251.5 and 252.31)” and inserting in lieu thereof (25 CFR 140.5 and 141.31)”.\ni  ”*It •\nTHE WHITE HOUSE, \nS e p te m b e r  9, 1987.\n[FR Doc. 87-21155 \nFiled 9-10-87; 12:24 pm] \nBilling code 3195-01-M\n"
+    },
+    "ACTOR_TEXT:FRDOC:E8-26584@87433": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:E8-26584",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 90523,
+      "char_start": 87433,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:E8-26584@87433",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:E8-26584",
+        "page_or_item": "73 FR 67778; FR Doc. E8-26584; Rule: Reclamation Rural Water Supply Program",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "baad32ccdc979fc07fa5cb556cec10c670040725541554e7de582b9b82b5c2b4",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-E8-26584.txt",
+        "text_sha256": "baad32ccdc979fc07fa5cb556cec10c670040725541554e7de582b9b82b5c2b4",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2008/11/17/E8-26584.txt"
+      },
+      "text": "    (b) A recommendation to Congress regarding whether or not the \nproposed rural water supply project should be authorized for \nconstruction, and the reasons supporting the recommendation. This \nrecommendation will be based on Reclamation's review of the feasibility \nstudy and its application of the criteria set forth in Sec.  404.49; \nand\n    (c) If the rural water supply project is recommended for \nconstruction, the feasibility report will also include:\n    (1) The appropriate Federal and non-Federal share of the capital \nconstruction costs for the project and for projects involving multiple \nproject sponsors, the portion of those costs allocated to each project \nsponsor;\n    (2) What amount of grants, loan guarantees, or combination of \ngrants and loan guarantees should constitute the Federal share of the \nproject;\n    (3) The annual operation, maintenance, and replacement costs, and \nthe portion of those costs allocated to each project sponsor \nparticipating in the rural water supply project; and\n    (4) An assessment of the financial capability of each project \nsponsor participating in the rural water supply project to pay the \nportion of the construction and operation, maintenance, and replacement \ncosts allocated to it.\n\n\nSec.  404.51  Are proposed projects under the Rural Water Supply \nprogram reviewed by the Administration?\n\n    Yes. The Administration will review all projects proposed for \nfunding under the Reclamation's Rural Water Supply program. This \nincludes review under Executive Order 12322 to determine whether the \nproject is consistent with the policies and programs of the President. \nThis review will occur before the feasibility report is finalized.\n\n\nSec.  404.52  Who will the feasibility report be provided to?\n\n    Upon its completion, Reclamation will:\n    (a) Provide the feasibility report to you;\n    (b) Submit the feasibility report to the Committee on Energy and \nNatural Resources of the Senate and the Committee on Natural Resources \nof the House of Representatives;\n    (c) Make the report publicly available, along with associated study \ndocuments; and\n    (d) Publish in the Federal Register a notice of the availability of \nthe results.\n\nSubpart E--Miscellaneous\n\n\nSec.  404.53  Does this rule provide authority for the transfer of pre-\nexisting facilities from Federal to private ownership, or from private \nto Federal ownership?\n\n    No. This rule does not authorize the transfer of pre-existing \nfacilities or pre-existing components of any water system from Federal \nto private ownership, or from private to Federal ownership.\n\n\nSec.  404.54  Who will hold title to a rural water project that is \nconstructed following the completion of an appraisal investigation or \nfeasibility study under this program?\n\n    Title to any rural water project planned, designed and recommended \nfor construction under this program will be held by the non-Federal \nproject sponsor.\n\n\nSec.  404.55  Who is responsible for the operation, maintenance, and \nreplacement costs?\n\n    You will be responsible for 100 percent of the operation, \n"
     },
     "CLAUSES:EO:12322#lead": {
       "char_end": 954,
@@ -1110,6 +1179,76 @@
       },
       "text": "Sec. 4. Executive O rder No. 12113, as amended, is revoked."
     },
+    "CURRENT:EO:12322#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 189,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 1962 note; note 'Ex. Ord. No. 12322. Water Resources Programs and Projects Review' [USLM note id id3a19ee43-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "11f51e151c0c1786fdeb11da1d2e58086db8099eadeda8b61f7b5aad96ee01f0",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a19ee43-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12322#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12322",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (42 U.S.C. 1962 note)",
+      "machine_lead": true,
+      "mention_id": "usc:77e6cacb6162",
+      "snippet": "Ex. Ord. No. 12322. Water Resources Programs and Projects Review | Ex. Ord. No. 12322, Sept. 17, 1981, 46 F.R. 46561, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "source": {
+        "page_or_item": "42 U.S.C. 1962 note; note 'Ex. Ord. No. 12322. Water Resources Programs and Projects Review' [USLM note id id3a19ee43-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a19ee43-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "11f51e151c0c1786fdeb11da1d2e58086db8099eadeda8b61f7b5aad96ee01f0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12322. Water Resources Programs and Projects Review\nEx. Ord. No. 12322, Sept. 17, 1981, 46 F.R. 46561, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3a19ee43-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "11f51e151c0c1786fdeb11da1d2e58086db8099eadeda8b61f7b5aad96ee01f0",
+      "where": "USC 42 U.S.C. 1962 note"
+    },
+    "CURRENT:EO:12322#1": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 430,
+      "char_start": 89,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-10-27)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "43 CFR 404.51",
+        "sha256": "9d786166949c6e9090a3eb1402aa2b4f1e08e871a2dae75940f1f8f4692f73e7",
+        "source_id": "cfr:t43:404.51",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-43/section-404.51"
+      },
+      "id": "CURRENT:EO:12322#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12322",
+      "legal_basis_candidate": "regulation text names the order (43 CFR 404.51)",
+      "machine_lead": true,
+      "mention_id": "ecfr:3bdc51db06d4",
+      "snippet": "...istration? Yes. The Administration will review all projects proposed for funding under the Reclamation's Rural Water Supply Program. This includes review under Executive Order 12322 to determine whether the project is consistent with the policies and programs of the President. This review will occur before the feasibility report is finaliz...",
+      "source": {
+        "page_or_item": "43 CFR 404.51 (section_text; GovInfo eCFR XML title 43, amended through 2026-10-27; NODE 43:1.2.1.1.3.4.163.5)",
+        "sha256": "af37c999186037c83d15ea9a0c3ab18b5016af9c8fa982e5643f02e9ebf9033a",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t43-404.51.txt",
+        "text_sha256": "9d786166949c6e9090a3eb1402aa2b4f1e08e871a2dae75940f1f8f4692f73e7",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-43/ECFR-title43.xml"
+      },
+      "system": "ecfr",
+      "text": "istration?\nYes. The Administration will review all projects proposed for funding under the Reclamation's Rural Water Supply Program. This includes review under Executive Order 12322 to determine whether the project is consistent with the policies and programs of the President. This review will occur before the feasibility report is finaliz",
+      "where": "CFR 43 CFR 404.51"
+    },
     "ORIGINAL:EO:12322": {
       "acceptable_as_original": true,
       "actor_id": "EO:12322",
@@ -1134,164 +1273,9 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1981-09-21/pdf/FR-1981-09-21.pdf"
       },
       "text": "Instrument: EO:12322\nSource: https://www.govinfo.gov/content/pkg/FR-1981-09-21/pdf/FR-1981-09-21.pdf\nSHA-256 of the downloaded file: 7397df3b836980f4f788b7d8d1d84d8bbaccfa522a5ab2d3097efdf72dcc798f\nLocation: 46 FR 46561, PDF pages 11-11 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 11 of 240 ===\nFederal Register /  Vol. 46, No. 182 /  M onday, Septem ber 2 1,1981 /  Presidential Docum ents 46561\nPresidential Documents\nExecutive Order 12322 of September 17, 1981\nWater Resources Projects\nBy the authority vested in me as President by the Constitution and law s of the \nUnited States of A m erica, and in order to ensure efficient and coordinated \nplanning and review  o f w ater resources programs and projects, it is hereby \nordered a& follow s:\nSection 1. Before any agency or officer thereof subm its to the Congress, or to \nany com m ittee or m em ber thereof, for approval, appropriations, or legislative \naction any report, proposal, or plan relating to a Federal or Federally assisted  \nw ater and related land resources p roject or program, such report, proposal, or \nplan shall be subm itted to the D irector o f the O ffice o f M anagem ent and \nBudget.\nSec. 2. The Director of the Office of Management and Budget shall examine \neach report, proposal, or plan for consistency with, and shall advise the \nagency of the relationship of the project to, the following:\n(a) the policy and programs of the President;\n(b) the Principles and Standards for W ater and R elated  Land R esources \nPlanning (Part 711 of Title 18 o f the Code o f Fed eral Regulations (45 F.R. \n64366)), or other such planning guidelines for w ater and related land resou rces \nplanning, as shall hereafter be issued; and\n(c) other applicable law s, regulations, and requirem ents relevant to the plan­\nning process.\nSec. 3. W hen such report, proposal, or plan is thereafter subm itted to the \nCongress, or to any com m ittee or m em ber thereof, it shall include a statem ent \nof the advice received from the O ffice of M anagem ent and Budget.\nSec. 4. Executive O rder No. 12113, as amended, is revoked.\nTHE WHITE HOUSE, \nS e p te m b er  17, 1981.\nIFR Doc. 81-27580 \nFiled 9-18-81; 10:36 am] \nBilling code 3195-01-M\n"
-    },
-    "TERM:EO:12322:1585af63d4753fee@6b1498bbb825164d": {
-      "actor_id": "EO:12322",
-      "char_end": 20668,
-      "char_start": 20413,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12322:1585af63d4753fee@6b1498bbb825164d",
-      "instrument_id": "EO:12322",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12322#sec3-dup2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12322",
-        "page_or_item": "42 U.S.C. 1962",
-        "requires_page_check": false,
-        "sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "signing_date": "1981-09-17",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t42-s1962.txt",
-        "text_sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1962&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The Department of the Interior or the Environmental Protection Agency (EPA) shall, to the extent permitted by law and subject to the availability of appropriations, provide administrative support as needed for the Water Subcabinet to implement this order."
-    },
-    "TERM:EO:12322:2ed0daaecde2d4ae@6b1498bbb825164d": {
-      "actor_id": "EO:12322",
-      "char_end": 26963,
-      "char_start": 26707,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12322:2ed0daaecde2d4ae@6b1498bbb825164d",
-      "instrument_id": "EO:12322",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12322#sec6",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12322",
-        "page_or_item": "42 U.S.C. 1962",
-        "requires_page_check": false,
-        "sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "signing_date": "1981-09-17",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t42-s1962.txt",
-        "text_sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1962&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Within 1 year of submitting the report required by section 5 of this order, and annually thereafter, the Water Subcabinet shall update the Chairman of CEQ, the Director of OMB, and the Director of OSTP on the status of the actions identified in the report."
-    },
-    "TERM:EO:12322:396e27f8d47caefe@6b1498bbb825164d": {
-      "actor_id": "EO:12322",
-      "char_end": 28043,
-      "char_start": 27674,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12322:396e27f8d47caefe@6b1498bbb825164d",
-      "instrument_id": "EO:12322",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12322#sec7",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12322",
-        "page_or_item": "42 U.S.C. 1962",
-        "requires_page_check": false,
-        "sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "signing_date": "1981-09-17",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t42-s1962.txt",
-        "text_sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1962&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The recommendations shall consider water infrastructure programs that are funded by the Department of Defense through the Army Corps of Engineers, and by the Department of the Interior, the Department of Agriculture, the Department of Energy, the EPA, the Federal Emergency Management Agency, the Economic Development Administration, and other agencies, as appropriate."
-    },
-    "TERM:EO:12322:4a27981dc4d01bf3@6b1498bbb825164d": {
-      "actor_id": "EO:12322",
-      "char_end": 21922,
-      "char_start": 21567,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12322:4a27981dc4d01bf3@6b1498bbb825164d",
-      "instrument_id": "EO:12322",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12322#sec5",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12322",
-        "page_or_item": "42 U.S.C. 1962",
-        "requires_page_check": false,
-        "sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "signing_date": "1981-09-17",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t42-s1962.txt",
-        "text_sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1962&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Within 120 days of the date of this order, the Water Subcabinet shall submit to the Chairman of CEQ, the Director of OMB, and the Director of OSTP a report that recommends actions to address the issues described below, and for each recommendation identifies a lead agency, other relevant agencies, and agency milestones for fiscal years 2021 through 2025:"
-    },
-    "TERM:EO:12322:542433d0e7f0b088@6b1498bbb825164d": {
-      "actor_id": "EO:12322",
-      "char_end": 30370,
-      "char_start": 30241,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12322:542433d0e7f0b088@6b1498bbb825164d",
-      "instrument_id": "EO:12322",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12322#sec9-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12322",
-        "page_or_item": "42 U.S.C. 1962",
-        "requires_page_check": false,
-        "sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "signing_date": "1981-09-17",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t42-s1962.txt",
-        "text_sha256": "6b1498bbb825164d3f21741ce65b433413b706027a03d32b76e52a0cd21cee1f",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title42-section1962&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented in a manner consistent with applicable law and subject to the availability of appropriations."
     }
   },
-  "fingerprint": "ef54ba3f40bf8e04fb6c790d5b63b5ea9bdb2c92075e8536602d764b451a4ee8",
+  "fingerprint": "9fc80169e3058349e7a8c3972f6d50548c9b4f44ef595c754fe3b454549fa736",
   "instrument_id": "EO:12322",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1423,32 +1407,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1464,20 +1450,14 @@
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12322",
-  "own_terms": [
-    "TERM:EO:12322:1585af63d4753fee@6b1498bbb825164d",
-    "TERM:EO:12322:4a27981dc4d01bf3@6b1498bbb825164d",
-    "TERM:EO:12322:2ed0daaecde2d4ae@6b1498bbb825164d",
-    "TERM:EO:12322:396e27f8d47caefe@6b1498bbb825164d",
-    "TERM:EO:12322:542433d0e7f0b088@6b1498bbb825164d"
-  ],
+  "own_terms": [],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "4010d48a12403b1e89528c782e9a975cd5e6a33ca554b23a77d1b7432243c06b",
+    "fingerprint": "ebfb23e87f76f18e68da3bfccfc0ce23d89cec38b7347900e679e787d0a6ef76",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12322.json",
-    "history_sha256": "4f6a984e242e4c1a9f59f69b667dd43acbaa50f37ad6495c08b237d2f2e950dd",
+    "history_sha256": "9ee1a41632527df237fc32073cf92e2b4c976b0e0a7ab7d81ad767a2e282fc3a",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

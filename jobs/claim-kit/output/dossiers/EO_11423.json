@@ -10,19 +10,23 @@
     },
     {
       "actor_id": "EO:12847",
-      "evidence_id": "ACTOR_TEXT:EO:12847"
+      "evidence_id": "ACTOR_TEXT:EO:12847",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13284",
-      "evidence_id": "ACTOR_TEXT:EO:13284"
+      "evidence_id": "ACTOR_TEXT:EO:13284",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13337",
-      "evidence_id": "ACTOR_TEXT:EO:13337"
+      "evidence_id": "ACTOR_TEXT:EO:13337",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13867",
-      "evidence_id": "ACTOR_TEXT:EO:13867"
+      "evidence_id": "ACTOR_TEXT:EO:13867",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -1070,7 +1074,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11423",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11423"
@@ -1306,23 +1310,35 @@
   "current_law_leads": [
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 12858,
+      "char_start": 12517,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "33 CFR 322.5",
+        "sha256": "e362fe2a8faa28a72d20d2afbd79b4132c474a23b71c639d948e0923331fcdd5",
+        "source_id": "cfr:t33:322.5",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-33/section-322.5"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11423",
       "legal_basis_candidate": "regulation text names the order (33 CFR 322.5)",
       "machine_lead": true,
-      "mention_id": "ecfr:5b1168040ff2",
+      "mention_id": "ecfr:5fd7fc60d628",
       "snippet": "...ntry; and monorails, aerial cable cars, aerial tramways, and similar facilities for the transportation of persons and/or things, to or from a foreign country. (Executive Order 11423, August 16, 1968). (5) A DA permit under section 10 of the Rivers and Harbors Act of 1899 is also required for all of the above facilities which affect the nav...",
       "source": {
-        "page_or_item": "33 CFR 322.5 (section_text; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:3.0.1.1.16.0.1.5)",
-        "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+        "page_or_item": "33 CFR 322.5 (section_text; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:3.0.1.1.16.0.1.5)",
+        "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t33-322.5.txt",
+        "text_sha256": "e362fe2a8faa28a72d20d2afbd79b4132c474a23b71c639d948e0923331fcdd5",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
       },
       "system": "ecfr",
+      "text": "ntry; and monorails, aerial cable cars, aerial tramways, and similar facilities for the transportation of persons and/or things, to or from a foreign country. (Executive Order 11423, August 16, 1968).\n(5) A DA permit under section 10 of the Rivers and Harbors Act of 1899 is also required for all of the above facilities which affect the nav",
       "where": "CFR 33 CFR 322.5"
     },
     {
@@ -1334,10 +1350,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-31)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:5b1168040ff2",
+        "mention_id": "ecfr:5fd7fc60d628",
         "snippet": "...ntry; and monorails, aerial cable cars, aerial tramways, and similar facilities for the transportation of persons and/or things, to or from a foreign country. (Executive Order 11423, August 16, 1968). (5) A DA permit under section 10 of the Rivers and Harbors Act of 1899 is also required for all  ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1347,8 +1363,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (33 CFR 322.5)",
         "source": {
-          "page_or_item": "33 CFR 322.5 (section_text; GovInfo eCFR XML title 33, amended through 2026-10-31; NODE 33:3.0.1.1.16.0.1.5)",
-          "sha256": "40b843407cbcf744bc1c00255c46fc4fad428c91f215c96fb0face32aa128dd5",
+          "page_or_item": "33 CFR 322.5 (section_text; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:3.0.1.1.16.0.1.5)",
+          "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
         }
       }
@@ -5120,6 +5136,7 @@
       "char_end": 12409,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12847",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -5140,6 +5157,7 @@
       "char_end": 11299,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13284",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -5160,6 +5178,7 @@
       "char_end": 10828,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13337",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -5180,6 +5199,7 @@
       "char_end": 9269,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13867",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -5414,6 +5434,40 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1968-08-20/pdf/FR-1968-08-20.pdf"
       },
       "text": "Sec. 3. T he authority o f the Secretary o f State hereunder is supple­\nm ental to , and does n ot supersede, existin g authorities or delegations \nrelatin g to im portation, exportation, transm ission, or transportation  \nto or from  a foreign  country. A ll perm its heretofore issued w ith re­\nspect to m atters described in Section 1 o f this order, and in force at  \nthe tim e o f issuance o f this order, and all perm its issued hereunder, \nshall rem ain in effect in  accordance w ith their term s unless and until \nm odified, amended, suspended, or revoked by the President or, upon  \ncom pliance w ith the procedures provided fo r in this order, by the  \nSecretary o f State.\n« il '■"
+    },
+    "CURRENT:EO:11423#0": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 12858,
+      "char_start": 12517,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "33 CFR 322.5",
+        "sha256": "e362fe2a8faa28a72d20d2afbd79b4132c474a23b71c639d948e0923331fcdd5",
+        "source_id": "cfr:t33:322.5",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-33/section-322.5"
+      },
+      "id": "CURRENT:EO:11423#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11423",
+      "legal_basis_candidate": "regulation text names the order (33 CFR 322.5)",
+      "machine_lead": true,
+      "mention_id": "ecfr:5fd7fc60d628",
+      "snippet": "...ntry; and monorails, aerial cable cars, aerial tramways, and similar facilities for the transportation of persons and/or things, to or from a foreign country. (Executive Order 11423, August 16, 1968). (5) A DA permit under section 10 of the Rivers and Harbors Act of 1899 is also required for all of the above facilities which affect the nav...",
+      "source": {
+        "page_or_item": "33 CFR 322.5 (section_text; GovInfo eCFR XML title 33, amended through 2026-11-06; NODE 33:3.0.1.1.16.0.1.5)",
+        "sha256": "4efbea14fbc035f18ce5aff0dbff8114bc527f84de56719c37bf8c11bba073bc",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t33-322.5.txt",
+        "text_sha256": "e362fe2a8faa28a72d20d2afbd79b4132c474a23b71c639d948e0923331fcdd5",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-33/ECFR-title33.xml"
+      },
+      "system": "ecfr",
+      "text": "ntry; and monorails, aerial cable cars, aerial tramways, and similar facilities for the transportation of persons and/or things, to or from a foreign country. (Executive Order 11423, August 16, 1968).\n(5) A DA permit under section 10 of the Rivers and Harbors Act of 1899 is also required for all of the above facilities which affect the nav",
+      "where": "CFR 33 CFR 322.5"
     },
     "ORIGINAL:EO:11423": {
       "acceptable_as_original": true,
@@ -6002,7 +6056,7 @@
       "text": "All permits heretofore issued with respect to matters described in Section 1 of this order, and in force at the time of issuance of this order, and all permits issued hereunder, shall remain in effect in accordance with their terms unless and until modified, amended, suspended, or revoked by the President or, upon compliance with the procedures provided for in this order, by the Secretary of State."
     }
   },
-  "fingerprint": "75dc9a8ed36a80ee81444552d12a4fd89da1bfd808cf1d41cccf2f72e8afa3eb",
+  "fingerprint": "43121ff95db075615ac034d57fc5b565390cd0f04771a8f25429e66f9268049d",
   "instrument_id": "EO:11423",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -6231,11 +6285,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 6,
       "machine_hits_for_this_order": 6,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -6243,20 +6298,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 6,
+      "machine_fragment_items_for_this_order_all_systems": 6,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -6268,7 +6324,6 @@
   "missing": [
     "Acting identity absent from census: MEMORANDUM:2017-01-24",
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:10485",
     "target provision not located: EO:10530"
   ],
@@ -6297,12 +6352,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 8,
-    "fingerprint": "8731e8c232d82644791903b0799e840791b308ec41ff92cafcdc1c3d6ef431fa",
+    "fingerprint": "dab177337a468743f584ae4dafa0cfc02ab80b2828bcc47a4960a7ac883a0b02",
     "flags": [
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_11423.json",
-    "history_sha256": "210486b77f63fdf88b5eae985605fd75cfa5ab52bac288ab0bbb1f8a27655544",
+    "history_sha256": "34812f832737452e4e2c005057fa005fe085a7f7a35a6ebe91d411f357a6cd9e",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -34,11 +34,83 @@
     },
     {
       "actor_id": "EO:13631",
-      "evidence_id": "ACTOR_TEXT:EO:13631"
+      "evidence_id": "ACTOR_TEXT:EO:13631",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13652",
-      "evidence_id": "ACTOR_TEXT:EO:13652"
+      "evidence_id": "ACTOR_TEXT:EO:13652",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2012-17445",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2012-17445",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2013-03466",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2013-03466",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2013-05212",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2013-05212",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2013-15324",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2013-15324",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2013-19370",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2013-19370",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2013-27927",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2013-27927",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2014-02784",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2014-02784",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2014-07848",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2014-07848",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2015-02886",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2015-02886",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2015-12104",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2015-12104",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2015-30749",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2015-30749",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2016-09130",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2016-09130",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2016-13558",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2016-13558",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2016-17385",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2016-17385",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -289,7 +361,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13591",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13591"
@@ -547,11 +619,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 200,
+      "char_start": 73,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "20 U.S.C. 9701 note; note 'Ex. Ord. No. 13530. President’s Advisory Council on Financial Capability' [USLM note id id0e6983bc-3a70-11f1-a648-bee82ed8a795]; usc20.xml (sha256 f65c9596d494fffbae4f6f72931c67c56714d0a62b93072d387c07bd2c767838) in xml_uscAll@119-121.zip",
+        "sha256": "e69685399ea2b49d99c4459ff0c22855420dd64d31ea7513e20802b3b7373c81",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id0e6983bc-3a70-11f1-a648-bee82ed8a795",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13591",
       "legal_basis_candidate": "order amended a printed order (weak lead) (20 U.S.C. 9701 note)",
@@ -561,9 +642,14 @@
       "source": {
         "page_or_item": "20 U.S.C. 9701 note; note 'Ex. Ord. No. 13530. President’s Advisory Council on Financial Capability' [USLM note id id0e6983bc-3a70-11f1-a648-bee82ed8a795]; usc20.xml (sha256 f65c9596d494fffbae4f6f72931c67c56714d0a62b93072d387c07bd2c767838) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id0e6983bc-3a70-11f1-a648-bee82ed8a795.txt",
+        "text_sha256": "e69685399ea2b49d99c4459ff0c22855420dd64d31ea7513e20802b3b7373c81",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 13530, Jan. 29, 2010, 75 F.R. 5481, as amended by Ex. Ord. No. 13591, § 3, Nov. 23, 2011, 76 F.R. 74623, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id0e6983bc-3a70-11f1-a648-bee82ed8a795.txt",
+      "text_sha256": "e69685399ea2b49d99c4459ff0c22855420dd64d31ea7513e20802b3b7373c81",
       "where": "USC 20 U.S.C. 9701 note"
     },
     {
@@ -582,6 +668,7 @@
         "snippet": "Ex. Ord. No. 13530, Jan. 29, 2010, 75 F.R. 5481, as amended by Ex. Ord. No. 13591, § 3, Nov. 23, 2011, 76 F.R. 74623, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id0e6983bc-3a70-11f1-a648-bee82ed8a795.txt",
         "where": "USC 20 U.S.C. 9701 note"
       },
       "proposal": {
@@ -1629,6 +1716,7 @@
       "char_end": 2594,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13631",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1649,6 +1737,7 @@
       "char_end": 12220,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13652",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1663,6 +1752,426 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2013-10-04/pdf/2013-24388.pdf"
       },
       "text": "Instrument: EO:13652\nSource: https://www.govinfo.gov/content/pkg/FR-2013-10-04/pdf/2013-24388.pdf\nSHA-256 of the downloaded file: a10494b1ea9767f3c5d574fcc8b6acc25153eb7854492e0f4d3e740363ad4f91\nLocation: 78 FR 61817, PDF pages 1-4 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 4 ===\nPresidential Documents\n61817 Federal Register / Vol. 78, No. 193 / Friday, October 4, 2013 / Presidential Documents \nExecutive Order 13652 of September 30, 2013 \nContinuance Of Certain Federal Advisory Committees \nBy the authority vested in me as President, by the Constitution and the \nlaws of the United States of America, and consistent with the provisions \nof the Federal Advisory Committee Act, as amended (5 U.S.C. App.), it \nis hereby ordered as follows: \nSection 1. Each advisory committee listed below is continued until Sep-\ntember 30, 2015. \n(a) Committee for the Preservation of the White House; Executive Order \n11145, as amended (Department of the Interior). \n(b) President’s Commission on White House Fellowships; Executive Order \n11183, as amended (Office of Personnel Management). \n(c) President’s Committee on the National Medal of Science; Executive \nOrder 11287, as amended (National Science Foundation). \n(d) Federal Advisory Council on Occupational Safety and Health; Executive \nOrder 11612, as amended (Department of Labor). \n(e) President’s Export Council; Executive Order 12131, as amended (Depart-\nment of Commerce). \n(f) President’s Committee on the International Labor Organization; Execu-\ntive Order 12216, as amended (Department of Labor). \n(g) President’s Committee on the Arts and the Humanities; Executive Order \n12367, as amended (National Endowment for the Arts). \n(h) President’s National Security Telecommunications Advisory Committee; \nExecutive Order 12382, as amended (Department of Homeland Security). \n(i) National Industrial Security Program Policy Advisory Committee; Execu-\ntive Order 12829, as amended (National Archives and Records Administra-\ntion). \n(j) Trade and Environment Policy Advisory Committee; Executive Order \n12905, as amended (Office of the United States Trade Representative). \n(k) President’s Committee for People with Intellectual Disabilities; Execu-\ntive Order 12994, as amended (Department of Health and Human Services). \n(l) National Infrastructure Advisory Council; Executive Order 13231, as \namended (Department of Homeland Security). \n(m) President’s Council on Fitness, Sports, and Nutrition; Executive Order \n13265, as amended (Department of Health and Human Services). \n(n) President’s Advisory Council on Faith-Based and Neighborhood Partner-\nships; Executive Order 13498, re-established by Executive Order 13569, and \ncontinued by Executive Order 13640 (Department of Health and Human \nServices). \n(o) President’s Advisory Commission on Asian Americans and Pacific \nIslanders; Executive Order 13515, as amended (Department of Education). \n(p) Presidential Commission for the Study of Bioethical Issues; Executive \nOrder 13521 (Department of Health and Human Services). \n(q) National Council on Federal Labor-Management Relations; Executive \nOrder 13522 (Office of Personnel Management). \nVerDate Mar<15>2010 17:21 Oct 03, 2013 Jkt 232001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\04OCE0.SGM 04OCE0EMCDONALD on DSK67QTVN1PROD with MISCELLANEOUS\n=== PDF page 2 of 4 ===\n61818 Federal Register / Vol. 78, No. 193 / Friday, October 4, 2013 / Presidential Documents \n(r) President’s Board of Advisors on Historically Black Colleges and Univer-\nsities; Executive Order 13532, as amended (Department of Education). \n(s) President’s Management Advisory Board; Executive Order 13538 (Gen-\neral Services Administration). \n(t) President’s Council of Advisors on Science and Technology; Executive \nOrder 13539, as amended (Department of Energy). \n(u) Interagency Task Force on Veterans Small Business Development; Exec-\nutive Order 13540 (Small Business Administration). \n(v) Advisory Group on Prevention, Health Promotion, and Integrative and \nPublic Health; Executive Order 13544, re-established by Executive Order \n13631 (Department of Health and Human Services). \n(w) State, Local, Tribal, and Private Sector (SLTPS) Policy Advisory Com-\nmittee; Executive Order 13549, as amended (National Archives and Records \nAdministration). \n(x) President’s Advisory Commission on Educational Excellence for His-\npanics; Executive Order 13555, re-established by Executive Order 13634 \n(Department of Education). \n(y) President’s Global Development Council; Executive Order 13600 (United \nStates Agency for International Development). \n(z) President’s Advisory Commission on Educational Excellence for African \nAmericans; Executive Order 13621 (Department of Education). \nSec. 2. Notwithstanding the provisions of any other Executive Order, the \nfunctions of the President under the Federal Advisory Committee Act that \nare applicable to the committees listed in section 1 of this order shall \nbe performed by the head of the department or agency designated after \neach committee, in accordance with the regulations, guidelines, and proce-\ndures established by the Administrator of General Services. \nSec. 3. Sections 1 and 2 of Executive Order 13585 of September 30, 2011, \nand sections 1, 2, and 4 of Executive Order 13591 of November 23, 2011, \nare superseded by sections 1 and 2 of this order. \nSec. 4. Executive Order 13538 of April 19, 2010, is amended in section \n4(c) by striking ‘‘The Executive Director shall serve as the Designated Federal \nOfficer in accordance with the Federal Advisory Committee Act, as amended \n(5 U.S.C. App.) (FACA)’’ and inserting in lieu thereof ‘‘The PMAB shall \nalso have a Designated Federal Officer (DFO) in accordance with the Federal \nAdvisory Committee Act, as amended (5 U.S.C. App.) (FACA). The Executive \nDirector may serve as the DFO’’. \nSec. 5. Executive Order 13043 of April 16, 1997, is amended by striking \nsection 4 and renumbering the subsequent sections appropriately. \nSec. 6. Executive Order 13231 of October 16, 2001, as amended, is further \namended by striking section 3, except subsection (c) thereof, and inserting \nimmediately preceding subsection (c), the following: \n‘‘Sec. 3. The National Infrastructure Advisory Council. The National Infra-\nstructure Advisory Council (NIAC), established on October 16, 2001, shall \nprovide the President, through the Secretary of Homeland Security, with \nadvice on the security and resilience of the critical infrastructure sectors \nand their functional systems, physical assets, and cyber networks. \n‘‘(a) Membership. The NIAC shall be composed of not more than 30 \nmembers appointed by the President, taking appropriate account of the \nbenefits of having members: \n‘‘(i) from the private sector, including individuals with experience in \nbanking and finance, transportation, energy, water, communications, health \ncare services, food and agriculture, government facilities, emergency serv-\nices organizations, institutions of higher education, environmental and \nclimate resilience, and State, local, and tribal governments; \nVerDate Mar<15>2010 17:21 Oct 03, 2013 Jkt 232001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\04OCE0.SGM 04OCE0EMCDONALD on DSK67QTVN1PROD with MISCELLANEOUS\n=== PDF page 3 of 4 ===\n61819 Federal Register / Vol. 78, No. 193 / Friday, October 4, 2013 / Presidential Documents \n‘‘(ii) with senior executive leadership responsibilities for the availability \nand reliability, including security and resilience, of critical infrastructure \nsectors; \n‘‘(iii) with expertise relevant to the functions of the NIAC; and \n‘‘(iv) with experience equivalent to that of a chief executive of an organiza-\ntion. \n‘‘Unless otherwise determined by the President, no full-time officer or \nemployee of the executive branch shall be appointed to serve as a member \nof the NIAC. The President shall designate from among the members of \nthe NIAC a Chair and a Vice Chair, who shall perform the functions of \nthe Chair if the Chair is absent or disabled, or in the instance of a vacancy \nin the Chair. \n‘‘(b) Functions of the NIAC. The NIAC shall meet periodically to: \n‘‘(i) enhance the partnership of the public and private sectors in securing \nand enhancing the security and resilience of critical infrastructure and \ntheir supporting functional systems, physical assets, and cyber networks, \nand provide reports on this issue to the President, through the Secretary \nof Homeland Security, as appropriate; \n‘‘(ii) propose and develop ways to encourage private industry to perform \nperiodic risk assessments and implement risk-reduction programs; \n‘‘(iii) monitor the development and operations of critical infrastructure \nsector coordinating councils and their information-sharing mechanisms \nand provide recommendations to the President, through the Secretary \nof Homeland Security, on how these organizations can best foster improved \ncooperation among the sectors, the Department of Homeland Security, \nand other Federal Government entities; \n‘‘(iv) report to the President through the Secretary of Homeland Security, \nwho shall ensure appropriate coordination with the Assistant to the Presi-\ndent for Homeland Security and Counterterrorism, the Assistant to the \nPresident for Economic Policy, and the Assistant to the President for \nNational Security Affairs under the terms of this order; and \n‘‘(v) advise sector-specific agencies with critical infrastructure responsibil-\nities to include issues pertaining to sector and government coordinating \ncouncils and their information sharing mechanisms. \n‘‘In implementing this order, the NIAC shall not advise or otherwise \nact on matters pertaining to National Security and Emergency Preparedness \n(NS/EP) Communications and, with respect to any matters to which the \nNIAC is authorized by this order to provide advice or otherwise act on \nthat may depend on or affect NS/EP Communications, shall coordinate with \nthe National Security and Telecommunications Advisory Committee estab-\nlished by Executive Order 12382 of September 13, 1982, as amended.’’. \nSec. 7. Executive Order 13600 of February 9, 2012, is amended in section \n3(b) by striking the ‘‘and’’ immediately preceding ‘‘the Chief Executive Officer \nof the Millennium Challenge Corporation’’ and by adding ‘‘, the United \nStates Trade Representative, and the Chief Executive Officer of the Overseas \nPrivate Investment Corporation’’ immediately preceding ‘‘shall serve as non- \nvoting members’’. Executive Order 13600 is further amended in section \n5(c) by adding ‘‘administrative’’ immediately preceding ‘‘matters and activi-\nties pertaining’’. \nSec. 8. Section 3(b) of Executive Order 13515 of October 14, 2009, as \namended, is further amended by inserting in the list of agency members \n‘‘the General Services Administration’’ and ‘‘the National Aeronautics and \nSpace Administration’’ after ‘‘the Small Business Administration’’, and redes-\nignating the subsections of section 3(b) as appropriate. Subsection 3(b) is \nfurther amended by inserting at the end the following sentence: \nVerDate Mar<15>2010 17:21 Oct 03, 2013 Jkt 232001 PO 00000 Frm 00003 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\04OCE0.SGM 04OCE0EMCDONALD on DSK67QTVN1PROD with MISCELLANEOUS\n=== PDF page 4 of 4 ===\n61820 Federal Register / Vol. 78, No. 193 / Friday, October 4, 2013 / Presidential Documents \n‘‘The Initiative is encouraged to invite other affected agencies, such as \nthe Consumer Financial Protection Bureau, the Corporation for National \nand Community Service, the Equal Employment Opportunity Commission, \nand the Federal Communications Commission to attend meetings and \nparticipate in the Initiative as appropriate.’’. \nSec. 9. This order shall be effective September 30, 2013. \nTHE WHITE HOUSE, \nSeptember 30, 2013. \n[FR Doc. 2013–24388 \nFiled 10–3–13; 8:45 am] \nBilling code 3295–F4 \nVerDate Mar<15>2010 17:21 Oct 03, 2013 Jkt 232001 PO 00000 Frm 00004 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\04OCE0.SGM 04OCE0\nOB#1.EPS</GPH>\nEMCDONALD on DSK67QTVN1PROD with MISCELLANEOUS"
+    },
+    "ACTOR_TEXT:FRDOC:2012-17445": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2012-17445",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 6246,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2012-17445",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2012-17445",
+        "page_or_item": "77 FR 42313; FR Doc. 2012-17445; Notice: Recharter of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "afe9313467d3d3eacee8d891c43ba9d212bc68d1245f79a9ae36d8ddcf67d058",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2012-17445.txt",
+        "text_sha256": "afe9313467d3d3eacee8d891c43ba9d212bc68d1245f79a9ae36d8ddcf67d058",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2012/07/18/2012-17445.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 77 Issue 138 (Wednesday, July 18, 2012)</title>\n</head>\n<body><pre>\n[Federal Register Volume 77, Number 138 (Wednesday, July 18, 2012)]\n[Notices]\n[Pages 42313-42314]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2012-17445]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nRecharter of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Assistant Secretary for Health, Office of the \nSecretary, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The U.S. Department of Health and Human Services announces the \nrecharter of the Advisory Group on Prevention, Health Promotion, and \nIntegrative and Public Health.\n\nFOR FURTHER INFORMATION CONTACT: Corinne Graffunder, Designated Federal \nOfficer (DFO) of the Advisory Group, Office of the Associate Director \nfor Policy; Centers for Disease Control and Prevention; 1600 Clifton \nRoad, NE., MS D-28; Atlanta, GA 30329; Telephone: (404) 639-7514; and/\nor the following person may be contacted: Olga Nelson, Committee \nManagement Officer, Office of the Assistant Secretary for Health; \nDepartment of Health and Human Services; 200 Independence Avenue SW., \nRoom 714B; Washington, DC 20201; Telephone: (202) 690-5205; Fax: (202) \n401-2222.\n\nSUPPLEMENTARY INFORMATION: The President issued Executive Order 13544, \ndated June 10, 2010, to comply with the statutes under Section 4001 of \nthe Patient Protection and Affordable Care Act, Public Law 111-148. \nThis legislation mandated that the President establish the Advisory \nGroup on Prevention, Health Promotion, and Integrative and Public \nHealth (the ``Advisory Group'') within the Department of Health and \nHuman Services. To comply with the authorizing legislation and \ndirective and guidelines under the FACA, the charter to establish the \nAdvisory Group was appropriately filed on June 24, 2010. The Advisory \nGroup was established as a non-discretionary federal advisory \ncommittee.\n    Under FACA, it is stipulated that the charter for a federal \nadvisory committee must be renewed every two years in order for the \ncommittee to continue to operate. Since the Advisory Group was \nestablished by Presidential directive, appropriate action had to be \ntaken by the President or agency head to authorize continuation of the \nAdvisory Group. On November 23, 2011, the President issued Executive \nOrder 13591. This directive gives authorization for the Advisory Group \nto continue to operate until September 30, 2012.\n    Objectives and Scope of Activities. The Advisory Group provides \nrecommendations and advice to the National Prevention, Health \nPromotion, and Public Health Council (hereafter referred to as the \n``Council''). The Advisory Group provides assistance to the Council in \ncarrying out its mission. The Advisory Group develops policy and \nprogram recommendations and advises the Council on lifestyle-based \nchronic disease prevention and management, integrative health care \npractices, and health promotion.\n    Membership and Designation. The Advisory Group is authorized to \nconsist of not more than 25 non-federal members, who are appointed by \nthe President. In appointing members, the President is to ensure that \nthe Advisory Group includes a diverse group of licensed health \nprofessionals, including integrative health practitioners who have \nexpertise in (1) worksite health promotion; (2) community services, \nincluding community health centers; (3) preventive medicine; (4) health \ncoaching; (5) public health education; (6) geriatrics; and (7) \nrehabilitation medicine. The Advisory Group currently has 22 members.\n    The Advisory Group reports to the Surgeon General. The Surgeon \nGeneral is to select one of the appointed members to serve as Chair of \nthe Advisory Group. Jeffrey Levi, Ph.D., Executive Director of Trust \nfor America's Health, was selected by the Surgeon General to serve as \nChair of the Advisory Group. Mr. Levi has occupied this leadership \nposition since the Advisory Group was established. The non-federal \nmembers of the Advisory Group shall be classified as special government \nemployees (SGEs).\n    Administrative Management and Support. HHS provides funding and \nadministrative support for the Advisory Group to the extent permitted \nby law within existing appropriations. Staff within Office of the \nAssistant Secretary for Health (OASH) provide management and oversight \nfor support services provided to the Advisory Group. OASH is a staff \ndivision within Office of the Secretary, HHS.\n    One amendment was proposed and approved for the charter. The area \nof consideration from which the DFO can be selected has been expanded. \nA copy of the charter and information on activities and accomplishments \nof the\n\n[[Page 42314]]\n\nAdvisory Group can be obtained from the designated contacts or by \naccessing the FACA database that is maintained by the GSA Committee \nManagement Secretariat. The Web site for the FACA database is <a href=\"http://fido.gov/facadatabase/\">http://fido.gov/facadatabase/</a>.\n\n    Authority:  Executive Order 13544, dated June 10, 2010, as \nstatutorily mandated under Section 4001 of the Patient Protection \nand Affordable Care Act, Public Law 111-148, dated March 23, 2010. \nAuthority to continue the Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health (hereafter referred to \nas the ``Advisory Group'') is given under Executive Order 13591, \ndated November 23, 2011. The Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health is governed by \nprovisions of the Federal Advisory Committee Act (FACA), Public Law \n92-463, as amended (5 U.S.C. App.), which sets forth standards for \nthe formation and use of advisory committees.\n\n    Dated: July 13, 2012.\nRegina Benjamin,\nVADM, USPHS, Surgeon General.\n[FR Doc. 2012-17445 Filed 7-17-12; 8:45 am]\nBILLING CODE 4150-28-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2013-03466": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2013-03466",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 6886,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2013-03466",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2013-03466",
+        "page_or_item": "78 FR 10618; FR Doc. 2013-03466; Notice: Re-Establishment of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "863a43330c3628ed7407930a4d56e3688fe1ea9064229549c0276f659cdc39f5",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2013-03466.txt",
+        "text_sha256": "863a43330c3628ed7407930a4d56e3688fe1ea9064229549c0276f659cdc39f5",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2013/02/14/2013-03466.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 78 Issue 31 (Thursday, February 14, 2013)</title>\n</head>\n<body><pre>\n[Federal Register Volume 78, Number 31 (Thursday, February 14, 2013)]\n[Notices]\n[Pages 10618-10619]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2013-03466]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nRe-Establishment of the Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health\n\nAGENCY: Office of the Assistant Secretary for Health, Office of the \nSecretary, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The U.S. Department of Health and Human Services announces re-\nestablishment of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health (hereafter referred to as ``the \nAdvisory Group''). Authorization to re-establish the Advisory Group is \ngiven under Executive Order 13631, dated December 7, 2012.\n\nFOR FURTHER INFORMATION CONTACT: Corinne Graffunder, Designated Federal \nOfficer (DFO) of the Advisory Group, Office of the Associate Director \nfor Policy; Centers for Disease Control and Prevention; 1600 Clifton \nRoad NE., MS D-28; Atlanta, GA 30329; Telephone: (404) 639-7514; and/or \nthe following person may be contacted: Olga Nelson, Committee \nManagement Officer, Office of the Assistant Secretary for Health; \nDepartment of Health and Human Services; 200 Independence Avenue SW., \nRoom 714B; Washington, DC 20201; Telephone: (202) 690-5205; Fax: (202) \n401-2222.\n\nSUPPLEMENTARY INFORMATION: It was mandated under the Patient Protection \nand Affordable Care Act that the President establish the Advisory \nGroup. The President complied with the statute under Executive Order \n13544, dated June 10, 2010. The Advisory Group was established as a \nnon-discretionary federal advisory committee. Functioning as a federal \nadvisory committee, the Advisory Group is governed by provisions of the \nFederal Advisory Committee Act (FACA). FACA stipulates that appropriate \naction must be taken to renew the charter for a federal advisory \ncommittee every two years in order for the committee to continue to \noperate. Under Executive Order 13544, authorization was given for the \nAdvisory Group to operate for two years, from June 10, 2010 to June 10, \n2012. Since the Advisory Group was established by Presidential \ndirective, it was necessary for appropriate action to be taken by the \nPresident or agency head to give authorization for the Advisory Group \nto be continued. A subsequent directive was issued, Executive Order \n13591, dated November 23, 2011, to give authorization for the Advisory \nGroup to continue to operate until September 30, 2012. No action was \ntaken to continue the Advisory Group after the designated termination \ndate. Therefore, the Advisory Group was terminated on September 30, \n2012.\n    On December 7, 2012, Executive Order 13631 was issued. This \ndirective gives authorization for the Advisory Group to be re-\nestablished. A charter was developed to re-establish the Advisory \nGroup. The charter was approved by the Secretary of Health and Human \nServices and filed with the appropriate Congressional committees, the \nLibrary of Congress, and the Committee Management Secretariat under the \nGeneral Services Administration (GSA) on February 6, 2013.\n    Objectives and Scope of Activities. The Advisory Group provides \nrecommendations and advice to the National Prevention, Health \nPromotion, and Public Health Council (hereafter referred to as the \n``Council''). The Advisory Group provides assistance to the Council in \ncarrying out its mission. The Advisory Group develops policy and \nprogram recommendations and advises the Council on lifestyle-based \nchronic disease prevention and management, integrative health care \npractices, and health promotion.\n    Membership and Designation. The Advisory Group is authorized to \nconsists of not more than 25 non-federal members, who are appointed by \nthe President. In appointing members, the President is to ensure that \nthe Advisory Group includes a diverse group of licensed health \nprofessionals, including integrative health practitioners who have \nexpertise in (1) Worksite health promotion; (2) community services, \nincluding community health centers; (3) preventive medicine; (4) health \ncoaching; (5) public health education; (6) geriatrics; and (7) \nrehabilitation medicine.\n    The Advisory Group had 22 members when it was terminated on \nSeptember 30, 2012. It is stipulated under Executive Order 13631 that \nthe same members who were serving on the Advisory Group when it was \nterminated shall be reappointed as if the Advisory Group had continued \nwithout termination. Members of the Advisory Group are classified as \nspecial Government employees (SGEs).\n    Administrative Management and Support. HHS provides funding and \nadministrative support for the Advisory Group to the extent permitted \nby law within existing appropriations. Staff within Office of the \nAssistant Secretary for Health (OASH) provide management and oversight \nfor support services provided to the Advisory Group. OASH is a staff \ndivision within the Office of the Secretary, HHS.\n    The Advisory Group reports to the Surgeon General, U.S. Public \nHealth Service. The Office of the Surgeon General is a program office \nthat is organizationally located within OASH.\n    A copy of the charter and information on activities and \naccomplishments of the Advisory Group can be obtained from the \ndesignated contacts or by accessing the FACA database that is \nmaintained by the GSA Committee Management Secretariat. The Web site \nfor the FACA database is <a href=\"http://fido.gov/facadatabase/\">http://fido.gov/facadatabase/</a>.\n\n    Authority: Authority to establish the Advisory Group was given \nunder Executive Order 13544, dated June 10, 2010, in accordance with \nSection 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148, dated March 23, 2010. The Advisory Group was \nterminated on September 30, 2012, by Executive Order 13591, dated \nNovember 23, 2011. Authority\n\n[[Page 10619]]\n\nfor the Advisory Group to be re-established is given under Executive \nOrder 13631, dated December 7, 2012. The Advisory Group is governed \nby provisions of the Federal Advisory Committee Act (FACA), Public \nLaw 92-463, as amended (5 U.S.C. App.), which sets forth standards \nfor the formation and use of advisory committees.\n\n    Dated: February 8, 2013.\nWanda K. Jones,\nPrincipal Deputy Assistant Secretary for Health.\n[FR Doc. 2013-03466 Filed 2-13-13; 8:45 am]\nBILLING CODE 4150-28-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2013-05212": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2013-05212",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 6780,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2013-05212",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2013-05212",
+        "page_or_item": "78 FR 14798; FR Doc. 2013-05212; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "a076aab39d4fe31052b0b8771bc1b0acb76767820f3dffcc14fdc2b66bb4fb4d",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2013-05212.txt",
+        "text_sha256": "a076aab39d4fe31052b0b8771bc1b0acb76767820f3dffcc14fdc2b66bb4fb4d",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2013/03/07/2013-05212.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 78 Issue 45 (Thursday, March 7, 2013)</title>\n</head>\n<body><pre>\n[Federal Register Volume 78, Number 45 (Thursday, March 7, 2013)]\n[Notices]\n[Pages 14798-14799]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2013-05212]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Department of Health and Human Services, Office of the \nSecretary, Office of the Assistant Secretary for Health, Office of the \nSurgeon General of the United States Public Health Service.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled to be held for the\n\n[[Page 14799]]\n\nAdvisory Group on Prevention, Health Promotion, and Integrative and \nPublic Health (the ``Advisory Group''). The meeting will be open to the \npublic. Information about the Advisory Group and the agenda for this \nmeeting can be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>\n\nDATES: The meeting will be held on March 28-29, 2013. Exact start and \nend times will be published closer to the meeting date at: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nADDRESSES: 200 Independence Ave., SW., Room 505A, Washington, DC 20201.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, 200 \nIndependence Ave., SW.; Hubert H. Humphrey Building, Room 701H; \nWashington, DC 20201; 202-205-9517; <a href=\"/cdn-cgi/l/email-protection#5525273023303b213c3a3b7b363a203b363c39153d3d267b323a23\"><span class=\"__cf_email__\" data-cfemail=\"2050524556454e54494f4e0e434f554e43494c604848530e474f56\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: On June 10, 2010, the President issued \nExecutive Order 13544 to comply with the statutes under Section 4001 of \nthe Patient Protection and Affordable Care Act, Public Law 111-148. \nThis legislation mandated that the Advisory Group was to be established \nwithin the Department of Health and Human Services. The charter for the \nAdvisory Group was approved by the Secretary of Health and Human \nServices on June 23, 2010; the charter was filed with the appropriate \nCongressional committees and the Library of Congress on June 24, 2010. \nThe Advisory Group was established as a non-discretionary federal \nadvisory committee. The Advisory Group was authorized to operate until \nJune 10, 2012. Because the Advisory Group had been established by \nPresidential directive, it was necessary for appropriate action to be \ntaken by the President or agency head to give authorization for the \nAdvisory Group to be continued. The President issued Executive Order \n13591, dated November 23, 2011, to give authorization for the Advisory \nGroup to continue to operate until September 30, 2012. No action was \ntaken to continue the Advisory Group after the designated date. \nTherefore, the Advisory Group was terminated on September 30, 2012. On \nDecember 7, 2012, the President issued Executive Order 13631 to re-\nestablish the Advisory Group. A charter was developed for this purpose. \nThe charter was approved by the Secretary of Health and Human Services \nand filed with the appropriate Congressional committees, the Library of \nCongress, and the Committee Management Secretariat under the General \nServices Administration on February 6, 2013. The Advisory Group has \nbeen re-established as a non-discretionary federal advisory committee.\n    Under Executive Order 13631, authorization is given for the \nAdvisory Group to continue to operate as if the Committee had not been \nterminated on September 30, 2012. The Advisory Group will continue to \nprovide recommendations and advice to the National Prevention, Health \nPromotion and Public Health Council (the ``Council''). The Advisory \nGroup will continue to provide assistance to the Council in carrying \nout its mission. Under the existing directive, the Advisory Group is \nauthorized to continue to operate until September 30, 2013.\n    The Advisory Group membership shall consist of not more than 25 \nnon-federal members to be appointed by the President. The membership \nshall include a diverse group of licensed health professionals, \nincluding integrative health practitioners who have expertise in (1) \nWorksite health promotion; (2) community services, including community \nhealth centers; (3) preventive medicine; (4) health coaching; (5) \npublic health education; (6) geriatrics; and (7) rehabilitation \nmedicine. There are currently 22 members of the Advisory Group \nappointed by the President. This will be the seventh meeting of the \nAdvisory Group.\n    Public attendance at the meeting is limited to the space available. \nMembers of the public who wish to attend must register by 12:00 p.m. \nEST on March 18, 2013. Individuals should register for public \nattendance at <a href=\"/cdn-cgi/l/email-protection#7303011605161d071a1c1d5d101c061d101a1f331b1b005d141c05\"><span class=\"__cf_email__\" data-cfemail=\"a3d3d1c6d5c6cdd7cacccd8dc0ccd6cdc0cacfe3cbcbd08dc4ccd5\">[email&#160;protected]</span></a> by providing your full name \nand affiliation. Individuals who plan to attend the meeting and need \nspecial assistance and/or accommodations, i.e., sign language \ninterpretation or other reasonable accommodations, should indicate so \nwhen they register. The public will have the opportunity to provide \ncomments to the Advisory Group on March 29, 2013; public comment will \nbe limited to 3 minutes per speaker. Registration through the \ndesignated contact for the public comment session is also required. Any \nmember of the public who wishes to have printed materials distributed \nto the Advisory Group for this scheduled meeting should submit material \nto the designed point of contact no later than 12:00 p.m. EST on March \n18, 2013.\n\n    Dated: February 20, 2013.\nCorinne M. Graffunder,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2013-05212 Filed 3-6-13; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2013-15324": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2013-15324",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5101,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2013-15324",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2013-15324",
+        "page_or_item": "78 FR 38345; FR Doc. 2013-15324; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "f7657af4a51a6419868a305cb29fa0695928099b759b44b1c27392758abbaf20",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2013-15324.txt",
+        "text_sha256": "f7657af4a51a6419868a305cb29fa0695928099b759b44b1c27392758abbaf20",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2013/06/26/2013-15324.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 78 Issue 123 (Wednesday, June 26, 2013)</title>\n</head>\n<body><pre>\n[Federal Register Volume 78, Number 123 (Wednesday, June 26, 2013)]\n[Notices]\n[Pages 38345-38346]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2013-15324]\n\n\n-----------------------------------------------------------------------\n\n DEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Surgeon General of the United States Public \nHealth Service, Office of the Assistant Secretary for Health, Office of \nthe Secretary, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled to be held for the Advisory \nGroup on Prevention, Health Promotion, and Integrative and Public \nHealth (the ``Advisory Group''). The meeting will be open to the \npublic.\n\n[[Page 38346]]\n\nInformation about the Advisory Group and the agenda for this meeting \ncan be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nDATES: The meeting will be held on July 15, 2013 from 12-2 p.m.\n\nADDRESSES: The meeting will be held via teleconference. For conference \ninformation and to register for the meeting, please send an email to \n<a href=\"/cdn-cgi/l/email-protection#deaeacbba8bbb0aab7b1b0f0bdb1abb0bdb7b29eb6b6adf0b9b1a8\"><span class=\"__cf_email__\" data-cfemail=\"c0b0b2a5b6a5aeb4a9afaeeea3afb5aea3a9ac80a8a8b3eea7afb6\">[email&#160;protected]</span></a>.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, 200 \nIndependence Ave. SW.; Hubert H. Humphrey Building, Room 701H; \nWashington, DC 20201; 202-205-9517; <a href=\"/cdn-cgi/l/email-protection#b1c1c3d4c7d4dfc5d8dedf9fd2dec4dfd2d8ddf1d9d9c29fd6dec7\"><span class=\"__cf_email__\" data-cfemail=\"2c5c5e495a494258454342024f4359424f45406c44445f024b435a\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nFederal advisory committee that was initially established under \nExecutive Order 13544, dated June 1, 2012, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was established to assist in \ncarrying out the mission of the National Prevention, Health Promotion, \nand Public Health Council (the Council). The Advisory Group provides \nrecommendations and advice to the Council. Under Executive Order 13591, \ndated November 23, 2011, operation of the Advisory Group was terminated \non September 30, 2012. On December 7, 2012, President Obama issued \nExecutive Order 13631 to re-establish the Advisory Group. The Advisory \nGroup is authorized to operate until September 30, 2013.\n    It is authorized for the Advisory Group to consist of not more than \n25 non-federal members. The Advisory Group currently has 22 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine.\n    This will be the eighth meeting of the Advisory Group. Topics for \ndiscussion during this meeting include the status of the Advisory \nGroup's third set of recommendations, updates from the working groups, \nand the draft agenda for the next Advisory Group meeting, which is \nplanned to be held on September 26-27, 2013.\n    Members of the public who wish to attend must register by 12:00 \np.m. EST on July 10, 2013. Individuals should register for public \nattendance at <a href=\"/cdn-cgi/l/email-protection#7404061102111a001d1b1a5a171b011a171d18341c1c075a131b02\"><span class=\"__cf_email__\" data-cfemail=\"c5b5b7a0b3a0abb1acaaabeba6aab0aba6aca985adadb6eba2aab3\">[email&#160;protected]</span></a> by providing your full name \nand affiliation. The public will have the opportunity to provide \ncomments to the Advisory Group during this meeting; public comment will \nbe limited to 3 minutes per speaker. Registration through the \ndesignated contact for the public comment session is also required.\n\n    Dated: June 20, 2013.\nCorinne M. Graffunder,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health Office of the Surgeon \nGeneral.\n[FR Doc. 2013-15324 Filed 6-25-13; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2013-19370": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2013-19370",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5306,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2013-19370",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2013-19370",
+        "page_or_item": "78 FR 48877; FR Doc. 2013-19370; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "e6fd5ac22908a23fcf29b588a0507e2081d18268d92d949aa9b4bf2584e73300",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2013-19370.txt",
+        "text_sha256": "e6fd5ac22908a23fcf29b588a0507e2081d18268d92d949aa9b4bf2584e73300",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2013/08/12/2013-19370.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 78 Issue 155 (Monday, August 12, 2013)</title>\n</head>\n<body><pre>\n[Federal Register Volume 78, Number 155 (Monday, August 12, 2013)]\n[Notices]\n[Pages 48877-48878]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2013-19370]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Surgeon General of the United States Public \nHealth Service, Office of the Assistant Secretary for Health, Office of \nthe Secretary, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled to be held for the Advisory \nGroup on Prevention, Health Promotion, and Integrative and Public \nHealth (the ``Advisory Group''). The meeting will be open to the \npublic. Information about the Advisory Group and the agenda for this \nmeeting can be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nDATES: The meeting will be held on September 26-27, 2013. Exact start \nand end times will be published closer to the meeting date at: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nADDRESSES: 200 Independence Ave. SW., Room 505A, Washington, DC 20201.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, 200 \nIndependence Ave. SW; Hubert H. Humphrey Building, Room 701H; \nWashington, DC 20201; 202-205-9517; <a href=\"/cdn-cgi/l/email-protection#e191938497848f95888e8fcf828e948f82888da1898992cf868e97\"><span class=\"__cf_email__\" data-cfemail=\"f282809784979c869b9d9cdc919d879c919b9eb29a9a81dc959d84\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nFederal advisory committee that was initially established under \nExecutive Order 13544, dated June 1, 2012, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was established to assist in \ncarrying out the mission of the National Prevention, Health Promotion, \nand Public Health Council (the Council). The Advisory Group provides \nrecommendations and advice to the Council. Under Executive Order 13591, \ndated November 23, 2011, operation of the Advisory Group was terminated \non September 30, 2012. On December 7, 2012, President Obama issued \nExecutive Order 13631 to re-establish the Advisory Group. The Advisory \nGroup is authorized to operate until September 30, 2013.\n    It is authorized for the Advisory Group to consist of not more than \n25 non-federal members. The Advisory Group currently has 22 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) Worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine.\n    Public attendance at the meeting is limited to the space available. \nMembers of the public who wish to attend must\n\n[[Page 48878]]\n\nregister by 12:00 p.m. EST on September 16, 2013. Individuals should \nregister for public attendance at <a href=\"/cdn-cgi/l/email-protection#0373716675666d776a6c6d2d606c766d606a6f436b6b702d646c75\"><span class=\"__cf_email__\" data-cfemail=\"0b7b796e7d6e657f6264652568647e656862674b636378256c647d\">[email&#160;protected]</span></a> by \nproviding your full name and affiliation. Individuals who plan to \nattend the meeting and need special assistance and/or accommodations, \ni.e., sign language interpretation or other reasonable accommodations, \nshould indicate so when they register. The public will have the \nopportunity to provide comments to the Advisory Group on September 27, \n2013; public comment will be limited to 3 minutes per speaker. \nRegistration through the designated contact for the public comment \nsession is also required. Any member of the public who wishes to have \nprinted materials distributed to the Advisory Group for this scheduled \nmeeting should submit material to the designated point of contact no \nlater than 12:00 p.m. EST on September 16, 2013.\n\n    Dated: July 22, 2013.\nCorinne M. Graffunder,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2013-19370 Filed 8-9-13; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2013-27927": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2013-27927",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5289,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2013-27927",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2013-27927",
+        "page_or_item": "78 FR 69853; FR Doc. 2013-27927; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "51abc23eaf3a9097bc8a1f5cd367684c9335922d99efc3c300eb3921395fee51",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2013-27927.txt",
+        "text_sha256": "51abc23eaf3a9097bc8a1f5cd367684c9335922d99efc3c300eb3921395fee51",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2013/11/21/2013-27927.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 78 Issue 225 (Thursday, November 21, 2013)</title>\n</head>\n<body><pre>\n[Federal Register Volume 78, Number 225 (Thursday, November 21, 2013)]\n[Notices]\n[Page 69853]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2013-27927]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Surgeon General of the United States Public \nHealth Service, Office of the Assistant Secretary for Health, Office of \nthe Secretary, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled to be held for the Advisory \nGroup on Prevention, Health Promotion, and Integrative and Public \nHealth (the ``Advisory Group''). The meeting will be open to the \npublic. Information about the Advisory Group and the agenda for this \nmeeting can be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nDATES: The meeting will be held on December 11, 2013 from 3:00-5:00 \np.m. EST via teleconference. More information can be found at: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, 200 \nIndependence Ave. SW.; Hubert H. Humphrey Building, Room 701H; \nWashington, DC 20201; 202-205-9517; <a href=\"/cdn-cgi/l/email-protection#94e4e6f1e2f1fae0fdfbfabaf7fbe1faf7fdf8d4fcfce7baf3fbe2\"><span class=\"__cf_email__\" data-cfemail=\"4333312635262d372a2c2d6d202c362d202a2f032b2b306d242c35\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nfederal advisory committee that was initially established under \nExecutive Order 13544, dated June 10, 2010, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. Under Executive Order 13591, dated November 23, \n2011, operation of the Advisory Group was terminated on September 30, \n2012. On December 7, 2012, President Obama issued Executive Order 13631 \nto re-establish the Advisory Group until September 30, 2013. \nAuthorization for the Advisory Group to continue to operate until \nSeptember 30, 2015, was given under Executive Order 13652, dated \nSeptember 30, 2013. The Advisory Group was established to assist in \ncarrying out the mission of the National Prevention, Health Promotion, \nand Public Health Council (the Council). The Advisory Group provides \nrecommendations and advice to the Council.\n    It is authorized for the Advisory Group to consist of not more than \n25 non-federal members. The Advisory Group currently has 22 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine. Topics of discussion for \nthe December 2013 meeting of the Advisory Group include an update from \nthe National Prevention Council; discussion of the Education and Health \nWorking Group recommendations; and discussion of the draft report to \nthe Surgeon General.\n    Members of the public who wish to attend must register by 12:00 \np.m. EST on December 4, 2013. Individuals should register for public \nattendance at <a href=\"/cdn-cgi/l/email-protection#b9c9cbdccfdcd7cdd0d6d797dad6ccd7dad0d5f9d1d1ca97ded6cf\"><span class=\"__cf_email__\" data-cfemail=\"5525273023303b213c3a3b7b363a203b363c39153d3d267b323a23\">[email&#160;protected]</span></a> by providing your full name \nand affiliation. The public will have the opportunity to provide \ncomments to the Advisory Group; public comment will be limited to 3 \nminutes per speaker. Registration through the designated contact for \nthe public comment session is also required. Any member of the public \nwho wishes to have printed materials distributed to the Advisory Group \nfor this scheduled meeting should submit material to the designed point \nof contact no later than 12:00 p.m. EST on December 4, 2013.\n\n    Dated: November 4, 2013.\nCorinne M. Graffunder,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2013-27927 Filed 11-20-13; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2014-02784": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2014-02784",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5454,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2014-02784",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2014-02784",
+        "page_or_item": "79 FR 7673; FR Doc. 2014-02784; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "8dd147a43ada12092c59a937bfeb4bee970566d785b842fc81e3f094065359f9",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2014-02784.txt",
+        "text_sha256": "8dd147a43ada12092c59a937bfeb4bee970566d785b842fc81e3f094065359f9",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2014/02/10/2014-02784.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 79 Issue 27 (Monday, February 10, 2014)</title>\n</head>\n<body><pre>\n[Federal Register Volume 79, Number 27 (Monday, February 10, 2014)]\n[Notices]\n[Pages 7673-7674]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2014-02784]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Surgeon General of the United States Public \nHealth Service, Office of the Assistant Secretary for Health, Office of \nthe Secretary, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled to be held for the Advisory \nGroup on Prevention, Health Promotion, and Integrative and Public \nHealth (the ``Advisory Group''). The meeting will be open to the \npublic. Information about the Advisory Group and the agenda for this \nmeeting can be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>\n\nDATES: The meeting will be held on February 26, 2014 from 3:00-5:00 \np.m. EST via teleconference. More information about the meeting can be \nfound at: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, 200 \nIndependence Ave. SW.; Washington, DC 20201; 202-205-9517; \n<a href=\"/cdn-cgi/l/email-protection#3444465142515a405d5b5a1a575b415a575d58745c5c471a535b42\"><span class=\"__cf_email__\" data-cfemail=\"5a2a283f2c3f342e3335347439352f343933361a323229743d352c\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nfederal advisory committee that was initially established under \nExecutive Order 13544, dated June 10, 2010, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was terminated on September 30, \n2012, by Executive Order 13591, dated November 23, 2011. Authority for \nthe Advisory Group to be re-established was given under Executive Order \n13631, dated December 7, 2012. Authority for the Advisory Group to \ncontinue to operate until September 30, 2015 was given under Executive \nOrder 13652, dated September 30, 2013.\n    The Advisory Group was established to assist in carrying out the \nmission of the National Prevention, Health Promotion, and Public Health \nCouncil (the Council). The Advisory Group provides recommendations and \nadvice to the Council.\n    It is authorized for the Advisory Group to consist of not more than \n25 non-federal members. The Advisory Group currently has 22 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine. During this meeting, the \nAdvisory Group will review recommendations they have developed to be \nsubmitted to the next Surgeon General.\n    Members of the public who wish to attend must register by 12:00 \np.m. EST on February 21, 2014. Individuals should register for public \nattendance at <a href=\"/cdn-cgi/l/email-protection#ee9e9c8b988b809a878180c08d819b808d8782ae86869dc0898198\"><span class=\"__cf_email__\" data-cfemail=\"b2c2c0d7c4d7dcc6dbdddc9cd1ddc7dcd1dbdef2dadac19cd5ddc4\">[email&#160;protected]</span></a> by providing your full name \nand affiliation. The public will have the opportunity to provide \ncomments to the Advisory Group; public comment will be limited to 3 \nminutes per speaker. Registration via email \n(<a href=\"/cdn-cgi/l/email-protection#77070512011219031e18195914180219141e1b371f1f0459101801\"><span class=\"__cf_email__\" data-cfemail=\"c8b8baadbeada6bca1a7a6e6aba7bda6aba1a488a0a0bbe6afa7be\">[email&#160;protected]</span></a>) is also required for the public comment \nsession. Any member of the public who wishes to have printed materials \ndistributed to the Advisory Group for this scheduled meeting should \nsubmit\n\n[[Page 7674]]\n\nmaterial to <a href=\"/cdn-cgi/l/email-protection#fc8c8e998a999288959392d29f9389929f9590bc94948fd29b938a\"><span class=\"__cf_email__\" data-cfemail=\"0d7d7f687b686379646263236e6278636e64614d65657e236a627b\">[email&#160;protected]</span></a> no later than 12:00 p.m. EST on \nFebruary 21, 2014.\n\n    Dated: January 23, 2014.\nCorinne M. Graffunder,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2014-02784 Filed 2-7-14; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2014-07848": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2014-07848",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5994,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2014-07848",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2014-07848",
+        "page_or_item": "79 FR 19615; FR Doc. 2014-07848; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "d8138f6c7354d323b19bff7afbdc9c27c77f938aad4e4c4ae21c275fb7e92ebb",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2014-07848.txt",
+        "text_sha256": "d8138f6c7354d323b19bff7afbdc9c27c77f938aad4e4c4ae21c275fb7e92ebb",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2014/04/09/2014-07848.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 79 Issue 68 (Wednesday, April 9, 2014)</title>\n</head>\n<body><pre>\n[Federal Register Volume 79, Number 68 (Wednesday, April 9, 2014)]\n[Notices]\n[Pages 19615-19616]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2014-07848]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Surgeon General of the United States Public \nHealth Service, Office of the Assistant Secretary for Health, Office of \nthe Secretary, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled to be held for the Advisory \nGroup on Prevention, Health Promotion, and Integrative and Public \nHealth (the ``Advisory Group''). The meeting will be open to the \npublic. Information about the Advisory Group and the agenda for this \nmeeting can be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nDATES: The meeting will be held on April 28 and 29, 2014. Exact start \nand end times will be published closer to the meeting date at: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\n[[Page 19616]]\n\n\nADDRESSES: The meeting will be held at 200 Independence Ave. SW., Room \n505A, Washington, DC 20201 on April 28, 2014. The meeting will take \nplace via teleconference on April 29, 2014.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, 200 \nIndependence Ave. SW., Washington, DC 20201; 202-205-9517; \n<a href=\"/cdn-cgi/l/email-protection#3c4c4e594a595248555352125f5349525f55507c54544f125b534a\"><span class=\"__cf_email__\" data-cfemail=\"e393918695868d978a8c8dcd808c968d808a8fa38b8b90cd848c95\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nfederal advisory committee that was initially established under \nExecutive Order 13544, dated June 10, 2010, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was established to assist in \ncarrying out the mission of the National Prevention, Health Promotion, \nand Public Health Council (the Council). The Advisory Group provides \nrecommendations and advice to the Council.\n    The Advisory Group was terminated on September 30, 2012, by \nExecutive Order 13591, dated November 23, 2011. Authority for the \nAdvisory Group to be re-established was given under Executive Order \n13631, dated December 7, 2012. Authority for the Advisory Group to \ncontinue to operate until September 30, 2015 was given under Executive \nOrder 13652, dated September 30, 2013.\n    It is authorized for the Advisory Group to consist of not more than \n25 non-federal members. The Advisory Group currently has 22 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine.\n    During this meeting, the Advisory Group will have round table \ndiscussions with representatives of Council member departments and \ndevelop recommendations for the Council for the upcoming year.\n    Members of the public who wish to attend the meeting on April 28, \n2014 or to participate by phone in the April 29, 2014 meeting must \nregister by 12:00 p.m. EST on April 21, 2014. Individuals should \nregister for public attendance at <a href=\"/cdn-cgi/l/email-protection#cfbfbdaab9aaa1bba6a0a1e1aca0baa1aca6a38fa7a7bce1a8a0b9\"><span class=\"__cf_email__\" data-cfemail=\"19696b7c6f7c776d707677377a766c777a70755971716a377e766f\">[email&#160;protected]</span></a> by \nproviding your full name and affiliation. Individuals who plan to \nattend the meeting and need special assistance and/or accommodations, \ni.e., sign language interpretation or other reasonable accommodations, \nshould indicate so when they register. The public will have the \nopportunity to provide comments to the Advisory Group on April 28, \n2014; public comment will be limited to 3 minutes per speaker. \nRegistration via email (<a href=\"/cdn-cgi/l/email-protection#2353514655464d574a4c4d0d404c564d404a4f634b4b500d444c55\"><span class=\"__cf_email__\" data-cfemail=\"b6c6c4d3c0d3d8c2dfd9d898d5d9c3d8d5dfdaf6dedec598d1d9c0\">[email&#160;protected]</span></a>) is also required \nfor the public comment session. Any member of the public who wishes to \nhave printed materials distributed to the Advisory Group for this \nscheduled meeting should submit material to <a href=\"/cdn-cgi/l/email-protection#c1b1b3a4b7a4afb5a8aeafefa2aeb4afa2a8ad81a9a9b2efa6aeb7\"><span class=\"__cf_email__\" data-cfemail=\"ef9f9d8a998a819b868081c18c809a818c8683af87879cc1888099\">[email&#160;protected]</span></a> \nno later than 12:00 p.m. EST on April 21, 2014.\n\n    Dated: March 25, 2014.\nCorinne M. Graffunder,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2014-07848 Filed 4-8-14; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2015-02886": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2015-02886",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 6215,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2015-02886",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2015-02886",
+        "page_or_item": "80 FR 7868; FR Doc. 2015-02886; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "60c2fe960dcb80148b4f7764846a0327b36028764f7daafb8ab6ad190860bd5b",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2015-02886.txt",
+        "text_sha256": "60c2fe960dcb80148b4f7764846a0327b36028764f7daafb8ab6ad190860bd5b",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2015/02/12/2015-02886.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 80 Issue 29 (Thursday, February 12, 2015)</title>\n</head>\n<body><pre>\n[Federal Register Volume 80, Number 29 (Thursday, February 12, 2015)]\n[Notices]\n[Pages 7868-7869]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2015-02886]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\n Meeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Surgeon General of the United States Public \nHealth Service, Office of the Assistant Secretary for Health, Office of \nthe Secretary, Department of Health and Human Services.\n\n[[Page 7869]]\n\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled to be held for the Advisory \nGroup on Prevention, Health Promotion, and Integrative and Public \nHealth (the ``Advisory Group''). The meeting will be open to the \npublic. Information about the Advisory Group and the agenda for this \nmeeting can be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nDATES: The meeting will be held on March 9-10, 2015. Exact start and \nend times will be published closer to the meeting date at: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nADDRESSES: The meeting will be held on March 9-10, 2015. Exact start \nand end times and location will be published closer to the meeting date \nat: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, 200 \nIndependence Ave. SW., Washington, DC 20201; 202-205-9517; \n<a href=\"/cdn-cgi/l/email-protection#c8b8baadbeada6bca1a7a6e6aba7bda6aba1a488a0a0bbe6afa7be\"><span class=\"__cf_email__\" data-cfemail=\"3e4e4c5b485b504a575150105d514b505d57527e56564d10595148\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nfederal advisory committee that was initially established under \nExecutive Order 13544, dated June 10, 2010, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was established to assist in \ncarrying out the mission of the National Prevention, Health Promotion, \nand Public Health Council (the Council). The Advisory Group provides \nrecommendations and advice to the Council.\n    The Advisory Group was terminated on September 30, 2012, by \nExecutive Order 13591, dated November 23, 2011. Authority for the \nAdvisory Group to be re-established was given under Executive Order \n13631, dated December 7, 2012. Authority for the Advisory Group to \ncontinue to operate until September 30, 2015 was given under Executive \nOrder 13652, dated September 30, 2013.\n    It is authorized for the Advisory Group to consist of not more than \n25 non-federal members. The Advisory Group currently has 21 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine.\n    Topics of discussion for the March 2015 meeting of the Advisory \nGroup will include a welcome from the 19th Surgeon General; an update \nfrom the Council; reports from the Prioritization and Collective Impact \nWorking Groups; and the development of recommendations for the Council \nfor the upcoming year.\n    Members of the public who wish to attend must register by 12:00 \np.m. EST on March 2, 2015. Individuals should register for public \nattendance at <a href=\"/cdn-cgi/l/email-protection#ea9a988f9c8f849e838584c489859f84898386aa828299c48d859c\"><span class=\"__cf_email__\" data-cfemail=\"4d3d3f283b282339242223632e2238232e24210d25253e632a223b\">[email&#160;protected]</span></a> by providing a full name and \naffiliation. Individuals who plan to attend the meeting and need \nspecial assistance and/or accommodations, i.e., sign language \ninterpretation or other reasonable accommodations, should indicate so \nwhen they register. The public will have the opportunity to provide \ncomments to the Advisory Group on March 9, 2015; public comment will be \nlimited to 3 minutes per speaker. Registration via email \n(<a href=\"/cdn-cgi/l/email-protection#58282a3d2e3d362c313736763b372d363b31341830302b763f372e\"><span class=\"__cf_email__\" data-cfemail=\"36464453405358425f59581855594358555f5a765e5e4518515940\">[email&#160;protected]</span></a>) is also required for the public comment \nsession. Any member of the public who wishes to have printed materials \ndistributed to the Advisory Group for this scheduled meeting should \nsubmit material to <a href=\"/cdn-cgi/l/email-protection#ea9a988f9c8f849e838584c489859f84898386aa828299c48d859c\"><span class=\"__cf_email__\" data-cfemail=\"c9b9bbacbfaca7bda0a6a7e7aaa6bca7aaa0a589a1a1bae7aea6bf\">[email&#160;protected]</span></a> no later than 12:00 p.m. \nEST on March 2, 2015.\n\n    Dated: January 30th, 2015.\nCorinne M. Graffunder,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2015-02886 Filed 2-11-15; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2015-12104": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2015-12104",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5801,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2015-12104",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2015-12104",
+        "page_or_item": "80 FR 28629; FR Doc. 2015-12104; Notice: Meetings of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "bd21b5236b38bc79b56bd951c30cb465fda06d65c9ee30f8b4a1a7192ed2499d",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2015-12104.txt",
+        "text_sha256": "bd21b5236b38bc79b56bd951c30cb465fda06d65c9ee30f8b4a1a7192ed2499d",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2015/05/19/2015-12104.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 80 Issue 96 (Tuesday, May 19, 2015)</title>\n</head>\n<body><pre>\n[Federal Register Volume 80, Number 96 (Tuesday, May 19, 2015)]\n[Notices]\n[Pages 28629-28630]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2015-12104]\n\n\n-----------------------------------------------------------------------\n\n DEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\n Meetings of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Surgeon General of the United States Public \nHealth Service, Office of the Assistant Secretary for Health, Office of \nthe Secretary, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that two meetings are scheduled for the Advisory Group on \nPrevention, Health Promotion, and Integrative and Public Health (the \n``Advisory Group''). The meetings will be open to the public. \nInformation about the Advisory Group and the agendas for these meetings \ncan be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nDATES: The first meeting will be held on June 11, 2015, from 11:30 a.m. \nto 2:30 p.m. EST. The second meeting will be held on August 31 from \n9:00 a.m. to\n\n[[Page 28630]]\n\n5:00 p.m. EST--September 1, 2015, from 9:00 a.m. to 1:00 p.m. EST.\n\nADDRESSES: The first meeting on June 11, 2015, will be held via \nteleconference. The second meeting on August 31--September 1, 2015, \nwill be held in Washington, DC Teleconference and meeting location \ninformation will be published closer to the meeting dates at: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, 200 \nIndependence Ave. SW.; Washington, DC 20201; 202-205-9517; \n<a href=\"/cdn-cgi/l/email-protection#b7c7c5d2c1d2d9c3ded8d999d4d8c2d9d4dedbf7dfdfc499d0d8c1\"><span class=\"__cf_email__\" data-cfemail=\"1f6f6d7a697a716b767071317c706a717c76735f77776c31787069\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nfederal advisory committee that was initially established under \nExecutive Order 13544, dated June 10, 2010, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was established to assist in \ncarrying out the mission of the National Prevention, Health Promotion, \nand Public Health Council (the Council). The Advisory Group provides \nrecommendations and advice to the Council.\n    The Advisory Group was terminated on September 30, 2012, by \nExecutive Order 13591, dated November 23, 2011. Authority for the \nAdvisory Group to be re-established was given under Executive Order \n13631, dated December 7, 2012. Authority for the Advisory Group to \ncontinue to operate until September 30, 2015, was given under Executive \nOrder 13652, dated September 30, 2013.\n    It is authorized for the Advisory Group to consist of no more than \n25 non-federal members. The Advisory Group currently has 21 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine.\n    Meeting descriptions and relevant materials will be published \ncloser to the meeting dates at: <a href=\"http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/initiatives/prevention/advisorygrp/index.html</a>.\n    Members of the public have the opportunity to participate in each \nmeeting and/or provide comments to the Advisory Group. Public comment \nwill be limited to 3 minutes per speaker. Individuals who wish to \nparticipate in the meetings and/or provide comments must register by \n12:00 p.m. EST on June 4, 2015, for the meeting on June 11, 2015, and \nby 12:00 p.m. EST on August 24, 2015, for the meeting on August 31-\nSeptember 1, 2015. In order to register, individuals must send their \nfull name and affiliation via email to <a href=\"/cdn-cgi/l/email-protection#5323213625363d273a3c3d7d303c263d303a3f133b3b207d343c25\"><span class=\"__cf_email__\" data-cfemail=\"7b0b091e0d1e150f1214155518140e151812173b131308551c140d\">[email&#160;protected]</span></a>. \nIndividuals who need special assistance and/or accommodations, i.e., \nsign language interpretation or other reasonable accommodations, should \nindicate so when they register. Members of the public who wish to have \nmaterials distributed to the Advisory Group members at these scheduled \nmeetings should submit those materials by June 4, 2015, for the June \nmeeting and by August 24, 2015, for the August/September meeting.\n\n    Dated: May 6, 2015.\nCorinne M. Graffunder,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2015-12104 Filed 5-18-15; 8:45 am]\n BILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2015-30749": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2015-30749",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5583,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2015-30749",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2015-30749",
+        "page_or_item": "80 FR 76025; FR Doc. 2015-30749; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "328f35f60f4c1ee35665b046ac4559048d92fd5c55ff1500a540efe7d8a531fc",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2015-30749.txt",
+        "text_sha256": "328f35f60f4c1ee35665b046ac4559048d92fd5c55ff1500a540efe7d8a531fc",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2015/12/07/2015-30749.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 80 Issue 234 (Monday, December 7, 2015)</title>\n</head>\n<body><pre>\n[Federal Register Volume 80, Number 234 (Monday, December 7, 2015)]\n[Notices]\n[Pages 76025-76026]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2015-30749]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Department of Health and Human Services, Office of the \nSecretary, Office of the Assistant Secretary for Health, Office of the \nSurgeon General of the United States Public Health Service.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled for the Advisory Group on \nPrevention, Health Promotion, and Integrative and Public Health (the \n``Advisory Group''). This meeting will be open to the public. \nInformation about the Advisory Group and the agenda for this meeting \ncan be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/index.html</a>.\n\nDATES: The meeting will be held on December 22, 2015. The exact meeting \ntime will be published closer to the meeting date at: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html</a>.\n\nADDRESSES: This meeting will be held via teleconference. Teleconference \ninformation and an exact meeting time will be published closer to the \nmeeting date at: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/index.html</a>.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, 200 \nIndependence Ave. SW.; Washington, DC 20201; 202-205-9517; \n<a href=\"/cdn-cgi/l/email-protection#2e5e5c4b584b405a474140004d415b404d47426e46465d00494158\"><span class=\"__cf_email__\" data-cfemail=\"5d2d2f382b383329343233733e3228333e34311d35352e733a322b\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nfederal advisory committee that was initially established under \nExecutive Order 13544, dated June 10, 2010, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was established to assist in \ncarrying out the mission of the National Prevention, Health Promotion, \nand Public Health Council (the Council). The Advisory Group provides \nrecommendations and advice to the Council.\n    The Advisory Group was terminated on September 30, 2012, by \nExecutive Order 13591, dated November 23, 2011. Authority for the \nAdvisory Group to be re-established was given under Executive Order \n13631, dated December 7, 2012. Authority for the Advisory Group to \ncontinue to operate until September 30, 2017, was given under Executive \nOrder 13708, dated September 30, 2015.\n    It is authorized for the Advisory Group to consist of no more than \n25 non-federal members. The Advisory Group currently has 21 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine.\n    A meeting description and relevant materials will be published \ncloser to the meeting date at: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/</a>.\n    Members of the public have the opportunity to participate in the \nmeeting and/or provide comments to the Advisory Group on December 22, \n2015. Public comment will be limited to 3 minutes per speaker. \nIndividuals who wish to participate in the meeting and/or provide \ncomments must register by 12:00 p.m. EST on December 15, 2015. In order \nto register, individuals must send their full name and affiliation via \nemail to <a href=\"/cdn-cgi/l/email-protection#4f3f3d2a392a213b262021612c203a212c26230f27273c61282039\"><span class=\"__cf_email__\" data-cfemail=\"b3c3c1d6c5d6ddc7dadcdd9dd0dcc6ddd0dadff3dbdbc09dd4dcc5\">[email&#160;protected]</span></a>. Individuals who need special \nassistance and/or accommodations, i.e., TDD/VP or other reasonable \naccommodations, should indicate so when they register. Members of the \npublic who wish to have materials distributed to the Advisory Group \nmembers at this scheduled meeting should submit those materials when \nthey register.\n\n\n[[Page 76026]]\n\n\n    Dated: November 20, 2015.\nMelanie Ross,\nCDR, USPHS, Designated Federal Officer, Advisory Group on Prevention, \nHealth Promotion, and Integrative and Public Health, Office of the \nSurgeon General.\n[FR Doc. 2015-30749 Filed 12-4-15; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2016-09130": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2016-09130",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5907,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2016-09130",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2016-09130",
+        "page_or_item": "81 FR 23317; FR Doc. 2016-09130; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "03792e311d9754686368e3069c0b9bf494bcf8b22bb213896f8e9a5fa5abdf08",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2016-09130.txt",
+        "text_sha256": "03792e311d9754686368e3069c0b9bf494bcf8b22bb213896f8e9a5fa5abdf08",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2016/04/20/2016-09130.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 81 Issue 76 (Wednesday, April 20, 2016)</title>\n</head>\n<body><pre>\n[Federal Register Volume 81, Number 76 (Wednesday, April 20, 2016)]\n[Notices]\n[Pages 23317-23318]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2016-09130]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Secretary, Office of the Assistant Secretary for \nHealth, Office of the Surgeon General of the United States Public \nHealth Service, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled for the Advisory Group on \nPrevention, Health Promotion, and Integrative and Public Health (the \n``Advisory Group''). This meeting will be open to the public. \nInformation about the Advisory Group and the agenda for this meeting \ncan be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html</a>.\n\nDATES: The meeting will be held on May 9, 2016, from 8:45 a.m. to 5:00 \np.m. EST--May 10, 2016, from 8:45 a.m. to 1:00 p.m. EST.\n\nADDRESSES: This meeting will be held at the CDC Washington Office, Room \n9000, 395 E Street SW., Washington, DC 20201. Space to accommodate \npublic in-person attendance is very limited. Therefore, arrangements \nare being made for access to the meeting to be made available by \nteleconference. Teleconference information will be published closer to \nthe meeting date at: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html</a>. Individuals \nplanning to attend the meeting by teleconference must register. The \nregistration procedure is included in this notice under Supplementary \nInformation.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, U.S. \nDepartment of Health and Human Services, 200 Independence Ave. SW., \nWashington, DC 20201; 202-205-9517, <a href=\"/cdn-cgi/l/email-protection#442a3427373134342b3630042720276a232b32\"><span class=\"__cf_email__\" data-cfemail=\"88e6f8ebfbfdf8f8e7fafcc8ebeceba6efe7fe\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nfederal advisory committee that was initially established under \nExecutive Order 13544, dated June 10, 2010, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was terminated on September 30, \n2012, by Executive Order 13591, dated November 23, 2011. Authority for \nthe Advisory Group to be re-established was given under Executive Order \n13631, dated December 7, 2012. Authority for the Advisory Group to \ncontinue to operate until September 30, 2017, was given under Executive \nOrder 13708, dated September 30, 2015.\n    The Advisory Group was established to assist in carrying out the \nmission of the National Prevention, Health Promotion, and Public Health \nCouncil (the Council). The Advisory Group provides recommendations and \nadvice to the Council.\n    It is authorized for the Advisory Group to consist of no more than \n25 non-federal members. The Advisory Group currently has 21 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine.\n    A meeting description and relevant materials will be published \ncloser to the meeting date at: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html</a>. Members \nof the public have the opportunity to participate in the meeting and/or \nprovide comments via teleconference to the Advisory Group on May 9-10, \n2016. Public comment will be limited to 3 minutes per speaker. \nIndividuals who wish to participate in the meeting and/or provide \ncomments via teleconference must register by 12:00 p.m. EST on April \n25, 2016. In order to register, individuals must send their full name \nand affiliation via email to <a href=\"/cdn-cgi/l/email-protection#c0aeb0a3b3b5b0b0afb2b480a3a4a3eea7afb6\"><span class=\"__cf_email__\" data-cfemail=\"e28c9281919792928d9096a2818681cc858d94\">[email&#160;protected]</span></a>. Individuals who need \nspecial\n\n[[Page 23318]]\n\nassistance and/or accommodations, i.e., sign language interpretation or \nother reasonable accommodations, should indicate so when they register. \nMembers of the public who wish to have materials distributed to the \nAdvisory Group members at these scheduled meetings should submit those \nmaterials when they register.\n\n    Dated: March 29, 2016.\nBrigette Ulin,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2016-09130 Filed 4-19-16; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2016-13558": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2016-13558",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5289,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2016-13558",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2016-13558",
+        "page_or_item": "81 FR 36933; FR Doc. 2016-13558; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "760a028fdde32848384564638864422b6f18e4c332bbe9053f9aae902efaca01",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2016-13558.txt",
+        "text_sha256": "760a028fdde32848384564638864422b6f18e4c332bbe9053f9aae902efaca01",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2016/06/08/2016-13558.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 81 Issue 110 (Wednesday, June 8, 2016)</title>\n</head>\n<body><pre>\n[Federal Register Volume 81, Number 110 (Wednesday, June 8, 2016)]\n[Notices]\n[Page 36933]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2016-13558]\n\n\n-----------------------------------------------------------------------\n\n DEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Office of the Surgeon General of the United States Public \nHealth Service, Office of the Assistant Secretary for Health, Office of \nthe Secretary, Department of Health and Human Services.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled for the Advisory Group on \nPrevention, Health Promotion, and Integrative and Public Health (the \n``Advisory Group''). This meeting will be open to the public. \nInformation about the Advisory Group and the agenda for this meeting \ncan be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/index.html</a>.\n\nDATES: The meeting will be held on July 11, 2016, from 3:00 p.m.-5:00 \np.m. EST.\n\nADDRESSES: This meeting will be held via teleconference. Teleconference \ninformation and the exact meeting time will be published closer to the \nmeeting date at: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/index.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/index.html</a>.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, U.S. \nDepartment of Health and Human Services, 200 Independence Ave. SW.; \nWashington, DC 20201; 202-205-9517; <a href=\"/cdn-cgi/l/email-protection#f799879484828787988583b7949394d9909881\"><span class=\"__cf_email__\" data-cfemail=\"f997899a8a8c8989968b8db99a9d9ad79e968f\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nfederal advisory committee that was initially established under \nExecutive Order 13544, dated June 10, 2010, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was terminated on September 30, \n2012, by Executive Order 13591, dated November 23, 2011. Authority for \nthe Advisory Group to be re-established was given under Executive Order \n13631, dated December 7, 2012. Authority for the Advisory Group to \ncontinue to operate until September 30, 2017, was given under Executive \nOrder 13708, dated September 30, 2015.\n    The Advisory Group was established to assist in carrying out the \nmission of the National Prevention, Health Promotion, and Public Health \nCouncil (the Council). The Advisory Group provides recommendations and \nadvice to the Council. It is authorized for the Advisory Group to \nconsist of not more than 25 non-federal members. The Advisory Group \ncurrently has 21 members who were appointed by the President. The \nmembership includes a diverse group of licensed health professionals, \nincluding integrative health practitioners who have expertise in (1) \nworksite health promotion; (2) community services, including community \nhealth centers; (3) preventive medicine; (4) health coaching; (5) \npublic health education; (6) geriatrics; and (7) rehabilitation \nmedicine.\n    A meeting description and relevant materials will be published \ncloser to the meeting date at: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/</a>.\n    Members of the public have the opportunity to participate in the \nmeeting and/or provide comments to the Advisory Group on July 11, 2016. \nPublic comment will be limited to 3 minutes per speaker. Individuals \nwho wish to participate in the meeting and/or provide comments must \nregister by 12:00 p.m. EST on July 5, 2016. In order to register, \nindividuals must send their full name and affiliation via email to \n<a href=\"/cdn-cgi/l/email-protection#f799879484828787988583b7949394d9909881\"><span class=\"__cf_email__\" data-cfemail=\"bbd5cbd8c8cecbcbd4c9cffbd8dfd895dcd4cd\">[email&#160;protected]</span></a>. Individuals who need special assistance and/or \naccommodations, i.e., sign language interpretation or other reasonable \naccommodations, should indicate so when they register. Members of the \npublic who wish to have materials distributed to the Advisory Group \nmembers at these scheduled meetings should submit those materials when \nthey register.\n\n    Dated: May 23, 2016.\nBrigette Ulin,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2016-13558 Filed 6-7-16; 8:45 am]\nBILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2016-17385": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2016-17385",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 5867,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2016-17385",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2016-17385",
+        "page_or_item": "81 FR 47810; FR Doc. 2016-17385; Notice: Meeting of the Advisory Group on Prevention, Health Promotion, and Integrative and Public Health",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "8003632ad44a7f13282f2e9914dae69f8ce9c6a622b687e15b5bfaf0d643ebcd",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2016-17385.txt",
+        "text_sha256": "8003632ad44a7f13282f2e9914dae69f8ce9c6a622b687e15b5bfaf0d643ebcd",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2016/07/22/2016-17385.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 81 Issue 141 (Friday, July 22, 2016)</title>\n</head>\n<body><pre>\n[Federal Register Volume 81, Number 141 (Friday, July 22, 2016)]\n[Notices]\n[Pages 47810-47811]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2016-17385]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF HEALTH AND HUMAN SERVICES\n\n\nMeeting of the Advisory Group on Prevention, Health Promotion, \nand Integrative and Public Health\n\nAGENCY: Department of Health and Human Services, Office of the \nSecretary, Office of the Assistant Secretary for Health, Office of the \nSurgeon General of the United States Public Health Service.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: In accordance with Section 10(a) of the Federal Advisory \nCommittee Act, Public Law 92-463, as amended (5 U.S.C. App.), notice is \nhereby given that a meeting is scheduled for the Advisory Group on \nPrevention, Health Promotion, and Integrative and Public Health (the \n``Advisory Group''). This meeting will be open to the public. \nInformation about the Advisory Group and the agenda for this meeting \ncan be obtained by accessing the following Web site: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html</a>.\n\nDATES: The meeting will be held on September 26, 2016, from 8:45 a.m. \nto 5 p.m. EST.\n\nADDRESSES: This meeting will be held at the CDC Washington Office, Room \n9000, 395 E Street SW., Washington DC 20201. Space to accommodate \npublic in-person attendance is very limited. Therefore, arrangements \nare being made for the public to have access to the meeting by \nteleconference. Teleconference information will be published closer to \nthe meeting date at: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html</a>. Individuals \nplanning to attend the meeting by teleconference must register. The \nregistration procedure is included in this notice under SUPPLEMENTARY \nINFORMATION.\n\nFOR FURTHER INFORMATION CONTACT: Office of the Surgeon General, U.S. \nDepartment of Health and Human Services, 200 Independence Ave. SW., \nWashington, DC 20201; 202-205-9517; <a href=\"/cdn-cgi/l/email-protection#ef819f8c9c9a9f9f809d9baf8c8b8cc1888099\"><span class=\"__cf_email__\" data-cfemail=\"1c726c7f6f696c6c736e685c7f787f327b736a\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Advisory Group is a non-discretionary \nfederal advisory committee that was initially established under \nExecutive Order 13544, dated June 10, 2010, to comply with the statutes \nunder Section 4001 of the Patient Protection and Affordable Care Act, \nPublic Law 111-148. The Advisory Group was terminated on September 30, \n2012, by Executive Order 13591, dated November 23, 2011. Authority for \nthe Advisory Group to be re-established was given under Executive Order \n13631, dated December 7, 2012. Authority for the Advisory Group to \ncontinue to operate until September 30, 2017, was given under Executive \nOrder 13708, dated September 30, 2015.\n    The Advisory Group was established to assist in carrying out the \nmission of the National Prevention, Health Promotion, and Public Health \nCouncil (the Council). The Advisory Group provides recommendations and \nadvice to the Council.\n    It is authorized for the Advisory Group to consist of no more than \n25 non-federal members. The Advisory Group currently has 21 members who \nwere appointed by the President. The membership includes a diverse \ngroup of licensed health professionals, including integrative health \npractitioners who have expertise in (1) worksite health promotion; (2) \ncommunity services, including community health centers; (3) preventive \nmedicine; (4) health coaching; (5) public health education; (6) \ngeriatrics; and (7) rehabilitation medicine.\n\n[[Page 47811]]\n\n    A meeting description and relevant materials will be published \ncloser to the meeting date at: <a href=\"http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html\">http://www.surgeongeneral.gov/priorities/prevention/advisorygrp/advisory-group-meetings.html</a>. Members \nof the public have the opportunity to participate in the meeting and/or \nprovide comments via teleconference to the Advisory Group on September \n26, 2016. Public comment will be limited to 3 minutes per speaker. \nIndividuals who wish to participate in the meeting and/or provide \ncomments via teleconference must register by 12:00 p.m. EST on \nSeptember 19, 2016. In order to register, individuals must send their \nfull name and affiliation via email to <a href=\"/cdn-cgi/l/email-protection#8ee0feedfdfbfefee1fcfaceedeaeda0e9e1f8\"><span class=\"__cf_email__\" data-cfemail=\"1c726c7f6f696c6c736e685c7f787f327b736a\">[email&#160;protected]</span></a>. Individuals \nwho need special assistance and/or accommodations, i.e., sign language \ninterpretation or other reasonable accommodations, should indicate so \nwhen they register. Members of the public who wish to have materials \ndistributed to the Advisory Group members at these scheduled meetings \nshould submit those materials when they register.\n\n    Dated: July 5, 2016.\nBrigette Ulin, MPH,\nDesignated Federal Officer, Advisory Group on Prevention, Health \nPromotion, and Integrative and Public Health, Office of the Surgeon \nGeneral.\n[FR Doc. 2016-17385 Filed 7-21-16; 8:45 am]\n BILLING CODE 4163-18-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
     },
     "CLAUSES:EO:13591#sec1": {
       "char_end": 1046,
@@ -1905,6 +2414,42 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2011-11-30/pdf/2011-30990.pdf"
       },
       "text": "Sec. 4. Notwithstanding the provisions of any other Executive Order, the \nfunctions of the President under the Federal Advisory Committee Act that \nare applicable to the committees listed in sections 1 and 2 of this order \nshall be performed by the head of the department or agency designated \nafter each committee, in accordance with the guidelines and procedures \nestablished by the Administrator of General Services."
+    },
+    "CURRENT:EO:13591#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 200,
+      "char_start": 73,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "20 U.S.C. 9701 note; note 'Ex. Ord. No. 13530. President’s Advisory Council on Financial Capability' [USLM note id id0e6983bc-3a70-11f1-a648-bee82ed8a795]; usc20.xml (sha256 f65c9596d494fffbae4f6f72931c67c56714d0a62b93072d387c07bd2c767838) in xml_uscAll@119-121.zip",
+        "sha256": "e69685399ea2b49d99c4459ff0c22855420dd64d31ea7513e20802b3b7373c81",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id0e6983bc-3a70-11f1-a648-bee82ed8a795",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13591#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13591",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (20 U.S.C. 9701 note)",
+      "machine_lead": true,
+      "mention_id": "usc:91e5525360e3",
+      "snippet": "Ex. Ord. No. 13530, Jan. 29, 2010, 75 F.R. 5481, as amended by Ex. Ord. No. 13591, § 3, Nov. 23, 2011, 76 F.R. 74623, provided:",
+      "source": {
+        "page_or_item": "20 U.S.C. 9701 note; note 'Ex. Ord. No. 13530. President’s Advisory Council on Financial Capability' [USLM note id id0e6983bc-3a70-11f1-a648-bee82ed8a795]; usc20.xml (sha256 f65c9596d494fffbae4f6f72931c67c56714d0a62b93072d387c07bd2c767838) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id0e6983bc-3a70-11f1-a648-bee82ed8a795.txt",
+        "text_sha256": "e69685399ea2b49d99c4459ff0c22855420dd64d31ea7513e20802b3b7373c81",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13530, Jan. 29, 2010, 75 F.R. 5481, as amended by Ex. Ord. No. 13591, § 3, Nov. 23, 2011, 76 F.R. 74623, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id0e6983bc-3a70-11f1-a648-bee82ed8a795.txt",
+      "text_sha256": "e69685399ea2b49d99c4459ff0c22855420dd64d31ea7513e20802b3b7373c81",
+      "where": "USC 20 U.S.C. 9701 note"
     },
     "ORIGINAL:EO:13591": {
       "acceptable_as_original": true,
@@ -2308,7 +2853,7 @@
       "text": "Section 6 of Executive Order 13530 of January 29, 2010 (President's Advisory Council on Financial Capability), is amended to read as follows: \"Unless extended by the President, the Council shall terminate on January 29, 2013.\""
     }
   },
-  "fingerprint": "142d87bd9080affb6e84c0dd149b6edb134bf3421295b1a046ac69d351e89734",
+  "fingerprint": "291aed0f964bbcaa076899d6f57f03fefe7f4f74d4474df4828a988576ae9fd9",
   "instrument_id": "EO:13591",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2556,32 +3101,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 11,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2592,7 +3139,6 @@
   ],
   "missing": [
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:13521",
     "target provision not located: EO:13522",
     "target provision not located: EO:13532",
@@ -2621,12 +3167,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 10,
-    "fingerprint": "d4e7a9fce95c31ebe06e1063d00e3c6c731c3e571ad6903879e9e3f76ac57698",
+    "fingerprint": "cc9c761e1b07b1726e0633e6e3399dc621873f953959ed23ac9da96fae60647c",
     "flags": [
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_13591.json",
-    "history_sha256": "1ee0f91b1ec50832034e3401aa37cc5c978b69f8581c0e50e29e9ca18adbdc91",
+    "history_sha256": "d7593ca0fdd955f6b6f7f4a5acd2378a1bb47eccba614adb98ddb08d0c3c1747",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

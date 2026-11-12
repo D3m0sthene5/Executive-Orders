@@ -2,11 +2,30 @@
   "actor_contexts": [
     {
       "actor_id": "EO:12645",
-      "evidence_id": "ACTOR_TEXT:EO:12645"
+      "evidence_id": "ACTOR_TEXT:EO:12645",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13318",
-      "evidence_id": "ACTOR_TEXT:EO:13318"
+      "evidence_id": "ACTOR_TEXT:EO:13318",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:05-22067",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:05-22067@12423"
+      ],
+      "full_text_chars": 219140,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-05-22067.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "b8c66d1063d8d1411ccde61d9855e036d1faddc52e5fc3f7ad4dceb05f2e9a80",
+      "window_bytes": 3067,
+      "windows_omitted": 0
+    },
+    {
+      "actor_id": "FRDOC:99-26232",
+      "evidence_id": "ACTOR_TEXT:FRDOC:99-26232",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -282,7 +301,7 @@
         "verb": "supersede"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12364",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12364"
@@ -540,23 +559,35 @@
   "current_law_leads": [
     {
       "basis_code": "cfr_authority_citation",
+      "char_end": 12576,
+      "char_start": 12500,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 213.3102",
+        "sha256": "6d76e9a83589b93796a7e826428036436296ba25f69d68f2346418cfad140e77",
+        "source_id": "cfr:t5:213.3102",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-213.3102"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12364",
       "legal_basis_candidate": "regulation authority citation lists the order (5 CFR 213.3102)",
       "machine_lead": true,
-      "mention_id": "ecfr:9f29bc7f088d",
+      "mention_id": "ecfr:1905c7a81220",
       "snippet": "(5 U.S.C. 3301, 3307, 8337(h); 5 U.S.C. 3301, 3302; E.O. 12364, 47 FR 22931)",
       "source": {
-        "page_or_item": "5 CFR 213.3102 (section_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.24.3.9.2)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR 213.3102 (section_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.24.3.9.2)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-213.3102.txt",
+        "text_sha256": "6d76e9a83589b93796a7e826428036436296ba25f69d68f2346418cfad140e77",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
+      "text": "(5 U.S.C. 3301, 3307, 8337(h); 5 U.S.C. 3301, 3302; E.O. 12364, 47 FR 22931)",
       "where": "CFR 5 CFR 213.3102"
     },
     {
@@ -568,10 +599,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:9f29bc7f088d",
+        "mention_id": "ecfr:1905c7a81220",
         "snippet": "(5 U.S.C. 3301, 3307, 8337(h); 5 U.S.C. 3301, 3302; E.O. 12364, 47 FR 22931)",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -581,8 +612,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (5 CFR 213.3102)",
         "source": {
-          "page_or_item": "5 CFR 213.3102 (section_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.24.3.9.2)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR 213.3102 (section_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.24.3.9.2)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -1520,6 +1551,7 @@
       "char_end": 1449,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12645",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1540,6 +1572,7 @@
       "char_end": 6338,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13318",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1554,6 +1587,66 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2003-11-25/pdf/03-29644.pdf"
       },
       "text": "Instrument: EO:13318\nSource: https://www.govinfo.gov/content/pkg/FR-2003-11-25/pdf/03-29644.pdf\nSHA-256 of the downloaded file: 8bd978de5f6e54e585924ee8cdedeab24a6f1c2b5a1f2190e5513ed5df30665c\nLocation: 68 FR 66317, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n66317Federal Register / Vol. 68, No. 227 / Tuesday, November 25, 2003 / Presidential Documents \nExecutive Order 13318 of November 21, 2003\nPresidential Management Fellows Program \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including sections 3301 and 3302 \nof title 5, United States Code, and in order to provide for the recruitment \nand selection of outstanding employees for service in public sector manage-\nment, it is hereby ordered as follows: \nSection 1. There is hereby constituted the Presidential Management Fellows \nProgram. The purpose of the Program is to attract to the Federal service \noutstanding men and women from a variety of academic disciplines and \ncareer paths who have a clear interest in, and commitment to, excellence \nin the leadership and management of public policies and programs. Individ-\nuals selected for the Program shall be known as Presidential Management \nFellows (PMFs) or Senior Presidential Management Fellows (Senior PMFs). \nSec. 2. (a) Individuals eligible for appointment as a PMF under this order \nare those who, in pursuing a course of study at the graduate level, have \ndemonstrated both exceptional ability and the commitment to which section \n1 refers. Such individuals at the time of application must have received, \nor must expect to receive soon thereafter, an appropriate advanced degree \nas defined by the Director of the Office of Personnel Management (OPM). \n(b) Individuals eligible for appointment as a Senior PMF under this order \nare those who have, through extensive work experience, demonstrated both \nexceptional leadership or analytical ability and the commitment to which \nsection 1 refers. \nSec. 3. The Director of OPM shall prescribe appropriate merit-based rules \nfor the recruitment, nomination, assessment, selection, appointment, place-\nment, and continuing career development of fellows, including rules that: \n(a) reserve to the head of a department or agency or component within \nthe Executive Office of the President (EOP) the authority to appoint a fellow \nwho is to be employed in that department, agency, or component; \n(b) provide for nomination by universities and colleges, through competi-\ntive selection processes, of eligible individuals for consideration for appoint-\nment as PMFs; \n(c) carry out the policy of the United States to ensure equal employment \nopportunities for employees without discrimination because of race, color, \nreligion, sex, or national origin; and \n(d) ensure the application of appropriate veterans’ preference criteria. \nSec. 4. (a) Fellows shall be appointed to positions in either: \n(1) Schedule A of the excepted service; or \n(2) an agency or component within the EOP excepted from the competitive \nservice. \n(b) Appointments under subsection (a) shall not exceed 2 years in duration \nunless extended by the head of the department or agency or component \nwithin the EOP, with the concurrence of the Director of OPM, for a period \nnot to exceed 1 additional year. \n(c) The following principles and policies shall govern service and tenure \nby fellows: \n(1) responsibilities assigned to a PMF shall be consistent with the PMF’s \neducational background and career interests, and the purposes of the Program; \nVerDate jul<14>2003 16:38 Nov 24, 2003 Jkt 203001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\25NOE0.SGM 25NOE0\n=== PDF page 2 of 2 ===\n66318 Federal Register / Vol. 68, No. 227 / Tuesday, November 25, 2003 / Presidential Documents \nand responsibilities assigned to a Senior PMF shall be consistent with the \nSenior PMF ’s experience and career interests, and the purposes of the Pro-\ngram; \n(2) continuation of a fellow ’s appointment shall be contingent upon satis-\nfactory performance by the fellow throughout the fellowship appointment; \n(3) except as provided in paragraph (4) of this subsection, service as \na fellow shall confer no right to further Federal employment in either the \ncompetitive or excepted service upon the expiration of the fellow ’s appoint-\nment; and \n(4) competitive civil service status may be granted to a fellow who satisfac-\ntorily completes the Program and meets such other requirements as the \nDirector of OPM may prescribe. A fellow appointed by an agency excepted \nfrom the competitive service may also be appointed to a permanent position \nin an excepted service agency without further competition. \nSec. 5. The Director of OPM shall provide for an orderly transition, including \nwith respect to nominations, selection processes, and appointments, from \nthe Presidential Management Intern Program established by Executive Order \n12364 of May 24, 1982, to the Presidential Management Fellows Program \nestablished by this order. Until that transition is provided for, individuals \nwho were selected or appointed under the provisions of Executive Order \n12364 and who have not completed their scheduled periods of excepted \nservice are hereby redesignated as Presidential Management Fellows, and \ncontinue their internships under the terms of Executive Order 12364. \nSec. 6. The Director of OPM shall prescribe such regulations as may be \nnecessary to carry out the purposes of this order. \nSec. 7. Executive Order 12364 is superseded, except as provided in section \n5 of this order. \nSec. 8. This order is not intended to, and does not, create any right or \nbenefit, substantive or procedural, enforceable at law or in equity by any \nparty against the United States, its departments, agencies, instrumentalities \nor entities, its officers or employees, or any other person.\nW\nTHE WHITE HOUSE, \nNovember 21, 2003. \n[FR Doc. 03 –29644\nFiled 11 –24–03; 10:46 am] \nBilling code 3195 –01–P \nVerDate jul<14>2003 16:38 Nov 24, 2003 Jkt 203001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\25NOE0.SGM 25NOE0"
+    },
+    "ACTOR_TEXT:FRDOC:05-22067@12423": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:05-22067",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 15490,
+      "char_start": 12423,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:05-22067@12423",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:05-22067",
+        "page_or_item": "70 FR 67862; FR Doc. 05-22067; Notice: Excepted Service; Consolidated Listing of Schedules; A, B, and C Exceptions",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "b8c66d1063d8d1411ccde61d9855e036d1faddc52e5fc3f7ad4dceb05f2e9a80",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-05-22067.txt",
+        "text_sha256": "b8c66d1063d8d1411ccde61d9855e036d1faddc52e5fc3f7ad4dceb05f2e9a80",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2005/11/08/05-22067.txt"
+      },
+      "text": "under Public Law 91-452 and related statutes. A person appointed under \nthis authority may continue to be employed under it after he/she ceases \nto be in a qualifying program only as long as he/she remains in the \nsame agency without a break in service.\n    (gg) Positions when filled by persons with psychiatric disabilities \nwho have demonstrated their ability to perform satisfactorily under a \ntemporary appointment [such as one authorized in 213.3102(i)(3)] or who \nare certified as likely to be able to perform the essential functions \nof the job, with or without reasonable accommodation, by a State \nvocational rehabilitation counselor, a U.S. Department of Veterans \nAffairs Veterans Benefits Administration or Veterans Health \nAdministration psychologist, vocational rehabilitation counselor, or \npsychiatrist. Upon completion of 2 years of satisfactory service under \nthis authority, the employee can be converted, at the discretion of the \nagency, to competitive status under the provisions of Executive Order \n12125 as amended by Executive Order 13124.\n    (hh) (Reserved).\n    (ii) Positions of Presidential Fellow, GS-9 and 11, in the \nPresidential Management Fellows Program. Initial appointments must be \nmade at the GS-9 level. No one may serve under this authority for more \nthan 2 years, unless extended with OPM approval for up to 1 additional \nyear. Upon completion of 2 years of satisfactory service under this \nauthority, the employee may qualify for conversion to competitive \nappointment under the provisions of Executive Order 12364, in \naccordance with requirements published in the Federal Personnel Manual.\n    (jj-kk) (Reserved).\n    (ll) Positions as needed of readers for blind employees, \ninterpreters for deaf employees and personal assistants for handicapped \nemployees, filled on a full-time, part-time, or intermittent basis.\n\nSection 213.3103 Executive Office of the President\n\n    (a) Office of Administration.\n    (1) Not to exceed 75 positions to provide administrative services \nand support to the White House Office.\n    (b) Office of Management and Budget. (1) Not to exceed 15 positions \nat grades GS-5/15.\n    (c) Council on Environmental Quality. (1) Professional and \ntechnical positions in grades GS-9 through 15 on the staff of the \nCouncil.\n    (d)-(f) (Reserved).\n    (g) National Security Council.\n    (1) All positions on the staff of the Council.\n    (h) Office of Science and Technology Policy.\n    (1) Thirty positions of Senior Policy Analyst, GS-15; Policy \nAnalyst, GS-11/14; and Policy Research Assistant, GS-9, for employment \nof anyone not to exceed 5 years on projects of a high priority nature.\n    (i) Office of National Drug Control Policy.\n    (1) Not to exceed 15 positions, GS-15 and below, of senior policy \nanalysts and\n\n[[Page 67864]]\n\nother personnel with expertise in drug-related issues and/or technical \nknowledge to aid in anti-drug abuse efforts.\n\nSection 213.3104 Department of State\n\n    (a) Office of the Secretary.\n    (1) All positions, GS-15 and below, on the staff of the Family \n"
+    },
+    "ACTOR_TEXT:FRDOC:99-26232": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:99-26232",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 15465,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:99-26232",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:99-26232",
+        "page_or_item": "64 FR 54934; FR Doc. 99-26232; Notice: Privacy Act of 1974: Amendment to a System of Records",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "8a94bbe501a4f62f4e1e793c5a2cc907f077511c443552a2c51b6b424d7aeecd",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-99-26232.txt",
+        "text_sha256": "8a94bbe501a4f62f4e1e793c5a2cc907f077511c443552a2c51b6b424d7aeecd",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1999/10/08/99-26232.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 64 Issue 195 (Friday, October 8, 1999)</title>\n</head>\n<body><pre>[Federal Register Volume 64, Number 195 (Friday, October 8, 1999)]\n[Notices]\n[Pages 54934-54937]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 99-26232]\n\n\n-----------------------------------------------------------------------\n\nOFFICE OF PERSONNEL MANAGEMENT\n\n\nPrivacy Act of 1974: Amendment to a System of Records\n\nAGENCY: Office of Personnel Management (OPM).\n\nACTION: Notice to amend two existing systems of records.\n\n-----------------------------------------------------------------------\n\nSUMMARY: OPM proposes to amend two existing systems of records subject \nto the Privacy Act of 1974 (5 U.S.C. 552a). This action is necessary to \nmeet the requirements of the Privacy Act to publish in the Federal \nRegister notice of the existence and character of systems of records \nmaintained by the agency (5 U.S.C. 552a(e)(4)).\n\nDATES: The changes will become effective without further notice \nNovember 17, 1999, unless comments are received that would result in a \ncontrary determination.\n\nADDRESSES: Written comments must be sent to the U.S. Office of \nPersonnel Management, ATTN: Mary Beth Smith-Toomey, Office of the Chief \nInformation Officer, 1900 E Street NW., Room 5415, Washington, DC \n20415-7900.\n\nFOR FURTHER INFORMATION CONTACT: Mary Beth Smith-Toomey, (202) 606-\n8358.\n\nSUPPLEMENTARY INFORMATION: This notice serves to update the System \nLocation and System Manager for OPM/Internal-12 (Telephone Call Detail \nRecords) and to amend the data\n\n[[Page 54935]]\n\ncollection, analysis and maintenance of OPM/Central-11 (Presidential \nManagement Intern Program) as a result of an increased use of automated \ninformation technology.\n\nU.S. Office of Personnel Management.\nJanice R. Lachance,\nDirector.\nOPM/INTERNAL-12\n\nSYSTEM NAME:\n    Telephone Call Detail Records.\n\nSYSTEM LOCATION:\n    Employment Service, Office of Personnel Management, 1900 E Street \nNW., Washington, DC 20415-0001.\n\nCATEGORIES OF INDIVIDUALS COVERED BY THE SYSTEM:\n    Persons who are assigned OPM telephone numbers or are authorized to \nuse OPM telephone services, and persons who make or receive telephone \ncalls billed to OPM.\n\nCATEGORIES OF RECORDS IN THE SYSTEM:\n    Call detail records of long-distance telephone calls placed from \nOPM telephones or otherwise billed to OPM (including originating and \ndestination telephone numbers, cities, and states; date; time; cost; \nand duration of each call); records indicating the assignment of \ntelephone numbers to organizations and individuals; and the \norganizational location of telephones.\n\nAUTHORITY FOR MAINTENANCE OF THE SYSTEM:\n    Authority for maintenance of the system includes the following with \nany revisions or amendments:\n    31 U.S.C. 1348 and 44 U.S.C. 3101.\n\nPURPOSE(s):\n    OPM uses call detail records to verify telephone usage and to \nresolve billing discrepancies so that telephone bills can be paid. OPM \nmay also use these records to allocate the costs of telephone services \nto OPM organizational units; to identify unofficial telephone calls; to \nseek reimbursement for unofficial calls; and as a basis for taking \naction when Agency employees or other persons misuse or abuse OPM \ntelephone services.\n\nROUTINE USES OF RECORDS MAINTAINED IN THE SYSTEM, INCLUDING CATEGORIES \nOF USERS, AND THE PURPOSES OF SUCH USES:\n    Routine uses 1 through 7, and 11, of the Prefatory Statement at the \nbeginning of OPM's system notices (60 FR 63075, effective January 17, \n1996) apply to the records maintained within this system. The routine \nuses listed below are specific to this system of records only:\n    a. By OPM employees or other persons to determine their individual \nresponsibility for telephone calls;\n    b. By another Federal agency or a telecommunications company \nproviding telephone services to permit servicing the account;\n    c. By appropriate OPM employees to assist in the planning and \neffective management of OPM telephone services, and to determine that \nOPM telephone services are being used in an efficient and economical \nmanner;\n    d. By auditors, investigators, and other employees authorized by \nthe Inspector General, pursuant to sections 4 and 6 of the Inspector \nGeneral Act of 1978.\n\nDISCLOSURES TO CONSUMER REPORTING AGENCIES:1\n    Pursuant to 5 U.S.C. 552a(b)(12), OPM may disclose records from \nthis system to consumer reporting agencies as defined in the Fair \nCredit Reporting Act (15 U.S.C. 1681a(f)) or the Federal Claims \nCollection Act of 1966 (31 U.S.C. 3701(a)(3)).\n\nPOLICIES AND PRACTICES FOR STORING, RETRIEVING, SAFEGUARDING, AND \nRETAINING AND DISPOSING OF RECORDS IN THE SYSTEM:\nSTORAGE:\n    OPM stores records on magnetic media, on optical media, and on \npaper.\n\nRETRIEVABILITY:\n    Records are retrieved by employee name; by OPM organization; or by \noriginating telephone number, destination telephone number, date, time, \ncost, or duration of call.\n\nSAFEGUARDS:\n    Records are stored in secure areas and are available only to those \npersons whose official duties require access.\n\nRETENTION AND DISPOSAL:\n    These records are maintained for varying periods of time, from 6 \nmonths to 3 years, in accordance with NARA General Records Schedule 12, \nitems 2 and 3. Records are destroyed after the appropriate retention \nperiod.\n\nSYSTEM MANAGER(s) AND ADDRESS:\n    Network Communications Services, Employment Service, Office of \nPersonnel Management, 1900 E Street NW., Washington, DC 20415-0001.\n\nNOTIFICATION PROCEDURE:\n    Individuals wishing to inquire whether this system of records \ncontains information about them should send written requests to the \nsystem manager. Individuals must furnish the following information for \ntheir records to be located and identified:\n    a. Full name;\n    b. OPM-assigned telephone number or telephone service authorization \nnumber; and\n    c. Description of information being sought, including the time \nframe of information being sought.\n\nRECORD ACCESS PROCEDURE:\n    Individuals wishing to request access to records about them should \ncontact the system manager. Individuals must furnish the following \ninformation for their records to be located and identified:\n    a. Full name;\n    b. OPM-assigned telephone number or telephone service authorization \nnumber; and\n    c. Description of information being sought, including the time \nframe of information being sought.\n    Individuals requesting access must also follow the Agency's Privacy \nAct regulations regarding verification of identity and access to \nrecords (5 CFR part 297).\n\nCONTESTING RECORD PROCEDURE:\n    Individuals wishing to request amendment of records about them \nshould contact the system manager. Individuals must furnish the \nfollowing information for their records to be located and identified:\n    a. Full name;\n    b. OPM-assigned telephone number or telephone service authorization \nnumber; and\n    c. Description of information being sought, including the time \nframe of information being sought.\n    Individuals requesting amendment must also follow the Agency's \nPrivacy Act regulations regarding verification of identity and \namendment of records (5 CFR part 297).\n\nRECORD SOURCE CATEGORIES:\n    The information in this system of records is obtained from:\n    a. Local OPM telephone directories and other telephone assignment \nrecords;\n    b. Call detail reports provided by suppliers of telephone services; \nand\n    c. The individual on whom the record is maintained.\nOPM/CENTRAL-11\n\nSYSTEM NAME:\n    Presidential Management Intern (PMI) Program Records.\n\nSYSTEM LOCATION:\n    Presidential Management Intern Program Office, Philadelphia Service \nCenter, U.S. Office of Personnel Management, William J. Green, Jr., \nFederal Building, Room 3400, 600 Arch Street, Philadelphia, PA 19106.\n\n[[Page 54936]]\n\nCATEGORIES OF INDIVIDUALS COVERED BY THE SYSTEM:\n    Current and former PMIs and students pursuing graduate degrees who \nhave been nominated by their universities for consideration for the PMI \nProgram.\n\nCATEGORIES OF RECORDS IN THE SYSTEM:\n    These records contain information about the covered individuals \nrelating to name, Social Security Number, date of birth, race/national \norigin, academic background, home address and telephone number, \nemployment history, veterans' preference, and other personal history \ninformation needed during the evaluation and selection process.\n\nAUTHORITY FOR MAINTENANCE OF THE SYSTEM:\n    Includes the following with any revisions and amendments:\n    Executive Order 12364.\n\nPURPOSE(S):\n    These records are used by program office staff for the following \nreasons:\n    a. To determine basic program eligibility and to evaluate the \ncandidates in assessment center interviews administered at OPM Service \nCenter locations around the country;\n    b. To make a final determination as to those candidates who will be \nreferred to Federal agencies for employment consideration;\n    c. For program evaluation and assessment functions to determine the \neffectiveness of the program and to improve program operations; and\n    d. To facilitate interaction and communication between PMI Program \nparticipants.\n\nROUTINE USES OF RECORDS MAINTAINED IN THE SYSTEM; INCLUDING CATEGORIES \nOF USERS AND THE PURPOSES OF SUCH USES:\n    Routine uses 1, 3, 4, and 7 through 10, of the Prefatory Statement \nat the beginning of OPM's system notices (60 FR 63075, effective \nJanuary 17, 1996) apply to the records maintained within this system. \nThe routine uses listed below are specific to this system of records \nonly:\n    a. To refer candidates to Federal agencies for employment \nconsideration;\n    b. As a data source for management information of summary \ndescriptive statistics and analytical studies in support of the \nfunction for which the records are collected and maintained, or for \nrelated personnel research functions or manpower studies, or to locate \nindividuals for personnel research; and\n    c. To provide an educational institution with information on an \nappointment of a recent graduate to a Federal position.\n    d. As a data source for management information of summary \ndescriptive statistics and analytical studies in support of the \nfunction for which the records are collected and maintained, or for \nrelated personnel research functions or manpower studies, or to locate \nindividuals for personnel research.\n    e. To request information from a Federal, State, or local agency \nmaintaining civil, criminal, or other information relevant to an agency \ndecision concerning the hiring or retention of a candidate.\n    f. To provide an educational institution with information on an \nappointment of a recent graduate to a Federal position at a certain \ngrade level.\n\nPOLICIES AND PRACTICES OF STORING, RETRIEVING, SAFEGUARDING, RETAINING \nAND DISPOSING OF RECORDS IN THE SYSTEM:\nSTORAGE:\n    The records are maintained on electronic databases and on a \nwebsite.\n\n    Note: The section on the website containing personal information \non PMI candidates is accessible only with a user identification code \nand password.\n\nRETRIEVABILITY:\n    Records are indexed by name of candidate, educational institution, \nundergraduate and graduate degree awarded, state of legal residence, \nSocial Security Number, and any combination of these.\n\nSAFEGUARDS:\n    Candidates' records are maintained on electronic databases and on a \nwebsite. Only OPM personnel (PMI Program Office and Macon Technology \nCenter staff) have access to PMI databases. Candidates' resumes are \ncontained in a restricted section on the PMI website. This section of \nthe website is accessible only with a confidential user identification \ncode and password. The confidential user identification code and \npassword are maintained by PMI Program Office staff and issued only to \nFederal agency hiring officials and not the general public.\n\nRETENTION AND DISPOSAL:\n    Automated records are retained for up to 5 years. Manual records \nare retained for up to 3 years. Tapes are erased and manual records are \nburned or shredded.\n\nSYSTEM MANAGER(s) AND ADDRESS:\n    Director, Presidential Management Intern Program, Philadelphia \nService Center, U.S. Office of Personnel Management, William J. Green, \nJr., Federal Building, Room 3400, 600 Arch Street, Philadelphia, PA \n19106.\n\nNOTIFICATION PROCEDURE:\n    Individuals wishing to inquire whether this system contains \ninformation about them should contact the system manager. Individuals \nmust furnish the following information for their records to be located \nand identified:\n    a. Full name;\n    b. Address; and\n    c. Nominating university.\n\nRECORD ACCESS PROCEDURE:\n    Specific materials in this system have been exempted from Privacy \nAct provisions at 5 U.S.C. 552a(d), regarding access to and amendment \nof records. The section of the notice titled Systems Exempted from \nCertain Provisions of the Act, indicates the kinds of materials \nexempted and the reasons for exempting them from access.\n    Current or former Presidential Management Interns or candidates who \nwish to gain access to their non-exempt records should direct such a \nrequest in writing to the system manager. Individuals must furnish the \nfollowing information for their records to be located and identified:\n    a. Full name;\n    b. Address;\n    c. Academic year of nomination; and\n    d. Nominating university.\n    Individuals must also comply with OPM's Privacy Act regulations \nregarding verification of identity and access to records (5 CFR part \n297).\n\nCONTESTING RECORD PROCEDURE:\n    Specific material in this system has been exempted from Privacy Act \nprovisions at 5 U.S.C. 552a(d), regarding access to and amendment of \nrecords. The section of the notice titled Systems Exempted from Certain \nProvisions of the Act, indicates the kinds of materials exempted and \nthe reasons for exempting them from amendment.\n    Current or former Presidential Management Interns or candidates \nwishing to request amendment of their non-exempt records should contact \nthe system manager. Individuals must furnish the following information \nfor their records to be located and identified:\n    a. Full name;\n    b. Address;\n    c. Academic year of nomination; and\n    d. Nominating university.\n    Individuals must also comply with OPM's Privacy Act regulations \nregarding verification of identity and amendment of records (5 CFR part \n297).\n\nRECORD SOURCE CATEGORIES:\n    Information in this system of records is obtained from:\n    a. The individual to whom it applies;\n    b. Nominating university deans; and\n    c. Employing agencies.\n\n[[Page 54937]]\n\nSYSTEMS EXEMPTED FROM CERTAIN PROVISIONS OF THE ACT:\n    This system contains testing and examination materials that are \nused solely to determine individual qualifications for appointment or \npromotion in the Federal service. The Privacy Act at 5 U.S.C. \n552(k)(6), permits an agency to exempt all such testing or examination \nmaterial and information from certain provisions of the Act when \ndisclosure of the material would compromise the objectivity or fairness \nof the testing or examination process. OPM has claimed exemptions from \nthe requirements of 5 U.S.C. 552a(d), which relate to access to and \namendment of records, for any such testing or examination materials in \nthe system.\n\n[FR Doc. 99-26232 Filed 10-7-99; 8:45 am]\nBILLING CODE 6325-01-P\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:12364#sec1": {
       "char_end": 1465,
@@ -1796,6 +1889,40 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1982-05-26/pdf/FR-1982-05-26.pdf"
       },
       "text": "(b) Tenure for the Presidential Management Interns shall be governed by the \nfollowing principles and policies:\n\n=== PDF page 8 of 184 ===\n22932 Federal Register /  Vol. 47, No. 1Q 2 / Wednesday, May 26, 1982 /  Presidential Documents"
+    },
+    "CURRENT:EO:12364#0": {
+      "basis_code": "cfr_authority_citation",
+      "char_end": 12576,
+      "char_start": 12500,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 213.3102",
+        "sha256": "6d76e9a83589b93796a7e826428036436296ba25f69d68f2346418cfad140e77",
+        "source_id": "cfr:t5:213.3102",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-213.3102"
+      },
+      "id": "CURRENT:EO:12364#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12364",
+      "legal_basis_candidate": "regulation authority citation lists the order (5 CFR 213.3102)",
+      "machine_lead": true,
+      "mention_id": "ecfr:1905c7a81220",
+      "snippet": "(5 U.S.C. 3301, 3307, 8337(h); 5 U.S.C. 3301, 3302; E.O. 12364, 47 FR 22931)",
+      "source": {
+        "page_or_item": "5 CFR 213.3102 (section_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.24.3.9.2)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-213.3102.txt",
+        "text_sha256": "6d76e9a83589b93796a7e826428036436296ba25f69d68f2346418cfad140e77",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
+      },
+      "system": "ecfr",
+      "text": "(5 U.S.C. 3301, 3307, 8337(h); 5 U.S.C. 3301, 3302; E.O. 12364, 47 FR 22931)",
+      "where": "CFR 5 CFR 213.3102"
     },
     "ORIGINAL:EO:12364": {
       "acceptable_as_original": true,
@@ -2072,7 +2199,7 @@
       "text": "SOURCE: 62 FR 44199, Aug. 20, 1997, unless \notherwise noted."
     }
   },
-  "fingerprint": "a4e1546fbc0434d4684c9b0b642bdbf1fc367ede22eacc2de7b4b5064359bcdb",
+  "fingerprint": "04184c1c7cc1a3cdde2f24a10d1ae8a9bb973b6bc6946f86c929d169251f62d7",
   "instrument_id": "EO:12364",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2290,32 +2417,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2325,8 +2454,7 @@
     }
   ],
   "missing": [
-    "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
+    "Current-law lead lacks an original-source sha256."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12364",
@@ -2343,10 +2471,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "23b96ed20bccbf3cb1923f160bba7c2f7823b0e5891e12576e445028894569e3",
+    "fingerprint": "da18748255f4b983e4eea086382747731ecd2afaede25b39c4cab04c77e8ed22",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12364.json",
-    "history_sha256": "96db74796c48ea53bef9022ce0cdac86b6187867e011ab8e8c10d2262f997716",
+    "history_sha256": "943f42d53ab4666d21c806ca767077680f1d9312e40aff0e895c3f74da5a30ce",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

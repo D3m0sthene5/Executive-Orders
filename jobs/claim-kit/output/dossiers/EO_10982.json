@@ -6,7 +6,18 @@
     },
     {
       "actor_id": "EO:12748",
-      "evidence_id": "ACTOR_TEXT:EO:12748"
+      "evidence_id": "ACTOR_TEXT:EO:12748",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:00-17193",
+      "evidence_id": "ACTOR_TEXT:FRDOC:00-17193",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:94-31822",
+      "evidence_id": "ACTOR_TEXT:FRDOC:94-31822",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -82,7 +93,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:10982",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:10982"
@@ -313,11 +324,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 226,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "5 U.S.C. 5527 note; note 'Ex. Ord. No. 10982. Administration of Provisions of Chapter' [USLM note id id27cdb845-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "3ce8b9d435032c584f332bab8782a231c67394f6e174133b4f41ba1dfa429f84",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id27cdb845-ac5f-11f1-a76e-9d053fb5b48a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10982",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (5 U.S.C. 5527 note)",
@@ -327,19 +347,32 @@
       "source": {
         "page_or_item": "5 U.S.C. 5527 note; note 'Ex. Ord. No. 10982. Administration of Provisions of Chapter' [USLM note id id27cdb845-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id27cdb845-ac5f-11f1-a76e-9d053fb5b48a.txt",
+        "text_sha256": "3ce8b9d435032c584f332bab8782a231c67394f6e174133b4f41ba1dfa429f84",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id27cdb845-ac5f-11f1-a76e-9d053fb5b48a",
+      "text": "Ex. Ord. No. 10982. Administration of Provisions of Chapter\nEx. Ord. No. 10982, Dec. 25, 1961, 27 F.R. 3, as amended by Ex. Ord. No. 12107, Dec. 28, 1978, 44 F.R. 1055; Ex. Ord. No. 12748, Feb. 1, 1991, 56 F.R. 4521, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id27cdb845-ac5f-11f1-a76e-9d053fb5b48a.txt",
+      "text_sha256": "3ce8b9d435032c584f332bab8782a231c67394f6e174133b4f41ba1dfa429f84",
       "where": "USC 5 U.S.C. 5527 note"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 1003,
+      "char_start": 662,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
       "edition": "eCFR (GovInfo bulk, amended through 2026-10-27)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "28 CFR 0.154",
+        "sha256": "04363cb9d08af12912ce639f561ce38c47f9b6be953972ba815dcbee423829c3",
+        "source_id": "cfr:t28:0.154",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-28/section-0.154"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10982",
       "legal_basis_candidate": "regulation text names the order (28 CFR 0.154)",
@@ -349,48 +382,63 @@
       "source": {
         "page_or_item": "28 CFR 0.154 (section_text; GovInfo eCFR XML title 28, amended through 2026-10-27; NODE 28:1.0.1.1.1.44.1.17)",
         "sha256": "98c67ff0524b90420a1bc7be49416051d85ac6006f40a072a023ec6c2698165e",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t28-0.154.txt",
+        "text_sha256": "04363cb9d08af12912ce639f561ce38c47f9b6be953972ba815dcbee423829c3",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-28/ECFR-title28.xml"
       },
       "system": "ecfr",
+      "text": "ent (including U.S. Attorneys), are hereby authorized to exercise the authority vested in the Attorney General by sections 5522-5527 of title 5, U.S. Code, and Executive Order 10982 of December 25, 1961, and to administer the regulations adopted by the Attorney General in Order No. 269-62 with respect to advance and evacuation payments and",
       "where": "CFR 28 CFR 0.154"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 1484,
+      "char_start": 1143,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 550.401",
+        "sha256": "459135ae5e48091a436138750feee3ddd06b5f0b1ebe3d8f4466a9632912d9f4",
+        "source_id": "cfr:t5:550.401",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-550.401"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10982",
       "legal_basis_candidate": "regulation text names the order (5 CFR 550.401)",
       "machine_lead": true,
-      "mention_id": "ecfr:9cc062892e2f",
+      "mention_id": "ecfr:ea946baf788a",
       "snippet": "...agency proposes to issue regulations that deviate from the provisions of this subpart, prior approval of the agency regulations, as required by section 4(b) of Executive Order 10982 of December 25, 1961, must be secured from the Office of Personnel Management. (d) Administration. The head of an agency having employees subject to this subpa...",
       "source": {
-        "page_or_item": "5 CFR 550.401 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.74.4.72.1)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR 550.401 (section_text; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.74.4.72.1)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-550.401.txt",
+        "text_sha256": "459135ae5e48091a436138750feee3ddd06b5f0b1ebe3d8f4466a9632912d9f4",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
+      "text": "agency proposes to issue regulations that deviate from the provisions of this subpart, prior approval of the agency regulations, as required by section 4(b) of Executive Order 10982 of December 25, 1961, must be secured from the Office of Personnel Management.\n(d) Administration. The head of an agency having employees subject to this subpa",
       "where": "CFR 5 CFR 550.401"
     },
     {
       "basis_code": "cfr_authority_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10982",
       "legal_basis_candidate": "regulation authority citation lists the order (5 CFR part 550)",
       "machine_lead": true,
-      "mention_id": "ecfr:ab5e516ce342",
+      "mention_id": "ecfr:1ec8690ae3d9",
       "snippet": "Authority: 5 U.S.C. 5527, E.O. 10982, 3 CFR 1959-1963 Comp., p. 502.",
       "source": {
-        "page_or_item": "5 CFR part 550 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.74.3)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR part 550 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.74.3)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
@@ -400,18 +448,18 @@
       "basis_code": "cfr_authority_citation",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:10982",
       "legal_basis_candidate": "regulation authority citation lists the order (5 CFR part 550)",
       "machine_lead": true,
-      "mention_id": "ecfr:513dcca67eaf",
+      "mention_id": "ecfr:dbae88e386a8",
       "snippet": "Authority: 5 U.S.C. 5527; E.O. 10982, 3 CFR 1959-1963, p. 502.",
       "source": {
-        "page_or_item": "5 CFR part 550 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.74.4)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR part 550 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.74.4)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
@@ -459,10 +507,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:ab5e516ce342",
+        "mention_id": "ecfr:1ec8690ae3d9",
         "snippet": "Authority: 5 U.S.C. 5527, E.O. 10982, 3 CFR 1959-1963 Comp., p. 502.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -472,8 +520,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (5 CFR part 550)",
         "source": {
-          "page_or_item": "5 CFR part 550 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.74.3)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR part 550 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.74.3)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -487,10 +535,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:513dcca67eaf",
+        "mention_id": "ecfr:dbae88e386a8",
         "snippet": "Authority: 5 U.S.C. 5527; E.O. 10982, 3 CFR 1959-1963, p. 502.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -500,8 +548,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (5 CFR part 550)",
         "source": {
-          "page_or_item": "5 CFR part 550 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.74.4)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR part 550 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.74.4)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -543,10 +591,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:9cc062892e2f",
+        "mention_id": "ecfr:ea946baf788a",
         "snippet": "...agency proposes to issue regulations that deviate from the provisions of this subpart, prior approval of the agency regulations, as required by section 4(b) of Executive Order 10982 of December 25, 1961, must be secured from the Office of Personnel Management. (d) Administration. The head of an a ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -556,8 +604,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (5 CFR 550.401)",
         "source": {
-          "page_or_item": "5 CFR 550.401 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.74.4.72.1)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR 550.401 (section_text; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.74.4.72.1)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -578,7 +626,7 @@
         "snippet": "Ex. Ord. No. 10982. Administration of Provisions of Chapter | Ex. Ord. No. 10982, Dec. 25, 1961, 27 F.R. 3, as amended by Ex. Ord. No. 12107, Dec. 28, 1978, 44 F.R. 1055; Ex. Ord. No. 12748, Feb. 1, 1991, 56 F.R. 4521, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id27cdb845-ac5f-11f1-a76e-9d053fb5b48a",
+        "text_path": "usc-notes/id27cdb845-ac5f-11f1-a76e-9d053fb5b48a.txt",
         "where": "USC 5 U.S.C. 5527 note"
       },
       "proposal": {
@@ -1080,6 +1128,7 @@
       "char_end": 6594,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:12748",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1094,6 +1143,66 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1991-02-04/pdf/FR-1991-02-04.pdf"
       },
       "text": "Instrument: EO:12748\nSource: https://www.govinfo.gov/content/pkg/FR-1991-02-04/pdf/FR-1991-02-04.pdf\nSHA-256 of the downloaded file: 1bf0e6b823565bf2d55b7437ddb6b33831e418d1b6f4a4df9e59e5ecb1b1d14d\nLocation: 56 FR 4521, PDF pages 359-360 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 359 of 372 ===\n4521\nFederal Register \nVoL 58, No. 23\nPresidential Documents\nMonday, February 4, 1991\nTitle 3— Execu tive O rder 12748 o f February 1 ,1 9 9 1\nT h e  P re sid e n t P ro v id in g  fo r F e d e ra l P a y  A d m in istra tio n\nBy the authority vested  in me a s P resident by the C onstitution and the law s of \nthe United S tate s o f A m erica, including the Fed eral Em ployees Pay Com para­\nbility A c t o f 1990 (hereinafter “FEPC A ”), as incorporated in section 529 of \nPublic Law  101-509, and sections 3301 and 3302 of title 5, United S ta te s Code, \nit is hereby ordered as follow s:\nSectio n  1. A n n u a l A d ju stm e n ts to P a y  S c h e d u le s . The follow ing agencies are \ndesignated under sectio n  5303(g) o f title 5, United S tates Code, as am ended by \nFEPCA, to p rescribe conversion rules for the initial adjustm ent of rates of pay \nto b e applied during ea c h  annual adjustm ent o f pay schedules under section \n5303 o f title 5, U nited S tates Code:\n(a) the O ffice o f P ersonnel M anagem ent, for the G eneral Schedule;\n(b) the D epartm ent o f S tate, for the Foreign Service Schedule; and\n(c) the D epartm ent o f V eteran s A ffairs, for the V eteran s H ealth Services \nand R esearch  A dm inistration Schedules.\nS e c. 2. L o c a lit y -b a s e d  C o m p a r a b ility  P a y m e n ts, (a) T he Secretary  o f Labor, \nthe D irector o f the O ffice o f M anagem ent and Budget, and the D irector o f the \nO ffice o f P ersonnel M anagem ent are hereby designated under section \n5304(d)(1) o f title 5, U nited S ta te s Code, as am ended by FEPCA, to serve \njointly  as the President’s agent under sectio n  5304 o f title 5, United S tate s \nCode, and sh all b e know n in this cap acity  as the P resident’s Pay Agent.\n(b) T he head o f each  execu tive agency employing personnel under a statuto­\nry pay system , as defined in sectio n  5302(1) o f title 5, United S tate s Code, as \nam ended by FEPCA, shall provide such inform ation and assistan ce as m ay be \nrequested by the President’s P ay A gent in carrying out the provisions o f \nsection 5304 o f title 5, U nited S ta te s Code.\nS e c. 3. S p e c ia l P a y  A u th o r ity , (a) T h e O ffice o f Personnel M anagem ent is \nhereby authorized and designated, pursuant to section 5305(a) o f title 5, United \nS ta te s Code, as am ended by  sectio n  101 o f FEPCA, to ex ercise the authorities \no f the President under section 5305 o f title 5, United S tates Code, concerning \nhigher rates o f pay.\n(b) B efore exercising the delegated authorities under su bsection (a) regard­\ning em ployees in positions other than those covered by the G eneral Schedule, \nthe O ffice o f P ersonnel M anagem ent shall consult w ith the head o f the agency \nem ploying such em ployees.\nS e c. 4. P r e v io u s  O r d e r  R e v o k e d . Execu tive O rder No. 11721, as amended, is \nrevoked.\nS e c. 5. A d v a n c e  P a y m e n ts f o r  N e w  A p p o in te e s. Sectio n  2(b) o f E xecutive \nO rder No. 10982, as amended, is further am ended to read as follow s:\n“(b) The O ffice o f Personnel M anagem ent is hereby designated and em pow­\nered to perform  the functions conferred upon the President by the provisions \no f sectio n  5527 o f title 5, U nited S ta te s Code, w ith resp ect to allotm ents and \nassignm ents authorized by sectio n  5525 o f title 5, United S tates Code, and \nadvance paym ents to new  appointees authorized by section 5524a o f title 5, \nU nited S tates Code, as added by sectio n  107(a) o f the Fed eral Em ployees Pay \nC om parability A ct o f 1990, as incorporated in section 529 o f Public Law  \n101-509.”\n\n=== PDF page 360 of 372 ===\n4522 Fed eral R egister /  V ol. 56, No. 23 /  M onday, February 4, 1991 / P residential D ocum ents\nS e c. 6. E x te n s io n  o f  C a s h  A w a r d s, R e c ru itm e n t a n d  R e lo c a tio n  B o n u se s, a n d \nR e te n tio n  A llo w a n c e s . The Office of Personnel Management is hereby desig­\nnated and empowered to exercise the authority of the President under:\n(a) section 4505a(d) o f title 5, United S ta te s Code, as added by section 207(a) \no f FEPCA, concerning the application o f perform ance-based cash  aw ards to \nnoncovered categories o f em ployees;\n(b) section 5753(e) o f title 5, United S tate s Code, a s added by section 208 o f \nFEPCA, concerning the application o f recruitm ent and relocation bonuses to \nnoncovered categories o f em ployees; and\n(c) sectio n  5754(e) o f title 5, United S ta te s Code, as added by section 208 o f \nFEPCA, concerning the application o f retention allow ances to noncovered \ncategories o f em ployees.\nS e c. 7. S ta ffin g  D iffe r e n tia ls . T he O ffice o f Personnel M anagem ent is hereby \ndesignated and em pow ered to ex ercise the authority o f the President under \nsectio n  209 o f FEPC A  to  estab lish  staffing differentials.\nS e c . 8. E x e c u tiv e  A ss ig n m e n t S y ste m , (a) Civil Service Rule 9 (5 CFR P art 9), \nas establish ed  by Execu tive O rder No. 11315, a s amended, is revoked.\n(b) The Office of Personnel Management shall take such actions as the \nOffice may determine to be necessary to provide for the orderly termination of \nthe Executive Assignment System.\nS e c. 9. E ffe c t iv e  D a te s , (a) E xcep t as otherw ise provided by Public Law  1 0 1 - \n509, the provisions o f subchapter I o f chap ter 53 o f title 5, United S tate s Code, \nas am ended by section 101 o f FEPCA, and the provisions o f sections 1 through \n4 o f this order shall tak e effect on February 3,1991.\n(b) E xcep t a s otherw ise provided by Public Law  101-509, the rem aining \nprovisions o f FEPC A  and o f this order shall tak e effect on M ay 4 ,1 9 9 1 , excep t \nthat the O ffice o f P ersonnel M anagem ent m ay establish  an earlier effective \ndate, but not earlier than February 3, 1991, for any such provisions with \nresp ect to w hich the O ffice determ ines an earlier effective date is appropriate.\n[FR  D oc. 91-2873 \nFiled 2-1-91; 4:12 pm ] \nB illin g code 3195-01-M\nTHE WHITE HOUSE, \nF e b ru a ry  1, 1991.\n"
+    },
+    "ACTOR_TEXT:FRDOC:00-17193": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:00-17193",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 6760,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:00-17193",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:00-17193",
+        "page_or_item": "65 FR 41868; FR Doc. 00-17193; Rule: Payments During Evacuation",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "cdd4327adc15e019bba62303084da3feba1093c01d369472017204255bcaaf82",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-00-17193.txt",
+        "text_sha256": "cdd4327adc15e019bba62303084da3feba1093c01d369472017204255bcaaf82",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2000/07/07/00-17193.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 65 Issue 131 (Friday, July 7, 2000)</title>\n</head>\n<body><pre>\n[Federal Register Volume 65, Number 131 (Friday, July 7, 2000)]\n[Rules and Regulations]\n[Pages 41868-41869]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 00-17193]\n\n\n-----------------------------------------------------------------------\n\nOFFICE OF PERSONNEL MANAGEMENT\n\n5 CFR Part 550\n\nRIN 3206-AI78\n\n\nPayments During Evacuation\n\nAGENCY: Office of Personnel Management.\n\nACTION: Final rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The Office of Personnel Management (OPM) is issuing final \nregulations to raise the age requirement for payment of the maximum per \ndiem rate for a dependent of an evacuated civilian employee from age 11 \nto age 12. This applies to evacuations in the United States because of \nnatural disasters or for military or other reasons that create an \nimminent danger to life. This final rule makes OPM's regulations \nconsistent with Department of Defense (DOD) evacuation regulations, \nwhich require that an evacuated dependent of a uniformed member be 12 \nyears of age or older to receive the maximum per diem rate.\n\nDATES: Effective Date: The regulations are effective and applicable on \nAugust 7, 2000.\n\nFOR FURTHER INFORMATION CONTACT: Roger Knadle, (202) 606-2858, FAX: \n(202) 606-0824, or email at <a href=\"/cdn-cgi/l/email-protection#6f1f0e16030a0e190a2f001f0241080019\"><span class=\"__cf_email__\" data-cfemail=\"e292839b8e87839487a28d928fcc858d94\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: Office of Personnel Management (OPM) \nregulations on payments during evacuation are found in subpart D of 5\n\n[[Page 41869]]\n\nCFR part 550. The regulations are based on provisions of law in 5 \nU.S.C. 5522-5524, 5526, and 5527, and on authority in Executive Order \n10982, 3 CFR 1959-1963, p. 502. Federal agencies make evacuation \npayments under these authorities to employees and/or their dependents \nwho are ordered to be evacuated because of natural disasters or for \nmilitary or other reasons that create imminent danger to the lives of \nthe employees or their dependents.\n    On December 15, 1999, OPM published proposed changes in the \nevacuation pay regulations in the Federal Register (64 FR 69936), as \nrequested by the Department of Defense (DOD). We proposed to increase \nthe age requirement for payment of the maximum per diem rate for \ndependents of evacuated civilian employees from age 11 to age 12. We \nalso proposed to compute the maximum per diem rate by using the \n``lodgings-plus per diem system,'' as defined in section 300-3.1 of the \nFederal Travel Regulation.\n    The Federal Register notice provided that OPM must receive comments \non the proposed regulations within 30 days, or by January 14, 2000. We \nreceived no comments on the proposed regulations. Therefore, we are \nadopting the proposed regulations as final without any substantive \nchanges.\n\nE.O. 12866, Regulatory Review\n\n    The Office of Management and Budget has reviewed this rule in \naccordance with E.O. 12866.\n\nRegulatory Flexibility Act\n\n    I certify that these regulations will not have a significant impact \non a substantial number of small entities because they will apply only \nto Federal agencies and employees.\n\nList of Subjects in 5 CFR Part 550\n\n    Administrative practice and procedure, Claims, Government \nemployees, Wages.\n\nU.S. Office of Personnel Management\nJanice R. Lachance,\nDirector.\n    Accordingly, OPM is amending subpart D of part 550 of title 5 of \nthe Code of Federal Regulations as follows:\n\nPART 550--PAY ADMINISTRATION (GENERAL)\n\nSubpart D--Payments During Evacuation\n\n    1. The authority citation for subpart D of part 550 is revised to \nread as follows:\n\n    Authority: 5 U.S.C. 5527; E.O. 10982, 3 CFR 1959-1963, p. 502.\n\n\n    2. In Sec. 550.401, paragraph (a) is revised to read as follows:\n\n\nSec. 550.401  Purpose, applicability, authority, and administration.\n\n    (a) Purpose. This subpart provides regulations to administer \nsubchapter III (except sections 5524a and 5525) of chapter 55 of title \n5, United States Code. The regulations provide for Governmentwide \nuniformity in making payments during an evacuation to employees or \ntheir dependents, or both, who are evacuated in the United States \nbecause of natural disasters or for military or other reasons that \ncreate imminent danger to their lives.\n* * * * *\n    3. In Sec. 550.402, the definition of United States area is \nremoved, and a new definition of United States is added in alphabetical \norder to read as follows:\n\n\nSec. 550.402  Definitions.\n\n* * * * *\n    United States means the 50 States, the District of Columbia, the \nCommonwealths of Puerto Rico and the Northern Mariana Islands, and any \nterritory or possession of the United States.\n    4. In Sec. 550.405, paragraphs (a) and (b)(1) are revised to read \nas follows:\n\n\nSec. 550.405  Determination of special allowances.\n\n* * * * *\n    (a) An agency must determine the travel expenses and per diem for \nan evacuated employee and the travel expenses for his or her dependents \nin accordance with the Federal Travel Regulation (FTR) and any \napplicable implementing agency regulations, whether or not the employee \nor dependents are actually covered by or subject to the FTR. In \naddition, an agency may authorize per diem for dependents of an \nevacuated employee at a rate equal to the rate payable to the employee, \nas determined in accordance with the FTR (except that the rate for \ndependents under 12 years of age is one-half this rate), whether or not \nthe employee or dependents are actually covered by or subject to the \nFTR. Per diem for an employee and his or her dependents is payable from \nthe date of departure from the evacuated area through the date of \narrival at the safe haven, including any period of delay en route that \nis beyond an evacuee's control or that may result from evacuation \ntravel arrangements.\n    (b) * * *\n    (1) An agency must compute the applicable maximum per diem rate by \nusing the ``lodgings-plus per diem system,'' as defined in the FTR, for \nthe employee and each dependent who is 12 years of age or over. For \neach dependent under 12 years of age, the per diem rate is one-half of \nthe applicable maximum per diem rate for employees and dependents who \nare 12 years of age or over. An agency may pay these maximum rates for \na period not to exceed the first 30 days of evacuation.\n* * * * *\n[FR Doc. 00-17193 Filed 7-6-00; 8:45 am]\nBILLING CODE 6325-01-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:94-31822": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:94-31822",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 47002,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:94-31822",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:94-31822",
+        "page_or_item": "; FR Doc. 94-31822; Uncategorized Document: Incentive Awards; Pay and Leave Administration",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "9f2ae2131b7180563d55c4bd80a2f788602caa3abc9aba3886be69991c596780",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-94-31822.txt",
+        "text_sha256": "9f2ae2131b7180563d55c4bd80a2f788602caa3abc9aba3886be69991c596780",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1994/12/28/94-31822.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 59 Issue 248 (Wednesday, December 28, 1994)</title>\n</head>\n<body><pre>[Federal Register Volume 59, Number 248 (Wednesday, December 28, 1994)]\n[Unknown Section]\n[Page ]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 94-31822]\n\n\n\u0000\u0000Federal Register / Vol. 59, No. 248 / Wednesday, December 28, 1994 / \u0000\u0000\n[Federal Register: December 28, 1994]\n\n\n                                                   VOL. 59, NO. 248\n\n                                       Wednesday, December 28, 1994\n\nOFFICE OF PERSONNEL MANAGEMENT\n\n5 CFR Parts 451, 531, 550, 551, 591, and 630\n\nRIN: 3206-AG15\n\n\nIncentive Awards; Pay and Leave Administration\n\nAGENCY: Office of Personnel Management.\n\nACTION: Interim rule with request for comments.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The Office of Personnel Management is issuing interim \nregulations to incorporate certain incentive awards and pay and leave \nadministration rules contained in the provisionally retained Federal \nPersonnel Manual material, which will sunset on December 31, 1994, into \nthe Code of Federal Regulations and to remove certain recordkeeping and \nreporting requirements.\n\nDATES: The interim rules are effective on January 1, 1995. Comments \nmust be received on or before February 27, 1995.\n\nADDRESSES: Comments may be sent or delivered to Donald J. Winstead, \nActing Assistant Director for Compensation Policy, Office of Personnel \nManagement, Room 6H31, 1900 E Street NW., Washington, DC 20415.\n\nFOR FURTHER INFORMATION CONTACT:\nBarbara Colchao, (202) 606-2720, concerning questions about the interim \nregulations for incentive awards in 5 CFR 451, and Belva MacDonald \n(202) 606-1413, concerning questions about the interim regulations for \npay and leave administration in 5 CFR 531, 550, 551, 591, and 630.\n\nSUPPLEMENTARY INFORMATION: On September 7, 1993, the Report of the \nNational Performance Review recommended that the Office of Personnel \nManagement (OPM) deregulate personnel policy by phasing out the 10,000-\npage Federal Personnel Manual (FPM). The FPM Sunset Document published \non December 31, 1993, provided that certain FPM materials would be \nprovisionally retained through December 31, 1994, to allow time for the \ndevelopment of any regulations, delegations of authority, or manuals \nnecessary to authorize agency flexibility or, where required, to \ncontinue Governmentwide uniformity. A small number of miscellaneous \nincentive awards and pay and leave administration provisions in the FPM \nwere retained for these reasons, and OPM is incorporating these \nprovisions into the Code of Federal Regulations (CFR). These rules \nrelate to:\n    (1) Incentive awards--cash award limitations, documentation of \ninformal recognition items, and eligible award recipients;\n    (2) Application of the two-step promotion rule for promotions from \nGS-1 and GS-2 positions;\n    (3) Application of leave without pay towards the competition of \nwaiting periods for within-grade increases;\n    (4) Counting travel time as ``hours of work'';\n    (5) Sunday premium pay for periods of paid leave and excused \nabsence;\n    (6) Payments during evacuation;\n    (7) Back pay computations;\n    (8) Computing cost-of-living allowances for employees receiving pay \nretention; and\n    (9) Leave for uncommon tours of duty.\n    No new requirements will be established by these regulations. In \naddition, in an ongoing effort to reduce administrative burden, OPM has \nremoved the recordkeeping requirements related to waiving the biweekly \npay cap on premium pay and the reporting requirements for payments \nduring evacuation. A summary of the provisions included in these \nregulations follows.\n\nIncentive Awards\n\nCash Award Limitations\n\n    The interim regulations amend 5 CFR 451.106(b) and 451.107(a)(3) to \nclarify that group awards may exceed $10,000 and not require OPM \napproval, and may exceed $25,000 and not require Presidential approval, \nso long as no individual in the group is granted more than $10,000 or \n$25,000, respectively. In the past, agencies have sometimes found \nconfusing the current law and regulation concerning the maximum cash \nawards that can be granted with and without OPM approval. These limits \napply to individuals whether the contribution being recognized was \nprovided solely by the individual or as part of a group. These interim \nregulations do not limit the size of group awards. (These interim \nregulations reflect material found in FPM Letter 451-11, Attachment 1, \nsection 2-2, February 9, 1993.)\n\nDocumentation of Informal Recognition Items\n\n    The interim regulations amend 5 CFR 451.103 and 451.107(b) to \ninclude a new definition, informal recognition items, to help agencies \ndistinguish nominal informal recognition items from other nonmonetary \nawards and to provide for agency flexibility with respect to \ndocumentation and approval requirements for informal recognition items. \nThis is consistent with agencies' use of their authority under 5 U.S.C. \n4503 to incur expenses for routine recognition items of extremely \nnominal value (e.g., pens, buttons, pins, name tags, etc.) and with the \ncurrent practice in many agencies under which some routine forms of \nrecognition, such as career service certificates, which are technically \nauthorized under 5 U.S.C. 4503, are neither documented in the official \npersonnel folder nor subject to formal nomination and approval \nprocedures. (These interim regulations reflect material found in \nprovisionally retained FPM Letter 451-11, Attachment 4, section 7-5b, \nFebruary 9, 1993.)\n\nEligible Award Recipients\n\n    The interim regulations amend 5 CFR 451.104(f) to provide that \nawards may be granted to the legal heirs or estates of deceased \nemployees. (These interim regulations reflect material found in \nprovisionally retained FPM Chapter 451, Subchapter 3, section 3-2b, \nAugust 14, 1981.)\n\nApplication of the Two-Step Promotion Rule for Promotions from GS-1 and \nGS-2 Positions\n\n    The interim regulations amend 5 CFR 531.204 to provide a method for \ndetermining the dollar value of a two-step promotion when step \nincreases above step 10 must be calculated for employees promoted from \ngrades GS-1 and GS-2. Under the interim regulations, at grades GS-1 and \nGS-2, for the purposes of promotion or transfer to a higher grade, the \ndollar value of each step increase above step 10 equals the dollar \namount of the step increase between step 9 and step 10 of grade GS-1 \nand GS-2, as appropriate.\n    The dollar value of step increases at grades GS-1 and GS-2 varies. \nConsequently, the dollar amounts of the step increases above step 10 \nfor grades GS-1 and GS-2 cannot be determined uniformly without an \nexplicit rule. The amendment to Sec. 531.204 provides agencies with \nuniform procedures for determining the amounts of the step increases \nabove step 10 for GS-1 and GS-2 employees. (These interim regulations \nreflect guidance found in provisionally retained FPM Letter 531-56, \nFebruary 16, 1982.)\n\nApplication of Leave Without Pay towards the Completion of Waiting \nPeriods for Within-Grade Increases\n\n    The interim regulations amend 5 CFR 531.406 to provide uniform \nprocedures for treating the time an employee is in a nonpay status for \nthe purposes of determining whether the employee has completed a \nwaiting period for a within-grade increase when the employee's \nscheduled tour of duty upon return to duty is different from the tour \nof duty at the time the leave without pay (nonpay status) began. The \ninterim regulations require agencies to use the original tour of duty \n(from which the time in a nonpay status was charged) for the following \npurposes: (1) crediting the time in a nonpay status toward the \ncompletion of a waiting period for a within-grade increase; and (2) \nextending the waiting period if the time in a nonpay status exceeds the \nallowable amount.\n    Currently, the regulations provide that time in a nonpay status is \ncreditable service in the computation of a waiting period if it does \nnot exceed an aggregate of (1) 2 workweeks for steps 2, 3, and 4 (or \ncomparable position in the rate range); (2) 4 workweeks for steps 5, 6, \nand 7 (or comparable position in the rate range); and (3) 6 workweeks \nfor steps 8, 9, and 10 (or comparable position in the rate range). Time \nin a nonpay status in excess of the allowable amount extends a waiting \nperiod by the excess amount. The interim regulations ensure that \nemployees are treated equitably by requiring agencies to compute the \nwaiting period on the basis of the tour of duty in effect at the time \nthe employee enters into a nonpay status and not on the tour of duty in \neffect at the end of the waiting period. (These interim regulations \nreflect guidance found in provisionally retained FPM Letter 531-57, \nFebruary 9, 1984.)\n\nCounting Travel Time as ``Hours of Work''\n\n    OPM is revising regulatory language in 5 CFR 550.112 and 551.422 \nregarding an agency's authority to establish a mileage radius from an \nemployee's official duty station for determining entitlement to \novertime pay for travel. The interim regulations relating to overtime \nentitlements under both title 5, United States Code (Sec. 550.112(j)), \nand the Fair Labor Standards Act of 1938, as amended (FLSA) \n(Sec. 551.422(d)), state that agencies may establish a mileage radius \nof not greater than 50 miles to determine whether an employee's travel \nis within or outside the limits of the employee's official duty station \nfor overtime pay purposes. However, the interim regulations provide for \none exception: An agency's definition of an employee's official duty \nstation for determining overtime pay for travel may not be smaller than \nan employee's ``official station and post of duty'' under the Federal \nTravel Regulation published by the General Services Administration. (An \nagency may establish more than one definition of official duty station \nfor determining overtime pay for travel to be applied in different \ngeographic locations. for example, an agency could have a large mileage \nradius in a remote rural area and a smaller radius in an urban area.)\n    The interim regulations establish parallel regulations for travel \ntime as hours of work under both title 5 and the FLSA. The interim \nregulations revise the current requirement regarding travel time as \nhours of work under the FLSA so that an agency's definition of an \nemployee's official duty station (including a mileage radius) that is \nused to determine entitlement to overtime pay for travel no longer has \nto be the same as that used by the agency to determine an employee's \nentitlement to per diem. Similarly, the definition of an employee's \nofficial duty station for purposes of overtime pay for travel need not \nnecessarily be the same as that used to determine an employee's \nentitlement to locality pay, interim geographic adjustments, or special \npay adjustments for law enforcement officers. Agencies may have \ndifferent definitions of official duty station for different purposes. \nFor example, the official duty station named on a notification of \npersonnel action and used for geographic pay determinations must be a \nspecific city, county, and state (or county and state in rural areas) \nto avoid confusion about entitlement to geographic pay entitlements. \n(These interim regulations revise guidance for travel time as hours of \nwork under the FLSA found in provisionally retained FPM Letter 551-11, \nOctober 14, 1977, and incorporate similar provisions for FLSA-exempt \nemployees. See former FPM letter 550-74, December 29, 1980.)\n    In addition, the interim regulations (for FLSA-exempt employees) \nprovide in Sec. 550.112(j)(2) that travel time between home and work is \nnot hours of work and that the normal time spent in travel between home \nand work will be deducted from time spent traveling between home and a \ntemporary duty location. This is parallel to current regulations in \nSec. 551.422(b) for determining overtime pay under the FLSA.\n\nSunday Premium Pay for Periods of Paid Leave and Excused Absence\n\n    The interim regulations in 5 CFR 550.171 revise the Sunday premium \npay regulations in accordance with the decision of the United States \nCourt of Appeals for the Federal Circuit in Armitage, et al. v. United \nStates that employees who are regularly scheduled to work on Sunday are \nentitled to Sunday premium pay for periods of paid leave taken on \nSundays. The regulations also state that employees covered by \ncompressed work schedules are entitled to Sunday premium pay for the \nnumber of hours they are scheduled to work on Sundays. (These interim \nregulations reflect guidance found in provisionally retained FPM Letter \n550-79, August 20, 1993.)\n\nPayments During Evacuation\n\n    The interim regulations incorporate into 5 CFR part 550, subpart D, \nregulations published in FPM Supplement 990-2, Book 550, Appendix A, \nthat may be adopted by agencies for making payments during evacuation \nin the United States and certain nonforeign areas. Governmentwide \ncoordination of these regulations for Federal agencies is required by \nExecutive Order 10982 of December 25, 1961. (The Secretary of State has \nprescribed similar regulations for civilian employees of Federal \nagencies who are located in foreign areas. These regulations are found \nin the Standardized Regulations (Government Civilians, Foreign Areas).)\n    The regulations provide for payments during an evacuation to \nemployees or their dependents, or both, who are ordered to evacuate \nfrom or within United States areas because of imminent danger to their \nlives, such as natural disasters, or for military or other reasons.\n    Currently, if an agency adopts the agency regulations published in \nthe FPM, the agency is required to notify OPM of the date of adoption \nand of the areas in which the regulations would be applied. The interim \nregulations delete this notification requirement. Also, the interim \nregulations delete requirements for agency evacuation reports; however, \neach agency should develop its own internal monitoring system to ensure \nthat its payments conform to the regulations. As required by section \n4(b) of E.O. 10982, an agency that proposes to follow rules that differ \nfrom these regulations must secure prior approval from OPM. (These \ninterim regulations reflect regulations found in provisionally retained \nFPM Supplement 990-2, Book 550, Appendix A. OPM does not plan to \ncontinue publishing the list of agencies having approved agency \nregulations for advance and evacuation payments that were published in \nprovisionally retained FPM Supplement 990-2, Book 550, Appendix B.)\n\nBack Pay Computations\n\n    The interim regulations clarify in 5 CFR 550.805(e)(1) that \noutside, ``moonlight'' employment engaged in by the employee both while \nFederally employed and erroneously separated is not to be deducted when \ncomputing the amount of back pay.\n    The regulations also revise the back pay computation rules in \nSec. 550.805(e)(2) by identifying the erroneous payments that must be \ndeducted from a back pay award and enumerating the order in which such \npayments must be recovered. When an employee separates or retires from \nthe Federal service, the employee typically receives certain payments, \nsuch as a refund of the employee's retirement contributions, severance \npay, and/or a lump-sum payment for unused annual leave, as applicable. \nIf the employee retires, he or she may also receive an annuity, and his \nor her health benefits and life insurance may be continued. When an \nemployee is separated or retired from the Federal service because of an \nunwarranted or unjustified personnel action, such payments must be \nrecovered by the Federal Government upon the employee's return to \nservice. (These interim regulations reflect guidance found in \nprovisionally retained FPM supplement 990-2, Book 550, subchapter S8.)\n\nComputing Cost-of-Living Allowances for Employees Receiving Pay \nRetention\n\n    The interim regulations in 5 CFR 591.210 incorporate OPM's policy \nthat an employee on pay retention who is entitled to a cost-of-living \nallowance or post differential is entitled to an allowance or \ndifferential computed as a percentage of his or her retained rate. \n(These interim regulations reflect guidance found in provisionally \nretained FPM Letter 591-50, July 26, 1989.)\n\nLeave for Uncommon Tours of Duty\n\n    The interim regulations include a definition of ``uncommon tour of \nduty'' in 5 CFR 630.201, remove and reserve Sec. 630.205, and revise \nSec. 630.210 to clarify how leave is accrued and charged when an agency \nestablishes a special leave accrual and usage methodology for employees \non uncommon tours of duty, such as firefighters who have 144-hour \nbiweekly schedules (i.e., six 24-hour shifts).\n    The leave accrual rates for such employees must be directly \nproportionate to the rates for employees who accrue and use leave on \nthe basis of an 80-hour biweekly schedule. For example, if a \nfirefighter's leave is accrued and used on the basis of a 144-hour \nbiweekly schedule, then the maximum annual leave accrual rate would be \n14 hours per biweekly pay period, instead of the standard rate of 8 \nhours per biweekly pay period. (When 8 hours is multiplied by the \nfactor of 144/80, the product is approximately 14. A special accrual \nrate of 24 hours would be used for the last full pay period in the \ncalendar year to ensure equivalence in leave accrual over the entire \nyear.) Such a firefighter would be charged leave proportionally for any \napplicable period of absence during the 144-hour uncommon tour of duty.\n    In addition, the regulations clarify how leave balances are \nrecomputed for employees who convert to a different tour of duty for \nleave purposes. Leave balances must be converted to the proper number \nof hours based on the proportion of hours in the new tour of duty \ncompared to the former tour of duty. For example, if a firefighter who \naccrues and uses leave based on a 144-hour biweekly tour of duty \nconverts to a position in which he or she accrues and uses leave based \non an 80-hour biweekly tour of duty, the converted leave balance is \ncomputed by multiplying the former balance by the factor of 80/144. \n(These interim regulations reflect guidance found in provisionally \nretained FPM Supplement 990-2, Book 630, S2-6b.)\n\nRemoval of Recordkeeping Requirements when Biweekly Pay Caps on \nPremium Pay Are Waived\n\n    The interim regulations eliminate the requirement in 5 CFR \n550.106(d) that agencies document each determination to pay premium pay \nunder the annual limitation for work performed in connection with an \nemergency. (Final regulations allowing agencies to waive the biweekly \nlimitation on premium pay during an emergency, as provided by section \n204 of the Federal Employees Pay Comparability Act of 1990, were \npublished at 57 FR 31630, July 17, 1992.)\n    Agencies have found it difficult to retrieve the data necessary to \ncomply with this recordkeeping requirement. Therefore, OPM is amending \nits regulations to eliminate the need to document and keep certain \nrecords related to an emergency when an agency waives the biweekly \npremium pay limitation and uses the maximum annual earnings limitation \nfor premium pay in its place. (These interim regulations are part of \nOPM's ongoing effort to reduce administrative burdens consistent with \nthe goals of the National Performance Review.)\n\nWaiver of Notice of Proposed Rule Making and Delay in Effective \nDate\n\n    Pursuant to 5 U.S.C. 553(b)(3)(B), I find that good cause exists \nfor waiving the general notice of proposed rulemaking and making this \nrule effective in less than 30 days. These interim regulations reflect \nguidance found in provisionally retained FPM materials that will sunset \non December 31, 1994. The delay in effective date is being waived to \npermit continuity in administering Governmentwide pay and leave \nadministration rules.\n\nRegulatory Flexibility Act\n\n    I certify that these regulations will not have a significant \neconomic impact on a substantial number of small entities because they \nwill affect only Federal employees and agencies.\n\nExecutive Order 12866, Regulatory Review\n\n    This rule has been reviewed by the Office of Management and Budget \nin accordance with Executive Order 12866\n\nList of Subjects in 5 CFR Parts 451, 531, 550, 551, 591, and 630\n\n    Administrative practice and procedure; Claims; Decorations, medals, \nawards; Government employees; Law enforcement officers; Travel and \ntransportation expenses; Wages.\n\nU.S. Office of Personnel Management\nJames B. King,\nDirector.\n\n    Accordingly, OPM is amending parts 451, 531, 550, 591, and 630 of \ntitle 5 of the Code of Federal Regulations as follows:\n\nPART 451--INCENTIVE AWARDS\n\n    1. The authority citation for part 451 continues to read as \nfollows:\n\n    Authority: 5 U.S.C. 4501-4507.\n\n    2. In Sec. 451.103, a new definition, informal recognition items, \nis added to read as follows:\n\n\nSec. 451.103   Definitions.\n\n* * * * *\n    Informal recognition items means items of extremely nominal value \ngranted as immediate, informal recognition of employee accomplishment.\n* * * * *\n    3. In Sec. 451.104, paragraphs (f) through (j) are redesignated as \nparagraphs (g) through (k), respectively, and a new paragraph (f) is \nadded to read as follows:\n\n\nSec. 451.104   Policy.\n\n* * * * *\n    (f) An award under this subpart may be granted to the legal heir or \nestate of a deceased employee.\n* * * * *\n    4. In Sec. 451.106, paragraph (b) is revised to read as follows:\n\n\nSec. 451.106   Responsibilities of the Office of Personnel Management.\n\n* * * * *\n    (b) OPM shall review and approve or disapprove all recommendations \nfor agency awards under this subpart that would grant an individual \nemployee an award in excess of $10,000 but not over $25,000.\n    5. In Sec. 451.107, paragraph (a)(3) is revised, paragraph (b) is \nredesignated as paragraph (c), and new paragraph (b) is added to read \nas follows:\n\n\nSec. 451.107   Agency responsibilities.\n\n    (a) * * *\n    (3) Award recommendations that would grant an individual employee \nan award in excess of $10,000 but not over $25,000; and\n* * * * *\n    (b) Agencies that make expenditures for informal recognition items \nfor distribution to employees shall establish criteria and procedures \nfor granting and, as appropriate, documenting informal recognition \nitems and for distinguishing such items from formal nonmonetary awards \ngranted under this part.\n* * * * *\n\nPART 531--PAY UNDER THE GENERAL SCHEDULE\n\n    6. The authority citation for part 531 is revised to read as \nfollows:\n\n    Authority: 5 U.S.C. 5115, 5307, and 5338; sec. 4 of Pub. L. 103-\n89, 107 Stat. 981; and E.O. 12748, 56 FR 4521, February 4, 1991, 3 \nCFR 1991 Comp., p. 316;\n    Subpart A also issued under 5 U.S.C. 5304, 5305, and 5553; \nsection 302 of the Federal Employees Pay Comparability Act of 1990 \n(FEPCA), Pub. L. 101-509, 104 Stat. 1462; and E.O. 12786, 56 FR \n67453, December 30, 1991, 3 CFR 1991 Comp., p. 376;\n    Subpart B also issued under 5 U.S.C. 5303(g), 5333, 5334(a), and \n7701(b)(2);\n    Subpart C also issued under 5 U.S.C. 5304, 5305, and 5553; \nsections 302 and 404 of FEPCA, Pub. L. 101-509, 104 Stat. 1462 and \n1466; and section 3(7) of Pub. L. 102-378, 106 Stat. 1356;\n    Subpart D also issued under 5 U.S.C. 5335(g) and 7701(b)(2);\n    Subpart E also issued under 5 U.S.C. 5336;\n    Subpart F also issued under 5 U.S.C. 5304, 5305(g)(1), and 5553; \nand E.O. 12883, 58 FR 63281, November 29, 1993, 3 CFR 1993 Comp., p. \n682.\n\nSubpart B--Determining Rate of Basic Pay\n\n    7. In Sec. 531.204, paragraph (a)(3) is added to read as follows:\n\n\nSec. 531.204   Special provisions.\n\n    (a) * * *\n    (3) When an employee at grade GS-1 or grade GS-2 is promoted or \ntransferred to a higher grade, the amount of a step increase above step \n10 of the employee's grade equals the amount of the increment between \nstep 9 and step 10 of the grade from which promoted.\n* * * * *\n    8. In Sec. 531.406, the introductory text to paragraph (b)(2) is \nrevised, paragraph (b)(3) is redesignated as paragraph (b)(4), and a \nnew paragraph (b)(3) is added to read as follows:\n\n\nSec. 531.406   Creditable service.\n\n* * * * *\n    (b) * * *\n    (2) Time in a nonpay status (based upon the tour of duty from which \nthe time was charged) is creditable service in the computation of a \nwaiting period for an employee with a scheduled tour of duty when it \ndoes not exceed an aggregate of:\n* * * * *\n    (3) Except as provided in paragraph (c) of this section, time in a \nnonpay status (based upon the tour of duty from which the time was \ncharged) that is in excess of the allowable amount shall extend a \nwaiting period by the excess amount.\n* * * * *\n\nPART 550--PAY ADMINISTRATION (GENERAL)\n\nSubpart A--Premium Pay\n\n    9. The authority citation for part 550, subpart A, is revised to \nread as follows:\n\n    Authority: 5 U.S.C. 5304 note, 5305 note, 5541(2)(iv), 5548, and \n6101(c); E.O. 12748, 3 CFR 1991 Comp., p.316.\n\n\nSec. 550.106  Annual maximum earnings limitation for work in connection \nwith an emergency. [Amended]\n\n    10. In Sec. 550.106, paragraph (d) is removed, and paragraph (e) is \nredesignated as paragraph (d).\n    11. In Sec. 550.112, paragraph (j) is added to read as follows:\n\n\nSec. 550.112  Computation of overtime work.\n\n* * * * *\n    (j) Official duty station. An agency may prescribe a mileage radius \nof not greater than 50 miles to determine whether an employee's travel \nis within or outside the limits of the employee's official duty station \nfor determining entitlement to overtime pay for travel under paragraph \n(g) of this section except that--\n    (1) An agency's definition of an employee's official duty station \nfor determining overtime pay for travel may not be smaller than the \ndefinition of ``official station and post of duty'' under the Federal \nTravel Regulation issued by the General Services Administration (41 CFR \n301-1.3(c)(4)); and\n    (2) Travel from home to work and vice versa is not hours of work. \nWhen an employee travels directly from home to a temporary duty \nlocation outside the limits of his or her official duty station, the \ntime the employee would have spent in normal home to work travel shall \nbe deducted from hours of work.\n    12. Section 550.171 is revised to read as follows:\n\n\nSec. 550.171  Authorization of pay for Sunday work.\n\n    An employee is entitled to pay at his or her rate of basic pay plus \npremium pay at a rate equal to 25 percent of his or her rate of basic \npay for each hour of Sunday work which is not overtime work or for each \nhour while in a paid leave or excused absence status on Sunday and \nwhich is not in excess of 8 hours or, for an employee on a compressed \nwork schedule, not in excess of the number of hours the employee is \nscheduled to work on Sunday for each regularly scheduled tour of duty \nwhich begins or ends on Sunday.\n    13. Subpart D of part 550, consisting of Secs. 550.401 through \n550.407, is revised to read as follows:\n\nSubpart D--Payments During Evacuation\n\n550.401  Purpose, applicability, authority, and administration.\n550.402  Definitions.\n550.403  Advance payments; evacuation payments; special allowances.\n550.404  Computation of advance payments and evacuation payments; \ntime periods.\n550.405  Determination of special allowances.\n550.406  Work assignments during evacuation; return to duty.\n550.407  Termination of payments during evacuation.\n550.408  Review of accounts; service credit.\n\n    Authority: 5 U.S.C. 5527; E.O. 10982, 3 CFR 1959-1963., p. 502.\n\nSubpart D--Payments During Evacuation\n\n\nSec. 550.401  Purpose, applicability, authority, and administration.\n\n    (a) Purpose. This subpart provides regulations to administer \nsubchapter III (except sections 5524a and 5525) of chapter 55 of title \n5, United States Code. The regulations provide for Governmentwide \nuniformity in making payments during an evacuation to employees or \ntheir dependents, or both, who are evacuated in the United States and \ncertain non-foreign areas because of natural disasters or for military \nor other reasons that create imminent danger to their lives.\n    (b) Applicability. This subpart applies to--\n    (1) Executive agencies, as defined in section 105 of title 5, \nUnited States Code.\n    (2) Employees of an agency who are U.S. citizens or who are U.S. \nnationals;\n    (3) Employees of an agency who are not citizens or nationals of the \nUnited States, but who were recruited with a transportation agreement \nthat provides return transportation to the area from which recruited; \nand\n    (4) Alien employees of an agency hired within the United States.\n    (c) Authority. The head of an agency may make advance payments and \nevacuation payments and pay special allowances as provided by this \nsubpart. If the head of an agency proposes to issue regulations that \ndeviate from the provisions of this subpart, prior approval of the \nagency regulations, as required by section 4(b) of Executive Order \n10982 of December 25, 1961, must be secured from the Office of \nPersonnel Management.\n    (d) Administration. The head of an agency having employees subject \nto this subpart is responsible for the proper administration of this \nsubpart. Payment of advance payments and evacuation payments and any \nrequired adjustments shall be made in accordance with procedures \nestablished by the agency.\n\n\nSec. 550.402  Definitions.\n\n    Agency means an Executive agency, as defined in section 105 of \ntitle 5, United States Code.\n    Day means a calendar day, except when otherwise specified by the \nhead of an agency.\n    Dependent means a relative of the employee residing with the \nemployee and dependent on the employee for support.\n    Designated representative means a person 16 years of age or over \nwho is named by an employee for the purpose of caring for a dependent.\n    Evacuated employee means an employee of an agency who has received \nan order to evacuate.\n    Order to evacuate means an oral or written order to evacuate an \nemployee from an assigned area.\n    Safe haven means a designated area to which an employee or \ndependent will be or has been evacuated.\n    United States area means the several States, the District of \nColumbia,the Commonwealth of Puerto Rico, the Panama Canal Zone, and \nany territory or possession of the United States (excluding the Trust \nTerritory of the Pacific Islands).\n\n\nSec. 550.403  Advance payments; evacuation payments; special \nallowances.\n\n    (a) An advance payment of pay, allowances, and differentials may be \nmade to an employee who has received an order to evacuate, provided \nthat, in the opinion of the agency head or designated official, payment \nin advance of the date on which an employee otherwise would be entitled \nto be paid is required to help the employee defray immediate expenses \nincidental to the evacuation.\n    (b) Evacuation payments of pay, allowances, and differentials may \nbe made to an employee during an evacuation and shall be paid on the \nemployee's regular pay days when feasible.\n    (c) Special allowances, including travel expenses and per diem, may \nbe paid to evacuated employees to offset any direct added expenses that \nare incurred by the employee as a result of his or her evacuation or \nthe evacuation of his or her dependents.\n    (d) An advance payment or an evacuation payment may be paid to the \nemployee, a dependent 16 years of age or over, or a designated \nrepresentative. When payment is made to someone other than the \nemployee, prior written authorization by the employee must have been \nprovided to the authorizing agency official.\n    (e) Any agency may make payments in an evacuation situation to an \nemployee of another Federal agency (or his or her dependent(s) or \npersonal representative) who has received an order to evacuate. When a \npayment is made under this subpart by an agency other than the \nemployee's agency, the agency making the payment shall immediately \nreport the amount and date of the payment to the employee's agency in \norder that prompt reimbursement may be made.\n\n\nSec. 550.404  Computation of advance payments and evacuation payments; \ntime periods.\n\n    (a) Payments shall be based on the rate of pay (including \nallowances, differentials, or other authorized payments) to which the \nemployee was entitled immediately before the issuance of the order of \nevacuation. All deductions authorized by law, such as retirement or \nsocial security deductions, authorized allotments, Federal withholding \ntaxes, and others, when applicable, shall be made before advance \npayments or evacuation payments are made.\n    (b)(1) The amount of advance payments shall cover a time period not \nto exceed 30 days or a lesser number of days, as determined by the \nauthorizing agency official.\n    (2) Evacuation payments shall cover the period of time during which \nthe order to evacuate remains in effect, unless terminated earlier, but \nshall not exceed 180 days. When feasible, evacuation payments shall be \npaid on the employee's regular days.\n    (c) When an advance payment has been made to or for the account of \nan employee, the amount of the advance payment shall not diminish the \namount of the evacuation payments that would otherwise be due the \nemployee.\n    (d)(1) For full-time and part-time employees, the amount of an \nadvance payment or an evacuation payment shall be computed on the basis \nof the number of regularly scheduled workdays for the time period \ncovered.\n    (2) For intermittent employees, the amount of an advance payment or \nevacuation payment shall be computed on the basis of the number of days \non which the employee would be expected to work during the time period \ncovered. The number of days shall be determined, whenever possible, by \napproximating the number of days per week normally worked by the \nemployee during an average 6-week period, as determined by the agency.\n\n\nSec. 550.405  Determination of special allowances.\n\n    In determining the direct added expenses that may be payable as \nspecial allowances, the following shall be considered:\n    (a) The travel expenses and per diem for an evacuated employee and \nthe travel expenses for his or her dependents shall be determined in \naccordance with the Federal Travel Regulation (FTR), whether or not the \nemployee or dependents would actually be covered or subject to the FTR. \nIn addition, per diem is authorized for dependents of an evacuated \nemployee at a rate equal to the rate payable to the employee, as \ndetermined in accordance with the FTR (except that the rate for \ndependents under 11 years of age shall be one-half this rate), whether \nor not the employee or dependents would actually be covered or subject \nto the FTR. Per diem for an employee and his or her dependents shall be \npayable from the date of departure from the evacuated area through the \ndate of arrival at the safe haven, including any period of delay en \nroute that is beyond an evacuee's control or that may result from \nevacuation travel arrangements.\n    (b) Subsistence expenses for an evacuated employee or his or her \ndependents shall be determined at applicable per diem rates for the \nsafe haven or for a station other than the safe haven that has been \napproved by appropriate authority. Such subsistence expenses shall \nbegin to be paid on the date following arrival and may continue until \nterminated. The subsistence expenses shall be computed on a daily rate \nbasis, as follows:\n    (1) The applicable maximum per diem rate shall be computed for the \nemployee and each dependent who is 11 years of age or over. One-half of \nsuch rate shall be computed for each dependent under 11 years of age. \nThese maximum rates may be paid for a period not to exceed the first 30 \ndays of evacuation.\n    (2) If, after expiration of the 30-day period, the evacuation has \nnot been terminated, the per diem rate shall be computed at 60 percent \nof the rates prescribed in paragraph (b)(1) of this section until a \ndetermination is made by the agency that subsistence expenses are no \nlonger authorized. This rate may be paid for a period not to exceed 180 \ndays after the effective date of the order to evacuate.\n    (3) The daily rate of the subsistence expense allowance actually \npaid an employee shall be either a rate determined in accordance with \nparagraphs (b) (1) and (2) of this section or a lower rate determined \nby the agency to be appropriate for necessary living expenses.\n    (c) Payment of subsistence expenses shall be decreased by the \napplicable per-person amount for any period during which the employee \nis authorized regular travel per diem in accordance with the FTR.\n\n\nSec. 550.406  Work assignments during evacuation; return to duty.\n\n    (a) Evacuated employees at safe havens may be assigned to perform \nany work considered necessary or required to be performed during the \nperiod of the evacuation without regard to the grades or titles of the \nemployees. Failure or refusal to perform assigned work may be a basis \nfor terminating further evacuation payments.\n    (b) When part-time employees are given assigned work at the safe \nhaven, records of the number of hours worked shall be maintained so \nthat payment may be made for any hours of work that are greater than \nthe number of hours on which evacuation payments are computed.\n    (c) Not later than 180 days after the effective date of the order \nto evacuate, or when the emergency or evacuation situation is \nterminated, whichever is earlier, an employee must be returned to his \nor her regular duty station, or appropriate action must be taken to \nreassign him or her to another duty station.\n\n\nSec. 550.407  Termination of payments during evacuation.\n\n    Advance payments or evacuation payments terminate when the agency \ndetermines that--\n    (a) The employee is assigned to another duty station outside the \nevacuation area;\n    (b) The employee abandons or is otherwise separated from his or her \nposition;\n    (c) The employee's employment is terminated by his or her transfer \nto retirement rolls or other type of annuity based on cessation of \ncivilian employment;\n    (d) The employee resumes his or her duties at the duty station from \nwhich he or she was evacuated;\n    (e) The agency determines that payments are no longer warranted; or\n    (f) The date the employee is determined to be covered by the \nMissing Persons Act (50 App. U.S.C. 1001 et seq.), unless payment is \nearlier terminated under these regulations.\n\n\nSec. 550.408  Review of accounts; service credit.\n\n    (a) The payroll office having jurisdiction over the employee's \naccount shall review each employee's account for the purpose of making \nadjustments at the earliest possible date after the evacuation is \nterminated (or earlier if the circumstances justify), after the \nemployee returns to his or her assigned duty station, or when the \nemployee is reassigned officially.\n    (b) The employee's pay shall be adjusted on the basis of the rates \nof pay, allowances, or differentials, if any, to which he or she would \notherwise have been entitled under all applicable statutes other than \nsection 5527 of title 5, United States Code. Any adjustments in the \nemployee's account shall also reflect advance payments made to the \nemployee under Sec. 550.403(a) of this subpart.\n    (c)(1) After an employee's account is reviewed as required by \nparagraph (a) of this section, if it is found that the employee is \nindebted for any part of the advance payment made to him or her or his \nor her dependent(s) or designated representative, recovery of the \nindebtedness shall be effected by the payroll office having \njurisdiction over the employee's account, unless a waiver of recovery \nhas been approved. Repayment of the indebtedness may be made either in \nfull or in partial payments, as determined by the head of the agency or \ndesignated official.\n    (2) Recovery of indebtedness for advance payment shall not be \nrequired when it is determined by the head of the agency or designated \nofficial that the recovery would be against equity or good conscience \nor against the public interest. Findings that formed the basis for \nwaiver of recovery shall be filed in the employee's personnel folder on \nthe permanent side.\n    (d) For the period or periods covered by any payments made under \nthis subpart, the employee shall be considered as performing active \nFederal service in his or her position without a break in service.\n\nSubpart H--Back Pay\n\n    14. The authority citation for subpart H of part 550 is revised to \nread as follows:\n\n    Authority: 5 U.S.C. 5596(c); Pub. L. 100-202, 101 Stat. 1329.\n\n    15. In Sec. 550.805, paragraph (e) is revised to read as follows:\n\n\nSec. 550.805  Back pay computations.\n\n* * * * *\n    (e) In computing the amount of back pay under section 5596 of title \n5, United States Code, and this subpart, an agency shall deduct--\n    (1) Any amounts earned by an employee from other employment \nundertaken to replace the employment from which the employee had been \nseparated by the unjustified or unwarranted personnel action during the \nperiod covered by the corrective action, but not including additional \nor ``moonlight'' employment the employee may have engaged in both while \nFederally employed and erroneously separated; and\n    (2) Any erroneous payments received from the Government as a result \nof the unjustified or unwarranted personnel action, which, in the case \nof erroneous payments received from a Federal employee retirement \nsystem, shall be returned to the appropriate system. Such payments \nshall be recovered from the back pay award in the following order:\n    (i) Retirement annuity payments (except health benefits and life \ninsurance premiums);\n    (ii) Refunds of retirement contributions;\n    (iii) Severance pay;\n    (iv) Lump-sum payment for annual leave (and the annual leave shall \nbe recredited for the employee's use under part 630);\n    (v) Health benefits and life insurance premiums, if coverage \ncontinued during the period of erroneous retirement; and\n    (vi) Other authorized deductions.\n* * * * *\n\nPART 551--PAY ADMINISTRATION UNDER THE FAIR LABOR STANDARDS ACT\n\n    16. The authority citation for part 551 continues to read as \nfollows:\n\n    Authority: 5 U.S.C. 5542(c); Sec. 4(f) of the Fair Labor \nStandards Act of 1938, as amended by Pub. L. 93-259, 88 Stat. 55 (29 \nU.S.C. 204f).\n\nSubpart D--Hours of Work\n\n    17. In Sec. 551.422, paragraph (d) is added to read as follows:\n\n\nSec. 551.422  Time spent traveling\n\n* * * * *\n    (d) Except as provided in paragraph (b) of this section, an agency \nmay prescribe a mileage radius of not greater than 50 miles to \ndetermine whether an employee's travel is within or outside the limits \nof the employee's official duty station for determining entitlement to \novertime pay for travel under this part. However, an agency's \ndefinition of an employee's official duty station for determining \novertime pay for travel may not be smaller than the definition of \n``official station and post of duty'' under the Federal Travel \nRegulation issued by the General Services Administration (41 CFR 301-\n1.3(c)(4)).\n\nPART 591--ALLOWANCES AND DIFFERENTIALS\n\nSubpart B--Cost-of-Living Allowance and Post Differential--\nNonforeign Areas\n\n    18. The authority citation for part 591, subpart B, is revised to \nread as follows:\n\n    Authority: 5 U.S.C. 5941; E.O. 10000, 3 CFR, 1943-1948 Comp., p. \n792; and E.O. 12510, 3 CFR, 1985 Comp., p. 338.\n\n    19. In Sec. 591.210, paragraph (b)(1) is revised to read as \nfollows:\n\n\nSec. 591.210  Payment of allowances and differentials.\n\n* * * * *\n    (b)(1) Except as provided in paragraph (b)(2) of this section, \nallowances and differentials shall be calculated and paid as a \npercentage of an employee's hourly rate of basic pay, including a \nretained rate of pay under 5 U.S.C. 3594(c) or 5363, for those hours \nfor which the employee receives basic pay, including all periods of \npaid leave, detail, or travel status outside the allowance or \ndifferential area. Allowances and differentials shall be included in \nany lump-sum payment for accumulated and current accrued annual leave \nissued under sections 5551 or 5552 of title 5, United States Code, to \nan employee who separates while in a duty status in the allowance or \ndifferential area.\n* * * * *\n\nPART 630--ABSENCE AND LEAVE\n\n    20. The authority citation for part 630 is revised to read as \nfollows:\n\n    Authority: 5 U.S.C. 6311; Sec. 630.303 also issued under 5 \nU.S.C. 6133(a); Sec. 630.501 and subpart F also issued under E.O. \n11228, 30 FR 7739, June 16, 1965, 3 CFR 1974 Comp., p. 163; subpart \nG also issued under 5 U.S.C. 6305; subpart H issued under 5 U.S.C. \n6326; subpart I also issued under 5 U.S.C. 6332 and Public Laws 100-\n566 (102 Stat. 2834), and 103-103 (107 Stat. 1022); subpart J also \nissued under 5 U.S.C. 6362 and Public Laws 100-566 and 103-103; \nsubpart K also issued under Public Law 102-25 (105 Stat. 92); and \nsubpart L also issued under 5 U.S.C. 6387 and Public Law 103-3 (107 \nStat. 6, 23).\n\nSubpart B--Definitions and General Provisions for Annual and Sick \nLeave\n\n    21. In Sec. 630.201, paragraph (b)(7) is redesignated as paragraph \n(b)(8), and a new paragraph (b)(7) is added to read as follows:\n\n\nSec. 630.201  Definitions.\n\n* * * * *\n    (b) * * *\n    (7) Uncommon tour of duty means a tour of duty that exceeds 80 \nhours of work in a biweekly pay period, including hours of actual work \nplus hours in a standby status for which the employee is compensated by \nannual premium pay under 5 U.S.C. 5545(c)(1) and part 550 of this \nchapter.\n* * * * *\n    22. Section 630.205 is removed and reserved.\n\n\nSec. 630.205  [Reserved]\n\n    23. Section 630.210 is revised to read as follows:\n\n\nSec. 630.210  Uncommon tours of duty.\n\n    (a) An agency may require that an employee with an uncommon tour of \nduty accrue and use leave on the basis of that uncommon tour of duty. \nThe leave accrual rates for such employees shall be directly \nproportional (based on the number of hours in the biweekly tour of duty \nand the accrual rate of the corresponding leave category) to the \nstandard leave accrual rates for employees who accrue and use leave on \nthe basis of an 80-hour biweekly tour of duty. One hour (or appropriate \nfraction thereof) of leave shall be charged for each hour (or \nappropriate fraction thereof) of absence from the uncommon tour of \nduty.\n    (b) When an employee is converted to a different tour of duty for \nleave purposes, his or her leave balances shall be converted to the \nproper number of hours based on the proportion of hours in the new tour \nof duty compared to the former tour of duty.\n\n[FR Doc. 94-31822 Filed 12-27-94; 8:45 am]\nBILLING CODE 6325-01-M\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:10982#sec1": {
       "char_end": 950,
@@ -1315,6 +1424,110 @@
       },
       "text": "(b ) In  order to coordinate the policies and procedures of the exec­\nutive branch of the Government, all regulations of any Federal agency  \nprepared for issuance under the provisions of section 6(c) of the act  \nand section 4 (a ) of this order shall be submitted for prior approval  \nto the Secretary of State, or to the Civil Service Commission, as may  \nbe appropriate, under section 2 of this order. The Secretary of State  \nand the Civil Service Commission shall review such regulations for  \nconformance with the purpose and intent of the act and of the regu­\nlations contained m section 3 of this order. No Federal agency shall  \nmake any payment under the provisions of the act or this order until\nf a^1 (? nsJ?ave ^ >een approved by the Secretary of State, or\nthe Civil Service Commission, as appropriate.\nm t t t J ohn  F. K ennedy\n1 he  W hite  House,\nDecember 25,1961 ."
     },
+    "CURRENT:EO:10982#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 226,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "5 U.S.C. 5527 note; note 'Ex. Ord. No. 10982. Administration of Provisions of Chapter' [USLM note id id27cdb845-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "3ce8b9d435032c584f332bab8782a231c67394f6e174133b4f41ba1dfa429f84",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id27cdb845-ac5f-11f1-a76e-9d053fb5b48a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:10982#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10982",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (5 U.S.C. 5527 note)",
+      "machine_lead": true,
+      "mention_id": "usc:e982edcd3942",
+      "snippet": "Ex. Ord. No. 10982. Administration of Provisions of Chapter | Ex. Ord. No. 10982, Dec. 25, 1961, 27 F.R. 3, as amended by Ex. Ord. No. 12107, Dec. 28, 1978, 44 F.R. 1055; Ex. Ord. No. 12748, Feb. 1, 1991, 56 F.R. 4521, provided:",
+      "source": {
+        "page_or_item": "5 U.S.C. 5527 note; note 'Ex. Ord. No. 10982. Administration of Provisions of Chapter' [USLM note id id27cdb845-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id27cdb845-ac5f-11f1-a76e-9d053fb5b48a.txt",
+        "text_sha256": "3ce8b9d435032c584f332bab8782a231c67394f6e174133b4f41ba1dfa429f84",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 10982. Administration of Provisions of Chapter\nEx. Ord. No. 10982, Dec. 25, 1961, 27 F.R. 3, as amended by Ex. Ord. No. 12107, Dec. 28, 1978, 44 F.R. 1055; Ex. Ord. No. 12748, Feb. 1, 1991, 56 F.R. 4521, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id27cdb845-ac5f-11f1-a76e-9d053fb5b48a.txt",
+      "text_sha256": "3ce8b9d435032c584f332bab8782a231c67394f6e174133b4f41ba1dfa429f84",
+      "where": "USC 5 U.S.C. 5527 note"
+    },
+    "CURRENT:EO:10982#1": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 1003,
+      "char_start": 662,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-10-27)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "28 CFR 0.154",
+        "sha256": "04363cb9d08af12912ce639f561ce38c47f9b6be953972ba815dcbee423829c3",
+        "source_id": "cfr:t28:0.154",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-28/section-0.154"
+      },
+      "id": "CURRENT:EO:10982#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10982",
+      "legal_basis_candidate": "regulation text names the order (28 CFR 0.154)",
+      "machine_lead": true,
+      "mention_id": "ecfr:4d4fd6b28b4b",
+      "snippet": "...ent (including U.S. Attorneys), are hereby authorized to exercise the authority vested in the Attorney General by sections 5522-5527 of title 5, U.S. Code, and Executive Order 10982 of December 25, 1961, and to administer the regulations adopted by the Attorney General in Order No. 269-62 with respect to advance and evacuation payments and...",
+      "source": {
+        "page_or_item": "28 CFR 0.154 (section_text; GovInfo eCFR XML title 28, amended through 2026-10-27; NODE 28:1.0.1.1.1.44.1.17)",
+        "sha256": "98c67ff0524b90420a1bc7be49416051d85ac6006f40a072a023ec6c2698165e",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t28-0.154.txt",
+        "text_sha256": "04363cb9d08af12912ce639f561ce38c47f9b6be953972ba815dcbee423829c3",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-28/ECFR-title28.xml"
+      },
+      "system": "ecfr",
+      "text": "ent (including U.S. Attorneys), are hereby authorized to exercise the authority vested in the Attorney General by sections 5522-5527 of title 5, U.S. Code, and Executive Order 10982 of December 25, 1961, and to administer the regulations adopted by the Attorney General in Order No. 269-62 with respect to advance and evacuation payments and",
+      "where": "CFR 28 CFR 0.154"
+    },
+    "CURRENT:EO:10982#2": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 1484,
+      "char_start": 1143,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 550.401",
+        "sha256": "459135ae5e48091a436138750feee3ddd06b5f0b1ebe3d8f4466a9632912d9f4",
+        "source_id": "cfr:t5:550.401",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-550.401"
+      },
+      "id": "CURRENT:EO:10982#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:10982",
+      "legal_basis_candidate": "regulation text names the order (5 CFR 550.401)",
+      "machine_lead": true,
+      "mention_id": "ecfr:ea946baf788a",
+      "snippet": "...agency proposes to issue regulations that deviate from the provisions of this subpart, prior approval of the agency regulations, as required by section 4(b) of Executive Order 10982 of December 25, 1961, must be secured from the Office of Personnel Management. (d) Administration. The head of an agency having employees subject to this subpa...",
+      "source": {
+        "page_or_item": "5 CFR 550.401 (section_text; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.74.4.72.1)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-550.401.txt",
+        "text_sha256": "459135ae5e48091a436138750feee3ddd06b5f0b1ebe3d8f4466a9632912d9f4",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
+      },
+      "system": "ecfr",
+      "text": "agency proposes to issue regulations that deviate from the provisions of this subpart, prior approval of the agency regulations, as required by section 4(b) of Executive Order 10982 of December 25, 1961, must be secured from the Office of Personnel Management.\n(d) Administration. The head of an agency having employees subject to this subpa",
+      "where": "CFR 5 CFR 550.401"
+    },
     "ORIGINAL:EO:10982": {
       "acceptable_as_original": true,
       "actor_id": "EO:10982",
@@ -1407,37 +1620,6 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(b) Advance payments of compensation, allowances and differentials, as authorized by section 2 of the act, shall be held to the minimum period during which the order for evacuation is anticipated to continue, and shall in no event be made for a period of more than thirty days."
-    },
-    "TERM:EO:10982:d05d42a0b38c07a1@459135ae5e48091a": {
-      "actor_id": "EO:10982",
-      "char_end": 1548,
-      "char_start": 1424,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:10982:d05d42a0b38c07a1@459135ae5e48091a",
-      "instrument_id": "EO:10982",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:10982#d",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:10982",
-        "page_or_item": "5 CFR 550.401",
-        "requires_page_check": false,
-        "sha256": "459135ae5e48091a436138750feee3ddd06b5f0b1ebe3d8f4466a9632912d9f4",
-        "signing_date": "1961-12-25",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-550.401.txt",
-        "text_sha256": "459135ae5e48091a436138750feee3ddd06b5f0b1ebe3d8f4466a9632912d9f4",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-5/section-550.401"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The head of an agency having employees subject to this subpart is responsible for the proper administration of this subpart."
     },
     "TERM:EO:10982:e341dc3f13e93d2b@4b3e53625b753d64": {
       "actor_id": "EO:10982",
@@ -1560,7 +1742,7 @@
       "text": "(b ) Advance payments of compensation, allowances, and differ­\nentials, as authorized by section 2 . of the act, shall be held to the  \nminimum period during which the order for evacuation is anticipated  \nto continue, and shall in no event be made for a period of more than\nd  l/ i s  hereby determined to be in the interest of the United  \nStates that payments of monetary amounts as authorized by section  \nof the act to and for the account of an employee whose evacuation is  \nordered and who is prevented from performing the duties of Jus  \nposition, under the circumstances set forth in section 3 of the act,  \nshould be extended beyond sixty days for not more than one hundred  \nand twenty additional days only upon determination, pursuant to  \nregulations of the head of the Federal agency concerned, that such  \nadditional payments are reasonably necessary to maintain a civilian  \nstaff available for performance of duty."
     }
   },
-  "fingerprint": "a68b30d548dd4d1a70639610bbbab9207e6bfb7e11c70284fbc3275b2f28b8d6",
+  "fingerprint": "99c2a19895f425983af5312ce4106d8055e0bce86a09f81ee17026113e05ef62",
   "instrument_id": "EO:10982",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1741,32 +1923,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 8,
+      "machine_fragment_items_for_this_order_all_systems": 8,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 8,
+      "machine_fragment_items_for_this_order_all_systems": 8,
+      "machine_hits_for_this_order": 6,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1789,16 +1973,15 @@
     "TERM:EO:10982:bb2913714ba034d8@b72c676e5cae1365",
     "TERM:EO:10982:6e3df9919fc361cc@b72c676e5cae1365",
     "TERM:EO:10982:f9d6012ec6593eed@4b3e53625b753d64",
-    "TERM:EO:10982:e341dc3f13e93d2b@4b3e53625b753d64",
-    "TERM:EO:10982:d05d42a0b38c07a1@459135ae5e48091a"
+    "TERM:EO:10982:e341dc3f13e93d2b@4b3e53625b753d64"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "dfce4f0d7c76e08a12a65a27fdbf27e569131fbd999900c4fab9c780ec79e854",
+    "fingerprint": "657e86f2bdb7f9e1391f1c4d7d805c62e590062fc2791c3f0bfbc3270d02d2eb",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_10982.json",
-    "history_sha256": "6387e0761c6295605cc9eb9f65424ebd5cc26c8ca918a31ccc5d6b1bc204108a",
+    "history_sha256": "281cef5ffbd664e59b072d638afb5a8472fae6e171531a111d9bbf89346fab29",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

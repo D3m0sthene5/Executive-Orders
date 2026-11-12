@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:14085",
-      "evidence_id": "ACTOR_TEXT:EO:14085"
+      "evidence_id": "ACTOR_TEXT:EO:14085",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -128,7 +129,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13830",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13830"
@@ -1041,11 +1042,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 211,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 13830. Delegation of Authority To Approve Certain Military Decorations' [USLM note id ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "d931a145ee21ee419cc5ad748588c666643827f11bc1e99cd3626be3eec3794e",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13830",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
@@ -1055,10 +1065,14 @@
       "source": {
         "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 13830. Delegation of Authority To Approve Certain Military Decorations' [USLM note id ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "d931a145ee21ee419cc5ad748588c666643827f11bc1e99cd3626be3eec3794e",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5",
+      "text": "Ex. Ord. No. 13830. Delegation of Authority To Approve Certain Military Decorations\nEx. Ord. No. 13830, Apr. 20, 2018, 83 F.R. 18191, as amended by Ex. Ord. No. 14085, § 5, Oct. 3, 2022, 87 F.R. 60542, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "d931a145ee21ee419cc5ad748588c666643827f11bc1e99cd3626be3eec3794e",
       "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
     },
     {
@@ -1110,7 +1124,7 @@
         "snippet": "Ex. Ord. No. 13830. Delegation of Authority To Approve Certain Military Decorations | Ex. Ord. No. 13830, Apr. 20, 2018, 83 F.R. 18191, as amended by Ex. Ord. No. 14085, § 5, Oct. 3, 2022, 87 F.R. 60542, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5",
+        "text_path": "usc-notes/ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
       },
       "proposal": {
@@ -1585,6 +1599,7 @@
       "char_end": 8840,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14085",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2501,6 +2516,42 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2018-04-25/pdf/2018-08883.pdf"
       },
       "text": "(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals."
+    },
+    "CURRENT:EO:13830#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 211,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 13830. Delegation of Authority To Approve Certain Military Decorations' [USLM note id ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "d931a145ee21ee419cc5ad748588c666643827f11bc1e99cd3626be3eec3794e",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13830#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13830",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
+      "machine_lead": true,
+      "mention_id": "usc:3d21d2afad39",
+      "snippet": "Ex. Ord. No. 13830. Delegation of Authority To Approve Certain Military Decorations | Ex. Ord. No. 13830, Apr. 20, 2018, 83 F.R. 18191, as amended by Ex. Ord. No. 14085, § 5, Oct. 3, 2022, 87 F.R. 60542, provided:",
+      "source": {
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 13830. Delegation of Authority To Approve Certain Military Decorations' [USLM note id ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "d931a145ee21ee419cc5ad748588c666643827f11bc1e99cd3626be3eec3794e",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13830. Delegation of Authority To Approve Certain Military Decorations\nEx. Ord. No. 13830, Apr. 20, 2018, 83 F.R. 18191, as amended by Ex. Ord. No. 14085, § 5, Oct. 3, 2022, 87 F.R. 60542, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a5e-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "d931a145ee21ee419cc5ad748588c666643827f11bc1e99cd3626be3eec3794e",
+      "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
     },
     "ORIGINAL:EO:13830": {
       "acceptable_as_original": true,
@@ -3562,7 +3613,7 @@
       "text": "(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations."
     }
   },
-  "fingerprint": "ac5a741c664b5b3f2282bc83259859d3aff6e10fa7ab5ea23ea4aae6c6687e86",
+  "fingerprint": "835ee201ddc538a50fcaf3bd287f414584c97fe00b8c95188a720fc371f4cac9",
   "instrument_id": "EO:13830",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -4272,32 +4323,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -4352,10 +4405,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "8cdb8196c3c0a6a0b43a5e78daa0e5ef8b2fa2c5ffa693aa365b564dc1465507",
+    "fingerprint": "4223b7fbd74bd5df1343417539890767806adfedf3d514f13a014f13078335e7",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13830.json",
-    "history_sha256": "59e3f1400ff9830bd336184e8c480d53550667e4ca768ed1b0e8060dcd39795c",
+    "history_sha256": "85b481266c357885ba862fdc75111f3aa59045fb845e08797f2d4a32967b228f",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

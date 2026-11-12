@@ -2,7 +2,21 @@
   "actor_contexts": [
     {
       "actor_id": "EO:14135",
-      "evidence_id": "ACTOR_TEXT:EO:14135"
+      "evidence_id": "ACTOR_TEXT:EO:14135",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2020-28436",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:2020-28436@240618",
+        "ACTOR_TEXT:FRDOC:2020-28436@246089"
+      ],
+      "full_text_chars": 316523,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-2020-28436.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "8caefbb81fb7ffae25c14ab2ef7e739364392ed3023885b80b546aea752b5025",
+      "window_bytes": 6254,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [
@@ -11,7 +25,8 @@
     "ACT:EO:13753>EO:14135@bed9351839c442df",
     "ACT:EO:13753>EO:14135@50873eccd8c772ba",
     "ACT:EO:13753>EO:14135@d549e6d8d8553093",
-    "ACT:EO:13753>EO:14135@d603caf741f6ef5a"
+    "ACT:EO:13753>EO:14135@d603caf741f6ef5a",
+    "ACT:EO:13753>EO:14135@ebc3a5b6943f3a7f"
   ],
   "chain": {
     "confidence": "medium",
@@ -155,9 +170,37 @@
           "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-13/pdf/2025-00603.pdf"
         },
         "verb": "amend"
+      },
+      {
+        "actor_id": "EO:14135",
+        "char_end": 3209,
+        "char_start": 3068,
+        "confidence": "medium",
+        "how_named": "direct",
+        "id": "CHAIN:EO:13753#6",
+        "notes": "Change wording lead; chronology does not decide legal effect.",
+        "provision_text": "(a) Executive Order 13753 of December 9, 2016 (Amending \nthe Order of Succession in the Department of Homeland Security), is hereby \nrevoked.",
+        "sections_touched": [
+          "partial"
+        ],
+        "signing_date": "2025-01-03",
+        "source": {
+          "acceptable_as_original": false,
+          "filing_date": null,
+          "grade": "held_text_lead",
+          "instrument_id": "EO:14135",
+          "page_or_item": "Exact source version 3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501; 2025-00603.pdf PDF pages 1-2 of 2",
+          "requires_page_check": false,
+          "sha256": "3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501",
+          "signing_date": "2025-01-03",
+          "text_path": "jobs/source-ladder/output/texts/queue_EO_14135_Exact_source_version_3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501_008a88e6bc.txt",
+          "text_sha256": "7409c7c20a8b74f58952717903f99d1e32a575bfdc5b5a5767046d105a502e64",
+          "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-13/pdf/2025-00603.pdf"
+        },
+        "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13753",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13753"
@@ -701,11 +744,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 399,
+      "char_start": 161,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "6 U.S.C. 111 note; note 'Ex. Ord. No. 13286. Amendment of Executive Orders, and Other Actions, in Connection With t' [USLM note id id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04]; usc06.xml (sha256 e7dc46885675fd993b1ecbfaa981d682fa2dc1b29f951e1a6a8194301f53ce65) in xml_uscAll@119-121.zip",
+        "sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13753",
       "legal_basis_candidate": "order amended a printed order (weak lead) (6 U.S.C. 111 note)",
@@ -715,9 +767,14 @@
       "source": {
         "page_or_item": "6 U.S.C. 111 note; note 'Ex. Ord. No. 13286. Amendment of Executive Orders, and Other Actions, in Connection With t' [USLM note id id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04]; usc06.xml (sha256 e7dc46885675fd993b1ecbfaa981d682fa2dc1b29f951e1a6a8194301f53ce65) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
+        "text_sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 13286, Feb. 28, 2003, 68 F.R. 10619, as amended by Ex. Ord. No. 13442, § 1, Aug. 13, 2007, 72 F.R. 45877; Ex. Ord. No. 13753, § 1, Dec. 9, 2016, 81 F.R. 90667; Ex. Ord. No. 14135, § 3(b), Jan. 3, 2025, 90 F.R. 2579, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
+      "text_sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
       "where": "USC 6 U.S.C. 111 note"
     },
     {
@@ -761,6 +818,7 @@
         "snippet": "Ex. Ord. No. 13286, Feb. 28, 2003, 68 F.R. 10619, as amended by Ex. Ord. No. 13442, § 1, Aug. 13, 2007, 72 F.R. 45877; Ex. Ord. No. 13753, § 1, Dec. 9, 2016, 81 F.R. 90667; Ex. Ord. No. 14135, § 3(b), Jan. 3, 2025, 90 F.R. 2579, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
         "where": "USC 6 U.S.C. 111 note"
       },
       "proposal": {
@@ -998,6 +1056,41 @@
           "exceptions_text": [],
           "filing_date": null,
           "id": "ACT:EO:13753>EO:14135@d603caf741f6ef5a",
+          "names_target": true,
+          "notes": "Machine lead only; no legal ending or revival asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+          "provision_label": "Sec. 3.",
+          "provision_text": "(a) Executive Order 13753 of December 9, 2016 (Amending \nthe Order of Succession in the Department of Homeland Security), is hereby \nrevoked.",
+          "reaches_target_via": "",
+          "savings_phrases": [],
+          "scope": "partial",
+          "signing_date": "2025-01-03",
+          "target_id": "EO:13753",
+          "verb": "amend"
+        },
+        {
+          "actor_id": "EO:14135",
+          "actor_source": {
+            "acceptable_as_original": false,
+            "filing_date": null,
+            "grade": "held_text_lead",
+            "instrument_id": "EO:14135",
+            "page_or_item": "Exact source version 3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501; 2025-00603.pdf PDF pages 1-2 of 2",
+            "requires_page_check": false,
+            "sha256": "3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501",
+            "signing_date": "2025-01-03",
+            "text_path": "jobs/source-ladder/output/texts/queue_EO_14135_Exact_source_version_3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501_008a88e6bc.txt",
+            "text_sha256": "7409c7c20a8b74f58952717903f99d1e32a575bfdc5b5a5767046d105a502e64",
+            "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-13/pdf/2025-00603.pdf"
+          },
+          "char_end": 3209,
+          "char_start": 3068,
+          "confidence": "medium",
+          "effective_class": "on_signing",
+          "effective_date": null,
+          "effective_wording": [],
+          "exceptions_text": [],
+          "filing_date": null,
+          "id": "ACT:EO:13753>EO:14135@ebc3a5b6943f3a7f",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
           "provision_label": "Sec. 3.",
@@ -1288,11 +1381,61 @@
       "text": "(a) Executive Order 13753 of December 9, 2016 (Amending \nthe Order of Succession in the Department of Homeland Security), is hereby \nrevoked.",
       "verb": "amend"
     },
+    "ACT:EO:13753>EO:14135@ebc3a5b6943f3a7f": {
+      "actor_id": "EO:14135",
+      "actor_source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14135",
+        "page_or_item": "Exact source version 3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501; 2025-00603.pdf PDF pages 1-2 of 2",
+        "requires_page_check": false,
+        "sha256": "3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501",
+        "signing_date": "2025-01-03",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_14135_Exact_source_version_3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501_008a88e6bc.txt",
+        "text_sha256": "7409c7c20a8b74f58952717903f99d1e32a575bfdc5b5a5767046d105a502e64",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-13/pdf/2025-00603.pdf"
+      },
+      "char_end": 3209,
+      "char_start": 3068,
+      "confidence": "medium",
+      "effective_class": "on_signing",
+      "effective_date": null,
+      "effective_wording": [],
+      "exceptions_text": [],
+      "filing_date": null,
+      "id": "ACT:EO:13753>EO:14135@ebc3a5b6943f3a7f",
+      "names_target": true,
+      "notes": "Machine lead only; no legal ending or revival asserted. No express effective wording found; on_signing is an unconfirmed lead assumption; signing date is not asserted as an exact effective date.",
+      "provision_label": "Sec. 3.",
+      "provision_text": "(a) Executive Order 13753 of December 9, 2016 (Amending \nthe Order of Succession in the Department of Homeland Security), is hereby \nrevoked.",
+      "reaches_target_via": "",
+      "savings_phrases": [],
+      "scope": "partial",
+      "signing_date": "2025-01-03",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "held_text_lead",
+        "instrument_id": "EO:14135",
+        "page_or_item": "Exact source version 3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501; 2025-00603.pdf PDF pages 1-2 of 2",
+        "requires_page_check": false,
+        "sha256": "3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501",
+        "signing_date": "2025-01-03",
+        "text_path": "jobs/source-ladder/output/texts/queue_EO_14135_Exact_source_version_3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501_008a88e6bc.txt",
+        "text_sha256": "7409c7c20a8b74f58952717903f99d1e32a575bfdc5b5a5767046d105a502e64",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-13/pdf/2025-00603.pdf"
+      },
+      "target_id": "EO:13753",
+      "text": "(a) Executive Order 13753 of December 9, 2016 (Amending \nthe Order of Succession in the Department of Homeland Security), is hereby \nrevoked.",
+      "verb": "amend"
+    },
     "ACTOR_TEXT:EO:14135": {
       "actor_id": "EO:14135",
       "char_end": 4722,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14135",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1307,6 +1450,65 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2025-01-13/pdf/2025-00603.pdf"
       },
       "text": "Instrument: EO:14135\nSource: https://www.govinfo.gov/content/pkg/FR-2025-01-13/pdf/2025-00603.pdf\nSHA-256 of the downloaded file: 3edf69087102c01e0d98b85b0c9bcbc4456c8fdd96c99d0d15fc3b1578d2d501\nLocation: 90 FR 2579, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n2579 Federal Register / Vol. 90, No. 7 / Monday, January 13, 2025 / Presidential Documents \nExecutive Order 14135 of January 3, 2025 \nProviding an Order of Succession Within the Department of \nHomeland Security \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the Federal Vacancies Reform \nAct of 1998, as amended, 5 U.S.C. 3345 et seq. (the ‘‘Act’’), it is hereby \nordered that: \nSection 1. Order of Succession. Subject to the provisions of section 2 of \nthis order, and to the limitations set forth in the Act, the following officials \nof the Department of Homeland Security, in the order listed, shall act as \nand perform the functions and duties of the office of Secretary of Homeland \nSecurity (Secretary) during any period in which the Secretary, the Deputy \nSecretary of Homeland Security, the Under Secretary for Management, and \nany officers designated by the Secretary pursuant to 6 U.S.C. 113 to act \nas Secretary have died, resigned, or otherwise become unable to perform \nthe functions and duties of the office of Secretary, until such time as at \nleast one of the officers mentioned above is able to perform the functions \nand duties of that office: \n(a) Administrator of the Transportation Security Administration; \n(b) Under Secretary for Intelligence and Analysis; \n(c) Director of the Federal Law Enforcement Training Centers; and \n(d) Region 3 Administrator, Federal Emergency Management Agency. \nSec. 2. Exceptions. (a) No individual who is serving in an office listed \nin section 1(a)–(d) of this order in an acting capacity shall, by virtue of \nso serving, act as Secretary pursuant to this order. \n(b) No individual who is serving in an office listed in section 1(a)– \n(d) of this order shall act as Secretary pursuant to this order unless that \nindividual is otherwise eligible to so serve under the Act. \n(c) If any individual who is serving in an office listed in section 1(a)– \n(d) of this order is designated by the Secretary pursuant to 6 U.S.C. 113 \nto act as Secretary, they shall act as Secretary in accordance with their \nplacement in the order established by the Secretary and not in accordance \nwith their placement on the list in section 1 of this order. \n(d) Notwithstanding the provisions of this order, the President retains \ndiscretion, to the extent permitted by law, to depart from this order in \ndesignating an acting Secretary. \nSec. 3. Revocation. (a) Executive Order 13753 of December 9, 2016 (Amending \nthe Order of Succession in the Department of Homeland Security), is hereby \nrevoked. \n(b) Section 88 of Executive Order 13286 of February 28, 2003 (Amendment \nof Executive Orders, and Other Actions, in Connection With the Transfer \nof Certain Functions to the Secretary of Homeland Security), is hereby \nstruck in its entirety and the subsequent sections are renumbered accordingly. \nSec. 4. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \nVerDate Sep<11>2014 16:08 Jan 10, 2025 Jkt 265001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\13JAE1.SGM 13JAE1ddrumheller on DSK120RN23PROD with PRESDOC-E1\n=== PDF page 2 of 2 ===\n2580 Federal Register / Vol. 90, No. 7 / Monday, January 13, 2025 / Presidential Documents \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nJanuary 3, 2025. \n[FR Doc. 2025–00603 \nFiled 1–10–25; 8:45 am] \nBilling code 3395–F4–P \nVerDate Sep<11>2014 16:08 Jan 10, 2025 Jkt 265001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\13JAE1.SGM 13JAE1\nBIDEN.EPS</GPH>\nddrumheller on DSK120RN23PROD with PRESDOC-E1"
+    },
+    "ACTOR_TEXT:FRDOC:2020-28436@240618": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2020-28436",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 246089,
+      "char_start": 240618,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2020-28436@240618",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2020-28436",
+        "page_or_item": "85 FR 84160; FR Doc. 2020-28436; Rule: Security Bars and Processing",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "8caefbb81fb7ffae25c14ab2ef7e739364392ed3023885b80b546aea752b5025",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2020-28436.txt",
+        "text_sha256": "8caefbb81fb7ffae25c14ab2ef7e739364392ed3023885b80b546aea752b5025",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2020/12/23/2020-28436.txt"
+      },
+      "text": "that under any timeline Acting Secretary Wolf's tenure has exceeded the \n210-day limit in FVRA, and that no exception to the 210-limit applies \nhere. The commenter said that ignoring FVRA is no ``mere \ntechnicality,'' and that doing so violates the constitutional principal \nthat the President must appoint principal officers with the advice and \nconsent of the Senate.\n    A legal services provider presented a timeline of the line of \nsuccession of Acting Secretaries, arguing that Christopher Krebs, \nDirector of the Cybersecurity and Infrastructure Security Agency, \nrather than Kevin McAleenan, should have succeeded Ms. Nielsen as \nActing Secretary. The commenter also argued that Mr. McAleenan exceeded \nthe 210-day limit provided by the FVRA, and thus that Mr. Wolf has no \nvalid claim to the office of Acting Secretary.\n    Response: As indicated in the proposed rule at section VI. H, Chad \nWolf, the Acting Secretary of Homeland Security, reviewed and approved \nthe proposed rule and delegated the signature authority to Mr. Mizelle. \nSecretary Wolf is validly acting as Secretary of Homeland Security. On \nApril 9, 2019, then-Secretary Nielsen, who was Senate confirmed, used \nthe authority provided by 6 U.S.C. 113(g)(2) to establish the order of \nsuccession for the Secretary of Homeland Security. This change to the \norder of succession applied to any vacancy. This exercise of the \nauthority to establish an order of succession for DHS pursuant to 6 \nU.S.C. 113(g)(2) superseded the FVRA and the order of succession found \nin Executive Order 13753, 81 FR 90667 (Dec. 9, 2016). As a result of \nthis change, and pursuant to 6 U.S.C. 113(g)(2), Kevin K. McAleenan, \nwho was Senate-confirmed as the Commissioner of CBP, was the next \nsuccessor and served as Acting Secretary without time limitation. \nActing Secretary McAleenan subsequently amended the Secretary's order \nof succession pursuant to 6 U.S.C. 113(g)(2), placing the Under \nSecretary for Strategy, Policy, and Plans position third in the order \nof succession, below the positions of the Deputy Secretary and Under \nSecretary for Management. Because the Deputy Secretary and Under \nSecretary for Management positions were vacant when Mr. McAleenan \nresigned, Mr. Wolf, as the Senate-confirmed Under Secretary for \nStrategy, Policy, and Plans, was the next successor and began serving \nas the Acting Secretary.\n    Further, because he has been serving as the Acting Secretary \npursuant to an order of succession established under 6 U.S.C. \n113(g)(2), the FVRA's prohibition on a nominee's acting service while \nhis or her nomination is pending does not apply, and Mr. Wolf remains \nthe Acting Secretary notwithstanding President Trump's September 10 \ntransmission to the Senate of Mr. Wolf's nomination to serve as DHS \nSecretary. Compare 6 U.S.C. 113(a)(1)(A) (cross-referencing the FVRA \nwithout the ``notwithstanding'' caveat), with id.\n\n[[Page 84189]]\n\n113(g)(1)-(2) (noting the FVRA provisions and specifying, in contrast, \nthat section 113(g) provides for acting secretary service \n``notwithstanding'' those provisions); see also 5 U.S.C. 3345(b)(1)(B) \n(restricting acting officer service under section 3345(a), in \nparticular, by an official whose nomination has been submitted to the \nSenate for permanent service in that position).\n    That said, there have been recent challenges to whether Mr. Wolf's \nservice is invalid, resting on the erroneous contention that the orders \nof succession issued by former Secretary Nielsen and former Acting \nSecretary McAleenan were invalid. The Departments believe those \nchallenges are not based on an accurate view of the law. But even if \nthose contentions are legally correct--meaning that neither former \nSecretary Nielsen nor former Acting Secretary McAleenan issued a valid \norder of succession--under 6 U.S.C. 113(g)(2)--then the FVRA would have \napplied, and Executive Order 13753 would have governed the order of \nsuccession for the Secretary of Homeland Security from the date of \nformer Secretary Nielsen's resignation.\n    The FVRA provides an alternative basis for an official to exercise \nthe functions and duties of the Secretary temporarily in an acting \ncapacity. In that alternate scenario, under the authority of the FVRA, \nMr. Wolf would have been ineligible to serve as the Acting Secretary of \nDHS after his nomination was submitted to the Senate, 5 U.S.C. \n3345(b)(1)(B), and Peter Gaynor, the Administrator of the Federal \nEmergency Management Agency (``FEMA''), would have--by operation of \nExecutive Order 13753--become eligible to exercise the functions and \nduties of the Secretary temporarily in an acting capacity. This is \nbecause Executive Order 13753 pre-established the President's \nsuccession order for DHS when the FVRA applies. Mr. Gaynor would have \nbeen the most senior official eligible to exercise the functions and \nduties of the Secretary under that succession order, and thus would \nhave become the official eligible to act as Secretary once Mr. Wolf's \nnomination was submitted to the Senate. 5 U.S.C. 3346(a)(2). Then, in \nthis alternate scenario in which, as assumed above, there was no valid \nsuccession order under 6 U.S.C. 113(g)(2), the submission of Mr. Wolf's \nnomination to the Senate would have restarted the FVRA's time limits. 5 \nU.S.C. 3346(a)(2).\n    Out of an abundance of caution, and to minimize any disruption to \nDHS and to the Administration's goal of maintaining homeland security, \n"
+    },
+    "ACTOR_TEXT:FRDOC:2020-28436@246089": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2020-28436",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 246872,
+      "char_start": 246089,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2020-28436@246089",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2020-28436",
+        "page_or_item": "85 FR 84160; FR Doc. 2020-28436; Rule: Security Bars and Processing",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "8caefbb81fb7ffae25c14ab2ef7e739364392ed3023885b80b546aea752b5025",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2020-28436.txt",
+        "text_sha256": "8caefbb81fb7ffae25c14ab2ef7e739364392ed3023885b80b546aea752b5025",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2020/12/23/2020-28436.txt"
+      },
+      "text": "on November 14, 2020, with Mr. Wolf's nomination still pending in the \nSenate, Mr. Gaynor exercised the authority of Acting Secretary that he \nwould have had (in the absence of any governing succession order under \n6 U.S.C. 113(g)(2)) to designate a new order of succession under 6 \nU.S.C. 113(g)(2) (the ``Gaynor Order'').\\139\\ In particular, Mr. Gaynor \nissued an order of succession with the same ordering of positions \nlisted in former Acting Secretary McAleenan's November 2019 order. The \nGaynor Order thus placed the Under Secretary for Strategy, Policy, and \nPlans above the FEMA Administrator in the order of succession. Once the \nGaynor Order was executed, it superseded any authority Mr. Gaynor may \nhave had under the FVRA and confirmed Mr. Wolf's authority to continue \n"
     },
     "CLAUSES:EO:13753#sec1": {
       "char_end": 1875,
@@ -1836,6 +2038,42 @@
       },
       "text": "Sec. 2. Executive Order 13442 of August 13, 2007 (‘‘Amending the Order \nof Succession in the Department of Homeland Security’’), is hereby revoked."
     },
+    "CURRENT:EO:13753#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 399,
+      "char_start": 161,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "6 U.S.C. 111 note; note 'Ex. Ord. No. 13286. Amendment of Executive Orders, and Other Actions, in Connection With t' [USLM note id id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04]; usc06.xml (sha256 e7dc46885675fd993b1ecbfaa981d682fa2dc1b29f951e1a6a8194301f53ce65) in xml_uscAll@119-121.zip",
+        "sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13753#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13753",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (6 U.S.C. 111 note)",
+      "machine_lead": true,
+      "mention_id": "usc:13179c72c59e",
+      "snippet": "Ex. Ord. No. 13286, Feb. 28, 2003, 68 F.R. 10619, as amended by Ex. Ord. No. 13442, § 1, Aug. 13, 2007, 72 F.R. 45877; Ex. Ord. No. 13753, § 1, Dec. 9, 2016, 81 F.R. 90667; Ex. Ord. No. 14135, § 3(b), Jan. 3, 2025, 90 F.R. 2579, provided:",
+      "source": {
+        "page_or_item": "6 U.S.C. 111 note; note 'Ex. Ord. No. 13286. Amendment of Executive Orders, and Other Actions, in Connection With t' [USLM note id id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04]; usc06.xml (sha256 e7dc46885675fd993b1ecbfaa981d682fa2dc1b29f951e1a6a8194301f53ce65) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
+        "text_sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13286, Feb. 28, 2003, 68 F.R. 10619, as amended by Ex. Ord. No. 13442, § 1, Aug. 13, 2007, 72 F.R. 45877; Ex. Ord. No. 13753, § 1, Dec. 9, 2016, 81 F.R. 90667; Ex. Ord. No. 14135, § 3(b), Jan. 3, 2025, 90 F.R. 2579, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
+      "text_sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
+      "where": "USC 6 U.S.C. 111 note"
+    },
     "ORIGINAL:EO:13753": {
       "acceptable_as_original": true,
       "actor_id": "EO:13753",
@@ -1956,7 +2194,7 @@
       "text": "Subject to the provisions of subsection (b) of this section, the officers named \nin subsection (a) of this section, in the order listed, shall act as, and perform \nthe functions and duties of the office of, the Secretary of Homeland Security \n(Secretary), if they are eligible to act as Secretary under the provisions \nof the Federal Vacancies Reform Act of 1998, 5 U.S.C. 3345 et seq."
     }
   },
-  "fingerprint": "9d14f43fa3e0a18f876259906502c410638d08b2fb3cd3d90b0d5ae15499aa4c",
+  "fingerprint": "ed26082b2fcb653b9fab0045528e5c1a13bcaed2eef1ac152dd5cb01f71d29db",
   "instrument_id": "EO:13753",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2331,11 +2569,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 1,
       "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -2343,20 +2582,21 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2379,10 +2619,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "02441c497c83f5660c1c33b5ce63f88020a810d465b9f286aaf5ff6a927b1351",
+    "fingerprint": "cdd7a9870abda72c5b73f8587a1c006db6fd012e7a843c3dfab81b7af0a3c8f0",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13753.json",
-    "history_sha256": "9cb718a9fc7dabea7a6084a8d36e8c1816cb8b1a0dbb27163d09ccdcbf3e8e80",
+    "history_sha256": "2f55d03c77bccb5a1f1fc86a52767ba3853dbfd163f762bf2a25f5e314b293f6",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

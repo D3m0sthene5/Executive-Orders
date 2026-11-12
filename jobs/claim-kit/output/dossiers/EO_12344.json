@@ -1,10 +1,23 @@
 {
-  "actor_contexts": [],
+  "actor_contexts": [
+    {
+      "actor_id": "FRDOC:2020-19329",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:2020-19329@34905"
+      ],
+      "full_text_chars": 106411,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-2020-19329.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "47df0caa7a7a9fcbc9d9fb9859de519cb31bb94d612bc30c9e9994462f6d3d92",
+      "window_bytes": 3057,
+      "windows_omitted": 0
+    }
+  ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12344",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12344"
@@ -411,11 +424,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 110,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6102 note; note 'Ex. Ord. No. 12344. Naval Nuclear Propulsion Program' [USLM note id idaabab75a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c17a4c4e6fa317d6b50f7236db5952e1bbccf5b7ffa33ecd88b482173568285d",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idaabab75a-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. 6102 note)",
@@ -425,19 +447,32 @@
       "source": {
         "page_or_item": "10 U.S.C. 6102 note; note 'Ex. Ord. No. 12344. Naval Nuclear Propulsion Program' [USLM note id idaabab75a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idaabab75a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "c17a4c4e6fa317d6b50f7236db5952e1bbccf5b7ffa33ecd88b482173568285d",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=idaabab75a-3a6f-11f1-a58a-d8db54b14ab5",
+      "text": "Ex. Ord. No. 12344. Naval Nuclear Propulsion Program\nEx. Ord. No. 12344, Feb. 1, 1982, 47 F.R. 4979, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idaabab75a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "c17a4c4e6fa317d6b50f7236db5952e1bbccf5b7ffa33ecd88b482173568285d",
       "where": "USC 10 U.S.C. 6102 note"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 249,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6102; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "3f33c9ed16a80f9dffac5ceb46d6d6c3862846356402ee137b27d470416d9f25",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t10/s6102",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (10 U.S.C. 6102)",
@@ -447,18 +482,32 @@
       "source": {
         "page_or_item": "10 U.S.C. 6102; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6102-0e43daa78d.txt",
+        "text_sha256": "3f33c9ed16a80f9dffac5ceb46d6d6c3862846356402ee137b27d470416d9f25",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "§ 6102.\nNaval Nuclear Propulsion Program\nThe provisions of Executive Order Numbered 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program, shall remain in force until changed by law.\n(Added Pub. L. 119–60, div. C, title X",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6102-0e43daa78d.txt",
+      "text_sha256": "3f33c9ed16a80f9dffac5ceb46d6d6c3862846356402ee137b27d470416d9f25",
       "where": "USC 10 U.S.C. 6102"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 5307,
+      "char_start": 4959,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6243; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "d8228afa286658ea2e12208eb5f9c4f17f00221dd272ecbc259a959a635ff257",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t10/s6243",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (10 U.S.C. 6243)",
@@ -468,18 +517,32 @@
       "source": {
         "page_or_item": "10 U.S.C. 6243; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6243-f662afe099.txt",
+        "text_sha256": "d8228afa286658ea2e12208eb5f9c4f17f00221dd272ecbc259a959a635ff257",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "na), but the term does not include any facility that does not conduct atomic energy defense activities and does not include any facility or activity covered by Executive Order Number 12344, dated February 1, 1982, pertaining to the naval nuclear propulsion program;\n(2)\na nuclear waste storage or disposal facility that is under the control or juri",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6243-f662afe099.txt",
+      "text_sha256": "d8228afa286658ea2e12208eb5f9c4f17f00221dd272ecbc259a959a635ff257",
       "where": "USC 10 U.S.C. 6243"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 2946,
+      "char_start": 2601,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6337; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "7812d8b09eaccd7cabb9a714dd2e27245b2c70b51c93fe32038036ceb36a957d",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t10/s6337",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (10 U.S.C. 6337)",
@@ -489,18 +552,32 @@
       "source": {
         "page_or_item": "10 U.S.C. 6337; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6337-39e5e2a9db.txt",
+        "text_sha256": "7812d8b09eaccd7cabb9a714dd2e27245b2c70b51c93fe32038036ceb36a957d",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "riate, as determined in accordance with applicable laws and regulations.\n(4)\nThe term “atomic energy defense activities” does not include activities covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval nuclear propulsion program.\n(Added Pub. L. 119–60, div. C, title XXXI, § 3111(a), (d)(2)(B), Dec. 18, 2025, 13",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6337-39e5e2a9db.txt",
+      "text_sha256": "7812d8b09eaccd7cabb9a714dd2e27245b2c70b51c93fe32038036ceb36a957d",
       "where": "USC 10 U.S.C. 6337"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 15281,
+      "char_start": 14936,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "15 U.S.C. 3710a; usc15.xml (sha256 d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7) in xml_uscAll@119-121.zip",
+        "sha256": "69769fbe5e95fb4d66043b5f55c87167c95ed2ecca733a38ede6e3651fe042d4",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t15/s3710a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (15 U.S.C. 3710a)",
@@ -510,18 +587,32 @@
       "source": {
         "page_or_item": "15 U.S.C. 3710a; usc15.xml (sha256 d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t15_s3710a-d0054c5ed1.txt",
+        "text_sha256": "69769fbe5e95fb4d66043b5f55c87167c95ed2ecca733a38ede6e3651fe042d4",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "aintenance, testing, or dismantlement of a nuclear weapon or its components, for the Federal Government,\nbut such term does not include any facility covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the naval nuclear propulsion program;\n(3)\nthe term “joint work statement” means a proposal prepared for a Federal agency",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t15_s3710a-d0054c5ed1.txt",
+      "text_sha256": "69769fbe5e95fb4d66043b5f55c87167c95ed2ecca733a38ede6e3651fe042d4",
       "where": "USC 15 U.S.C. 3710a"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 1118,
+      "char_start": 774,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2282c; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "da6d404f4a24f823fd9669e418863d22195eb3ecf08a5b9052a33301f5dcb3d6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s2282c",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (42 U.S.C. 2282c)",
@@ -531,18 +622,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 2282c; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s2282c-811f1c535a.txt",
+        "text_sha256": "da6d404f4a24f823fd9669e418863d22195eb3ecf08a5b9052a33301f5dcb3d6",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "paragraph (1) shall not apply to any facility that is a component of, or any activity conducted under, the Naval Nuclear Propulsion Program provided for under Executive Order No. 12344, dated February 1, 1982 (as in force pursuant to section 1634 of the Department of Defense Authorization Act, 1985 (Public Law 98–525)).\n(3)\nFlexibility\nIn pro",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s2282c-811f1c535a.txt",
+      "text_sha256": "da6d404f4a24f823fd9669e418863d22195eb3ecf08a5b9052a33301f5dcb3d6",
       "where": "USC 42 U.S.C. 2282c"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 649,
+      "char_start": 304,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2286g; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "36b51ebc358e18ff886f82c78fa839994112d30500a0344dbb9d1cf5eda8fbe2",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s2286g",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (42 U.S.C. 2286g)",
@@ -552,18 +657,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 2286g; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s2286g-1c0f7f5f3b.txt",
+        "text_sha256": "36b51ebc358e18ff886f82c78fa839994112d30500a0344dbb9d1cf5eda8fbe2",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "sdiction of the Secretary of Energy and that is operated for national security purposes, but the term does not include—\n(A)\nany facility or activity covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval nuclear propulsion program;\n(B)\nany facility or activity involved with the transportation of nuclear explosive",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s2286g-1c0f7f5f3b.txt",
+      "text_sha256": "36b51ebc358e18ff886f82c78fa839994112d30500a0344dbb9d1cf5eda8fbe2",
       "where": "USC 42 U.S.C. 2286g"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 2186,
+      "char_start": 1841,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 5851; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "bc8a5dd5fd4c096a406c3bfa5a62fc1f3ef146d7c18a176eb2286294f2d32c5f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s5851",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (42 U.S.C. 5851)",
@@ -573,18 +692,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 5851; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s5851-0cfafd0c58.txt",
+        "text_sha256": "bc8a5dd5fd4c096a406c3bfa5a62fc1f3ef146d7c18a176eb2286294f2d32c5f",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "epartment under section 170 d. of the Atomic Energy Act of 1954 (42 U.S.C. 2210(d)), but such term shall not include any contractor or subcontractor covered by Executive Order No. 12344;\n(E)\na contractor or subcontractor of the Commission;\n(F)\nthe Commission; and\n(G)\nthe Department of Energy.\n(b)\nComplaint, filing and notification\n(1)\nAny empl",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s5851-0cfafd0c58.txt",
+      "text_sha256": "bc8a5dd5fd4c096a406c3bfa5a62fc1f3ef146d7c18a176eb2286294f2d32c5f",
       "where": "USC 42 U.S.C. 5851"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 6939,
+      "char_start": 6594,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7384l; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "9b74d08c1e9115b6dfc8f4cacb682854b4038ef2eed7c6feb56449efe0590a55",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s7384l",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (42 U.S.C. 7384l)",
@@ -594,18 +727,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 7384l; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7384l-684305e813.txt",
+        "text_sha256": "9b74d08c1e9115b6dfc8f4cacb682854b4038ef2eed7c6feb56449efe0590a55",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "tions are, or have been, conducted by, or on behalf of, the Department of Energy (except for buildings, structures, premises, grounds, or operations covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program); and\n(B)\nwith regard to which the Department of Energy has or had—\n(i)\na proprieta",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7384l-684305e813.txt",
+      "text_sha256": "9b74d08c1e9115b6dfc8f4cacb682854b4038ef2eed7c6feb56449efe0590a55",
       "where": "USC 42 U.S.C. 7384l"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 3093,
+      "char_start": 2748,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7384n; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "3fcb602785e94f9808e0f9953ea6e93b17627d317fcc8a9a6a6a70c1c6333b4c",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s7384n",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (42 U.S.C. 7384n)",
@@ -615,18 +762,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 7384n; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7384n-65525ab94a.txt",
+        "text_sha256": "3fcb602785e94f9808e0f9953ea6e93b17627d317fcc8a9a6a6a70c1c6333b4c",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "research, produce, process, store, remediate, or dispose of radioactive materials by or on behalf of the Department of Energy (except for activities covered by Executive Order No. 12344, dated February 1, 1982 (42 U.S.C. 7158 note) 1\n(B)\nAny dose of ionizing radiation received by that employee from a source not covered by subparagraph (A) that",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7384n-65525ab94a.txt",
+      "text_sha256": "3fcb602785e94f9808e0f9953ea6e93b17627d317fcc8a9a6a6a70c1c6333b4c",
       "where": "USC 42 U.S.C. 7384n"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 1301,
+      "char_start": 956,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 2406; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "a01ee57d2dae33710ef5e5d05dfc73486e2832fb2632e17242f8ece1c69462ba",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t50/s2406",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "statute text names the order (50 U.S.C. 2406)",
@@ -636,18 +797,32 @@
       "source": {
         "page_or_item": "50 U.S.C. 2406; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s2406-0d4564c17a.txt",
+        "text_sha256": "a01ee57d2dae33710ef5e5d05dfc73486e2832fb2632e17242f8ece1c69462ba",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "ll force and effect until changed by law.\n(d)\nNaval Nuclear Propulsion Executive Order\nAs used in this section, the Naval Nuclear Propulsion Executive Order is Executive Order No. 12344, dated February 1, 1982 (42 U.S.C. 7158 note) 1Public Law 98–525; 42 U.S.C. 7158 note)).1\n(Pub. L. 106–65, div. C, title XXXII, § 3216, Oct. 5, 1999, 113 Stat.",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s2406-0d4564c17a.txt",
+      "text_sha256": "a01ee57d2dae33710ef5e5d05dfc73486e2832fb2632e17242f8ece1c69462ba",
       "where": "USC 50 U.S.C. 2406"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 99,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6102 note; note 'References in Text' [USLM note id idaabab755-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "045653cd2536e1253af12d2edf2c90d6af14175617a78bf9252dce06dd694b1d",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idaabab755-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (10 U.S.C. 6102 note)",
@@ -657,18 +832,32 @@
       "source": {
         "page_or_item": "10 U.S.C. 6102 note; note 'References in Text' [USLM note id idaabab755-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idaabab755-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "045653cd2536e1253af12d2edf2c90d6af14175617a78bf9252dce06dd694b1d",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order Numbered 12344, referred to in text, is set out as a note below.",
+      "text_path": "jobs/current-law/output/usc-notes/idaabab755-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "045653cd2536e1253af12d2edf2c90d6af14175617a78bf9252dce06dd694b1d",
       "where": "USC 10 U.S.C. 6102 note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 1567,
+      "char_start": 1268,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6243 note; note 'References in Text' [USLM note id idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "b44706debb62edd70aa9c49008b8216f14eeaff91216fa5c1be3602c4b173ca8",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (10 U.S.C. 6243 note)",
@@ -678,18 +867,32 @@
       "source": {
         "page_or_item": "10 U.S.C. 6243 note; note 'References in Text' [USLM note id idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "b44706debb62edd70aa9c49008b8216f14eeaff91216fa5c1be3602c4b173ca8",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "erred to Pub. L. 107–314, which was approved Dec. 2, 2002, and later repealed and restated as this section by Pub. L. 119–60, which was approved Dec. 18, 2025.\nExecutive Order Number 12344, referred to in subsec. (f)(1), is set out as a note under section 2511 of Title 50, War and National Defense.",
+      "text_path": "jobs/current-law/output/usc-notes/idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "b44706debb62edd70aa9c49008b8216f14eeaff91216fa5c1be3602c4b173ca8",
       "where": "USC 10 U.S.C. 6243 note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 131,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6337 note; note 'References in Text' [USLM note id idaad0142a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "816c44e70807640486d636982dbd776208b7271907f668778b10ff1dcc6a1942",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idaad0142a-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (10 U.S.C. 6337 note)",
@@ -699,18 +902,32 @@
       "source": {
         "page_or_item": "10 U.S.C. 6337 note; note 'References in Text' [USLM note id idaad0142a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idaad0142a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "816c44e70807640486d636982dbd776208b7271907f668778b10ff1dcc6a1942",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in subsec. (c)(4), is set out as a note under section 6102 of this title.",
+      "text_path": "jobs/current-law/output/usc-notes/idaad0142a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "816c44e70807640486d636982dbd776208b7271907f668778b10ff1dcc6a1942",
       "where": "USC 10 U.S.C. 6337 note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 340,
+      "char_start": 56,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "15 U.S.C. 3710a note; note 'References in Text' [USLM note id id46151c08-c885-11f1-ae10-9f55152e2dd2]; usc15.xml (sha256 d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7) in xml_uscAll@119-121.zip",
+        "sha256": "4584380f3e0e032034ac0d3e0356510803a1ec125711f6e7158cda0756cbb03f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id46151c08-c885-11f1-ae10-9f55152e2dd2",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (15 U.S.C. 3710a note)",
@@ -720,18 +937,32 @@
       "source": {
         "page_or_item": "15 U.S.C. 3710a note; note 'References in Text' [USLM note id id46151c08-c885-11f1-ae10-9f55152e2dd2]; usc15.xml (sha256 d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id46151c08-c885-11f1-ae10-9f55152e2dd2.txt",
+        "text_sha256": "4584380f3e0e032034ac0d3e0356510803a1ec125711f6e7158cda0756cbb03f",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "to in subsec. (b)(1)(C), was redesignated section 203(b) of title 35 by Pub. L. 107–273, div. C, title III, § 13206(a)(14)(A)(i), Nov. 2, 2002, 116 Stat. 1905.\nExecutive Order No. 12344, referred to in subsec. (d)(2), is set out as a note under section 6102 of Title 10, Armed Forces.",
+      "text_path": "jobs/current-law/output/usc-notes/id46151c08-c885-11f1-ae10-9f55152e2dd2.txt",
+      "text_sha256": "4584380f3e0e032034ac0d3e0356510803a1ec125711f6e7158cda0756cbb03f",
       "where": "USC 15 U.S.C. 3710a note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 204,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2282c note; note 'References in Text' [USLM note id id3a7e2e25-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "ea236bb5e51099c562b0ee77b9d86be2dcf816f041a6724896603457cee12eed",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a7e2e25-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 2282c note)",
@@ -741,18 +972,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 2282c note; note 'References in Text' [USLM note id id3a7e2e25-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a7e2e25-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "ea236bb5e51099c562b0ee77b9d86be2dcf816f041a6724896603457cee12eed",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in subsec. (a)(2), is set out as a note under section 6102 of Title 10, Armed Forces.\nSection 1634 of the Department of Defense Authorization Act,",
+      "text_path": "jobs/current-law/output/usc-notes/id3a7e2e25-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "ea236bb5e51099c562b0ee77b9d86be2dcf816f041a6724896603457cee12eed",
       "where": "USC 42 U.S.C. 2282c note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 203,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2286g note; note 'References in Text' [USLM note id id3a82e914-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "768b20c333e1aa609f7ed8b8789b526734d22cd5987a0f6112ba65011e15ae93",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a82e914-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 2286g note)",
@@ -762,18 +1007,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 2286g note; note 'References in Text' [USLM note id id3a82e914-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a82e914-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "768b20c333e1aa609f7ed8b8789b526734d22cd5987a0f6112ba65011e15ae93",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in par. (1)(A), is set out as a note under section 6102 of Title 10, Armed Forces.\nThe Nuclear Waste Policy Act of 1982, referred to in par. (2),",
+      "text_path": "jobs/current-law/output/usc-notes/id3a82e914-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "768b20c333e1aa609f7ed8b8789b526734d22cd5987a0f6112ba65011e15ae93",
       "where": "USC 42 U.S.C. 2286g note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 960,
+      "char_start": 616,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 5851 note; note 'References in Text' [USLM note id id3bb4164b-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "1085f34a02c4b74d937a6fb7ab3d783c9b744d3bd6e3bf143fdcb1dcbf7266dd",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3bb4164b-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 5851 note)",
@@ -783,18 +1042,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 5851 note; note 'References in Text' [USLM note id id3bb4164b-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3bb4164b-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "1085f34a02c4b74d937a6fb7ab3d783c9b744d3bd6e3bf143fdcb1dcbf7266dd",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "42, The Public Health and Welfare. For complete classification on this Act to the Code, see Short Title note set out under section 2011 of Title 42 and Tables.\nExecutive Order No. 12344, referred to in subsec. (a)(2)(D), is Ex. Ord. No. 12344, Feb. 1, 1982, 47 F.R. 4979, which is set out as a note under section 6102 of Title 10, Armed Forces.",
+      "text_path": "jobs/current-law/output/usc-notes/id3bb4164b-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "1085f34a02c4b74d937a6fb7ab3d783c9b744d3bd6e3bf143fdcb1dcbf7266dd",
       "where": "USC 42 U.S.C. 5851 note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 204,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7384l note; note 'References in Text' [USLM note id id3c4caca4-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "e8eefd63e56e06c1649e9e80200fbbf7f284b69e5e6e95a53025cd895785d29f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3c4caca4-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 7384l note)",
@@ -804,18 +1077,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 7384l note; note 'References in Text' [USLM note id id3c4caca4-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3c4caca4-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "e8eefd63e56e06c1649e9e80200fbbf7f284b69e5e6e95a53025cd895785d29f",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in par. (12)(A), is set out as a note under section 6102 of Title 10, Armed Forces.\nSection 4(b)(2) of the Radiation Exposure Compensation Act, re",
+      "text_path": "jobs/current-law/output/usc-notes/id3c4caca4-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "e8eefd63e56e06c1649e9e80200fbbf7f284b69e5e6e95a53025cd895785d29f",
       "where": "USC 42 U.S.C. 7384l note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 312,
+      "char_start": 25,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7384n note; note 'References in Text' [USLM note id id3c4cacca-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "bd33e8be793f726d0ed1c461653522c27e1af866f81913bd92ebcb8cd5e486a3",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3c4cacca-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 7384n note)",
@@ -825,18 +1112,32 @@
       "source": {
         "page_or_item": "42 U.S.C. 7384n note; note 'References in Text' [USLM note id id3c4cacca-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3c4cacca-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "bd33e8be793f726d0ed1c461653522c27e1af866f81913bd92ebcb8cd5e486a3",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "n 7(b) of the Orphan Drug Act, referred to in subsec. (c)(3)(A), is section 7(b) of Pub. L. 97–414, which is set out in a note under section 241 of this title.\nExecutive Order No. 12344, referred to in subsec. (c)(4)(A), is set out as a note under section 6102 of Title 10, Armed Forces.",
+      "text_path": "jobs/current-law/output/usc-notes/id3c4cacca-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "bd33e8be793f726d0ed1c461653522c27e1af866f81913bd92ebcb8cd5e486a3",
       "where": "USC 42 U.S.C. 7384n note"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 204,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 2406 note; note 'References in Text' [USLM note id id98925011-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "317aa7d3fef7f86edf49d80b4c68acc0bbaaf593724dfef0e85db9046298ed53",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id98925011-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (50 U.S.C. 2406 note)",
@@ -846,27 +1147,32 @@
       "source": {
         "page_or_item": "50 U.S.C. 2406 note; note 'References in Text' [USLM note id id98925011-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id98925011-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "317aa7d3fef7f86edf49d80b4c68acc0bbaaf593724dfef0e85db9046298ed53",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in subsec. (d), is set out as a note under section 6102 of Title 10, Armed Forces.\nSection 1634 of the Department of Defense Authorization Act, 19",
+      "text_path": "jobs/current-law/output/usc-notes/id98925011-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "317aa7d3fef7f86edf49d80b4c68acc0bbaaf593724dfef0e85db9046298ed53",
       "where": "USC 50 U.S.C. 2406 note"
     },
     {
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "regulation text names the order (10 CFR 820.1)",
       "machine_lead": true,
-      "mention_id": "ecfr:37dce1c7abdd",
+      "mention_id": "ecfr:3fa3b11c97b9",
       "snippet": ".... Questions that are not addressed in this part shall be resolved at the discretion of the DOE Official. (c) Exclusion. Activities and facilities covered under E.O. 12344, 42 U.S.C. 7158 note, pertaining to Naval nuclear propulsion are excluded from the requirements of subparts D and E of this part regarding interpretations and...",
       "source": {
-        "page_or_item": "10 CFR 820.1 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.25.1.16.1)",
-        "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+        "page_or_item": "10 CFR 820.1 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.25.1.16.1)",
+        "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
       },
       "system": "ecfr",
@@ -876,18 +1182,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "regulation text names the order (10 CFR 820.2)",
       "machine_lead": true,
-      "mention_id": "ecfr:e064fcb4b60f",
+      "mention_id": "ecfr:01d5f789a0ad",
       "snippet": "...tices of Violation under subpart B of this part, including the Director of Enforcement, or his designee. With regard to activities and facilities covered under E.O. 12344, 42 U.S.C. 7158 note, pertaining to Naval nuclear propulsion, the Director shall mean the Deputy Administrator for Naval Reactors or his designee. Docketing Cl...",
       "source": {
-        "page_or_item": "10 CFR 820.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.25.1.16.2)",
-        "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+        "page_or_item": "10 CFR 820.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.25.1.16.2)",
+        "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
       },
       "system": "ecfr",
@@ -897,18 +1203,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "regulation text names the order (10 CFR 830.2)",
       "machine_lead": true,
-      "mention_id": "ecfr:24eee9ac3ea9",
+      "mention_id": "ecfr:731e43c06ebf",
       "snippet": "...the NRC under section 1701 of the Atomic Energy Act (Act); (b) Activities conducted under the authority of the Director, Naval Nuclear Propulsion, pursuant to Executive Order 12344, as set forth in Public Law 106- 65; (c) Transportation activities which are regulated by the Department of Transportation; (d) Activities conducted under the...",
       "source": {
-        "page_or_item": "10 CFR 830.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.28.0.16.2)",
-        "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+        "page_or_item": "10 CFR 830.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.28.0.16.2)",
+        "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
       },
       "system": "ecfr",
@@ -918,18 +1224,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "regulation text names the order (10 CFR 851.2)",
       "machine_lead": true,
-      "mention_id": "ecfr:5902610f327c",
+      "mention_id": "ecfr:00f64b232f19",
       "snippet": "...(1) Regulated by the Occupational Safety and Health Administration; or (2) Operated under the authority of the Director, Naval Nuclear Propulsion, pursuant to Executive Order 12344, as set forth in Public Law 98-525, 42 U.S.C. 7158 note. (b) This part does not apply to radiological hazards or nuclear explosives operations to the extent re...",
       "source": {
-        "page_or_item": "10 CFR 851.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.32.1.16.2)",
-        "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+        "page_or_item": "10 CFR 851.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.32.1.16.2)",
+        "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
       },
       "system": "ecfr",
@@ -981,18 +1287,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "regulation text names the order (42 CFR 82.5)",
       "machine_lead": true,
-      "mention_id": "ecfr:8759476a4a48",
+      "mention_id": "ecfr:1eccd5bd67ba",
       "snippet": "...1) In which operations are, or have been, conducted by, or on behalf of, the DOE (except for buildings, structures, premises, grounds, or operations covered by Executive Order 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program); and, (2) With regard to which the DOE has or had: (i) A proprietary interest; or,...",
       "source": {
-        "page_or_item": "42 CFR 82.5 (section_text; GovInfo eCFR XML title 42, amended through 2026-11-03; NODE 42:1.0.1.7.64.2.15.1)",
-        "sha256": "d5a471617588f7221a27826149a2bbaf81215c7bb4da6acc20aa04500c87cb60",
+        "page_or_item": "42 CFR 82.5 (section_text; GovInfo eCFR XML title 42, amended through 2026-11-09; NODE 42:1.0.1.7.64.2.15.1)",
+        "sha256": "153b89107f473002619334d24e293dceaebfbb9f22a341ab5ff87e733ade41e6",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-42/ECFR-title42.xml"
       },
       "system": "ecfr",
@@ -1002,18 +1308,18 @@
       "basis_code": "cfr_appendix_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "CFR appendix names or reprints the order (10 CFR part 820, Appendix A to Part 820)",
       "machine_lead": true,
-      "mention_id": "ecfr:697ed294ff4c",
+      "mention_id": "ecfr:1bdce445b153",
       "snippet": "...policy statement when appropriate in the circumstances of particular cases. This policy statement is not applicable to activities and facilities covered under E.O. 12344, 42 U.S.C. 7158 note, pertaining to Naval nuclear propulsion. (b) Both the Department of Energy Organization Act, 42 U.S.C. 7101, and the Atomic Energy Act of...",
       "source": {
-        "page_or_item": "10 CFR part 820, Appendix A to Part 820 (appendix_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.25.7.16.3.10)",
-        "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+        "page_or_item": "10 CFR part 820, Appendix A to Part 820 (appendix_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.25.7.16.3.10)",
+        "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
       },
       "system": "ecfr",
@@ -1023,18 +1329,18 @@
       "basis_code": "cfr_appendix_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12344",
       "legal_basis_candidate": "CFR appendix names or reprints the order (10 CFR part 851, Appendix B to Part 851)",
       "machine_lead": true,
-      "mention_id": "ecfr:4ec15c005e6c",
+      "mention_id": "ecfr:d2acc77c10ef",
       "snippet": "...policy statement when appropriate in the circumstances of particular cases. This policy statement is not applicable to activities and facilities covered under E.O. 12344, 42 U.S.C. 7158 note, pertaining to Naval Nuclear Propulsion, or otherwise excluded from the scope of the rule. (b) The DOE goal in the compliance arena is to...",
       "source": {
-        "page_or_item": "10 CFR part 851, Appendix B to Part 851 (appendix_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.32.5.16.7.20)",
-        "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+        "page_or_item": "10 CFR part 851, Appendix B to Part 851 (appendix_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.32.5.16.7.20)",
+        "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
       },
       "system": "ecfr",
@@ -1082,10 +1388,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:37dce1c7abdd",
+        "mention_id": "ecfr:3fa3b11c97b9",
         "snippet": ".... Questions that are not addressed in this part shall be resolved at the discretion of the DOE Official. (c) Exclusion. Activities and facilities covered under E.O. 12344, 42 U.S.C. 7158 note, pertaining to Naval nuclear propulsion are excluded from the requirements of subparts D and E of this pa ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1095,8 +1401,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (10 CFR 820.1)",
         "source": {
-          "page_or_item": "10 CFR 820.1 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.25.1.16.1)",
-          "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+          "page_or_item": "10 CFR 820.1 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.25.1.16.1)",
+          "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
         }
       }
@@ -1110,10 +1416,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:e064fcb4b60f",
+        "mention_id": "ecfr:01d5f789a0ad",
         "snippet": "...tices of Violation under subpart B of this part, including the Director of Enforcement, or his designee. With regard to activities and facilities covered under E.O. 12344, 42 U.S.C. 7158 note, pertaining to Naval nuclear propulsion, the Director shall mean the Deputy Administrator for Naval React ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1123,8 +1429,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (10 CFR 820.2)",
         "source": {
-          "page_or_item": "10 CFR 820.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.25.1.16.2)",
-          "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+          "page_or_item": "10 CFR 820.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.25.1.16.2)",
+          "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
         }
       }
@@ -1138,10 +1444,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:24eee9ac3ea9",
+        "mention_id": "ecfr:731e43c06ebf",
         "snippet": "...the NRC under section 1701 of the Atomic Energy Act (Act); (b) Activities conducted under the authority of the Director, Naval Nuclear Propulsion, pursuant to Executive Order 12344, as set forth in Public Law 106- 65; (c) Transportation activities which are regulated by the Department of Transpor ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1151,8 +1457,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (10 CFR 830.2)",
         "source": {
-          "page_or_item": "10 CFR 830.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.28.0.16.2)",
-          "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+          "page_or_item": "10 CFR 830.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.28.0.16.2)",
+          "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
         }
       }
@@ -1166,10 +1472,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:5902610f327c",
+        "mention_id": "ecfr:00f64b232f19",
         "snippet": "...(1) Regulated by the Occupational Safety and Health Administration; or (2) Operated under the authority of the Director, Naval Nuclear Propulsion, pursuant to Executive Order 12344, as set forth in Public Law 98-525, 42 U.S.C. 7158 note. (b) This part does not apply to radiological hazards or nuc ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1179,8 +1485,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (10 CFR 851.2)",
         "source": {
-          "page_or_item": "10 CFR 851.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.32.1.16.2)",
-          "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+          "page_or_item": "10 CFR 851.2 (section_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.32.1.16.2)",
+          "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
         }
       }
@@ -1250,10 +1556,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:8759476a4a48",
+        "mention_id": "ecfr:1eccd5bd67ba",
         "snippet": "...1) In which operations are, or have been, conducted by, or on behalf of, the DOE (except for buildings, structures, premises, grounds, or operations covered by Executive Order 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program); and, (2) With regard to which the DOE ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1263,8 +1569,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (42 CFR 82.5)",
         "source": {
-          "page_or_item": "42 CFR 82.5 (section_text; GovInfo eCFR XML title 42, amended through 2026-11-03; NODE 42:1.0.1.7.64.2.15.1)",
-          "sha256": "d5a471617588f7221a27826149a2bbaf81215c7bb4da6acc20aa04500c87cb60",
+          "page_or_item": "42 CFR 82.5 (section_text; GovInfo eCFR XML title 42, amended through 2026-11-09; NODE 42:1.0.1.7.64.2.15.1)",
+          "sha256": "153b89107f473002619334d24e293dceaebfbb9f22a341ab5ff87e733ade41e6",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-42/ECFR-title42.xml"
         }
       }
@@ -1278,10 +1584,10 @@
         "basis_code": "cfr_appendix_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:697ed294ff4c",
+        "mention_id": "ecfr:1bdce445b153",
         "snippet": "...policy statement when appropriate in the circumstances of particular cases. This policy statement is not applicable to activities and facilities covered under E.O. 12344, 42 U.S.C. 7158 note, pertaining to Naval nuclear propulsion. (b) Both the Department of Energy Organization Act, 42 U.S.C. 710 ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1291,8 +1597,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "CFR appendix names or reprints the order (10 CFR part 820, Appendix A to Part 820)",
         "source": {
-          "page_or_item": "10 CFR part 820, Appendix A to Part 820 (appendix_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.25.7.16.3.10)",
-          "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+          "page_or_item": "10 CFR part 820, Appendix A to Part 820 (appendix_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.25.7.16.3.10)",
+          "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
         }
       }
@@ -1306,10 +1612,10 @@
         "basis_code": "cfr_appendix_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-03)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:4ec15c005e6c",
+        "mention_id": "ecfr:d2acc77c10ef",
         "snippet": "...policy statement when appropriate in the circumstances of particular cases. This policy statement is not applicable to activities and facilities covered under E.O. 12344, 42 U.S.C. 7158 note, pertaining to Naval Nuclear Propulsion, or otherwise excluded from the scope of the rule. (b) The DOE goa ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1319,8 +1625,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "CFR appendix names or reprints the order (10 CFR part 851, Appendix B to Part 851)",
         "source": {
-          "page_or_item": "10 CFR part 851, Appendix B to Part 851 (appendix_text; GovInfo eCFR XML title 10, amended through 2026-11-03; NODE 10:5.0.2.5.32.5.16.7.20)",
-          "sha256": "c1e8f424521b7a7e065703f9a1fc0801152f90e95f1119a26432cd6142c734c3",
+          "page_or_item": "10 CFR part 851, Appendix B to Part 851 (appendix_text; GovInfo eCFR XML title 10, amended through 2026-11-09; NODE 10:5.0.2.5.32.5.16.7.20)",
+          "sha256": "18ce94d2d79a203ab528c3c0bef0b353de96ff9e083d36cba422a3f25e7f6a65",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-10/ECFR-title10.xml"
         }
       }
@@ -1341,6 +1647,7 @@
         "snippet": "§ 6102. Naval Nuclear Propulsion Program The provisions of Executive Order Numbered 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program, shall remain in force until changed by law. (Added Pub. L. 119–60, div. C, title X...",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t10_s6102-0e43daa78d.txt",
         "where": "USC 10 U.S.C. 6102"
       },
       "proposal": {
@@ -1369,6 +1676,7 @@
         "snippet": "...na), but the term does not include any facility that does not conduct atomic energy defense activities and does not include any facility or activity covered by Executive Order Number 12344, dated February 1, 1982, pertaining to the naval nuclear propulsion program; (2) a nuclear waste storage or  ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t10_s6243-f662afe099.txt",
         "where": "USC 10 U.S.C. 6243"
       },
       "proposal": {
@@ -1397,6 +1705,7 @@
         "snippet": "...riate, as determined in accordance with applicable laws and regulations. (4) The term “atomic energy defense activities” does not include activities covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval nuclear propulsion program. (Added Pub. L. 119–60, div. C, tit ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t10_s6337-39e5e2a9db.txt",
         "where": "USC 10 U.S.C. 6337"
       },
       "proposal": {
@@ -1425,6 +1734,7 @@
         "snippet": "...aintenance, testing, or dismantlement of a nuclear weapon or its components, for the Federal Government, but such term does not include any facility covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the naval nuclear propulsion program; (3) the term “joint work statement ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t15_s3710a-d0054c5ed1.txt",
         "where": "USC 15 U.S.C. 3710a"
       },
       "proposal": {
@@ -1453,6 +1763,7 @@
         "snippet": "...paragraph (1) shall not apply to any facility that is a component of, or any activity conducted under, the Naval Nuclear Propulsion Program provided for under Executive Order No. 12344, dated February 1, 1982 (as in force pursuant to section 1634 of the Department of Defense Authorization Act, 19 ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t42_s2282c-811f1c535a.txt",
         "where": "USC 42 U.S.C. 2282c"
       },
       "proposal": {
@@ -1481,6 +1792,7 @@
         "snippet": "...sdiction of the Secretary of Energy and that is operated for national security purposes, but the term does not include— (A) any facility or activity covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval nuclear propulsion program; (B) any facility or activity invol ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t42_s2286g-1c0f7f5f3b.txt",
         "where": "USC 42 U.S.C. 2286g"
       },
       "proposal": {
@@ -1509,6 +1821,7 @@
         "snippet": "...epartment under section 170 d. of the Atomic Energy Act of 1954 (42 U.S.C. 2210(d)), but such term shall not include any contractor or subcontractor covered by Executive Order No. 12344; (E) a contractor or subcontractor of the Commission; (F) the Commission; and (G) the Department of Energy. (b) ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t42_s5851-0cfafd0c58.txt",
         "where": "USC 42 U.S.C. 5851"
       },
       "proposal": {
@@ -1537,6 +1850,7 @@
         "snippet": "...tions are, or have been, conducted by, or on behalf of, the Department of Energy (except for buildings, structures, premises, grounds, or operations covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program); and (B) with regard to which the  ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t42_s7384l-684305e813.txt",
         "where": "USC 42 U.S.C. 7384l"
       },
       "proposal": {
@@ -1565,6 +1879,7 @@
         "snippet": "...research, produce, process, store, remediate, or dispose of radioactive materials by or on behalf of the Department of Energy (except for activities covered by Executive Order No. 12344, dated February 1, 1982 (42 U.S.C. 7158 note) 1 (B) Any dose of ionizing radiation received by that employee fr ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t42_s7384n-65525ab94a.txt",
         "where": "USC 42 U.S.C. 7384n"
       },
       "proposal": {
@@ -1593,6 +1908,7 @@
         "snippet": "...ll force and effect until changed by law. (d) Naval Nuclear Propulsion Executive Order As used in this section, the Naval Nuclear Propulsion Executive Order is Executive Order No. 12344, dated February 1, 1982 (42 U.S.C. 7158 note) 1Public Law 98–525; 42 U.S.C. 7158 note)).1 (Pub. L. 106–65, div. ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t50_s2406-0d4564c17a.txt",
         "where": "USC 50 U.S.C. 2406"
       },
       "proposal": {
@@ -1621,6 +1937,7 @@
         "snippet": "References in Text Executive Order Numbered 12344, referred to in text, is set out as a note below.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/idaabab755-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. 6102 note"
       },
       "proposal": {
@@ -1649,6 +1966,7 @@
         "snippet": "...erred to Pub. L. 107–314, which was approved Dec. 2, 2002, and later repealed and restated as this section by Pub. L. 119–60, which was approved Dec. 18, 2025. Executive Order Number 12344, referred to in subsec. (f)(1), is set out as a note under section 2511 of Title 50, War and National Defens ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. 6243 note"
       },
       "proposal": {
@@ -1677,6 +1995,7 @@
         "snippet": "References in Text Executive Order No. 12344, referred to in subsec. (c)(4), is set out as a note under section 6102 of this title.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/idaad0142a-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. 6337 note"
       },
       "proposal": {
@@ -1705,6 +2024,7 @@
         "snippet": "...to in subsec. (b)(1)(C), was redesignated section 203(b) of title 35 by Pub. L. 107–273, div. C, title III, § 13206(a)(14)(A)(i), Nov. 2, 2002, 116 Stat. 1905. Executive Order No. 12344, referred to in subsec. (d)(2), is set out as a note under section 6102 of Title 10, Armed Forces.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id46151c08-c885-11f1-ae10-9f55152e2dd2.txt",
         "where": "USC 15 U.S.C. 3710a note"
       },
       "proposal": {
@@ -1733,6 +2053,7 @@
         "snippet": "References in Text Executive Order No. 12344, referred to in subsec. (a)(2), is set out as a note under section 6102 of Title 10, Armed Forces. Section 1634 of the Department of Defense Authorization Act,...",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id3a7e2e25-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 2282c note"
       },
       "proposal": {
@@ -1761,6 +2082,7 @@
         "snippet": "References in Text Executive Order No. 12344, referred to in par. (1)(A), is set out as a note under section 6102 of Title 10, Armed Forces. The Nuclear Waste Policy Act of 1982, referred to in par. (2),...",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id3a82e914-c3e9-11f1-bd73-d95596aaa024.txt",
         "where": "USC 42 U.S.C. 2286g note"
       },
       "proposal": {
@@ -1807,6 +2129,36 @@
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
   ],
   "evidence": {
+    "ACTOR_TEXT:FRDOC:2020-19329@34905": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2020-19329",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 37962,
+      "char_start": 34905,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2020-19329@34905",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2020-19329",
+        "page_or_item": "85 FR 66201; FR Doc. 2020-19329; Rule: Nuclear Safety Management",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "47df0caa7a7a9fcbc9d9fb9859de519cb31bb94d612bc30c9e9994462f6d3d92",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2020-19329.txt",
+        "text_sha256": "47df0caa7a7a9fcbc9d9fb9859de519cb31bb94d612bc30c9e9994462f6d3d92",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2020/10/19/2020-19329.txt"
+      },
+      "text": "title 10 of the Code of Federal Regulations as set forth below:\n\nPART 830--NUCLEAR SAFETY MANAGEMENT\n\nSec.\n830.1 Scope.\n830.2 Exclusions.\n830.3 Definitions.\n830.4 General requirements.\n830.5 Enforcement.\n830.6 Recordkeeping.\n830.7 Graded approach.\nSubpart A--Quality Assurance Requirements\n830.120 Scope.\n830.121 Quality Assurance Program (QAP).\n830.122 Quality assurance criteria.\nSubpart B--Safety Basis Requirements\n830.200 Scope.\n830.201 Performance of work.\n830.202 Safety basis.\n830.203 Unreviewed safety question process.\n830.204 Documented safety analysis.\n830.205 Technical safety requirements.\n830.206 Preliminary documented safety analysis.\n830.207 DOE approval of safety basis.\nAppendix A to Subpart B to Part 830--General Statement of Safety \nBasis Policy\n\n    Authority: 42 U.S.C. 2201; 42 U.S.C. 7101 et seq.; and 50 U.S.C. \n2401 et seq.\n\n\nSec.  830.1   Scope.\n\n    This part governs the conduct of DOE contractors, DOE personnel, \nand other persons conducting activities (including providing items and \nservices) that affect, or may affect, the safety of DOE nuclear \nfacilities.\n\n\nSec.  830.2   Exclusions.\n\n    This part does not apply to:\n    (a) Activities that are regulated through a license by the Nuclear \nRegulatory Commission (NRC) or a State under an Agreement with the NRC, \nincluding activities certified by the NRC under section 1701 of the \nAtomic Energy Act (Act);\n    (b) Activities conducted under the authority of the Director, Naval \nNuclear Propulsion, pursuant to Executive Order 12344, as set forth in \nPublic Law 106- 65;\n    (c) Transportation activities which are regulated by the Department \nof Transportation;\n    (d) Activities conducted under the Nuclear Waste Policy Act of \n1982, as amended, and any facility identified under section 202(5) of \nthe Energy Reorganization Act of 1974, as amended; and\n    (e) Activities related to the launch approval and actual launch of \nnuclear energy systems into space.\n\n[[Page 66206]]\n\nSec.  830.3   Definitions.\n\n    (a) The following definitions apply to this part:\n    Administrative controls means the provisions relating to \norganization and management, procedures, recordkeeping, assessment, and \nreporting necessary to ensure safe operation of a facility.\n    Bases appendix means an appendix that describes the basis of the \nlimits and other requirements in technical safety requirements.\n    Critical assembly means special nuclear devices designed and used \nto sustain nuclear reactions, which may be subject to frequent core and \nlattice configuration change and which frequently may be used as \nmockups of reactor configurations.\n    Criticality means the condition in which a nuclear fission chain \nreaction becomes self-sustaining.\n    Design features means the design features of a nuclear facility \nspecified in the technical safety requirements that, if altered or \nmodified, would have a significant effect on safe operation.\n    Document means recorded information that describes, specifies, \nreports, certifies, requires, or provides data or results.\n"
+    },
     "CLAUSES:EO:12344#sec1": {
       "char_end": 1351,
       "char_start": 1159,
@@ -2203,6 +2555,762 @@
       },
       "text": "Sec. 9. In addition to any other organizational assignm ents within the Depart­\nment of the N avy, the director shall report directly to the C h ie f of N aval \nOperations. The director shall have direct access to the Secretary o f the N avy \nand other senior officials in the Departm ent o f the N av y  concerning naval \nnuclear propulsion matters, and to all other Governm ent personnel who \nsupervise, operate, or m aintain n aval nuclear propulsion plants and support \nfacilities.\nSec.10. This Order is effective on February 1,1982."
     },
+    "CURRENT:EO:12344#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 110,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6102 note; note 'Ex. Ord. No. 12344. Naval Nuclear Propulsion Program' [USLM note id idaabab75a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c17a4c4e6fa317d6b50f7236db5952e1bbccf5b7ffa33ecd88b482173568285d",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idaabab75a-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. 6102 note)",
+      "machine_lead": true,
+      "mention_id": "usc:21fe47ddaec4",
+      "snippet": "Ex. Ord. No. 12344. Naval Nuclear Propulsion Program | Ex. Ord. No. 12344, Feb. 1, 1982, 47 F.R. 4979, provided:",
+      "source": {
+        "page_or_item": "10 U.S.C. 6102 note; note 'Ex. Ord. No. 12344. Naval Nuclear Propulsion Program' [USLM note id idaabab75a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idaabab75a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "c17a4c4e6fa317d6b50f7236db5952e1bbccf5b7ffa33ecd88b482173568285d",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12344. Naval Nuclear Propulsion Program\nEx. Ord. No. 12344, Feb. 1, 1982, 47 F.R. 4979, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idaabab75a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "c17a4c4e6fa317d6b50f7236db5952e1bbccf5b7ffa33ecd88b482173568285d",
+      "where": "USC 10 U.S.C. 6102 note"
+    },
+    "CURRENT:EO:12344#1": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 249,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6102; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "3f33c9ed16a80f9dffac5ceb46d6d6c3862846356402ee137b27d470416d9f25",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t10/s6102",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (10 U.S.C. 6102)",
+      "machine_lead": true,
+      "mention_id": "usc:13cae2730d3d",
+      "snippet": "§ 6102. Naval Nuclear Propulsion Program The provisions of Executive Order Numbered 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program, shall remain in force until changed by law. (Added Pub. L. 119–60, div. C, title X...",
+      "source": {
+        "page_or_item": "10 U.S.C. 6102; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6102-0e43daa78d.txt",
+        "text_sha256": "3f33c9ed16a80f9dffac5ceb46d6d6c3862846356402ee137b27d470416d9f25",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "§ 6102.\nNaval Nuclear Propulsion Program\nThe provisions of Executive Order Numbered 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program, shall remain in force until changed by law.\n(Added Pub. L. 119–60, div. C, title X",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6102-0e43daa78d.txt",
+      "text_sha256": "3f33c9ed16a80f9dffac5ceb46d6d6c3862846356402ee137b27d470416d9f25",
+      "where": "USC 10 U.S.C. 6102"
+    },
+    "CURRENT:EO:12344#10": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 1301,
+      "char_start": 956,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 2406; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "a01ee57d2dae33710ef5e5d05dfc73486e2832fb2632e17242f8ece1c69462ba",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t50/s2406",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#10",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (50 U.S.C. 2406)",
+      "machine_lead": true,
+      "mention_id": "usc:d6107e9d64d0",
+      "snippet": "...ll force and effect until changed by law. (d) Naval Nuclear Propulsion Executive Order As used in this section, the Naval Nuclear Propulsion Executive Order is Executive Order No. 12344, dated February 1, 1982 (42 U.S.C. 7158 note) 1Public Law 98–525; 42 U.S.C. 7158 note)).1 (Pub. L. 106–65, div. C, title XXXII, § 3216, Oct. 5, 1999, 113 Stat....",
+      "source": {
+        "page_or_item": "50 U.S.C. 2406; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s2406-0d4564c17a.txt",
+        "text_sha256": "a01ee57d2dae33710ef5e5d05dfc73486e2832fb2632e17242f8ece1c69462ba",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "ll force and effect until changed by law.\n(d)\nNaval Nuclear Propulsion Executive Order\nAs used in this section, the Naval Nuclear Propulsion Executive Order is Executive Order No. 12344, dated February 1, 1982 (42 U.S.C. 7158 note) 1Public Law 98–525; 42 U.S.C. 7158 note)).1\n(Pub. L. 106–65, div. C, title XXXII, § 3216, Oct. 5, 1999, 113 Stat.",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t50_s2406-0d4564c17a.txt",
+      "text_sha256": "a01ee57d2dae33710ef5e5d05dfc73486e2832fb2632e17242f8ece1c69462ba",
+      "where": "USC 50 U.S.C. 2406"
+    },
+    "CURRENT:EO:12344#11": {
+      "basis_code": "references_in_text_note",
+      "char_end": 99,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6102 note; note 'References in Text' [USLM note id idaabab755-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "045653cd2536e1253af12d2edf2c90d6af14175617a78bf9252dce06dd694b1d",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idaabab755-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#11",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (10 U.S.C. 6102 note)",
+      "machine_lead": true,
+      "mention_id": "usc:cbe0ce79c3e6",
+      "snippet": "References in Text Executive Order Numbered 12344, referred to in text, is set out as a note below.",
+      "source": {
+        "page_or_item": "10 U.S.C. 6102 note; note 'References in Text' [USLM note id idaabab755-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idaabab755-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "045653cd2536e1253af12d2edf2c90d6af14175617a78bf9252dce06dd694b1d",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order Numbered 12344, referred to in text, is set out as a note below.",
+      "text_path": "jobs/current-law/output/usc-notes/idaabab755-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "045653cd2536e1253af12d2edf2c90d6af14175617a78bf9252dce06dd694b1d",
+      "where": "USC 10 U.S.C. 6102 note"
+    },
+    "CURRENT:EO:12344#12": {
+      "basis_code": "references_in_text_note",
+      "char_end": 1567,
+      "char_start": 1268,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6243 note; note 'References in Text' [USLM note id idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "b44706debb62edd70aa9c49008b8216f14eeaff91216fa5c1be3602c4b173ca8",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#12",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (10 U.S.C. 6243 note)",
+      "machine_lead": true,
+      "mention_id": "usc:7840a5ec2243",
+      "snippet": "...erred to Pub. L. 107–314, which was approved Dec. 2, 2002, and later repealed and restated as this section by Pub. L. 119–60, which was approved Dec. 18, 2025. Executive Order Number 12344, referred to in subsec. (f)(1), is set out as a note under section 2511 of Title 50, War and National Defense.",
+      "source": {
+        "page_or_item": "10 U.S.C. 6243 note; note 'References in Text' [USLM note id idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "b44706debb62edd70aa9c49008b8216f14eeaff91216fa5c1be3602c4b173ca8",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "erred to Pub. L. 107–314, which was approved Dec. 2, 2002, and later repealed and restated as this section by Pub. L. 119–60, which was approved Dec. 18, 2025.\nExecutive Order Number 12344, referred to in subsec. (f)(1), is set out as a note under section 2511 of Title 50, War and National Defense.",
+      "text_path": "jobs/current-law/output/usc-notes/idaac90f0e-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "b44706debb62edd70aa9c49008b8216f14eeaff91216fa5c1be3602c4b173ca8",
+      "where": "USC 10 U.S.C. 6243 note"
+    },
+    "CURRENT:EO:12344#13": {
+      "basis_code": "references_in_text_note",
+      "char_end": 131,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6337 note; note 'References in Text' [USLM note id idaad0142a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "816c44e70807640486d636982dbd776208b7271907f668778b10ff1dcc6a1942",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idaad0142a-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#13",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (10 U.S.C. 6337 note)",
+      "machine_lead": true,
+      "mention_id": "usc:6537cd7cfd40",
+      "snippet": "References in Text Executive Order No. 12344, referred to in subsec. (c)(4), is set out as a note under section 6102 of this title.",
+      "source": {
+        "page_or_item": "10 U.S.C. 6337 note; note 'References in Text' [USLM note id idaad0142a-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idaad0142a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "816c44e70807640486d636982dbd776208b7271907f668778b10ff1dcc6a1942",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in subsec. (c)(4), is set out as a note under section 6102 of this title.",
+      "text_path": "jobs/current-law/output/usc-notes/idaad0142a-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "816c44e70807640486d636982dbd776208b7271907f668778b10ff1dcc6a1942",
+      "where": "USC 10 U.S.C. 6337 note"
+    },
+    "CURRENT:EO:12344#14": {
+      "basis_code": "references_in_text_note",
+      "char_end": 340,
+      "char_start": 56,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "15 U.S.C. 3710a note; note 'References in Text' [USLM note id id46151c08-c885-11f1-ae10-9f55152e2dd2]; usc15.xml (sha256 d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7) in xml_uscAll@119-121.zip",
+        "sha256": "4584380f3e0e032034ac0d3e0356510803a1ec125711f6e7158cda0756cbb03f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id46151c08-c885-11f1-ae10-9f55152e2dd2",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#14",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (15 U.S.C. 3710a note)",
+      "machine_lead": true,
+      "mention_id": "usc:65eb42096fa4",
+      "snippet": "...to in subsec. (b)(1)(C), was redesignated section 203(b) of title 35 by Pub. L. 107–273, div. C, title III, § 13206(a)(14)(A)(i), Nov. 2, 2002, 116 Stat. 1905. Executive Order No. 12344, referred to in subsec. (d)(2), is set out as a note under section 6102 of Title 10, Armed Forces.",
+      "source": {
+        "page_or_item": "15 U.S.C. 3710a note; note 'References in Text' [USLM note id id46151c08-c885-11f1-ae10-9f55152e2dd2]; usc15.xml (sha256 d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id46151c08-c885-11f1-ae10-9f55152e2dd2.txt",
+        "text_sha256": "4584380f3e0e032034ac0d3e0356510803a1ec125711f6e7158cda0756cbb03f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "to in subsec. (b)(1)(C), was redesignated section 203(b) of title 35 by Pub. L. 107–273, div. C, title III, § 13206(a)(14)(A)(i), Nov. 2, 2002, 116 Stat. 1905.\nExecutive Order No. 12344, referred to in subsec. (d)(2), is set out as a note under section 6102 of Title 10, Armed Forces.",
+      "text_path": "jobs/current-law/output/usc-notes/id46151c08-c885-11f1-ae10-9f55152e2dd2.txt",
+      "text_sha256": "4584380f3e0e032034ac0d3e0356510803a1ec125711f6e7158cda0756cbb03f",
+      "where": "USC 15 U.S.C. 3710a note"
+    },
+    "CURRENT:EO:12344#15": {
+      "basis_code": "references_in_text_note",
+      "char_end": 204,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2282c note; note 'References in Text' [USLM note id id3a7e2e25-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "ea236bb5e51099c562b0ee77b9d86be2dcf816f041a6724896603457cee12eed",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a7e2e25-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#15",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 2282c note)",
+      "machine_lead": true,
+      "mention_id": "usc:937d6f1ae1b7",
+      "snippet": "References in Text Executive Order No. 12344, referred to in subsec. (a)(2), is set out as a note under section 6102 of Title 10, Armed Forces. Section 1634 of the Department of Defense Authorization Act,...",
+      "source": {
+        "page_or_item": "42 U.S.C. 2282c note; note 'References in Text' [USLM note id id3a7e2e25-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a7e2e25-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "ea236bb5e51099c562b0ee77b9d86be2dcf816f041a6724896603457cee12eed",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in subsec. (a)(2), is set out as a note under section 6102 of Title 10, Armed Forces.\nSection 1634 of the Department of Defense Authorization Act,",
+      "text_path": "jobs/current-law/output/usc-notes/id3a7e2e25-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "ea236bb5e51099c562b0ee77b9d86be2dcf816f041a6724896603457cee12eed",
+      "where": "USC 42 U.S.C. 2282c note"
+    },
+    "CURRENT:EO:12344#16": {
+      "basis_code": "references_in_text_note",
+      "char_end": 203,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2286g note; note 'References in Text' [USLM note id id3a82e914-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "768b20c333e1aa609f7ed8b8789b526734d22cd5987a0f6112ba65011e15ae93",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3a82e914-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#16",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 2286g note)",
+      "machine_lead": true,
+      "mention_id": "usc:fa2b0508e5b2",
+      "snippet": "References in Text Executive Order No. 12344, referred to in par. (1)(A), is set out as a note under section 6102 of Title 10, Armed Forces. The Nuclear Waste Policy Act of 1982, referred to in par. (2),...",
+      "source": {
+        "page_or_item": "42 U.S.C. 2286g note; note 'References in Text' [USLM note id id3a82e914-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3a82e914-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "768b20c333e1aa609f7ed8b8789b526734d22cd5987a0f6112ba65011e15ae93",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in par. (1)(A), is set out as a note under section 6102 of Title 10, Armed Forces.\nThe Nuclear Waste Policy Act of 1982, referred to in par. (2),",
+      "text_path": "jobs/current-law/output/usc-notes/id3a82e914-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "768b20c333e1aa609f7ed8b8789b526734d22cd5987a0f6112ba65011e15ae93",
+      "where": "USC 42 U.S.C. 2286g note"
+    },
+    "CURRENT:EO:12344#17": {
+      "basis_code": "references_in_text_note",
+      "char_end": 960,
+      "char_start": 616,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 5851 note; note 'References in Text' [USLM note id id3bb4164b-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "1085f34a02c4b74d937a6fb7ab3d783c9b744d3bd6e3bf143fdcb1dcbf7266dd",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3bb4164b-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#17",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 5851 note)",
+      "machine_lead": true,
+      "mention_id": "usc:bd36a1f26126",
+      "snippet": "...42, The Public Health and Welfare. For complete classification on this Act to the Code, see Short Title note set out under section 2011 of Title 42 and Tables. Executive Order No. 12344, referred to in subsec. (a)(2)(D), is Ex. Ord. No. 12344, Feb. 1, 1982, 47 F.R. 4979, which is set out as a note under section 6102 of Title 10, Armed Forces.",
+      "source": {
+        "page_or_item": "42 U.S.C. 5851 note; note 'References in Text' [USLM note id id3bb4164b-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3bb4164b-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "1085f34a02c4b74d937a6fb7ab3d783c9b744d3bd6e3bf143fdcb1dcbf7266dd",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "42, The Public Health and Welfare. For complete classification on this Act to the Code, see Short Title note set out under section 2011 of Title 42 and Tables.\nExecutive Order No. 12344, referred to in subsec. (a)(2)(D), is Ex. Ord. No. 12344, Feb. 1, 1982, 47 F.R. 4979, which is set out as a note under section 6102 of Title 10, Armed Forces.",
+      "text_path": "jobs/current-law/output/usc-notes/id3bb4164b-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "1085f34a02c4b74d937a6fb7ab3d783c9b744d3bd6e3bf143fdcb1dcbf7266dd",
+      "where": "USC 42 U.S.C. 5851 note"
+    },
+    "CURRENT:EO:12344#18": {
+      "basis_code": "references_in_text_note",
+      "char_end": 204,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7384l note; note 'References in Text' [USLM note id id3c4caca4-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "e8eefd63e56e06c1649e9e80200fbbf7f284b69e5e6e95a53025cd895785d29f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3c4caca4-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#18",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 7384l note)",
+      "machine_lead": true,
+      "mention_id": "usc:4e2c2ec9b7ed",
+      "snippet": "References in Text Executive Order No. 12344, referred to in par. (12)(A), is set out as a note under section 6102 of Title 10, Armed Forces. Section 4(b)(2) of the Radiation Exposure Compensation Act, re...",
+      "source": {
+        "page_or_item": "42 U.S.C. 7384l note; note 'References in Text' [USLM note id id3c4caca4-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3c4caca4-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "e8eefd63e56e06c1649e9e80200fbbf7f284b69e5e6e95a53025cd895785d29f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in par. (12)(A), is set out as a note under section 6102 of Title 10, Armed Forces.\nSection 4(b)(2) of the Radiation Exposure Compensation Act, re",
+      "text_path": "jobs/current-law/output/usc-notes/id3c4caca4-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "e8eefd63e56e06c1649e9e80200fbbf7f284b69e5e6e95a53025cd895785d29f",
+      "where": "USC 42 U.S.C. 7384l note"
+    },
+    "CURRENT:EO:12344#19": {
+      "basis_code": "references_in_text_note",
+      "char_end": 312,
+      "char_start": 25,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7384n note; note 'References in Text' [USLM note id id3c4cacca-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "bd33e8be793f726d0ed1c461653522c27e1af866f81913bd92ebcb8cd5e486a3",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3c4cacca-c3e9-11f1-bd73-d95596aaa024",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#19",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (42 U.S.C. 7384n note)",
+      "machine_lead": true,
+      "mention_id": "usc:07344344734f",
+      "snippet": "...n 7(b) of the Orphan Drug Act, referred to in subsec. (c)(3)(A), is section 7(b) of Pub. L. 97–414, which is set out in a note under section 241 of this title. Executive Order No. 12344, referred to in subsec. (c)(4)(A), is set out as a note under section 6102 of Title 10, Armed Forces.",
+      "source": {
+        "page_or_item": "42 U.S.C. 7384n note; note 'References in Text' [USLM note id id3c4cacca-c3e9-11f1-bd73-d95596aaa024]; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3c4cacca-c3e9-11f1-bd73-d95596aaa024.txt",
+        "text_sha256": "bd33e8be793f726d0ed1c461653522c27e1af866f81913bd92ebcb8cd5e486a3",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "n 7(b) of the Orphan Drug Act, referred to in subsec. (c)(3)(A), is section 7(b) of Pub. L. 97–414, which is set out in a note under section 241 of this title.\nExecutive Order No. 12344, referred to in subsec. (c)(4)(A), is set out as a note under section 6102 of Title 10, Armed Forces.",
+      "text_path": "jobs/current-law/output/usc-notes/id3c4cacca-c3e9-11f1-bd73-d95596aaa024.txt",
+      "text_sha256": "bd33e8be793f726d0ed1c461653522c27e1af866f81913bd92ebcb8cd5e486a3",
+      "where": "USC 42 U.S.C. 7384n note"
+    },
+    "CURRENT:EO:12344#2": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 5307,
+      "char_start": 4959,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6243; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "d8228afa286658ea2e12208eb5f9c4f17f00221dd272ecbc259a959a635ff257",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t10/s6243",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (10 U.S.C. 6243)",
+      "machine_lead": true,
+      "mention_id": "usc:f17dc526053b",
+      "snippet": "...na), but the term does not include any facility that does not conduct atomic energy defense activities and does not include any facility or activity covered by Executive Order Number 12344, dated February 1, 1982, pertaining to the naval nuclear propulsion program; (2) a nuclear waste storage or disposal facility that is under the control or juri...",
+      "source": {
+        "page_or_item": "10 U.S.C. 6243; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6243-f662afe099.txt",
+        "text_sha256": "d8228afa286658ea2e12208eb5f9c4f17f00221dd272ecbc259a959a635ff257",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "na), but the term does not include any facility that does not conduct atomic energy defense activities and does not include any facility or activity covered by Executive Order Number 12344, dated February 1, 1982, pertaining to the naval nuclear propulsion program;\n(2)\na nuclear waste storage or disposal facility that is under the control or juri",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6243-f662afe099.txt",
+      "text_sha256": "d8228afa286658ea2e12208eb5f9c4f17f00221dd272ecbc259a959a635ff257",
+      "where": "USC 10 U.S.C. 6243"
+    },
+    "CURRENT:EO:12344#20": {
+      "basis_code": "references_in_text_note",
+      "char_end": 204,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 2406 note; note 'References in Text' [USLM note id id98925011-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "317aa7d3fef7f86edf49d80b4c68acc0bbaaf593724dfef0e85db9046298ed53",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id98925011-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#20",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (50 U.S.C. 2406 note)",
+      "machine_lead": true,
+      "mention_id": "usc:5eb900bf20e4",
+      "snippet": "References in Text Executive Order No. 12344, referred to in subsec. (d), is set out as a note under section 6102 of Title 10, Armed Forces. Section 1634 of the Department of Defense Authorization Act, 19...",
+      "source": {
+        "page_or_item": "50 U.S.C. 2406 note; note 'References in Text' [USLM note id id98925011-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id98925011-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "317aa7d3fef7f86edf49d80b4c68acc0bbaaf593724dfef0e85db9046298ed53",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "References in Text\nExecutive Order No. 12344, referred to in subsec. (d), is set out as a note under section 6102 of Title 10, Armed Forces.\nSection 1634 of the Department of Defense Authorization Act, 19",
+      "text_path": "jobs/current-law/output/usc-notes/id98925011-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "317aa7d3fef7f86edf49d80b4c68acc0bbaaf593724dfef0e85db9046298ed53",
+      "where": "USC 50 U.S.C. 2406 note"
+    },
+    "CURRENT:EO:12344#3": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 2946,
+      "char_start": 2601,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 6337; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "7812d8b09eaccd7cabb9a714dd2e27245b2c70b51c93fe32038036ceb36a957d",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t10/s6337",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#3",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (10 U.S.C. 6337)",
+      "machine_lead": true,
+      "mention_id": "usc:7bf873eb929e",
+      "snippet": "...riate, as determined in accordance with applicable laws and regulations. (4) The term “atomic energy defense activities” does not include activities covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval nuclear propulsion program. (Added Pub. L. 119–60, div. C, title XXXI, § 3111(a), (d)(2)(B), Dec. 18, 2025, 13...",
+      "source": {
+        "page_or_item": "10 U.S.C. 6337; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6337-39e5e2a9db.txt",
+        "text_sha256": "7812d8b09eaccd7cabb9a714dd2e27245b2c70b51c93fe32038036ceb36a957d",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "riate, as determined in accordance with applicable laws and regulations.\n(4)\nThe term “atomic energy defense activities” does not include activities covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval nuclear propulsion program.\n(Added Pub. L. 119–60, div. C, title XXXI, § 3111(a), (d)(2)(B), Dec. 18, 2025, 13",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t10_s6337-39e5e2a9db.txt",
+      "text_sha256": "7812d8b09eaccd7cabb9a714dd2e27245b2c70b51c93fe32038036ceb36a957d",
+      "where": "USC 10 U.S.C. 6337"
+    },
+    "CURRENT:EO:12344#4": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 15281,
+      "char_start": 14936,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "15 U.S.C. 3710a; usc15.xml (sha256 d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7) in xml_uscAll@119-121.zip",
+        "sha256": "69769fbe5e95fb4d66043b5f55c87167c95ed2ecca733a38ede6e3651fe042d4",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t15/s3710a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#4",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (15 U.S.C. 3710a)",
+      "machine_lead": true,
+      "mention_id": "usc:047fbeddf727",
+      "snippet": "...aintenance, testing, or dismantlement of a nuclear weapon or its components, for the Federal Government, but such term does not include any facility covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the naval nuclear propulsion program; (3) the term “joint work statement” means a proposal prepared for a Federal agency...",
+      "source": {
+        "page_or_item": "15 U.S.C. 3710a; usc15.xml (sha256 d32cd2eecd2c7a23c2bcbb56254e1b397be6cc4650c56c3f65bf1e667d558db7) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t15_s3710a-d0054c5ed1.txt",
+        "text_sha256": "69769fbe5e95fb4d66043b5f55c87167c95ed2ecca733a38ede6e3651fe042d4",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "aintenance, testing, or dismantlement of a nuclear weapon or its components, for the Federal Government,\nbut such term does not include any facility covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the naval nuclear propulsion program;\n(3)\nthe term “joint work statement” means a proposal prepared for a Federal agency",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t15_s3710a-d0054c5ed1.txt",
+      "text_sha256": "69769fbe5e95fb4d66043b5f55c87167c95ed2ecca733a38ede6e3651fe042d4",
+      "where": "USC 15 U.S.C. 3710a"
+    },
+    "CURRENT:EO:12344#5": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 1118,
+      "char_start": 774,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2282c; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "da6d404f4a24f823fd9669e418863d22195eb3ecf08a5b9052a33301f5dcb3d6",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s2282c",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#5",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (42 U.S.C. 2282c)",
+      "machine_lead": true,
+      "mention_id": "usc:fd889ac70b87",
+      "snippet": "...paragraph (1) shall not apply to any facility that is a component of, or any activity conducted under, the Naval Nuclear Propulsion Program provided for under Executive Order No. 12344, dated February 1, 1982 (as in force pursuant to section 1634 of the Department of Defense Authorization Act, 1985 (Public Law 98–525)). (3) Flexibility In pro...",
+      "source": {
+        "page_or_item": "42 U.S.C. 2282c; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s2282c-811f1c535a.txt",
+        "text_sha256": "da6d404f4a24f823fd9669e418863d22195eb3ecf08a5b9052a33301f5dcb3d6",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "paragraph (1) shall not apply to any facility that is a component of, or any activity conducted under, the Naval Nuclear Propulsion Program provided for under Executive Order No. 12344, dated February 1, 1982 (as in force pursuant to section 1634 of the Department of Defense Authorization Act, 1985 (Public Law 98–525)).\n(3)\nFlexibility\nIn pro",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s2282c-811f1c535a.txt",
+      "text_sha256": "da6d404f4a24f823fd9669e418863d22195eb3ecf08a5b9052a33301f5dcb3d6",
+      "where": "USC 42 U.S.C. 2282c"
+    },
+    "CURRENT:EO:12344#6": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 649,
+      "char_start": 304,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 2286g; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "36b51ebc358e18ff886f82c78fa839994112d30500a0344dbb9d1cf5eda8fbe2",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s2286g",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#6",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (42 U.S.C. 2286g)",
+      "machine_lead": true,
+      "mention_id": "usc:b506acc17ee8",
+      "snippet": "...sdiction of the Secretary of Energy and that is operated for national security purposes, but the term does not include— (A) any facility or activity covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval nuclear propulsion program; (B) any facility or activity involved with the transportation of nuclear explosive...",
+      "source": {
+        "page_or_item": "42 U.S.C. 2286g; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s2286g-1c0f7f5f3b.txt",
+        "text_sha256": "36b51ebc358e18ff886f82c78fa839994112d30500a0344dbb9d1cf5eda8fbe2",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "sdiction of the Secretary of Energy and that is operated for national security purposes, but the term does not include—\n(A)\nany facility or activity covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval nuclear propulsion program;\n(B)\nany facility or activity involved with the transportation of nuclear explosive",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s2286g-1c0f7f5f3b.txt",
+      "text_sha256": "36b51ebc358e18ff886f82c78fa839994112d30500a0344dbb9d1cf5eda8fbe2",
+      "where": "USC 42 U.S.C. 2286g"
+    },
+    "CURRENT:EO:12344#7": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 2186,
+      "char_start": 1841,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 5851; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "bc8a5dd5fd4c096a406c3bfa5a62fc1f3ef146d7c18a176eb2286294f2d32c5f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s5851",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#7",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (42 U.S.C. 5851)",
+      "machine_lead": true,
+      "mention_id": "usc:f7293ac5c0eb",
+      "snippet": "...epartment under section 170 d. of the Atomic Energy Act of 1954 (42 U.S.C. 2210(d)), but such term shall not include any contractor or subcontractor covered by Executive Order No. 12344; (E) a contractor or subcontractor of the Commission; (F) the Commission; and (G) the Department of Energy. (b) Complaint, filing and notification (1) Any empl...",
+      "source": {
+        "page_or_item": "42 U.S.C. 5851; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s5851-0cfafd0c58.txt",
+        "text_sha256": "bc8a5dd5fd4c096a406c3bfa5a62fc1f3ef146d7c18a176eb2286294f2d32c5f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "epartment under section 170 d. of the Atomic Energy Act of 1954 (42 U.S.C. 2210(d)), but such term shall not include any contractor or subcontractor covered by Executive Order No. 12344;\n(E)\na contractor or subcontractor of the Commission;\n(F)\nthe Commission; and\n(G)\nthe Department of Energy.\n(b)\nComplaint, filing and notification\n(1)\nAny empl",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s5851-0cfafd0c58.txt",
+      "text_sha256": "bc8a5dd5fd4c096a406c3bfa5a62fc1f3ef146d7c18a176eb2286294f2d32c5f",
+      "where": "USC 42 U.S.C. 5851"
+    },
+    "CURRENT:EO:12344#8": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 6939,
+      "char_start": 6594,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7384l; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "9b74d08c1e9115b6dfc8f4cacb682854b4038ef2eed7c6feb56449efe0590a55",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s7384l",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#8",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (42 U.S.C. 7384l)",
+      "machine_lead": true,
+      "mention_id": "usc:b7c11c228529",
+      "snippet": "...tions are, or have been, conducted by, or on behalf of, the Department of Energy (except for buildings, structures, premises, grounds, or operations covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program); and (B) with regard to which the Department of Energy has or had— (i) a proprieta...",
+      "source": {
+        "page_or_item": "42 U.S.C. 7384l; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7384l-684305e813.txt",
+        "text_sha256": "9b74d08c1e9115b6dfc8f4cacb682854b4038ef2eed7c6feb56449efe0590a55",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "tions are, or have been, conducted by, or on behalf of, the Department of Energy (except for buildings, structures, premises, grounds, or operations covered by Executive Order No. 12344, dated February 1, 1982, pertaining to the Naval Nuclear Propulsion Program); and\n(B)\nwith regard to which the Department of Energy has or had—\n(i)\na proprieta",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7384l-684305e813.txt",
+      "text_sha256": "9b74d08c1e9115b6dfc8f4cacb682854b4038ef2eed7c6feb56449efe0590a55",
+      "where": "USC 42 U.S.C. 7384l"
+    },
+    "CURRENT:EO:12344#9": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 3093,
+      "char_start": 2748,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7384n; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "3fcb602785e94f9808e0f9953ea6e93b17627d317fcc8a9a6a6a70c1c6333b4c",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s7384n",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12344#9",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12344",
+      "legal_basis_candidate": "statute text names the order (42 U.S.C. 7384n)",
+      "machine_lead": true,
+      "mention_id": "usc:fb5e5175c8b8",
+      "snippet": "...research, produce, process, store, remediate, or dispose of radioactive materials by or on behalf of the Department of Energy (except for activities covered by Executive Order No. 12344, dated February 1, 1982 (42 U.S.C. 7158 note) 1 (B) Any dose of ionizing radiation received by that employee from a source not covered by subparagraph (A) that...",
+      "source": {
+        "page_or_item": "42 U.S.C. 7384n; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7384n-65525ab94a.txt",
+        "text_sha256": "3fcb602785e94f9808e0f9953ea6e93b17627d317fcc8a9a6a6a70c1c6333b4c",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "research, produce, process, store, remediate, or dispose of radioactive materials by or on behalf of the Department of Energy (except for activities covered by Executive Order No. 12344, dated February 1, 1982 (42 U.S.C. 7158 note) 1\n(B)\nAny dose of ionizing radiation received by that employee from a source not covered by subparagraph (A) that",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7384n-65525ab94a.txt",
+      "text_sha256": "3fcb602785e94f9808e0f9953ea6e93b17627d317fcc8a9a6a6a70c1c6333b4c",
+      "where": "USC 42 U.S.C. 7384n"
+    },
     "ORIGINAL:EO:12344": {
       "acceptable_as_original": true,
       "actor_id": "EO:12344",
@@ -2482,7 +3590,7 @@
       "text": "Within the Department of Energy, the director shall report to the Secretary of Energy, through the Assistant Secretary assigned nuclear energy functions and shall serve as a Deputy Assistant Secretary."
     }
   },
-  "fingerprint": "84dcfbb49bc7d1ba2b415e43253b988ea505753d6d472362bac11d9a43ad4941",
+  "fingerprint": "3203b07b49d05c3f444c71362b021ec5a2f3b9293a6541fe178e2e0ff007bfc6",
   "instrument_id": "EO:12344",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2783,32 +3891,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 30,
+      "machine_fragment_items_for_this_order_all_systems": 30,
+      "machine_hits_for_this_order": 26,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 30,
+      "machine_fragment_items_for_this_order_all_systems": 30,
+      "machine_hits_for_this_order": 13,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },

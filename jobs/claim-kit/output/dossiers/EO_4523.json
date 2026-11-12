@@ -2,15 +2,19 @@
   "actor_contexts": [
     {
       "actor_id": "EO:9830",
+      "evidence_ids": [],
+      "full_text_chars": 92143,
       "overflow": "actor-texts/EO_9830.json",
-      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3"
+      "text_sha256": "b519c570558edc86d21ec7b9228252fd61d4f17e36b95cb8f16ab70ed879d3e3",
+      "window_bytes": 0,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:4523",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:4523"
@@ -46,8 +50,8 @@
   "current_law_leads": [],
   "draft_gate_errors": [
     "original_representation_provenance",
-    "clause_0_original_text_or_source",
     "clause_0_state",
+    "clause_1_state",
     "whole_order_end_evidence",
     "savings_residuals_evidence",
     "bounded_later_search",
@@ -56,7 +60,7 @@
   ],
   "draft_material_gaps": [
     "DRAFT: original_representation not yet confirmed",
-    "DRAFT: no clause inventory; the clause DRAFT-PLACEHOLDER-no-clause-inventory only stands in for it and must be replaced by the order's real clauses (never commit it, and never commit an empty clause list)",
+    "DRAFT: state_at_cutoff not decided for 2 clause(s); clause inventory completeness not confirmed",
     "DRAFT: whole-order ending not established",
     "DRAFT: savings and residual effects not closed",
     "DRAFT: later_source_search not recorded (machine searches are proposals only; paste them after judging them adequate and resolving every CONFLICT line)"
@@ -116,7 +120,7 @@
       "text": "October 18, 1926.\nThe final paragraph of the Executive order of June 19, 1924, is amended to\nread as follows:\nEmployees will be permitted to remain in the positions they were\noccupying on July 1, 1924, and, upon the attainment and maintenance of\nthe appropriate efficiency ratings, may receive salary increases up to the\nmaximum of the grade to which such positions have been a:ilocated,\nalthough contrary to existing provisions of the civil-service rules, if\notherwise permissible. They shall not, however, thereby be given any\nstatus for promotion, transfer, or reinstatement different from that which\nthey have regularly acquired under the civil-service law and ru.es, except\nthat the Civii Service Commission, in its discretion, may, without exami-\nnation, permit reinstatement or a promotion in the same department or\nestablishment back to the same class of positions as that occupied on\nJuly 1, 1924, after a separation or demotion without fault or delinquency,\nif otherwise in accordance with the civil-service law and rules.\n"
     }
   },
-  "fingerprint": "0dfd7b70a5bb0636cb2e997ef3ec7ef6dfffd86545955d7253a166b5329709eb",
+  "fingerprint": "df5c08b7bb6f7683de103df1fb4419692573dec9d1df1304885cf63c54826a59",
   "instrument_id": "EO:4523",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -140,11 +144,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 0,
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -152,11 +157,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 0,
       "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
@@ -165,8 +171,8 @@
       "complete": true,
       "coverage_warning": "order dated 1926: the OFR catalog starts in 1937, so endings before then are not in it; not adequate on its own",
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -187,10 +193,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "76d545025d11de33ed371b04e53704a125247d97e9239ff39eb0f7f1dadaa658",
+    "fingerprint": "200bb6a37a6323daf581884e2f31b8cf67281dc524a7e81443fdaaa545b2eeb9",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_4523.json",
-    "history_sha256": "6116ee95fbee9476f9ba092183fb97381c263b68a350f56f94c3c652fecdb8cc",
+    "history_sha256": "8f8441a1300ba237f4188e9e1d7906f9f786a8d36b6308edc4463e1559e2ce3f",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,
