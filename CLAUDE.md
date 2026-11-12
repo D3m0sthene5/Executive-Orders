@@ -15,6 +15,12 @@
 
 An unranked Bentham refusal is a stop, never advice. The claim kit refuses orders outside the named Bentham action (`jobs/claim-kit/admission.py`). The Savigny supervisor stops lanes on measured spend per verified claim, not on what agents report. See `jobs/augur-launch/README.md`.
 
+**Measure before you launch a long job (owner, 2026-11-12, Kean F-20261112-runner-deadline):** a GitHub runner job
+is killed at 6 hours (350-minute workflow timeout) and publishes nothing if it runs into the wall. Before starting any
+job that loops over many items, time 5-10 real items and multiply; never quote a run time you have not measured. Over
+4 hours: shard it across jobs or stop at 4.5 h (`jobs/_lib/runner_limits.py`) and continue next run. Write state,
+results and paid-spend ledgers every batch, not only at the end.
+
 **Lean tree (2026-11-08):** never list or search the whole ~194,000-file tree; name the folder you need. The root `.ignore` keeps Grep out of outputs and data unless you give their path, and `.claude/hooks/ockham_lean_tree.py` refuses bare `git ls-files`, `find .`, `ls -R` and root-wide `**` globs. Details in `AGENTS.md`.
 
 At the beginning of every session read `HANDOFF/KEAN.md`, `HANDOFF/README.md`, the newest entry of each agent's notes (including `HANDOFF/notes-astra.md`), plus `AGENTS.md`. GitHub is the coordination and evidence base; use it instead of asking the owner to transfer chat transcripts.

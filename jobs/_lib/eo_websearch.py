@@ -37,6 +37,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import eo_identity as ident  # noqa: E402
 import fetch_pool  # noqa: E402
+import runner_limits  # noqa: E402
 
 ENGINES_FILE = os.path.join(HERE, "search_engines.json")
 MAX_PAGE_BYTES = 6_000_000
@@ -478,6 +479,7 @@ class Searcher:
         self.reserved = 0  # fetches started; robots.txt reads are extra (one per host) and not counted here
         self.now = now or (lambda: dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"))
         # paid queries this searcher may still send (None: the per-run default; caps are applied by run_campaign)
+        self.robots_overrides = {}
         self.paid_allowance = _int_env(self.env, "EO_PAID_SEARCHES_PER_RUN", PAID_PER_RUN_DEFAULT) if paid_allowance is None else paid_allowance
         self.paid_used = {}
 
@@ -542,6 +544,28 @@ class Searcher:
         except Exception as exc:  # network errors are retryable facts, never findings
             return 0, b"", type(exc).__name__ + ": " + str(exc)[:120]
 
+    def _keyed_api_robots_4xx(self, engine, url):
+        """Owner, 2026-11-11 (extends A-20261107-courtlistener-robots): a robots.txt answered with 401/403 is
+        "unavailable" under RFC 9309 section 2.3.1.3, which permits access. For a paid search API called with the
+        owner's own key (Brave's api.search.brave.com answers its robots file with 403), proceed. Only keyed paid
+        engines, only on a 4xx robots answer: an explicit Disallow rule, a 5xx or a network failure still blocks."""
+        try:
+            self.pool.allowed(url)
+            return False
+        except Exception:
+            pass
+        try:
+            origin, _ = self.pool._origin(url)
+            rp = self.pool.robots.get(origin)
+        except Exception:
+            return False
+        if rp is not None and getattr(rp, "disallow_all", False) and getattr(rp, "wild", "x") is None:
+            rp.disallow_all = False
+            rp.allow_all = True
+            self.robots_overrides[engine["name"]] = "robots.txt answered 4xx (RFC 9309 unavailable); keyed API, owner ruling 2026-11-11"
+            return True
+        return False
+
     def search(self, engine, query, year=None):
         """One query on one engine -> {'engine','query','url','status','hits','error'}."""
         url = build_url(engine, query, year, self.env)
@@ -554,6 +578,8 @@ class Searcher:
                     "hits": [], "error": "deferred_this_run:" + self.engine_status[name]}
         if engine.get("paid") and not self._reserve_paid(name):
             return {"engine": name, "query": query, "url": shown, "status": 0, "hits": [], "error": "paid_cap_reached"}
+        if engine.get("paid") and engine.get("env"):
+            self._keyed_api_robots_4xx(engine, url)
         status, body, error = self._fetch(url, build_headers(engine, self.env))
         hits, perr = [], ""
         if status == 200 and body:
@@ -715,8 +741,10 @@ def load_prior_state(root, job):
 
 
 def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, max_targets=40, transport=None,
-                 env=None, engines=None, offline=False, universe_ids=None, now=None):
-    """Advance up to `max_targets` targets one step each, within `max_requests`, and write the campaign files.
+                 env=None, engines=None, offline=False, universe_ids=None, now=None, deadline_start=None):
+    """Advance up to `max_targets` targets one step each, within `max_requests` and the runner deadline
+    (jobs/_lib/runner_limits.py: no new target after 4.5 h by default, JOB_DEADLINE_SECONDS to change), and write
+    the campaign files.
 
     targets: list of {'id','number','suffix','date','title','president','kind', ...extra}. Writes WEB_STATE.json
     (all targets, carried forward), WEB_HITS.csv (every hit), WEB_LEADS.csv (hits whose page named the order),
@@ -739,8 +767,13 @@ def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, ma
     engines_ready = searcher.ready_engines()
     picked = pick_targets(states, targets, max_targets)
     advanced = 0
+    started = runner_limits.time.time() if deadline_start is None else deadline_start
+    stopped_for_deadline = False
     for t in picked:
         if not searcher.budget_left():
+            break
+        if runner_limits.past_safe_stop(started, env_):  # Kean F-20261112-runner-deadline: publish, never run into the wall
+            stopped_for_deadline = True
             break
         st = states.get(t["id"]) or new_state(t)
         states[t["id"]] = advance(searcher, t, st, engines_ready)
@@ -803,6 +836,7 @@ def run_campaign(job, root, out_dir, targets, *, cache_dir, max_requests=300, ma
                   fh, indent=1, sort_keys=True)
     summary = {
         "targets_total": len(targets), "targets_with_state": len(states), "advanced_this_run": advanced,
+        "stopped_for_deadline": stopped_for_deadline,
         "never_searched": sum(1 for t in targets if t["id"] not in states),
         "requests_used": searcher.requests_used, "fetches_budgeted": searcher.reserved, "max_requests": max_requests,
         "paid_queries_this_run": used, "paid_allowance_this_run": allowance, "paid_queries_lifetime_this_job": paid_mine + used,
