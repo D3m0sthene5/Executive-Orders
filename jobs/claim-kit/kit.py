@@ -199,7 +199,7 @@ def main(argv=None):
     s=sub.add_parser('overlay-review-sheet');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--reviewer',required=True);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-propose');s.add_argument('--evidence',type=Path,required=True);s.add_argument('--decision',type=Path,required=True);s.add_argument('--review',type=Path,required=True);s.add_argument('--lifecycle-sheet',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('overlay-assemble');s.add_argument('bundle',type=Path);s.add_argument('--sheet',type=Path,required=True);s.add_argument('--write',type=Path,required=True)
-    s=sub.add_parser('overlay-check');s.add_argument('bundle',type=Path);s.add_argument('claims',type=Path)
+    s=sub.add_parser('overlay-check');s.add_argument('bundle',type=Path);s.add_argument('claims',type=Path);s.add_argument('--no-actual-checker',action='store_true',help='skip the offline completion checker (not for claims headed to review)')
     s=sub.add_parser('assemble');s.add_argument('sheets',nargs='+',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('check');s.add_argument('claims',type=Path)
     sub.add_parser('status')
@@ -236,7 +236,18 @@ def main(argv=None):
                 rows=[]
                 for number,line in enumerate(a.claims.read_text('utf-8').splitlines(),1):
                     if line.strip():rows.append({'line':number,'errors':overlay.check_working_claim(repo,json.loads(line),proposal,decision,review,evidence)})
-                print(json.dumps({'checked':len(rows),'failures':[r for r in rows if r['errors']],'experimental_only':True,'claims_published':0}))
+                # The completion checker, offline, before any blind review (custody, quotes, identities): F-20261112-lind-stage0.
+                actual=None
+                # Like admission: a checkout without the checker is exempt only when it is not a project checkout
+                # (the kit's own fixtures); a project checkout (AGENTS.md at its root) must run it.
+                has_checker=(repo/'jobs/claim-checker/checker.py').exists() or (repo/'AGENTS.md').exists()
+                if rows and not a.no_actual_checker and has_checker:
+                    from batch import actual_check_offline
+                    target=bundle/'actual-checker';summary,not_passed=actual_check_offline(repo,a.claims.resolve(),target,bundle/'.validation-cache')
+                    actual={'claims_checked':summary.get('claims_checked'),'claims_all_checks_passed':summary.get('claims_all_checks_passed'),
+                            'not_passed':not_passed,'network_downloads_enabled':False,'full_audit':str(target.relative_to(repo))}
+                    if not_passed:rows.append({'line':None,'errors':['actual_checker_not_passed:'+json.dumps(not_passed,ensure_ascii=False)[:2000]]})
+                print(json.dumps({'checked':len(rows),'failures':[r for r in rows if r['errors']],'actual_claim_checker':actual,'experimental_only':True,'claims_published':0}))
                 return int(not rows or any(r['errors'] for r in rows))
             if a.command=='overlay-prepare':
                 if a.write.exists():raise ValueError('Overlay destination exists; refusing overwrite')

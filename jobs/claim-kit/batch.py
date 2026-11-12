@@ -48,6 +48,35 @@ def safe(root,rel):
     if not p.is_relative_to(root):raise ValueError('path outside repository: '+str(rel))
     return p
 def file_sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
+def actual_check_offline(repo, claims_path, target, cache_dir):
+    """Run the actual claim checker on one claims file exactly as completion does (no network downloads).
+
+    Returns (summary, not_passed): not_passed lists each claim that did not pass every check, with its
+    unverified items (for example source_held:custody_record_only) and mechanical failures. Used by
+    `kit.py overlay-check` so an undecided working claim meets the completion checker before blind review
+    (Kean F-20261112-lind-stage0: EO 12753 was upheld by both arms and then failed custody at completion).
+    Completion still re-checks the final artifact."""
+    import subprocess, sys
+    repo, target = Path(repo), Path(target)
+    script = repo / 'jobs/claim-checker/checker.py'
+    if not script.exists():
+        raise ValueError('actual claim-checker code unavailable')
+    target.mkdir(parents=True, exist_ok=True)
+    env = dict(os.environ, REPO_ROOT=str(repo), OUTPUT_DIR=str(target), JOB_LIMIT='', JOB_CACHE_DIR=str(cache_dir),
+               CLAIM_CHECKER_VERIFY_DOWNLOADS='0', PYTHONIOENCODING='utf-8')
+    with (target / 'CHECKER.log').open('w', encoding='utf-8') as log:
+        run = subprocess.run([sys.executable, '-B', str(script), '--claims', str(claims_path)],
+                             cwd=repo, env=env, stdout=log, stderr=subprocess.STDOUT)
+    if run.returncode:
+        raise ValueError('actual claim-checker failed; inspect ' + str(target / 'CHECKER.log'))
+    summary = json.loads((target / 'SUMMARY.json').read_bytes())
+    per_claim = json.loads((target / 'PER_CLAIM.json').read_bytes())
+    not_passed = [{'instrument_id': r.get('instrument_id'), 'unverified': r.get('unverified', [])[:10],
+                   'mechanical_failures': r.get('failures', [])[:10], 'gate_errors': r.get('gate_errors', [])}
+                  for r in per_claim.get('claims', []) if not r.get('all_checks_passed')]
+    return summary, not_passed
+
+
 def preflight_dependency_pins():
     """Pin the source modules used by the live evidence preflight."""
     source_root=Path(__file__).resolve().parents[2]
