@@ -62,6 +62,17 @@ one per line, for example `research/stage19`. Git LFS files (such as the
 archive `.part` files and `releases/**/*.zip`) arrive as small pointer files;
 a script that needs one runs `git lfs pull --include "<path>"` itself.
 
+## Long jobs: measure first, stop in time (Kean F-20261112-runner-deadline)
+
+A job is killed at 6 hours (the 350-minute workflow timeout) and then publishes nothing. On 2026-11-11 a one-shot web
+search over 2,251 orders ran into that wall after 5 h 50 min: about 30 s an order, never measured beforehand.
+
+- Time 5-10 real items before the first full run and multiply. Over about 4 hours: shard the work across several job
+  folders (they run side by side as separate stations) or stop starting new items at 4.5 h and continue next run.
+- Use `jobs/_lib/runner_limits.py` (`past_safe_stop()`; `JOB_DEADLINE_SECONDS` overrides 4.5 h). The shared web search
+  (`eo_websearch.run_campaign`) already obeys it.
+- Write state, results and any paid-spend ledger every batch, never only at the end.
+
 ## Telling a slow job from a stuck one (Rattle Watch)
 
 While a job runs, the run log prints one line a minute, for example
