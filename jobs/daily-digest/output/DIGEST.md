@@ -10,7 +10,7 @@ New York date: 2026-11-12. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `43290372543-1:6210e6e38905864eedb6e75f7e81113275eeee235f863deae088134e75cc5b7d` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43304573666-1:1cef4f55050117e6d83a542d535b39711468ddb2e05389956ea2ffb870a37b1a` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -34,9 +34,12 @@ Comparison snapshot: 2026-11-11; intervening runs may be absent.
 - gratian-niebuhr-leads: date_leads_in_census: 36 → 40
 - kean: decisions: 88 → 90; findings: 364 → 372; open_owner_questions: 5 → 7
 - lachmann: assessed: 2356 → 2360; complete_text_confirmed: 1366 → 1397; confirmed: 777 → 808; identity_confirmed: 1149 → 1147
+- larrey-triage: orders_with_compiled_inputs: 14998 → 15002; tracker_orders: 14998 → 15002
+- niebuhr-verify: requests_used: 186 → 185
 - official-fixity: carried_forward: 7355 → 7356; files: 7356 → 7357; premis_bytes_read_this_run: 196608 → 262144
 - readiness-tracker: numbered_series_orders: 14998 → 15002; orders_total: 14998 → 15002; original_replacement_obligations: 851 → 883; quotation_recheck_obligations: 851 → 883
-- selden-fr-citers: bytes_downloaded: 855827 → 0; requests: 71 → 0; targets_total: 13199 → 13203
+- selden-fr-citers: bytes_downloaded: 855827 → 468; requests: 71 → 5; targets_searched_this_run: 0 → 4; targets_searched_total: 13533 → 13537
+- shepard-citations: edges: 10665 → 10667; edges_with_census_actor: 6655 → 6657; edges_with_census_target: 7659 → 7661; targets: 8575 → 8579
 - source-ladder: attempts_logged: 79 → 63; bytes_downloaded: 67273510 → 183071370; distinct_new_source_hashes: 23 → 32; exhausted_proposed_items: 5 → 13
 - status-history: census_identities: 14998 → 15002
 
@@ -59,6 +62,8 @@ Comparison snapshot: 2026-11-11; intervening runs may be absent.
 - A-20261110-ulpian-named-war (2026-11-10, Claude): Count service in a named war as a dated fact? Eight returned L1R orders (EO 437, 444, 453, 411 and four others; list in research/ulpian/jacquard-l1r-correction/COORDINATOR.jsonl) say the person is a veteran of the Civil War (1861-1865) or the Spanish war (1898) but print no date. RULE.md v2 section 
 - A-20261111-film709-count (2026-11-11, Claude): NYU Film 709 (11 reels, EO 1-7403) is free to scan yourself at Bobst on the ScanPro stations, and NARA New York is closed. Count your own Film 709 scans as the R38 microfilm witness, like M1118? Bytes stay private (owner inbox, as with Hein); only hashes and page facts go public. Counting starts onl
 - A-20261112-cis-unnumbered-check (2026-11-12, Claude): Check the 875 CIS unnumbered executive orders that fall on dates with no known order (research/graunt-census-audit-2026-11-12/cis-kaufman/CIS_UNNUMBERED_EO_GROUPS_PRE1937.csv) for admission to the unnumbered series? A pilot of 30 on the CIS fiche at Bobst or ProQuest would show how many are presiden
+- A-20261112-lind-stage0 (2026-11-12, Claude): After the claim-kit rebuild publishes, may Claude run one Lind stage-0 batch: 30 undecided orders (15 passing every Larrey gate, 15 passing only the hard gates, drawn by research/lind/stage0/draw.py), Papinian configuration, one pooled review set, hard cap $35 list-price allowance? It also needs an 
+- A-20261112-lind-stage0-v2 (2026-11-12, Claude): Approve the Lind stage-0 pilot exactly as research/lind/stage0/WAVE.json (sha256 f2b07a1923354e3484a9f510a3419fbb2d882150ce68cce9dc02f6ff0d3b8a1d): 30 undecided orders, 15 drawn at random from the 3,447 that pass every Larrey gate and 15 from the 1,834 that pass only the hard gates (never attempted)
 
 ## Published output status
 
@@ -68,4 +73,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43290372543)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43304573666)
