@@ -33,10 +33,10 @@ incorrect startxref pointer(1)
 parsing for Object Streams
 incorrect startxref pointer(1)
 parsing for Object Streams
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-7dcakcs1/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-6pq403v5/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
   self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-7dcakcs1/_out/REPORT.md' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-6pq403v5/_out/REPORT.md' mode='r' encoding='utf-8'>
   self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -149,17 +149,19 @@ test_qualified_request_not_conflated (test_handoff.HandoffTests.test_qualified_r
 test_shared_result_matches_each_exact_target (test_handoff.HandoffTests.test_shared_result_matches_each_exact_target) ... ok
 
 ----------------------------------------------------------------------
-Ran 35 tests in 4.186s
+Ran 35 tests in 4.090s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
 test_budget_stops_cleanly_and_is_recorded (test_eo_websearch.SearchLayer.test_budget_stops_cleanly_and_is_recorded) ... ok
 test_campaign_paid_ledger_accumulates_and_stops_at_job_cap (test_eo_websearch.SearchLayer.test_campaign_paid_ledger_accumulates_and_stops_at_job_cap) ... ok
+test_campaign_stops_starting_targets_at_the_runner_deadline_and_still_writes (test_eo_websearch.SearchLayer.test_campaign_stops_starting_targets_at_the_runner_deadline_and_still_writes) ... ok
 test_campaign_writes_files_and_resumes_from_prior_state (test_eo_websearch.SearchLayer.test_campaign_writes_files_and_resumes_from_prior_state) ... ok
 test_deferred_queries_are_not_persisted_as_engine_attempts (test_eo_websearch.SearchLayer.test_deferred_queries_are_not_persisted_as_engine_attempts) ... ok
 test_html_results_unwrap_redirects_and_skip_engine_links (test_eo_websearch.SearchLayer.test_html_results_unwrap_redirects_and_skip_engine_links) ... ok
 test_json_results_and_url_prefix (test_eo_websearch.SearchLayer.test_json_results_and_url_prefix) ... ok
 test_keyed_engine_waits_for_its_key_and_robots_blocks_are_named (test_eo_websearch.SearchLayer.test_keyed_engine_waits_for_its_key_and_robots_blocks_are_named) ... ok
+test_keyed_paid_api_proceeds_when_robots_answers_4xx_but_not_on_explicit_disallow (test_eo_websearch.SearchLayer.test_keyed_paid_api_proceeds_when_robots_answers_4xx_but_not_on_explicit_disallow) ... ok
 test_page_to_text_strips_scripts (test_eo_websearch.SearchLayer.test_page_to_text_strips_scripts) ... ok
 test_paid_engine_skipped_when_free_engines_found_something (test_eo_websearch.SearchLayer.test_paid_engine_skipped_when_free_engines_found_something) ... ok
 test_paid_engine_used_only_when_free_find_nothing_and_capped_and_redacted (test_eo_websearch.SearchLayer.test_paid_engine_used_only_when_free_find_nothing_and_capped_and_redacted) ... ok
@@ -170,25 +172,25 @@ test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLay
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 16 tests in 23.305s
+Ran 18 tests in 26.210s
 
 OK
 {
   "scope": {
-    "orders": 2504,
+    "orders": 2470,
     "by_reason": {
-      "transcription_only": 2486,
-      "clark_identified_not_in_universe": 17,
-      "clark_identified": 1
+      "transcription_only": 2452,
+      "clark_identified_not_in_universe": 16,
+      "clark_identified": 2
     }
   },
   "routes": {
-    "federal_register:fetch_request_proposed": 93,
-    "federal_register:fr_era_not_in_ofr_catalog": 81,
-    "federal_register:in_ofr_catalog_no_citation": 16,
+    "federal_register:fetch_request_proposed": 67,
+    "federal_register:fr_era_not_in_ofr_catalog": 65,
+    "federal_register:in_ofr_catalog_no_citation": 11,
     "gpo_bound_volumes:in_volume_range_not_found": 6,
     "proquest_local:pinakes_file_record_pages_unchecked": 142,
-    "proquest_phrase_search:manual_lead": 2165,
+    "proquest_phrase_search:manual_lead": 2178,
     "proquest_supplied_link:awaiting_acquisition": 1
   },
   "proquest_folder": {
@@ -207,22 +209,22 @@ OK
     "supplied_links_in_lewis_scope": 143
   },
   "proposed_fetch_requests": {
-    "count": 93,
-    "contract_valid": 93,
+    "count": 67,
+    "contract_valid": 67,
     "contract_available": true
   },
   "problems": []
 }
-{"acquisition_handoff": {"queued_result_not_published": 15, "retrieval_recorded_needs_review": 78}}
+{"acquisition_handoff": {"queued_result_not_published": 4, "retrieval_recorded_needs_review": 63}}
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 1,
-  "requests_used": 17,
-  "hits_total": 12249,
-  "leads_page_confirmed": 114,
+  "advanced_this_run": 100,
+  "requests_used": 174,
+  "hits_total": 13696,
+  "leads_page_confirmed": 124,
   "engines": {
-    "duckduckgo_html": "error",
-    "duckduckgo_lite": "ok",
+    "duckduckgo_html": "http_403",
+    "duckduckgo_lite": "http_403",
     "bing_rss": "blocked_by_robots_txt",
     "mojeek_html": "blocked_by_robots_txt",
     "brave_html": "blocked_by_robots_txt",
@@ -230,19 +232,19 @@ Offline stage done; starting the web search stage
     "yandex_html": "blocked_by_robots_txt",
     "google_cse": "needs_key",
     "bing_api": "needs_key",
-    "brave_api": "not_tried",
+    "brave_api": "ok",
     "serpapi_google": "needs_key",
-    "loc_newspapers": "ok",
-    "loc_books": "ok",
+    "loc_newspapers": "http_429",
+    "loc_books": "http_429",
     "loc_manuscripts": "http_429",
     "internet_archive": "ok",
     "google_books": "http_429",
-    "hathitrust_catalog": "not_tried",
-    "federal_register_api": "not_tried",
-    "wikisource_search": "not_tried",
-    "wikipedia_search": "not_tried",
-    "presidency_project": "not_tried",
-    "govinfo_search_page": "not_tried",
+    "hathitrust_catalog": "blocked_by_robots_txt",
+    "federal_register_api": "ok",
+    "wikisource_search": "blocked_by_robots_txt",
+    "wikipedia_search": "blocked_by_robots_txt",
+    "presidency_project": "ok",
+    "govinfo_search_page": "blocked_by_robots_txt",
     "nara_catalog": "needs_key"
   }
 }

@@ -2,10 +2,15 @@
   "class": "catalogued_unnumbered",
   "owner_ruling": "R10",
   "leads_only": "Counts of catalogued identities and a population estimate. Nothing here admits an order, authenticates an identity, assigns a status, or changes a numbered-series count.",
-  "generated_utc": "2026-11-11T21:26:07Z",
-  "unnumbered_series_observed": 2334,
-  "unnumbered_series_observed_note": "Lower-bound census: identities found by Lord 1943 (all years, 1789-1941) or by the completeness cluster list (1789-1899), after deduplication by the rule below.",
-  "unnumbered_series_estimate_95": [
+  "generated_utc": "2026-11-12T22:00:16Z",
+  "unnumbered_series_observed": 1816,
+  "unnumbered_series_observed_conservative": 1405,
+  "unnumbered_series_observed_note": "Counted, individually sourced identities from the 2026-11-12 census audit (research/graunt-census-audit-2026-11-12, data/GRAUNT_UNNUMBERED.csv); the conservative figure leaves out power-site date groups whose presidential attribution is inferred.",
+  "raw_catalogue_identities": 2334,
+  "raw_catalogue_identities_note": "Lord 1943 plus completeness-cluster identities before the audit's source review (OCR merges, departmental orders and numbered cross-references not removed).",
+  "unnumbered_series_estimate_95": null,
+  "unnumbered_series_estimate_status": "Not estimable: no finite estimate of every unnumbered order ever issued is defensible (Kean F-20261112-graunt-census-audit). The capture-recapture output below is a model result only.",
+  "capture_recapture_model_interval_not_an_estimate": [
     4101,
     5095
   ],
@@ -206,6 +211,10 @@
     "seed": {
       "path": "jobs/domesday-register/data/UNNUMBERED_SEED.csv",
       "sha256": "5a47fe1ad28303f689020f6a9c36f19cd5becd0c5d9ae9ca74447c2357af4bc6"
+    },
+    "audited": {
+      "path": "jobs/domesday-register/data/GRAUNT_UNNUMBERED.csv",
+      "sha256": "11d0597352942483e1a2cbd789e7753f6e9b94e33b1741d16f4507addb4efe8b"
     },
     "MENTIONS.csv": {
       "path": "jobs/census-completeness/output/MENTIONS.csv",
