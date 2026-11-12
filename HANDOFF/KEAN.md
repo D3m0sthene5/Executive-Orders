@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (9)
+## Waiting for the owner (6)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-cis-unnumbered-check**, **A-20261112-lind-stage0**, **A-20261112-lind-stage0-v2**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-cis-unnumbered-check**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -64,4 +64,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-12 F-20261112-graunt-census-audit **worked**: Owner-commissioned open audit of how many executive orders presidents signed, 1789 to the 2026-10-14 cutoff,… Lesson: Report the count as counted inventory plus an honest 'not estimable' for the unseen tail, never as a modelled total. The numbered series is nearly complete; the unnumbered series is where the count m…
 - 2026-11-12 F-20261112-graunt-admissions-checked **partly worked**: Admit the Graunt audit's 29 missing numbered labels to the census, each with a held official page checked fir… Lesson: Check what a cited 'official printing' actually is before admitting: a GPO Monthly Catalogue entry proves an order was printed (number, date, subject) but holds no text. It is accepted here as an off…
 
-Register: 91 owner decisions, 57 answered questions, 377 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 91 owner decisions, 58 answered questions, 377 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
