@@ -1,3 +1,27 @@
+## 2026-11-12 ET, late (Claude: Lind stage-0 diagnosis; EO 12753 recovered to eligible; offline check before review)
+
+Compact handoff for a fresh coordinator context. Read only the files named.
+
+- **Pilot result** (PR #303): stays 0 ready of 30. Report: `research/excavator/claude-lind-2026-11-12/REPORT.md`.
+- **Diagnosis:** `research/excavator/claude-lind-2026-11-12/FAILURES.md` (per order, by category);
+  Kean F-20261112-lind-stage0-diagnosis.
+- **EO 12753** (PR #304, branch `claude/lind-12753-recovery`):
+  - Cotton run 43324287671 kept its ending source's bytes;
+  - `completion/complete-v2` is eligible, with the same claim (sha256 47f70df6...) and the same reviews;
+  - waiting on owner ask **A-20261112-lind-adopt-12753**.
+  - On yes, file it as D-20261110-papinian-adopt did (`ADOPTION_ROWS.csv`, canonical claim file under
+    `research/readiness/claims/`, a readiness-tracker run). Report it separately from the pilot.
+- **Earlier check** (PR #305, branch `claude/cotton-precheck`): `kit.py overlay-check` now runs the actual checker
+  offline before blind review (`batch.actual_check_offline`).
+- **Optional ask A-20261112-lind-repair-12437-11943** ($8 cap): if approved, run it from a fresh context.
+  - Use `/root/lind-sealed/overlay_review_lind.py`. It is outside the repo, so copy or recreate it from Papinian's
+    `tools/overlay_review.py` with Linux paths.
+  - Re-render the producer brief so it credits F6 `working_text_basis`.
+- **Costs:**
+  - optimization analysis: about $39;
+  - pilot: $23.07;
+  - post-pilot coordinator time: measured in the PR #304 description.
+
 ## 2026-11-12 ET, night (Claude: Lind stage 0 run; 0 ready; unsuccessful row)
 
 - **Run** (owner-approved, A-20261112-lind-stage0-v2): 30 undecided orders, 15 passing every gate and 15 hard-only.
