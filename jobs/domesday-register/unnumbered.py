@@ -56,6 +56,10 @@ WPA_UNNUMBERED = "jobs/x1-class-engine/data/WPA_UNNUMBERED_ENTRIES.csv"
 COMPLETENESS = "jobs/census-completeness/output"
 CENSUS = "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv"
 SEED_REL = "data/UNNUMBERED_SEED.csv"
+# Owner D-20261112-graunt-apply (answering A-20261112-graunt-unnumbered-seed): the series is seeded from the census
+# audit's individually sourced identities (research/graunt-census-audit-2026-11-12), not from the raw catalogue union,
+# and the capture-recapture interval is no longer reported as an estimate (its two lists are not independent).
+AUDITED_REL = "data/GRAUNT_UNNUMBERED.csv"
 
 
 def read_csv(path):
@@ -302,10 +306,20 @@ def load_inputs(root, seed_path=None):
     return seed, mentions, matches, clusters, census, seed_path, cdir
 
 
+def load_audited(path):
+    """The census audit's sourced unnumbered identities, or None when the file is absent (tests, older checkouts)."""
+    if not os.path.exists(path):
+        return None
+    rows = read_csv(path)
+    return {"total": len(rows), "conservative": sum(1 for r in rows if r.get("inferred_presidential_attribution") != "yes"),
+            "path": "jobs/domesday-register/" + AUDITED_REL, "sha256": sha256(path)}
+
+
 def run(root, out_dir, seed_path=None):
     seed, mentions, matches, clusters, census, seed_path, cdir = load_inputs(root, seed_path)
     os.makedirs(out_dir, exist_ok=True)
     rows, info = build_identities(seed, mentions, matches, clusters, census)
+    audited = load_audited(os.path.join(root, "jobs", "domesday-register", AUDITED_REL))
     write_csv(os.path.join(out_dir, "UNNUMBERED.csv"), rows, OUT_FIELDS)
     est = estimate(rows, exclude_seeds=info["lord_rows_in_numbered_clusters"])
     main = est["1789-1899"]
@@ -330,10 +344,21 @@ def run(root, out_dir, seed_path=None):
         "leads_only": "Counts of catalogued identities and a population estimate. Nothing here admits an order, authenticates an identity, "
                       "assigns a status, or changes a numbered-series count.",
         "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
-        "unnumbered_series_observed": len(rows),
-        "unnumbered_series_observed_note": "Lower-bound census: identities found by Lord 1943 (all years, 1789-1941) or by the completeness "
-                                           "cluster list (1789-1899), after deduplication by the rule below.",
-        "unnumbered_series_estimate_95": [lo, hi],
+        "unnumbered_series_observed": audited["total"] if audited else len(rows),
+        "unnumbered_series_observed_conservative": audited["conservative"] if audited else None,
+        "unnumbered_series_observed_note": ("Counted, individually sourced identities from the 2026-11-12 census audit "
+                                            "(research/graunt-census-audit-2026-11-12, data/GRAUNT_UNNUMBERED.csv); the conservative "
+                                            "figure leaves out power-site date groups whose presidential attribution is inferred."
+                                            if audited else
+                                            "Lower-bound census: identities found by Lord 1943 (all years, 1789-1941) or by the completeness "
+                                            "cluster list (1789-1899), after deduplication by the rule below."),
+        "raw_catalogue_identities": len(rows),
+        "raw_catalogue_identities_note": "Lord 1943 plus completeness-cluster identities before the audit's source review (OCR merges, "
+                                         "departmental orders and numbered cross-references not removed).",
+        "unnumbered_series_estimate_95": None,
+        "unnumbered_series_estimate_status": "Not estimable: no finite estimate of every unnumbered order ever issued is defensible "
+                                             "(Kean F-20261112-graunt-census-audit). The capture-recapture output below is a model result only.",
+        "capture_recapture_model_interval_not_an_estimate": [lo, hi],
         "estimate_sensitivity_note": "The estimate depends strongly on the matching threshold (see capture_recapture.sensitivity_to_matching_threshold); "
                                      "the interval covers sampling error at the chosen threshold only.",
         "unnumbered_series_estimate_95_note": "Chapman interval for the day-precise 1789-1899 pool, plus every other observed identity taken "
@@ -367,6 +392,7 @@ def run(root, out_dir, seed_path=None):
                                  "OCR failures to match over-state it. Read the interval as a floor on uncertainty.",
         },
         "inputs": {"seed": {"path": "jobs/domesday-register/" + SEED_REL, "sha256": sha256(seed_path)},
+                   **({"audited": {"path": audited["path"], "sha256": audited["sha256"]}} if audited else {}),
                    **{n: {"path": f"{COMPLETENESS}/{n}", "sha256": sha256(os.path.join(cdir, n))}
                       for n in ("MENTIONS.csv", "MATCHES.csv", "CLUSTERS.csv")}},
     }
