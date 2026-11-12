@@ -1,3 +1,20 @@
+## 2026-11-12 ET (Claude: Bodley sweeps finished; runner deadline fix merged)
+
+- **Result (Kean F-20261112-bodley-web-pass):** a web search by name for all 2,288 orders without an official copy,
+  plus a sweep of six large collections.
+  - Spend: 2,130 paid Brave queries.
+  - 250 orders got a confirmed page, but almost all are transcriptions already held, or state, city and foreign orders
+    with the same number.
+  - Real federal leads: FRUS printings (history.state.gov), a Theodore Roosevelt Center record, and Forest Service PDFs
+    with the orders' maps.
+  - Outputs are on branch `claude/bodley-sweeps`: `jobs/bodley-web-*/output/WHERE_FOUND.csv` and
+    `jobs/bodley-sweep/output/`.
+  - That branch is deliberately not merged: on main the sweep would re-run the jobs, about 2,500 more paid queries.
+- **Fixed (PR #293, merged):** `jobs/_lib/runner_limits.py` adds a 4.5 h stop for long jobs, and the Brave API robots
+  fix is now on main. Kean F-20261112-runner-deadline; a rule was added to CLAUDE.md.
+- **Next:** the gap orders need the microfilm route (NYU Film 709, the CIS fiche at Bobst, NARA M1118). Owner ask
+  A-20261111-film709-count, in PR #292, is still open.
+
 ## 2026-11-11 ET (Claude: merged and deconflicted the open PRs #286-#289)
 
 - **Done:** the owner asked me to finish merging every open PR. I merged
