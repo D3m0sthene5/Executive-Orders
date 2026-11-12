@@ -1,17 +1,17 @@
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:48: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpmvrpqh1t/repo/jobs/domesday-register/output/REGISTER.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:48: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpn9adp3je/repo/jobs/domesday-register/output/REGISTER.csv' mode='r' encoding='utf-8'>
   return {r["instrument_id"] for r in csv.DictReader(open(path, encoding="utf-8", newline=""))}
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:77: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpmvrpqh1t/repo/jobs/readiness-tracker/output/READINESS_BY_ORDER.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:77: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpn9adp3je/repo/jobs/readiness-tracker/output/READINESS_BY_ORDER.csv' mode='r' encoding='utf-8'>
   for r in csv.DictReader(open(readiness_csv, encoding="utf-8", newline="")):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:82: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpmvrpqh1t/repo/jobs/current-law/output/ORDERS_CURRENT_LAW.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/theophilus.py:82: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpn9adp3je/repo/jobs/current-law/output/ORDERS_CURRENT_LAW.csv' mode='r' encoding='utf-8'>
   for r in csv.DictReader(open(current_csv, encoding="utf-8", newline="")):
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 eligible YES orders 1; usc sections 2; cfr targets 2; unparsed citations 1
 notices 2 1
 {
  "job": "theophilus-sources",
- "generated_utc": "2026-11-11T04:24:58Z",
+ "generated_utc": "2026-11-12T03:59:10Z",
  "notices": {
   "listed": 2,
   "fetched": 1
@@ -34,19 +34,19 @@ notices 2 1
  "usc_release_point": "119-121",
  "limits": "No legal finding. Notices before 1994 are not in the Federal Register API and are left for a later route."
 }
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/test_job.py:155: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpmvrpqh1t/out/SOURCES.jsonl' mode='r' encoding='UTF-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/theophilus-sources/test_job.py:155: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/tmpn9adp3je/out/SOURCES.jsonl' mode='r' encoding='UTF-8'>
   recs = [json.loads(l) for l in open(out / "SOURCES.jsonl")]
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ........
 ----------------------------------------------------------------------
-Ran 8 tests in 0.053s
+Ran 8 tests in 0.059s
 
 OK
 eligible YES orders 298; usc sections 217; cfr targets 529; unparsed citations 26
 notices 673 673
 {
  "job": "theophilus-sources",
- "generated_utc": "2026-11-11T04:38:52Z",
+ "generated_utc": "2026-11-12T04:12:56Z",
  "notices": {
   "listed": 673,
   "fetched": 673
