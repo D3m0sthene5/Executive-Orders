@@ -6,8 +6,15 @@
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@248"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 3632,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [
@@ -192,7 +199,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13274",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13274"
@@ -489,11 +496,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 225,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "49 U.S.C. 301 note; note 'Ex. Ord. No. 13274. Environmental Stewardship and Transportation Infrastructure Project Re' [USLM note id idca689671-47c4-11f1-9671-b5c725212f70]; usc49.xml (sha256 6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990) in xml_uscAll@119-121.zip",
+        "sha256": "8712f72415a27965de11a5feb2ac6c0a56359e7bce547da4645d2bce2a66aa31",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idca689671-47c4-11f1-9671-b5c725212f70",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13274",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (49 U.S.C. 301 note)",
@@ -503,19 +519,32 @@
       "source": {
         "page_or_item": "49 U.S.C. 301 note; note 'Ex. Ord. No. 13274. Environmental Stewardship and Transportation Infrastructure Project Re' [USLM note id idca689671-47c4-11f1-9671-b5c725212f70]; usc49.xml (sha256 6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idca689671-47c4-11f1-9671-b5c725212f70.txt",
+        "text_sha256": "8712f72415a27965de11a5feb2ac6c0a56359e7bce547da4645d2bce2a66aa31",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=idca689671-47c4-11f1-9671-b5c725212f70",
+      "text": "Ex. Ord. No. 13274. Environmental Stewardship and Transportation Infrastructure Project Reviews\nEx. Ord. No. 13274, Sept. 18, 2002, 67 F.R. 59449, as amended by Ex. Ord. No. 13286, § 2, Feb. 28, 2003, 68 F.R. 10619, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idca689671-47c4-11f1-9671-b5c725212f70.txt",
+      "text_sha256": "8712f72415a27965de11a5feb2ac6c0a56359e7bce547da4645d2bce2a66aa31",
       "where": "USC 49 U.S.C. 301 note"
     },
     {
       "basis_code": "statutory_note_reference",
+      "char_end": 658,
+      "char_start": 345,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "49 U.S.C. 47171 note; note 'Relationship to Other Requirements' [USLM note id idcc648e27-47c4-11f1-9671-b5c725212f70]; usc49.xml (sha256 6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990) in xml_uscAll@119-121.zip",
+        "sha256": "95d75631c3c43d6dcd67d9cb7dcacb22fac383796ccef0a354ba9a3459f5e6c9",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idcc648e27-47c4-11f1-9671-b5c725212f70",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13274",
       "legal_basis_candidate": "statutory note names the order (49 U.S.C. 47171 note)",
@@ -525,18 +554,32 @@
       "source": {
         "page_or_item": "49 U.S.C. 47171 note; note 'Relationship to Other Requirements' [USLM note id idcc648e27-47c4-11f1-9671-b5c725212f70]; usc49.xml (sha256 6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idcc648e27-47c4-11f1-9671-b5c725212f70.txt",
+        "text_sha256": "95d75631c3c43d6dcd67d9cb7dcacb22fac383796ccef0a354ba9a3459f5e6c9",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "a congested airport whether or not the project is designated by the Secretary of Transportation as a high-priority transportation infrastructure project under Executive Order 13274 [49 U.S.C. 301 note] (67 Fed. Reg. 59449; relating to environmental stewardship and transportation infrastructure project reviews).”",
+      "text_path": "jobs/current-law/output/usc-notes/idcc648e27-47c4-11f1-9671-b5c725212f70.txt",
+      "text_sha256": "95d75631c3c43d6dcd67d9cb7dcacb22fac383796ccef0a354ba9a3459f5e6c9",
       "where": "USC 49 U.S.C. 47171 note"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 402,
+      "char_start": 77,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
       "edition": "eCFR (GovInfo bulk, amended through 2026-08-17)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "32 CFR 245.9",
+        "sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
+        "source_id": "cfr:t32:245.9",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-32/section-245.9"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13274",
       "legal_basis_candidate": "regulation text names the order (32 CFR 245.9)",
@@ -546,9 +589,12 @@
       "source": {
         "page_or_item": "32 CFR 245.9 (section_text; GovInfo eCFR XML title 32, amended through 2026-08-17; NODE 32:2.1.1.1.41.3.1.2)",
         "sha256": "981e75d8686b9b4ea73e7fff568a3cac7a56bfbc7752b9314b4b9d71caf5a877",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t32-245.9.txt",
+        "text_sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-32/ECFR-title32.xml"
       },
       "system": "ecfr",
+      "text": "preparedness functions to Federal departments and agencies.\n(b) E.O. 13074, Amendment to E.O. 12656, February 9, 1998.\n(c) E.O. 13286, Amendment of E.O. 13276, 13274, 13271, 13260, 13257, 13254, and 13231, and Other Actions, in Connection With the Transfer of Certain Functions to the Secretary of Homeland Security, February",
       "where": "CFR 32 CFR 245.9"
     },
     {
@@ -678,6 +724,7 @@
         "snippet": "...a congested airport whether or not the project is designated by the Secretary of Transportation as a high-priority transportation infrastructure project under Executive Order 13274 [49 U.S.C. 301 note] (67 Fed. Reg. 59449; relating to environmental stewardship and transportation infrastructure pr ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/idcc648e27-47c4-11f1-9671-b5c725212f70.txt",
         "where": "USC 49 U.S.C. 47171 note"
       },
       "proposal": {
@@ -706,7 +753,7 @@
         "snippet": "Ex. Ord. No. 13274. Environmental Stewardship and Transportation Infrastructure Project Reviews | Ex. Ord. No. 13274, Sept. 18, 2002, 67 F.R. 59449, as amended by Ex. Ord. No. 13286, § 2, Feb. 28, 2003, 68 F.R. 10619, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=idca689671-47c4-11f1-9671-b5c725212f70",
+        "text_path": "usc-notes/idca689671-47c4-11f1-9671-b5c725212f70.txt",
         "where": "USC 49 U.S.C. 301 note"
       },
       "proposal": {
@@ -1669,6 +1716,27 @@
       },
       "text": "Instrument: EO:12977\nSource: https://www.govinfo.gov/content/pkg/FR-1995-10-24/pdf/95-26497.pdf\nSHA-256 of the downloaded file: a6a34aa2401dec28f435458b91313c0d28e9c9787bd8a47c8c451202971bef66\nLocation: 60 FR 54411, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n54411\nFederal Register\nVol. 60, No. 205\nTuesday, October 24, 1995\nTitle 3—\nThe President\nExecutive Order 12977 of October 19, 1995\nInteragency Security Committee\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, and in order to enhance the quality\nand effectiveness of security in and protection of buildings and facilities\nin the United States occupied by Federal employees for nonmilitary activities\n(‘‘Federal facilities’’), and to provide a permanent body to address continuing\ngovernment-wide security for Federal facilities, it is hereby ordered as fol-\nlows:\nSection 1. Establishment. There is hereby established within the executive\nbranch the Interagency Security Committee (‘‘Committee’’). The Committee\nshall consist of: (a) the Administrator of General Services (‘‘Administrator’’);\n(b) representatives from the following agencies, appointed by the agency\nheads:\n(1) Department of State;\n(2) Department of the Treasury;\n(3) Department of Defense;\n(4) Department of Justice;\n(5) Department of the Interior;\n(6) Department of Agriculture;\n(7) Department of Commerce;\n(8) Department of Labor;\n(9) Department of Health and Human Services;\n(10) Department of Housing and Urban Development;\n(11) Department of Transportation;\n(12) Department of Energy;\n(13) Department of Education;\n(14) Department of Veterans Affairs;\n(15) Environmental Protection Agency;\n(16) Central Intelligence Agency; and\n(17) Office of Management and Budget;\n(c) the following individuals or their designees:\n(1) the Director, United States Marshals Service;\n(2) the Assistant Commissioner of the Federal Protective Service of the\nPublic Buildings Service, General Services Administration (‘‘Assistant Com-\nmissioner’’);\n(3) the Assistant to the President for National Security Affairs; and\n(4) the Director, Security Policy Board; and\n(d) such other Federal employees as the President shall appoint.\nSec. 2. Chair. The Committee shall be chaired by the Administrator, or\nthe designee of the Administrator.\nSec. 3. Working Groups. The Committee is authorized to establish interagency\nworking groups to perform such tasks as may be directed by the Committee.\n=== PDF page 2 of 2 ===\n54412 Federal Register / Vol. 60, No. 205 / Tuesday, October 24, 1995 / Presidential Documents\nSec. 4. Consultation. The Committee may consult with other parties, includ-\ning the Administrative Office of the United States Courts, to perform its\nresponsibilities under this order, and, at the discretion of the Committee,\nsuch other parties may participate in the working groups.\nSec. 5. Duties and Responsibilities. (a) The Committee shall: (1) establish\npolicies for security in and protection of Federal facilities;\n(2) develop and evaluate security standards for Federal facilities, develop\na strategy for ensuring compliance with such standards, and oversee the\nimplementation of appropriate security measures in Federal facilities; and\n(3) take such actions as may be necessary to enhance the quality and\neffectiveness of security and protection of Federal facilities, including but\nnot limited to:\n(A) encouraging agencies with security responsibilities to share security-\nrelated intelligence in a timely and cooperative manner;\n(B) assessing technology and information systems as a means of providing\ncost-effective improvements to security in Federal facilities;\n(C) developing long-term construction standards for those locations with\nthreat levels or missions that require blast resistant structures or other special-\nized security requirements;\n(D) evaluating standards for the location of, and special security related\nto, day care centers in Federal facilities; and\n(E) assisting the Administrator in developing and maintaining a centralized\nsecurity data base of all Federal facilities.\nSec. 6. Agency Support and Cooperation. (a) Administrative Support. To\nthe extent permitted by law and subject to the availability of appropriations,\nthe Administrator, acting by and through the Assistant Commissioner, shall\nprovide the Committee such administrative services, funds, facilities, staff\nand other support services as may be necessary for the performance of\nits functions under this order.\n(b) Cooperation. Each executive agency and department shall cooperate and\ncomply with the policies and recommendations of the Committee issued\npursuant to this order, except where the Director of Central Intelligence\ndetermines that compliance would jeopardize intelligence sources and meth-\nods. To the extent permitted by law and subject to the availability of appro-\npriations, executive agencies and departments shall provide such support\nas may be necessary to enable the Committee to perform its duties and\nresponsibilities under this order.\n(c) Compliance. The Administrator, acting by and through the Assistant\nCommissioner, shall be responsible for monitoring Federal agency compliance\nwith the policies and recommendations of the Committee.\nSec. 7. Judicial Review. This order is intended only to improve the internal\nmanagement of the Federal Government, and is not intended, and should\nnot be construed, to create any right or benefit, substantive or procedural,\nenforceable at law by a party against the United States, its agencies, its\nofficers, or its employees.\nœ–\nTHE WHITE HOUSE,\nOctober 19, 1995.\n[FR Doc. 95–26497\nFiled 10–20–95; 2:55 pm]\nBilling code 3195–01–P"
     },
+    "ACTOR_TEXT:EO:13286@248": {
+      "actor_id": "EO:13286",
+      "char_end": 3672,
+      "char_start": 248,
+      "id": "ACTOR_TEXT:EO:13286@248",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "Machine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 15 ===\nPresidential Documents\n10619\nFederal Register \nVol. 68, No. 43\nWednesday, March 5, 2003\nTitle 3— \nThe President \nExecutive Order 13286 of February 28, 2003\nAmendment of Executive Orders, and Other Actions, in Con-\nnection With the Transfer of Certain Functions to the Sec-\nretary of Homeland Security \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the Homeland Security \nAct of 2002 (Public Law 107–296) and section 301 of title 3, United States \nCode, and in order to reflect the transfer of certain functions to, and other \nresponsibilities vested in, the Secretary of Homeland Security, the transfer \nof certain agencies and agency components to the Department of Homeland \nSecurity, and the delegation of appropriate responsibilities to the Secretary \nof Homeland Security, it is hereby ordered as follows: \nSection 1. Executive Order 13276 of November 15, 2002 (‘‘Delegation of \nResponsibilities Concerning Undocumented Aliens Interdicted or Intercepted \nin the Caribbean Region’’), is amended by: \n(a) striking ‘‘The Attorney General’’ wherever it appears in section 1 \nand inserting ‘‘The Secretary of Homeland Security’’ in lieu thereof; and \n(b) striking ‘‘the Attorney General’’ wherever it appears in section 1 and \ninserting ‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 2. Executive Order 13274 of September 18, 2002 (‘‘Environmental Stew-\nardship and Transportation Infrastructure Project Reviews’’), is amended \nby inserting ‘‘Secretary of Homeland Security,’’ after ‘‘Secretary of Defense,’’ \nin section 3(b). \nSec. 3. Executive Order 13271 of July 9, 2002 (‘‘Establishment of the Corporate \nFraud Task Force’’), is amended by: \n(a) inserting ‘‘(b) the Secretary of Homeland Security;’’ after ‘‘(a) the Sec-\nretary of the Treasury;’’ in section 4; and \n(b) relettering the subsequent subsections in section 4 appropriately. \nSec. 4. Executive Order 13260 of March 19, 2002 (‘‘Establishing the Presi-\ndent’s Homeland Security Advisory Council and Senior Advisory Committees \nfor Homeland Security’’), is amended by: \n(a) striking ‘‘the Assistant to the President for Homeland Security (Assist-\nant)’’ in section 1(c) and inserting ‘‘the Secretary of Homeland Security \n(Secretary)’’ in lieu thereof; \n(b) striking ‘‘the Assistant’’ wherever it appears in sections 2 and 3 and \ninserting ‘‘the Secretary’’ in lieu thereof; \n(c) striking ‘‘the Office of Administration’’ in section 3(d) and inserting \n‘‘the Department of Homeland Security’’ in lieu thereof; \n(d) striking ‘‘the Administrator of General Services’’ in section 4(a) and \ninserting ‘‘the Secretary of Homeland Security’’ in lieu thereof; and \n(e) inserting ‘‘of General Services’’ after ‘‘Administrator’’ in section 4(a). \nExecutive Order 13260 of March 19, 2002, is hereby revoked effective as \nof March 31, 2003. \nSec. 5. Executive Order 13257 of February 13, 2002 (‘‘President’s Interagency \nTask Force to Monitor and Combat Trafficking in Persons’’), is amended \nby: \n(a) inserting ‘‘(v) the Secretary of Homeland Security;’’ after ‘‘(iv) the \nSecretary of Health and Human Services;’’ in section 1(b); and \n"
+    },
     "CLAUSES:EO:13274#sec1": {
       "char_end": 1571,
       "char_start": 1017,
@@ -1954,6 +2022,112 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2002-09-23/pdf/02-24252.pdf"
       },
       "text": "Sec. 6. Judicial Review. This order is intended only to improve the internal \nmanagement of the Federal Government and is not intended to, and does \nnot, create any right or benefit, substantive or procedural, enforceable at \nlaw or equity by a party against the United States, its departments, agencies, \ninstrumentalities or entities, its officers or employees, or any other person.\nW"
+    },
+    "CURRENT:EO:13274#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 225,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "49 U.S.C. 301 note; note 'Ex. Ord. No. 13274. Environmental Stewardship and Transportation Infrastructure Project Re' [USLM note id idca689671-47c4-11f1-9671-b5c725212f70]; usc49.xml (sha256 6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990) in xml_uscAll@119-121.zip",
+        "sha256": "8712f72415a27965de11a5feb2ac6c0a56359e7bce547da4645d2bce2a66aa31",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idca689671-47c4-11f1-9671-b5c725212f70",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13274#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13274",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (49 U.S.C. 301 note)",
+      "machine_lead": true,
+      "mention_id": "usc:1dfccbacd8cd",
+      "snippet": "Ex. Ord. No. 13274. Environmental Stewardship and Transportation Infrastructure Project Reviews | Ex. Ord. No. 13274, Sept. 18, 2002, 67 F.R. 59449, as amended by Ex. Ord. No. 13286, § 2, Feb. 28, 2003, 68 F.R. 10619, provided:",
+      "source": {
+        "page_or_item": "49 U.S.C. 301 note; note 'Ex. Ord. No. 13274. Environmental Stewardship and Transportation Infrastructure Project Re' [USLM note id idca689671-47c4-11f1-9671-b5c725212f70]; usc49.xml (sha256 6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idca689671-47c4-11f1-9671-b5c725212f70.txt",
+        "text_sha256": "8712f72415a27965de11a5feb2ac6c0a56359e7bce547da4645d2bce2a66aa31",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13274. Environmental Stewardship and Transportation Infrastructure Project Reviews\nEx. Ord. No. 13274, Sept. 18, 2002, 67 F.R. 59449, as amended by Ex. Ord. No. 13286, § 2, Feb. 28, 2003, 68 F.R. 10619, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idca689671-47c4-11f1-9671-b5c725212f70.txt",
+      "text_sha256": "8712f72415a27965de11a5feb2ac6c0a56359e7bce547da4645d2bce2a66aa31",
+      "where": "USC 49 U.S.C. 301 note"
+    },
+    "CURRENT:EO:13274#1": {
+      "basis_code": "statutory_note_reference",
+      "char_end": 658,
+      "char_start": 345,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "49 U.S.C. 47171 note; note 'Relationship to Other Requirements' [USLM note id idcc648e27-47c4-11f1-9671-b5c725212f70]; usc49.xml (sha256 6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990) in xml_uscAll@119-121.zip",
+        "sha256": "95d75631c3c43d6dcd67d9cb7dcacb22fac383796ccef0a354ba9a3459f5e6c9",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idcc648e27-47c4-11f1-9671-b5c725212f70",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13274#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13274",
+      "legal_basis_candidate": "statutory note names the order (49 U.S.C. 47171 note)",
+      "machine_lead": true,
+      "mention_id": "usc:3d5f068d929b",
+      "snippet": "...a congested airport whether or not the project is designated by the Secretary of Transportation as a high-priority transportation infrastructure project under Executive Order 13274 [49 U.S.C. 301 note] (67 Fed. Reg. 59449; relating to environmental stewardship and transportation infrastructure project reviews).”",
+      "source": {
+        "page_or_item": "49 U.S.C. 47171 note; note 'Relationship to Other Requirements' [USLM note id idcc648e27-47c4-11f1-9671-b5c725212f70]; usc49.xml (sha256 6b0e6a73cf2cd30d45e47296b8ed604feaf953f3d3f265d491aad261e18b0990) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idcc648e27-47c4-11f1-9671-b5c725212f70.txt",
+        "text_sha256": "95d75631c3c43d6dcd67d9cb7dcacb22fac383796ccef0a354ba9a3459f5e6c9",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "a congested airport whether or not the project is designated by the Secretary of Transportation as a high-priority transportation infrastructure project under Executive Order 13274 [49 U.S.C. 301 note] (67 Fed. Reg. 59449; relating to environmental stewardship and transportation infrastructure project reviews).”",
+      "text_path": "jobs/current-law/output/usc-notes/idcc648e27-47c4-11f1-9671-b5c725212f70.txt",
+      "text_sha256": "95d75631c3c43d6dcd67d9cb7dcacb22fac383796ccef0a354ba9a3459f5e6c9",
+      "where": "USC 49 U.S.C. 47171 note"
+    },
+    "CURRENT:EO:13274#2": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 402,
+      "char_start": 77,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-08-17)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "32 CFR 245.9",
+        "sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
+        "source_id": "cfr:t32:245.9",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-32/section-245.9"
+      },
+      "id": "CURRENT:EO:13274#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13274",
+      "legal_basis_candidate": "regulation text names the order (32 CFR 245.9)",
+      "machine_lead": true,
+      "mention_id": "ecfr:0a1bd99bc8c2",
+      "snippet": "...preparedness functions to Federal departments and agencies. (b) E.O. 13074, Amendment to E.O. 12656, February 9, 1998. (c) E.O. 13286, Amendment of E.O. 13276, 13274, 13271, 13260, 13257, 13254, and 13231, and Other Actions, in Connection With the Transfer of Certain Functions to the Secretary of Homeland Security, February...",
+      "source": {
+        "page_or_item": "32 CFR 245.9 (section_text; GovInfo eCFR XML title 32, amended through 2026-08-17; NODE 32:2.1.1.1.41.3.1.2)",
+        "sha256": "981e75d8686b9b4ea73e7fff568a3cac7a56bfbc7752b9314b4b9d71caf5a877",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t32-245.9.txt",
+        "text_sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-32/ECFR-title32.xml"
+      },
+      "system": "ecfr",
+      "text": "preparedness functions to Federal departments and agencies.\n(b) E.O. 13074, Amendment to E.O. 12656, February 9, 1998.\n(c) E.O. 13286, Amendment of E.O. 13276, 13274, 13271, 13260, 13257, 13254, and 13231, and Other Actions, in Connection With the Transfer of Certain Functions to the Secretary of Homeland Security, February",
+      "where": "CFR 32 CFR 245.9"
     },
     "ORIGINAL:EO:13274": {
       "acceptable_as_original": true,
@@ -2261,7 +2435,7 @@
       "text": "At least once each year, the Task Force shall submit to \nthe President a report that: (a) Describes the results of the coordinated \nand expedited reviews on a project-by-project basis, and identifies those \nprocedures and actions that proved to be most useful and appropriate in \ncoordinating and expediting the review of the projects."
     }
   },
-  "fingerprint": "dc699e51bd2ee839af206aa2bfac489b3d303356d2b3a3d61616f93e33a15e37",
+  "fingerprint": "b872a9842945ca57c76be77567d2ef5ee4112aae73a3dc8c8c7db38b45ea4c1f",
   "instrument_id": "EO:13274",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2481,32 +2655,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 5,
+      "machine_fragment_items_for_this_order_all_systems": 5,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 5,
+      "machine_fragment_items_for_this_order_all_systems": 5,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2537,10 +2713,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "90bb1a9983b661af72fa8e7dc71b6fea1e80ea54001c38ac84855d7f1a3e8b01",
+    "fingerprint": "e9a96250a4e921b7e0df3da1435f62370d160d570335354ee10b2ba6cbdb3ca1",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13274.json",
-    "history_sha256": "819d7a783ce1d6a8f68bf4466895a7567ca2883ff0c517212cb4de24ff2ef6fc",
+    "history_sha256": "49b397995ef7fd82be3c72d1271fd05881c67fe927ca3678f72dc06bcf9dff99",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

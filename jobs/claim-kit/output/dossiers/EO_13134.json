@@ -2,15 +2,35 @@
   "actor_contexts": [
     {
       "actor_id": "EO:13148",
-      "evidence_id": "ACTOR_TEXT:EO:13148"
+      "evidence_id": "ACTOR_TEXT:EO:13148",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13225",
-      "evidence_id": "ACTOR_TEXT:EO:13225"
+      "evidence_id": "ACTOR_TEXT:EO:13225",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13423",
-      "evidence_id": "ACTOR_TEXT:EO:13423"
+      "evidence_id": "ACTOR_TEXT:EO:13423",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:04-14831",
+      "evidence_id": "ACTOR_TEXT:FRDOC:04-14831",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:E9-20311",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:E9-20311@43571"
+      ],
+      "full_text_chars": 198157,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-E9-20311.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "fbef7cee058873150a9ae5d271a56e8134df5e4d0f306fb0b8bf44c3569426e2",
+      "window_bytes": 3709,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [
@@ -286,7 +306,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13134",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13134"
@@ -1028,11 +1048,20 @@
   "current_law_leads": [
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 98332,
+      "char_start": 97991,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7545; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "a2dcb5e66f5ece2e30ee57a5e2e33a8fd2d1947e597509a69421107e99077927",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s7545",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13134",
       "legal_basis_candidate": "statute text names the order (42 U.S.C. 7545)",
@@ -1042,9 +1071,14 @@
       "source": {
         "page_or_item": "42 U.S.C. 7545; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7545-83964ac7a4.txt",
+        "text_sha256": "a2dcb5e66f5ece2e30ee57a5e2e33a8fd2d1947e597509a69421107e99077927",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Energy, as defined in section 13211 of this title, which have been made from renewable biomass.\n(B)\nThe term “renewable biomass” is, as defined in Presidential Executive Order 13134, published in the Federal Register on August 16, 1999, any organic matter that is available on a renewable or recurring basis (excluding old-growth timber), in",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7545-83964ac7a4.txt",
+      "text_sha256": "a2dcb5e66f5ece2e30ee57a5e2e33a8fd2d1947e597509a69421107e99077927",
       "where": "USC 42 U.S.C. 7545"
     },
     {
@@ -1063,6 +1097,7 @@
         "snippet": "...Energy, as defined in section 13211 of this title, which have been made from renewable biomass. (B) The term “renewable biomass” is, as defined in Presidential Executive Order 13134, published in the Federal Register on August 16, 1999, any organic matter that is available on a renewable or recur ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t42_s7545-83964ac7a4.txt",
         "where": "USC 42 U.S.C. 7545"
       },
       "proposal": {
@@ -2219,6 +2254,7 @@
       "char_end": 46441,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13148",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2239,6 +2275,7 @@
       "char_end": 4933,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13225",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2259,6 +2296,7 @@
       "char_end": 18483,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13423",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2273,6 +2311,66 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2007-01-26/pdf/07-374.pdf"
       },
       "text": "Instrument: EO:13423\nSource: https://www.govinfo.gov/content/pkg/FR-2007-01-26/pdf/07-374.pdf\nSHA-256 of the downloaded file: 67f97870b684c5d1f0726a9d5f4c6103ad0d7a98a6906dd9e073d158666b77bb\nLocation: 72 FR 3919, PDF pages 1-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 5 ===\nPresidential Documents\n3919 \nFederal Register \nVol. 72, No. 17 \nFriday, January 26, 2007 \nTitle 3— \nThe President \nExecutive Order 13423 of January 24, 2007 \nStrengthening Federal Environmental, Energy, and Transpor-\ntation Management \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, and to strengthen the environmental, \nenergy, and transportation management of Federal agencies, it is hereby \nordered as follows: \nSection 1. Policy. It is the policy of the United States that Federal agencies \nconduct their environmental, transportation, and energy-related activities \nunder the law in support of their respective missions in an environmentally, \neconomically and fiscally sound, integrated, continuously improving, effi-\ncient, and sustainable manner. \nSec. 2. Goals for Agencies . In implementing the policy set forth in section \n1 of this order, the head of each agency shall: \n(a) improve energy efficiency and reduce greenhouse gas emissions of the \nagency, through reduction of energy intensity by (i) 3 percent annually \nthrough the end of fiscal year 2015, or (ii) 30 percent by the end of fiscal \nyear 2015, relative to the baseline of the agency’s energy use in fiscal \nyear 2003; \n(b) ensure that (i) at least half of the statutorily required renewable energy \nconsumed by the agency in a fiscal year comes from new renewable sources, \nand (ii) to the extent feasible, the agency implements renewable energy \ngeneration projects on agency property for agency use; \n(c) beginning in FY 2008, reduce water consumption intensity, relative to \nthe baseline of the agency’s water consumption in fiscal year 2007, through \nlife-cycle cost-effective measures by 2 percent annually through the end \nof fiscal year 2015 or 16 percent by the end of fiscal year 2015; \n(d) require in agency acquisitions of goods and services (i) use of sustainable \nenvironmental practices, including acquisition of biobased, environmentally \npreferable, energy-efficient, water-efficient, and recycled-content products, \nand (ii) use of paper of at least 30 percent post-consumer fiber content; \n(e) ensure that the agency (i) reduces the quantity of toxic and hazardous \nchemicals and materials acquired, used, or disposed of by the agency, (ii) \nincreases diversion of solid waste as appropriate, and (iii) maintains cost- \neffective waste prevention and recycling programs in its facilities; \n(f) ensure that (i) new construction and major renovation of agency buildings \ncomply with the Guiding Principles for Federal Leadership in High Perform-\nance and Sustainable Buildings set forth in the Federal Leadership in High \nPerformance and Sustainable Buildings Memorandum of Understanding \n(2006), and (ii) 15 percent of the existing Federal capital asset building \ninventory of the agency as of the end of fiscal year 2015 incorporates \nthe sustainable practices in the Guiding Principles; \n(g) ensure that, if the agency operates a fleet of at least 20 motor vehicles, \nthe agency, relative to agency baselines for fiscal year 2005, (i) reduces \nthe fleet’s total consumption of petroleum products by 2 percent annually \nthrough the end of fiscal year 2015, (ii) increases the total fuel consumption \nthat is non-petroleum-based by 10 percent annually, and (iii) uses plug- \nin hybrid (PIH) vehicles when PIH vehicles are commercially available at \nVerDate Aug<31>2005 15:32 Jan 25, 2007 Jkt 211001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\26JAE0.SGM 26JAE0mstockstill on PROD1PC62 with PROPOSALS5\n=== PDF page 2 of 5 ===\n3920 Federal Register / Vol. 72, No. 17 / Friday, January 26, 2007 / Presidential Documents \na cost reasonably comparable, on the basis of life-cycle cost, to non-PIH \nvehicles; and \n(h) ensure that the agency (i) when acquiring an electronic product to \nmeet its requirements, meets at least 95 percent of those requirements with \nan Electronic Product Environmental Assessment Tool (EPEAT)-registered \nelectronic product, unless there is no EPEAT standard for such product, \n(ii) enables the Energy Star feature on agency computers and monitors, \n(iii) establishes and implements policies to extend the useful life of agency \nelectronic equipment, and (iv) uses environmentally sound practices with \nrespect to disposition of agency electronic equipment that has reached the \nend of its useful life. \nSec. 3. Duties of Heads of Agencies . In implementing the policy set forth \nin section 1 of this order, the head of each agency shall: \n(a) implement within the agency sustainable practices for (i) energy efficiency, \ngreenhouse gas emissions avoidance or reduction, and petroleum products \nuse reduction, (ii) renewable energy, including bioenergy, (iii) water conserva-\ntion, (iv) acquisition, (v) pollution and waste prevention and recycling, \n(vi) reduction or elimination of acquisition and use of toxic or hazardous \nchemicals, (vii) high performance construction, lease, operation, and mainte-\nnance of buildings, (viii) vehicle fleet management, and (ix) electronic equip-\nment management; \n(b) implement within the agency environmental management systems (EMS) \nat all appropriate organizational levels to ensure (i) use of EMS as the \nprimary management approach for addressing environmental aspects of inter-\nnal agency operations and activities, including environmental aspects of \nenergy and transportation functions, (ii) establishment of agency objectives \nand targets to ensure implementation of this order, and (iii) collection, \nanalysis, and reporting of information to measure performance in the imple-\nmentation of this order; \n(c) establish within the agency programs for (i) environmental management \ntraining, (ii) environmental compliance review and audit, and (iii) leadership \nawards to recognize outstanding environmental, energy, or transportation \nmanagement performance in the agency; \n(d) within 30 days after the date of this order (i) designate a senior civilian \nofficer of the United States, compensated annually in an amount at or \nabove the amount payable at level IV of the Executive Schedule, to be \nresponsible for implementation of this order within the agency, (ii) report \nsuch designation to the Director of the Office of Management and Budget \nand the Chairman of the Council on Environmental Quality, and (iii) assign \nthe designated official the authority and duty to (A) monitor and report \nto the head of the agency on agency activities to carry out subsections \n(a) and (b) of this section, and (B) perform such other duties relating to \nthe implementation of this order within the agency as the head of the \nagency deems appropriate; \n(e) ensure that contracts entered into after the date of this order for contractor \noperation of government-owned facilities or vehicles require the contractor \nto comply with the provisions of this order with respect to such facilities \nor vehicles to the same extent as the agency would be required to comply \nif the agency operated the facilities or vehicles; \n(f) ensure that agreements, permits, leases, licenses, or other legally-binding \nobligations between the agency and a tenant or concessionaire entered into \nafter the date of this order require, to the extent the head of the agency \ndetermines appropriate, that the tenant or concessionaire take actions relating \nto matters within the scope of the contract that facilitate the agency ’s compli-\nance with this order; \n(g) provide reports on agency implementation of this order to the Chairman \nof the Council on such schedule and in such format as the Chairman \nof the Council may require; and \nVerDate Aug<31>2005 15:32 Jan 25, 2007 Jkt 211001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\26JAE0.SGM 26JAE0mstockstill on PROD1PC62 with PROPOSALS5\n=== PDF page 3 of 5 ===\n3921 Federal Register / Vol. 72, No. 17 / Friday, January 26, 2007 / Presidential Documents \n(h) provide information and assistance to the Director of the Office of Manage-\nment and Budget, the Chairman of the Council, and the Federal Environ-\nmental Executive. \nSec. 4. Additional Duties of the Chairman of the Council on Environmental \nQuality. In implementing the policy set forth in section 1 of this order, \nthe Chairman of the Council on Environmental Quality: \n(a) (i) shall establish a Steering Committee on Strengthening Federal Environ-\nmental, Energy, and Transportation Management to advise the Director of \nthe Office of Management and Budget and the Chairman of the Council \non the performance of their functions under this order that shall consist \nexclusively of (A) the Federal Environmental Executive, who shall chair, \nconvene and preside at meetings of, determine the agenda of, and direct \nthe work of, the Steering Committee, and (B) the senior officials designated \nunder section 3(d)(i) of this order, and (ii) may establish subcommittees \nof the Steering Committee, to assist the Steering Committee in developing \nthe advice of the Steering Committee on particular subjects; \n(b) may, after consultation with the Director of the Office of Management \nand Budget and the Steering Committee, issue instructions to implement \nthis order, other than instructions within the authority of the Director to \nissue under section 5 of this order; and \n(c) shall administer a presidential leadership award program to recognize \nexceptional and outstanding environmental, energy, or transportation man-\nagement performance and excellence in agency efforts to implement this \norder. \nSec. 5. Duties of the Director of the Office of Management and Budget . \nIn implementing the policy set forth in section 1 of this order, the Director \nof the Office of Management and Budget shall, after consultation with the \nChairman of the Council and the Steering Committee, issue instructions \nto the heads of agencies concerning: \n(a) periodic evaluation of agency implementation of this order; \n(b) budget and appropriations matters relating to implementation of this \norder; \n(c) implementation of section 2(d) of this order; and \n(d) amendments of the Federal Acquisition Regulation as necessary to imple-\nment this order. \nSec. 6. Duties of the Federal Environmental Executive . A Federal Environ-\nmental Executive designated by the President shall head the Office of the \nFederal Environmental Executive, which shall be maintained in the Environ-\nmental Protection Agency for funding and administrative purposes. In imple-\nmenting the policy set forth in section 1 of this order, the Federal Environ-\nmental Executive shall: \n(a) monitor, and advise the Chairman of the Council on, performance by \nagencies of functions assigned by sections 2 and 3 of this order; \n(b) submit a report to the President, through the Chairman of the Council, \nnot less often than once every 2 years, on the activities of agencies to \nimplement this order; and \n(c) advise the Chairman of the Council on the Chairman’s exercise of authority \ngranted by subsection 4(c) of this order. \nSec. 7. Limitations. (a) This order shall apply to an agency with respect \nto the activities, personnel, resources, and facilities of the agency that are \nlocated within the United States. The head of an agency may provide that \nthis order shall apply in whole or in part with respect to the activities, \npersonnel, resources, and facilities of the agency that are not located within \nthe United States, if the head of the agency determines that such application \nis in the interest of the United States. \nVerDate Aug<31>2005 15:32 Jan 25, 2007 Jkt 211001 PO 00000 Frm 00005 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\26JAE0.SGM 26JAE0mstockstill on PROD1PC62 with PROPOSALS5\n=== PDF page 4 of 5 ===\n3922 Federal Register / Vol. 72, No. 17 / Friday, January 26, 2007 / Presidential Documents \n(b) The head of an agency shall manage activities, personnel, resources, \nand facilities of the agency that are not located within the United States, \nand with respect to which the head of the agency has not made a determina-\ntion under subsection (a) of this section, in a manner consistent with the \npolicy set forth in section 1 of this order to the extent the head of the \nagency determines practicable. \nSec. 8. Exemption Authority . (a) The Director of National Intelligence may \nexempt an intelligence activity of the United States, and related personnel, \nresources, and facilities, from the provisions of this order, other than this \nsubsection and section 10, to the extent the Director determines necessary \nto protect intelligence sources and methods from unauthorized disclosure. \n(b) The head of an agency may exempt law enforcement activities of that \nagency, and related personnel, resources, and facilities, from the provisions \nof this order, other than this subsection and section 10, to the extent the \nhead of an agency determines necessary to protect undercover operations \nfrom unauthorized disclosure. \n(c) (i) The head of an agency may exempt law enforcement, protective, \nemergency response, or military tactical vehicle fleets of that agency from \nthe provisions of this order, other than this subsection and section 10. \n(ii) Heads of agencies shall manage fleets to which paragraph (i) of this \nsubsection refers in a manner consistent with the policy set forth in section \n1 of this order to the extent they determine practicable. \n(d) The head of an agency may submit to the President, through the Chairman \nof the Council, a request for an exemption of an agency activity, and related \npersonnel, resources, and facilities, from this order. \nSec. 9. Definitions. As used in this order: \n(a) ‘‘agency’’ means an executive agency as defined in section 105 of title \n5, United States Code, excluding the Government Accountability Office; \n(b) ‘‘Chairman of the Council ’’ means the Chairman of the Council on \nEnvironmental Quality, including in the Chairman ’s capacity as Director \nof the Office of Environmental Quality; \n(c) ‘‘Council’’ means the Council on Environmental Quality; \n(d) ‘‘environmental’’ means environmental aspects of internal agency oper-\nations and activities, including those environmental aspects related to energy \nand transportation functions; \n(e) ‘‘greenhouse gases ’’ means carbon dioxide, methane, nitrous oxide, \nhydrofluorocarbons, perfluorocarbons, and sulfur hexafluoride; \n(f) ‘‘life-cycle cost-effective’’ means the life-cycle costs of a product, project, \nor measure are estimated to be equal to or less than the base case (i.e., \ncurrent or standard practice or product); \n(g) ‘‘new renewable sources ’’ means sources of renewable energy placed \ninto service after January 1, 1999; \n(h) ‘‘renewable energy ’’ means energy produced by solar, wind, biomass, \nlandfill gas, ocean (including tidal, wave, current and thermal), geothermal, \nmunicipal solid waste, or new hydroelectric generation capacity achieved \nfrom increased efficiency or additions of new capacity at an existing hydro-\nelectric project; \n(i) ‘‘energy intensity’’ means energy consumption per square foot of building \nspace, including industrial or laboratory facilities; \n(j) ‘‘Steering Committee ’’ means the Steering Committee on Strengthening \nFederal Environmental, Energy, and Transportation Management established \nunder subsection 4(b) of this order; \n(k) ‘‘sustainable’’ means to create and maintain conditions, under which \nhumans and nature can exist in productive harmony, that permit fulfilling \nVerDate Aug<31>2005 15:32 Jan 25, 2007 Jkt 211001 PO 00000 Frm 00006 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\26JAE0.SGM 26JAE0mstockstill on PROD1PC62 with PROPOSALS5\n=== PDF page 5 of 5 ===\n3923 Federal Register / Vol. 72, No. 17 / Friday, January 26, 2007 / Presidential Documents \nthe social, economic, and other requirements of present and future genera-\ntions of Americans; and \n(l) ‘‘United States ’’ when used in a geographical sense, means the fifty \nstates, the District of Columbia, the Commonwealth of Puerto Rico, Guam, \nAmerican Samoa, the United States Virgin Islands, and the Northern Mariana \nIslands, and associated territorial waters and airspace. \nSec. 10. General Provisions. (a) This order shall be implemented in a manner \nconsistent with applicable law and subject to the availability of appropria-\ntions. \n(b) Nothing in this order shall be construed to impair or otherwise affect \nthe functions of the Director of the Office of Management and Budget relating \nto budget, administrative, or legislative proposals. \n(c) This order is intended only to improve the internal management of \nthe Federal Government and is not intended to, and does not, create any \nright or benefit, substantive or procedural, enforceable at law or in equity \nby a party against the United States, its departments, agencies, instrumental-\nities, entities, officers, employees or agents, or any other person. \nSec. 11. Revocations; Conforming Provisions . (a) The following are revoked: \n(i) Executive Order 13101 of September 14, 1998; \n(ii) Executive Order 13123 of June 3, 1999; \n(iii) Executive Order 13134 of August 12, 1999, as amended; \n(iv) Executive Order 13148 of April 21, 2000; and \n(v) Executive Order 13149 of April 21, 2000. \n(b) In light of subsection 317(e) of the National Defense Authorization Act \nfor Fiscal Year 2002 (Public Law 107 –107), not later than January 1 of \neach year through and including 2010, the Secretary of Defense shall submit \nto the Senate and the House of Representatives a report regarding progress \nmade toward achieving the energy efficiency goals of the Department of \nDefense. \n(c) Section 3(b)(vi) of Executive Order 13327 of February 4, 2004, is amended \nby striking ‘‘Executive Order 13148 of April 21, 2000 ’’ and inserting in \nlieu thereof ‘‘other executive orders’’. \nTHE WHITE HOUSE, \nJanuary 24, 2007. \n[FR Doc. 07 –374 \nFiled 1 –25–07; 8:50 am] \nBilling code 3195 –01–P \nVerDate Aug<31>2005 15:32 Jan 25, 2007 Jkt 211001 PO 00000 Frm 00007 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\26JAE0.SGM 26JAE0\nGWBOLD.EPS</GPH>\nmstockstill on PROD1PC62 with PROPOSALS5"
+    },
+    "ACTOR_TEXT:FRDOC:04-14831": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:04-14831",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 17891,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:04-14831",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:04-14831",
+        "page_or_item": "69 FR 39471; FR Doc. 04-14831; Notice: Four Purchasing Guides; Notice of Review and Comment Period",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "97c3cf9ea378b9a9fa269b548d529f9cf4d597e53fdb153edf7be23f55bcf50a",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-04-14831.txt",
+        "text_sha256": "97c3cf9ea378b9a9fa269b548d529f9cf4d597e53fdb153edf7be23f55bcf50a",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2004/06/30/04-14831.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 69 Issue 125 (Wednesday, June 30, 2004)</title>\n</head>\n<body><pre>\n[Federal Register Volume 69, Number 125 (Wednesday, June 30, 2004)]\n[Notices]\n[Pages 39471-39474]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 04-14831]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nENVIRONMENTAL PROTECTION AGENCY\n\n[OPPT-2002-0039; FRL-7356-4]\n\n\nFour Purchasing Guides; Notice of Review and Comment Period\n\nAGENCY: Environmental Protection Agency (EPA).\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: EPA's Environmentally Preferable Purchasing (EPP) program is \nannouncing the posting and public review of four draft EPP guides on \nEPA's electronic public docket and comment system, EPA Dockets. This is \npart of an effort to implement Presidential Executive Order 13101, \n``Greening the Government Through Waste Prevention, Recycling and \nFederal Acquisition.'' EPA's EPP Program operates in a transparent \nmanner, with open participation and counsel from our stakeholders. In \ntoday's notice, EPA is announcing an open review of the four purchasing \nguides that can provide information to Federal procurement officials in \nmaking EPP decisions that can help protect human health and the \nenvironment.\n\nDATES: Comments, identified by docket ID number OPPT-2002-0039, must be \nreceived on or before August 30, 2004.\n\nADDRESSES: Comments may be submitted electronically, by mail, or \nthrough hand delivery/courier. Follow the detailed instructions as \nprovided in Unit I. of the SUPPLEMENTARY INFORMATION.\n\nFOR FURTHER INFORMATION CONTACT: For general information contact:\n    Colby Lintner, Regulatory Coordinator, Environmental Assistance \nDivision (7408M), Office of Pollution Prevention and Toxics, \nEnvironmental Protection Agency, 1200 Pennsylvania Ave., NW., \nWashington, DC 20460-0001; telephone number: (202) 554-1404; e-mail \naddress: <a href=\"/cdn-cgi/l/email-protection#66323525274b2e09120a0f08032603160748010910\"><span class=\"__cf_email__\" data-cfemail=\"e1b5b2a2a0cca98e958d888f84a1849180cf868e97\">[email&#160;protected]</span></a>.\n     For technical information contact: Terry Grogan, Pollution \nPrevention Division (7409M), Office of Pollution Prevention and Toxics, \nEnvironmental Protection Agency, 1200 Pennsylvania\n\n[[Page 39472]]\n\nAve., NW., Washington, DC 20460; telephone number: (202) 564-6317; e-\nmail address: <a href=\"/cdn-cgi/l/email-protection#5b3c29343c3a35752f3e2929221b3e2b3a753c342d\"><span class=\"__cf_email__\" data-cfemail=\"fe998c91999f90d08a9b8c8c87be9b8e9fd0999188\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: \n\nI. General Information\n\nA. Does this Action Apply to Me?\n\n    This action is directed to the public in general. This action may, \nhowever, be of interest to Federal purchasers affected by Executive \nOrder 13101. This action may also be of interest to: State and local \ngovernment and private procurement officials interested in \nenvironmentally preferable products, and persons or organizations \ninterested in the aforementioned product categories. Since other \nentities may also be interested, the Agency has not attempted to \ndescribe all the specific entities that may be affected by this action. \nIf you have any questions regarding the applicability of this action to \na particular entity, consult the technical person listed under FOR \nFURTHER INFORMATION CONTACT.\n\nB. How Can I Get Copies of this Document and Other Related Information?\n\n    1. Docket. EPA has established an official public docket for this \naction under docket identification (ID) number OPPT-2002-0039. The \nofficial public docket consists of the documents specifically \nreferenced in this action, any public comments received, and other \ninformation related to this action. Although a part of the official \ndocket, the public docket does not include Confidential Business \nInformation (CBI) or other information whose disclosure is restricted \nby statute. The official public docket is the collection of materials \nthat is available for public viewing at the EPA Docket Center, Rm. \nB102-Reading Room, EPA West, 1301 Constitution Ave., NW., Washington, \nDC. The EPA Docket Center is open from 8:30 a.m. to 4:30 p.m., Monday \nthrough Friday, excluding legal holidays. The EPA Docket Center Reading \nRoom telephone number is (202) 566-1744 and the telephone number for \nthe OPPT Docket, which is located in the EPA Docket Center, is (202) \n566-0280.\n    2. Electronic access. You may access this Federal Register document \nelectronically through the EPA Internet under the ``Federal Register'' \nlistings at <a href=\"http://www.epa.gov/fedrgstr/\">http://www.epa.gov/fedrgstr/</a>.\n    An electronic version of the public docket is available through \nEPA's electronic public docket and comment system, EPA Dockets. You may \nuse EPA Dockets at <a href=\"http://www.epa.gov/edocket/\">http://www.epa.gov/edocket/</a> to submit or view public \ncomments, access the index listing of the contents of the official \npublic docket, and to access those documents in the public docket that \nare available electronically. Although not all docket materials may be \navailable electronically, you may still access any of the publicly \navailable docket materials through the docket facility identified in \nUnit I.B.1. Once in the system, select ``search,'' then key in the \nappropriate docket ID number.\n    Certain types of information will not be placed in the EPA Dockets. \nInformation claimed as CBI and other information whose disclosure is \nrestricted by statute, which is not included in the official public \ndocket, will not be available for public viewing in EPA's electronic \npublic docket. EPA's policy is that copyrighted material will not be \nplaced in EPA's electronic public docket but will be available only in \nprinted, paper form in the official public docket. To the extent \nfeasible, publicly available docket materials will be made available in \nEPA's electronic public docket. When a document is selected from the \nindex list in EPA Dockets, the system will identify whether the \ndocument is available for viewing in EPA's electronic public docket. \nAlthough not all docket materials may be available electronically, you \nmay still access any of the publicly available docket materials through \nthe docket facility identified in Unit I.B.1. EPA intends to work \ntowards providing electronic access to all of the publicly available \ndocket materials through EPA's electronic public docket.\n    For public commenters, it is important to note that EPA's policy is \nthat public comments, whether submitted electronically or in paper, \nwill be made available for public viewing in EPA's electronic public \ndocket as EPA receives them and without change, unless the comment \ncontains copyrighted material, CBI, or other information whose \ndisclosure is restricted by statute. When EPA identifies a comment \ncontaining copyrighted material, EPA will provide a reference to that \nmaterial in the version of the comment that is placed in EPA's \nelectronic public docket. The entire printed comment, including the \ncopyrighted material, will be available in the public docket.\n    Public comments submitted on computer disks that are mailed or \ndelivered to the docket will be transferred to EPA's electronic public \ndocket. Public comments that are mailed or delivered to the docket will \nbe scanned and placed in EPA's electronic public docket. Where \npractical, physical objects will be photographed, and the photograph \nwill be placed in EPA's electronic public docket along with a brief \ndescription written by the docket staff.\n\nC. How and to Whom Do I Submit Comments?\n\n    You may submit comments electronically, by mail, or through hand \ndelivery/courier. To ensure proper receipt by EPA, identify the \nappropriate docket ID number in the subject line on the first page of \nyour comment. Please ensure that your comments are submitted within the \nspecified comment period. Comments received after the close of the \ncomment period will be marked ``late.'' EPA is not required to consider \nthese late comments. If you wish to submit CBI or information that is \notherwise protected by statute, please follow the instructions in Unit \nI.D. Do not use EPA Dockets or e-mail to submit CBI or information \nprotected by statute.\n    1. Electronically. If you submit an electronic comment as \nprescribed in this unit, EPA recommends that you include your name, \nmailing address, and an e-mail address or other contact information in \nthe body of your comment. Also include this contact information on the \noutside of any disk or CD ROM you submit, and in any cover letter \naccompanying the disk or CD ROM. This ensures that you can be \nidentified as the submitter of the comment and allows EPA to contact \nyou in case EPA cannot read your comment due to technical difficulties \nor needs further information on the substance of your comment. EPA's \npolicy is that EPA will not edit your comment, and any identifying or \ncontact information provided in the body of a comment will be included \nas part of the comment that is placed in the official public docket, \nand made available in EPA's electronic public docket. If EPA cannot \nread your comment due to technical difficulties and cannot contact you \nfor clarification, EPA may not be able to consider your comment.\n    i. EPA Dockets. Your use of EPA's electronic public docket to \nsubmit comments to EPA electronically is EPA's preferred method for \nreceiving comments. Go directly to EPA Dockets at  <a href=\"http://www.epa.gov/edocket\">http://www.epa.gov/edocket</a>, and follow the online instructions for submitting comments. \nOnce in the system, select ``search,'' and then key in docket ID number \nOPPT-2002-0039. The system is an ``anonymous access'' system, which \nmeans EPA will not know your identity, e-mail address, or other contact \ninformation unless you provide it in the body of your comment.\n    ii. E-mail. Comments may be sent by e-mail to <a href=\"/cdn-cgi/l/email-protection#f59a858581db9b969c96b5908594db929a83\"><span class=\"__cf_email__\" data-cfemail=\"b7d8c7c7c399d9d4ded4f7d2c7d699d0d8c1\">[email&#160;protected]</span></a>, \nAttention: Docket ID number OPPT-2002-0039. In contrast to EPA's \nelectronic public\n\n[[Page 39473]]\n\ndocket, EPA's e-mail system is not an ``anonymous access'' system. If \nyou send an e-mail comment directly to the docket without going through \nEPA's electronic public docket, EPA's e-mail system automatically \ncaptures your e-mail address. E-mail addresses that are automatically \ncaptured by EPA's e-mail system are included as part of the comment \nthat is placed in the official public docket, and made available in \nEPA's electronic public docket.\n    iii. Disk or CD ROM. You may submit comments on a disk or CD ROM \nthat you mail to the mailing address identified in Unit I.C.2. These \nelectronic submissions will be accepted in WordPerfect or ASCII file \nformat. Avoid the use of special characters and any form of encryption.\n    2. By mail. Send your comments to: Document Control Office (7407M), \nOffice of Pollution Prevention and Toxics (OPPT), Environmental \nProtection Agency, 1200 Pennsylvania Ave., NW., Washington, DC 20460-\n0001.\n    3. By hand delivery or courier. Deliver your comments to: OPPT \nDocument Control Office (DCO), EPA East Building, Rm. 6428, 1201 \nConstitution Ave., NW., Washington, DC. Attention: Docket ID number \nOPPT-2002-0039. The DCO is open from 8 a.m. to 4 p.m., Monday through \nFriday, excluding legal holidays. The telephone number for the DCO is \n(202) 564-8930.\n\nD. How Should I Submit CBI to the Agency?\n\n    Do not submit information that you consider to be CBI \nelectronically through EPA's electronic public docket or by e-mail. You \nmay claim information that you submit to EPA as CBI by marking any part \nor all of that information as CBI (if you submit CBI on disk or CD ROM, \nmark the outside of the disk or CD ROM as CBI and then identify \nelectronically within the disk or CD ROM the specific information that \nis CBI). Information so marked will not be disclosed except in \naccordance with procedures set forth in 40 CFR part 2.\n    In addition to one complete version of the comment that includes \nany information claimed as CBI, a copy of the comment that does not \ncontain the information claimed as CBI must be submitted for inclusion \nin the public docket and EPA's electronic public docket. If you submit \nthe copy that does not contain CBI on disk or CD ROM, mark the outside \nof the disk or CD ROM clearly that it does not contain CBI. Information \nnot marked as CBI will be included in the public docket and EPA's \nelectronic public docket without prior notice. If you have any \nquestions about CBI or the procedures for claiming CBI, please consult \nthe technical person listed under FOR FURTHER INFORMATION CONTACT.\n\nE. What Should I Consider as I Prepare My Comments for EPA?\n\n    We invite you to provide your views on the various options we \npropose, new approaches we have not considered, the potential impacts \nof the various options (including possible unintended consequences), \nand any data or information that you would like the Agency to consider \nduring the development of the final action. Provide copies of any \ntechnical information and/or data you used that support your views.\n    In particular, EPA would like comments to address the following \nquestions:\n    1. Is the discussion on the potential environmental impacts of the \nproduct categories useful for Federal purchasers?\n    2. Is there any more recent information that is germane to or would \nenhance the discussion of these product categories?\n    3. Can Federal purchasers act easily upon the stated \nrecommendations in the product guides?\n    4. Is this an approach you would like EPA to take in addressing \nEPP?\n\nII. Background\n\nA. What Action is the Agency Taking?\n\n    EPA is initiating an open process to allow stakeholders to review \nand comment on the four draft EPP product guides. The four product \nguides now available for review are:\n    1. ``Greening Your Purchase of Carpet: A Guide For Federal \nPurchasers.''\n    2. ``Greening Your Purchase of Cleaning Products: A Guide For \nFederal Purchasers.''\n    3. ``Greening Your Purchase of Copiers: A Guide For Federal \nPurchasers.''\n    4. ``Greening Your Meetings and Conferences: A Guide For Federal \nPurchasers.''\n    The EPP program does not endorse products nor does it recommend for \nor against the purchase of specific products. EPP seeks to provide \ninformation on products with the overall best value, taking into \naccount price competitiveness, regulatory requirements, performance \nstandards, and environmental impact. Because purchasers typically have \nreadily available sources of information on procurement and safety \nregulations and well-established methods for evaluating price and \nperformance, EPA's EPP program has developed these purchasing guides to \nhelp government purchasers consider the environmental factors in the \npurchasing process. EPA's EPP program is committed to reviewing and \nupdating information contained within the purchasing guides when new \ninformation becomes available.\n\nB. What is the Agency's Authority for Taking this Action?\n\n    Spending approximately $230 billion annually on a large quantity \nand wide variety of products and services, the Federal government \nleaves a large environmental ``footprint.'' However, by purchasing \nenvironmentally preferable products and services, the Federal \ngovernment can use its purchasing power to increase national demand for \ngreener products as well as to help meet environmental goals through \nmarkets rather than mandates. In 1995, in response to Executive Order \n12873, EPA established the EPP program to encourage and assist \nExecutive agencies in the purchase of environmentally preferable \nproducts and services. In 1997, the Federal Acquisition Regulation \n(FAR), which establishes uniform procedures and policies for Federal \nacquisition, was amended to support Federal procurement of ``green'' \nproducts and services. And, most recently, in 1998, Executive Order \n13101, titled ``Greening the Government through Waste Prevention, \nRecycling, and Federal Acquisition,'' directed Executive agencies to \n``consider . . . a broad range of factors including: elimination of \nvirgin material requirements; use of biobased products; use of \nrecovered materials; reuse of product; life cycle cost; recyclability; \nuse of environmentally preferable products; waste prevention (including \ntoxicity reduction or elimination); and ultimate disposal'' when making \npurchasing decisions and to ``modify their procurement programs as \nappropriate.''\n    Similarly, the Biomass R & D Act of 2000, the Farm Bill of 2002, \nand Executive Order 13134 emphasize the potential importance of \nbiobased products to national economic and environmental interests. \nTogether these authorities encourage a strong Federal role in the \ndevelopment and early adoption of biobased products and recognize the \nrole of procurement as part of an overall Federal policy on biobased \nproducts.\n\nList of Subjects\n\n    Environmental protection, Procurement guidelines, \nEnvironmentally preferable purchasing product guides, Federal \nprocurement, Environmentally preferable purchasing.\n\n[[Page 39474]]\n\n    Dated: June 23, 2004.\nSusan B. Hazen,\nAssistant Administrator, Office of Prevention, Pesticides and Toxic \nSubstances.\n[FR Doc. 04-14831 Filed 6-29-04; 8:45 am]\nBILLING CODE 6560-50-S\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:E9-20311@43571": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:E9-20311",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 47280,
+      "char_start": 43571,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:E9-20311@43571",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:E9-20311",
+        "page_or_item": "74 FR 45004; FR Doc. E9-20311; Rule: Vessel and Facility Response Plans for Oil: 2003 Removal Equipment Requirements and Alternative Technology Revisions",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "fbef7cee058873150a9ae5d271a56e8134df5e4d0f306fb0b8bf44c3569426e2",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-E9-20311.txt",
+        "text_sha256": "fbef7cee058873150a9ae5d271a56e8134df5e4d0f306fb0b8bf44c3569426e2",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2009/08/31/E9-20311.txt"
+      },
+      "text": "travels on ships operating in and out of Gulf of Mexico ports. The \nCoast Guard developed this rule in close cooperation with MMS.\n    One commenter stated that there are several plans which utilize \nbioremediation in spill response, contrary to what was stated in the \nNPRM preamble.\n    The Coast Guard acknowledges that various regional and local area \nplanning documents around the country appropriately use bioremediation \nin response to spills. However, none of these plans endorses the \nimmediate use of bioremediation in treating large volumes of oil on \nwater. Rather, bioremediation is generally seen as a ``polishing tool'' \nfor use on shoreline areas when further removal of remaining oil is \nimpracticable or environmentally damaging. Unlike on-water mechanical \nrecovery, on-water ISB, and chemical dispersion, bioremediation is not \nan initial response option and does not need to be applied within the \nfirst few days of a spill. Days or weeks may pass before bioremediation \nuse is even considered during a response. The Coast Guard supports the \nuse of biobased products as a part of the response evolution and \nencourages national, regional, and local area planners to consider use \nof bioremediation and bioacceleration. However, it is not necessary for \nvessel and facility owners to contract in advance for this response \ntool.\n    A related comment recommended that this rule include a provision to \nrequire use of dispersants determined to be environmentally preferable \nproducts in accordance with Executive Orders 13101, 13134, and 13148.\n    Executive Order 13101 requires consideration of waste prevention in \nreference to our pollution response policies. In this instance we have \ncomplied with Executive Order 13101 by ensuring that our regulation \ndoes not contradict 40 CFR Part 300--National Oil and Hazardous \nSubstances Pollution Contingency Plan. Part 300 describes the structure \nand procedures for preparing for and responding to discharges of oil \nand releases of hazardous substances, pollutants, and contaminants. \nRecycling is the preferred disposal alternative cited in 40 CFR \n300.310.\n    Executive Order 13134 encourages the development of a comprehensive \nnational strategy, including research, development, and private sector \nincentives, to stimulate the creation and early adoption of \ntechnologies needed to make biobased products and bioenergy cost-\ncompetitive in large national and international markets. Although we \nnote the commenter's concern with regard to these products, the focus \nof this rule is on responding to oil spills with the technologies \ncurrently available. The Coast Guard may consider additional \ntechnologies as they become available.\n    Executive Order 13148 charges Federal agencies with ensuring that \nall necessary actions are taken to integrate comprehensive \nenvironmental accountability in the agencies' day-to-day decisionmaking \nand long-term planning processes. In this instance, we have integrated \nenvironmental accountability into this rulemaking process by complying \nwith the mandates of the National Environmental Protection Act (please \nsee the final Environmental Impact Statement on the\n\n[[Page 45010]]\n\ndocket USCG-2000-7833). Further, in response to actual spills, the \nCoast Guard is accountable, as the Federal On-Scene Coordinator, for \nresponse operations within our jurisdiction (40 CFR 300). This \njurisdiction includes oversight of disposal operations.\n    One commenter asked the Coast Guard to revise or clarify the terms \n``inland'' and ``nearshore'' in the preamble.\n    ``Inland area'' and ``nearshore area,'' as used in the preamble, \nare defined in the existing vessel and facility response plan \n"
     },
     "CLAUSES:EO:13134#sec1": {
       "char_end": 2233,
@@ -3000,6 +3098,42 @@
       },
       "text": "Sec. 8. Judicial Review. This order does not create any enforceable rights\nagainst the Unites States, its agencies, its officers, or any person.\nœ–"
     },
+    "CURRENT:EO:13134#0": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 98332,
+      "char_start": 97991,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "42 U.S.C. 7545; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "a2dcb5e66f5ece2e30ee57a5e2e33a8fd2d1947e597509a69421107e99077927",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t42/s7545",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13134#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13134",
+      "legal_basis_candidate": "statute text names the order (42 U.S.C. 7545)",
+      "machine_lead": true,
+      "mention_id": "usc:98345b894326",
+      "snippet": "...Energy, as defined in section 13211 of this title, which have been made from renewable biomass. (B) The term “renewable biomass” is, as defined in Presidential Executive Order 13134, published in the Federal Register on August 16, 1999, any organic matter that is available on a renewable or recurring basis (excluding old-growth timber), in...",
+      "source": {
+        "page_or_item": "42 U.S.C. 7545; usc42.xml (sha256 9a2ce8ea01dfa97423fcd8749e7534a64c0ec75df9bf56584b210c0725a66692) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7545-83964ac7a4.txt",
+        "text_sha256": "a2dcb5e66f5ece2e30ee57a5e2e33a8fd2d1947e597509a69421107e99077927",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Energy, as defined in section 13211 of this title, which have been made from renewable biomass.\n(B)\nThe term “renewable biomass” is, as defined in Presidential Executive Order 13134, published in the Federal Register on August 16, 1999, any organic matter that is available on a renewable or recurring basis (excluding old-growth timber), in",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t42_s7545-83964ac7a4.txt",
+      "text_sha256": "a2dcb5e66f5ece2e30ee57a5e2e33a8fd2d1947e597509a69421107e99077927",
+      "where": "USC 42 U.S.C. 7545"
+    },
     "ORIGINAL:EO:13134": {
       "acceptable_as_original": true,
       "actor_id": "EO:13134",
@@ -3308,7 +3442,7 @@
       "text": "The Secretaries\nof the Departments of Agriculture and Energy, to the extent permitted by\nlaw and subject to the availability of appropriations, shall each establish\na working group on biobased products and biobased activities in their respec-\ntive Departments."
     }
   },
-  "fingerprint": "1c3f82f1ca3a2b6ab00261639d309911bdd79eea3d027afec78cb8b5ef815b36",
+  "fingerprint": "9630642e9f1c27025082387d37935f3c11fe756542e07da79c3f64d9c7ed65d2",
   "instrument_id": "EO:13134",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3976,32 +4110,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -4012,7 +4148,6 @@
   ],
   "missing": [
     "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:13148"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -4031,12 +4166,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 5,
-    "fingerprint": "623d130bbd5d1cc7f02cc3181357ce8123284934bc0eb5e208ac65467ea73b74",
+    "fingerprint": "afc8eec3d53d67fc63140959b5382e8d492dd2b8fbf2824f77908df23da448a5",
     "flags": [
       "PARTIAL_OR_QUALIFIED_CHANGE_REQUIRES_CLAUSE_CHECK"
     ],
     "history_path": "jobs/status-history/output/histories/EO_13134.json",
-    "history_sha256": "c3d1a9e55da441870ae88ca5fb4fc0f42191e77024c79ee77139831699f4f6a4",
+    "history_sha256": "93cc117d26b22ee81aaf5f24ee0f8118e2793172049fad88902d9b3d139eb0ba",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

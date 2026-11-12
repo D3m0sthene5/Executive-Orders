@@ -2,14 +2,15 @@
   "actor_contexts": [
     {
       "actor_id": "EO:13002",
-      "evidence_id": "ACTOR_TEXT:EO:13002"
+      "evidence_id": "ACTOR_TEXT:EO:13002",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11216",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11216"
@@ -51,11 +52,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 136,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "26 U.S.C. 112 note; note 'Ex. Ord. No. 11216. Designation of Vietnam and Adjacent Waters as Combat Zone' [USLM note id id5d784e99-b817-11f1-b546-9af1a4ad3589]; usc26.xml (sha256 936d014e8ef39e3871fc653f6c4cd177baba347963dc03ed7615c351033add85) in xml_uscAll@119-121.zip",
+        "sha256": "2b7214e96885539096a1c6c7be1c4312a9391348d4617d2702ec09de303c12db",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id5d784e99-b817-11f1-b546-9af1a4ad3589",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11216",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (26 U.S.C. 112 note)",
@@ -65,28 +75,32 @@
       "source": {
         "page_or_item": "26 U.S.C. 112 note; note 'Ex. Ord. No. 11216. Designation of Vietnam and Adjacent Waters as Combat Zone' [USLM note id id5d784e99-b817-11f1-b546-9af1a4ad3589]; usc26.xml (sha256 936d014e8ef39e3871fc653f6c4cd177baba347963dc03ed7615c351033add85) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id5d784e99-b817-11f1-b546-9af1a4ad3589.txt",
+        "text_sha256": "2b7214e96885539096a1c6c7be1c4312a9391348d4617d2702ec09de303c12db",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id5d784e99-b817-11f1-b546-9af1a4ad3589",
+      "text": "Ex. Ord. No. 11216. Designation of Vietnam and Adjacent Waters as Combat Zone\nEx. Ord. No. 11216, Apr. 24, 1965, 30 F.R. 5817, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id5d784e99-b817-11f1-b546-9af1a4ad3589.txt",
+      "text_sha256": "2b7214e96885539096a1c6c7be1c4312a9391348d4617d2702ec09de303c12db",
       "where": "USC 26 U.S.C. 112 note"
     },
     {
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11216",
       "legal_basis_candidate": "regulation text names the order (26 CFR 1.112-1)",
       "machine_lead": true,
-      "mention_id": "ecfr:9b27c7b7f287",
+      "mention_id": "ecfr:c5933e733dd6",
       "snippet": "...112. Furthermore, compensation received while hospitalized after January 1978 for wounds, disease, or injury incurred in the Vietnam combat zone designated by Executive Order 11216 cannot be excluded under section 112. (3) Special terms. A commissioned warrant officer is not a commissioned officer under section 112(b) and is entitled to t...",
       "source": {
-        "page_or_item": "26 CFR 1.112-1 (section_text; GovInfo eCFR XML title 26, amended through 2026-10-26; NODE 26:2.0.1.1.1.0.4.122)",
-        "sha256": "185c000eba5ef0cfcc21381e147034c76ae9cf3da197af040b5c88b24f116eb7",
+        "page_or_item": "26 CFR 1.112-1 (section_text; GovInfo eCFR XML title 26, amended through 2026-11-09; NODE 26:2.0.1.1.1.0.4.122)",
+        "sha256": "f1175316e300c4bc925cc1d3fd9e1bacc78eff34b6d1268e0e2b4c49f7ab9b4a",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-26/ECFR-title26.xml"
       },
       "system": "ecfr",
@@ -134,10 +148,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:9b27c7b7f287",
+        "mention_id": "ecfr:c5933e733dd6",
         "snippet": "...112. Furthermore, compensation received while hospitalized after January 1978 for wounds, disease, or injury incurred in the Vietnam combat zone designated by Executive Order 11216 cannot be excluded under section 112. (3) Special terms. A commissioned warrant officer is not a commissioned office ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -147,8 +161,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (26 CFR 1.112-1)",
         "source": {
-          "page_or_item": "26 CFR 1.112-1 (section_text; GovInfo eCFR XML title 26, amended through 2026-10-26; NODE 26:2.0.1.1.1.0.4.122)",
-          "sha256": "185c000eba5ef0cfcc21381e147034c76ae9cf3da197af040b5c88b24f116eb7",
+          "page_or_item": "26 CFR 1.112-1 (section_text; GovInfo eCFR XML title 26, amended through 2026-11-09; NODE 26:2.0.1.1.1.0.4.122)",
+          "sha256": "f1175316e300c4bc925cc1d3fd9e1bacc78eff34b6d1268e0e2b4c49f7ab9b4a",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-26/ECFR-title26.xml"
         }
       }
@@ -169,7 +183,7 @@
         "snippet": "Ex. Ord. No. 11216. Designation of Vietnam and Adjacent Waters as Combat Zone | Ex. Ord. No. 11216, Apr. 24, 1965, 30 F.R. 5817, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id5d784e99-b817-11f1-b546-9af1a4ad3589",
+        "text_path": "usc-notes/id5d784e99-b817-11f1-b546-9af1a4ad3589.txt",
         "where": "USC 26 U.S.C. 112 note"
       },
       "proposal": {
@@ -265,6 +279,7 @@
       "char_end": 1214,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13002",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -302,6 +317,42 @@
       },
       "text": "Pursuant to the authority vested in me by section 112 of the Internal \nRevenue Code of 1954, I hereby designate, for the purposes of that \nsection, as an area in which Armed Forces of the United States are and \nhave been engaged in combat:\nVietnam, including the waters adjacent thereto within the following- \ndescribed lim its: From a point on the East Coast of Vietnam at the \njuncture of Vietnam with China southeastward to 21° N Lat., 108° 15' \nE Long.; thencirSouthward to 18° N Lat., 108° 15' E Long.; thence \nsoutheastward to 17° 30' N Lat., 111° E Long.; thence southward to \n11° N Lat., 111° E Long.; thence southwestward to 7° N Lat., 105° E \nLong.; thence westward to 7° N Lat., 103° E Long.; thence northward \nto 9° 30' N Lat., 103° E Long.; thence northeastward to 10° 15' N Lat., \n104° 27' E Long.; thence northward to a point on the West Coast of \nVietnam at the juncture of Vietnam with Cambodia.\nThe date of the commencing of combatant activities in such area is \nhereby designated as January 1,1964."
     },
+    "CURRENT:EO:11216#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 136,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "26 U.S.C. 112 note; note 'Ex. Ord. No. 11216. Designation of Vietnam and Adjacent Waters as Combat Zone' [USLM note id id5d784e99-b817-11f1-b546-9af1a4ad3589]; usc26.xml (sha256 936d014e8ef39e3871fc653f6c4cd177baba347963dc03ed7615c351033add85) in xml_uscAll@119-121.zip",
+        "sha256": "2b7214e96885539096a1c6c7be1c4312a9391348d4617d2702ec09de303c12db",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id5d784e99-b817-11f1-b546-9af1a4ad3589",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11216#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11216",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (26 U.S.C. 112 note)",
+      "machine_lead": true,
+      "mention_id": "usc:e867071dde5e",
+      "snippet": "Ex. Ord. No. 11216. Designation of Vietnam and Adjacent Waters as Combat Zone | Ex. Ord. No. 11216, Apr. 24, 1965, 30 F.R. 5817, provided:",
+      "source": {
+        "page_or_item": "26 U.S.C. 112 note; note 'Ex. Ord. No. 11216. Designation of Vietnam and Adjacent Waters as Combat Zone' [USLM note id id5d784e99-b817-11f1-b546-9af1a4ad3589]; usc26.xml (sha256 936d014e8ef39e3871fc653f6c4cd177baba347963dc03ed7615c351033add85) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id5d784e99-b817-11f1-b546-9af1a4ad3589.txt",
+        "text_sha256": "2b7214e96885539096a1c6c7be1c4312a9391348d4617d2702ec09de303c12db",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 11216. Designation of Vietnam and Adjacent Waters as Combat Zone\nEx. Ord. No. 11216, Apr. 24, 1965, 30 F.R. 5817, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id5d784e99-b817-11f1-b546-9af1a4ad3589.txt",
+      "text_sha256": "2b7214e96885539096a1c6c7be1c4312a9391348d4617d2702ec09de303c12db",
+      "where": "USC 26 U.S.C. 112 note"
+    },
     "ORIGINAL:EO:11216": {
       "acceptable_as_original": true,
       "actor_id": "EO:11216",
@@ -328,7 +379,7 @@
       "text": "Instrument: EO:11216\nSource: https://www.govinfo.gov/content/pkg/FR-1965-04-27/pdf/FR-1965-04-27.pdf\nSHA-256 of the downloaded file: 72ab95e7c725f9864fb00d49e0513d68606d26ece67840c404daee174c63d72f\nLocation: 30 FR 5817, PDF pages 5-5 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 5 of 80 ===\nPresidential Documents\nTitle 3— THE PRESIDENT\nExecutive Order 11216\nDESIGNATION OF VIETNAM AND WATERS ADJACENT THERETO AS A\nCOMBAT ZONE FOR THE PURPOSES OF SECTION 112 OF THE INTER­\nNAL REVENUE CODE OF 1954\nPursuant to the authority vested in me by section 112 of the Internal \nRevenue Code of 1954, I hereby designate, for the purposes of that \nsection, as an area in which Armed Forces of the United States are and \nhave been engaged in combat:\nVietnam, including the waters adjacent thereto within the following- \ndescribed lim its: From a point on the East Coast of Vietnam at the \njuncture of Vietnam with China southeastward to 21° N Lat., 108° 15' \nE Long.; thencirSouthward to 18° N Lat., 108° 15' E Long.; thence \nsoutheastward to 17° 30' N Lat., 111° E Long.; thence southward to \n11° N Lat., 111° E Long.; thence southwestward to 7° N Lat., 105° E \nLong.; thence westward to 7° N Lat., 103° E Long.; thence northward \nto 9° 30' N Lat., 103° E Long.; thence northeastward to 10° 15' N Lat., \n104° 27' E Long.; thence northward to a point on the West Coast of \nVietnam at the juncture of Vietnam with Cambodia.\nThe date of the commencing of combatant activities in such area is \nhereby designated as January 1,1964.\nL yndon  B. J ohnson\nT he  W hite  H ouse,\nA p ril 1965.\n[F.R. Doc. 65-4490; Filed, Apr. 26,1965; 3 :11 p.m.]\n5817\n"
     }
   },
-  "fingerprint": "0c2e8fd1b1d707fc91aaf7e296fe7fae2a76cb4b8ac7e2407993379c55a7df25",
+  "fingerprint": "e892d6ae476644dcb04d948a97371f6b692cac036d34586f860aae6636cac81e",
   "instrument_id": "EO:11216",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -352,11 +403,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 2,
       "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
@@ -364,11 +416,12 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 2,
       "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:ecfr"
@@ -376,8 +429,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -397,12 +450,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "915f6cd9a96b9137d955b7146a7abe76000799d0b43b53158768355a2a861312",
+    "fingerprint": "cc5e2bdc7fad6f7eb9097bebc443bcf304551763cd338c9d99dbbe38bb6fe796",
     "flags": [
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_11216.json",
-    "history_sha256": "a0c1fdd50d8b69fa88081241cbd3e6644489cbc03aebf3113fb7cc15df3149fc",
+    "history_sha256": "f6ab119dd8d63d756a058ff579cdde9dea5ee1d7962ec3b0f1596388a573339d",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

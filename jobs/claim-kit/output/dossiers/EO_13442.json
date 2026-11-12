@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:13753",
-      "evidence_id": "ACTOR_TEXT:EO:13753"
+      "evidence_id": "ACTOR_TEXT:EO:13753",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -128,7 +129,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13442",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13442"
@@ -606,11 +607,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 399,
+      "char_start": 161,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "6 U.S.C. 111 note; note 'Ex. Ord. No. 13286. Amendment of Executive Orders, and Other Actions, in Connection With t' [USLM note id id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04]; usc06.xml (sha256 e7dc46885675fd993b1ecbfaa981d682fa2dc1b29f951e1a6a8194301f53ce65) in xml_uscAll@119-121.zip",
+        "sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13442",
       "legal_basis_candidate": "order amended a printed order (weak lead) (6 U.S.C. 111 note)",
@@ -620,9 +630,14 @@
       "source": {
         "page_or_item": "6 U.S.C. 111 note; note 'Ex. Ord. No. 13286. Amendment of Executive Orders, and Other Actions, in Connection With t' [USLM note id id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04]; usc06.xml (sha256 e7dc46885675fd993b1ecbfaa981d682fa2dc1b29f951e1a6a8194301f53ce65) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
+        "text_sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 13286, Feb. 28, 2003, 68 F.R. 10619, as amended by Ex. Ord. No. 13442, § 1, Aug. 13, 2007, 72 F.R. 45877; Ex. Ord. No. 13753, § 1, Dec. 9, 2016, 81 F.R. 90667; Ex. Ord. No. 14135, § 3(b), Jan. 3, 2025, 90 F.R. 2579, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
+      "text_sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
       "where": "USC 6 U.S.C. 111 note"
     },
     {
@@ -641,6 +656,7 @@
         "snippet": "Ex. Ord. No. 13286, Feb. 28, 2003, 68 F.R. 10619, as amended by Ex. Ord. No. 13442, § 1, Aug. 13, 2007, 72 F.R. 45877; Ex. Ord. No. 13753, § 1, Dec. 9, 2016, 81 F.R. 90667; Ex. Ord. No. 14135, § 3(b), Jan. 3, 2025, 90 F.R. 2579, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
         "where": "USC 6 U.S.C. 111 note"
       },
       "proposal": {
@@ -1061,6 +1077,7 @@
       "char_end": 4015,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13753",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1538,6 +1555,42 @@
       },
       "text": "Sec. 2. Executive Order 13362 of November 29, 2004 ( ‘‘Designation of Addi-\ntional Officers for the Department of Homeland Security Order of Succes-\nsion’’), is hereby revoked."
     },
+    "CURRENT:EO:13442#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 399,
+      "char_start": 161,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "6 U.S.C. 111 note; note 'Ex. Ord. No. 13286. Amendment of Executive Orders, and Other Actions, in Connection With t' [USLM note id id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04]; usc06.xml (sha256 e7dc46885675fd993b1ecbfaa981d682fa2dc1b29f951e1a6a8194301f53ce65) in xml_uscAll@119-121.zip",
+        "sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13442#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13442",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (6 U.S.C. 111 note)",
+      "machine_lead": true,
+      "mention_id": "usc:5c48d88be15d",
+      "snippet": "Ex. Ord. No. 13286, Feb. 28, 2003, 68 F.R. 10619, as amended by Ex. Ord. No. 13442, § 1, Aug. 13, 2007, 72 F.R. 45877; Ex. Ord. No. 13753, § 1, Dec. 9, 2016, 81 F.R. 90667; Ex. Ord. No. 14135, § 3(b), Jan. 3, 2025, 90 F.R. 2579, provided:",
+      "source": {
+        "page_or_item": "6 U.S.C. 111 note; note 'Ex. Ord. No. 13286. Amendment of Executive Orders, and Other Actions, in Connection With t' [USLM note id id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04]; usc06.xml (sha256 e7dc46885675fd993b1ecbfaa981d682fa2dc1b29f951e1a6a8194301f53ce65) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
+        "text_sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13286, Feb. 28, 2003, 68 F.R. 10619, as amended by Ex. Ord. No. 13442, § 1, Aug. 13, 2007, 72 F.R. 45877; Ex. Ord. No. 13753, § 1, Dec. 9, 2016, 81 F.R. 90667; Ex. Ord. No. 14135, § 3(b), Jan. 3, 2025, 90 F.R. 2579, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id2b530e7e-ac5f-11f1-b0ce-ef1e194b7b04.txt",
+      "text_sha256": "38909cdbc7c62f11476be5e517a53eb55de8424b164bb7a9bdf13bcf77ebf66f",
+      "where": "USC 6 U.S.C. 111 note"
+    },
     "ORIGINAL:EO:13442": {
       "acceptable_as_original": true,
       "actor_id": "EO:13442",
@@ -1658,7 +1711,7 @@
       "text": "Subject to the provisions of subsection (b) of this section, the officers named \nin subsection (a) of this section, in the order listed, shall act as, and perform \nthe functions and duties of the office of, the Secretary of Homeland Security \n(Secretary), if they are eligible to act as Secretary under the provisions \nof the Federal Vacancies Reform Act of 1998, 5 U.S.C. 3345 et seq."
     }
   },
-  "fingerprint": "16503d0189bbe93f4099dbe3a3eb8cddd75b607f4c564f89aa18d89668c08f71",
+  "fingerprint": "75b02be0fdb3f8fa2baf40dc297614cb2e906a4e71cf248bc35b01c7adcbdd1e",
   "instrument_id": "EO:13442",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1988,32 +2041,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2023,8 +2078,7 @@
     }
   ],
   "missing": [
-    "Current-law lead lacks an original-source sha256.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
+    "Current-law lead lacks an original-source sha256."
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:13442",
@@ -2036,10 +2090,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "f61810c42427a10ca26b1173f8ac198095b94804b8acac508423433303dd7644",
+    "fingerprint": "98191758cd198979e4cb638fca39b775009c92a131414a60a0168f65c8a17f0d",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13442.json",
-    "history_sha256": "c3fda93f32bcb3520a80f5f635223b17079fa8b9f884e61c292290c2c371a4f3",
+    "history_sha256": "8d44f0f53f78691857e7f7da47426395cc786d1a94d0c58780c5793e0bc694c5",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

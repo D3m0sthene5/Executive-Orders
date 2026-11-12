@@ -7,6 +7,40 @@
     {
       "actor_id": "EO:13415",
       "evidence_id": "ACTOR_TEXT:EO:13415"
+    },
+    {
+      "actor_id": "FRDOC:00-7256",
+      "evidence_id": "ACTOR_TEXT:FRDOC:00-7256",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:01-31901",
+      "evidence_id": "ACTOR_TEXT:FRDOC:01-31901",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:94-670",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:94-670@230754"
+      ],
+      "full_text_chars": 270372,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-94-670.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "eb6567c51e8398c44daf7333a75135c49905f8e72dce33ca10188265f80dfafb",
+      "window_bytes": 3109,
+      "windows_omitted": 0
+    },
+    {
+      "actor_id": "FRDOC:95-2819",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:95-2819@188113"
+      ],
+      "full_text_chars": 228585,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-95-2819.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "a185e2a99d2051100050fec61cc6ee421985badbab8500fdd1f77d6575df164d",
+      "window_bytes": 3110,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [
@@ -71,7 +105,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12883",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12883"
@@ -104,11 +138,20 @@
   "current_law_leads": [
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 293,
+      "char_start": 61,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "5 U.S.C. 5301 note; note 'Ex. Ord. No. 12748. Providing for Federal Pay Administration' [USLM note id id279babb7-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "b5650ea7802e22fda8d660a37b5945d84496bc0a3860ec85abfcd8719f14ea07",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id279babb7-ac5f-11f1-a76e-9d053fb5b48a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12883",
       "legal_basis_candidate": "order amended a printed order (weak lead) (5 U.S.C. 5301 note)",
@@ -118,30 +161,47 @@
       "source": {
         "page_or_item": "5 U.S.C. 5301 note; note 'Ex. Ord. No. 12748. Providing for Federal Pay Administration' [USLM note id id279babb7-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id279babb7-ac5f-11f1-a76e-9d053fb5b48a.txt",
+        "text_sha256": "b5650ea7802e22fda8d660a37b5945d84496bc0a3860ec85abfcd8719f14ea07",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 12748, Feb. 1, 1991, 56 F.R. 4521, as amended by Ex. Ord. No. 12883, Nov. 29, 1993, 58 F.R. 63281; Ex. Ord. No. 13106, § 8, Dec. 7, 1998, 63 F.R. 68152; Ex. Ord. No. 13415, § 2(a), Dec. 1, 2006, 71 F.R. 70641, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id279babb7-ac5f-11f1-a76e-9d053fb5b48a.txt",
+      "text_sha256": "b5650ea7802e22fda8d660a37b5945d84496bc0a3860ec85abfcd8719f14ea07",
       "where": "USC 5 U.S.C. 5301 note"
     },
     {
       "basis_code": "cfr_authority_citation",
+      "char_end": 542,
+      "char_start": 275,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR part 531",
+        "sha256": "259f5b520a72fa11dc74989bd2a1291da574f47b75342fb4a8cec2929d177002",
+        "source_id": "cfr:t5:part531",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/part-531"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12883",
       "legal_basis_candidate": "regulation authority citation lists the order (5 CFR part 531)",
       "machine_lead": true,
-      "mention_id": "ecfr:8f86540be1b9",
+      "mention_id": "ecfr:69b28d3d0efd",
       "snippet": "...part D also issued under 5 U.S.C. 5335 and 7701(b)(2); Subpart E also issued under 5 U.S.C. 5336; Subpart F also issued under 5 U.S.C. 5304, 5305, and 5941(a); E.O. 12883, 58 FR 63281, 3 CFR, 1993 Comp., p. 682; and E.O. 13106, 63 FR 68151, 3 CFR, 1998 Comp., p. 224.",
       "source": {
-        "page_or_item": "5 CFR part 531 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.68)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR part 531 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.68)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-part531.txt",
+        "text_sha256": "259f5b520a72fa11dc74989bd2a1291da574f47b75342fb4a8cec2929d177002",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
+      "text": "part D also issued under 5 U.S.C. 5335 and 7701(b)(2); Subpart E also issued under 5 U.S.C. 5336; Subpart F also issued under 5 U.S.C. 5304, 5305, and 5941(a); E.O. 12883, 58 FR 63281, 3 CFR, 1993 Comp., p. 682; and E.O. 13106, 63 FR 68151, 3 CFR, 1998 Comp., p. 224.",
       "where": "CFR 5 CFR part 531"
     },
     {
@@ -178,10 +238,10 @@
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:8f86540be1b9",
+        "mention_id": "ecfr:69b28d3d0efd",
         "snippet": "...part D also issued under 5 U.S.C. 5335 and 7701(b)(2); Subpart E also issued under 5 U.S.C. 5336; Subpart F also issued under 5 U.S.C. 5304, 5305, and 5941(a); E.O. 12883, 58 FR 63281, 3 CFR, 1993 Comp., p. 682; and E.O. 13106, 63 FR 68151, 3 CFR, 1998 Comp., p. 224.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -191,8 +251,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (5 CFR part 531)",
         "source": {
-          "page_or_item": "5 CFR part 531 (part_authority; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.68)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR part 531 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.68)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -213,6 +273,7 @@
         "snippet": "Ex. Ord. No. 12748, Feb. 1, 1991, 56 F.R. 4521, as amended by Ex. Ord. No. 12883, Nov. 29, 1993, 58 F.R. 63281; Ex. Ord. No. 13106, § 8, Dec. 7, 1998, 63 F.R. 68152; Ex. Ord. No. 13415, § 2(a), Dec. 1, 2006, 71 F.R. 70641, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/id279babb7-ac5f-11f1-a76e-9d053fb5b48a.txt",
         "where": "USC 5 U.S.C. 5301 note"
       },
       "proposal": {
@@ -481,6 +542,126 @@
       },
       "text": "Instrument: EO:13415\nSource: https://www.govinfo.gov/content/pkg/FR-2006-12-05/pdf/06-9561.pdf\nSHA-256 of the downloaded file: 1964c2fc5f5e837eaf04ba1bed4fdca04c87b129cadbb39e2a2a3a015870346d\nLocation: 71 FR 70641, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 1 ===\nPresidential Documents\n70641 \nFederal Register \nVol. 71, No. 233 \nTuesday, December 5, 2006 \nTitle 3— \nThe President \nExecutive Order 13415 of December 1, 2006 \nAssignment of Certain Pay-Related Functions \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including section 301 of title 3, \nUnited States Code, it is hereby ordered as follows: \nSection 1. Assignment of Functions. The functions of the President under \nsections 4505a, 5305, and 5377 of title 5, United States Code, are assigned \nto the Director of the Office of Personnel Management. \nSec. 2. Revocations. (a) Sections 3 and 6 of Executive Order 12748 of \nFebruary 1, 1991, as amended, are revoked. Sections 4, 5, 7, 8, and 9 \nof Executive Order 12748 are renumbered as sections 3, 4, 5, 6, and 7, \nrespectively. \n(b) Section 2 of Executive Order 12828 of January 5, 1993, is revoked. \nSection 3 of Executive Order 12828 is renumbered as section 2. \nSec. 3. General Provision. This order is not intended to, and does not, \ncreate any right or benefit, substantive or procedural, enforceable at law \nor in equity against the United States, its departments, agencies, entities, \nofficers, employees, or agents, or any other person. \nTHE WHITE HOUSE, \nDecember 1, 2006. \n[FR Doc. 06–9561 \nFiled 12–4–06; 8:49 am] \nBilling code 3195–01–P \nVerDate Aug<31>2005 15:57 Dec 04, 2006 Jkt 211001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05DEO0.SGM 05DEO0\nGWBOLD.EPS</GPH>\nsroberts on PROD1PC70 with RULES"
     },
+    "ACTOR_TEXT:FRDOC:00-7256": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:00-7256",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 16305,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:00-7256",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:00-7256",
+        "page_or_item": "65 FR 15875; FR Doc. 00-7256; Proposed Rule: Locality-Based Comparability Payments",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "88ef4e3e1e41ce983fb2da0a1e459926cc53df917113e12ec752552f59df02f0",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-00-7256.txt",
+        "text_sha256": "88ef4e3e1e41ce983fb2da0a1e459926cc53df917113e12ec752552f59df02f0",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2000/03/24/00-7256.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 65 Issue 58 (Friday, March 24, 2000)</title>\n</head>\n<body><pre>\n[Federal Register Volume 65, Number 58 (Friday, March 24, 2000)]\n[Proposed Rules]\n[Pages 15875-15877]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 00-7256]\n\n\n\u0000========================================================================\n\u0000Proposed Rules\n\u0000                                                Federal Register\n\u0000________________________________________________________________________\n\u0000\n\u0000This section of the FEDERAL REGISTER contains notices to the public of \n\u0000the proposed issuance of rules and regulations. The purpose of these \n\u0000notices is to give interested persons an opportunity to participate in \n\u0000the rule making prior to the adoption of the final rules.\n\u0000\n\u0000========================================================================\n\u0000\n\n\u0000\u0000Federal Register / Vol. 65, No. 58 / Friday, March 24, 2000 / \nProposed Rules\u0000\u0000\n\n[[Page 15875]]\n\n\n\nOFFICE OF PERSONNEL MANAGEMENT\n\n5 CFR Part 531\n\nRIN 3206-AI81\n\n\nLocality-Based Comparability Payments\n\nAGENCY: Office of Personnel Management.\n\nACTION: Proposed rule with request for comments.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The Office of Personnel Management is issuing proposed \nregulations to clarify and redefine the limitations on locality rates \nof pay for categories of non-General Schedule employees approved by the \nPresident's Pay Agent to receive locality-based comparability payments. \nThis proposed change was prompted by a recent Executive order that \ndelegated the President's authority to establish such limitations to \nthe President's Pay Agent. The proposed regulations would ensure that \nall employees receiving locality payments are treated consistently.\n\nDATES: Comments must be received on or before May 23, 2000.\n\nADDRESSES: Comments may be sent or delivered to Donald J. Winstead, \nAssistant Director for Compensation Administration, Workforce \nCompensation and Performance Service, Office of Personnel Management, \nRoom 7H31, 1900 E Street NW., Washington, DC 20415-8200 (FAX: (202) \n606-0824 or email: <a href=\"/cdn-cgi/l/email-protection#9dedfce4f1f8fcebf8ddf2edf0b3faf2eb\"><span class=\"__cf_email__\" data-cfemail=\"d3a3b2aabfb6b2a5b693bca3befdb4bca5\">[email&#160;protected]</span></a>).\n\nFOR FURTHER INFORMATION CONTACT: Vincent Donahue, (202) 606-2858, FAX: \n(202) 606-0824, or email: <a href=\"/cdn-cgi/l/email-protection#5626372f3a333720331639263b78313920\"><span class=\"__cf_email__\" data-cfemail=\"7c0c1d0510191d0a193c130c11521b130a\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: The Office of Personnel Management (OPM) \nproposes to revise the locality pay regulations in subpart F of part \n531 of title 5, Code of Federal Regulations, to clarify and redefine \nthe limitations on locality rates of pay for categories of non-General \nSchedule employees approved by the President's Pay Agent to receive \nlocality payments. Section 8 of Executive Order 13106 of December 7, \n1998, delegated the President's authority under section 5304(g) of \ntitle 5, United States Code, to determine such limitations to the \nPresident's Pay Agent. To provide consistent treatment between General \nSchedule (GS) and non-GS employees receiving locality payments, OPM \nproposes to provide that (1) non-GS positions whose maximum scheduled \nannual rate of pay is less than or equal to the maximum payable \nscheduled annual rate of pay for GS-15 will be subject to a locality \npay cap equal to the rate for level IV of the Executive Schedule, and \n(2) non-GS positions whose maximum scheduled annual rate of pay exceeds \nthe maximum payable scheduled annual rate of pay for GS-15, but is not \nmore than the rate for level IV of the Executive Schedule, will be \nsubject to a locality pay cap equal to the rate for level III of the \nExecutive Schedule. (See the definition of scheduled annual rate of pay \nin 5 CFR 531.602, as revised in these proposed regulations.)\n\nBackground\n\n    Locality-based comparability payments are authorized under 5 U.S.C. \n5304. By law, locality payments automatically apply to General Schedule \nemployees. The maximum rate of basic pay (excluding locality payments) \nfor GS employees is the rate for GS-15, step 10, subject to a cap \nlinked to the rate of pay for level V of the Executive Schedule. (See 5 \nU.S.C. 5303(f).) GS rates of basic pay adjusted by locality payments \nare capped at the rate of pay for level IV of the Executive Schedule. \n(See 5 U.S.C. 5304(g)(1).)\n    The locality pay law provides that the President may extend \nlocality payments to various groups outside the GS pay system, such as \nmembers of the Senior Executive Service (SES), administrative law \njudges (ALJs), and other groups for which basic pay is limited to no \nmore than the rate of pay for level IV of the Executive Schedule. (See \n5 U.S.C. 5304(h).) Executive Order 12883 of November 29, 1993, provided \nthat the President's Pay Agent (the Secretary of Labor and the \nDirectors of the Office of Management and Budget and the Office of \nPersonnel Management) may act for the President in exercising the \nauthority to extend locality payments to such non-GS groups.\n    Section 5304(g) of title 5, United States Code, provides that \nlocality rates approved for certain categories of non-GS employees \nspecified in 5 U.S.C. 5304(h)(1)(A)-(E), including members of the SES \nand ALJs, are capped at the rate for level III of the Executive \nSchedule. Section 5304(g) provides that a level III locality pay cap \napplies to ``any positions under subsection (h)(1)(F) which the \nPresident may determine.'' Subsection (h)(1)(F) is a catch-all category \nof non-GS positions to which locality pay may be extended. This catch-\nall category includes Executive agency positions not otherwise listed \nin the law whose rates of basic pay are limited to not more than the \nrate for level IV of the Executive Schedule. If the President \ndetermines that a level III cap does not apply to a particular category \nof non-GS positions, the locality pay cap for those positions is \nautomatically set at level IV of the Executive Schedule (i.e., the \nlocality pay cap for GS employees). (See 5 U.S.C. 5304(g)(1).)\n    Since the inception of locality pay in January 1994, the \nPresident's Pay Agent has approved locality pay for a number of non-GS \ncategories of positions under its delegated authority. However, \nExecutive Order 12883 did not delegate to the Pay Agent the President's \nauthority to determine whether the level IV or level III locality pay \ncap should apply to any group of non-GS positions under 5 U.S.C. \n5304(h)(1)(F) to whom locality pay is extended. Locality pay extension \ndecisions for these positions were interpreted as automatically \ncarrying a level III cap. (See 5 CFR 531.604(c).) Section 8 of \nExecutive Order 13106 of December 7, 1998, has now delegated to the Pay \nAgent the President's authority to determine when the level III cap \nshould apply to such non-GS employees.\n\nProposed Regulations\n\n    The proposed regulations provide a rule for determining the \nlocality pay cap for non-GS positions for which the President's Pay \nAgent approves the extension of locality payments. We propose to amend \n5 CFR 531.604 to clarify that a locality rate of pay may not exceed the \nrate for level III of the Executive Schedule for categories of \npositions specified in 5 U.S.C. 5304(h)(1)(A)-(E) (e.g., members of the \nSES and ALJs). The proposed revision of\n\n[[Page 15876]]\n\nSec. 531.604 also provides that, for categories of non-GS employees \nunder 5 U.S.C. 5304(h)(1)(F), locality rates of pay may not exceed (1) \nthe rate for level IV of the Executive Schedule, if the maximum \nscheduled annual rate of pay for such positions is less than or equal \nto the maximum payable scheduled annual rate of pay for GS-15, or (2) \nthe rate for level III of the Executive Schedule, if the maximum \nscheduled annual rate of pay for such positions exceeds the maximum \npayable scheduled annual rate of pay for GS-15, but is not more than \nthe rate for level IV of the Executive Schedule. (See the definition of \nscheduled annual rate of pay in 5 CFR 531.602, as revised in these \nproposed regulations.)\n    This proposed rule would fulfill the original intent of the \nlocality pay law by not automatically providing a level III cap on \nlocality payments for all groups of non-GS employees. This change would \nalso provide for more consistent and equitable treatment of GS and non-\nGS employees receiving locality payments. For example, non-GS employees \nwith a maximum scheduled annual rate of pay that is no higher than the \nrate of basic pay for GS-15, step 10, would have the same locality pay \ncap as GS employees.\n    The proposed regulations include pay protection for any employee \nwho otherwise would suffer a reduction in his or her locality rate of \npay under the proposed locality pay cap provisions. Although no \nemployee would suffer an immediate reduction in pay, it is possible \nthat the locality pay cap for a group of non-GS employees could be \nreduced from level III to level IV of the Executive Schedule as GS \nrates of basic pay increase. This could occur if the rate of basic pay \nfor GS-15, step 10, becomes equal to or exceeds the maximum scheduled \nannual rate of pay for a non-GS group. To prevent reductions in pay \nthat would otherwise occur, the regulations cap an affected employee's \nlocality rate at the higher of (1) his or her locality rate on the day \nbefore the scheduled annual rate of pay for GS-15, step 10, becomes \nequal to or exceeds the maximum scheduled annual rate of pay for the \ngroup of non-GS employees or (2) the rate for level IV of the Executive \nSchedule. This means that the employee's locality rate would be frozen \nuntil it is exceeded by the rate for level IV of the Executive \nSchedule.\n    The proposed regulations exclude experts and consultants appointed \nunder 5 U.S.C. 3109 from the locality pay limitations. Unless otherwise \nauthorized by law, the aggregate pay (including basic pay, locality \npay, and premium pay) for experts and consultants appointed under 5 \nU.S.C. 3109 may not exceed the daily rate for GS-15, step 10 (excluding \nlocality pay or any other additional pay). (See 5 CFR 304.105.)\n    The proposed regulations also clarify the definition of employee in \nSec. 531.602 to include positions in the Federal Bureau of \nInvestigation (FBI) and Drug Enforcement Administration (DEA) SES under \n5 U.S.C. 5304(h)(1)(C) and other non-GS employee categories under \nSec. 5304(h)(1)(F) for which the President's Pay Agent has authorized \nlocality payments. The regulations also amend paragraph (4) in the \ndefinition of scheduled annual rate of pay in Sec. 531.602 to include \nthe rates of basic pay for employees in the FBI and DEA SES and other \ncategories of non-GS positions for which the Pay Agent has authorized \nlocality pay. The proposed regulations clarify that the scheduled \nannual rate of pay for such employees must exclude any locality-based \npay adjustments, special basic pay adjustments analogous to special \nsalary rates established under 5 U.S.C. 5305, or other additional pay \nof any kind.\n    This rule has been reviewed and approved by the President's Pay \nAgent (the Secretary of Labor and the Directors of the Office of \nManagement and Budget and the Office of Personnel Management).\n\nE.O. 12866, Regulatory Review\n\n    This rule has been reviewed by the Office of Management and Budget \nin accordance with Executive Order 12866.\n\nRegulatory Flexibility Act\n\n    I certify that these regulations would not have a significant \neconomic impact on a substantial number of small entities because they \nwould apply only to Federal agencies and employees.\n\nList of Subjects in 5 CFR Part 531\n\n    Government employees, Law enforcement officers, Wages.\nOffice of Personnel Management.\n\nJanice R. Lachance,\nDirector.\n    Accordingly, OPM is proposing to amend part 531 of title 5 of the \nCode of Federal Regulations as follows:\n\nPART 531--PAY UNDER THE GENERAL SCHEDULE\n\n    1. The authority citation for part 531 is revised to read as \nfollows:\n\n    Authority: 5 U.S.C. 5115, 5307, and 5338; sec. 4 of Pub. L. 103-\n89, 107 Stat. 981; and E.O. 12748, 56 FR 4521, 3 CFR, 1991 Comp., p. \n316;\n    Subpart B also issued under 5 U.S.C. 5303(g), 5333, 5334(a), and \n7701(b)(2);\n    Subpart C also issued under 5 U.S.C. 5304, 5305, and 5553; \nsections 302 and 404 of FEPCA, Pub. L. 101-509, 104 Stat. 1462 and \n1466; and section 3(7) of Pub. L. 102-378, 106 Stat. 1356;\n    Subpart D also issued under 5 U.S.C. 5335(g) and 7701(b)(2);\n    Subpart E also issued under 5 U.S.C. 5336;\n    Subpart F also issued under 5 U.S.C. 5304, 5305(g)(1), and 5553; \nE.O. 12883, 58 FR 63281, 3 CFR, 1993 Comp., p. 682; and E.O. 13106, \n63 FR 68151, 3 CFR, 1998 Comp., p. 224.\n    Subpart G also issued under 5 U.S.C. 5304, 5305, and 5553; \nsection 302 of the Federal Employees Pay Comparability Act of 1990 \n(FEPCA), Pub. L. 101-509, 104 Stat. 1462; and E.O. 12786, 56 FR \n67453, 3 CFR, 1991 Comp., p. 376.\n\nSubpart F--Locality-Based Comparability Payments\n\n    2. In Sec. 531.602, paragraph (2) of the definition of employee and \nparagraph (4) of the definition of scheduled annual rate of pay are \nrevised to read as follows:\n\n\nSec. 531.602  Definitions\n\n* * * * *\n    Employee * * *\n    (2) An employee in a category of positions described in 5 U.S.C. \n5304(h)(1)(A)-(F) for which the President (or designee) has authorized \nlocality-based comparability payments under 5 U.S.C. 5304(h)(2) and \nwhose official duty station is located in a locality pay area.\n* * * * *\n    Scheduled annual rate of pay * * *\n    (4) For an employee in a category of positions described in 5 \nU.S.C. 5304(h)(1)(A)-(F) for which the President (or designee) has \nauthorized locality-based comparability payments under 5 U.S.C. \n5304(h)(2), the rate of basic pay fixed by law or administrative \naction, exclusive of any locality-based adjustments (including \nadjustments equivalent to local special rate adjustments under 5 U.S.C. \n5305) or other additional pay of any kind.\n    3. In Sec. 531.604, paragraph (c) is revised and a new paragraph \n(d) is added to read as follows:\n\n\nSec. 531.604  Determining locality rates of pay.\n\n* * * * *\n    (c)(1) Locality rates of pay approved by the President (or \ndesignee) for employees in a category of positions described in 5 \nU.S.C. 5304(h)(1)(A)-(E) may not exceed the rate for level III of the \nExecutive Schedule.\n    (2) Locality rates of pay approved by the President (or designee) \nfor employees in a category of positions described in 5 U.S.C. \n5304(h)(1)(F) may not exceed--\n\n[[Page 15877]]\n\n    (i) The rate for level IV of the Executive Schedule, when the \nmaximum scheduled annual rate of pay (excluding any retained rate) for \nsuch positions is less than or equal to the maximum payable scheduled \nannual rate of pay for GS-15; or\n    (ii) The rate for level III of the Executive Schedule, when the \nmaximum scheduled annual rate of pay (excluding any retained rate) for \nsuch positions exceeds the maximum payable scheduled annual rate of pay \nfor GS-15, but is not more than the rate for level IV of the Executive \nSchedule.\n    (3) If application of paragraph (c)(2) of this section would \notherwise reduce an employee's existing locality rate of pay, the \nemployee's locality rate of pay will be capped at the higher of--\n    (i) The amount of his or her locality rate of pay on the day before \nparagraph (c)(2) of this section is applied, or\n    (ii) The rate for level IV of the Executive Schedule.\n    (d) Paragraph (c) of this section does not apply to experts and \nconsultants appointed under 5 U.S.C. 3109 if the pay for those experts \nand consultants is limited to the highest rate payable under 5 U.S.C. \n5332 (i.e., the unadjusted maximum GS-15 rate). Pay limitations for \nsuch experts and consultants must be determined in accordance with \nSec. 304.105 of this chapter.\n[FR Doc. 00-7256 Filed 3-23-00; 8:45 am]\nBILLING CODE 6325-01-U\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:01-31901": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:01-31901",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 14506,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:01-31901",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:01-31901",
+        "page_or_item": "66 FR 67069; FR Doc. 01-31901; Rule: Locality-Based Comparability Payments",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "3d84541ee0600589140f56a742b25dc1409c99f5f9f156110ab4229433c28299",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-01-31901.txt",
+        "text_sha256": "3d84541ee0600589140f56a742b25dc1409c99f5f9f156110ab4229433c28299",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2001/12/28/01-31901.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 66 Issue 249 (Friday, December 28, 2001)</title>\n</head>\n<body><pre>\n[Federal Register Volume 66, Number 249 (Friday, December 28, 2001)]\n[Rules and Regulations]\n[Pages 67069-67070]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 01-31901]\n\n\n\n\u0000========================================================================\n\u0000Rules and Regulations\n\u0000                                                Federal Register\n\u0000________________________________________________________________________\n\u0000\n\u0000This section of the FEDERAL REGISTER contains regulatory documents \n\u0000having general applicability and legal effect, most of which are keyed \n\u0000to and codified in the Code of Federal Regulations, which is published \n\u0000under 50 titles pursuant to 44 U.S.C. 1510.\n\u0000\n\u0000The Code of Federal Regulations is sold by the Superintendent of Documents. \n\u0000Prices of new books are listed in the first FEDERAL REGISTER issue of each \n\u0000week.\n\u0000\n\u0000========================================================================\n\u0000\n\n\u0000\u0000Federal Register / Vol. 66, No. 249 / Friday, December 28, 2001 / \nRules and Regulations\u0000\u0000\n\n[[Page 67069]]\n\n\n\nOFFICE OF PERSONNEL MANAGEMENT\n\n5 CFR Part 531\n\nRIN: 3206-AI81\n\n\nLocality-Based Comparability Payments\n\nAGENCY: Office of Personnel Management.\n\nACTION: Final rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The Office of Personnel Management is issuing final \nregulations to clarify and redefine the limitations on locality rates \nof pay for categories of non-General Schedule employees approved by the \nPresident's Pay Agent to receive locality-based comparability payments. \nThis change was prompted by an Executive order that delegated the \nPresident's authority to establish such limitations to the President's \nPay Agent. The final regulations will ensure that all employees \nreceiving locality payments are treated consistently.\n\nEFFECTIVE DATE: This regulation is effective on December 28, 2001.\n\nFOR FURTHER INFORMATION CONTACT: Jeanne Jacobson, (202) 606-2858, FAX: \n(202) 606-0824, or e-mail: <a href=\"/cdn-cgi/l/email-protection#3242534b5e57534457725d425f1c555d44\"><span class=\"__cf_email__\" data-cfemail=\"19697860757c786f7c59766974377e766f\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: On March 24, 2000, the Office of Personnel \nManagement (OPM) published a proposed rule (65 FR 15875) to revise the \nlocality pay regulations in subpart F of part 531 of title 5, Code of \nFederal Regulations. This proposed rule clarified and redefined the \nlimitations on locality rates of pay for categories of non-General \nSchedule employees approved by the President's Pay Agent to receive \nlocality payments. The proposed rule had a 60-day public comment \nperiod, during which OPM did not receive any formal comments. \nTherefore, we are adopting the proposed rule as final without change.\n\nBackground\n\n    Locality-based comparability payments are authorized under 5 U.S.C. \n5304. By law, locality payments automatically apply to General Schedule \n(GS) employees. The maximum rate of basic pay (excluding locality \npayments) for GS employees is the rate for GS-15, step 10, subject to a \ncap linked to the rate of pay for level V of the Executive Schedule. \n(See 5 U.S.C. 5303(f).) GS rates of basic pay adjusted by locality \npayments are capped at the rate of pay for level IV of the Executive \nSchedule. (See 5 U.S.C. 5304(g)(1).)\n    The locality pay law provides that the President may extend \nlocality payments to various groups outside the GS pay system, such as \nmembers of the Senior Executive Service (SES), administrative law \njudges (ALJs), and other groups for which basic pay is limited to no \nmore than the rate of pay for level IV of the Executive Schedule. (See \n5 U.S.C. 5304(h).) Executive Order 12883 of November 29, 1993, provided \nthat the President's Pay Agent (the Secretary of Labor and the \nDirectors of the Office of Management and Budget and the Office of \nPersonnel Management) may act for the President in exercising the \nauthority to extend locality payments to such non-GS groups.\n    Section 5304(g)(2)(A) of title 5, United States Code, provides that \nlocality rates approved for certain categories of non-GS employees \nspecified in 5 U.S.C. 5304(h)(1)(A)-(E), including members of the SES \nand ALJs, are capped at the rate for level III of the Executive \nSchedule. Section 5304(g)(2)(B) of title 5, United States Code, \nprovides that a level III locality pay cap applies to ``any positions \nunder subsection (h)(1)(F) which the President may determine.'' \nSubsection (h)(1)(F) is a catch-all category of non-GS positions to \nwhich locality pay may be extended. This catch-all category includes \nExecutive agency positions not otherwise listed in the law whose rates \nof basic pay are limited to not more than the rate for level IV of the \nExecutive Schedule. Section 8 of Executive Order 13106 of December 7, \n1998, delegated the President's authority under section 5304(g)(2)(B) \nof title 5, United States Code, to determine such limitations for \ncategories of positions covered by 5 U.S.C. 5304(h)(1)(F) to the \nPresident's Pay Agent.\n\nFinal Regulations\n\n    These final regulations amend 5 CFR 531.604 by revising paragraph \n(c) to clarify that a locality rate of pay may not exceed the rate for \nlevel III of the Executive Schedule for categories of positions \nspecified in 5 U.S.C. 5304(h)(1)(A)-(E). This includes senior-level, \nSES, Federal Bureau of Investigation (FBI) and Drug Enforcement \nAdministration (DEA) SES, administrative law judge, and contract \nappeals board positions. This final rule does not change the locality \npay cap applicable to members of the SES and other categories of \npositions specified in 5 U.S.C. 5304(h)(1)(A)-(E). The final rule \nmerely clarifies the level III locality pay cap prescribed in law at 5 \nU.S.C. 5304(g)(2)(A).\n    The final rule also amends Sec. 531.604 by revising paragraph (c) \nto provide that, for categories of non-GS employees under 5 U.S.C. \n5304(h)(1)(F) (i.e., the catch-all category of positions previously \ndescribed), locality rates of pay may not exceed:\n    (1) The rate for level IV of the Executive Schedule, if the maximum \nscheduled annual rate of pay for such positions is less than or equal \nto the maximum payable scheduled annual rate of pay for GS-15, or\n    (2) The rate for level III of the Executive Schedule, if the \nmaximum scheduled annual rate of pay for such positions exceeds the \nmaximum payable scheduled annual rate of pay for GS-15, but is not more \nthan the rate for level IV of the Executive Schedule.\n    The final regulations include pay protection for any employee who \notherwise would suffer a reduction in his or her locality rate of pay \nunder the locality pay cap provisions. It is possible that the locality \npay cap for a group of non-GS employees under 5 U.S.C. 5304(h)(1)(F) \ncould be reduced from level III to level IV of the Executive Schedule \nas GS rates of basic pay increase. This could occur if the rate of \nbasic pay for GS-15, step 10, becomes equal to or exceeds the maximum \nscheduled annual rate of pay for a non-GS group. To prevent reductions \nin pay that would otherwise occur, Sec. 531.606(c)(3) of the final \nregulations limit an affected employee's locality pay cap to the higher \nof (1) his or her locality rate on the day before the scheduled annual \nrate of pay for GS-15, step 10, becomes equal to or exceeds the\n\n[[Page 67070]]\n\nmaximum scheduled annual rate of pay for the group of non-GS employees \nor (2) the rate for level IV of the Executive Schedule. This means that \nthe employee's locality rate would be frozen until it is exceeded by \nthe rate for level IV of the Executive Schedule.\n    The final regulations add a new paragraph (d) to Sec. 531.604 to \nexclude experts and consultants appointed under 5 U.S.C. 3109 from the \nlocality pay limitations. Unless otherwise authorized by law, the \naggregate pay (including basic pay, locality pay, and premium pay) for \nexperts and consultants appointed under 5 U.S.C. 3109 may not exceed \nthe daily rate for GS-15, step 10 (excluding locality pay or any other \nadditional pay). (See 5 CFR 304.105.)\n    The final regulations also clarify the definition of employee in \nSec. 531.602 to include positions in the FBI and DEA SES under 5 U.S.C. \n5304(h)(1)(C) and other non-GS employee categories under 5 U.S.C. \n5304(h)(1)(F) for which the President's Pay Agent has authorized \nlocality payments. The regulations also amend paragraph (4) in the \ndefinition of scheduled annual rate of pay in Sec. 531.602 to include \nthe rates of basic pay for employees in the FBI and DEA SES and other \ncategories of non-GS positions for which the Pay Agent has authorized \nlocality pay. The proposed regulations clarify that the scheduled \nannual rate of pay for such employees must exclude any locality-based \npay adjustments, special basic pay adjustments analogous to special \nsalary rates established under 5 U.S.C. 5305, or other additional pay \nof any kind.\n    The President's Pay Agent has reviewed and approved this final \nrule.\n\nWaiver of Delay in Effective Date\n\n    Pursuant to 5 U.S.C. 553(d)(3), I find that good cause exists to \nmake these regulations effective in less than 30 days. These \nregulations must be made effective prior to January 1, 2002. If they \nbecome effective after the January 2002 statutory pay adjustments, \nagencies may be forced in some scenarios to use the pay protection \nprovision to freeze the pay of a few employees whose pay was capped at \nlevel III of the Executive Schedule.\n\nExecute Order 12866, Regulatory Review\n\n    This rule has been reviewed by the Office of Management and Budget \nin accordance with Executive Order 12866.\n\nRegulatory Flexibility Act\n\n    I certify that these regulations will not have a significant \neconomic impact on a substantial number of small entities because they \nwill apply only to Federal agencies and employees.\n\nList of Subjects in 5 CFR Part 531\n\n    Government employees, Law enforcement officers, Wages.\n\n    Office of Personnel Management.\nKay Coles James,\nDirector.\n\n    Accordingly, OPM is amending part 531 of title 5 of the Code of \nFederal Regulations as follows:\n\nPART 531--PAY UNDER THE GENERAL SCHEDULE\n\n    1. The authority citation for part 531 is revised to read as \nfollows:\n\n    Authority: 5 U.S.C. 5115, 5307, and 5338; sec. 4 of Pub. L. 103-\n89, 107 Stat. 981; and E.O. 12748, 56 FR 4521, 3 CFR, 1991 Comp., p. \n316;\n\n    Subpart B also issued under 5 U.S.C. 5303(g), 5333, 5334(a), and \n7701(b)(2);\n    Subpart C also issued under 5 U.S.C. 5304, 5305, and 5553; sections \n302 and 404 of the Federal Employees Pay Comparability Act of 1990 \n(FEPCA), Pub. L. 101-509, 104 Stat. 1462 and 1466; and section 3(7) of \nPub. L. 102-378, 106 Stat. 1356;\n    Subpart D also issued under 5 U.S.C. 5335(g) and 7701(b)(2);\n    Subpart E also issued under 5 U.S.C. 5336;\n    Subpart F also issued under 5 U.S.C. 5304, 5305(g)(1), and 5553; \nE.O. 12883, 58 FR 63281, 3 CFR, 1993 Comp., p. 682; and E.O. 13106, 63 \nFR 68151, 3 CFR, 1998 Comp., p. 224;\n    Subpart G also issued under 5 U.S.C. 5304, 5305, and 5553; section \n302 of FEPCA, Pub. L. 101-509, 104 Stat. 1462; and E.O. 12786, 56 FR \n67453, 3 CFR, 1991 Comp., p. 376.\n\nSubpart F--Locality-Based Comparability Payments\n\n    2. In Sec. 531.602, paragraph (2) of the definition of employee and \nparagraph (4) of the definition of scheduled annual rate of pay are \nrevised to read as follows:\n\n\nSec. 531.602  Definitions\n\n* * * * *\n    Employee means--* * *\n    (2) An employee in a category of positions described in 5 U.S.C. \n5304(h)(1)(A)-(F) for which the President (or designee) has authorized \nlocality-based comparability payments under 5 U.S.C. 5304(h)(2) and \nwhose official duty station is located in a locality pay area.\n* * * * *\n    Scheduled annual rate of pay means--* * *\n    (4) For an employee in a category of positions described in 5 \nU.S.C. 5304(h)(1)(A)-(F) for which the President (or designee) has \nauthorized locality-based comparability payments under 5 U.S.C. \n5304(h)(2), the rate of basic pay fixed by law or administrative \naction, exclusive of any locality-based adjustments (including \nadjustments equivalent to local special rate adjustments under 5 U.S.C. \n5305) or other additional pay of any kind.\n\n    3. In Sec. 531.604, paragraph (c) is revised and a new paragraph \n(d) is added to read as follows:\n\n\nSec. 531.604  Determining locality rates of pay.\n\n* * * * *\n    (c)(1) Locality rates of pay approved by the President (or \ndesignee) for employees in a category of positions described in 5 \nU.S.C. 5304(h)(1)(A)-(E) may not exceed the rate for level III of the \nExecutive Schedule.\n    (2) Locality rates of pay approved by the President (or designee) \nfor employees in a category of positions described in 5 U.S.C. \n5304(h)(1)(F) may not exceed--\n    (i) The rate for level IV of the Executive Schedule, when the \nmaximum scheduled annual rate of pay (excluding any retained rate) for \nsuch positions is less than or equal to the maximum payable scheduled \nannual rate of pay for GS-15; or\n    (ii) The rate for level III of the Executive Schedule, when the \nmaximum scheduled annual rate of pay (excluding any retained rate) for \nsuch positions exceeds the maximum payable scheduled annual rate of pay \nfor GS-15, but is not more than the rate for level IV of the Executive \nSchedule.\n    (3) If application of paragraph (c)(2) of this section would \notherwise reduce an employee's existing locality rate of pay, the \nemployee's locality rate of pay will be capped at the higher of--\n    (i) The amount of his or her locality rate of pay on the day before \nparagraph (c)(2) of this section is applied, or\n    (ii) The rate for level IV of the Executive Schedule.\n    (d) Paragraph (c) of this section does not apply to experts and \nconsultants appointed under 5 U.S.C. 3109 if the pay for those experts \nand consultants is limited to the highest rate payable under 5 U.S.C. \n5332 (i.e., the unadjusted maximum GS-15 rate). Pay limitations for \nsuch experts and consultants must be determined in accordance with \nSec. 304.105 of this chapter.\n[FR Doc. 01-31901 Filed 12-27-01; 8:45 am]\nBILLING CODE 6325-39-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:94-670@230754": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:94-670",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 233863,
+      "char_start": 230754,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:94-670@230754",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:94-670",
+        "page_or_item": "; FR Doc. 94-670; Uncategorized Document: The President's Pay Agent; Notice OFFICE OF PERSONNEL MANAGEMENT",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "eb6567c51e8398c44daf7333a75135c49905f8e72dce33ca10188265f80dfafb",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-94-670.txt",
+        "text_sha256": "eb6567c51e8398c44daf7333a75135c49905f8e72dce33ca10188265f80dfafb",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1994/01/13/94-670.txt"
+      },
+      "text": "--------------------------------------------------------------------------------------------------------------------------------------------------------\nNote: The adjusted rates of pay above apply only to General Schedule employees in the New York-Northern New Jersey-Long Island, NY-NJ-CT-PA CMSA, San   \n  Francisco-Oakland-San Jose, CA CMSA, and Los Angeles-Riverside-Orange County, CA CMSA. Law enforcement officers are entitled to higher rates of pay   \n  under salary tables 94-NY (LEO), 94-SF (LEO), and 94-LA (LEO 1). The adjusted rates of pay are considered basic pay only for certain purposes--see    \n  ``1994 Salary Table for Interim Geographic Adjustments'' cover sheet.                                                                                 \n\n1994 Salary Tables for Members of the Senior Executive Service, \nEmployees in Senior-Level and Scientific or Professional Positions, \nAdministrative Law Judges, and Members of Boards of Contract \nAppeals\n\nJanuary 1994\n\n    The scheduled rates of pay for members of the Senior Executive \nService, employees in senior-level and scientific or professional \npositions, administrative law judges, and members of Boards of Contract \nAppeals were authorized under Executive Order 12826 of December 30, \n1992. Public Law 103-123 canceled the general pay adjustment for the \nGeneral Schedule for 1994, which resulted in no adjustment in the \nExecutive Schedule for 1994. Therefore, there is no statutory basis for \nadjustments in scheduled rates of pay in 1994 for these positions.\n    Under 5 U.S.C. 5304(h) and Executive Order 12883 of November 29, \n1993, the President's Pay Agent has extended locality-based \ncomparability payments to all members of the Senior Executive Service, \nemployees in senior-level and scientific or professional positions, \nadministrative law judges, and members of Boards of Contract Appeals. \nThe locality rates of pay for affected individuals are shown on salary \ntables 94-ES (LOC), 94-SL/ST (LOC), 94-ALJ (LOC), and 94-BCA (LOC). \nThese rates of pay are computed based on the scheduled rates of pay for \nthese positions and reflect the locality pay percentages authorized by \nthe President on December 1, 1993. Salary tables 94-ES (LEO) and 94-SL/\nST (LEO) show the special law enforcement adjusted rates of pay for \nmembers of the Senior Executive Service and employees in senior-level \nand scientific or professional positions whose official duty stations \nare located in five special pay adjustment areas. These rates of pay \nwere authorized by section 404 of the Federal Employees Pay \nComparability Act of 1990 and became effective in January 1993.\n    The locality rates of pay and the special law enforcement adjusted \nrates of pay are considered basic pay for retirement, life insurance, \npremium pay, and severance pay purposes and for advances in pay. They \nare also used to compute workers' compensation payments and lump-sum \npayments for accrued and accumulated annual leave. They are NOT \nconsidered basic pay for any other purpose.\n\nRates of Pay for Members of The Senior Executive Service, Employees \n"
+    },
+    "ACTOR_TEXT:FRDOC:95-2819@188113": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:95-2819",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 191223,
+      "char_start": 188113,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:95-2819@188113",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:95-2819",
+        "page_or_item": "60 FR 7336; FR Doc. 95-2819; Notice: January 1995 Pay Adjustments",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "a185e2a99d2051100050fec61cc6ee421985badbab8500fdd1f77d6575df164d",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-95-2819.txt",
+        "text_sha256": "a185e2a99d2051100050fec61cc6ee421985badbab8500fdd1f77d6575df164d",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1995/02/07/95-2819.txt"
+      },
+      "text": "GS-12...................   42,641   44,063   45,484   46,905   48,326   49,747   51,169  52,590  54,011  55,432 \nGS-13...................   50,706   52,396   54,086   55,776   57,466   59,156   60,846  62,536  64,225  65,915 \nGS-14...................   59,920   61,917   63,914   65,911   67,908   69,905   71,902  73,899  75,896  77,893 \nGS-15...................   70,482   72,832   75,181   77,531   79,881   82,231   84,580  86,930  89,280  91,629 \n----------------------------------------------------------------------------------------------------------------\n\n1995 Salary Tables--Senior Executive Service, Senior-Level and \nScientific or Professional Positions, Administrative Law Judges, and \nMembers of the Boards of Contract Appeals\n\n    Executive Order 12944 reflects a decision by the President not to \nincrease the rates of basic pay for members of the Senior Executive \nService (SES) in 1995. Like administrative law judges and Contract \nAppeals Board members, SES members (including SES members in the \nFederal Bureau of Investigation and the Drug Enforcement \nAdministration) will receive no across-the-board increase in basic pay \nin 1995. In accordance with 5 U.S.C. 5376, the minimum rate of basic \npay for senior-level (SL) and scientific or professional (ST) positions \nwill increase by 2 percent (to $81,529) because of the 2-percent \nGeneral Schedule pay adjustment, while the maximum rate of basic pay \nremains unchanged ($115,700), since the rate for level IV of the \nExecutive Schedule remains unchanged.\n    Under 5 U.S.C. 5304(h) and Executive Order 12883 of November 29, \n1993, the President's Pay Agent has extended locality-based \ncomparability payments to members of the Senior Executive Service, \nadministrative law judges, members of the Boards of Contract Appeals, \nemployees in senior-level and scientific or professional positions, \nmembers of the Foreign Service, and members of the Senior Foreign \nService. The locality rates of pay for affected individuals (other than \nthe Foreign Service and Senior Foreign Service) are shown on Salary \nTables Nos. 95-ES (LOC), 95-SL/ST (LOC), 95-ALJ (LOC), and 95-BCA \n(LOC). These rates of pay are computed based on the scheduled rates of \npay for these positions and reflect the locality payments authorized by \nthe President on November 30, 1994. Salary Tables Nos. 95-ES (LEO) and \n95-SL/ST (LEO) contain the special law enforcement adjusted rates of \npay for SES members and for employees in senior-level and scientific or \nprofessional positions whose official duty stations are located in five \nspecial pay adjustment areas. These rates of pay were authorized by \nsection 404 of FEPCA. (The Pay Agent also extended locality payments to \ncertain single-agency categories of non-General Schedule employees. \nIndividual agencies are responsible for calculating these locality \npayments.)\n    The locality rates of pay and the special law enforcement adjusted \nrates of pay are considered basic pay for the same purposes as General \nSchedule locality rates of pay.\n\nRates of Basic Pay for Members of the Senior Executive Service, \n"
+    },
     "CLAUSES:EO:12883#whole": {
       "char_end": 1404,
       "char_start": 921,
@@ -502,6 +683,76 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1993-12-01/pdf/FR-1993-12-01.pdf"
       },
       "text": "Section 1. Section 2 of Executive Order No. 12748 is amended by adding  \nat the end thereof a new subsection (c) to read as follows:\n“(c) The President’s Pay Agent, as designated in subsection (a), is hereby  \nauthorized and designated to exercise the authorities of the President under  \nsection 5304(h) concerning the extension of locality-based comparability  \npayments to certain categories of positions not otherwise covered.’’\nSec. 2* This order shall be effective immediately."
+    },
+    "CURRENT:EO:12883#0": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 293,
+      "char_start": 61,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "5 U.S.C. 5301 note; note 'Ex. Ord. No. 12748. Providing for Federal Pay Administration' [USLM note id id279babb7-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "b5650ea7802e22fda8d660a37b5945d84496bc0a3860ec85abfcd8719f14ea07",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id279babb7-ac5f-11f1-a76e-9d053fb5b48a",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12883#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12883",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (5 U.S.C. 5301 note)",
+      "machine_lead": true,
+      "mention_id": "usc:071a7dc1bf1d",
+      "snippet": "Ex. Ord. No. 12748, Feb. 1, 1991, 56 F.R. 4521, as amended by Ex. Ord. No. 12883, Nov. 29, 1993, 58 F.R. 63281; Ex. Ord. No. 13106, § 8, Dec. 7, 1998, 63 F.R. 68152; Ex. Ord. No. 13415, § 2(a), Dec. 1, 2006, 71 F.R. 70641, provided:",
+      "source": {
+        "page_or_item": "5 U.S.C. 5301 note; note 'Ex. Ord. No. 12748. Providing for Federal Pay Administration' [USLM note id id279babb7-ac5f-11f1-a76e-9d053fb5b48a]; usc05.xml (sha256 129c286336d2c620baac83d8ea71df8018efe26498fbdd5e282d9d11def6d5bd) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id279babb7-ac5f-11f1-a76e-9d053fb5b48a.txt",
+        "text_sha256": "b5650ea7802e22fda8d660a37b5945d84496bc0a3860ec85abfcd8719f14ea07",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12748, Feb. 1, 1991, 56 F.R. 4521, as amended by Ex. Ord. No. 12883, Nov. 29, 1993, 58 F.R. 63281; Ex. Ord. No. 13106, § 8, Dec. 7, 1998, 63 F.R. 68152; Ex. Ord. No. 13415, § 2(a), Dec. 1, 2006, 71 F.R. 70641, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id279babb7-ac5f-11f1-a76e-9d053fb5b48a.txt",
+      "text_sha256": "b5650ea7802e22fda8d660a37b5945d84496bc0a3860ec85abfcd8719f14ea07",
+      "where": "USC 5 U.S.C. 5301 note"
+    },
+    "CURRENT:EO:12883#1": {
+      "basis_code": "cfr_authority_citation",
+      "char_end": 542,
+      "char_start": 275,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR part 531",
+        "sha256": "259f5b520a72fa11dc74989bd2a1291da574f47b75342fb4a8cec2929d177002",
+        "source_id": "cfr:t5:part531",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/part-531"
+      },
+      "id": "CURRENT:EO:12883#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12883",
+      "legal_basis_candidate": "regulation authority citation lists the order (5 CFR part 531)",
+      "machine_lead": true,
+      "mention_id": "ecfr:69b28d3d0efd",
+      "snippet": "...part D also issued under 5 U.S.C. 5335 and 7701(b)(2); Subpart E also issued under 5 U.S.C. 5336; Subpart F also issued under 5 U.S.C. 5304, 5305, and 5941(a); E.O. 12883, 58 FR 63281, 3 CFR, 1993 Comp., p. 682; and E.O. 13106, 63 FR 68151, 3 CFR, 1998 Comp., p. 224.",
+      "source": {
+        "page_or_item": "5 CFR part 531 (part_authority; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.68)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-part531.txt",
+        "text_sha256": "259f5b520a72fa11dc74989bd2a1291da574f47b75342fb4a8cec2929d177002",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
+      },
+      "system": "ecfr",
+      "text": "part D also issued under 5 U.S.C. 5335 and 7701(b)(2); Subpart E also issued under 5 U.S.C. 5336; Subpart F also issued under 5 U.S.C. 5304, 5305, and 5941(a); E.O. 12883, 58 FR 63281, 3 CFR, 1993 Comp., p. 682; and E.O. 13106, 63 FR 68151, 3 CFR, 1998 Comp., p. 224.",
+      "where": "CFR 5 CFR part 531"
     },
     "ORIGINAL:EO:12883": {
       "acceptable_as_original": true,
@@ -529,7 +780,7 @@
       "text": "Instrument: EO:12883\nSource: https://www.govinfo.gov/content/pkg/FR-1993-12-01/pdf/FR-1993-12-01.pdf\nSHA-256 of the downloaded file: 1d3b37b55787f5da7fdae6d73643e81aee4bba9f914ce928d079296631091855\nLocation: 58 FR 63281, PDF pages 15-15 (confidence low)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 15 of 260 ===\nFederal Register / Vol. 58, No. 229 / Wednesday, December 1, 1993 / Presidential Documents 63281\nPresidential Documents\nExecutive X)rder 12883 of November 29, 1993\nDelegating a F ed eral Pay A dm inistration A uthority\nBy the authority vested in me as President by the Constitution and the  \nlaws of the United States of America, including section 5304 of title 5,  \nUnited States Code, it is hereby ordered as follows:\nSection 1. Section 2 of Executive Order No. 12748 is amended by adding  \nat the end thereof a new subsection (c) to read as follows:\n“(c) The President’s Pay Agent, as designated in subsection (a), is hereby  \nauthorized and designated to exercise the authorities of the President under  \nsection 5304(h) concerning the extension of locality-based comparability  \npayments to certain categories of positions not otherwise covered.’’\nSec. 2* This order shall be effective immediately.\n[FR Doc. 93-29564 \nFiled 11-29-93; 4:27 pm) \nBilling code 3195-01-P\nw  THE WHITE HOUSE, \nN o v e m b e r  2 9 , 1 9 9 3 .\n"
     }
   },
-  "fingerprint": "fe50e5dc056ea379bdf15efa3a8039303357e25cba8a9390780767f3cdd4eefd",
+  "fingerprint": "2df8eea18024af21bff55de5359159e6fd6e092ccad21df13b6200b685ce6da0",
   "instrument_id": "EO:12883",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -556,32 +807,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 2,
+      "machine_fragment_items_for_this_order_all_systems": 2,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },

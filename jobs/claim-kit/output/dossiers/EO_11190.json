@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:11382",
-      "evidence_id": "ACTOR_TEXT:EO:11382"
+      "evidence_id": "ACTOR_TEXT:EO:11382",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:12977",
@@ -10,14 +11,26 @@
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@41664"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 3323,
+      "windows_omitted": 0
+    },
+    {
+      "actor_id": "FRDOC:99-32307",
+      "evidence_id": "ACTOR_TEXT:FRDOC:99-32307",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
     "ACT:EO:11190>EO:11382",
-    "ACT:EO:11190>EO:11382@9331c82ce665a7a6",
-    "ACT:EO:11190>EO:11382@3c0d97a89b14f315",
+    "ACT:EO:11190>EO:11382@1c75f8863f5ad64f",
+    "ACT:EO:11190>EO:11382@b7a553b319503b3c",
     "ACT:EO:11190>EO:12977",
     "ACT:EO:11190>EO:12977@20c69d2e5815d70a",
     "ACT:EO:11190>EO:13286",
@@ -168,7 +181,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:11190",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:11190"
@@ -223,11 +236,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 226,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 10149 note; note 'Ex. Ord. No. 11190. Screening of Ready Reserve' [USLM note id idab8a1630-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "84e26752a97f47ff09a52f0384aea7c9ada68fef70a6f1f71de87656c439ae29",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idab8a1630-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:11190",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. 10149 note)",
@@ -237,10 +259,14 @@
       "source": {
         "page_or_item": "10 U.S.C. 10149 note; note 'Ex. Ord. No. 11190. Screening of Ready Reserve' [USLM note id idab8a1630-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idab8a1630-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "84e26752a97f47ff09a52f0384aea7c9ada68fef70a6f1f71de87656c439ae29",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=idab8a1630-3a6f-11f1-a58a-d8db54b14ab5",
+      "text": "Ex. Ord. No. 11190. Screening of Ready Reserve\nEx. Ord. No. 11190, Dec. 29, 1964, 29 F.R. 19183, as amended by Ex. Ord. No. 11382, Nov. 28, 1967, 32 F.R. 16247; Ex. Ord. No. 13286, § 67, Feb. 28, 2003, 68 F.R. 10630, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idab8a1630-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "84e26752a97f47ff09a52f0384aea7c9ada68fef70a6f1f71de87656c439ae29",
       "where": "USC 10 U.S.C. 10149 note"
     },
     {
@@ -292,7 +318,7 @@
         "snippet": "Ex. Ord. No. 11190. Screening of Ready Reserve | Ex. Ord. No. 11190, Dec. 29, 1964, 29 F.R. 19183, as amended by Ex. Ord. No. 11382, Nov. 28, 1967, 32 F.R. 16247; Ex. Ord. No. 13286, § 67, Feb. 28, 2003, 68 F.R. 10630, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=idab8a1630-3a6f-11f1-a58a-d8db54b14ab5",
+        "text_path": "usc-notes/idab8a1630-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. 10149 note"
       },
       "proposal": {
@@ -425,10 +451,10 @@
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:11190>EO:11382@9331c82ce665a7a6",
+          "id": "ACT:EO:11190>EO:11382@1c75f8863f5ad64f",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-          "provision_label": "Sec. 2.",
+          "provision_label": "S ec. 13.",
           "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -464,10 +490,10 @@
           ],
           "exceptions_text": [],
           "filing_date": null,
-          "id": "ACT:EO:11190>EO:11382@3c0d97a89b14f315",
+          "id": "ACT:EO:11190>EO:11382@b7a553b319503b3c",
           "names_target": true,
           "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-          "provision_label": "Sec. 2.",
+          "provision_label": "S ec. 13.",
           "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
           "reaches_target_via": "",
           "savings_phrases": [],
@@ -494,7 +520,7 @@
       "id": "ACT:EO:11190>EO:11382",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "Sec. 2.",
+      "provision_label": "S ec. 13.",
       "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -535,16 +561,17 @@
       },
       "text": "All orders, determinations, rules, regulations, \npermits, contracts, agreements, interpretations, rulings, directives, \ncertificates, circulars, policies, licenses, privileges, awards, and other \nactions relating to any function affected by this order shall remain in \neffect according to their terms, except for the substitution of the \nappropriate official by or under the authority of this order, until \nmodified, terminated, superseded, set aside, amended, or revoked by \nappropriate authority, and nothing in this order shall affect the valid­\nity or force of anything done under previous delegations or other \nassignments of the functions affected by this order."
     },
-    "ACT:EO:11190>EO:11382@3c0d97a89b14f315": {
+    "ACT:EO:11190>EO:11382@1c75f8863f5ad64f": {
       "actor_id": "EO:11382",
       "actor_source": {
         "filing_date": null,
         "location_confidence": "high",
+        "location_verified": false,
         "page_or_item": "32 FR 16247, PDF pages 5-8",
         "requires_page_check": false,
         "sha256": "390330b19bec1492c58ba66e0b199e7f965a0f5a493755cbf533cee92085285d",
         "signing_date": "1967-11-28",
-        "text_path": "jobs/fr-originals/output/texts/EO_11382.txt",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11382.txt",
         "text_sha256": "12eebae9718a140856e64c9cf974d113234e4017d68b296a6d1613b9c2129d96",
         "url": "https://www.govinfo.gov/content/pkg/FR-1967-11-29/pdf/FR-1967-11-29.pdf"
       },
@@ -562,10 +589,10 @@
       ],
       "exceptions_text": [],
       "filing_date": null,
-      "id": "ACT:EO:11190>EO:11382@3c0d97a89b14f315",
+      "id": "ACT:EO:11190>EO:11382@1c75f8863f5ad64f",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "Sec. 2.",
+      "provision_label": "S ec. 13.",
       "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -574,11 +601,12 @@
       "source": {
         "filing_date": null,
         "location_confidence": "high",
+        "location_verified": false,
         "page_or_item": "32 FR 16247, PDF pages 5-8",
         "requires_page_check": false,
         "sha256": "390330b19bec1492c58ba66e0b199e7f965a0f5a493755cbf533cee92085285d",
         "signing_date": "1967-11-28",
-        "text_path": "jobs/fr-originals/output/texts/EO_11382.txt",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11382.txt",
         "text_sha256": "12eebae9718a140856e64c9cf974d113234e4017d68b296a6d1613b9c2129d96",
         "url": "https://www.govinfo.gov/content/pkg/FR-1967-11-29/pdf/FR-1967-11-29.pdf"
       },
@@ -586,17 +614,16 @@
       "text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
       "verb": "amend"
     },
-    "ACT:EO:11190>EO:11382@9331c82ce665a7a6": {
+    "ACT:EO:11190>EO:11382@b7a553b319503b3c": {
       "actor_id": "EO:11382",
       "actor_source": {
         "filing_date": null,
         "location_confidence": "high",
-        "location_verified": false,
         "page_or_item": "32 FR 16247, PDF pages 5-8",
         "requires_page_check": false,
         "sha256": "390330b19bec1492c58ba66e0b199e7f965a0f5a493755cbf533cee92085285d",
         "signing_date": "1967-11-28",
-        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11382.txt",
+        "text_path": "jobs/fr-originals/output/texts/EO_11382.txt",
         "text_sha256": "12eebae9718a140856e64c9cf974d113234e4017d68b296a6d1613b9c2129d96",
         "url": "https://www.govinfo.gov/content/pkg/FR-1967-11-29/pdf/FR-1967-11-29.pdf"
       },
@@ -614,10 +641,10 @@
       ],
       "exceptions_text": [],
       "filing_date": null,
-      "id": "ACT:EO:11190>EO:11382@9331c82ce665a7a6",
+      "id": "ACT:EO:11190>EO:11382@b7a553b319503b3c",
       "names_target": true,
       "notes": "Machine lead only; no legal ending or revival asserted. Effective wording is ambiguous, section-specific, or has no determinable date.",
-      "provision_label": "Sec. 2.",
+      "provision_label": "S ec. 13.",
       "provision_text": "The Executive Orders listed below are further \namended by striking out the words “Secretary of the Treasury” and \ninserting in place thereof the words “Secretary of Transportation” :\n(1) Executive Order No. 10448 of April 22,1953, as amended\n(2) Executive Order No. 10631 of August IT, 1955\n(3) Executive Order No. 10977 of December 4,1961\n(4) Executive Order No. 11016 of April 25,1962\n(5) Executive Order No. 11046 of August 24,1962\n(6) Executive Order No. 11079 of January 25,1963\n(7) Executive Order No. 11157 of June 22,1964, as amended\n(8) Executive Order No. 11190 of December 29,1964\n(9) Executive Order No. 11231 of July 8,1965\n(10) Executive Order No. 11239 of July 31,1965\nS ec. 14.",
       "reaches_target_via": "",
       "savings_phrases": [],
@@ -626,12 +653,11 @@
       "source": {
         "filing_date": null,
         "location_confidence": "high",
-        "location_verified": false,
         "page_or_item": "32 FR 16247, PDF pages 5-8",
         "requires_page_check": false,
         "sha256": "390330b19bec1492c58ba66e0b199e7f965a0f5a493755cbf533cee92085285d",
         "signing_date": "1967-11-28",
-        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11382.txt",
+        "text_path": "jobs/fr-originals/output/texts/EO_11382.txt",
         "text_sha256": "12eebae9718a140856e64c9cf974d113234e4017d68b296a6d1613b9c2129d96",
         "url": "https://www.govinfo.gov/content/pkg/FR-1967-11-29/pdf/FR-1967-11-29.pdf"
       },
@@ -1372,6 +1398,7 @@
       "char_end": 13567,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:11382",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1406,6 +1433,57 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1995-10-24/pdf/95-26497.pdf"
       },
       "text": "Instrument: EO:12977\nSource: https://www.govinfo.gov/content/pkg/FR-1995-10-24/pdf/95-26497.pdf\nSHA-256 of the downloaded file: a6a34aa2401dec28f435458b91313c0d28e9c9787bd8a47c8c451202971bef66\nLocation: 60 FR 54411, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n54411\nFederal Register\nVol. 60, No. 205\nTuesday, October 24, 1995\nTitle 3—\nThe President\nExecutive Order 12977 of October 19, 1995\nInteragency Security Committee\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, and in order to enhance the quality\nand effectiveness of security in and protection of buildings and facilities\nin the United States occupied by Federal employees for nonmilitary activities\n(‘‘Federal facilities’’), and to provide a permanent body to address continuing\ngovernment-wide security for Federal facilities, it is hereby ordered as fol-\nlows:\nSection 1. Establishment. There is hereby established within the executive\nbranch the Interagency Security Committee (‘‘Committee’’). The Committee\nshall consist of: (a) the Administrator of General Services (‘‘Administrator’’);\n(b) representatives from the following agencies, appointed by the agency\nheads:\n(1) Department of State;\n(2) Department of the Treasury;\n(3) Department of Defense;\n(4) Department of Justice;\n(5) Department of the Interior;\n(6) Department of Agriculture;\n(7) Department of Commerce;\n(8) Department of Labor;\n(9) Department of Health and Human Services;\n(10) Department of Housing and Urban Development;\n(11) Department of Transportation;\n(12) Department of Energy;\n(13) Department of Education;\n(14) Department of Veterans Affairs;\n(15) Environmental Protection Agency;\n(16) Central Intelligence Agency; and\n(17) Office of Management and Budget;\n(c) the following individuals or their designees:\n(1) the Director, United States Marshals Service;\n(2) the Assistant Commissioner of the Federal Protective Service of the\nPublic Buildings Service, General Services Administration (‘‘Assistant Com-\nmissioner’’);\n(3) the Assistant to the President for National Security Affairs; and\n(4) the Director, Security Policy Board; and\n(d) such other Federal employees as the President shall appoint.\nSec. 2. Chair. The Committee shall be chaired by the Administrator, or\nthe designee of the Administrator.\nSec. 3. Working Groups. The Committee is authorized to establish interagency\nworking groups to perform such tasks as may be directed by the Committee.\n=== PDF page 2 of 2 ===\n54412 Federal Register / Vol. 60, No. 205 / Tuesday, October 24, 1995 / Presidential Documents\nSec. 4. Consultation. The Committee may consult with other parties, includ-\ning the Administrative Office of the United States Courts, to perform its\nresponsibilities under this order, and, at the discretion of the Committee,\nsuch other parties may participate in the working groups.\nSec. 5. Duties and Responsibilities. (a) The Committee shall: (1) establish\npolicies for security in and protection of Federal facilities;\n(2) develop and evaluate security standards for Federal facilities, develop\na strategy for ensuring compliance with such standards, and oversee the\nimplementation of appropriate security measures in Federal facilities; and\n(3) take such actions as may be necessary to enhance the quality and\neffectiveness of security and protection of Federal facilities, including but\nnot limited to:\n(A) encouraging agencies with security responsibilities to share security-\nrelated intelligence in a timely and cooperative manner;\n(B) assessing technology and information systems as a means of providing\ncost-effective improvements to security in Federal facilities;\n(C) developing long-term construction standards for those locations with\nthreat levels or missions that require blast resistant structures or other special-\nized security requirements;\n(D) evaluating standards for the location of, and special security related\nto, day care centers in Federal facilities; and\n(E) assisting the Administrator in developing and maintaining a centralized\nsecurity data base of all Federal facilities.\nSec. 6. Agency Support and Cooperation. (a) Administrative Support. To\nthe extent permitted by law and subject to the availability of appropriations,\nthe Administrator, acting by and through the Assistant Commissioner, shall\nprovide the Committee such administrative services, funds, facilities, staff\nand other support services as may be necessary for the performance of\nits functions under this order.\n(b) Cooperation. Each executive agency and department shall cooperate and\ncomply with the policies and recommendations of the Committee issued\npursuant to this order, except where the Director of Central Intelligence\ndetermines that compliance would jeopardize intelligence sources and meth-\nods. To the extent permitted by law and subject to the availability of appro-\npriations, executive agencies and departments shall provide such support\nas may be necessary to enable the Committee to perform its duties and\nresponsibilities under this order.\n(c) Compliance. The Administrator, acting by and through the Assistant\nCommissioner, shall be responsible for monitoring Federal agency compliance\nwith the policies and recommendations of the Committee.\nSec. 7. Judicial Review. This order is intended only to improve the internal\nmanagement of the Federal Government, and is not intended, and should\nnot be construed, to create any right or benefit, substantive or procedural,\nenforceable at law by a party against the United States, its agencies, its\nofficers, or its employees.\nœ–\nTHE WHITE HOUSE,\nOctober 19, 1995.\n[FR Doc. 95–26497\nFiled 10–20–95; 2:55 pm]\nBilling code 3195–01–P"
+    },
+    "ACTOR_TEXT:EO:13286@41664": {
+      "actor_id": "EO:13286",
+      "char_end": 44753,
+      "char_start": 41664,
+      "id": "ACTOR_TEXT:EO:13286@41664",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "sections 2 and 4 and inserting ‘‘the Department of Homeland Security ’’ \nin lieu thereof. \nSec. 64. Executive Order 11366 of August 4, 1967 ( ‘‘Assigning Authority \nto Order Certain Persons in the Ready Reserve to Active Duty ’’), is amended \nby striking ‘‘The Secretary of Transportation ’’ in sections 2 and 3(b) and \ninserting ‘‘The Secretary of Homeland Security’’ in lieu thereof. \nSec. 65. Executive Order 11239 of July 31, 1965 (‘‘Enforcement of the Conven-\ntion for Safety of Life at Sea, 1960 ’’), as amended, is further amended, \nVerDate Jan<31>2003 23:17 Mar 04, 2003 Jkt 200001 PO 00000 Frm 00013 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MRE0.SGM 05MRE0\n=== PDF page 12 of 15 ===\n10630 Federal Register / Vol. 68, No. 43 / Wednesday, March 5, 2003 / Presidential Documents \nwithout prejudice to section 1 –106 of Executive Order 12234 of September \n3, 1980 ( ‘‘Enforcement of the Convention for the Safety of Life at Sea ’’), \nby: \n(a) striking ‘‘the Secretary of Transportation ’’ in sections 1, 3, and 4, \nand inserting ‘‘the Secretary of Homeland Security ’’ in lieu thereof; and \n(b) striking ‘‘The Secretary of Transportation ’’ in sections 2 and 3 and \ninserting ‘‘The Secretary of Homeland Security’’ in lieu thereof. \nSec. 66. Executive Order 11231 of July 8, 1965 ( ‘‘Establishing the Vietnam \nService Medal’’), as amended, is further amended by striking ‘‘the Secretary \nof Transportation ’’ in section 1 and inserting ‘‘the Secretary of Homeland \nSecurity’’ in lieu thereof. \nSec. 67. Executive Order 11190 of December 29, 1964 ( ‘‘Providing for the \nScreening of the Ready Reserve of the Armed Forces ’’), as amended, is \nfurther amended by striking ‘‘the Secretary of Transportation ’’ in section \n1 and inserting ‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 68. Executive Order 11139 of January 7, 1964 ( ‘‘Authorizing Acceptance \nof the United Nations Medal and Service Ribbon ’’), is amended by striking \n‘‘the Secretary of the Treasury ’’ and inserting ‘‘the Secretary of Homeland \nSecurity’’ in lieu thereof. \nSec. 69. Executive Order 11079 of January 25, 1963 ( ‘‘Providing for the \nPrescribing of Regulations under which Members of the Armed Forces and \nOthers May Accept Fellowships, Scholarships or Grants ’’), as amended, is \nfurther amended by striking ‘‘the Secretary of Transportation ’’ and inserting \n‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 70. Executive Order 11046 of August 24, 1962 ( ‘‘Authorizing Award \nof the Bronze Star Medal ’’), as amended, is further amended by striking \n‘‘the Secretary of Transportation ’’ in section 1 and inserting ‘‘the Secretary \nof Homeland Security’’ in lieu thereof. \nSec. 71. Executive Order 11016 of April 25, 1962 ( ‘‘Authorizing Award \nof the Purple Heart ’’), as amended, is further amended by striking ‘‘the \nSecretary of Transportation ’’ in sections 1 and 2 and inserting ‘‘the Secretary \nof Homeland Security’’ in lieu thereof. \nSec. 72. Executive Order 10977 of December 4, 1961 ( ‘‘Establishing the \nArmed Forces Expeditionary Medal ’’), as amended, is further amended by \n"
+    },
+    "ACTOR_TEXT:FRDOC:99-32307": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:99-32307",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 23709,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:99-32307",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:99-32307",
+        "page_or_item": "64 FR 72027; FR Doc. 99-32307; Rule: Screening the Ready Reserve",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "fc7de5ecec048ef8e7650969fc540b85d0fc8369d8d030ceff49ee88ad1abf58",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-99-32307.txt",
+        "text_sha256": "fc7de5ecec048ef8e7650969fc540b85d0fc8369d8d030ceff49ee88ad1abf58",
+        "url": "https://www.federalregister.gov/documents/full_text/text/1999/12/23/99-32307.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 64 Issue 246 (Thursday, December 23, 1999)</title>\n</head>\n<body><pre>[Federal Register Volume 64, Number 246 (Thursday, December 23, 1999)]\n[Rules and Regulations]\n[Pages 72027-72030]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 99-32307]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nDEPARTMENT OF DEFENSE\n\nOffice of the Secretary\n\n32 CFR Part 44\n\n[DoD Directive 1200.7]\nRIN 0790-AF57\n\n\nScreening the Ready Reserve\n\nAGENCY: Department of Defense.\n\nACTION: Final rule.\n\n-----------------------------------------------------------------------\n\nSUMMARY: This rule provides guidance governing screening of Reserve \ncomponent members of the U.S. military departments relative to their \ncivilian employment. The purpose of the screening program is to ensure \navailability of Ready Reserve members for military mobilization \npurposes. The intended effect of the screening is to preclude conflicts \nbetween Reserve mobilization obligations and Federal civilian \nemployment requirements during times of war or national emergency.\n\nEFFECTIVE DATE: November 18, 1999.\n\nFOR FURTHER INFORMATION CONTACT: Dan Kohner, (703) 693-7479.\n\nSUPPLEMENTARY INFORMATION:\n\nExecutive Order 12866, ``Regulatory Planning and Review''\n\n    It has been determined that this is not a significant regulatory \naction. The rule does not:\n    1. Have an annual effect to the economy of $100 million or more, or \notherwise have material adverse economic effects.\n    2. Create a serious inconsistency or otherwise interfere with an \naction taken or planned by another agency.\n    3. Materially alter the budgetary impact of entitlements, grants, \nuser fees, or loan programs, or the rights and obligations of \nrecipients thereof; or,\n    4. Raise novel legal or policy issues arising out of legal \nmandates, the President's priorities, or the principles set forth in \nthis Executive Order.\n\nPublic Law 96-354, ``Regulatory Flexibility Act'' (5 U.S.C. 601)\n\n    It has been certified that this rule is not subject to the \nRegulatory Flexibility Act (5 U.S.C. 601). The Department of Defense is \nnot subject to the RFA when making rules related to a ``military or \nforeign affairs function of the United States'' or to Executive Order \n12866 for those regulations that ``pertain to a military or foreign \naffairs function of the United States [other that procurement functions \nor import-export of non-defense articles].''\n\nPublic Law 96-511, ``Paperwork Reduction Act'' (44 U.S.C. Chapter \n35)\n\n    It has been certified that this part does not impose any reporting \nor recordkeeping requirements under the Paperwork Reduction Act of \n1995. Interagency Report Control Number 0192-DOD-AN remains in effect, \nwith a current expiration date of September 30, 1998.\n\nList of Subjects in 32 CFR Part 44\n\n    Armed forces reserves.\n\n    Accordingly, 32 CFR part 44 is revised to read as follows:\n\nPART 44--SCREENING THE READY RESERVE\n\nSec.\n44.1  Purpose.\n44.2  Applicability.\n44.3  Definitions.\n44.4  Policy.\n44.5  Responsibilities.\nAppendix A to Part 44--Guidance\n\n    Authority: 10 U.S.C. 10145.\n\n\nSec. 44.1  Purpose.\n\n    Updates DoD policy and responsibilities for the screening of Ready \nReservists under 10 U.S.C. 1003, 1005, and 1209.\n\n\nSec. 44.2  Applicability.\n\n    This part applies to the Office of the Secretary of Defense, the \nMilitary Departments (including the Coast Guard, when it is not \noperating as a Military Service in the Navy by agreement with the \nDepartment of Transportation), the Chairman of the Joint Chiefs of \nStaff, the Combatant Commands, the Inspector General of the Department \nof Defense, the Defense Agencies, the DoD Field Activities and all \nother organizational entities within the Department of Defense \n(hereafter referred to collectively as the ``DoD Components''). The \nterm ``Military Services'' as used in this part, refers to the Army, \nthe Navy, the Air Force and the Marine Corps.\n\n[[Page 72028]]\n\nSec. 44.3  Definitions.\n\n    For purposes of this part, the following definitions apply:\n    Extreme community hardship. A situation that, because of a \nReservist's mobilization, may have a substantially adverse effect on \nthe health, safety, or welfare of the community. Any request for a \ndetermination of such hardship shall be made by the Reservist and must \nbe supported by documentation, as required by the Secretary concerned.\n    Extreme personal hardship. An adverse impact on a Reservist's \ndependents resulting from his or her mobilization. Any request for a \ndetermination of such hardship shall be made by the Reservist and must \nbe supported by documentation, as required by the Secretary concerned.\n    Individual Ready Reserve. Within the Ready Reserve of each of the \nReserve Components there is an Individual Ready Reserve. The Individual \nReady Reserve consists of members of the Ready Reserve who are not in \nthe Selected Reserve or the Inactive National Guard.\n    Key employee. Any Federal employee occupying a key position.\n    Key position. A Federal position that shall not be vacated during a \nnational emergency or mobilization without SERIOUSLY impairing the \ncapability of the parent Federal Agency or office to function \neffectively. The four categories of Federal key positions are set out \nin this paragraph. The first three categories are, by definition, key \npositions. However, the third category, Article III Judges, provides \nfor exceptions on a case-by-case basis. The fourth category requires a \ncase-by-case determination and designation as described in the \nfollowing:\n    (1) The Vice President of the United States or any official \nspecified in the order of presidential succession as in 3 U.S.C. 19.\n    (2) The members of the Congress and the heads of the Federal \nAgencies appointed by the President with the consent of the Senate. For \nthis part, the term ``the heads of the Federal Agencies'' does not-\ninclude any person appointed by the President with the consent of the \nSenate to a Federal Agency as a member of a multimember board or \ncommission. Such positions may be designated as key positions only in \naccordance with paragraph (4) of this definition.\n    (3) Article III Judges. However, each Article III Judge, who is a \nmember of the Ready Reserve and desires to remain in the Ready Reserve, \nmust have his or her position reviewed by the Chief Judge of the \naffected Judge's Circuit. If the Chief Judge determines that \nmobilization of the Article III Judge concerned will not seriously \nimpair the capability of the Judge's court to function effectively, the \nChief Judge will provide a certification to that effect to the \nSecretary of the Military Department concerned. Concurrently, the \naffected Judge will provide a statement to the Secretary concerned \nrequesting continued service in the Ready Reserve and acknowledging \nthat he or she may be involuntarily called to active duty (AD) under \nthe laws of the United States and the Directives and Regulations of the \nDepartment of Defense and pledging not to seek to be excused from such \norders based upon his or her judicial duties.\n    (4) Other Federal positions determined by the Federal Agency heads, \nor their designees, to be key positions in accordance with the \nguidelines in the appendix to this part.\n    Mobilization. Involuntary call-up of Reserve component members in \naccordance with 10 U.S.C. 12301, 12302, or 12304. That includes full \nmobilization, partial mobilization and, selective mobilization \n(Presidential Reserve Call-Up Authority).\n    Ready reserve. Reserve unit members or individual Reserve and \nNational Guard members, or both, liable for AD, as provided in 10 \nU.S.C. 12301, 12302, and, for some members, 10 U.S.C. 12304. It \nconsists of the Selected Reserve, the Individual Ready Reserve, and the \nInactive National Guard.\n    Selected reserve. A category of the Ready Reserve in each of the \nReserve components. The Selected Reserve consists of units, and, as \ndesignated by the Secretary concerned, of individual Reserve members, \ntrained as prescribed in 10 U.S.C. 10147(a)(1) or 32 U.S.C. 502(a), as \nappropriate.\n    Standby reserve. The Standby Reserve consists of those units or \nmembers, or both, of the Reserve components, other than those in the \nReady Reserve or the Retired Reserve, who are liable for active duty \nonly as provided for in 10 U.S.C. 12301 and 12306. The Standby Reserve \nconsists of personnel who are maintaining their military affiliation \nwithout being in the Ready Reserve, but have been designated ``key \ncivilian employees,'' or have a temporary hardship or disability. Those \nindividuals are not required to perform training and are not part of \nthe Ready Reserve. The Standby Reserve is a pool of trained individuals \nwho may be mobilized as needed to fill manpower needs in specific \nskills. The Standby Reserve consists of the active status list and the \ninactive status list categories.\n\n\nSec. 44.4  Policy.\n\n    It is DoD policy that:\n    (a) Members of the Ready Reserve shall be screened (see the \nappendix to this part for specific screening guidance) at least \nannually to meet the provisions of 10 U.S.C. 10149 and to provide a \nReady Reserve force composed of members who:\n    (1) Meet Military Service wartime standards of mental, moral, \nprofessional, and physical fitness.\n    (2) Possess the military qualifications required in the various \nranks, ratings, and specialties.\n    (3) Are available immediately for active duty (AD) during a \nmobilization or as otherwise required by law.\n    (b) On mobilization under 10 U.S.C. 12301(a) or 10 U.S.C. 12302, \nall personnel actions relating to the screening program shall be held \nin abeyance, and all members remaining in the Ready Reserve shall be \nconsidered immediately available for AD service. After such a \nmobilization is ordered, no deferment, delay, or exemption from \nmobilization shall be granted to Ready Reservists because of their \ncivilian employment. On involuntary activation of Reserve members under \n10 U.S.C. 12304 (Presidential Reserve Call-Up Authority), the Secretary \nof Defense, or designee, shall make a determination regarding the \ncontinuation or cessation of personnel actions related to the screening \nprogram.\n    (c) All Ready Reservists shall be retained in the Ready Reserve for \nthe entire period of their statutory obligation or voluntary contract. \nExceptions to that policy are made in paragraphs (g), (h), and (i) of \nthis section, or may be made by the Secretaries concerned, in \naccordance with 10 U.S.C. 10145 and 10146.\n    (d) A member of the Army National Guard of the United States or the \nAir National Guard of the United States may be transferred to the \nStandby Reserve only with the consent of the governor or other \napplicable authority of the State, commonwealth, or territory concerned \n(including the District of Columbia) in accordance with 10 U.S.C. \n10146.\n    (e) Any eligible member of the Standby Reserve may be transferred \nback to the Ready Reserve when the reason for the member's transfer to \nthe Standby Reserve no longer exists in accordance with 10 U.S.C. 10150 \nand DoD Instruction 1200.15.<SUP>1</SUP>\n---------------------------------------------------------------------------\n\n    \\1\\ Copies may be obtained at <a href=\"http://web7.whs.osd.mil/\ncorres.htm\">http://web7.whs.osd.mil/\ncorres.htm</a>.\n---------------------------------------------------------------------------\n\n    (f) Ready Reservists whose immediate recall to AD during an \nemergency would create an extreme personal or community hardship shall \nbe transferred to the Standby Reserve or the Retired Reserve, or shall \nbe\n\n[[Page 72029]]\n\ndischarged, as applicable, except as specified in paragraph (b) of this \nsection.\n    (g) Ready Reservists who are designated key employees or who occupy \nkey positions, as defined in this section, shall be transferred to the \nStandby Reserve or the Retired Reserve, or shall be discharged, as \nappropriate, except as specified in paragraph (b) of this section.\n    (h) Ready Reservists who are also DoD civilian employees may not \nhold a mobilization assignment to the same positions that they fill as \ncivilian employees. Those Ready Reservists shall be reassigned or \ntransferred, as applicable. Reserve component military technicians \n(dual status), as members of Reserve units, are excluded from this \nprovision.\n    (i) Ready Reservists who are preparing for the ministry in an \naccredited theology or divinity school cannot be involuntarily called \nto AD or required to participate in inactive duty training (IDT) in \naccordance with 10 U.S.C. 12317. Accordingly, such Ready Reservists \n(other than those participating in a military Chaplain Candidate or \nTheology Student Program) shall be transferred to the Standby Reserve \n(active status list) for the duration of their ministerial studies and \nduties at accredited theology or divinity schools. Ready Reservists \nparticipating in a military Chaplain Candidate or Theology Student \nProgram may continue their Ready Reserve affiliation and engage in AD \nand IDT.\n    (j) Ready Reservists may not be transferred from the Ready Reserve \nsolely because they are students, interns, residents, or fellows in the \nhealthcare professions. On mobilization, they either shall be deferred \nor shall be mobilized in a student, intern, resident, or fellow status \nuntil qualified in the applicable medical specialty, as prescribed by \nthe Secretaries of the Military Departments.\n    (k) The Secretaries concerned, or their designees, shall make \ndeterminations for mobilization availability on a case-by-case basis, \nconsistent with this part, and not by class or group determinations.\n\n\nSec. 44.5  Responsibilities.\n\n    (a) The Deputy Secretary of Defense shall adjudicate, before \nmobilization, conflicts between the mobilization manpower needs of the \ncivilian sector and the military that the Ready Reserve Screening \nprocess has identified, but has not resolved.\n    (b) The Assistant Secretary of Defense for Reserve Affairs, under \nthe Under Secretary of Defense for Personnel and Readiness, shall:\n    (1) Provide oversight and policy support to the overall Ready \nReserve screening program, and manage and control the Federal sector \nscreening program in accordance with 10 U.S.C. 10149, Executive Order \n11190, and pp. 63-66 of House Appropriations Committee Report 95-451, \nwhich is available from the Government Printing Office, Washington, DC \n20401.\n    (2) Annually, provide Federal Agencies with a listing of all \nFederal employees who are also Ready Reservists to assist them in \nconducting employer screening activities.\n    (3) Prepare an annual report on the status of Ready Reservists \nemployed by the Federal Government.\n    (4) Employ the guidance in appendix A of this part in coordinating \nthe screening program with employers of Ready Reservists.\n    (5) Coordinate conflicts between the mobilization manpower needs of \nthe civilian sector and the military identified but not resolved \nthrough the Ready Reserve Screening process.\n    (c) The Secretaries of the Military Departments shall:\n    (1) Screen, at least annually, all Ready Reservists under their \njurisdiction to ensure their immediate availability for active duty \n(AD) and to ensure compliance with 10 U.S.C. 10149.\n    (2) Ensure coordination with the Assistant Secretary of Defense for \nReserve Affairs to resolve conflicts (identified, but not resolved \nthrough the Ready Reserve screening process) between the mobilization \nmanpower needs of the civilian sector and the military.\n    (3) Review recommendations for removal of both Federal and other \ncivilian employees from the Ready Reserve submitted by employers and \ntake applicable action.\n    (4) After making a removal determination in response to a petition \nfor such action, promptly transmit the results of that determination to \nthe Ready Reservist concerned and his/her employer.\n    (5) Transfer Ready Reservists identified as occupying key positions \nto the Standby Reserve or the Retired Reserve, or discharge them, as \napplicable.\n    (6) Ensure that Ready Reservists not on AD are examined as to \nphysical fitness in accordance with DoD Directive 1332.18.<SUP>2</SUP>\n---------------------------------------------------------------------------\n\n    \\2\\ See footnote 1 to Sec. 44.4(e).\n---------------------------------------------------------------------------\n\n    (7) Process members of the Ready Reserve who do not participate \nsatisfactorily in accordance with DoD Instruction 1200.15 and DoD \nDirective 1215.13.<SUP>3</SUP>\n---------------------------------------------------------------------------\n\n    \\3\\ See footnote 1 to Sec. 44.4(e).\n---------------------------------------------------------------------------\n\n    (8) Ensure that all Ready Reservists have a favorably completed \nbackground check for military service suitability on file (e.g., \nEntrance National Agency Check (ENTNAC), NAC).\n    (9) Ensure that personnel records systems incorporate information \non any factors that limit the mobilization availability of a Ready \nReservist.\n    (10) Develop and maintain current information pertaining to the \nmobilization availability of Ready Reservists.\n\nAppendix A to Part 44--Guidance\n\nDeputy Secretary of Defense\n\n    The Deputy Secretary of Defense shall adjudicate, before \nmobilization, conflicts between the mobilization manpower needs of \nthe civilian sector and the military that the Ready Reserve \nscreening process has identified, but has not resolved.\n\nEmployers of Ready Reservists\n\n(a) Federal Employers\n\n    (1) To ensure that Federal employees essential to the continuity \nof the Federal Government are not retained as members of the Ready \nReserve, the following guidance is provided:\n    (i) Conduct annual screening program as provided for by the \nAssistant Secretary of Defense for Reserve Affairs.\n    (ii) Responses from Federal Agencies shall be reported under \nInteragency Report Control Number 0912-DoD-AN, ``Ready Reservists in \nthe Federal Government,'' in accordance with DoD 8910.1-\nM.<SUP>4</SUP>\n---------------------------------------------------------------------------\n\n    \\4\\ See footnote 1 to Sec. 44.4(e).\n---------------------------------------------------------------------------\n\n    (iii) Federal Agency heads, or their designees, concerned shall \ndesignate those positions that are of essential nature to, and \nwithin, the organization as ``key positions,'' and shall require \nthat they shall NOT be filled by Ready Reservists to preclude such \npositions from being vacated during a mobilization. Upon request \nfrom Federal Agencies, Secretaries of the Military Departments shall \nverify the essential nature of the positions being designated as \n``key,'' and shall transfer Ready Reservists occupying key positions \nto the Standby Reserve or the Retired Reserve or shall discharge \nthem, as applicable, under 10 U.S.C. 10149, except as specified in \nSec. 44.4 (b).\n    (iv) In determining whether or not a position should be \ndesignated as a ``key position,'' the following questions should be \nconsidered by the Federal Agency concerned:\n    (A) Can the position be filled in a reasonable time after \nmobilization?\n    (B) Does the position require technical or managerial skills \nthat are possessed uniquely by the incumbent employee?\n    (C) Is the position associated directly with defense \nmobilization?\n    (D) Does the position include a mobilization or relocation \nassignment in an\n\n[[Page 72030]]\n\nAgency having emergency functions, as designated by Executive Order \n12656?\n    (E) Is the position directly associated with industrial or \nmanpower mobilization, as designated in Executive Orders 12656 and \n12919?\n    (F) Are there other factors related to the national defense, \nhealth, or safety that will make the incumbent of the position \nunavailable for mobilization?\n    (2) [Reserved]\n    (b) Non-Federal Employers of Ready Reservists. Non-Federal \nemployers of Ready Reservists, particularly in the fields of public \nhealth and safety and defense support industries, are encouraged to \nadopt personnel management procedures designed to preclude conflicts \nbetween the emergency manpower needs of civilian activities and the \nmilitary during a mobilization. Employers also are encouraged to use \nthe Federal key position guidelines contained in this appendix for \nmaking their own key position designations and, when applicable, for \nrecommending key employees for removal from the Ready Reserve.\n    (c) All employers who determine that a Ready Reservist is a key \nemployee, in accordance with the guidelines in this appendix, should \npromptly report that determination, using the letter format at the \nend of this appendix, to the applicable Reserve personnel center, \nrequesting the employee be removed from the Ready Reserve.\n\nIndividual Ready Reservists\n\n    (a) Each Ready Reservist who is not a member of the Selected \nReserve is obligated to notify the Secretary concerned of any change \nof address, marital status, number of dependents, or civilian \nemployment and any other change that would prevent a member from \nmeeting mobilization standards prescribed by the Military Service \nconcerned (10 U.S.C. 10205).\n    (b) All Ready Reservists shall inform their employers of their \nReserve military obligation.\n\nList of Reserve Personnel Centers to Which Reserve Screening \nDetermination and Removal Requests Shall be Forwarded\n\nArmy Reserve\n\nArmy Reserve Personnel Command\n1 Reserve Way\nATTN: ARPC-PSP-T\nSt. Louis, MO 63132\n\nNaval Reserve\n\nCommander\nNavy Personnel Command (Pers 91)\n5720 Integrity Drive\nMillington, TN 38055-9100\n\nMarine Corps Reserve\n\nCommanding General\nMarine Corps Reserve Support Command\nATTN: IRR Division\n15303 Andrews Road\nKansas City, MO 64147-1207\n\nAir Force Reserve\n\nCommander\nAir Reserve Personnel Center/DPAF\n6760 E. Irvington Pl. #2600\nDenver, CO 80280-2600\n\nArmy and Air National Guard\n\n    Submit requests to the adjutant general of the applicable State, \ncommonwealth, or territory (including the District of Columbia).\n\nCoast Guard Reserve\n\nCommander (CGPC-RPM)\nU.S. Coast Guard Personnel Command\n2100 Second St. S.W.\nWashington, DC 20593\n\nLetter Format to Reserve Personnel Centers Requesting That Employee be \nRemoved From the Ready Reserve\n\nFrom: (Employer-Agency or Company)\nTo: (Appropriate Reserve Personnel Center)\nSubject: Request for Employee to Be Removed from the Ready Reserve\n\n    This is to certify that the employee identified below is vital \nto the nation's defense efforts in (his or her) civilian job and \ncannot be mobilized with the Military Services in an emergency for \nthe following reasons: [STATE REASONS]\n    Therefore, I request that (he/she) be removed from the Ready \nReserve and that you advise me accordingly when this action has been \ncompleted.\n    The employee is:\n\n1. Name of employee (last, first, M.I.):\n2. Military grade and Reserve component:\n3. Social security number:\n4. Current home address (street, city, State, and ZIP code):\n5. Military unit to which assigned (location and unit number):\n6. Title of employee's civilian position:\n7. Grade or salary level of civilian position:\n8. Date (YYMMDD) hired or assigned to position:\n\nSignature and Title of Agency or Company Official.\n\n    Dated: December 9, 1999.\nL.M. Bynum,\nAlternate OSD Federal Register Liaison Officer, Department of Defense.\n[FR Doc. 99-32307 Filed 12-22-99; 8:45 am]\nBILLING CODE 5000-10-P\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:11190#sec1": {
       "char_end": 1215,
@@ -1451,6 +1529,42 @@
       },
       "text": "Sec. 2. Executive Order No. 10651 of January 6,1956, is revoked."
     },
+    "CURRENT:EO:11190#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 226,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. 10149 note; note 'Ex. Ord. No. 11190. Screening of Ready Reserve' [USLM note id idab8a1630-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "84e26752a97f47ff09a52f0384aea7c9ada68fef70a6f1f71de87656c439ae29",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idab8a1630-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:11190#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:11190",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. 10149 note)",
+      "machine_lead": true,
+      "mention_id": "usc:09f25d4a1ec1",
+      "snippet": "Ex. Ord. No. 11190. Screening of Ready Reserve | Ex. Ord. No. 11190, Dec. 29, 1964, 29 F.R. 19183, as amended by Ex. Ord. No. 11382, Nov. 28, 1967, 32 F.R. 16247; Ex. Ord. No. 13286, § 67, Feb. 28, 2003, 68 F.R. 10630, provided:",
+      "source": {
+        "page_or_item": "10 U.S.C. 10149 note; note 'Ex. Ord. No. 11190. Screening of Ready Reserve' [USLM note id idab8a1630-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idab8a1630-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "84e26752a97f47ff09a52f0384aea7c9ada68fef70a6f1f71de87656c439ae29",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 11190. Screening of Ready Reserve\nEx. Ord. No. 11190, Dec. 29, 1964, 29 F.R. 19183, as amended by Ex. Ord. No. 11382, Nov. 28, 1967, 32 F.R. 16247; Ex. Ord. No. 13286, § 67, Feb. 28, 2003, 68 F.R. 10630, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idab8a1630-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "84e26752a97f47ff09a52f0384aea7c9ada68fef70a6f1f71de87656c439ae29",
+      "where": "USC 10 U.S.C. 10149 note"
+    },
     "ORIGINAL:EO:11190": {
       "acceptable_as_original": true,
       "actor_id": "EO:11190",
@@ -1477,7 +1591,7 @@
       "text": "Instrument: EO:11190\nSource: https://www.govinfo.gov/content/pkg/FR-1964-12-31/pdf/FR-1964-12-31.pdf\nSHA-256 of the downloaded file: 23c7e23c337955a64a6bad8da8a04ca719663c91a776a93f430b4b87b281068a\nLocation: 29 FR 19183, PDF pages 21-21 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 21 of 144 ===\nThursday , December 31, 1964 FEDERAL REGISTER 19183\nExecutive Order 11190\nPROVIDING FOR THE SCREENING OF THE READY RESERVE  \nOF THE ARMED FORCES\nBy virtue of the authority vested in me by section 301 of title 3 of \nthe United States Code, and as President of the United States and \nCommander in Chief of the Armed Forces of the United States, it is \nordered as follows:\nSection  1. There is delegated to the Secretary of Defense (and to \nthe Secretary of the Treasury with regard to the United States Coast \nGuard) the authority vested in the President by section 271 of title 10 \nof the United States Code to prescribe regulations for the screening of \nunits and members of the Beady Reserve of the Armed Forces.\nSec. 2. Executive Order No. 10651 of January 6,1956, is revoked.\nT he W hite  H ouse,\nDecember 29, 1961*.\nL yndon  B. J ohnson\n[F.R. Doc. 64-13542; Filed, Dec. 30,1964; 1:3 0  p.m .]\n1\n\\\n"
     }
   },
-  "fingerprint": "c3e1c38318c3a9476416167d154674461c81b86e7c3f050d91115799d676bfe5",
+  "fingerprint": "fea7f470f8f893aefe674773900af2702701c42b207fa72fd445fdbfd42e7adb",
   "instrument_id": "EO:11190",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1516,32 +1630,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1562,10 +1678,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 4,
-    "fingerprint": "8d3dcf835c4d9926dcf47ecfe809660ec52e8967a5305d8a7f808904d1be98f1",
+    "fingerprint": "5ed53763862af83af60efd047b4d793ddb2a5e00ea6e5883731d859ac1c9644f",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_11190.json",
-    "history_sha256": "1411b5c3a9c6a19bafb3c858be51c8f886a3d010ccbdf3203b9308b03215ba41",
+    "history_sha256": "409716ec13ac9e30f48e2fe57dea4515ff743796d416f5e6a97a54de0906428f",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

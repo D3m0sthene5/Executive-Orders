@@ -2,14 +2,40 @@
   "actor_contexts": [
     {
       "actor_id": "EO:14097",
-      "evidence_id": "ACTOR_TEXT:EO:14097"
+      "evidence_id": "ACTOR_TEXT:EO:14097",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2022-27271",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2022-27271",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2023-27732",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2023-27732",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2024-29597",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2024-29597",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2025-22786",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2025-22786",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:2026-20425",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2026-20425",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [],
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:14059",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:14059"
@@ -1186,11 +1212,20 @@
   "current_law_leads": [
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 1293,
+      "char_start": 952,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "21 U.S.C. 2355; usc21.xml (sha256 72caa89c4616a06abda0d111274b1305f3e4056770b49a604f8f6e26ad551c13) in xml_uscAll@119-121.zip",
+        "sha256": "42b9da9093df8275da7952c430756e73fd718b54e471cbb53149aab8f8332a1b",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t21/s2355",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:14059",
       "legal_basis_candidate": "statute text names the order (21 U.S.C. 2355)",
@@ -1200,115 +1235,168 @@
       "source": {
         "page_or_item": "21 U.S.C. 2355; usc21.xml (sha256 72caa89c4616a06abda0d111274b1305f3e4056770b49a604f8f6e26ad551c13) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t21_s2355-c128d51157.txt",
+        "text_sha256": "42b9da9093df8275da7952c430756e73fd718b54e471cbb53149aab8f8332a1b",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "ed to a transnational criminal organization subject to sanctions under—\n(i)\nthis subchapter;\n(ii)\nthe Fentanyl Sanctions Act (21 U.S.C. 2301 et seq.); or\n(iii)\nExecutive Order 14059 (50 U.S.C. 1701 note; relating to imposing sanctions on foreign persons involved in the global illicit drug trade).\n(b)\nBlocked Assets Under Terrorism Risk Ins",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t21_s2355-c128d51157.txt",
+      "text_sha256": "42b9da9093df8275da7952c430756e73fd718b54e471cbb53149aab8f8332a1b",
       "where": "USC 21 U.S.C. 2355"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 245,
+      "char_start": 0,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
-      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
-      "instrument_id": "EO:14059",
-      "legal_basis_candidate": "regulation text names the order (15 CFR 744.8)",
-      "machine_lead": true,
-      "mention_id": "ecfr:1f5281116830",
-      "snippet": ".... (A) [FTO]; or (B) [SDGT]. (iii) WMD-related. (A) [NPWMD]. (B) [Reserved] (iv) Related to narcotics trafficking or other criminal networks. (A) [ILLICIT DRUGS-EO14059]; (B) [SDNT]; (C) [SDNTK]; or (D) [TCO]. Note 1 to paragraph (a)(1): The names of such designations are published in the Federal Register and incorporated into...",
-      "source": {
-        "page_or_item": "15 CFR 744.8 (section_text; GovInfo eCFR XML title 15, amended through 2026-11-04; NODE 15:2.1.3.4.29.0.1.8)",
-        "sha256": "80ce51ba4b62a0a6d6e00d02155fe5a040d0d484c25a140491767caf265687ad",
-        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 599.201",
+        "sha256": "6a5bf489e9bc4206bb3a7ea74555c63d7163dae241547ad238a16ee13de672bf",
+        "source_id": "cfr:t31:599.201",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-599.201"
       },
-      "system": "ecfr",
-      "where": "CFR 15 CFR 744.8"
-    },
-    {
-      "basis_code": "cfr_text_reference",
-      "checked_through": "2026-10-14",
-      "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
-      "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:14059",
       "legal_basis_candidate": "regulation text names the order (31 CFR 599.201)",
       "machine_lead": true,
-      "mention_id": "ecfr:7a7d023b3f99",
+      "mention_id": "ecfr:2e658bbe70f6",
       "snippet": "§ 599.201 Prohibited transactions. All transactions prohibited pursuant to E.O. 14059 of December 15, 2021, or any further Executive orders issued pursuant to the national emergency declared in E.O. 14059 are prohibited pursuant to this part. No...",
       "source": {
-        "page_or_item": "31 CFR 599.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.48.2.1.1)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR 599.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48.2.1.1)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-599.201.txt",
+        "text_sha256": "6a5bf489e9bc4206bb3a7ea74555c63d7163dae241547ad238a16ee13de672bf",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "§ 599.201 Prohibited transactions.\nAll transactions prohibited pursuant to E.O. 14059 of December 15, 2021, or any further Executive orders issued pursuant to the national emergency declared in E.O. 14059 are prohibited pursuant to this part.\nNo",
       "where": "CFR 31 CFR 599.201"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 328,
+      "char_start": 0,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 599.802",
+        "sha256": "b3f341dc309572f6bdbdb475c87684c2702233ebff9929329c75d222dccc1f9d",
+        "source_id": "cfr:t31:599.802",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-599.802"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:14059",
       "legal_basis_candidate": "regulation text names the order (31 CFR 599.802)",
       "machine_lead": true,
-      "mention_id": "ecfr:19c55c5a6495",
+      "mention_id": "ecfr:e124fd8e3ea2",
       "snippet": "§ 599.802 Delegation of certain authorities of the Secretary of the Treasury. Any action that the Secretary of the Treasury is authorized to take pursuant to E.O. 14059 of December 15, 2021, and any further Executive orders issued pursuant to the national emergency declared therein, may be taken by the Director of OFAC or by a...",
       "source": {
-        "page_or_item": "31 CFR 599.802 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.48.8.1.2)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR 599.802 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48.8.1.2)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-599.802.txt",
+        "text_sha256": "b3f341dc309572f6bdbdb475c87684c2702233ebff9929329c75d222dccc1f9d",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "§ 599.802 Delegation of certain authorities of the Secretary of the Treasury.\nAny action that the Secretary of the Treasury is authorized to take pursuant to E.O. 14059 of December 15, 2021, and any further Executive orders issued pursuant to the national emergency declared therein, may be taken by the Director of OFAC or by a",
       "where": "CFR 31 CFR 599.802"
     },
     {
       "basis_code": "cfr_authority_citation",
+      "char_end": 271,
+      "char_start": 60,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR part 599",
+        "sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
+        "source_id": "cfr:t31:part599",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/part-599"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:14059",
       "legal_basis_candidate": "regulation authority citation lists the order (31 CFR part 599)",
       "machine_lead": true,
-      "mention_id": "ecfr:2424d881e63a",
+      "mention_id": "ecfr:571d5af0b193",
       "snippet": "...3 U.S.C. 301; 21 U.S.C. 2301 et seq.; 31 U.S.C. 321(b); 50 U.S.C. 1601 et seq., 1701 et seq.; Pub. L. 101-410, 104 Stat. 890, as amended (28 U.S.C. 2461 note); E.O. 14059, 86 FR 71549, 3 CFR, 2021 Comp., p. 715.",
       "source": {
-        "page_or_item": "31 CFR part 599 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.48)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR part 599 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part599.txt",
+        "text_sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
+      "text": "3 U.S.C. 301; 21 U.S.C. 2301 et seq.; 31 U.S.C. 321(b); 50 U.S.C. 1601 et seq., 1701 et seq.; Pub. L. 101-410, 104 Stat. 890, as amended (28 U.S.C. 2461 note); E.O. 14059, 86 FR 71549, 3 CFR, 2021 Comp., p. 715.",
       "where": "CFR 31 CFR part 599"
     },
     {
       "basis_code": "cfr_appendix_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:14059",
       "legal_basis_candidate": "CFR appendix names or reprints the order (31 CFR part 599, Appendix A to Part 599)",
       "machine_lead": true,
-      "mention_id": "ecfr:12ff4eafdcc5",
+      "mention_id": "ecfr:4763ce06df7d",
       "snippet": "Appendix A to Part 599—Executive Order 14059 of December 15, 2021 Executive Order 14059 of December 15, 2021 Imposing Sanctions on Foreign Persons Involved in the Global Illicit Drug Trade By the authorit...",
       "source": {
-        "page_or_item": "31 CFR part 599, Appendix A to Part 599 (appendix_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.48.11.1.1.18)",
-        "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+        "page_or_item": "31 CFR part 599, Appendix A to Part 599 (appendix_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48.11.1.1.18)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
       },
       "system": "ecfr",
       "where": "CFR 31 CFR part 599, Appendix A to Part 599"
+    },
+    {
+      "basis_code": "cfr_text_reference",
+      "char_end": 1311,
+      "char_start": 984,
+      "checked_through": null,
+      "currency_code": "ecfr_bulk_changed_or_unknown",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "15 CFR 744.8",
+        "sha256": "43b56723b63633de133a68d62aaac8b6348120634e2957503e7cb178a4b4bdc0",
+        "source_id": "cfr:t15:744.8",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-15/section-744.8"
+      },
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14059",
+      "legal_basis_candidate": "regulation text names the order (15 CFR 744.8)",
+      "machine_lead": true,
+      "mention_id": "ecfr:8c7271b9b26a",
+      "snippet": ".... (A) [FTO]; or (B) [SDGT]. (iii) WMD-related. (A) [NPWMD]. (B) [Reserved] (iv) Related to narcotics trafficking or other criminal networks. (A) [ILLICIT DRUGS-EO14059]; (B) [SDNT]; (C) [SDNTK]; or (D) [TCO]. Note 1 to paragraph (a)(1): The names of such designations are published in the Federal Register and incorporated into...",
+      "source": {
+        "page_or_item": "15 CFR 744.8 (section_text; GovInfo eCFR XML title 15, amended through 2026-11-09; NODE 15:2.1.3.4.29.0.1.8)",
+        "sha256": "e1f16fff52e47692cf45b509729f6971ef24831beb6ed3d54ef6809e838d511f",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-744.8.txt",
+        "text_sha256": "43b56723b63633de133a68d62aaac8b6348120634e2957503e7cb178a4b4bdc0",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
+      },
+      "system": "ecfr",
+      "text": ".\n(A) [FTO]; or\n(B) [SDGT].\n(iii) WMD-related.\n(A) [NPWMD].\n(B) [Reserved]\n(iv) Related to narcotics trafficking or other criminal networks.\n(A) [ILLICIT DRUGS-EO14059];\n(B) [SDNT];\n(C) [SDNTK]; or\n(D) [TCO].\nNote 1 to paragraph (a)(1):\nThe names of such designations are published in the Federal Register and incorporated into",
+      "where": "CFR 15 CFR 744.8"
     },
     {
       "basis_code": "table_iv_listed_note",
@@ -1337,18 +1425,17 @@
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_authority_citation",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:2424d881e63a",
+        "mention_id": "ecfr:571d5af0b193",
         "snippet": "...3 U.S.C. 301; 21 U.S.C. 2301 et seq.; 31 U.S.C. 321(b); 50 U.S.C. 1601 et seq., 1701 et seq.; Pub. L. 101-410, 104 Stat. 890, as amended (28 U.S.C. 2461 note); E.O. 14059, 86 FR 71549, 3 CFR, 2021 Comp., p. 715.",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1358,8 +1445,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation authority citation lists the order (31 CFR part 599)",
         "source": {
-          "page_or_item": "31 CFR part 599 (part_authority; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.48)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR part 599 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
@@ -1373,39 +1460,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-11-04)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:1f5281116830",
-        "snippet": ".... (A) [FTO]; or (B) [SDGT]. (iii) WMD-related. (A) [NPWMD]. (B) [Reserved] (iv) Related to narcotics trafficking or other criminal networks. (A) [ILLICIT DRUGS-EO14059]; (B) [SDNT]; (C) [SDNTK]; or (D) [TCO]. Note 1 to paragraph (a)(1): The names of such designations are published in the Federal  ...",
-        "snippet_truncated": true,
-        "system": "ecfr",
-        "where": "CFR 15 CFR 744.8"
-      },
-      "proposal": {
-        "checked_through": "2026-10-14",
-        "legal_basis": "regulation text names the order (15 CFR 744.8)",
-        "source": {
-          "page_or_item": "15 CFR 744.8 (section_text; GovInfo eCFR XML title 15, amended through 2026-11-04; NODE 15:2.1.3.4.29.0.1.8)",
-          "sha256": "80ce51ba4b62a0a6d6e00d02155fe5a040d0d484c25a140491767caf265687ad",
-          "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
-        }
-      }
-    },
-    {
-      "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
-      ],
-      "evidence_gap": "Current-law lead lacks an original-source sha256.",
-      "meta": {
-        "basis_code": "cfr_text_reference",
-        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
-        "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
-        "from": "current-law@jobs/current-law/output",
-        "from_job": "current-law",
-        "mention_id": "ecfr:7a7d023b3f99",
+        "mention_id": "ecfr:2e658bbe70f6",
         "snippet": "§ 599.201 Prohibited transactions. All transactions prohibited pursuant to E.O. 14059 of December 15, 2021, or any further Executive orders issued pursuant to the national emergency declared in E.O. 14059 are prohibited pursuant to this part. No...",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1415,26 +1473,25 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (31 CFR 599.201)",
         "source": {
-          "page_or_item": "31 CFR 599.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.48.2.1.1)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR 599.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48.2.1.1)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:19c55c5a6495",
+        "mention_id": "ecfr:e124fd8e3ea2",
         "snippet": "§ 599.802 Delegation of certain authorities of the Secretary of the Treasury. Any action that the Secretary of the Treasury is authorized to take pursuant to E.O. 14059 of December 15, 2021, and any further Executive orders issued pursuant to the national emergency declared therein, may be taken by  ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -1444,26 +1501,25 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (31 CFR 599.802)",
         "source": {
-          "page_or_item": "31 CFR 599.802 (section_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.48.8.1.2)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR 599.802 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48.8.1.2)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
     },
     {
       "custody_records_in": [
-        "current-law",
-        "ptolemy-custody"
+        "current-law"
       ],
       "evidence_gap": "Current-law lead lacks an original-source sha256.",
       "meta": {
         "basis_code": "cfr_appendix_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-15)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:12ff4eafdcc5",
+        "mention_id": "ecfr:4763ce06df7d",
         "snippet": "Appendix A to Part 599—Executive Order 14059 of December 15, 2021 Executive Order 14059 of December 15, 2021 Imposing Sanctions on Foreign Persons Involved in the Global Illicit Drug Trade By the authorit...",
         "snippet_truncated": false,
         "system": "ecfr",
@@ -1473,8 +1529,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "CFR appendix names or reprints the order (31 CFR part 599, Appendix A to Part 599)",
         "source": {
-          "page_or_item": "31 CFR part 599, Appendix A to Part 599 (appendix_text; GovInfo eCFR XML title 31, amended through 2026-10-15; NODE 31:3.1.1.1.48.11.1.1.18)",
-          "sha256": "21c7c05202bb9ce2b9292bcb89164abbbd92318da277f4e6f0ce130c9142f48c",
+          "page_or_item": "31 CFR part 599, Appendix A to Part 599 (appendix_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48.11.1.1.18)",
+          "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
         }
       }
@@ -1495,6 +1551,7 @@
         "snippet": "...ed to a transnational criminal organization subject to sanctions under— (i) this subchapter; (ii) the Fentanyl Sanctions Act (21 U.S.C. 2301 et seq.); or (iii) Executive Order 14059 (50 U.S.C. 1701 note; relating to imposing sanctions on foreign persons involved in the global illicit drug trade). ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t21_s2355-c128d51157.txt",
         "where": "USC 21 U.S.C. 2355"
       },
       "proposal": {
@@ -1504,6 +1561,34 @@
           "page_or_item": "21 U.S.C. 2355; usc21.xml (sha256 72caa89c4616a06abda0d111274b1305f3e4056770b49a604f8f6e26ad551c13) in xml_uscAll@119-121.zip",
           "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
           "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+        }
+      }
+    },
+    {
+      "custody_records_in": [
+        "current-law"
+      ],
+      "evidence_gap": "Current-law lead lacks an original-source sha256.",
+      "meta": {
+        "basis_code": "cfr_text_reference",
+        "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
+        "currency_code": "ecfr_bulk_changed_or_unknown",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+        "from": "current-law@jobs/current-law/output",
+        "from_job": "current-law",
+        "mention_id": "ecfr:8c7271b9b26a",
+        "snippet": ".... (A) [FTO]; or (B) [SDGT]. (iii) WMD-related. (A) [NPWMD]. (B) [Reserved] (iv) Related to narcotics trafficking or other criminal networks. (A) [ILLICIT DRUGS-EO14059]; (B) [SDNT]; (C) [SDNTK]; or (D) [TCO]. Note 1 to paragraph (a)(1): The names of such designations are published in the Federal  ...",
+        "snippet_truncated": true,
+        "system": "ecfr",
+        "where": "CFR 15 CFR 744.8"
+      },
+      "proposal": {
+        "checked_through": null,
+        "legal_basis": "regulation text names the order (15 CFR 744.8)",
+        "source": {
+          "page_or_item": "15 CFR 744.8 (section_text; GovInfo eCFR XML title 15, amended through 2026-11-09; NODE 15:2.1.3.4.29.0.1.8)",
+          "sha256": "e1f16fff52e47692cf45b509729f6971ef24831beb6ed3d54ef6809e838d511f",
+          "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
         }
       }
     },
@@ -1591,6 +1676,7 @@
       "char_end": 3506,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:14097",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1605,6 +1691,156 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2023-05-01/pdf/2023-09318.pdf"
       },
       "text": "Instrument: EO:14097\nSource: https://www.govinfo.gov/content/pkg/FR-2023-05-01/pdf/2023-09318.pdf\nSHA-256 of the downloaded file: 684578cf4172bf2f6dc67f17964eb97eb91ea29b020f51343f822b0f8bf70026\nLocation: 88 FR 26471, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n26471 Federal Register / Vol. 88, No. 83 / Monday, May 1, 2023 / Presidential Documents \nExecutive Order 14097 of April 27, 2023 \nAuthority To Order the Ready Reserve of the Armed Forces \nto Active Duty To Address International Drug Trafficking \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including the National Emergencies \nAct (50 U.S.C. 1601 et seq.), and in furtherance of Executive Order 14059 \nof December 15, 2021 (Imposing Sanctions on Foreign Persons Involved \nin the Global Illicit Drug Trade), which declared a national emergency \nto address the unusual and extraordinary threat to the national security, \nforeign policy, and economy of the United States posed by international \ndrug trafficking, it is hereby ordered as follows: \nSection 1. Emergency Authority. To provide additional authority to the Sec-\nretary of Defense and the Secretary of Homeland Security to respond to \nthe national emergency declared in Executive Order 14059, the authority \nunder section 12302 of title 10, United States Code, is invoked and made \navailable, according to its terms, to the Secretary of Defense and the Secretary \nof Homeland Security. The Secretaries of the Army, Navy, and Air Force, \nat the direction of the Secretary of Defense, and the Secretary of Homeland \nSecurity with respect to the Coast Guard when it is not operating as a \nservice in the Navy, are authorized to order to active duty such units \nand individual members of the Ready Reserve under the jurisdiction of \nthe Secretary concerned as the Secretary concerned considers necessary, \nconsistent with the terms of section 12302 of title 10, United States Code. \nSec. 2. General Provisions. (a) Nothing in this order shall be construed \nto impair or otherwise affect: \n(i) the authority granted by law to an executive department or agency, \nor the head thereof; or \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(b) This order shall be implemented consistent with applicable law and \nsubject to the availability of appropriations. \nVerDate Sep<11>2014 15:43 Apr 28, 2023 Jkt 259001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01MYE0.SGM 01MYE0lotter on DSK11XQN23PROD with FR_PREZDOC2\n=== PDF page 2 of 2 ===\n26472 Federal Register / Vol. 88, No. 83 / Monday, May 1, 2023 / Presidential Documents \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nApril 27, 2023. \n[FR Doc. 2023–09318 \nFiled 4–28–23; 8:45 am] \nBilling code 3395–F3–P \nVerDate Sep<11>2014 15:43 Apr 28, 2023 Jkt 259001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\01MYE0.SGM 01MYE0\nBIDEN.EPS</GPH>\nlotter on DSK11XQN23PROD with FR_PREZDOC2"
+    },
+    "ACTOR_TEXT:FRDOC:2022-27271": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2022-27271",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 3257,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2022-27271",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2022-27271",
+        "page_or_item": "87 FR 76549; FR Doc. 2022-27271; Presidential Document: Continuation of the National Emergency With Respect to the Global Illicit Drug Trade",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "191f681f69f60204157322951734cec4c0ee929c44bc47ef3ae4aad11e7258d2",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2022-27271.txt",
+        "text_sha256": "191f681f69f60204157322951734cec4c0ee929c44bc47ef3ae4aad11e7258d2",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2022/12/14/2022-27271.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 87 Issue 239 (Wednesday, December 14, 2022)</title>\n</head>\n<body><pre>\n[Federal Register Volume 87, Number 239 (Wednesday, December 14, 2022)]\n[Presidential Documents]\n[Page 76549]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2022-27271]\n\n\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 87 , No. 239 / Wednesday, December 14, 2022 / \nPresidential Documents\u0000\u0000\n\n[[Page 76549]]\n\n\n                Notice of December 12, 2022\n\n                \nContinuation of the National Emergency With \n                Respect to the Global Illicit Drug Trade\n\n                On December 15, 2021, by Executive Order 14059, I \n                declared a national emergency pursuant to the \n                International Emergency Economic Powers Act (50 U.S.C. \n                1701 et seq.) to deal with the unusual and \n                extraordinary threat to the national security, foreign \n                policy, and economy of the United States constituted by \n                global illicit drug trafficking.\n\n                The trafficking into the United States of illicit \n                drugs, including fentanyl and other synthetic opioids, \n                is causing the deaths of tens of thousands of Americans \n                annually, as well as countless more non-fatal overdoses \n                with their own tragic human toll. Drug cartels, \n                transnational criminal organizations, and their \n                facilitators are the primary sources of illicit drugs \n                and precursor chemicals that fuel the current opioid \n                epidemic, as well as drug-related violence that harms \n                our communities. International drug trafficking--\n                including the illicit production, global sale, and \n                widespread distribution of illegal drugs; the rise of \n                extremely potent drugs such as fentanyl and other \n                synthetic opioids; as well as the growing role of \n                Internet-based drug sales--continues to pose an unusual \n                and extraordinary threat to the national security, \n                foreign policy, and economy of the United States. For \n                this reason, the national emergency declared in \n                Executive Order 14059 of December 15, 2021, must \n                continue in effect beyond December 15, 2022. Therefore, \n                in accordance with section 202(d) of the National \n                Emergencies Act (50 U.S.C. 1622(d)), I am continuing \n                for 1 year the national emergency declared in Executive \n                Order 14059 with respect to global illicit drug \n                trafficking.\n\n                This notice shall be published in the Federal Register \n                and transmitted to the Congress.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\n                THE WHITE HOUSE,\n\n                    December 12, 2022.\n\n[FR Doc. 2022-27271\nFiled 12-13-22; 11:15 am]\nBilling code 3395-F3-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2023-27732": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2023-27732",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 3638,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2023-27732",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2023-27732",
+        "page_or_item": "88 FR 86809; FR Doc. 2023-27732; Presidential Document: Continuation of the National Emergency With Respect to the Global Illicit Drug Trade",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "39dd88343c6270a56f2f85f81ccaeab4b762068232c8fe0b7237210bcf5f5acd",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2023-27732.txt",
+        "text_sha256": "39dd88343c6270a56f2f85f81ccaeab4b762068232c8fe0b7237210bcf5f5acd",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2023/12/14/2023-27732.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 88 Issue 239 (Thursday, December 14, 2023)</title>\n</head>\n<body><pre>\n[Federal Register Volume 88, Number 239 (Thursday, December 14, 2023)]\n[Presidential Documents]\n[Page 86809]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2023-27732]\n\n\n\n[[Page 86807]]\n\nVol. 88\n\nThursday,\n\nNo. 239\n\nDecember 14, 2023\n\nPart III\n\n\n\n\n\nThe President\n\n\n\n\n\n-----------------------------------------------------------------------\n\n\n\nNotice of December 13, 2023--Continuation of the National Emergency \nWith Respect to the Global Illicit Drug Trade\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 88 , No. 239 / Thursday, December 14, 2023 / \nPresidential Documents\u0000\u0000\n\n\u0000___________________________________________________________________\n\n\u0000Title 3--\n\u0000The President\n\n[[Page 86809]]\n\n                Notice of December 13, 2023\n\n                \nContinuation of the National Emergency With \n                Respect to the Global Illicit Drug Trade\n\n                On December 15, 2021, by Executive Order 14059, I \n                declared a national emergency pursuant to the \n                International Emergency Economic Powers Act (50 U.S.C. \n                1701 et seq.) to deal with the unusual and \n                extraordinary threat to the national security, foreign \n                policy, and economy of the United States constituted by \n                global illicit drug trafficking.\n\n                The trafficking into the United States of illicit \n                drugs, including fentanyl and other synthetic opioids, \n                is causing the deaths of tens of thousands of Americans \n                annually, as well as countless more non-fatal overdoses \n                with their own tragic human toll. Drug cartels, \n                transnational criminal organizations, and their \n                facilitators are the primary sources of illicit drugs \n                and precursor chemicals that fuel the current opioid \n                epidemic, as well as drug-related violence that harms \n                our communities. International drug trafficking--\n                including the illicit production, global sale, and \n                widespread distribution of illegal drugs; the rise of \n                extremely potent drugs such as fentanyl and other \n                synthetic opioids; as well as the growing role of \n                internet-based drug sales--continues to pose an unusual \n                and extraordinary threat to the national security, \n                foreign policy, and economy of the United States. For \n                this reason, the national emergency declared in \n                Executive Order 14059 of December 15, 2021, must \n                continue in effect beyond December 15, 2023. Therefore, \n                in accordance with section 202(d) of the National \n                Emergencies Act (50 U.S.C. 1622(d)), I am continuing \n                for 1 year the national emergency declared in Executive \n                Order 14059 with respect to global illicit drug \n                trafficking.\n\n                This notice shall be published in the Federal Register \n                and transmitted to the Congress.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\n                THE WHITE HOUSE,\n\n                    December 13, 2023.\n\n[FR Doc. 2023-27732\nFiled 12-13-23; 11:15 am]\nBilling code 3395-F4-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2024-29597": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2024-29597",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 3248,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2024-29597",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2024-29597",
+        "page_or_item": "89 FR 100719; FR Doc. 2024-29597; Presidential Document: Continuation of the National Emergency With Respect to the Global Illicit Drug Trade",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "54126167d13c898f026b6e164ec0397fdd49f862e3d2da6ac43bcc4ede31a682",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2024-29597.txt",
+        "text_sha256": "54126167d13c898f026b6e164ec0397fdd49f862e3d2da6ac43bcc4ede31a682",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2024/12/13/2024-29597.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 89 Issue 240 (Friday, December 13, 2024)</title>\n</head>\n<body><pre>\n[Federal Register Volume 89, Number 240 (Friday, December 13, 2024)]\n[Presidential Documents]\n[Page 100719]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2024-29597]\n\n\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 89, No. 240 / Friday, December 13, 2024 / \nPresidential Documents\u0000\u0000\n\n[[Page 100719]]\n\n\n                Notice of December 11, 2024\n\n                \nContinuation of the National Emergency With \n                Respect to the Global Illicit Drug Trade\n\n                On December 15, 2021, by Executive Order 14059, I \n                declared a national emergency pursuant to the \n                International Emergency Economic Powers Act (50 U.S.C. \n                1701 et seq.) to deal with the unusual and \n                extraordinary threat to the national security, foreign \n                policy, and economy of the United States constituted by \n                global illicit drug trafficking.\n\n                The trafficking into the United States of illicit \n                drugs, including fentanyl and other synthetic opioids, \n                is causing the deaths of tens of thousands of Americans \n                annually, as well as countless more non-fatal overdoses \n                with their own tragic human toll. Drug cartels, \n                transnational criminal organizations, and their \n                facilitators are the primary sources of illicit drugs \n                and precursor chemicals that fuel the current opioid \n                epidemic, as well as drug-related violence that harms \n                our communities. International drug trafficking--\n                including the illicit production, global sale, and \n                widespread distribution of illegal drugs; the rise of \n                extremely potent drugs such as fentanyl and other \n                synthetic opioids; as well as the growing role of \n                internet-based drug sales--continues to pose an unusual \n                and extraordinary threat to the national security, \n                foreign policy, and economy of the United States. For \n                this reason, the national emergency declared in \n                Executive Order 14059 of December 15, 2021, must \n                continue in effect beyond December 15, 2024. Therefore, \n                in accordance with section 202(d) of the National \n                Emergencies Act (50 U.S.C. 1622(d)), I am continuing \n                for 1 year the national emergency declared in Executive \n                Order 14059 with respect to global illicit drug \n                trafficking.\n\n                This notice shall be published in the Federal Register \n                and transmitted to the Congress.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\n                THE WHITE HOUSE,\n\n                    December 11, 2024.\n\n[FR Doc. 2024-29597\nFiled 12-12-24; 8:45 am]\nBilling code 3395-F4-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2025-22786": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2025-22786",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 3259,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2025-22786",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2025-22786",
+        "page_or_item": "90 FR 57865; FR Doc. 2025-22786; Presidential Document: Continuation of the National Emergency With Respect to the Global Illicit Drug Trade",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "607bb6bd69af90935a3eef57c7f07932a30d417ccf6dd7786b31f742e93dd5be",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2025-22786.txt",
+        "text_sha256": "607bb6bd69af90935a3eef57c7f07932a30d417ccf6dd7786b31f742e93dd5be",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2025/12/12/2025-22786.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 90 Issue 237 (Friday, December 12, 2025)</title>\n</head>\n<body><pre>\n[Federal Register Volume 90, Number 237 (Friday, December 12, 2025)]\n[Presidential Documents]\n[Page 57865]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2025-22786]\n\n\n\u0000\n\u0000\n\u0000                        Presidential Documents \n\u0000\n\u0000\n\n\u0000\u0000Federal Register / Vol. 90, No. 237 / Friday, December 12, 2025 / \nPresidential Documents\u0000\u0000\n\n[[Page 57865]]\n\n\n                Notice of December 10, 2025\n\n                \nContinuation of the National Emergency With \n                Respect to the Global Illicit Drug Trade\n\n                On December 15, 2021, by Executive Order 14059, the \n                President declared a national emergency pursuant to the \n                International Emergency Economic Powers Act (50 U.S.C. \n                1701 et seq.) to deal with the unusual and \n                extraordinary threat to the national security, foreign \n                policy, and economy of the United States constituted by \n                global illicit drug trafficking.\n\n                The trafficking into the United States of illicit \n                drugs, including fentanyl and other synthetic opioids, \n                is causing the deaths of tens of thousands of Americans \n                annually, as well as countless more non-fatal overdoses \n                with their own tragic human toll. Drug cartels, \n                transnational criminal organizations, and their \n                facilitators are the primary sources of illicit drugs \n                and precursor chemicals that fuel the current opioid \n                epidemic, as well as drug-related violence that harms \n                our communities. International drug trafficking--\n                including the illicit production, global sale, and \n                widespread distribution of illegal drugs; the rise of \n                extremely potent drugs such as fentanyl and other \n                synthetic opioids; as well as the growing role of \n                internet-based drug sales--continues to pose an unusual \n                and extraordinary threat to the national security, \n                foreign policy, and economy of the United States. For \n                this reason, the national emergency declared in \n                Executive Order 14059 of December 15, 2021, must \n                continue in effect beyond December 15, 2025. Therefore, \n                in accordance with section 202(d) of the National \n                Emergencies Act (50 U.S.C. 1622(d)), I am continuing \n                for 1 year the national emergency declared in Executive \n                Order 14059 with respect to global illicit drug \n                trafficking.\n\n                This notice shall be published in the Federal Register \n                and transmitted to the Congress.\n                <GRAPHIC(S) NOT AVAILABLE IN TIFF FORMAT>\n                \n                    (Presidential Sig.)\n\n                THE WHITE HOUSE,\n\n                    December 10, 2025.\n\n[FR Doc. 2025-22786\nFiled 12-11-25; 11:15 am]\nBilling code 3395-F4-P\n\n\n</pre></body>\n</html>"
+    },
+    "ACTOR_TEXT:FRDOC:2026-20425": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2026-20425",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 47847,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2026-20425",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2026-20425",
+        "page_or_item": "91 FR 63664; FR Doc. 2026-20425; Notice: Notice of OFAC Sanctions Action",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "4f562eb5c8e9f90112cefb6884089cdb075ce0c27d10264cc72d64c16f33fb80",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2026-20425.txt",
+        "text_sha256": "4f562eb5c8e9f90112cefb6884089cdb075ce0c27d10264cc72d64c16f33fb80",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2026/10/06/2026-20425.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 91 Issue 192 (Tuesday, October 6, 2026)</title>\n</head>\n<body><pre>\n[Federal Register Volume 91, Number 192 (Tuesday, October 6, 2026)]\n[Notices]\n[Pages 63664-63670]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2026-20425]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF THE TREASURY\n\nOffice of Foreign Assets Control\n\n\nNotice of OFAC Sanctions Action\n\nAGENCY: Office of Foreign Assets Control, Treasury.\n\nACTION: Notice.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The U.S. Department of the Treasury's Office of Foreign Assets \nControl (OFAC) is publishing the names of one or more persons that have \nbeen placed on OFAC's Specially Designated Nationals and Blocked \nPersons List (SDN List) based on OFAC's determination that one or more \napplicable legal criteria were satisfied. All property and interests in \nproperty subject to U.S. jurisdiction of these persons are blocked, and \nU.S. persons are generally prohibited from engaging in transactions \nwith them.\n\nDATES: This action was issued on September 29, 2026. See Supplementary \nInformation for relevant dates.\n\nFOR FURTHER INFORMATION CONTACT: OFAC: Associate Director for Global \nTargeting, 202-622-2420; Assistant Director for Licensing, 202-622-\n2480; Assistant Director for Sanctions Compliance, 202-622-2490 or \n<a href=\"https://ofac.treasury.gov/contact-ofac\">https://ofac.treasury.gov/contact-ofac</a>.\n\nSUPPLEMENTARY INFORMATION:\n\nElectronic Availability\n\n    The SDN List and additional information concerning OFAC sanctions \nprograms are available on OFAC's website: <a href=\"https://ofac.treasury.gov\">https://ofac.treasury.gov</a>.\n\nNotice of OFAC Actions\n\n    On September 29, 2026, OFAC determined that one or more persons \nidentified below meet one or more of the criteria for the imposition of \nsanctions set forth in section 1(a)-(c) of Executive Order 14059 of \nDecember 15, 2021, ``Imposing Sanctions on Foreign Persons Involved in \nthe Global Illicit Drug Trade,'' 86 FR 71549 (E.O. 14059). OFAC has \nselected to impose blocking sanctions pursuant to section 2(a)(i) of \nE.O. 14059 on the persons identified below.\n    OFAC further determined that one or more persons identified below \nmeet one or more of the criteria for sanctions pursuant to Executive \nOrder 13224 of September 23, 2001, ``Blocking Property and Prohibiting \nTransactions With Persons Who Commit, Threaten to Commit, or Support \nTerrorism,'' 66 FR 49079, as amended by Executive Order 13886 of \nSeptember 9, 2019, ``Modernizing Sanctions To Combat Terrorism,'' 84 FR \n48041 (E.O. 13224, as amended).\n    As a result, the property and interests in property subject to U.S. \njurisdiction of the following persons are blocked under the relevant \nsanctions authorities listed below.\n\nIndividuals\n\n    1. BUENROSTRO MARTIN, Rafael, Mexicali, Baja California, Mexico; \nDOB 28 Dec 1982; POB Baja California, Mexico; nationality Mexico; \nGender Male; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; C.U.R.P. BUMR821228HBCNRF02 \n(Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nSINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(i) of E.O. 14059 for having \nprovided, or attempted to provide, financial, material, or \ntechnological support for, or goods or services in support of, the \nSinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    2. MENDIVIL GARCIA, Pedro Ariel, Mexicali, Baja California, Mexico; \nDOB 28 May 1972; POB Sonora, Mexico; nationality Mexico; Gender Male; \nSecondary sanctions risk: section 1(b) of Executive Order 13224, as \namended by Executive Order 13886; C.U.R.P. MEGP720528HSRNRD06 (Mexico) \n(individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: SINALOA \nCARTEL).\n    Sanctioned pursuant to section 1(b)(i) of E.O. 14059 for having \nprovided, or attempted to provide, financial, material, or \ntechnological support for, or goods or services in support of, the \nSinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended,\n\n[[Page 63665]]\n\nfor having materially assisted, sponsored, or provided financial, \nmaterial, or technological support for, or goods or services to or in \nsupport of, the Sinaloa Cartel, a person whose property and interests \nin property are blocked pursuant to E.O. 13224, as amended.\n    3. MORENO GOMEZ SANTELICES, Marco Antonio, Tijuana, Baja \nCalifornia, Mexico; DOB 09 Feb 1983; POB Baja California, Mexico; \nnationality Mexico; Gender Male; Secondary sanctions risk: section 1(b) \nof Executive Order 13224, as amended by Executive Order 13886; C.U.R.P. \nMOGM830209HBCRMR02 (Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] \n(Linked To: SINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(i) of E.O. 14059 for having \nprovided, or attempted to provide, financial, material, or \ntechnological support for, or goods or services in support of, the \nSinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    4. TORRES TORRES, Luis Alfonso, Tijuana, Baja California, Mexico; \nDOB 07 Sep 1960; POB Baja California, Mexico; nationality Mexico; \nGender Male; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; C.U.R.P. TOTL600907HBCRRS00 \n(Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nSINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(i) of E.O. 14059 for having \nprovided, or attempted to provide, financial, material, or \ntechnological support for, or goods or services in support of, the \nSinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    5. TORRES TORRES, Carlos Alberto, Tijuana, Baja California, Mexico; \nDOB 18 Nov 1975; POB Baja California, Mexico; nationality Mexico; \nGender Male; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; C.U.R.P. TOTC751118HBCRRR06 \n(Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nSINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(i) of E.O. 14059 for having \nprovided, or attempted to provide, financial, material, or \ntechnological support for, or goods or services in support of, the \nSinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    6. VILLELA GOMEZ SANTELICES, Carlos, Tijuana, Baja California, \nMexico; DOB 29 Jun 1993; POB Baja California, Mexico; nationality \nMexico; Gender Male; Secondary sanctions risk: section 1(b) of \nExecutive Order 13224, as amended by Executive Order 13886; C.U.R.P. \nVIGC930629HBCLMR08 (Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] \n(Linked To: SINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(i) of E.O. 14059 for having \nprovided, or attempted to provide, financial, material, or \ntechnological support for, or goods or services in support of, the \nSinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    7. GASTELUM GARCIA, Hildegardo (a.k.a. ``Aldo''), Culiacan, \nSinaloa, Mexico; DOB 29 Oct 1972; POB Sinaloa, Mexico; nationality \nMexico; Gender Male; Secondary sanctions risk: section 1(b) of \nExecutive Order 13224, as amended by Executive Order 13886; C.U.R.P. \nGAGH721029HSLSRL09 (Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] \n(Linked To: SINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for having \nacted or purported to act for or on behalf of, directly or indirectly, \nthe Sinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    8. ZAMBADA SICAIROS, Ismael (a.k.a. CICAIROS ZAMBADA, Ismael; \na.k.a. SICAIROS AISPURO, Fernando; a.k.a. ``Mayito Flaco''), Sinaloa, \nMexico; DOB 07 Mar 1982; POB Sinaloa, Mexico; alt. POB Anaheim, \nCalifornia, United States; nationality Mexico; alt. nationality United \nStates; Gender Male; Secondary sanctions risk: section 1(b) of \nExecutive Order 13224, as amended by Executive Order 13886; C.U.R.P. \nZASI820307HSLMCS04 (Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] \n(Linked To: SINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for having \nacted or purported to act for or on behalf of, directly or indirectly, \nthe Sinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    9. CHAPOTIN VILLALBA, Diosvany Samuel (a.k.a. PICHON VIDAL, \nLazaro), Cancun, Quintana Roo, Mexico; DOB 03 Jan 1978; POB Cuba; \nnationality Mexico; alt. nationality Cuba; Gender Male; Secondary \nsanctions risk: section 1(b) of Executive Order 13224, as amended by \nExecutive Order 13886; C.U.R.P. CAVD780103HNEHLS00 (Mexico) \n(individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: SINALOA \nCARTEL).\n    Sanctioned pursuant to section 1(b)(i) of E.O. 14059 for having \nprovided, or attempted to provide, financial, material, or \ntechnological support for, or goods or services in support of, the \nSinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    10. RIVERA ZAZUETA, Jose Angel (a.k.a. RIVERA SALAS, Miguel Angel; \na.k.a. ``El Flaco''), Mexico; DOB 15 Aug 1987; alt. DOB 15 Dec 1987; \nPOB Sinaloa, Mexico; alt. POB Estado de Mexico, Mexico; nationality \nMexico; citizen Mexico; Gender Male; Secondary sanctions risk: section \n1(b) of Executive Order 13224, as amended by Executive Order 13886; \nC.U.R.P.\n\n[[Page 63666]]\n\nRIZA870815HSLVZN00 (Mexico); alt. C.U.R.P. RISM871215HMCVLG00 (Mexico) \n(individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: SINALOA \nCARTEL).\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    11. CASTILLO MALDONADO, Lorenzo, Mexico; DOB 13 Dec 1975; POB \nChihuahua, Mexico; nationality Mexico; Gender Male; Secondary sanctions \nrisk: section 1(b) of Executive Order 13224, as amended by Executive \nOrder 13886; C.U.R.P. CAML751213HCHSLR08 (Mexico) (individual) [SDGT] \n[ILLICIT-DRUGS-EO14059] (Linked To: SINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for having \nacted or purported to act for or on behalf of, directly or indirectly, \nthe Sinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    12. FELIX RIVERA, Ilia Elizabeth, Tijuana, Baja California, Mexico; \nDOB 17 Jun 1984; POB Sinaloa, Mexico; nationality Mexico; Gender \nFemale; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; C.U.R.P. FERI840617MSLLVL00 \n(Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nSINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for having \nacted or purported to act for or on behalf of, directly or indirectly, \nthe Sinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    13. HUEZO HERNANDEZ, Franklin Ernesto (a.k.a. ``El Ranchero''), \nTijuana, Baja California, Mexico; DOB 13 Dec 1986; POB El Salvador; \nalt. POB Chiapas, Mexico; nationality Mexico; alt. nationality El \nSalvador; Gender Male; Secondary sanctions risk: section 1(b) of \nExecutive Order 13224, as amended by Executive Order 13886; C.U.R.P. \nHUHF861213HCSZRR09 (Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] \n(Linked To: SINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for having \nacted or purported to act for or on behalf of, directly or indirectly, \nthe Sinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    14. MARTINEZ RODRIGUEZ, Pedro Humberto (a.k.a. ``Gordo Flubber''), \nTijuana, Baja California, Mexico; Culiacan, Sinaloa, Mexico; DOB 02 Mar \n1989; POB Sinaloa, Mexico; nationality Mexico; Gender Male; Secondary \nsanctions risk: section 1(b) of Executive Order 13224, as amended by \nExecutive Order 13886; C.U.R.P. MARP890302HSLRDD00 (Mexico) \n(individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: SINALOA \nCARTEL).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for having \nacted or purported to act for or on behalf of, directly or indirectly, \nthe Sinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    15. MENDOZA URIARTE, Francisco Javier, Tijuana, Baja California, \nMexico; DOB 03 Feb 1984; POB Sinaloa, Mexico; nationality Mexico; \nGender Male; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; C.U.R.P. MEUF840203HSLNRR06 \n(Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nSINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for having \nacted or purported to act for or on behalf of, directly or indirectly, \nthe Sinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    16. MENDOZA URIARTE, Jorge Luis (a.k.a. ``Guero Chompas''), \nTijuana, Baja California, Mexico; DOB 19 Dec 1987; POB Sinaloa, Mexico; \nnationality Mexico; Gender Male; Secondary sanctions risk: section 1(b) \nof Executive Order 13224, as amended by Executive Order 13886; C.U.R.P. \nMEUJ871219HSLNRR19 (Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] \n(Linked To: SINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for having \nacted or purported to act for or on behalf of, directly or indirectly, \nthe Sinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    17. VERA AYALA, Jorge Mario, Tijuana, Baja California, Mexico; DOB \n27 Apr 1985; POB Baja California, Mexico; nationality Mexico; Gender \nMale; Secondary sanctions risk: section 1(b) of Executive Order 13224, \nas amended by Executive Order 13886; C.U.R.P. VEAJ850427HBCRYR08 \n(Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nSINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(i) of E.O. 14059 for having \nprovided, or attempted to provide, financial, material, or \ntechnological support for, or goods or services in support of, the \nSinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    18. VERA AYALA, Jeronimo Javier, Tijuana, Baja California, Mexico; \nDOB 27 Apr 1985; POB Baja California, Mexico; nationality Mexico; \nGender Male; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; C.U.R.P. VEAJ850427HBCRYR16 \n(Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nSINALOA CARTEL).\n\n[[Page 63667]]\n\n    Sanctioned pursuant to section 1(b)(i) of E.O. 14059 for having \nprovided, or attempted to provide, financial, material, or \ntechnological support for, or goods or services in support of, the \nSinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(C) of E.O. 13224, as \namended, for having materially assisted, sponsored, or provided \nfinancial, material, or technological support for, or goods or services \nto or in support of, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    19. YOCUPICIO YOCUPICIO, Jesus Rafael (a.k.a. ``El Cabezon''), \nTijuana, Baja California, Mexico; DOB 24 Oct 1988; POB Sonora, Mexico; \nnationality Mexico; Gender Male; Secondary sanctions risk: section 1(b) \nof Executive Order 13224, as amended by Executive Order 13886; C.U.R.P. \nYOYJ881024HSRCCS04 (Mexico) (individual) [SDGT] [ILLICIT-DRUGS-EO14059] \n(Linked To: SINALOA CARTEL).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for having \nacted or purported to act for or on behalf of, directly or indirectly, \nthe Sinaloa Cartel, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    20. ARZATE GARCIA, Alfonso (a.k.a. ``AQUILES''), Mexico; DOB 02 Dec \n1973; POB Baja California, Mexico; nationality Mexico; Gender Male; \nSecondary sanctions risk: section 1(b) of Executive Order 13224, as \namended by Executive Order 13886; C.U.R.P. AAGA731202HBCRRL05 (Mexico) \n(individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: SINALOA \nCARTEL).\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n    21. ARZATE GARCIA, Rene (a.k.a. ``LA RANA''), Mexico; DOB 11 Jun \n1983; POB Baja California, Mexico; nationality Mexico; Gender Male; \nSecondary sanctions risk: section 1(b) of Executive Order 13224, as \namended by Executive Order 13886; C.U.R.P. AAGR830611HBCRRN02 (Mexico) \n(individual) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: SINALOA \nCARTEL).\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for having acted or purported to act for or on behalf of, \ndirectly or indirectly, the Sinaloa Cartel, a person whose property and \ninterests in property are blocked pursuant to E.O. 13224, as amended.\n\nEntities\n\n    1. GALERIAS CENTRO CAMBIARIO, S.A. DE C.V. (a.k.a. MAGIC CASA DE \nCAMBIO), Tijuana, Baja California, Mexico; Secondary sanctions risk: \nsection 1(b) of Executive Order 13224, as amended by Executive Order \n13886; Organization Established Date 01 Nov 2011; Organization Type: \nOther financial service activities, except insurance and pension \nfunding activities, n.e.c.; Folio Mercantil No. 33511 (Mexico) [SDGT] \n[ILLICIT-DRUGS-EO14059] (Linked To: FELIX RIVERA, Ilia Elizabeth).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Ilia Elizabeth Felix \nRivera, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Ilia \nElizabeth Felix Rivera, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    2. MIA CENTRO CAMBIARIO, S.A. DE C.V., Mexicali, Baja California, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 15 Nov 2011; Organization Type: Other financial service \nactivities, except insurance and pension funding activities, n.e.c.; \nFolio Mercantil No. 38102 (Mexico) [SDGT] [ILLICIT-DRUGS-EO14059] \n(Linked To: RIVERA ZAZUETA, Jose Angel).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Jose Angel Rivera Zazueta, \na sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Jose \nAngel Rivera Zazueta, a person whose property and interests in property \nare blocked pursuant to E.O. 13224, as amended.\n    3. RIVOS SERVICIOS, S.A. DE C.V., Culiacan, Sinaloa, Mexico; \nSecondary sanctions risk: section 1(b) of Executive Order 13224, as \namended by Executive Order 13886; Organization Established Date 05 Mar \n2015; Organization Type: Other transportation support activities; Folio \nMercantil No. 84179 (Mexico) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nRIVERA ZAZUETA, Jose Angel).\n    Designated pursuant to section (1)(b)(iii): For being owned, \ncontrolled, or directed by, or having acted or purported to act for or \non behalf of . . . RIVERA ZAZUETA, Jose Angel Designated pursuant to \nsection 1(a)(iii)(A): Owned or Controlled by, or Acted For or on Behalf \nof, an SDGT.\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Jose Angel Rivera Zazueta, \na sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Jose \nAngel Rivera Zazueta, a person whose property and interests in property \nare blocked pursuant to E.O. 13224, as amended.\n    4. SERVICIOS HOTELEROS GASTELUM, S.A. DE C.V., Culiacan, Sinaloa, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 03 Apr 2003; Organization Type: Short term accommodation \nactivities; Folio Mercantil No. 180 (Mexico) [SDGT] [ILLICIT-DRUGS-\nEO14059] (Linked To: GASTELUM GARCIA, Hildegardo).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Hildegardo Gastelum \nGarcia, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, \nHildegardo Gastelum Garcia, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    5. BAJA FIXER GROUP, S.A. DE C.V., Tijuana, Baja California, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by\n\n[[Page 63668]]\n\nExecutive Order 13886; Organization Established Date 21 Dec 2023; \nOrganization Type: Real estate activities with own or leased property; \nFolio Mercantil No. N-2024074861 (Mexico) [SDGT] [ILLICIT-DRUGS-\nEO14059] (Linked To: MORENO GOMEZ SANTELICES, Marco Antonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    6. CONCIERTOS Y ESPECTACULOS INHOUSE S.A.P.I. DE C.V., Tijuana, \nBaja California, Mexico; Secondary sanctions risk: section 1(b) of \nExecutive Order 13224, as amended by Executive Order 13886; \nOrganization Established Date 25 Jan 2023; Organization Type: Creative, \narts and entertainment activities; Folio Mercantil No. N-2023100920 \n(Mexico) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: MORENO GOMEZ \nSANTELICES, Marco Antonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    7. FESTIVALES ARTISTAS MOBILIARIO ASESORIA, S.A. DE C.V. (a.k.a. \nPROMOCIONES CHF DE BAJA CALIFORNIA, S.A. DE C.V.), Tijuana, Baja \nCalifornia, Mexico; Secondary sanctions risk: section 1(b) of Executive \nOrder 13224, as amended by Executive Order 13886; Organization \nEstablished Date 19 Feb 2021; Organization Type: Creative, arts and \nentertainment activities; Folio Mercantil No. N-2021012223 (Mexico) \n[SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: MORENO GOMEZ SANTELICES, \nMarco Antonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    8. GRUPO GASOLINERO NUEVA ESPERANZA, S. DE R.L. DE C.V., Mexicali, \nBaja California, Mexico; Secondary sanctions risk: section 1(b) of \nExecutive Order 13224, as amended by Executive Order 13886; \nOrganization Established Date 03 Mar 2006; Organization Type: Wholesale \nof solid, liquid and gaseous fuels and related products; Folio \nMercantil No. 34113 (Mexico) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nMENDIVIL GARCIA, Pedro Ariel).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Pedro Ariel Medivil \nGarcia, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Pedro \nAriel Medivil Garcia, a person whose property and interests in property \nare blocked pursuant to E.O. 13224, as amended.\n    9. HOLISTIC WELLWAVES S. DE R.L. DE C.V., Tijuana, Baja California, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 24 Jun 2019; Organization Type: Retail sale of pharmaceutical and \nmedical goods, cosmetic and toilet articles in specialized stores; \nFolio Mercantil No. N-2020009462 (Mexico) [SDGT] [ILLICIT-DRUGS-\nEO14059] (Linked To: MORENO GOMEZ SANTELICES, Marco Antonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    10. INTELIPROOF EFFICIENT, S. DE R.L. DE C.V., Tijuana, Baja \nCalifornia, Mexico; website <a href=\"http://iesecurity.com\">iesecurity.com</a>.mx; Secondary sanctions \nrisk: section 1(b) of Executive Order 13224, as amended by Executive \nOrder 13886; Organization Established Date 19 Oct 2020; Organization \nType: Private security activities; R.F.C. IEF201019BY7 (Mexico); Folio \nMercantil No. N-2020075511 (Mexico) [SDGT] [ILLICIT-DRUGS-EO14059] \n(Linked To: MORENO GOMEZ SANTELICES, Marco Antonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    11. PRIVATE EQUITY BAJA S.A.P.I. DE C.V., Tijuana, Baja California, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 20 Oct 2021; Organization Type: Other financial service \nactivities, except insurance and pension funding activities, n.e.c.; \nFolio Mercantil No. N-2021082072 (Mexico) [SDGT] [ILLICIT-DRUGS-\nEO14059] (Linked To: MORENO GOMEZ SANTELICES, Marco Antonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    12. PRIVATE EQUITY BURSATIL, S.A. DE C.V., Tijuana, Baja \nCalifornia, Mexico; Secondary sanctions risk:\n\n[[Page 63669]]\n\nsection 1(b) of Executive Order 13224, as amended by Executive Order \n13886; Organization Established Date 22 Jul 2022; Organization Type: \nOther financial service activities, except insurance and pension \nfunding activities, n.e.c.; Folio Mercantil No. N-2022069640 (Mexico) \n[SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: MORENO GOMEZ SANTELICES, \nMarco Antonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    13. PROYECTO ALERTA VERDE, S.A.P.I. DE C.V., Hermosillo, Sonora, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 15 Feb 2018; Organization Type: Private security activities [SDGT] \n[ILLICIT-DRUGS-EO14059] (Linked To: MORENO GOMEZ SANTELICES, Marco \nAntonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    14. VIDEOVIGILANCIA COLABORATIVA, S.A.P.I. DE C.V., Hermosillo, \nSonora, Mexico; Secondary sanctions risk: section 1(b) of Executive \nOrder 13224, as amended by Executive Order 13886; Organization \nEstablished Date 07 Nov 2018; Organization Type: Private security \nactivities; Folio Mercantil No. N-2019000914 (Mexico) [SDGT] [ILLICIT-\nDRUGS-EO14059] (Linked To: MORENO GOMEZ SANTELICES, Marco Antonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    15. WERMAK PUBLIRED, S.A. DE C.V., Tijuana, Baja California, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 12 Jun 2023; Organization Type: Creative, arts and entertainment \nactivities; Folio Mercantil No. N-2023089074 (Mexico) [SDGT] [ILLICIT-\nDRUGS-EO14059] (Linked To: MORENO GOMEZ SANTELICES, Marco Antonio).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Marco Antonio Gomez \nSantelices, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Marco \nAntonio Gomez Santelices, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    16. CODESUAM, S. DE R.L. DE C.V., Tijuana, Baja California, Mexico; \nSecondary sanctions risk: section 1(b) of Executive Order 13224, as \namended by Executive Order 13886; Organization Established Date 22 Jun \n2017; Organization Type: Manufacture of industrial, electric and \nelectronic machinery; Folio Mercantil No. N-2017056810 (Mexico) [SDGT] \n[ILLICIT-DRUGS-EO14059] (Linked To: VERA AYALA, Jeronimo Javier).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Jeromino Vera Ayala, a \nsanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, \nJeronimo Vera Ayala, a person whose property and interests in property \nare blocked pursuant to E.O. 13224, as amended.\n    17. DISTRIBUIDORA Y COMERCIALIZADORA ATAF (a.k.a. DISTRIBUIDORA Y \nCOMERCIALIZADORA ATAF S.A.S.), Juarez, Chihuahua, Mexico; Secondary \nsanctions risk: section 1(b) of Executive Order 13224, as amended by \nExecutive Order 13886; Organization Established Date 20 Apr 2022; \nOrganization Type: Wholesale and retail trade; Company Number \nSAS2022499192 (Mexico) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: \nTORRES TORRES, Luis Alfonso).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Luis Alfonso Torres \nTorres, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Luis \nAlfonso Torres Torres, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    18. EDIFIKA DESARROLLOS BAJA, S. DE R.L. DE C.V., Tijuana, Baja \nCalifornia, Mexico; Secondary sanctions risk: section 1(b) of Executive \nOrder 13224, as amended by Executive Order 13886; Organization \nEstablished Date 01 Jul 2016; Organization Type: Real estate activities \non a fee or contract basis; Folio Mercantil No. N-2016019967 (Mexico) \n[SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: TORRES TORRES, Luis \nAlfonso).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Luis Alfonso Torres \nTorres, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Luis \nAlfonso Torres Torres, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    19. GRUPO BAJA FIRME, S.A. DE C.V., Tijuana, Baja California, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 18 Dec 2020; Organization Type: Growing of cereals (except rice), \nleguminous crops and oil seeds; Folio Mercantil No. N-2021045875 \n(Mexico) [SDGT] [ILLICIT-\n\n[[Page 63670]]\n\nDRUGS-EO14059] (Linked To: VERA AYALA, Jeronimo Javier).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Jeromino Vera Ayala, a \nsanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, \nJeronimo Vera Ayala, a person whose property and interests in property \nare blocked pursuant to E.O. 13224, as amended.\n    20. LTHINGS MEXICO, S. DE R.L. DE C.V., Tijuana, Baja California, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 16 Jun 2023; Organization Type: Retail sale of textiles in \nspecialized stores; Folio Mercantil No. N-2024010343 (Mexico) [SDGT] \n[ILLICIT-DRUGS-EO14059] (Linked To: VERA AYALA, Jeronimo Javier).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Jeronimo Vera Ayala, a \nsanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, \nJeronimo Vera Ayala, a person whose property and interests in property \nare blocked pursuant to E.O. 13224, as amended.\n    21. PUBLICIDAD E IMAGEN INTEGRAL ENLA-C, S. DE R.L. DE C.V., \nMexicali, Baja California, Mexico; Secondary sanctions risk: section \n1(b) of Executive Order 13224, as amended by Executive Order 13886; \nOrganization Established Date 06 May 2024; Organization Type: \nAdvertising; Folio Mercantil No. N-2024040377 (Mexico) [SDGT] [ILLICIT-\nDRUGS-EO14059] (Linked To: BUENROSTRO MARTIN, Rafael).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Rafael Buenrostro Martin, \na sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Rafael \nBuenrostro Martin, a person whose property and interests in property \nare blocked pursuant to E.O. 13224, as amended.\n    22. RAES RESTAURANTE S. DE R.L. DE C.V., Tijuana, Baja California, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 04 Mar 2015; Organization Type: Other amusement and recreation \nactivities; Folio Mercantil No. 38467 (Mexico) [SDGT] [ILLICIT-DRUGS-\nEO14059] (Linked To: TORRES TORRES, Luis Alfonso).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Luis Alfonso Torres \nTorres, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Luis \nAlfonso Torres Torres, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    23. THE WOODS BAR, S. DE R.L. DE C.V., Tijuana, Baja California, \nMexico; Secondary sanctions risk: section 1(b) of Executive Order \n13224, as amended by Executive Order 13886; Organization Established \nDate 18 Nov 2020; Organization Type: Restaurants and mobile food \nservice activities; Folio Mercantil No. N-2021008881 (Mexico) [SDGT] \n[ILLICIT-DRUGS-EO14059] (Linked To: TORRES TORRES, Luis Alfonso).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Luis Alfonso Torres \nTorres, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Luis \nAlfonso Torres Torres, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    24. VIDA ORGANICA TIJUANA, S. DE R.L. DE C.V., Tijuana, Baja \nCalifornia, Mexico; Secondary sanctions risk: section 1(b) of Executive \nOrder 13224, as amended by Executive Order 13886; Organization \nEstablished Date 09 Nov 2020; Organization Type: Transportation and \nstorage; Folio Mercantil No. N-2020074577 (Mexico) [SDGT] [ILLICIT-\nDRUGS-EO14059] (Linked To: TORRES TORRES, Luis Alfonso).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Luis Alfonso Torres \nTorres, a sanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, Luis \nAlfonso Torres Torres, a person whose property and interests in \nproperty are blocked pursuant to E.O. 13224, as amended.\n    25. XOLO GAS DE BAJA CALIFORNIA, S. DE R.L. DE C.V., Tijuana, Baja \nCalifornia, Mexico; Secondary sanctions risk: section 1(b) of Executive \nOrder 13224, as amended by Executive Order 13886; Organization \nEstablished Date 19 Aug 2024; Organization Type: Retail sale of \nautomotive fuel in specialized stores; Folio Mercantil No. N-2024079165 \n(Mexico) [SDGT] [ILLICIT-DRUGS-EO14059] (Linked To: VERA AYALA, \nJeronimo Javier).\n    Sanctioned pursuant to section 1(b)(iii) of E.O. 14059 for being \nowned, controlled, or directed by, or having acted or purported to act \nfor or on behalf of, directly or indirectly, Jeronimo Vera Ayala, a \nsanctioned person pursuant to E.O. 14059.\n    Designated pursuant to section 1(a)(iii)(A) of E.O. 13224, as \namended, for being owned, controlled, or directed by, or having acted \nor purported to act for or on behalf of, directly or indirectly, \nJeronimo Vera Ayala, a person whose property and interests in property \nare blocked pursuant to E.O. 13224, as amended.\n\n(Authority: E.O. 14059; E.O. 13224, as amended)\n\nBradley T. Smith,\nDirector, Office of Foreign Assets Control.\n[FR Doc. 2026-20425 Filed 10-5-26; 8:45 am]\nBILLING CODE 4810-AL-P\n\n\n</pre></body>\n</html>"
     },
     "CLAUSES:EO:14059#lead": {
       "char_end": 2397,
@@ -2772,6 +3008,178 @@
       },
       "text": "Sec. 9. For those persons whose property and interests in property are \nblocked pursuant to this order who might have a constitutional presence \nin the United States, I find that because of the ability to transfer funds \nor other assets instantaneously, prior notice to such persons of measures \nto be taken pursuant to this order would render those measures ineffectual. \nI therefore determine that for those measures to be effective in addressing \nthe national emergency declared in this order, there need be no prior notice \nof a listing or determination made pursuant to this order."
     },
+    "CURRENT:EO:14059#0": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 1293,
+      "char_start": 952,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "21 U.S.C. 2355; usc21.xml (sha256 72caa89c4616a06abda0d111274b1305f3e4056770b49a604f8f6e26ad551c13) in xml_uscAll@119-121.zip",
+        "sha256": "42b9da9093df8275da7952c430756e73fd718b54e471cbb53149aab8f8332a1b",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t21/s2355",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:14059#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14059",
+      "legal_basis_candidate": "statute text names the order (21 U.S.C. 2355)",
+      "machine_lead": true,
+      "mention_id": "usc:2b3e74f2e8a7",
+      "snippet": "...ed to a transnational criminal organization subject to sanctions under— (i) this subchapter; (ii) the Fentanyl Sanctions Act (21 U.S.C. 2301 et seq.); or (iii) Executive Order 14059 (50 U.S.C. 1701 note; relating to imposing sanctions on foreign persons involved in the global illicit drug trade). (b) Blocked Assets Under Terrorism Risk Ins...",
+      "source": {
+        "page_or_item": "21 U.S.C. 2355; usc21.xml (sha256 72caa89c4616a06abda0d111274b1305f3e4056770b49a604f8f6e26ad551c13) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t21_s2355-c128d51157.txt",
+        "text_sha256": "42b9da9093df8275da7952c430756e73fd718b54e471cbb53149aab8f8332a1b",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "ed to a transnational criminal organization subject to sanctions under—\n(i)\nthis subchapter;\n(ii)\nthe Fentanyl Sanctions Act (21 U.S.C. 2301 et seq.); or\n(iii)\nExecutive Order 14059 (50 U.S.C. 1701 note; relating to imposing sanctions on foreign persons involved in the global illicit drug trade).\n(b)\nBlocked Assets Under Terrorism Risk Ins",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t21_s2355-c128d51157.txt",
+      "text_sha256": "42b9da9093df8275da7952c430756e73fd718b54e471cbb53149aab8f8332a1b",
+      "where": "USC 21 U.S.C. 2355"
+    },
+    "CURRENT:EO:14059#1": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 245,
+      "char_start": 0,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 599.201",
+        "sha256": "6a5bf489e9bc4206bb3a7ea74555c63d7163dae241547ad238a16ee13de672bf",
+        "source_id": "cfr:t31:599.201",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-599.201"
+      },
+      "id": "CURRENT:EO:14059#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14059",
+      "legal_basis_candidate": "regulation text names the order (31 CFR 599.201)",
+      "machine_lead": true,
+      "mention_id": "ecfr:2e658bbe70f6",
+      "snippet": "§ 599.201 Prohibited transactions. All transactions prohibited pursuant to E.O. 14059 of December 15, 2021, or any further Executive orders issued pursuant to the national emergency declared in E.O. 14059 are prohibited pursuant to this part. No...",
+      "source": {
+        "page_or_item": "31 CFR 599.201 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48.2.1.1)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-599.201.txt",
+        "text_sha256": "6a5bf489e9bc4206bb3a7ea74555c63d7163dae241547ad238a16ee13de672bf",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "§ 599.201 Prohibited transactions.\nAll transactions prohibited pursuant to E.O. 14059 of December 15, 2021, or any further Executive orders issued pursuant to the national emergency declared in E.O. 14059 are prohibited pursuant to this part.\nNo",
+      "where": "CFR 31 CFR 599.201"
+    },
+    "CURRENT:EO:14059#2": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 328,
+      "char_start": 0,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR 599.802",
+        "sha256": "b3f341dc309572f6bdbdb475c87684c2702233ebff9929329c75d222dccc1f9d",
+        "source_id": "cfr:t31:599.802",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/section-599.802"
+      },
+      "id": "CURRENT:EO:14059#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14059",
+      "legal_basis_candidate": "regulation text names the order (31 CFR 599.802)",
+      "machine_lead": true,
+      "mention_id": "ecfr:e124fd8e3ea2",
+      "snippet": "§ 599.802 Delegation of certain authorities of the Secretary of the Treasury. Any action that the Secretary of the Treasury is authorized to take pursuant to E.O. 14059 of December 15, 2021, and any further Executive orders issued pursuant to the national emergency declared therein, may be taken by the Director of OFAC or by a...",
+      "source": {
+        "page_or_item": "31 CFR 599.802 (section_text; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48.8.1.2)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-599.802.txt",
+        "text_sha256": "b3f341dc309572f6bdbdb475c87684c2702233ebff9929329c75d222dccc1f9d",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "§ 599.802 Delegation of certain authorities of the Secretary of the Treasury.\nAny action that the Secretary of the Treasury is authorized to take pursuant to E.O. 14059 of December 15, 2021, and any further Executive orders issued pursuant to the national emergency declared therein, may be taken by the Director of OFAC or by a",
+      "where": "CFR 31 CFR 599.802"
+    },
+    "CURRENT:EO:14059#3": {
+      "basis_code": "cfr_authority_citation",
+      "char_end": 271,
+      "char_start": 60,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-06)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "31 CFR part 599",
+        "sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
+        "source_id": "cfr:t31:part599",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-31/part-599"
+      },
+      "id": "CURRENT:EO:14059#3",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14059",
+      "legal_basis_candidate": "regulation authority citation lists the order (31 CFR part 599)",
+      "machine_lead": true,
+      "mention_id": "ecfr:571d5af0b193",
+      "snippet": "...3 U.S.C. 301; 21 U.S.C. 2301 et seq.; 31 U.S.C. 321(b); 50 U.S.C. 1601 et seq., 1701 et seq.; Pub. L. 101-410, 104 Stat. 890, as amended (28 U.S.C. 2461 note); E.O. 14059, 86 FR 71549, 3 CFR, 2021 Comp., p. 715.",
+      "source": {
+        "page_or_item": "31 CFR part 599 (part_authority; GovInfo eCFR XML title 31, amended through 2026-11-06; NODE 31:3.1.1.1.48)",
+        "sha256": "cf9c6277fbeaec67ab86debe1135ade0f2021e4d5d4a3ad6cbae451a49af5358",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part599.txt",
+        "text_sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-31/ECFR-title31.xml"
+      },
+      "system": "ecfr",
+      "text": "3 U.S.C. 301; 21 U.S.C. 2301 et seq.; 31 U.S.C. 321(b); 50 U.S.C. 1601 et seq., 1701 et seq.; Pub. L. 101-410, 104 Stat. 890, as amended (28 U.S.C. 2461 note); E.O. 14059, 86 FR 71549, 3 CFR, 2021 Comp., p. 715.",
+      "where": "CFR 31 CFR part 599"
+    },
+    "CURRENT:EO:14059#5": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 1311,
+      "char_start": 984,
+      "checked_through": null,
+      "currency_code": "ecfr_bulk_changed_or_unknown",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "15 CFR 744.8",
+        "sha256": "43b56723b63633de133a68d62aaac8b6348120634e2957503e7cb178a4b4bdc0",
+        "source_id": "cfr:t15:744.8",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-15/section-744.8"
+      },
+      "id": "CURRENT:EO:14059#5",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:14059",
+      "legal_basis_candidate": "regulation text names the order (15 CFR 744.8)",
+      "machine_lead": true,
+      "mention_id": "ecfr:8c7271b9b26a",
+      "snippet": ".... (A) [FTO]; or (B) [SDGT]. (iii) WMD-related. (A) [NPWMD]. (B) [Reserved] (iv) Related to narcotics trafficking or other criminal networks. (A) [ILLICIT DRUGS-EO14059]; (B) [SDNT]; (C) [SDNTK]; or (D) [TCO]. Note 1 to paragraph (a)(1): The names of such designations are published in the Federal Register and incorporated into...",
+      "source": {
+        "page_or_item": "15 CFR 744.8 (section_text; GovInfo eCFR XML title 15, amended through 2026-11-09; NODE 15:2.1.3.4.29.0.1.8)",
+        "sha256": "e1f16fff52e47692cf45b509729f6971ef24831beb6ed3d54ef6809e838d511f",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t15-744.8.txt",
+        "text_sha256": "43b56723b63633de133a68d62aaac8b6348120634e2957503e7cb178a4b4bdc0",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-15/ECFR-title15.xml"
+      },
+      "system": "ecfr",
+      "text": ".\n(A) [FTO]; or\n(B) [SDGT].\n(iii) WMD-related.\n(A) [NPWMD].\n(B) [Reserved]\n(iv) Related to narcotics trafficking or other criminal networks.\n(A) [ILLICIT DRUGS-EO14059];\n(B) [SDNT];\n(C) [SDNTK]; or\n(D) [TCO].\nNote 1 to paragraph (a)(1):\nThe names of such designations are published in the Federal Register and incorporated into",
+      "where": "CFR 15 CFR 744.8"
+    },
     "ORIGINAL:EO:14059": {
       "acceptable_as_original": true,
       "actor_id": "EO:14059",
@@ -2826,37 +3234,6 @@
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-14059-imposing-sanctions-foreign-persons-involved-the-global-illicit-drug.txt",
         "text_sha256": "2245e62d6a17fca23a00f60649794e5af5d250f237db24739e5479680c993bbd",
         "url": "https://www.presidency.ucsb.edu/documents/executive-order-14059-imposing-sanctions-foreign-persons-involved-the-global-illicit-drug"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(d) Such persons shall be treated by this section in the same manner as persons covered by section 1 of Proclamation 8693 of July 24, 2011 (Suspension of Entry of Aliens Subject to United Nations Security Council Travel Bans and International Emergency Economic Powers Act Sanctions)."
-    },
-    "TERM:EO:14059:089a0a480327609d@deb14a515d9abcf2": {
-      "actor_id": "EO:14059",
-      "char_end": 58692,
-      "char_start": 58408,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14059:089a0a480327609d@deb14a515d9abcf2",
-      "instrument_id": "EO:14059",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14059#sec4-d",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14059",
-        "page_or_item": "31 CFR part 599",
-        "requires_page_check": false,
-        "sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part599.txt",
-        "text_sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "url": "https://www.ecfr.gov/on/2026-11-06/title-31/part-599"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -2927,37 +3304,6 @@
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
     },
-    "TERM:EO:14059:0b352ae5eb0aec66@deb14a515d9abcf2": {
-      "actor_id": "EO:14059",
-      "char_end": 64213,
-      "char_start": 64096,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14059:0b352ae5eb0aec66@deb14a515d9abcf2",
-      "instrument_id": "EO:14059",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14059#sec12-b",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14059",
-        "page_or_item": "31 CFR part 599",
-        "requires_page_check": false,
-        "sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part599.txt",
-        "text_sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "url": "https://www.ecfr.gov/on/2026-11-06/title-31/part-599"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(b) This order shall be implemented consistent with applicable law and subject to the availability of appropriations."
-    },
     "TERM:EO:14059:157f66a57df049af@12151e2541ac0a69": {
       "actor_id": "EO:14059",
       "char_end": 5210,
@@ -3016,37 +3362,6 @@
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-14059-imposing-sanctions-foreign-persons-involved-the-global-illicit-drug.txt",
         "text_sha256": "2245e62d6a17fca23a00f60649794e5af5d250f237db24739e5479680c993bbd",
         "url": "https://www.presidency.ucsb.edu/documents/executive-order-14059-imposing-sanctions-foreign-persons-involved-the-global-illicit-drug"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(iv) prohibit any transactions in foreign exchange that are subject to the jurisdiction of the United States and in which the sanctioned person has any interest;"
-    },
-    "TERM:EO:14059:20bf994ac83e5d21@deb14a515d9abcf2": {
-      "actor_id": "EO:14059",
-      "char_end": 54761,
-      "char_start": 54600,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14059:20bf994ac83e5d21@deb14a515d9abcf2",
-      "instrument_id": "EO:14059",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14059#sec2-i-iv",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14059",
-        "page_or_item": "31 CFR part 599",
-        "requires_page_check": false,
-        "sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part599.txt",
-        "text_sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "url": "https://www.ecfr.gov/on/2026-11-06/title-31/part-599"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3206,37 +3521,6 @@
       "stated_end_date": null,
       "text": "(c) The Secretary of the Treasury is authorized to impose any of the sanctions described in section 2 of this order consistent with the requirements of section 7212 of the FSA (21 U.S.C. 2312) on any foreign person determined by the President, or by the Secretary of the Treasury pursuant to authority delegated by the President and in accordance with the terms of such delegation, to be subject to sanctions pursuant to section 7212 of the FSA."
     },
-    "TERM:EO:14059:97e295f9dc882d92@deb14a515d9abcf2": {
-      "actor_id": "EO:14059",
-      "char_end": 53231,
-      "char_start": 52786,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14059:97e295f9dc882d92@deb14a515d9abcf2",
-      "instrument_id": "EO:14059",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14059#sec1-c",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14059",
-        "page_or_item": "31 CFR part 599",
-        "requires_page_check": false,
-        "sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part599.txt",
-        "text_sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "url": "https://www.ecfr.gov/on/2026-11-06/title-31/part-599"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(c) The Secretary of the Treasury is authorized to impose any of the sanctions described in section 2 of this order consistent with the requirements of section 7212 of the FSA (21 U.S.C. 2312) on any foreign person determined by the President, or by the Secretary of the Treasury pursuant to authority delegated by the President and in accordance with the terms of such delegation, to be subject to sanctions pursuant to section 7212 of the FSA."
-    },
     "TERM:EO:14059:9fc55415193aa444@12151e2541ac0a69": {
       "actor_id": "EO:14059",
       "char_end": 17217,
@@ -3297,37 +3581,6 @@
       "stated_end_date": null,
       "text": "(ii) prohibit any transfers of credit or payments between financial institu-\ntions, or by, through, or to any financial institution, to the extent that\nsuch transfers or payments are subject to the jurisdiction of the United\nStates and involve any interest of the sanctioned person;"
     },
-    "TERM:EO:14059:bbb17d922dfd0ff1@f419efa0770a63b1": {
-      "actor_id": "EO:14059",
-      "char_end": 1030,
-      "char_start": 677,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14059:bbb17d922dfd0ff1@f419efa0770a63b1",
-      "instrument_id": "EO:14059",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14059#a-3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14059",
-        "page_or_item": "21 U.S.C. 2355",
-        "requires_page_check": false,
-        "sha256": "f419efa0770a63b1c01fcae81aca1f6c0afcb08c990eeef7adcab43a16e169f4",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t21-s2355.txt",
-        "text_sha256": "f419efa0770a63b1c01fcae81aca1f6c0afcb08c990eeef7adcab43a16e169f4",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title21-section2355&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(3)\n Covered forfeited property defined\nIn this subsection, the term “covered forfeited property” means property—\n(A)\n forfeited to the United States under chapter 46 or section 1963 of title 18; and\n(B)\n that belonged to or was possessed by an individual affiliated with or connected to a transnational criminal organization subject to sanctions under—"
-    },
     "TERM:EO:14059:bc08d1a51b0c06da@2245e62d6a17fca2": {
       "actor_id": "EO:14059",
       "char_end": 5396,
@@ -3357,37 +3610,6 @@
         "text_path": "jobs/app-executive-orders/output/texts/executive-order-14059-imposing-sanctions-foreign-persons-involved-the-global-illicit-drug.txt",
         "text_sha256": "2245e62d6a17fca23a00f60649794e5af5d250f237db24739e5479680c993bbd",
         "url": "https://www.presidency.ucsb.edu/documents/executive-order-14059-imposing-sanctions-foreign-persons-involved-the-global-illicit-drug"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(ii) prohibit any transfers of credit or payments between financial institutions, or by, through, or to any financial institution, to the extent that such transfers or payments are subject to the jurisdiction of the United States and involve any interest of the sanctioned person;"
-    },
-    "TERM:EO:14059:bc08d1a51b0c06da@deb14a515d9abcf2": {
-      "actor_id": "EO:14059",
-      "char_end": 54480,
-      "char_start": 54200,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14059:bc08d1a51b0c06da@deb14a515d9abcf2",
-      "instrument_id": "EO:14059",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14059#sec2-i-ii",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14059",
-        "page_or_item": "31 CFR part 599",
-        "requires_page_check": false,
-        "sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t31-part599.txt",
-        "text_sha256": "deb14a515d9abcf2774bf34821f16267321a55328a93dd9abb3a9af6a5f79955",
-        "url": "https://www.ecfr.gov/on/2026-11-06/title-31/part-599"
       },
       "start_date": null,
       "stated_end_date": null,
@@ -3452,40 +3674,9 @@
       "start_date": null,
       "stated_end_date": null,
       "text": "(b) This order shall be implemented consistent with applicable law and\nsubject to the availability of appropriations."
-    },
-    "TERM:EO:14059:e51bba562cd3de53@f419efa0770a63b1": {
-      "actor_id": "EO:14059",
-      "char_end": 676,
-      "char_start": 396,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:14059:e51bba562cd3de53@f419efa0770a63b1",
-      "instrument_id": "EO:14059",
-      "kind": "report_deadline",
-      "mechanism": "own_terms_report_deadline",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:14059#a-2",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:14059",
-        "page_or_item": "21 U.S.C. 2355",
-        "requires_page_check": false,
-        "sha256": "f419efa0770a63b1c01fcae81aca1f6c0afcb08c990eeef7adcab43a16e169f4",
-        "signing_date": "2021-12-15",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t21-s2355.txt",
-        "text_sha256": "f419efa0770a63b1c01fcae81aca1f6c0afcb08c990eeef7adcab43a16e169f4",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title21-section2355&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(2)\n Report required\nNot later than 180 days after April 24, 2024, and every 180 days thereafter, the President shall submit to the appropriate congressional committees a report on any deposits made under paragraph (1) during the 180-day period preceding submission of the report."
     }
   },
-  "fingerprint": "d1a06ad0d92f2331c2e053f51beadedeeb5b6577369378dc2a6bacbfaef3caa7",
+  "fingerprint": "301d6ad043edb8437fd7afce4144fdda6347159ab0e955b1577eab9566408787",
   "instrument_id": "EO:14059",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3618,8 +3809,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14059:157f66a57df049af@12151e2541ac0a69",
         "TERM:EO:14059:97e295f9dc882d92@2245e62d6a17fca2",
-        "TERM:EO:14059:4253c1c779bc2975@80d97bf28704dc8a",
-        "TERM:EO:14059:97e295f9dc882d92@deb14a515d9abcf2"
+        "TERM:EO:14059:4253c1c779bc2975@80d97bf28704dc8a"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -3685,8 +3875,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14059:4caef04f3a1b139c@12151e2541ac0a69",
         "TERM:EO:14059:bc08d1a51b0c06da@2245e62d6a17fca2",
-        "TERM:EO:14059:b27f48927c4c53ed@80d97bf28704dc8a",
-        "TERM:EO:14059:bc08d1a51b0c06da@deb14a515d9abcf2"
+        "TERM:EO:14059:b27f48927c4c53ed@80d97bf28704dc8a"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -3722,8 +3911,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14059:43ce46f365e2f16b@12151e2541ac0a69",
         "TERM:EO:14059:20bf994ac83e5d21@2245e62d6a17fca2",
-        "TERM:EO:14059:08f3ff87e9ef4d7d@80d97bf28704dc8a",
-        "TERM:EO:14059:20bf994ac83e5d21@deb14a515d9abcf2"
+        "TERM:EO:14059:08f3ff87e9ef4d7d@80d97bf28704dc8a"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -3912,8 +4100,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14059:d66031e4e6de743b@12151e2541ac0a69",
         "TERM:EO:14059:089a0a480327609d@2245e62d6a17fca2",
-        "TERM:EO:14059:21f282d2be8d9543@80d97bf28704dc8a",
-        "TERM:EO:14059:089a0a480327609d@deb14a515d9abcf2"
+        "TERM:EO:14059:21f282d2be8d9543@80d97bf28704dc8a"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -4294,8 +4481,7 @@
       "own_term_evidence_ids": [
         "TERM:EO:14059:9fc55415193aa444@12151e2541ac0a69",
         "TERM:EO:14059:0b352ae5eb0aec66@2245e62d6a17fca2",
-        "TERM:EO:14059:e012ca7c5342aebd@80d97bf28704dc8a",
-        "TERM:EO:14059:0b352ae5eb0aec66@deb14a515d9abcf2"
+        "TERM:EO:14059:e012ca7c5342aebd@80d97bf28704dc8a"
       ],
       "questions": [
         "Determine the first cessation or current predicate for this scope; check independent commands and surviving effects."
@@ -4327,23 +4513,25 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 6,
+      "machine_fragment_items_for_this_order_all_systems": 6,
+      "machine_hits_for_this_order": 3,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 6,
       "machine_hits_for_this_order": 6,
       "scope_note": "",
       "search_id": "current-law:ecfr"
@@ -4351,8 +4539,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -4388,22 +4576,15 @@
     "TERM:EO:14059:b27f48927c4c53ed@80d97bf28704dc8a",
     "TERM:EO:14059:08f3ff87e9ef4d7d@80d97bf28704dc8a",
     "TERM:EO:14059:21f282d2be8d9543@80d97bf28704dc8a",
-    "TERM:EO:14059:e012ca7c5342aebd@80d97bf28704dc8a",
-    "TERM:EO:14059:97e295f9dc882d92@deb14a515d9abcf2",
-    "TERM:EO:14059:bc08d1a51b0c06da@deb14a515d9abcf2",
-    "TERM:EO:14059:20bf994ac83e5d21@deb14a515d9abcf2",
-    "TERM:EO:14059:089a0a480327609d@deb14a515d9abcf2",
-    "TERM:EO:14059:0b352ae5eb0aec66@deb14a515d9abcf2",
-    "TERM:EO:14059:e51bba562cd3de53@f419efa0770a63b1",
-    "TERM:EO:14059:bbb17d922dfd0ff1@f419efa0770a63b1"
+    "TERM:EO:14059:e012ca7c5342aebd@80d97bf28704dc8a"
   ],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "d7662943799cd268b92b0541874972aaa1a174376a61b49f55d2e5bf1fa5094d",
+    "fingerprint": "354deca40ea9229a8461d8f15ede5d3831f39c6845f7993d695054d818d5a86c",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_14059.json",
-    "history_sha256": "d1faab2cf4c790a995ef5023c815fd5da2afe0356fe7c788cef5a24ef2839ba0",
+    "history_sha256": "62a4e9444e036fa0c3b0330e0bcb714576296771091f66b93a8e6ef7990b79b8",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

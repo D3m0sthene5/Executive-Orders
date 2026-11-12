@@ -1,25 +1,70 @@
 {
   "actor_contexts": [
     {
-      "actor_id": "EO:11521",
-      "evidence_id": "ACTOR_TEXT:EO:11521"
-    },
-    {
       "actor_id": "EO:12977",
       "evidence_id": "ACTOR_TEXT:EO:12977"
     },
     {
       "actor_id": "EO:13154",
-      "evidence_id": "ACTOR_TEXT:EO:13154"
+      "evidence_id": "ACTOR_TEXT:EO:13154",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@18570"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 3421,
+      "windows_omitted": 0
     },
     {
       "actor_id": "EO:13289",
-      "evidence_id": "ACTOR_TEXT:EO:13289"
+      "evidence_id": "ACTOR_TEXT:EO:13289",
+      "prints_number_lexical": true
+    },
+    {
+      "actor_id": "FRDOC:06-440",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:06-440@6119",
+        "ACTOR_TEXT:FRDOC:06-440@17332",
+        "ACTOR_TEXT:FRDOC:06-440@43002",
+        "ACTOR_TEXT:FRDOC:06-440@145733"
+      ],
+      "full_text_chars": 153126,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-06-440.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "23cafc3238c031fc7b9ccaf20979346c04bf8bae24b02f9d0f95e24e29da2fec",
+      "window_bytes": 12291,
+      "windows_omitted": 0
+    },
+    {
+      "actor_id": "FRDOC:2014-22818",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:2014-22818@73324"
+      ],
+      "full_text_chars": 96048,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-2014-22818.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "866048eba90d97c4df782171a8e786fd971448e2c76500ba1a71104a21c9568c",
+      "window_bytes": 3070,
+      "windows_omitted": 0
+    },
+    {
+      "actor_id": "FRDOC:E8-10916",
+      "evidence_ids": [
+        "ACTOR_TEXT:FRDOC:E8-10916@4158",
+        "ACTOR_TEXT:FRDOC:E8-10916@56869"
+      ],
+      "full_text_chars": 66848,
+      "held_text_path": "jobs/selden-fr-citers/output/texts/fr-E8-10916.txt",
+      "prints_number_lexical": true,
+      "text_sha256": "3f9df69f5acfd7c2f5362d7867c94162495776e561d61a0a622869883b9920d7",
+      "window_bytes": 6151,
+      "windows_omitted": 0
     }
   ],
   "actor_provisions": [
@@ -120,7 +165,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:12985",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:12985"
@@ -241,11 +286,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 188,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 12985. Establishing Armed Forces Service Medal' [USLM note id ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "0b64e323c929c072ad08f230d6370a88b11457dbde43a232aefb0fc2ffac7eb8",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12985",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
@@ -255,19 +309,32 @@
       "source": {
         "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 12985. Establishing Armed Forces Service Medal' [USLM note id ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "0b64e323c929c072ad08f230d6370a88b11457dbde43a232aefb0fc2ffac7eb8",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5",
+      "text": "Ex. Ord. No. 12985. Establishing Armed Forces Service Medal\nEx. Ord. No. 12985, Jan. 11, 1996, 61 F.R. 1209, as amended by Ex. Ord. No. 13286, § 20, Feb. 28, 2003, 68 F.R. 10624, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "0b64e323c929c072ad08f230d6370a88b11457dbde43a232aefb0fc2ffac7eb8",
       "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
     },
     {
       "basis_code": "statutory_text_reference",
+      "char_end": 2250,
+      "char_start": 1906,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "38 U.S.C. 4212; usc38.xml (sha256 812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6) in xml_uscAll@119-121.zip",
+        "sha256": "7f3e19e2bc0c6235ee919bd604b5224c8be4949596326bc57cc5fa830da93f1f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t38/s4212",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12985",
       "legal_basis_candidate": "statute text names the order (38 U.S.C. 4212)",
@@ -277,18 +344,32 @@
       "source": {
         "page_or_item": "38 U.S.C. 4212; usc38.xml (sha256 812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t38_s4212-c5e6b02d85.txt",
+        "text_sha256": "7f3e19e2bc0c6235ee919bd604b5224c8be4949596326bc57cc5fa830da93f1f",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "serving on active duty in the Armed Forces, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order No. 12985 (61 Fed. Reg. 1209).\n(iv)\nRecently separated veterans.\n(B)\nThe term “qualified”, with respect to an employment position, means having the ability to perform th",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t38_s4212-c5e6b02d85.txt",
+      "text_sha256": "7f3e19e2bc0c6235ee919bd604b5224c8be4949596326bc57cc5fa830da93f1f",
       "where": "USC 38 U.S.C. 4212"
     },
     {
       "basis_code": "references_in_text_note",
+      "char_end": 464,
+      "char_start": 168,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "38 U.S.C. 4212 note; note 'References in Text' [USLM note id idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af]; usc38.xml (sha256 812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6) in xml_uscAll@119-121.zip",
+        "sha256": "17889c0eecdcb5aabe22ce2dcd95386dab7ac59e01b3b615b184bd3c4915fded",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12985",
       "legal_basis_candidate": "References-in-Text note says statute text refers to the order (38 U.S.C. 4212 note)",
@@ -298,18 +379,32 @@
       "source": {
         "page_or_item": "38 U.S.C. 4212 note; note 'References in Text' [USLM note id idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af]; usc38.xml (sha256 812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af.txt",
+        "text_sha256": "17889c0eecdcb5aabe22ce2dcd95386dab7ac59e01b3b615b184bd3c4915fded",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "113–128, title V, §§ 506, 511(a), July 22, 2014, 128 Stat. 1703, 1705, effective July 1, 2015. For complete classification of this Act to the Code, see Tables.\nExecutive Order No. 12985, referred to in subsec. (a)(3)(A)(iii), is set out as a note preceding section 1121 of Title 10, Armed Forces.",
+      "text_path": "jobs/current-law/output/usc-notes/idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af.txt",
+      "text_sha256": "17889c0eecdcb5aabe22ce2dcd95386dab7ac59e01b3b615b184bd3c4915fded",
       "where": "USC 38 U.S.C. 4212 note"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 947,
+      "char_start": 607,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
       "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "41 CFR 60-300.2",
+        "sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
+        "source_id": "cfr:t41:60-300.2",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-41/section-60-300.2"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12985",
       "legal_basis_candidate": "regulation text names the order (41 CFR 60-300.2)",
@@ -319,18 +414,30 @@
       "source": {
         "page_or_item": "41 CFR 60-300.2 (section_text; GovInfo eCFR XML title 41, amended through 2026-10-26; NODE 41:1.2.3.1.5.1.7.2)",
         "sha256": "514067fa11ffaeacaf7375f2623b1426743a241625d06af9fb97419f9a50c2b8",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-60-300.2.txt",
+        "text_sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-41/ECFR-title41.xml"
       },
       "system": "ecfr",
+      "text": "U.S. military, ground, naval or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985 (61 FR 1209).\n(d) Compliance evaluation means any one or combination of actions OFCCP may take to examine a Federal contractor's or subcontractor's compliance",
       "where": "CFR 41 CFR 60-300.2"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 1013,
+      "char_start": 672,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
       "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "41 CFR 61-300.2",
+        "sha256": "f772d42e04a845b5f5c626a11d583a22217b0a116ced48b0c553a6d790fced93",
+        "source_id": "cfr:t41:61-300.2",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-41/section-61-300.2"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12985",
       "legal_basis_candidate": "regulation text names the order (41 CFR 61-300.2)",
@@ -340,18 +447,30 @@
       "source": {
         "page_or_item": "41 CFR 61-300.2 (section_text; GovInfo eCFR XML title 41, amended through 2026-10-26; NODE 41:1.2.4.1.2.0.7.2)",
         "sha256": "514067fa11ffaeacaf7375f2623b1426743a241625d06af9fb97419f9a50c2b8",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-61-300.2.txt",
+        "text_sha256": "f772d42e04a845b5f5c626a11d583a22217b0a116ced48b0c553a6d790fced93",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-41/ECFR-title41.xml"
       },
       "system": "ecfr",
+      "text": "U.S. military, ground, naval or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985 (61 FR 1209, 3 CFR, 1996 Comp., p. 159).\n(3) Disabled veteran means:\n(i) A veteran of the U.S. military, ground, naval or air service who is entitled to compen",
       "where": "CFR 41 CFR 61-300.2"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 772,
+      "char_start": 431,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
       "edition": "eCFR (GovInfo bulk, amended through 2026-10-19)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "48 CFR 22.1301",
+        "sha256": "d0674162a8198f2a4e0e28f2f3f684c4addb2905dfedb55e69ef4ee8a3e80141",
+        "source_id": "cfr:t48:22.1301",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-48/section-22.1301"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12985",
       "legal_basis_candidate": "regulation text names the order (48 CFR 22.1301)",
@@ -361,30 +480,45 @@
       "source": {
         "page_or_item": "48 CFR 22.1301 (section_text; GovInfo eCFR XML title 48, amended through 2026-10-19; NODE 48:1.0.1.4.21.13.1.2)",
         "sha256": "8eb42da0918852727c14f4e213f3ef81e7c5787bc17da9981053db9c83779ec7",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t48-22.1301.txt",
+        "text_sha256": "d0674162a8198f2a4e0e28f2f3f684c4addb2905dfedb55e69ef4ee8a3e80141",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-48/ECFR-title48.xml"
       },
       "system": "ecfr",
+      "text": ".S. military, ground, naval, or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985 (61 FR 1209).\nDisabled veteran means—\n(1) A veteran of the U.S. military, ground, naval, or air service, who is entitled to compensation (or who, but for the r",
       "where": "CFR 48 CFR 22.1301"
     },
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 926,
+      "char_start": 585,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 307.102",
+        "sha256": "5b0ae60f1b18fafd3fd86cc3e31ea159ae8774ec3a6b0ee87563c97c2b063e1f",
+        "source_id": "cfr:t5:307.102",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-307.102"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:12985",
       "legal_basis_candidate": "regulation text names the order (5 CFR 307.102)",
       "machine_lead": true,
-      "mention_id": "ecfr:8625492e6162",
+      "mention_id": "ecfr:4fc861350eb9",
       "snippet": "...on active duty with the Armed Forces, participated in a United States military operation for which an Armed Forces Service Medal (AFSM) was awarded pursuant to Executive Order 12985 (61 FR 1209); and (4) Recently separated veterans. Disabled veteran, as defined in 38 U.S.C. 4211 means: (1) A veteran who is entitled to compensation (or who,...",
       "source": {
-        "page_or_item": "5 CFR 307.102 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.38.0.14.2)",
-        "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+        "page_or_item": "5 CFR 307.102 (section_text; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.38.0.14.2)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-307.102.txt",
+        "text_sha256": "5b0ae60f1b18fafd3fd86cc3e31ea159ae8774ec3a6b0ee87563c97c2b063e1f",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
       },
       "system": "ecfr",
+      "text": "on active duty with the Armed Forces, participated in a United States military operation for which an Armed Forces Service Medal (AFSM) was awarded pursuant to Executive Order 12985 (61 FR 1209); and\n(4) Recently separated veterans.\nDisabled veteran, as defined in 38 U.S.C. 4211 means:\n(1) A veteran who is entitled to compensation (or who,",
       "where": "CFR 5 CFR 307.102"
     },
     {
@@ -423,7 +557,7 @@
       "snippet": "Sample Invitation to Self-Identify | service medal was awarded pursuant to Executive Order 12985. Protected veterans may have",
       "source": {
         "page_or_item": "41 CFR part 60-300, Appendix B to Part 60-300 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 3)",
-        "sha256": "fff45daffe405ca553248a72648b36cae16d4691684d5d060c6c29c37015f435",
+        "sha256": "0f5b98b0157f223fc1099de82bcec6d1a54695b468079c6f26d03353851bd0ff",
         "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=3"
       },
       "system": "ecfr",
@@ -555,10 +689,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-29)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:8625492e6162",
+        "mention_id": "ecfr:4fc861350eb9",
         "snippet": "...on active duty with the Armed Forces, participated in a United States military operation for which an Armed Forces Service Medal (AFSM) was awarded pursuant to Executive Order 12985 (61 FR 1209); and (4) Recently separated veterans. Disabled veteran, as defined in 38 U.S.C. 4211 means: (1) A vete ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -568,8 +702,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (5 CFR 307.102)",
         "source": {
-          "page_or_item": "5 CFR 307.102 (section_text; GovInfo eCFR XML title 5, amended through 2026-10-29; NODE 5:1.0.1.2.38.0.14.2)",
-          "sha256": "8bb506de4d367e4562497bbf9d892d3c5d9011ca027cd57d48b6201af923f490",
+          "page_or_item": "5 CFR 307.102 (section_text; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.38.0.14.2)",
+          "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
         }
       }
@@ -625,7 +759,7 @@
         "legal_basis": "eCFR point-in-time search excerpt names the order (41 CFR part 60-300, Appendix B to Part 60-300)",
         "source": {
           "page_or_item": "41 CFR part 60-300, Appendix B to Part 60-300 (eCFR search API result, query \"Executive Order\", date=2026-10-14, page 3)",
-          "sha256": "fff45daffe405ca553248a72648b36cae16d4691684d5d060c6c29c37015f435",
+          "sha256": "0f5b98b0157f223fc1099de82bcec6d1a54695b468079c6f26d03353851bd0ff",
           "url": "https://www.ecfr.gov/api/search/v1/results?query=%22Executive+Order%22&date=2026-10-14&per_page=1000&page=3"
         }
       }
@@ -646,6 +780,7 @@
         "snippet": "...serving on active duty in the Armed Forces, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order No. 12985 (61 Fed. Reg. 1209). (iv) Recently separated veterans. (B) The term “qualified”, with respect to an employment p ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-sections/us_usc_t38_s4212-c5e6b02d85.txt",
         "where": "USC 38 U.S.C. 4212"
       },
       "proposal": {
@@ -674,6 +809,7 @@
         "snippet": "...113–128, title V, §§ 506, 511(a), July 22, 2014, 128 Stat. 1703, 1705, effective July 1, 2015. For complete classification of this Act to the Code, see Tables. Executive Order No. 12985, referred to in subsec. (a)(3)(A)(iii), is set out as a note preceding section 1121 of Title 10, Armed Forces.",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af.txt",
         "where": "USC 38 U.S.C. 4212 note"
       },
       "proposal": {
@@ -702,7 +838,7 @@
         "snippet": "Ex. Ord. No. 12985. Establishing Armed Forces Service Medal | Ex. Ord. No. 12985, Jan. 11, 1996, 61 F.R. 1209, as amended by Ex. Ord. No. 13286, § 20, Feb. 28, 2003, 68 F.R. 10624, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5",
+        "text_path": "usc-notes/ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5.txt",
         "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
       },
       "proposal": {
@@ -1490,26 +1626,6 @@
       "text": "Executive Order 12985 of January 11, 1996 (\"Establishing the Armed Forces Service Medal\"), is amended by striking \"the Secretary of Transportation\" in section 2 and inserting \"the Secretary of Homeland Security\" in lieu thereof.",
       "verb": "amend"
     },
-    "ACTOR_TEXT:EO:11521": {
-      "actor_id": "EO:11521",
-      "char_end": 5945,
-      "char_start": 0,
-      "id": "ACTOR_TEXT:EO:11521",
-      "role": "actor_context",
-      "source": {
-        "filing_date": null,
-        "location_confidence": "high",
-        "location_verified": false,
-        "page_or_item": "35 FR 5311, PDF pages 9-10",
-        "requires_page_check": false,
-        "sha256": "75f596ade6f67a27e3b2c04c90c9a2061f2c04c1e7581f07ce96ba17ecf245cf",
-        "signing_date": "1970-03-26",
-        "text_path": "jobs/fr-originals/data/full_run/texts/EO_11521.txt",
-        "text_sha256": "29054a21b925620c473a51ed9e1fb96c0eab088e3c2a1293ebe428c39fff850a",
-        "url": "https://www.govinfo.gov/content/pkg/FR-1970-03-31/pdf/FR-1970-03-31.pdf"
-      },
-      "text": "Instrument: EO:11521\nSource: https://www.govinfo.gov/content/pkg/FR-1970-03-31/pdf/FR-1970-03-31.pdf\nSHA-256 of the downloaded file: 75f596ade6f67a27e3b2c04c90c9a2061f2c04c1e7581f07ce96ba17ecf245cf\nLocation: 35 FR 5311, PDF pages 9-10 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 9 of 88 ===\n•  THE PRESIDENT 5311\nE x ecu tiv e O rd er 11521\nAUTHORIZING VETERANS READJUSTMENT APPOINTMENTS FOR  \nVETERANS OF THE VIETNAM ERA\nW HEREAS this Nation has an obligation to assist veterans of the  \narmed forces in readjusting to civilian life ;  k\nW HEREAS the Federal Government, as an employer, should reflect  \nits recognition of this obligation in its personnel policies and practices;\nW HEREAS veterans, by virtue of their military service, have lost  \nopportunities to pursue education and training oriented toward civil­\nian careers;\nW HEREAS the Federal Government is continuously concerned  \nwith building an effective workforce, and veterans constitute a major  \nrecruiting source;  and\nW HEREAS the development of skills is most effectively achieved  \nthrough a program combining employment with education or  \ntraining:\nNOW, THEREFORE, by virtue of the authority vested in me by  \nthe Constitution of the United States, by sections 3301 and 3302 of  \ntitle 5, United States Code,’  and as President of the United States, it  \nis ordered as follows:\nSection 1. (a ) Subject to paragraph (b) of this section, the head of  \nan agency may make an excepted appointment, to be known as a “vet­\nerans readjustment appointment”, to any position in the competitive  \nservice up to and including GS-5 or the equivalent thereof, of a vet­\neran or disabled veteran as defined in section 2108(1), (2),  of title 5,  \nUnited States Code, who:  .\n(1) served on active duty in the armed forces of the United States  \nduring the Vietnam era;\n(2) at the time of his appointment has completed not more than  \nfourteen years of education;  and\n(3) is found qualified to perform the duties of the position.\n(b) Employment under paragraph (a) of this section is authorized  \nonly under a training or educational program developed by an agency  \nin accordance with guidelines established by the Civil Service  \nCommission.\n(c) An employee given a veterans readjustment appointment under  \nparagraph (a) of this section shall serve subject to:\n(1) the satisfactory performance of assigned duties; and\n(2) participation in the training or educational program under  \nwhich he is appointed.\n(d) An employee who does not satisfactorily meet the conditions set  \nforth in paragraph (c) of this section shall be removed in accordance  \nwith appropriate procedures.\n(e) An employee serving under a veterans readjustment appoint­\nment may be promoted, reassigned, or transferred.\n(f) An employee who completes the training or educational pro­\ngram and who has satisfactorily completed two years of substantially  \ncontinuous service under a veterans readjustment appointment shall  \nbe converted to career-conditional or career employment. An employee  \nconverted under this paragraph shall automatically acquire a com­\npetitive status.\n(g) In selecting an applicant for appointment under this section,  \nan agency shall not discriminate because of race, color, religion, sex,  \nnational origin, or political affiliation.\nNo. 62------2 FEDERAL REGISTER, VOL. 35, NO. 62— TUESDAY, MARCH 31, 1970\n\n=== PDF page 10 of 88 ===\n5312 THE PRESIDENT\nSec. 2. (a ) A person eligib le for appointment under section 1 o f th is \norder may be appointed only w ithin one year after h is separation  \nfrom the armed forces, or one year follow ing his_ release from  hos­\npitalization or treatment im m ediately follow ing his separation from  \nthe armed forces, or one year after involuntary separation without  \ncause from  (i) a veterans readjustment appointment or (ii) a transi­\ntional appointment, or one year after the effective date o f this order  \nif  he is serving under a transitional appointment.\n(b) The Civil Service Commission may determine the circumstances  \nunder which service under a transitional appointment may be deemed  \nservice under a veterans readjustment appointment for the purpose  \nof paragraph (f) of section 1 of this order.\nSec. 3. Any law, Executive order, or regulation which would dis­\nqualify an applicant for appointment in the competitive service shall  \nalso disqualify a person otherwise eligible for appointment under  \nsection 1 of this order.\nSec. 4. For the purpose of this order:\n(a) “agency” means a military department as defined in section 102  \nof title 5, United States Code, an executive agency (other than the  \nGeneral Accounting Office) as defined in section 105 of title 5, United  \nStates Code, and those portions of the legislative and judicial branches  \nof the Federal Government and of the government of the District of  \nColumbia having positions in the competitive service; and\n(b) “Vietnam era” means the period beginning August 5,1964, and  \nending on such date thereafter as may be determined by Presidential  \nproclamation or concurrent resolution of the Congress.\nSec. 5. The Civil Service Commission shall prescribe such regula­\ntions as may be necessary to carry out the provisions of this order.\nSec. 6. Executive Order No. 11397 of February 9, 1968, is revoked.  \nSuch revocation shall not affect the right of an employee to be con­\nverted to career-conditional or career employment if he meets the  \nrequirements of section 1(d)  of Executive Order No. 11397 after the  \neffective date of this order.\nSec. 7. This order is effective 14 days after its date.\nT h e W hite  H ouse,\nMarch 26,1970.\n[F.R. Doc. 70-3990; Filed, Mar. 30, 1970; 11:57 a.m.]\nFEDERAL REGISTER, VO L 35, NO, 62— TUESDAY, MARCH 31, 1970,\n"
-    },
     "ACTOR_TEXT:EO:12977": {
       "actor_id": "EO:12977",
       "char_end": 5924,
@@ -1535,6 +1651,7 @@
       "char_end": 2832,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13154",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1550,11 +1667,33 @@
       },
       "text": "Instrument: EO:13154\nSource: https://www.govinfo.gov/content/pkg/FR-2000-05-05/pdf/00-11532.pdf\nSHA-256 of the downloaded file: a5170c1411a028a314a45bf54308229e46a796661a70174d2fa389671f068f5d\nLocation: 65 FR 26479, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 1 ===\nPresidential Documents\n26479Federal Register / Vol. 65, No. 88 / Friday, May 5, 2000 / Presidential Documents\nExecutive Order 13154 of May 3, 2000\nEstablishing the Kosovo Campaign Medal\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, including my authority as Commander\nin Chief of the Armed Forces of the United States, it is hereby ordered\nas follows:\nSection 1. Kosovo Campaign Medal. There is hereby established the Kosovo\nCampaign Medal with suitable appurtenances. Except as limited in section\n2 of this order, and under uniform regulations to be prescribed by the\nSecretaries of the Military Departments and approved by the Secretary of\nDefense, or under regulations to be prescribed by the Secretary of Transpor-\ntation with respect to the Coast Guard when it is not operating as a service\nin the Navy, the Kosovo Campaign Medal shall be awarded to members\nof the Armed Forces of the United States who serve or have served in\nKosovo or contiguous waters or airspace, as defined by such regulations,\nafter March 24, 1999, and before a terminal date to be prescribed by the\nSecretary of Defense.\nSec. 2. Relationship to Other Awards. Notwithstanding section 3 of Executive\nOrder 10977 of December 4, 1961, establishing the Armed Forces Expedi-\ntionary Medal and section 3 of Executive Order 12985 of January 11, 1996,\nestablishing the Armed Forces Service Medal, any member who qualified\nfor those medals by reasons of service in Kosovo between March 24, 1999,\nand May 1, 2000, shall remain qualified for those medals. Upon application,\nany such member may be awarded the Kosovo Campaign Medal in lieu\nof the Armed Forces Expeditionary Medal or the Armed Forces Service\nMedal, but no person may be awarded more than one of these three medals\nby reason of service in Kosovo, and no person shall be entitled to more\nthan one award of the Kosovo Campaign Medal.\nSec. 3. Posthumous Award. The Kosovo Campaign Medal may be awarded\nposthumously to any person covered by and under regulations prescribed\nin accordance with the first section of this order.\nœ–\nTHE WHITE HOUSE,\nMay 3, 2000.\n[FR Doc. 00–11532\nFiled 5–4–00; 11:45 am]\nBilling code 3195–01–P\nVerDate 27<APR>2000 14:06 May 04, 2000 Jkt 190000 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\05MYE1.SGM pfrm03 PsN: 05MYE1"
     },
+    "ACTOR_TEXT:EO:13286@18570": {
+      "actor_id": "EO:13286",
+      "char_end": 21651,
+      "char_start": 18570,
+      "id": "ACTOR_TEXT:EO:13286@18570",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "(c) inserting ‘‘the Secretary of Homeland Security ’’ before ‘‘may’’ in section \n3(a); \n(d) inserting ‘‘the Secretary of Homeland Security’’ before ‘‘shall’’ in section \n3(b); \n(e) inserting ‘‘the Attorney General’’ before ‘‘shall’’ in section 3(c); \n(f) inserting ‘‘Secretary of Homeland Security or the ’’ before ‘‘Attorney \nGeneral’’ wherever it appears in section 4; \n(g) striking ‘‘The Attorney General ’s’’ in section 4(b) and inserting ‘‘Such’’ \nin lieu thereof; \n(h) striking ‘‘the Attorney General ’’ wherever it appears in the first two \nsentences of section 5(a) and inserting ‘‘the Secretary of Homeland Security \nand Attorney General’’ in lieu thereof; \n(i) striking ‘‘the responsibilities of the Attorney General ’’ in section 5(a) \nand inserting ‘‘their respective responsibilities’’ in lieu thereof; \n(j) inserting ‘‘Secretary of Homeland Security or the ’’ before ‘‘Attorney \nGeneral’’ wherever in appears in the third sentence of section 5(a); \nVerDate Jan<31>2003 23:17 Mar 04, 2003 Jkt 200001 PO 00000 Frm 00007 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MRE0.SGM 05MRE0\n=== PDF page 6 of 15 ===\n10624 Federal Register / Vol. 68, No. 43 / Wednesday, March 5, 2003 / Presidential Documents \n(k) inserting ‘‘Secretary of Homeland Security and the ’’ before ‘‘Attorney \nGeneral’’ in section 6; \n(l) striking ‘‘the Attorney General ’s’’ in section 6 and inserting ‘‘their \nrespective’’ in lieu thereof; and \n(m) inserting ‘‘Secretary of Homeland Security, the ’’ before ‘‘Attorney Gen-\neral’’ in section 7. \nSec. 20. Executive Order 12985 of January 11, 1996 ( ‘‘Establishing the Armed \nForces Service Medal ’’), is amended by striking ‘‘the Secretary of Transpor-\ntation’’ in section 2 and inserting ‘‘the Secretary of Homeland Security ’’ \nin lieu thereof. \nSec. 21. Executive Order 12982 of December 8, 1995 ( ‘‘Ordering the Selected \nReserve of the Armed Forces to Active Duty ’’), is amended by striking \n‘‘the Secretary of Transportation ’’ and inserting ‘‘the Secretary of Homeland \nSecurity’’ in lieu thereof. \nSec. 22. Executive Order 12978 of October 21, 1995 ( ‘‘Blocking Assets and \nProhibiting Transactions with Significant Narcotics Traffickers ’’), is amended \nby inserting ‘‘, the Secretary of Homeland Security, ’’ after ‘‘the Attorney \nGeneral’’ wherever it appears in sections 1 and 4. \nSec. 23. Executive Order 12977 of October 19, 1995 ( ‘‘Interagency Security \nCommittee’’), is amended by: \n(a) striking ‘‘the Administrator of General Services ( ‘‘Administrator’’)’’ in \nsection 1(a) and inserting ‘‘the Secretary of Homeland Security ( ‘‘Secretary’’)’’ \nin lieu thereof; \n(b) striking ‘‘and’’ after ‘‘(16) Central Intelligence Agency; ’’ in section \n1(b); \n(c) inserting ‘‘and (18) General Services Administration; ’’ after ‘‘(17) Office \nof Management and Budget;’’ in section 1(b); \n(d) striking section 1(c)(2) and redesignating sections 1(c)(3) and 1(c)(4) \nas sections 1(c)(2) and 1(c)(3), respectively; \n(e) striking ‘‘Administrator’’ wherever it appears in sections 2, 5(a)(3)(E), \n6(a), and 6(c), and inserting ‘‘Secretary’’ in lieu thereof; and \n"
+    },
     "ACTOR_TEXT:EO:13289": {
       "actor_id": "EO:13289",
       "char_end": 4606,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13289",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -1569,6 +1708,216 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-14/pdf/03-6445.pdf"
       },
       "text": "Instrument: EO:13289\nSource: https://www.govinfo.gov/content/pkg/FR-2003-03-14/pdf/03-6445.pdf\nSHA-256 of the downloaded file: 6670f509054733a97662c450aa98b59747e76b5653f4da0849f7260aa953419e\nLocation: 68 FR 12567, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n12567\nFederal Register \nVol. 68, No. 50\nFriday, March 14, 2003\nTitle 3— \nThe President\nExecutive Order 13289 of March 12, 2003\nEstablishing the Global War on Terrorism Medals \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including my authority as Commander \nin Chief of the Armed Forces of the United States, it is hereby ordered \nas follows: \nSection 1. Global War on Terrorism Expeditionary Medal. There is hereby \nestablished the Global War on Terrorism Expeditionary Medal with suitable \nappurtenances. Except as limited in section 3 of this order, and under \nuniform regulations to be prescribed by the Secretaries of the military depart-\nments and approved by the Secretary of Defense, or under regulations to \nbe prescribed by the Secretary of Homeland Security with respect to the \nCoast Guard when it is not operating as a service in the Navy, the Global \nWar on Terrorism Expeditionary Medal shall be awarded to members of \nthe Armed Forces of the United States who serve or have served in military \nexpeditions to combat terrorism, as defined by such regulations, on or after \nSeptember 11, 2001, and before a terminal date to be prescribed by the \nSecretary of Defense. \nSec. 2. Global War on Terrorism Service Medal. There is hereby established \nthe Global War on Terrorism Service Medal with suitable appurtenances. \nExcept as limited in section 3 of this order, and under uniform regulations \nto be prescribed by the Secretaries of the military departments and approved \nby the Secretary of Defense, or under regulations to be prescribed by the \nSecretary of Homeland Security with respect to the Coast Guard when it \nis not operating as a service in the Navy, the Global War on Terrorism \nService Medal shall be awarded to members of the Armed Forces of the \nUnited States who serve or have served in military operations to combat \nterrorism, as defined by such regulations, on or after September 11, 2001, \nand before a terminal date to be prescribed by the Secretary of Defense. \nSec. 3. Relationship to Other Awards. Notwithstanding section 3 of Executive \nOrder 10977 of December 4, 1961, establishing the Armed Forces Expedi-\ntionary Medal and section 3 of Executive Order 12985 of January 11, 1996, \nestablishing the Armed Forces Service Medal, any member who qualified \nfor those medals by reason of service in operations to combat terrorism \nbetween September 11, 2001, and a terminal date to be determined by \nthe Secretary of Defense, shall remain qualified for those medals. Upon \napplication, any such member may be awarded either the Global War on \nTerrorism Expeditionary Medal or the Global War on Terrorism Service \nMedal in lieu of the Armed Forces Expeditionary Medal or the Armed \nForces Service Medal, but no person may be awarded more than one of \nthese four medals by reason of service in the same approved Global War \non Terrorism expedition or operation to combat terrorism, and no person \nshall be entitled to more than one award of the Global War on Terrorism \nExpeditionary Medal or the Global War on Terrorism Service Medal. \nSec. 4. Posthumous Award. The Global War on Terrorism Expeditionary \nMedal and the Global War on Terrorism Service Medal may be awarded \nposthumously to any person covered by and under regulations prescribed \nin accordance with the first or second sections of this order.\nVerDate Jan<31>2003 16:31 Mar 13, 2003 Jkt 200001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\14MRE0.SGM 14MRE0\n=== PDF page 2 of 2 ===\n12568 Federal Register / Vol. 68, No. 50 / Friday, March 14, 2003 / Presidential Documents \nSec. 5. Nothing in this Executive Order shall be construed for any purpose \nas fixing, or authorizing the fixing of, the dates of initiation or termination \nof armed hostilities between the United States and terrorists of global reach.\nW\nTHE WHITE HOUSE, \nMarch 12, 2003. \n[FR Doc. 03–6445\nFiled 3–13–03; 12:27 pm] \nBilling code 3195–01–P \nVerDate Jan<31>2003 16:31 Mar 13, 2003 Jkt 200001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\14MRE0.SGM 14MRE0"
+    },
+    "ACTOR_TEXT:FRDOC:06-440@145733": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:06-440",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 148753,
+      "char_start": 145733,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:06-440@145733",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:06-440",
+        "page_or_item": "71 FR 3352; FR Doc. 06-440; Proposed Rule: Affirmative Action and Nondiscrimination Obligations of Contractors and Subcontractors Regarding Disabled Veterans, Recently Separated Veterans, Other Protected Veterans, and Armed Forces Service Medal Veterans",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "23cafc3238c031fc7b9ccaf20979346c04bf8bae24b02f9d0f95e24e29da2fec",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-06-440.txt",
+        "text_sha256": "23cafc3238c031fc7b9ccaf20979346c04bf8bae24b02f9d0f95e24e29da2fec",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2006/01/20/06-440.txt"
+      },
+      "text": "[Sample Invitation to Self-Identify]\n\n    1. This employer is a Government contractor subject to the \nVietnam Era Veterans' Readjustment Assistance Act of 1974, as \namended, which requires Government contractors to take affirmative \naction to employ and advance in employment qualified disabled \nveterans, recently separated veterans, other protected veterans, and \nArmed Forces service medal veterans.\n    2. [THE FOLLOWING TEXT SHOULD BE USED WHEN EXTENDING AN \nINVITATION TO RECENTLY SEPARATED VETERANS, OTHER PROTECTED VETERANS, \nAND ARMED FORCES SERVICE MEDAL VETERANS ONLY.] If you are a recently \nseparated veteran, other protected veteran, or Armed Forces service \nmedal veteran, we would like to include you under our affirmative \naction program. If you would like to be included under the \naffirmative action program, please tell us. The term ``recently \nseparated veteran'' refers to any veteran during the three-year \nperiod beginning on the date of such veteran's discharge or release \nfrom active duty. The term ``other protected veteran'' refers to a \nperson who served on active duty during a war or in a campaign or \nexpedition for which a campaign badge has been authorized, under \nlaws administered by the Department of Defense. The term ``Armed \nForces service medal veteran'' refers to a person who, while serving \non active duty in the Armed Forces, participated in a United States \nmilitary operation for which an Armed Forces service medal was \nawarded pursuant to Executive Order 12985 (62 Fed. Reg. 1209).\n    [THE FOLLOWING TEXT SHOULD BE USED WHEN EXTENDING AN INVITATION \nTO DISABLED VETERANS ONLY.] If you are a disabled veteran, we would \nlike to include you in our affirmative action program. If you would \nlike to be included under the affirmative action program, please \ntell us. This information will assist us in placing you in an \nappropriate position and in making accommodations for your \ndisability. The term ``disabled veteran'' refers to a veteran who is \nentitled to compensation (or who but for the receipt of military \nretired pay would be entitled to compensation) under laws \nadministered by the Secretary, or was discharged or released from \nactive duty because of a service-connected disability.\n    [THE FOLLOWING TEXT SHOULD BE USED WHEN EXTENDING AN INVITATION \nTO DISABLED VETERANS AS WELL AS RECENTLY SEPARATED VETERANS, OTHER \nPROTECTED VETERANS, AND ARMED FORCES SERVICE MEDAL VETERANS.] If you \nare a disabled veteran, recently separated veteran, other protected \nveteran, or Armed Forces service medal veteran, we would like to \ninclude you under our affirmative action program. If you would like \nto be included under the affirmative action program, please tell us. \n[The contractor should include here the definitions of ``disabled \nveteran,'' ``recently separated veteran,'' ``other protected \nveteran,'' and ``Armed Forces service medal veteran'' found in the \ntwo preceding paragraphs.]\n    3. You may inform us of your desire to benefit under the program \n"
+    },
+    "ACTOR_TEXT:FRDOC:06-440@17332": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:06-440",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 20404,
+      "char_start": 17332,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:06-440@17332",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:06-440",
+        "page_or_item": "71 FR 3352; FR Doc. 06-440; Proposed Rule: Affirmative Action and Nondiscrimination Obligations of Contractors and Subcontractors Regarding Disabled Veterans, Recently Separated Veterans, Other Protected Veterans, and Armed Forces Service Medal Veterans",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "23cafc3238c031fc7b9ccaf20979346c04bf8bae24b02f9d0f95e24e29da2fec",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-06-440.txt",
+        "text_sha256": "23cafc3238c031fc7b9ccaf20979346c04bf8bae24b02f9d0f95e24e29da2fec",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2006/01/20/06-440.txt"
+      },
+      "text": "functions of the position with or without reasonable accommodation for \nan individual with a disability.'' Accordingly, proposed paragraph (o) \nsets forth a definition for the term ``qualified disabled veteran'' \nthat incorporates the definition of ``qualified'' contained in the \nstatute.\n    The proposal incorporates the definitions for the terms ``essential \nfunctions,'' ``reasonable accommodation,'' and ``direct threat'' \ncontained in paragraphs (s), (t), and (w) of existing Sec.  60-250.2, \nexcept that the term ``special disabled veteran'' has been replaced \nwith ``disabled veteran.''\n    Proposed paragraph (q) sets forth the definition of ``recently \nseparated veteran.'' Under JVA, a recently separated veteran is ``any \nveteran during the three-year period beginning on the date of such \nveteran's discharge or release from active duty.'' The definition of \nrecently separated veteran in proposed paragraph (q) differs from the \ndefinition of the term found in existing Sec.  60-250.2(q). Under Sec.  \n60-250.2(q), a ``recently separated veteran'' is as veteran who has \nbeen discharged from military service for one year or less.\n    Proposed paragraph (r) sets forth the definition for ``Armed Forces \nservice medal veteran.'' JVA amended VEVRAA by adding as a new category \nof covered veterans--those ``veterans who, while serving on active duty \nin the Armed Forces, participated in a United States military operation \nfor which an Armed Forces service medal was awarded pursuant to \nExecutive Order 12985 (61 FR 1209).'' Armed Forces service medals are \nawarded to military personnel who participate in a United States \nmilitary operation deemed to be significant activity, and who encounter \nno foreign armed opposition or imminent hostile action. The definition \nof Armed Forces service medal veterans in the proposed rule is derived \nfrom the JVA.\n    Proposed paragraph (x) sets forth a definition of ``compliance \nevaluation.''\n    Proposed paragraph (y) incorporates the definition of the \n``employment service delivery system'' that was added to the \ndefinitional section of VEVRAA, 38 U.S.C. 4101(7), by Section 5(c)(1) \nof JVA. Under JVA, ``employment service delivery system'' means a \n``service delivery system at which or through which labor exchange \nservices, including employment, training, and placement services, are \noffered in accordance with the Wagner-Peyser Act.''\n\nSection 60-300.4 Coverage and Waivers\n\n    This section is identical to Sec.  60-250.4 in the existing VEVRAA \nregulations, except that proposed paragraphs (a)(1) and (a)(2) \nimplement the JVA amendments and state that contracts of $100,000 or \nmore are covered under VEVRAA.\n\nSection 60-300.5 Equal Opportunity Clause\n\n    Proposed paragraph (a) contains the equal opportunity (EO) clause \nthat must be included in all covered Government contracts and \nsubcontracts. The language of the EO clause in proposed paragraph (a) \nis identical to the language of the EO clause in existing Sec.  60-\n250.5(a), except that proposed paragraph (a) refers to the categories \n"
+    },
+    "ACTOR_TEXT:FRDOC:06-440@43002": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:06-440",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 46101,
+      "char_start": 43002,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:06-440@43002",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:06-440",
+        "page_or_item": "71 FR 3352; FR Doc. 06-440; Proposed Rule: Affirmative Action and Nondiscrimination Obligations of Contractors and Subcontractors Regarding Disabled Veterans, Recently Separated Veterans, Other Protected Veterans, and Armed Forces Service Medal Veterans",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "23cafc3238c031fc7b9ccaf20979346c04bf8bae24b02f9d0f95e24e29da2fec",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-06-440.txt",
+        "text_sha256": "23cafc3238c031fc7b9ccaf20979346c04bf8bae24b02f9d0f95e24e29da2fec",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2006/01/20/06-440.txt"
+      },
+      "text": "    (2) Under which any portion of the contractor's obligation under \nany one or more contracts is performed, undertaken, or assumed.\n    (m) Subcontractor means any person holding a subcontract of \n$100,000 or more and, for the purposes of subpart D of this part, \n``General Enforcement and Complaint Procedures,'' any person who has \nheld a subcontract subject to the Act.\n    (n) Disabled veteran means:\n    (1) A veteran who is entitled to compensation (or who but for the \nreceipt of military retired pay would be entitled to compensation) \nunder laws administered by the Secretary of Veterans Affairs, or\n    (2) A person who was discharged or released from active duty \nbecause of a service-connected disability.\n\n[[Page 3358]]\n\n    (o) Qualified disabled veteran means a disabled veteran who has the \nability to perform the essential functions of the employment position \nwith or without reasonable accommodation.\n    (p) Other protected veteran means a person who served on active \nduty during a war or in a campaign or expedition for which a campaign \nbadge has been authorized, under the laws administered by the \nDepartment of Defense.\n    (q) Recently separated veteran means any veteran during the three-\nyear period beginning on the date of such veteran's discharge or \nrelease from active duty.\n    (r) Armed Forces service medal veteran means any veteran who, while \nserving on active duty in the Armed Forces, participated in a United \nStates military operation for which an Armed Forces service medal was \nawarded pursuant to Executive Order 12985 (61 FR 1209).\n    (s) Essential functions--(1) In general. The term essential \nfunctions means fundamental job duties of the employment position the \ndisabled veteran holds or desires. The term essential functions does \nnot include the marginal functions of the position.\n    (2) A job function may be considered essential for any of several \nreasons, including but not limited to the following:\n    (i) The function may be essential because the reason the position \nexists is to perform that function;\n    (ii) The function may be essential because of the limited number of \nemployees available among whom the performance of that job function can \nbe distributed; and/or\n    (iii) The function may be highly specialized so that the incumbent \nin the position is hired for his or her expertise or ability to perform \nthe particular function.\n    (3) Evidence of whether a particular function is essential \nincludes, but is not limited to:\n    (i) The contractor's judgment as to which functions are essential;\n    (ii) Written job descriptions prepared before advertising or \ninterviewing applicants for the job;\n    (iii) The amount of time spent on the job performing the function;\n    (iv) The consequences of not requiring the incumbent to perform the \nfunction;\n    (v) The terms of a collective bargaining agreement;\n    (vi) The work experience of past incumbents in the job; and/or\n    (vii) The current work experience of incumbents in similar jobs.\n    (t) Reasonable accommodation--(1) The term reasonable accommodation \n"
+    },
+    "ACTOR_TEXT:FRDOC:06-440@6119": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:06-440",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 9219,
+      "char_start": 6119,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:06-440@6119",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:06-440",
+        "page_or_item": "71 FR 3352; FR Doc. 06-440; Proposed Rule: Affirmative Action and Nondiscrimination Obligations of Contractors and Subcontractors Regarding Disabled Veterans, Recently Separated Veterans, Other Protected Veterans, and Armed Forces Service Medal Veterans",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "23cafc3238c031fc7b9ccaf20979346c04bf8bae24b02f9d0f95e24e29da2fec",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-06-440.txt",
+        "text_sha256": "23cafc3238c031fc7b9ccaf20979346c04bf8bae24b02f9d0f95e24e29da2fec",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2006/01/20/06-440.txt"
+      },
+      "text": "duty during a war or in a campaign or expedition for which a campaign \nbadge has been authorized.''\n    In addition, prior to amendment, VEVRAA required that the Secretary \npromulgate regulations requiring contractors ``to list immediately with \nthe appropriate local employment service office all of its employment \nopenings except that the contractor may exclude openings for executive \nand top management positions, positions which are to be filled from \nwithin the contractor's organization, and positions lasting three days \nor less.'' The current regulation implementing VEVRAA at 41 CFR 60-\n250.5(a) permits contractors to satisfy their job listing obligations \nby listing employment openings either with the local employment service \noffice or with the U.S. Department of Labor's America's Job Bank.\n    The JVA amendments made significant changes to the affirmative \naction provisions of VEVRAA. First, section 2(b)(1) of JVA increased \nthe coverage threshold from a contract of $25,000 or more to a contract \nof $100,000 or more.\n    Second, the JVA amendments changed the categories of covered \nveterans under VEVRAA. JVA eliminated the category of Vietnam era \nveterans from coverage under VEVRAA. However, many Vietnam era veterans \nmay remain covered in other categories. JVA added as a new category of \ncovered veterans--those ``veterans who, while serving on active duty in \nthe Armed Forces, participated in a United States military operation \nfor which an Armed Forces service medal was awarded pursuant to \nExecutive Order 12985.'' JVA expanded the coverage of veterans with \ndisabilities. Prior to amendment by JVA, VEVRAA covered veterans rated \nas having 10% to 20% serious employment handicap or a disability rated \n30% or more by the Department of Veterans Affairs. The JVA amendments \nexpanded coverage to include all veterans with service-connected \ndisabilities. JVA also expanded the coverage of ``recently separated \nveterans'' from one to three years after discharge or release from \nactive duty.\n    Third, JVA modified the mandatory job-listing requirement for \ncovered contractors. Currently, the regulation at 41 CFR 60-250.5 \nallows contractors to satisfy their job listing obligations by listing \nemployment openings either\n\n[[Page 3353]]\n\nwith the appropriate local employment service office or with America's \nJob Bank. As a result of the JVA amendments, listing job openings \nsolely with America's Job Bank will no longer comply with the \nrequirements of VEVRAA. Section 2(b)(1) of JVA requires that the \nSecretary promulgate regulations that obligate each covered contractor \nto list all of its employment openings with ``the appropriate \nemployment service delivery system (as defined in section 4101(7) of \nthis title).'' Section 5(c)(1) of JVA defines the term ``employment \nservice delivery system'' as ``a service delivery system at which or \nthrough which labor exchange services, including employment, training, \nand placement services, are offered in accordance with the Wagner-\nPeyser Act.'' See 38 U.S.C. 4101(7). (The Wagner-Peyser Act established \n"
+    },
+    "ACTOR_TEXT:FRDOC:2014-22818@73324": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2014-22818",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 76394,
+      "char_start": 73324,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2014-22818@73324",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2014-22818",
+        "page_or_item": "79 FR 57463; FR Doc. 2014-22818; Rule: Annual Report From Federal Contractors",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "866048eba90d97c4df782171a8e786fd971448e2c76500ba1a71104a21c9568c",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2014-22818.txt",
+        "text_sha256": "866048eba90d97c4df782171a8e786fd971448e2c76500ba1a71104a21c9568c",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2014/09/25/2014-22818.txt"
+      },
+      "text": "of OFCCP has granted a waiver under 41 CFR 60-300.4(b)(1), or has \nconcurred in the granting of a waiver under 41 CFR 60-300.4(b)(3), from \ncompliance with all the terms of the equal opportunity clause for those \nestablishments not involved in Government contract work. Where OFCCP \ngrants only a partial waiver, compliance with these reporting \nrequirements regarding protected veterans will be required.\n    (d) 41 CFR part 60-300, subpart C and Appendix B to part 60-300 \nprovide guidance concerning the affirmative action obligations of \nFederal contractors toward applicants for employment who are protected \nveterans.\n\n\nSec.  61-300.2  What definitions apply to this part?\n\n    (a) For the purposes of this part, the definitions for the terms \n``contract,'' ``contractor'', ``Government contract,'' ``subcontract,'' \nand ``subcontractor'' are the same as those set forth in 41 CFR part \n60-300.\n    (b) For purposes of this part:\n    (1) Active duty wartime or campaign badge veteran means a veteran \nwho served on active duty in the U.S. military, ground, naval, or air \nservice during a war or in a campaign or expedition for which a \ncampaign badge has been authorized under the laws administered by the \nDepartment of Defense.\n    (2) Armed Forces service medal veteran means a veteran who, while \nserving on active duty in the U.S. military, ground, naval or air \nservice, participated in a United States military operation for which \nan Armed Forces service medal was awarded pursuant to Executive Order \n12985 (61 FR 1209, 3 CFR, 1996 Comp., p. 159).\n    (3) Disabled veteran means:\n    (i) A veteran of the U.S. military, ground, naval or air service \nwho is entitled to compensation (or who but for the receipt of military \nretired pay would be entitled to compensation) under laws administered \nby the Secretary of Veterans Affairs; or\n    (ii) A person who was discharged or released from active duty \nbecause of a service-connected disability.\n    (4) Electronic filing or ``e-filing'' means filing the VETS-4212 \nReport via the VETS web-based filing system. E-filing also includes \ntransmitting or delivering the VETS-4212 Report as an electronic data \nfile. Instructions for electronically filing the VETS-4212 Report are \nfound on VETS' Web site at: <a href=\"http://www.dol.gov/vets/vets100filing.htm\">http://www.dol.gov/vets/vets100filing.htm</a>.\n    (5) Employee means any individual on the payroll of an employer who \nis an employee for purposes of the employer's withholding of Social \nSecurity taxes except insurance sales agents who are considered to be \nemployees for such purposes solely because of the provisions of 26 \nU.S.C. 3121 (d)(3)(B) (the Internal Revenue Code). Leased employees are \nincluded in this definition. Leased employee means a permanent employee \nprovided by an employment agency for a fee to an outside company for \nwhich the employment agency handles all personnel tasks including \npayroll, staffing, benefit payments and compliance reporting. The \nemployment agency shall, therefore, include leased employees in its \n"
+    },
+    "ACTOR_TEXT:FRDOC:E8-10916@4158": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:E8-10916",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 7204,
+      "char_start": 4158,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:E8-10916@4158",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:E8-10916",
+        "page_or_item": "73 FR 28710; FR Doc. E8-10916; Rule: Annual Report From Federal Contractors",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "3f9df69f5acfd7c2f5362d7867c94162495776e561d61a0a622869883b9920d7",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-E8-10916.txt",
+        "text_sha256": "3f9df69f5acfd7c2f5362d7867c94162495776e561d61a0a622869883b9920d7",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2008/05/19/E8-10916.txt"
+      },
+      "text": "the Secretary on the number of employees in their workforces, by job \ncategory and hiring location, who are ``special disabled veterans, \nveterans of the Vietnam era, recently separated veterans, or other \nveterans who served on active duty during a war or in a campaign or \nexpedition for which a campaign badge has been authorized.'' In \naddition, prior to amendment by JVA, VEVRAA required contractors to \nreport on the number of employees hired during the period covered by \nthe report who belong to the specified categories of covered veterans.\n    The JVA amendments to VEVRAA made two changes to the reporting \nrequirements applicable to contracts entered into on or after December \n1, 2003. First, the JVA amendments increased from $25,000 to $100,000, \nthe dollar amount of the contract that subjects a Government contractor \nto the requirement to report the number of employees in their \nworkforces who are covered veterans.\n    Second, the JVA amendments changed the categories of covered \nveterans under VEVRAA and thus the categories of veterans that \ncontractors are required to track and report on annually. JVA \neliminated the coverage category of Vietnam era veterans. However, many \nVietnam era veterans may remain covered in other categories. JVA added \na new category of covered veterans--those ``veterans who, while serving \non active duty in the Armed Forces, participated in a United States \nmilitary operation for which an Armed Forces service medal was awarded \npursuant to Executive Order 12985.'' In addition, the JVA amendments \nexpanded the coverage of recently separated veterans from one year \nafter discharge or release from active duty, to three years. Finally, \nJVA expanded the coverage of veterans with disabilities. Prior to \namendment by JVA, VEVRAA covered veterans rated as having 10% to 20% \nserious employment handicap or a disability rated 30% or more by the \nDepartment of Veterans Affairs. As a result of the JVA amendments, all \nveterans who were discharged or released from active duty because of a \nservice-connected disability are covered under VEVRAA.\n    On August 8, 2006, VETS published a Notice of Proposed Rulemaking \n(NPRM), (71 FR 44945), to implement the changes made by JVA to the \nreporting requirements under VEVRAA. The NPRM proposed to adopt a new \nset of regulations that would be codified in a new 41 CFR part 61-300. \nThe NPRM also proposed to adopt a new form for reporting the \ninformation on veterans' employment required by the JVA amendments to \nVEVRAA and name it the ``VETS-100A Report.''\n    VETS received a total of six comments: Two from employer \nassociations whose members include Federal contractors, one from a \nmanagement consulting firm that specializes in human resources, one \nfrom a government agency, one from a human resources professional, and \none from an attorney. Generally, the comments discussed the confusion \nthat might result from VETS maintaining two sets of VEVRAA regulations \nand requested clarification of certain provisions. VETS reviewed and \n"
+    },
+    "ACTOR_TEXT:FRDOC:E8-10916@56869": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:E8-10916",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 59974,
+      "char_start": 56869,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:E8-10916@56869",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context_window",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:E8-10916",
+        "page_or_item": "73 FR 28710; FR Doc. E8-10916; Rule: Annual Report From Federal Contractors",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "3f9df69f5acfd7c2f5362d7867c94162495776e561d61a0a622869883b9920d7",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-E8-10916.txt",
+        "text_sha256": "3f9df69f5acfd7c2f5362d7867c94162495776e561d61a0a622869883b9920d7",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2008/05/19/E8-10916.txt"
+      },
+      "text": "service activities. Skill may be acquired through formal training, job-\nrelated training or direct experience. Examples of food service \npositions include: Cooks; bartenders; and other food service workers. \nExamples of personal service positions include: Medical assistants and \nother healthcare support positions; hairdressers; ushers; and \ntransportation attendants. Examples of cleaning service positions \ninclude: Cleaners; janitors; and porters. Examples of protective \nservice positions include: Transit and railroad police and fire \nfighters; guards; private detectives and investigators.\n    (4) Disabled veteran means:\n    (i) A veteran of the U.S. military, ground, naval or air service \nwho is entitled to compensation (or who but for the receipt of military \nretired pay would be entitled to compensation) under laws administered \nby the Secretary of Veterans Affairs, or\n    (ii) A person who was discharged or released from active duty \nbecause of a service-connected disability.\n    (5) Other protected veteran means a veteran who served on active \nduty in the U.S. military, ground, naval, or air service during a war \nor in a campaign or expedition for which a campaign badge has been \nauthorized under the laws administered by the Department of Defense.\n    (6) Armed forces service medal veteran means a veteran who, while \nserving on active duty in the U.S. military, ground, naval or air \nservice, participated in a United States military operation for which \nan Armed Forces service medal was awarded pursuant to Executive Order \n12985 (61 FR 1209, 3 CFR, 1996 Comp., p. 159).\n    (7) Recently separated veteran means a veteran during the three-\nyear period beginning on the date of such veteran's discharge or \nrelease from active duty in the U.S. military, ground, naval or air \nservice.\n    (8) Covered veteran means a veteran as defined in paragraphs (b)(4) \nthrough (b)(7) of this section.\n    (9) Qualified means, with respect to an employment position, having \nthe ability to perform the essential functions of the position with or \nwithout reasonable accommodation for an individual with a disability.\n    (10) OFCCP means the Office of Federal Contract Compliance \nPrograms, Employment Standards Administration, U.S. Department of \nLabor.\n    (11) VETS means the Office of the Assistant Secretary for Veterans' \nEmployment and Training Service, U.S. Department of Labor.\n    (12) States means each of the several States of the United States, \nthe District of Columbia, the Virgin Islands, the Commonwealth of \nPuerto Rico, Guam, American Samoa, the Commonwealth of the Northern \nMariana Islands, Wake Island, and the Trust Territories of the Pacific \nIslands.\n    (13) NAICS means the North American Industrial Classification \nSystem.\n    (14) Covered incumbent veteran means a veteran as defined in \nparagraphs (b)(4) through (b)(7) of this section who is employed by a \ncovered contractor.\n\n\nSec.  61-300.10  What reporting requirements apply to Federal \ncontractors and subcontractors, and what specific wording must the \nreporting requirements contract clause contain?\n"
     },
     "CLAUSES:EO:12985#sec1": {
       "char_end": 1404,
@@ -1680,6 +2029,250 @@
       },
       "text": "Sec. 4. Posthumous Provision. The medal may be awarded posthumously\nand, when so awarded, may be presented to such representative of the\ndeceased as may be deemed appropriate by the Secretary of Defense or\nthe Secretary of Transportation.\nœ–"
     },
+    "CURRENT:EO:12985#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 188,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 12985. Establishing Armed Forces Service Medal' [USLM note id ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "0b64e323c929c072ad08f230d6370a88b11457dbde43a232aefb0fc2ffac7eb8",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12985#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12985",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (10 U.S.C. subtitle A, pt. II, ch. 57 note)",
+      "machine_lead": true,
+      "mention_id": "usc:1395f41f3cca",
+      "snippet": "Ex. Ord. No. 12985. Establishing Armed Forces Service Medal | Ex. Ord. No. 12985, Jan. 11, 1996, 61 F.R. 1209, as amended by Ex. Ord. No. 13286, § 20, Feb. 28, 2003, 68 F.R. 10624, provided:",
+      "source": {
+        "page_or_item": "10 U.S.C. subtitle A, pt. II, ch. 57 note; note 'Ex. Ord. No. 12985. Establishing Armed Forces Service Medal' [USLM note id ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5]; usc10.xml (sha256 f6b1a4f0897cd19431abb8af52cf3aafb02cf6e1870f0f6b5d1992c37fe128b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5.txt",
+        "text_sha256": "0b64e323c929c072ad08f230d6370a88b11457dbde43a232aefb0fc2ffac7eb8",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 12985. Establishing Armed Forces Service Medal\nEx. Ord. No. 12985, Jan. 11, 1996, 61 F.R. 1209, as amended by Ex. Ord. No. 13286, § 20, Feb. 28, 2003, 68 F.R. 10624, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/ida8989a5c-3a6f-11f1-a58a-d8db54b14ab5.txt",
+      "text_sha256": "0b64e323c929c072ad08f230d6370a88b11457dbde43a232aefb0fc2ffac7eb8",
+      "where": "USC 10 U.S.C. subtitle A, pt. II, ch. 57 note"
+    },
+    "CURRENT:EO:12985#1": {
+      "basis_code": "statutory_text_reference",
+      "char_end": 2250,
+      "char_start": 1906,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "38 U.S.C. 4212; usc38.xml (sha256 812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6) in xml_uscAll@119-121.zip",
+        "sha256": "7f3e19e2bc0c6235ee919bd604b5224c8be4949596326bc57cc5fa830da93f1f",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:section:/us/usc/t38/s4212",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12985#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12985",
+      "legal_basis_candidate": "statute text names the order (38 U.S.C. 4212)",
+      "machine_lead": true,
+      "mention_id": "usc:466a6845d96f",
+      "snippet": "...serving on active duty in the Armed Forces, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order No. 12985 (61 Fed. Reg. 1209). (iv) Recently separated veterans. (B) The term “qualified”, with respect to an employment position, means having the ability to perform th...",
+      "source": {
+        "page_or_item": "38 U.S.C. 4212; usc38.xml (sha256 812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-sections/us_usc_t38_s4212-c5e6b02d85.txt",
+        "text_sha256": "7f3e19e2bc0c6235ee919bd604b5224c8be4949596326bc57cc5fa830da93f1f",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "serving on active duty in the Armed Forces, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order No. 12985 (61 Fed. Reg. 1209).\n(iv)\nRecently separated veterans.\n(B)\nThe term “qualified”, with respect to an employment position, means having the ability to perform th",
+      "text_path": "jobs/current-law/output/usc-sections/us_usc_t38_s4212-c5e6b02d85.txt",
+      "text_sha256": "7f3e19e2bc0c6235ee919bd604b5224c8be4949596326bc57cc5fa830da93f1f",
+      "where": "USC 38 U.S.C. 4212"
+    },
+    "CURRENT:EO:12985#2": {
+      "basis_code": "references_in_text_note",
+      "char_end": 464,
+      "char_start": 168,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "38 U.S.C. 4212 note; note 'References in Text' [USLM note id idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af]; usc38.xml (sha256 812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6) in xml_uscAll@119-121.zip",
+        "sha256": "17889c0eecdcb5aabe22ce2dcd95386dab7ac59e01b3b615b184bd3c4915fded",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:12985#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12985",
+      "legal_basis_candidate": "References-in-Text note says statute text refers to the order (38 U.S.C. 4212 note)",
+      "machine_lead": true,
+      "mention_id": "usc:053ad5b6044d",
+      "snippet": "...113–128, title V, §§ 506, 511(a), July 22, 2014, 128 Stat. 1703, 1705, effective July 1, 2015. For complete classification of this Act to the Code, see Tables. Executive Order No. 12985, referred to in subsec. (a)(3)(A)(iii), is set out as a note preceding section 1121 of Title 10, Armed Forces.",
+      "source": {
+        "page_or_item": "38 U.S.C. 4212 note; note 'References in Text' [USLM note id idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af]; usc38.xml (sha256 812bcb4dab911d8d4b503a86de786adf53c7e6815b2667fcfe1dad79b63658b6) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af.txt",
+        "text_sha256": "17889c0eecdcb5aabe22ce2dcd95386dab7ac59e01b3b615b184bd3c4915fded",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "113–128, title V, §§ 506, 511(a), July 22, 2014, 128 Stat. 1703, 1705, effective July 1, 2015. For complete classification of this Act to the Code, see Tables.\nExecutive Order No. 12985, referred to in subsec. (a)(3)(A)(iii), is set out as a note preceding section 1121 of Title 10, Armed Forces.",
+      "text_path": "jobs/current-law/output/usc-notes/idf8cc606d-ac5f-11f1-867f-e0c61e4ce6af.txt",
+      "text_sha256": "17889c0eecdcb5aabe22ce2dcd95386dab7ac59e01b3b615b184bd3c4915fded",
+      "where": "USC 38 U.S.C. 4212 note"
+    },
+    "CURRENT:EO:12985#3": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 947,
+      "char_start": 607,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "41 CFR 60-300.2",
+        "sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
+        "source_id": "cfr:t41:60-300.2",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-41/section-60-300.2"
+      },
+      "id": "CURRENT:EO:12985#3",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12985",
+      "legal_basis_candidate": "regulation text names the order (41 CFR 60-300.2)",
+      "machine_lead": true,
+      "mention_id": "ecfr:67acae20f619",
+      "snippet": "...U.S. military, ground, naval or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985 (61 FR 1209). (d) Compliance evaluation means any one or combination of actions OFCCP may take to examine a Federal contractor's or subcontractor's compliance...",
+      "source": {
+        "page_or_item": "41 CFR 60-300.2 (section_text; GovInfo eCFR XML title 41, amended through 2026-10-26; NODE 41:1.2.3.1.5.1.7.2)",
+        "sha256": "514067fa11ffaeacaf7375f2623b1426743a241625d06af9fb97419f9a50c2b8",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-60-300.2.txt",
+        "text_sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-41/ECFR-title41.xml"
+      },
+      "system": "ecfr",
+      "text": "U.S. military, ground, naval or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985 (61 FR 1209).\n(d) Compliance evaluation means any one or combination of actions OFCCP may take to examine a Federal contractor's or subcontractor's compliance",
+      "where": "CFR 41 CFR 60-300.2"
+    },
+    "CURRENT:EO:12985#4": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 1013,
+      "char_start": 672,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "41 CFR 61-300.2",
+        "sha256": "f772d42e04a845b5f5c626a11d583a22217b0a116ced48b0c553a6d790fced93",
+        "source_id": "cfr:t41:61-300.2",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-41/section-61-300.2"
+      },
+      "id": "CURRENT:EO:12985#4",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12985",
+      "legal_basis_candidate": "regulation text names the order (41 CFR 61-300.2)",
+      "machine_lead": true,
+      "mention_id": "ecfr:7daf20145b1b",
+      "snippet": "...U.S. military, ground, naval or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985 (61 FR 1209, 3 CFR, 1996 Comp., p. 159). (3) Disabled veteran means: (i) A veteran of the U.S. military, ground, naval or air service who is entitled to compen...",
+      "source": {
+        "page_or_item": "41 CFR 61-300.2 (section_text; GovInfo eCFR XML title 41, amended through 2026-10-26; NODE 41:1.2.4.1.2.0.7.2)",
+        "sha256": "514067fa11ffaeacaf7375f2623b1426743a241625d06af9fb97419f9a50c2b8",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-61-300.2.txt",
+        "text_sha256": "f772d42e04a845b5f5c626a11d583a22217b0a116ced48b0c553a6d790fced93",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-41/ECFR-title41.xml"
+      },
+      "system": "ecfr",
+      "text": "U.S. military, ground, naval or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985 (61 FR 1209, 3 CFR, 1996 Comp., p. 159).\n(3) Disabled veteran means:\n(i) A veteran of the U.S. military, ground, naval or air service who is entitled to compen",
+      "where": "CFR 41 CFR 61-300.2"
+    },
+    "CURRENT:EO:12985#5": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 772,
+      "char_start": 431,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-10-19)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "48 CFR 22.1301",
+        "sha256": "d0674162a8198f2a4e0e28f2f3f684c4addb2905dfedb55e69ef4ee8a3e80141",
+        "source_id": "cfr:t48:22.1301",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-48/section-22.1301"
+      },
+      "id": "CURRENT:EO:12985#5",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12985",
+      "legal_basis_candidate": "regulation text names the order (48 CFR 22.1301)",
+      "machine_lead": true,
+      "mention_id": "ecfr:c0fcc5335a17",
+      "snippet": "....S. military, ground, naval, or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985 (61 FR 1209). Disabled veteran means— (1) A veteran of the U.S. military, ground, naval, or air service, who is entitled to compensation (or who, but for the r...",
+      "source": {
+        "page_or_item": "48 CFR 22.1301 (section_text; GovInfo eCFR XML title 48, amended through 2026-10-19; NODE 48:1.0.1.4.21.13.1.2)",
+        "sha256": "8eb42da0918852727c14f4e213f3ef81e7c5787bc17da9981053db9c83779ec7",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t48-22.1301.txt",
+        "text_sha256": "d0674162a8198f2a4e0e28f2f3f684c4addb2905dfedb55e69ef4ee8a3e80141",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-48/ECFR-title48.xml"
+      },
+      "system": "ecfr",
+      "text": ".S. military, ground, naval, or air service, participated in a United States military operation for which an Armed Forces service medal was awarded pursuant to Executive Order 12985 (61 FR 1209).\nDisabled veteran means—\n(1) A veteran of the U.S. military, ground, naval, or air service, who is entitled to compensation (or who, but for the r",
+      "where": "CFR 48 CFR 22.1301"
+    },
+    "CURRENT:EO:12985#6": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 926,
+      "char_start": 585,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "5 CFR 307.102",
+        "sha256": "5b0ae60f1b18fafd3fd86cc3e31ea159ae8774ec3a6b0ee87563c97c2b063e1f",
+        "source_id": "cfr:t5:307.102",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-5/section-307.102"
+      },
+      "id": "CURRENT:EO:12985#6",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:12985",
+      "legal_basis_candidate": "regulation text names the order (5 CFR 307.102)",
+      "machine_lead": true,
+      "mention_id": "ecfr:4fc861350eb9",
+      "snippet": "...on active duty with the Armed Forces, participated in a United States military operation for which an Armed Forces Service Medal (AFSM) was awarded pursuant to Executive Order 12985 (61 FR 1209); and (4) Recently separated veterans. Disabled veteran, as defined in 38 U.S.C. 4211 means: (1) A veteran who is entitled to compensation (or who,...",
+      "source": {
+        "page_or_item": "5 CFR 307.102 (section_text; GovInfo eCFR XML title 5, amended through 2026-11-09; NODE 5:1.0.1.2.38.0.14.2)",
+        "sha256": "f14a4c5aaf05f35a1008bd2ac135d989c75f0d1d8aece111484171262cb32b26",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t5-307.102.txt",
+        "text_sha256": "5b0ae60f1b18fafd3fd86cc3e31ea159ae8774ec3a6b0ee87563c97c2b063e1f",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-5/ECFR-title5.xml"
+      },
+      "system": "ecfr",
+      "text": "on active duty with the Armed Forces, participated in a United States military operation for which an Armed Forces Service Medal (AFSM) was awarded pursuant to Executive Order 12985 (61 FR 1209); and\n(4) Recently separated veterans.\nDisabled veteran, as defined in 38 U.S.C. 4211 means:\n(1) A veteran who is entitled to compensation (or who,",
+      "where": "CFR 5 CFR 307.102"
+    },
     "ORIGINAL:EO:12985": {
       "acceptable_as_original": true,
       "actor_id": "EO:12985",
@@ -1704,257 +2297,9 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-1996-01-18/pdf/96-622.pdf"
       },
       "text": "Instrument: EO:12985\nSource: https://www.govinfo.gov/content/pkg/FR-1996-01-18/pdf/96-622.pdf\nSHA-256 of the downloaded file: eece26bfc0809ebfef4b097a78abfcfe4e59788c977ae20b07ab24ab82428023\nLocation: 61 FR 1209, PDF pages 1-1 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 1 ===\nPresidential Documents\n1209Federal Register / Vol. 61, No. 12 / Thursday, January 18, 1996 / Presidential Documents\nExecutive Order 12985 of January 11, 1996\nEstablishing the Armed Forces Service Medal\nBy the authority vested in me as President by the Constitution and the\nlaws of the United States of America, including my authority as Commander\nin Chief of the Armed Forces of the United States, it is hereby ordered\nas follows:\nSection 1. Establishment. There is hereby established the Armed Forces\nService Medal with accompanying ribbons and appurtenances, for award\nto members of the Armed Forces of the United States who, on or after\nJune 1, 1992, in the opinion of the Joint Chiefs of Staff: (a) Participate,\nor have participated, as members of United States military units in a United\nStates military operation in which personnel of any Armed Force participate\nthat is deemed to be significant activity; and\n(b) Encounter no foreign armed opposition or imminent hostile action.\nSec. 2. Approval and Award. The medal, with ribbons and appurtenances,\nshall be of an appropriate design approved by the Secretary of Defense\nand shall be awarded by the Secretary of Defense and the Secretary of\nTransportation with respect to the Coast Guard when it is not operating\nas a service in the Navy, under uniform regulations, as prescribed by the\nSecretary of Defense. The regulations shall place the Armed Forces Service\nMedal in an order of precedence immediately before the Humanitarian Serv-\nice Medal.\nSec. 3. Criteria. The medal shall be awarded only for operations for which\nno other United States service medal is approved. For operations in which\npersonnel of only one Military Department or the Coast Guard participate,\nthe medal shall be awarded only if there is no other suitable award available\nto the department or the Coast Guard. No more than one medal shall be\nawarded to any one person, but for each succeeding operation justifying\nsuch award a suitable device may be awarded to be worn on the medal\nor ribbon as prescribed by appropriate regulations.\nSec. 4. Posthumous Provision. The medal may be awarded posthumously\nand, when so awarded, may be presented to such representative of the\ndeceased as may be deemed appropriate by the Secretary of Defense or\nthe Secretary of Transportation.\nœ–\nTHE WHITE HOUSE,\nJanuary 11, 1996.\n[FR Doc. 96–622\nFiled 1–17–96; 8:45 am]\nBilling code 3195–01–P"
-    },
-    "TERM:EO:12985:699bbba8055b302c@f772d42e04a845b5": {
-      "actor_id": "EO:12985",
-      "char_end": 4044,
-      "char_start": 3687,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12985:699bbba8055b302c@f772d42e04a845b5",
-      "instrument_id": "EO:12985",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12985#i-6",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12985",
-        "page_or_item": "41 CFR 61-300.2",
-        "requires_page_check": false,
-        "sha256": "f772d42e04a845b5f5c626a11d583a22217b0a116ced48b0c553a6d790fced93",
-        "signing_date": "1996-01-11",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-61-300.2.txt",
-        "text_sha256": "f772d42e04a845b5f5c626a11d583a22217b0a116ced48b0c553a6d790fced93",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-41/section-61-300.2"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "For locations involving construction, transportation, communications, electric, gas, and sanitary services, oil and gas fields, and similar types of physically dispersed industrial activities, however, it is not necessary to list separately each individual site, project, field, line, etc., unless it is treated by the contractor as a separate legal entity."
-    },
-    "TERM:EO:12985:92fdb53d28f18357@3f17f946d708a830": {
-      "actor_id": "EO:12985",
-      "char_end": 14709,
-      "char_start": 14477,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12985:92fdb53d28f18357@3f17f946d708a830",
-      "instrument_id": "EO:12985",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12985#i-iii-dup4",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12985",
-        "page_or_item": "41 CFR 60-300.2",
-        "requires_page_check": false,
-        "sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "signing_date": "1996-01-11",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-60-300.2.txt",
-        "text_sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-41/section-60-300.2"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(aa) Subcontractor means any person holding a subcontract of $200,000 or more and, for the purposes of subpart D of this part, “General Enforcement and Complaint Procedures,” any person who has held a subcontract subject to the Act."
-    },
-    "TERM:EO:12985:9de505cf4085b37f@3f17f946d708a830": {
-      "actor_id": "EO:12985",
-      "char_end": 12177,
-      "char_start": 11971,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12985:9de505cf4085b37f@3f17f946d708a830",
-      "instrument_id": "EO:12985",
-      "kind": "until_event",
-      "mechanism": "own_terms_until_event",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12985#i-3-dup3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12985",
-        "page_or_item": "41 CFR 60-300.2",
-        "requires_page_check": false,
-        "sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "signing_date": "1996-01-11",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-60-300.2.txt",
-        "text_sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-41/section-60-300.2"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "Contractors must engage in the interactive process because, until they have done so, they may be unable to determine whether a reasonable accommodation exists that will result in the person being qualified."
-    },
-    "TERM:EO:12985:af3186008c274b2c@3f17f946d708a830": {
-      "actor_id": "EO:12985",
-      "char_end": 1181,
-      "char_start": 1056,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12985:af3186008c274b2c@3f17f946d708a830",
-      "instrument_id": "EO:12985",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12985#f",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12985",
-        "page_or_item": "41 CFR 60-300.2",
-        "requires_page_check": false,
-        "sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "signing_date": "1996-01-11",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-60-300.2.txt",
-        "text_sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-41/section-60-300.2"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(f) Contractor means, unless otherwise indicated, a prime contractor or subcontractor holding a contract of $200,000 or more."
-    },
-    "TERM:EO:12985:ce31913383d67a21@3f17f946d708a830": {
-      "actor_id": "EO:12985",
-      "char_end": 6492,
-      "char_start": 6194,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12985:ce31913383d67a21@3f17f946d708a830",
-      "instrument_id": "EO:12985",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12985#n-6",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12985",
-        "page_or_item": "41 CFR 60-300.2",
-        "requires_page_check": false,
-        "sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "signing_date": "1996-01-11",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-60-300.2.txt",
-        "text_sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-41/section-60-300.2"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(6) Personal property, as used in the definition of Government contract and subcontract of this section, includes supplies and contracts for the use of real property (such as lease arrangements), unless the contract for the use of real property itself constitutes real property (such as easements)."
-    },
-    "TERM:EO:12985:d57d3b0cc891d0cf@3f17f946d708a830": {
-      "actor_id": "EO:12985",
-      "char_end": 8672,
-      "char_start": 8434,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12985:d57d3b0cc891d0cf@3f17f946d708a830",
-      "instrument_id": "EO:12985",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12985#p",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12985",
-        "page_or_item": "41 CFR 60-300.2",
-        "requires_page_check": false,
-        "sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "signing_date": "1996-01-11",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-60-300.2.txt",
-        "text_sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-41/section-60-300.2"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(p) Prime contractor means any person holding a contract of $200,000 or more, and, for the purposes of subpart D of this part, “General Enforcement and Complaint Procedures,” includes any person who has held a contract subject to the Act."
-    },
-    "TERM:EO:12985:dcce910a2c072a44@3f17f946d708a830": {
-      "actor_id": "EO:12985",
-      "char_end": 7764,
-      "char_start": 7432,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12985:dcce910a2c072a44@3f17f946d708a830",
-      "instrument_id": "EO:12985",
-      "kind": "fixed_term",
-      "mechanism": "own_terms_fixed_term",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12985#i-dup5",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12985",
-        "page_or_item": "41 CFR 60-300.2",
-        "requires_page_check": false,
-        "sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "signing_date": "1996-01-11",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-60-300.2.txt",
-        "text_sha256": "3f17f946d708a830761cf9da331fa59301034c8c1e1d97ef1ec127ddf7b8d0dd",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-41/section-60-300.2"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "(i) Served on active duty for a period of more than 180 days, and was discharged or released therefrom with other than a dishonorable discharge, if any part of such active duty occurred:\n(A) In the Republic of Vietnam between February 28, 1961, and May 7, 1975; or\n(B) Between August 5, 1964, and May 7, 1975, in all other cases; or"
-    },
-    "TERM:EO:12985:e4318e74d4b9fb74@f772d42e04a845b5": {
-      "actor_id": "EO:12985",
-      "char_end": 3126,
-      "char_start": 2323,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:12985:e4318e74d4b9fb74@f772d42e04a845b5",
-      "instrument_id": "EO:12985",
-      "kind": "temporary_body",
-      "mechanism": "own_terms_temporary_body",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:12985#i-5",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:12985",
-        "page_or_item": "41 CFR 61-300.2",
-        "requires_page_check": false,
-        "sha256": "f772d42e04a845b5f5c626a11d583a22217b0a116ced48b0c553a6d790fced93",
-        "signing_date": "1996-01-11",
-        "text_path": "jobs/theophilus-sources/output/texts/cfr-t41-61-300.2.txt",
-        "text_sha256": "f772d42e04a845b5f5c626a11d583a22217b0a116ced48b0c553a6d790fced93",
-        "url": "https://www.ecfr.gov/on/2026-11-05/title-41/section-61-300.2"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "The term employee shall not include persons who are hired on a casual basis for a specified time, or for the duration of a specified job (for example, persons at a construction site whose employment relationship is expected to terminate with the end of the employee's work at the site); persons temporarily employed in any industry other than construction, such as temporary office workers, mariners, stevedores, lumber yard workers, etc., who are hired through a hiring hall or other referral arrangement, through an employee contractor or agent, or by some individual hiring arrangement, or persons (except leased employees) on the payroll of an employment agency who are referred by such agency for work to be performed on the premises of another employer under that employer's direction and control."
     }
   },
-  "fingerprint": "cfc6b0ebb3da757c55b86cf6cb4690866e3c237a01658d44ae6f453a0ac1ad04",
+  "fingerprint": "f889ee256ceeb0734a41c096f3d178913266029e2aa4f812d9c3104b2bb8dbfa",
   "instrument_id": "EO:12985",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2038,23 +2383,25 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 10,
+      "machine_fragment_items_for_this_order_all_systems": 10,
+      "machine_hits_for_this_order": 4,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
+      "machine_fragment_items_for_this_order_all_systems": 10,
       "machine_hits_for_this_order": 10,
       "scope_note": "",
       "search_id": "current-law:ecfr"
@@ -2062,8 +2409,8 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2077,29 +2424,19 @@
     "Current-law lead lacks an original-source sha256.",
     "Large actor context must be read at actor-texts/EO_13286.json before deciding scope/savings.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
-    "cited by number, no change provision located: EO:11521",
     "target provision not located: EO:13154",
     "target provision not located: EO:13289"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:12985",
-  "own_terms": [
-    "TERM:EO:12985:af3186008c274b2c@3f17f946d708a830",
-    "TERM:EO:12985:ce31913383d67a21@3f17f946d708a830",
-    "TERM:EO:12985:dcce910a2c072a44@3f17f946d708a830",
-    "TERM:EO:12985:d57d3b0cc891d0cf@3f17f946d708a830",
-    "TERM:EO:12985:9de505cf4085b37f@3f17f946d708a830",
-    "TERM:EO:12985:92fdb53d28f18357@3f17f946d708a830",
-    "TERM:EO:12985:e4318e74d4b9fb74@f772d42e04a845b5",
-    "TERM:EO:12985:699bbba8055b302c@f772d42e04a845b5"
-  ],
+  "own_terms": [],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "b9596517febe9cc135e193d5b2f864d1749dc4dc35a8b6f16b6e5e0b073dd2c2",
+    "fingerprint": "29fd93899f5b60dd0f49d37bd3e3db98accb615303d690a0fee8f633ab6a1d44",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_12985.json",
-    "history_sha256": "4680396cbf045f53fed9be52caeb7464eb0213ca19820a703464826976f5a2ed",
+    "history_sha256": "075745c0c1634305541390d45886bc24dea766a1dcba0bd5d58af174f45ee3c8",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

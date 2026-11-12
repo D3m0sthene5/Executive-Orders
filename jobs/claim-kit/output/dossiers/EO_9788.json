@@ -57,7 +57,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:9788",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:9788"
@@ -209,11 +209,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 198,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4306 note; note 'Ex. Ord. No. 9788. Termination of Office of World War II Alien Property Custodian and Tran' [USLM note id id9942b3a4-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "4bbebf0ddb9c602ceaae929bbf0752e877f4d69e8604177674d4320a9d36c9f0",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id9942b3a4-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9788",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (50 U.S.C. 4306 note)",
@@ -223,28 +232,32 @@
       "source": {
         "page_or_item": "50 U.S.C. 4306 note; note 'Ex. Ord. No. 9788. Termination of Office of World War II Alien Property Custodian and Tran' [USLM note id id9942b3a4-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id9942b3a4-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "4bbebf0ddb9c602ceaae929bbf0752e877f4d69e8604177674d4320a9d36c9f0",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id9942b3a4-b817-11f1-b12d-8c5a06520415",
+      "text": "Ex. Ord. No. 9788. Termination of Office of World War II Alien Property Custodian and Transference of Its Functions to the Attorney General\nEx. Ord. No. 9788, Oct. 14, 1946, 11 F.R. 11981, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id9942b3a4-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "4bbebf0ddb9c602ceaae929bbf0752e877f4d69e8604177674d4320a9d36c9f0",
       "where": "USC 50 U.S.C. 4306 note"
     },
     {
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9788",
       "legal_basis_candidate": "regulation text names the order (26 CFR 303.1)",
       "machine_lead": true,
-      "mention_id": "ecfr:41d9a3de5d34",
+      "mention_id": "ecfr:ed6b8bf70c75",
       "snippet": "...t of the Custodian. (e) Any tax exemption accorded to the Alien Property Custodian by specific provision of existing law shall not be affected by this section. Executive Order 9788, approved October 14, 1946 (3 CFR 1943-1948 Comp., p. 575) By virtue of the authority vested in me by the Constitution and statutes, including the Trading With...",
       "source": {
-        "page_or_item": "26 CFR 303.1 (section_text; GovInfo eCFR XML title 26, amended through 2026-10-26; NODE 26:20.0.1.1.4.0.70.1)",
-        "sha256": "185c000eba5ef0cfcc21381e147034c76ae9cf3da197af040b5c88b24f116eb7",
+        "page_or_item": "26 CFR 303.1 (section_text; GovInfo eCFR XML title 26, amended through 2026-11-09; NODE 26:20.0.1.1.4.0.70.1)",
+        "sha256": "f1175316e300c4bc925cc1d3fd9e1bacc78eff34b6d1268e0e2b4c49f7ab9b4a",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-26/ECFR-title26.xml"
       },
       "system": "ecfr",
@@ -254,18 +267,18 @@
       "basis_code": "cfr_text_reference",
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
-      "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
       "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
       "fragment_kind": "current_predicate_candidates",
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:9788",
       "legal_basis_candidate": "regulation text names the order (26 CFR 303.1-1)",
       "machine_lead": true,
-      "mention_id": "ecfr:1d1ab16cc56e",
+      "mention_id": "ecfr:02b956b3b177",
       "snippet": "...4. (b) Attorney General. The term “Attorney General” includes the Alien Property Custodian whose functions were transferred to the Attorney General pursuant to Executive Order 9788 (3 CFR 1943-1948 Comp., p. 575), and any other officers and agencies to which such functions are transferred or assigned pursuant to such Executive Order, or o...",
       "source": {
-        "page_or_item": "26 CFR 303.1-1 (section_text; GovInfo eCFR XML title 26, amended through 2026-10-26; NODE 26:20.0.1.1.4.0.70.2)",
-        "sha256": "185c000eba5ef0cfcc21381e147034c76ae9cf3da197af040b5c88b24f116eb7",
+        "page_or_item": "26 CFR 303.1-1 (section_text; GovInfo eCFR XML title 26, amended through 2026-11-09; NODE 26:20.0.1.1.4.0.70.2)",
+        "sha256": "f1175316e300c4bc925cc1d3fd9e1bacc78eff34b6d1268e0e2b4c49f7ab9b4a",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-26/ECFR-title26.xml"
       },
       "system": "ecfr",
@@ -334,10 +347,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:41d9a3de5d34",
+        "mention_id": "ecfr:ed6b8bf70c75",
         "snippet": "...t of the Custodian. (e) Any tax exemption accorded to the Alien Property Custodian by specific provision of existing law shall not be affected by this section. Executive Order 9788, approved October 14, 1946 (3 CFR 1943-1948 Comp., p. 575) By virtue of the authority vested in me by the Constituti ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -347,8 +360,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (26 CFR 303.1)",
         "source": {
-          "page_or_item": "26 CFR 303.1 (section_text; GovInfo eCFR XML title 26, amended through 2026-10-26; NODE 26:20.0.1.1.4.0.70.1)",
-          "sha256": "185c000eba5ef0cfcc21381e147034c76ae9cf3da197af040b5c88b24f116eb7",
+          "page_or_item": "26 CFR 303.1 (section_text; GovInfo eCFR XML title 26, amended through 2026-11-09; NODE 26:20.0.1.1.4.0.70.1)",
+          "sha256": "f1175316e300c4bc925cc1d3fd9e1bacc78eff34b6d1268e0e2b4c49f7ab9b4a",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-26/ECFR-title26.xml"
         }
       }
@@ -362,10 +375,10 @@
         "basis_code": "cfr_text_reference",
         "caution": "a mention in current law is a LEAD, not by itself a legal basis; read the provision to see whether it keeps the order operating",
         "currency_code": "ecfr_bulk_no_change_after_cutoff",
-        "edition": "eCFR (GovInfo bulk, amended through 2026-10-26)",
+        "edition": "eCFR (GovInfo bulk, amended through 2026-11-09)",
         "from": "current-law@jobs/current-law/output",
         "from_job": "current-law",
-        "mention_id": "ecfr:1d1ab16cc56e",
+        "mention_id": "ecfr:02b956b3b177",
         "snippet": "...4. (b) Attorney General. The term “Attorney General” includes the Alien Property Custodian whose functions were transferred to the Attorney General pursuant to Executive Order 9788 (3 CFR 1943-1948 Comp., p. 575), and any other officers and agencies to which such functions are transferred or assi ...",
         "snippet_truncated": true,
         "system": "ecfr",
@@ -375,8 +388,8 @@
         "checked_through": "2026-10-14",
         "legal_basis": "regulation text names the order (26 CFR 303.1-1)",
         "source": {
-          "page_or_item": "26 CFR 303.1-1 (section_text; GovInfo eCFR XML title 26, amended through 2026-10-26; NODE 26:20.0.1.1.4.0.70.2)",
-          "sha256": "185c000eba5ef0cfcc21381e147034c76ae9cf3da197af040b5c88b24f116eb7",
+          "page_or_item": "26 CFR 303.1-1 (section_text; GovInfo eCFR XML title 26, amended through 2026-11-09; NODE 26:20.0.1.1.4.0.70.2)",
+          "sha256": "f1175316e300c4bc925cc1d3fd9e1bacc78eff34b6d1268e0e2b4c49f7ab9b4a",
           "url": "https://www.govinfo.gov/bulkdata/ECFR/title-26/ECFR-title26.xml"
         }
       }
@@ -425,7 +438,7 @@
         "snippet": "Ex. Ord. No. 9788. Termination of Office of World War II Alien Property Custodian and Transference of Its Functions to the Attorney General | Ex. Ord. No. 9788, Oct. 14, 1946, 11 F.R. 11981, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id9942b3a4-b817-11f1-b12d-8c5a06520415",
+        "text_path": "usc-notes/id9942b3a4-b817-11f1-b12d-8c5a06520415.txt",
         "where": "USC 50 U.S.C. 4306 note"
       },
       "proposal": {
@@ -1832,6 +1845,42 @@
       },
       "text": "By virtue of the authority vested in \nme by the Constitution and statutes, in­\ncluding the Trading with the Enemy Act \nof October 6, 1917, 40 Stat. 411, as \namended, and the First War Powers Act, \n1941, 55 Stat. 838, as amended, and as \nPresident of the United States, it is \nhereby ordered, in the interest of the \ninternal management of the Govern­\nment, as follows:"
     },
+    "CURRENT:EO:9788#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 198,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "50 U.S.C. 4306 note; note 'Ex. Ord. No. 9788. Termination of Office of World War II Alien Property Custodian and Tran' [USLM note id id9942b3a4-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "4bbebf0ddb9c602ceaae929bbf0752e877f4d69e8604177674d4320a9d36c9f0",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id9942b3a4-b817-11f1-b12d-8c5a06520415",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:9788#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:9788",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (50 U.S.C. 4306 note)",
+      "machine_lead": true,
+      "mention_id": "usc:e4c7b49bcc8a",
+      "snippet": "Ex. Ord. No. 9788. Termination of Office of World War II Alien Property Custodian and Transference of Its Functions to the Attorney General | Ex. Ord. No. 9788, Oct. 14, 1946, 11 F.R. 11981, provided:",
+      "source": {
+        "page_or_item": "50 U.S.C. 4306 note; note 'Ex. Ord. No. 9788. Termination of Office of World War II Alien Property Custodian and Tran' [USLM note id id9942b3a4-b817-11f1-b12d-8c5a06520415]; usc50.xml (sha256 1f9d347c756cefa7b33d570016d6614babd72470c4b8113aad1f0a64431e93ff) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id9942b3a4-b817-11f1-b12d-8c5a06520415.txt",
+        "text_sha256": "4bbebf0ddb9c602ceaae929bbf0752e877f4d69e8604177674d4320a9d36c9f0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 9788. Termination of Office of World War II Alien Property Custodian and Transference of Its Functions to the Attorney General\nEx. Ord. No. 9788, Oct. 14, 1946, 11 F.R. 11981, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id9942b3a4-b817-11f1-b12d-8c5a06520415.txt",
+      "text_sha256": "4bbebf0ddb9c602ceaae929bbf0752e877f4d69e8604177674d4320a9d36c9f0",
+      "where": "USC 50 U.S.C. 4306 note"
+    },
     "ORIGINAL:EO:9788": {
       "acceptable_as_original": true,
       "actor_id": "EO:9788",
@@ -1952,7 +2001,7 @@
       "text": "The Office of Alien Property Cus­\ntodian in the Office for Emergency Man­\nagement of the Executive Office of the \nPresident, established by Executive Or- ~ \nder No. 9095 of March 11,1942, is hereby \nterminated; and all authority, rights, \nprivileges, powers, duties, and functions \nvested in such Office or in the Alien Prop­\nerty Custodian or transferred or dele­\ngated thereto are hereby vested in or \ntransferred or delegated to the Attorney \nGeneral, as the case may be, and shall \nbe administered by him or under his \ndirection and control by such officers and \nagencies of the Department of Justice as \nhe may designate."
     }
   },
-  "fingerprint": "bcf238df91aae204e1a321c19939a6b650615a29c4fd13e8b1e146ad0363321e",
+  "fingerprint": "75d40c3a9bc2463fed52140814418843a169fc4a5b852d952654f110f86a5161",
   "instrument_id": "EO:9788",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -2058,32 +2107,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 5,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 5,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -2107,12 +2158,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "7fedee15a346ec3902c8b9ee905222d30633cdbcad2ea2be0a29f36901d9d4e0",
+    "fingerprint": "46f3f55c5c43543495aad89ad09fdf580b7131be52fd997df19ef600b9bd2d96",
     "flags": [
       "POST_SNAPSHOT_END_BASIS_NOT_LOCATED"
     ],
     "history_path": "jobs/status-history/output/histories/EO_9788.json",
-    "history_sha256": "849b55b1e610b5ba176f9c35c3d21f35153199754eeb12138a769de22135951b",
+    "history_sha256": "66ec187a2593d1ad67b8b4d77175a1ed65e1e6131b1f5ecd982b14c54dde7f25",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -10,8 +10,20 @@
     },
     {
       "actor_id": "EO:13286",
+      "evidence_ids": [
+        "ACTOR_TEXT:EO:13286@867"
+      ],
+      "full_text_chars": 55802,
       "overflow": "actor-texts/EO_13286.json",
-      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df"
+      "prints_number_lexical": true,
+      "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+      "window_bytes": 4228,
+      "windows_omitted": 0
+    },
+    {
+      "actor_id": "FRDOC:03-3254",
+      "evidence_id": "ACTOR_TEXT:FRDOC:03-3254",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -302,7 +314,7 @@
         "verb": "revoke"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13260",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13260"
@@ -740,11 +752,20 @@
   "current_law_leads": [
     {
       "basis_code": "cfr_text_reference",
+      "char_end": 416,
+      "char_start": 91,
       "checked_through": "2026-10-14",
       "currency_code": "ecfr_bulk_no_change_after_cutoff",
       "edition": "eCFR (GovInfo bulk, amended through 2026-08-17)",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "32 CFR 245.9",
+        "sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
+        "source_id": "cfr:t32:245.9",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-32/section-245.9"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13260",
       "legal_basis_candidate": "regulation text names the order (32 CFR 245.9)",
@@ -754,9 +775,12 @@
       "source": {
         "page_or_item": "32 CFR 245.9 (section_text; GovInfo eCFR XML title 32, amended through 2026-08-17; NODE 32:2.1.1.1.41.3.1.2)",
         "sha256": "981e75d8686b9b4ea73e7fff568a3cac7a56bfbc7752b9314b4b9d71caf5a877",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t32-245.9.txt",
+        "text_sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
         "url": "https://www.govinfo.gov/bulkdata/ECFR/title-32/ECFR-title32.xml"
       },
       "system": "ecfr",
+      "text": "unctions to Federal departments and agencies.\n(b) E.O. 13074, Amendment to E.O. 12656, February 9, 1998.\n(c) E.O. 13286, Amendment of E.O. 13276, 13274, 13271, 13260, 13257, 13254, and 13231, and Other Actions, in Connection With the Transfer of Certain Functions to the Secretary of Homeland Security, February 28, 2003.\n(d)",
       "where": "CFR 32 CFR 245.9"
     },
     {
@@ -2135,6 +2159,57 @@
       },
       "text": "Instrument: EO:13283\nSource: https://www.govinfo.gov/content/pkg/FR-2003-01-24/pdf/03-1798.pdf\nSHA-256 of the downloaded file: de13650396323007d117db3d19aac2a843f4a9bedb7569816f6919b178bfb232\nLocation: 68 FR 3371, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n3371\nFederal Register \nVol. 68, No. 16\nFriday, January 24, 2003\nTitle 3— \nThe President \nExecutive Order 13283 of January 21, 2003\nEstablishing the Office of Global Communications \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, it is hereby ordered as follows: \nSection 1. Establishment of the Office of Global Communications. There \nis hereby established within the White House Office an Office of Global \nCommunications (the ‘‘Office’’) to be headed by a Deputy Assistant to the \nPresident for Global Communications. \nSec. 2. Mission. The mission of the Office shall be to advise the President, \nthe heads of appropriate offices within the Executive Office of the President, \nand the heads of executive departments and agencies (agencies) on utilization \nof the most effective means for the United States Government to ensure \nconsistency in messages that will promote the interests of the United States \nabroad, prevent misunderstanding, build support for and among coalition \npartners of the United States, and inform international audiences. The Office \nshall provide such advice on activities in which the role of the United \nStates Government is apparent or publicly acknowledged. \nSec. 3. Functions. In carrying out its mission: \n(a) The Office shall assess the methods and strategies used by the United \nStates Government (other than special activities as defined in Executive \nOrder 12333 of December 4, 1981) to deliver information to audiences abroad. \nThe Office shall coordinate the formulation among appropriate agencies \nof messages that reflect the strategic communications framework and prior-\nities of the United States, and shall facilitate the development of a strategy \namong the appropriate agencies to effectively communicate such messages. \n(b) The Office shall work with the policy and communications offices of \nagencies in developing a strategy for disseminating truthful, accurate, and \neffective messages about the United States, its Government and policies, \nand the American people and culture. The Office may, after consulting \nwith the Department of State and obtaining the approval of the Assistant \nto the President for National Security Affairs on the President’s behalf, \nwork with cooperating foreign governments in the development of the strat-\negy. In performing its work, the Office shall coordinate closely and regularly \nwith the Assistant to the President for National Security Affairs, or the \nAssistant’s designee. \n(c) The Office shall work with appropriate agencies to coordinate the creation \nof temporary teams of communicators for short-term placement in areas \nof high global interest and media attention as determined by the Office. \nTeam members shall include personnel from agencies to the extent permitted \nby law and subject to the availability of personnel. In performing its func-\ntions, each information team shall work to disseminate accurate and timely \ninformation about topics of interest to the on-site news media, and assist \nmedia personnel in obtaining access to information, individuals, and events \nthat reinforce the strategic communications objectives of the United States \nand its allies. The Office shall coordinate when and where information \nteams should be deployed; provided, however, no information team shall \nbe deployed abroad without prior consultation with the Department of State \nand the Department of Defense, and prior notification to the Office of the \nAssistant to the President for National Security Affairs. \nVerDate Dec<13>2002 08:08 Jan 23, 2003 Jkt 200001 PO 00000 Frm 00001 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\24JAE0.SGM 24JAE0\n=== PDF page 2 of 2 ===\n3372 Federal Register / Vol. 68, No. 16 / Friday, January 24, 2003 / Presidential Documents \n(d) The Office shall encourage the use of state-of-the-art media and technology \nand shall advise the United States Government of events, technologies, and \nother communications tools that may be available for use in conveying \ninformation. \nSec. 4. Administration. The Office of Administration within the Executive \nOffice of the President shall provide the Office with administrative and \nrelated support, to the extent permitted by law and subject to the availability \nof appropriations, as directed by the Chief of Staff to the President to \ncarry out the provisions of this order. \nSec. 5. Relationship to Other Interagency Coordinating Mechanisms. Presi-\ndential direction regarding National Security Council-related mechanisms \nfor coordination of national security policy shall apply with respect to \nthe Office in the same manner as it applies with respect to other elements \nof the White House Office. Nothing in this order shall be construed to \nimpair or otherwise affect any function assigned by law or by the President \nto the National Security Council or to the Assistant to the President for \nNational Security Affairs. \nSec. 6. Continuing Authorities. This order does not alter the existing authori-\nties of any agency. Agencies shall assist the Deputy Assistant to the President \nfor Global Communications, to the extent consistent with applicable law \nand direction of the President, and to the extent such assistance is consistent \nwith national security objectives and with the mission of such agencies, \nin carrying out the Office’s mission. \nSec. 7. General Provisions.\n(a) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or equity by any party against \nthe United States, its agencies, instrumentalities or entities, its officers or \nemployees, or any other person. \n(b) Nothing in this order shall be construed to grant to the Office any \nauthority to issue direction to agencies, officers, or employees.\nW\nTHE WHITE HOUSE, \nJanuary 21, 2003. \n[FR Doc. 03 –1798\nFiled 1 –23–03; 8:45 am] \nBilling code 3195 –01–P \nVerDate Dec<13>2002 08:08 Jan 23, 2003 Jkt 200001 PO 00000 Frm 00002 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\24JAE0.SGM 24JAE0"
     },
+    "ACTOR_TEXT:EO:13286@867": {
+      "actor_id": "EO:13286",
+      "char_end": 4853,
+      "char_start": 867,
+      "id": "ACTOR_TEXT:EO:13286@867",
+      "prints_number_lexical": true,
+      "role": "actor_context_window",
+      "source": {
+        "filing_date": null,
+        "location_confidence": "high",
+        "location_verified": false,
+        "page_or_item": "68 FR 10619, PDF pages 1-15",
+        "requires_page_check": false,
+        "sha256": "0f74e21c46effda67c9a2824675469df809b09a321495030fa551594859554b5",
+        "signing_date": "2003-02-28",
+        "text_path": "jobs/fr-originals/data/full_run/texts/EO_13286.txt",
+        "text_sha256": "57b106e01d54e1bcf61065a73a3591003b50eef2d8d0f65b0b54f98ea436e6df",
+        "url": "https://www.govinfo.gov/content/pkg/FR-2003-03-05/pdf/03-5343.pdf"
+      },
+      "text": "laws of the United States of America, including the Homeland Security \nAct of 2002 (Public Law 107–296) and section 301 of title 3, United States \nCode, and in order to reflect the transfer of certain functions to, and other \nresponsibilities vested in, the Secretary of Homeland Security, the transfer \nof certain agencies and agency components to the Department of Homeland \nSecurity, and the delegation of appropriate responsibilities to the Secretary \nof Homeland Security, it is hereby ordered as follows: \nSection 1. Executive Order 13276 of November 15, 2002 (‘‘Delegation of \nResponsibilities Concerning Undocumented Aliens Interdicted or Intercepted \nin the Caribbean Region’’), is amended by: \n(a) striking ‘‘The Attorney General’’ wherever it appears in section 1 \nand inserting ‘‘The Secretary of Homeland Security’’ in lieu thereof; and \n(b) striking ‘‘the Attorney General’’ wherever it appears in section 1 and \ninserting ‘‘the Secretary of Homeland Security’’ in lieu thereof. \nSec. 2. Executive Order 13274 of September 18, 2002 (‘‘Environmental Stew-\nardship and Transportation Infrastructure Project Reviews’’), is amended \nby inserting ‘‘Secretary of Homeland Security,’’ after ‘‘Secretary of Defense,’’ \nin section 3(b). \nSec. 3. Executive Order 13271 of July 9, 2002 (‘‘Establishment of the Corporate \nFraud Task Force’’), is amended by: \n(a) inserting ‘‘(b) the Secretary of Homeland Security;’’ after ‘‘(a) the Sec-\nretary of the Treasury;’’ in section 4; and \n(b) relettering the subsequent subsections in section 4 appropriately. \nSec. 4. Executive Order 13260 of March 19, 2002 (‘‘Establishing the Presi-\ndent’s Homeland Security Advisory Council and Senior Advisory Committees \nfor Homeland Security’’), is amended by: \n(a) striking ‘‘the Assistant to the President for Homeland Security (Assist-\nant)’’ in section 1(c) and inserting ‘‘the Secretary of Homeland Security \n(Secretary)’’ in lieu thereof; \n(b) striking ‘‘the Assistant’’ wherever it appears in sections 2 and 3 and \ninserting ‘‘the Secretary’’ in lieu thereof; \n(c) striking ‘‘the Office of Administration’’ in section 3(d) and inserting \n‘‘the Department of Homeland Security’’ in lieu thereof; \n(d) striking ‘‘the Administrator of General Services’’ in section 4(a) and \ninserting ‘‘the Secretary of Homeland Security’’ in lieu thereof; and \n(e) inserting ‘‘of General Services’’ after ‘‘Administrator’’ in section 4(a). \nExecutive Order 13260 of March 19, 2002, is hereby revoked effective as \nof March 31, 2003. \nSec. 5. Executive Order 13257 of February 13, 2002 (‘‘President’s Interagency \nTask Force to Monitor and Combat Trafficking in Persons’’), is amended \nby: \n(a) inserting ‘‘(v) the Secretary of Homeland Security;’’ after ‘‘(iv) the \nSecretary of Health and Human Services;’’ in section 1(b); and \nVerDate Jan<31>2003 23:17 Mar 04, 2003 Jkt 200001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\05MRE0.SGM 05MRE0\n=== PDF page 2 of 15 ===\n10620 Federal Register / Vol. 68, No. 43 / Wednesday, March 5, 2003 / Presidential Documents \n(b) renumbering the subsequent subsections in section 1(b) appropriately. \nSec. 6. Executive Order 13254 of January 29, 2002 ( ‘‘Establishing the USA \nFreedom Corps’’), is amended by striking ‘‘Director of the Federal Emergency \nManagement Agency;’’ in section 3(b)(viii) and inserting ‘‘Secretary of Home-\nland Security;’’ in lieu thereof. \nSec. 7. Executive Order 13231 of October 16, 2001 ( ‘‘Critical Infrastructure \nProtection in the Information Age ’’), as amended, is further amended to \nread in its entirety as follows: \n‘‘Critical Infrastructure Protection in the Information Age \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, and in order to ensure protection \nof information systems for critical infrastructure, including emergency pre-\nparedness communications and the physical assets that support such systems, \nin the information age, it is hereby ordered as follows: \n"
+    },
+    "ACTOR_TEXT:FRDOC:03-3254": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:03-3254",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 2942,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:03-3254",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:03-3254",
+        "page_or_item": "68 FR 6456; FR Doc. 03-3254; Notice: President's Homeland Security Advisory Council",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "411daf616b812bdaa04d3057ae828671ea6f229967051f5ac8ed6ef29286078b",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-03-3254.txt",
+        "text_sha256": "411daf616b812bdaa04d3057ae828671ea6f229967051f5ac8ed6ef29286078b",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2003/02/07/03-3254.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 68 Issue 26 (Friday, February 7, 2003)</title>\n</head>\n<body><pre>\n[Federal Register Volume 68, Number 26 (Friday, February 7, 2003)]\n[Notices]\n[Page 6456]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 03-3254]\n\n\n=======================================================================\n-----------------------------------------------------------------------\n\nGENERAL SERVICES ADMINISTRATION\n\n\nPresident's Homeland Security Advisory Council\n\nAGENCY: Office of Governmentwide Policy, General Services \nAdministration.\n\nACTION: Notice of Federal Advisory Committee Meeting.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The President's Homeland Security Advisory Council (PHSAC or \nCouncil) will meet telephonically in an open session on Friday, \nFebruary 21, 2003, from 9:30 a.m. to 11 a.m., EST. The PHSAC will meet \nto deliberate on the draft Statewide Template for Homeland Security, \nprepared by the State and Local Senior Advisory Committee and, pending \ndiscussion, approve a draft letter to the President regarding the \ntemplate.\n    Objectives: The President's Homeland Security Advisory Council was \nestablished by Executive Order 13260 (67 FR 13241, March 21, 2002). The \nobjectives of the PHSAC are to provide advice and recommendations to \nthe President of the United States through the Assistant to the \nPresident for Homeland Security on matters relating to homeland \nsecurity.\n    Public Participation: This meeting will take place via \nteleconference through the following call-in number: 1-888-285-4585. \nInterested members of the public may listen to this meeting. To ensure \nthe appropriate number of lines, however, persons wishing to listen to \nthe meeting must register with Cynthia Gismegian at (202) 456-1700 by 4 \np.m., EST, on Thursday, February 20, 2003, to obtain the access code.\n    Public Comments: Members of the public who wish to file a written \nstatement with the PHSAC may do so by mail to Mr. Charles Howton at the \nfollowing address: President's Homeland Security Advisory Council, U.S. \nGeneral Services Administration (GSA/MC, Room G-230), 1800 F St., NW., \nWashington, DC 20405. Comments also may be sent to Charles Howton by e-\nmail at <a href=\"/cdn-cgi/l/email-protection#d5b6bdb4a7b9b0a6fbbdbaa2a1babb95b2a6b4fbb2baa3\"><span class=\"__cf_email__\" data-cfemail=\"3e5d565f4c525b4d105651494a51507e594d5f10595148\">[email&#160;protected]</span></a>, or by facsimile (FAX) to (202) 273-\n3559.\n\n    Dated: February 5, 2003.\nJames L. Dean,\nDirector, Committee Management Secretariat, Office of Governmentwide \nPolicy, General Services Administration.\n[FR Doc. 03-3254 Filed 2-6-03; 8:45 am]\nBILLING CODE 6820-34-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
+    },
     "CLAUSES:EO:13260#sec1": {
       "char_end": 964,
       "char_start": 906,
@@ -2553,6 +2628,40 @@
       },
       "text": "(b) The PHSAC, any SACs, and any SAC subcommittees shall terminate\n2 years from the date of this order unless extended by the President.\nW"
     },
+    "CURRENT:EO:13260#0": {
+      "basis_code": "cfr_text_reference",
+      "char_end": 416,
+      "char_start": 91,
+      "checked_through": "2026-10-14",
+      "currency_code": "ecfr_bulk_no_change_after_cutoff",
+      "edition": "eCFR (GovInfo bulk, amended through 2026-08-17)",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/theophilus-sources/output/SOURCES.jsonl",
+        "page_or_item": "32 CFR 245.9",
+        "sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
+        "source_id": "cfr:t32:245.9",
+        "url": "https://www.ecfr.gov/on/2026-11-09/title-32/section-245.9"
+      },
+      "id": "CURRENT:EO:13260#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13260",
+      "legal_basis_candidate": "regulation text names the order (32 CFR 245.9)",
+      "machine_lead": true,
+      "mention_id": "ecfr:d5d77c2b13a1",
+      "snippet": "...unctions to Federal departments and agencies. (b) E.O. 13074, Amendment to E.O. 12656, February 9, 1998. (c) E.O. 13286, Amendment of E.O. 13276, 13274, 13271, 13260, 13257, 13254, and 13231, and Other Actions, in Connection With the Transfer of Certain Functions to the Secretary of Homeland Security, February 28, 2003. (d)...",
+      "source": {
+        "page_or_item": "32 CFR 245.9 (section_text; GovInfo eCFR XML title 32, amended through 2026-08-17; NODE 32:2.1.1.1.41.3.1.2)",
+        "sha256": "981e75d8686b9b4ea73e7fff568a3cac7a56bfbc7752b9314b4b9d71caf5a877",
+        "text_path": "jobs/theophilus-sources/output/texts/cfr-t32-245.9.txt",
+        "text_sha256": "ae6454186a148038f7f5c0e21fb352c3f2dd67b6768d569d4123af4c45c1d270",
+        "url": "https://www.govinfo.gov/bulkdata/ECFR/title-32/ECFR-title32.xml"
+      },
+      "system": "ecfr",
+      "text": "unctions to Federal departments and agencies.\n(b) E.O. 13074, Amendment to E.O. 12656, February 9, 1998.\n(c) E.O. 13286, Amendment of E.O. 13276, 13274, 13271, 13260, 13257, 13254, and 13231, and Other Actions, in Connection With the Transfer of Certain Functions to the Secretary of Homeland Security, February 28, 2003.\n(d)",
+      "where": "CFR 32 CFR 245.9"
+    },
     "ORIGINAL:EO:13260": {
       "acceptable_as_original": true,
       "actor_id": "EO:13260",
@@ -2955,7 +3064,7 @@
       "text": "(d) To the extent permitted by law, and subject to the availability of\nappropriations, the Office of Administration shall provide the PHSAC with\nadministrative support and with such funds as may be necessary for the\nperformance of the PHSAC’s functions."
     }
   },
-  "fingerprint": "beda09fa95a541d2d9d8446c6436301ea31b90d98c3875562560848d5a4926c5",
+  "fingerprint": "84010de32bc9a1040ec9c24a68ea25d6023e0abfc5b25ca2e8884263660f19b3",
   "instrument_id": "EO:13260",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3286,32 +3395,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 4,
+      "machine_fragment_items_for_this_order_all_systems": 4,
+      "machine_hits_for_this_order": 1,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3323,7 +3434,6 @@
   "missing": [
     "Current-law lead lacks an original-source sha256.",
     "Large actor context must be read at actor-texts/EO_13286.json before deciding scope/savings.",
-    "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
     "target provision not located: EO:13283"
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
@@ -3345,12 +3455,12 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 3,
-    "fingerprint": "43f6d7d14ac85ed3e75f2aa13d0af3fda555e7cb368a00115e576ba35b9f061a",
+    "fingerprint": "56786060de21ce3d5f2e94d9b869b7212190ab7ad5b0cf46aea1ddf36f7f6d81",
     "flags": [
       "EVENT_QUOTE_NOT_VERIFIED_AGAINST_HELD_RAW_API"
     ],
     "history_path": "jobs/status-history/output/histories/EO_13260.json",
-    "history_sha256": "7f3d973467fc9eae9ed296b144f5da95642ede6ed63d52b460729049521ec231",
+    "history_sha256": "a7b6bc949a8bb5faf67649bdd4fda0deb485bcb104d67efbbffcad7abf1bfdc2",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

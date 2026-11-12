@@ -6,11 +6,17 @@
     },
     {
       "actor_id": "EO:13419",
-      "evidence_id": "ACTOR_TEXT:EO:13419"
+      "evidence_id": "ACTOR_TEXT:EO:13419",
+      "prints_number_lexical": true
     },
     {
       "actor_id": "EO:13656",
       "evidence_id": "ACTOR_TEXT:EO:13656"
+    },
+    {
+      "actor_id": "FRDOC:2024-28755",
+      "evidence_id": "ACTOR_TEXT:FRDOC:2024-28755",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -80,7 +86,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13346",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13346"
@@ -470,11 +476,20 @@
   "current_law_leads": [
     {
       "basis_code": "printed_eo_text",
+      "char_end": 178,
+      "char_start": 0,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 13346. Delegation of Certain Waiver, Determination, Certification, Recommenda' [USLM note id id3719e9a6-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "3cba2b8ef0ca81c3afa06b287a09e232842070e557292ddc3ce5027bb5fe0974",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3719e9a6-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13346",
       "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (3 U.S.C. 301 note)",
@@ -484,19 +499,32 @@
       "source": {
         "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 13346. Delegation of Certain Waiver, Determination, Certification, Recommenda' [USLM note id id3719e9a6-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3719e9a6-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "3cba2b8ef0ca81c3afa06b287a09e232842070e557292ddc3ce5027bb5fe0974",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
-      "text_path": "USC_EO_NOTES.jsonl#note_id=id3719e9a6-2930-11f1-b70e-e9fd6f164ed0",
+      "text": "Ex. Ord. No. 13346. Delegation of Certain Waiver, Determination, Certification, Recommendation, and Reporting Functions\nEx. Ord. No. 13346, July 8, 2004, 69 F.R. 41905, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3719e9a6-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "3cba2b8ef0ca81c3afa06b287a09e232842070e557292ddc3ce5027bb5fe0974",
       "where": "USC 3 U.S.C. 301 note"
     },
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 245,
+      "char_start": 118,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "19 U.S.C. 3801 note; note 'Ex. Ord. No. 13277. Delegation of Certain Authorities and Assignment of Certain Functions ' [USLM note id idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "e201ceda3e24ab9ab61db3ce4f9e6f4e3355707eee41a1146c33e956cafe5cf5",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13346",
       "legal_basis_candidate": "order amended a printed order (weak lead) (19 U.S.C. 3801 note)",
@@ -506,18 +534,32 @@
       "source": {
         "page_or_item": "19 U.S.C. 3801 note; note 'Ex. Ord. No. 13277. Delegation of Certain Authorities and Assignment of Certain Functions ' [USLM note id idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1.txt",
+        "text_sha256": "e201ceda3e24ab9ab61db3ce4f9e6f4e3355707eee41a1146c33e956cafe5cf5",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Ex. Ord. No. 13277, Nov. 19, 2002, 67 F.R. 70305, as amended by Ex. Ord. No. 13346, § 4, July 8, 2004, 69 F.R. 41906, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1.txt",
+      "text_sha256": "e201ceda3e24ab9ab61db3ce4f9e6f4e3355707eee41a1146c33e956cafe5cf5",
       "where": "USC 19 U.S.C. 3801 note"
     },
     {
       "basis_code": "amending_order_in_status_line",
+      "char_end": 1281,
+      "char_start": 954,
       "checked_through": "2026-10-09",
       "currency_code": "usc_release_point",
       "edition": "U.S. Code release point 119-121",
-      "evidence_gap": "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
+      "evidence_role": "current_law_wording_lead",
       "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 2381 note; note 'Ex. Ord. No. 12163. Administration of Foreign Assistance and Related Functions' [USLM note id idde5e2957-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "89aa3421df01c4fb3bee6b0ab2977076dbdd7526ed69c06f85ece98defe0edc0",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idde5e2957-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
       "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
       "instrument_id": "EO:13346",
       "legal_basis_candidate": "order amended a printed order (weak lead) (22 U.S.C. 2381 note)",
@@ -527,9 +569,14 @@
       "source": {
         "page_or_item": "22 U.S.C. 2381 note; note 'Ex. Ord. No. 12163. Administration of Foreign Assistance and Related Functions' [USLM note id idde5e2957-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
         "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idde5e2957-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "89aa3421df01c4fb3bee6b0ab2977076dbdd7526ed69c06f85ece98defe0edc0",
         "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
       },
       "system": "usc",
+      "text": "Pub. L. 105–277, div. G, subdiv. A, title XIV, § 1422(a)(2), Oct. 21, 1998, 112 Stat. 2681–792; Ex. Ord. No. 13118, §§ 1–9, Mar. 31, 1999, 64 F.R. 16595–16598; Ex. Ord. No. 13346, § 3, July 8, 2004, 69 F.R. 41905; Ex. Ord. No. 13361, Nov. 16, 2004, 69 F.R. 67633; Ex. Ord. No. 13656, § 6, Jan. 17, 2014, 79 F.R. 4263, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idde5e2957-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "89aa3421df01c4fb3bee6b0ab2977076dbdd7526ed69c06f85ece98defe0edc0",
       "where": "USC 22 U.S.C. 2381 note"
     },
     {
@@ -581,7 +628,7 @@
         "snippet": "Ex. Ord. No. 13346. Delegation of Certain Waiver, Determination, Certification, Recommendation, and Reporting Functions | Ex. Ord. No. 13346, July 8, 2004, 69 F.R. 41905, provided:",
         "snippet_truncated": false,
         "system": "usc",
-        "text_path": "USC_EO_NOTES.jsonl#note_id=id3719e9a6-2930-11f1-b70e-e9fd6f164ed0",
+        "text_path": "usc-notes/id3719e9a6-2930-11f1-b70e-e9fd6f164ed0.txt",
         "where": "USC 3 U.S.C. 301 note"
       },
       "proposal": {
@@ -610,6 +657,7 @@
         "snippet": "Ex. Ord. No. 13277, Nov. 19, 2002, 67 F.R. 70305, as amended by Ex. Ord. No. 13346, § 4, July 8, 2004, 69 F.R. 41906, provided:",
         "snippet_truncated": false,
         "system": "usc",
+        "text_path": "usc-notes/idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1.txt",
         "where": "USC 19 U.S.C. 3801 note"
       },
       "proposal": {
@@ -638,6 +686,7 @@
         "snippet": "...Pub. L. 105–277, div. G, subdiv. A, title XIV, § 1422(a)(2), Oct. 21, 1998, 112 Stat. 2681–792; Ex. Ord. No. 13118, §§ 1–9, Mar. 31, 1999, 64 F.R. 16595–16598; Ex. Ord. No. 13346, § 3, July 8, 2004, 69 F.R. 41905; Ex. Ord. No. 13361, Nov. 16, 2004, 69 F.R. 67633; Ex. Ord. No. 13656, § 6, Jan. 17, ...",
         "snippet_truncated": true,
         "system": "usc",
+        "text_path": "usc-notes/idde5e2957-b816-11f1-963c-e4c4db8c41be.txt",
         "where": "USC 22 U.S.C. 2381 note"
       },
       "proposal": {
@@ -828,6 +877,7 @@
       "char_end": 8499,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13419",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -862,6 +912,36 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2014-01-24/pdf/2014-01523.pdf"
       },
       "text": "Instrument: EO:13656\nSource: https://www.govinfo.gov/content/pkg/FR-2014-01-24/pdf/2014-01523.pdf\nSHA-256 of the downloaded file: b49a31f145f6840d26bf5bd9be5162aa44fbc424d2ae5590271c31e53448752c\nLocation: 79 FR 4263, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n4263 \nFederal Register \nVol. 79, No. 16 \nFriday, January 24, 2014 \nTitle 3— \nThe President \nExecutive Order 13656 of January 17, 2014 \nEstablishment of Afghanistan and Pakistan Strategic Partner-\nship Office and Amendment to Executive Order 12163 \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including section 202 of the Revised \nStatutes (22 U.S.C. 2656) and section 3161 of title 5, United States Code, \nit is hereby ordered as follows: \nSection 1. Establishment. There is established within the Department of \nState, in accordance with section 3161 of title 5, United States Code, a \ntemporary organization to be known as the Afghanistan and Pakistan Strategic \nPartnership Office (APSPO). \nSec. 2. Purpose of the Temporary Organization. The purposes of the APSPO \nshall be to perform the specific project of supporting executive departments \nand agencies (agencies) in facilitating a strategic partnership between the \nU.S. Government and the governments of Afghanistan and Pakistan, pro-\nmoting further security and stabilization, and transitioning to a normalized \ndiplomatic presence in both countries. \nSec. 3. Functions of the Temporary Organization. In carrying out the purposes \nset forth in section 2 of this order, the APSPO shall: \n(a) support agencies in transitioning to a strategic partnership with the \ngovernments of Afghanistan and Pakistan in the economic, diplomatic, cul-\ntural, technology, and security fields, particularly in the areas of program \nmanagement, rule of law, and program oversight; \n(b) coordinate the final drawdown of the Department of State’s civilian \nfield operations and staff in Afghanistan; \n(c) coordinate and oversee the administration of certain State Department \nassistance funds; and \n(d) perform such other functions related to the specific project set forth \nin section 2 of this order as the Secretary of State (Secretary) may assign. \nSec. 4. Personnel and Administration. The APSPO shall be headed by a \nDirector appointed by the Secretary. The APSPO shall be based in Wash-\nington, DC, Pakistan, and Afghanistan. \nSec. 5. Termination of the Temporary Organization. The APSPO shall termi-\nnate at the end of the maximum period permitted by section 3161(a)(1) \nof title 5, United States Code, unless terminated sooner by the Secretary. \nSec. 6. Delegation of Certain Determination Functions. Executive Order 12163 \nof September 29, 1979, as amended, is further amended, in section 1– \n701(c), by striking the semicolon and all subsequent text before the period. \nSec. 7. General Provisions. (a) This order shall be implemented in accordance \nwith applicable law and subject to the availability of appropriations. \n(b) Nothing in this order shall be construed to impair or otherwise affect: \n(i) the authority granted by law to a department or agency, or the head \nthereof; or \nVerDate Mar<15>2010 18:08 Jan 23, 2014 Jkt 229001 PO 00000 Frm 00003 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\24JAE0.SGM 24JAE0TKELLEY on DSK3SPTVN1PROD with E0\n=== PDF page 2 of 2 ===\n4264 Federal Register / Vol. 79, No. 16 / Friday, January 24, 2014 / Presidential Documents \n(ii) the functions of the Director of the Office of Management and Budget \nrelating to budgetary, administrative, or legislative proposals. \n(c) This order is not intended to, and does not, create any right or benefit, \nsubstantive or procedural, enforceable at law or in equity by any party \nagainst the United States, its departments, agencies, or entities, its officers, \nemployees, or agents, or any other person. \nTHE WHITE HOUSE, \nJanuary 17, 2014. \n[FR Doc. 2014–01523 \nFiled 1–23–14; 11:15 am] \nBilling code 3295–F4 \nVerDate Mar<15>2010 18:08 Jan 23, 2014 Jkt 229001 PO 00000 Frm 00004 Fmt 4705 Sfmt 4790 E:\\FR\\FM\\24JAE0.SGM 24JAE0\nOB#1.EPS</GPH>\nTKELLEY on DSK3SPTVN1PROD with E0"
+    },
+    "ACTOR_TEXT:FRDOC:2024-28755": {
+      "acceptable_as_original": false,
+      "actor_id": "FRDOC:2024-28755",
+      "actor_kind": "non_census_instrument",
+      "basis_eligible": false,
+      "char_end": 12598,
+      "char_start": 0,
+      "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+      "id": "ACTOR_TEXT:FRDOC:2024-28755",
+      "notice": "Held text of a later instrument outside the executive-order census, under its own identity. A status basis only when basis_eligible (an official printing in which the lexical check found this order's number); otherwise a lead. Exact span only, no legal effect asserted.",
+      "official_printing": false,
+      "prints_number_lexical": true,
+      "requires_page_check": false,
+      "role": "actor_context",
+      "source": {
+        "acceptable_as_original": false,
+        "filing_date": null,
+        "grade": "fr_document_full_text (federalregister.gov full text of a Federal Register document, built from GPO's XML; the govinfo PDF is the official edition)",
+        "instrument_id": "FRDOC:2024-28755",
+        "page_or_item": "89 FR 97583; FR Doc. 2024-28755; Notice: Impact of the Implementation of the Chemical Weapons Convention (CWC) on Legitimate Commercial Chemical, Biotechnology, and Pharmaceutical Activities Involving “Schedule 1” Chemicals (Including “Schedule 1” Chemicals Produced as Intermediates) During Calendar Year 2024",
+        "requires_page_check": false,
+        "role": "acting_instrument_text",
+        "sha256": "b1fa442abb0c0c9415138045f397ecbeb853633b7eef414a4e96155c50c58ffb",
+        "signing_date": null,
+        "text_path": "jobs/selden-fr-citers/output/texts/fr-2024-28755.txt",
+        "text_sha256": "b1fa442abb0c0c9415138045f397ecbeb853633b7eef414a4e96155c50c58ffb",
+        "url": "https://www.federalregister.gov/documents/full_text/text/2024/12/09/2024-28755.txt"
+      },
+      "text": "<html>\n<head>\n<title>Federal Register, Volume 89 Issue 236 (Monday, December 9, 2024)</title>\n</head>\n<body><pre>\n[Federal Register Volume 89, Number 236 (Monday, December 9, 2024)]\n[Notices]\n[Pages 97583-97584]\nFrom the Federal Register Online via the Government Publishing Office [<a href=\"http://www.gpo.gov\">www.gpo.gov</a>]\n[FR Doc No: 2024-28755]\n\n\n-----------------------------------------------------------------------\n\nDEPARTMENT OF COMMERCE\n\nBureau of Industry and Security\n\n[Docket No. 241127-0304]\nRIN 0694-XC110\n\n\nImpact of the Implementation of the Chemical Weapons Convention \n(CWC) on Legitimate Commercial Chemical, Biotechnology, and \nPharmaceutical Activities Involving ``Schedule 1'' Chemicals (Including \n``Schedule 1'' Chemicals Produced as Intermediates) During Calendar \nYear 2024\n\nAGENCY: Bureau of Industry and Security, Commerce.\n\nACTION: Notice of inquiry.\n\n-----------------------------------------------------------------------\n\nSUMMARY: The Bureau of Industry and Security (BIS) is seeking public \ncomments on the impact that implementation of the Chemical Weapons \nConvention (CWC or ``the Convention''), through the Chemical Weapons \nConvention Implementation Act of 1998 and the Chemical Weapons \nConvention Regulations (CWCR), has had on commercial activities \ninvolving ``Schedule 1'' chemicals during calendar year 2024. The \npurpose of this notice of inquiry is to collect information to assist \nBIS in its preparation of the annual certification to the Congress on \nwhether the legitimate commercial activities and interests of chemical, \nbiotechnology, and pharmaceutical firms are harmed by such \nimplementation. This certification is required under Condition 9 of \nSenate Resolution 75 (April 24, 1997), in which the Senate gave its \nadvice and consent to the ratification of the CWC.\n\nDATES: Comments must be received by January 8, 2025.\n\nADDRESSES: Comments on this rule may be submitted to the Federal \nrulemaking portal at: <a href=\"http://www.regulations.gov\">www.regulations.gov</a>. The <a href=\"http://regulations.gov\">regulations.gov</a> ID for \nthis rule is: BIS-2024-0054. Please refer to RIN 0694-XC110 in all \ncomments.\n    All filers using the portal should use the name of the person or \nentity submitting the comments as the name of their files, in \naccordance with the instructions below. Anyone submitting business \nconfidential information should clearly identify the business \nconfidential portion at the time of submission, file a statement \njustifying nondisclosure and referring to the specific legal authority \nclaimed, and provide a non-confidential version of the submission.\n    For comments submitted electronically containing business \nconfidential information, the file name of the business confidential \nversion should begin with the characters ``BC.'' Any page containing \nbusiness confidential information must be clearly marked ``BUSINESS \nCONFIDENTIAL'' on the top of that page. The corresponding non-\nconfidential version of those comments must be clearly marked \n``PUBLIC.'' The file name of the non-confidential version should begin \nwith the character ``P.'' Any submissions with file names that do not \nbegin with either a ``BC'' or a ``P'' will be assumed to be public and \nwill be made publicly available at: <a href=\"https://www.regulations.gov\">https://www.regulations.gov</a>.\n    Commenters submitting business confidential information are \nencouraged to scan a hard copy of the non-confidential version to \ncreate an image of the file, rather than submitting a digital copy with \nredactions applied, to avoid inadvertent redaction errors which could \nenable the public to read business confidential information.\n\nFOR FURTHER INFORMATION CONTACT: \n    For questions on the Chemical Weapons Convention requirements for \n``Schedule 1'' chemicals, contact David Johnston, Treaty Compliance \nDivision, (202) 482-2450, Email: David <a href=\"/cdn-cgi/l/email-protection#bff5d0d7d1cccbd0d1ffddd6cc91dbd0dc91d8d0c9\"><span class=\"__cf_email__\" data-cfemail=\"02486d6a6c71766d6c42606b712c666d612c656d74\">[email&#160;protected]</span></a>.\n    For questions on the submission of comments, contact Logan Norton, \nRegulatory Policy Division, (202) 482-2440; Email: <a href=\"/cdn-cgi/l/email-protection#643634205624060d174a000b074a030b12\"><span class=\"__cf_email__\" data-cfemail=\"3062607402705259431e545f531e575f46\">[email&#160;protected]</span></a>.\n\nSUPPLEMENTARY INFORMATION: \n\nBackground\n\n    In providing its advice and consent to the ratification of the \nConvention on the Prohibition of the Development, Production, \nStockpiling, and Use of Chemical Weapons and Their Destruction (CWC or \n``the Convention''), the Senate included, in Senate Resolution 75 (S. \nRes. 75, April 24, 1997), several conditions to its ratification. \nCondition 9, titled ``Protection of Advanced Biotechnology,'' calls for \nthe President to certify to Congress on an annual basis that ``the \nlegitimate commercial activities and interests of chemical, \nbiotechnology, and pharmaceutical firms in the United States are not \nbeing significantly harmed by the limitations of the Convention on \naccess to, and production of, those chemicals and toxins listed in \nSchedule 1.'' On July 8, 2004, President George W. Bush, by Executive \nOrder 13346, delegated his authority to make the annual certification \nto the Secretary of Commerce.\n    The CWC is an international arms control treaty that contains \ncertain verification provisions. In order to implement these \nverification provisions, the CWC established the Organization\n\n[[Page 97584]]\n\nfor the Prohibition of Chemical Weapons (OPCW). In order to achieve the \nobject and purpose of the Convention and the implementation of its \nprovisions, the CWC imposes certain obligations on countries that have \nratified the Convention (i.e., States Parties), among which are the \nenactment of legislation to prohibit the production, storage, and use \nof chemical weapons and the establishment of a National Authority to \nserve as the national focal point for effective liaison with the OPCW \nand other States Parties. The CWC also requires each State Party to \nimplement a comprehensive data declaration and inspection regime to \nprovide transparency and to verify that both the public and private \nsectors of the State Party are not engaged in activities prohibited \nunder the CWC. In the United States, the Chemical Weapons Convention \nImplementation Act of 1998 (22 U.S.C. 6701 et seq.) implements the \nprovisions of the CWC.\n    ``Schedule 1'' chemicals consist of those toxic chemicals and \nprecursors set forth in the CWC ``Annex on Chemicals'' and in \n``Supplement No. 1 to part 712--SCHEDULE 1 CHEMICALS'' of the CWCR (15 \nCFR parts 710-722). The CWC identified these toxic chemicals and \nprecursors as posing a high risk to the object and purpose of the \nConvention.\n    The CWC (Part VI of the ``Verification Annex'') restricts the \nproduction of ``Schedule 1'' chemicals for protective purposes to two \nfacilities per State Party: a single small-scale facility and a \nfacility for production in quantities not exceeding 10 kilograms (kg) \nper year. The CWC Article-by-Article Analysis submitted to the Senate \nin Treaty Doc. 103-21 defined the term ``protective purposes'' to mean \n``used for determining the adequacy of defense equipment and \nmeasures.'' Consistent with this definition and as authorized by \nPresidential Decision Directive (PDD) 70 (December 17, 1999), which \nspecifies agency and departmental responsibilities as part of the U.S. \nimplementation of the CWC, the Department of Defense (DoD) was assigned \nthe responsibility to operate these two facilities. DoD maintains \nstrict controls on ``Schedule 1'' chemicals produced at its facilities \nin order to ensure accountability for such chemicals, as well as their \nproper use, consistent with the object and purpose of the Convention. \nAlthough this assignment of responsibility to DoD under PDD-70 \neffectively precluded commercial production of ``Schedule 1'' chemicals \nfor ``protective purposes'' in the United States, it did not establish \nany limitations on ``Schedule 1'' chemical activities that are not \nprohibited by the CWC.\n    The provisions of the CWC that affect commercial activities \ninvolving ``Schedule 1'' chemicals are implemented in the CWCR (see 15 \nCFR part 712) and in the Export Administration Regulations (EAR) (see \n15 CFR 742.18 and 15 CFR part 745), both of which are administered by \nBIS. Pursuant to CWC requirements, the CWCR restrict commercial \nproduction of ``Schedule 1'' chemicals to research, medical, or \npharmaceutical purposes. The CWCR prohibit commercial production of \n``Schedule 1'' chemicals for ``protective purposes'' because such \nproduction is effectively precluded per PDD-70, as described above (see \n15 CFR 712.2(a)).\n    The CWCR also contain other requirements and prohibitions that \napply to ``Schedule 1'' chemicals and/or ``Schedule 1'' facilities. \nSpecifically, the CWCR:\n    (1) Prohibit the import of ``Schedule 1'' chemicals from States not \nParty to the Convention (15 CFR 712.2(b));\n    (2) Require annual declarations by certain facilities engaged in \nthe production of ``Schedule 1'' chemicals in excess of 100 grams \naggregate per calendar year (i.e., declared ``Schedule 1'' facilities) \nfor purposes not prohibited by the Convention (15 CFR 712.5(a)(1) and \n(a)(2));\n    (3) Provide for government approval of ``declared Schedule 1'' \nfacilities (15 CFR 712.5(f));\n    (4) Require 200 days advance notification of the establishment of \nnew ``Schedule 1'' production facilities producing greater than 100 \ngrams aggregate of ``Schedule 1'' chemicals per calendar year (15 CFR \n712.4);\n    (5) Provide that ``declared Schedule 1'' facilities are subject to \ninitial and routine inspection by the OPCW (15 CFR 712.5(e) and \n716.1(b)(1));\n    (6) Require advance notification and annual reporting of all \nimports and exports of ``Schedule 1'' chemicals to, or from, other \nStates Parties to the Convention (15 CFR 712.6, 742.18(a)(1) and \n745.1); and\n    (7) Prohibit the export of ``Schedule 1'' chemicals to States not \nParty to the Convention (15 CFR 742.18(a)(1) and (b)(1)(ii)).\n    For purposes of the CWCR (see the definition of ``production'' in \n15 CFR 710.1), the phrase ``production of a Schedule 1 chemical'' means \nthe formation of ``Schedule 1'' chemicals through chemical synthesis, \nas well as processing to extract and isolate ``Schedule 1'' chemicals. \nThe phrase also encompasses the formation of a chemical through \nchemical reaction, including by a biochemical or biologically mediated \nreaction. ``Production of a Schedule 1 chemical'' is understood, for \nCWCR declaration purposes, to include intermediates, by-products, or \nwaste products that are produced and consumed within a defined chemical \nmanufacturing sequence, where such intermediates, by-products, or waste \nproducts are chemically stable and therefore exist for a sufficient \ntime to make isolation from the manufacturing stream possible, but \nwhere, under normal or design operating conditions, isolation does not \noccur.\n\nRequest for Comments\n\n    In order to assist in determining whether the legitimate commercial \nactivities and interests of chemical, biotechnology, and pharmaceutical \nfirms in the United States are significantly harmed by the limitations \nof the Convention on access to, and production of, ``Schedule 1'' \nchemicals as described in this notice, BIS is seeking public comments \non any effects that implementation of the CWC, through the Chemical \nWeapons Convention Implementation Act of 1998 and the CWCR, has had on \ncommercial activities involving ``Schedule 1'' chemicals during \ncalendar year 2024. To allow BIS to properly evaluate the significance \nof any harm to commercial activities involving ``Schedule 1'' \nchemicals, public comments submitted in response to this notice of \ninquiry should include both a quantitative and qualitative assessment \nof the impact of the CWC on such activities.\n\nSubmission of Comments\n\n    All comments must be submitted to one of the addresses indicated in \nthis notice and in accordance with the instructions provided herein. \nBIS will consider all comments received on or before January 8, 2025.\n\nMatthew S. Borman,\nPrincipal Deputy Assistant Secretary for Strategic Trade and Technology \nSecurity.\n[FR Doc. 2024-28755 Filed 12-6-24; 8:45 am]\nBILLING CODE 3510-33-P\n\n\n</pre><script data-cfasync=\"false\" src=\"/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js\"></script></body>\n</html>"
     },
     "CLAUSES:EO:13346#sec1": {
       "char_end": 1118,
@@ -1237,6 +1317,114 @@
       },
       "text": "Sec. 8. This order is intended only to improve the internal management \nof the executive branch and is not intended to, and does not, create any \nright or benefit, substantive or procedural, enforceable at law or in equity \nby a party against the United States, its departments, agencies, entities, \nofficers, employees or agents, or any other person.\nW"
     },
+    "CURRENT:EO:13346#0": {
+      "basis_code": "printed_eo_text",
+      "char_end": 178,
+      "char_start": 0,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 13346. Delegation of Certain Waiver, Determination, Certification, Recommenda' [USLM note id id3719e9a6-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "3cba2b8ef0ca81c3afa06b287a09e232842070e557292ddc3ce5027bb5fe0974",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:id3719e9a6-2930-11f1-b70e-e9fd6f164ed0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13346#0",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13346",
+      "legal_basis_candidate": "U.S. Code prints the order's text as a note, with no ending statement (3 U.S.C. 301 note)",
+      "machine_lead": true,
+      "mention_id": "usc:c1901b6a737f",
+      "snippet": "Ex. Ord. No. 13346. Delegation of Certain Waiver, Determination, Certification, Recommendation, and Reporting Functions | Ex. Ord. No. 13346, July 8, 2004, 69 F.R. 41905, provided:",
+      "source": {
+        "page_or_item": "3 U.S.C. 301 note; note 'Ex. Ord. No. 13346. Delegation of Certain Waiver, Determination, Certification, Recommenda' [USLM note id id3719e9a6-2930-11f1-b70e-e9fd6f164ed0]; usc03.xml (sha256 392aa4f6c80993011d5dd9e8558aea74040670778d7801eb2c952130fff4d2dc) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/id3719e9a6-2930-11f1-b70e-e9fd6f164ed0.txt",
+        "text_sha256": "3cba2b8ef0ca81c3afa06b287a09e232842070e557292ddc3ce5027bb5fe0974",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13346. Delegation of Certain Waiver, Determination, Certification, Recommendation, and Reporting Functions\nEx. Ord. No. 13346, July 8, 2004, 69 F.R. 41905, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/id3719e9a6-2930-11f1-b70e-e9fd6f164ed0.txt",
+      "text_sha256": "3cba2b8ef0ca81c3afa06b287a09e232842070e557292ddc3ce5027bb5fe0974",
+      "where": "USC 3 U.S.C. 301 note"
+    },
+    "CURRENT:EO:13346#1": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 245,
+      "char_start": 118,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "19 U.S.C. 3801 note; note 'Ex. Ord. No. 13277. Delegation of Certain Authorities and Assignment of Certain Functions ' [USLM note id idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "e201ceda3e24ab9ab61db3ce4f9e6f4e3355707eee41a1146c33e956cafe5cf5",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13346#1",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13346",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (19 U.S.C. 3801 note)",
+      "machine_lead": true,
+      "mention_id": "usc:2ae79d14a76f",
+      "snippet": "Ex. Ord. No. 13277, Nov. 19, 2002, 67 F.R. 70305, as amended by Ex. Ord. No. 13346, § 4, July 8, 2004, 69 F.R. 41906, provided:",
+      "source": {
+        "page_or_item": "19 U.S.C. 3801 note; note 'Ex. Ord. No. 13277. Delegation of Certain Authorities and Assignment of Certain Functions ' [USLM note id idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1]; usc19.xml (sha256 d6eb3c646da36faead24dd504016f7b0c3574243f7c9e9b90c332208deab50f2) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1.txt",
+        "text_sha256": "e201ceda3e24ab9ab61db3ce4f9e6f4e3355707eee41a1146c33e956cafe5cf5",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Ex. Ord. No. 13277, Nov. 19, 2002, 67 F.R. 70305, as amended by Ex. Ord. No. 13346, § 4, July 8, 2004, 69 F.R. 41906, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idb9b36c22-ac5f-11f1-86f8-df17c10eb1e1.txt",
+      "text_sha256": "e201ceda3e24ab9ab61db3ce4f9e6f4e3355707eee41a1146c33e956cafe5cf5",
+      "where": "USC 19 U.S.C. 3801 note"
+    },
+    "CURRENT:EO:13346#2": {
+      "basis_code": "amending_order_in_status_line",
+      "char_end": 1281,
+      "char_start": 954,
+      "checked_through": "2026-10-09",
+      "currency_code": "usc_release_point",
+      "edition": "U.S. Code release point 119-121",
+      "evidence_role": "current_law_wording_lead",
+      "fragment_kind": "current_predicate_candidates",
+      "held_extract": {
+        "manifest": "jobs/current-law/output/SOURCES.jsonl",
+        "page_or_item": "22 U.S.C. 2381 note; note 'Ex. Ord. No. 12163. Administration of Foreign Assistance and Related Functions' [USLM note id idde5e2957-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "89aa3421df01c4fb3bee6b0ab2977076dbdd7526ed69c06f85ece98defe0edc0",
+        "source_id": "usc:119-121:xml_uscAll@119-121.zip:note:idde5e2957-b816-11f1-963c-e4c4db8c41be",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "id": "CURRENT:EO:13346#2",
+      "input_origin": "jobs/current-law/output/FRAGMENTS.jsonl",
+      "instrument_id": "EO:13346",
+      "legal_basis_candidate": "order amended a printed order (weak lead) (22 U.S.C. 2381 note)",
+      "machine_lead": true,
+      "mention_id": "usc:19826e054167",
+      "snippet": "...Pub. L. 105–277, div. G, subdiv. A, title XIV, § 1422(a)(2), Oct. 21, 1998, 112 Stat. 2681–792; Ex. Ord. No. 13118, §§ 1–9, Mar. 31, 1999, 64 F.R. 16595–16598; Ex. Ord. No. 13346, § 3, July 8, 2004, 69 F.R. 41905; Ex. Ord. No. 13361, Nov. 16, 2004, 69 F.R. 67633; Ex. Ord. No. 13656, § 6, Jan. 17, 2014, 79 F.R. 4263, provided:",
+      "source": {
+        "page_or_item": "22 U.S.C. 2381 note; note 'Ex. Ord. No. 12163. Administration of Foreign Assistance and Related Functions' [USLM note id idde5e2957-b816-11f1-963c-e4c4db8c41be]; usc22.xml (sha256 349b496b46eee69bc535a4c8bd32a6d5dbbcb7b99e1f83964d81fe7804f4e923) in xml_uscAll@119-121.zip",
+        "sha256": "c6122974e951003437ece5a998aa7c0b2cdc0f5703dfc78d6135e1fc9e729142",
+        "text_path": "jobs/current-law/output/usc-notes/idde5e2957-b816-11f1-963c-e4c4db8c41be.txt",
+        "text_sha256": "89aa3421df01c4fb3bee6b0ab2977076dbdd7526ed69c06f85ece98defe0edc0",
+        "url": "https://uscode.house.gov/download/releasepoints/us/pl/119/121/xml_uscAll@119-121.zip"
+      },
+      "system": "usc",
+      "text": "Pub. L. 105–277, div. G, subdiv. A, title XIV, § 1422(a)(2), Oct. 21, 1998, 112 Stat. 2681–792; Ex. Ord. No. 13118, §§ 1–9, Mar. 31, 1999, 64 F.R. 16595–16598; Ex. Ord. No. 13346, § 3, July 8, 2004, 69 F.R. 41905; Ex. Ord. No. 13361, Nov. 16, 2004, 69 F.R. 67633; Ex. Ord. No. 13656, § 6, Jan. 17, 2014, 79 F.R. 4263, provided:",
+      "text_path": "jobs/current-law/output/usc-notes/idde5e2957-b816-11f1-963c-e4c4db8c41be.txt",
+      "text_sha256": "89aa3421df01c4fb3bee6b0ab2977076dbdd7526ed69c06f85ece98defe0edc0",
+      "where": "USC 22 U.S.C. 2381 note"
+    },
     "ORIGINAL:EO:13346": {
       "acceptable_as_original": true,
       "actor_id": "EO:13346",
@@ -1261,40 +1449,9 @@
         "url": "https://www.govinfo.gov/content/pkg/FR-2004-07-13/pdf/04-15934.pdf"
       },
       "text": "Instrument: EO:13346\nSource: https://www.govinfo.gov/content/pkg/FR-2004-07-13/pdf/04-15934.pdf\nSHA-256 of the downloaded file: 3bba180042137744c066dd6430f13959cbb63a7fefddd592a83d6d5aa2655bbc\nLocation: 69 FR 41905, PDF pages 1-2 (confidence high)\nMachine-extracted text layer of the official PDF (OCR for 1936-1994 scans). May contain recognition errors and parts of neighbouring documents on the same pages. Not an authenticated transcription: check the PDF pages.\n\n=== PDF page 1 of 2 ===\nPresidential Documents\n41905Federal Register / Vol. 69, No. 133 / Tuesday July 13, 2004 / Presidential Documents \nExecutive Order 13346 of July 8, 2004\nDelegation of Certain Waiver, Determination, Certification, \nRecommendation, and Reporting Functions \nBy the authority vested in me as President by the Constitution and the \nlaws of the United States of America, including section 301 of title 3, \nUnited States Code, it is hereby ordered as follows: \nSection 1. The functions of the President in making certain waivers, deter-\nminations, certifications, recommendations, and reports to the Congress are \nassigned as follows: \n(a) The Secretary of State is authorized to make waivers, determinations, \ncertifications, and recommendations, and to undertake related reporting, \nas described in:\n(i) Section 402(d)(1) of the Trade Act of 1974, as amended (19 U.S.C. \n2432(d)(1)), with respect to the extension of Jackson-Vanik waivers;\n(ii) Section 609 of Division A of the Omnibus Consolidated and Emer-\ngency Supplemental Appropriations Act, 1999 (Public Law 105–277) as \ncontinued in effect by section 612 of Division B of the Consolidated \nAppropriations Act, 2004 (Public Law 108–199) with respect to cooperation \nrelated to persons missing in action and prisoners of war; and\n(iii) Section 102(a)(2) of the Arms Export Control Act, as amended \n(22 U.S.C. 2799aa–1(a)), with respect to any Presidential determination \nunder section 102(a)(1) that is also the subject of a determination and \ncertification by the President pursuant to section 102(a)(2). \n(b) The United States Trade Representative shall submit the report relating \nto sub-Saharan Africa under section 106 of the African Growth and Oppor-\ntunity Act (Public Law 106–200, title 1). \nSec. 2. The functions of the President in making certifications to the Congress \nconsistent with the resolution of advice and consent to ratification of the \nChemical Weapons Convention adopted by the Senate on April 24, 1997 \n(Resolution) are assigned as follows: \n(a) The Secretary of State is authorized to make a certification consistent \nwith section 2(7)(C)(i) of the Resolution with respect to the effectiveness \nand viability of the Australia Group. \n(b) The Secretary of Commerce is authorized to make a certification con-\nsistent with section 2(9) of the Resolution with respect to the interests \nof certain firms in the United States. \nSec. 3. Executive Order 12163 of September 29, 1979, as amended, is further \namended, in section 1–100(a), by striking the period at the end of paragraph \n(12) and inserting a semicolon, and by inserting the following new para-\ngraphs: \n‘‘(13) title II of the Foreign Operations, Export Financing, and Related \nPrograms Appropriations Act, 2002 (Public Law 107–115), under the heading \n‘‘Assistance for the Independent States of the Former Soviet Union,’’ in \nsubsections (g)(4) and (6);’’; \n‘‘(14) section 512 of Division D of the Consolidated Appropriations Act, \n2004 (Public Law 108–199);’’; \n‘‘(15) sections 5(c) and 6 of the Anglo-Irish Agreement Support Act of \n1986 (Public Law 99–415), as amended.’’. \nVerDate jul<14>2003 08:56 Jul 12, 2004 Jkt 203001 PO 00000 Frm 00001 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\13JYE1.SGM 13JYE1\n=== PDF page 2 of 2 ===\n41906 Federal Register / Vol. 69, No. 133 / Tuesday July 13, 2004 / Presidential Documents \nSec. 4. Executive Order 13277 of November 19, 2002, is amended in section \n1(b)(3) by adding after the phrase ‘‘Section 2105(a)(1) ’’ the terms ‘‘(A) and \n(C)’’. \nSec. 5. References in this order to provisions of any Act shall be deemed \nto include references to any provision of law that is the same or substantially \nthe same as such provisions. \nSec. 6. In carrying out sections 1 and 2 of this order, officers of the United \nStates shall ensure that all actions taken by them are consistent with the \nPresident’s constitutional authority to: (a) conduct the foreign affairs of \nthe United States; (b) withhold information the disclosure of which could \nimpair the foreign relations, the national security, the deliberative processes \nof the Executive, or the performance of the Executive ’s constitutional duties; \n(c) recommend for congressional consideration such measures as the Presi-\ndent may judge necessary and expedient; and (d) supervise the unitary \nexecutive branch. \nSec. 7. Nothing in this order shall be construed to impair or otherwise \naffect the functions of the Director of the Office of Management and Budget \nrelating to budget, administrative, or legislative proposals. \nSec. 8. This order is intended only to improve the internal management \nof the executive branch and is not intended to, and does not, create any \nright or benefit, substantive or procedural, enforceable at law or in equity \nby a party against the United States, its departments, agencies, entities, \nofficers, employees or agents, or any other person.\nW\nTHE WHITE HOUSE, \nJuly 8, 2004. \n[FR Doc. 04 –15934\nFiled 7 –12–04; 8:45 am] \nBilling code 3195 –01–P \nVerDate jul<14>2003 08:56 Jul 12, 2004 Jkt 203001 PO 00000 Frm 00002 Fmt 4790 Sfmt 4790 E:\\FR\\FM\\13JYE1.SGM 13JYE1"
-    },
-    "TERM:EO:13346:0ba1b8310903c903@16a34ed4f7ee9045": {
-      "actor_id": "EO:13346",
-      "char_end": 3258,
-      "char_start": 3090,
-      "computed_end_candidate": null,
-      "confidence": "medium",
-      "effective_date": null,
-      "id": "TERM:EO:13346:0ba1b8310903c903@16a34ed4f7ee9045",
-      "instrument_id": "EO:13346",
-      "kind": "condition",
-      "mechanism": "own_terms_condition",
-      "note": "A report deadline never yields an end candidate; month-end anniversary ambiguity remains unresolved.",
-      "notes": "Machine wording lead; no cessation or occurrence inferred.",
-      "scope_id": "EO:13346#b-3",
-      "source": {
-        "acceptable_as_original": false,
-        "filing_date": null,
-        "grade": "held_text_lead",
-        "instrument_id": "EO:13346",
-        "page_or_item": "19 U.S.C. 3801",
-        "requires_page_check": false,
-        "sha256": "16a34ed4f7ee9045fb8eabb670ee0f5876aef4d7b4f8b88cacdaaac84985c5b3",
-        "signing_date": "2004-07-08",
-        "text_path": "jobs/theophilus-sources/output/texts/usc-t19-s3801.txt",
-        "text_sha256": "16a34ed4f7ee9045fb8eabb670ee0f5876aef4d7b4f8b88cacdaaac84985c5b3",
-        "url": "https://uscode.house.gov/view.xhtml?req=granuleid:USC-prelim-title19-section3801&num=0&edition=prelim"
-      },
-      "start_date": null,
-      "stated_end_date": null,
-      "text": "L. 107–210, § 1, Aug. 6, 2002, 116 Stat. 933, provided that: “This Act [see Tables for classification] may be cited as the ‘Trade Act of 2002’.”\nExecutive Documents\nEx."
     }
   },
-  "fingerprint": "32a0692c9d6baa2d2e5920d61d6ea3aa926133371c961279b7007f8ec09cd513",
+  "fingerprint": "4e8e40db0696795f097eb68cd6d6d7d8298ccee81bcfe510be99b554c85517e9",
   "instrument_id": "EO:13346",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -1564,32 +1721,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 7,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 3,
+      "machine_fragment_items_for_this_order_all_systems": 3,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -1599,6 +1758,14 @@
     }
   ],
   "missing": [
+    "Acting text of FRDOC:2010-14705: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2010-14705.txt",
+    "Acting text of FRDOC:2011-12990: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2011-12990.txt",
+    "Acting text of FRDOC:2011-15904: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2011-15904.txt",
+    "Acting text of FRDOC:2021-10468: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2021-10468.txt",
+    "Acting text of FRDOC:2024-15471: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2024-15471.txt",
+    "Acting text of FRDOC:2025-13773: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2025-13773.txt",
+    "Acting text of FRDOC:2026-09795: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2026-09795.txt",
+    "Acting text of FRDOC:E8-10772: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-E8-10772.txt",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence.",
@@ -1606,16 +1773,14 @@
   ],
   "notice": "MACHINE LEADS ONLY. No segmentation, date, source grade, family or chain is a legal conclusion.",
   "original_source_id": "ORIGINAL:EO:13346",
-  "own_terms": [
-    "TERM:EO:13346:0ba1b8310903c903@16a34ed4f7ee9045"
-  ],
+  "own_terms": [],
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 1,
-    "fingerprint": "fd10d707903a9c25c772084fed9dee7da46747d1e3f1cee34d39599736ecc114",
+    "fingerprint": "ea9f82272e083af72f670fa4840eb2696b3d06f99aebbc54a6b18fe259fca45a",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13346.json",
-    "history_sha256": "269fd130c15b3258824f24ceaf68857f2df269cbb2d9c5c3a595bdaefc4918df",
+    "history_sha256": "608659c7c4c729cf5f020245a4f9fa2538659758be8b1bdfacae0851829a7580",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,

@@ -210,9 +210,14 @@ _CUE=(r'(?:E[ ]?x[ ]?e[ ]?c[ ]?u[ ]?t[ ]?i[ ]?v[ ]?e[ \t\n]{1,3}O[ ]?r[ ]?d[ ]?e
       r'(?:[ \t\n]{0,3}\((?:E\.[ ]?O\.|EO)\))?')
 _NUMWORD=r'(?:Nos?\.?|Numbers?|Numbered)'
 _MONTH=r'(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Sept|Oct|Nov|Dec)[a-z]{0,6}\.?'
-_ITEM=(r'\d(?:[ ]?\d){0,4}(?:-?[A-Za-z])?(?:,?[ \t\n]{1,3}(?:of|dated)[ \t\n]{1,3}'+_MONTH+r'[ \t\n]{1,3}\d{1,2},?[ \t\n]{0,3}\d{4})?'
+_ITEM=(r'\d(?:[ ]?\d){0,4}+(?:-?[A-Za-z])?(?:,?[ \t\n]{1,3}(?:of|dated)[ \t\n]{1,3}'+_MONTH+r'[ \t\n]{1,3}\d{1,2},?[ \t\n]{0,3}\d{4})?'
        r'(?:,?[ \t\n]{1,3}as[ \t\n]{1,3}amended)?')
-_SEP=r'[ \t\n]{0,3}[,;]?[ \t\n]{0,3}(?:(?:and|or|&)[ \t\n]{1,3})?'
+# A list separator may be empty, whitespace, punctuation or a conjunction: real lists are printed as "Numbered 8744
+# 9230 9712", with footnote markers ("1941;2 No. 8900") and OCR damage ("No. 1Q292"). The digit run inside one number
+# is possessive and the whitespace of a separator atomic, so a run of spaced digits is split one way only. Without
+# that, a failing \Z anchor retried every split: 14 spaced digits took 2.4 s, and the 2026-11-12 claim-kit build ran
+# 4 h 20 min at full CPU into the runner wall. The accepted language is unchanged (checked on 22,413 real pairs).
+_SEP=r'(?>[ \t\n]{0,3}[,;]?[ \t\n]{0,3})(?:(?:and|or|&)[ \t\n]{1,3})?'
 _PRECEDES=re.compile(_CUE+r'[ \t\n]{0,3}(?:'+_NUMWORD+r'[ \t\n]{0,3})?(?:'+_ITEM+_SEP+r'(?:'+_NUMWORD+r'[ \t\n]{0,3})?){0,20}\Z',re.I)
 _HYPHENATED=re.compile(r'(?<=[A-Za-z])-[ \t]*\n?[ \t]*(?=[a-z])')
 _STATES=('Alabama|Alaska|Arizona|Arkansas|California|Colorado|Connecticut|Delaware|Florida|Georgia|Hawaii|Idaho|Illinois|'
@@ -660,8 +665,12 @@ def build(repo, out, cache=None):
     acting_selected,acting_refused=select_acting_texts(repo,acting_rows,{a for _,a,_ in pairs if a not in universe})
     for reason in acting_refused:warnings.append('acting text refused: '+reason)
     unnamed_pairs=set();acting_used=set()
+    last_note=time.monotonic()
     for pair_no,(key,p) in enumerate(sorted(pairs.items(),key=lambda kv:(kv[0][1],kv[0][0],str(kv[0][2]))),1):
-        if pair_no%2000==0:print(f'claim-kit: located {pair_no}/{len(pairs)} known provision pairs',flush=True)
+        if pair_no%2000==0 or time.monotonic()-last_note>60:
+            # Also once a minute, naming the actor, so a slow text shows up in the log instead of as silence.
+            print(f'claim-kit: located {pair_no}/{len(pairs)} known provision pairs (actor {key[1]})',flush=True)
+            last_note=time.monotonic()
         target,actor,parent=key
         if actor not in universe:
             ar=acting_selected.get(actor)

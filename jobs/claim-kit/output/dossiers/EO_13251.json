@@ -2,7 +2,8 @@
   "actor_contexts": [
     {
       "actor_id": "EO:13261",
-      "evidence_id": "ACTOR_TEXT:EO:13261"
+      "evidence_id": "ACTOR_TEXT:EO:13261",
+      "prints_number_lexical": true
     }
   ],
   "actor_provisions": [
@@ -179,7 +180,7 @@
         "verb": "amend"
       }
     ],
-    "generic_refs_excluded": 235,
+    "generic_refs_excluded": 233,
     "id": "CHAIN:EO:13251",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:13251"
@@ -1501,6 +1502,7 @@
       "char_end": 6470,
       "char_start": 0,
       "id": "ACTOR_TEXT:EO:13261",
+      "prints_number_lexical": true,
       "role": "actor_context",
       "source": {
         "filing_date": null,
@@ -2472,7 +2474,7 @@
       "text": "Subject to the provisions of section 3 of this order, the officers\nnamed in section 2, in the order listed, shall act as, and perform the\nduties of, the office of Secretary of State (Secretary) during any period\nin which the Secretary has died, resigned, or otherwise become unable\nto perform the functions and duties of the office of Secretary."
     }
   },
-  "fingerprint": "ac88b2fa531a1b99ba7f46c71e4b6a98ec4d4676bb90e1fd587a7b2df399b2a9",
+  "fingerprint": "5d3e5c0ccd1256537fa87adc23a55ce367bbba8abf905cce8b0ded2a9a17891c",
   "instrument_id": "EO:13251",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -3057,32 +3059,34 @@
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "every citation of this order by number (forms 'Executive Order', 'Ex. Ord.', 'E.O.') in the text and notes of the titles read; edition current through 2026-10-09 (laws enacted after that date and on or before 2026-10-14 are not reflected)",
         "repository": "U.S. Code, Office of the Law Revision Counsel release point 119-121 (USLM XML, 58 title files), statute text and editorial notes",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 2,
       "scope_note": "",
       "search_id": "current-law:usc"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
+        "checked_on": "2026-11-11",
         "query_or_scope": "full-text search for 'Executive Order', 'Executive Orders', 'E.O.', 'Ex. Ord.', 'Exec. Order' and regulation text, authority and source citations naming this order",
         "repository": "eCFR point-in-time search as of 2026-10-14 and GovInfo CFR bulk XML (49 titles read)",
         "searched_by": "jobs/current-law (machine search)"
       },
-      "machine_hits_for_this_order": 1,
+      "machine_fragment_items_for_this_order_all_systems": 1,
+      "machine_hits_for_this_order": 0,
       "scope_note": "",
       "search_id": "current-law:ecfr"
     },
     {
       "complete": true,
       "entry": {
-        "checked_on": "2026-11-06",
-        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17521 saved order texts",
+        "checked_on": "2026-11-11",
+        "query_or_scope": "disposition notes of 6941 catalog records (1937 onward) naming this order as amended, revoked, superseded or otherwise affected, plus operative sentences in 17746 saved order texts",
         "repository": "Federal Register executive-order catalog (federalregister.gov API v1, include_pre_1994_docs=true): Office of the Federal Register disposition notes",
         "searched_by": "jobs/later-events (machine search)"
       },
@@ -3092,6 +3096,7 @@
     }
   ],
   "missing": [
+    "Acting text of FRDOC:2010-7232: number not found by the lexical check; may be cited by date or garbled OCR; read the held text at jobs/selden-fr-citers/output/texts/fr-2010-7232.txt",
     "Current legal predicate and coverage through 2026-10-14 require judgment; a citation or 1989 snapshot cannot prove continuation.",
     "Current-law lead lacks an original-source sha256.",
     "No uniquely located attributed legal-text slice is held for this current-law pointer; serialized JSON/JSONL, snippets and absent cache artifacts are not legal-text evidence."
@@ -3106,10 +3111,10 @@
   "schema": "eo-claim-kit-dossier/v1",
   "status_history": {
     "event_count": 2,
-    "fingerprint": "3b6dc034b2ea870a1e42f76a6d02b47e4820b5d4aa990e13d1e2b071a362e72c",
+    "fingerprint": "08f70f648bdb879c58046a8775fab6705f3003ea994c31be9ebcdf3df0f904b7",
     "flags": [],
     "history_path": "jobs/status-history/output/histories/EO_13251.json",
-    "history_sha256": "848e53126b2deed80f6d93e5cd6a35cde41501ef52ee3c1c4d6cf11881ec8f4d",
+    "history_sha256": "b0413bc8d80e319738734c206b47fe86c797042e5f46cf22a11c4a9316d52315",
     "input_origin": "jobs/status-history/output/FRAGMENTS.jsonl",
     "legal_cutoff": "2026-10-14",
     "machine_lead": true,
