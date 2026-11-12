@@ -58,3 +58,11 @@ Check the 875 CIS unnumbered executive orders that fall on dates with no known o
 *Why:* CIS (1987) is an independent, more complete frame than Lord; if most of the 875 are presidential, the identified unnumbered series grows by up to about 1,600.
 
 Sources: `research/graunt-census-audit-2026-11-12/cis-kaufman/README.md`
+
+## A-20261112-lind-stage0 (2026-11-12, Claude)
+
+After the claim-kit rebuild publishes, may Claude run one Lind stage-0 batch: 30 undecided orders (15 passing every Larrey gate, 15 passing only the hard gates, drawn by research/lind/stage0/draw.py), Papinian configuration, one pooled review set, hard cap $35 list-price allowance? It also needs an Augur review of research/lind/stage0/WAVE.json by another model family (Codex or Astra) or you, bound to its hash. This replaces A-20261110-larrey-soft-probe.
+
+*Why:* It decides whether the soft gates exclude worthwhile work (2,073 orders) and whether the rebuilt kit lifts undecided yield; every result row has an action in DECISION_2026-11-12.md section 6.3. Cost: about $22-26 expected, $35 cap, plus your adoption decisions.
+
+Sources: `research/lind/DECISION_2026-11-12.md`

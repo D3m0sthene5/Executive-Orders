@@ -1,0 +1,66 @@
+{
+ "wave": "lind-stage0-2026-11-12",
+ "author": "claude-opus-5-5",
+ "stage": 0,
+ "objective": {
+  "metric": "ready_gain_per_unit",
+  "text": "Measure orders brought to ready (6/6) per arm, all-gates vs hard-only, on the rebuilt claim kit"
+ },
+ "actions": [
+  {
+   "id": "status_assignment.undecided",
+   "orders": 30,
+   "lanes": 1
+  }
+ ],
+ "configuration": {
+  "orchestrator": "claude-scripted",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "claude-sonnet-5-5"
+ },
+ "limits": {
+  "chain_budget_units": 6000000,
+  "spend_per_claim_units": 3000000,
+  "no_claim_minutes": 40,
+  "context_kill_tokens": 120000,
+  "reviews_per_hour": 6,
+  "coordinator_units_per_hour": 1000000
+ },
+ "premortem": [
+  {
+   "failure": "The claim-kit output is still the pre-fix build, so the test measures the old kit",
+   "guard": "draw.py refuses unless claim-kit finished after 2026-11-10T22:07Z and Larrey gates after that"
+  },
+  {
+   "failure": "Soft-failing orders are dispatch-blocked and waste producer time",
+   "guard": "kit dispatch check runs before assignment; blocked orders are recorded, not retried"
+  },
+  {
+   "failure": "Coordinator overhead grows as in Haloander",
+   "guard": "stop production if coordinator dollars exceed 0.25 per attempt after 10 orders (bentham usage)"
+  },
+  {
+   "failure": "A review error is read as yield",
+   "guard": "planted control, two fresh blind Opus arms, both-uphold rule; every disagreement adjudicated against held text"
+  },
+  {
+   "failure": "Spend runs past the cap",
+   "guard": "Savigny stops on measured spend; hard cap 35 USD list price across all agents"
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261110-papinian-undecided-u23": "Producer brief adds the YES-route current-law and later-event checklist for both arms; ready (6/6), not accepted status, is the primary endpoint.",
+  "F-20261110-papinian-undecided-u01b": "draw.py refuses until claim-kit is rebuilt after the F3-F7 merges and Larrey re-run; one-order prepare check before the draw; adoption asks filed per proposal.",
+  "F-20261110-mommsen3-undecided-probe01": "Status proposals stay isolated for owner adoption; stage 0 only, no scaling; the a+h<=1 row stops and diagnoses before any stage 1.",
+  "F-20261110-mommsen3-codex-core-sandbox": "Not a Codex or Windows run: Claude Agent-tool workers in a Linux session read the pinned packet; results are checked against the packet by kit.py.",
+  "F-20261110-mommsen-unranked-pools": "Only Bentham action status_assignment.undecided, which is ranked; claim-kit admission with LARREY_LEVEL=hard; 30 orders on one lane.",
+  "F-20261107-haloander-undecided-probe": "Bentham now has filed_per_attempt.undecided and ranks the action; the transcription refusal was fixed (Accursius F6); adoption remains the owner's step.",
+  "F-20261028-4": "Packets are prepared fresh from the rebuilt claim-kit output; nothing is reused from earlier packets or supplements.",
+  "F-20261018-7": "No URL forecasting: every source is a held file with a hash in the packet; the forecast uses measured undecided yields only."
+ },
+ "review": {
+  "reviewer": "",
+  "verdict": "",
+  "plan_sha256": ""
+ }
+}
