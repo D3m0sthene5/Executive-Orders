@@ -81,4 +81,4 @@ and agency.
   - EO 36, 38, 40, 43, 47, 51 and 92: Cleveland civil-service groups. Look in the CSC annual reports and Richardson
     vol. IX.
   - EO 130A, 2687A, 2103, 5151A, 6585, 7010F and 8606A.
-- **Corrections:** not yet applied.
+- **Corrections:** 75 census rows changed through existing columns (`CORRECTIONS_APPLIED.csv`): 63 dates filled (marked `graunt_audit_*`), 5 year-only dates sharpened, one date corrected, EO 6 and 7 flagged as Secretary of State certifications, EO 3016C/K as delegated, EO 27-1 and the duplicate 1914-08-08 row as non-distinct (`deduplicated_document_proxy` 0; rows kept so claim-kit's pinned identities are intact). Three pre-1862 year_group corrections are notes only (B1 precedent).
