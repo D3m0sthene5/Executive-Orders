@@ -51,6 +51,14 @@ Check the 875 CIS unnumbered executive orders that fall on dates with no known o
 
 Sources: `research/graunt-census-audit-2026-11-12/cis-kaufman/README.md`
 
+## A-20261112-generate-verify-comparison (2026-11-12, Claude)
+
+Approve one bounded comparison, generate-then-verify (Nalimov script drafts) against the current producer route, on the same 10 prescreened orders (EO 10302, 10779, 10918, 11056, 11232, 11352, 11361, 11512, 12737, 13765), with the same sources, the same blind two-arm Opus review with planted controls and the both-uphold rule? Cap $30 list-price allowance all-in, script route first with a stop at $10. It is not a Lind stage 1 (no new pool, no scale). It needs: a newly signed plan replacing the Nalimov calibration v3 hash; your consent to attempt each order on both routes and file at most one claim per order; a Bentham gate pass; and your adoption decision on any upheld claims.
+
+*Why:* It tests whether replacing prose authoring with script drafting cuts cost per accepted ready dossier; falsified if script-route cost exceeds about one third of the producer route, reviewer reading is not cut by half, fewer than 60% are upheld, or a script error reaches review. Applies only to modern express revocations with held ending text.
+
+Sources: `research/lind/DESIGN_CHALLENGE_2026-11-12.md`
+
 ## A-20261112-lind-adopt-12753 (2026-11-12, Claude)
 
 Adopt the provisional NO status of EO 12753 (Nuclear Cooperation With EURATOM, March 8, 1991)? It was proposed under the claim-kit status-overlay route, accepted by an independent AI status reviewer, upheld by both independent blind AI lifecycle arms (whose planted control EO 9447 both caught), and now passes the actual claim checker (completion v2, eligible 1, exceptions 0) after Cotton retained its ending source bytes. Basis: EO 12791 (March 9, 1992) supersedes it. The reviewed claim is research/excavator/claude-lind-2026-11-12/overlay/REPLACEMENT_PROPOSAL.jsonl (sha256 47f70df6...). If yes, Claude files it as for D-20261110-papinian-adopt (ADOPTION_ROWS.csv, canonical claim file, readiness-tracker run). A provisional AI status; human certification stays 0.
