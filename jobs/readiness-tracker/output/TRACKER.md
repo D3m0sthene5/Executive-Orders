@@ -1,16 +1,16 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,251 of 14,998 orders (8.3%)**
+**Numbered series: ready for human review 1,251 of 15,002 orders (8.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 2,334 identities observed, a lower bound; estimated total 4,101 to 5,095 (95% interval). Not part of the numbered-series proportion above.
 
-Generation: `43139856564-1:d36f5e46f10c5d833e07de0dab00faac98fb3ff78bd2027fb8d1ff81978965c5` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43180128614-1:ae37a098cc959213ad9cd42d399751c0375fbf476b17fc6cd0a09ad639c24e54` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
 
-Orders with a provisional YES/NO status: 3,788. The other 11,210 have not been researched yet.
+Orders with a provisional YES/NO status: 3,788. The other 11,214 have not been researched yet.
 
 Ready by text evidence: {'original_supported': 725, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 851; quotation rechecks: 851. These remain work after readiness.
@@ -49,12 +49,12 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
-| `NO_PROVISIONAL_STATUS` | 0 | 11,210 |
+| `NO_PROVISIONAL_STATUS` | 0 | 11,214 |
 | `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 230 | 2,200 |
 | `NO_CLAUSE_INVENTORY` | 2,185 | 2,185 |
 | `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,185 | 2,185 |
 | `FIRST_END_UNPROVED` | 1,870 | 1,870 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 125 | 1,571 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 125 | 1,575 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 721 | 721 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 113 | 705 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
