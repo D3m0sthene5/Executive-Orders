@@ -1,8 +1,8 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `1b8f8a7c10115aa8cf4bd2301e3140803324c8331a3bf139bef4f8f12fcf4756`.
+Legal cutoff: 2026-10-14. Inputs: `27359fd1fc2175c1d1c364383e835584853a2c66ce9f1578b4dfdcb70b365ad2`.
 
-Verified committed tracker: 14,998 identities; 11,210 undecided; 1255 ready for human review.
+Verified committed tracker: 15,002 identities; 11,214 undecided; 1251 ready for human review.
 
 ## Ranked bounded source pass
 
@@ -25,5 +25,5 @@ Readiness ceiling if the entire pass succeeds: 11; demonstrated readiness gain b
 
 Use SOURCE_PLAN.json with source-ladder JOB_PLAN_FILE. It contains existing queued requests only.
 All per-order remaining work is in ORDER_FRONTIER.jsonl. Claim-kit owns dossiers, decisions and assembly.
-Historical discovery: 93 witness/candidate/gap records outside the census, zero authenticated identities or admissions. Source pointers and next decisions are in DISCOVERY.jsonl.
+Historical discovery: 89 witness/candidate/gap records outside the census, zero authenticated identities or admissions. Source pointers and next decisions are in DISCOVERY.jsonl.
 Read UPSTREAM_STATUS and UNRESOLVED_RETRIEVALS before reuse. Retrieval failure never means search exhaustion.
