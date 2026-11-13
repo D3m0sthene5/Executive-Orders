@@ -89,7 +89,7 @@ All rows and columns cross-foot.
   - $6,084.79 repaid to the appropriation; net warrants $14,776.71.
   - $15,308.25 in checks.
   - The Treasury-books balance fell from $15,719.92 to $943.21.
-- **e. Printed defects, neither of which changes the producer's figures:**
+- **e. One printed defect, which does not change the producer's figures:**
   - **(i) The 1945-account net warrant is printed "3,876.77*".** It should be 3,878.77, because three independent
     totals require it:
     - 16.14 − 3,894.91 = −3,878.77;
@@ -97,8 +97,11 @@ All rows and columns cross-foot.
     - disbursing 4,838.74 − 3,878.77 − 959.97 = 0.
     The printed column totals (10,897.94) agree with 3,878.77. **So this is a $2.00 printing error in that one cell;**
     the page was checked at 400 dpi.
-  - **(ii) The FY1947 opening-balance header reads "June 30, 1945",** but the figures are the June 30, 1946 closing
-    balances.
+  - **Withdrawn (EO-SUP-04 recheck):** this review earlier said the FY1947 opening-balance header reads "June 30, 1945".
+    It does not. Enlarged 4x, the committed crop `crops/cs1947_pdf192_p174.png` (same GovInfo bytes, SHA-256
+    62bfbd0d…) reads **"June 30, 1946"**, which agrees with the figures and with the supervisor's separate rendering.
+    The PDF text layer reads "1948", an OCR error. The "1945" was my own low-zoom misreading, not a different scan and
+    not OCR.
 
 ## 3. Do the FY1947 payments conflict with a June 30, 1946 fund cutoff?
 
