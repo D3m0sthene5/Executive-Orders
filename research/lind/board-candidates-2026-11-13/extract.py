@@ -250,12 +250,12 @@ def main():
                 flags.append('no_thirty_day_sentence_in_claim_text')
             if (tracker.get(iid) or {}).get('ready_for_human_review') == 'yes':
                 flags.append('already_ready')
-            # Report date status: CORROBORATED only when a reading of the held report (letter date line, cover, or
+            # Report date status: INVENTORY_AGREES only when a reading of the held report (letter date line, cover, or
             # a letter without heading) equals the independent NMB inventory 'closed' date. Image checks (CROSSCHECK.md)
             # found every single-reading disagreement to be an extraction or OCR error, so one reading is not enough.
             readings = {k: v for k, v in (('transmittal', t_date), ('cover', cover_rd)) if v}
             if closed and closed in readings.values():
-                rd_status, rd = 'CORROBORATED', closed
+                rd_status, rd = 'INVENTORY_AGREES', closed
             elif readings and not closed:
                 rd_status, rd = 'SINGLE_SOURCE_NO_INVENTORY', None
             elif readings:
@@ -265,7 +265,7 @@ def main():
             cand = {}
             if rd and creates:
                 d = dt.date.fromisoformat(rd)
-                cand = {'board_clause_end': {'date': rd, 'basis': 'report date CORROBORATED: held-report reading ' + str(sorted(k for k, v in readings.items() if v == rd)) + ' equals NMB inventory closed date; transmittal evidences submission, receipt by the President may be later',
+                cand = {'board_clause_end': {'date': rd, 'basis': 'report date INVENTORY_AGREES (transcription check, not independent historical evidence): held-report reading ' + str(sorted(k for k, v in readings.items() if v == rd)) + ' equals NMB inventory closed date; transmittal evidences submission, receipt by the President may be later',
                                              'transmittal_reading': {'kind': t_kind, 'offset': t_off, 'raw': t_raw}},
                         'standstill_end': None if not nc else {'basis': 'INFERRED_UNDER_RULE D-20261108-board-rule (end of the 30th day after the report date)',
                                            'inclusive_reading': (d + dt.timedelta(days=30)).isoformat(),

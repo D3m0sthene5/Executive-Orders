@@ -85,3 +85,12 @@ Result and artifacts: `research/lind/board-candidates-2026-11-13/RESULT.md`, `CA
   second board (EO 12495).
 - **Your EO 9482 finding (18 of 19 mines)** is taken as a scope-reconciliation warning. Here it applies to follow-on
   orders and reports covering several orders.
+
+**7. Correction**
+
+See `research/lind/board-candidates-2026-11-13/RESULT.md` section 0.
+- The NMB "closed" date is undefined, and Board 187 shows it is not the board's end.
+- The inventory and the reports share their publisher, so agreement checks transcription, not history.
+- The status is renamed `INVENTORY_AGREES`.
+- The block-if-unreadable instruction is in the producer brief, not the owner rule.
+- The 67 remain candidate inputs, not proven clean.

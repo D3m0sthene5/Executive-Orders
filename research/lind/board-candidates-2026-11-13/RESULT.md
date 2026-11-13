@@ -10,6 +10,37 @@ This folder holds **isolated candidates, not claims.**
   - `jobs/readiness-tracker/output/READINESS_BY_ORDER.csv`;
   - the census.
 
+
+## 0. Corrections (2026-11-13, targeted pass)
+
+1. **"Closed" is undefined.** The NMB does not define its "closed" column, either on the list page or on the overview
+   page (fetched 2026-11-13). Board 187's row shows closed 10/10/1975, yet the board reconvened and reported again on
+   1975-11-26. So "closed" is not proven to mean report submission or the end of the board.
+2. **Agreement is not independence.** The NMB both publishes the reports and keeps the inventory, so it may have
+   compiled the inventory from them. A match therefore checks the **transcription** of the date. It is not independent
+   historical evidence that the report was submitted that day. The status `CORROBORATED` is renamed `INVENTORY_AGREES`
+   throughout. The submission evidence is still the held report's own transmittal letter or cover.
+3. **The page images are readable; the extraction failed.** Every image viewed (11) was readable by a human. The
+   "damaged" and "absent" labels describe failed OCR or extraction, not unreadable sources.
+4. **The owner rule does not require blocking a readable image.** The owner's text (D-20261108-board-rule;
+   `research/readiness/owner_rulings/2026-11-08-haloander-decisions.md` item 2) ends the board command "on the
+   transmittal-letter date of the held report". The held report is the PDF. The instruction to block when the date
+   is "unreadable in the held text" comes from the coordinator's producer brief (`board_rule.txt`), not the owner's
+   ruling. A date read from the held report's page image therefore does not need an owner rule change. It needs a
+   recorded page reading, which existing page-check routes provide, and an update to the brief. The earlier statement
+   that "changing that is an owner decision" was wrong.
+5. **The 67 are not proven clean.** They are **candidate inputs under the documented checks**: the inventory agrees, the
+   order creates a board, and no flagged exception was found. Exceptions not visible to these checks (for example
+   unlisted reconvenings, or a statute affecting the standstill) are not ruled out.
+
+**Still unresolved:**
+- the meaning of "closed";
+- whether other boards reconvened without an inventory note;
+- the 33 orders whose dates have not been read from the image;
+- case-specific questions for the 23 exceptions.
+
+**Not done:** the proposed 10-order pilot. It would estimate clean-repair performance, not comparative savings.
+
 ## 1. What each date field means
 
 - **Transmittal reading:** each reading carries its text offset and raw characters.
@@ -29,14 +60,14 @@ This folder holds **isolated candidates, not claims.**
 
   | Status | Meaning |
   |---|---|
-  | **CORROBORATED** | a held-report reading equals the NMB date |
+  | **INVENTORY_AGREES** | a held-report reading equals the NMB date |
   | **CONFLICT_IMAGE_CHECK_NEEDED** | the readings disagree |
   | **UNREAD_IMAGE_CHECK_NEEDED** | no reading |
 
   One machine reading is never enough: in every disagreement checked against the page image, the NMB date was right
   and the extraction was wrong (section 3).
 
-- **Candidate ending:** computed only for CORROBORATED, board-creating orders.
+- **Candidate ending:** computed only for INVENTORY_AGREES, board-creating orders.
   - The board clause ends on the corroborated report date. The transmittal evidences submission; receipt by the
     President may be later.
   - The standstill clause, only where the claim's quoted order text has the "thirty days after … report" sentence, is
@@ -90,8 +121,8 @@ from the Pergamon store and its hash matched the stored record.
 
 - The extraction alone was wrong in 4 of the 6 disagreements checked (EO 9922, 10511, 11852, 10114). That is why
   corroboration is required.
-- Every viewed date was readable by a human. "Damaged" is a limit of the extraction and the current production rule,
-  not of the evidence.
+- Every viewed date was readable by a human. "Damaged" describes failed OCR or extraction, not the evidence (see
+  section 0, item 4, on the rule).
 
 ## 4. Which reasoning is established, and which is case-specific
 
