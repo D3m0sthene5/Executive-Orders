@@ -1,3 +1,9 @@
+## 2026-11-13 ET (Claude: FEPC fiscal source challenge, EO-SUP-04)
+
+- **Report:** `research/lind/fepc-fiscal-review/REVIEW.md`, with source hashes and page crops. A source challenge only.
+- **Result:** the producer's FY1947 figures are confirmed. The function-list sourcing is corrected (FR 270.1(h)(1), not AR p. 118). The 1945 account lapsed to the surplus fund in FY1947. One cell has a $2.00 printing error.
+- **Open:** six legal predicates (section 4); the May 18, 1946 letter is still unlocated.
+
 ## 2026-11-13 ET, early (Claude: conveyor audit for supervisor dispatches EO-SUP-01 and EO-SUP-02)
 
 - **Audit:** `research/lind/conveyor-audit/AUDIT.md`; Kean F-20261113-conveyor-audit.
