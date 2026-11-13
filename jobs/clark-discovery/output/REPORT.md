@@ -1,14 +1,14 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-12T01:35:11Z. Leads only; no census, count or identity changes.
+Generated 2026-11-13T02:48:41Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
-| Numbers with no census row (1 to 14435) | 24 | NUMBER_GAPS.csv |
-| Numbers cited in texts or OFR notes but absent from the census | 136 ids (32 plausible) | CITED_BUT_UNKNOWN.csv |
-| Census orders known by number only | 22 | IDENTITY_UNKNOWN.csv |
-| Dated unnumbered references matching nothing known | 192 | DATED_UNNUMBERED.csv |
-| Handed to Lewis with identity evidence | 18 | HANDOFF_TO_LEWIS.jsonl |
+| Numbers with no census row (1 to 14435) | 20 | NUMBER_GAPS.csv |
+| Numbers cited in texts or OFR notes but absent from the census | 135 ids (30 plausible) | CITED_BUT_UNKNOWN.csv |
+| Census orders known by number only | 23 | IDENTITY_UNKNOWN.csv |
+| Dated unnumbered references matching nothing known | 193 | DATED_UNNUMBERED.csv |
+| Handed to Lewis with identity evidence | 17 | HANDOFF_TO_LEWIS.jsonl |
 
 ## Number gaps
 
@@ -33,15 +33,11 @@ Generated 2026-11-12T01:35:11Z. Leads only; no census, count or identity changes
 | EO:53 | EO:50 1894-11-02 -> EO:54 1894-11-02 | cited |  |
 | EO:92 | EO:91 1896-11-02 -> EO:93 1896-12-23 | strong | cited_with_date:1896-11-02 |
 | EO:2103 | EO:2102 1914-12-07 -> EO:2104 1914-12-09 | number_only |  |
-| EO:2539 | EO:2538 1917-02-26 -> EO:2540 1917-02-27 | strong | cited_with_date:1917-02-26 |
-| EO:2703 | EO:2702 1917 -> EO:2704 1917 | number_only |  |
-| EO:3493 | EO:3492 1921-06-14 -> EO:3495 1921-06-14 | number_only |  |
-| EO:3733 | EO:3732 1922 -> EO:3734 1922 | number_only |  |
 | EO:6585 | EO:6584 1934-02-06 -> EO:6586 1934-02-06 | strong | app_index:1934-02-06:Executive Order 6585—Deferring Effective Date of Section 18 of Executive Order N ; cited_with_date: |
 
 ## Cited but unknown (plausible rows first)
 
-267 (cited id, citing document) pairs from 30725 saved texts and 5064 OFR notes. By plausibility: likely_ocr_footnote_digit 213, likely_ocr_letter_for_digit 18, plausible 32, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
+265 (cited id, citing document) pairs from 30725 saved texts and 5064 OFR notes. By plausibility: likely_ocr_footnote_digit 213, likely_ocr_letter_for_digit 18, plausible 30, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
 
 | Cited | Stated date | Cited by | Plausibility | Quote |
 |---|---|---|---|---|
@@ -68,8 +64,6 @@ Generated 2026-11-12T01:35:11Z. Leads only; no census, count or identity changes
 | EO:130A |  | EO:130B | plausible | Executive Order 130-A |
 | EO:130A | 1900-06-22 | EO:130D | plausible | Executive Order 130-A, June 22, 1900 |
 | EO:967A | 1914-06-23 | EO:3366 | plausible | Executive Orber. It is hereby ordered that the lands hereinaf ter described be, and the same are, eliminated from the operation of Executive |
-| EO:2539 | 1917-02-26 | EO:6972 | plausible | Executive Order No. 2539, of February 26, 1917, reserving certain lands for town-site purposes, and for other purposes in connection with th |
-| EO:2539 | 1917-02-26 | EO:6972 | plausible | REVOCATION IN Part oF EXECUTIVE ORDER No. 2539, oF FEBRUARY 26, 1917, WITHDRAWING Pustic Lanps |
 | EO:2687A | 1917-08-21 | EO:2645 | plausible | Executive Order 2687-A, August 21, 1917 |
 | EO:2687A |  | EO:2687 | plausible | Executive Order 2687-A |
 | EO:2687A | 1917-08-21 | EO:2729A | plausible | Executive Order 2687-A, August 21, 1917 |
@@ -80,12 +74,12 @@ Generated 2026-11-12T01:35:11Z. Leads only; no census, count or identity changes
 
 ## Identity unknown
 
-22 census orders have an open original_text step, no transcription lead and no date or title in any index. 1 are on the owner's ProQuest link list (year known from the accession) and 0 already have a ProQuest PDF in the repository; 21 are a number and nothing else. By census era: 1862–1906 10, 1907–1936 7, 1937–1989 2, Unknown date 3.
+23 census orders have an open original_text step, no transcription lead and no date or title in any index. 1 are on the owner's ProQuest link list (year known from the accession) and 0 already have a ProQuest PDF in the repository; 22 are a number and nothing else. By census era: 1862–1906 10, 1907–1936 10, 1937–1989 3.
 
 
 ## Web search (online stage)
 
-32 of 32 unknowns advanced this run (0 never searched yet); 113 of 1100 requests used. 3515 hits on file, 115 pages confirmed to name the order (45 unknowns): `WEB_LEADS.csv`. 22 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+29 of 29 unknowns advanced this run (0 never searched yet); 287 of 1100 requests used. 3701 hits on file, 131 pages confirmed to name the order (48 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
 List pages: 60 read, 237 order numbers named, **3 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
@@ -93,7 +87,7 @@ List pages: 60 read, 237 order numbers named, **3 absent from the census**: `WEB
 |---|---|
 | bing_api | needs_key |
 | bing_rss | blocked_by_robots_txt |
-| brave_api | blocked_by_robots_txt |
+| brave_api | ok |
 | brave_html | blocked_by_robots_txt |
 | duckduckgo_html | http_403 |
 | duckduckgo_lite | http_403 |
