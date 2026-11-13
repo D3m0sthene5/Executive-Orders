@@ -144,3 +144,56 @@ not an artifact.
   - Saving: at most about $3.5–4.0 per Lind-like 30-order batch at this boundary.
   - So about 2–3 such batches, not 1–2.
   - For a lean scripted coordinator, the saving and the break-even are unmeasured.
+
+## 5. Compatibility with the recovered Sol engineering (EO-SUP-02; judged from the supervisor's description)
+
+- **Not checked:** I did not inspect the exact bytes. Recovery commit `e3a22977b5f3` is not fetchable here ("not our
+  ref"); only its base `0c3b3d24b5b9` is. The supervisor runs the combined exact-tree checks.
+- **No textual overlap:**
+  - Since the merge base `dd448487b`, this branch changes code only in `jobs/maudslay-conveyor/conveyor.py` (the blank
+    STATUS_DECISION copy path) and its test.
+  - The recovery changes `jobs/claim-checker/{references.txt, sources.py}`, `jobs/claim-kit/build.py` (`_LIST_END`)
+    and their tests.
+  - From the merge base to the recovery's base, only claim-checker output files changed.
+- **Repository-file custody** (`jobs/*/data/**/SOURCES.jsonl`, `custody == 'repo_file'`, paths confined to their
+  pack): no interaction.
+  - The blank copy goes under `--scratch-root`, which `conveyor.py` (around line 864) refuses if it is inside the
+    repository.
+  - So the copy can land neither in a data pack nor in `research/`.
+  - The kit's prior-research scan reads `research/` only; data packs under `jobs/` are not STATUS_DECISION sources.
+- **Explicit EO-list matcher:** an indirect interaction. `build.py` decides which listed EO numbers a held document is
+  read as citing, so `kit prepare` can produce different dossiers and fingerprints for orders whose sources have such
+  lists. One of Lind's 30, EO 9481, is in the regression's EO 9474–9483 family.
+  - The conveyor does not pin `build.py`, and my fix is independent of it.
+  - But this replay's identical-output result is for the pre-recovery tree. On the combined tree, rerun the 30-order
+    replay; it takes minutes and no model calls.
+  - Differences are expected only where the new matcher changes a dossier. EO 9481's producer left its status
+    decision blank, so it is not among the 7 proposals.
+- **Conveyor check on this branch:** `python3 -I jobs/maudslay-conveyor/test_conveyor.py` ran 78 tests. 75 pass; the 3
+  failures are the known Windows-specific ones:
+  - two Codex-executable tests;
+  - `IsolationTests` given a `C:/` path.
+
+## 6. Pinned accounting result
+
+| Measure | Requests | List $ | Mean prompt per request | Source |
+|---|---:|---:|---:|---|
+| Lind window, whole batch (20:41–22:40 UTC 2026-11-12) | 93 | 11.75 | 519k | `usage_audit.py` |
+| — aligned boundary, Augur → overlay proposals | 48 | 5.78 | about 490k | `lind_boundary_labels.csv` |
+| — of which conveyor-removable | ≤33 | ≤4.03 | | the same labels |
+| Conveyor replay, 30 orders, same boundary | 0 | 0 | — | `r30_LEDGER.jsonl`, `r30_MEASURES.json` |
+| Efficiency assignment before this audit (5-order replay and fix) | 36 | about 7.5 | about 870k | the earlier transcript measure |
+| This audit (EO-SUP-01 and -02), from 02:49 UTC 2026-11-13, measured at writing | 37 | 3.10 | 160k | `usage_audit.py` |
+
+**Notes on the table:**
+- **Cash:** $0 per token; usage counts against the subscription allowance.
+- **Cost-state reconciliation:** the CLI's cost-state reproduces with `jobs/necker-costs/PRICES.json`.
+- **This audit's figure** grows by about $0.1 per further request. Recompute it with:
+  `python3 -I research/lind/conveyor-audit/usage_audit.py TRANSCRIPT 2026-11-13T02:49 2026-11-14T00:00`.
+- **Its low prompt size** comes from a condensed context, not a different method. Per request it cost $0.08, against
+  $0.12 in the Lind window, which is consistent with the fresh-context projection. This is one sample only.
+
+**Checks:**
+- `python3 -I jobs/maudslay-conveyor/test_conveyor.py`: 75 of 78 pass; the 3 known Windows failures.
+- `python3 -I jobs/kean/kean.py check --strict`: 0 errors, 0 warnings.
+- `py_compile` of `usage_audit.py` and `replay_worker.py`.
