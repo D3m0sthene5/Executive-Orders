@@ -5,7 +5,7 @@
   `jobs/necker-costs/PRICES.json`; the code is in `research/excavator/claude-papinian-2026-11-10/tools/cost.py` or
   `jobs/bentham/bentham.py usage --wave NAME --phase LABEL --session-id ID`.
 - **Context re-read per call:** the `cache_read_input_tokens` field in the same data. This is the largest cost in long
-  sessions: 518-769k tokens per call measured here, 77-82% of the coordinator's dollars.
+  sessions: mean 519-771k tokens per request (per request, not a sum), 77-82% of the coordinator's dollars.
 - **Calls by purpose:** each tool call's description. A rough clerical / decision / repair split is in
   `research/lind/conveyor-replay/RESULT.md` section 1.
 

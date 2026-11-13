@@ -1,5 +1,7 @@
 # Coordination cost: measured baseline, a real fix, and a zero-cost replay on the real claim kit (2026-11-13)
 
+**Corrected by `research/lind/conveyor-audit/AUDIT.md` (dispatch EO-SUP-01).** The $6.59 / 51-call comparison covered the whole 30-order Lind window, not the replay's stages. At the aligned boundary, the manual run used 48 requests ($5.78), of which the conveyor removes at most 33 ($4.03). A 30-order replay on the same saved inputs replaces the 5-order one.
+
 **Labels:** [obs] observed in a named artifact or transcript; [proj] projection; [unk] unknown. List-price API dollars
 are allowance; cash spent is $0.
 
@@ -20,11 +22,11 @@ are allowance; cash spent is $0.
 **What the coordination was, measured from this session's transcript,** classifying every coordinator call by what it
 did [obs]:
 
-| Window | Calls | Cost | Average context re-read per call | Share of cost that was re-reading context | Calls by purpose |
+| Window | Calls | Cost | Mean prompt size per request (not a sum) | Share of cost that was re-reading context | Calls by purpose |
 |---|---:|---:|---:|---:|---|
 | Lind pilot (setup, routine, publication) | 93 | $11.75 | 518k tokens | 82% | clerical 40%, debugging or repair 16%, decision 9%, other 35% |
 | Post-pilot diagnosis | 55 | $12.35 | 599k | 53% | decision 40% of dollars |
-| Board work | 59 | $11.85 | 769k | 77% | clerical 35%, decision 22% |
+| Board work | 59 | $11.85 | 771k | 77% | clerical 35%, decision 22% |
 
 **The largest demonstrated repeated work is a long-context coordinator re-reading its whole context to do clerical
 steps.** Real decisions were 9-22% of calls.
@@ -79,11 +81,13 @@ kit: EO 12753, 9739, 4475, 12437 and 11294.
     requires;
   - it ran Bentham's gate.
 - **Fidelity:**
-  - the evidence fingerprints and status decisions are identical to the manual pilot's for all 3 orders;
+  - the evidence, status decisions and status-history fingerprints are identical to the manual pilot's for all 3 orders
+    (the top-level dossier fingerprint hashes the bindings and differs);
   - the lifecycle sheets differ only in `approved` (left false, correctly) and `dossier_sha256` (the working dossier
     binds to the review sheet).
-- **The manual route for the same stages** in the pilot: about 36 clerical calls ($4.73) and 15 debugging or repair calls
-  ($1.86) out of 93 calls ($11.75), by a 518k-token context.
+- **The manual route for the same stages** (corrected; AUDIT.md section 1): Augur → overlay proposals for 30 orders took
+  48 requests ($5.78), of which at most 33 ($4.03) are conveyor-removable. The earlier 51 calls ($6.59) spanned the whole
+  batch, including later stages and publication.
 - **Not measured here:** the later stages (reconfirmation, assembly, plant, blind review, completion). They are covered by
   the conveyor's own tests on a fake kit and a real-kit fixture, not by this replay.
 
@@ -105,7 +109,7 @@ adoption. The conveyor caught this by design; manual coordination did not.
   - the cost of the producer-reconfirmation session the rule requires, or of the remaining stages;
   - causality: the comparison is retrospective.
 - **Smaller input is not lower end-to-end cost by itself.** Workers still pay for their own context. The expected saving
-  is the coordinator's clerical and repair calls, which come to $6.59 of $11.75 in the pilot window [obs], plus running
+  is the coordinator's removable calls at the replay's boundary, at most $4.03 of $5.78 [obs; AUDIT.md], plus running
   the remaining decisions in a fresh context. That second part is a projection: about $0.06 against $0.13-0.21 per call.
 - **Evidence omitted from a compact packet:** the conveyor does not change what workers see. Packets, views and
   sources are the kit's.
@@ -125,8 +129,8 @@ adoption. The conveyor caught this by design; manual coordination did not.
 **Break-even** [proj; assumptions stated]:
 - **Development cost here:** about $7.5 of this session, plus the earlier analysis.
 - **Saving per 30-order batch:**
-  - if the conveyor removes most clerical and repair calls of a long-context coordinator (Lind-like), about $5-7, so
-    break-even in about 1-2 batches;
+  - if the conveyor removes the removable calls of a long-context coordinator (Lind-like), at most about $3.5-4.0 at
+    the tested boundary, so break-even in about 2-3 batches (corrected from $5-7 and 1-2);
   - if the coordinator was already lean and scripted (Papinian-like, about $3 per 30 attempts), about $1-2, so about 4-8
     batches.
 - **Not counted:** maintenance, conveyor changes, and the reconfirmation step.

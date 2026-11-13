@@ -44,15 +44,9 @@ def produce(prompt, sc):
         if k in lrow and k not in ('dossier_sha256',):
             r[k] = lrow[k]
     if lcl:
-        by = {c['scope_id']: c for c in lcl}
-        newcr = []
-        for c in cr:
-            c.update({k: v for k, v in by.get(c['scope_id'], {}).items() if k in cf})
-            newcr.append(c)
-        for sid, c in by.items():          # producer-added scopes (inventory slices)
-            if sid not in {x['scope_id'] for x in cr}:
-                newcr.append({k: c.get(k, '') for k in cf})
-        cr = newcr
+        # Lind's clause rows exactly: a producer may replace the template's whole-order scope with slices, so a
+        # template scope Lind did not keep is dropped (keeping it blank made kit apply fail on EO 9447).
+        cr = [{k: c.get(k, '') for k in cf} for c in lcl]
     fw.write_csv(work / 'decisions.csv', df, dr)
     fw.write_csv(work / 'clauses.csv', cf, cr)
     rat = json.loads((src / 'RATIONALES.json').read_text(encoding='utf-8') or '{}')
