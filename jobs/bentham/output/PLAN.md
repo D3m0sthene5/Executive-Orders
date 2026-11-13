@@ -17,13 +17,13 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 9 | production.one_step_away | production | 217 | 138.6 | 0.0 | $72 | 192.0 | $80 |
 | 10 | production.claim_ready.yes.fr | production | 296 | 69.1 | 0.0 | $98 | 70.2 | $178 |
 | 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 1.1 | $3.03 | 37.6 | $181 |
-| 12 | status_assignment.undecided | status_assignment | 5370 | 537.0 | 0.0 | $1,786 | 30.1 | $1,966 |
-| 13 | production.claim_ready.no.fr | production | 1028 | 34.3 | 0.0 | $342 | 10.0 | $2,308 |
-| 14 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,308 |
-| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $2,308 |
-| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,308 |
-| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,308 |
-| 18 | acquire.cruden_fr_statute_concordance | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,308 |
+| 12 | status_assignment.undecided | status_assignment | 5371 | 537.1 | 0.0 | $1,786 | 30.1 | $1,967 |
+| 13 | production.claim_ready.no.fr | production | 1028 | 34.3 | 0.0 | $342 | 10.0 | $2,309 |
+| 14 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,309 |
+| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $2,309 |
+| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,309 |
+| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,309 |
+| 18 | acquire.cruden_fr_statute_concordance | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,309 |
 
 Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
 
