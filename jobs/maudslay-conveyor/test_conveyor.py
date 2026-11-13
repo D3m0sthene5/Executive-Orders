@@ -912,7 +912,9 @@ class OverlayTests(ConveyorCase):
         self.assertNotIn("STATUS_REVIEW_EO_11113.json", st[0]["files"])
         dec = json.loads((self.bdir / "packet/undecided/EO_11111/STATUS_DECISION.json").read_text(encoding="utf-8"))
         self.assertEqual((dec["recommended_provisional_status"], dec["agent"]), ("no", "testagent"))
-        self.assertTrue((self.bdir / "prepared/undecided/EO_11111.STATUS_DECISION.blank.json").exists())
+        # The kept blank lives in scratch, outside research/ (the kit's prior-research scan reads research/).
+        self.assertTrue((self.scratch / "prepared" / self.bdir.name / "undecided/EO_11111.STATUS_DECISION.blank.json").exists())
+        self.assertFalse((self.bdir / "prepared/undecided").exists())
         self.assertFalse((self.repo / "research/readiness").exists())
         self.assertFalse((self.repo / "research/progress").exists())
 

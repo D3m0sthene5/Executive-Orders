@@ -59,14 +59,6 @@ Approve one bounded comparison, generate-then-verify (Nalimov script drafts) aga
 
 Sources: `research/lind/DESIGN_CHALLENGE_2026-11-12.md`
 
-## A-20261112-lind-adopt-12753 (2026-11-12, Claude)
-
-Adopt the provisional NO status of EO 12753 (Nuclear Cooperation With EURATOM, March 8, 1991)? It was proposed under the claim-kit status-overlay route, accepted by an independent AI status reviewer, upheld by both independent blind AI lifecycle arms (whose planted control EO 9447 both caught), and now passes the actual claim checker (completion v2, eligible 1, exceptions 0) after Cotton retained its ending source bytes. Basis: EO 12791 (March 9, 1992) supersedes it. The reviewed claim is research/excavator/claude-lind-2026-11-12/overlay/REPLACEMENT_PROPOSAL.jsonl (sha256 47f70df6...). If yes, Claude files it as for D-20261110-papinian-adopt (ADOPTION_ROWS.csv, canonical claim file, readiness-tracker run). A provisional AI status; human certification stays 0.
-
-*Why:* It is the only claim of the Lind stage 0 that can reach ready (6/6); no further paid review is needed.
-
-Sources: `research/excavator/claude-lind-2026-11-12/RECOVERY.md`
-
 ## A-20261112-lind-repair-12437-11943 (2026-11-12, Claude)
 
 Optional: may Claude spend up to $8 list-price allowance (all-in) to repair EO 12437 and EO 11943, the two stage-0 claims each rejected by one blind arm for a single sentence (a false search statement; an imprecise effective date)? Steps: one producer correction of those sentences, overlay-check with the offline completion checker, one small blind review set (two fresh Opus arms, one planted control), completion; run from a fresh coordinator context. Expected 0-2 more eligible claims, each then needing your adoption.
@@ -74,3 +66,11 @@ Optional: may Claude spend up to $8 list-price allowance (all-in) to repair EO 1
 *Why:* The cheapest remaining repairs by recorded defects (RECOVERY.md section 3); the substantive repairs (EO 13476, 12701, 11294, 9447) are not worth buying before these show corrected claims pass.
 
 Sources: `research/excavator/claude-lind-2026-11-12/RECOVERY.md`
+
+## A-20261113-lind-12753-reconfirm (2026-11-13, Claude)
+
+EO 12753's lifecycle approval was reconfirmed by script, which D-20261110-no-mechanical-reconfirmation-for-models does not allow for model producers. Choose: (a) one fresh Sonnet producer session reconfirms the working sheet as a producer (about $0.5 cap), then re-assemble, re-check and re-complete; the blind reviews were bound to the claim hash and stay valid only if the claim is unchanged; or (b) you decide the mechanical reconfirmation acceptable for this one claim (a rule exception). Adoption of EO 12753 waits on this.
+
+*Why:* EO 12753 is the only stage-0 claim upheld by both arms and passing the actual checker; its process must comply before adoption.
+
+Sources: `research/lind/conveyor-replay/RESULT.md`

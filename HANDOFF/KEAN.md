@@ -10,7 +10,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 ## Waiting for the owner (9)
 
-**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-cis-unnumbered-check**, **A-20261112-generate-verify-comparison**, **A-20261112-lind-adopt-12753**, **A-20261112-lind-repair-12437-11943**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-cis-unnumbered-check**, **A-20261112-generate-verify-comparison**, **A-20261112-lind-repair-12437-11943**, **A-20261113-lind-12753-reconfirm**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -55,13 +55,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 383; `search` finds the rest)
+## Newest results (6 of 385; `search` finds the rest)
 
+- 2026-11-13 F-20261113-lind-mechanical-reconfirmation **failed**: Lind stage 0 manual coordination: after overlay-propose reset producer approval, the coordinator set approved… Lesson: Before adoption, EO 12753 needs a producer reconfirmation (a fresh producer session re-approving the working sheet) or an owner decision; manual coordination must follow the same rules the conveyor e…
 - 2026-11-13 F-20261113-held-evidence-unused **analysis**: Owner: be the empirical/adversarial partner to Sol's redesign; test "missing sources, not workflow". Three fr… Lesson: Do not equate "the pipeline cannot use this evidence" with "the evidence is unavailable". Make held evidence usable and keep partial findings before buying new drafting or review designs; measure tou…
+- 2026-11-13 F-20261113-conveyor-replay **worked**: Owner: find and implement a measured reduction in tokens/time per research output. Classified every coordinat… Lesson: Coordination cost is mostly context re-reading for clerical steps: run claim-kit batches through the conveyor and keep the coordinating context fresh and short. A net saving still needs one paid conv…
 - 2026-11-13 F-20261113-board-cohort **analysis**: Owner: establish what the board cohort's apparent readiness means before calling it the best lever; pin the s… Lesson: A cohort with sources and a rule is not one date away from ready: check whether the rule changes the clause inventory before projecting review-free completion. Sample hard cases, not easy confirmatio…
 - 2026-11-13 F-20261113-board-candidates **worked**: Owner: bounded extraction and classification of the 126 board orders as isolated candidates (research/lind/bo… Lesson: Corroborate a machine-read date with an independent source before computing anything from it; OCR damage is a limit of extraction and the production rule, not of the evidence. A shared rule still nee…
 - 2026-11-12 F-20261112-soft-gates-untested **analysis**: Owner: does Larrey filtering avoid waste or exclude worthwhile work? Split the 62 back-test exclusions into h… Lesson: Enforce hard gates; use soft gates to order the queue, not to exclude, until a stratified prospective test on the rebuilt kit measures orders kept out. A sample of admitted orders cannot measure fals…
-- 2026-11-12 F-20261112-runner-deadline **failed**: Run the Bodley web pass (one web search per order for 2,251 orders lacking an official copy) as a single job… Lesson: Never guess a job's run time: time 5-10 real items first (locally or a diagnostic run) and multiply. If the projection is over 4 hours, shard it across jobs or let it stop at 4.5 h and continue next…
-- 2026-11-12 F-20261112-lind-stage0-diagnosis **partly worked**: Owner: find the cheapest reliable path from already-produced Lind stage-0 work to an accepted ready dossier,… Lesson: Run the actual checker offline on every undecided draft before blind review (overlay-check now does), and retain custody bytes through Cotton before review. Re-render route briefs against the current…
 
-Register: 91 owner decisions, 58 answered questions, 383 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 91 owner decisions, 58 answered questions, 385 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
