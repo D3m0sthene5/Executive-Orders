@@ -1,3 +1,17 @@
+## 2026-11-13 ET, early (Claude: conveyor audit for supervisor dispatches EO-SUP-01 and EO-SUP-02)
+
+- **Audit:** `research/lind/conveyor-audit/AUDIT.md`; Kean F-20261113-conveyor-audit.
+  - The $6.59 / 51-call comparison was whole-batch. At the aligned boundary the manual run used 48 requests, $5.78,
+    with at most 33 ($4.03) removable.
+  - The 30-order replay on saved inputs: 0 coordinator calls, 7 proposals matching the pilot's, stop at producer
+    reconfirmation.
+  - "518k" is the mean per-request prompt.
+- **Sol recovery compatibility** (judged from the supervisor's description; the commit is not fetchable here): no
+  overlap. Rerun the 30-order replay on the combined tree, because the EO-list matcher can change prepared dossiers.
+- **PR #304:** title and body corrected (text in `research/lind/conveyor-audit/PR_304_METADATA.md`). The EO 12753
+  eligibility and adoption claim is withdrawn; open ask A-20261113-lind-12753-reconfirm, not approved.
+- **Not authorized:** the $25 batch, the EO 12753 paid reconfirmation, merges, adoption.
+
 ## 2026-11-13 ET (Claude: coordination cost measured; conveyor fixed for the undecided route; real-kit replay; board handoff corrected)
 
 Compact handoff. Read only the files named.
