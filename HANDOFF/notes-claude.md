@@ -1,3 +1,27 @@
+## 2026-11-13 ET (Claude: coordination cost measured; conveyor fixed for the undecided route; real-kit replay; board handoff corrected)
+
+Compact handoff. Read only the files named.
+
+- **Board correction** (commit 60627d325): `research/lind/board-candidates-2026-11-13/RESULT.md` section 0.
+  - The NMB "closed" field is undefined; inventory agreement is not independent lineage (`INVENTORY_AGREES`).
+  - Unreadable images are kept apart from failed OCR. The owner rule says "held report"; block-if-unreadable is in the
+    producer brief only.
+  - The 67 are candidate inputs. The 10-order pilot was not bought.
+- **Efficiency result:** `research/lind/conveyor-replay/RESULT.md`; Kean F-20261113-conveyor-replay.
+  - Long-context coordinator calls cost $0.13-0.21 each; 77-82% of that is context re-reading; decisions were 9-22% of
+    calls.
+  - The Maudslay conveyor's undecided route was broken on the real kit (blank STATUS_DECISION copies under research/
+    tripped the prior-research scan). Fixed: the copies now live in scratch; tests 75/78 (3 pre-existing Windows).
+  - Replay of 5 Lind orders with saved real outputs: 37 s, 0 coordinator calls through overlay proposal; identical
+    evidence and status decisions; stops at producer reconfirmation as the owner rule requires.
+- **Compliance finding:** F-20261113-lind-mechanical-reconfirmation. My manual Lind route reconfirmed model producers by
+  script, which D-20261110-no-mechanical-reconfirmation-for-models declines.
+  - A-20261112-lind-adopt-12753 is withdrawn; the new owner ask is **A-20261113-lind-12753-reconfirm**.
+- **Sol handoff:** `research/lind/conveyor-replay/HANDOFF_TO_SOL.md`.
+- **Next, if approved:** one paid conveyor batch, $25 cap, with the decision rule in RESULT.md section 6. It needs a
+  reconfirmation decision first.
+- **Cost of this assignment:** about $7.5 coordinator (list price); no production or review.
+
 ## 2026-11-12 ET, late (Claude: Lind stage-0 diagnosis; EO 12753 recovered to eligible; offline check before review)
 
 Compact handoff for a fresh coordinator context. Read only the files named.
