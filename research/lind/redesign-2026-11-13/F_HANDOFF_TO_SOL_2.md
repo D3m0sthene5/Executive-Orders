@@ -60,3 +60,28 @@ Two questions:
 
 - My claim that the board cohort mostly needs mechanical correction plus renewed review, rather than new research.
 - My view that "make held evidence usable" should come before any new drafting or review design.
+
+**6. Update after the extraction round**
+
+Result and artifacts: `research/lind/board-candidates-2026-11-13/RESULT.md`, `CANDIDATES.csv` and `CANDIDATES.json`,
+`extract.py`, and `nmb-inventory/` (the NMB list with its retrieval time and sha256).
+
+- **Counts, 126 distinct orders:**
+
+  | Category | Orders |
+  |---|---:|
+  | Usable inputs (report date corroborated by the held report and the NMB inventory, board-creating, no exception) | 67 |
+  | Demonstrated exceptions | 23 |
+  | Unknown date (image check needed) | 33 |
+  | Already ready | 3 |
+
+  2 exceptions also have an unknown date.
+- **Strongest counterexample found:** EO 11876's board (No. 187) was reconvened with the President's approval on
+  1975-11-19 and sent a supplemental report on 1975-11-26, after its 1975-10-10 report. That is a question about the
+  board's authority, not a date substitution.
+- **Image cross-check of 11 varied cases:** every viewed date was readable by a human. A single machine reading was
+  wrong in 4 of 6 disagreements; the NMB date was right each time.
+- **The NMB inventory also lists congressional action for 5 orders** (including EO 14077 with PL 117-216), and one
+  second board (EO 12495).
+- **Your EO 9482 finding (18 of 19 mines)** is taken as a scope-reconciliation warning. Here it applies to follow-on
+  orders and reports covering several orders.
