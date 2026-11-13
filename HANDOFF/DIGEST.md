@@ -1,6 +1,6 @@
 # Daily research digest
 
-New York date: 2026-11-12. Generated mechanically; all findings remain provisional.
+New York date: 2026-11-13. Generated mechanically; all findings remain provisional.
 
 ## Tracker headline
 
@@ -10,7 +10,7 @@ New York date: 2026-11-12. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `43362321501-1:fb645b21c40095afc5012970368f04f232e1ecc62ee683d6625f602d01844cbc` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43418606125-1:00c7141d171541a26941e58fe15973c8f2c1a48cbcf2e3b2072c80688e461153` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -25,27 +25,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 ## Changes since the previous day
 
-Comparison snapshot: 2026-11-11; intervening runs may be absent.
-- claim-checker: held_distinct_sha256: 58657 → 58730
-- claim-drafts: fragment_orders_not_in_universe: 40 → 39; orders_with_draft: 14953 → 14954; undecided_orders_with_draft: 11165 → 11166
-- clause-drafts: clauses_total: 71430 → 71749; fragments_from_app_transcription: 4974 → 4958; fragments_written: 9795 → 9796; orders_in_universe: 14998 → 15002
-- domesday-register: orders: 14998 → 15002; with_date: 14986 → 14996; with_title: 14943 → 14947
-- family-rules: saved_texts_scanned: 86512 → 86549
-- gessner-cards: not_researched: 11210 → 11214; numbered_series_orders: 14998 → 15002; orders: 14998 → 15002; president_unknown_no_date: 63 → 57
-- gratian-niebuhr-leads: date_leads_in_census: 36 → 40
-- kean: decisions: 88 → 91; findings: 364 → 377; open_owner_questions: 5 → 9
-- lachmann: assessed: 2356 → 2360; complete_text_confirmed: 1366 → 1397; confirmed: 777 → 808; identity_confirmed: 1149 → 1147
-- larrey-triage: orders_with_compiled_inputs: 14998 → 15002; tracker_orders: 14998 → 15002
-- linnaeus-types: cruden_targets: 2110 → 2129; cs_one_person_left_to_ulpian: 802 → 1251; m1118_gap_overlap: 1037 → 1478; no_lead: 4174 → 4608
-- niebuhr-verify: requests_used: 186 → 185
-- official-fixity: carried_forward: 7355 → 7356; files: 7356 → 7357; premis_bytes_read_this_run: 196608 → 262144
-- readiness-tracker: numbered_series_orders: 14998 → 15002; orders_total: 14998 → 15002; original_replacement_obligations: 851 → 883; quotation_recheck_obligations: 851 → 883
-- selden-fr-citers: targets_searched_total: 13533 → 13537; targets_total: 13199 → 13203
-- shepard-citations: edges: 10665 → 10667; edges_with_census_actor: 6655 → 6657; edges_with_census_target: 7659 → 7661; targets: 8575 → 8579
-- source-ladder: attempts_logged: 79 → 63; bytes_downloaded: 67273510 → 183071370; distinct_new_source_hashes: 23 → 32; exhausted_proposed_items: 5 → 13
-- status-history: census_identities: 14998 → 15002
-- tischendorf-originals: bytes_downloaded: 920039758 → 874307532; leads: 606 → 607; replacement_strong: 39 → 36; replacement_targets: 701 → 698
-- tsiolkovsky-trajectory: W_hours: 6841.3 → 6842.1; W_max_hours: 18191.0 → 18195.0; a_hours_per_day2_latest: -13.96 → -20.55; days: 26 → 27
+Comparison snapshot: 2026-11-12; intervening runs may be absent.
+- tsiolkovsky-trajectory: W_hours: 6842.1 → 6844.1; a_hours_per_day2_latest: -20.55 → 16.15; days: 27 → 28; generations: 125 → 127
 
 ## Top shared unlocks
 
@@ -77,4 +58,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43362321501)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43418606125)
