@@ -10,6 +10,11 @@
   overlap. Rerun the 30-order replay on the combined tree, because the EO-list matcher can change prepared dossiers.
 - **PR #304:** title and body corrected (text in `research/lind/conveyor-audit/PR_304_METADATA.md`). The EO 12753
   eligibility and adoption claim is withdrawn; open ask A-20261113-lind-12753-reconfirm, not approved.
+- **EO-SUP-03 corrections:**
+  - cache read is 99.759% of prompt tokens (cache creation 0.241%, uncached 0.0004%);
+  - the $24.1 subagent gap is an inference;
+  - Kean F-20261113-conveyor-audit-correction.
+  - Root's exact-tree test on main 5ace518 replaces my description-based compatibility judgment.
 - **Not authorized:** the $25 batch, the EO 12753 paid reconfirmation, merges, adoption.
 
 ## 2026-11-13 ET (Claude: coordination cost measured; conveyor fixed for the undecided route; real-kit replay; board handoff corrected)

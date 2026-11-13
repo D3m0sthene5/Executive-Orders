@@ -59,7 +59,12 @@ The CLI writes one assistant record per content block. Records sharing a message
 not an artifact.
 - Per request: mean 519k, median 517k, range 460k–576k; it grows steadily as the session lengthens.
 - Other windows: post-pilot mean 610k; board work 771k.
-- 99.9996% of every prompt was billed as a cache read, at $0.20 per million tokens on Opus 5.5.
+- **Shares of the 48,264,383 prompt tokens** (cache read + cache creation + uncached input; corrected by EO-SUP-03):
+  - cache read: 48,147,999, which is 99.759%, billed at $0.20 per million tokens on Opus 5.5;
+  - cache creation: 116,182, which is 0.241%;
+  - uncached input: 202, which is 0.0004%.
+- The earlier "99.9996%" is the cache-read plus cache-creation share, that is 1 minus the uncached share. It is not
+  the cache-read share.
 - **Correction:** RESULT.md's "518k–769k per call" mixes per-request means from different windows. The board window
   mean is 771k (its median is 769k).
 
@@ -78,7 +83,9 @@ not an artifact.
 
   - Pricing the same Opus token counts with `jobs/necker-costs/PRICES.json` reproduces $185.0.
   - This transcript's main thread comes to $160.90 by that time.
-  - The $24.1 gap is Opus subagents (analysts and reviewers), whose transcripts are not in this file.
+  - The $24.1 gap is **inferred** to be Opus subagent requests (analysts and reviewers), which the CLI's total
+    includes but this main-thread transcript does not. No separate subagent usage records were checked to establish
+    it.
   - Sonnet's $5.79 equals the Lind producers' measured cost.
 
 ## 3. The smallest no-paid-call comparison on equivalent inputs: all 30 Lind orders
@@ -149,6 +156,9 @@ not an artifact.
 
 - **Not checked:** I did not inspect the exact bytes. Recovery commit `e3a22977b5f3` is not fetchable here ("not our
   ref"); only its base `0c3b3d24b5b9` is. The supervisor runs the combined exact-tree checks.
+- **Root's exact-tree test** (reported by the supervisor in EO-SUP-03, not rerun by me): on current main `5ace518`,
+  the acting-text, custody and build tests pass; the conveyor is 75/78, with the same 3 platform failures reproduced
+  on unchanged main. Root's receipt carries the compatibility limits. No further replay was run.
 - **No textual overlap:**
   - Since the merge base `dd448487b`, this branch changes code only in `jobs/maudslay-conveyor/conveyor.py` (the blank
     STATUS_DECISION copy path) and its test.
