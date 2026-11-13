@@ -6,11 +6,11 @@ New York date: 2026-11-12. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Numbered series: ready for human review 1,255 of 15,002 orders (8.4%)**
+**Numbered series: ready for human review 1,251 of 15,002 orders (8.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `43314468189-1:a93be3f47baec6ceccb72462a3f87c78cdd362e5a1ccbc7245c31c7e5210817c` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `43356144094-1:bf288966386497b2b266290e7110cc65eb6d8a31d92d71e1c656e4677354a09a` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -18,38 +18,38 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 3,788. The other 11,214 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 729, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 846; quotation rechecks: 846. These remain work after readiness.
+Ready by text evidence: {'original_supported': 725, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
+Outstanding original replacement obligations: 883; quotation rechecks: 883. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 252. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1550}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 284. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1550}.
 
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-11; intervening runs may be absent.
-- claim-checker: claims_all_checks_passed: 1740 → 1746; claims_mechanical_fail: 80 → 74; claims_mechanical_pass: 1826 → 1832; held_distinct_sha256: 58657 → 59194
+- claim-checker: held_distinct_sha256: 58657 → 58730
 - claim-drafts: fragment_orders_not_in_universe: 40 → 39; orders_with_draft: 14953 → 14954; undecided_orders_with_draft: 11165 → 11166
 - clause-drafts: clauses_total: 71430 → 71749; fragments_from_app_transcription: 4974 → 4958; fragments_written: 9795 → 9796; orders_in_universe: 14998 → 15002
 - domesday-register: orders: 14998 → 15002; with_date: 14986 → 14996; with_title: 14943 → 14947
 - family-rules: saved_texts_scanned: 86512 → 86549
-- gessner-cards: not_researched: 11210 → 11214; numbered_series_orders: 14998 → 15002; one_step_from_ready: 217 → 218; orders: 14998 → 15002
+- gessner-cards: not_researched: 11210 → 11214; numbered_series_orders: 14998 → 15002; orders: 14998 → 15002; president_unknown_no_date: 63 → 57
 - gratian-niebuhr-leads: date_leads_in_census: 36 → 40
-- kean: decisions: 88 → 90; findings: 364 → 372; open_owner_questions: 5 → 7
+- kean: decisions: 88 → 91; findings: 364 → 377; open_owner_questions: 5 → 9
 - lachmann: assessed: 2356 → 2360; complete_text_confirmed: 1366 → 1397; confirmed: 777 → 808; identity_confirmed: 1149 → 1147
 - larrey-triage: orders_with_compiled_inputs: 14998 → 15002; tracker_orders: 14998 → 15002
+- linnaeus-types: cruden_targets: 2110 → 2129; cs_one_person_left_to_ulpian: 802 → 1251; m1118_gap_overlap: 1037 → 1478; no_lead: 4174 → 4608
 - niebuhr-verify: requests_used: 186 → 185
 - official-fixity: carried_forward: 7355 → 7356; files: 7356 → 7357; premis_bytes_read_this_run: 196608 → 262144
-- readiness-tracker: numbered_series_orders: 14998 → 15002; orders_total: 14998 → 15002; original_replacement_obligations: 851 → 846; quotation_recheck_obligations: 851 → 846
-- selden-fr-acting: bytes_downloaded: 2729289189 → 1036730315; requests: 129 → 95
-- selden-fr-citers: bytes_downloaded: 855827 → 468; requests: 71 → 5; targets_searched_this_run: 0 → 4; targets_searched_total: 13533 → 13537
+- readiness-tracker: numbered_series_orders: 14998 → 15002; orders_total: 14998 → 15002; original_replacement_obligations: 851 → 883; quotation_recheck_obligations: 851 → 883
+- selden-fr-citers: targets_searched_total: 13533 → 13537; targets_total: 13199 → 13203
 - shepard-citations: edges: 10665 → 10667; edges_with_census_actor: 6655 → 6657; edges_with_census_target: 7659 → 7661; targets: 8575 → 8579
 - source-ladder: attempts_logged: 79 → 63; bytes_downloaded: 67273510 → 183071370; distinct_new_source_hashes: 23 → 32; exhausted_proposed_items: 5 → 13
 - status-history: census_identities: 14998 → 15002
-- tischendorf-originals: bytes_downloaded: 920039758 → 2075521032; leads: 606 → 617; replacement_strong: 39 → 71; replacement_targets: 701 → 735
+- tischendorf-originals: bytes_downloaded: 920039758 → 874307532; leads: 606 → 607; replacement_strong: 39 → 36; replacement_targets: 701 → 698
 
 ## Top shared unlocks
 
-- orders_unblocked: 2236; kind: machine_job; action: Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy; blocker: ONLY_COMPILED_TRANSCRIPTION_FOUND
-- orders_unblocked: 741; kind: agent_check; action: Check the page location of fr-originals and official-compilation finds marked medium/low confidence; blocker: ORIGINAL_FOUND_NEEDS_PAGE_CHECK
+- orders_unblocked: 2168; kind: machine_job; action: Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy; blocker: ONLY_COMPILED_TRANSCRIPTION_FOUND
+- orders_unblocked: 705; kind: agent_check; action: Check the page location of fr-originals and official-compilation finds marked medium/low confidence; blocker: ORIGINAL_FOUND_NEEDS_PAGE_CHECK
 - orders_unblocked: 431; kind: machine_job; action: Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl; blocker: OPUS_MEDIA_REFETCH_NEEDED
 - orders_unblocked: 10; kind: agent_check; action: Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held; blocker: ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK
 - orders_unblocked: 10; kind: one_source; action: Retrieve shared source EO::4314; blocker: SHARED_SOURCE_NOT_RETRIEVED:EO::4314
@@ -76,4 +76,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43314468189)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43356144094)
