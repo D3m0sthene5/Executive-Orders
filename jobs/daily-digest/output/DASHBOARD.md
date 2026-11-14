@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-14 11:30 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-14 15:15 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 Readiness below is the latest published tracker generation. Exact claim-receipt coverage is reported separately; matching versions alone does not verify every source or policy input.
 
@@ -19,8 +19,8 @@ Readiness below is the latest published tracker generation. Exact claim-receipt 
 | Superseded or repeated claim lines | 304 | Difference between valid lines and unique orders |
 | Human-certified whole histories, published register | 0 | Separate Stage19 human-review record; never inferred from AI passes |
 
-Tracker generation: **2026-11-14 11:30 EST**; input commit `593e4cd4134e6dd4e881e2f8ef951bc8455de770`.
-[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43613449945).
+Tracker generation: **2026-11-14 15:15 EST**; input commit `9c1b74665a0093365a5d67769a928c0b8c831233`.
+[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43631961543).
 
 ## Receipt coverage and freshness
 
@@ -30,7 +30,7 @@ Tracker generation: **2026-11-14 11:30 EST**; input commit `593e4cd4134e6dd4e881
 | Current claim lines without a matching receipt | 0 |
 | Latest claim per order with a matching checker receipt | 1,604 / 1,604 |
 | Distinct orders whose latest claim lacks a matching receipt | 0 |
-| Original-replacement / quotation-recheck obligations | 846 / 846 |
+| Original-replacement / quotation-recheck obligations | 849 / 849 |
 
 Receipt matching checks canonical claim content hashes. A matching receipt may record a failure; coverage is not an approval count. Readiness always comes from the tracker.
 
@@ -63,13 +63,13 @@ File acquisition and machine text do not establish legal conclusions or independ
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `593e4cd4134e6dd4e881e2f8ef951bc8455de770`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `9c1b74665a0093365a5d67769a928c0b8c831233`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
-| Readiness | 2026-11-14 11:30 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
-| Claim checker | 2026-11-14 11:29 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
-| ProQuest ingestion | 2026-11-13 13:46 EST | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
+| Readiness | 2026-11-14 15:15 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
+| Claim checker | 2026-11-14 15:14 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
+| ProQuest ingestion | 2026-11-14 12:01 EST | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
 | Web-source custody | 2026-11-10 19:09 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
 
 [Canonical provisional statuses](../../../research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv) · [Published human-review record](../../../research/stage19/output/PROGRESS.json) · [Exact dashboard data and input hashes](DASHBOARD.json) · [Daily changes](DIGEST.md)
