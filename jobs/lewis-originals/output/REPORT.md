@@ -1,6 +1,6 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-11-14T18:40:31Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-11-14T21:45:29Z. Leads and verified file facts; no count or grade changes.
 
 **Scope: 2506 orders** (clark_identified 1, clark_identified_not_in_universe 16, transcription_only 2489).
 
@@ -62,7 +62,7 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Web search (online stage)
 
-100 of 2506 targets advanced this run (1361 never searched yet); 844 of 1500 requests used. 16499 hits on file, 137 pages confirmed to name the order (92 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+100 of 2506 targets advanced this run (1261 never searched yet); 618 of 1500 requests used. 18047 hits on file, 147 pages confirmed to name the order (97 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
@@ -78,9 +78,9 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 | govinfo_search_page | blocked_by_robots_txt |
 | hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
-| loc_books | error |
-| loc_manuscripts | error |
-| loc_newspapers | error |
+| loc_books | http_429 |
+| loc_manuscripts | http_429 |
+| loc_newspapers | http_429 |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
