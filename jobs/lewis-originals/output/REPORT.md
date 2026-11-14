@@ -1,20 +1,20 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-11-13T20:22:14Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-11-14T18:40:31Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 2469 orders** (clark_identified 1, clark_identified_not_in_universe 16, transcription_only 2452).
+**Scope: 2506 orders** (clark_identified 1, clark_identified_not_in_universe 16, transcription_only 2489).
 
 ## Where they stand on the ladder
 
 | Route | Status | Orders |
 |---|---|---:|
-| proquest_phrase_search | manual_lead | 2177 |
+| proquest_phrase_search | manual_lead | 2167 |
 | proquest_local | pinakes_file_record_pages_unchecked | 142 |
-| federal_register | fr_era_not_in_ofr_catalog | 65 |
-| federal_register | retrieval_recorded_needs_review | 63 |
-| federal_register | in_ofr_catalog_no_citation | 11 |
+| federal_register | fr_era_not_in_ofr_catalog | 81 |
+| federal_register | retrieval_recorded_needs_review | 78 |
+| federal_register | in_ofr_catalog_no_citation | 16 |
+| federal_register | queued_result_not_published | 15 |
 | gpo_bound_volumes | in_volume_range_not_found | 6 |
-| federal_register | queued_result_not_published | 4 |
 | proquest_supplied_link | awaiting_acquisition | 1 |
 
 ## ProQuest folder
@@ -31,9 +31,9 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 | Owner | Orders |
 |---|---:|
-| owner | 2178 |
-| agent_check | 287 |
-| machine_job | 4 |
+| owner | 2168 |
+| agent_check | 323 |
+| machine_job | 15 |
 
 ## First twenty rows
 
@@ -62,7 +62,7 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Web search (online stage)
 
-100 of 2469 targets advanced this run (1417 never searched yet); 851 of 1500 requests used. 15103 hits on file, 134 pages confirmed to name the order (90 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+100 of 2506 targets advanced this run (1361 never searched yet); 844 of 1500 requests used. 16499 hits on file, 137 pages confirmed to name the order (92 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
