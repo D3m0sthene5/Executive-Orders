@@ -1733,7 +1733,7 @@ class Batch:
     def install_status_decisions(self, produced, ids):
         """Copy each producer's STATUS_DECISION.json (from its own folder) into the packet's undecided/EO_N/, only
         over the kit's blank sheet; a non-blank packet sheet that differs is refused, never overwritten. The blank is
-        kept in prepared/undecided/. Producer folders are only read."""
+        kept under SCRATCH/prepared/BATCH/undecided/ (outside research/, which the kit's prior-research scan reads). Producer folders are only read."""
         installed, skipped, refused = [], {}, {}
         for iid in self.undecided(ids):
             pkt = self.undecided_dir(iid) / "STATUS_DECISION.json"
@@ -1751,7 +1751,10 @@ class Batch:
                 else:
                     installed.append(iid)  # installed by an earlier run
             elif cur is None or self.blank_decision(cur):
-                keep = self.dir / "prepared" / "undecided" / f"{slug(iid)}.STATUS_DECISION.blank.json"
+                # Kept outside research/: claim-kit's prior-research scan reads every STATUS_DECISION under research/
+                # except the packet itself, so a copy in the batch folder made kit apply refuse with "changed prior
+                # research" (real-kit replay, 2026-11-13).
+                keep = self.scratch / "prepared" / self.dir.name / "undecided" / f"{slug(iid)}.STATUS_DECISION.blank.json"
                 if pkt.exists() and not keep.exists():
                     keep.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copyfile(pkt, keep)

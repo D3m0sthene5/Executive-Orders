@@ -1,0 +1,144 @@
+{
+ "wave": "lind-stage0-2026-11-12",
+ "generated_from": "Claude Code session transcripts via Hamilton profile.py (jobs/hamilton-token-audit); per-call usage_records, sanitized by jobs/bentham/sessions.py",
+ "phase_source": "--phase status_assignment.undecided",
+ "filters": {
+  "session_id_prefix": "bb339822-ebbb-5ac8-8a64-5a8ce52045fd",
+  "since": "2026-11-12T20:41:00+00:00"
+ },
+ "token_categories_note": "fresh_input, cache_read, cache_write and output are separate, nonoverlapping categories and are never summed together. Null means no value observed.",
+ "totals": {
+  "agents": 6,
+  "calls": 370,
+  "fresh_input": 760,
+  "cache_read": 86819786,
+  "cache_write_5m": 1003197,
+  "cache_write_1h": 101642,
+  "cache_write_unclassified": 0,
+  "output": 283431,
+  "usd_list": 23.074591
+ },
+ "totals_by_phase": {
+  "status_assignment.undecided": {
+   "agents": 6,
+   "calls": 370,
+   "fresh_input": 760,
+   "cache_read": 86819786,
+   "cache_write_5m": 1003197,
+   "cache_write_1h": 101642,
+   "cache_write_unclassified": 0,
+   "output": 283431,
+   "usd_list": 23.074591
+  }
+ },
+ "totals_by_model_family": {
+  "opus": {
+   "agents": 4,
+   "calls": 208,
+   "fresh_input": 436,
+   "cache_read": 58294846,
+   "cache_write_5m": 445655,
+   "cache_write_1h": 101642,
+   "cache_write_unclassified": 0,
+   "output": 129116,
+   "usd_list": 17.284444
+  },
+  "sonnet": {
+   "agents": 2,
+   "calls": 162,
+   "fresh_input": 324,
+   "cache_read": 28524940,
+   "cache_write_5m": 557542,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 154315,
+   "usd_list": 5.790147
+  }
+ },
+ "totals_by_model": {
+  "claude-opus-5-5": {
+   "agents": 4,
+   "calls": 208,
+   "fresh_input": 436,
+   "cache_read": 58294846,
+   "cache_write_5m": 445655,
+   "cache_write_1h": 101642,
+   "cache_write_unclassified": 0,
+   "output": 129116,
+   "usd_list": 17.284444
+  },
+  "claude-sonnet-5-5": {
+   "agents": 2,
+   "calls": 162,
+   "fresh_input": 324,
+   "cache_read": 28524940,
+   "cache_write_5m": 557542,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 154315,
+   "usd_list": 5.790147
+  }
+ },
+ "totals_by_phase_and_family": {
+  "status_assignment.undecided|opus": {
+   "agents": 4,
+   "calls": 208,
+   "fresh_input": 436,
+   "cache_read": 58294846,
+   "cache_write_5m": 445655,
+   "cache_write_1h": 101642,
+   "cache_write_unclassified": 0,
+   "output": 129116,
+   "usd_list": 17.284444
+  },
+  "status_assignment.undecided|sonnet": {
+   "agents": 2,
+   "calls": 162,
+   "fresh_input": 324,
+   "cache_read": 28524940,
+   "cache_write_5m": 557542,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 154315,
+   "usd_list": 5.790147
+  }
+ },
+ "totals_by_role": {
+  "coordinator": {
+   "agents": 1,
+   "calls": 82,
+   "fresh_input": 180,
+   "cache_read": 41888853,
+   "cache_write_5m": 0,
+   "cache_write_1h": 101642,
+   "cache_write_unclassified": 0,
+   "output": 48458,
+   "usd_list": 10.160787
+  },
+  "general-purpose": {
+   "agents": 5,
+   "calls": 288,
+   "fresh_input": 580,
+   "cache_read": 44930933,
+   "cache_write_5m": 1003197,
+   "cache_write_1h": 0,
+   "cache_write_unclassified": 0,
+   "output": 234973,
+   "usd_list": 12.913805
+  }
+ },
+ "prices": {
+  "source": "jobs/necker-costs/PRICES.json",
+  "basis": "list price per call: exact model, cache-write class, fast mode (usage.speed) and Haiku 5.5 long-prompt rates; API-equivalent estimate, not an invoice"
+ },
+ "notes": [
+  "Agents counted per grouping can overlap across groupings when one agent used several models.",
+  "Main (coordinator) transcripts are partial: they can span work earlier than the labelled phase.",
+  "Output tokens may be a lower bound where a call never recorded a final count.",
+  "Tokens are what transcripts recorded; they are not an invoice."
+ ],
+ "crosscheck": {
+  "tolerance": "max(0.01 USD, 0.01 x reported)",
+  "sessions": []
+ }
+}

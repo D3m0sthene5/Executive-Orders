@@ -1,3 +1,96 @@
+## 2026-11-13 ET (Claude: FEPC fiscal source challenge, EO-SUP-04)
+
+- **Report:** `research/lind/fepc-fiscal-review/REVIEW.md`, with source hashes and page crops. A source challenge only.
+- **Result:** the producer's FY1947 figures are confirmed. The function-list sourcing is corrected (FR 270.1(h)(1), not AR p. 118). The 1945 account lapsed to the surplus fund in FY1947. One cell has a $2.00 printing error.
+- **Open:** six legal predicates (section 4); the May 18, 1946 letter is still unlocated.
+
+## 2026-11-13 ET, early (Claude: conveyor audit for supervisor dispatches EO-SUP-01 and EO-SUP-02)
+
+- **Audit:** `research/lind/conveyor-audit/AUDIT.md`; Kean F-20261113-conveyor-audit.
+  - The $6.59 / 51-call comparison was whole-batch. At the aligned boundary the manual run used 48 requests, $5.78,
+    with at most 33 ($4.03) removable.
+  - The 30-order replay on saved inputs: 0 coordinator calls, 7 proposals matching the pilot's, stop at producer
+    reconfirmation.
+  - "518k" is the mean per-request prompt.
+- **Sol recovery compatibility** (judged from the supervisor's description; the commit is not fetchable here): no
+  overlap. Rerun the 30-order replay on the combined tree, because the EO-list matcher can change prepared dossiers.
+- **PR #304:** title and body corrected (text in `research/lind/conveyor-audit/PR_304_METADATA.md`). The EO 12753
+  eligibility and adoption claim is withdrawn; open ask A-20261113-lind-12753-reconfirm, not approved.
+- **EO-SUP-03 corrections:**
+  - cache read is 99.759% of prompt tokens (cache creation 0.241%, uncached 0.0004%);
+  - the $24.1 subagent gap is an inference;
+  - Kean F-20261113-conveyor-audit-correction.
+  - Root's exact-tree test on main 5ace518 replaces my description-based compatibility judgment.
+- **Not authorized:** the $25 batch, the EO 12753 paid reconfirmation, merges, adoption.
+
+## 2026-11-13 ET (Claude: coordination cost measured; conveyor fixed for the undecided route; real-kit replay; board handoff corrected)
+
+Compact handoff. Read only the files named.
+
+- **Board correction** (commit 60627d325): `research/lind/board-candidates-2026-11-13/RESULT.md` section 0.
+  - The NMB "closed" field is undefined; inventory agreement is not independent lineage (`INVENTORY_AGREES`).
+  - Unreadable images are kept apart from failed OCR. The owner rule says "held report"; block-if-unreadable is in the
+    producer brief only.
+  - The 67 are candidate inputs. The 10-order pilot was not bought.
+- **Efficiency result:** `research/lind/conveyor-replay/RESULT.md`; Kean F-20261113-conveyor-replay.
+  - Long-context coordinator calls cost $0.13-0.21 each; 77-82% of that is context re-reading; decisions were 9-22% of
+    calls.
+  - The Maudslay conveyor's undecided route was broken on the real kit (blank STATUS_DECISION copies under research/
+    tripped the prior-research scan). Fixed: the copies now live in scratch; tests 75/78 (3 pre-existing Windows).
+  - Replay of 5 Lind orders with saved real outputs: 37 s, 0 coordinator calls through overlay proposal; identical
+    evidence and status decisions; stops at producer reconfirmation as the owner rule requires.
+- **Compliance finding:** F-20261113-lind-mechanical-reconfirmation. My manual Lind route reconfirmed model producers by
+  script, which D-20261110-no-mechanical-reconfirmation-for-models declines.
+  - A-20261112-lind-adopt-12753 is withdrawn; the new owner ask is **A-20261113-lind-12753-reconfirm**.
+- **Sol handoff:** `research/lind/conveyor-replay/HANDOFF_TO_SOL.md`.
+- **Next, if approved:** one paid conveyor batch, $25 cap, with the decision rule in RESULT.md section 6. It needs a
+  reconfirmation decision first.
+- **Cost of this assignment:** about $7.5 coordinator (list price); no production or review.
+
+## 2026-11-12 ET, late (Claude: Lind stage-0 diagnosis; EO 12753 recovered to eligible; offline check before review)
+
+Compact handoff for a fresh coordinator context. Read only the files named.
+
+- **Pilot result** (PR #303): stays 0 ready of 30. Report: `research/excavator/claude-lind-2026-11-12/REPORT.md`.
+- **Diagnosis:** `research/excavator/claude-lind-2026-11-12/FAILURES.md` (per order, by category);
+  Kean F-20261112-lind-stage0-diagnosis.
+- **EO 12753** (PR #304, branch `claude/lind-12753-recovery`):
+  - Cotton run 43324287671 kept its ending source's bytes;
+  - `completion/complete-v2` is eligible, with the same claim (sha256 47f70df6...) and the same reviews;
+  - waiting on owner ask **A-20261112-lind-adopt-12753**.
+  - On yes, file it as D-20261110-papinian-adopt did (`ADOPTION_ROWS.csv`, canonical claim file under
+    `research/readiness/claims/`, a readiness-tracker run). Report it separately from the pilot.
+- **Earlier check** (PR #305, branch `claude/cotton-precheck`): `kit.py overlay-check` now runs the actual checker
+  offline before blind review (`batch.actual_check_offline`).
+- **Optional ask A-20261112-lind-repair-12437-11943** ($8 cap): if approved, run it from a fresh context.
+  - Use `/root/lind-sealed/overlay_review_lind.py`. It is outside the repo, so copy or recreate it from Papinian's
+    `tools/overlay_review.py` with Linux paths.
+  - Re-render the producer brief so it credits F6 `working_text_basis`.
+- **Costs:**
+  - optimization analysis: about $39;
+  - pilot: $23.07;
+  - post-pilot coordinator time: measured in the PR #304 description.
+
+## 2026-11-12 ET, night (Claude: Lind stage 0 run; 0 ready; unsuccessful row)
+
+- **Run** (owner-approved, A-20261112-lind-stage0-v2): 30 undecided orders, 15 passing every gate and 15 hard-only.
+  Report: `research/excavator/claude-lind-2026-11-12/REPORT.md`; Kean F-20261112-lind-stage0.
+- **Result: ready 0 in both groups, so no stage 1.**
+
+  | | Dispatch-blocked | Producer-blocked | Statuses accepted | Claims reviewed | Upheld by both arms |
+  |---|---:|---:|---:|---:|---:|
+  | All gates | 2 | 6 | 7 | 6 | 1 (EO 12753) |
+  | Hard-only | 5 | 9 | 1 | 1 | 0 |
+
+  - EO 12753 failed the actual checker on a custody-only ending source.
+  - Both arms caught the planted control.
+- **Cost:** $23.07 of the $35 cap: producers 5.79, reviewers 7.12, coordinator 10.16. The coordinator came to $0.34 per
+  attempt, over the $0.25 stop rule.
+- **Next, owner's call (not asked yet):**
+  - zero-production diagnosis of the 30;
+  - or custody retention for EO 12753's ending source, plus text corrections of 5 rejected claims, then a fresh review.
+- **Augur:** this run is recorded in `CONFIGURATIONS.json` as stage 0, not passed.
+
 ## 2026-11-12 ET, evening (Claude: claim-kit build repaired; fresh build verified; pilot finalized, not run)
 
 - **Repair** (PR #302, Kean F-20261112-claimkit-regex-runaway):
