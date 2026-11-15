@@ -1,6 +1,6 @@
 # Domesday register
 
-Generated 2026-11-15T20:12:23Z. 15002 orders; one row each in `REGISTER.csv`.
+Generated 2026-11-15T20:38:34Z. 15002 orders; one row each in `REGISTER.csv`.
 
 | Best document held | Orders |
 |---|---:|
