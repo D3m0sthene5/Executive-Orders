@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-15T20:30:09Z. Leads only; no census, count or identity changes.
+Generated 2026-11-16T23:45:07Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -79,32 +79,32 @@ Generated 2026-11-15T20:30:09Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-1 of 29 unknowns advanced this run (0 never searched yet); 5 of 2 requests used. 4425 hits on file, 144 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+29 of 29 unknowns advanced this run (0 never searched yet); 226 of 1100 requests used. 4703 hits on file, 148 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
-List pages: 10 read, 69 order numbers named, **3 absent from the census**: `WEB_LISTED_ORDERS.csv`.
+List pages: 60 read, 237 order numbers named, **3 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
 | Engine | Status |
 |---|---|
 | bing_api | needs_key |
-| bing_rss | not_tried |
-| brave_api | not_tried |
-| brave_html | not_tried |
-| duckduckgo_html | error |
-| duckduckgo_lite | error |
-| federal_register_api | not_tried |
-| google_books | not_tried |
+| bing_rss | blocked_by_robots_txt |
+| brave_api | ok |
+| brave_html | blocked_by_robots_txt |
+| duckduckgo_html | http_403 |
+| duckduckgo_lite | http_403 |
+| federal_register_api | ok |
+| google_books | http_429 |
 | google_cse | needs_key |
-| govinfo_search_page | not_tried |
-| hathitrust_catalog | not_tried |
-| internet_archive | not_tried |
-| loc_books | not_tried |
-| loc_manuscripts | not_tried |
-| loc_newspapers | not_tried |
-| marginalia | not_tried |
-| mojeek_html | not_tried |
+| govinfo_search_page | blocked_by_robots_txt |
+| hathitrust_catalog | blocked_by_robots_txt |
+| internet_archive | ok |
+| loc_books | http_429 |
+| loc_manuscripts | http_429 |
+| loc_newspapers | http_429 |
+| marginalia | error |
+| mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
-| presidency_project | not_tried |
+| presidency_project | ok |
 | serpapi_google | needs_key |
-| wikipedia_search | not_tried |
-| wikisource_search | not_tried |
-| yandex_html | not_tried |
+| wikipedia_search | blocked_by_robots_txt |
+| wikisource_search | blocked_by_robots_txt |
+| yandex_html | blocked_by_robots_txt |
