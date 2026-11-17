@@ -33,10 +33,10 @@ incorrect startxref pointer(1)
 parsing for Object Streams
 incorrect startxref pointer(1)
 parsing for Object Streams
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-ne58cg_p/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-tihjx0xy/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
   self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-ne58cg_p/_out/REPORT.md' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-tihjx0xy/_out/REPORT.md' mode='r' encoding='utf-8'>
   self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -149,7 +149,7 @@ test_qualified_request_not_conflated (test_handoff.HandoffTests.test_qualified_r
 test_shared_result_matches_each_exact_target (test_handoff.HandoffTests.test_shared_result_matches_each_exact_target) ... ok
 
 ----------------------------------------------------------------------
-Ran 35 tests in 3.804s
+Ran 35 tests in 3.724s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
@@ -172,7 +172,7 @@ test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLay
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 18 tests in 26.207s
+Ran 18 tests in 26.136s
 
 OK
 {
@@ -218,13 +218,13 @@ OK
 {"acquisition_handoff": {"queued_exhausted_proposed": 1, "queued_result_not_published": 11, "queued_retry_later": 3, "retrieval_recorded_needs_review": 78}}
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 100,
-  "requests_used": 605,
+  "advanced_this_run": 1,
+  "requests_used": 14,
   "hits_total": 20938,
   "leads_page_confirmed": 173,
   "engines": {
-    "duckduckgo_html": "http_403",
-    "duckduckgo_lite": "http_403",
+    "duckduckgo_html": "error",
+    "duckduckgo_lite": "error",
     "bing_rss": "blocked_by_robots_txt",
     "mojeek_html": "blocked_by_robots_txt",
     "brave_html": "blocked_by_robots_txt",
@@ -232,19 +232,19 @@ Offline stage done; starting the web search stage
     "yandex_html": "blocked_by_robots_txt",
     "google_cse": "needs_key",
     "bing_api": "needs_key",
-    "brave_api": "ok",
+    "brave_api": "not_tried",
     "serpapi_google": "needs_key",
-    "loc_newspapers": "http_429",
-    "loc_books": "http_429",
-    "loc_manuscripts": "http_429",
+    "loc_newspapers": "ok",
+    "loc_books": "ok",
+    "loc_manuscripts": "ok",
     "internet_archive": "ok",
     "google_books": "http_429",
-    "hathitrust_catalog": "blocked_by_robots_txt",
-    "federal_register_api": "ok",
-    "wikisource_search": "blocked_by_robots_txt",
-    "wikipedia_search": "blocked_by_robots_txt",
-    "presidency_project": "ok",
-    "govinfo_search_page": "blocked_by_robots_txt",
+    "hathitrust_catalog": "not_tried",
+    "federal_register_api": "not_tried",
+    "wikisource_search": "not_tried",
+    "wikipedia_search": "not_tried",
+    "presidency_project": "not_tried",
+    "govinfo_search_page": "not_tried",
     "nara_catalog": "needs_key"
   }
 }

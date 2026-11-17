@@ -1,6 +1,6 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-11-16T23:58:34Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-11-17T00:33:00Z. Leads and verified file facts; no count or grade changes.
 
 **Scope: 2506 orders** (clark_identified 1, clark_identified_not_in_universe 16, transcription_only 2489).
 
@@ -64,30 +64,30 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 ## Web search (online stage)
 
-100 of 2506 targets advanced this run (1061 never searched yet); 605 of 1500 requests used. 20938 hits on file, 173 pages confirmed to name the order (114 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+1 of 2506 targets advanced this run (1060 never searched yet); 14 of 12 requests used. 20938 hits on file, 173 pages confirmed to name the order (114 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
 | bing_api | needs_key |
 | bing_rss | blocked_by_robots_txt |
-| brave_api | ok |
+| brave_api | not_tried |
 | brave_html | blocked_by_robots_txt |
-| duckduckgo_html | http_403 |
-| duckduckgo_lite | http_403 |
-| federal_register_api | ok |
+| duckduckgo_html | error |
+| duckduckgo_lite | error |
+| federal_register_api | not_tried |
 | google_books | http_429 |
 | google_cse | needs_key |
-| govinfo_search_page | blocked_by_robots_txt |
-| hathitrust_catalog | blocked_by_robots_txt |
+| govinfo_search_page | not_tried |
+| hathitrust_catalog | not_tried |
 | internet_archive | ok |
-| loc_books | http_429 |
-| loc_manuscripts | http_429 |
-| loc_newspapers | http_429 |
+| loc_books | ok |
+| loc_manuscripts | ok |
+| loc_newspapers | ok |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
-| presidency_project | ok |
+| presidency_project | not_tried |
 | serpapi_google | needs_key |
-| wikipedia_search | blocked_by_robots_txt |
-| wikisource_search | blocked_by_robots_txt |
+| wikipedia_search | not_tried |
+| wikisource_search | not_tried |
 | yandex_html | blocked_by_robots_txt |
