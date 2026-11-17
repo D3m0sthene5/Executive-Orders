@@ -1,6 +1,6 @@
 # Domesday register
 
-Generated 2026-11-16T01:48:44Z. 15002 orders; one row each in `REGISTER.csv`.
+Generated 2026-11-17T00:04:36Z. 15002 orders; one row each in `REGISTER.csv`.
 
 | Best document held | Orders |
 |---|---:|
@@ -10,7 +10,7 @@ Generated 2026-11-16T01:48:44Z. 15002 orders; one row each in `REGISTER.csv`.
 | official_found_page_check_pending | 94 |
 | nothing | 70 |
 
-Dated: 14996. Titled: 14947. With a text file on disk: 14908. ProQuest links supplied: 2765; PDFs in the repository: 2750. Lewis routed 2490 orders and has a web page naming the order for 109; Clark classed 23 and has one for 29.
+Dated: 14996. Titled: 14947. With a text file on disk: 14908. ProQuest links supplied: 2765; PDFs in the repository: 2750. Lewis routed 2490 orders and has a web page naming the order for 114; Clark classed 23 and has one for 29.
 
 **Candidates not in the register: 32** (`CANDIDATES_NOT_IN_REGISTER.csv`), by strength unrated 1, cited 5, strong 22, weak 4. These are leads for census intake, never entries.
 

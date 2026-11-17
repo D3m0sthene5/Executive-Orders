@@ -2,8 +2,8 @@
   "schema": "eo-lewis-handoff/1",
   "input_sha256": {
     "research/readiness/FETCH_QUEUE.jsonl": "c3c7189aa93f01e70a58f486ca150dba5df60402ca1459ff6f3a0041606d880e",
-    "jobs/source-ladder/output/RESULTS.csv": "7c77865d3a5c5884e982bc69f612bfb7cbc562884f500ce780d9abc88f79a702",
-    "jobs/source-ladder/output/SOURCES.jsonl": "c0b75263d122d63a08e7f6300012c3f913b50b442eae53495a4c6c9836da66e5"
+    "jobs/source-ladder/output/RESULTS.csv": "0d96ef1c31f9349389bcd8bc6e70bea39ee73e8680eee370d0f2ae8d53f96133",
+    "jobs/source-ladder/output/SOURCES.jsonl": "4c5741ca3653463b7055a53d081e04f76299eb9316d4e01847976e52db963258"
   },
   "all_sha256": "330d9e5d5c7d58807640289306d05286c16129ff656f58fa1b0c56ca3738b4d4",
   "remaining_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
@@ -1803,13 +1803,20 @@
     {
       "instrument_id": "EO:11633",
       "citation": "36 FR 32197",
-      "route_status": "queued_result_not_published",
-      "next_action": "Already queued; inspect Panizzi's next bounded plan. No matching published result establishes what was attempted.",
+      "route_status": "queued_exhausted_proposed",
+      "next_action": "Preserve the published failure/deferment reason; inspect the existing acquisition task without duplicate enqueueing.",
       "action_owner": "machine_job",
       "queue_records": [
         "research/readiness/FETCH_QUEUE.jsonl:767"
       ],
-      "result_records": []
+      "result_records": [
+        {
+          "record": "jobs/source-ladder/output/RESULTS.csv#data-record=1367",
+          "result": "exhausted_proposed",
+          "why": "",
+          "sources": []
+        }
+      ]
     },
     {
       "instrument_id": "EO:11673",
@@ -2233,13 +2240,20 @@
     {
       "instrument_id": "EO:12826",
       "citation": "57 FR 62909",
-      "route_status": "queued_result_not_published",
-      "next_action": "Already queued; inspect Panizzi's next bounded plan. No matching published result establishes what was attempted.",
+      "route_status": "queued_retry_later",
+      "next_action": "Preserve the published failure/deferment reason; inspect the existing acquisition task without duplicate enqueueing.",
       "action_owner": "machine_job",
       "queue_records": [
         "research/readiness/FETCH_QUEUE.jsonl:831"
       ],
-      "result_records": []
+      "result_records": [
+        {
+          "record": "jobs/source-ladder/output/RESULTS.csv#data-record=1369",
+          "result": "retry_later",
+          "why": "1 route(s) failed for a passing reason: FetchError: download exceeds bound",
+          "sources": []
+        }
+      ]
     },
     {
       "instrument_id": "EO:12829",
@@ -2252,7 +2266,7 @@
       ],
       "result_records": [
         {
-          "record": "jobs/source-ladder/output/RESULTS.csv#data-record=1368",
+          "record": "jobs/source-ladder/output/RESULTS.csv#data-record=1370",
           "result": "retry_later",
           "why": "1 route(s) failed for a passing reason: FetchError: download exceeds bound",
           "sources": []
@@ -2262,13 +2276,20 @@
     {
       "instrument_id": "EO:12886",
       "citation": "58 FR 68708",
-      "route_status": "queued_result_not_published",
-      "next_action": "Already queued; inspect Panizzi's next bounded plan. No matching published result establishes what was attempted.",
+      "route_status": "queued_retry_later",
+      "next_action": "Preserve the published failure/deferment reason; inspect the existing acquisition task without duplicate enqueueing.",
       "action_owner": "machine_job",
       "queue_records": [
         "research/readiness/FETCH_QUEUE.jsonl:836"
       ],
-      "result_records": []
+      "result_records": [
+        {
+          "record": "jobs/source-ladder/output/RESULTS.csv#data-record=1371",
+          "result": "retry_later",
+          "why": "1 route(s) failed for a passing reason: FetchError: download exceeds bound",
+          "sources": []
+        }
+      ]
     },
     {
       "instrument_id": "EO:12888",
@@ -2367,8 +2388,9 @@
   ],
   "states": {
     "retrieval_recorded_needs_review": 78,
-    "queued_result_not_published": 14,
-    "queued_retry_later": 1
+    "queued_exhausted_proposed": 1,
+    "queued_result_not_published": 11,
+    "queued_retry_later": 3
   },
   "legal_effect": "none; retrieval records are not authenticated originals"
 }
