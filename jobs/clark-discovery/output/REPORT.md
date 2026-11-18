@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-18T21:32:52Z. Leads only; no census, count or identity changes.
+Generated 2026-11-18T23:07:17Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -79,7 +79,7 @@ Generated 2026-11-18T21:32:52Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-29 of 29 unknowns advanced this run (0 never searched yet); 230 of 1100 requests used. 5115 hits on file, 150 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+29 of 29 unknowns advanced this run (0 never searched yet); 310 of 1100 requests used. 5256 hits on file, 152 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
 List pages: 60 read, 237 order numbers named, **3 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
@@ -97,9 +97,9 @@ List pages: 60 read, 237 order numbers named, **3 absent from the census**: `WEB
 | govinfo_search_page | blocked_by_robots_txt |
 | hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
-| loc_books | http_429 |
-| loc_manuscripts | http_429 |
-| loc_newspapers | http_429 |
+| loc_books | ok |
+| loc_manuscripts | ok |
+| loc_newspapers | ok |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
