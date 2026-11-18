@@ -1,0 +1,428 @@
+--- a/kiaer/run.py	2026-11-18 18:27:34.394453900 -0500
++++ b/kiaer/run.py	2026-11-18 18:32:52.673854100 -0500
+@@ -35,6 +35,7 @@
+ STAGE0_PER_CELL = 3
+ STAGE0_AUDIT = 1          # one order each in the two audit cells: stage 0 is 29 orders (augur: at most 30)
+ STAGE0_UNITS = 6_000_000  # augur's stage-0 budget
++FULL_GATE_MIN_ORDERS = 10  # finished stage-0 orders needed before the full run may start
+ WAVE_PER_CELL = 5
+ PLANT_RATE = 0.12
+ SETTLE_HIGH, SETTLE_LOW = 0.70, 0.40
+@@ -46,7 +47,7 @@
+               "jobs/case-bundles/**", "jobs/gessner-cards/**", "jobs/domesday-register/**", "jobs/larrey-triage/**",
+               "jobs/bentham/**", "jobs/daily-digest/**", "jobs/x1-class-engine/sheets/**", "research/readiness/**",
+               "research/progress/**", "research/excavator/**", "research/stage15/**", "research/stage17/**",
+-              "research/stage19/**", "research/dorotheus/**", "releases/**", "HANDOFF/**"]
++              "research/stage19/**", "research/dorotheus/**", "research/kiaer/**", "releases/**", "HANDOFF/**"]
+ DROP_FOR_REVIEW = ["tier_reached", "start_tier_confirmed", "moves", "searches"]
+ RESULT_KEYS = ["id", "tier_reached", "conclusion", "propositions", "gaps"]
+ REVIEW_KEYS = ["verdicts", "conclusion_verdict", "tier_supported"]
+@@ -80,6 +81,8 @@
+ class Probe:
+     def __init__(self, repo, datadir, providers, workers=1, token_cap=10_000_000, timeout=900, log=print):
+         self.repo, self.dir = Path(repo).resolve(), Path(datadir).resolve()
++        if self.dir.is_relative_to(self.repo):
++            raise ValueError("the data directory must be outside the repository")
+         self.dir.mkdir(parents=True, exist_ok=True)
+         self.plan = json.loads((self.dir / "DRAW.json").read_text(encoding="utf-8"))
+         self.state_path = self.dir / "STATE.json"
+@@ -88,7 +91,9 @@
+                             "stage0_done": False, "caps": {c: v["cap"] for c, v in self.plan["cells"].items()}})
+         self.cap = token_cap
+         self.log = log
+-        first_cap = token_cap if self.state["stage0_done"] else min(token_cap, STAGE0_UNITS)
++        # The engine keeps stage 0's ceiling until full() has passed its projection gate (state["full_started"]),
++        # so work left over from stage 0 cannot run past the stage-0 budget just because stage 0 has ended.
++        first_cap = token_cap if self.state.get("full_started") else min(token_cap, STAGE0_UNITS)
+         self.engine = Engine(self.dir / "relay.sqlite3", self.repo, providers, timeout=timeout,
+                              max_turns=3, workers=workers, token_cap=first_cap)
+         self.rng = random.Random(self.plan["seed"] + 1)
+@@ -141,8 +146,8 @@
+                     if cell["blind"] else None)
+             steps = [{"actor": "claude", "prompt": first, "inputs": [], "options": deny,
+                       "expect": {"name": "result.json", "keys": RESULT_KEYS}},
+-                     {"actor": "codex", "prompt": prompts.reviewer(item), "inputs": ["result.json"],
+-                      "drop": {"result.json": DROP_FOR_REVIEW},
++                     {"actor": "codex", "prompt": prompts.reviewer(item, blind=cell["blind"]),
++                      "inputs": ["result.json"], "drop": {"result.json": DROP_FOR_REVIEW},
+                       "expect": {"name": "review.json", "keys": REVIEW_KEYS}},
+                      {"actor": "claude", "prompt": prompts.repair(), "inputs": ["result.json", "review.json"],
+                       "options": deny, "expect": {"name": "final.json", "keys": RESULT_KEYS},
+@@ -173,9 +178,10 @@
+                 continue
+             planted = {k: v for k, v in planted.items() if k not in DROP_FOR_REVIEW}
+             item = {"slice": self.state["jobs"][iid]["slice"]}
++            blind = self.plan["cells"][self.state["jobs"][iid]["cell"]]["blind"]
+             job = self.engine.create_pipeline(
+                 f"Kiaer review {iid}",
+-                [{"actor": "codex", "prompt": prompts.reviewer(item), "inputs": ["result.json"],
++                [{"actor": "codex", "prompt": prompts.reviewer(item, blind=blind), "inputs": ["result.json"],
+                   "expect": {"name": "review.json", "keys": REVIEW_KEYS}}],
+                 seed_artifacts=[("result.json", json.dumps(planted, ensure_ascii=False))],
+                 tag=f"plant|{self.state['jobs'][iid]['cell']}|{iid}")
+@@ -235,8 +241,10 @@
+         rev = plants.parse(self._artifact(rec["job"], "review.json"))
+         if rec["cell"] in ("C06", "C10"):
+             ledger = (rec.get("ledger_status") or "").upper()
+-            concl = ((res or {}).get("conclusion") or {}).get("operative_status", "")
+-            return bool(rev and rev.get("conclusion_verdict") == "upheld" and concl.upper() == ledger)
++            concl = str(((res or {}).get("conclusion") or {}).get("operative_status") or "")
++            # A missing ledger status or a missing conclusion is never an agreement.
++            return bool(rev and ledger and concl and rev.get("conclusion_verdict") == "upheld"
++                        and concl.upper() == ledger)
+         if not res or not rev:
+             return False
+         start = rec.get("machine_tier") or "T0"
+@@ -303,7 +311,7 @@
+             self.launch_plants([i for _, i in picks])
+         self.wait(list(self.state["plants"]))
+         self.state["stage0_done"] = True
+-        self.engine.set_cap(self.cap)
++        # The ceiling is not raised here: only full() raises it, after its projection gate.
+         self.settle()
+         return self.projection()
+ 
+@@ -333,7 +341,7 @@
+         tot = self.engine.totals()
+         proj = {"spent_units": round(spent), "spent_raw_tokens": tot["tokens"], "estimated_turns": tot["estimated_turns"],
+                 "projected_remaining_units": round(remaining), "projected_total_units": round(spent + remaining),
+-                "cap_units": self.cap, "units_per_order_median": common.median(allv),
++                "cap_units": self.cap, "orders_measured": len(allv), "units_per_order_median": common.median(allv),
+                 "units_per_order_p80": round(p80), "plant_units_mean": round(plant_mean), "cells": rows}
+         common.write_json(self.dir / "PROJECTION.json", proj)
+         return proj
+@@ -375,8 +383,23 @@
+     def full(self):
+         if not self.state["stage0_done"]:
+             raise RuntimeError("run stage 0 first")
++        if not self.state.get("full_started"):
++            # Gate: the full run starts only on a measured stage-0 projection that fits under the cap.
++            proj = self.fit_caps()
++            if proj["orders_measured"] < FULL_GATE_MIN_ORDERS or not proj["units_per_order_p80"]:
++                raise RuntimeError(f"full run refused: stage 0 measured {proj['orders_measured']} orders; "
++                                   f"{FULL_GATE_MIN_ORDERS} are needed for a projection")
++            if proj["estimated_turns"]:
++                raise RuntimeError(f"full run refused: {proj['estimated_turns']} stage-0 turns were charged an "
++                                   "estimate instead of measured usage")
++            if proj["projected_total_units"] > self.cap:
++                raise RuntimeError(f"full run refused: projected {proj['projected_total_units']:,} units exceed "
++                                   f"the cap of {self.cap:,} even after shrinking the cells")
++            self.state["full_started"] = True
++            self.save()
++        self.engine.set_cap(self.cap)
+         leftover = [r["job"] for r in self.state["jobs"].values() if r.get("stopped") == "CAP"]
+-        for r in self.state["jobs"].values():
++        for r in list(self.state["jobs"].values()) + list(self.state["plants"].values()):
+             if r.get("stopped") == "CAP":
+                 r.pop("stopped")
+         if leftover:
+--- a/kiaer/__main__.py	2026-11-18 18:27:34.400453700 -0500
++++ b/kiaer/__main__.py	2026-11-18 18:32:52.674852400 -0500
+@@ -70,6 +70,15 @@
+         print({c: (v["pool"], v["cap"]) for c, v in plan["cells"].items()}, plan["frame_sha256"])
+     elif a.command in ("stage0", "full"):
+         workers = 1 if a.command == "stage0" else a.workers  # augur stage 0: one lane
++        from . import wave
++        stage = 0 if a.command == "stage0" else 1
++        problems = wave.verify(repo, out, stage, workers,
++                               min(a.token_cap, run.STAGE0_UNITS) if stage == 0 else a.token_cap)
++        if problems:
++            print("REFUSED: this run does not match its reviewed plan (WAVE_stage%d.json):" % stage)
++            for line in problems:
++                print(" -", line)
++            return 2
+         pr = run.Probe(repo, out, providers(False), workers=workers, token_cap=a.token_cap, timeout=a.turn_timeout)
+         try:
+             print(getattr(pr, a.command)())
+@@ -114,8 +123,9 @@
+         path = wave.write(repo, out, a.token_cap, a.workers, a.stage)
+         print(path)
+     elif a.command == "report":
+-        if not a.run_id:
+-            p.error("--run-id is required")
++        import re
++        if not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9._-]{0,80}", a.run_id or ""):
++            p.error("--run-id is required: letters, digits, dot, dash and underscore only")
+         dest, s = report.write(repo, out, a.run_id)
+         print(dest)
+         print({k: s[k] for k in ("orders_launched", "orders_scored_with_review", "units_total", "plants")})
+--- a/kiaer/wave.py	2026-11-18 18:27:34.412453700 -0500
++++ b/kiaer/wave.py	2026-11-18 18:32:52.667851300 -0500
+@@ -1,9 +1,10 @@
+-"""Draft WAVE.json for the project's launch check (jobs/augur-launch/augur.py).
++"""Draft WAVE.json for the project's launch check (jobs/augur-launch/augur.py), and check a run against it.
+ 
+ The probe is not a Bentham-ranked action, so augur refuses it on that ground; the owner's direction to run it is
+ recorded as a Kean decision. Every other augur check (outcome objective, forecast, pre-mortem, lessons, review
+ bound to the plan hash, limits) is meant to pass.
+ """
++import hashlib
+ import json
+ from pathlib import Path
+ 
+@@ -16,26 +17,71 @@
+     "F-20261110-nalimov-review-v1": "Nothing is filed: every producer result is checked by a second-family "
+         "reviewer against its cited sources, and no file goes into research/readiness/claims.",
+     "F-20261110-mommsen-unranked-pools": "Owner-directed probe recorded as a Kean decision; stage 0 is 1 lane, "
+-        "29 orders, 6M tokens; the full run starts only after a measured projection fits the 10M cap.",
++        "29 orders, 6M units; the full run starts only after run.py's gate finds a measured projection that fits "
++        "the 10M cap.",
+     "F-20261107-haloander-undecided-probe": "The probe measures yield per tier move from its own seeded sample and "
+         "hands Bentham a transition table; it does not rely on Bentham's undecided rate.",
+-    "F-20261029-codex-proquest-census": "Inputs are pinned by sha256 in DRAW.json and CENSUS.json; results record "
+-        "every path and URL read; no scientific hold is removed or promoted.",
++    "F-20261029-codex-proquest-census": "Inputs are pinned by sha256 in DRAW.json and CENSUS.json, and the run "
++        "refuses to start if an input changed since the draw; results record every path and URL read; no "
++        "scientific hold is removed or promoted.",
+     "F-20261028-4": "Evidence slices are rebuilt from main's current job outputs at draw time; nothing is reused "
+         "from earlier packets or supplements.",
+ }
+ 
+ 
++def plan_sha(wave):
++    """The hash a reviewer signs: the same computation as augur.py's plan_sha (everything but the review)."""
++    body = {k: v for k, v in wave.items() if k != "review"}
++    return hashlib.sha256(json.dumps(body, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest()
++
++
++def verify(repo, out, stage, workers, token_cap):
++    """Reasons this run does not match its reviewed plan (empty when it does). Called before stage0 and full."""
++    from .run import stage0_size
++    out = Path(out)
++    path, draw_path = out / f"WAVE_stage{stage}.json", out / "DRAW.json"
++    if not path.is_file() or not draw_path.is_file():
++        return [f"{path.name} or DRAW.json is missing from the data directory"]
++    wave = json.loads(path.read_text(encoding="utf-8"))
++    plan = json.loads(draw_path.read_text(encoding="utf-8"))
++    no = []
++    review = wave.get("review") or {}
++    if review.get("verdict") != "approve" or review.get("plan_sha256") != plan_sha(wave):
++        no.append("the plan carries no approving review bound to its current hash " + plan_sha(wave))
++    if wave.get("stage") != stage:
++        no.append(f"the plan is for stage {wave.get('stage')}, not stage {stage}")
++    cfg = wave.get("configuration") or {}
++    frame = {cid: c["order"] for cid, c in plan["cells"].items()}
++    frame_sha = hashlib.sha256(json.dumps(frame, sort_keys=True).encode()).hexdigest()
++    if frame_sha != plan.get("frame_sha256"):
++        no.append("DRAW.json's order lists do not match its own frame hash")
++    if cfg.get("frame_sha256") != plan.get("frame_sha256") or cfg.get("draw_seed") != plan.get("seed"):
++        no.append("DRAW.json is not the frame the plan was reviewed with")
++    changed = sorted(rel for rel, h in common.input_hashes(repo).items() if (plan.get("inputs_sha256") or {}).get(rel) != h)
++    if changed:
++        no.append("inputs changed since the draw: " + ", ".join(changed))
++    action = (wave.get("actions") or [{}])[0]
++    orders = stage0_size(plan) if stage == 0 else sum(c["cap"] for c in plan["cells"].values())
++    if orders > int(action.get("orders") or 0):
++        no.append(f"{orders} orders could be drawn but the plan allows {action.get('orders')}")
++    if workers > int(action.get("lanes") or 0):
++        no.append(f"{workers} workers asked but the plan allows {action.get('lanes')} lanes")
++    budget = (wave.get("limits") or {}).get("chain_budget_units") or 0
++    if token_cap > budget:
++        no.append(f"a cap of {token_cap:,} units asked but the plan allows {budget:,}")
++    return no
++
++
+ def write(repo, out, token_cap, workers, stage=0):
+     plan = json.loads((Path(out) / "DRAW.json").read_text(encoding="utf-8"))
+-    from .run import STAGE0_UNITS, stage0_size
++    from .run import FULL_GATE_MIN_ORDERS, STAGE0_UNITS, stage0_size
+     total = sum(c["cap"] for c in plan["cells"].values())
+     if stage == 0:
+         total = stage0_size(plan)
+         token_cap, workers = min(token_cap, STAGE0_UNITS), 1
+     wave = {
+         "wave": f"kiaer-tier-probe-stage{stage}",
+-        "author": "claude-opus-5-5",
++        "author": "claude-opus-5-5 (probe kit); revised after review by claude-fable-5-2 (coordinating session)",
+         "stage": stage,
+         "objective": {"metric": "verified_claims_per_unit",
+                       "text": "Reviewer-upheld tier moves per token, and the share of each tier and cost of each move, "
+@@ -49,28 +95,69 @@
+                    "context_kill_tokens": 400000, "reviews_per_hour": 60, "coordinator_units_per_hour": 1,
+                    "per_turn_usd_ceiling": 2,
+                    "unit_definition": "0.1 x cache reads + 1 x other input + 4 x output (savigny meter.py)"},
++        "limits_enforced_by": {
++            "chain_budget_units": "Relay's engine (bridge/engine.py _claim): before each turn it reserves the larger "
++                "of 150,000 units and the largest turn yet measured for that provider, counts every in-flight "
++                "reservation, and starts no turn that would pass the cap. A turn in flight is not interrupted, so the "
++                "total can pass the cap only by the amount each in-flight turn (at most one per lane) exceeds its "
++                "reservation; waves are admitted against 95% of the cap. The engine stays at 6,000,000 units until the full run's gate has passed.",
++            "per_turn_usd_ceiling": "Claude Code --max-budget-usd 2 and --max-turns 40 on every producer and repair "
++                "turn (bridge/claude.py). Codex review turns have no dollar ceiling: they are bounded by the "
++                "900-second turn timeout, medium reasoning effort and the unit cap.",
++            "lanes_orders_budget": "python -m kiaer stage0|full refuses to start (wave.verify) unless this plan "
++                "carries an approving review bound to its hash, DRAW.json is the reviewed frame, no input changed "
++                "since the draw, and the workers, drawable orders and unit cap asked are within this plan.",
++            "not_enforced_by_code": "spend_per_claim_units, no_claim_minutes, context_kill_tokens, reviews_per_hour "
++                "and coordinator_units_per_hour are fields of the Savigny supervisor that Augur's format requires. "
++                "Relay does not run Savigny. The coordinator is a script and uses no model; the probe files no "
++                "claims; the directing session reads the log every 10 to 15 minutes and stops on the owner's "
++                "listed stop conditions.",
++        },
+         "stages": {"stage0_orders": stage0_size(plan), "full_max_orders": sum(c["cap"] for c in plan["cells"].values()),
+-                   "gate": "after stage 0 the projection must fit under the token cap; caps shrink to fit"},
++                   "gate": f"run.py full() refuses to start unless stage 0 finished at least {FULL_GATE_MIN_ORDERS} "
++                           "orders, no stage-0 turn was charged an estimate instead of measured usage, and the "
++                           "projection (80th-percentile cost per cell) fits under the cap after shrinking the cells"},
++        "writes": "Model turns have read-only tools (Claude: Read, Grep, Glob, WebSearch, WebFetch, reads outside "
++                  "the repository blocked; Codex: read-only sandbox). Run state goes to a data directory that "
++                  "Probe refuses to place inside the repository. The only repository write is the report command, "
++                  "which the owner directs to research/kiaer/<run-id>/. Nothing is written to claims, statuses, "
++                  "the census, the codebook or the tracker.",
+         "premortem": [
+             {"failure": "A producer inflates its tier or the reviewer rubber-stamps it",
+-             "guard": "the reviewer sees only result.json and the sources, never the producer's argument; 12% planted "
+-                      "errors measure the catch rate; the first-pass reviewed tier is the primary outcome"},
+-            {"failure": "Spend runs past the 10M-token cap through parallel workers or a runaway turn",
+-             "guard": "engine refuses new turns once recorded tokens reach the cap; waves are admitted only for the "
+-                      "orders the remaining budget can finish; Claude turns carry a per-turn dollar ceiling"},
++             "guard": "the reviewer sees only result.json (tier, moves and searches removed) and the sources, never "
++                      "the producer's argument; about 12% planted errors measure the catch rate; the first-pass "
++                      "reviewed tier is the primary outcome"},
++            {"failure": "Spend runs past the 10M-unit cap through parallel workers or a runaway turn",
++             "guard": "the engine reserves a high turn cost before each turn and starts none that would pass the "
++                      "cap; waves are admitted only for the orders 95% of the remaining budget can finish at the "
++                      "80th-percentile cost; Claude turns carry a 2-dollar ceiling; the stage-0 ceiling is lifted "
++                      "only by the full run's gate"},
+             {"failure": "The machine tier census misplaces orders, so cells are mislabeled",
+-             "guard": "each worker first confirms the true starting tier; the report shows machine-tier accuracy per cell"},
++             "guard": "each worker first states the starting tier it found; moves are scored from the census start "
++                      "tier against the reviewer-supported tier, and the report shows per cell how often the "
++                      "reviewed tier fell below the census start and how often the worker agreed with it"},
+             {"failure": "Workers wander the 200,000-file repository and burn tokens",
+-             "guard": "a pre-built evidence slice names the files; the system prompt forbids whole-tree search"},
++             "guard": "a pre-built evidence slice names the files; the system prompt forbids whole-tree search; "
++                      "Claude turns stop at 40 tool turns"},
+             {"failure": "Blind audit cells leak the ledger status through the slice or the repository",
+-             "guard": "blind slices carry no tracker, claim or blocker fields (tested); blind producers are denied reads "
+-                      "of the tracker, claim kit, drafts, claims and handoff folders"},
++             "guard": "blind slices carry no tracker, claim or blocker fields (tested); blind producers, on first "
++                      "and repair turns, are denied reads of the tracker, claim kit, drafts, claims and handoff "
++                      "folders and fetches of the project's GitHub; the ledger status is kept only in STATE.json "
++                      "outside the repository. The Codex CLI cannot deny reads, so the reviewer of an audit order "
++                      "is only instructed not to open the ledger. The audit compares the producer's first-pass "
++                      "conclusion, written before any review, with the ledger and also requires the reviewer to "
++                      "uphold it: a reviewer who ignored the instruction could bias that verdict but cannot change "
++                      "the producer's conclusion. After-repair results are reported separately"},
+             {"failure": "Failed or cut-off orders drop out of the rates and flatter the yield",
+-             "guard": "every launched order is scored; failures count as no move with their stop reason"},
++             "guard": "every launched order is scored; an order without both a result and a review counts as no "
++                      "move with its stop reason; an audit agreement needs a ledger status and a conclusion"},
+         ],
+         "acknowledged_findings": dict(LESSONS),
+         "review": {"reviewer": "", "verdict": "", "plan_sha256": ""},
+     }
++    smoke = Path(out) / "SMOKE.json"
++    if smoke.is_file():
++        wave["smoke_test"] = json.loads(smoke.read_text(encoding="utf-8"))
+     path = Path(out) / f"WAVE_stage{stage}.json"
+     common.write_json(path, wave)
+     return path
+--- a/kiaer/prompts.py	2026-11-18 18:27:34.418458500 -0500
++++ b/kiaer/prompts.py	2026-11-18 18:28:06.203902600 -0500
+@@ -84,8 +84,17 @@
+ {json.dumps(item["slice"], ensure_ascii=False)}"""
+ 
+ 
+-def reviewer(item):
+-    return f"""{BOUNDED}{RULES}
++BLIND_REVIEW = ("BLIND AUDIT: this order's existing project status is being audited. Do not open the project's "
++                "status ledger, claims, drafts, trackers or handoff notes (jobs/readiness-tracker, jobs/claim-*, "
++                "jobs/case-bundles, jobs/gessner-cards, jobs/domesday-register, jobs/larrey-triage, jobs/pothier, "
++                "jobs/status-history, jobs/current-law/output/ORDERS_CURRENT_LAW.csv, research/readiness, "
++                "research/excavator, research/dorotheus, releases, HANDOFF) and do not fetch the project's GitHub "
++                "repository. Judge only from the cited sources and the slice. Never state a project status in your "
++                "review.\n")
++
++
++def reviewer(item, blind=False):
++    return f"""{BOUNDED}{BLIND_REVIEW if blind else ""}{RULES}
+ TASK: you are an independent reviewer from a different model family. The input result.json is one worker's
+ research on one order, with the worker's own tier assessment removed. Some results given to reviewers contain a
+ deliberate error; you are not told which. Check every proposition against its cited source: open the file or URL
+--- /dev/null	2026-11-18 18:39:02.000000000 -0500
++++ b/tests/test_kiaer_gate.py	2026-11-18 18:31:00.530091000 -0500
+@@ -0,0 +1,83 @@
++"""The launch check that binds a Kiaer run to its reviewed plan (kiaer/wave.py verify)."""
++import hashlib
++import json
++import tempfile
++import unittest
++from pathlib import Path
++
++from kiaer import common, wave
++
++
++def _draw(out, repo):
++    cells = {"C01": {"label": "a", "pool": 9, "cap": 5, "blind": False, "fixed": False, "order": ["EO:1", "EO:2", "EO:3", "EO:4", "EO:5"]},
++             "C06": {"label": "b", "pool": 9, "cap": 2, "blind": True, "fixed": True, "order": ["EO:6", "EO:7"]}}
++    frame = {cid: c["order"] for cid, c in cells.items()}
++    plan = {"seed": 1, "cells": cells, "inputs_sha256": common.input_hashes(repo),
++            "frame_sha256": hashlib.sha256(json.dumps(frame, sort_keys=True).encode()).hexdigest()}
++    common.write_json(Path(out) / "DRAW.json", plan)
++    return plan
++
++
++def _approve(path):
++    w = json.loads(path.read_text(encoding="utf-8"))
++    w["review"] = {"reviewer": "gpt-test", "verdict": "approve", "plan_sha256": wave.plan_sha(w)}
++    common.write_json(path, w)
++    return w
++
++
++class VerifyTest(unittest.TestCase):
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.repo, self.out = Path(self.tmp.name) / "repo", Path(self.tmp.name) / "data"
++        self.repo.mkdir()
++        self.out.mkdir()
++        _draw(self.out, self.repo)
++
++    def tearDown(self):
++        self.tmp.cleanup()
++
++    def test_unreviewed_plan_is_refused(self):
++        wave.write(self.repo, self.out, 10_000_000, 3, stage=0)
++        problems = wave.verify(self.repo, self.out, 0, 1, 6_000_000)
++        self.assertTrue(any("no approving review" in p for p in problems))
++
++    def test_reviewed_plan_passes_and_any_edit_voids_it(self):
++        path = wave.write(self.repo, self.out, 10_000_000, 3, stage=0)
++        _approve(path)
++        self.assertEqual(wave.verify(self.repo, self.out, 0, 1, 6_000_000), [])
++        w = json.loads(path.read_text(encoding="utf-8"))
++        w["limits"]["chain_budget_units"] = 9_000_000
++        common.write_json(path, w)
++        self.assertTrue(wave.verify(self.repo, self.out, 0, 1, 6_000_000))
++
++    def test_lanes_budget_and_stage_are_bound(self):
++        _approve(wave.write(self.repo, self.out, 10_000_000, 3, stage=0))
++        _approve(wave.write(self.repo, self.out, 10_000_000, 3, stage=1))
++        self.assertTrue(any("workers" in p for p in wave.verify(self.repo, self.out, 0, 2, 6_000_000)))
++        self.assertTrue(any("cap of" in p for p in wave.verify(self.repo, self.out, 0, 1, 6_000_001)))
++        self.assertEqual(wave.verify(self.repo, self.out, 1, 3, 10_000_000), [])
++        self.assertTrue(any("workers" in p for p in wave.verify(self.repo, self.out, 1, 4, 10_000_000)))
++        self.assertTrue(any("cap of" in p for p in wave.verify(self.repo, self.out, 1, 3, 10_000_001)))
++
++    def test_a_redrawn_frame_or_changed_input_is_refused(self):
++        _approve(wave.write(self.repo, self.out, 10_000_000, 3, stage=0))
++        plan = json.loads((self.out / "DRAW.json").read_text(encoding="utf-8"))
++        plan["cells"]["C01"]["order"].reverse()
++        common.write_json(self.out / "DRAW.json", plan)
++        self.assertTrue(any("frame" in p for p in wave.verify(self.repo, self.out, 0, 1, 6_000_000)))
++        _draw(self.out, self.repo)
++        self.assertEqual(wave.verify(self.repo, self.out, 0, 1, 6_000_000), [])
++        target = self.repo / common.INPUTS["tracker"]
++        target.parent.mkdir(parents=True)
++        target.write_text("instrument_id\n", encoding="utf-8")
++        self.assertTrue(any("inputs changed" in p for p in wave.verify(self.repo, self.out, 0, 1, 6_000_000)))
++
++    def test_plan_sha_matches_augur(self):
++        w = {"b": 1, "a": "é", "review": {"verdict": "approve"}}
++        body = {"b": 1, "a": "é"}
++        self.assertEqual(wave.plan_sha(w), hashlib.sha256(
++            json.dumps(body, sort_keys=True, ensure_ascii=False).encode("utf-8")).hexdigest())
++
++
++if __name__ == "__main__":
++    unittest.main()

@@ -1,3 +1,28 @@
+## 2026-11-18 ET (Claude: Kiaer tier probe stopped at the plan review; nothing ran)
+
+- **Stopped:** the owner-directed Kiaer probe (Relay, `Relay-kiaer.zip`) did not start. Codex (gpt-6-astra)
+  reviewed the stage-0 and stage-1 plans against Augur and rejected both, twice; the owner's rule for this probe
+  was to stop after a second rejection. No owner exception was recorded. No claim, status, census row, codebook or
+  tracker changed. Report: `research/kiaer/kiaer-2026-11-18/REPORT.md`.
+- **Done without tokens:** machine tier census of 15,002 orders (T0 70, T1 2,245, T2 9,144, T3 1,940, T4 348,
+  T5 1,255, T6 0; 2,938 undecided with a rule lead) and a seeded draw (11 cells, 235 orders at most).
+- **Smoke test passed:** EO 9703 through producer, review and repair; 167,712 units, every turn measured. At that
+  cost 10M units buys about 59 orders, not 235.
+- **Reviews:** the first found four real defects, fixed (`CHANGES.md`, 38 tests pass). The second found seven more
+  grounds, not fixed: a zero-cap bypass, saved state not bound to the plan, a reservation race in Relay's engine
+  with more than one worker, unaccounted failed turns, unprotected first-pass artifacts, overridable ceilings and
+  overstated provenance wording. It found no way for a model turn to write to the repository.
+- **Spent:** 317,849 units (599,608 raw tokens): smoke test plus two Codex reviews; this session's own usage not
+  included.
+- **Owner ask A-20261118-kiaer-review-rejected:** fix the seven grounds and allow a third review; or sign stage 0
+  yourself and hold the full run for the fixes; or drop the probe.
+- **Recorded:** Kean F-20261118-kiaer-stopped-at-review. Branch `claude/kiaer-probe-2026-11-18`, committed locally,
+  not pushed. Human-certified 0.
+- **This PC:** `claude`, `codex`, `node` and `npm` are not on PATH. Relay ran on the CLI binaries bundled with the
+  desktop apps (`RELAY_CLAUDE_BIN`, `RELAY_CODEX_BIN`; launcher `%USERPROFILE%/Relay-kiaer/run-kiaer.ps1`). Data
+  written under `%LOCALAPPDATA%` from a Claude desktop session lands in
+  `AppData\Local\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Local\Relay\kiaer-2026-11-18`.
+
 ## 2026-11-12 ET, evening (Claude: claim-kit build repaired; fresh build verified; pilot finalized, not run)
 
 - **Repair** (PR #302, Kean F-20261112-claimkit-regex-runaway):
