@@ -1,18 +1,52 @@
 {
- "cell": "C04",
- "date": "2026-11-18",
- "estimated_turns": 0,
- "note": "every turn reported measured usage; one order, costs vary; run before the fixes made after the first plan review, which do not change a non-blind order's prompts",
- "order": "EO:9703",
- "producer_model_observed": "claude-fable-5-2 (Claude Code CLI 2.1.326 default; claude-haiku-5-5 for tool summaries)",
- "raw_tokens": 318823,
- "result": "PASS",
- "reviewer_model_observed": "gpt-6-astra (Codex CLI 0.167.0-alpha.3.2 default), reasoning effort medium",
- "steps": 3,
- "units": 167712,
- "units_by_step": {
-  "producer": 64078,
-  "repair": 40033,
-  "review": 63601
- }
+ "note": "the same order twice, in separate data folders outside the probe's budget; one order, costs vary: at these two costs about 32 to 35 orders fit in 6M units and 53 to 59 in 10M",
+ "runs": [
+  {
+   "cell": "C04",
+   "code": "Relay-kiaer.zip as delivered",
+   "date": "2026-11-18",
+   "estimated_turns": 0,
+   "note": "every turn reported measured usage; one order, costs vary; run before the fixes made after the first plan review, which do not change a non-blind order's prompts",
+   "order": "EO:9703",
+   "producer_model_observed": "claude-fable-5-2 (Claude Code CLI 2.1.326 default; claude-haiku-5-5 for tool summaries)",
+   "raw_tokens": 318823,
+   "result": "PASS",
+   "reviewer_model_observed": "gpt-6-astra (Codex CLI 0.167.0-alpha.3.2 default), reasoning effort medium",
+   "steps": 3,
+   "units": 167712,
+   "units_by_step": {
+    "producer": 64078,
+    "repair": 40033,
+    "review": 63601
+   }
+  },
+  {
+   "cell": "C04",
+   "claude_cost_usd_by_step": {
+    "producer": 0.93,
+    "repair": 0.55
+   },
+   "code": "after the changes made for the first and second plan reviews (one later edit, to Engine.reconcile, is not exercised by a smoke test)",
+   "date": "2026-11-18",
+   "estimated_turns": 0,
+   "note": "each step recorded exactly its own artifact; every attempt row closed; no turn estimated",
+   "order": "EO:9703",
+   "producer_model_observed": "claude-fable-5-2 (claude-haiku-5-5 for tool summaries)",
+   "raw_tokens": 335404,
+   "result": "PASS",
+   "reviewer_model_observed": "Codex CLI default (gpt-6-astra in its config), reasoning effort medium",
+   "seconds_by_step": {
+    "producer": 111.5,
+    "repair": 72.4,
+    "review": 51.8
+   },
+   "steps": 3,
+   "units": 186931,
+   "units_by_step": {
+    "producer": 80063,
+    "repair": 48723,
+    "review": 58146
+   }
+  }
+ ]
 }

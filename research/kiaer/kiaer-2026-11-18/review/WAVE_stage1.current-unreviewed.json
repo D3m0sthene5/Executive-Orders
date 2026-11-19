@@ -1,0 +1,145 @@
+{
+ "acknowledged_findings": {
+  "F-20261028-4": "Evidence slices are built at launch from the current job outputs in the checkout given with --repo (the probe branch, cut from main, which adds only this probe's record files); nothing is reused from earlier packets or supplements.",
+  "F-20261029-codex-proquest-census": "The 12 finding-aid files the census and the slices are built from are pinned by sha256 in DRAW.json, and the run refuses to start if one changed since the draw. The held text files workers open are not hashed. Each result records the path or URL of every proposition it cites, not every file or URL the worker opened. No scientific hold is removed or promoted.",
+  "F-20261107-haloander-undecided-probe": "The probe measures yield per tier move from its own seeded sample and hands Bentham a transition table; it does not rely on Bentham's undecided rate.",
+  "F-20261110-mommsen-unranked-pools": "Owner-directed probe recorded as a Kean decision; stage 0 is 1 lane, 29 orders, 6M units; the full run starts only after run.py's gate finds a measured projection that fits the 10M cap.",
+  "F-20261110-nalimov-review-v1": "Nothing is filed: every producer result is checked by a second-family reviewer against its cited sources, and no file goes into research/readiness/claims.",
+  "F-20261112-graunt-admissions-checked": "No census admission: the unnumbered cell only researches identities; workers state what a printing holds (text or catalogue entry) and the reviewer checks the source.",
+  "F-20261118-kiaer-stopped-at-review": "The guards these plans state were read against the code, and the reviewer is given all the code the run uses. Tests cover these guards and no others (tests/test_kiaer_gate.py, tests/test_kiaer_round3.py, tests/test_pipeline.py): the plan binding (review hash, stage, frame, hashed inputs, lanes, cap); refusal of non-positive caps; the saved-state checks; one worker in stage 0; no resume before stage 0 is done; no claim of a job whose turn is still held; artifact ownership in the engine and in scoring; the halt on unmeasured, empty or partial usage and its reconciliation (finite figures only); attempts left open by a crash; the reservation from the largest measured turn; step options ahead of the environment; reviewer inputs with the tier removed; blind slices without ledger fields. Not covered by a test: the full run's projection gate and wave admission (exercised by the selftest only), the read and fetch denials inside the Claude CLI, and the planting rate. What code does not enforce is listed under limits_enforced_by.not_enforced_by_code and stages.gate. Budget: two smoke tests cost 167,712 and 186,931 units for one order, so 10M units buys about 53 to 59 orders, not the 235 drawn; the full run's gate shrinks the cells to fit (to 3 orders at least), per-cell rates will be thin, and the report gives Wilson intervals and pooled group rates."
+ },
+ "actions": [
+  {
+   "id": "probe.kiaer-tier-census",
+   "lanes": 3,
+   "orders": 235
+  }
+ ],
+ "author": "claude-opus-5-5 (probe kit); revised after two plan reviews by claude-fable-5-2 (coordinating session)",
+ "configuration": {
+  "coordinator_model": "script (no model)",
+  "draw_seed": 20261118,
+  "frame_sha256": "40636c0c08be8c2ade0f46b25ec3967a2538b415bd09ca0fbcfb80fd4c51d884",
+  "orchestrator": "relay-kiaer",
+  "producer_model": "claude (Claude Code CLI, research profile)",
+  "reviewer_model": "codex (Codex CLI, read-only sandbox, web search)"
+ },
+ "limits": {
+  "chain_budget_units": 10000000,
+  "context_kill_tokens": 400000,
+  "coordinator_units_per_hour": 1,
+  "no_claim_minutes": 60,
+  "per_turn_usd_ceiling": 2,
+  "reviews_per_hour": 60,
+  "spend_per_claim_units": 1000000,
+  "unit_definition": "0.1 x cache reads + 1 x other input + 4 x output (savigny meter.py)"
+ },
+ "limits_enforced_by": {
+  "artifacts": "Each pipeline step owns one artifact name. The engine records only that artifact: any other a step returns is discarded and logged, and two copies fail the step. Scoring reads result.json only from the producer's first turn, review.json only from the reviewer's turn and final.json only from the repair turn (common.owned). A producer cannot supply a review, and no later step can replace an earlier artifact.",
+  "chain_budget_units": "Relay's engine (bridge/engine.py _claim): before each turn it reserves the larger of 150,000 units and the largest turn yet measured for that provider (failed turns included, from the first measured turn), counts every in-flight reservation, and starts no turn that would pass the cap. A job is not claimed while a worker still holds its previous turn, and a worker releases only its own reservation, so one attempt cannot drop another's. The cap must be a positive number: the command line, wave.verify, Probe and the engine each refuse zero. A turn in flight is not interrupted, so the total can pass the cap only by the amount each in-flight turn (at most one per lane) exceeds its reservation; waves are admitted against 95% of the cap. The engine stays at 6,000,000 units until the full run's gate has passed.",
+  "lanes_orders_budget": "python -m kiaer stage0|full refuses to start (wave.verify) unless this plan carries an approving review bound to its hash, DRAW.json is the reviewed frame, no hashed input changed since the draw, and the workers, drawable orders and unit cap asked are positive and within this plan. Stage 0 refuses more than one worker.",
+  "not_enforced_by_code": "spend_per_claim_units, no_claim_minutes, context_kill_tokens, reviews_per_hour and coordinator_units_per_hour are fields of the Savigny supervisor that Augur's format requires. Relay does not run Savigny. The coordinator is a script and uses no model; the probe files no claims; the directing session reads the log every 10 to 15 minutes and stops on the owner's listed stop conditions.",
+  "per_turn_usd_ceiling": "Claude Code --max-budget-usd 2 and --max-turns 40 on every producer and repair turn, fixed in each step's options (run.py CLAUDE_LIMITS), which bridge/claude.py puts ahead of the RELAY_CLAUDE_* environment variables; Claude Code checks the dollar ceiling between model calls. Codex review turns have no dollar ceiling: they are bounded by the turn timeout (the command line and Probe refuse more than 900 seconds), reasoning effort medium fixed in the step's options (CODEX_LIMITS, ahead of RELAY_CODEX_EFFORT) and the unit cap. Still settable from the environment, and set by the launcher only where stated: the two CLI paths (RELAY_CLAUDE_BIN, RELAY_CODEX_BIN, set to the binaries bundled with the desktop apps), the models (RELAY_CLAUDE_MODEL, RELAY_CODEX_MODEL: not set, so each CLI's configured default runs), the worker system prompt (RELAY_CLAUDE_SYSTEM: not set) and Codex web search (RELAY_CODEX_WEB_SEARCH: not set, so live).",
+  "saved_state": "Before any job is resumed or created, Probe._check_state refuses saved state the reviewed draw and stage do not allow: STATE.json must carry the draw's frame hash and the hash of the plan it was started under; every order on file must be among the first drawn orders of its cell within this stage's allowance; saved caps may not exceed the drawn caps; every database job must be named in STATE.json under the matching tag. stage0 refuses a data directory that holds a full run. full refuses an unfinished stage 0 and resumes nothing until its gate has passed. Opening the engine pauses every unfinished job, so nothing runs before these checks.",
+  "unmeasured_turns": "Every attempt is written to the database before its provider starts. A turn that returns no usage (timeout, kill, cancellation) or usage that is empty, partial, negative or not finite, or an attempt found open after a crash, is charged the estimate as it stands when the turn is recorded or recovered (the larger of 150,000 units and the largest turn measured for that provider by then, which can be more than the reservation made when it started), flagged as estimated, and stops the run: the engine starts no further turn and the probe retries nothing until the operator records a measured or bounding figure for it, finite and never below the charge already made (python -m kiaer reconcile, logged as an event; the turn stays flagged). Until then the true total is unknown by that turn's excess over its charge, plus the excess of the turns in flight when it stopped (at most one per lane). A failed turn that reported complete usage is charged what it reported. The probe retries a failed job at most once (one retry per order or planted review, not per turn), and not at all after a spend or tool-call ceiling."
+ },
+ "objective": {
+  "metric": "verified_claims_per_unit",
+  "text": "Reviewer-upheld tier moves per token, and the share of each tier and cost of each move, measured on a seeded stratified sample; no status, count or certification changes"
+ },
+ "premortem": [
+  {
+   "failure": "A producer inflates its tier or the reviewer rubber-stamps it",
+   "guard": "the reviewer sees only result.json (tier, moves and searches removed) and the sources, never the producer's argument; the engine lets no step record another step's artifact, so a producer cannot supply its own review; planted errors measure the catch rate: each wave targets about 12% of its reviewed orders (one at least), and yields none when no reviewed result can be altered; the first-pass reviewed tier is the primary outcome"
+  },
+  {
+   "failure": "Spend runs past the 10M-unit cap through parallel workers, a runaway turn or a turn whose usage never comes back",
+   "guard": "the engine reserves the largest measured turn (at least 150,000 units) before each turn and starts none that would pass the cap; a job is never claimed while its previous turn is still held; a turn without measured usage stops the run until it is reconciled; waves are admitted only for the orders 95% of the remaining budget can finish at the 80th-percentile cost; Claude turns carry a 2-dollar ceiling the environment cannot raise; the stage-0 ceiling is lifted only by the full run's gate; a zero cap is refused"
+  },
+  {
+   "failure": "A wrong command on a half-finished data folder resumes work under the wrong ceiling or with the wrong number of workers",
+   "guard": "saved state is bound to the draw and to the plan it started under and is checked before anything is resumed; stage0 will not touch a full run; full resumes nothing before its gate"
+  },
+  {
+   "failure": "The machine tier census misplaces orders, so cells are mislabeled",
+   "guard": "each worker first states the starting tier it found; moves are scored from the census start tier against the reviewer-supported tier, and the report shows per cell how often the reviewed tier fell below the census start and how often the worker agreed with it"
+  },
+  {
+   "failure": "Workers wander the 200,000-file repository and burn tokens",
+   "guard": "a pre-built evidence slice names the files; the system prompt forbids whole-tree search; Claude turns stop at 40 tool turns (fixed in the step's options)"
+  },
+  {
+   "failure": "Blind audit cells leak the ledger status through the slice or the repository",
+   "guard": "blind slices carry no tracker, claim or blocker fields (tested); blind producers, on first and repair turns, are denied reads of the tracker, claim kit, drafts, claims and handoff folders and fetches of the project's GitHub; the ledger status is kept only in STATE.json outside the repository. The Codex CLI cannot deny reads, so the reviewer of an audit order is only instructed not to open the ledger. A reviewer who ignored that could bias its own verdict, and could pass the ledger status to the repair turn through review.json: the repair result of an audit order may therefore be contaminated, is stored, and enters no rate. The audit result compares the producer's first-pass result.json with the ledger and also requires the reviewer to uphold it; the engine records that result before any review and no later step can replace it"
+  },
+  {
+   "failure": "Failed or cut-off orders drop out of the rates and flatter the yield",
+   "guard": "every launched order is scored; an order without both a result and a review counts as no move with its stop reason, including an order stopped by the cap or by an unmeasured turn; an audit agreement needs a ledger status and a conclusion"
+  }
+ ],
+ "review": {
+  "plan_sha256": "",
+  "reviewer": "",
+  "verdict": ""
+ },
+ "smoke_test": {
+  "note": "the same order twice, in separate data folders outside the probe's budget; one order, costs vary: at these two costs about 32 to 35 orders fit in 6M units and 53 to 59 in 10M",
+  "runs": [
+   {
+    "cell": "C04",
+    "code": "Relay-kiaer.zip as delivered",
+    "date": "2026-11-18",
+    "estimated_turns": 0,
+    "note": "every turn reported measured usage; one order, costs vary; run before the fixes made after the first plan review, which do not change a non-blind order's prompts",
+    "order": "EO:9703",
+    "producer_model_observed": "claude-fable-5-2 (Claude Code CLI 2.1.326 default; claude-haiku-5-5 for tool summaries)",
+    "raw_tokens": 318823,
+    "result": "PASS",
+    "reviewer_model_observed": "gpt-6-astra (Codex CLI 0.167.0-alpha.3.2 default), reasoning effort medium",
+    "steps": 3,
+    "units": 167712,
+    "units_by_step": {
+     "producer": 64078,
+     "repair": 40033,
+     "review": 63601
+    }
+   },
+   {
+    "cell": "C04",
+    "claude_cost_usd_by_step": {
+     "producer": 0.93,
+     "repair": 0.55
+    },
+    "code": "after the changes made for the first and second plan reviews (one later edit, to Engine.reconcile, is not exercised by a smoke test)",
+    "date": "2026-11-18",
+    "estimated_turns": 0,
+    "note": "each step recorded exactly its own artifact; every attempt row closed; no turn estimated",
+    "order": "EO:9703",
+    "producer_model_observed": "claude-fable-5-2 (claude-haiku-5-5 for tool summaries)",
+    "raw_tokens": 335404,
+    "result": "PASS",
+    "reviewer_model_observed": "Codex CLI default (gpt-6-astra in its config), reasoning effort medium",
+    "seconds_by_step": {
+     "producer": 111.5,
+     "repair": 72.4,
+     "review": 51.8
+    },
+    "steps": 3,
+    "units": 186931,
+    "units_by_step": {
+     "producer": 80063,
+     "repair": 48723,
+     "review": 58146
+    }
+   }
+  ]
+ },
+ "stage": 1,
+ "stages": {
+  "full_max_orders": 235,
+  "gate": "run.py full() first checks the saved state, then refuses to start unless stage 0 is done with at least 10 finished orders, no stage-0 turn was charged an estimate instead of measured usage, and the projection (80th-percentile cost per cell) fits under the cap after shrinking the cells. Only then is the ceiling raised and unfinished work resumed. The projection is a forecast: it counts failed orders' costs, does not add the cost of finishing orders stopped at the stage-0 cap, and uses the pooled cost for a cell with fewer than two measured orders. The owner's other stage-0 conditions (more than 20% of orders failed, every informative planted control missed, a producer reading a denied file, fewer than 40 orders fitting) are applied by the directing session from the stage-0 report, not by code.",
+  "stage0_orders": 29
+ },
+ "wave": "kiaer-tier-probe-stage1",
+ "writes": "Model turns have read-only tools (Claude: Read, Grep, Glob, WebSearch, WebFetch, reads outside the repository blocked; Codex: read-only sandbox). Run state goes to a data directory that Probe refuses to place inside the repository. The only repository write is the report command, which the owner directs to research/kiaer/<run-id>/. Nothing is written to claims, statuses, the census, the codebook or the tracker."
+}

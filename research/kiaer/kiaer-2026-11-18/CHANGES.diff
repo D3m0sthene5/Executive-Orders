@@ -1,5 +1,5 @@
---- a/kiaer/run.py	2026-11-18 18:27:34.394453900 -0500
-+++ b/kiaer/run.py	2026-11-18 18:32:52.673854100 -0500
+--- zip/kiaer/run.py
++++ run/kiaer/run.py
 @@ -35,6 +35,7 @@
  STAGE0_PER_CELL = 3
  STAGE0_AUDIT = 1          # one order each in the two audit cells: stage 0 is 29 orders (augur: at most 30)
@@ -8,7 +8,7 @@
  WAVE_PER_CELL = 5
  PLANT_RATE = 0.12
  SETTLE_HIGH, SETTLE_LOW = 0.70, 0.40
-@@ -46,7 +47,7 @@
+@@ -46,10 +47,19 @@
                "jobs/case-bundles/**", "jobs/gessner-cards/**", "jobs/domesday-register/**", "jobs/larrey-triage/**",
                "jobs/bentham/**", "jobs/daily-digest/**", "jobs/x1-class-engine/sheets/**", "research/readiness/**",
                "research/progress/**", "research/excavator/**", "research/stage15/**", "research/stage17/**",
@@ -17,38 +17,183 @@
  DROP_FOR_REVIEW = ["tier_reached", "start_tier_confirmed", "moves", "searches"]
  RESULT_KEYS = ["id", "tier_reached", "conclusion", "propositions", "gaps"]
  REVIEW_KEYS = ["verdicts", "conclusion_verdict", "tier_supported"]
-@@ -80,6 +81,8 @@
++# Provider limits fixed by the plan. They travel in each step's options, which the adapters put ahead of any
++# environment variable, so RELAY_* settings cannot loosen them for this probe.
++CLAUDE_LIMITS = {"max_budget_usd": 2, "max_tool_turns": 40}
++CODEX_LIMITS = {"effort": "medium"}
++MAX_TURN_SECONDS = 900
++
++
++class Stopped(RuntimeError):
++    """The run stopped itself; rerunning the same command will not continue until the cause is dealt with."""
+ 
+ 
+ def draw(repo, outdir, seed=20261118):
+@@ -78,22 +88,35 @@
+ 
+ 
  class Probe:
-     def __init__(self, repo, datadir, providers, workers=1, token_cap=10_000_000, timeout=900, log=print):
+-    def __init__(self, repo, datadir, providers, workers=1, token_cap=10_000_000, timeout=900, log=print):
++    def __init__(self, repo, datadir, providers, workers=1, token_cap=10_000_000, timeout=900, log=print,
++                 plan_sha256=None):
          self.repo, self.dir = Path(repo).resolve(), Path(datadir).resolve()
 +        if self.dir.is_relative_to(self.repo):
 +            raise ValueError("the data directory must be outside the repository")
++        if type(token_cap) is not int or token_cap <= 0:
++            raise ValueError("the unit cap must be a positive whole number (zero would mean no cap)")
++        if isinstance(timeout, bool) or not isinstance(timeout, (int, float)) or not 0 < timeout <= MAX_TURN_SECONDS:
++            raise ValueError(f"the turn timeout must be between 1 and {MAX_TURN_SECONDS} seconds")
          self.dir.mkdir(parents=True, exist_ok=True)
          self.plan = json.loads((self.dir / "DRAW.json").read_text(encoding="utf-8"))
++        self.plan_sha = plan_sha256  # hash of the reviewed WAVE plan this command was checked against
          self.state_path = self.dir / "STATE.json"
-@@ -88,7 +91,9 @@
-                             "stage0_done": False, "caps": {c: v["cap"] for c, v in self.plan["cells"].items()}})
+         self.state = (json.loads(self.state_path.read_text(encoding="utf-8")) if self.state_path.is_file()
+                       else {"next": {c: 0 for c in self.plan["cells"]}, "settled": {}, "jobs": {}, "plants": {},
+-                            "stage0_done": False, "caps": {c: v["cap"] for c, v in self.plan["cells"].items()}})
++                            "stage0_done": False, "caps": {c: v["cap"] for c, v in self.plan["cells"].items()},
++                            # The draw and the reviewed stage-0 plan this state belongs to.
++                            "frame_sha256": self.plan["frame_sha256"], "stage0_plan_sha256": plan_sha256})
          self.cap = token_cap
          self.log = log
 -        first_cap = token_cap if self.state["stage0_done"] else min(token_cap, STAGE0_UNITS)
 +        # The engine keeps stage 0's ceiling until full() has passed its projection gate (state["full_started"]),
 +        # so work left over from stage 0 cannot run past the stage-0 budget just because stage 0 has ended.
 +        first_cap = token_cap if self.state.get("full_started") else min(token_cap, STAGE0_UNITS)
++        # The engine pauses every unfinished job when it opens, so nothing runs until stage0() or full() has
++        # checked the saved state and (for the full run) passed the gate. Nothing is resumed here.
          self.engine = Engine(self.dir / "relay.sqlite3", self.repo, providers, timeout=timeout,
-                              max_turns=3, workers=workers, token_cap=first_cap)
+-                             max_turns=3, workers=workers, token_cap=first_cap)
++                             max_turns=3, workers=workers, token_cap=first_cap, halt_unmeasured=True)
          self.rng = random.Random(self.plan["seed"] + 1)
-@@ -141,8 +146,8 @@
-                     if cell["blind"] else None)
-             steps = [{"actor": "claude", "prompt": first, "inputs": [], "options": deny,
+         self.unn = {u["instrument_id"]: u for u in census.unnumbered(self.repo)}
+-        self._resume_unfinished()
+ 
+     def save(self):
+         tmp = self.state_path.with_suffix(".tmp")
+@@ -107,18 +130,84 @@
+     def _all_jobs(self):
+         return [r["job"] for r in self.state["jobs"].values()] + list(self.state["plants"])
+ 
++    def _check_state(self, stage):
++        """Refuse saved state or database jobs that the reviewed draw and this stage do not allow.
++
++        Called by stage0() and full() before any job is resumed or created."""
++        s, cells, no = self.state, self.plan["cells"], []
++        if s.get("frame_sha256") != self.plan["frame_sha256"]:
++            no.append("STATE.json belongs to a different draw than DRAW.json")
++        started = s.get("full_started")
++        if stage == 0:
++            if started:
++                no.append("this data directory holds a full run; stage0 will not resume it")
++            if s.get("stage0_plan_sha256") != self.plan_sha:
++                no.append("STATE.json was started under a different stage-0 plan than the one now reviewed")
++        else:
++            if not s.get("stage0_done"):
++                no.append("stage 0 is not finished: run stage0 first (full resumes no stage-0 work)")
++            if started and (not isinstance(started, dict) or started.get("plan_sha256") != self.plan_sha):
++                no.append("the full run was started under a different plan than the one now reviewed")
++        for cid, c in cells.items():
++            if not 0 <= s["next"].get(cid, 0) <= s["caps"].get(cid, 0) <= c["cap"]:
++                no.append(f"{cid}: saved progress or cap is outside the drawn cap of {c['cap']}")
++        for iid, rec in s["jobs"].items():
++            c = cells.get(rec.get("cell"))
++            if c is None:
++                no.append(f"{iid} is filed under an unknown cell")
++                continue
++            limit = min(c["cap"], (STAGE0_AUDIT if c["fixed"] else STAGE0_PER_CELL) if stage == 0 else c["cap"])
++            if iid not in c["order"][:limit]:
++                no.append(f"{iid} is not among the first {limit} drawn orders of {rec['cell']}")
++        allowed = stage0_size(self.plan) if stage == 0 else sum(c["cap"] for c in cells.values())
++        if len(s["jobs"]) > allowed:
++            no.append(f"{len(s['jobs'])} orders are on file but this stage allows {allowed}")
++        if len(s["plants"]) > len(s["jobs"]):
++            no.append("more planted reviews than genuine orders are on file")
++        known = {r["job"]: f"genuine|{r['cell']}|{iid}" for iid, r in s["jobs"].items()}
++        for jid, meta in s["plants"].items():
++            donor = s["jobs"].get(meta.get("donor"))
++            if donor is None:
++                no.append(f"planted review {jid[:8]} names an order that is not on file")
++            else:
++                known[jid] = f"plant|{donor['cell']}|{meta['donor']}"
++        for job in self.engine.list_jobs():
++            tag = known.pop(job["id"], None)
++            if tag is None:
++                no.append(f"the database holds a job that STATE.json does not: {job['id'][:8]} ({job.get('tag')})")
++            elif job.get("tag") != tag:
++                no.append(f"database job {job['id'][:8]} is tagged {job.get('tag')}, not {tag}")
++        no += [f"STATE.json names a job the database does not hold: {tag}" for tag in known.values()]
++        if no:
++            raise Stopped("the saved run does not match the reviewed plan: " + "; ".join(no[:12]))
++
++    def _halt_check(self):
++        """No turn starts while a turn's usage is unknown: the cap can only bound what it can measure."""
++        bad = self.engine.unmeasured()
++        if bad:
++            self.save()
++            raise Stopped(
++                f"{len(bad)} turn(s) came back without measured usage and were charged an estimate (turn ids "
++                f"{', '.join(str(b['id']) for b in bad)}). The engine starts no further turn. To continue, record "
++                "a measured or bounding figure for each: python -m kiaer reconcile --turn ID --units N --note WHY")
++
++    def _open_jobs(self):
++        """Jobs that are neither completed nor given a final stop reason."""
++        return [j for j in self._all_jobs() if self.engine.get(j)["status"] != "completed"
++                and not (self._record_for(j) or {}).get("stopped")]
++
+     def _resume_unfinished(self):
+-        """After a crash or Ctrl+C the engine marks running jobs paused: continue them, never redraw."""
++        """After a crash or Ctrl+C the engine marks running jobs paused: continue them, never redraw.
++
++        Only stage0() and full() call this, after _check_state and, for the full run, after its gate."""
+         for jid in self._all_jobs():
+-            try:
+-                job = self.engine.get(jid)
+-            except KeyError:
+-                continue
++            rec = self._record_for(jid) or {}
++            job = self.engine.get(jid)
++            if rec.get("stopped") in ("CAP", "UNMEASURED") and job["status"] != "completed":
++                rec.pop("stopped")
+             if job["status"] == "paused":
+                 self.engine.resume(jid)
+-        if any(self.engine.get(j)["status"] not in ("completed", "error") for j in self._all_jobs()):
+-            self.log("Finishing jobs left over from an interrupted run.")
+-            self.wait(self._all_jobs())
++        self.save()
+ 
+     # ---- job creation -------------------------------------------------------------------------------------
+     def _slices(self, picks):
+@@ -138,19 +227,22 @@
+             # fetch the project's own repository from GitHub.
+             deny = ({"deny_reads": BLIND_DENY,
+                      "deny_fetch_domains": ["github.com", "raw.githubusercontent.com", "dannykind.wiki"]}
+-                    if cell["blind"] else None)
+-            steps = [{"actor": "claude", "prompt": first, "inputs": [], "options": deny,
++                    if cell["blind"] else {})
++            claude_opts = {**CLAUDE_LIMITS, **deny}
++            # Each step may deliver only its expected artifact (the engine discards any other), so a producer
++            # cannot supply its own review and a repair cannot replace the first-pass result.
++            steps = [{"actor": "claude", "prompt": first, "inputs": [], "options": claude_opts,
                        "expect": {"name": "result.json", "keys": RESULT_KEYS}},
 -                     {"actor": "codex", "prompt": prompts.reviewer(item), "inputs": ["result.json"],
 -                      "drop": {"result.json": DROP_FOR_REVIEW},
+-                      "expect": {"name": "review.json", "keys": REVIEW_KEYS}},
 +                     {"actor": "codex", "prompt": prompts.reviewer(item, blind=cell["blind"]),
 +                      "inputs": ["result.json"], "drop": {"result.json": DROP_FOR_REVIEW},
-                       "expect": {"name": "review.json", "keys": REVIEW_KEYS}},
++                      "options": dict(CODEX_LIMITS), "expect": {"name": "review.json", "keys": REVIEW_KEYS}},
                       {"actor": "claude", "prompt": prompts.repair(), "inputs": ["result.json", "review.json"],
-                       "options": deny, "expect": {"name": "final.json", "keys": RESULT_KEYS},
-@@ -173,9 +178,10 @@
+-                      "options": deny, "expect": {"name": "final.json", "keys": RESULT_KEYS},
++                      "options": claude_opts, "expect": {"name": "final.json", "keys": RESULT_KEYS},
+                       "skip_unless": {"artifact": "review.json", "contains_any": ['"rejected"', '"unverifiable"']}}]
+             job = self.engine.create_pipeline(f"Kiaer {cid} {iid}", steps, tag=f"genuine|{cid}|{iid}")
+             self.state["jobs"][iid] = {"cell": cid, "job": job["id"], "machine_tier": cell["machine_tier"].get(iid),
+                                        "group": cell["group"].get(iid), "retries": 0, "slice": item["slice"]}
+-        self.save()
++            self.save()  # state and database stay in step: a crash here leaves no job the state does not name
+ 
+     def launch_plants(self, done_ids):
+         donors = [i for i in done_ids if self._artifact(self.state["jobs"][i]["job"], "review.json")]
+@@ -173,22 +265,23 @@
                  continue
              planted = {k: v for k, v in planted.items() if k not in DROP_FOR_REVIEW}
              item = {"slice": self.state["jobs"][iid]["slice"]}
@@ -56,11 +201,61 @@
              job = self.engine.create_pipeline(
                  f"Kiaer review {iid}",
 -                [{"actor": "codex", "prompt": prompts.reviewer(item), "inputs": ["result.json"],
+-                  "expect": {"name": "review.json", "keys": REVIEW_KEYS}}],
 +                [{"actor": "codex", "prompt": prompts.reviewer(item, blind=blind), "inputs": ["result.json"],
-                   "expect": {"name": "review.json", "keys": REVIEW_KEYS}}],
++                  "options": dict(CODEX_LIMITS), "expect": {"name": "review.json", "keys": REVIEW_KEYS}}],
                  seed_artifacts=[("result.json", json.dumps(planted, ensure_ascii=False))],
                  tag=f"plant|{self.state['jobs'][iid]['cell']}|{iid}")
-@@ -235,8 +241,10 @@
+             self.state["plants"][job["id"]] = {"donor": iid, "retries": 0, **meta}
++            self.save()
+             made += 1
+         self.save()
+ 
+     def _artifact(self, job_id, name):
+-        latest = None
+-        for a in self.engine.get(job_id)["artifacts"]:
+-            if a["name"] == name:
+-                latest = a["content"]
+-        return latest
++        """Read an artifact only from the step entitled to deliver it (common.owned)."""
++        job = self.engine.get(job_id)
++        kind = "plant" if job_id in self.state["plants"] else "genuine"
++        return common.owned(job["artifacts"], job["turn_records"], name, kind)
+ 
+     # ---- waiting and stopping -----------------------------------------------------------------------------
+     def _record_for(self, jid):
+@@ -200,6 +293,7 @@
+     def wait(self, job_ids, poll=5):
+         pending = set(job_ids)
+         while pending:
++            halted = bool(self.engine.unmeasured())  # the engine starts nothing more until these are reconciled
+             for jid in list(pending):
+                 job = self.engine.get(jid)
+                 if job["status"] == "completed":
+@@ -212,6 +306,9 @@
+                     if ceiling:
+                         rec["stopped"] = "BUDGET"
+                         pending.discard(jid)
++                    elif halted:
++                        rec["stopped"] = "UNMEASURED"  # no retry while a turn's usage is unknown
++                        pending.discard(jid)
+                     elif rec.get("retries", 0) < 1:
+                         rec["retries"] = rec.get("retries", 0) + 1
+                         self.engine.retry(jid)
+@@ -219,9 +316,10 @@
+                         rec["stopped"] = "TIMEOUT" if "timed out" in last or "timeout" in last else (
+                             "PARSE" if "json" in last or "lacks keys" in last else "ERROR")
+                         pending.discard(jid)
+-                elif job["status"] in ("queued", "paused") and self.engine.cap_reached and not self.engine.in_flight():
++                elif (job["status"] in ("queued", "paused") and (halted or self.engine.cap_reached)
++                      and not self.engine.in_flight()):
+                     rec = self._record_for(jid) or {}
+-                    rec["stopped"] = "CAP"
++                    rec["stopped"] = "UNMEASURED" if halted else "CAP"
+                     pending.discard(jid)
+             self.save()
+             if pending:
+@@ -235,8 +333,10 @@
          rev = plants.parse(self._artifact(rec["job"], "review.json"))
          if rec["cell"] in ("C06", "C10"):
              ledger = (rec.get("ledger_status") or "").upper()
@@ -73,16 +268,38 @@
          if not res or not rev:
              return False
          start = rec.get("machine_tier") or "T0"
-@@ -303,7 +311,7 @@
+@@ -285,10 +385,15 @@
+             self.save()
+ 
+     def stage0(self):
++        self._check_state(0)
++        if self.engine.workers != 1:
++            raise Stopped("stage 0 runs with one worker")
+         if self.state["stage0_done"]:
+             self.log("Stage 0 already done.")
+             return self.projection()
+         self.engine.set_cap(min(self.cap, STAGE0_UNITS))
++        self._halt_check()
++        self._resume_unfinished()
+         if self.state["jobs"]:
+             # Resumed after an interruption: never draw stage 0 twice.
+             picks = [(r["cell"], i) for i, r in self.state["jobs"].items()]
+@@ -299,11 +404,13 @@
+             self.launch(picks)
+             self._ledger(picks)
+         self.wait([self.state["jobs"][i]["job"] for _, i in picks])
++        self._halt_check()
+         if not self.state["plants"]:
              self.launch_plants([i for _, i in picks])
          self.wait(list(self.state["plants"]))
++        self._halt_check()
          self.state["stage0_done"] = True
 -        self.engine.set_cap(self.cap)
 +        # The ceiling is not raised here: only full() raises it, after its projection gate.
          self.settle()
          return self.projection()
  
-@@ -333,7 +341,7 @@
+@@ -333,7 +440,7 @@
          tot = self.engine.totals()
          proj = {"spent_units": round(spent), "spent_raw_tokens": tot["tokens"], "estimated_turns": tot["estimated_turns"],
                  "projected_remaining_units": round(remaining), "projected_total_units": round(spent + remaining),
@@ -91,37 +308,121 @@
                  "units_per_order_p80": round(p80), "plant_units_mean": round(plant_mean), "cells": rows}
          common.write_json(self.dir / "PROJECTION.json", proj)
          return proj
-@@ -375,8 +383,23 @@
+@@ -347,7 +454,8 @@
+         scale = room / proj["projected_remaining_units"]
+         for cid, row in proj["cells"].items():
+             done = self.state["next"][cid]
+-            self.state["caps"][cid] = done + max(int(row["left"] * scale), max(0, 3 - done))
++            self.state["caps"][cid] = min(self.plan["cells"][cid]["cap"],
++                                          done + max(int(row["left"] * scale), max(0, 3 - done)))
+         self.save()
+         return self.projection()
+ 
+@@ -373,15 +481,30 @@
+         return kept
+ 
      def full(self):
-         if not self.state["stage0_done"]:
-             raise RuntimeError("run stage 0 first")
+-        if not self.state["stage0_done"]:
+-            raise RuntimeError("run stage 0 first")
+-        leftover = [r["job"] for r in self.state["jobs"].values() if r.get("stopped") == "CAP"]
+-        for r in self.state["jobs"].values():
+-            if r.get("stopped") == "CAP":
+-                r.pop("stopped")
++        # Order matters: saved state is checked and the gate is passed before any job is resumed or created.
++        self._check_state(1)
 +        if not self.state.get("full_started"):
 +            # Gate: the full run starts only on a measured stage-0 projection that fits under the cap.
 +            proj = self.fit_caps()
 +            if proj["orders_measured"] < FULL_GATE_MIN_ORDERS or not proj["units_per_order_p80"]:
-+                raise RuntimeError(f"full run refused: stage 0 measured {proj['orders_measured']} orders; "
++                raise Stopped(f"full run refused: stage 0 measured {proj['orders_measured']} orders; "
 +                                   f"{FULL_GATE_MIN_ORDERS} are needed for a projection")
 +            if proj["estimated_turns"]:
-+                raise RuntimeError(f"full run refused: {proj['estimated_turns']} stage-0 turns were charged an "
++                raise Stopped(f"full run refused: {proj['estimated_turns']} stage-0 turns were charged an "
 +                                   "estimate instead of measured usage")
 +            if proj["projected_total_units"] > self.cap:
-+                raise RuntimeError(f"full run refused: projected {proj['projected_total_units']:,} units exceed "
++                raise Stopped(f"full run refused: projected {proj['projected_total_units']:,} units exceed "
 +                                   f"the cap of {self.cap:,} even after shrinking the cells")
-+            self.state["full_started"] = True
++            self.state["full_started"] = {"plan_sha256": self.plan_sha, "cap_units": self.cap}
 +            self.save()
 +        self.engine.set_cap(self.cap)
-         leftover = [r["job"] for r in self.state["jobs"].values() if r.get("stopped") == "CAP"]
--        for r in self.state["jobs"].values():
-+        for r in list(self.state["jobs"].values()) + list(self.state["plants"].values()):
-             if r.get("stopped") == "CAP":
-                 r.pop("stopped")
++        self._halt_check()
++        self._resume_unfinished()
++        leftover = self._open_jobs()
          if leftover:
---- a/kiaer/__main__.py	2026-11-18 18:27:34.400453700 -0500
-+++ b/kiaer/__main__.py	2026-11-18 18:32:52.674852400 -0500
-@@ -70,6 +70,15 @@
+-            self.log(f"Finishing {len(leftover)} orders stopped at the stage-0 cap.")
++            self.log(f"Finishing {len(leftover)} jobs left unfinished (stopped at the stage-0 cap or interrupted).")
+             self.wait(leftover)
++            self._halt_check()
+         self.fit_caps()
+         while True:
+             picks = self._admit(self._picks(WAVE_PER_CELL))
+@@ -392,8 +515,10 @@
+             self.launch(picks)
+             self._ledger(picks)
+             ok = self.wait([self.state["jobs"][i]["job"] for _, i in picks])
++            self._halt_check()
+             self.launch_plants([i for _, i in picks])
+             ok = self.wait(list(self.state["plants"])) and ok
++            self._halt_check()
+             self.settle()
+             if not ok:
+                 break
+--- zip/kiaer/__main__.py
++++ run/kiaer/__main__.py
+@@ -8,6 +8,8 @@
+   selftest --repo PATH                           the whole chain with scripted providers (no model calls)
+   smoke    --repo PATH --out DIR                 one real order through all three steps: checks both CLIs
+   wave     --repo PATH --out DIR                 draft WAVE.json for the project's launch check (augur)
++  reconcile --repo PATH --out DIR --turn ID --units N --note WHY
++                                                 record a figure for a turn that came back without usage
+ 
+ The data directory (--out) must be outside the repository. Model turns use your Claude Code and Codex logins.
+ """
+@@ -30,7 +32,8 @@
+ def main(argv=None):
+     p = argparse.ArgumentParser(prog="python -m kiaer", description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+-    p.add_argument("command", choices=["census", "draw", "stage0", "full", "report", "selftest", "smoke", "wave"])
++    p.add_argument("command", choices=["census", "draw", "stage0", "full", "report", "selftest", "smoke", "wave",
++                                       "reconcile"])
+     p.add_argument("--repo", required=True, type=Path)
+     p.add_argument("--out", type=Path)
+     p.add_argument("--seed", type=int, default=20261118)
+@@ -40,16 +43,28 @@
+     p.add_argument("--turn-timeout", type=int, default=900)
+     p.add_argument("--run-id", default="")
+     p.add_argument("--stage", type=int, default=0, choices=[0, 1])
++    p.add_argument("--turn", type=int, help="reconcile: the turn id named in the stop message")
++    p.add_argument("--units", type=float, help="reconcile: measured or bounding usage units for that turn")
++    p.add_argument("--note", default="", help="reconcile: where the figure comes from")
+     a = p.parse_args(argv)
++    if a.token_cap <= 0:
++        p.error("--token-cap must be a positive number of units (zero would mean no cap)")
++    if not 0 < a.turn_timeout <= run.MAX_TURN_SECONDS:
++        p.error(f"--turn-timeout must be between 1 and {run.MAX_TURN_SECONDS} seconds")
+     repo = a.repo.expanduser().resolve()
+     if a.command == "selftest":
+         with tempfile.TemporaryDirectory() as tmp:
+             out = Path(tmp) / "data"
+             census.write(repo, out)
+             run.draw(repo, out, a.seed)
++            pr = run.Probe(repo, out, providers(True), workers=1, token_cap=10_000_000, timeout=60)
++            try:
++                print("stage0", pr.stage0())
++            finally:
++                pr.close()
++            # A second process, as in a real run: the full run reopens the saved state with more workers.
+             pr = run.Probe(repo, out, providers(True), workers=4, token_cap=10_000_000, timeout=60)
+             try:
+-                print("stage0", pr.stage0())
+                 print("full", pr.full())
+             finally:
+                 pr.close()
+@@ -70,9 +85,39 @@
          print({c: (v["pool"], v["cap"]) for c, v in plan["cells"].items()}, plan["frame_sha256"])
      elif a.command in ("stage0", "full"):
          workers = 1 if a.command == "stage0" else a.workers  # augur stage 0: one lane
+-        pr = run.Probe(repo, out, providers(False), workers=workers, token_cap=a.token_cap, timeout=a.turn_timeout)
 +        from . import wave
 +        stage = 0 if a.command == "stage0" else 1
 +        problems = wave.verify(repo, out, stage, workers,
@@ -131,10 +432,34 @@
 +            for line in problems:
 +                print(" -", line)
 +            return 2
-         pr = run.Probe(repo, out, providers(False), workers=workers, token_cap=a.token_cap, timeout=a.turn_timeout)
++        pr = run.Probe(repo, out, providers(False), workers=workers, token_cap=a.token_cap, timeout=a.turn_timeout,
++                       plan_sha256=wave.reviewed_sha(out, stage))
          try:
              print(getattr(pr, a.command)())
-@@ -114,8 +123,9 @@
++        except run.Stopped as exc:
++            print("STOPPED:", exc)
++            return 3
++        finally:
++            pr.close()
++    elif a.command == "reconcile":
++        if a.turn is None or a.units is None or not a.note.strip():
++            p.error("reconcile needs --turn, --units and --note")
++        if not (out / "STATE.json").is_file():
++            p.error("there is no run in this data directory")
++        # Opens the run's database only (scripted providers: no model can be called from here).
++        pr = run.Probe(repo, out, providers(True), workers=1, token_cap=1, timeout=60)
++        try:
++            try:
++                row = pr.engine.reconcile(a.turn, a.units, a.note)
++            except ValueError as exc:
++                print("REFUSED:", exc)
++                return 2
++            print(f"turn {row['id']} ({row['actor']} step {row['step']}): charged {row['units']:,.0f} units; "
++                  f"{len(pr.engine.unmeasured())} unmeasured turn(s) left")
+         finally:
+             pr.close()
+     elif a.command == "smoke":
+@@ -114,8 +159,9 @@
          path = wave.write(repo, out, a.token_cap, a.workers, a.stage)
          print(path)
      elif a.command == "report":
@@ -146,8 +471,8 @@
          dest, s = report.write(repo, out, a.run_id)
          print(dest)
          print({k: s[k] for k in ("orders_launched", "orders_scored_with_review", "units_total", "plants")})
---- a/kiaer/wave.py	2026-11-18 18:27:34.412453700 -0500
-+++ b/kiaer/wave.py	2026-11-18 18:32:52.667851300 -0500
+--- zip/kiaer/wave.py
++++ run/kiaer/wave.py
 @@ -1,9 +1,10 @@
 -"""Draft WAVE.json for the project's launch check (jobs/augur-launch/augur.py).
 +"""Draft WAVE.json for the project's launch check (jobs/augur-launch/augur.py), and check a run against it.
@@ -160,7 +485,26 @@
  import json
  from pathlib import Path
  
-@@ -16,26 +17,71 @@
+@@ -11,31 +12,102 @@
+ 
+ 
+ LESSONS = {
++    "F-20261118-kiaer-stopped-at-review": "The guards these plans state were read against the code, and the "
++        "reviewer is given all the code the run uses. Tests cover these guards and no others (tests/"
++        "test_kiaer_gate.py, tests/test_kiaer_round3.py, tests/test_pipeline.py): the plan binding (review hash, "
++        "stage, frame, hashed inputs, lanes, cap); refusal of non-positive caps; the saved-state checks; one "
++        "worker in stage 0; no resume before stage 0 is done; no claim of a job whose turn is still held; "
++        "artifact ownership in the engine and in scoring; the halt on unmeasured, empty or partial usage and its "
++        "reconciliation (finite figures only); attempts left open by a crash; the reservation from the largest "
++        "measured turn; step options ahead of the environment; reviewer inputs with the tier removed; blind "
++        "slices without ledger fields. Not covered by a test: the full run's projection gate and wave admission "
++        "(exercised by the selftest only), the read and fetch denials inside the Claude CLI, and the planting "
++        "rate. What code does not enforce is listed under limits_enforced_by.not_enforced_by_code and "
++        "stages.gate. Budget: two smoke tests cost 167,712 and 186,931 units for one order, so 10M units buys "
++        "about 53 to 59 orders, not the 235 drawn; the full run's gate shrinks the cells to fit (to 3 orders at "
++        "least), per-cell rates will be thin, and the report gives Wilson intervals and pooled group rates.",
+     "F-20261112-graunt-admissions-checked": "No census admission: the unnumbered cell only researches identities; "
+         "workers state what a printing holds (text or catalogue entry) and the reviewer checks the source.",
      "F-20261110-nalimov-review-v1": "Nothing is filed: every producer result is checked by a second-family "
          "reviewer against its cited sources, and no file goes into research/readiness/claims.",
      "F-20261110-mommsen-unranked-pools": "Owner-directed probe recorded as a Kean decision; stage 0 is 1 lane, "
@@ -171,14 +515,18 @@
          "hands Bentham a transition table; it does not rely on Bentham's undecided rate.",
 -    "F-20261029-codex-proquest-census": "Inputs are pinned by sha256 in DRAW.json and CENSUS.json; results record "
 -        "every path and URL read; no scientific hold is removed or promoted.",
-+    "F-20261029-codex-proquest-census": "Inputs are pinned by sha256 in DRAW.json and CENSUS.json, and the run "
-+        "refuses to start if an input changed since the draw; results record every path and URL read; no "
-+        "scientific hold is removed or promoted.",
-     "F-20261028-4": "Evidence slices are rebuilt from main's current job outputs at draw time; nothing is reused "
-         "from earlier packets or supplements.",
+-    "F-20261028-4": "Evidence slices are rebuilt from main's current job outputs at draw time; nothing is reused "
+-        "from earlier packets or supplements.",
++    "F-20261029-codex-proquest-census": "The 12 finding-aid files the census and the slices are built from are "
++        "pinned by sha256 in DRAW.json, and the run refuses to start if one changed since the draw. The held text "
++        "files workers open are not hashed. Each result records the path or URL of every proposition it cites, "
++        "not every file or URL the worker opened. No scientific hold is removed or promoted.",
++    "F-20261028-4": "Evidence slices are built at launch from the current job outputs in the checkout given "
++        "with --repo (the probe branch, cut from main, which adds only this probe's record files); nothing is "
++        "reused from earlier packets or supplements.",
  }
- 
- 
++
++
 +def plan_sha(wave):
 +    """The hash a reviewer signs: the same computation as augur.py's plan_sha (everything but the review)."""
 +    body = {k: v for k, v in wave.items() if k != "review"}
@@ -214,14 +562,23 @@
 +    orders = stage0_size(plan) if stage == 0 else sum(c["cap"] for c in plan["cells"].values())
 +    if orders > int(action.get("orders") or 0):
 +        no.append(f"{orders} orders could be drawn but the plan allows {action.get('orders')}")
-+    if workers > int(action.get("lanes") or 0):
++    if type(workers) is not int or workers < 1:
++        no.append("the number of workers must be a positive whole number")
++    elif workers > int(action.get("lanes") or 0):
 +        no.append(f"{workers} workers asked but the plan allows {action.get('lanes')} lanes")
 +    budget = (wave.get("limits") or {}).get("chain_budget_units") or 0
-+    if token_cap > budget:
++    if type(token_cap) is not int or token_cap <= 0:
++        no.append("the unit cap must be a positive whole number (the engine would read zero as no cap)")
++    elif token_cap > budget:
 +        no.append(f"a cap of {token_cap:,} units asked but the plan allows {budget:,}")
 +    return no
 +
 +
++def reviewed_sha(out, stage):
++    """Hash of the stage's plan as it now stands; Probe stores it so saved state stays bound to that plan."""
++    return plan_sha(json.loads((Path(out) / f"WAVE_stage{stage}.json").read_text(encoding="utf-8")))
+ 
+ 
  def write(repo, out, token_cap, workers, stage=0):
      plan = json.loads((Path(out) / "DRAW.json").read_text(encoding="utf-8"))
 -    from .run import STAGE0_UNITS, stage0_size
@@ -233,26 +590,64 @@
      wave = {
          "wave": f"kiaer-tier-probe-stage{stage}",
 -        "author": "claude-opus-5-5",
-+        "author": "claude-opus-5-5 (probe kit); revised after review by claude-fable-5-2 (coordinating session)",
++        "author": "claude-opus-5-5 (probe kit); revised after two plan reviews by claude-fable-5-2 "
++                  "(coordinating session)",
          "stage": stage,
          "objective": {"metric": "verified_claims_per_unit",
                        "text": "Reviewer-upheld tier moves per token, and the share of each tier and cost of each move, "
-@@ -49,28 +95,69 @@
+@@ -49,28 +121,125 @@
                     "context_kill_tokens": 400000, "reviews_per_hour": 60, "coordinator_units_per_hour": 1,
                     "per_turn_usd_ceiling": 2,
                     "unit_definition": "0.1 x cache reads + 1 x other input + 4 x output (savigny meter.py)"},
 +        "limits_enforced_by": {
 +            "chain_budget_units": "Relay's engine (bridge/engine.py _claim): before each turn it reserves the larger "
-+                "of 150,000 units and the largest turn yet measured for that provider, counts every in-flight "
-+                "reservation, and starts no turn that would pass the cap. A turn in flight is not interrupted, so the "
-+                "total can pass the cap only by the amount each in-flight turn (at most one per lane) exceeds its "
-+                "reservation; waves are admitted against 95% of the cap. The engine stays at 6,000,000 units until the full run's gate has passed.",
++                "of 150,000 units and the largest turn yet measured for that provider (failed turns included, from "
++                "the first measured turn), counts every in-flight reservation, and starts no turn that would pass "
++                "the cap. A job is not claimed while a worker still holds its previous turn, and a worker releases "
++                "only its own reservation, so one attempt cannot drop another's. The cap must be a positive number: "
++                "the command line, wave.verify, Probe and the engine each refuse zero. A turn in flight is not "
++                "interrupted, so the total can pass the cap only by the amount each in-flight turn (at most one per "
++                "lane) exceeds its reservation; waves are admitted against 95% of the cap. The engine stays at "
++                "6,000,000 units until the full run's gate has passed.",
++            "unmeasured_turns": "Every attempt is written to the database before its provider starts. A turn that "
++                "returns no usage (timeout, kill, cancellation) or usage that is empty, partial, negative or not "
++                "finite, or an attempt found open after a crash, is charged the estimate as it stands when the "
++                "turn is recorded or recovered (the larger of 150,000 units and the largest turn measured for that "
++                "provider by then, which can be more than the reservation made when it started), flagged as "
++                "estimated, and stops the run: the engine starts no further "
++                "turn and the probe retries nothing until the operator records a measured or bounding figure for "
++                "it, finite and never below the charge already made (python -m kiaer reconcile, logged as an event; the turn "
++                "stays flagged). Until then the true "
++                "total is unknown by that turn's excess over its charge, plus the excess of the turns in flight "
++                "when it stopped (at most one per lane). A failed turn that reported complete usage is charged what "
++                "it reported. The probe retries a failed job at most once (one retry per order or planted review, "
++                "not per turn), and not at all after a spend or tool-call ceiling.",
 +            "per_turn_usd_ceiling": "Claude Code --max-budget-usd 2 and --max-turns 40 on every producer and repair "
-+                "turn (bridge/claude.py). Codex review turns have no dollar ceiling: they are bounded by the "
-+                "900-second turn timeout, medium reasoning effort and the unit cap.",
++                "turn, fixed in each step's options (run.py CLAUDE_LIMITS), which bridge/claude.py puts ahead of the "
++                "RELAY_CLAUDE_* environment variables; Claude Code checks the dollar ceiling between model calls. "
++                "Codex review turns have no dollar ceiling: they are bounded by the turn timeout (the command line "
++                "and Probe refuse more than 900 seconds), reasoning effort medium fixed in the step's options "
++                "(CODEX_LIMITS, ahead of RELAY_CODEX_EFFORT) and the unit cap. Still settable from the environment, "
++                "and set by the launcher only where stated: the two CLI paths (RELAY_CLAUDE_BIN, RELAY_CODEX_BIN, "
++                "set to the binaries bundled with the desktop apps), the models (RELAY_CLAUDE_MODEL, "
++                "RELAY_CODEX_MODEL: not set, so each CLI's configured default runs), the worker system prompt "
++                "(RELAY_CLAUDE_SYSTEM: not set) and Codex web search (RELAY_CODEX_WEB_SEARCH: not set, so live).",
 +            "lanes_orders_budget": "python -m kiaer stage0|full refuses to start (wave.verify) unless this plan "
-+                "carries an approving review bound to its hash, DRAW.json is the reviewed frame, no input changed "
-+                "since the draw, and the workers, drawable orders and unit cap asked are within this plan.",
++                "carries an approving review bound to its hash, DRAW.json is the reviewed frame, no hashed input "
++                "changed since the draw, and the workers, drawable orders and unit cap asked are positive and "
++                "within this plan. Stage 0 refuses more than one worker.",
++            "saved_state": "Before any job is resumed or created, Probe._check_state refuses saved state the "
++                "reviewed draw and stage do not allow: STATE.json must carry the draw's frame hash and the hash of "
++                "the plan it was started under; every order on file must be among the first drawn orders of its "
++                "cell within this stage's allowance; saved caps may not exceed the drawn caps; every database job "
++                "must be named in STATE.json under the matching tag. stage0 refuses a data directory that holds a "
++                "full run. full refuses an unfinished stage 0 and resumes nothing until its gate has passed. "
++                "Opening the engine pauses every unfinished job, so nothing runs before these checks.",
++            "artifacts": "Each pipeline step owns one artifact name. The engine records only that artifact: any "
++                "other a step returns is discarded and logged, and two copies fail the step. Scoring reads "
++                "result.json only from the producer's first turn, review.json only from the reviewer's turn and "
++                "final.json only from the repair turn (common.owned). A producer cannot supply a review, and no "
++                "later step can replace an earlier artifact.",
 +            "not_enforced_by_code": "spend_per_claim_units, no_claim_minutes, context_kill_tokens, reviews_per_hour "
 +                "and coordinator_units_per_hour are fields of the Savigny supervisor that Augur's format requires. "
 +                "Relay does not run Savigny. The coordinator is a script and uses no model; the probe files no "
@@ -261,9 +656,16 @@
 +        },
          "stages": {"stage0_orders": stage0_size(plan), "full_max_orders": sum(c["cap"] for c in plan["cells"].values()),
 -                   "gate": "after stage 0 the projection must fit under the token cap; caps shrink to fit"},
-+                   "gate": f"run.py full() refuses to start unless stage 0 finished at least {FULL_GATE_MIN_ORDERS} "
-+                           "orders, no stage-0 turn was charged an estimate instead of measured usage, and the "
-+                           "projection (80th-percentile cost per cell) fits under the cap after shrinking the cells"},
++                   "gate": f"run.py full() first checks the saved state, then refuses to start unless stage 0 is "
++                           f"done with at least {FULL_GATE_MIN_ORDERS} finished orders, no stage-0 turn was charged "
++                           "an estimate instead of measured usage, and the projection (80th-percentile cost per "
++                           "cell) fits under the cap after shrinking the cells. Only then is the ceiling raised and "
++                           "unfinished work resumed. The projection is a forecast: it counts failed orders' costs, "
++                           "does not add the cost of finishing orders stopped at the stage-0 cap, and uses the "
++                           "pooled cost for a cell with fewer than two measured orders. The owner's other stage-0 "
++                           "conditions (more than 20% of orders failed, every informative planted control missed, "
++                           "a producer reading a denied file, fewer than 40 orders fitting) are applied by the "
++                           "directing session from the stage-0 report, not by code."},
 +        "writes": "Model turns have read-only tools (Claude: Read, Grep, Glob, WebSearch, WebFetch, reads outside "
 +                  "the repository blocked; Codex: read-only sandbox). Run state goes to a data directory that "
 +                  "Probe refuses to place inside the repository. The only repository write is the report command, "
@@ -277,13 +679,22 @@
 -             "guard": "engine refuses new turns once recorded tokens reach the cap; waves are admitted only for the "
 -                      "orders the remaining budget can finish; Claude turns carry a per-turn dollar ceiling"},
 +             "guard": "the reviewer sees only result.json (tier, moves and searches removed) and the sources, never "
-+                      "the producer's argument; about 12% planted errors measure the catch rate; the first-pass "
-+                      "reviewed tier is the primary outcome"},
-+            {"failure": "Spend runs past the 10M-unit cap through parallel workers or a runaway turn",
-+             "guard": "the engine reserves a high turn cost before each turn and starts none that would pass the "
-+                      "cap; waves are admitted only for the orders 95% of the remaining budget can finish at the "
-+                      "80th-percentile cost; Claude turns carry a 2-dollar ceiling; the stage-0 ceiling is lifted "
-+                      "only by the full run's gate"},
++                      "the producer's argument; the engine lets no step record another step's artifact, so a "
++                      "producer cannot supply its own review; planted errors measure the catch rate: each wave "
++                      "targets about 12% of its reviewed orders (one at least), and yields none when no reviewed "
++                      "result can be altered; the first-pass reviewed tier is the primary outcome"},
++            {"failure": "Spend runs past the 10M-unit cap through parallel workers, a runaway turn or a turn whose "
++                        "usage never comes back",
++             "guard": "the engine reserves the largest measured turn (at least 150,000 units) before each turn and "
++                      "starts none that would pass the cap; a job is never claimed while its previous turn is still "
++                      "held; a turn without measured usage stops the run until it is reconciled; waves are admitted "
++                      "only for the orders 95% of the remaining budget can finish at the 80th-percentile cost; "
++                      "Claude turns carry a 2-dollar ceiling the environment cannot raise; the stage-0 ceiling is "
++                      "lifted only by the full run's gate; a zero cap is refused"},
++            {"failure": "A wrong command on a half-finished data folder resumes work under the wrong ceiling or "
++                        "with the wrong number of workers",
++             "guard": "saved state is bound to the draw and to the plan it started under and is checked before "
++                      "anything is resumed; stage0 will not touch a full run; full resumes nothing before its gate"},
              {"failure": "The machine tier census misplaces orders, so cells are mislabeled",
 -             "guard": "each worker first confirms the true starting tier; the report shows machine-tier accuracy per cell"},
 +             "guard": "each worker first states the starting tier it found; moves are scored from the census start "
@@ -292,7 +703,7 @@
              {"failure": "Workers wander the 200,000-file repository and burn tokens",
 -             "guard": "a pre-built evidence slice names the files; the system prompt forbids whole-tree search"},
 +             "guard": "a pre-built evidence slice names the files; the system prompt forbids whole-tree search; "
-+                      "Claude turns stop at 40 tool turns"},
++                      "Claude turns stop at 40 tool turns (fixed in the step's options)"},
              {"failure": "Blind audit cells leak the ledger status through the slice or the repository",
 -             "guard": "blind slices carry no tracker, claim or blocker fields (tested); blind producers are denied reads "
 -                      "of the tracker, claim kit, drafts, claims and handoff folders"},
@@ -300,14 +711,17 @@
 +                      "and repair turns, are denied reads of the tracker, claim kit, drafts, claims and handoff "
 +                      "folders and fetches of the project's GitHub; the ledger status is kept only in STATE.json "
 +                      "outside the repository. The Codex CLI cannot deny reads, so the reviewer of an audit order "
-+                      "is only instructed not to open the ledger. The audit compares the producer's first-pass "
-+                      "conclusion, written before any review, with the ledger and also requires the reviewer to "
-+                      "uphold it: a reviewer who ignored the instruction could bias that verdict but cannot change "
-+                      "the producer's conclusion. After-repair results are reported separately"},
++                      "is only instructed not to open the ledger. A reviewer who ignored that could bias its own "
++                      "verdict, and could pass the ledger status to the repair turn through review.json: the "
++                      "repair result of an audit order may therefore be contaminated, is stored, and enters no "
++                      "rate. The audit result compares the producer's first-pass result.json with the ledger and "
++                      "also requires the reviewer to uphold it; the engine records that result before any review "
++                      "and no later step can replace it"},
              {"failure": "Failed or cut-off orders drop out of the rates and flatter the yield",
 -             "guard": "every launched order is scored; failures count as no move with their stop reason"},
 +             "guard": "every launched order is scored; an order without both a result and a review counts as no "
-+                      "move with its stop reason; an audit agreement needs a ledger status and a conclusion"},
++                      "move with its stop reason, including an order stopped by the cap or by an unmeasured "
++                      "turn; an audit agreement needs a ledger status and a conclusion"},
          ],
          "acknowledged_findings": dict(LESSONS),
          "review": {"reviewer": "", "verdict": "", "plan_sha256": ""},
@@ -318,8 +732,8 @@
      path = Path(out) / f"WAVE_stage{stage}.json"
      common.write_json(path, wave)
      return path
---- a/kiaer/prompts.py	2026-11-18 18:27:34.418458500 -0500
-+++ b/kiaer/prompts.py	2026-11-18 18:28:06.203902600 -0500
+--- zip/kiaer/prompts.py
++++ run/kiaer/prompts.py
 @@ -84,8 +84,17 @@
  {json.dumps(item["slice"], ensure_ascii=False)}"""
  
@@ -340,8 +754,445 @@
  TASK: you are an independent reviewer from a different model family. The input result.json is one worker's
  research on one order, with the worker's own tier assessment removed. Some results given to reviewers contain a
  deliberate error; you are not told which. Check every proposition against its cited source: open the file or URL
---- /dev/null	2026-11-18 18:39:02.000000000 -0500
-+++ b/tests/test_kiaer_gate.py	2026-11-18 18:31:00.530091000 -0500
+--- zip/bridge/engine.py
++++ run/bridge/engine.py
+@@ -1,5 +1,6 @@
+ """Transactional local ledger and one cancellable CLI worker for a pair of agents."""
+ import json
++import math
+ import os
+ import re
+ import sqlite3
+@@ -81,8 +82,15 @@
+ 
+ 
+ class Engine:
++    @staticmethod
++    def _valid_cap(cap):
++        """None means no cap. Zero or a negative number is refused: it must never read as 'unlimited'."""
++        if cap is not None and (isinstance(cap, bool) or not isinstance(cap, (int, float)) or cap <= 0):
++            raise ValueError("token cap must be a positive number of usage units, or None for no cap")
++        return cap
++
+     def __init__(self, db_path, workspace, providers, timeout=300, max_turns=12, project_tools=False,
+-                 workers=1, token_cap=None):
++                 workers=1, token_cap=None, halt_unmeasured=False):
+         if set(providers) != set(ACTORS):
+             raise ValueError("configure both claude and codex providers")
+         if type(max_turns) is not int or not 3 <= max_turns <= 100:
+@@ -97,8 +105,12 @@
+         if type(workers) is not int or not 1 <= workers <= 16:
+             raise ValueError("workers must be between 1 and 16")
+         self.workers = workers
+-        self.token_cap = token_cap  # in usage units: 0.1 x cache reads + 1 x other input + 4 x output
++        self.token_cap = self._valid_cap(token_cap)  # usage units: 0.1 x cache reads + 1 x other input + 4 x output
+         self.cap_reached = False
++        # halt_unmeasured: start no further turn while any turn's usage is unknown (charged an estimate) and
++        # has not been reconciled by the operator. The cap is only as good as the usage it can see.
++        self.halt_unmeasured = bool(halt_unmeasured)
++        self.halted = False
+         self.reserved = {}
+         self.cv = threading.Condition()
+         self.active = {}
+@@ -140,6 +152,10 @@
+                     output_tokens INTEGER, total_tokens INTEGER, cost_usd REAL, model TEXT, raw TEXT
+                 );
+                 CREATE INDEX IF NOT EXISTS turns_job ON turns(job_id, id);
++                CREATE TABLE IF NOT EXISTS attempts (
++                    id INTEGER PRIMARY KEY, job_id TEXT NOT NULL REFERENCES jobs(id), actor TEXT NOT NULL,
++                    step INTEGER NOT NULL, started_at TEXT NOT NULL, open INTEGER NOT NULL DEFAULT 1
++                );
+             """)
+             cols = {r[1] for r in self.db.execute("PRAGMA table_info(jobs)")}
+             if "kind" not in cols:
+@@ -153,7 +169,23 @@
+                 self.db.execute("ALTER TABLE turns ADD COLUMN units REAL")
+             if "estimated" not in tcols:
+                 self.db.execute("ALTER TABLE turns ADD COLUMN estimated INTEGER NOT NULL DEFAULT 0")
++            if "reconciled" not in tcols:
++                self.db.execute("ALTER TABLE turns ADD COLUMN reconciled INTEGER NOT NULL DEFAULT 0")
+             with self.db:
++                # An attempt is written before its provider starts and closed when its turn is recorded. One still
++                # open here was cut off with the host (crash, kill): it spent an unknown amount. Charge it an
++                # estimate and flag it, so it is never silently free.
++                for a in self.db.execute("SELECT * FROM attempts WHERE open=1").fetchall():
++                    units = self._estimate(a["actor"])
++                    event = self._event(a["job_id"], "system", "unmeasured",
++                                        f"{a['actor']} step {a['step']} was cut off with the host; its usage is unknown "
++                                        f"and is charged an estimate of {units:,.0f} units.", a["actor"])
++                    now = _now()
++                    self.db.execute(
++                        "INSERT INTO turns(job_id,event_id,actor,step,ok,started_at,ended_at,seconds,prompt_chars,"
++                        "units,estimated) VALUES(?,?,?,?,0,?,?,0,0,?,1)",
++                        (a["job_id"], event, a["actor"], a["step"], a["started_at"], now, round(units, 1)))
++                    self.db.execute("UPDATE attempts SET open=0 WHERE id=?", (a["id"],))
+                 for row in self.db.execute("SELECT id FROM jobs WHERE status IN ('running','queued')").fetchall():
+                     self._event(row["id"], "system", "paused", "Host restarted. Resume to continue.")
+                     self._set(row["id"], "paused")
+@@ -379,6 +411,7 @@
+ 
+     def set_cap(self, cap):
+         """Change the cap and wake the workers so queued jobs can start."""
++        cap = self._valid_cap(cap)
+         with self.cv:
+             self.token_cap = cap
+             self.cap_reached = False
+@@ -387,6 +420,34 @@
+     def in_flight(self):
+         with self.cv:
+             return len(self.active)
++
++    def unmeasured(self):
++        """Turns charged an estimate (no usage came back) that the operator has not reconciled."""
++        with self.cv:
++            return [dict(r) for r in self.db.execute(
++                "SELECT id, job_id, actor, step, units, started_at FROM turns WHERE estimated=1 AND reconciled=0 "
++                "ORDER BY id")]
++
++    def reconcile(self, turn_id, units, note):
++        """Record the operator's figure for a turn whose usage was unknown; the turn stays flagged as estimated."""
++        note = _string(note, "note", 2000).strip()
++        if (isinstance(units, bool) or not isinstance(units, (int, float)) or not math.isfinite(units)
++                or units <= 0):
++            raise ValueError("units must be a positive, finite number")
++        with self.cv, self.db:
++            row = self.db.execute("SELECT * FROM turns WHERE id=?", (turn_id,)).fetchone()
++            if row is None or not row["estimated"]:
++                raise ValueError("only a turn charged an estimate can be reconciled")
++            if units < (row["units"] or 0):
++                # Reconciling can confirm or raise the charge, never lower it: the figure stays a bound.
++                raise ValueError(f"units may not be below the {row['units']:,.0f} already charged")
++            self.db.execute("UPDATE turns SET units=?, reconciled=1 WHERE id=?", (round(float(units), 1), turn_id))
++            self._event(row["job_id"], "user", "reconciled",
++                        f"Turn {turn_id} ({row['actor']} step {row['step']}) had no measured usage: charged "
++                        f"{float(units):,.0f} units by the operator instead of the estimate of "
++                        f"{row['units'] or 0:,.0f}. {note}")
++            self.cv.notify_all()
++            return dict(self.db.execute("SELECT * FROM turns WHERE id=?", (turn_id,)).fetchone())
+ 
+     def totals(self):
+         """Measured usage across every recorded turn in this database."""
+@@ -400,15 +461,24 @@
+             return out
+ 
+     def _claim(self):
+-        row = self.db.execute("SELECT * FROM jobs WHERE status='queued' ORDER BY updated_at,rowid LIMIT 1").fetchone()
++        if self.halt_unmeasured:
++            self.halted = self.db.execute(
++                "SELECT COUNT(*) FROM turns WHERE estimated=1 AND reconciled=0").fetchone()[0] > 0
++            if self.halted:
++                return None
++        # A job whose previous turn is still held by a worker (its reservation and cancel handle not yet released)
++        # is not claimable: one job never has two attempts, so no worker can drop another attempt's reservation.
++        row = next((r for r in self.db.execute(
++            "SELECT * FROM jobs WHERE status='queued' ORDER BY updated_at,rowid").fetchall()
++            if r["id"] not in self.active), None)
+         if row is None:
+             return None
+         reserve = 0.0
+-        if self.token_cap:
+-            # Reserve a high-quantile turn against the cap before starting, counting turns already in flight,
+-            # so parallel workers cannot overshoot it.
++        if self.token_cap is not None:
++            # Reserve the largest turn yet measured for this provider (at least 150,000 units) against the cap
++            # before starting, counting turns already in flight, so parallel workers cannot overshoot it.
+             spent = self.db.execute("SELECT COALESCE(SUM(units),0) FROM turns").fetchone()[0]
+-            reserve = max(150000.0, self._turn_quantile(row["next_actor"], 1.0, 150000.0))
++            reserve = self._estimate(row["next_actor"])
+             if spent + sum(self.reserved.values()) + reserve > self.token_cap:
+                 self.cap_reached = True
+                 return None
+@@ -417,10 +487,15 @@
+             self._set(job, "running")
+             self.db.execute("UPDATE jobs SET turns=turns+1 WHERE id=?", (job,))
+             self._event(job, "system", "turn", f"Started turn {row['turns'] + 1}.", row["next_actor"])
++            attempt = self.db.execute(
++                "INSERT INTO attempts(job_id,actor,step,started_at) VALUES(?,?,?,?)",
++                (job, row["next_actor"], row["turns"] + 1, _now())).lastrowid
+         cancel = threading.Event()
+         self.active[job] = cancel
+         self.reserved[job] = reserve
+-        return self._detail(job), cancel
++        detail = self._detail(job)
++        detail["attempt_id"] = attempt
++        return detail, cancel
+ 
+     def _prompt(self, job):
+         actor = job["next_actor"]
+@@ -483,30 +558,39 @@
+ """
+         return instructions + json.dumps(state, ensure_ascii=False), peer, reply, remaining
+ 
+-    def _turn_quantile(self, actor, q, default):
+-        vals = sorted(r[0] for r in self.db.execute(
+-            "SELECT units FROM turns WHERE ok=1 AND estimated=0 AND units IS NOT NULL AND actor=?", (actor,)))
+-        if len(vals) < 3:
+-            return default
+-        return vals[min(len(vals) - 1, int(q * (len(vals) - 1) + 0.5))]
++    def _estimate(self, actor):
++        """The reservation for a turn, and the charge for one whose usage is unknown: the largest turn yet
++        measured for this provider, failed turns included, and never less than 150,000 units."""
++        largest = self.db.execute(
++            "SELECT MAX(units) FROM turns WHERE estimated=0 AND units IS NOT NULL AND actor=?", (actor,)).fetchone()[0]
++        return max(150000.0, float(largest or 0))
++
++    @staticmethod
++    def _usage(tel):
++        """The four token counts if the provider reported all of them as finite, non-negative numbers that are
++        not all zero; otherwise None. Missing, empty or partial usage is never treated as measured."""
++        parts = []
++        for key in ("input_tokens", "cache_read_tokens", "cache_write_tokens", "output_tokens"):
++            v = tel.get(key)
++            if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or v < 0:
++                return None
++            parts.append(int(v))
++        return parts if sum(parts) > 0 else None
+ 
+     def _record_turn(self, job, actor, event, ok, started, began, prompt, raw):
++        self.db.execute("UPDATE attempts SET open=0 WHERE id=?", (job.get("attempt_id"),))
+         tel = getattr(raw, "telemetry", None) or {}
+-        def num(key):
+-            v = tel.get(key)
+-            return int(v) if isinstance(v, (int, float)) else None
+-        parts = [num(k) for k in ("input_tokens", "cache_read_tokens", "cache_write_tokens", "output_tokens")]
+-        total = num("total_tokens")
+-        if total is None and any(v is not None for v in parts):
+-            total = sum(v or 0 for v in parts)
++        parts = self._usage(tel)
+         estimated = 0
+-        if total is None:
+-            # No usage came back (timeout, crash, unknown event format). Charge a conservative estimate so the
+-            # cap still sees the turn, and flag it.
+-            units = self._turn_quantile(actor, 0.9, 150000.0)
++        if parts is None:
++            # No complete usage came back (timeout, crash, unknown event format, empty or partial counters).
++            # Charge the estimate as it stands now, so the cap still sees the turn, and flag it.
++            parts, total = [None, None, None, None], None
++            units = self._estimate(actor)
+             estimated = 1
+         else:
+-            inp, cread, cwrite, out = (v or 0 for v in parts)
++            inp, cread, cwrite, out = parts
++            total = sum(parts)
+             units = 0.1 * cread + inp + cwrite + 4 * out
+         cost = tel.get("cost_usd")
+         self.db.execute(
+@@ -534,9 +618,11 @@
+             text = latest.get(cond.get("artifact"), "")
+             if not any(c in text for c in cond.get("contains_any") or []):
+                 with self.cv, self.db:
++                    self.db.execute("UPDATE attempts SET open=0 WHERE id=?", (job.get("attempt_id"),))
+                     self._event(job["id"], "system", "skipped", f"Step {job['turns']} skipped: condition not met.")
+                     self._advance_pipeline(job, "Skipped final step.")
+                 return
++        dropped = []
+         try:
+             call = self.providers[actor]
+             if pipeline and step.get("options"):
+@@ -545,10 +631,14 @@
+                 raw = call(prompt, job["workspace"], self.timeout, cancel)
+             action, msg, items = _parse(raw, reply, remaining, 60000 if pipeline else 24000)
+             if pipeline and step.get("expect"):
++                # A step with an expected artifact owns that one name and nothing else: it cannot publish another
++                # step's artifact (a producer's own review.json, a repair's new result.json).
+                 want = step["expect"]
+-                found = dict(items).get(want["name"])
+-                if found is None:
+-                    raise ValueError(f"step must deliver {want['name']}")
++                named = [c for n, c in items if n == want["name"]]
++                if len(named) != 1:
++                    raise ValueError(f"step must deliver exactly one {want['name']} (found {len(named)})")
++                dropped = sorted({n for n, _ in items if n != want["name"]})
++                found = named[0]
+                 body = found.strip()
+                 if body.startswith("```"):
+                     body = body.split("\n", 1)[1].rsplit("```", 1)[0]
+@@ -559,7 +649,7 @@
+                 missing = [k for k in want.get("keys") or [] if not isinstance(obj, dict) or k not in obj]
+                 if missing:
+                     raise ValueError(f"{want['name']} lacks keys: {', '.join(missing)}")
+-                items = [(n, json.dumps(obj, ensure_ascii=False) if n == want["name"] else c) for n, c in items]
++                items = [(want["name"], json.dumps(obj, ensure_ascii=False))]
+         except Exception as exc:
+             with self.cv, self.db:
+                 if not cancel.is_set():
+@@ -582,6 +672,10 @@
+                     self.db.execute(
+                         "INSERT INTO artifacts(job_id,event_id,actor,created_at,name,content) VALUES(?,?,?,?,?,?)",
+                         (job["id"], event, actor, _now(), name, content))
++                if dropped:
++                    self._event(job["id"], "system", "ignored",
++                                f"Step {job['turns']} also returned artifacts it does not own; not recorded: "
++                                + ", ".join(dropped)[:500])
+                 self._advance_pipeline(job, msg)
+                 return
+             # At least one cross-provider reply must have come back to this actor.
+@@ -624,8 +718,10 @@
+                 self._run(*work)
+             finally:
+                 with self.cv:
+-                    self.active.pop(work[0]["id"], None)
+-                    self.reserved.pop(work[0]["id"], None)
++                    # Release only this attempt's own handle and reservation.
++                    if self.active.get(work[0]["id"]) is work[1]:
++                        del self.active[work[0]["id"]]
++                        self.reserved.pop(work[0]["id"], None)
+                     self.cv.notify_all()
+ 
+     def close(self):
+--- zip/bridge/claude.py
++++ run/bridge/claude.py
+@@ -86,10 +86,13 @@
+             }),
+         ])
+     if mode == "research":
++        # A caller that fixes these in the step's options (a reviewed plan) is not overridden by the environment.
+         args.extend(["--system-prompt", os.environ.get("RELAY_CLAUDE_SYSTEM") or RESEARCH_SYSTEM,
+-                     "--max-turns", os.environ.get("RELAY_CLAUDE_MAX_TOOL_TURNS") or "40",
++                     "--max-turns", str(options.get("max_tool_turns")
++                                        or os.environ.get("RELAY_CLAUDE_MAX_TOOL_TURNS") or "40"),
+                      # A per-turn spend ceiling at list price, so one runaway turn cannot eat the run's budget.
+-                     "--max-budget-usd", os.environ.get("RELAY_CLAUDE_MAX_BUDGET_USD") or "2"])
++                     "--max-budget-usd", str(options.get("max_budget_usd")
++                                             or os.environ.get("RELAY_CLAUDE_MAX_BUDGET_USD") or "2")])
+         if os.environ.get("RELAY_CLAUDE_MODEL"):
+             args.extend(["--model", os.environ["RELAY_CLAUDE_MODEL"]])
+     output = run_cli(args, prompt, cwd, timeout, cancel)
+--- zip/bridge/codex.py
++++ run/bridge/codex.py
+@@ -1,6 +1,7 @@
+ """Run a single Codex contribution under the local user's CLI account."""
+ 
+ import json
++import math
+ import os
+ from pathlib import Path
+ import re
+@@ -76,7 +77,11 @@
+     """Read `codex exec --json` events: the last agent message and summed token usage."""
+     last = None
+     usage = {"input_tokens": 0, "cached_input_tokens": 0, "output_tokens": 0, "reasoning_output_tokens": 0}
+-    seen = False
++    seen = bad = False
++
++    def count(value):
++        return (not isinstance(value, bool) and isinstance(value, (int, float)) and math.isfinite(value)
++                and value >= 0)
+     for line in stdout.splitlines():
+         line = line.strip()
+         if not line.startswith("{"):
+@@ -94,11 +99,17 @@
+         if found is None and isinstance(event.get("info"), dict):
+             found = event["info"].get("last_token_usage") or event["info"].get("total_token_usage")
+         if isinstance(found, dict) and event.get("type") in ("turn.completed", "token_count", None):
++            # A usage event must carry the three counters units are computed from, and cached input is part of
++            # input. Anything else (an empty object, a missing counter) makes the whole turn unmeasured.
++            if not (all(count(found.get(k)) for k in ("input_tokens", "cached_input_tokens", "output_tokens"))
++                    and found["cached_input_tokens"] <= found["input_tokens"]):
++                bad = True
++                continue
+             seen = True
+             for key in usage:
+-                if isinstance(found.get(key), (int, float)):
++                if count(found.get(key)):
+                     usage[key] += int(found[key])
+-    return last, (usage if seen else {})
++    return last, (usage if seen and not bad else {})
+ 
+ 
+ def run_research_turn(prompt: str, cwd: str, timeout: float, cancel: threading.Event, options=None) -> str:
+@@ -111,8 +122,12 @@
+             "-c", 'web_search="' + (os.environ.get("RELAY_CODEX_WEB_SEARCH") or "live") + '"',
+             # Do not load the repository's AGENTS.md: its session-start instructions point at large handoff files.
+             "-c", "project_doc_max_bytes=0"]
+-    if os.environ.get("RELAY_CODEX_EFFORT"):
+-        base.extend(["-c", f'model_reasoning_effort="{os.environ["RELAY_CODEX_EFFORT"]}"'])
++    # A caller that fixes the effort in the step's options (a reviewed plan) is not overridden by the environment.
++    effort = (options or {}).get("effort") or os.environ.get("RELAY_CODEX_EFFORT")
++    if effort:
++        if not re.fullmatch(r"[a-z]+", str(effort)):
++            raise ValueError("Codex reasoning effort must be a plain word")
++        base.extend(["-c", f'model_reasoning_effort="{effort}"'])
+     if os.environ.get("RELAY_CODEX_MODEL"):
+         base.extend(["-m", os.environ["RELAY_CODEX_MODEL"]])
+     inventory = run_cli([*base, "mcp", "list", "--json"], "", cwd, timeout, cancel)
+--- zip/kiaer/report.py
++++ run/kiaer/report.py
+@@ -8,6 +8,8 @@
+ - A move succeeds at first pass when the second-family reviewer's supported tier is above it. The repair step is
+   reported separately and is not re-reviewed.
+ - Audit cells (C06, C10) score agreement between the reviewed conclusion and the ledger status.
++- Each artifact is read only from the step entitled to deliver it (common.owned): result.json from the producer's
++  first turn, review.json from the reviewer's turn, final.json from the repair turn. A later step cannot replace them.
+ - Population estimates weight each order by its cell's pool size over its sample size.
+ """
+ import itertools
+@@ -34,9 +36,9 @@
+     db = sqlite3.connect(f"file:{Path(datadir) / 'relay.sqlite3'}?mode=ro", uri=True)
+     db.row_factory = sqlite3.Row
+     jobs = {r["id"]: dict(r) for r in db.execute("SELECT * FROM jobs")}
+-    arts = defaultdict(dict)
++    arts = defaultdict(list)
+     for a in db.execute("SELECT * FROM artifacts ORDER BY id"):
+-        arts[a["job_id"]][a["name"]] = a["content"]
++        arts[a["job_id"]].append(dict(a))
+     turns = defaultdict(list)
+     for t in db.execute("SELECT * FROM turns ORDER BY id"):
+         turns[t["job_id"]].append(dict(t))
+@@ -92,10 +94,10 @@
+     orders = []
+     for iid, rec in state["jobs"].items():
+         jid = rec["job"]
+-        res = plants.parse(arts[jid].get("result.json"))
+-        rev = plants.parse(arts[jid].get("review.json"))
+-        fin = plants.parse(arts[jid].get("final.json"))
+         tt = turns[jid]
++        res = plants.parse(common.owned(arts[jid], tt, "result.json", "genuine"))
++        rev = plants.parse(common.owned(arts[jid], tt, "review.json", "genuine"))
++        fin = plants.parse(common.owned(arts[jid], tt, "final.json", "genuine"))
+         units = defaultdict(float)
+         for t in tt:
+             units[t["step"]] += t["units"] or 0
+@@ -133,10 +135,11 @@
+             o["agrees_with_ledger"] = bool(o.get("conclusion_verdict") == "upheld" and
+                                            (o.get("conclusion") or "").upper() == o["ledger_status"].upper())
+         orders.append(o)
+-    genuine = {iid: plants.parse(arts[r["job"]].get("review.json")) for iid, r in state["jobs"].items()}
++    genuine = {iid: plants.parse(common.owned(arts[r["job"]], turns[r["job"]], "review.json", "genuine"))
++               for iid, r in state["jobs"].items()}
+     plant_rows = []
+     for jid, meta in state["plants"].items():
+-        rev = plants.parse(arts[jid].get("review.json"))
++        rev = plants.parse(common.owned(arts[jid], turns[jid], "review.json", "plant"))
+         verdict = plants.caught(rev, meta, genuine.get(meta["donor"])) if rev else None
+         plant_rows.append({"job": jid, "donor": meta["donor"], "kind": meta["kind"], "detail": meta["detail"],
+                            "reviewed": rev is not None, "caught": verdict,
+--- zip/kiaer/common.py
++++ run/kiaer/common.py
+@@ -48,6 +48,21 @@
+         for chunk in iter(lambda: fh.read(1 << 20), b""):
+             h.update(chunk)
+     return h.hexdigest()
++
++
++# Which step may deliver each scored artifact: (actor, pipeline step). A seed artifact belongs to "user".
++ARTIFACT_OWNER = {"genuine": {"result.json": ("claude", 1), "review.json": ("codex", 2), "final.json": ("claude", 3)},
++                  "plant": {"result.json": ("user", None), "review.json": ("codex", 1)}}
++
++
++def owned(artifacts, turns, name, kind):
++    """The artifact of this name from the one step entitled to deliver it: never a later or foreign copy."""
++    actor, step = ARTIFACT_OWNER[kind].get(name, (None, None))
++    step_of = {t["event_id"]: t["step"] for t in turns if t["ok"] and t["event_id"] is not None}
++    for a in artifacts:
++        if a["name"] == name and a["actor"] == actor and (step is None or step_of.get(a["event_id"]) == step):
++            return a["content"]
++    return None
+ 
+ 
+ def input_hashes(repo):
+--- /dev/null
++++ run/tests/test_kiaer_gate.py
 @@ -0,0 +1,83 @@
 +"""The launch check that binds a Kiaer run to its reviewed plan (kiaer/wave.py verify)."""
 +import hashlib
@@ -426,3 +1277,426 @@
 +
 +if __name__ == "__main__":
 +    unittest.main()
+--- /dev/null
++++ run/tests/test_kiaer_round3.py
+@@ -0,0 +1,420 @@
++"""Checks added after the second plan review: caps, saved state, reservations, unmeasured turns, artifact
++ownership and provider limits."""
++import hashlib
++import json
++import os
++import tempfile
++import threading
++import time
++import unittest
++from pathlib import Path
++from unittest.mock import patch
++
++from bridge import claude as claude_adapter
++from bridge import codex as codex_adapter
++from bridge.engine import Engine
++from kiaer import census, common, run, wave
++
++
++class Reply(str):
++    telemetry: dict = {}
++
++
++def reply(artifacts, tokens=1000, usage=True):
++    out = Reply(json.dumps({"action": "finish", "message": "done", "reply_to": None,
++                            "artifacts": [{"name": n, "content": c} for n, c in artifacts]}))
++    out.telemetry = {"input_tokens": tokens, "cache_read_tokens": 0, "cache_write_tokens": 0,
++                     "output_tokens": 0} if usage is True else (usage or {})
++    return out
++
++
++def wait_for(engine, job, status, seconds=5):
++    end = time.time() + seconds
++    while time.time() < end:
++        if engine.get(job)["status"] == status:
++            return
++        time.sleep(0.02)
++    raise AssertionError(f"expected {status}; found {engine.get(job)['status']}")
++
++
++class EngineTest(unittest.TestCase):
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.path = Path(self.tmp.name)
++
++    def tearDown(self):
++        self.tmp.cleanup()
++
++    def engine(self, provider, **kw):
++        return Engine(self.path / "db.sqlite3", self.path, {"claude": provider, "codex": provider}, **kw)
++
++    def test_zero_or_negative_cap_is_refused(self):
++        for bad in (0, -1, 0.0, True):
++            with self.assertRaises(ValueError):
++                Engine(":memory:", self.path, dict.fromkeys(("claude", "codex"), lambda *_: None), token_cap=bad)
++        e = self.engine(lambda *_: reply([("a.json", "{}")]), token_cap=500000)
++        try:
++            with self.assertRaises(ValueError):
++                e.set_cap(0)
++            self.assertEqual(e.token_cap, 500000)
++        finally:
++            e.close()
++
++    def test_a_job_is_not_claimed_while_its_previous_turn_is_still_held(self):
++        release = threading.Event()
++
++        def slow(*_):
++            release.wait(5)
++            return reply([("a.json", "{}")])
++
++        e = self.engine(slow, workers=2, token_cap=1_000_000)
++        try:
++            job = e.create_pipeline("j", [{"actor": "claude", "prompt": "P", "inputs": []},
++                                          {"actor": "codex", "prompt": "R", "inputs": []}])["id"]
++            wait_for(e, job, "running")
++            with e.cv:
++                held = e.active[job]
++                with e.db:
++                    e._set(job, "queued")  # what _advance_pipeline does before the worker lets go
++                self.assertIsNone(e._claim())
++                self.assertIs(e.active[job], held)
++                self.assertEqual(len(e.reserved), 1)
++                with e.db:
++                    e._set(job, "running")
++            release.set()
++            wait_for(e, job, "completed")
++            self.assertEqual((e.active, e.reserved), ({}, {}))
++        finally:
++            release.set()
++            e.close()
++
++    def test_a_step_records_only_the_artifact_it_owns(self):
++        def producer(prompt, *_):
++            if prompt.startswith("P"):
++                return reply([("result.json", '{"keep": 1}'), ("review.json", '{"verdicts": "mine"}')])
++            return reply([("review.json", '{"ok": 1}'), ("result.json", '{"keep": 2}')])
++
++        e = self.engine(producer)
++        try:
++            job = e.create_pipeline("j", [
++                {"actor": "claude", "prompt": "P", "inputs": [], "expect": {"name": "result.json", "keys": ["keep"]}},
++                {"actor": "codex", "prompt": "R", "inputs": ["result.json"],
++                 "expect": {"name": "review.json", "keys": ["ok"]}}])["id"]
++            wait_for(e, job, "completed")
++            d = e.get(job)
++            self.assertEqual([(a["name"], a["actor"], a["content"]) for a in d["artifacts"]],
++                             [("result.json", "claude", '{"keep": 1}'), ("review.json", "codex", '{"ok": 1}')])
++            self.assertEqual(sum(1 for ev in d["events"] if ev["kind"] == "ignored"), 2)
++            self.assertEqual(common.owned(d["artifacts"], d["turn_records"], "result.json", "genuine"), '{"keep": 1}')
++        finally:
++            e.close()
++
++    def test_two_copies_of_the_expected_artifact_fail_the_step(self):
++        e = self.engine(lambda *_: reply([("result.json", '{"keep": 1}'), ("result.json", '{"keep": 2}')]))
++        try:
++            job = e.create_pipeline("j", [{"actor": "claude", "prompt": "P", "inputs": [],
++                                           "expect": {"name": "result.json", "keys": ["keep"]}}])["id"]
++            wait_for(e, job, "error")
++            self.assertEqual(e.get(job)["artifacts"], [])
++        finally:
++            e.close()
++
++    def test_scoring_ignores_a_foreign_or_later_copy(self):
++        turns = [{"event_id": 11, "step": 1, "ok": 1}, {"event_id": 12, "step": 2, "ok": 1},
++                 {"event_id": 13, "step": 3, "ok": 1}]
++        arts = [{"name": "review.json", "actor": "claude", "event_id": 11, "content": "producer's own"},
++                {"name": "result.json", "actor": "claude", "event_id": 11, "content": "first pass"},
++                {"name": "review.json", "actor": "codex", "event_id": 12, "content": "review"},
++                {"name": "result.json", "actor": "claude", "event_id": 13, "content": "rewritten by repair"},
++                {"name": "final.json", "actor": "claude", "event_id": 13, "content": "final"}]
++        self.assertEqual(common.owned(arts, turns, "result.json", "genuine"), "first pass")
++        self.assertEqual(common.owned(arts, turns, "review.json", "genuine"), "review")
++        self.assertEqual(common.owned(arts, turns, "final.json", "genuine"), "final")
++        self.assertIsNone(common.owned(arts[:2], turns, "review.json", "genuine"))
++
++    def test_an_unmeasured_turn_stops_the_engine_until_reconciled(self):
++        calls = []
++
++        def provider(prompt, *_):
++            calls.append(prompt[0])
++            return reply([("a.json", "{}")], usage=(len(calls) != 1))
++
++        e = self.engine(provider, token_cap=5_000_000, halt_unmeasured=True)
++        try:
++            first = e.create_pipeline("a", [{"actor": "claude", "prompt": "A", "inputs": []}])["id"]
++            wait_for(e, first, "completed")
++            second = e.create_pipeline("b", [{"actor": "claude", "prompt": "B", "inputs": []}])["id"]
++            time.sleep(0.4)
++            self.assertEqual(e.get(second)["status"], "queued")
++            self.assertTrue(e.halted)
++            bad = e.unmeasured()
++            self.assertEqual((len(bad), bad[0]["units"]), (1, 150000.0))
++            for refused in (0, 149999, float("nan"), float("inf"), float("-inf"), True):
++                with self.assertRaises(ValueError):
++                    e.reconcile(bad[0]["id"], refused, "nothing")
++            self.assertEqual([(b["id"], b["units"]) for b in e.unmeasured()], [(bad[0]["id"], 150000.0)])
++            self.assertEqual(e.totals()["units"], 150000.0)
++            e.reconcile(bad[0]["id"], 200000, "bounded by the provider's own usage page")
++            wait_for(e, second, "completed")
++            self.assertEqual(e.unmeasured(), [])
++            self.assertEqual(e.totals()["units"], 200000 + 1000)
++            self.assertEqual(e.totals()["estimated_turns"], 1)  # the flag stays on the record
++        finally:
++            e.close()
++
++    def test_an_attempt_cut_off_with_the_host_is_charged_on_restart(self):
++        e = self.engine(lambda *_: reply([("a.json", "{}")]), halt_unmeasured=True, token_cap=5_000_000)
++        job = e.create_pipeline("a", [{"actor": "claude", "prompt": "A", "inputs": []}])["id"]
++        wait_for(e, job, "completed")
++        with e.cv, e.db:  # as if the process died after starting a provider and before recording its turn
++            e.db.execute("INSERT INTO attempts(job_id,actor,step,started_at) VALUES(?,?,?,?)",
++                         (job, "codex", 2, "2026-11-18T00:00:00+00:00"))
++        e.close()
++        e = self.engine(lambda *_: reply([("a.json", "{}")]), halt_unmeasured=True, token_cap=5_000_000)
++        try:
++            bad = e.unmeasured()
++            self.assertEqual([(b["actor"], b["step"], b["units"]) for b in bad], [("codex", 2, 150000.0)])
++            other = e.create_pipeline("b", [{"actor": "claude", "prompt": "B", "inputs": []}])["id"]
++            time.sleep(0.3)
++            self.assertEqual(e.get(other)["status"], "queued")
++        finally:
++            e.close()
++
++    def test_reservation_uses_the_largest_measured_turn_at_once(self):
++        e = self.engine(lambda *_: reply([("a.json", "{}")], tokens=400000), token_cap=950000)
++        try:
++            a = e.create_pipeline("a", [{"actor": "claude", "prompt": "A", "inputs": []}])["id"]
++            wait_for(e, a, "completed")
++            b = e.create_pipeline("b", [{"actor": "claude", "prompt": "B", "inputs": []}])["id"]
++            wait_for(e, b, "completed")  # 400k spent + 400k reserved fits under 950k
++            c = e.create_pipeline("c", [{"actor": "claude", "prompt": "C", "inputs": []}])["id"]
++            time.sleep(0.3)
++            self.assertEqual(e.get(c)["status"], "queued")  # 800k spent + 400k reserved does not
++            self.assertTrue(e.cap_reached)
++        finally:
++            e.close()
++
++
++class AdapterLimitsTest(unittest.TestCase):
++    @patch("bridge.claude.run_cli")
++    def test_step_options_beat_the_environment_for_claude(self, cli):
++        cli.return_value = json.dumps({"type": "result", "subtype": "success", "is_error": False,
++                                       "structured_output": {"action": "finish"}})
++        with patch.dict(os.environ, {"RELAY_CLAUDE_MAX_TOOL_TURNS": "400", "RELAY_CLAUDE_MAX_BUDGET_USD": "50"}):
++            claude_adapter.run_research_turn("p", ".", 60, threading.Event(), options=dict(run.CLAUDE_LIMITS))
++            args = cli.call_args.args[0]
++            self.assertEqual(args[args.index("--max-turns") + 1], "40")
++            self.assertEqual(args[args.index("--max-budget-usd") + 1], "2")
++
++    @patch("bridge.codex.run_cli")
++    def test_step_options_beat_the_environment_for_codex(self, cli):
++        cli.side_effect = ["[]", ""]
++        with patch.dict(os.environ, {"RELAY_CODEX_EFFORT": "ultra"}):
++            codex_adapter.run_research_turn("p", ".", 60, threading.Event(), options=dict(run.CODEX_LIMITS))
++        for call in cli.call_args_list:
++            self.assertIn('model_reasoning_effort="medium"', call.args[0])
++            self.assertNotIn('model_reasoning_effort="ultra"', call.args[0])
++
++
++def fake_draw(out, repo):
++    cells = {"C01": {"label": "a", "pool": 9, "cap": 5, "blind": False, "fixed": False,
++                     "order": ["EO:1", "EO:2", "EO:3", "EO:4", "EO:5", "EO:8"], "machine_tier": {}, "group": {}},
++             "C06": {"label": "b", "pool": 9, "cap": 2, "blind": True, "fixed": True, "order": ["EO:6", "EO:7"],
++                     "machine_tier": {}, "group": {}}}
++    frame = {cid: c["order"] for cid, c in cells.items()}
++    plan = {"seed": 1, "cells": cells, "inputs_sha256": common.input_hashes(repo),
++            "frame_sha256": hashlib.sha256(json.dumps(frame, sort_keys=True).encode()).hexdigest()}
++    common.write_json(Path(out) / "DRAW.json", plan)
++    return plan
++
++
++class SavedStateTest(unittest.TestCase):
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.repo, self.out = Path(self.tmp.name) / "repo", Path(self.tmp.name) / "data"
++        self.repo.mkdir()
++        self.out.mkdir()
++        self.plan = fake_draw(self.out, self.repo)
++        self.calls = []
++        patcher = patch.object(census, "unnumbered", lambda repo: [])
++        patcher.start()
++        self.addCleanup(patcher.stop)
++        self.addCleanup(self.tmp.cleanup)
++
++    def provider(self, *_a, **_k):
++        self.calls.append(1)
++        return reply([("result.json", "{}")])
++
++    def probe(self, **kw):
++        kw.setdefault("timeout", 60)
++        return run.Probe(self.repo, self.out, {"claude": self.provider, "codex": self.provider}, log=lambda *_: None,
++                         **kw)
++
++    def state(self, **over):
++        s = {"next": {"C01": 0, "C06": 0}, "settled": {}, "jobs": {}, "plants": {}, "stage0_done": False,
++             "caps": {"C01": 5, "C06": 2}, "frame_sha256": self.plan["frame_sha256"], "stage0_plan_sha256": "abc"}
++        s.update(over)
++        (self.out / "STATE.json").write_text(json.dumps(s), encoding="utf-8")
++
++    def refused(self, method, text, **kw):
++        pr = self.probe(**kw)
++        try:
++            with self.assertRaisesRegex(run.Stopped, text):
++                getattr(pr, method)()
++        finally:
++            pr.close()
++        self.assertEqual(self.calls, [])
++
++    def test_zero_cap_and_long_timeout_are_refused(self):
++        for kw in ({"token_cap": 0}, {"token_cap": -5}, {"token_cap": 1.5}, {"timeout": 901}, {"timeout": 0}):
++            with self.assertRaises(ValueError):
++                self.probe(**kw)
++        self.assertFalse((self.out / "relay.sqlite3").exists())
++
++    def test_verify_refuses_a_zero_cap_and_zero_workers(self):
++        path = wave.write(self.repo, self.out, 10_000_000, 3, stage=1)
++        w = json.loads(path.read_text(encoding="utf-8"))
++        w["review"] = {"reviewer": "gpt-test", "verdict": "approve", "plan_sha256": wave.plan_sha(w)}
++        common.write_json(path, w)
++        self.assertEqual(wave.verify(self.repo, self.out, 1, 3, 10_000_000), [])
++        self.assertTrue(any("positive" in p for p in wave.verify(self.repo, self.out, 1, 3, 0)))
++        self.assertTrue(any("positive" in p for p in wave.verify(self.repo, self.out, 1, 0, 10_000_000)))
++        self.assertEqual(wave.reviewed_sha(self.out, 1), wave.plan_sha(w))
++
++    def test_stage0_refuses_a_full_run_and_more_than_one_worker(self):
++        self.state(stage0_done=True, full_started={"plan_sha256": "def", "cap_units": 10_000_000})
++        self.refused("stage0", "holds a full run", plan_sha256="abc")
++        self.state()
++        self.refused("stage0", "one worker", plan_sha256="abc", workers=2)
++
++    def test_state_from_another_draw_or_plan_is_refused(self):
++        self.state(frame_sha256="0" * 64)
++        self.refused("stage0", "different draw", plan_sha256="abc")
++        self.state()
++        self.refused("stage0", "different stage-0 plan", plan_sha256="zzz")
++        self.state(stage0_done=True, full_started={"plan_sha256": "def", "cap_units": 10_000_000})
++        self.refused("full", "different plan", plan_sha256="other", workers=3)
++
++    def test_full_resumes_nothing_before_stage0_is_done(self):
++        pr = self.probe(plan_sha256="abc", token_cap=1)  # a cap of one unit: the job is queued and never starts
++        job = pr.engine.create_pipeline("Kiaer C01 EO:1", [{"actor": "claude", "prompt": "P", "inputs": []}],
++                                        tag="genuine|C01|EO:1")["id"]
++        pr.state["jobs"]["EO:1"] = {"cell": "C01", "job": job, "retries": 0}
++        pr.state["next"]["C01"] = 1
++        pr.close()
++        self.assertEqual(self.calls, [])
++        pr = self.probe(plan_sha256="def", workers=3)
++        try:
++            self.assertEqual(pr.engine.get(job)["status"], "paused")
++            with self.assertRaisesRegex(run.Stopped, "stage 0 is not finished"):
++                pr.full()
++            time.sleep(0.3)
++            self.assertEqual(pr.engine.get(job)["status"], "paused")
++        finally:
++            pr.close()
++        self.assertEqual(self.calls, [])
++
++    def test_orders_or_jobs_outside_the_reviewed_draw_are_refused(self):
++        self.state(jobs={"EO:8": {"cell": "C01", "job": "x" * 32, "retries": 0}}, next={"C01": 1, "C06": 0})
++        self.refused("stage0", "not among the first 3 drawn orders", plan_sha256="abc")
++        self.state(caps={"C01": 6, "C06": 2})
++        self.refused("stage0", "outside the drawn cap", plan_sha256="abc")
++        self.state()
++        pr = self.probe(plan_sha256="abc")
++        pr.engine.create_pipeline("stray", [{"actor": "claude", "prompt": "P", "inputs": []}], tag="genuine|C01|EO:2")
++        time.sleep(0.3)
++        pr.close()
++        self.calls.clear()
++        self.refused("stage0", "database holds a job that STATE.json does not", plan_sha256="abc")
++
++    def test_an_unmeasured_turn_stops_the_stage(self):
++        self.state()
++        pr = self.probe(plan_sha256="abc")
++        try:
++            job = pr.engine.create_pipeline("Kiaer C01 EO:1", [{"actor": "claude", "prompt": "P", "inputs": []}],
++                                            tag="genuine|C01|EO:1")["id"]
++            pr.state["jobs"]["EO:1"] = {"cell": "C01", "job": job, "retries": 0}
++            pr.state["next"]["C01"] = 1
++            wait_for(pr.engine, job, "completed")
++            with pr.engine.cv, pr.engine.db:
++                pr.engine.db.execute("UPDATE turns SET estimated=1")
++            with self.assertRaisesRegex(run.Stopped, "without measured usage"):
++                pr.stage0()
++            self.assertFalse(pr.state["stage0_done"])
++        finally:
++            pr.close()
++
++
++if __name__ == "__main__":
++    unittest.main()
++
++
++class UsageValidationTest(unittest.TestCase):
++    """Third review: empty or partial usage is not measured usage, and a reconciliation figure must be finite."""
++
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.path = Path(self.tmp.name)
++        self.addCleanup(self.tmp.cleanup)
++
++    def test_codex_empty_or_incomplete_usage_events_are_not_usage(self):
++        ok = '{"type":"turn.completed","usage":{"input_tokens":100,"cached_input_tokens":40,"output_tokens":7}}'
++        self.assertEqual(codex_adapter.parse_events(ok)[1]["input_tokens"], 100)
++        for bad in ('{"type":"turn.completed","usage":{}}',
++                    '{"type":"turn.completed","usage":{"input_tokens":100,"output_tokens":7}}',
++                    '{"type":"turn.completed","usage":{"input_tokens":100,"cached_input_tokens":40}}',
++                    '{"type":"turn.completed","usage":{"input_tokens":10,"cached_input_tokens":40,"output_tokens":7}}',
++                    '{"type":"turn.completed","usage":{"input_tokens":-1,"cached_input_tokens":0,"output_tokens":7}}'):
++            self.assertEqual(codex_adapter.parse_events(bad)[1], {}, bad)
++            self.assertEqual(codex_adapter.parse_events(ok + "\n" + bad)[1], {}, bad)
++
++    def test_partial_or_empty_usage_is_charged_an_estimate_and_stops_admission(self):
++        for usage in ({"input_tokens": 500, "output_tokens": 9},
++                      {"input_tokens": 500, "cache_read_tokens": 0, "cache_write_tokens": 0},
++                      {"input_tokens": 0, "cache_read_tokens": 0, "cache_write_tokens": 0, "output_tokens": 0},
++                      {"input_tokens": float("nan"), "cache_read_tokens": 0, "cache_write_tokens": 0,
++                       "output_tokens": 5},
++                      {"total_tokens": 900}):
++            with self.subTest(usage=usage), tempfile.TemporaryDirectory() as tmp:
++                provider = lambda *_: reply([("a.json", "{}")], usage=usage)
++                e = Engine(Path(tmp) / "db.sqlite3", tmp, {"claude": provider, "codex": provider},
++                           token_cap=5_000_000, halt_unmeasured=True)
++                try:
++                    first = e.create_pipeline("a", [{"actor": "claude", "prompt": "A", "inputs": []}])["id"]
++                    wait_for(e, first, "completed")
++                    turn = e.get(first)["turn_records"][0]
++                    self.assertEqual((turn["estimated"], turn["units"], turn["total_tokens"]), (1, 150000.0, None))
++                    second = e.create_pipeline("b", [{"actor": "claude", "prompt": "B", "inputs": []}])["id"]
++                    time.sleep(0.3)
++                    self.assertEqual(e.get(second)["status"], "queued")
++                    self.assertEqual(len(e.unmeasured()), 1)
++                finally:
++                    e.close()
++
++    def test_the_reconcile_command_refuses_nan(self):
++        from kiaer import __main__ as cli
++        repo, out = self.path / "repo", self.path / "data"
++        repo.mkdir()
++        out.mkdir()
++        plan = fake_draw(out, repo)
++        (out / "STATE.json").write_text(json.dumps(
++            {"next": {"C01": 0, "C06": 0}, "settled": {}, "jobs": {}, "plants": {}, "stage0_done": False,
++             "caps": {"C01": 5, "C06": 2}, "frame_sha256": plan["frame_sha256"], "stage0_plan_sha256": "abc"}),
++            encoding="utf-8")
++        provider = lambda *_a, **_k: reply([("a.json", "{}")], usage=False)
++        with patch.object(census, "unnumbered", lambda repo: []):
++            pr = run.Probe(repo, out, {"claude": provider, "codex": provider}, timeout=60, log=lambda *_: None)
++            job = pr.engine.create_pipeline("a", [{"actor": "claude", "prompt": "A", "inputs": []}])["id"]
++            wait_for(pr.engine, job, "completed")
++            turn = pr.engine.unmeasured()[0]["id"]
++            pr.close()
++            args = ["reconcile", "--repo", str(repo), "--out", str(out), "--turn", str(turn), "--note", "why"]
++            for bad in ("nan", "inf", "-inf", "1"):
++                self.assertEqual(cli.main(args + ["--units=" + bad]), 2, bad)
++            pr = run.Probe(repo, out, {"claude": provider, "codex": provider}, timeout=60, log=lambda *_: None)
++            try:
++                self.assertEqual([(b["id"], b["units"]) for b in pr.engine.unmeasured()], [(turn, 150000.0)])
++                self.assertEqual(pr.engine.totals()["units"], 150000.0)
++            finally:
++                pr.close()
++            self.assertEqual(cli.main(args + ["--units=160000"]), 0)

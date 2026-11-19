@@ -1,9 +1,13 @@
 # Changes to the Relay and Kiaer code (2026-11-18)
 
-The code that ran is `Relay-kiaer.zip` (sha256 in `SOURCE.txt`) plus the changes below. The exact diff is
-`CHANGES.diff`. All were made by Claude (Fable 5.2) after Codex's first plan review rejected both plans
-(`review/CODEX_REVIEW_1.json`). After them, Relay's 38 unit tests pass (33 before, 5 new) and
-`python -m kiaer selftest` exits 0. No change was made before the smoke test, and none to `bridge/`.
+The code that ran is `Relay-kiaer.zip` (sha256 in `SOURCE.txt`) plus the changes below. The exact diff against the
+zip is `CHANGES.diff`. All were made by Claude (Fable 5.2), in three rounds, one after each Codex plan review
+(`review/CODEX_REVIEW_1.json`, `_2.json`, `_3.json`); the owner directed round 2 ("fix and re-review"). Relay's unit
+tests: 33 in the zip, 38 after round 1, 55 after round 2, 58 after round 3; all pass, and `python -m kiaer selftest`
+exits 0. The first smoke test ran on the zip's code, the second on the round-2 code (`SMOKE.json`). Round 3 has not
+been reviewed and nothing has run on it but the tests and the selftest.
+
+## Round 1 (after the first review)
 
 | File | Change | Why |
 | --- | --- | --- |
@@ -23,22 +27,38 @@ session's `CLAUDE*`/`ANTHROPIC*` variables, sets `RELAY_CLAUDE_BIN`, `RELAY_CODE
 `RELAY_CLAUDE_MAX_BUDGET_USD=2`, `RELAY_CLAUDE_MAX_TOOL_TURNS=40`, and logs) and `codex-review.ps1` (the read-only
 plan review call).
 
-## Not fixed: what the second review still rejects
+## Round 2 (after the second review): its seven grounds, and what was done
 
-Codex's second review (`review/CODEX_REVIEW_2.json`) rejected both plans again. The owner's rule for this probe is
-to stop after a second rejection, so none of these is fixed:
+| # | Ground | Change | Where |
+| --- | --- | --- | --- |
+| 1 | `--token-cap 0` passed the check and the engine read zero as no cap. | A cap must be a positive number: the command line, `wave.verify`, `Probe` and the engine (constructor and `set_cap`) each refuse zero or less. | `kiaer/__main__.py`, `kiaer/wave.py`, `kiaer/run.py`, `bridge/engine.py` |
+| 2 | Saved run state was not checked against the reviewed plan; a wrong command could resume work under the wrong ceiling or with three workers before the gate. | `Probe` no longer resumes anything when it opens. `stage0` and `full` first run `_check_state`: the state must carry the draw's frame hash and the hash of the plan it started under; every order on file must be within the stage's drawn allowance; every database job must be named in the state. `stage0` refuses a full run and more than one worker. `full` refuses an unfinished stage 0 and passes its gate before resuming anything. State is saved after each job is created. | `kiaer/run.py`, `kiaer/__main__.py` |
+| 3 | Reservation race with more than one worker. | A job is not claimed while a worker still holds its previous turn, and a worker releases only its own reservation. | `bridge/engine.py` |
+| 4 | A failed, timed-out or crashed turn was charged an estimate or nothing while work continued. | Each attempt is written to the database before its provider starts; one found open after a crash is charged and flagged. A turn without measured usage stops the run: no further turn starts and nothing is retried until the operator records a figure for it, never below the charge (`python -m kiaer reconcile`). | `bridge/engine.py`, `kiaer/run.py`, `kiaer/__main__.py` |
+| 5 | A step could deliver extra artifacts and scoring read the latest of each name. | A step records only the one artifact it owns (others are discarded and logged; two copies fail the step). Scoring reads each artifact only from its owning step. | `bridge/engine.py`, `kiaer/common.py`, `kiaer/run.py`, `kiaer/report.py` |
+| 6 | The 2-dollar ceiling, 40 tool turns, 900-second timeout and medium effort were overridable defaults; the reservation used the largest turn only after three turns. | The limits travel in each step's options, ahead of the environment variables. A timeout above 900 seconds is refused. The reservation is the largest measured turn (at least 150,000 units) from the first turn, failed turns included. | `bridge/claude.py`, `bridge/codex.py`, `bridge/engine.py`, `kiaer/run.py` |
+| 7 | Provenance wording claimed more than the code does. | The plans now say: only the 12 finding-aid inputs are hashed; slices are built at launch from the checkout; results record cited sources only; reviewer feedback can carry the ledger status into the repair turn, whose result enters no audit rate. | `kiaer/wave.py` |
 
-1. `--token-cap 0` passes `verify()` and the engine treats a zero cap as no cap.
-2. Saved run state (`STATE.json`, the job database) is not checked against the reviewed plan. `stage0` on a data
-   folder holding an interrupted full run would resume that work under the full cap, and `full` on an unfinished
-   stage 0 would resume it with three workers before reaching the gate.
-3. A reservation race in `bridge/engine.py` with more than one worker: a finished step queues the job's next step
-   before the worker releases its own reservation, so another worker can claim the next step and then lose its
-   reservation. Spend could pass the cap by more than the plan discloses. It cannot happen with one worker.
-4. A failed, timed-out or crashed turn is charged an estimate or nothing, and work continues and retries.
-5. A step may deliver extra artifacts, and scoring reads the latest artifact of each name: a producer could
-   supply its own `review.json`, or a repair turn could replace `result.json`.
-6. The 2-dollar ceiling, the 40 tool turns, the 900-second timeout and Codex's medium effort are defaults that
-   environment variables or flags can change; the reservation uses the largest turn only after three measured turns.
-7. Provenance wording: only the 12 finding-aid inputs are hashed, not the held texts; slices are built at launch,
-   not at draw time; results record cited sources, not every file and URL read.
+New tests: `tests/test_kiaer_round3.py` (17 tests, one or more per ground). The diff of this round alone is
+`review/CHANGES_round3.diff`.
+
+Side effect to know: after any interruption that cuts a turn off (Ctrl+C, a kill, a timeout), rerunning the same
+command now prints `STOPPED` until that turn is reconciled. This is deliberate (ground 4).
+
+## Round 3 (after the third review): its three grounds, and what was done
+
+Made after the third rejection so the kit is ready for whichever decision the owner takes. Not reviewed.
+
+| Ground | Change | Where |
+| --- | --- | --- |
+| `reconcile --units nan` passed validation, stored an empty charge and marked the turn reconciled, so admission resumed with the turn uncounted. | A reconciliation figure must be finite, positive and not below the charge already made; a refusal leaves the charge and the flag as they were. The command prints `REFUSED` instead of a traceback. | `bridge/engine.py`, `kiaer/__main__.py` |
+| Empty or partial usage counted as measured: a Codex event with `usage: {}` was charged zero, and a turn reporting only some token counts was charged for those alone. | A turn is measured only if all four token counts came back as finite, non-negative numbers that are not all zero; otherwise it is charged the estimate, flagged and stops the run. A Codex usage event must carry input, cached input and output counts, with cached input no larger than input. | `bridge/engine.py`, `bridge/codex.py` |
+| Four plan statements were stronger than the code. | The plans now say: a wave targets about 12% planted reviews and can yield none; a failed job is retried at most once, and not after a ceiling; an unmeasured turn is charged the estimate as it stands when recorded, which can exceed its reservation; and the lesson answer lists the guards that have tests and the ones that do not. | `kiaer/wave.py` |
+
+New tests: three more in `tests/test_kiaer_round3.py` (non-finite figures in the engine and through the command,
+Codex empty and incomplete usage events, partial usage stopping admission).
+
+Risks the third review noted without making them grounds: a blind producer can still see public project pages in
+web-search result snippets (only fetches of the project's sites are denied); creating a job and saving the state
+file are not one atomic step, so a crash between them leaves a job the next start refuses; the projection is a
+forecast.

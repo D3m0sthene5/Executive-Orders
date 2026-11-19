@@ -1,3 +1,26 @@
+## 2026-11-18 ET, late (Claude: Kiaer probe rejected a third time; three last grounds fixed, not reviewed; nothing ran)
+
+- **Owner answered** A-20261118-kiaer-review-rejected in chat: "Fix and re-review". All seven grounds of Codex's
+  second review were fixed in the kit (zero cap, saved state bound to the plan, reservation race, unmeasured turns
+  stop the run, artifact ownership, provider limits ahead of the environment, provenance wording).
+- **Second smoke test passed** on the changed code: EO 9703, 186,931 units, slowest turn 112 s. With the first
+  (167,712) that is about 53 to 59 orders for 10M units, not 235.
+- **Third review rejected both plans** (`research/kiaer/kiaer-2026-11-18/review/CODEX_REVIEW_3.json`,
+  F-20261118-kiaer-third-rejection): the seven grounds were met except part of one, and it found three more:
+  `reconcile --units nan` erased a charge; empty or partial provider usage counted as measured; four plan
+  statements were stronger than the code. It again found no way for a model turn to write to the repository.
+- **Those three are fixed and tested, not reviewed** (58 tests pass, selftest exit 0; `CHANGES.md` round 3). The
+  current plans are `review/WAVE_stage*.current-unreviewed.json`; Augur refuses them only on Bentham, the stage-1
+  ramp and the missing review.
+- **Still not done:** no review is bound, no owner exception is recorded (no `add-decision`), stage 0 and the full
+  run have not started, nothing is pushed, there is no pull request. No count changed.
+- **Spent:** 644,809 units, 1,301,929 raw tokens (two smoke tests, three reviews), outside this session's own use.
+- **Open for the owner:** A-20261118-kiaer-third-rejection (fourth review, sign stage 0 yourself, or drop it; and
+  whether 10M units is the right budget for 11 cells).
+- **To resume:** kit in `%USERPROFILE%/Relay-kiaer/` (launcher `run-kiaer.ps1`, review call `codex-review.ps1`);
+  data in `%LOCALAPPDATA%/Relay/kiaer-2026-11-18` (physical path in `REPORT.md`). After any interrupted turn the
+  run now prints STOPPED until `python -m kiaer reconcile` records a figure for it.
+
 ## 2026-11-18 ET (Claude: Kiaer tier probe stopped at the plan review; nothing ran)
 
 - **Stopped:** the owner-directed Kiaer probe (Relay, `Relay-kiaer.zip`) did not start. Codex (gpt-6-astra)
