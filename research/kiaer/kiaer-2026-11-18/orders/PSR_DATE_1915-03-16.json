@@ -1,0 +1,425 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C11",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "PROVISIONAL, from catalogue only, no text held: withdrawal creating Power Site Reserve 484, Cow Creek, California",
+    "end": null,
+    "props": [
+     "p1",
+     "p2"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "PROVISIONAL, from catalogue only, no text held: Power Site Restoration 181, Payette River tributaries, Idaho, affecting Power Site Reserve 207 (extent of the restoration not established; if a bare revocation, rule (c) spent on issue would apply once the text is held)",
+    "end": null,
+    "props": [
+     "p3",
+     "p4"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "unknown",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Catalogue subject names 'reserve identifiers 207, 484', but the member rows are PSR 484 (creation) and RST 181 (restoration). 207 is the parent reserve affected by Restoration 181 and has no member row under that number; the restoration number 181 is missing from the subject.",
+   "catalogue_source points only to PDF page 91 (California, PSR 484); the Idaho member row is at PDF page 167 (printed p. 87, which the repair re-fetch also reported).",
+   "The date group merges a California reserve creation and an Idaho restoration as one provisional instrument; these are probably two separate orders, so the group likely undercounts.",
+   "Possible name collision: 'Power Site Restoration No. 484' (EO 7620, Montana, 1937) is a different instrument from Power Site Reserve 484."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Text of the order creating Power Site Reserve 484 (Cow Creek, California), with signer and signing date",
+    "where_to_look": "National Archives RG 49 (General Land Office) and RG 57 (USGS) power site reserve order files; BLM California land status records / master title plats for the Cow Creek townships, Shasta County; ProQuest Executive Orders and Presidential Proclamations"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Text of Power Site Restoration 181 (affecting Power Site Reserve 207, Idaho), with signer and signing date, and whether it revoked the reserve in whole or in part",
+    "where_to_look": "National Archives RG 49 / RG 57; BLM Idaho historical index and serial register; ProQuest Executive Orders and Presidential Proclamations; USGS 1976 register printed p. 87 page image (PDF p. 167). Lead only: the OCR, as relayed by the summariser, shows Payette River tributaries records dated 08 09 16, one of them with fragments '20 7' and '208' and acreage 0, which may be a later modification of PSR 207"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether PSR 484 was later revoked, in whole or part (the register OCR shows a MOD 484 entry; any later restoration or public land order is not identified), or still stood on 2026-10-14",
+    "where_to_look": "USGS 1976 register printed p. 49 page image (Wikimedia PDF p. 91) for the MOD/RST rows of PSR 484; Federal Register public land orders for California; BLM land records for a current withdrawal entry"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Direct reading of the register page images for printed pp. 49 and 87, to tie dates and acreages to rows; the OCR columns are misaligned and were read only through a summariser",
+    "where_to_look": "Internet Archive item powersiteclassif00geol page images; Wikimedia Commons PDF pp. 91 and 167"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Source statement that power site reserves and restorations of 1915 were made by the President (needed to establish this as a presidential order at all)",
+    "where_to_look": "USGS Circular 400, pp. 2-4, https://pubs.usgs.gov/circ/1957/0400/report.pdf (returned HTTP 403 to this worker); House Doc. 1703 (1919) p. 6"
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether the two events are one instrument or two; different States and opposite actions suggest two separate orders",
+    "where_to_look": "The two original orders; owner ruling on splitting the date group"
+   }
+  ],
+  "id": "PSR:DATE:1915-03-16",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "Catalogue rows are recorded in the project's FINDINGS.csv and partly visible in the IA OCR text of the USGS 1976 register (read only through a fetch summariser, re-fetched in repair). No text of any order of 1915-03-16 was found: no official printing, archival copy or transcription. Presidential authorship remains an inference; USGS Circular 400 could not be opened (HTTP 403). Archival holdings were not searched.",
+    "stop_code": "NOT_FOUND",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": "none found; catalogue only: https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt (printed pp. 49 and 87)"
+  },
+  "propositions": [
+   {
+    "claim": "The project's member row records a USGS 1976 register entry for Power Site Reserve 484, Cow Creek, California, dated 1915-03-16, at printed p. 49.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Power Site Reserve 484: Cow Creek, California",
+    "supports": "clause",
+    "where": "research/graunt-census-audit-2026-11-12/FINDINGS.csv line 3022"
+   },
+   {
+    "claim": "NARROWED. The IA OCR text of the USGS register at printed p. 49 (characters 100,000-200,000 of the text, re-fetched in repair and relayed by a fetch summariser, not read directly) contains a PSR 484 entry, a MOD 484 entry, Cow Creek stream names with state CA, and the date string 03 16 15 in the date column. The OCR columns do not align, so the date cannot be tied to the 484 row from the OCR alone; that link rests on the project row in p1. No RST entry against 484 was reported on that page.",
+    "location": "W",
+    "pid": "p2",
+    "quote": "03 16 15",
+    "supports": "clause",
+    "where": "https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt (offset 100000-200000, page headed 'NO. 49')"
+   },
+   {
+    "claim": "NARROWED. The IA OCR text of the USGS register at printed p. 87, Idaho (characters 200,000-300,000, re-fetched in repair and relayed by a fetch summariser, not read directly) contains a Payette River tributaries record with the fragments 181 / 03 / 16 and an acreage figure of -2120. The OCR splits each record across lines, so the single-row reconstruction quoted in the earlier result is withdrawn; row identity and date rest on the project row in p4, and the acreage is a lead only.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "PAYETiE RIVER TRIBUTARIES",
+    "supports": "clause",
+    "where": "https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt (offset 200000-300000, printed p. 87)"
+   },
+   {
+    "claim": "The project's member row records Power Site Restoration 181, Payette River tributaries, Idaho, 1915-03-16, at printed p. 87 (PDF p. 167).",
+    "location": "H",
+    "pid": "p4",
+    "quote": "Power Site Restoration 181: Payette River tributaries, Idaho",
+    "supports": "clause",
+    "where": "research/graunt-census-audit-2026-11-12/FINDINGS.csv line 3023"
+   },
+   {
+    "claim": "The project's own inventory states that presidential authorship of this group is inferred, not sourced.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "No order-specific citation located for this group: presidential connection inferred from the 1976 PSR registry and USGS Circular400 classification history.",
+    "supports": "counterevidence",
+    "where": "research/graunt-census-audit-2026-11-12/EO_reconciled_inventory.csv line 3952"
+   },
+   {
+    "claim": "The project's member row records the authority rule relied on for restorations. This shows what the project row says, not the underlying Circular 400 rule, which this worker did not read.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "ordinary PSR revocations before April24,1942 by Executive Order; not automatically extended to every MOD",
+    "supports": "original",
+    "where": "research/graunt-census-audit-2026-11-12/FINDINGS.csv line 3023"
+   },
+   {
+    "claim": "The register date may be an agency date rather than the signing date.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "USGS agency catalog date; presidential signature/approval date not authenticated unless separately stated. Date grouping is a proxy.",
+    "supports": "counterevidence",
+    "where": "research/graunt-census-audit-2026-11-12/FINDINGS.csv line 3023"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "fixed",
+    "pid": "p2",
+    "why": "Re-fetched the IA OCR via summariser: p. 49 shows PSR 484, MOD 484, Cow Creek CA and 03 16 15, but columns misalign. Claim narrowed; the quote is now only the date string, and the date-to-row link rests on p1."
+   },
+   {
+    "change": "fixed",
+    "pid": "p3",
+    "why": "Re-fetched the IA OCR via summariser: p. 87 shows a Payette River tributaries record with 181 / 03 / 16 and -2120, split across lines. Single-row quote withdrawn; claim narrowed, acreage a lead only."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p5",
+    "why": "A later register entry does not show Restoration 181 was partial, and the row was not read directly. Removed from propositions and kept as a lead in the gaps."
+   },
+   {
+    "change": "kept",
+    "pid": "p6",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p7",
+    "why": "Upheld; claim wording now says it shows the project row, not Circular 400 itself."
+   },
+   {
+    "change": "kept",
+    "pid": "p8",
+    "why": "Upheld by review."
+   }
+  ],
+  "searches": [
+   "Repo: grep for PSR:DATE:1915-03-16 inside research/ (hits in graunt-census-audit-2026-11-12 inventory and FINDINGS, and the kiaer draw)",
+   "IA full text of the USGS 1976 register, characters 0-300,000, for PSR 484, PSR 207, RST 181 and date 03/16/15 (final ~209,000 characters not read)",
+   "Repair: re-fetched IA stream text at offsets 0, 100000 and 200000 through the fetch summariser; printed p. 49 found in 100,000-200,000 and printed p. 87 in 200,000-300,000; the archive.org/download endpoint returned a 302 redirect that was not followed",
+   "Web: \"Power Site Reserve No. 484\" / \"No. 207\" with \"March 16, 1915\" - no hit (only unrelated FDR Power Site Restoration No. 484, EO 7620)",
+   "Web: \"Power Site Reserve No. 484\" Cow Creek California - no hit",
+   "Web: \"Power Site Restoration No. 181\" / \"power site reserve No. 207\" Payette Idaho - no hit",
+   "Web: power site reserve 484 Cow Creek Shasta withdrawal - no hit",
+   "Web: \"Power Site Reserve No. 207\" Idaho revoked / public land order - no hit",
+   "USGS Circular 400 PDF - HTTP 403"
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "group": "unnumbered",
+ "id": "PSR:DATE:1915-03-16",
+ "ledger_status": null,
+ "producer_start": "T0",
+ "reached_claimed": "T0",
+ "reached_final": "T0",
+ "reached_reviewed": "T0",
+ "result": {
+  "clauses": [
+   {
+    "clause": "PROVISIONAL, from catalogue only, no text held: withdrawal creating Power Site Reserve 484, Cow Creek, California",
+    "end": null,
+    "props": [
+     "p1",
+     "p2"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "PROVISIONAL, from catalogue only, no text held: Power Site Restoration 181, restoring about 2,120 acres from Power Site Reserve 207, Payette River tributaries, Idaho (if a bare revocation, rule (c) spent on issue would apply once the text is held)",
+    "end": null,
+    "props": [
+     "p3",
+     "p4"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "unknown",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Catalogue subject names 'reserve identifiers 207, 484', but the member rows are PSR 484 (creation) and RST 181 (restoration). 207 is the parent reserve affected by Restoration 181 and has no member row under that number; the restoration number 181 is missing from the subject.",
+   "catalogue_source points only to PDF page 91 (California, PSR 484); the Idaho member row is at PDF page 167 (printed p. 87; the OCR summariser placed the row at p. 88).",
+   "The date group merges a California reserve creation and an Idaho restoration as one provisional instrument; these are probably two separate orders, so the group likely undercounts.",
+   "Possible name collision: 'Power Site Restoration No. 484' (EO 7620, Montana, 1937) is a different instrument from Power Site Reserve 484."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Text of the order creating Power Site Reserve 484 (Cow Creek, California), with signer and signing date",
+    "where_to_look": "National Archives RG 49 (General Land Office) and RG 57 (USGS) power site reserve order files; BLM California land status records / master title plats for the Cow Creek townships, Shasta County; ProQuest Executive Orders and Presidential Proclamations"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Text of Power Site Restoration 181 (partial revocation of the order creating Power Site Reserve 207, Idaho), with signer and signing date",
+    "where_to_look": "National Archives RG 49 / RG 57; BLM Idaho historical index and serial register; ProQuest Executive Orders and Presidential Proclamations"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether PSR 484 was later revoked, in whole or part (the register shows a MOD 484 row; any later restoration or public land order is not identified), or still stood on 2026-10-14",
+    "where_to_look": "USGS 1976 register printed p. 49 page image (Wikimedia PDF p. 91) for the MOD/RST rows of PSR 484; Federal Register public land orders for California; BLM land records for a current withdrawal entry"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Source statement that power site reserves and restorations of 1915 were made by the President (needed to establish this as a presidential order at all)",
+    "where_to_look": "USGS Circular 400, pp. 2-4, https://pubs.usgs.gov/circ/1957/0400/report.pdf (returned HTTP 403 to this worker); House Doc. 1703 (1919) p. 6"
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether the two events are one instrument or two; different States and opposite actions suggest two separate orders",
+    "where_to_look": "The two original orders; owner ruling on splitting the date group"
+   }
+  ],
+  "id": "PSR:DATE:1915-03-16",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "Catalogue rows confirmed in the USGS 1976 register (IA OCR text, read through a fetch summariser), but no text of any order of 1915-03-16 was found: no official printing, archival copy or transcription. Presidential authorship remains an inference from USGS Circular 400, which could not be opened (HTTP 403).",
+    "stop_code": "NOT_FOUND",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": "none found; catalogue only: https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt (printed pp. 49 and 87-88)"
+  },
+  "propositions": [
+   {
+    "claim": "The project's member row records a USGS 1976 register entry for Power Site Reserve 484, Cow Creek, California, dated 1915-03-16, at printed p. 49.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Power Site Reserve 484: Cow Creek, California",
+    "supports": "clause",
+    "where": "research/graunt-census-audit-2026-11-12/FINDINGS.csv line 3022"
+   },
+   {
+    "claim": "The IA OCR text of the USGS register, printed p. 49 (California block), shows PSR 484 and MOD 484 rows and a date 03 16 15; OCR is too garbled to reconstruct the full row (reported by fetch summariser, not read directly).",
+    "location": "W",
+    "pid": "p2",
+    "quote": "03 16 15 155",
+    "supports": "clause",
+    "where": "https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt"
+   },
+   {
+    "claim": "The USGS register (Idaho, about printed p. 87-88) lists Restoration 181 against PSR 207, Payette River tributaries, dated 03/16/[15], minus 2,120 acres (OCR as relayed by fetch summariser).",
+    "location": "W",
+    "pid": "p3",
+    "quote": "1 706 b PSR HO 7 kST 181 03 16 lb PAYETiE RIVER TRIBUTARIES 12 HG ID -2120",
+    "supports": "clause",
+    "where": "https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt"
+   },
+   {
+    "claim": "The project's member row records Power Site Restoration 181, Payette River tributaries, Idaho, 1915-03-16, at printed p. 87 (PDF p. 167).",
+    "location": "H",
+    "pid": "p4",
+    "quote": "Power Site Restoration 181: Payette River tributaries, Idaho",
+    "supports": "clause",
+    "where": "research/graunt-census-audit-2026-11-12/FINDINGS.csv line 3023"
+   },
+   {
+    "claim": "PSR 207 itself continued after 1915-03-16: the register shows a later modification of PSR 207 dated 08/09/16 (OCR as relayed by fetch summariser), so Restoration 181 was at most partial.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "1706 PSR 20 7 MOD 208 08 09 16 PAYE 1 |t. RIVER TRIBUTARIES 12 HG ID 0",
+    "supports": "counterevidence",
+    "where": "https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt"
+   },
+   {
+    "claim": "The project's own inventory states that presidential authorship of this group is inferred, not sourced.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "No order-specific citation located for this group: presidential connection inferred from the 1976 PSR registry and USGS Circular400 classification history.",
+    "supports": "counterevidence",
+    "where": "research/graunt-census-audit-2026-11-12/EO_reconciled_inventory.csv line 3952"
+   },
+   {
+    "claim": "The project's member row records the authority rule relied on for restorations (Circular 400 itself not read by this worker).",
+    "location": "H",
+    "pid": "p7",
+    "quote": "ordinary PSR revocations before April24,1942 by Executive Order; not automatically extended to every MOD",
+    "supports": "original",
+    "where": "research/graunt-census-audit-2026-11-12/FINDINGS.csv line 3023"
+   },
+   {
+    "claim": "The register date may be an agency date rather than the signing date.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "USGS agency catalog date; presidential signature/approval date not authenticated unless separately stated. Date grouping is a proxy.",
+    "supports": "counterevidence",
+    "where": "research/graunt-census-audit-2026-11-12/FINDINGS.csv line 3023"
+   }
+  ],
+  "searches": [
+   "Repo: grep for PSR:DATE:1915-03-16 inside research/ (hits in graunt-census-audit-2026-11-12 inventory and FINDINGS, and the kiaer draw)",
+   "IA full text of the USGS 1976 register, characters 0-300,000, for PSR 484, PSR 207, RST 181 and date 03/16/15 (final ~209,000 characters not read)",
+   "Web: \"Power Site Reserve No. 484\" / \"No. 207\" with \"March 16, 1915\" - no hit (only unrelated FDR Power Site Restoration No. 484, EO 7620)",
+   "Web: \"Power Site Reserve No. 484\" Cow Creek California - no hit",
+   "Web: \"Power Site Restoration No. 181\" / \"power site reserve No. 207\" Payette Idaho - no hit",
+   "Web: power site reserve 484 Cow Creek Shasta withdrawal - no hit",
+   "Web: \"Power Site Reserve No. 207\" Idaho revoked / public land order - no hit",
+   "USGS Circular 400 PDF - HTTP 403"
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "review": {
+  "conclusion_reason": "OPEN and unknown formal status are warranted: the confirmed records identify provisional catalogue events but supply neither original operative language nor evidence establishing operation or termination at the cutoff. The suggested partial-restoration characterization remains unverified.",
+  "conclusion_verdict": "upheld",
+  "id": "PSR:DATE:1915-03-16",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed — NOT_FOUND fits the first gap within the supplied evidence slice: it names a catalogue lead, not an original order text. This does not establish that archival or other original holdings were exhaustively searched.",
+  "suspected_defect": null,
+  "tier_supported": "T0",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "FINDINGS.csv line 3022 records PSR 484, Cow Creek, California, 1915-03-16, printed p. 49 and PDF p. 91.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Both IA text endpoints failed; the Wikimedia PDF exceeded the retrieval limit. The quoted OCR and its page context could not be inspected.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p3",
+    "reason": "The register text could not be retrieved. The project row confirms the restoration identity and date but does not verify the quoted register row or acreage.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p4",
+    "reason": "FINDINGS.csv line 3023 records Restoration 181, Payette River tributaries, Idaho, 1915-03-16, printed p. 87 and PDF p. 167.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The cited later modification row could not be inspected. Even a later modification entry would require context to establish that the 1915 restoration was necessarily partial.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p6",
+    "reason": "EO_reconciled_inventory.csv line 3952 contains the quoted statement that presidential attribution is inferred and no order-specific citation was located.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "FINDINGS.csv line 3023 contains the quoted authority classification. This confirms what the project row says, not the underlying Circular 400 rule independently.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p8",
+    "reason": "FINDINGS.csv line 3023 expressly calls the date an agency catalogue date and says the presidential signature or approval date is unauthenticated.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 260.5,
+ "start": "T0",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "confirmed — NOT_FOUND fits the first gap within the supplied evidence slice: it names a catalogue lead, not an original order text. This does not establish that archival or other original holdings were exhaustively searched.",
+ "tokens": 226891,
+ "units": 116391,
+ "units_producer": 58468,
+ "units_repair": 39709,
+ "units_review": 18214
+}

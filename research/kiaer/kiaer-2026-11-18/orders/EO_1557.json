@@ -1,0 +1,270 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C03",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "rejected",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: withdraws about 3 acres on the left bank of the Tanana River, Alaska (McCarty telegraph station) from settlement, location or entry and reserves it for military purposes, subject to existing rights",
+    "end": null,
+    "gap": "Candidate ending: PLO 6688, signed 1988-11-04, 53 FR 46871, reported by the BLM table as revoking EO No. 1557. The PLO's revoking words and effective date have not been read.",
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "open_named_gap: the text of PLO 6688 at 53 FR 46871 (revoking words, whole or part, effective date)",
+   "first_end": null,
+   "formal_status": "unconfirmed: BLM's Table of Public Land Orders reports revocation by PLO 6688 (signed 1988-11-04), but the instrument's revoking words and effective date were not read",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "The evidence slice has an empty president field; the transcription gives Wm. H. Taft."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "An accepted original of EO 1557 (official printing or State Department copy replica) to check the transcription and fix the clause list",
+    "where_to_look": "ProQuest Executive Orders and Presidential Proclamations (State Department copy); National Archives RG 11; BLM Alaska land records"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "The text of Public Land Order 6688: its revoking words, whether it revokes EO 1557 in whole as the table says, and its effective date. Until it is read, operative status stays OPEN.",
+    "where_to_look": "53 FR 46871 (November 1988) in the govinfo Federal Register issue PDF; the file is over the 10 MB fetch limit and needs a download job"
+   }
+  ],
+  "id": "EO:1557",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Only a Wikisource transcription is held. A 1912 order predates the Federal Register; no official printing or State Department replica has been located yet, and online sources are not exhausted. The clause list below is drawn from the transcription only.",
+    "stop_code": "WEB",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Not reached because T2 failed. The BLM table row for PLO 6688 is a revocation lead only. The PLO text at 53 FR 46871 was not read: the govinfo link-service PDF exceeds the 10 MB fetch limit (retried in this repair), federalregister.gov redirected to an unblock page, and web search found no text. Status is therefore OPEN.",
+    "stop_code": "WEB",
+    "to": "T3"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "jobs/wikisource-texts/output/texts/EO_1557.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The transcription shows a single operative command: a withdrawal and military reservation of about 3 acres on the Tanana River.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "be withdrawn from settlement, location, or entry, and that same be, and is hereby, reserved for military purposes, subject to any existing rights thereto",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1557.txt"
+   },
+   {
+    "claim": "The transcription says the tract includes the buildings of the McCarty United States Telegraph Station and gives the signing as Wm. H. Taft, July 3, 1912.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "to include the buildings of the McCarty United States Telegraph Station",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1557.txt"
+   },
+   {
+    "claim": "BLM's official Table of Public Land Orders lists PLO 6688, signed Nov. 4, 1988, as revoking EO No. 1557 without the 'in part' qualifier it applies to EO No. 7127 in the same row. This is a finding-aid description and a lead to the instrument, not the instrument's own revoking words.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "6688 Nov. 4, 1988 Alaska, selection of land; revoking EO No. 1557 and revoking in part EO No. 7127. 53 FR 46871",
+    "supports": "candidate_ending",
+    "where": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_5807-6825.pdf"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by the reviewer; unchanged."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by the reviewer; unchanged."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Quote upheld; relabelled as a candidate ending because a table row is a finding aid, not the revoking instrument."
+   },
+   {
+    "change": "fixed",
+    "pid": "conclusion",
+    "why": "Operative status changed from NO to OPEN and the unsupported 1988-12-31 end bound withdrawn; PLO 6688's revoking words and effective date at 53 FR 46871 are still unread."
+   },
+   {
+    "change": "fixed",
+    "pid": "stop_code",
+    "why": "T1 to T2 stop code and the original-text gap changed from OFFLINE to WEB; online sources are not shown to be exhausted."
+   }
+  ],
+  "searches": [
+   "Read the held Wikisource text jobs/wikisource-texts/output/texts/EO_1557.txt",
+   "Web search (standard): Public Land Order 6688 with Executive Order No. 1557 and 53 FR 46871; no PLO text found",
+   "Web search (extended): PLO 6688, EO 1557 or EO 7127, McCarty telegraph station, Big Delta; no PLO text found",
+   "Fetched the BLM PLO table 5807-6825 PDF and read the page image carrying the PLO 6688 row",
+   "govinfo FR-1988-11-21 issue PDF (a guessed issue date) and govinfo link service for 53 FR 46871: both failed on the size limit",
+   "federalregister.gov/citation/53-FR-46871: redirected to an unblock page",
+   "rowalaska.net 'Orders Affecting Public Lands in Alaska' index PDF: fetched but its text was not readable through the fetch tool",
+   "Repair pass: govinfo.gov/link/fr/53/46871?link-type=pdf failed again on the 10 MB size limit",
+   "Repair pass: web search (standard) for \"Public Land Order 6688\" Alaska \"Executive Order No. 1557\" revoked 53 FR 46871; no PLO text found"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "group": "pre1937",
+ "id": "EO:1557",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T1",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: withdraws about 3 acres on the left bank of the Tanana River, Alaska (McCarty telegraph station) from settlement, location or entry and reserves it for military purposes, subject to existing rights",
+    "end": "not later than 1988-12-31 (PLO 6688 signed 1988-11-04; effective date not read)",
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "express_named_ending",
+   "first_end": "not later than 1988-12-31",
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "The evidence slice has an empty president field; the transcription gives Wm. H. Taft."
+  ],
+  "gaps": [
+   {
+    "stop_code": "OFFLINE",
+    "what": "An accepted original of EO 1557 (official printing or State Department copy replica) to check the transcription and fix the clause list",
+    "where_to_look": "ProQuest Executive Orders and Presidential Proclamations (State Department copy); National Archives RG 11; BLM Alaska land records"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "The text of Public Land Order 6688: its revoking words, whether it revokes EO 1557 in whole as the table says, and its effective date",
+    "where_to_look": "53 FR 46871 (November 1988) in the govinfo Federal Register issue PDF; the file is over the 10 MB fetch limit and needs a download job"
+   }
+  ],
+  "id": "EO:1557",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Only a Wikisource transcription is held. A 1912 order predates the Federal Register; no official printing or State Department replica was located. The clause list below is drawn from the transcription only.",
+    "stop_code": "OFFLINE",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Not reached because T2 failed. Provisional status NO rests on the BLM table row for PLO 6688, confirmed from the PDF page image. The PLO text at 53 FR 46871 was not read: the govinfo issue PDF exceeds the fetch limit and federalregister.gov redirected to an unblock page.",
+    "stop_code": "WEB",
+    "to": "T3"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "jobs/wikisource-texts/output/texts/EO_1557.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The transcription shows a single operative command: a withdrawal and military reservation of about 3 acres on the Tanana River.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "be withdrawn from settlement, location, or entry, and that same be, and is hereby, reserved for military purposes, subject to any existing rights thereto",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1557.txt"
+   },
+   {
+    "claim": "The transcription says the tract includes the buildings of the McCarty United States Telegraph Station and gives the signing as Wm. H. Taft, July 3, 1912.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "to include the buildings of the McCarty United States Telegraph Station",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1557.txt"
+   },
+   {
+    "claim": "BLM's official Table of Public Land Orders lists PLO 6688, signed Nov. 4, 1988, as revoking EO No. 1557 without the 'in part' qualifier it applies to EO No. 7127 in the same row.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "6688 Nov. 4, 1988 Alaska, selection of land; revoking EO No. 1557 and revoking in part EO No. 7127. 53 FR 46871",
+    "supports": "ending",
+    "where": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_5807-6825.pdf"
+   }
+  ],
+  "searches": [
+   "Read the held Wikisource text jobs/wikisource-texts/output/texts/EO_1557.txt",
+   "Web search (standard): Public Land Order 6688 with Executive Order No. 1557 and 53 FR 46871; no PLO text found",
+   "Web search (extended): PLO 6688, EO 1557 or EO 7127, McCarty telegraph station, Big Delta; no PLO text found",
+   "Fetched the BLM PLO table 5807-6825 PDF and read the page image carrying the PLO 6688 row",
+   "govinfo FR-1988-11-21 issue PDF (a guessed issue date) and govinfo link service for 53 FR 46871: both failed on the size limit",
+   "federalregister.gov/citation/53-FR-46871: redirected to an unblock page",
+   "rowalaska.net 'Orders Affecting Public Lands in Alaska' index PDF: fetched but its text was not readable through the fetch tool"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "review": {
+  "conclusion_reason": "The table confirms a revocation lead, but does not supply the later instrument's operative revoking words or effective date. Under the stated rules, operative status remains OPEN pending PLO 6688 at 53 FR 46871; formal revocation is reported by the table but not confirmed from the instrument. The asserted ending no later than 1988-12-31 is unsupported. T2 also fails because no accepted original of EO 1557 was read.",
+  "conclusion_verdict": "rejected",
+  "id": "EO:1557",
+  "missed_evidence": [],
+  "stop_code_verdict": "wrong (WEB fits the evidence shown: the slice establishes only that an accepted original has not been located, with a page check still owed; it does not establish that obtaining the original requires offline access or that online sources are exhausted).",
+  "suspected_defect": "The result promotes a finding-aid description into a proven express ending and supplies an unsupported year-end bound despite acknowledging that the revoking text and effective date were not read.",
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The held transcription contains the quoted withdrawal and reservation command and describes about 3 acres on the left bank of the Tanana River.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held transcription includes the quoted McCarty station language and ends with Wm. H. Taft and July 3, 1912.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The cited BLM PDF, page 21, lines 1474–1476, lists PLO 6688 under signature date Nov. 4, 1988, with 'revoking EO No. 1557 and revoking in part EO No. 7127' and 53 FR 46871.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 129.2,
+ "start": "T1",
+ "status": "completed",
+ "stop": "OFFLINE",
+ "stop_code_verdict": "wrong (WEB fits the evidence shown: the slice establishes only that an accepted original has not been located, with a page check still owed; it does not establish that obtaining the original requires offline access or that online sources are exhausted).",
+ "tokens": 205565,
+ "units": 103744,
+ "units_producer": 44099,
+ "units_repair": 24616,
+ "units_review": 35029
+}

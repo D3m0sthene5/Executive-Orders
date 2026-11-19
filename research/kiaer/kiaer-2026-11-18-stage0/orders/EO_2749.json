@@ -1,0 +1,316 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C05",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: reserves lots 6, [illegible] and 8, fractional sec. 29, T. 9 S., R. [illegible] W., Florida, for lighthouse purposes (the section already under an 1849 military reservation). The middle lot number and the range are not legible in the held text; 7 and 11 are unconfirmed readings.",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "EO_2749.txt OCR damage in the land description: 'lots 6, ; and 8' (middle lot number lost), ''F. 9 S., R. I tXW.' (township letter and range garbled), 'florid' for Florida, 'Executive Orber'. The operative words 'reserved for lighthouse purposes' are legible.",
+   "Evidence slice has an empty 'president' field; the held text is signed Woodrow Wilson."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_CHECKED",
+    "what": "Whether any PLO, executive order or conveyance revoked or ended the lighthouse reservation of lots 6-8, sec. 29 (in whole or part).",
+    "where_to_look": "Held BLM PLO tables (search for '2749' and 'November 5, 1917'; path not given to this worker); Federal Register PLO listings for Florida; BLM Eastern States master title plat and historical index for the township, Tallahassee Meridian."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "A positive current source at 2026-10-14 treating the reservation as in force (for example a Coast Guard or BLM land record), or a record of disposal of the lighthouse site.",
+    "where_to_look": "BLM Eastern States land status records; Coast Guard real property records; GSA disposal records for the lighthouse station in that township."
+   },
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "The correct range and lot numbers. The OCR reads 'R. I tXW.' and 'lots 6, ; and 8'. R. 11 W. and lot 7 are unconfirmed readings; identification with the Cape San Blas area is an unverified inference from that reading.",
+    "where_to_look": "The ProQuest page image behind EO_2749.txt."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Status of the underlying military reservation of March 23, 1849 and the lighthouse reservation of June 12, 1847, which the order recites and which may bear on later disposition of the section.",
+    "where_to_look": "BLM historical index for the township; War Department military reservation compilations."
+   }
+  ],
+  "id": "EO:2749",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Status OPEN with named gap: no revocation instrument and no positive current source found. Basis rule none.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Literal reading only: the order has one operative clause and its state is open with the gap named. No clause is resolved.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "The held BLM PLO tables were not searched: no path was given and a glob for jobs/*plo* found no files. One logged web search (2026-11-18) returned no instrument naming EO 2749 or its parcel; that does not establish that none exists.",
+    "stop_code": "NOT_CHECKED",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "checked_replica",
+   "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2749.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The order reserves three lots in fractional section 29 for lighthouse purposes.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "lots 6, ; and 8, fractional Sec. 29, 'F. 9 S., R. I tXW., florid, be and the same are hereby reserved for lighthouse purposes",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2749.txt"
+   },
+   {
+    "claim": "The order recites that the section was already reserved for military purposes in 1849 and that other lots were reserved for lighthouse purposes in 1847.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "now reserved for military purposes by Executive Order dated March 23, 1849, previous to which, on June 12, 1847, lots 9, 10, 14 and 15",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2749.txt"
+   },
+   {
+    "claim": "The held text is signed by Wilson, dated 5 November 1917 and numbered 2749.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "WOODROW WILSON THE WHITE HOUSE, .5 November, 1917. [No. 2749.]",
+    "supports": "original",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2749.txt"
+   },
+   {
+    "claim": "One web search run on 2026-11-18 (query in searches) returned no public land order or executive order naming EO 2749, its date as a revoked order, or the parcel. The Florida lighthouse results it returned were, by title or search summary, about other withdrawals: PLO 7881 and PLO 7765 (Jupiter Inlet), a Sanibel Island revocation in the Federal Register of 2008-06-25, and a revocation of the Executive Order of February 1, 1886. Those pages were not opened and are not quoted. This is a negative search result, not proof that no ending exists.",
+    "location": "N",
+    "pid": "p4",
+    "quote": "",
+    "supports": "counterevidence",
+    "where": "Web search 2026-11-18; result URLs: https://regulations.justia.com/regulations/fedreg/2019/07/31/2019-16303.html ; https://regulations.justia.com/regulations/fedreg/2011/05/02/2011-10587.html ; https://www.govinfo.gov/content/pkg/FR-2008-06-25/pdf/E8-14382.pdf ; https://api.ai-analytics.org/interior-rule/95-17512.md ; https://mocat.library.unt.edu/catalog/275-ch410"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld; re-read in the held file. Clause text now marks the middle lot and range as illegible rather than as 7 and 11."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld; quote confirmed in the held file."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld; quote confirmed in the held file."
+   },
+   {
+    "change": "fixed",
+    "pid": "p4",
+    "why": "Unlogged three-search claim withdrawn; replaced by one search re-run 2026-11-18 with query and result URLs, narrowed to what the titles and summary show. Stop code for the PLO-table gap changed to NOT_CHECKED."
+   }
+  ],
+  "searches": [
+   "Web, 2026-11-18, standard mode: '\"Public Land Order\" Florida lighthouse reservation \"sec. 29\" \"T. 9 S.\" \"R. 11 W.\" Tallahassee Meridian Cape San Blas revoked Executive Order November 5, 1917' - no instrument naming the order or parcel; returned other Florida lighthouse PLOs (URLs in p4). Results read as titles and search summary only.",
+   "Lead, not opened: the search summary reports a Monthly Catalog entry at https://mocat.library.unt.edu/catalog/275-ch410 listing an executive order of November 5, 1917 reserving Florida lands for lighthouse purposes.",
+   "Withdrawn: the three web searches listed in the earlier result had no log or URLs and are not relied on.",
+   "Glob jobs/*plo* - no files found.",
+   "Not searched: held BLM PLO tables (no path given), Federal Register full text, BLM land records."
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T4"
+ },
+ "group": "pre1937",
+ "id": "EO:2749",
+ "ledger_status": null,
+ "producer_start": "T2",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T4",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: reserves lots 6, [7] and 8, fractional sec. 29, T. 9 S., R. [11] W., Florida, for lighthouse purposes (land already under an 1849 military reservation).",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "EO_2749.txt OCR damage in the land description: 'lots 6, ; and 8' (middle lot number lost), ''F. 9 S., R. I tXW.' (township letter and range garbled), 'florid' for Florida, 'Executive Orber'. The operative words 'reserved for lighthouse purposes' are legible.",
+   "Evidence slice has an empty 'president' field; the held text is signed Woodrow Wilson."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether any PLO, executive order or conveyance revoked or ended the lighthouse reservation of lots 6-8, sec. 29 (in whole or part).",
+    "where_to_look": "Held BLM PLO tables (search for '2749' and 'November 5, 1917'); Federal Register PLO listings for Florida; BLM Eastern States master title plat and historical index for the township, Tallahassee Meridian."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "A positive current source at 2026-10-14 treating the reservation as in force (for example a Coast Guard or BLM land record), or a record of disposal of the lighthouse site.",
+    "where_to_look": "BLM Eastern States land status records; Coast Guard real property records; GSA disposal records for the lighthouse station in that township."
+   },
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "The correct range and lot numbers. The OCR reads 'R. I tXW.' and 'lots 6, ; and 8'. R. 11 W. and lot 7 are my readings; identification with the Cape San Blas area is an unverified inference from that reading.",
+    "where_to_look": "The ProQuest page image behind EO_2749.txt."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Status of the underlying military reservation of March 23, 1849 and the lighthouse reservation of June 12, 1847, which the order recites and which may bear on later disposition of the section.",
+    "where_to_look": "BLM historical index for the township; War Department military reservation compilations."
+   }
+  ],
+  "id": "EO:2749",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Status OPEN with named gap: no revocation instrument and no positive current source found. Basis rule none.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Literal reading only: the order has one operative clause and its state is open with the gap named. No clause is resolved.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "No PLO or order naming EO 2749 or its parcel found in three web searches; no current agency record of the reservation found. Held BLM PLO tables not searched (no path given in slice).",
+    "stop_code": "NOT_FOUND",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "checked_replica",
+   "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2749.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The order reserves three lots in fractional section 29 for lighthouse purposes.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "lots 6, ; and 8, fractional Sec. 29, 'F. 9 S., R. I tXW., florid, be and the same are hereby reserved for lighthouse purposes",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2749.txt"
+   },
+   {
+    "claim": "The order recites that the section was already reserved for military purposes in 1849 and that other lots were reserved for lighthouse purposes in 1847.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "now reserved for military purposes by Executive Order dated March 23, 1849, previous to which, on June 12, 1847, lots 9, 10, 14 and 15",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2749.txt"
+   },
+   {
+    "claim": "The held text is signed by Wilson, dated 5 November 1917 and numbered 2749.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "WOODROW WILSON THE WHITE HOUSE, .5 November, 1917. [No. 2749.]",
+    "supports": "original",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2749.txt"
+   },
+   {
+    "claim": "Three web searches returned no public land order or executive order naming EO 2749, its date, or the parcel; the Florida lighthouse revocations returned (PLO 7881, PLO 7765, the 1995 PLO revoking the order of February 1, 1886) concern other orders. This is a search result, not a quotation.",
+    "location": "N",
+    "pid": "p4",
+    "quote": "",
+    "supports": "counterevidence",
+    "where": "web search results, see searches"
+   }
+  ],
+  "searches": [
+   "Web: Executive Order November 5, 1917, lighthouse, sec. 29, T. 9 S., R. 11 W., Florida, Cape San Blas, public land order revoked - no match",
+   "Web: 'Executive Order No. 2749' lighthouse Florida revoked 'Public Land Order' - no match; only other Florida lighthouse PLOs",
+   "Web: Cape San Blas lighthouse reservation Public Land Order / withdrawal, sec. 29, T. 9 S., R. 11 W., Tallahassee Meridian - no match",
+   "Not searched: held BLM PLO tables (the slice gives no path), Federal Register full text, BLM land records"
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "OPEN is supported: the operative words are 'be and the same are hereby reserved for lighthouse purposes,' with no stated expiration. Neither an ending nor positive current operation at the cutoff is established. The gaps identify the missing termination and current-status evidence and where to seek it. Formal status is supportable only as no express ending found in the supplied evidence, not as proof that none exists.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:2749",
+  "missed_evidence": [],
+  "stop_code_verdict": "wrong (NOT_CHECKED fits): the evidence slice specifically points to held BLM PLO tables, but the result documents no check of those tables. The unverified web-search claim does not establish that this identified source was searched without finding an ending.",
+  "suspected_defect": null,
+  "tier_supported": "T4",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The cited file contains the quoted reservation of three listed lots for lighthouse purposes. The middle lot number and range remain illegible; readings of 7 and 11 are not confirmed.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The file expressly recites the March 23, 1849 military reservation and says lots 9, 10, 14 and 15 were reserved for lighthouse purposes on June 12, 1847.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The file contains WOODROW WILSON, .5 November, 1917, and [No. 2749.], confirming the claimed attribution, date and number.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "No search log, result URLs or cited instrument texts were supplied. The claimed three searches and the scope of the returned revocations cannot be checked against a cited source.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 114.2,
+ "start": "T2",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "wrong (NOT_CHECKED fits): the evidence slice specifically points to held BLM PLO tables, but the result documents no check of those tables. The unverified web-search claim does not establish that this identified source was searched without finding an ending.",
+ "tokens": 117058,
+ "units": 79296,
+ "units_producer": 30559,
+ "units_repair": 27372,
+ "units_review": 21365
+}

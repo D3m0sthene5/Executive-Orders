@@ -1,0 +1,435 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C08",
+ "census_overstated": true,
+ "conclusion": "NO",
+ "conclusion_verdict": "rejected",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: approves the industry's application and, effective immediately, amends Article I, seventh paragraph of the Automobile Manufacturing Code so that 'expiration date' means February 1, 1935.",
+    "end": null,
+    "gap": "The paragraph's text was replaced on 1935-01-31 by EO 6955, which does not name No. 6895 (candidate ending, not a named supersession). Under rule (d) the clause follows the parent Code, approved 1933-08-26 by EO 6258-A; no source read shows that the Code ended, on June 16, 1935 or otherwise.",
+    "props": [
+     "p2",
+     "p3",
+     "p4",
+     "p5",
+     "p6",
+     "p8",
+     "p9"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "amendment_follows_parent",
+   "first_end": null,
+   "formal_status": "not_expressly_revoked_or_superseded",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "jobs/app-executive-orders/output/texts/executive-order-6895-amendment-executive-order-no-6814-august-9-1934.txt is not EO 6895: it is a silver-delivery amendment to EO 6814 dated Nov. 2, 1934 (probably a lettered order such as 6895-A; not verified).",
+   "OCR disagreement on the old expiration date: mabillon text reads 'November 8, 1934', photius text reads 'November 3, 1934'. Not checked against EO 6837; does not affect the operative new date.",
+   "photius EO_6895.txt header says the closing tag [No. 6895.] was read, but the extracted text ends at the date line without it.",
+   "Evidence slice lists no later instruments naming it; held EO 6955 replaces its text but is unrouted because it cites no order number."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Whether and when the parent Automobile Manufacturing Code ended. Needed: (1) whether the June 16, 1935 expiration date set by EO 6955 was extended by a later amendment; (2) the text of the June 1935 joint resolution extending the NIRA and its effect on existing codes; (3) any instrument that names the Code or EO 6258-A and ends it. Unverified leads from one web search summary, none read in an original: Schechter (May 27, 1935) held the code provisions of Title I invalid; a joint resolution extended the NRA to April 1, 1936; a Roosevelt statement reportedly said the part of the resolution relating to codes would be inoperative for the old codes.",
+    "where_to_look": "49 Stat. 375 (Joint Resolution of June 14, 1935; citation not confirmed); NRA Codes of Fair Competition volumes for amendments to the Automobile Manufacturing Code after January 31, 1935; held texts of EO 6837 and EO 6513-K; American Presidency Project June 1935 statements (lead only)"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "No later instrument naming No. 6895 was found. EO 6955 replaced its text without citing it, so formal status is reported as not expressly revoked or superseded, with EO 6955 as a candidate.",
+    "where_to_look": "later orders amending the Automobile Manufacturing Code; disposition tables"
+   }
+  ],
+  "id": "EO:6895",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Two held GPO printings (OCR) re-read; operative words legible. The order has one operative clause.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Status is now OPEN with a named gap, basis rule (d): EO 6895 only amends the Automobile Manufacturing Code, so it follows the parent Code, whose ending is not established. The earlier NO is withdrawn: EO 6955 does not name No. 6895, and it replaced the February 1, 1935 date before that date arrived, so neither a named ending nor an own-terms expiry is shown.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single clause has a state: open, with the gap named (the parent Code's ending). This is a literal reading of the T4 rule; the reviewer put the earlier result at T2 because its conclusion was wrong. If an open sole clause is not meant to reach T4, the tier is T3.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "No accepted source read for the parent Code's ending: whether the June 16, 1935 expiration set by EO 6955 was later extended, and the terms of the June 1935 joint resolution extending the NIRA. One web search returned only secondary leads.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/photius-gpo-volumes/output/texts/EO_6895.txt (GPO bound slip-order volume, HathiTrust hvd.hl2725, PDF pp. 949-951); second printing jobs/mabillon-held-printings/output/texts/EO_6895.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held text is a GPO printing of EO 6895 dated November 2, 1934.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "November 2, 1934 [No. 6895] U.S. GOVERNMENT PRINTING OFFICE",
+    "supports": "original",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6895.txt"
+   },
+   {
+    "claim": "The order's only command approves the application and amends the Code.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "do order that the said application be and it is hereby approved, and that, effective immediately, the said Code of Fair Competition for the Automobile Manufacturing Industry be and it is hereby amended",
+    "supports": "clause",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6895.txt"
+   },
+   {
+    "claim": "The amendment substitutes a paragraph defining the Code's expiration date as February 1, 1935.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "The term 'expiration date' as used herein means February 1, 1935, or the earliest date prior thereto on which the President shall by proclamation",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6895.txt"
+   },
+   {
+    "claim": "EO 6955 of January 31, 1935 is a later amendment of the same Code, effective immediately.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "effective immediately, the said Code of Fair Competition for the Automobile Manufacturing Industry be and it is hereby amended as follows",
+    "supports": "candidate_ending",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "EO 6955 quotes the paragraph EO 6895 inserted as the text being replaced; it does not cite No. 6895.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "In Article I, the seventh paragraph, which has heretofore read as follows: \"The term 'expiration date' as used herein means February 1, 1935",
+    "supports": "candidate_ending",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "EO 6955 replaces that paragraph with one setting June 16, 1935, so the February 1, 1935 date never took effect as an expiry and the parent Code's stated expiration became June 16, 1935.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "shall be modified to read as follows: \"The term 'expiration date' as used herein means June 16, 1935, or the earliest date prior thereto",
+    "supports": "parent_status",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "EO 6955 is held in a GPO printing dated January 31, 1935.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "January 31, 1935 [No. 6955]",
+    "supports": "candidate_ending",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "EO 6895 identifies its parent as the Automobile Manufacturing Code approved August 26, 1933.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "the Code of Fair Competition for the Automobile Manufacturing Industry duly approved on August 26, 1933",
+    "supports": "parent_status",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6895.txt"
+   },
+   {
+    "claim": "The parent Code was approved by EO 6258-A of August 26, 1933, held in a GPO printing.",
+    "location": "H",
+    "pid": "p9",
+    "quote": "do order that the said Code of Fair Competition be and it is hereby approved.",
+    "supports": "parent_status",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6258A.txt (dated 'August 26, 1933. [No. 6258-A]')"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld; quote re-confirmed in the held mabillon printing."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld; quote re-confirmed."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld; quote re-confirmed in the photius printing (OCR spacing normalised)."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld; relabelled as a candidate ending because EO 6955 does not name No. 6895."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Upheld; claim now states that EO 6955 does not cite No. 6895, and it supports a candidate only."
+   },
+   {
+    "change": "kept",
+    "pid": "p6",
+    "why": "Upheld; claim now carries the consequence the reviewer flagged: the February 1, 1935 fallback fails and the parent Code's stated expiry became June 16, 1935."
+   },
+   {
+    "change": "kept",
+    "pid": "p7",
+    "why": "Upheld; quote re-confirmed."
+   },
+   {
+    "change": "fixed",
+    "pid": "p8",
+    "why": "Added: reviewer's missed evidence identifying the parent Code, confirmed in the held text."
+   },
+   {
+    "change": "fixed",
+    "pid": "p9",
+    "why": "Added: held EO 6258-A printing confirms the parent's approving order."
+   },
+   {
+    "change": "fixed",
+    "pid": "conclusion",
+    "why": "NO / express_named_ending / first_end 1935-01-31 withdrawn. Now OPEN under rule (d), formal status not expressly revoked, no first_end; stop code changed from NEEDS_RULING to WEB."
+   }
+  ],
+  "searches": [
+   "Re-read both held GPO printings of EO 6895",
+   "Re-read the held mabillon printing of EO 6955",
+   "Read the held mabillon printing of EO 6258-A (first 60 lines; complete order)",
+   "Grep 'Automobile Manufac' in jobs/mabillon-held-printings/output/texts: hits EO 6258A, 6513K, 6837, 6895, 6955",
+   "One standard web search on the Code's June 16, 1935 expiry, Schechter and the June 1935 joint resolution: only secondary leads, no statutory text, nothing specific to the automobile code",
+   "Earlier run: grep of jobs/photius-gpo-volumes/output/texts hit EO 6258A, 6514, 6837, 6895, 6955; grep of jobs/app-executive-orders/output/texts timed out",
+   "EO 6837 and EO 6513-K held texts were not opened"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "group": "pre1937",
+ "id": "EO:6895",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T2",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: approves the industry's application and, effective immediately, amends Article I, seventh paragraph of the Automobile Manufacturing Code so that 'expiration date' means February 1, 1935 (was November 3, 1934).",
+    "end": "1935-01-31",
+    "props": [
+     "p2",
+     "p3",
+     "p4",
+     "p5",
+     "p6"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "express_named_ending",
+   "first_end": "1935-01-31",
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/app-executive-orders/output/texts/executive-order-6895-amendment-executive-order-no-6814-august-9-1934.txt is not EO 6895: it is a silver-delivery amendment to EO 6814 dated Nov. 2, 1934 (probably a lettered order such as 6895-A; not verified).",
+   "OCR disagreement on the old expiration date: mabillon text reads 'November 8, 1934', photius text reads 'November 3, 1934'. Not checked against EO 6837; does not affect the operative new date.",
+   "photius EO_6895.txt header says the closing tag [No. 6895.] was read, but the extracted text ends at the date line without it.",
+   "Evidence slice lists no later instruments naming it; held EO 6955 replaces its text but is unrouted because it cites no order number."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether a later order that quotes and replaces the exact paragraph, without citing No. 6895, counts as an express named supersession. If not, the basis becomes own_terms with first_end 1935-02-01; status stays NO.",
+    "where_to_look": "project rules / owner ruling"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "End of the parent Code itself after EO 6955 (expiration June 16, 1935) was not researched: no check for a later extension or for the terms of the 1935 joint resolution extending the NIRA. Not needed for this order's own clause.",
+    "where_to_look": "49 Stat. 375 (Joint Resolution of June 14, 1935); NRA Codes of Fair Competition volumes; held texts of EO 6258-A and EO 6837"
+   }
+  ],
+  "id": "EO:6895",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Two held GPO printings (OCR) read; operative words legible. The order has one operative clause.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "NO: held EO 6955 (1935-01-31) quotes the paragraph EO 6895 inserted and replaces it.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single clause is ended, with date and source.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "EO 6955 identifies the replaced paragraph by quoting it, not by citing No. 6895; rules do not say whether that is a 'named' supersession. Fallback own-terms date (1935-02-01) gives the same NO.",
+    "stop_code": "NEEDS_RULING",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/photius-gpo-volumes/output/texts/EO_6895.txt (GPO bound slip-order volume, HathiTrust hvd.hl2725, PDF pp. 949-951); second printing jobs/mabillon-held-printings/output/texts/EO_6895.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held text is a GPO printing of EO 6895 dated November 2, 1934.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "November 2, 1934 [No. 6895] U.S. GOVERNMENT PRINTING OFFICE",
+    "supports": "original",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6895.txt"
+   },
+   {
+    "claim": "The order's only command approves the application and amends the Code.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "do order that the said application be and it is hereby approved, and that, effective immediately, the said Code of Fair Competition for the Automobile Manufacturing Industry be and it is hereby amended",
+    "supports": "clause",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6895.txt"
+   },
+   {
+    "claim": "The amendment substitutes a paragraph defining the Code's expiration date as February 1, 1935.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "The term 'expiration date' as used herein means February 1, 1935, or the earliest date prior thereto on which the President shall by proclamation",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6895.txt"
+   },
+   {
+    "claim": "EO 6955 of January 31, 1935 is a later amendment of the same Code, effective immediately.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "effective immediately, the said Code of Fair Competition for the Automobile Manufacturing Industry be and it is hereby amended as follows",
+    "supports": "ending",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "EO 6955 quotes the paragraph EO 6895 inserted as the text being replaced.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "In Article I, the seventh paragraph, which has heretofore read as follows: \"The term 'expiration date' as used herein means February 1, 1935",
+    "supports": "ending",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "EO 6955 replaces that paragraph with one setting June 16, 1935.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "shall be modified to read as follows: \"The term 'expiration date' as used herein means June 16, 1935, or the earliest date prior thereto",
+    "supports": "ending",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "EO 6955 is held in a GPO printing dated January 31, 1935.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "January 31, 1935 [No. 6955]",
+    "supports": "ending",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6955.txt"
+   }
+  ],
+  "searches": [
+   "Read both held GPO printings of EO 6895 and the misfiled APP text",
+   "Grep 'Automobile Manufac' in jobs/photius-gpo-volumes/output/texts: hits EO 6258A, 6514, 6837, 6895, 6955",
+   "Grep 'Automobile Manufac' in jobs/mabillon-held-printings/output/texts: hits EO 6258A, 6513K, 6837, 6895, 6955",
+   "Grep of jobs/app-executive-orders/output/texts timed out; no result",
+   "Read both held printings of EO 6955",
+   "No web search run"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "EO 6955 replaces the amended paragraph but does not name EO 6895; it therefore does not establish the project's required express named ending or the asserted formal status. Under rule (d), this amendment-only order requires the parent's status, which the worker expressly left unresearched. The February 1 fallback also fails because EO 6955 replaced that date before it arrived. Operative status should remain OPEN pending the parent Code's lifecycle evidence; formal revocation or supersession is unproved. January 31 is a demonstrated paragraph-replacement date, not an established qualifying first end for the order.",
+  "conclusion_verdict": "rejected",
+  "id": "EO:6895",
+  "missed_evidence": [
+   "jobs/mabillon-held-printings/output/texts/EO_6955.txt, paragraph 1: 'shall be modified to read as follows' substitutes 'June 16, 1935' for February 1. This evidence was quoted but its decisive consequence was missed: the proposed February 1 own-terms fallback cannot stand.",
+   "jobs/photius-gpo-volumes/output/texts/EO_6895.txt identifies the parent Code as 'duly approved on August 26, 1933.' Its status must be established under rule (d); the result's assertion that parent research is unnecessary contradicts that rule."
+  ],
+  "stop_code_verdict": "wrong (WEB fits the unresolved parent-lifecycle evidence; NEEDS_RULING does not fit because the supplied rules already require a named ending and parent-status research for amendment-only orders)",
+  "suspected_defect": "The result promotes an acknowledged non-naming paragraph replacement into express_named_ending and revoked_or_superseded, then incorrectly preserves NO through an expiration date its own evidence shows was replaced. Whether deliberate cannot be determined.",
+  "tier_supported": "T2",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The held mabillon printing includes November 2, 1934, [No. 6895], and the Government Printing Office imprint.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held text approves the application and immediately amends the Code; its substantive amendment is the replacement expiration-date paragraph.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The photius printing expressly substitutes February 1, 1935, subject to an earlier proclamation or joint resolution ending the emergency.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The held EO 6955 printing is dated January 31, 1935 and expressly amends the same Code effective immediately.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "EO 6955 quotes Article I's seventh paragraph with the February 1, 1935 date as the paragraph being replaced.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "EO 6955 says that paragraph 'shall be modified to read as follows' and substitutes June 16, 1935, retaining the earlier-event condition.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "The held printing includes January 31, 1935, [No. 6955], and an OCR-degraded Government Printing Office imprint.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 173.4,
+ "start": "T3",
+ "status": "completed",
+ "stop": "NEEDS_RULING",
+ "stop_code_verdict": "wrong (WEB fits the unresolved parent-lifecycle evidence; NEEDS_RULING does not fit because the supplied rules already require a named ending and parent-status research for amendment-only orders)",
+ "tokens": 153186,
+ "units": 102110,
+ "units_producer": 40404,
+ "units_repair": 47811,
+ "units_review": 13896
+}

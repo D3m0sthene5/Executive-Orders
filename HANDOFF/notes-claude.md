@@ -1,3 +1,27 @@
+## 2026-11-18 ET, overnight (Claude: Kiaer tier probe ran under the owner's review; 80 orders; no count changes)
+
+- **Owner took the reviewer's role** for both plans (D-20261118-kiaer-owner-directed-wave; ask
+  A-20261118-kiaer-fourth-rejection answered). No further Codex review was run. Augur's only refusals were "not in
+  Bentham's plan" and the stage-1 ramp, both owner-directed.
+- **Ran:** stage 0 (29 orders, 1 lane, 74 minutes) and the full run (51 more, 3 lanes, 47 minutes). 80 orders and
+  9 planted reviews; every order scored with a review, none failed, no turn estimated, none of the owner's stop
+  conditions met. Report: `research/kiaer/kiaer-2026-11-18/REPORT.md`; finding F-20261118-kiaer-tier-probe.
+- **Cost:** 8,082,009 units, 16,275,221 raw tokens, about 98,000 units an order;
+  8,865,278 units with the smoke tests and plan reviews. 1.9M of the 10M cap was left unspent
+  (cells were sized at the 80th-percentile cost). Units count each CLI's main model; Claude Code's side model for
+  web-fetch summaries used a further 9.0M raw tokens (about 1 to 2% of Claude's dollars).
+- **Moves upheld at first pass (numbered orders):** T2 to T3 23 of 32, T3 to T4 24 of 33; T1 to T2 5 of 16,
+  T4 to T5 12 of 34, T0 to T1 0 of 4. Stops are mostly WEB and NOT_FOUND, rarely HELD_UNROUTED; the reviewer
+  marked 22 of 59 stop codes wrong, so stop-code shares are soft.
+- **Census check:** the independent pass did not reach the census tier for 7 of 13 census-T3 orders and all 3
+  census-T5 orders. Blind audit: 2 of 6 conclusions matched the ledger. These are leads for adjudication; nothing
+  was changed.
+- **Planted errors:** 9 planted, 6 informative, 5 caught, 1 missed (a removed ending left the NO standing).
+- **Not done / to know:** the pull request is a draft and must not be merged without the owner. `bentham.py
+  usage` was not run: this was a Relay run outside the Claude agent sessions and the owner limited writes to the
+  probe folder, Kean and these notes. After an interrupted turn the kit prints STOPPED until
+  `python -m kiaer reconcile` records a figure. Kit: `%USERPROFILE%/Relay-kiaer/`.
+
 ## 2026-11-18 ET, night (Claude: Kiaer probe rejected a fourth time on one ground; fixed, not reviewed; nothing ran)
 
 - **Owner answered** A-20261118-kiaer-third-rejection in chat: "Fourth review". Codex rejected both plans again

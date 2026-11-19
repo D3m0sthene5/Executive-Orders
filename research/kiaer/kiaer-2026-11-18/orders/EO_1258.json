@@ -1,0 +1,335 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C03",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: W. E. S. Griswold of New York may be appointed Secretary of the commission on railroad stock and bond issues (civil service waiver for a named person).",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Slice says best_held 'transcription_only' while describing the only held text as a Civil Service Commission annual report printing (OCR); the job README resolves this: the text is an OCR cut from a GPO Serial Set scan, graded a transcription lead until a page check.",
+   "Held text file itself carries no volume, page or source-scan reference; the reference is only in jobs/csc-annual-reports/output/CITATION_RESULTS.csv (package SERIALSET-06050_00_00-002-1434-0000, pdf page 114).",
+   "Slice field 'president' is empty (the order is dated 1910-10-25, in the Taft administration).",
+   "Slice title has run-together words ('eligiblefor', 'investigatequestionspertaining', 'railroadcorpo') and is truncated."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Page-image check of the Civil Service Commission annual report printing behind the held OCR text, needed before the held text can be accepted as an original.",
+    "where_to_look": "https://www.govinfo.gov/content/pkg/SERIALSET-06050_00_00-002-1434-0000/pdf/SERIALSET-06050_00_00-002-1434-0000.pdf, pdf page 114 (not read: over the 10 MB fetch limit); needs a download outside the fetch tool or the job's own fetched copy."
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether Griswold was in fact appointed secretary of the Railroad Securities Commission (performance of the one-time authorization), and on what date.",
+    "where_to_look": "H. Doc. 62-256, Report of the Railroad Securities Commission, https://www.govinfo.gov/content/pkg/SERIALSET-06321_00_00-012-0256-0000/pdf/SERIALSET-06321_00_00-012-0256-0000.pdf (not read: over the fetch size limit; unconfirmed that it names the secretary); Official Register of the United States 1911; Electric Railway Journal Dec. 1910 issues on the commission's hearings."
+   }
+  ],
+  "id": "EO:1258",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Held file is the OCR text layer cut from a Serial Set scan of the Civil Service Commission annual report (a GPO printing). jobs/csc-annual-reports/output/CITATION_RESULTS.csv places it in package SERIALSET-06050_00_00-002-1434-0000, pdf page 114, confidence high, but the job's README grades every such text 'compiled_transcription_lead', 'acceptable_as_original: false', 'needs_page_check: true'. The page-image check was attempted and failed (govinfo PDF over the 10 MB fetch limit), so an accepted original is not verified. The one operative clause is listed below from the held text.",
+    "stop_code": "WEB",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Blocked by T2. Provisional status on the held text: OPEN with named gap; one-time authorization to a named person (rule e); no source found that Griswold was appointed.",
+    "stop_code": "WEB",
+    "to": "T3"
+   },
+   {
+    "achieved": false,
+    "from": "T3",
+    "note": "Blocked by T2. Provisionally the single operative clause has a state: open, gap named.",
+    "stop_code": "WEB",
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Performance not sourced. H. Doc. 62-256 (commission report) is on govinfo but the PDF exceeded the fetch size limit, so it was not read; whether it names the secretary is unconfirmed.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "compiled_transcription_lead_needs_page_check",
+   "where": "jobs/csc-annual-reports/output/texts/EO_1258.txt (cut from govinfo package SERIALSET-06050_00_00-002-1434-0000, pdf page 114, per jobs/csc-annual-reports/output/CITATION_RESULTS.csv; WPA citation '1910 CSR 114')"
+  },
+  "propositions": [
+   {
+    "claim": "The held text, dated October 25, 1910, authorizes the appointment of one named person to one named position.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mr. W. E. S. Griswold, of New York, may be appointed to the position of Secretary of the commission to investigate questions pertaining to the issuance of stocks and bonds",
+    "supports": "original",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1258.txt"
+   },
+   {
+    "claim": "The commission is the one authorized by section 16 of the Commerce Court Act of June 18, 1910.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "authorized under section 16 of the act to create a commerce court, approved on June 18, 1910",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1258.txt"
+   },
+   {
+    "claim": "The order states its own reason: the secretary heads a commission staff then being first organized; it has no other command and no expiry term.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "the secretary is to be the administrative head of such commission whose force is now being initially organized",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1258.txt"
+   },
+   {
+    "claim": "The Railroad Securities Commission delivered its report, which the President sent to Congress by a message dated December 11, 1911, laid before the Senate that day and printed as H. Doc. No. 256 (candidate ending only: the message does not name the order or Griswold).",
+    "location": "W",
+    "pid": "p4",
+    "quote": "I transmit herewith for your consideration the report which has been made to me by the Railroad Securities Commission, appointed under the authority of section 16 of the act to create a Commerce Court, approved June 18, 1910 (36 Stat., 556).",
+    "supports": "counterevidence",
+    "where": "https://www.govinfo.gov/content/pkg/GPO-CRECB-1912-pt1-v48/pdf/GPO-CRECB-1912-pt1-v48-7-1.pdf (48 Cong. Rec. 177, Senate, Monday, December 11, 1911, under the heading 'RAILROAD SECURITIES COMMISSION (H. DOC. NO. 256)'; message signed 'WM. H. TAFT. THE WHITE HOUSE, December 11, 1911.'; first page of the 16-page PDF, read as a page image)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review; claim reworded to 'the held text' because the original is no longer treated as accepted."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by review; quote re-read in the held file."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review; the whole 7-line held text re-read, no other command or expiry term."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Reviewer could not retrieve the PDF; I re-fetched it and read the page image of 48 Cong. Rec. 177: quotation, December 11, 1911 date and H. Doc. No. 256 confirmed. Quote extended and location made exact."
+   },
+   {
+    "change": "fixed",
+    "pid": "original",
+    "why": "Reviewer's defect accepted: original.accepted set to false and grade lowered. The job's README marks these texts not acceptable as originals until a page check, and the page check failed on the fetch size limit. Source package and pdf page now recorded."
+   },
+   {
+    "change": "fixed",
+    "pid": "tier",
+    "why": "tier_reached lowered from T4 to T1; T2 and above need an accepted original. OPEN conclusion kept as provisional, as the reviewer upheld it."
+   }
+  ],
+  "searches": [
+   "Read jobs/csc-annual-reports/output/texts/EO_1258.txt",
+   "Grep '1258' in jobs/csc-annual-reports: no matches (no manifest entry found by that string)",
+   "Web: Railroad Securities Commission 1911 report Hadley Griswold secretary",
+   "Web: \"Railroad Securities Commission\" \"William E. S. Griswold\" secretary 1910/1911",
+   "Web (extended): Griswold \"secretary of the commission\" Hadley railroad stocks bonds hearings; no source confirming he took the post",
+   "Read 48 Cong. Rec. 177-180 (Dec. 11, 1911) from govinfo PDF: transmittal message found, Griswold not named",
+   "Fetch attempts failed: H. Doc. 62-256 PDF and Electric Railway Journal 1910-12-03 PDF (over size limit); UNT Monthly Catalog entry (HTTP 403)",
+   "Repair: re-read jobs/csc-annual-reports/output/texts/EO_1258.txt (7 lines, whole text)",
+   "Repair: re-fetched the 48 Cong. Rec. PDF from govinfo (5.8 MB, 16 pages) and read pages 177-178 as page images: message, date and H. Doc. No. 256 heading confirmed on p. 177; Griswold not named on pp. 177-178",
+   "Repair: Grep '\\b1258\\b' in jobs/csc-annual-reports/output and /data: CITATION_RESULTS.csv row 'EO:1258,1910 CSR 114,Oct 25 1910,civil_service_individual,SERIALSET-06050_00_00-002-1434-0000,114,high,date line on pdf page 114 (cited page offset +0)'; CITATIONS.csv row with the WPA summary",
+   "Repair: Grep 'Griswold' in jobs/csc-annual-reports: no matches (the root .ignore may hide output files from a folder-level search)",
+   "Repair: read jobs/csc-annual-reports/README.md: texts are graded compiled_transcription_lead, acceptable_as_original false, needs_page_check true",
+   "Repair: fetch of SERIALSET-06050_00_00-002-1434-0000 PDF failed (over 10 MB limit); page 114 image not checked"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "group": "pre1937",
+ "id": "EO:1258",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: W. E. S. Griswold of New York may be appointed Secretary of the commission on railroad stock and bond issues (civil service waiver for a named person).",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Slice says best_held 'transcription_only' while describing the only held text as a Civil Service Commission annual report printing (OCR); the two labels conflict.",
+   "Held text file has no volume, page or source-scan reference, so the 'ORIGINAL_FOUND_NEEDS_PAGE_CHECK' blocker cannot be cleared from the file alone.",
+   "Slice field 'president' is empty (the order is dated 1910-10-25, in the Taft administration).",
+   "Slice title has run-together words ('eligiblefor', 'investigatequestionspertaining', 'railroadcorpo') and is truncated."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Whether Griswold was in fact appointed secretary of the Railroad Securities Commission (performance of the one-time authorization), and on what date.",
+    "where_to_look": "H. Doc. 62-256, Report of the Railroad Securities Commission, https://www.govinfo.gov/content/pkg/SERIALSET-06321_00_00-012-0256-0000/pdf/SERIALSET-06321_00_00-012-0256-0000.pdf (not read: over the fetch size limit; unconfirmed that it names the secretary); Official Register of the United States 1911; Electric Railway Journal Dec. 1910 issues on the commission's hearings."
+   },
+   {
+    "stop_code": "HELD_UNROUTED",
+    "what": "Volume and page of the Civil Service Commission annual report printing behind the held OCR text (the slice's WPA summary cites '1910 CSR 114'); a page-image check has not been done.",
+    "where_to_look": "jobs/csc-annual-reports source scans or manifest; Civil Service Commission annual report for fiscal 1910 or 1911, p. 114."
+   }
+  ],
+  "id": "EO:1258",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held file is OCR of the Civil Service Commission annual report printing (a GPO printing); operative words legible; one operative clause listed. Accepted on the slice's description of the file; the file itself carries no volume or page.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN with named gap: one-time authorization to a named person (rule e); no source found that Griswold was appointed.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single operative clause has a state: open, gap named.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Performance not sourced. H. Doc. 62-256 (commission report) is on govinfo but the PDF exceeded the fetch size limit, so it was not read; whether it names the secretary is unconfirmed.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/csc-annual-reports/output/texts/EO_1258.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The order, dated October 25, 1910, authorizes the appointment of one named person to one named position.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mr. W. E. S. Griswold, of New York, may be appointed to the position of Secretary of the commission to investigate questions pertaining to the issuance of stocks and bonds",
+    "supports": "original",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1258.txt"
+   },
+   {
+    "claim": "The commission is the one authorized by section 16 of the Commerce Court Act of June 18, 1910.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "authorized under section 16 of the act to create a commerce court, approved on June 18, 1910",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1258.txt"
+   },
+   {
+    "claim": "The order states its own reason: the secretary heads a commission staff then being first organized; it has no other command and no expiry term.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "the secretary is to be the administrative head of such commission whose force is now being initially organized",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1258.txt"
+   },
+   {
+    "claim": "The Railroad Securities Commission delivered its report, which the President sent to Congress on December 11, 1911 (candidate ending only: it does not name the order or Griswold).",
+    "location": "W",
+    "pid": "p4",
+    "quote": "I transmit herewith for your consideration the report which has been made to me by the Railroad Securities Commission, appointed under the authority of section 16 of the act to create a Commerce Court",
+    "supports": "counterevidence",
+    "where": "https://www.govinfo.gov/content/pkg/GPO-CRECB-1912-pt1-v48/pdf/GPO-CRECB-1912-pt1-v48-7-1.pdf (48 Cong. Rec. 177)"
+   }
+  ],
+  "searches": [
+   "Read jobs/csc-annual-reports/output/texts/EO_1258.txt",
+   "Grep '1258' in jobs/csc-annual-reports: no matches (no manifest entry found by that string)",
+   "Web: Railroad Securities Commission 1911 report Hadley Griswold secretary",
+   "Web: \"Railroad Securities Commission\" \"William E. S. Griswold\" secretary 1910/1911",
+   "Web (extended): Griswold \"secretary of the commission\" Hadley railroad stocks bonds hearings; no source confirming he took the post",
+   "Read 48 Cong. Rec. 177-180 (Dec. 11, 1911) from govinfo PDF: transmittal message found, Griswold not named",
+   "Fetch attempts failed: H. Doc. 62-256 PDF and Electric Railway Journal 1910-12-03 PDF (over size limit); UNT Monthly Catalog entry (HTTP 403)"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "OPEN is warranted: the text permits a named person's appointment but does not itself appoint him; performance remains unproved under rule (e). No express ending is established in the supplied evidence. Formal status is supportable only as no express ending found, not proof that none exists.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:1258",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: WEB fits the first gap concerning actual appointment. The slice supplies no held performance evidence or later instrument resolving it; the identified public report remains an unread lead, and retrieval returned a size-limit error. Original provenance is a separate held-source gap.",
+  "suspected_defect": "The original.accepted=true and official_printing grade overstate the evidence. The held file is bare text without a source-scan, volume, or page reference; the slice labels it transcription_only and retains ORIGINAL_FOUND_NEEDS_PAGE_CHECK. The worker itself acknowledges the missing page-image check. An accepted original has not been verified, so T2 and higher are unsupported.",
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held file contains the quoted appointment authorization and October 25, 1910 date. This verifies the text, not its claimed original provenance.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Held file explicitly identifies section 16 of the act to create a commerce court, approved June 18, 1910.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The complete held text states the quoted organizational reason and contains no additional command or expiry term.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The cited Congressional Record PDF failed retrieval twice. Neither the quotation nor the December 11, 1911 transmission date could be confirmed.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 192.7,
+ "start": "T1",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed: WEB fits the first gap concerning actual appointment. The slice supplies no held performance evidence or later instrument resolving it; the identified public report remains an unread lead, and retrieval returned a size-limit error. Original provenance is a separate held-source gap.",
+ "tokens": 273826,
+ "units": 116827,
+ "units_producer": 53095,
+ "units_repair": 51327,
+ "units_review": 12405
+}

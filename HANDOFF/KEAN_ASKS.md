@@ -74,11 +74,3 @@ Approve the Lind stage-0 pilot exactly as research/lind/stage0/WAVE.json (sha256
 *Why:* It measures whether the repaired workflow produces ready dossiers cheaply, and whether soft-filtered orders are worth processing, each group reported separately; every outcome, including inconclusive, has a stated next spending decision.
 
 Sources: `research/lind/stage0/WAVE.json`
-
-## A-20261118-kiaer-fourth-rejection (2026-11-18, Claude)
-
-Kiaer tier probe: Codex rejected both launch plans a fourth time, so nothing has run. It found every earlier ground met and one left: the Codex adapter ignored a usage event whose usage field was missing or malformed. That is now fixed and tested but not reviewed. Choose: (1) Claude sends a fifth Codex review; (2) you review and sign the plans yourself, which Augur accepts (stage 0 is 1 lane, 29 orders, 6M units); or (3) drop the probe.
-
-*Why:* The grounds have narrowed each round (4, 7, 3, 1) and the fourth review passed every other check, with no way found for a model turn to write to the repository or change a status. Four reviews and two smoke tests have cost 783,269 units. Budget is a separate decision: at 167,712 to 186,931 units per order, 10M units buys about 53 to 59 orders, and your stage-0 condition 'fewer than 40 orders fit' may stop the full run.
-
-Sources: `research/kiaer/kiaer-2026-11-18/REPORT.md`

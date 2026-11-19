@@ -1,0 +1,291 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C11",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Reported only, text not seen: adds the Indian Territory (described in 1900 as the Territory of Oklahoma) to the Internal Revenue District of Kansas",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "unknown",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Catalogue subject says 'Indian Territory', while the 1900 order describes the 1886 order as adding the 'Territory of Oklahoma', which did not exist until 1890. The scope wording needs checking against the original; this may not be an error.",
+   "catalogue_notes field is cut off mid-word ('catalogue and its cit')."
+  ],
+  "gaps": [
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Any text of the 30 Mar 1886 order, needed for T1 and T2 and to confirm signer, authority and operative words",
+    "where_to_look": "First the unread Lord 1943 p. 120 source citation (https://www.loc.gov/resource/gdc.43013029/?sp=142, HTTP 403); then Treasury Decisions / Internal Revenue Record 1886; Annual Report of the Commissioner of Internal Revenue for FY1886 (https://www.irs.gov/pub/irs-soi/1886dbfullar.pdf, over the fetch size limit, not read); National Archives RG 58 and RG 56"
+   },
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Catalogue page image not read (HTTP 403 on both runs), so Lord's cited source for the order and the cross-reference to the 13 Oct 1900 order are unverified",
+    "where_to_look": "https://www.loc.gov/resource/gdc.43013029/?sp=142, or a held copy of Lord 1943 in the repository"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Text of EO 1265½ (25 Nov 1910): does it expressly name or supersede the 1886 order, and does it cover the former Indian Territory?",
+    "where_to_look": "ProQuest or CIS presidential executive orders, EO 1265½; Treasury Decisions (Internal Revenue) 1910"
+   },
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Unconfirmed lead: a Monthly Catalog record said to list an executive order moving Oklahoma out of the Kansas collection district. The record page returned HTTP 403 on both runs; its wording and its identity with EO 1265½ are not confirmed (former p4, withdrawn).",
+    "where_to_look": "https://mocat.library.unt.edu/catalog/192-ch628; Monthly Catalog of United States Public Documents no. 192 (Dec 1910) in print or HathiTrust"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Authority for the 1886 order (Revised Statutes sec. 3141 is the authority cited by the 1900 order only; not shown for 1886)",
+    "where_to_look": "the text of the 1886 order once found"
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether adding territory to a collection district counts as a one-time act spent on issue (rule c) or a continuing assignment, and whether the later abolition of collection districts (Reorganization Plan No. 1 of 1952), which does not name the order, is only a candidate",
+    "where_to_look": "owner ruling; the text of the order once found"
+   }
+  ],
+  "id": "LORD:P120:04",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "The identified lead, the Lord catalogue page (LOC sp=142) with its source citation, returned HTTP 403 on the first run and again on repair, so it is unread. Web searches found no official printing, archival copy or transcription of the 30 Mar 1886 order; only a later order's reference to it (via a transcription). No held file was named for this order.",
+    "stop_code": "TOOL_DEFECT",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": null
+  },
+  "propositions": [
+   {
+    "claim": "McKinley's order of 13 Oct 1900 refers to an Executive Order of 30 Mar 1886 adding the territory to the Kansas district, which corroborates that it was a presidential order (transcription, a lead only, not an accepted original).",
+    "location": "W",
+    "pid": "p1",
+    "quote": "which Territory was added to the District of Kansas by Executive Order of March 30, 1886",
+    "supports": "original",
+    "where": "https://www.presidency.ucsb.edu/documents/executive-order-180"
+   },
+   {
+    "claim": "The 1900 order (transcription, a lead only) transferred Greer County into the Internal Revenue District of Kansas, citing Revised Statutes sec. 3141 as its own authority. That it treats the Kansas-district attachment of Oklahoma as still operating in 1900 is an inference from this wording, not a stated fact. Nothing here establishes the authority of the 1886 order.",
+    "location": "W",
+    "pid": "p2",
+    "quote": "be transferred to and made a part of the Internal Revenue District of Kansas",
+    "supports": "counterevidence",
+    "where": "https://www.presidency.ucsb.edu/documents/executive-order-180"
+   },
+   {
+    "claim": "Candidate ending only, text not read: an order numbered 1265½ of 25 Nov 1910 is listed with this title in the Wikisource index of Taft orders. Whether it names or supersedes the 1886 order is unknown, so it is not an express supersession.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "Constituting the Internal Revenue District of Oklahoma",
+    "supports": "ending",
+    "where": "https://en.wikisource.org/wiki/Author:William_Howard_Taft/Executive_orders"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review; quotation re-confirmed in the APP transcription. Still a lead, not an original."
+   },
+   {
+    "change": "fixed",
+    "pid": "p2",
+    "why": "Kept the transfer wording and sec. 3141 as the 1900 order's authority; marked continued attachment as inference; withdrew the claim that sec. 3141 was the 1886 order's authority and listed it as a gap."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review as a candidate ending only; wording tightened to say it is not an express supersession."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p4",
+    "why": "Monthly Catalog record returned HTTP 403 again; neither the quotation nor its identity with EO 1265½ could be confirmed. Recorded as a gap."
+   }
+  ],
+  "searches": [
+   "WebFetch of the LOC catalogue page sp=142 (HTTP 403; repeated on repair, HTTP 403)",
+   "Web search: Executive order 30 Mar 1886, Indian Territory, Kansas internal revenue collection district (standard and extended)",
+   "WebFetch of the American Presidency Project transcription of McKinley's order of 13 Oct 1900 (repeated on repair: date, sec. 3141 and the 30 Mar 1886 reference confirmed)",
+   "WebFetch of the Commissioner of Internal Revenue annual report 1886 on irs.gov (PDF over the size limit, not read)",
+   "Web search for a later order creating an Oklahoma collection district; WebFetch of the Wikisource Taft index (EO 1265½ has no text page)",
+   "WebFetch of UNT Monthly Catalog record 192-ch628 and its citation page (HTTP 403; record page repeated on repair, HTTP 403)"
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "group": "unnumbered",
+ "id": "LORD:P120:04",
+ "ledger_status": null,
+ "producer_start": "T0",
+ "reached_claimed": "T0",
+ "reached_final": "T0",
+ "reached_reviewed": "T0",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Reported only, text not seen: adds the Indian Territory (described in 1900 as the Territory of Oklahoma) to the Internal Revenue District of Kansas",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "unknown",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Catalogue subject says 'Indian Territory', while the 1900 order describes the 1886 order as adding the 'Territory of Oklahoma', which did not exist until 1890. The scope wording needs checking against the original; this may not be an error.",
+   "catalogue_notes field is cut off mid-word ('catalogue and its cit')."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Any text of the 30 Mar 1886 order, needed for T1 and T2 and to confirm signer, authority and operative words",
+    "where_to_look": "Lord 1943 p. 120 source citation; Treasury Decisions / Internal Revenue Record 1886; Annual Report of the Commissioner of Internal Revenue for FY1886 (https://www.irs.gov/pub/irs-soi/1886dbfullar.pdf); National Archives RG 58 and RG 56"
+   },
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Catalogue page image not read (HTTP 403), so Lord's cited source for the order and the cross-reference to the 13 Oct 1900 order are unverified",
+    "where_to_look": "https://www.loc.gov/resource/gdc.43013029/?sp=142, or a held copy of Lord 1943 in the repository"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Text of EO 1265½ (25 Nov 1910): does it expressly name or supersede the 1886 order, and does it cover the former Indian Territory?",
+    "where_to_look": "ProQuest or CIS presidential executive orders, EO 1265½; Monthly Catalog no. 192; Treasury Decisions (Internal Revenue) 1910"
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether adding territory to a collection district counts as a one-time act spent on issue (rule c) or a continuing assignment, and whether the later abolition of collection districts (Reorganization Plan No. 1 of 1952), which does not name the order, is only a candidate",
+    "where_to_look": "owner ruling; the text of the order once found"
+   }
+  ],
+  "id": "LORD:P120:04",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "No official printing, archival copy or transcription of the 30 Mar 1886 order found on the web; only a later order's reference to it (via a transcription). No held file was named for this order.",
+    "stop_code": "NOT_FOUND",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": null
+  },
+  "propositions": [
+   {
+    "claim": "McKinley's order of 13 Oct 1900 refers to an Executive Order of 30 Mar 1886 adding the territory to the Kansas district, which corroborates that it was a presidential order (transcription, a lead only).",
+    "location": "W",
+    "pid": "p1",
+    "quote": "which Territory was added to the District of Kansas by Executive Order of March 30, 1886",
+    "supports": "original",
+    "where": "https://www.presidency.ucsb.edu/documents/executive-order-180"
+   },
+   {
+    "claim": "The 1900 order transferred Greer County into the Internal Revenue District of Kansas, so it treats the Kansas-district attachment of Oklahoma as still operating in 1900. The same transcription shows it relied on Revised Statutes sec. 3141, the likely authority for the 1886 order too (inference).",
+    "location": "W",
+    "pid": "p2",
+    "quote": "be transferred to and made a part of the Internal Revenue District of Kansas",
+    "supports": "counterevidence",
+    "where": "https://www.presidency.ucsb.edu/documents/executive-order-180"
+   },
+   {
+    "claim": "Candidate ending, text not read: an order numbered 1265½ of 25 Nov 1910 is listed in the Wikisource index of Taft orders (date and number as reported by search, not seen in a text). Whether it names the 1886 order is unknown.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "Constituting the Internal Revenue District of Oklahoma",
+    "supports": "ending",
+    "where": "https://en.wikisource.org/wiki/Author:William_Howard_Taft/Executive_orders"
+   },
+   {
+    "claim": "A Monthly Catalog record (seen only as a search-result title; the record page returned HTTP 403) lists an executive order moving Oklahoma out of the Kansas collection district. It is probably the same 1910 order.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "authorizing transfer of Oklahoma from internal revenue collection district of Kansas to collection district of Oklahoma",
+    "supports": "ending",
+    "where": "https://mocat.library.unt.edu/catalog/192-ch628"
+   }
+  ],
+  "searches": [
+   "WebFetch of the LOC catalogue page sp=142 (HTTP 403)",
+   "Web search: Executive order 30 Mar 1886, Indian Territory, Kansas internal revenue collection district (standard and extended)",
+   "WebFetch of the American Presidency Project transcription of McKinley's order of 13 Oct 1900",
+   "WebFetch of the Commissioner of Internal Revenue annual report 1886 on irs.gov (PDF over the size limit, not read)",
+   "Web search for a later order creating an Oklahoma collection district; WebFetch of the Wikisource Taft index (EO 1265½ has no text page)",
+   "WebFetch of UNT Monthly Catalog record 192-ch628 and its citation page (HTTP 403)"
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "review": {
+  "conclusion_reason": "OPEN and formal status unknown are appropriate: no target-order text, qualifying ending, or positive current source was verified. The missing operative wording prevents deciding whether rule (c) applies. The named gaps support uncertainty but cannot bypass the cumulative tier requirements.",
+  "conclusion_verdict": "upheld",
+  "id": "LORD:P120:04",
+  "missed_evidence": [],
+  "stop_code_verdict": "wrong (TOOL_DEFECT fits the demonstrated obstacle: the evidence slice identifies a specific catalogue page and cross-reference, but that page remains inaccessible. NOT_FOUND is not established while that identified lead is unread.)",
+  "suspected_defect": null,
+  "tier_supported": "T0",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The cited APP transcription, dated October 13, 1900, expressly identifies the Executive Order of March 30, 1886 and reproduces the quoted territorial attachment. This confirms a lead, not an accepted original.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "APP confirms the transfer language and Section 3141 as the 1900 authority; continued attachment in 1900 is a reasonable inference. It does not establish the 1886 order's authority. That component remains unverified.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p3",
+    "reason": "The cited Wikisource index's 1910 section lists 1265½, November 25, with the quoted title. It establishes only a candidate ending, not express supersession.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The cited Monthly Catalog URL was inaccessible, and a targeted search did not recover the quoted record. Neither the quotation nor identification with the 1910 order was confirmed.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 154.6,
+ "start": "T0",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "wrong (TOOL_DEFECT fits the demonstrated obstacle: the evidence slice identifies a specific catalogue page and cross-reference, but that page remains inaccessible. NOT_FOUND is not established while that identified lead is unread.)",
+ "tokens": 209958,
+ "units": 100682,
+ "units_producer": 48127,
+ "units_repair": 25162,
+ "units_review": 27394
+}

@@ -1,0 +1,574 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C05",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "rejected",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Para. 1: modifies the Paulina National Forest boundaries by eliminating the described Oregon lands",
+    "end": "1914-03-12",
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Para. 2 (first part): opens the excluded lands, subject to valid rights and existing withdrawals, to actual settlers only under the homestead laws from 9 a.m. May 9, 1914 through June 7, 1914",
+    "end": "1914-06-07",
+    "props": [
+     "p4",
+     "p6"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Para. 2 (second part): thereafter opens the lands to entry and disposition under any and all applicable public land laws",
+    "end": null,
+    "gap": "g1",
+    "props": [
+     "p5",
+     "p6"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Para. 3 (first sentence): persons settling between the order date and 9 a.m. May 9, 1914, or on or occupying the lands at that hour, are considered and dealt with as trespassers and preference is given the prior legal applicant; examination of the lands is permitted",
+    "end": null,
+    "gap": "g2",
+    "props": [
+     "p7",
+     "p8"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Para. 3 (last sentence): persons having prior settlement rights will be allowed to make entry in conformity with existing law and regulations",
+    "end": null,
+    "gap": "g3",
+    "props": [
+     "p12"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none_established_for_whole_order (para. 1 spent_on_issue; settlers-only window expired under own terms; remaining commands open)",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "shepard-citations lead EO:10454 -> EO:1899 is false: the FR contents line reads 'July 20, 1899 (see EO 10454)', an order identified by date; the parser took the year 1899 as an order number.",
+   "shepard-citations lead PLO:1140 -> EO:1899 'revoked in part' is false for the same reason: PLO 1140 partly revokes the Executive order of June 13, 1899 (Alaska), per the BLM PLO table. The quoted contents line also runs into '4131', which is EO No. 4131 of Jan. 22, 1925, the amending order.",
+   "Evidence slice 'president' field is empty; the held text is signed Woodrow Wilson.",
+   "OCR reads the opening date as 'the oth day of May, i914'; the next paragraph of the same text reads 'May 9, 1914', so the date is May 9, 1914.",
+   "The earlier T5 result depended on class doctrine PD-NATIONAL-FOREST, whose source S-ORGANIC (30 Stat. 11, 34-36) is not held; that reliance is withdrawn and recorded as gap g1."
+  ],
+  "gaps": [
+   {
+    "clause": "Para. 2 (second part), general opening",
+    "gid": "g1",
+    "missing": "Whether the 'thereafter' opening to entry under the public land laws is a one-time restoration completed on June 8, 1914, or a continuing command; and whether any later instrument re-withdrew, re-reserved or otherwise disposed of the eliminated lands by naming this order.",
+    "where_it_would_be": "The class doctrine source for national forest eliminations (PD-NATIONAL-FOREST / S-ORGANIC, 30 Stat. 11, 34-36, and the Act of September 30, 1913, 38 Stat. 113), neither held; later proclamations and orders on the Paulina, Deschutes and Fremont National Forests; BLM Oregon land status records for the listed townships."
+   },
+   {
+    "clause": "Para. 3 (first sentence), trespasser treatment and applicant preference",
+    "gid": "g2",
+    "missing": "Evidence that the trespasser-treatment and prior-legal-applicant-preference commands were exhausted (all affected claims adjudicated) or were ended by a later instrument naming the order. The order's text gives them no end date.",
+    "where_it_would_be": "General Land Office local land-office adjudication records for the Oregon districts covering these townships (National Archives, Record Group 49), or a later Executive order, proclamation or public land order expressly disposing of them."
+   },
+   {
+    "clause": "Para. 3 (last sentence), entry by persons with prior settlement rights",
+    "gid": "g3",
+    "missing": "Evidence that all prior settlement rights on the eliminated lands were entered, relinquished or otherwise finally disposed of, or a later instrument ending the allowance.",
+    "where_it_would_be": "Same land-office entry and adjudication records (Record Group 49) and BLM tract books for the listed townships."
+   }
+  ],
+  "id": "EO:1899",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "ProQuest replica of the State Department copy is held and was re-read in full; operative words legible; operative clauses listed.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Operative status is OPEN with named gaps. The boundary elimination is spent on issue and the settlers-only window expired by its own dates, but the order's text sets no end to the trespasser-treatment and applicant-preference command, to the prior-settler entry clause, or to the general opening, and no source ending them is held.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Every clause now has a state: two ended with a date and quotation from the order, three open with the gap named. This rests on reading 'open with the gap named' as an allowed clause state; if the coordinator reads T4 more strictly, the result is T3.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Three gaps remain (see gaps). The earlier T5 claim is withdrawn: it treated the May 9 cutoff that identifies affected settlers as an expiry of the consequences, and relied on class doctrine PD-NATIONAL-FOREST whose source is not held.",
+    "stop_code": "open_gap_named",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "checked_replica",
+   "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held text is Executive Order No. 1899, signed by Woodrow Wilson on 12 March 1914.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "WOODROW WILSON } Tue Wuite Housz, ; 12 March, 1914. 4 [No. 1899.]",
+    "supports": "original",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The order itself modifies the forest boundary by eliminating the listed lands.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "it is hereby ordered that the boundaries of the Paulina National Forest ... be modified by eliminating therefrom. the following described lands, in the State of Oregon",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The elimination is a one-time act completed by the order's own sentence on its date, under the Act of June 4, 1897 (read with the operative sentence quoted in p2).",
+    "location": "H",
+    "pid": "p3",
+    "quote": "Under authority of the Act of Congress approved June fourth, | eighteen hundred and ninety-seven (30 Stat., 11, 34-36)",
+    "supports": "ending",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The settlers-only period is fixed by calendar dates in the order and ended with June 7, 1914.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "shall be open to actual settlers only under the provisions of the 7 f homestead laws from and including nine o'clock, a. m., standard time, on ‘ the oth day of May, i914, until and including the 7th day of June, 1914,",
+    "supports": "ending",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "After June 7, 1914 the order opens the lands to entry and disposition under the applicable public land laws. The text sets no end to this opening and does not show that nothing further operated under the order.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "until and including the 7th day of June, 1914, j and thereafter to entry and disposition under any and all of the public Lo land laws applicable thereto.",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The opening is made subject to valid rights and existing withdrawals, which the order leaves untouched (a saving, not a command of its own).",
+    "location": "H",
+    "pid": "p6",
+    "quote": "such lands, subject to valid rights and the provisions of existing with- . drawals",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The period from the order date to 9 a.m. May 9, 1914 defines whose settlement or occupancy is affected (including persons on or occupying the lands at that hour); it does not set an end to their treatment as trespassers or to the applicant preference.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "perform any act of settlement thereon from and including the date hereof until nine o’clock, a. m., May 9, 1914, or who are on or are occupying anv part of such lands at said hour, except those having valid - subsisting settlement rights initiated prior to reservation and since main- : tained, will be considered and dealt with as trespassers",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "Early settlers and occupants are treated as trespassers and the prior legal applicant is preferred, notwithstanding the unlawful settlement or occupancy.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "will be considered and dealt with as trespassers and preference will . be given the prior legal applicant, notwithstanding such unlawful settle- . ment or occupancy",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The EO 10454 lead is false: the Federal Register contents entry is for an Executive order dated July 20, 1899, not No. 1899.",
+    "location": "H",
+    "pid": "p9",
+    "quote": "July 20, 1899 (see EO 10454) __ 2895",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_10454.txt"
+   },
+   {
+    "claim": "EO 10454 concerns Hawaiian military lands reserved by an Executive order of July 20, 1899.",
+    "location": "H",
+    "pid": "p10",
+    "quote": "were reserved for military pur­ poses by Executive Order of July 20,1899, as modified by Executive Orders No. 1137",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_10454.txt"
+   },
+   {
+    "claim": "The PLO 1140 lead is false: PLO 1140 (Apr. 28, 1955, 20 FR 3027) is an Alaska order partly revoking an Executive order dated June 13, 1899.",
+    "location": "W",
+    "pid": "p11",
+    "quote": "Alaska; withdrawing lands for the use of the Alaska Road Commission; revoking in part EO of June 13, 1899; as amended by EO No. 4131 of Jan. 22, 1925.",
+    "supports": "counterevidence",
+    "where": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_695-2250.pdf"
+   },
+   {
+    "claim": "The final sentence allows persons with prior settlement rights to make entry under existing law and regulations; it carries no date or terminating event.",
+    "location": "H",
+    "pid": "p12",
+    "quote": "Persons hav- ing prior settlement rights, as above defined, will be allowed to make entry ; in conformity with existing law and regulations.",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld; re-read confirms signature, date and number."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld; claim now says it is read with the operative sentence in p2."
+   },
+   {
+    "change": "fixed",
+    "pid": "p4",
+    "why": "Upheld, but the quotation is extended to include the June 7, 1914 end date the reviewer noted was missing; now supports the ending of the settlers-only window only."
+   },
+   {
+    "change": "fixed",
+    "pid": "p5",
+    "why": "Rejected claim that nothing further ran is withdrawn; restated as what the text says (general opening thereafter, no end stated) and moved from 'ending' to 'clause'."
+   },
+   {
+    "change": "kept",
+    "pid": "p6",
+    "why": "Upheld; 'valid rights' added to the claim to match the quotation."
+   },
+   {
+    "change": "fixed",
+    "pid": "p7",
+    "why": "Rejected: May 9 identifies the affected persons, not the duration of the consequences. Quotation completed to include 'or who are on or are occupying' and restated as a clause, not an ending."
+   },
+   {
+    "change": "kept",
+    "pid": "p8",
+    "why": "Upheld; quotation extended slightly and 'occupants' added."
+   },
+   {
+    "change": "kept",
+    "pid": "p9",
+    "why": "Upheld."
+   },
+   {
+    "change": "kept",
+    "pid": "p10",
+    "why": "Upheld."
+   },
+   {
+    "change": "kept",
+    "pid": "p11",
+    "why": "Upheld."
+   },
+   {
+    "change": "fixed",
+    "pid": "p12",
+    "why": "New proposition for the reviewer's missed evidence (final sentence on prior settlement rights), confirmed in the held text; it has no May 9 ending, so its clause is open."
+   },
+   {
+    "change": "fixed",
+    "pid": "conclusion",
+    "why": "NO / spent_on_issue for the whole order withdrawn; status is OPEN with three named gaps, and tier is lowered from T5 to T4."
+   }
+  ],
+  "searches": [
+   "Read held ProQuest replica EO_1899.txt in full (first pass and again for this repair)",
+   "Grep '1899' in jobs/fr-originals/output/texts/EO_10454.txt (first pass)",
+   "Grep 'PLO 1140' in jobs/fr-originals/output (no hit) (first pass)",
+   "Web: Public Land Order 1140 1955 Executive Order 1899 (standard, then extended) (first pass)",
+   "Fetch of FR-1955-05-05 PDF on govinfo failed (over 10 MB); PLO 1140 text itself not read",
+   "BLM Table of Public Land Orders 1951-1960, row for PLO 1140 read from the PDF page (first pass)",
+   "No new search was run in this repair for land-office records or later instruments naming EO 1899; the gaps say where they would be"
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T4"
+ },
+ "group": "pre1937",
+ "id": "EO:1899",
+ "ledger_status": null,
+ "producer_start": "T2",
+ "reached_claimed": "T5",
+ "reached_final": "T4",
+ "reached_reviewed": "T2",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Para. 1: modifies the Paulina National Forest boundaries by eliminating the described Oregon lands",
+    "end": "1914-03-12",
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Para. 2: opens the excluded lands to actual settlers only under the homestead laws, 9 a.m. May 9 through June 7, 1914, and thereafter to entry under the public land laws",
+    "end": "not later than 1914-06-08",
+    "props": [
+     "p4",
+     "p5",
+     "p6"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Para. 3: persons settling between the order date and 9 a.m. May 9, 1914 are treated as trespassers; prior legal applicant preferred; prior settlement rights saved",
+    "end": "1914-05-09",
+    "props": [
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "spent_on_issue",
+   "first_end": "not later than 1914-06-08",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "shepard-citations lead EO:10454 -> EO:1899 is false: the FR contents line reads 'July 20, 1899 (see EO 10454)', an order identified by date; the parser took the year 1899 as an order number.",
+   "shepard-citations lead PLO:1140 -> EO:1899 'revoked in part' is false for the same reason: PLO 1140 partly revokes the Executive order of June 13, 1899 (Alaska), per the BLM PLO table. The quoted contents line also runs into '4131', which is EO No. 4131 of Jan. 22, 1925, the amending order.",
+   "Evidence slice 'president' field is empty; the held text is signed Woodrow Wilson.",
+   "The T5 result depends on class doctrine PD-NATIONAL-FOREST treating the 'thereafter' opening to general entry as a one-time restoration; its source S-ORGANIC (30 Stat. 11, 34-36) is recorded as not yet held, though it is not needed for the ending."
+  ],
+  "gaps": [],
+  "id": "EO:1899",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "ProQuest replica of the State Department copy is held; operative words legible; three operative clauses listed.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "NO: the order eliminates land from the forest (done by the order itself) and restores it on a schedule fixed by its own dated terms.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Each clause has an end date taken from the order's own words.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": true,
+    "from": "T4",
+    "note": "No open gap, provided the 'thereafter' opening to general entry is read as a one-time restoration under PD-NATIONAL-FOREST. Both later-instrument leads checked and found false.",
+    "stop_code": null,
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "checked_replica",
+   "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held text is Executive Order No. 1899, signed by Woodrow Wilson on 12 March 1914.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "WOODROW WILSON } Tue Wuite Housz, ; 12 March, 1914. 4 [No. 1899.]",
+    "supports": "original",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The order itself modifies the forest boundary by eliminating the listed lands.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "it is hereby ordered that the boundaries of the Paulina National Forest ... be modified by eliminating therefrom. the following described lands, in the State of Oregon",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The elimination is a one-time act completed by the order's own sentence on its date, under the Act of June 4, 1897.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "Under authority of the Act of Congress approved June fourth, | eighteen hundred and ninety-seven (30 Stat., 11, 34-36)",
+    "supports": "ending",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The settlers-only period is fixed by calendar dates in the order and ended with June 7, 1914.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "shall be open to actual settlers only under the provisions of the 7 f homestead laws from and including nine o'clock, a. m., standard time",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "After June 7, 1914 the lands passed to disposal under the general public land laws, so nothing further ran from the order.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "until and including the 7th day of June, 1914, j and thereafter to entry and disposition under any and all of the public Lo land laws applicable thereto.",
+    "supports": "ending",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The opening is made subject to existing withdrawals, which the order leaves untouched (a saving, not a command of its own).",
+    "location": "H",
+    "pid": "p6",
+    "quote": "such lands, subject to valid rights and the provisions of existing with- . drawals",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The trespass rule runs only from the order date until 9 a.m. May 9, 1914.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "perform any act of settlement thereon from and including the date hereof until nine o’clock, a. m., May 9, 1914",
+    "supports": "ending",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "Early settlers are treated as trespassers and the prior legal applicant is preferred.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "will be considered and dealt with as trespassers and preference will . be given the prior legal applicant",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt"
+   },
+   {
+    "claim": "The EO 10454 lead is false: the Federal Register contents entry is for an Executive order dated July 20, 1899, not No. 1899.",
+    "location": "H",
+    "pid": "p9",
+    "quote": "July 20, 1899 (see EO 10454) __ 2895",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_10454.txt"
+   },
+   {
+    "claim": "EO 10454 concerns Hawaiian military lands reserved by an Executive order of July 20, 1899.",
+    "location": "H",
+    "pid": "p10",
+    "quote": "were reserved for military pur­ poses by Executive Order of July 20,1899, as modified by Executive Orders No. 1137",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_10454.txt"
+   },
+   {
+    "claim": "The PLO 1140 lead is false: PLO 1140 (Apr. 28, 1955, 20 FR 3027) is an Alaska order partly revoking an Executive order dated June 13, 1899.",
+    "location": "W",
+    "pid": "p11",
+    "quote": "Alaska; withdrawing lands for the use of the Alaska Road Commission; revoking in part EO of June 13, 1899; as amended by EO No. 4131 of Jan. 22, 1925.",
+    "supports": "counterevidence",
+    "where": "https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_695-2250.pdf"
+   }
+  ],
+  "searches": [
+   "Read held ProQuest replica EO_1899.txt in full",
+   "Grep '1899' in jobs/fr-originals/output/texts/EO_10454.txt",
+   "Grep 'PLO 1140' in jobs/fr-originals/output (no hit)",
+   "Web: Public Land Order 1140 1955 Executive Order 1899 (standard, then extended)",
+   "Fetch of FR-1955-05-05 PDF on govinfo failed (over 10 MB); PLO 1140 text itself not read",
+   "BLM Table of Public Land Orders 1951-1960, row for PLO 1140 read from the PDF page"
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T5"
+ },
+ "review": {
+  "conclusion_reason": "NO by June 8, 1914 is unsupported. Boundary elimination was performed and the exclusive settlement window expired, but no cited source ends or establishes completion of the applicant-preference and trespasser-treatment commands. Operative status should remain OPEN pending evidence addressing those commands, such as implementing land-office adjudication records or a later instrument expressly disposing of them. Formal status is supported only as no express ending found in the checked sources; both supplied later-instrument leads concern other orders. The submitted result contains no upheld whole-order status basis sufficient for T3.",
+  "conclusion_verdict": "rejected",
+  "id": "EO:1899",
+  "missed_evidence": [
+   "jobs/pinakes-proquest-ingest/output/texts/EO_1899.txt, final paragraph: 'or who are on or are occupying any part of such lands at said hour' extends the affected class beyond the truncated p7 quotation; 'will be considered and dealt with as trespassers and preference will be given the prior legal applicant' supplies no May 9 termination of those consequences.",
+   "Same file, final sentence: 'Persons having prior settlement rights, as above defined, will be allowed to make entry in conformity with existing law and regulations.' The result groups this with paragraph 3 but supplies no basis for its claimed May 9 ending."
+  ],
+  "stop_code_verdict": "no_gap",
+  "suspected_defect": "The p7 quotation truncates the sentence and converts a cutoff identifying affected conduct into an expiration of the resulting commands. The blanket spent-on-issue conclusion then treats that unsupported expiration as established. Intent cannot be determined.",
+  "tier_supported": "T2",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held original OCR confirms Wilson's signature, March 12, 1914, and No. 1899.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Paragraph 1 expressly modifies the boundary by eliminating the described lands.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "Read with the operative sentence in p2, the boundary elimination is performed by the order itself; the opening sentence cites the 1897 Act.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The full paragraph expressly ends the settlers-only period on June 7, 1914, although the supplied excerpt omits that date.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The text confirms general entry thereafter, but does not establish that nothing further operated under the order. The scheduled opening does not itself prove exhaustion of the separate preference and treatment commands.",
+    "verdict": "rejected"
+   },
+   {
+    "pid": "p6",
+    "reason": "Paragraph 2 expressly preserves valid rights and existing withdrawals, explaining that those withdrawals should not now be revoked or modified.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "May 9 bounds the settlement conduct and occupancy identifying affected persons, not the duration of their treatment as trespassers or applicant preference. The omitted continuation also covers persons occupying the lands at that hour.",
+    "verdict": "rejected"
+   },
+   {
+    "pid": "p8",
+    "reason": "The original expressly directs trespasser treatment and preference for the prior legal applicant, subject to its stated exceptions.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p9",
+    "reason": "The held Federal Register text's codification guide identifies July 20, 1899, not Executive Order No. 1899.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p10",
+    "reason": "EO 10454's opening recital confirms Hawaiian military lands reserved by the July 20, 1899 order.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p11",
+    "reason": "The cited BLM PDF, page 14, entry 1140, confirms April 28, 1955, 20 FR 3027, Alaska, and partial revocation of the June 13, 1899 order as amended by EO 4131.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 184.4,
+ "start": "T2",
+ "status": "completed",
+ "stop": null,
+ "stop_code_verdict": "no_gap",
+ "tokens": 247558,
+ "units": 133889,
+ "units_producer": 56638,
+ "units_repair": 43070,
+ "units_review": 34180
+}

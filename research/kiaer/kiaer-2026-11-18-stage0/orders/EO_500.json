@@ -1,0 +1,195 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C08",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": null,
+ "group": "pre1937",
+ "id": "EO:500",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T5",
+ "reached_final": "T5",
+ "reached_reviewed": "T5",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: employees of the Washington Navy Yard are excused from work on Monday, September 3, 1906 (Labor Day).",
+    "end": "1906-09-03",
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "own_terms",
+   "first_end": "1906-09-03",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/app-executive-orders/output/texts/executive-order-500.txt is not EO 500: it holds February 29, 1844 State, War and Navy Department mourning circulars on the deaths of Upshur and Gilmer (USS Princeton explosion).",
+   "The six shepard-citations 'cross_reference' leads (EO 677, 926, 1122, 1243, 1404, 1574) come from Wikisource editorial 'See related' notes, not from the acting orders' text; confirmed for EO 677 only. They are not endings.",
+   "The slice dates EO 926 as 1908-08-10, but the Wikisource note on the EO 677 page lists it as August 8, 1908; not resolved here.",
+   "type_lead 'closing_mourning' is a loose fit: this is a one-day holiday excusal, not a mourning closure. The 'spent' class is consistent with the finding.",
+   "The slice's 'president' field is empty; the replica shows Theodore Roosevelt.",
+   "triage_missing says 'original_not_usable:archival_replica_checked', but the replica's operative words are fully legible despite OCR noise ('emlloyees', 'wvill')."
+  ],
+  "gaps": [],
+  "id": "EO:500",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "ProQuest replica of the State Department copy read from the held file; operative words legible; one operative clause listed.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "NO under rule (b): the only command is confined by its own words to one named calendar day, September 3, 1906.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single clause is ended on 1906-09-03 by its own terms; the statutory recital is not a command.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": true,
+    "from": "T4",
+    "note": "No open gap: no continuing duty, delegation or savings clause in the text; the ending rests on the order's own quoted date, not on silence or lapse of time.",
+    "stop_code": null,
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "checked_replica",
+   "where": "jobs/pinakes-proquest-ingest/output/texts/EO_500.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held ProQuest replica is an executive order signed by Theodore Roosevelt and dated August 29, 1906.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Executive Order. [...] THEODORE ROOSEVELT AUGUST 29, 1906.",
+    "supports": "original",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_500.txt"
+   },
+   {
+    "claim": "The order's only command excuses Washington Navy Yard employees from work on one named day.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "emlloyees of the Washington Navy Yard wvill be excused from work on Monday, September 3, 1906.",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_500.txt"
+   },
+   {
+    "claim": "The command is limited by its own terms to September 3, 1906, so it expired when that day ended; the text has no continuing or recurring command.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "will be excused from work on Monday, September 3, 1906.",
+    "supports": "ending",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_500.txt"
+   },
+   {
+    "claim": "The rest of the order is a recital of the 1894 Labor Day statute, not a separate command.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "In pursuance of the Act of Congress approved June 28, 1894, (28 Stat. 96), making a legal public holiday the first Monday of September in each year",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_500.txt"
+   },
+   {
+    "claim": "EO 677 (1907) is a separate general Labor Day order for per diem employees; its text does not name, revoke or supersede EO 500.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "all per diem employees and other day laborers in the Federal public service, wherever employed, [...] be excused from work on said day",
+    "supports": "counterevidence",
+    "where": "jobs/wikisource-texts/output/texts/EO_677.txt"
+   },
+   {
+    "claim": "EO 500 appears on the EO 677 Wikisource page only in an editorial 'See related' note, not in the order's text.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "See related Executive Order 348-B, August 31, 1905 Executive Order 500, August 29, 1906",
+    "supports": "counterevidence",
+    "where": "jobs/wikisource-texts/output/texts/EO_677.txt"
+   }
+  ],
+  "searches": [
+   "Read held ProQuest replica jobs/pinakes-proquest-ingest/output/texts/EO_500.txt (whole file)",
+   "Read held APP file jobs/app-executive-orders/output/texts/executive-order-500.txt (whole file; wrong document)",
+   "Read held Wikisource text of EO 677 to test the cross-reference lead",
+   "Not opened: held texts of EO 926, 1122, 1243, 1404, 1574 (same 'See related' note type in the slice; not needed for an own-terms ending)",
+   "No web search run; no express revocation was searched for beyond the slice's leads"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T5"
+ },
+ "review": {
+  "conclusion_reason": "NO at the cutoff is supported by own-terms expiry at the end of September 3, 1906. The accepted replica supplies the complete sole command and its endpoint; no contingent event or performance finding is needed. Formal status is upheld as the limited finding that no express ending was found in the checked sources, not as proof of an exhaustive universal negative.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:500",
+  "missed_evidence": [
+   "The other five named acting-text files also place EO 500 only in editorial 'See related' notes; their operative texts supply no named ending. This confirms the worker's broader characterization beyond its EO 677 check.",
+   "jobs/wikisource-texts/output/texts/EO_926.txt itself prints 'August 8, 1908.' This corroborates the noted slice-date discrepancy, although the transcription is not an accepted original for EO 926."
+  ],
+  "stop_code_verdict": "no_gap",
+  "suspected_defect": null,
+  "tier_supported": "T5",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held replica reads 'Executive Order.', 'THEODORE ROOSEVELT' and 'AUGUST 29, 1906.'",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Replica's sole operative clause says employees 'wvill be excused from work on Monday, September 3, 1906.' Quotation matches, allowing OCR noise and line breaks.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "'on Monday, September 3, 1906' expressly limits the excusal to that day. Expiry follows the specified calendar endpoint, not an inference from age or unproved performance. No recurring command appears.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The opening 'In pursuance of the Act of Congress approved June 28, 1894' introduces a statutory recital. 'in each year' describes the statutory holiday, not the duration of this order's dated excusal.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "Held EO_677.txt contains the quoted general employee excusal and dates it August 10, 1907. Its operative text neither names EO 500 nor expressly revokes or supersedes it.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "EO 500 appears beneath 'Notes' and 'See related', after EO 677's signature and date, exactly as an editorial cross-reference.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 59.0,
+ "start": "T3",
+ "status": "completed",
+ "stop": null,
+ "stop_code_verdict": "no_gap",
+ "tokens": 68826,
+ "units": 41798,
+ "units_producer": 24856,
+ "units_repair": 0,
+ "units_review": 16942
+}

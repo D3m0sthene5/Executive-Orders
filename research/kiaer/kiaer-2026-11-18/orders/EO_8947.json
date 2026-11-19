@@ -1,0 +1,318 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C02",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "unverifiable",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: revokes Executive Order No. 1474 of February 16, 1912, which withdrew lot 2, sec. 1, T. 27 S., R. 71 W., 6th P.M., Colorado, as the Malachite Administrative Site",
+    "end": "1941-11-24",
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "spent_on_issue",
+   "first_end": "1941-11-24",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "The slice gives best_held as official_original_counted, but the only held text is the APP transcription and the tracker blockers say NO_OFFICIAL_SOURCE_LOCATED; no held official printing is routed to this order.",
+   "The official printing (6 FR 5987) is public on govinfo but not held in the repository; the blockers NO_OFFICIAL_SOURCE_LOCATED and ONLY_COMPILED_TRANSCRIPTION_FOUND can be cleared by adding it.",
+   "The blocker SAVINGS_RESIDUALS_NOT_CLOSED does not apply: the official text has no savings clause.",
+   "The govinfo PDF is a 7.6 MB image scan that text-fetch tools return as a raw binary dump; it has to be read as a page image, which is probably why the reviewer could not open it."
+  ],
+  "gaps": [],
+  "id": "EO:8947",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Official Federal Register printing re-fetched from govinfo in the repair pass and read as a page image (6 FR 5987, PDF page 1; not held in repo); the order has one operative clause.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "The only sentence performs a revocation completed by the order itself: rule (c), spent on issue, NO.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single clause ended on 1941-11-24; the printed text has no savings clause, proviso or continuing command.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": true,
+    "from": "T4",
+    "note": "No open gap for operative status; every proposition is quoted from the public official printing (re-read in the repair pass) or the held transcription. Formal status rests only on no later instrument being found in the slice; no wider search was run.",
+    "stop_code": null,
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf (6 FR 5987, PDF page 1, left column under 'The President')"
+  },
+  "propositions": [
+   {
+    "claim": "The Federal Register of Wednesday 26 Nov 1941 (Volume 6, Number 229, p. 5987) prints the order as No. 8947 under the heading Executive Order.",
+    "location": "W",
+    "pid": "p1",
+    "quote": "EXECUTIVE ORDER / Revocation of Executive Order No. 1474 of February 16, 1912, Withdrawing Public Land / COLORADO",
+    "quote_2": "[No. 8947] [F. R. Doc. 41-8823; Filed, November 25, 1941; 10:48 a. m.]",
+    "quote_3": "VOLUME 6 NUMBER 229 Washington, Wednesday, November 26, 1941",
+    "supports": "original",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf"
+   },
+   {
+    "claim": "The order's only operative sentence revokes EO 1474 by its own words.",
+    "location": "W",
+    "pid": "p2",
+    "quote": "Executive Order No. 1474 of February 16, 1912, withdrawing lot 2, sec. 1, T. 27 S., R. 71 W., Sixth Principal Meridian, Colorado, for use by the Forest Service as the Malachite Administrative Site in connection with the administration of the San Isabel National Forest, is hereby revoked.",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf"
+   },
+   {
+    "claim": "The order was signed on 24 November 1941, the date the revocation took effect, since the text states no later effective date.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "FRANKLIN D ROOSEVELT THE WHITE HOUSE, November 24, 1941.",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf"
+   },
+   {
+    "claim": "The whole text is one sentence resting on the 1910 withdrawal act, with no savings clause, condition or continuing command.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "By virtue of the authority vested in me by the act of June 25, 1910, 36 Stat. 847 (U.S.C., title 43, sec. 141), Executive Order No. 1474 of February 16, 1912 ... is hereby revoked.",
+    "supports": "clause",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf"
+   },
+   {
+    "claim": "The held American Presidency Project transcription matches the Federal Register printing in its operative words.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "for use by the Forest Service as the Malachite Administrative Site in connection with the administration of the San Isabel National Forest, is hereby revoked.",
+    "supports": "original",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-8947-revocation-executive-order-no-1474-february-16-1912-withdrawing.txt"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "fixed",
+    "pid": "p1",
+    "why": "Re-fetched the govinfo PDF and read p. 5987 as an image: masthead, heading, [No. 8947] and F. R. Doc. 41-8823 confirmed; the quotation is now split into exact printed strings instead of one joined with an ellipsis."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "The revocation sentence was read on the official printing at 6 FR 5987; the full sentence is now quoted without an ellipsis."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Signature and 'THE WHITE HOUSE, November 24, 1941.' were read on the official printing; no later effective date is printed."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "The printing shows one sentence between the COLORADO heading and the signature, with no savings clause, proviso or further paragraph."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "The held transcription was re-read and compared with the page image; the operative sentence, authority citation and date match word for word."
+   }
+  ],
+  "searches": [
+   "Read the held APP transcription named in the slice (re-read in the repair pass)",
+   "Web search in the original pass: Executive Order 8947 1941 1474 revocation Colorado Federal Register (result summary reported a UNT Monthly Catalog citation to 6 FR 5987; the catalog page itself returned HTTP 403)",
+   "Repair pass: re-fetched the govinfo PDF of the Federal Register for 1941-11-26 (7.6 MB; the text layer is not extractable by the fetch tool) and read PDF page 1 = p. 5987 as an image; masthead, heading, order text, signature, date, [No. 8947] and F. R. Doc. 41-8823 are all legible",
+   "No search for later instruments naming EO 8947 beyond the slice, which lists none; formal status rests on that alone"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T5"
+ },
+ "group": "modern",
+ "id": "EO:8947",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T5",
+ "reached_final": "T5",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: revokes Executive Order No. 1474 of February 16, 1912, which withdrew lot 2, sec. 1, T. 27 S., R. 71 W., 6th P.M., Colorado, as the Malachite Administrative Site",
+    "end": "1941-11-24",
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "spent_on_issue",
+   "first_end": "1941-11-24",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "The slice gives best_held as official_original_counted, but the only held text is the APP transcription and the tracker blockers say NO_OFFICIAL_SOURCE_LOCATED; no held official printing is routed to this order.",
+   "The official printing (6 FR 5987) is public on govinfo but not held in the repository; the blockers NO_OFFICIAL_SOURCE_LOCATED and ONLY_COMPILED_TRANSCRIPTION_FOUND can be cleared by adding it.",
+   "The blocker SAVINGS_RESIDUALS_NOT_CLOSED does not apply: the official text has no savings clause."
+  ],
+  "gaps": [],
+  "id": "EO:8947",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Official Federal Register printing read from the govinfo scan of 6 FR 5987 (not held in repo); the order has one operative clause.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "The only sentence performs a revocation completed by the order itself: rule (c), spent on issue, NO.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single clause ended on 1941-11-24; the printed text has no savings clause, proviso or continuing command.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": true,
+    "from": "T4",
+    "note": "No open gap; every proposition is quoted from the public official printing or the held transcription.",
+    "stop_code": null,
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf (6 FR 5987, PDF page 1)"
+  },
+  "propositions": [
+   {
+    "claim": "The Federal Register of 26 Nov 1941 (vol. 6, no. 229, p. 5987) prints the order as No. 8947 under the heading Executive Order.",
+    "location": "W",
+    "pid": "p1",
+    "quote": "Revocation of Executive Order No. 1474 of February 16, 1912, Withdrawing Public Land ... [No. 8947] [F. R. Doc. 41-8823; Filed, November 25, 1941; 10:48 a. m.]",
+    "supports": "original",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf"
+   },
+   {
+    "claim": "The order's only operative sentence revokes EO 1474 by its own words.",
+    "location": "W",
+    "pid": "p2",
+    "quote": "Executive Order No. 1474 of February 16, 1912, withdrawing lot 2, sec. 1, T. 27 S., R. 71 W., Sixth Principal Meridian, Colorado ... is hereby revoked.",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf"
+   },
+   {
+    "claim": "The order was signed on 24 November 1941, the date the revocation took effect, since the text states no later effective date.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "Franklin D Roosevelt The White House, November 24, 1941.",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf"
+   },
+   {
+    "claim": "The whole text is one sentence resting on the 1910 withdrawal act, with no savings clause, condition or continuing command.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "By virtue of the authority vested in me by the act of June 25, 1910, 36 Stat. 847 (U.S.C., title 43, sec. 141)",
+    "supports": "clause",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1941-11-26/pdf/FR-1941-11-26.pdf"
+   },
+   {
+    "claim": "The held American Presidency Project transcription matches the Federal Register printing in its operative words.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "for use by the Forest Service as the Malachite Administrative Site in connection with the administration of the San Isabel National Forest, is hereby revoked.",
+    "supports": "original",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-8947-revocation-executive-order-no-1474-february-16-1912-withdrawing.txt"
+   }
+  ],
+  "searches": [
+   "Read the held APP transcription named in the slice",
+   "Web search: Executive Order 8947 1941 1474 revocation Colorado Federal Register (result summary reported a UNT Monthly Catalog citation to 6 FR 5987; the catalog page itself returned HTTP 403)",
+   "Fetched the govinfo PDF of the Federal Register for 1941-11-26 and read page 5987 as an image",
+   "No search for later instruments naming EO 8947 beyond the slice, which lists none"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T5"
+ },
+ "review": {
+  "conclusion_reason": "The transcription supports the spent-on-issue interpretation, but an accepted original was not verified. The formal-status search finding also cannot be independently established from the cited sources; the slice's empty later-instrument list is only a lead. This does not establish that the worker's conclusion is false.",
+  "conclusion_verdict": "unverifiable",
+  "id": "EO:8947",
+  "missed_evidence": [],
+  "stop_code_verdict": "no_gap",
+  "suspected_defect": null,
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The cited govinfo PDF repeatedly failed to load; its heading, order number, page and filing notation could not be checked.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held APP transcription contains the quoted revocation sentence, but the cited official printing could not be opened to confirm it.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p3",
+    "reason": "The held transcription gives November 24, 1941 and contains no later effective date, but the cited official printing was inaccessible.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p4",
+    "reason": "The held transcription has one operative sentence with the stated statutory authority and no savings clause, condition or continuing command; completeness against the cited original remains unverified.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p5",
+    "reason": "The quotation appears verbatim in the named held file, but the claimed match to the Federal Register cannot be confirmed without reading that printing.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 133.0,
+ "start": "T1",
+ "status": "completed",
+ "stop": null,
+ "stop_code_verdict": "no_gap",
+ "tokens": 179441,
+ "units": 76445,
+ "units_producer": 30468,
+ "units_repair": 29040,
+ "units_review": 16937
+}

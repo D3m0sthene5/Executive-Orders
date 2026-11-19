@@ -485,7 +485,7 @@
  import json
  from pathlib import Path
  
-@@ -11,31 +12,112 @@
+@@ -11,31 +12,115 @@
  
  
  LESSONS = {
@@ -494,11 +494,14 @@
 +        "that carries a usage field) has a complete, valid usage object; a missing, null, list, string or empty "
 +        "one anywhere in the stream makes the whole turn unmeasured, which charges an estimate and stops the run. "
 +        "The check sits in the adapter and again in the engine, and a test drives a mixed stream through both.",
-+    "F-20261118-kiaer-third-rejection": "This plan has had four cross-family reviews before this one, each with "
-+        "all the code; the kit's code was fixed and tested after each (4, 7, 3, then 1 ground). Every number that feeds the cap "
++    "F-20261118-kiaer-third-rejection": "Four cross-family reviews, each with all the code, rejected these plans "
++        "on narrowing grounds (4, 7, 3, then 1); each ground was fixed and tested. The owner then took the "
++        "reviewer's role for both plans and directed that no further model review be run and that later defects "
++        "be fixed with a test and logged in CHANGES.md. Every number that feeds the cap "
 +        "is now validated: caps must be positive; provider usage must be complete, finite and non-negative or the "
 +        "turn is charged an estimate and stops the run; an operator's reconciliation figure must be finite and "
-+        "not below the charge. The run still starts only on an approving review bound to the plan's hash.",
++        "not below the charge. The run still starts only on an approving review bound to the plan's hash (the "
++        "owner's).",
 +    "F-20261118-kiaer-stopped-at-review": "The guards these plans state were read against the code, and the "
 +        "reviewer is given all the code the run uses. Tests cover these guards and no others (tests/"
 +        "test_kiaer_gate.py, tests/test_kiaer_round3.py, tests/test_pipeline.py): the plan binding (review hash, "
@@ -605,10 +608,16 @@
          "stage": stage,
          "objective": {"metric": "verified_claims_per_unit",
                        "text": "Reviewer-upheld tier moves per token, and the share of each tier and cost of each move, "
-@@ -49,28 +131,132 @@
+@@ -48,29 +133,140 @@
+         "limits": {"chain_budget_units": token_cap, "spend_per_claim_units": 1000000, "no_claim_minutes": 60,
                     "context_kill_tokens": 400000, "reviews_per_hour": 60, "coordinator_units_per_hour": 1,
                     "per_turn_usd_ceiling": 2,
-                    "unit_definition": "0.1 x cache reads + 1 x other input + 4 x output (savigny meter.py)"},
+-                   "unit_definition": "0.1 x cache reads + 1 x other input + 4 x output (savigny meter.py)"},
++                   "unit_definition": "0.1 x cache reads + 1 x other input + 4 x output (savigny meter.py), "
++                                      "counted on each CLI's main model. Claude Code also runs a small side model "
++                                      "for web-fetch summaries: about 75,000 to 89,000 raw tokens per order in the "
++                                      "two smoke tests, 1.0 to 1.6% of Claude's dollar cost. It is recorded per "
++                                      "turn and totalled in the report, but is not in the units or the cap."},
 +        "limits_enforced_by": {
 +            "chain_budget_units": "Relay's engine (bridge/engine.py _claim): before each turn it reserves the larger "
 +                "of 150,000 units and the largest turn yet measured for that provider (failed turns included, from "
@@ -677,10 +686,13 @@
 +                           "cell) fits under the cap after shrinking the cells. Only then is the ceiling raised and "
 +                           "unfinished work resumed. The projection is a forecast: it counts failed orders' costs, "
 +                           "does not add the cost of finishing orders stopped at the stage-0 cap, and uses the "
-+                           "pooled cost for a cell with fewer than two measured orders. The owner's other stage-0 "
-+                           "conditions (more than 20% of orders failed, every informative planted control missed, "
-+                           "a producer reading a denied file, fewer than 40 orders fitting) are applied by the "
-+                           "directing session from the stage-0 report, not by code."},
++                           "pooled cost for a cell with fewer than two measured orders. The owner's stage-0 stop "
++                           "conditions (more than 20% of orders failed; every informative planted control missed, "
++                           "with at least 2; a blind producer reading a denied ledger file; more than 300,000 "
++                           "measured units per order; a turn whose usage was truly absent) are applied by the "
++                           "directing session from the stage-0 report, not by code. The owner allows the gate to "
++                           "be changed, with a test, to require only that the next wave fits the remaining budget "
++                           "if it refuses solely because the cap cannot cover the whole draw."},
 +        "writes": "Model turns have read-only tools (Claude: Read, Grep, Glob, WebSearch, WebFetch, reads outside "
 +                  "the repository blocked; Codex: read-only sandbox). Run state goes to a data directory that "
 +                  "Probe refuses to place inside the repository. The only repository write is the report command, "
@@ -1059,7 +1071,27 @@
      def close(self):
 --- zip/bridge/claude.py
 +++ run/bridge/claude.py
-@@ -86,10 +86,13 @@
+@@ -56,7 +56,19 @@
+     }
+     server = usage.get("server_tool_use") if isinstance(usage.get("server_tool_use"), dict) else {}
+     out["web_searches"] = server.get("web_search_requests")
++    denials = envelope.get("permission_denials")
++    if isinstance(denials, list) and denials:
++        # Tool calls the CLI refused (a blind producer reaching for a denied file shows up here, blocked).
++        out["raw"]["permission_denials"] = [_denial(d) for d in denials[:30]]
+     return out
++
++
++def _denial(d):
++    if not isinstance(d, dict):
++        return {"tool": "?", "target": str(d)[:200]}
++    inp = d.get("tool_input") if isinstance(d.get("tool_input"), dict) else {}
++    target = inp.get("file_path") or inp.get("path") or inp.get("url") or inp.get("pattern") or inp.get("query") or ""
++    return {"tool": str(d.get("tool_name") or "?")[:40], "target": str(target)[:200]}
+ 
+ 
+ def _run(prompt: str, cwd: str, timeout: float, cancel: threading.Event, *, mode: str, options=None) -> str:
+@@ -86,10 +98,13 @@
              }),
          ])
      if mode == "research":
@@ -1133,7 +1165,7 @@
      for line in stdout.splitlines():
          line = line.strip()
          if not line.startswith("{"):
-@@ -90,15 +125,20 @@
+@@ -90,15 +125,40 @@
          item = event.get("item") if isinstance(event.get("item"), dict) else {}
          if item.get("type") in ("agent_message", "assistant_message") and isinstance(item.get("text"), str):
              last = item["text"]
@@ -1160,10 +1192,30 @@
 +            if count(found.get(key)):
 +                usage[key] += int(found[key])
 +    return last, (usage if seen and not bad else {})
++
++
++def _unmeasured_evidence(stdout: str) -> dict:
++    """What the event stream held when no usage could be read from it: event types and the accounting lines."""
++    kinds, lines = {}, []
++    for line in stdout.splitlines():
++        line = line.strip()
++        if not line.startswith("{"):
++            continue
++        try:
++            event = json.loads(line)
++        except ValueError:
++            continue
++        if not isinstance(event, dict):
++            continue
++        kind = str(event.get("type"))
++        kinds[kind] = kinds.get(kind, 0) + 1
++        if _usage_payload(event)[0] or "usage" in line or "token" in kind:
++            lines.append(line[:600])
++    return {"unmeasured": True, "event_types": kinds, "accounting_lines": lines[-12:], "stdout_chars": len(stdout)}
  
  
  def run_research_turn(prompt: str, cwd: str, timeout: float, cancel: threading.Event, options=None) -> str:
-@@ -111,8 +151,12 @@
+@@ -111,8 +171,12 @@
              "-c", 'web_search="' + (os.environ.get("RELAY_CODEX_WEB_SEARCH") or "live") + '"',
              # Do not load the repository's AGENTS.md: its session-start instructions point at large handoff files.
              "-c", "project_doc_max_bytes=0"]
@@ -1178,6 +1230,15 @@
      if os.environ.get("RELAY_CODEX_MODEL"):
          base.extend(["-m", os.environ["RELAY_CODEX_MODEL"]])
      inventory = run_cli([*base, "mcp", "list", "--json"], "", cwd, timeout, cancel)
+@@ -130,7 +194,7 @@
+     event_text, usage = parse_events(stdout)
+     text = final or event_text or stdout.strip()
+     out = Reply(text)
+-    tel = {"model": os.environ.get("RELAY_CODEX_MODEL"), "raw": usage or None}
++    tel = {"model": os.environ.get("RELAY_CODEX_MODEL"), "raw": usage or _unmeasured_evidence(stdout)}
+     if usage:
+         # OpenAI usage counts cached input inside input_tokens; keep it separate for the record.
+         tel.update({"input_tokens": usage["input_tokens"] - usage["cached_input_tokens"],
 --- zip/kiaer/report.py
 +++ run/kiaer/report.py
 @@ -8,6 +8,8 @@
@@ -1215,7 +1276,7 @@
          units = defaultdict(float)
          for t in tt:
              units[t["step"]] += t["units"] or 0
-@@ -133,10 +135,11 @@
+@@ -133,16 +135,66 @@
              o["agrees_with_ledger"] = bool(o.get("conclusion_verdict") == "upheld" and
                                             (o.get("conclusion") or "").upper() == o["ledger_status"].upper())
          orders.append(o)
@@ -1229,6 +1290,104 @@
          verdict = plants.caught(rev, meta, genuine.get(meta["donor"])) if rev else None
          plant_rows.append({"job": jid, "donor": meta["donor"], "kind": meta["kind"], "detail": meta["detail"],
                             "reviewed": rev is not None, "caught": verdict,
+                            "units": round(sum(t["units"] or 0 for t in turns[jid]))})
+     return {"state": state, "plan": plan, "orders": orders, "plants": plant_rows,
+-            "tiers": {t["instrument_id"]: t for t in census.build(repo)}}
++            "tiers": {t["instrument_id"]: t for t in census.build(repo)},
++            "plant_turns": [t for jid in state["plants"] for t in turns[jid]]}
++
++
++def _raw(turn):
++    try:
++        raw = json.loads(turn.get("raw") or "null")
++    except ValueError:
++        return {}
++    return raw if isinstance(raw, dict) else {}
++
++
++def side_usage(turns):
++    """Claude Code runs a small side model (web-fetch summaries) beside the main one. Units count the main
++    model only; this adds up what the side models used and what Claude Code reported in dollars."""
++    side, usd = 0, 0.0
++    for t in turns:
++        usd += t.get("cost_usd") or 0
++        models = _raw(t).get("modelUsage")
++        if not isinstance(models, dict) or len(models) < 2:
++            continue
++        main = max(models, key=lambda m: (models[m] or {}).get("costUSD") or 0)
++        for name, u in models.items():
++            if name != main and isinstance(u, dict):
++                side += sum(int(u.get(k) or 0) for k in ("inputTokens", "outputTokens", "cacheReadInputTokens",
++                                                         "cacheCreationInputTokens"))
++    return {"side_model_raw_tokens": side, "claude_reported_usd": round(usd, 2)}
++
++
++def blind_check(orders, deny):
++    """For blind-audit orders: tool calls the Claude CLI refused, and any denied path a result cites."""
++    import fnmatch
++    pats = [g.replace("\\", "/") for g in deny]
++
++    def denied(path):
++        path = str(path or "").replace("\\", "/").lstrip("./")
++        return any(fnmatch.fnmatch(path, g) or fnmatch.fnmatch(path.split(" ")[0], g) for g in pats)
++
++    refused, cited = [], []
++    for o in orders:
++        if o["cell"] not in AUDIT:
++            continue
++        for t in o["turns"]:
++            for d in _raw(t).get("permission_denials") or []:
++                refused.append({"order": o["id"], "step": t["step"], "tool": d.get("tool"), "target": d.get("target")})
++        for which in ("result", "final"):
++            for p in (o.get(which) or {}).get("propositions") or []:
++                if denied(p.get("where")):
++                    cited.append({"order": o["id"], "artifact": which, "where": p.get("where")})
++    return {"refused_tool_calls": refused, "denied_paths_cited": cited}
+ 
+ 
+ def transitions(orders):
+@@ -235,6 +287,11 @@
+     return out
+ 
+ 
++def _blind_deny():
++    from .run import BLIND_DENY
++    return BLIND_DENY
++
++
+ def write(repo, datadir, run_id, dest_root=None):
+     a = analyse(repo, datadir)
+     orders = a["orders"]
+@@ -271,8 +328,12 @@
+         "orders_scored_with_review": len(genuine_reviews),
+         "orders_failed": dict(Counter(o["stop"] for o in orders if not o.get("scored_ok"))),
+         "units_total": round(sum(o["units"] for o in orders) + sum(p["units"] for p in a["plants"])),
+-        "raw_tokens_total": sum(o["tokens"] for o in orders),
+-        "estimated_turns": sum(o["estimated_turns"] for o in orders),
++        "raw_tokens_total": sum(o["tokens"] for o in orders) + sum(t["total_tokens"] or 0 for t in a["plant_turns"]),
++        "turns_by_outcome": dict(Counter(("estimated" if t["estimated"] else "measured") + ("" if t["ok"] else "_failed")
++                                         for t in [t for o in orders for t in o["turns"]] + a["plant_turns"])),
++        "claude_side_models": side_usage([t for o in orders for t in o["turns"]]),
++        "blind_audit_reads": blind_check(orders, _blind_deny()),
++        "estimated_turns": sum(o["estimated_turns"] for o in orders) + sum(t["estimated"] or 0 for t in a["plant_turns"]),
+         "plants": {"planted": len(a["plants"]), "informative": len(scored),
+                    "caught": sum(1 for p in scored if p["caught"]), "missed": sum(1 for p in scored if not p["caught"]),
+                    "catch_rate_ci95": [round(x, 2) for x in common.wilson(sum(1 for p in scored if p["caught"]), len(scored))]},
+@@ -303,7 +364,13 @@
+         "reads + 1 x other input + 4 x output). Nothing here changes a status, count or certification.", "",
+         f"Orders launched: {s['orders_launched']}; scored with a review: {s['orders_scored_with_review']}; failed: "
+         f"{s['orders_failed'] or 'none'}. Usage: {s['units_total']:,} units ({s['raw_tokens_total']:,} raw tokens; "
+-        f"{s['estimated_turns']} turns had no usage report and were charged an estimate).", "",
++f"{s['estimated_turns']} turns had no usage report and were charged an estimate). Units count each "
++        f"provider's main model. Claude Code's side model (web-fetch summaries) used a further "
++        f"{s['claude_side_models']['side_model_raw_tokens']:,} raw tokens, not in the units; Claude Code reported "
++        f"{s['claude_side_models']['claude_reported_usd']:,.2f} dollars at list price for all its turns, side "
++        f"model included. Blind-audit orders: {len(s['blind_audit_reads']['refused_tool_calls'])} tool calls "
++        f"refused by the read rules, {len(s['blind_audit_reads']['denied_paths_cited'])} denied paths cited in "
++        f"results.", "",
+         f"Planted controls: {p['planted']} planted, {p['informative']} informative, {p['caught']} caught, "
+         f"{p['missed']} missed (catch rate 95% {p['catch_rate_ci95'][0]}-{p['catch_rate_ci95'][1]}). Share of genuine "
+         f"reviews that flagged something: {s['genuine_review_flag_rate']}. Stop codes the reviewer marked wrong: "
 --- zip/kiaer/common.py
 +++ run/kiaer/common.py
 @@ -48,6 +48,21 @@
@@ -1836,3 +1995,67 @@
 +                self.assertEqual((turn["estimated"], turn["units"]), (0, 0.1 * 40 + 60 + 4 * 7))
 +            finally:
 +                e.close()
+--- /dev/null
++++ run/tests/test_kiaer_owner_round.py
+@@ -0,0 +1,61 @@
++"""Checks added in the owner-reviewed round: the records the stop checks read, and the owner review binding."""
++import json
++import threading
++import unittest
++from unittest.mock import patch
++
++from bridge import claude as claude_adapter
++from bridge import codex as codex_adapter
++from kiaer import report, run
++
++
++class StopCheckRecordsTest(unittest.TestCase):
++    def test_claude_telemetry_keeps_refused_tool_calls(self):
++        env = {"usage": {"input_tokens": 1, "output_tokens": 2}, "total_cost_usd": 0.1,
++               "permission_denials": [{"tool_name": "Read", "tool_use_id": "x",
++                                       "tool_input": {"file_path": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"}},
++                                      {"tool_name": "WebFetch", "tool_input": {"url": "https://github.com/x/y"}}, "odd"]}
++        raw = claude_adapter.telemetry(env)["raw"]
++        self.assertEqual(raw["permission_denials"][:2],
++                         [{"tool": "Read", "target": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"},
++                          {"tool": "WebFetch", "target": "https://github.com/x/y"}])
++        self.assertNotIn("permission_denials", claude_adapter.telemetry({"usage": {}})["raw"])
++
++    @patch("bridge.codex.run_cli")
++    def test_an_unmeasured_codex_turn_keeps_its_accounting_lines(self, cli):
++        stream = "\n".join(['{"type":"thread.started"}',
++                            '{"type":"item.completed","item":{"type":"agent_message","text":"{}"}}',
++                            '{"type":"turn.completed","usage":null}'])
++        cli.side_effect = ["[]", stream]
++        out = codex_adapter.run_research_turn("p", ".", 60, threading.Event(), options=dict(run.CODEX_LIMITS))
++        raw = out.telemetry["raw"]
++        self.assertTrue(raw["unmeasured"])
++        self.assertEqual(raw["event_types"]["turn.completed"], 1)
++        self.assertEqual(raw["accounting_lines"], ['{"type":"turn.completed","usage":null}'])
++        self.assertNotIn("input_tokens", out.telemetry)
++
++    def test_side_model_tokens_and_dollars_are_added_up_apart_from_units(self):
++        raw = {"modelUsage": {"claude-big": {"inputTokens": 8, "outputTokens": 7000, "cacheReadInputTokens": 60000,
++                                             "cacheCreationInputTokens": 29000, "costUSD": 0.76},
++                              "claude-small": {"inputTokens": 51012, "outputTokens": 5555, "costUSD": 0.008}}}
++        turns = [{"cost_usd": 0.77, "raw": json.dumps(raw)}, {"cost_usd": None, "raw": None},
++                 {"cost_usd": 0.5, "raw": json.dumps({"modelUsage": {"claude-big": {"inputTokens": 5, "costUSD": 0.5}}})}]
++        self.assertEqual(report.side_usage(turns), {"side_model_raw_tokens": 56567, "claude_reported_usd": 1.27})
++
++    def test_blind_check_lists_refused_calls_and_cited_denied_paths(self):
++        denial = {"permission_denials": [{"tool": "Read", "target": "HANDOFF/KEAN.md"}]}
++        orders = [{"id": "EO:1", "cell": "C06", "turns": [{"step": 1, "raw": json.dumps(denial)}],
++                   "result": {"propositions": [{"where": "jobs/fr-originals/output/texts/EO_1.txt lines 3-4"},
++                                               {"where": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"}]},
++                   "final": None},
++                  {"id": "EO:2", "cell": "C04", "turns": [{"step": 1, "raw": json.dumps(denial)}],
++                   "result": {"propositions": [{"where": "research/readiness/claims/x.json"}]}, "final": None}]
++        got = report.blind_check(orders, run.BLIND_DENY)
++        self.assertEqual(got["refused_tool_calls"], [{"order": "EO:1", "step": 1, "tool": "Read",
++                                                      "target": "HANDOFF/KEAN.md"}])
++        self.assertEqual(got["denied_paths_cited"], [{"order": "EO:1", "artifact": "result",
++                                                      "where": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"}])
++
++
++if __name__ == "__main__":
++    unittest.main()

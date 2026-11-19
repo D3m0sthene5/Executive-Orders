@@ -1,0 +1,227 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C04",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": null,
+ "group": "modern",
+ "id": "EO:12776",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T4",
+ "result": {
+  "clauses": [
+   {
+    "clause": "sec. 1: under regulations of the service Secretaries, the National Defense Service Medal may be awarded to members of the Reserve Components",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p5",
+     "p6"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 2: the medal may be awarded to a member in good standing of a Reserve Component during a period the Secretary of Defense designates as the Persian Gulf crisis",
+    "end": null,
+    "props": [
+     "p3",
+     "p5",
+     "p6"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 3: the medal may be awarded posthumously to a qualifying Reserve Component member",
+    "end": null,
+    "props": [
+     "p4",
+     "p5",
+     "p6"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Slice records EO 13293 as acting on EO 12776 by 'amendment' (from the OFR note 'Amended by: EO 13293'). The Federal Register text of EO 13293 amends EO 10448 and only saves the authority of EO 12776; the mechanism should be a savings clause or cross-reference.",
+   "Slice it_acts_on lists EO:13293 as a cross-reference target of EO 12776; a 1991 order cannot refer to a 2003 order. The direction is reversed.",
+   "Search summaries report that 32 CFR 578.23 and the Navy history page date the order October 18, 1991; the Federal Register printing says October 8, 1991. This is an external error, not one in the project's files, and was not verified in the sources themselves."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "A positive source current at 2026-10-14 that treats EO 12776 as in force (a current DoD or service awards issuance citing it), or an instrument ending it. Not read: every candidate fetch failed.",
+    "where_to_look": "DoDM 1348.33 vol. 2, current version (https://www.esd.whs.mil/Portals/54/Documents/DD/issuances/dodm/134833_vol02.PDF, returned 403); Army Regulation 600-8-22; Naval History and Heritage Command NDSM page"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether 32 CFR 578.23, which search results indicate cited the order in the 2008 edition, was still in the CFR at the cutoff. An eCFR versions query for part 578 returned zero results, which suggests removal but was not confirmed.",
+    "where_to_look": "eCFR title 32 part 578 history; Federal Register removal rule for 32 CFR part 578"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "The Secretary of Defense designation of the Persian Gulf period under sec. 2. Search summaries (not opened sources) give 2 Aug 1990 to 30 Nov 1995. A closed eligibility period is not treated here as ending the authority to award; if the project wants it treated so, that needs a ruling.",
+    "where_to_look": "DoDM 1348.33 vol. 2 NDSM section; the Secretary of Defense memorandum designating the period"
+   }
+  ],
+  "id": "EO:12776",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held Federal Register printing 56 FR 51315 (OCR of the official PDF) is legible; three operative sections listed.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN. No express ending found; EO 13293 (2003) saves the order's authority. No positive source at the cutoff was read.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Each of the three sections has a state: all open, on the same named gap.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "A current source at 2026-10-14 (DoDM 1348.33 vol. 2 or service awards regulation citing EO 12776) was not retrievable: esd.whs.mil returned 403, the Navy history page refused connection.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_12776.txt (56 FR 51315, https://www.govinfo.gov/content/pkg/FR-1991-10-10/pdf/FR-1991-10-10.pdf, PDF page 179)"
+  },
+  "propositions": [
+   {
+    "claim": "The held text is the Federal Register printing of EO 12776 at 56 FR 51315.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Federal Register / Vol. 56, No. 197 / Thursday, October 10,1991 / Presidential Documents 51315",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_12776.txt"
+   },
+   {
+    "claim": "Sec. 1 authorizes award of the medal to Reserve Component members under service regulations.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "the National Defense Service Medal, as established by Executive Order No. 10448, as amended, may be awarded to members of the Reserve Components of the Armed Forces",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_12776.txt"
+   },
+   {
+    "claim": "Sec. 2 ties eligibility to membership during a period the Secretary of Defense designates; it sets no end to the authority to award.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "during a period designated by the Secretary of Defense as the period of the Persian Gulf crisis for the purposes of this order",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_12776.txt"
+   },
+   {
+    "claim": "Sec. 3 authorizes posthumous award.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "The National Defense Service Medal may be awarded posthumously to a member of a Reserve Component of the Armed Forces of the United States who satisfies the requirements",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_12776.txt"
+   },
+   {
+    "claim": "EO 13293 of 2003-03-28 expressly preserves the authority granted by EO 12776; it does not revoke or supersede it.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "Nothing in this order shall be construed to impair or otherwise affect the exercise of authority granted by Executive Order 12776 of October 8, 1991.",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_13293.txt"
+   },
+   {
+    "claim": "EO 13293 amends EO 10448, not EO 12776.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "it is hereby ordered that Executive Order 10448 of April 22, 1953, as amended, is further amended",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_13293.txt"
+   }
+  ],
+  "searches": [
+   "Read held FR text of EO 12776, held FR text of EO 13293 and the APP transcription",
+   "Web search: Executive Order 12776 with DoD Manual 1348.33 Volume 2 (manual not opened)",
+   "Fetch: archives.gov 1991 disposition table entry for EO 12776 (summarised by the fetch tool as amended by EO 13293, no revocation listed; not quoted verbatim)",
+   "Fetch: esd.whs.mil DoDM 1348.33 vol. 2 (403); UNT web archive copy of the 2016 manual (empty); history.navy.mil NDSM page (connection refused)",
+   "Web search: EO 12776 with NDSM, in good standing, August 2 1990",
+   "Fetch: eCFR versions API for 32 CFR part 578 (zero results); govinfo CFR 2008 32 CFR 578.23 PDF (text not extractable)"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "OPEN is supported: the examined sources establish neither an ending nor affirmative currency at the cutoff. The 2003 savings clause confirms preservation then, but does not independently establish status in 2026. Formal status is supported only as the qualified finding that no express ending was found. The eligibility period is not an expiration of award authority.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:12776",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: WEB fits the first gap. The evidence slice supplies no current-law source, and the cited DoD manual URL was inaccessible on review. This confirms the access obstacle, not the historical assertion that every candidate fetch failed.",
+  "suspected_defect": null,
+  "tier_supported": "T4",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held official-PDF OCR identifies EO 12776 and prints the quoted Federal Register header at 56 FR 51315.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Section 1 contains the quoted authorization and expressly subjects awards to service Secretaries' regulations and the order's provisions.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "Section 2 contains the quoted eligibility condition. It limits qualifying membership dates, without setting an expiration date for awarding the medal.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "Section 3 expressly authorizes posthumous awards subject to the order and implementing regulations.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The held EO 13293 printing contains the quoted savings clause verbatim; it does not revoke or supersede EO 12776.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "EO 13293 expressly amends EO 10448. Its separate reference to EO 12776 preserves that order's authority.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 110.5,
+ "start": "T2",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed: WEB fits the first gap. The evidence slice supplies no current-law source, and the cited DoD manual URL was inaccessible on review. This confirms the access obstacle, not the historical assertion that every candidate fetch failed.",
+ "tokens": 152270,
+ "units": 59807,
+ "units_producer": 45834,
+ "units_repair": 0,
+ "units_review": 13973
+}

@@ -1,0 +1,237 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C11",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Unknown: an action (approval, modification or restoration) on a power-site reserve dated 25 August 1913; reserve number, stream, lands and type of action not established. Little Pend Oreille River No. 2, Washington, is an unconfirmed lead only.",
+    "end": null,
+    "props": [
+     "p1"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "unknown",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Unconfirmed lead, not a finding: the catalogue ties reserve identifier 163 to 1913-08-25, but OCR fragments suggest PSR 163 rows in Idaho (Timpen Creek) dated 1910-11, while the 08 25 13 token is on a Washington page. The number on the 1913 row needs checking against the scan image."
+  ],
+  "gaps": [
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Exact catalogue row for the 08/25/1913 entry: which stream it belongs to, reserve number, action code (approval, modification or restoration), acreage and lands. The OCR separates the columns and was read only through a summarizing tool; the row pairing is unconfirmed.",
+    "where_to_look": "Scan image of the catalogue source, PDF page 361 (Wikimedia Commons / Internet Archive powersiteclassif00geol, printed p. 183); the PDF is about 58.9 MB and exceeded the reviewer's fetch limit; the project's member source-claim rows for this entry"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Any text of the 25 August 1913 order, and whether the President signed it (a Pickett Act withdrawal or restoration) or it was a departmental act",
+    "where_to_look": "Lord (1943) Presidential Executive Orders list of unnumbered orders; National Archives RG 49 (General Land Office) and RG 57 (USGS) power-site reserve files; BLM Washington land status records and master title plats; GLO annual report 1914"
+   },
+   {
+    "stop_code": "HELD_UNROUTED",
+    "what": "The reserve number on the 1913 row, and whether the catalogue's link of identifier 163 to this date is right. The OCR chunk at chars 200000-300000 has fragments ('PSR', 'lb3', 'TIMPEn CREEK', state 'ID', and '02' '27' '11' on separate lines) that may be Idaho rows for PSR 163 dated 1910-11, but no intact row was readable.",
+    "where_to_look": "Member claim rows for PSR:DATE:1913-08-25 in the project catalogue; scan pages for printed pp. 85 and 183 of the USGS 1976 listing"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Any later revocation, restoration or Federal Power Act / BLM public land order naming this reserve, and current status of the lands at 2026-10-14",
+    "where_to_look": "Federal Register public land orders for Stevens and Pend Oreille Counties, Washington; BLM LR2000/MLRS; EO 8104 (Little Pend Oreille Wildlife Refuge, 1939) as an unnamed candidate only"
+   }
+  ],
+  "id": "PSR:DATE:1913-08-25",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "No text of any order dated 25 August 1913 was found in any printing, archive copy or transcription. The USGS 1976 listing's OCR contains the date token 08 25 13 and a Little Pend Oreille River No. 2 stream name on the same Washington page, but the OCR prints the columns as separate blocks, so the pairing of date, name, reserve number and action code is not confirmed. Presidential character not established.",
+    "stop_code": "NOT_FOUND",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": "none found; catalogue listing only (OCR): https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt"
+  },
+  "propositions": [
+   {
+    "claim": "In the Internet Archive OCR of the USGS 1976 listing, the part headed 'USGS Power Site Reserves and Classifications, Detail by State' at about printed p. 183 (state code WA, basin 12) contains the date token '08 25 13' once and a stream-name entry for Little Pend Oreille River No. 2. The OCR prints the date, stream-name and data columns as separate blocks, so it is NOT confirmed that the date belongs to that stream's row. Re-read on 2026-11-18 through a summarizing fetch tool, not from the scan image; the quotation's exact spacing may differ from the OCR file.",
+    "location": "W",
+    "pid": "p1",
+    "quote": "LITTLc PEND ORElLLt RIVtR NO. 2",
+    "supports": "clause",
+    "where": "https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt (chars 400000-500000)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "fixed",
+    "pid": "p1",
+    "why": "Source re-fetched and opened. Date token and stream name both appear on the WA page, but columns are separate blocks, so the claim now says the pairing is unconfirmed. Quote spacing corrected to the re-read form."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p2",
+    "why": "The quote is a bare date and cannot establish reserve number 163 or row alignment; the re-fetch did not recover the number on the Washington row."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p3",
+    "why": "Re-fetch showed the quoted string is not an intact OCR line, only split fragments; Idaho rows, dates and absence of a 1913 entry cannot be confirmed. Kept as a lead in gaps and data_errors."
+   }
+  ],
+  "searches": [
+   "Internet Archive full text of the USGS 1976 listing (powersiteclassif00geol), all five 100,000-character chunks to 500,000, for PSR 163 and 08/25/1913; final 9,328 characters not read",
+   "Web: \"Power Site Reserve No. 163\" 1913 - nothing relevant",
+   "Web: \"Little Pend Oreille\" \"power site reserve\" 1913 \"August 25, 1913\" - no text; only EO 8104 (1939 refuge) and unrelated power-site restorations",
+   "Repair 2026-11-18: re-fetched the same Internet Archive OCR at offsets 400000 and 200000 through the summarizing fetch tool. The source opened. Offset 400000: '08 25 13' appears once and the Little Pend Oreille River No. 2 name appears on the WA page, columns separated. Offset 200000: only split fragments of the Idaho PSR 163 / Timpen Creek rows, no intact line."
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "group": "unnumbered",
+ "id": "PSR:DATE:1913-08-25",
+ "ledger_status": null,
+ "producer_start": "T0",
+ "reached_claimed": "T0",
+ "reached_final": "T0",
+ "reached_reviewed": "T0",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Unknown: action (approval, modification or restoration) on a power-site reserve, apparently Little Pend Oreille River No. 2, Washington; type and lands not legible",
+    "end": null,
+    "props": [
+     "p1",
+     "p2"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "unknown",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Possible mismatch: the catalogue ties reserve identifier 163 to 1913-08-25, but the listing's Idaho rows for PSR 163 date from 1910-11 and the 1913 row is in Washington; the number on the Washington row needs checking against the scan."
+  ],
+  "gaps": [
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Exact catalogue row: reserve number, action code (approval, modification or restoration), acreage and lands for the 08/25/1913 entry. OCR is garbled and was read only through a summarizing tool.",
+    "where_to_look": "Scan image of the catalogue source, PDF page 361 (Wikimedia Commons / Internet Archive powersiteclassif00geol); the project's member source-claim rows for this entry"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Any text of the 25 August 1913 order, and whether the President signed it (a Pickett Act withdrawal or restoration) or it was a departmental act",
+    "where_to_look": "Lord (1943) Presidential Executive Orders list of unnumbered orders; National Archives RG 49 (General Land Office) and RG 57 (USGS) power-site reserve files; BLM Washington land status records and master title plats; GLO annual report 1914"
+   },
+   {
+    "stop_code": "HELD_UNROUTED",
+    "what": "Whether Idaho PSR 163 (1910-11) and the Washington 1913 row are the same reserve number, i.e. whether the catalogue's link of identifier 163 to this date is right",
+    "where_to_look": "Member claim rows for PSR:DATE:1913-08-25 in the project catalogue; scan pages for printed pp. 85 and 183"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Any later revocation, restoration or Federal Power Act / BLM public land order naming this reserve, and current status of the lands at 2026-10-14",
+    "where_to_look": "Federal Register public land orders for Stevens and Pend Oreille Counties, Washington; BLM LR2000/MLRS; EO 8104 (Little Pend Oreille Wildlife Refuge, 1939) as an unnamed candidate only"
+   }
+  ],
+  "id": "PSR:DATE:1913-08-25",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "Catalogue listing appears to confirm an action dated 08/25/13 for Little Pend Oreille River No. 2 (WA), but no text of the order was found in any printing, archive copy or transcription. Presidential character not established.",
+    "stop_code": "NOT_FOUND",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": "none found; catalogue listing only: https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The USGS 1976 listing's Washington section (basin 12, about printed p. 183) has a row dated 08 25 13 for Little Pend Oreille River No. 2. Read from OCR through a summarizing fetch tool, not from the scan image.",
+    "location": "W",
+    "pid": "p1",
+    "quote": "LI TTLc PEND ORElLLt RIVtR NO. 2",
+    "supports": "clause",
+    "where": "https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt (chars 400000-500000)"
+   },
+   {
+    "claim": "On the same Washington page the reserve number appears in OCR as '1 63', '1 b3' or 'lo3', consistent with 163; the tool could not pair number, date, action code and acreage with confidence.",
+    "location": "W",
+    "pid": "p2",
+    "quote": "08 25 13",
+    "supports": "clause",
+    "where": "https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt (chars 400000-500000)"
+   },
+   {
+    "claim": "The same listing also shows PSR 163 rows in Idaho, basin 12 (about printed p. 85), Timpen Creek, with dates in 1910 and 02/27/11, none in 1913. Tentative OCR reading through the same tool.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "1707 5 PSR 1 b3 PST 0A3 02 27 11",
+    "supports": "counterevidence",
+    "where": "https://archive.org/stream/powersiteclassif00geol/powersiteclassif00geol_djvu.txt (chars 200000-300000)"
+   }
+  ],
+  "searches": [
+   "Internet Archive full text of the USGS 1976 listing (powersiteclassif00geol), all five 100,000-character chunks to 500,000, for PSR 163 and 08/25/1913; final 9,329 characters not read",
+   "Web: \"Power Site Reserve No. 163\" 1913 - nothing relevant",
+   "Web: \"Little Pend Oreille\" \"power site reserve\" 1913 \"August 25, 1913\" - no text; only EO 8104 (1939 refuge) and unrelated power-site restorations"
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "review": {
+  "conclusion_reason": "OPEN with formal status unknown is the appropriate conservative disposition: no accepted original, operative clauses, ending evidence, or positive current-status evidence has been verified. This upholds uncertainty only, not the worker's geographic or reserve-identification claims. T3 is unavailable without the prerequisites and supporting quotation.",
+  "conclusion_verdict": "upheld",
+  "id": "PSR:DATE:1913-08-25",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: TOOL_DEFECT describes the immediate access barrier for the first gap. The evidence slice names catalogue PDF page 361, but the PDF fetch failed because its 58,929,026-byte size exceeded the tool limit; screenshot retrieval also failed. Internet Archive OCR and scan-page access failed. The row's actual legibility remains unverified.",
+  "suspected_defect": null,
+  "tier_supported": "T0",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The cited Internet Archive OCR could not be retrieved. The catalogue PDF exceeded the web tool's size limit, and the scan page could not be opened. Neither the quotation nor its association with the date was confirmed.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p2",
+    "reason": "Source access failed. The supplied quotation contains only a date and cannot itself establish reserve number 163 or the asserted row alignment.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p3",
+    "reason": "Source access failed; the Idaho location, Timpen Creek identification, dates, and absence of a 1913 entry could not be checked.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 184.8,
+ "start": "T0",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "confirmed: TOOL_DEFECT describes the immediate access barrier for the first gap. The evidence slice names catalogue PDF page 361, but the PDF fetch failed because its 58,929,026-byte size exceeded the tool limit; screenshot retrieval also failed. Internet Archive OCR and scan-page access failed. The row's actual legibility remains unverified.",
+ "tokens": 169931,
+ "units": 89435,
+ "units_producer": 36579,
+ "units_repair": 24770,
+ "units_review": 28086
+}
