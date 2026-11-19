@@ -10,7 +10,7 @@ New York date: 2026-11-19. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `44604875005-1:fa8a015ab63866c474356c0cb21dcafefd41056adedd20b6da607cb95c027d4f` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `44618852225-1:fba052366da64a7753fc4b702d45348e1cfc8af2f0c72f92866b6295ad4f62e7` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -26,9 +26,12 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-18; intervening runs may be absent.
+- claim-checker: held_distinct_sha256: 59237 → 58700
 - family-rules: saved_texts_scanned: 87469 → 87600
 - lachmann: assessed: 2355 → 2359; complete_text_confirmed: 1367 → 1398; confirmed: 777 → 808; identity_confirmed: 1149 → 1147
+- linnaeus-types: cruden_targets: 2115 → 2113; cs_one_person_left_to_ulpian: 1248 → 1249; m1118_gap_overlap: 1470 → 1472; unsourced_named_without_ending_word: 394 → 390
 - readiness-tracker: original_replacement_obligations: 851 → 883; quotation_recheck_obligations: 851 → 883; text_step_provisional_working_text: 252 → 284; working_text_confirmations_counting: 777 → 808
+- selden-fr-citers: targets_total: 13203 → 13207
 - source-ladder: attempts_logged: 175 → 180; http_requests: 52 → 55; pool_cache_hits: 4 → 5; pool_network_requests: 52 → 55
 - tsiolkovsky-trajectory: W_hours: 6844.2 → 6842.8; a_hours_per_day2_latest: -0.44 → -0.93; days: 32 → 34; generations: 160 → 169
 
@@ -62,4 +65,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/44604875005)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/44618852225)
