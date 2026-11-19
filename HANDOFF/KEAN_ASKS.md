@@ -75,10 +75,10 @@ Approve the Lind stage-0 pilot exactly as research/lind/stage0/WAVE.json (sha256
 
 Sources: `research/lind/stage0/WAVE.json`
 
-## A-20261118-kiaer-third-rejection (2026-11-18, Claude)
+## A-20261118-kiaer-fourth-rejection (2026-11-18, Claude)
 
-Kiaer tier probe: Codex rejected both launch plans a third time, so nothing has run. Its three remaining grounds (a NaN figure passing the reconcile command, empty or partial usage counted as measured, four plan statements stronger than the code) are now fixed and tested but not reviewed. Choose: (1) Claude sends a fourth Codex review of the current plans; (2) you review and sign stage 0 yourself, which Augur accepts (1 lane, 29 orders, 6M units), and the full run still needs a review; or (3) drop the probe.
+Kiaer tier probe: Codex rejected both launch plans a fourth time, so nothing has run. It found every earlier ground met and one left: the Codex adapter ignored a usage event whose usage field was missing or malformed. That is now fixed and tested but not reviewed. Choose: (1) Claude sends a fifth Codex review; (2) you review and sign the plans yourself, which Augur accepts (stage 0 is 1 lane, 29 orders, 6M units); or (3) drop the probe.
 
-*Why:* Each review found real defects and each was narrower than the last (4, then 7, then 3); review 3 found the seven earlier grounds met and again found no way for a model turn to write to the repository or change a status. Also decide the budget: two smoke tests cost 167,712 and 186,931 units per order, so 10M units buys about 53 to 59 orders, about 5 per cell, and your stage-0 condition 'fewer than 40 orders fit' may stop the full run.
+*Why:* The grounds have narrowed each round (4, 7, 3, 1) and the fourth review passed every other check, with no way found for a model turn to write to the repository or change a status. Four reviews and two smoke tests have cost 783,269 units. Budget is a separate decision: at 167,712 to 186,931 units per order, 10M units buys about 53 to 59 orders, and your stage-0 condition 'fewer than 40 orders fit' may stop the full run.
 
 Sources: `research/kiaer/kiaer-2026-11-18/REPORT.md`

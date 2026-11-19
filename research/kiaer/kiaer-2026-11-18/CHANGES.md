@@ -1,11 +1,12 @@
 # Changes to the Relay and Kiaer code (2026-11-18)
 
 The code that ran is `Relay-kiaer.zip` (sha256 in `SOURCE.txt`) plus the changes below. The exact diff against the
-zip is `CHANGES.diff`. All were made by Claude (Fable 5.2), in three rounds, one after each Codex plan review
-(`review/CODEX_REVIEW_1.json`, `_2.json`, `_3.json`); the owner directed round 2 ("fix and re-review"). Relay's unit
-tests: 33 in the zip, 38 after round 1, 55 after round 2, 58 after round 3; all pass, and `python -m kiaer selftest`
-exits 0. The first smoke test ran on the zip's code, the second on the round-2 code (`SMOKE.json`). Round 3 has not
-been reviewed and nothing has run on it but the tests and the selftest.
+zip is `CHANGES.diff`. All were made by Claude (Fable 5.2), in four rounds, one after each Codex plan review
+(`review/CODEX_REVIEW_1.json` to `_4.json`); the owner directed the third and fourth reviews. Relay's unit tests: 33
+in the zip, 38 after round 1, 55 after round 2, 58 after round 3, 62 after round 4; all pass, and
+`python -m kiaer selftest` exits 0. The first smoke test ran on the zip's code, the second on the round-2 code
+(`SMOKE.json`). Round 3 was reviewed by the fourth review; round 4 has not been reviewed, and nothing has run on
+rounds 3 and 4 but the tests and the selftest.
 
 ## Round 1 (after the first review)
 
@@ -47,7 +48,7 @@ command now prints `STOPPED` until that turn is reconciled. This is deliberate (
 
 ## Round 3 (after the third review): its three grounds, and what was done
 
-Made after the third rejection so the kit is ready for whichever decision the owner takes. Not reviewed.
+Made after the third rejection so the kit was ready for whichever decision the owner took. The fourth review found the first and third met and the second incomplete (round 4).
 
 | Ground | Change | Where |
 | --- | --- | --- |
@@ -62,3 +63,16 @@ Risks the third review noted without making them grounds: a blind producer can s
 web-search result snippets (only fetches of the project's sites are denied); creating a job and saving the state
 file are not one atomic step, so a crash between them leaves a job the next start refuses; the projection is a
 forecast.
+
+## Round 4 (after the fourth review): its one ground, and what was done
+
+Made after the fourth rejection. Not reviewed.
+
+| Ground | Change | Where |
+| --- | --- | --- |
+| The Codex adapter checked a usage event only if its usage field was an object. A completion event with usage missing, null, a list or a string, or an older-format event with an empty usage object behind a fallback, was skipped, so earlier valid counts stood and the turn counted as measured. | Every accounting event in a turn's stream (each `turn.completed`, and any `token_count` that carries a usage field) must have a complete, valid usage object. One that does not makes the whole turn unmeasured, even after valid events: it is charged the estimate, flagged, and stops the run. An event that carries no accounting field at all is still ignored. | `bridge/codex.py` |
+
+New tests: four more in `tests/test_kiaer_round3.py`, including a mixed stream driven through the adapter and the
+engine (estimate charged, next turn blocked until reconciled) and a clean stream that stays measured. The four real
+Codex event streams on file (the plan reviews) each hold one `turn.completed` with full usage and still read as
+measured. Plans: one more lesson answer and the wording of `unmeasured_turns`.

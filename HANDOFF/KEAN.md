@@ -10,7 +10,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 ## Waiting for the owner (10)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-cis-unnumbered-check**, **A-20261112-lind-stage0**, **A-20261112-lind-stage0-v2**, **A-20261118-kiaer-third-rejection**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-cis-unnumbered-check**, **A-20261112-lind-stage0**, **A-20261112-lind-stage0-v2**, **A-20261118-kiaer-fourth-rejection**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -55,13 +55,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 379; `search` finds the rest)
+## Newest results (6 of 380; `search` finds the rest)
 
 - 2026-11-18 F-20261118-kiaer-third-rejection **stopped at gate**: Fixed the seven grounds of Codex's second plan review of the Kiaer tier probe (zero cap, saved state not boun… Lesson: A cross-family plan review that reads all the code finds a new layer of real defects each round (4, then 7, then 3): budget three or more rounds for a new orchestrator, or have the kit reviewed as co…
 - 2026-11-18 F-20261118-kiaer-stopped-at-review **stopped at gate**: Kiaer tier probe (owner-directed, run on Relay from Relay-kiaer.zip): a zero-token tier census of all 15,002… Lesson: A launch plan's guards must be checked against the code before the review, not asserted: half of the first rejection was guards the reviewer could not see, and the rest were real. Give a plan reviewe…
+- 2026-11-18 F-20261118-kiaer-fourth-rejection **stopped at gate**: Fixed the three grounds of Codex's third plan review of the Kiaer tier probe (non-finite reconcile figures, e… Lesson: When a reviewer asks for validation of provider usage, validate the event stream, not only the object: decide which events account for a turn first, then require a valid payload on every one of them,…
 - 2026-11-12 F-20261112-soft-gates-untested **analysis**: Owner: does Larrey filtering avoid waste or exclude worthwhile work? Split the 62 back-test exclusions into h… Lesson: Enforce hard gates; use soft gates to order the queue, not to exclude, until a stratified prospective test on the rebuilt kit measures orders kept out. A sample of admitted orders cannot measure fals…
 - 2026-11-12 F-20261112-runner-deadline **failed**: Run the Bodley web pass (one web search per order for 2,251 orders lacking an official copy) as a single job… Lesson: Never guess a job's run time: time 5-10 real items first (locally or a diagnostic run) and multiply. If the projection is over 4 hours, shard it across jobs or let it stop at 4.5 h and continue next…
 - 2026-11-12 F-20261112-lind-decision **analysis**: Owner: choose, from current evidence, the intervention that lowers the total cost of finishing without weaken… Lesson: Price undecided work with undecided measurements, all-in including the coordinator, at the readiness endpoint; triage before spending; keep coordination lean and measured per attempt. Prospective che…
-- 2026-11-12 F-20261112-kit-not-rebuilt **failed**: Owner: critically investigate and fix what causes the low undecided yield. Compared the merge times of the Ac… Lesson: A merged kit fix is not in effect until claim-kit is rebuilt and published on main; check jobs/claim-kit/output/STATUS.json finished_utc against the fix merge time before any undecided production or…
 
-Register: 91 owner decisions, 58 answered questions, 379 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 91 owner decisions, 59 answered questions, 380 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

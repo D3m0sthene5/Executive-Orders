@@ -1,3 +1,17 @@
+## 2026-11-18 ET, night (Claude: Kiaer probe rejected a fourth time on one ground; fixed, not reviewed; nothing ran)
+
+- **Owner answered** A-20261118-kiaer-third-rejection in chat: "Fourth review". Codex rejected both plans again
+  (`research/kiaer/kiaer-2026-11-18/review/CODEX_REVIEW_4.json`, F-20261118-kiaer-fourth-rejection). Every earlier
+  ground was found met; one was left: the Codex adapter skipped a usage event whose usage field was missing, null
+  or not an object, so such a turn still counted as measured. No repository write path was found.
+- **That ground is fixed and tested, not reviewed** (62 tests pass, selftest exit 0; `CHANGES.md` round 4). The
+  current plans are `review/WAVE_stage*.current-unreviewed.json` (stage 0 `2244eae8...`, stage 1 `4d36c76d...`);
+  Augur refuses them only on Bentham, the stage-1 ramp and the missing review.
+- **Still not done:** no review is bound, no owner exception is recorded (no `add-decision`), stage 0 and the full
+  run have not started, nothing is pushed, there is no pull request. No count changed.
+- **Spent:** 783,269 units, 1,659,693 raw tokens (two smoke tests, four reviews), outside this session's own use.
+- **Open for the owner:** A-20261118-kiaer-fourth-rejection (fifth review, sign the plans yourself, or drop it).
+
 ## 2026-11-18 ET, late (Claude: Kiaer probe rejected a third time; three last grounds fixed, not reviewed; nothing ran)
 
 - **Owner answered** A-20261118-kiaer-review-rejected in chat: "Fix and re-review". All seven grounds of Codex's
