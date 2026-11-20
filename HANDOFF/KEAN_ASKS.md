@@ -11,14 +11,6 @@ Should bulk job outputs, data and attempt receipts (~163,000 of main's 194,167 f
 
 Sources: `.ignore`
 
-## A-20261110-larrey-soft-probe (2026-11-10, claude)
-
-Larrey keeps 1,014 undecided orders out only on the soft gate later_order_text_held (fitted on 28 failures, 0 of 33 successes lost). May a coordinator spend about 15-20 USD on one 30-order probe of soft-gated orders (LARREY_LEVEL=hard) to measure its lost yield before it is relied on at scale?
-
-*Why:* Gated-out orders are never dispatched, so the soft gate's lost yield cannot otherwise be measured; the independent review asked for this before enforcing it by default. Until answered the gate stays on (no paid discovery of missing inputs).
-
-Sources: `jobs/larrey-triage/README.md`
-
 ## A-20261110-respondendi-standing-rule (2026-11-10, Claude)
 
 Approve jobs/respondendi-adoption/RULE.md (sha256 85a990233d5cad3fb30870e4b80ed0c6102ae6232f7be595b28d545750250934) as a standing adoption rule, so that undecided-route status proposals in its lot are adopted without a per-order owner decision? The lot: express, named, unqualified whole-order revocations by a later order or proclamation (687 undecided orders have such a held ending on an acceptable original). Each order still needs the full route (admission in a Bentham action, independent status review accepted, both blind arms upholding the exact claim, at least 2 typed planted controls caught by every arm, the checker passing), and nothing reaches the ledger until a person or another model family has audited it: every member until the 95% upper bound on the error rate is 5% (59 audits with no confirmed error), then 20% of each lot. Disagreements are adjudicated; 2 confirmed errors in 59 audits stop the rule until you resume it; at most 60 orders a lot, 300 a week, one lot a day; any adoption can be reversed; you can suspend the rule at any time. Statuses stay provisional AI hypotheses and human-certified stays 0; count-changing pull requests still need your merge. Recommended: yes. To approve, the agent recording your answer commits an owner-ruling file and a Kean decision that both contain respondendi-rule-sha256:85a990233d5cad3fb30870e4b80ed0c6102ae6232f7be595b28d545750250934 (different numbers mean a new hash, which that agent computes).
@@ -59,18 +51,26 @@ Check the 875 CIS unnumbered executive orders that fall on dates with no known o
 
 Sources: `research/graunt-census-audit-2026-11-12/cis-kaufman/README.md`
 
-## A-20261112-lind-stage0 (2026-11-12, Claude)
+## A-20261112-generate-verify-comparison (2026-11-12, Claude)
 
-After the claim-kit rebuild publishes, may Claude run one Lind stage-0 batch: 30 undecided orders (15 passing every Larrey gate, 15 passing only the hard gates, drawn by research/lind/stage0/draw.py), Papinian configuration, one pooled review set, hard cap $35 list-price allowance? It also needs an Augur review of research/lind/stage0/WAVE.json by another model family (Codex or Astra) or you, bound to its hash. This replaces A-20261110-larrey-soft-probe.
+Approve one bounded comparison, generate-then-verify (Nalimov script drafts) against the current producer route, on the same 10 prescreened orders (EO 10302, 10779, 10918, 11056, 11232, 11352, 11361, 11512, 12737, 13765), with the same sources, the same blind two-arm Opus review with planted controls and the both-uphold rule? Cap $30 list-price allowance all-in, script route first with a stop at $10. It is not a Lind stage 1 (no new pool, no scale). It needs: a newly signed plan replacing the Nalimov calibration v3 hash; your consent to attempt each order on both routes and file at most one claim per order; a Bentham gate pass; and your adoption decision on any upheld claims.
 
-*Why:* It decides whether the soft gates exclude worthwhile work (2,073 orders) and whether the rebuilt kit lifts undecided yield; every result row has an action in DECISION_2026-11-12.md section 6.3. Cost: about $22-26 expected, $35 cap, plus your adoption decisions.
+*Why:* It tests whether replacing prose authoring with script drafting cuts cost per accepted ready dossier; falsified if script-route cost exceeds about one third of the producer route, reviewer reading is not cut by half, fewer than 60% are upheld, or a script error reaches review. Applies only to modern express revocations with held ending text.
 
-Sources: `research/lind/DECISION_2026-11-12.md`
+Sources: `research/lind/DESIGN_CHALLENGE_2026-11-12.md`
 
-## A-20261112-lind-stage0-v2 (2026-11-12, Claude)
+## A-20261112-lind-repair-12437-11943 (2026-11-12, Claude)
 
-Approve the Lind stage-0 pilot exactly as research/lind/stage0/WAVE.json (sha256 f2b07a1923354e3484a9f510a3419fbb2d882150ce68cce9dc02f6ff0d3b8a1d): 30 undecided orders, 15 drawn at random from the 3,447 that pass every Larrey gate and 15 from the 1,834 that pass only the hard gates (never attempted), hard gates only, Papinian configuration, one pooled blind review set, cap $35 list-price allowance all-in (setup 1, coordination 6, production 7, review 17, correction 2, integration 2), with the stop and decision rules in DECISION_2026-11-12.md section 7.3? Approving also commits you to one adoption decision on the batch's upheld proposals (as A-20261110-papinian-adopt-u01b), so the endpoint is ready (6/6), not proposals. Preconditions: merge PR #302 then #301; the main run of larrey-triage and bentham publishes; an Augur review of the plan by another model family (Codex or Astra) or you, bound to that hash. Supersedes A-20261112-lind-stage0 and A-20261110-larrey-soft-probe.
+Optional: may Claude spend up to $8 list-price allowance (all-in) to repair EO 12437 and EO 11943, the two stage-0 claims each rejected by one blind arm for a single sentence (a false search statement; an imprecise effective date)? Steps: one producer correction of those sentences, overlay-check with the offline completion checker, one small blind review set (two fresh Opus arms, one planted control), completion; run from a fresh coordinator context. Expected 0-2 more eligible claims, each then needing your adoption.
 
-*Why:* It measures whether the repaired workflow produces ready dossiers cheaply, and whether soft-filtered orders are worth processing, each group reported separately; every outcome, including inconclusive, has a stated next spending decision.
+*Why:* The cheapest remaining repairs by recorded defects (RECOVERY.md section 3); the substantive repairs (EO 13476, 12701, 11294, 9447) are not worth buying before these show corrected claims pass.
 
-Sources: `research/lind/stage0/WAVE.json`
+Sources: `research/excavator/claude-lind-2026-11-12/RECOVERY.md`
+
+## A-20261113-lind-12753-reconfirm (2026-11-13, Claude)
+
+EO 12753's lifecycle approval was reconfirmed by script, which D-20261110-no-mechanical-reconfirmation-for-models does not allow for model producers. Choose: (a) one fresh Sonnet producer session reconfirms the working sheet as a producer (about $0.5 cap), then re-assemble, re-check and re-complete; the blind reviews were bound to the claim hash and stay valid only if the claim is unchanged; or (b) you decide the mechanical reconfirmation acceptable for this one claim (a rule exception). Adoption of EO 12753 waits on this.
+
+*Why:* EO 12753 is the only stage-0 claim upheld by both arms and passing the actual checker; its process must comply before adoption.
+
+Sources: `research/lind/conveyor-replay/RESULT.md`
