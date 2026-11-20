@@ -1,3 +1,23 @@
+## 2026-11-12 ET, night (Claude: Lind stage 0 run; 0 ready; unsuccessful row)
+
+- **Run** (owner-approved, A-20261112-lind-stage0-v2): 30 undecided orders, 15 passing every gate and 15 hard-only.
+  Report: `research/excavator/claude-lind-2026-11-12/REPORT.md`; Kean F-20261112-lind-stage0.
+- **Result: ready 0 in both groups, so no stage 1.**
+
+  | | Dispatch-blocked | Producer-blocked | Statuses accepted | Claims reviewed | Upheld by both arms |
+  |---|---:|---:|---:|---:|---:|
+  | All gates | 2 | 6 | 7 | 6 | 1 (EO 12753) |
+  | Hard-only | 5 | 9 | 1 | 1 | 0 |
+
+  - EO 12753 failed the actual checker on a custody-only ending source.
+  - Both arms caught the planted control.
+- **Cost:** $23.07 of the $35 cap: producers 5.79, reviewers 7.12, coordinator 10.16. The coordinator came to $0.34 per
+  attempt, over the $0.25 stop rule.
+- **Next, owner's call (not asked yet):**
+  - zero-production diagnosis of the 30;
+  - or custody retention for EO 12753's ending source, plus text corrections of 5 rejected claims, then a fresh review.
+- **Augur:** this run is recorded in `CONFIGURATIONS.json` as stage 0, not passed.
+
 ## 2026-11-12 ET, evening (Claude: claim-kit build repaired; fresh build verified; pilot finalized, not run)
 
 - **Repair** (PR #302, Kean F-20261112-claimkit-regex-runaway):
