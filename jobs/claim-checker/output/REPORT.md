@@ -6,8 +6,8 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 
 - Claims checked: 1908 (parse errors: 0)
 - Orders with a claim (latest claim per order): 1604
-- All checks passed: 1746
-- Mechanical checks passed: 1832; with unverifiable items: 2; failed: 74
+- All checks passed: 1740
+- Mechanical checks passed: 1826; with unverifiable items: 2; failed: 80
 - Structural gate passed: 1818
 
 ## Source references
@@ -117,7 +117,7 @@ possible, and the Stage 19 gate's structure is met. **It is not a legal conclusi
 | `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:21` | EO:8744 | structural_gate:clause_0_state@-; structural_gate:whole_order_end_evidence@-; structural_gate:unresolved_material_gaps@- |
 | `research/readiness/claims/claude-2026-10-18-codif-b6.jsonl:22` | EO:11911 | structural_gate:clause_0_state@-; structural_gate:clause_1_state@-; structural_gate:clause_2_state@-; structural_gate:clause_3_state@-; structural_gate:clause_4_state@-; structural_gate:clause_5_state@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:5` | EO:10440 | structural_gate:clause_7_first_end@-; structural_gate:unresolved_material_gaps@- |
-| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:12` | EO:11832 | working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[1].original_source; working_text_policy:invalid_working_text@operative_clauses[1].original_source ... |
+| `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:12` | EO:11832 | working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@original_representation; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0].original_source; working_text_policy:invalid_working_text@operative_clauses[0].later_events[0].source; working_text_policy:invalid_working_text@operative_clauses[0].later_events[0].source ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:14` | EO:11482 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:15` | EO:11849 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_2_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@- ... |
 | `research/readiness/claims/claude-2026-10-18-codif-b7.jsonl:16` | EO:11971 | structural_gate:clause_0_first_end@-; structural_gate:clause_1_first_end@-; structural_gate:clause_3_first_end@-; structural_gate:clause_4_first_end@-; structural_gate:clause_5_first_end@-; structural_gate:clause_6_first_end@- ... |
