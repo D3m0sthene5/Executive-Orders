@@ -10,7 +10,7 @@ New York date: 2026-11-21. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `44950300159-1:00780bb1aaf70892371c769f6624498f54558b9fd1d8371c9cc3eab8e82007b7` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `44952986492-1:2c139ba7bbc3bfaa291ce6275bdc850e551c3fb3678415e0dcb3d26de6ea1e47` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -31,6 +31,7 @@ Comparison snapshot: 2026-11-20; intervening runs may be absent.
 - lachmann: assessed: 2355 → 2359; complete_text_confirmed: 1367 → 1398; confirmed: 777 → 808; identity_confirmed: 1149 → 1147
 - official-fixity: carried_forward: 7358 → 7359; checked_this_run: 1 → 0
 - readiness-tracker: original_replacement_obligations: 851 → 883; quotation_recheck_obligations: 851 → 883; text_step_provisional_working_text: 252 → 284; working_text_confirmations_counting: 777 → 808
+- shepard-citations: land_targets: 3537 → 3535
 - source-ladder: attempts_logged: 175 → 180; http_requests: 49 → 45; pool_cache_hits: 4 → 5; pool_network_requests: 49 → 45
 - tsiolkovsky-trajectory: W_hours: 6842.0 → 6842.8; a_hours_per_day2_latest: 0.65 → -0.89; days: 35 → 36; generations: 177 → 184
 
@@ -64,4 +65,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/44950300159)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/44952986492)
