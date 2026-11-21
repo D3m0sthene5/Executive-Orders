@@ -10,7 +10,7 @@ New York date: 2026-11-20. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `44839375090-1:1de217faff4dbb5242138d60fc1592d5441089a21911f03a909a0e2976a6cde3` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `44845665426-1:0c327b8150db786b7c1b2f6abfca0a27d686f183ffc2fe8d9d4ac0483fa1a8b7` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -32,6 +32,7 @@ Comparison snapshot: 2026-11-19; intervening runs may be absent.
 - lambertini: pool_LAMBC: 403 → 404
 - official-fixity: carried_forward: 7359 → 7358; checked_this_run: 0 → 1
 - readiness-tracker: original_replacement_obligations: 846 → 849; quotation_recheck_obligations: 846 → 849; text_step_provisional_working_text: 252 → 255; working_text_confirmations_counting: 808 → 777
+- selden-fr-citers: targets_total: 13207 → 13203
 - shepard-citations: land_targets: 3535 → 3537
 - source-ladder: attempts_logged: 180 → 175; http_requests: 55 → 49; pool_cache_hits: 5 → 4; pool_network_requests: 55 → 49
 - tsiolkovsky-trajectory: W_hours: 6842.8 → 6842.0; a_hours_per_day2_latest: -0.93 → 0.65; days: 34 → 35; generations: 169 → 177
@@ -67,4 +68,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/44839375090)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/44845665426)
