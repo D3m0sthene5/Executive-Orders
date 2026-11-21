@@ -1,0 +1,16 @@
+.....................................................F...........................................................................................................................
+======================================================================
+FAIL: test_ladder_end_to_end_gzip_wayback_then_text_readable (test_panizzi2_defects.GzipTests.test_ladder_end_to_end_gzip_wayback_then_text_readable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/runner/work/Executive-Orders/Executive-Orders/jobs/source-ladder/test_panizzi2_defects.py", line 131, in test_ladder_end_to_end_gzip_wayback_then_text_readable
+    self.assertEqual(res["source"]["raw_sha256"], sha(gzip.compress(GOOD_HTML)))
+AssertionError: 'b3d29be7eba4ecae7c723727fa3eb804de578c85c503898d7162f7312c4ec2db' != 'ef74a5b06f18d2a76cf13b687dd65375d8bed3ce78a0d64658e5ad142672c434'
+- b3d29be7eba4ecae7c723727fa3eb804de578c85c503898d7162f7312c4ec2db
++ ef74a5b06f18d2a76cf13b687dd65375d8bed3ce78a0d64658e5ad142672c434
+
+
+----------------------------------------------------------------------
+Ran 177 tests in 1.377s
+
+FAILED (failures=1)
