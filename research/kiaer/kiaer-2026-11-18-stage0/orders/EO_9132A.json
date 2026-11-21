@@ -1,0 +1,290 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C01",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "rejected",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "unknown",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "None found in project files. External note: the Wikisource page for EO 9132-A dates EO 9427-A as February 24, 1944, while the OFR table and the Wikisource page for 9427-A both say February 29, 1944; the slice's 1944-02-29 matches OFR."
+  ],
+  "gaps": [
+   {
+    "stop_code": "OFFLINE",
+    "what": "Any text of EO 9132-A (needed for T1/T2 and a clause inventory).",
+    "where_to_look": "Unverified suggestions, none checked: NARA RG 11 (General Records of the U.S. Government) signed originals of executive orders; FDR Library, Official File; records of the Interdepartment Radio Advisory Committee (IRAC) at NARA or NTIA; ProQuest Executive Orders collection (State Department copy), if it covers 9132-A."
+   },
+   {
+    "stop_code": "OFFLINE",
+    "what": "The words of EO 9427-A (1944-02-29) expressly superseding EO 9132-A. The only evidence found is the OFR table's editorial note, so the express named ending cannot be quoted from the acting instrument. Until it is, formal status is recorded as unknown, with OFR-reported supersession as a lead, and first_end stays null.",
+    "where_to_look": "Unverified suggestions, none checked: NARA RG 11 signed original of EO 9427-A; IRAC records; ProQuest Executive Orders."
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether the project accepts an OFR disposition-table note alone as an express named supersession when neither the target nor the acting order's text is available.",
+    "where_to_look": "Owner ruling / project codebook."
+   }
+  ],
+  "id": "EO:9132A",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "The OFR table marks the order confidential and not received for Federal Register publication; no text is held in the repository (slice own_texts empty) and none was found in the online searches listed. The Wikisource page is a stub with no order text.",
+    "stop_code": "OFFLINE",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": "none held; location of a signed original not verified"
+  },
+  "propositions": [
+   {
+    "claim": "The OFR disposition table identifies EO 9132-A by title and signing date (identification only; no order text).",
+    "location": "W",
+    "pid": "p1",
+    "quote": "Assignment of Frequencies to Government Radio Stations (Confidential) ... Signed: April 13, 1942",
+    "supports": "original",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1942.html"
+   },
+   {
+    "claim": "The OFR disposition table notes that EO 9132-A was not received for publication in the Federal Register. Whether it was published anywhere later is not established.",
+    "location": "W",
+    "pid": "p2",
+    "quote": "Note: This Executive order was not received for publication in the Federal Register.",
+    "supports": "original",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1942.html"
+   },
+   {
+    "claim": "The OFR disposition table records EO 9132-A as superseded by EO 9427-A. This is an editorial note, not the superseding instrument's own words, and is treated as a lead to an ending, not proof of one.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "Superseded by: EO 9427-A, February 29, 1944",
+    "supports": "ending",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1942.html"
+   },
+   {
+    "claim": "The OFR 1944 disposition table lists EO 9427-A (same title, signed February 29, 1944) with a note that it was a classified order not received for Federal Register publication. Its present classification and whether its text is available elsewhere are not established; its superseding words were not found in the searches listed.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "This classified Executive order was not received for publication in the Federal Register.",
+    "supports": "ending",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1944.html"
+   },
+   {
+    "claim": "The Wikisource page for EO 9132-A holds no order text (a lead only, not an original).",
+    "location": "W",
+    "pid": "p5",
+    "quote": "This Executive Order was not received for Federal Register publication.",
+    "supports": "counterevidence",
+    "where": "https://en.wikisource.org/wiki/Executive_Order_9132-A"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld; added that it identifies the order only and supplies no text."
+   },
+   {
+    "change": "fixed",
+    "pid": "p2",
+    "why": "Claim narrowed from 'never published' to what the quote says: not received for Federal Register publication; later publication not established."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld; now marked as a lead, not proof of an ending."
+   },
+   {
+    "change": "fixed",
+    "pid": "p4",
+    "why": "Claim narrowed to what the 1944 table records; dropped the assertions of present classification and that no public source can supply the words."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Upheld."
+   },
+   {
+    "change": "fixed",
+    "pid": "conclusion",
+    "why": "formal_status changed from revoked_or_superseded to unknown: an editorial OFR note is not a quoted express supersession by the later instrument. Operative OPEN, first_end null and tier T0 unchanged."
+   },
+   {
+    "change": "fixed",
+    "pid": "gaps",
+    "why": "Archive locations and the original's location marked as unverified suggestions, per the reviewer's stop-code note."
+   }
+  ],
+  "searches": [
+   "Web search: 'Executive Order 9132-A' assignment of frequencies government radio stations 1942 superseded 9427-A",
+   "archives.gov OFR disposition table 1942 page, entry for EO 9132-A (first 100,000 characters read)",
+   "archives.gov OFR disposition table 1944 page, entry for EO 9427-A",
+   "Wikisource pages for Executive Order 9132-A and Executive Order 9427-A (both stubs, no text)",
+   "No repository files opened: the evidence slice names none (own_texts and acting_texts empty)",
+   "Repair pass: no sources re-fetched; claims narrowed to what the reviewer confirmed the cited quotations say"
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "group": "modern",
+ "id": "EO:9132A",
+ "ledger_status": null,
+ "producer_start": "T0",
+ "reached_claimed": "T0",
+ "reached_final": "T0",
+ "reached_reviewed": "T0",
+ "result": {
+  "clauses": [],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "None found in project files. External note: the Wikisource page for EO 9132-A dates EO 9427-A as February 24, 1944, while the OFR table and the Wikisource page for 9427-A both say February 29, 1944; the slice's 1944-02-29 matches OFR."
+  ],
+  "gaps": [
+   {
+    "stop_code": "OFFLINE",
+    "what": "Any text of EO 9132-A (needed for T1/T2 and a clause inventory).",
+    "where_to_look": "NARA RG 11 (General Records of the U.S. Government), signed originals of unnumbered/lettered executive orders; FDR Library, Official File; IRAC (Interdepartment Radio Advisory Committee) records, NARA RG 417 or NTIA; ProQuest Executive Orders collection (State Department copy), if it covers 9132-A."
+   },
+   {
+    "stop_code": "OFFLINE",
+    "what": "The words of EO 9427-A (1944-02-29) expressly superseding EO 9132-A; the only evidence found is the OFR table's editorial note, so the express named ending cannot be quoted from the acting instrument.",
+    "where_to_look": "Same: NARA RG 11 signed original of EO 9427-A; IRAC records; ProQuest Executive Orders."
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether the project accepts an OFR disposition-table note alone as an express named supersession when both the target and the acting order are unpublished classified orders.",
+    "where_to_look": "Owner ruling / project codebook."
+   }
+  ],
+  "id": "EO:9132A",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "Confidential order, not received for Federal Register publication; no text held in the repository (slice own_texts empty) and none found online. Wikisource page is a stub with no order text.",
+    "stop_code": "OFFLINE",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": "none held; signed original presumably NARA RG 11 (not online)"
+  },
+  "propositions": [
+   {
+    "claim": "The OFR disposition table identifies EO 9132-A by title and signing date.",
+    "location": "W",
+    "pid": "p1",
+    "quote": "Assignment of Frequencies to Government Radio Stations (Confidential) ... Signed: April 13, 1942",
+    "supports": "original",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1942.html"
+   },
+   {
+    "claim": "EO 9132-A was never published in the Federal Register.",
+    "location": "W",
+    "pid": "p2",
+    "quote": "Note: This Executive order was not received for publication in the Federal Register.",
+    "supports": "original",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1942.html"
+   },
+   {
+    "claim": "The OFR disposition table records EO 9132-A as superseded by EO 9427-A (editorial note, not the superseding instrument's own words).",
+    "location": "W",
+    "pid": "p3",
+    "quote": "Superseded by: EO 9427-A, February 29, 1944",
+    "supports": "ending",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1942.html"
+   },
+   {
+    "claim": "EO 9427-A, same title, signed February 29, 1944, is itself classified and unpublished, so its superseding words cannot be quoted from a public source.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "This classified Executive order was not received for publication in the Federal Register.",
+    "supports": "ending",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1944.html"
+   },
+   {
+    "claim": "The Wikisource page for EO 9132-A holds no order text (a lead only, not an original).",
+    "location": "W",
+    "pid": "p5",
+    "quote": "This Executive Order was not received for Federal Register publication.",
+    "supports": "counterevidence",
+    "where": "https://en.wikisource.org/wiki/Executive_Order_9132-A"
+   }
+  ],
+  "searches": [
+   "Web search: 'Executive Order 9132-A' assignment of frequencies government radio stations 1942 superseded 9427-A",
+   "archives.gov OFR disposition table 1942 page, entry for EO 9132-A (first 100,000 characters read)",
+   "archives.gov OFR disposition table 1944 page, entry for EO 9427-A",
+   "Wikisource pages for Executive Order 9132-A and Executive Order 9427-A (both stubs, no text)",
+   "No repository files opened: the evidence slice names none (own_texts and acting_texts empty)"
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "review": {
+  "conclusion_reason": "Operative OPEN and an unknown first_end are appropriate because neither order's operative text is available in the supplied evidence. However, categorical formal_status revoked_or_superseded exceeds the project's requirement for quoted express supersession from the later instrument. Record OFR-reported supersession as a lead pending that text. No held order text supports T1, so the cumulative ceiling is T0.",
+  "conclusion_verdict": "rejected",
+  "id": "EO:9132A",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: OFFLINE is consistent with the slice's absence of held target or acting texts and the identified archival retrieval gap. The specific repositories and exclusive offline availability remain unverified.",
+  "suspected_defect": "Unsupported escalation from an editorial supersession entry to definitive formal status, and from historical nonreceipt/classification to categorical public-source unavailability. Intent cannot be determined.",
+  "tier_supported": "T0",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The cited Archives 1942 table, lines 1112–1114, confirms the title and signing date. This identifies the order but supplies no original text.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The quotation is accurate at line 1116, but not received for publication does not establish the stronger historical claim that it was never subsequently published.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p3",
+    "reason": "The cited Archives 1942 table, line 1115, expressly records supersession by EO 9427-A dated February 29, 1944. It is an editorial disposition entry, not the acting instrument.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The Archives 1944 table, lines 154–158, confirms the title, date and classified/nonreceipt note. It does not establish present classification or that no public source can supply the superseding words.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p5",
+    "reason": "The cited Wikisource page contains the quoted publication notice and metadata, with no operative order text.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 97.0,
+ "start": "T0",
+ "status": "completed",
+ "stop": "OFFLINE",
+ "stop_code_verdict": "confirmed: OFFLINE is consistent with the slice's absence of held target or acting texts and the identified archival retrieval gap. The specific repositories and exclusive offline availability remain unverified.",
+ "tokens": 122405,
+ "units": 80118,
+ "units_producer": 24346,
+ "units_repair": 20058,
+ "units_review": 35713
+}

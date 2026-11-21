@@ -1,0 +1,345 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C03",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "unverifiable",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "sole clause: Archibald S. Pinkett may be appointed to a clerkship in the Department of State without civil-service examination",
+    "end": "not later than 1910-01-03 (Register OCR gives the appointment as 'April x6, 1909', read as April 16, 1909; provisional pending page-image check)",
+    "props": [
+     "p1",
+     "p3",
+     "p4",
+     "p6"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "performance",
+   "first_end": "not later than 1910-01-03",
+   "formal_status": "never_expressly_ended_found",
+   "note": "Provisional at T1. Formal status is limited to the searches listed; no exhaustive search for an express revocation was made. If the Register entry cannot be confirmed from a page image, the status falls back to OPEN with the gap being a verified appointment record.",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "Evidence slice title has a missing space: 'eligiblefor'",
+   "Evidence slice 'president' field is empty; the transcription names William H. Taft",
+   "class_doctrine_lead gaps include an unrelated item about EO 5821 and the postmaster at Woodward, Okla., which has nothing to do with EO 1063",
+   "class_doctrine_lead says no use date is shown; the State Department Register OCR text shows an appointment under Executive order"
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "An accepted original printing of the order's text, to confirm the transcription's operative words",
+    "where_to_look": "Twenty-sixth Annual Report of the U.S. Civil Service Commission (year ended June 30, 1909), p. 130, on HathiTrust, Google Books or the Serial Set; the Monthly Catalog entry at mocat.library.unt.edu/catalog/172-ch470 returned HTTP 403 in the first run and was not retried"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Page-image check of the Register entry: the OCR reads 'Plakett' and 'April x6, 1909', and the quotes were relayed by the fetch tool's summariser, not read directly; the independent reviewer could not retrieve the source at all. The earlier report that entries run into January 1912 despite the 1911 title page was not rechecked.",
+    "where_to_look": "archive.org item registerdepartm01statgoog, Biographical Statement, P names; or the Official Register of the United States 1909 or 1911, Department of State"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Formal status: no search of later orders or civil-service rules for an express revocation of EO 1063 beyond the searches listed",
+    "where_to_look": "Later Civil Service Commission annual reports and executive order indexes (CIS Index to Presidential Executive Orders; Lord's Presidential Executive Orders list)"
+   }
+  ],
+  "id": "EO:1063",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Only a Wikisource transcription is held. The cited official printing (26th Annual Report of the Civil Service Commission, 1909, p. 130) was not reached; a further repair-run search returned only transcriptions and the Monthly Catalog record. The single operative clause is listed from the transcription.",
+    "stop_code": "WEB",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Blocked by the missing original. Status evidence was re-fetched in the repair run: the State Department Register (GPO, 1911) OCR text records the appointment 'under Executive order', so rule (e) performance would give NO once the original is confirmed. The NO is provisional: the Register quotes were relayed by the fetch tool's summariser from OCR text ('Plakett', 'April x6'), not read from page images, and the reviewer could not retrieve the source.",
+    "stop_code": "WEB",
+    "to": "T3"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "jobs/wikisource-texts/output/texts/EO_1063.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The order permits one named person to be appointed a State Department clerk without examination (transcription, not an original).",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mr. Archibald S. Pinkett, of Pennsylvania, may be appointed to a clerkship in the Department of State without examination under the civil-service act and rules.",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1063.txt"
+   },
+   {
+    "claim": "The transcription cites the official printing as the 1909 Civil Service Commission report, page 130, and dates the order April 16, 1909. This confirms the citation only, not the official printing.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "1909 CSR 130 Signed by President William H. Taft Friday, April 16, 1909",
+    "supports": "original",
+    "where": "jobs/wikisource-texts/output/texts/EO_1063.txt"
+   },
+   {
+    "claim": "The State Department Register's biographical statement (OCR heading 'Plakett, Archibald S.') records an appointment as clerk under Executive order in April 1909 (OCR day 'x6') and a move to class one on January 3, 1910. Re-fetched in the repair run; excerpt relayed verbatim by the fetch summariser with OCR errors kept, not read from a page image.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "appointed clerk in the Department of State at $900, under Executive order, April x6, 1909; class one January 3, 1910.",
+    "supports": "ending",
+    "where": "https://archive.org/stream/registerdepartm01statgoog/registerdepartm01statgoog_djvu.txt (characters 500000-600000)"
+   },
+   {
+    "claim": "The same Register lists the name Archibald S. Pinkett under the heading for clerks of the first class (the salary figure in the heading is OCR-garbled). Re-fetched in the repair run; relayed by the fetch summariser.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "Clerks of the first class (Jft^sod).",
+    "supports": "ending",
+    "where": "https://archive.org/stream/registerdepartm01statgoog/registerdepartm01statgoog_djvu.txt (characters 0-100000)"
+   },
+   {
+    "claim": "The Register entry gives the birth as October 8, 1878, at Luray, Va., whereas the order's transcription says 'of Pennsylvania'. The name (allowing OCR 'Plakett'), department, post and order date match, but identity rests on that match and is not independently proved.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "Plakett, Archibald S.— Born in Luray, Va., October 8, 1878",
+    "supports": "ending",
+    "where": "https://archive.org/stream/registerdepartm01statgoog/registerdepartm01statgoog_djvu.txt (characters 500000-600000)"
+   },
+   {
+    "claim": "The Register's title page is dated September 20, 1911, printed by the Government Printing Office, 1911 (split out of the former p4; relayed by the fetch summariser as separate title-page lines).",
+    "location": "W",
+    "pid": "p6",
+    "quote": "SEPTEMBER 20, 1911",
+    "supports": "ending",
+    "where": "https://archive.org/stream/registerdepartm01statgoog/registerdepartm01statgoog_djvu.txt (characters 0-100000)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review; re-read in the held transcription."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld; claim now says it confirms the citation only."
+   },
+   {
+    "change": "fixed",
+    "pid": "p3",
+    "why": "Source was reachable this run; the entry was re-fetched twice and the quote matches with OCR kept ('April x6'). Claim now flags the OCR name and summariser relay."
+   },
+   {
+    "change": "fixed",
+    "pid": "p4",
+    "why": "Name-only quote replaced by the heading quote from a re-fetch; the title-page date moved to new p6 with its own quote."
+   },
+   {
+    "change": "fixed",
+    "pid": "p5",
+    "why": "Re-fetched; quote now includes the OCR heading 'Plakett' and the claim says identity rests on matching particulars."
+   },
+   {
+    "change": "fixed",
+    "pid": "p6",
+    "why": "New pid split from p4: title-page date, re-fetched and quoted."
+   },
+   {
+    "change": "kept",
+    "pid": "conclusion",
+    "why": "NO under rule (e) kept as provisional at T1 because the Register was re-retrieved; fallback to OPEN is stated, and a formal-status search gap is added."
+   }
+  ],
+  "searches": [
+   "Read held file jobs/wikisource-texts/output/texts/EO_1063.txt",
+   "Web: \"Archibald S. Pinkett\" Department of State clerk 1909",
+   "Web: order's operative sentence with Civil Service Commission annual report 1909",
+   "Web (extended): Pinkett, Department of State, Official Register 1909 or 1911",
+   "Fetched archive.org Register of the Department of State full text at offsets 0, 200000, 300000, 400000, 500000",
+   "Fetched Wikipedia 'Harrison J. Pinkett' (brother Archibald S., Howard law class of 1906; no death date given)",
+   "Web: Twenty-sixth annual report Civil Service Commission 1909 Pinkett (catalogue records only, no text)",
+   "Fetch of mocat.library.unt.edu/catalog/172-ch470 failed with HTTP 403",
+   "Repair run: re-read held file EO_1063.txt",
+   "Repair run: re-fetched archive.org Register full text at offset 0 (title page, first-class clerks list) and offset 500000 twice (biographical entry); all three fetches succeeded",
+   "Repair run: Web (standard): Pinkett plus the order's operative sentence plus Civil Service Commission annual report 1909 (transcriptions and the Monthly Catalog record only)"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "group": "pre1937",
+ "id": "EO:1063",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T1",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "sole clause: Archibald S. Pinkett may be appointed to a clerkship in the Department of State without civil-service examination",
+    "end": "not later than 1910-01-03 (Register gives appointment as April 16, 1909; OCR reads 'April x6')",
+    "props": [
+     "p1",
+     "p3",
+     "p4"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "performance",
+   "first_end": "not later than 1910-01-03",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "Evidence slice title has a missing space: 'eligiblefor'",
+   "Evidence slice 'president' field is empty; the transcription names William H. Taft",
+   "class_doctrine_lead gaps include an unrelated item about EO 5821 and the postmaster at Woodward, Okla., which has nothing to do with EO 1063",
+   "class_doctrine_lead says no use date is shown; the State Department Register shows the appointment under Executive order"
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "An accepted original printing of the order's text, to confirm the transcription's operative words",
+    "where_to_look": "Twenty-sixth Annual Report of the U.S. Civil Service Commission (year ended June 30, 1909), p. 130, on HathiTrust, Google Books or the Serial Set; the Monthly Catalog entry at mocat.library.unt.edu/catalog/172-ch470 returned HTTP 403"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Page-image check of the Register entry: the OCR reads 'Plakett' and 'April x6, 1909', and the quotes were relayed by the fetch tool's summariser, not read directly; the volume's register date (1911 title page, but entries dated into January 1912 were reported) also needs confirming",
+    "where_to_look": "archive.org item registerdepartm01statgoog, Biographical Statement, P names; or the Official Register of the United States 1909 or 1911, Department of State"
+   }
+  ],
+  "id": "EO:1063",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Only a Wikisource transcription is held. The cited official printing (26th Annual Report of the Civil Service Commission, 1909, p. 130) exists in library catalogues but no readable scan was reached in 2 searches. The single operative clause is listed from the transcription.",
+    "stop_code": "WEB",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Blocked only by the missing original. Status evidence is found: the State Department Register records the appointment under Executive order, so rule (e) performance gives NO once the original is confirmed.",
+    "stop_code": "WEB",
+    "to": "T3"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "jobs/wikisource-texts/output/texts/EO_1063.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The order permits one named person to be appointed a State Department clerk without examination (transcription, not an original).",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mr. Archibald S. Pinkett, of Pennsylvania, may be appointed to a clerkship in the Department of State without examination under the civil-service act and rules.",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1063.txt"
+   },
+   {
+    "claim": "The transcription cites the official printing as the 1909 Civil Service Commission report, page 130, and dates the order April 16, 1909.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "1909 CSR 130 Signed by President William H. Taft Friday, April 16, 1909",
+    "supports": "original",
+    "where": "jobs/wikisource-texts/output/texts/EO_1063.txt"
+   },
+   {
+    "claim": "The State Department Register's biographical statement records that he was appointed a clerk under Executive order and promoted on January 3, 1910 (OCR: 'Plakett', 'April x6'; quote relayed by fetch summariser, digit normalised).",
+    "location": "W",
+    "pid": "p3",
+    "quote": "appointed clerk in the Department of State at $900, under Executive order, April x6, 1909; class one January 3, 1910.",
+    "supports": "ending",
+    "where": "https://archive.org/stream/registerdepartm01statgoog/registerdepartm01statgoog_djvu.txt (characters 500000-600000)"
+   },
+   {
+    "claim": "The same Register lists him among the clerks of the first class; the fetch tool reported the title-page date as September 20, 1911.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "Archibald S. Pinkett",
+    "supports": "ending",
+    "where": "https://archive.org/stream/registerdepartm01statgoog/registerdepartm01statgoog_djvu.txt (characters 0-100000)"
+   },
+   {
+    "claim": "The Register gives his birth as October 8, 1878, at Luray, Va., whereas the order's transcription calls him 'of Pennsylvania'; name, department, post and date of the order all match.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "Born in Luray, Va., October 8, 1878; educated at the toward University (Washington, D. C)",
+    "supports": "ending",
+    "where": "https://archive.org/stream/registerdepartm01statgoog/registerdepartm01statgoog_djvu.txt (characters 500000-600000)"
+   }
+  ],
+  "searches": [
+   "Read held file jobs/wikisource-texts/output/texts/EO_1063.txt",
+   "Web: \"Archibald S. Pinkett\" Department of State clerk 1909",
+   "Web: order's operative sentence with Civil Service Commission annual report 1909",
+   "Web (extended): Pinkett, Department of State, Official Register 1909 or 1911",
+   "Fetched archive.org Register of the Department of State full text at offsets 0, 200000, 300000, 400000, 500000",
+   "Fetched Wikipedia 'Harrison J. Pinkett' (brother Archibald S., Howard law class of 1906; no death date given)",
+   "Web: Twenty-sixth annual report Civil Service Commission 1909 Pinkett (catalogue records only, no text)",
+   "Fetch of mocat.library.unt.edu/catalog/172-ch470 failed with HTTP 403"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "review": {
+  "conclusion_reason": "Performance is an applicable ending rule for this individual appointment permission, but the evidence of performance was not independently retrievable. The upheld evidence supports OPEN pending a verified appointment record, not a confirmed NO or the asserted end date. No express ending appears in the evidence slice, but that does not establish an exhaustive formal-status finding. An accepted original is also missing.",
+  "conclusion_verdict": "unverifiable",
+  "id": "EO:1063",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: WEB fits the first gap because the evidence slice identifies only a held transcription and no accepted original. The cited official printing requires external retrieval; the reported historical HTTP 403 was not independently confirmed.",
+  "suspected_defect": null,
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Read the named held file; it contains the quoted permission for Archibald S. Pinkett to receive a State Department clerkship without examination. It is a Wikisource transcription.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held transcription contains '1909 CSR 130', the stated presidential attribution, and April 16, 1909. This confirms its citation, not the official printing itself.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The cited Archive.org OCR URL repeatedly failed retrieval; its download equivalent was also inaccessible. Neither the appointment quotation nor the January 3, 1910 promotion could be independently confirmed.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p4",
+    "reason": "The Register was inaccessible, preventing confirmation of the first-class clerk listing and title-page date. The supplied name-only quotation does not itself establish either claim.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p5",
+    "reason": "The transcription confirms 'of Pennsylvania', but the inaccessible Register prevents confirmation of the birth details and the asserted identity correspondence.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 214.1,
+ "start": "T1",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed: WEB fits the first gap because the evidence slice identifies only a held transcription and no accepted original. The cited official printing requires external retrieval; the reported historical HTTP 403 was not independently confirmed.",
+ "tokens": 265049,
+ "units": 118565,
+ "units_producer": 51430,
+ "units_repair": 40052,
+ "units_review": 27083
+}

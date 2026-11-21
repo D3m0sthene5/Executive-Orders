@@ -1,0 +1,551 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C02",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Amends Schedule A of the Civil Service Rules (positions excepted from examination) to read as set out",
+    "end": "1947-05-01",
+    "props": [
+     "p1",
+     "p2",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Amends Schedule B of the Civil Service Rules (positions fillable on noncompetitive examination) to read as set out",
+    "end": "1947-05-01",
+    "props": [
+     "p1",
+     "p3",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Civil Service Commission, with the agency's concurrence, may revoke any paragraph of Schedule A or B (transcription only)",
+    "end": "1947-05-01",
+    "props": [
+     "p4",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Final decision whether a position falls under a Schedule A or B paragraph rests with the Commission (transcription only)",
+    "end": "1947-05-01",
+    "props": [
+     "p5",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Effective-date sentence (transcription only; date doubtful)",
+    "end": "1947-05-01",
+    "props": [
+     "p6",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "express_named_ending",
+   "first_end": "1947-05-01",
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/fr-originals/output/texts/EO_9004.txt covers PDF page 2 only (location confidence low): it holds the FR contents column, the tail of Proclamation 2532 and only the opening of EO 9004 through Schedule A, I, paragraph 2; the rest of the order is missing.",
+   "The APP transcription reads 'effective July 1, 1941' for an order signed December 30, 1941; possibly a transcription error, unchecked against the official printing."
+  ],
+  "gaps": [
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Official printing of everything after the first page of EO 9004: the rest of Schedule A, Schedule B, the two closing provisions and the effective-date sentence, including whether the date is really July 1, 1941.",
+    "where_to_look": "7 FR 2 and following pages, https://www.govinfo.gov/content/pkg/FR-1942-01-01/pdf/FR-1942-01-01.pdf (PDF page 3 onward); the held clip is PDF page 2 only. The reviewer's attempt to open this PDF failed with 'Content length is too large: 15707985'."
+   }
+  ],
+  "id": "EO:9004",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Official FR printing held (7 FR 2): heading, authority and amending sentence legible. Held clip is the first page only; the closing clauses are listed from the transcription as a lead.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "EO 9830 Part III revokes No. 9004 by name; the order's opening words make it effective May 1, 1947.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The revocation names the whole order, so every clause was ended by 1947-05-01 at the latest. This establishes the whole-order ending; it does not establish that each schedule provision first ended that day. No savings clause found in EO 9830 by a search for 'saving' and 'shall not affect'.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Held FR clip stops after the first page of the order; closing provisions and effective-date sentence are unverified against the official printing (7 FR 2 and following pages, public on govinfo).",
+    "stop_code": "TOOL_DEFECT",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_9004.txt (7 FR 2, https://www.govinfo.gov/content/pkg/FR-1942-01-01/pdf/FR-1942-01-01.pdf); first page of the order only"
+  },
+  "propositions": [
+   {
+    "claim": "The Federal Register printing of EO 9004 amends Schedules A and B of the Civil Service Rules in full.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Schedules A and B of the Ciyil Service Rules are hereby amended to read as follows:",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_9004.txt lines 200-202"
+   },
+   {
+    "claim": "Schedule A lists positions excepted from examination.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "S chedule A—P ositions  E xcepted F rom Examination U nder S ection 3, C ivil S ervice R ule II",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_9004.txt lines 203-205"
+   },
+   {
+    "claim": "Schedule B lists positions that may be filled on noncompetitive examination (transcription lead; not in the held FR clip).",
+    "location": "H",
+    "pid": "p3",
+    "quote": "SCHEDULE B — POSITIONS WHICH MAY BE FILLED UPON NONCOMPETITIVE EXAMINATION",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-9004-amending-schedules-and-b-the-civil-service-rules.txt line 681"
+   },
+   {
+    "claim": "The order lets the Commission revoke schedule paragraphs with agency concurrence (transcription lead).",
+    "location": "H",
+    "pid": "p4",
+    "quote": "The Civil Service Commission with the concurrence of the department or agency concerned may revoke in whole or in part any paragraph of Schedule A or B.",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-9004-amending-schedules-and-b-the-civil-service-rules.txt line 805"
+   },
+   {
+    "claim": "The order gives the Commission the final decision on whether a position falls under the schedules (transcription lead).",
+    "location": "H",
+    "pid": "p5",
+    "quote": "Final decision as to whether the duties of any position in the executive civil service are such that appointments there to are authorized",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-9004-amending-schedules-and-b-the-civil-service-rules.txt line 807"
+   },
+   {
+    "claim": "The transcription gives an effective date earlier than the signing date of December 30, 1941 (a statement about the transcription, not the official effective date).",
+    "location": "H",
+    "pid": "p6",
+    "quote": "This order shall be effective July 1, 1941.",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-9004-amending-schedules-and-b-the-civil-service-rules.txt line 809"
+   },
+   {
+    "claim": "EO 9830 of February 24, 1947 expressly revokes EO 9004 by number and date.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "The following Executive orders are hereby revoked: ... No. 9004 of December 30, 1941.",
+    "supports": "ending",
+    "where": "jobs/fr-originals/output/texts/EO_9830.txt lines 2546-2547 and 2585 (12 FR 1259)"
+   },
+   {
+    "claim": "EO 9830, including its revocations, took effect May 1, 1947.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "it is hereby ordered as follows, effective May 1, 1947:",
+    "supports": "ending",
+    "where": "jobs/fr-originals/output/texts/EO_9830.txt lines 57-58"
+   },
+   {
+    "claim": "EO 9830 was signed by President Truman on February 24, 1947.",
+    "location": "H",
+    "pid": "p9",
+    "quote": "H arry  S. T rum an T h e W h it e H o use , February 24, 1947.",
+    "supports": "ending",
+    "where": "jobs/fr-originals/output/texts/EO_9830.txt lines 2605-2607"
+   },
+   {
+    "claim": "The project's later-events finding aid records the same revocation (a statement about the aid only; its underlying source was not opened).",
+    "location": "H",
+    "pid": "p10",
+    "quote": "Revoked by: EO 9830, February 24, 1947",
+    "supports": "ending",
+    "where": "evidence slice, later-events finding aid (not opened at source)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review as transcription evidence only."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p6",
+    "why": "Upheld by review; claim wording now says it describes the transcription, not the official effective date."
+   },
+   {
+    "change": "kept",
+    "pid": "p7",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p8",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p9",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p10",
+    "why": "Upheld by review as a statement about the finding aid only; claim wording now says so."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "data_errors[2]",
+    "why": "Wrong: a search of the APP file finds headings IV, IX, XIV, XIX, XXIV, XXIX and XXXIV at lines 65, 209, 343, 479, 565, 587 and 635."
+   }
+  ],
+  "searches": [
+   "Read jobs/fr-originals/output/texts/EO_9004.txt in full",
+   "Searched EO_9830.txt for 9004, revocation words, effective date and savings language; read lines 40-59 and 2525-2610",
+   "Searched the APP transcription of EO 9004 for headings, effective date and closing clauses; read lines 797-816",
+   "Repair pass: searched the APP transcription for line-initial headings IV, IX, XIV, XIX, XXIV, XXIX and XXXIV; all seven found in Schedule A at lines 65, 209, 343, 479, 565, 587 and 635",
+   "No web search run"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "group": "modern",
+ "id": "EO:9004",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T4",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Amends Schedule A of the Civil Service Rules (positions excepted from examination) to read as set out",
+    "end": "1947-05-01",
+    "props": [
+     "p1",
+     "p2",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Amends Schedule B of the Civil Service Rules (positions fillable on noncompetitive examination) to read as set out",
+    "end": "1947-05-01",
+    "props": [
+     "p1",
+     "p3",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Civil Service Commission, with the agency's concurrence, may revoke any paragraph of Schedule A or B (transcription only)",
+    "end": "1947-05-01",
+    "props": [
+     "p4",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Final decision whether a position falls under a Schedule A or B paragraph rests with the Commission (transcription only)",
+    "end": "1947-05-01",
+    "props": [
+     "p5",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Effective-date sentence (transcription only; date doubtful)",
+    "end": "1947-05-01",
+    "props": [
+     "p6",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "express_named_ending",
+   "first_end": "1947-05-01",
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/fr-originals/output/texts/EO_9004.txt covers PDF page 2 only (location confidence low): it holds the FR contents column, the tail of Proclamation 2532 and only the opening of EO 9004 through Schedule A, I, paragraph 2; the rest of the order is missing.",
+   "The APP transcription reads 'effective July 1, 1941' for an order signed December 30, 1941; possibly a transcription error, unchecked against the official printing.",
+   "The APP transcription's section headings skip numerals (Schedule A has no IV, IX, XIV, XIX, XXIV, XXIX or XXXIV heading), so headings appear to be missing from the transcription."
+  ],
+  "gaps": [
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Official printing of everything after the first page of EO 9004: the rest of Schedule A, Schedule B, the two closing provisions and the effective-date sentence, including whether the date is really July 1, 1941.",
+    "where_to_look": "7 FR 2 and following pages, https://www.govinfo.gov/content/pkg/FR-1942-01-01/pdf/FR-1942-01-01.pdf (PDF page 3 onward); the held clip is PDF page 2 only"
+   }
+  ],
+  "id": "EO:9004",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Official FR printing held (7 FR 2): heading, authority and amending sentence legible. Held clip is the first page only; the closing clauses are listed from the transcription as a lead.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "EO 9830 Part III revokes No. 9004 by name; the order's opening words make it effective May 1, 1947.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The revocation names the whole order, so every clause ended 1947-05-01. No savings clause found in EO 9830 by a search for 'saving' and 'shall not affect'.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Held FR clip stops after the first page of the order; closing provisions and effective-date sentence are unverified against the official printing (7 FR 2 and following pages, public on govinfo).",
+    "stop_code": "TOOL_DEFECT",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_9004.txt (7 FR 2, https://www.govinfo.gov/content/pkg/FR-1942-01-01/pdf/FR-1942-01-01.pdf); first page of the order only"
+  },
+  "propositions": [
+   {
+    "claim": "The Federal Register printing of EO 9004 amends Schedules A and B of the Civil Service Rules in full.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Schedules A and B of the Ciyil Service Rules are hereby amended to read as follows:",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_9004.txt lines 200-202"
+   },
+   {
+    "claim": "Schedule A lists positions excepted from examination.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "S chedule A—P ositions  E xcepted F rom Examination U nder S ection 3, C ivil S ervice R ule II",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_9004.txt lines 203-205"
+   },
+   {
+    "claim": "Schedule B lists positions that may be filled on noncompetitive examination (transcription lead; not in the held FR clip).",
+    "location": "H",
+    "pid": "p3",
+    "quote": "SCHEDULE B — POSITIONS WHICH MAY BE FILLED UPON NONCOMPETITIVE EXAMINATION",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-9004-amending-schedules-and-b-the-civil-service-rules.txt line 681"
+   },
+   {
+    "claim": "The order lets the Commission revoke schedule paragraphs with agency concurrence (transcription lead).",
+    "location": "H",
+    "pid": "p4",
+    "quote": "The Civil Service Commission with the concurrence of the department or agency concerned may revoke in whole or in part any paragraph of Schedule A or B.",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-9004-amending-schedules-and-b-the-civil-service-rules.txt line 805"
+   },
+   {
+    "claim": "The order gives the Commission the final decision on whether a position falls under the schedules (transcription lead).",
+    "location": "H",
+    "pid": "p5",
+    "quote": "Final decision as to whether the duties of any position in the executive civil service are such that appointments there to are authorized",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-9004-amending-schedules-and-b-the-civil-service-rules.txt line 807"
+   },
+   {
+    "claim": "The transcription gives an effective date earlier than the signing date of December 30, 1941.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "This order shall be effective July 1, 1941.",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-9004-amending-schedules-and-b-the-civil-service-rules.txt line 809"
+   },
+   {
+    "claim": "EO 9830 of February 24, 1947 expressly revokes EO 9004 by number and date.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "The following Executive orders are hereby revoked: ... No. 9004 of December 30, 1941.",
+    "supports": "ending",
+    "where": "jobs/fr-originals/output/texts/EO_9830.txt lines 2546-2547 and 2585 (12 FR 1259)"
+   },
+   {
+    "claim": "EO 9830, including its revocations, took effect May 1, 1947.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "it is hereby ordered as follows, effective May 1, 1947:",
+    "supports": "ending",
+    "where": "jobs/fr-originals/output/texts/EO_9830.txt lines 57-58"
+   },
+   {
+    "claim": "EO 9830 was signed by President Truman on February 24, 1947.",
+    "location": "H",
+    "pid": "p9",
+    "quote": "H arry  S. T rum an T h e W h it e H o use , February 24, 1947.",
+    "supports": "ending",
+    "where": "jobs/fr-originals/output/texts/EO_9830.txt lines 2605-2607"
+   },
+   {
+    "claim": "The project's later-events finding aid records the same revocation.",
+    "location": "H",
+    "pid": "p10",
+    "quote": "Revoked by: EO 9830, February 24, 1947",
+    "supports": "ending",
+    "where": "evidence slice, later-events finding aid (not opened at source)"
+   }
+  ],
+  "searches": [
+   "Read jobs/fr-originals/output/texts/EO_9004.txt in full",
+   "Searched EO_9830.txt for 9004, revocation words, effective date and savings language; read lines 40-59 and 2525-2610",
+   "Searched the APP transcription of EO 9004 for headings, effective date and closing clauses; read lines 797-816",
+   "No web search run"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "NO operative status and formally revoked are supported by EO 9830's unqualified named revocation, effective May 1, 1947. That establishes the whole-order ending; it does not establish that every individual schedule provision first ended that day. T4 is supported by the blanket ending covering the listed operative clauses; T5 is unavailable because official continuation text and its effective-date wording remain unverified.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:9004",
+  "missed_evidence": [
+   "APP Schedule A contains all seven headings alleged to be missing: lines 65, 209, 343, 479, 565, 587 and 635 of jobs/app-executive-orders/output/texts/executive-order-9004-amending-schedules-and-b-the-civil-service-rules.txt. This defeats the asserted transcription defect."
+  ],
+  "stop_code_verdict": "confirmed: the held FR clip ends at Schedule A I.2, and opening the specifically cited full official PDF failed with 'Content length is too large: 15707985'. TOOL_DEFECT is supported for this retrieval attempt; the evidence slice also correctly identifies the remaining original-page check.",
+  "suspected_defect": "The categorical claim that every fifth Schedule A heading is absent contradicts the held file and appears erroneous; intent cannot be established.",
+  "tier_supported": "T4",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held FR text lines 200–202 expressly amends both schedules to read as follows.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Held FR text lines 203–205 confirms the Schedule A heading.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "APP line 681 confirms the heading; appropriately identified as transcription evidence only.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "APP line 805 contains the quoted Commission authority and concurrence requirement.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "Full APP line 807 expressly assigns final decision to the Commission.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "APP line 809 says July 1, 1941, and line 815 says December 30, 1941. This confirms the transcription claim, not the official effective date.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "Held EO 9830 lines 2546–2547 say 'The following Executive orders are hereby revoked'; line 2585 lists 'No. 9004 of December 30, 1941.'",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p8",
+    "reason": "Held EO 9830 lines 57–58 specify 'effective May 1, 1947' for the order without excluding its revocations.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p9",
+    "reason": "Held EO 9830 lines 2605–2607 confirm Truman's signature and February 24, 1947 date.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p10",
+    "reason": "The supplied evidence slice contains exactly this finding-aid entry; upheld only as a statement about that aid, not independent verification of its underlying URL.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "data_errors[2]",
+    "reason": "The allegedly missing Schedule A headings IV, IX, XIV, XIX, XXIV, XXIX and XXXIV are present at APP lines 65, 209, 343, 479, 565, 587 and 635.",
+    "verdict": "rejected"
+   }
+  ]
+ },
+ "seconds": 165.9,
+ "start": "T1",
+ "status": "completed",
+ "stop": "TOOL_DEFECT",
+ "stop_code_verdict": "confirmed: the held FR clip ends at Schedule A I.2, and opening the specifically cited full official PDF failed with 'Content length is too large: 15707985'. TOOL_DEFECT is supported for this retrieval attempt; the evidence slice also correctly identifies the remaining original-page check.",
+ "tokens": 240539,
+ "units": 125703,
+ "units_producer": 47687,
+ "units_repair": 29656,
+ "units_review": 48359
+}

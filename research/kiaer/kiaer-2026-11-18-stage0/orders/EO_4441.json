@@ -1,0 +1,182 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C05",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": null,
+ "group": "pre1937",
+ "id": "EO:4441",
+ "ledger_status": null,
+ "producer_start": "T2",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T4",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: William A. Hock may be reinstated as clerk of the fifth grade in the Newark, N.J., post office without regard to the civil-service time limitation.",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4",
+     "p5"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "The slice's class_doctrine_lead gap and triage_missing say the text is 'compiled_transcription_lead, not an authenticated original', but the held file is an OCR of the GPO bound slip-order printing, and best_held says official_original_counted.",
+   "class_doctrine_lead kind 'one_person_no_age_fact' overlooks the order's own service-length fact (19 years to 1918).",
+   "The slice title (WPA summary) says 'without regard to length of separation' and omits the grade; the order says 'clerk of the fifth grade' and 'time limitation prescribed by the Civil Service Rules'. Title has run-together words (OCR).",
+   "GPO text OCR drops the number after the closing 'No'; the header says the tag [No. 4441.] was read on PDF page 300, which I did not check against the page image.",
+   "Slice field 'president' is empty; the text is signed Calvin Coolidge."
+  ],
+  "gaps": [
+   {
+    "stop_code": "OFFLINE",
+    "what": "Whether and when Hock was actually reinstated as clerk at Newark (performance), or his date of death.",
+    "where_to_look": "Official Register of the United States 1927 or 1929 (postal service volume, if clerks are listed); Post Office Department personnel records, NARA RG 28 / National Personnel Records Center; New Jersey death records; Newark newspapers of May-June 1926."
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether the order's own statement of 19 years' service before June 30, 1918 (in service by about 1899, so at least 127 years since entry by the cutoff) counts as a quoted fact bounding death before 2026-10-14 under PD-CS-ONE-PERSON, given the rule against inferring an ending from time passing.",
+    "where_to_look": "Owner ruling on doctrine PD-CS-ONE-PERSON; if accepted, status would be NO by performance or death, with first_end 'not later than' a date the ruling would fix."
+   }
+  ],
+  "id": "EO:4441",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN with named gap: one-time permission to a named person (rule e); no source for performance.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The order has one operative clause; its state is open with the gap named.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Reinstatement or death of Hock not sourced; likely in Post Office personnel records or the Official Register. Alternative route via the order's own service-length fact needs a ruling.",
+    "stop_code": "OFFLINE",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/photius-gpo-volumes/output/texts/EO_4441.txt (GPO bound slip-order volume, HathiTrust hvd.hl271y, PDF pages 299-300)"
+  },
+  "propositions": [
+   {
+    "claim": "The order permits the reinstatement of one named person to one named position, waiving the time limit.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mr. William A. Hock may be reinstated as clerk of the fifth grade in the post office at Newark , New Jersey , without regard to the time limitation",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_4441.txt"
+   },
+   {
+    "claim": "The held GPO text is signed by Coolidge and dated May 13, 1926; the file header records the closing tag No. 4441 on PDF page 300.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "CALVIN COOLIDGE THE WHITE HOUSE , May 13 ,1926 .",
+    "supports": "original",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_4441.txt"
+   },
+   {
+    "claim": "The Civil Service Commission annual report printing carries the same operative words.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "Mr. William A. Hock may be reinstated as clerk of the fifth grade in the post office at Newark, N. J., Without regard to the time limitation",
+    "supports": "original",
+    "where": "jobs/csc-annual-reports/output/texts/EO_4441.txt"
+   },
+   {
+    "claim": "The order's own text states Hock had 19 years' service ending in 1918, so he was in the service by about 1899.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "Mr. Hock served for 19 years in the Newark post office and was removed June 30 , 1918",
+    "supports": "counterevidence",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_4441.txt"
+   },
+   {
+    "claim": "The order contains no continuing command; its stated purpose is a remedy for one removal.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "to remedy as far as possible the injustice involved in his removal",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_4441.txt"
+   }
+  ],
+  "searches": [
+   "Read both held texts (GPO slip-order volume OCR; CSC annual report OCR).",
+   "Web, standard, one query: \"William A. Hock\" Newark post office clerk reinstated 1926. Only hit on point was a Monthly Catalog entry for the order itself (mocat.library.unt.edu/catalog/377-ch1503), read from the search summary only, not opened; nothing on reinstatement or death.",
+   "Slice lists no later instrument naming the order, no OFR 1989 table entry and no current-law mention; these were not searched again."
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "OPEN is supported: the authorization does not itself perform reinstatement, and neither named source establishes performance, death, express termination, or current operation at the cutoff. Rule (e) requires sourced performance for a spent authorization; elapsed time cannot establish an ending. Formal status is supportable only as the limited finding that no express ending was found in the supplied evidence.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:4441",
+  "missed_evidence": [],
+  "stop_code_verdict": "wrong (an unsearched-source or SEARCH_NEEDED code fits; the supplied materials provide no stop-code vocabulary and do not establish an OFFLINE barrier)",
+  "suspected_defect": "The first gap's OFFLINE label is unsupported: the evidence slice establishes missing performance or death evidence, not that such evidence is unavailable online. No deliberate quotation alteration was found.",
+  "tier_supported": "T4",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The GPO text expressly permits Hock's reinstatement to the specified clerkship without the Civil Service Rules' time limitation.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held text prints Calvin Coolidge and May 13, 1926. Its header records the closing tag on PDF page 300 as read from OCR; this confirms the header claim, not independent visual verification.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The named Commission report file contains the quoted operative language and the same reinstatement authorization.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The GPO text states 19 years of service and removal on June 30, 1918. Service by about 1899 is supported, but establishes neither death nor performance.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The text expressly states the remedial purpose and contains a single discretionary reinstatement authorization, with no recurring mandate. That does not establish that the authorization ended.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 71.5,
+ "start": "T2",
+ "status": "completed",
+ "stop": "OFFLINE",
+ "stop_code_verdict": "wrong (an unsearched-source or SEARCH_NEEDED code fits; the supplied materials provide no stop-code vocabulary and do not establish an OFFLINE barrier)",
+ "tokens": 73302,
+ "units": 48042,
+ "units_producer": 26148,
+ "units_repair": 0,
+ "units_review": 21894
+}

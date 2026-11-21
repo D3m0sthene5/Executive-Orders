@@ -1,0 +1,595 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C03",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "rejected",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "cl. 1: the general election the constitution of the Republic of Hawaii fixed for the last Wednesday of September 1899 shall not be held",
+    "end": null,
+    "gap": "No source that the September 1899 election was in fact not held. The Organic Act's repeal of the Republic's constitution (sec. 7) and its new election date (sec. 14) are candidates that do not name the order.",
+    "props": [
+     "p1",
+     "p2",
+     "p5",
+     "p6",
+     "p8",
+     "p9"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "cl. 2: elective officers whose terms expire before Congress legislates are continued in office at the pleasure of the President",
+    "end": null,
+    "gap": "No source ending the covered officers' continuation: no Presidential action, no documented replacement, and no evidence of the end of the first session of the Territorial senate under Organic Act sec. 80. The Act does not name the order.",
+    "props": [
+     "p3",
+     "p4",
+     "p5",
+     "p6",
+     "p7",
+     "p8",
+     "p10"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none_established",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "note": "Candidate ending, not established: Hawaiian Organic Act, approved 1900-04-30, in effect 1900-06-14, which does not name the order. The formal finding is limited to the evidence reviewed.",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "jobs/app-executive-orders/output/texts/executive-order-116.txt holds the wrong document: an Adjutant-General telegram to Major-General Merritt at Manila, not EO 116",
+   "The later-instrument lead EO:3016J is false: the match is patent number 1,116,646 in an OCR table, not a citation of EO 116",
+   "The slice gives best_held as transcription_only; jobs/tischendorf-originals holds OCR of a compilation printing whose publisher is not recorded",
+   "The slice title has run-together words (electionprovided, electiveofficersto, officeat) and the president field is blank (McKinley)"
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Page-image check of the held printing and the publisher of the 1902 Messages and Papers edition (government or commercial reprint), or another accepted original of the order; needed for T2",
+    "where_to_look": "https://archive.org/details/bwb_C0-AWX-271/page/n273"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Evidence ending the covered officers' continuation at the President's pleasure: a Presidential action, documented replacement of the officers, or the date the first session of the Territorial senate ended (Organic Act sec. 80)",
+    "where_to_look": "Report of the Governor of Hawaii 1900 and 1901; Journal of the Senate of the Territory of Hawaii, first session 1901"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "A source that the September 1899 Hawaiian general election was in fact not held",
+    "where_to_look": "Report of the Governor of Hawaii 1900; Report of the Hawaiian Commission; Honolulu newspapers September 1899 (Chronicling America)"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Verbatim text of Organic Act secs. 7, 8, 14, 80 and 104 and the approval line read from the Statutes at Large; the quotations here came through a summarising fetch of transcriptions and the sec. 7 wording may be imperfect",
+    "where_to_look": "31 Stat. 141, 142, 144, 153, 161 on govinfo; the reviewer found that https://www.govinfo.gov/content/pkg/STATUTE-31/pdf/STATUTE-31-Pg141.pdf opens printed page 141 only, so the later pages need their own files"
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether a later statute that does not name the order, but replaces the government and tenure the order regulated, can end it",
+    "where_to_look": "owner ruling on class doctrine PD-ADMIN, territory_needs_event_source"
+   }
+  ],
+  "id": "EO:116",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Held OCR of Messages and Papers of the Presidents (1902 printing, p. 264) is legible in full and two operative clauses are listed, but the held file records 'publisher not recorded' and the page image was not checked, so it is not shown to be an official compilation printing. Accepted-original prerequisite unmet.",
+    "stop_code": "WEB",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Provisional status is OPEN, not NO. The 'before appropriate legislation' phrase defines which officers are covered and is not an express sunset; the Hawaiian Organic Act does not name the order and is recorded as a candidate only.",
+    "stop_code": "NEEDS_RULING",
+    "to": "T3"
+   },
+   {
+    "achieved": false,
+    "from": "T3",
+    "note": "Both clauses are open with the gap named: no source that the September 1899 election was not held, and no source ending the covered officers' continuation at the President's pleasure.",
+    "stop_code": "NOT_FOUND",
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Organic Act quotations come from Wikisource and hawaii-nation.org transcriptions through a summarising fetch, not from 31 Stat. 141 and following pages.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "compilation_printing_provenance_unverified",
+   "where": "jobs/tischendorf-originals/output/texts/EO_116.txt (Internet Archive bwb_C0-AWX-271, scan leaf 274, printed p. 264)"
+  },
+  "propositions": [
+   {
+    "claim": "The order is dated May 13, 1899, signed by McKinley, and rests on the 1898 annexation joint resolution. This confirms content, not official provenance of the printing.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "In the exercise of the power conferred upon me by the joint reso- lution of Congress, approved by the President on July 7, 1898",
+    "supports": "original",
+    "where": "jobs/tischendorf-originals/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "Clause 1 directs that one dated election, that of the last Wednesday of September 1899, shall not be held. The text does not show that the direction was carried out.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "the General Election provided for by the consti- tution of the Republic of Hawaii to be held on the last Wednesday in September next shall not be held",
+    "supports": "clause",
+    "where": "jobs/tischendorf-originals/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "Clause 2 holds the covered elective officers over at the President's pleasure.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "shall be continued in their offices at the pleasure of the President of the United States",
+    "supports": "clause",
+    "where": "jobs/tischendorf-originals/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "The phrase 'before appropriate legislation shall have been enacted' defines which officers clause 2 covers (those whose terms expire before Congress legislates). It is not an express termination of their continuation; the stated tenure is the President's pleasure.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "All elective officers whose terms of office shall expire before appropriate legislation shall have been enacted by the Congress of the United States shall be continued in their offices at the pleasure of the President of the United States",
+    "supports": "clause",
+    "where": "jobs/tischendorf-originals/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "Candidate only: Congress enacted the Hawaiian Organic Act of April 30, 1900, which took effect June 14, 1900. The Act does not name the order. The quotation came from a search summary of the cited page, which was not opened; the reviewer confirmed the two dates at https://hawaii-nation.org/organic.html (sec. 1 historical note).",
+    "location": "W",
+    "pid": "p5",
+    "quote": "this Organic Act, creating the Territory, took effect June 14, 1900",
+    "supports": "candidate",
+    "where": "https://data.capitol.hawaii.gov/hrsarchive/hrs1999/Vol01/ORG/ORG_1_-_ANNO.htm (as returned in a search summary, not opened)"
+   },
+   {
+    "claim": "Candidate only: section 104 of the Organic Act fixes its effect at 45 days after approval. The reviewer reports that the section excepts section 52, effective on approval; I did not read that exception myself.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "This Act shall take effect forty-five days from and after the date of the approval thereof",
+    "supports": "candidate",
+    "where": "https://en.wikisource.org/wiki/Hawaiian_Organic_Act"
+   },
+   {
+    "claim": "Candidate only: section 80 of the Organic Act contains a transitional continuation of office-holders until successors are appointed and qualified, limited to the end of the first session (of the Territorial senate, on my reading; the fetched fragment stops before those words). It does not name EO 116 or expressly end tenure at the President's pleasure, and no evidence of the session-end event is held.",
+    "location": "W",
+    "pid": "p7",
+    "quote": "until their successors are appointed and qualified, but not beyond the end of the first session",
+    "supports": "candidate",
+    "where": "https://en.wikisource.org/wiki/Hawaiian_Organic_Act"
+   },
+   {
+    "claim": "Candidate only: section 7 of the Organic Act repealed the constitution of the Republic of Hawaii, the instrument that provided the election named in clause 1 (wording as returned by the fetch; 'hereby repealed' follows later in the section). This is not a named ending of EO 116.",
+    "location": "W",
+    "pid": "p8",
+    "quote": "That the constitution of the Republic of Hawaii and of the laws of Hawaii, as set forth in the following acts",
+    "supports": "candidate",
+    "where": "https://hawaii-nation.org/organic.html"
+   },
+   {
+    "claim": "Candidate only: section 14 of the Organic Act set a general election for November 1900.",
+    "location": "W",
+    "pid": "p9",
+    "quote": "That a general election shall be held on the Tuesday next after the first Monday in November",
+    "supports": "candidate",
+    "where": "https://hawaii-nation.org/organic.html"
+   },
+   {
+    "claim": "Candidate only: section 8 of the Organic Act abolished the Republic's enumerated principal offices. It does not show what became of every elective office covered by EO 116.",
+    "location": "W",
+    "pid": "p10",
+    "quote": "marshal, and deputy marshal of the Republic of Hawaii are hereby abolished",
+    "supports": "candidate",
+    "where": "https://hawaii-nation.org/organic.html"
+   },
+   {
+    "claim": "The Wikisource transcription agrees with the held printing on the operative words (lead only).",
+    "location": "H",
+    "pid": "p11",
+    "quote": "shall be continued in their offices at the pleasure of the President of the United States",
+    "supports": "original",
+    "where": "jobs/wikisource-texts/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "Within the evidence reviewed, no instrument naming EO 116 and revoking or superseding it was found; the only listed later instrument, EO 3016J, matches on a patent number.",
+    "location": "H",
+    "pid": "p12",
+    "quote": "1,116,646 November 10, 1914",
+    "supports": "counterevidence",
+    "where": "evidence slice, later_instruments_naming_it (shepard-citations)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld; re-read in the held text. Added that it confirms content, not provenance."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld; added that the text does not show compliance."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld; re-read in the held text."
+   },
+   {
+    "change": "fixed",
+    "pid": "p4",
+    "why": "Rejected as an own-terms sunset. Restated as an eligibility condition with the full sentence quoted; now supports the clause, not an ending."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Upheld on dates; downgraded to candidate because the Act does not name the order. Quote source was not opened, as already stated."
+   },
+   {
+    "change": "fixed",
+    "pid": "p6",
+    "why": "Added the sec. 52 qualification as the reviewer's report; quote re-confirmed on Wikisource; downgraded to candidate."
+   },
+   {
+    "change": "fixed",
+    "pid": "p7",
+    "why": "Rejected inference of replacement withdrawn. Now a candidate, with the 'but not beyond the end of the first session' words confirmed on Wikisource."
+   },
+   {
+    "change": "kept",
+    "pid": "p8",
+    "why": "Upheld; marked candidate, not a named ending."
+   },
+   {
+    "change": "kept",
+    "pid": "p9",
+    "why": "Upheld; marked candidate."
+   },
+   {
+    "change": "kept",
+    "pid": "p10",
+    "why": "Upheld; marked candidate and limited to the enumerated offices."
+   },
+   {
+    "change": "kept",
+    "pid": "p11",
+    "why": "Upheld."
+   },
+   {
+    "change": "kept",
+    "pid": "p12",
+    "why": "Upheld; limited to the evidence reviewed."
+   },
+   {
+    "change": "fixed",
+    "pid": "conclusion",
+    "why": "NO changed to OPEN with first_end removed; both clauses open with named gaps."
+   },
+   {
+    "change": "fixed",
+    "pid": "original",
+    "why": "accepted set to false: publisher unrecorded and page image unchecked, so tier is T1."
+   }
+  ],
+  "searches": [
+   "Read the three held texts for EO 116",
+   "WebFetch en.wikisource.org Hawaiian_Organic_Act (two passes) for secs. 7, 8, 14, 80, 104",
+   "WebFetch hawaii-nation.org/organic.html for secs. 7, 8, 14",
+   "WebSearch: Hawaiian Organic Act 31 Stat. 141 effective date, repeal of Republic constitution, officers continue in office",
+   "Repair pass: re-read jobs/tischendorf-originals/output/texts/EO_116.txt; WebFetch en.wikisource.org Hawaiian_Organic_Act (two passes) for sec. 80 and sec. 104 wording"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "group": "pre1937",
+ "id": "EO:116",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "cl. 1: the general election the constitution of the Republic of Hawaii fixed for the last Wednesday of September 1899 shall not be held",
+    "end": "not later than 1900-06-14",
+    "props": [
+     "p1",
+     "p2",
+     "p5",
+     "p6",
+     "p8",
+     "p9"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "cl. 2: elective officers whose terms expire before Congress legislates are continued in office at the pleasure of the President",
+    "end": "not later than 1900-06-14",
+    "props": [
+     "p3",
+     "p4",
+     "p5",
+     "p6",
+     "p7",
+     "p8"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "own_terms",
+   "first_end": "not later than 1900-06-14",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/app-executive-orders/output/texts/executive-order-116.txt holds the wrong document: an Adjutant-General telegram to Major-General Merritt at Manila, not EO 116",
+   "The later-instrument lead EO:3016J is false: the match is patent number 1,116,646 in an OCR table, not a citation of EO 116",
+   "The slice gives best_held as transcription_only although jobs/tischendorf-originals holds OCR of a compilation printing",
+   "The slice title has run-together words (electionprovided, electiveofficersto, officeat) and the president field is blank (McKinley)"
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Verbatim text of Organic Act secs. 7, 8, 14, 80 and 104 and the approval line read from the Statutes at Large; the quotations here came through a summarising fetch of transcriptions and sec. 7 wording may be imperfect",
+    "where_to_look": "https://www.govinfo.gov/content/pkg/STATUTE-31/pdf/STATUTE-31-Pg141.pdf (31 Stat. 141, 142, 144, 153, 161)"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "A source that the September 1899 Hawaiian general election was in fact not held",
+    "where_to_look": "Report of the Governor of Hawaii 1900; Report of the Hawaiian Commission; Honolulu newspapers September 1899 (Chronicling America)"
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether an own-terms ending counts when the triggering statute does not name the order and the order's limit is phrased as a condition on which officers are covered rather than as an express termination",
+    "where_to_look": "owner ruling on class doctrine PD-ADMIN, territory_needs_event_source"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Page-image check of the held printing and the publisher of the 1902 Messages and Papers edition (government or commercial reprint)",
+    "where_to_look": "https://archive.org/details/bwb_C0-AWX-271/page/n273"
+   }
+  ],
+  "id": "EO:116",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held OCR of Messages and Papers of the Presidents (1902 printing, p. 264) is legible in full; two operative clauses listed. Publisher of this printing is not recorded and the page image was not checked.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "NO on own terms: the order runs only until 'appropriate legislation' by Congress; the Hawaiian Organic Act is that legislation, in force 1900-06-14.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Both clauses given an ended state, not later than 1900-06-14. Clause 1 rests on the repeal of the constitution that provided the election, not on proof the election was not held.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Organic Act quotations were obtained through a summarising fetch of Wikisource and hawaii-nation.org transcriptions, not read from 31 Stat. 141 (govinfo PDF); approval date has no verbatim quote; no source for non-holding of the 1899 election; the Act does not name the order.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/tischendorf-originals/output/texts/EO_116.txt (Internet Archive bwb_C0-AWX-271, scan leaf 274, printed p. 264)"
+  },
+  "propositions": [
+   {
+    "claim": "The order is dated May 13, 1899, signed by McKinley, and rests on the 1898 annexation joint resolution.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "In the exercise of the power conferred upon me by the joint reso- lution of Congress, approved by the President on July 7, 1898",
+    "supports": "original",
+    "where": "jobs/tischendorf-originals/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "Clause 1 cancels one dated election, that of the last Wednesday of September 1899.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "the General Election provided for by the consti- tution of the Republic of Hawaii to be held on the last Wednesday in September next shall not be held",
+    "supports": "clause",
+    "where": "jobs/tischendorf-originals/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "Clause 2 holds elective officers over at the President's pleasure.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "shall be continued in their offices at the pleasure of the President of the United States",
+    "supports": "clause",
+    "where": "jobs/tischendorf-originals/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "Clause 2 is limited by its own terms to the period before Congress enacts legislation for Hawaii.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "All elective officers whose terms of office shall expire before appropriate legislation shall have been enacted by the Congress of the United States",
+    "supports": "ending",
+    "where": "jobs/tischendorf-originals/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "Congress enacted that legislation: the Hawaiian Organic Act of April 30, 1900, which took effect June 14, 1900.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "this Organic Act, creating the Territory, took effect June 14, 1900",
+    "supports": "ending",
+    "where": "https://data.capitol.hawaii.gov/hrsarchive/hrs1999/Vol01/ORG/ORG_1_-_ANNO.htm (as returned in a search summary, not opened)"
+   },
+   {
+    "claim": "Section 104 of the Organic Act fixes its effect at 45 days after approval.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "This Act shall take effect forty-five days from and after the date of the approval thereof",
+    "supports": "ending",
+    "where": "https://en.wikisource.org/wiki/Hawaiian_Organic_Act"
+   },
+   {
+    "claim": "Section 80 of the Organic Act put office-holders on a new statutory tenure, replacing tenure at the President's pleasure.",
+    "location": "W",
+    "pid": "p7",
+    "quote": "shall continue to hold their respective offices until their successors are appointed and qualified",
+    "supports": "ending",
+    "where": "https://en.wikisource.org/wiki/Hawaiian_Organic_Act"
+   },
+   {
+    "claim": "Section 7 of the Organic Act repealed the constitution of the Republic of Hawaii, the instrument that provided the cancelled election (wording as returned by the fetch; 'hereby repealed' follows later in the section).",
+    "location": "W",
+    "pid": "p8",
+    "quote": "That the constitution of the Republic of Hawaii and of the laws of Hawaii, as set forth in the following acts",
+    "supports": "ending",
+    "where": "https://hawaii-nation.org/organic.html"
+   },
+   {
+    "claim": "Section 14 of the Organic Act set a new general election for November 1900.",
+    "location": "W",
+    "pid": "p9",
+    "quote": "That a general election shall be held on the Tuesday next after the first Monday in November",
+    "supports": "ending",
+    "where": "https://hawaii-nation.org/organic.html"
+   },
+   {
+    "claim": "Section 8 of the Organic Act abolished the Republic's principal offices.",
+    "location": "W",
+    "pid": "p10",
+    "quote": "marshal, and deputy marshal of the Republic of Hawaii are hereby abolished",
+    "supports": "ending",
+    "where": "https://hawaii-nation.org/organic.html"
+   },
+   {
+    "claim": "The Wikisource transcription agrees with the held printing on the operative words (lead only).",
+    "location": "H",
+    "pid": "p11",
+    "quote": "shall be continued in their offices at the pleasure of the President of the United States",
+    "supports": "original",
+    "where": "jobs/wikisource-texts/output/texts/EO_116.txt"
+   },
+   {
+    "claim": "No instrument naming EO 116 and revoking or superseding it was found; the only listed later instrument, EO 3016J, matches on a patent number.",
+    "location": "H",
+    "pid": "p12",
+    "quote": "1,116,646 November 10, 1914",
+    "supports": "counterevidence",
+    "where": "evidence slice, later_instruments_naming_it (shepard-citations)"
+   }
+  ],
+  "searches": [
+   "Read the three held texts for EO 116",
+   "WebFetch en.wikisource.org Hawaiian_Organic_Act (two passes) for secs. 7, 8, 14, 80, 104",
+   "WebFetch hawaii-nation.org/organic.html for secs. 7, 8, 14",
+   "WebSearch: Hawaiian Organic Act 31 Stat. 141 effective date, repeal of Republic constitution, officers continue in office"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "NO by June 14, 1900 does not follow from the upheld evidence. The officer eligibility condition is not an express sunset, and the Organic Act is a candidate replacement statute that does not name EO 116. OPEN is required: obtain evidence ending the covered officers' continuations, such as Presidential actions or documented replacement, and resolve the election clause's completion with an implementation source if relying on performance. The formal finding that no express ending was found is supportable only within the reviewed evidence. The original's accepted=true designation is also unverified: the held OCR identifies a 1902 compilation with publisher unrecorded, and the archive page could not be opened. Consequently T2's accepted-original prerequisite is unmet.",
+  "conclusion_verdict": "rejected",
+  "id": "EO:116",
+  "missed_evidence": [
+   "The full officer-continuation sentence in jobs/tischendorf-originals/output/texts/EO_116.txt distinguishes eligibility before legislation from tenure at Presidential pleasure; this defeats p4's asserted express sunset.",
+   "https://en.wikisource.org/wiki/Hawaiian_Organic_Act, section 80, adds 'but not beyond the end of the first session' to the transitional continuation. This is a more specific candidate endpoint than the quoted fragment, but neither establishes EO 116's ending nor supplies the session-end event evidence.",
+   "The first gap's GovInfo URL opens only printed page 141, not the full Act. It cannot alone verify sections 7, 8, 14, 80 and 104 on the other named pages."
+  ],
+  "stop_code_verdict": "confirmed: WEB fits the first gap, which requires external Statutes at Large pages absent from the evidence slice. The supplied GovInfo URL contains only page 141; the remaining named pages still need verification.",
+  "suspected_defect": "The central defect is treating an eligibility condition as an express termination in p4, then declaring NO despite the worker's own unresolved interpretation and performance gaps. The official_printing designation also overstates provenance that the worker explicitly left unchecked. Deliberateness cannot be determined.",
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held EO_116.txt contains the May 13, 1899 date, McKinley signature, and quoted annexation-resolution authority. This confirms content, not official provenance.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Held text expressly directs that the specified September election shall not be held. It does not document subsequent compliance.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "Held text expressly continues the covered elective officers at the President's pleasure.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The phrase 'whose terms of office shall expire before appropriate legislation shall have been enacted' defines which officers qualify. It does not expressly terminate their continuation when Congress legislates.",
+    "verdict": "rejected"
+   },
+   {
+    "pid": "p5",
+    "reason": "The cited Hawaii archive URL was inaccessible, but another cited source, https://hawaii-nation.org/organic.html, section 1 historical note, expressly confirms April 30 enactment and June 14, 1900 effect. The opened GovInfo page 141 also confirms the Act's date.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "Opened Wikisource section 104 contains the quoted forty-five-day provision. It also excepts section 52, effective upon approval; the proposition requires that qualification.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "Section 80 contains the quoted continuation language and a statutory tenure scheme, but does not name EO 116 or expressly terminate its Presidential-pleasure provision. Replacement of that provision is an inference, insufficient under the project rules.",
+    "verdict": "rejected"
+   },
+   {
+    "pid": "p8",
+    "reason": "Opened hawaii-nation.org section 7 expressly repeals the Republic's constitution. The awkward quoted wording is present. This establishes repeal of the constitution, not a named ending of EO 116.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p9",
+    "reason": "Opened hawaii-nation.org section 14 explicitly schedules the general election in November 1900 and every second year thereafter.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p10",
+    "reason": "Opened hawaii-nation.org section 8 expressly abolishes the enumerated principal offices. It does not establish disposition of every elective office covered by EO 116.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p11",
+    "reason": "Both named held texts were opened and agree on the operative election and officer-continuation language.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p12",
+    "reason": "The evidence slice and opened EO_3016J.txt show the match in a patent table, not a reference to EO 116. No named revocation appears in the supplied evidence; this finding is limited to that evidence.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 238.9,
+ "start": "T1",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed: WEB fits the first gap, which requires external Statutes at Large pages absent from the evidence slice. The supplied GovInfo URL contains only page 141; the remaining named pages still need verification.",
+ "tokens": 202693,
+ "units": 127406,
+ "units_producer": 46024,
+ "units_repair": 43548,
+ "units_review": 37834
+}

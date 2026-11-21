@@ -1,3 +1,89 @@
+## 2026-11-18 ET, overnight (Claude: Kiaer tier probe ran under the owner's review; 80 orders; no count changes)
+
+- **Owner took the reviewer's role** for both plans (D-20261118-kiaer-owner-directed-wave; ask
+  A-20261118-kiaer-fourth-rejection answered). No further Codex review was run. Augur's only refusals were "not in
+  Bentham's plan" and the stage-1 ramp, both owner-directed.
+- **Ran:** stage 0 (29 orders, 1 lane, 74 minutes) and the full run (51 more, 3 lanes, 47 minutes). 80 orders and
+  9 planted reviews; every order scored with a review, none failed, no turn estimated, none of the owner's stop
+  conditions met. Report: `research/kiaer/kiaer-2026-11-18/REPORT.md`; finding F-20261118-kiaer-tier-probe.
+- **Cost:** 8,082,009 units, 16,275,221 raw tokens, about 98,000 units an order;
+  8,865,278 units with the smoke tests and plan reviews. 1.9M of the 10M cap was left unspent
+  (cells were sized at the 80th-percentile cost). Units count each CLI's main model; Claude Code's side model for
+  web-fetch summaries used a further 9.0M raw tokens (about 1 to 2% of Claude's dollars).
+- **Moves upheld at first pass (numbered orders):** T2 to T3 23 of 32, T3 to T4 24 of 33; T1 to T2 5 of 16,
+  T4 to T5 12 of 34, T0 to T1 0 of 4. Stops are mostly WEB and NOT_FOUND, rarely HELD_UNROUTED; the reviewer
+  marked 22 of 59 stop codes wrong, so stop-code shares are soft.
+- **Census check:** the independent pass did not reach the census tier for 7 of 13 census-T3 orders and all 3
+  census-T5 orders. Blind audit: 2 of 6 conclusions matched the ledger. These are leads for adjudication; nothing
+  was changed.
+- **Planted errors:** 9 planted, 6 informative, 5 caught, 1 missed (a removed ending left the NO standing).
+- **Not done / to know:** the pull request is a draft and must not be merged without the owner. `bentham.py
+  usage` was not run: this was a Relay run outside the Claude agent sessions and the owner limited writes to the
+  probe folder, Kean and these notes. After an interrupted turn the kit prints STOPPED until
+  `python -m kiaer reconcile` records a figure. Kit: `%USERPROFILE%/Relay-kiaer/`.
+
+## 2026-11-18 ET, night (Claude: Kiaer probe rejected a fourth time on one ground; fixed, not reviewed; nothing ran)
+
+- **Owner answered** A-20261118-kiaer-third-rejection in chat: "Fourth review". Codex rejected both plans again
+  (`research/kiaer/kiaer-2026-11-18/review/CODEX_REVIEW_4.json`, F-20261118-kiaer-fourth-rejection). Every earlier
+  ground was found met; one was left: the Codex adapter skipped a usage event whose usage field was missing, null
+  or not an object, so such a turn still counted as measured. No repository write path was found.
+- **That ground is fixed and tested, not reviewed** (62 tests pass, selftest exit 0; `CHANGES.md` round 4). The
+  current plans are `review/WAVE_stage*.current-unreviewed.json` (stage 0 `2244eae8...`, stage 1 `4d36c76d...`);
+  Augur refuses them only on Bentham, the stage-1 ramp and the missing review.
+- **Still not done:** no review is bound, no owner exception is recorded (no `add-decision`), stage 0 and the full
+  run have not started, nothing is pushed, there is no pull request. No count changed.
+- **Spent:** 783,269 units, 1,659,693 raw tokens (two smoke tests, four reviews), outside this session's own use.
+- **Open for the owner:** A-20261118-kiaer-fourth-rejection (fifth review, sign the plans yourself, or drop it).
+
+## 2026-11-18 ET, late (Claude: Kiaer probe rejected a third time; three last grounds fixed, not reviewed; nothing ran)
+
+- **Owner answered** A-20261118-kiaer-review-rejected in chat: "Fix and re-review". All seven grounds of Codex's
+  second review were fixed in the kit (zero cap, saved state bound to the plan, reservation race, unmeasured turns
+  stop the run, artifact ownership, provider limits ahead of the environment, provenance wording).
+- **Second smoke test passed** on the changed code: EO 9703, 186,931 units, slowest turn 112 s. With the first
+  (167,712) that is about 53 to 59 orders for 10M units, not 235.
+- **Third review rejected both plans** (`research/kiaer/kiaer-2026-11-18/review/CODEX_REVIEW_3.json`,
+  F-20261118-kiaer-third-rejection): the seven grounds were met except part of one, and it found three more:
+  `reconcile --units nan` erased a charge; empty or partial provider usage counted as measured; four plan
+  statements were stronger than the code. It again found no way for a model turn to write to the repository.
+- **Those three are fixed and tested, not reviewed** (58 tests pass, selftest exit 0; `CHANGES.md` round 3). The
+  current plans are `review/WAVE_stage*.current-unreviewed.json`; Augur refuses them only on Bentham, the stage-1
+  ramp and the missing review.
+- **Still not done:** no review is bound, no owner exception is recorded (no `add-decision`), stage 0 and the full
+  run have not started, nothing is pushed, there is no pull request. No count changed.
+- **Spent:** 644,809 units, 1,301,929 raw tokens (two smoke tests, three reviews), outside this session's own use.
+- **Open for the owner:** A-20261118-kiaer-third-rejection (fourth review, sign stage 0 yourself, or drop it; and
+  whether 10M units is the right budget for 11 cells).
+- **To resume:** kit in `%USERPROFILE%/Relay-kiaer/` (launcher `run-kiaer.ps1`, review call `codex-review.ps1`);
+  data in `%LOCALAPPDATA%/Relay/kiaer-2026-11-18` (physical path in `REPORT.md`). After any interrupted turn the
+  run now prints STOPPED until `python -m kiaer reconcile` records a figure for it.
+
+## 2026-11-18 ET (Claude: Kiaer tier probe stopped at the plan review; nothing ran)
+
+- **Stopped:** the owner-directed Kiaer probe (Relay, `Relay-kiaer.zip`) did not start. Codex (gpt-6-astra)
+  reviewed the stage-0 and stage-1 plans against Augur and rejected both, twice; the owner's rule for this probe
+  was to stop after a second rejection. No owner exception was recorded. No claim, status, census row, codebook or
+  tracker changed. Report: `research/kiaer/kiaer-2026-11-18/REPORT.md`.
+- **Done without tokens:** machine tier census of 15,002 orders (T0 70, T1 2,245, T2 9,144, T3 1,940, T4 348,
+  T5 1,255, T6 0; 2,938 undecided with a rule lead) and a seeded draw (11 cells, 235 orders at most).
+- **Smoke test passed:** EO 9703 through producer, review and repair; 167,712 units, every turn measured. At that
+  cost 10M units buys about 59 orders, not 235.
+- **Reviews:** the first found four real defects, fixed (`CHANGES.md`, 38 tests pass). The second found seven more
+  grounds, not fixed: a zero-cap bypass, saved state not bound to the plan, a reservation race in Relay's engine
+  with more than one worker, unaccounted failed turns, unprotected first-pass artifacts, overridable ceilings and
+  overstated provenance wording. It found no way for a model turn to write to the repository.
+- **Spent:** 317,849 units (599,608 raw tokens): smoke test plus two Codex reviews; this session's own usage not
+  included.
+- **Owner ask A-20261118-kiaer-review-rejected:** fix the seven grounds and allow a third review; or sign stage 0
+  yourself and hold the full run for the fixes; or drop the probe.
+- **Recorded:** Kean F-20261118-kiaer-stopped-at-review. Branch `claude/kiaer-probe-2026-11-18`, committed locally,
+  not pushed. Human-certified 0.
+- **This PC:** `claude`, `codex`, `node` and `npm` are not on PATH. Relay ran on the CLI binaries bundled with the
+  desktop apps (`RELAY_CLAUDE_BIN`, `RELAY_CODEX_BIN`; launcher `%USERPROFILE%/Relay-kiaer/run-kiaer.ps1`). Data
+  written under `%LOCALAPPDATA%` from a Claude desktop session lands in
+  `AppData\Local\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Local\Relay\kiaer-2026-11-18`.
+
 ## 2026-11-12 ET, evening (Claude: claim-kit build repaired; fresh build verified; pilot finalized, not run)
 
 - **Repair** (PR #302, Kean F-20261112-claimkit-regex-runaway):
