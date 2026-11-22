@@ -1,6 +1,6 @@
 # Daily research digest
 
-New York date: 2026-11-21. Generated mechanically; all findings remain provisional.
+New York date: 2026-11-22. Generated mechanically; all findings remain provisional.
 
 ## Tracker headline
 
@@ -10,7 +10,7 @@ New York date: 2026-11-21. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `44973952014-1:0120ba204a083d243de8897cd0d23bcb4b4ae551ffc904c616a6e46227d090aa` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45020103513-1:830aafd24e8ac3868a331f05869ba87f5ba22ad01aab4c1ce3d2a3f0a9c97aad` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -25,18 +25,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 ## Changes since the previous day
 
-Comparison snapshot: 2026-11-20; intervening runs may be absent.
-- claim-checker: claims_all_checks_passed: 1740 → 1746; claims_mechanical_fail: 80 → 74; claims_mechanical_pass: 1826 → 1832; held_distinct_sha256: 59378 → 59269
-- family-rules: saved_texts_scanned: 87894 → 87796
-- gessner-cards: one_step_from_ready: 217 → 218; ready_for_human_review: 1251 → 1255
-- lachmann: assessed: 2355 → 2359; complete_text_confirmed: 1367 → 1398; confirmed: 777 → 808; identity_confirmed: 1149 → 1147
-- official-fixity: carried_forward: 7358 → 7359; checked_this_run: 1 → 0
-- readiness-tracker: original_replacement_obligations: 851 → 846; quotation_recheck_obligations: 851 → 846; ready_for_human_review: 1251 → 1255; working_text_confirmations_counting: 777 → 808
-- selden-fr-citers: bytes_downloaded: 855827 → 0; requests: 71 → 0; targets_total: 13203 → 13207
-- shepard-citations: land_targets: 3537 → 3535
-- source-ladder: attempts_logged: 175 → 180; http_requests: 49 → 45; pool_cache_hits: 4 → 5; pool_network_requests: 49 → 45
-- tischendorf-originals: bytes_downloaded: 874307532 → 1751246324; leads: 608 → 617; replacement_strong: 39 → 71; replacement_targets: 701 → 735
-- tsiolkovsky-trajectory: W_hours: 6842.0 → 6842.8; a_hours_per_day2_latest: 0.65 → -0.89; days: 35 → 36; generations: 177 → 184
+Comparison snapshot: 2026-11-21; intervening runs may be absent.
+- tsiolkovsky-trajectory: W_hours: 6842.8 → 6842.0; a_hours_per_day2_latest: -0.89 → 0.65; days: 36 → 37; generations: 184 → 192
 
 ## Top shared unlocks
 
@@ -68,4 +58,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/44973952014)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45020103513)
