@@ -66,3 +66,11 @@ Approve the Lind stage-0 pilot exactly as research/lind/stage0/WAVE.json (sha256
 *Why:* It measures whether the repaired workflow produces ready dossiers cheaply, and whether soft-filtered orders are worth processing, each group reported separately; every outcome, including inconclusive, has a stated next spending decision.
 
 Sources: `research/lind/stage0/WAVE.json`
+
+## A-20261124-2 (2026-11-24, Claude)
+
+Request a ProQuest TDM Studio account through NYU (guides.nyu.edu/TDMStudio, form for anyone with an NYU email) and check whether the Executive Orders and Presidential Proclamations collection is among NYU's TDM datasets? It is the licensed route to ProQuest's 53,671 pre-1937 presidential records; scraping them risks NYU's license.
+
+*Why:* Step 6 of research/petty-census-closure-2026-11-24/COMPLETENESS_PLAN.md; ProQuest/CIS is the largest known gap in the unnumbered series
+
+Sources: `research/petty-census-closure-2026-11-24/COMPLETENESS_PLAN.md`
