@@ -1,3 +1,21 @@
+## 2026-11-24 ET, night (Claude: every missing ProQuest record's document fetched and read)
+
+- **Owner order:** "you have permission to get them. GO". All 3,941 PDFs were fetched in-page.
+- **Method** (F-20261124-11; `scan-check/REPORT.md`, `scan-check/FULL_READING_3941.csv`):
+  - Text layers are saved in `PQ_TEXT_LAYER_3941.jsonl.gz`.
+  - 838 land orders were found by the order-language rule.
+  - 2,082 documents were read by six Haiku readers (1.49M tokens, about 18 minutes).
+- **Result:**
+  - 1,507 executive orders on their face, plus 70 probable land files.
+  - 1,110 are not orders.
+  - 1,254 handwritten documents, estimated at 375-630 orders.
+  - The census lacks about 2,000 EOs from this collection.
+  - `CENSUS.md`, the ProQuest report and `COMPLETENESS_PLAN.md` are updated.
+- **Next:**
+  - Read the handwritten 1,254 from page images.
+  - Second-read a sample of the Haiku verdicts.
+  - Get the owner's ruling A-20261124-3.
+
 ## 2026-11-24 ET, late (Claude: documents behind 50 missing ProQuest records read)
 
 - **Owner order:** read the candidates yourself.

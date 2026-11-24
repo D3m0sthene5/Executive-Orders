@@ -15,9 +15,9 @@ orders and directives. The census holds 1,695 of the signed land and operative o
 date and a series or subject with a census entry. A 29-month random sample read before the full pass estimated
 about 3,900 missing orders (95% interval 800 to 7,100), which the full reading confirms.
 
-A reading of the documents behind 50 of the 3,941, drawn at random, finds that 19 of 20 land records and 6 of 28
-"other orders" are executive orders on their face. That puts the executive orders the census lacks at about 2,100,
-about 1,600 of them land orders (`../scan-check/REPORT.md`).
+The documents behind all 3,941 were then fetched and read (`../scan-check/REPORT.md`). 1,507 are executive orders
+on their face, 70 more are probable, and the 1,254 handwritten documents are estimated to hold 375 to 630, so the
+census lacks about 2,000 executive orders from this collection, about 1,500 of them land orders.
 
 ## The collection
 
