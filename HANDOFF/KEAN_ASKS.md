@@ -51,14 +51,6 @@ NYU Film 709 (11 reels, EO 1-7403) is free to scan yourself at Bobst on the Scan
 
 Sources: `research/dagron/README.md`
 
-## A-20261112-cis-unnumbered-check (2026-11-12, Claude)
-
-Check the 875 CIS unnumbered executive orders that fall on dates with no known order (research/graunt-census-audit-2026-11-12/cis-kaufman/CIS_UNNUMBERED_EO_GROUPS_PRE1937.csv) for admission to the unnumbered series? A pilot of 30 on the CIS fiche at Bobst or ProQuest would show how many are presidential, distinct and not departmental, before any bulk work.
-
-*Why:* CIS (1987) is an independent, more complete frame than Lord; if most of the 875 are presidential, the identified unnumbered series grows by up to about 1,600.
-
-Sources: `research/graunt-census-audit-2026-11-12/cis-kaufman/README.md`
-
 ## A-20261112-lind-stage0 (2026-11-12, Claude)
 
 After the claim-kit rebuild publishes, may Claude run one Lind stage-0 batch: 30 undecided orders (15 passing every Larrey gate, 15 passing only the hard gates, drawn by research/lind/stage0/draw.py), Papinian configuration, one pooled review set, hard cap $35 list-price allowance? It also needs an Augur review of research/lind/stage0/WAVE.json by another model family (Codex or Astra) or you, bound to its hash. This replaces A-20261110-larrey-soft-probe.

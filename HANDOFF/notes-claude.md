@@ -1,3 +1,25 @@
+## 2026-11-24 ET (Claude: Petty census-closure wave; census paper drafted; CIS pilot run)
+
+- **Owner order** (Kean D-20261124-1): finish the census thread now, with a coordinated agent run, and update GitHub.
+  Output: `research/petty-census-closure-2026-11-24/CENSUS.md`, a paper for a legal scholar. Named for William
+  Petty, Graunt's collaborator in political arithmetic.
+- **Cross-check** (F-20261124-1): 14,865 of 14,983 numbered census labels (99.2%) are named by the WPA 1944 list or
+  the OFR catalog. Of the 118 named by neither, 65 have an official printing held. 214 date conflicts are listed,
+  none adjudicated. Sonnet worker, about 143k tokens.
+- **CIS pilot** (answers A-20261112-cis-unnumbered-check): 30 ProQuest records read from catalog data only, because
+  the scans would not render in the extension browser.
+  - 22 are signed presidential orders found in no project list (about 470-770 of the 875 by extrapolation).
+  - 3 resolve audit entries carried at count 0, and 1 duplicates EO 4456A.
+  - 14 of the 30 carry CIS revocation cross-references, a lifecycle source for unnumbered land orders.
+- **The 69 "page check pending" rows** were already finally failed by Montfaucon (66 fail, 1 unsure, 2 blocked). A
+  recheck needs corrected-span fragments, and the owner's stop after m010 still stands. Plan and fetch job are in
+  `page-check-69/`; nothing was dispatched.
+- **Still running when this note was written:** Sonnet lanes B (official pages for the cited-but-unheld numbered
+  labels) and D (texts for the 70 orders with nothing held). Their results go to `missing-numbered-14/` and
+  `nothing-held-70/`. Then update CENSUS.md sections 2 and 6.
+- **No count changed.** There were no admissions, claim filings or readiness changes, and certified is still 0.
+- **Asks:** @Owner: none new. Before adding any CIS order, read the 22 candidate scans in ProQuest.
+
 ## 2026-11-12 ET, evening (Claude: claim-kit build repaired; fresh build verified; pilot finalized, not run)
 
 - **Repair** (PR #302, Kean F-20261112-claimkit-regex-runaway):
