@@ -6,11 +6,11 @@ New York date: 2026-11-24. Generated mechanically; all findings remain provision
 
 # Readiness tracker
 
-**Numbered series: ready for human review 1,250 of 15,002 orders (8.3%)**
+**Numbered series: ready for human review 1,251 of 15,002 orders (8.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45484593744-1:012c538b93930151c5264bb10f7cfde492ed496049bb8e520ae0c247fb5338d5` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45492757165-1:bff02021632520e0c1b7052753611717c6c2b1b87386112b5aedec60b9998ca0` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -18,7 +18,7 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 3,788. The other 11,214 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 724, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
+Ready by text evidence: {'original_supported': 725, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 883; quotation rechecks: 883. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 284. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1549}.
@@ -26,9 +26,10 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-23; intervening runs may be absent.
-- claim-checker: claims_all_checks_passed: 1746 → 1739; claims_mechanical_fail: 74 → 80; claims_mechanical_pass: 1832 → 1825; claims_mechanical_unverified: 2 → 3
-- gessner-cards: ready_for_human_review: 1255 → 1250
-- readiness-tracker: original_replacement_obligations: 846 → 883; quotation_recheck_obligations: 846 → 883; ready_for_human_review: 1255 → 1250; text_step_provisional_working_text: 252 → 284
+- claim-checker: claims_all_checks_passed: 1746 → 1740; claims_mechanical_fail: 74 → 80; claims_mechanical_pass: 1832 → 1826
+- family-rules: saved_texts_scanned: 88220 → 88318
+- gessner-cards: one_step_from_ready: 218 → 217; ready_for_human_review: 1255 → 1251
+- readiness-tracker: original_replacement_obligations: 846 → 883; quotation_recheck_obligations: 846 → 883; ready_for_human_review: 1255 → 1251; text_step_provisional_working_text: 252 → 284
 - source-ladder: bytes_downloaded: 96738954 → 135890416; http_requests: 45 → 133; pool_cache_hits: 5 → 0; pool_network_requests: 45 → 140
 - tischendorf-originals: bytes_downloaded: 1872604776 → 869456604; leads: 617 → 608; replacement_strong: 71 → 36; replacement_targets: 735 → 698
 - tsiolkovsky-trajectory: W_hours: 6842.1 → 6842.0; a_hours_per_day2_latest: 0.67 → 0.65; days: 37 → 39; generations: 199 → 204
@@ -63,4 +64,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45484593744)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45492757165)
