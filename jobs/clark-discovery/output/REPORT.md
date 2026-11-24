@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-22T20:07:47Z. Leads only; no census, count or identity changes.
+Generated 2026-11-24T00:37:08Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -79,7 +79,7 @@ Generated 2026-11-22T20:07:47Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-29 of 29 unknowns advanced this run (0 never searched yet); 220 of 1100 requests used. 5450 hits on file, 156 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+29 of 29 unknowns advanced this run (0 never searched yet); 225 of 1100 requests used. 5479 hits on file, 157 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
 List pages: 60 read, 236 order numbers named, **4 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
