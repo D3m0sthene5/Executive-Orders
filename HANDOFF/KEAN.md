@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (9)
+## Waiting for the owner (8)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-lind-stage0**, **A-20261112-lind-stage0-v2**, **A-20261124-1**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-lind-stage0**, **A-20261112-lind-stage0-v2**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -55,13 +55,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 382; `search` finds the rest)
+## Newest results (6 of 383; `search` finds the rest)
 
+- 2026-11-24 F-20261124-6 **worked**: Apply A-20261124-1: admit EO 6585, rename EO:7010P to EO:7010F, re-key the APP EO 4224 1/2 text Lesson: Half-numbered APP titles ('4224 1/2') were truncated to the whole number by the APP id regex; only one title was affected.
 - 2026-11-24 F-20261124-5 **partly worked**: Petty lane D (Sonnet worker, about 189k tokens, 23 min): find any text for the 70 register rows with best_hel… Lesson: Wikisource, APP and FRUS were productive; beware state and county orders with the same number. Re-key 7010P to 7010F and the EO:4224 APP text to 4224 1/2 in the census and app-executive-orders keys (…
 - 2026-11-24 F-20261124-4 **partly worked**: Petty lane B (Sonnet worker, about 243k tokens, 35 min): official pages for the 14 numbered labels admitted i… Lesson: HathiTrust full-text search, govinfo PDFs and archives.federalregister.gov are refused to WebFetch; archive.org full-text search and djvu text work. Admission still needs the pages held: FETCH_URLS.t…
 - 2026-11-24 F-20261124-3 **stopped at gate**: Petty lane C (Sonnet preparer, about 150k tokens, 5 min): prepare Montfaucon m011 for the 69 register rows be… Lesson: Read OUTCOMES.json before treating ORIGINAL_FOUND_NEEDS_PAGE_CHECK as unchecked; the domesday label official_found_page_check_pending should say when a final fail exists.
 - 2026-11-24 F-20261124-2 **partly worked**: Petty lane E (coordinator, Opus, in the owner's Chrome with NYU OpenAthens): the 30-document pilot of A-20261… Lesson: Permalinks t67.d72.<CIS accession> work and the record page gives signed flag, record group and revocation cross-references; fetch() from the page context reads them in bulk. Before admitting any, a…
 - 2026-11-24 F-20261124-1 **worked**: Petty lane A (Sonnet worker, about 143k tokens, 5 min): cross-check every numbered census label against every… Lesson: Outside 7532-8030 each number rests on one catalog plus its own printed text; APP is derived from Lord and the FR and is not independent support. Use NUMBERED_CROSSWALK.csv rather than date_source to…
-- 2026-11-12 F-20261112-soft-gates-untested **analysis**: Owner: does Larrey filtering avoid waste or exclude worthwhile work? Split the 62 back-test exclusions into h… Lesson: Enforce hard gates; use soft gates to order the queue, not to exclude, until a stratified prospective test on the rebuilt kit measures orders kept out. A sample of admitted orders cannot measure fals…
 
-Register: 92 owner decisions, 58 answered questions, 382 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 92 owner decisions, 59 answered questions, 383 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

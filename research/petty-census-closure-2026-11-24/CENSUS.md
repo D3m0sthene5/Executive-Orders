@@ -10,11 +10,11 @@ in it has been certified by a human reviewer.
 The project has identified **16,400 to 16,811 executive orders** signed or specifically approved by presidents from
 1789 through October 14, 2026. The count has two parts that are never added together without saying so.
 
-- **The numbered series, EO 1 to EO 14435:** 15,002 census rows, of which 14,983 carry an executive-order number.
+- **The numbered series, EO 1 to EO 14435:** 15,003 census rows, of which 14,984 carry an executive-order number.
   Two published catalogs together cover the whole number range: the WPA's *Presidential Executive Orders, Numbered
   1-8030* (Clifford L. Lord, ed., 1944) and the Office of the Federal Register's catalog, which begins at EO 7532.
-  **14,865 of the 14,983 numbered labels (99.2%) appear in one or both of those catalogs.** The other 118 are
-  accounted for individually below. For 12,470 census orders the project holds an official government printing
+  **14,865 of the 14,983 numbered labels checked (99.2%) appear in one or both of those catalogs.** The other 118
+  are accounted for individually below. (The check was run before EO 6585 was added on November 24.) For 12,470 census orders the project holds an official government printing
   of the text, such as a Federal Register page.
 - **The unnumbered series:** orders issued before numbering began, or outside it, mostly land withdrawals,
   military and Indian reservations and Panama Canal orders. 1,405 to 1,816 are identified individually, each with
@@ -95,10 +95,10 @@ an unused number.
   for each. For EO 2703, 3493 and 3733 that page is an entry in the GPO's *Monthly Catalog*, which names the order's
   number, date and subject but does not print its text. For EO 2539 it is the printed text in the *Alaska Railroad
   Record*.
-- **EO 6585** is printed in the GPO's bound volume of 1934 slip orders, and the project already holds that page.
-  It meets the owner's November 12 test for admission and has not yet been admitted.
-- **EO 7010F** appears to be in the census already, misread as "EO 7010P" (see below). The project holds its
-  printing in the GPO's 1935 slip-order volume.
+- **EO 6585** is printed in the GPO's bound volume of 1934 slip orders, and the project holds that page. It was
+  admitted on November 24 (`research/stage15/CENSUS/ADMISSIONS_2026-11-24.csv`).
+- **EO 7010F** was in the census under a misread suffix, "EO 7010P" (see below), and was renamed on November 24.
+  The project holds its printing in the GPO's 1935 slip-order volume.
 - **EO 2103** is listed in the December 1914 *Monthly Catalog* (No. 240, page 321), which gives its number and date
   but no text. **EO 5151A** is printed in the Office of the Federal Register's 1974 compilation of Hoover's
   proclamations and orders, and **EO 2687A** in *Foreign Relations of the United States*, 1917. The project does not
@@ -110,8 +110,9 @@ Details and the searches behind them are in `missing-numbered-14/`.
 
 ### What the project holds for each census order
 
-The table covers all 15,002 census rows: the 14,983 numbered labels plus 19 unnumbered orders the census already
-carried.
+The table covers the 15,002 census rows as they stood before November 24: the 14,983 numbered labels plus 19
+unnumbered orders the census already carried. The admission of EO 6585 and the renaming of EO 7010F move one order
+each from the last row to the first.
 
 | What is held | Orders |
 |---|---:|
@@ -133,16 +134,15 @@ Record*. It found secondary transcriptions for 18 more, mostly Wikisource pages 
 Roosevelt, Taft and Wilson years. Of the rest, 33 are known only from a catalog line and 12 from a date. Four
 look like errors in the census itself:
 
-- **EO 7010P is very likely EO 7010F.** The WPA list's sequence reads A, B, C, D, E, P, G, H, and the "P" entry
-  describes the same Miami electrical-contracting agreement as the American Presidency Project's EO 7010-F and the
-  GPO slip printing the project holds for 7010-F. The census therefore
-  already holds one of the labels listed as missing above, under a misread letter.
+- **EO 7010P was EO 7010F.** The WPA list's sequence reads A, B, C, D, E, P, G, H, and the "P" entry describes
+  the same Miami electrical-contracting agreement as the American Presidency Project's EO 7010-F and the GPO slip
+  printing the project holds, which closes "[No. 7010-F.]" The census row was renamed on November 24.
 - **One unnumbered entry duplicates another,** with the same date (August 8, 1914) and the same later amending
   order (EO 8507).
 - **The March 10, 1863 Lincoln item** is a proclamation that Wikisource labels EO 1-A.
 - **EO 4361½** has the same date as EO 4361 and no title in any index.
 
-The search also found that the text the project holds for EO 4224 is in fact EO 4224½, and that six "A" orders on
+The search also found that the text the project held for EO 4224 was in fact EO 4224½ (re-filed on November 24), and that six "A" orders on
 radio frequencies (such as EO 9132-A and 10369-A) were confidential and never published, so no official text of
 them is expected to exist.
 
@@ -235,7 +235,7 @@ has found derives a total of all orders ever issued (`research/graunt-census-aud
 |---|---|---|
 | Read the scans of the 22 CIS candidates, then a larger CIS sample | Whether CIS's signed-by-the-President flag is reliable, and how many of the 875 (and of the 1,645 on shared dates) to add | A person with NYU ProQuest access; the scans open in ProQuest's own viewer |
 | Recheck the 69 failed page citations with corrected spans | Official text credit for 69 orders | Machine page check with two readers, once the source job records the corrected spans |
-| Fetch and hold the located pages for the Cleveland orders, EO 2103, 2687A and 5151A; admit EO 6585; re-key EO 7010P as 7010F and EO 4224's text as 4224½ | Whether the numbered series is complete | Machine fetch through the project's runner, then a census admission under the owner's November 12 rule |
+| Fetch and hold the located pages for the Cleveland orders, EO 2103, 2687A and 5151A | Whether the numbered series is complete | Machine fetch through the project's runner, then a census admission under the owner's November 12 rule |
 | Search further for EO 130A and 8606A | Whether these two labels are real orders | Archival search (ProQuest, National Archives) |
 | Resolve the 214 date conflicts | Correct dates for the affected orders | Machine first pass, then human review |
 | Rule on the definitional choices in section 1, especially the 411 power-site groups | The width of the identified range | Owner, ideally with a scholar of the presidency |

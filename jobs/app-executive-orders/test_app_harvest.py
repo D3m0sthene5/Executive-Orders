@@ -38,6 +38,9 @@ def test_instrument_id():
     assert a.instrument_id("Executive Order 14356—Ensuring")[0] == "EO:14356"
     assert a.instrument_id("Executive Order 7709-A—X")[0] == "EO:7709A"
     assert a.instrument_id("Executive Order 130B")[0] == "EO:130B"
+    assert a.instrument_id("Executive Order 4224 1/2—Waiver or Reduction")[0] == "EO:4224½"
+    assert a.instrument_id("Executive Order 1324½—X")[0] == "EO:1324½"
+    assert a.instrument_id("Executive Order 4224—Y")[0] == "EO:4224"
     assert a.instrument_id("Executive Order Relating to Consular Fees")[0] is None
     assert a.instrument_id("Executive Order 12345678x")[0] is None
 
