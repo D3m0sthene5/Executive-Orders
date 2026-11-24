@@ -1,3 +1,23 @@
+## 2026-11-24 ET, late night (Claude: handwritten missing-candidate documents read from page images)
+
+- **Owner order:** "ok get the next ones then".
+- **Method** (F-20261124-12):
+  - The 1,252 handwritten or illegible documents were decoded in-page with `scan-check/g4_page_decoder.js`.
+  - The first and last pages went to ten Haiku readers.
+- **Result:**
+  - The image pass found 525 more executive orders.
+  - Totals: 2,032 executive orders on their face (1,531 land, 501 operative), 70 probable, 1,808 not orders, 31
+    unreadable.
+  - `CENSUS.md`, `scan-check/REPORT.md` and `FULL_READING_3941.csv` are updated.
+- **Housekeeping:**
+  - Page images (36 MB) are in the session workspace only, not committed.
+  - One image reader called send_later by mistake. A stray "unused" scheduled message fired once; its deletion was
+    refused by the classifier.
+- **Next:**
+  - A second reader on a random sample of verdicts.
+  - Middle pages of handwritten documents.
+  - The owner's ruling A-20261124-3.
+
 ## 2026-11-24 ET, night (Claude: every missing ProQuest record's document fetched and read)
 
 - **Owner order:** "you have permission to get them. GO". All 3,941 PDFs were fetched in-page.

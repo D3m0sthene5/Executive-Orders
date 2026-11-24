@@ -11,8 +11,8 @@ record by record on 2026-11-24 (19,918 of 20,028 catalog entries). It holds abou
 President that are land orders or other operative orders and that no census list holds: about 1,700 land orders,
 including about 900 in the numbered coal, petroleum, phosphate, potash and public-water series, and about 2,200
 other orders and directives by their titles (`proquest-scan/REPORT.md`, `proquest-scan/CANDIDATES_MISSING.csv`).
-Reading the document behind every one of them shows 1,507 executive orders on their face and about 2,000 in all
-once the handwritten documents are estimated (`scan-check/REPORT.md`).
+Reading the document behind every one of them, from text or page images, shows 2,032 executive orders on their face
+and 70 probable land orders (`scan-check/REPORT.md`).
 
 The literal claim, that the project holds every executive order mentioned anywhere online, cannot be shown,
 because no one can enumerate every web page. A defensible claim can be made: **every major digitized corpus that

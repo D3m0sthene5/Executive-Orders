@@ -27,13 +27,12 @@ and a 1957 House committee print. The identified count is a floor, and it is kno
 ProQuest's collection of unnumbered presidential documents for 1789 to 1936 (the CIS index in digital form) has
 been read record by record: 19,918 of its 20,028 catalog entries. Sorted by title and checked against every census
 list, it holds 3,941 documents marked signed by the President that are land orders or other orders by their titles
-and that the census lacks. The document behind each one was then fetched and read, by text where ProQuest's text
-layer is legible. **1,507 are executive orders on their face** (1,311 land orders and 196 other orders), 70 more are
-land-order files whose order page is unreadable, and 1,110 are letters, appointments, personal actions, fund
-approvals, proclamations and similar papers. The 1,254 handwritten documents could not be read as text; by the rates
-in comparable documents they hold about 375 to 630 more orders. **The collection adds about 2,000 executive orders
-that the census lacks** (roughly 1,950 to 2,200), which would more than double the identified unnumbered series
-(section 4).
+and that the census lacks. The document behind each one was then fetched and read, from ProQuest's text layer or,
+for handwriting, from images of the pages. **2,032 are executive orders on their face** (1,531 land orders and 501
+other orders signed, approved or issued by the President), 70 more are land-order files whose order page is
+unreadable, 1,808 are letters, appointments, personal actions, fund approvals, proclamations and similar papers,
+and 31 could not be read. **The collection adds about 2,000 to 2,100 executive orders that the census lacks**, which
+would more than double the identified unnumbered series (section 4).
 
 ## 1. What is counted
 
@@ -256,21 +255,21 @@ The list is `proquest-scan/CANDIDATES_MISSING.csv`, which also gives the 1,472 u
 An earlier estimate from 29 months drawn at random put the missing records at about 3,900, with a 95% interval of
 800 to 7,100, and the full reading agrees.
 
-**What the documents show.** Every one of the 3,941 documents was fetched from ProQuest (two have no PDF) and its
-text layer extracted (`scan-check/REPORT.md`, `scan-check/FULL_READING_3941.csv`). Land-titled documents whose text
-contains order language (838) were counted as land orders. Claude Haiku readers classified the other 2,082 under a
-fixed rubric, and their verdicts agree with Claude's own scan readings for 26 of 28 documents. Of the 2,687 readable
-documents, 1,311 are land orders and 196 are other operative orders signed, approved or issued by the President.
-Another 70 are land-order files whose order page the text layer does not show. The other 1,110 are not executive
-orders: 239 actions on one person, 216 letters of instruction, 150 other letters, 118 orders a Secretary signed "by
-command of the President," 89 fund approvals, 75 appointments, 60 proclamations, 20 pardons, 17 treaties and 126
-others. The 1,254 handwritten or illegible documents, almost all from before 1907, are estimated at 375 to 630
-orders from the rates in readable documents and in handwritten pages read by eye. **The census therefore lacks about
-2,000 executive orders from this collection, about 1,500 of them land orders.** ProQuest's "signed by the President"
-flag marks a recorded presidential act, not always a signature. Genuine missing orders include Van Buren's transfer
-of $500,000 to the Mint (July 20, 1838), Lincoln's instructions to the South Carolina tax commissioners (December 31,
-1863), McKinley's Philippine government orders of 1899 to 1901, Taft's Coal Land Restoration, Washington No. 6
-(October 8, 1912), and Harding's order vacating Alaskan Withdrawal No. 1 (May 19, 1921).
+**What the documents show.** Every one of the 3,941 documents was fetched from ProQuest (two have no PDF) and read
+(`scan-check/REPORT.md`, `scan-check/FULL_READING_3941.csv`). 2,687 were read from ProQuest's text layer: 838 land
+orders by their order language, the rest by Claude Haiku readers under a fixed rubric. The 1,252 handwritten or
+illegible ones were read from page images by Claude Haiku readers, after a decoder written for the job turned
+ProQuest's fax-format scans into page images inside the browser. The readers agree with Claude's own scan readings
+for 36 of 40 documents. In all, 1,531 are land orders and 501 are other operative orders, 70 are probable land
+orders, 29 are unreadable, and 1,808 are not executive orders: 451 actions on one person, 366 letters of
+instruction, 247 other letters, 172 fund approvals, 171 orders a Secretary signed "by command of the President," 132
+appointments, 70 proclamations, 32 pardons, 17 treaties and 150 others. **The census therefore lacks 2,032
+executive orders that ProQuest holds, about 1,530 of them land orders, and about 2,100 counting the probable land
+files.** ProQuest's "signed by the President" flag marks a recorded presidential act, not always a signature.
+Genuine missing orders include Van Buren's transfer of $500,000 to the Mint (July 20, 1838), Lincoln's order making
+Arkansas one revenue collection district (March 1, 1865), McKinley's Philippine government orders of 1899 to 1901,
+Taft's Coal Land Restoration, Washington No. 6 (October 8, 1912), and Harding's order vacating Alaskan Withdrawal
+No. 1 (May 19, 1921).
 
 The rest of the collection is presidential paperwork that most definitions of an executive order leave out. The
 signed first copies include 1,203 treaties and conventions, 1,315 NRA codes of fair competition and amendments, 925
@@ -279,11 +278,11 @@ exceptions to the arms-export embargo, almost all from 1912 to 1917, 907 pardons
 proclamations and notices, 327 privateer commissions of 1798 to 1814 and 219 *Official Bulletin* compilations. A broad definition
 could count some of them; that is a ruling for the owner (section 6).
 
-Three limits apply. The 1,254 handwritten documents are estimated, not read. The readers' judgments rest on OCR
-excerpts and could be wrong for a few hundred documents. The definition used leaves out letters of instruction,
-orders a Secretary signed by command, appointments and fund approvals, which would add several hundred more. A held
-order whose census date differs by more than a week from ProQuest's, as with the Papago reservation (ProQuest June
-24, 1874; Lord July 1, 1874), will appear as missing.
+Three limits apply. The readers' judgments could be wrong for a few hundred documents in either direction, and
+only the first and last page of each handwritten document was read. The definition used leaves out letters of
+instruction, orders a Secretary signed by command, appointments and fund approvals, which would add several hundred
+more. A held order whose census date differs by more than a week from ProQuest's, as with the Papago reservation
+(ProQuest June 24, 1874; Lord July 1, 1874), will appear as missing.
 
 ## 5. Why there is no total
 
@@ -303,8 +302,8 @@ has found derives a total of all orders ever issued (`research/graunt-census-aud
 
 | Task | What it would settle | Who |
 |---|---|---|
-| Read the 1,254 handwritten documents from their page images, and have a second reader check a sample of the model verdicts | A count of the handwritten orders in place of an estimate, and an independent check | Browser reading of ProQuest's PDFs; a second reader |
-| Rule on which kinds of presidential document count: letters of instruction, appointments, personal actions such as passes and discharges, fund approvals, orders a Secretary signed by the President's command, NRA codes, arms-export exceptions, privateer commissions | Whether the unnumbered series grows by about 2,000 or by several thousand more | Owner, ideally with a scholar of the presidency |
+| Have a second reader check a random sample of the 3,939 reader verdicts, and read the middle pages of handwritten documents | An independent error rate for the 2,032 | A second reader; browser reading of ProQuest's PDFs |
+| Rule on which kinds of presidential document count: letters of instruction, appointments, personal actions such as passes and discharges, fund approvals, orders a Secretary signed by the President's command, NRA codes, arms-export exceptions, privateer commissions | Whether the unnumbered series grows by about 2,000 to 2,100 or by several thousand more | Owner, ideally with a scholar of the presidency |
 | Recover the about 110 ProQuest records the page-by-page reading missed | A complete reading of the collection | Browser reading of ProQuest result lists for the busiest dates |
 | Recheck the 69 failed page citations with corrected spans | Official text credit for 69 orders | Machine page check with two readers, once the source job records the corrected spans |
 | Fetch and hold the located pages for the Cleveland orders, EO 2103, 2687A and 5151A | Whether the numbered series is complete | Machine fetch through the project's runner, then a census admission under the owner's November 12 rule |
@@ -324,7 +323,8 @@ Everything is under `research/petty-census-closure-2026-11-24/`:
   `CLASSIFY_SUMMARY.json`), the list of missing orders (`CANDIDATES_MISSING.csv`), the land-series listing, the
   29-month sample with its matching review and estimate script, and the series counts.
 - `scan-check/`: the reading of every missing record's document (`FULL_READING_3941.csv`), the text layers
-  (`PQ_TEXT_LAYER_3941.jsonl.gz`), the reader rubric, the 50-record hand reading and the report.
+  (`PQ_TEXT_LAYER_3941.jsonl.gz`), the page decoder (`g4_page_decoder.js`), the two reader rubrics, the 50-record
+  hand reading and the report.
 - `missing-numbered-14/`: the search for official pages for the numbered labels the census still lacks.
 - `nothing-held-70/`: the search for texts of the 70 census orders with nothing held, 51 of them numbered.
 - `page-check-69/`: why the 69 page checks are not pending, the worklist, and a ready fetch job for a corrected
