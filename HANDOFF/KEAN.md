@@ -55,13 +55,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 384; `search` finds the rest)
+## Newest results (6 of 385; `search` finds the rest)
 
+- 2026-11-24 F-20261124-8 **worked**: List every ProQuest unnumbered record in the land-order series (coal, petroleum, public water, phosphate, pot… Lesson: get_page_text output over about 50 KB is saved to a workspace file, which is a lossless channel from browser to workspace: pad the page to force it. Result-list paging via the Next Page button and di…
 - 2026-11-24 F-20261124-7 **worked**: Owner-requested browse of ProQuest Congressional in the owner's Chrome (NYU OpenAthens), no downloads: counts… Lesson: The census's biggest gap is the numbered land-order series of 1909-1936 other than power sites; enumerate each series end to end. ProQuest's result list reads well via div.itemPagingDiv and div.itemP…
 - 2026-11-24 F-20261124-6 **worked**: Apply A-20261124-1: admit EO 6585, rename EO:7010P to EO:7010F, re-key the APP EO 4224 1/2 text Lesson: Half-numbered APP titles ('4224 1/2') were truncated to the whole number by the APP id regex; only one title was affected.
 - 2026-11-24 F-20261124-5 **partly worked**: Petty lane D (Sonnet worker, about 189k tokens, 23 min): find any text for the 70 register rows with best_hel… Lesson: Wikisource, APP and FRUS were productive; beware state and county orders with the same number. Re-key 7010P to 7010F and the EO:4224 APP text to 4224 1/2 in the census and app-executive-orders keys (…
 - 2026-11-24 F-20261124-4 **partly worked**: Petty lane B (Sonnet worker, about 243k tokens, 35 min): official pages for the 14 numbered labels admitted i… Lesson: HathiTrust full-text search, govinfo PDFs and archives.federalregister.gov are refused to WebFetch; archive.org full-text search and djvu text work. Admission still needs the pages held: FETCH_URLS.t…
 - 2026-11-24 F-20261124-3 **stopped at gate**: Petty lane C (Sonnet preparer, about 150k tokens, 5 min): prepare Montfaucon m011 for the 69 register rows be… Lesson: Read OUTCOMES.json before treating ORIGINAL_FOUND_NEEDS_PAGE_CHECK as unchecked; the domesday label official_found_page_check_pending should say when a final fail exists.
-- 2026-11-24 F-20261124-2 **partly worked**: Petty lane E (coordinator, Opus, in the owner's Chrome with NYU OpenAthens): the 30-document pilot of A-20261… Lesson: Permalinks t67.d72.<CIS accession> work and the record page gives signed flag, record group and revocation cross-references; fetch() from the page context reads them in bulk. Before admitting any, a…
 
-Register: 92 owner decisions, 60 answered questions, 384 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 92 owner decisions, 60 answered questions, 385 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

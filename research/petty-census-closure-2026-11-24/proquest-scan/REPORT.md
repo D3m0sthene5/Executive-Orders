@@ -93,3 +93,48 @@ The missing land orders belong to numbered series. Coal Land Restoration, Montan
 Reserves pass No. 126. Each series can be listed from beginning to end, as the power-site series was from the USGS
 registry. Likely sources are the General Land Office annual reports, Interior's withdrawal schedules, and ProQuest's
 own result lists, read the way this sample was read.
+
+## The land-order series, listed record by record (2026-11-24, afternoon)
+
+A second pass read every ProQuest result for the land-order series. The search was any of "coal land", "coal
+reserve", "petroleum reserve", "petroleum restoration", "public water", phosphate, potash, "oil shale", "alaskan
+withdrawal", "reservoir site", "stock driveway" or helium, limited to Presidential Materials. Among the unnumbered
+records it returns 2,185. Read oldest first, the run reached 1,900 records, past the end of 1936. The 1,465 records
+dated before 1937 are in `PQ_LAND_SERIES_PRE1937.psv`. Each row gives the CIS accession number, the date
+(YYYYMMDD), the signed flag (S or N), the match class and a compact title.
+
+The compact titles use these codes:
+
+| Code | Series |
+|---|---|
+| CLR, CLW | Coal Land Restoration, Coal Land Withdrawal |
+| PR, PRR | Petroleum Reserve, Petroleum Restoration |
+| PWR, PWRR | Public Water Reserve, Public Water Restoration |
+| PHR, PHRR | Phosphate Reserve, Phosphate Restoration |
+| POTR, POTRR | Potash Reserve, Potash Restoration |
+| RSR, RSRR | Reservoir Site Reserve, Reservoir Site Restoration |
+| MOD | Order of modification |
+| INT | Interpretation |
+
+The match classes are:
+
+| Class | Meaning |
+|---|---|
+| M | Matched to a census entry by date, series word and number or state |
+| G | Inside an audited power-site date group |
+| D | The date carries another census entry, but no subject match |
+| U | Nothing in the census on that date |
+
+The census is matched against the audited unnumbered series, the audit's findings and the domesday register. The
+matching ran in the browser, from the repository's public files on GitHub.
+
+| | Signed | Not signed |
+|---|---:|---:|
+| Matched (M or G) | 69 | 3 |
+| Not in the census (D or U) | 1,159 | 234 |
+
+Spot checks of the D class found different orders sharing a date, not missed matches. Some orders appear twice:
+ProQuest often files the same order in record group 33 and again in group 46. Counting date and title together,
+the signed orders the census lacks come to **about 1,110 distinct orders**. Of the 202 "Interpretation" records,
+195 are marked not signed by the President. They are probably departmental interpretations of Public Water
+Reserve No. 107, and they are not counted as presidential orders.
