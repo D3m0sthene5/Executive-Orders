@@ -10,7 +10,9 @@ The census is not complete. ProQuest's collection of unnumbered presidential doc
 record by record on 2026-11-24 (19,918 of 20,028 catalog entries). It holds about 3,900 documents signed by the
 President that are land orders or other operative orders and that no census list holds: about 1,700 land orders,
 including about 900 in the numbered coal, petroleum, phosphate, potash and public-water series, and about 2,200
-other orders and directives (`proquest-scan/REPORT.md`, `proquest-scan/CANDIDATES_MISSING.csv`).
+other orders and directives by their titles (`proquest-scan/REPORT.md`, `proquest-scan/CANDIDATES_MISSING.csv`).
+Reading the documents behind a random 50 of them puts the executive orders among them at about 2,100: nearly all the
+land orders, but only about a fifth of the other orders (`scan-check/REPORT.md`).
 
 The literal claim, that the project holds every executive order mentioned anywhere online, cannot be shown,
 because no one can enumerate every web page. A defensible claim can be made: **every major digitized corpus that

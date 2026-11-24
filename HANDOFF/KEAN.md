@@ -55,7 +55,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 386; `search` finds the rest)
+## Newest results (6 of 387; `search` finds the rest)
 
 - 2026-11-24 F-20261124-9 **worked**: Read every result page of ProQuest Congressional's 'Unnumbered Executive Orders, Directives, and Proclamation… Lesson: A full reading of the catalog list is cheap (about 2 hours of browser paging) and replaces a wide sample estimate; it confirmed the estimate's centre. Pad the page DOM so get_page_text output overflo…
 - 2026-11-24 F-20261124-8 **worked**: List every ProQuest unnumbered record in the land-order series (coal, petroleum, public water, phosphate, pot… Lesson: get_page_text output over about 50 KB is saved to a workspace file, which is a lossless channel from browser to workspace: pad the page to force it. Result-list paging via the Next Page button and di…
@@ -64,4 +64,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-24 F-20261124-5 **partly worked**: Petty lane D (Sonnet worker, about 189k tokens, 23 min): find any text for the 70 register rows with best_hel… Lesson: Wikisource, APP and FRUS were productive; beware state and county orders with the same number. Re-key 7010P to 7010F and the EO:4224 APP text to 4224 1/2 in the census and app-executive-orders keys (…
 - 2026-11-24 F-20261124-4 **partly worked**: Petty lane B (Sonnet worker, about 243k tokens, 35 min): official pages for the 14 numbered labels admitted i… Lesson: HathiTrust full-text search, govinfo PDFs and archives.federalregister.gov are refused to WebFetch; archive.org full-text search and djvu text work. Admission still needs the pages held: FETCH_URLS.t…
 
-Register: 92 owner decisions, 60 answered questions, 386 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 92 owner decisions, 60 answered questions, 387 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

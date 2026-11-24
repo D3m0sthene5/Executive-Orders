@@ -1,3 +1,17 @@
+## 2026-11-24 ET, late (Claude: documents behind 50 missing ProQuest records read)
+
+- **Owner order:** read the candidates yourself.
+- **Sample** (F-20261124-10): 50 random records from `proquest-scan/CANDIDATES_MISSING.csv`, in `scan-check/`. 48
+  were read: printed text from the PDFs' text layer, handwriting from rendered page images. Two large scans are unread.
+- **Result:**
+  - Land records: 19 of 20 are executive orders. "Other orders": only 6 of 28.
+  - Estimated executive orders missing from the census: about 2,100 (land about 1,600; other about 500, 95%
+    230-890).
+  - `CENSUS.md` brief, section 4 and section 6, the scan report and `COMPLETENESS_PLAN.md` now carry this figure.
+- **Warning:** navigating to a ProQuest PDF link downloads it, because Chrome's PDF viewer is off. One file landed
+  on the owner's computer: `PT1-1838-12-25.pdf`.
+- **Asks:** @Owner: A-20261124-3 (which kinds count) still open.
+
 ## 2026-11-24 ET, evening (Claude: ProQuest unnumbered collection read in full and matched to the census)
 
 - **Owner order:** pull everything ProQuest has. The owner reports the NYU librarian approved this use of NYU's

@@ -26,11 +26,12 @@ familiar figures of 15,000 and 50,000 unnumbered orders trace back to unsupporte
 and a 1957 House committee print. The identified count is a floor, and it is known to be far from complete.
 ProQuest's collection of unnumbered presidential documents for 1789 to 1936 (the CIS index in digital form) has
 been read record by record: 19,918 of its 20,028 catalog entries. Sorted by title and checked against every census
-list, it holds **about 3,900 documents signed by the President that are land orders or other operative orders and
-that the census lacks**. About 1,700 are land orders, including about 900 in the numbered coal, petroleum,
-phosphate, potash and public-water series of 1909 to 1936; about 2,200 are other orders and directives. Counting
-them would more than triple the identified unnumbered series. Each rests on ProQuest's title, date and
-signed-by-the-President flag, and none of the documents has yet been read (section 4).
+list, it holds 3,941 documents marked signed by the President that are land orders or other orders by their titles
+and that the census lacks. In a random sample of 50 of these, the documents themselves were read. About half are
+executive orders on their face. Scaled up, **the collection adds about 2,100 executive orders that the census
+lacks**: about 1,600 land orders (95% interval 1,300 to 1,700) and about 500 other orders (95% interval 230 to 890).
+The rest are letters, appointments, personal actions, fund approvals and proclamations. Adding the 2,100 would more
+than double the identified unnumbered series (section 4).
 
 ## 1. What is counted
 
@@ -250,10 +251,22 @@ missing. **The other 3,941 are missing from the census:**
 | **All** | **893** | **806** | **2,242** | **3,941** |
 
 The list is `proquest-scan/CANDIDATES_MISSING.csv`, which also gives the 1,472 unsigned records that match nothing.
-An earlier estimate from 29 months drawn at random put the missing orders at about 3,900, with a 95% interval of
-800 to 7,100, and the full reading confirms it. The missing orders include Lincoln's order establishing the Sanitary
-Commission (June 9, 1861), Taft's Alaskan Withdrawal No. 1 (December 5, 1911), which numbered EO 1584 cites but the
-census does not count, and Hoover's Potash Reserve No. 7 (June 8, 1929).
+An earlier estimate from 29 months drawn at random put the missing records at about 3,900, with a 95% interval of
+800 to 7,100, and the full reading agrees.
+
+**What the documents show.** Fifty of the 3,941 were drawn at random and their scans read
+(`scan-check/REPORT.md`). Printed and typed documents were read from the text layer in ProQuest's PDFs, and
+handwritten ones from the page images; two large handwritten scans were not read. Of the 20 land records read, 19 are
+presidential land orders or operative orders. Of the 28 "other orders," only 6 are. The other 22 are letters,
+appointments, personal actions, fund approvals, proclamations, and orders that a Secretary signed "by command of the
+President." Scaled by kind, the collection adds about 1,600 land orders (95% interval 1,300 to 1,700) and about 500
+other orders (230 to 890): **about 2,100 executive orders the census lacks**. ProQuest's "signed by the President"
+flag marks a recorded presidential act, not always a signature on the page. Its dates match the documents for 44 of
+48, and where they differ ProQuest gives the department's date. Genuine missing orders include Van Buren's transfer
+of $500,000 to the Mint (July 20, 1838), Arthur's consolidation of North Carolina's revenue districts (January 2,
+1885), Taft's Coal Land Restoration, Washington No. 6 (October 8, 1912), Harding's order vacating Alaskan Withdrawal
+No. 1 (May 19, 1921), and the War Department order establishing the Sanitary Commission, which Lincoln approved on
+June 13, 1861.
 
 The rest of the collection is presidential paperwork that most definitions of an executive order leave out. The
 signed first copies include 1,203 treaties and conventions, 1,315 NRA codes of fair competition and amendments, 925
@@ -262,11 +275,11 @@ exceptions to the arms-export embargo, almost all from 1912 to 1917, 907 pardons
 proclamations and notices, 327 privateer commissions of 1798 to 1814 and 219 *Official Bulletin* compilations. A broad definition
 could count some of them; that is a ruling for the owner (section 6).
 
-Three limits apply. The kinds come from titles, so the line between an operative order and a letter of instruction
-or a personal action is a judgment, and some of the 2,242 other orders are minor, such as a court-martial order or a
-lifesaving medal. ProQuest's dates and signed flags have not been checked against the scans. A held order whose
-census date differs by more than a week from ProQuest's, as with the Papago reservation (ProQuest June 24, 1874;
-Lord July 1, 1874), will appear as missing.
+Three limits apply. The 2,100 rests on a sample of 50, one reader's judgments and a definition of an executive
+order that leaves out letters of instruction and appointments; the "other orders" figure in particular could move by
+several hundred. Eight of the 17 land orders in the sample show the order form but not a legible signature. A held
+order whose census date differs by more than a week from ProQuest's, as with the Papago reservation (ProQuest June
+24, 1874; Lord July 1, 1874), will appear as missing.
 
 ## 5. Why there is no total
 
@@ -286,8 +299,8 @@ has found derives a total of all orders ever issued (`research/graunt-census-aud
 
 | Task | What it would settle | Who |
 |---|---|---|
-| Read the scans of a random sample of the 3,941 missing orders | Whether ProQuest's titles, dates and signed flags hold up, and how many are executive orders on the document's face | A person with NYU ProQuest access; the scans open in ProQuest's own viewer |
-| Rule on which kinds of presidential document count: operative orders that are letters, personal actions such as passes and discharges, fund approvals, NRA codes, arms-export exceptions, privateer commissions | Whether the unnumbered series grows by about 3,900 or by several thousand more | Owner, ideally with a scholar of the presidency |
+| Read a larger sample of the "other orders" and have a second reader check the 50 already read | A narrower count of the roughly 500 non-land orders, and an independent check of the judgments | Browser reading of ProQuest's PDFs, and a second reader |
+| Rule on which kinds of presidential document count: letters of instruction, appointments, personal actions such as passes and discharges, fund approvals, orders a Secretary signed by the President's command, NRA codes, arms-export exceptions, privateer commissions | Whether the unnumbered series grows by about 2,100 or by several thousand more | Owner, ideally with a scholar of the presidency |
 | Recover the about 110 ProQuest records the page-by-page reading missed | A complete reading of the collection | Browser reading of ProQuest result lists for the busiest dates |
 | Recheck the 69 failed page citations with corrected spans | Official text credit for 69 orders | Machine page check with two readers, once the source job records the corrected spans |
 | Fetch and hold the located pages for the Cleveland orders, EO 2103, 2687A and 5151A | Whether the numbered series is complete | Machine fetch through the project's runner, then a census admission under the owner's November 12 rule |
@@ -306,6 +319,7 @@ Everything is under `research/petty-census-closure-2026-11-24/`:
   classification and census match of each (`PQ_UNNUMBERED_CLASSIFIED.psv`, `classify_match.py`,
   `CLASSIFY_SUMMARY.json`), the list of missing orders (`CANDIDATES_MISSING.csv`), the land-series listing, the
   29-month sample with its matching review and estimate script, and the series counts.
+- `scan-check/`: the random sample of 50 missing records, the reading of each document and the report.
 - `missing-numbered-14/`: the search for official pages for the numbered labels the census still lacks.
 - `nothing-held-70/`: the search for texts of the 70 census orders with nothing held, 51 of them numbered.
 - `page-check-69/`: why the 69 page checks are not pending, the worklist, and a ready fetch job for a corrected
