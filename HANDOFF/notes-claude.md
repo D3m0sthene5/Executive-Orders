@@ -1,3 +1,19 @@
+## 2026-11-24 ET, afternoon (Claude: census corrections; ProQuest browse measures the unnumbered gap)
+
+- **Census corrections** (A-20261124-1, owner yes): EO 6585 admitted (census 15,003); EO:7010P renamed EO:7010F; the
+  APP text was re-keyed from EO:4224 to EO:4224½, and the APP id pattern was fixed. PR #308.
+- **Owner corrections recorded:**
+  - TDM Studio carries no executive orders (A-20261124-2, withdrawn).
+  - HathiTrust and ProQuest numbered PDFs were already done. `COMPLETENESS_PLAN.md` now lists the work already done.
+- **ProQuest browse** (owner's Chrome, no downloads; `research/petty-census-closure-2026-11-24/proquest-scan/`):
+  - 14,703 signed unnumbered records for 1789-1936.
+  - A 29-month sample estimates about 3,900 presidential orders the census lacks (95% roughly 800-7,100).
+  - Direct phrase counts find about 1,600 records in the coal, petroleum, phosphate, potash and public-water land
+    series, of which the census holds about 41.
+- **Next:** list each land-order series end to end from ProQuest result lists and the GLO and Interior schedules.
+  Read sample scans to check ProQuest's signed flag.
+- **Asks:** @Owner: none new.
+
 ## 2026-11-24 ET (Claude: Petty census-closure wave; census paper drafted; CIS pilot run)
 
 - **Owner order** (Kean D-20261124-1): finish the census thread now, with a coordinated agent run, and update GitHub.

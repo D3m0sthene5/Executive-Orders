@@ -23,9 +23,12 @@ The project has identified **16,400 to 16,811 executive orders** signed or speci
 
 **Nobody can say how many executive orders have ever been issued, and this paper does not offer a number.** The
 familiar figures of 15,000 and 50,000 unnumbered orders trace back to unsupported guesses in Lord's 1943 preface
-and a 1957 House committee print. The identified count is a floor. A 30-document test run for this paper suggests
-that the CIS microfiche index of presidential documents holds several hundred more presidential land and canal
-orders that no list the project uses has captured (section 4).
+and a 1957 House committee print. The identified count is a floor, and it is known to be far from complete.
+ProQuest's collection of signed, unnumbered presidential documents for 1789 to 1936 (the CIS index in digital form)
+holds about 1,600 records in numbered series of land orders from 1909 to 1936, such as coal, petroleum, phosphate,
+potash and public-water withdrawals and restorations. The census holds about 41 of them. A random sample of months
+from the same collection puts the number of presidential orders of every kind that the census lacks at about 3,900,
+with a 95% interval of roughly 800 to 7,100 (section 4).
 
 ## 1. What is counted
 
@@ -169,7 +172,7 @@ land-office and military-reservation records, so agreement between Lord and thos
 For that reason the project no longer reports the capture-recapture estimate (about 4,100 to 5,100) that an earlier
 job computed from them: the method assumes independent lists.
 
-## 4. A test of what the lists miss: 30 CIS documents
+## 4. What the lists miss: the CIS index and ProQuest's collection
 
 The most complete compilation of presidential documents ever made is the *CIS Index to Presidential Executive Orders
 and Proclamations* (Congressional Information Service, 1987). It is published on microfiche and now as ProQuest
@@ -215,12 +218,39 @@ two. CIS files them as a single eight-page document signed by President Johnson.
 1963-03-2933, Feb. 11, 1963" or "partially revoked by 1939-EO-8295." CIS therefore records later revocations and
 modifications of unnumbered land orders, which is where the project's lifecycle research has the least evidence.
 
+### What ProQuest's own collection holds
+
+A second test browsed ProQuest Congressional directly, reading result lists and record pages without downloading
+anything (`proquest-scan/`). ProQuest files 14,703 signed, unnumbered presidential documents for 1789 to 1936:
+2,455 for 1789 to 1861, 4,846 for 1862 to 1906 and 7,402 for 1907 to 1936. Many of them are not executive orders:
+treaties, pardons, appointment letters, passes and fund approvals.
+
+Two measures show how many are executive orders the census lacks.
+
+- **Direct counts in the land-order series.** Phrase searches within these records return 509 coal land withdrawals,
+  366 coal land restorations, 234 public water reserves, 71 public water restorations, 197 petroleum reserves, 60
+  petroleum restorations, 101 phosphate reserves, 50 phosphate restorations and 18 potash reserves. The phrase
+  counts overlap somewhat, and about 2% of ProQuest's records are second copies of one order. The audited
+  unnumbered series matches about 41 of these by subject. Power-site withdrawals (1,481 records) are the one land
+  series the audit did cover, as date groups.
+- **A sample of months.** All 270 records from 29 months drawn at random were read and classified by title. The 96
+  land orders and other operative orders among them were checked against every project list by date and subject.
+  The census lacks 9 of 10 from 1789 to 1861, 8 of 17 from 1862 to 1906 and 48 of 69 from 1907 to 1936. Scaled up
+  by month within each era, that is about 3,900 missing orders of every kind (95% interval roughly 800 to 7,100),
+  or about 3,000 counting land orders alone. Only six months were drawn from 1907 to 1936, so that era's share is
+  unstable. The direct series counts do not depend on the sample.
+
+The missing orders include Lincoln's order establishing the Sanitary Commission (June 9, 1861), Taft's Alaskan
+Withdrawal No. 1 (December 5, 1911), which numbered EO 1584 cites but the census does not count, and Hoover's
+Potash Reserve No. 7 (June 8, 1929). These figures rest on ProQuest's titles, dates and "signed by the President"
+flags, and none of the documents has been read.
+
 ## 5. Why there is no total
 
 The identified count is a floor, for three reasons. Unnumbered orders were filed in many departments and never
 gathered into one series. The surviving compilations copy from one another, so their overlap says little about what
-none of them saw. The sample in section 4 shows that a large compilation the project has not yet absorbed holds
-hundreds of orders the other lists miss.
+none of them saw. Section 4 shows that the largest compilation, which the project has not yet absorbed, holds
+thousands of presidential orders the other lists miss.
 
 The published totals do not fill the gap. Lord's 1943 preface mentions Harold Ickes's figure of 15,000 and others'
 figure of 50,000 without deriving either. The 1957 House Committee on Government Operations print estimated that
@@ -233,7 +263,9 @@ has found derives a total of all orders ever issued (`research/graunt-census-aud
 
 | Task | What it would settle | Who |
 |---|---|---|
-| Read the scans of the 22 CIS candidates, then a larger CIS sample | Whether CIS's signed-by-the-President flag is reliable, and how many of the 875 (and of the 1,645 on shared dates) to add | A person with NYU ProQuest access; the scans open in ProQuest's own viewer |
+| List the numbered land-order series from beginning to end (Coal Land Withdrawals and Restorations, Public Water Reserves and Restorations, Petroleum, Phosphate and Potash Reserves and Restorations, Alaskan Withdrawals) | About 1,500 orders the census lacks | ProQuest result lists read page by page, General Land Office annual reports, Interior withdrawal schedules |
+| Read the scans of a sample of the candidates | Whether ProQuest's signed-by-the-President flag and dates are reliable | A person with NYU ProQuest access; the scans open in ProQuest's own viewer |
+| Draw more months from 1907-1936 and read them the same way | A narrower estimate of the orders of every kind that the census lacks | Browser reading of ProQuest result lists |
 | Recheck the 69 failed page citations with corrected spans | Official text credit for 69 orders | Machine page check with two readers, once the source job records the corrected spans |
 | Fetch and hold the located pages for the Cleveland orders, EO 2103, 2687A and 5151A | Whether the numbered series is complete | Machine fetch through the project's runner, then a census admission under the owner's November 12 rule |
 | Search further for EO 130A and 8606A | Whether these two labels are real orders | Archival search (ProQuest, National Archives) |
@@ -247,6 +279,8 @@ Everything is under `research/petty-census-closure-2026-11-24/`:
 - `crosswalk/`: the cross-check script, `NUMBERED_CROSSWALK.csv` (one row per numbered label), the sources and their
   hashes, the exceptions, the absent numbers, the date conflicts, and the summary.
 - `cis-pilot/`: the 30-document sample and the record-level results with ProQuest permalinks.
+- `proquest-scan/`: ProQuest's collection counts, the 29-month sample, the matching review, the series counts and
+  the estimate script.
 - `missing-numbered-14/`: the search for official pages for the numbered labels the census still lacks.
 - `nothing-held-70/`: the search for texts of the 70 census orders with nothing held, 51 of them numbered.
 - `page-check-69/`: why the 69 page checks are not pending, the worklist, and a ready fetch job for a corrected

@@ -6,21 +6,31 @@ comes from this wave's results (`CENSUS.md`) or from the sources cited.
 
 ## Where the census stands
 
-The census is not complete. Three findings show what is still missing.
-
-- **The CIS pilot.** About 470 to 770 presidential land and canal orders in the CIS index are in no project list.
-  This is an estimate from a sample of 30, and it rests on ProQuest's catalog data rather than the scans.
-- **The rest of CIS.** 1,645 more CIS documents in the same record groups have not been examined.
-- **ProQuest's unnumbered collection.** ProQuest describes 20,028 unnumbered orders, directives and proclamations
-  for 1789 to 1936 (`research/pre-1937-sources/PROQUEST_CONGRESSIONAL.md`). The audited unnumbered series is
-  1,405 to 1,816. Many of ProQuest's records are proclamations, pardons or departmental papers, but nobody has yet
-  measured how many are executive orders the census lacks.
+The census is not complete. ProQuest's collection of signed, unnumbered presidential documents for 1789 to 1936
+holds about 1,600 records in numbered land-order series from 1909 to 1936 (coal, petroleum, phosphate, potash and
+public-water withdrawals and restorations). The census holds about 41 of them. A random sample of 29 months puts
+the number of presidential orders of every kind that the census lacks at about 3,900, with a 95% interval of
+roughly 800 to 7,100 (`proquest-scan/REPORT.md`).
 
 The literal claim, that the project holds every executive order mentioned anywhere online, cannot be shown,
 because no one can enumerate every web page. A defensible claim can be made: **every major digitized corpus that
 could record an executive order was searched systematically. Each search is logged. Successive independent
 sources stopped adding new orders. The parts of the record that are not online are named, and their likely size
 is estimated.**
+
+## Already done, and not to be repeated
+
+- **National Archives Record Group 11.** Its AWS catalog export was read in full on 2026-11-06
+  (Kean F-20261106-mabillon-nara).
+- **HathiTrust GPO slip volumes.** The 12 bound volumes for EO 4306 to 9284 were downloaded by the owner and read.
+  HathiTrust holds no slip series before EO 4306, and its full-text search was refused by its robots/access gate
+  (F-20261018-5, F-20261106-photius-gpo-volumes).
+- **ProQuest TDM Studio.** The 2026-11-06 audit session found that it carries only Congressional Hearings from the
+  Congressional product, so it is not a route.
+- **ProQuest numbered orders.** The owner retrieved 2,797 PDFs of numbered orders (`ProQuest Pre-1937 Orders/`).
+  ProQuest's unnumbered collection is measured by `proquest-scan/`, but it has not been absorbed.
+- **The map of pre-1900 sources.** `jobs/census-completeness/data/SOURCE_UNIVERSE.csv` lists 40 series and the
+  search status of each. Its open rows are the work list for pre-1900 orders.
 
 ## Work, in order of yield per cost
 
@@ -36,20 +46,20 @@ the owner's standing rule to use tools before spending tokens.
    printed as a slip appears there with its number and date. Matching the records against the census tests the
    numbered series against a second contemporary listing, outside the WPA-to-OFR overlap.
 3. **Match the National Archives catalog.** The catalog's descriptions can be downloaded in bulk from the AWS Open
-   Data registry. Pull record groups 11 (presidential documents), 49 (General Land Office), 48 (Interior), 75
+   Data registry. Record group 11 was read on 2026-11-06. Pull record groups 49 (General Land Office), 48 (Interior), 75
    (Indian Affairs), 77 and 94 (War Department) and 185 (Panama Canal), and match file and item descriptions that
    name executive orders.
 4. **Search the founding era.** The Founders Online API provides transcriptions for the papers of Washington, Adams,
    Jefferson and Madison. A keyword sweep finds directives from before 1820 that Lord missed.
-5. **Run full-text sweeps through the runner.** HathiTrust full-text search, Internet Archive full text,
+5. **Run full-text sweeps through the runner.** Internet Archive full text,
    Chronicling America newspapers (1770 to 1963) and govinfo's Serial Set and Statutes at Large all refused this
-   session's fetch tool. A GitHub runner job can query them with logged parameters. The targets are the phrases
+   session's fetch tool. HathiTrust's full-text search is gated against robots (F-20261018-5) and is left out. A GitHub runner job can query them with logged parameters. The targets are the phrases
    "Executive Order", "by direction of the President" and "approved:" combined with reservation and withdrawal
    terms. Measure 5 to 10 queries before any full run.
-6. **Get ProQuest's metadata by licensed means.** NYU offers ProQuest TDM Studio, a licensed text-mining service,
-   to anyone with an NYU email (guides.nyu.edu/TDMStudio). If the *Executive Orders and Presidential Proclamations*
-   collection is among NYU's TDM datasets, its 53,671 pre-1937 records can be read under license. If it is not,
-   ask NYU's librarians or ProQuest for a metadata export. Do not scrape ProQuest at scale: it risks NYU's license.
+6. **List ProQuest's land-order series from beginning to end.** Read the ProQuest result lists for each numbered
+   series (for example "Coal Land Restoration" or "Public Water Reserve") page by page in the owner's browser, at a
+   reading pace, without bulk export. Check each series against the General Land Office annual reports and
+   Interior's withdrawal schedules. This closes most of the gap measured in `proquest-scan/`.
 7. **Read the candidates.** Every machine candidate from steps 1 to 6 needs a person, or a two-reader machine
    check, to look at the document and decide whether it is presidential, distinct and an executive order. The CIS
    pilot showed that catalog data alone cannot settle this.
