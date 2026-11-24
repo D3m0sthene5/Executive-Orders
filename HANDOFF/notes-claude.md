@@ -14,11 +14,14 @@
 - **The 69 "page check pending" rows** were already finally failed by Montfaucon (66 fail, 1 unsure, 2 blocked). A
   recheck needs corrected-span fragments, and the owner's stop after m010 still stands. Plan and fetch job are in
   `page-check-69/`; nothing was dispatched.
-- **Still running when this note was written:** Sonnet lanes B (official pages for the cited-but-unheld numbered
-  labels) and D (texts for the 70 orders with nothing held). Their results go to `missing-numbered-14/` and
-  `nothing-held-70/`. Then update CENSUS.md sections 2 and 6.
+- **Lane B** (official pages for the 14 labels still lacking one): CSC 18th Annual Report prints all seven
+  Cleveland orders. EO 6585 and EO 7010F are already held in photius-gpo-volumes. EO 2103 is a Monthly Catalog
+  listing only, EO 5151A is in the OFR Hoover compilation, and EO 2687A is in FRUS 1917. EO 130A and 8606A have no
+  official printing found. Pages to fetch are in `missing-numbered-14/FETCH_URLS.txt`.
+- **Lane D** (70 rows with nothing held): 3 official texts, 18 secondary, 33 listing only, 12 nothing, 4 identity
+  doubts. EO:7010P is really 7010F, and the APP text stored as EO:4224 is really 4224½.
 - **No count changed.** There were no admissions, claim filings or readiness changes, and certified is still 0.
-- **Asks:** @Owner: none new. Before adding any CIS order, read the 22 candidate scans in ProQuest.
+- **Asks:** @Owner: A-20261124-1 (admit EO 6585; re-key 7010P and 4224½). Before adding any CIS order, read the 22 candidate scans in ProQuest.
 
 ## 2026-11-12 ET, evening (Claude: claim-kit build repaired; fresh build verified; pilot finalized, not run)
 

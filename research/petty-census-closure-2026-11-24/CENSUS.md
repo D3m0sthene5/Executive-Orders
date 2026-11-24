@@ -38,7 +38,7 @@ of executive orders. The definition follows the November 12 census audit (`resea
   turn every later agency action into a presidential order.
 - **Each directive is counted once,** across republications, aliases and multiple catalog entries.
 - **Several numbered clauses can be one order.** In November 1894 Grover Cleveland approved amendments to the civil
-  service rules that the State Department later numbered EO 36 to 53. Where the printed text shows one presidential
+  service rules, and the 1944 WPA list gave each amended rule its own number, EO 36 to 53. Where the printed text shows one presidential
   approval for several numbers, the census counts one order.
 - **Some numbered items are not presidential orders.** EO 6 and EO 7 are Secretary of State Seward's
   certifications of the Fourteenth Amendment. They keep their numbers but are not counted as presidential
@@ -86,14 +86,25 @@ day. Across 31,921 comparisons against the census date, 82 do. The conflicts are
 Twenty-four whole numbers between 1 and 14435 were missing from the census before November 12. None turned out to be
 an unused number.
 
-- **EO 36 to 53 (except 50) and EO 92:** Cleveland's civil service orders of 1894 and 1896. The State Department
-  numbered each amended rule separately, and the census counts them as seven orders (section 1).
+- **EO 36 to 53 (except 50) and EO 92:** Cleveland's civil service orders of 1894 and 1896. The 1944 WPA list gave a
+  number to each amended rule within a single presidential approval, and the census counts them as seven orders
+  (section 1). All seven are printed in the Civil Service Commission's *Eighteenth Annual Report* (1902), pages
+  246 to 249 and 279 to 280. That report prints the rules, not the numbers, which exist only in the WPA list.
 - **EO 2539, 2703, 3493 and 3733** were admitted on November 12 after the project checked a held official page for
   each. Three of the four are entries in the GPO's *Monthly Catalog*, which names the order's number, date and
   subject but does not print its text.
-- **EO 2103 and 6585, and the lettered labels 130A, 2687A, 5151A, 7010F and 8606A,** are cited by a published
-  source, but the project does not yet hold an official page for any of them. A search for those pages was still running when this version was published; its results will be in
-  `missing-numbered-14/`.
+- **EO 6585** is printed in the GPO's bound volume of 1934 slip orders, and the project already holds that page.
+  It meets the owner's November 12 test for admission and has not yet been admitted.
+- **EO 7010F** is in the census already, misread as "EO 7010P" (see below). The project holds its printing in the
+  GPO's 1935 slip-order volume.
+- **EO 2103** is listed in the December 1914 *Monthly Catalog* (No. 240, page 321), which gives its number and date
+  but no text. **EO 5151A** is printed in the Office of the Federal Register's 1974 compilation of Hoover's
+  proclamations and orders, and **EO 2687A** in *Foreign Relations of the United States*, 1917. The project does not
+  yet hold copies of those pages.
+- **EO 130A** (the WPA list prints it with no date) and **EO 8606A** (found only in the American Presidency Project)
+  have no official printing that the search could find.
+
+Details and the searches behind them are in `missing-numbered-14/`.
 
 ### What the project holds for each census order
 
@@ -108,15 +119,28 @@ carried.
 | Official printing located, but the page cited for it failed a two-reader check | 69 |
 | No text of any kind | 70 |
 
-The 69 printings in the fifth row are recorded in the project's tracker as "found, page check pending." All 69 were
+The 69 printings in the fourth row are recorded in the project's tracker as "found, page check pending." All 69 were
 in fact checked by two independent readers in earlier rounds. 66 failed, usually because the cited page was wrong
 even though the order appears on a nearby page; one was unsure and two were blocked. They need a second check with
-corrected page spans (`page-check-69/`). None of the 69 is in doubt as an identity: each appears in a catalog and
-its printing has been located.
+corrected page spans (`page-check-69/`). The failures concern where the printing is, not whether the order exists.
 
-For the 70 orders with no text held, a search for any printing or transcription was still running when this
-version was published; its results will be in `nothing-held-70/`. Twenty-three of the 70 are entries whose identity
-the project could not confirm, many of them half-numbered labels dated only by year.
+A search of the 70 orders with no text held (`nothing-held-70/`) found official printings for three: EO 2406 and
+EO 2859-A in the State Department's *Foreign Relations of the United States*, and EO 2539 in the *Alaska Railroad
+Record*. It found secondary transcriptions for 18 more, mostly Wikisource pages for half-numbered orders of the
+Roosevelt, Taft and Wilson years. Of the rest, 33 are known only from a catalog line and 12 from a date. Four
+look like errors in the census itself:
+
+- **EO 7010P is EO 7010F.** The WPA list's sequence reads A, B, C, D, E, P, G, H, and the "P" entry describes the
+  same Miami electrical-contracting agreement as the American Presidency Project's EO 7010-F. The census therefore
+  already holds one of the labels listed as missing above, under a misread letter.
+- **One unnumbered entry duplicates another,** with the same date (August 8, 1914) and the same later amending
+  order (EO 8507).
+- **The March 10, 1863 Lincoln item** is a proclamation that Wikisource labels EO 1-A.
+- **EO 4361½** has the same date as EO 4361 and no title in any index.
+
+The search also found that the text the project holds for EO 4224 is in fact EO 4224½, and that six "A" orders on
+radio frequencies (such as EO 9132-A and 10369-A) were confidential and never published, so no official text of
+them is expected to exist.
 
 ## 3. The unnumbered series
 
@@ -204,7 +228,8 @@ has found derives a total of all orders ever issued (`research/graunt-census-aud
 |---|---|---|
 | Read the scans of the 22 CIS candidates, then a larger CIS sample | Whether CIS's signed-by-the-President flag is reliable, and how many of the 875 (and of the 1,633 on shared dates) to add | A person with NYU ProQuest access; the scans open in ProQuest's own viewer |
 | Recheck the 69 failed page citations with corrected spans | Official text credit for 69 orders | Machine page check with two readers, once the source job records the corrected spans |
-| Official pages for the 7 cited-but-unheld numbered labels | Whether the numbered series is complete | Search running (`missing-numbered-14/`) |
+| Fetch and hold the located pages for the Cleveland orders, EO 2103, 2687A and 5151A; admit EO 6585; re-key EO 7010P as 7010F and EO 4224's text as 4224½ | Whether the numbered series is complete | Machine fetch through the project's runner, then a census admission under the owner's November 12 rule |
+| Search further for EO 130A and 8606A | Whether these two labels are real orders | Archival search (ProQuest, National Archives) |
 | Resolve the 214 date conflicts | Correct dates for the affected orders | Machine first pass, then human review |
 | Rule on the definitional choices in section 1, especially the 411 power-site groups | The width of the identified range | Owner, ideally with a scholar of the presidency |
 

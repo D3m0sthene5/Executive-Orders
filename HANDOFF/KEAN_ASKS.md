@@ -66,3 +66,11 @@ Approve the Lind stage-0 pilot exactly as research/lind/stage0/WAVE.json (sha256
 *Why:* It measures whether the repaired workflow produces ready dossiers cheaply, and whether soft-filtered orders are worth processing, each group reported separately; every outcome, including inconclusive, has a stated next spending decision.
 
 Sources: `research/lind/stage0/WAVE.json`
+
+## A-20261124-1 (2026-11-24, Claude)
+
+Apply three census corrections from the Petty wave? (1) Admit EO 6585: its GPO slip-volume page is already held and passes the D-20261112-graunt-apply test. (2) Re-key census row EO:7010P as EO:7010F, an OCR misreading confirmed by the held GPO text. (3) Re-key the APP text now stored under EO:4224 as EO:4224 1/2, so EO 4224 has no text of its own.
+
+*Why:* Each changes the census or a source key that claim-kit pins, so it should be done as one coordinated admission PR, as was done on Nov. 12
+
+Sources: `research/petty-census-closure-2026-11-24/missing-numbered-14/REPORT.md`
