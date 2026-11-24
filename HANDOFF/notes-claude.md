@@ -1,3 +1,25 @@
+## 2026-11-24 ET, evening (Claude: ProQuest unnumbered collection read in full and matched to the census)
+
+- **Owner order:** pull everything ProQuest has. The owner reports the NYU librarian approved this use of NYU's
+  access. Catalog data only; no scan was downloaded.
+- **Harvest** (F-20261124-9): every result page of "Unnumbered Executive Orders, Directives, and Proclamations",
+  1789-1936, read oldest first. 19,918 of 20,028 records saved; about 110 were lost to same-date reordering.
+  `proquest-scan/PQ_UNNUMBERED_1789_1936.psv`.
+- **Classification and match** (`proquest-scan/classify_match.py`, deterministic):
+  - Signed first copies: 3,411 land orders and 2,609 other operative orders. The census holds 1,695, and 384 share
+    a date and series with a census entry.
+  - **3,941 are missing**: 1,699 land orders (893 in the 1909-1936 numbered series) and 2,242 other orders.
+    `proquest-scan/CANDIDATES_MISSING.csv`. This confirms the 29-month estimate of 3,900.
+  - Other signed kinds are tallied but not counted: treaties, NRA codes, arms-export exceptions, pardons and others.
+  - Checks: the title rules match the hand sample for 202 of 215 records. In a random 40 unmatched records, none
+    has a census counterpart within 45 days.
+- **Updated:** `CENSUS.md` brief, section 4 and section 6; `COMPLETENESS_PLAN.md`; `proquest-scan/REPORT.md`.
+- **Next:**
+  - Read the scans of a random sample of the 3,941.
+  - Recover the about 110 missed records by narrow date ranges.
+  - Check the land series against the GLO and Interior schedules.
+- **Asks:** @Owner: A-20261124-3, which kinds of presidential document count.
+
 ## 2026-11-24 ET, afternoon (Claude: census corrections; ProQuest browse measures the unnumbered gap)
 
 - **Census corrections** (A-20261124-1, owner yes): EO 6585 admitted (census 15,003); EO:7010P renamed EO:7010F; the

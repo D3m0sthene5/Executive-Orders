@@ -66,3 +66,11 @@ Approve the Lind stage-0 pilot exactly as research/lind/stage0/WAVE.json (sha256
 *Why:* It measures whether the repaired workflow produces ready dossiers cheaply, and whether soft-filtered orders are worth processing, each group reported separately; every outcome, including inconclusive, has a stated next spending decision.
 
 Sources: `research/lind/stage0/WAVE.json`
+
+## A-20261124-3 (2026-11-24, Claude (Opus 5.5))
+
+Which kinds of ProQuest unnumbered presidential document should the census count as executive orders? The 3,941 missing candidates are land orders and operative orders by title. Should any of these also count: letters of instruction (806 signed), personal actions such as passes and discharges (583), fund approvals (404), NRA codes (1,315), arms-export exceptions (925), privateer commissions (327), land-sale proclamations (405)?
+
+*Why:* The answer decides whether the unnumbered series grows by about 3,900 or by several thousand more, and which candidates go to a scan-reading sample first
+
+Sources: `research/petty-census-closure-2026-11-24/proquest-scan/REPORT.md`
