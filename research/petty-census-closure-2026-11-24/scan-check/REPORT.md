@@ -6,15 +6,23 @@ Claude Haiku.
 
 ## Conclusion
 
-The documents behind 3,939 of the 3,941 records were fetched and read: 2,687 from their text, 1,223 from images of
-their pages, and 29 that proved unreadable. **2,032 are executive orders on their face, and the census lacks every
-one of them.** They are 1,531 land orders and 501 other operative orders signed, approved or issued by the
-President. Another 70 are land-order files whose order page cannot be read; every such file checked by eye
-contained the order.
+ProQuest holds **2,112 executive orders that the census lacks**, counting only documents that show a presidential act
+on their face. The counted documents come from three sets:
 
-The other 1,808 documents are not executive orders: 451 actions on one person, 366 letters of instruction, 247 other
-letters, 172 fund approvals, 171 orders a Secretary signed "by command of the President," 132 appointments, 70
-proclamations, 32 pardons, 17 treaties and 150 others.
+- **2,032 signed unnumbered records.** These are the documents behind the 3,941 unnumbered records that ProQuest
+  marks signed by the President and that no census list holds: 1,531 land orders and 501 other operative orders.
+  They were read from their text (2,687), from images of their pages (1,223), or proved unreadable (29). Another 70
+  are land-order files whose order page cannot be read; every such file checked by eye contained the order.
+- **28 unsigned unnumbered records.** ProQuest marks these 1,472 records not signed, and their documents were read in
+  the same way. 28 turn out to carry the President's signature, approval or name.
+- **52 military orders.** ProQuest's separate "Military orders and pardons" collection holds 654 general orders and
+  regulations of 1828 to 1936 that no census list holds. The 52 counted are presidential orders such as Navy pay
+  orders, Army regulations approved by the President, and Lincoln's approval of the instructions for the government
+  of armies in the field (April 24, 1863).
+
+The other 1,808 signed unnumbered documents are not executive orders: 451 actions on one person, 366 letters of
+instruction, 247 other letters, 172 fund approvals, 171 orders a Secretary signed "by command of the President," 132
+appointments, 70 proclamations, 32 pardons, 17 treaties and 150 others.
 
 | Era | Land orders | Other operative orders | Land files, order not readable | Not executive orders | Unreadable or no PDF |
 |---|---:|---:|---:|---:|---:|
@@ -23,7 +31,7 @@ proclamations, 32 pardons, 17 treaties and 150 others.
 | 1907-1936 | 1,219 | 48 | 36 | 493 | 2 |
 | **All** | **1,531** | **501** | **70** | **1,808** | **31** |
 
-The census's identified unnumbered series is 1,405 to 1,816 orders. These 2,032, or about 2,100 with the probable
+The census's identified unnumbered series is 1,405 to 1,816 orders. The 2,112, or about 2,180 with the probable
 land files, would more than double it.
 
 Examples include:
@@ -39,7 +47,7 @@ Examples include:
 Of the 501 operative orders, 339 carry the President's signature, 82 his approval, and 49 are issued in his name.
 22 show no presidential act, 6 a Secretary's signature only, and 3 cannot be read.
 
-## Method
+## Method for the signed unnumbered records
 
 1. **Fetching.** Each record's PDF was fetched inside the ProQuest page from ProQuest's own document link, using the
    address pattern `$2fPT1-<accession>` or, for 133 records of 1874 to 1879 and 1929, `$2f<accession>`. Two records
@@ -73,6 +81,49 @@ Of the 501 operative orders, 339 carry the President's signature, 82 his approva
 Results for every record are in `FULL_READING_3941.csv`. For each record it gives who or what read it, the kind of
 document, the presidential act shown, the date on the document, the evidence and a note. The earlier hand reading of
 50 random records is in `RESULTS.csv` and `SAMPLE_50.csv`.
+
+## The rest of ProQuest's presidential collections
+
+**Records the first reading missed.** The first page-by-page reading of the unnumbered collection, oldest first,
+captured 19,918 of its 20,028 records. A second reading, newest first, captured all 20,028. The 111 records added
+are maps, attachments and second copies, and none is a new candidate (`../proquest-scan/PQ_UNNUMBERED_1789_1936.psv`
+now has all of them).
+
+**Unsigned unnumbered records.** The 1,472 records that ProQuest marks not signed and that match nothing in the
+census were fetched and read like the signed ones. They break down as follows:
+
+- 590 are Federal Power Commission restorations under section 24 of the Federal Water Power Act. Their titles
+  identify them as Commission acts, so they were not read.
+- 291 are orders a Secretary signed by the President's command.
+- 152 are land or operative orders that a department issued with no presidential act shown.
+- 28 are presidential orders. Examples include the 1813 embargo implementation, Polk's enlargement of the Seminole
+  reservation (1845), Johnson's claims procedure for the reward for capturing Lincoln's assassins (1865), and
+  Roosevelt's 1935 gold-clause and currency-exchange regulations.
+- 78 are unreadable or have no PDF.
+
+**Military orders.** ProQuest's "Military orders and pardons" collection has 3,907 records, of which 2,716 are dated
+before 1937 (`../proquest-scan/PQ_MILITARY_ORDERS_1789_1983.psv`). The same title rules and census match left 2,132
+that no census list holds (`../proquest-scan/MILITARY_CANDIDATES_MISSING.csv`). A further rule set aside courts-martial,
+medals, assignments, commands and other actions on one person. The remaining 654 general orders and regulations were
+fetched and read:
+
+- 325 are orders a Secretary signed by the President's command.
+- 169 are departmental orders with no presidential act.
+- 52 are presidential orders. Examples include Navy pay orders, Army uniform and ration regulations, rules for the
+  Army and Navy Hospital at Hot Springs, ROTC unit establishments, and the renaming of Porto Rico as Puerto Rico
+  (1899).
+- 15 are unreadable.
+
+Results for both sets are in `UNSIGNED_AND_MILITARY_READING.csv`.
+
+**Collections not read, and why.**
+
+- *Unnumbered presidential documents after 1936 (25,735 records).* From 1936 every executive order was numbered and
+  published in the Federal Register. The unnumbered records ProQuest files after 1936 are messages, memoranda,
+  nominations, statements and similar documents. A sample of 600 of the most recent confirms this.
+- *Presidential pardons (18,547 records), nominations and appointments, proclamations, and signing statements.* These
+  are other kinds of presidential act. ProQuest's numbered executive orders were checked against the census in an
+  earlier pass.
 
 ## Limits
 

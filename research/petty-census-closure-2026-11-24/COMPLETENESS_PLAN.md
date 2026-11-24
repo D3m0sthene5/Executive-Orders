@@ -7,7 +7,7 @@ comes from this wave's results (`CENSUS.md`) or from the sources cited.
 ## Where the census stands
 
 The census is not complete. ProQuest's collection of unnumbered presidential documents for 1789 to 1936 was read
-record by record on 2026-11-24 (19,918 of 20,028 catalog entries). It holds about 3,900 documents signed by the
+record by record on 2026-11-24 (all 20,028 catalog entries). It holds about 3,900 documents signed by the
 President that are land orders or other operative orders and that no census list holds: about 1,700 land orders,
 including about 900 in the numbered coal, petroleum, phosphate, potash and public-water series, and about 2,200
 other orders and directives by their titles (`proquest-scan/REPORT.md`, `proquest-scan/CANDIDATES_MISSING.csv`).
@@ -31,8 +31,8 @@ is estimated.**
   Congressional product, so it is not a route.
 - **ProQuest numbered orders.** The owner retrieved 2,797 PDFs of numbered orders (`ProQuest Pre-1937 Orders/`).
 - **ProQuest's unnumbered collection, 1789 to 1936.** Every result page was read on 2026-11-24 and every record
-  saved, classified by title and matched against the census (`proquest-scan/`). About 110 records were missed
-  because records that share a date change order between page loads. The candidates are listed but not admitted.
+  saved, classified by title and matched against the census (`proquest-scan/`). A second reading, newest first, captured the 111 records the first one missed; all are maps,
+  attachments and second copies. The candidates are listed but not admitted.
 - **The map of pre-1900 sources.** `jobs/census-completeness/data/SOURCE_UNIVERSE.csv` lists 40 series and the
   search status of each. Its open rows are the work list for pre-1900 orders.
 
@@ -60,9 +60,8 @@ the owner's standing rule to use tools before spending tokens.
    session's fetch tool. HathiTrust's full-text search is gated against robots (F-20261018-5) and is left out. A GitHub runner job can query them with logged parameters. The targets are the phrases
    "Executive Order", "by direction of the President" and "approved:" combined with reservation and withdrawal
    terms. Measure 5 to 10 queries before any full run.
-6. **Recover the about 110 ProQuest records the reading missed,** by re-reading the busiest dates of 1912, 1918
-   and 1933 to 1935 with narrow date ranges, and check the land-order series against the General Land Office annual
-   reports and Interior's withdrawal schedules.
+6. **Check the land-order series against the General Land Office annual reports and Interior's withdrawal schedules,**
+   and have a second reader check a sample of the model verdicts in `scan-check/`.
 7. **Read the candidates.** Every machine candidate from steps 1 to 6 needs a person, or a two-reader machine
    check, to look at the document and decide whether it is presidential, distinct and an executive order. The CIS
    pilot showed that catalog data alone cannot settle this.

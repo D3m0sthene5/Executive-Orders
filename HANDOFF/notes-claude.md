@@ -1,3 +1,16 @@
+## 2026-11-24 ET, late evening (Claude: ProQuest finished)
+
+- **Owner order:** "if not finish it off" (F-20261124-13).
+- **Unnumbered 1789-1936:** re-read newest first, so all 20,028 records are now captured. The 111 first missed are
+  attachments; none is a new candidate.
+- **Unsigned unmatched (1,472):** 28 presidential orders. The rest are FPC section-24 restorations (590), orders a
+  Secretary signed by command (291), departmental orders and others.
+- **Military orders and pardons:** 654 pre-1937 general orders read; 52 presidential.
+- **Total ProQuest EOs missing from the census:** 2,112, about 2,180 with probable land files.
+  `scan-check/UNSIGNED_AND_MILITARY_READING.csv`, `proquest-scan/PQ_MILITARY_ORDERS_1789_1983.psv`.
+- **Left unread by design:** post-1936 unnumbered (25,735; all EOs numbered after 1936), pardons, nominations,
+  proclamations.
+
 ## 2026-11-24 ET, late night (Claude: handwritten missing-candidate documents read from page images)
 
 - **Owner order:** "ok get the next ones then".

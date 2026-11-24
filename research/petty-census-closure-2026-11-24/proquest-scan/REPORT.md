@@ -7,7 +7,7 @@ record pages were read and their catalog data saved; no document scan was downlo
 ## Conclusion
 
 ProQuest files 20,028 records dated 1789 to 1936 as unnumbered executive orders, directives and proclamations. All
-of its result pages were read, and 19,918 distinct records were saved (`PQ_UNNUMBERED_1789_1936.psv`). Sorted by
+of its result pages were read twice, oldest first and newest first, and all 20,028 records were saved (`PQ_UNNUMBERED_1789_1936.psv`). Sorted by
 kind from their titles and matched against every census list (`classify_match.py`), they include **3,941 documents
 signed by the President that are land orders or other operative orders and that the census lacks**
 (`CANDIDATES_MISSING.csv`): 1,699 land orders, 893 of them in the numbered series of 1909 to 1936, and 2,242 other
@@ -16,7 +16,8 @@ date and a series or subject with a census entry. A 29-month random sample read 
 about 3,900 missing orders (95% interval 800 to 7,100), which the full reading confirms.
 
 The documents behind all 3,941 were then fetched and read, from text or page images (`../scan-check/REPORT.md`).
-2,032 are executive orders on their face, 1,531 of them land orders, and 70 more are probable land orders.
+2,032 are executive orders on their face, 1,531 of them land orders, and 70 more are probable land orders. Reading
+the unsigned unnumbered records and the military-orders collection adds 80, for 2,112.
 
 ## The collection
 
@@ -144,8 +145,9 @@ word of "the OR of OR a OR order OR reserve" in Presidential Materials, dated 17
 "Unnumbered Executive Orders, Directives, and Proclamations", sorted oldest first at 100 records a page. A script in
 the browser saved each page's records: CIS accession number, date, ProQuest's signed flag, administration and the
 first 150 characters of the title. The 201 pages gave 19,983 rows and 19,918 distinct accession numbers. ProQuest
-reorders records that share a date between page loads, so about 110 of the 20,028 were never on a page when it was
-read.
+reorders records that share a date between page loads, so 111 of the 20,028 were never on a page when it was read.
+A second reading, newest first, captured all 20,028; the 111 are maps, attachments and second copies, and none is a
+new candidate.
 
 ### Kinds
 

@@ -25,14 +25,15 @@ The project has identified **16,400 to 16,811 executive orders** signed or speci
 familiar figures of 15,000 and 50,000 unnumbered orders trace back to unsupported guesses in Lord's 1943 preface
 and a 1957 House committee print. The identified count is a floor, and it is known to be far from complete.
 ProQuest's collection of unnumbered presidential documents for 1789 to 1936 (the CIS index in digital form) has
-been read record by record: 19,918 of its 20,028 catalog entries. Sorted by title and checked against every census
+been read record by record, all 20,028 of its catalog entries. Sorted by title and checked against every census
 list, it holds 3,941 documents marked signed by the President that are land orders or other orders by their titles
 and that the census lacks. The document behind each one was then fetched and read, from ProQuest's text layer or,
-for handwriting, from images of the pages. **2,032 are executive orders on their face** (1,531 land orders and 501
+for handwriting, from images of the pages. 2,032 are executive orders on their face (1,531 land orders and 501
 other orders signed, approved or issued by the President), 70 more are land-order files whose order page is
-unreadable, 1,808 are letters, appointments, personal actions, fund approvals, proclamations and similar papers,
-and 31 could not be read. **The collection adds about 2,000 to 2,100 executive orders that the census lacks**, which
-would more than double the identified unnumbered series (section 4).
+unreadable, 1,808 are letters, appointments, personal actions, fund approvals, proclamations and similar papers, and
+31 could not be read. Reading ProQuest's unsigned unnumbered records and its military orders the same way adds 80
+more. **In all, ProQuest holds 2,112 executive orders that the census lacks**, which would more than double the
+identified unnumbered series (section 4).
 
 ## 1. What is counted
 
@@ -228,7 +229,8 @@ ProQuest Congressional files 20,028 records dated 1789 to 1936 as "Unnumbered Ex
 Proclamations." On November 24, 2026 every page of that result list was read through NYU's subscription, oldest
 first, and each record's CIS accession number, date, signed-by-the-President flag, administration and title was
 saved (`proquest-scan/PQ_UNNUMBERED_1789_1936.psv`). Records that share a date can change order between page loads,
-so 19,918 distinct records were captured and about 110 were missed. No document scan was opened.
+so a first reading captured 19,918 distinct records; a second reading, newest first, captured all 20,028, and the 111
+added are maps, attachments and second copies.
 
 Each record was sorted by kind from its title and checked against every census layer: the numbered register, the
 audited unnumbered series, Lord's unnumbered list, and every row of the audit's findings and reconciled inventory,
@@ -264,8 +266,9 @@ for 36 of 40 documents. In all, 1,531 are land orders and 501 are other operativ
 orders, 29 are unreadable, and 1,808 are not executive orders: 451 actions on one person, 366 letters of
 instruction, 247 other letters, 172 fund approvals, 171 orders a Secretary signed "by command of the President," 132
 appointments, 70 proclamations, 32 pardons, 17 treaties and 150 others. **The census therefore lacks 2,032
-executive orders that ProQuest holds, about 1,530 of them land orders, and about 2,100 counting the probable land
-files.** ProQuest's "signed by the President" flag marks a recorded presidential act, not always a signature.
+executive orders among these records, about 1,530 of them land orders.** The same reading of ProQuest's 1,472
+unsigned unnumbered records and of 654 general orders in its military-orders collection finds 80 more presidential
+orders, for **2,112 in all** (about 2,180 with the probable land files). ProQuest's "signed by the President" flag marks a recorded presidential act, not always a signature.
 Genuine missing orders include Van Buren's transfer of $500,000 to the Mint (July 20, 1838), Lincoln's order making
 Arkansas one revenue collection district (March 1, 1865), McKinley's Philippine government orders of 1899 to 1901,
 Taft's Coal Land Restoration, Washington No. 6 (October 8, 1912), and Harding's order vacating Alaskan Withdrawal
@@ -304,7 +307,6 @@ has found derives a total of all orders ever issued (`research/graunt-census-aud
 |---|---|---|
 | Have a second reader check a random sample of the 3,939 reader verdicts, and read the middle pages of handwritten documents | An independent error rate for the 2,032 | A second reader; browser reading of ProQuest's PDFs |
 | Rule on which kinds of presidential document count: letters of instruction, appointments, personal actions such as passes and discharges, fund approvals, orders a Secretary signed by the President's command, NRA codes, arms-export exceptions, privateer commissions | Whether the unnumbered series grows by about 2,000 to 2,100 or by several thousand more | Owner, ideally with a scholar of the presidency |
-| Recover the about 110 ProQuest records the page-by-page reading missed | A complete reading of the collection | Browser reading of ProQuest result lists for the busiest dates |
 | Recheck the 69 failed page citations with corrected spans | Official text credit for 69 orders | Machine page check with two readers, once the source job records the corrected spans |
 | Fetch and hold the located pages for the Cleveland orders, EO 2103, 2687A and 5151A | Whether the numbered series is complete | Machine fetch through the project's runner, then a census admission under the owner's November 12 rule |
 | Search further for EO 130A and 8606A | Whether these two labels are real orders | Archival search (ProQuest, National Archives) |
