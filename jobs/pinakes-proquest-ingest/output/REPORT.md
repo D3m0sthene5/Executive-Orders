@@ -1,18 +1,18 @@
 # Pinakes: ProQuest PDFs wired in
 
-Generated 2026-11-25T04:45:36Z.
+Generated 2026-11-25T05:07:53Z.
 
-**4250 PDF files** (4190 unique) in `ProQuest Pre-1937 Orders`, `research/pre-1937-sources/ProQuest Pre-1937 Orders` cover **4190 orders**, 4190 of them in the census. The owner's link list has 2765 links: 2750 now have a PDF, **15 are still missing** (`MISSING_FROM_UPLOAD.csv`); 1440 PDFs are for orders not on the list.
+**4903 PDF files** (4841 unique) in `ProQuest Pre-1937 Orders`, `research/pre-1937-sources/ProQuest Pre-1937 Orders` cover **4841 orders**, 4841 of them in the census. The owner's link list has 2765 links: 2750 now have a PDF, **15 are still missing** (`MISSING_FROM_UPLOAD.csv`); 2091 PDFs are for orders not on the list.
 
 | Text | Orders |
 |---|---:|
-| From the PDF's own text layer | 3454 |
-| From OCR (tesseract) | 736 |
+| From the PDF's own text layer | 3984 |
+| From OCR (tesseract) | 857 |
 | No text yet | 0 |
-| Usable quality | 3685 |
-| Low quality (probably handwritten; needs a person) | 505 |
+| Usable quality | 4267 |
+| Low quality (probably handwritten; needs a person) | 574 |
 
-This run OCR'd 283 orders (431 of 4000 budgeted pages), carried 453 texts forward from the last run, and left 0 for the next run.
+This run OCR'd 121 orders (175 of 4000 budgeted pages), carried 736 texts forward from the last run, and left 0 for the next run.
 
 Every order has a fragment in `FRAGMENTS.jsonl` with `acceptable_as_original: false` and `needs_page_check: true`; the readiness tracker reads them as the lead class ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK. A person comparing the pages and the codebook assigning the grade is what would let one count.
 
