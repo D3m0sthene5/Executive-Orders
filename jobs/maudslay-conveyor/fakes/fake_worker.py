@@ -5,7 +5,7 @@ events, including tool calls the conveyor scans for blinding. No model, no netwo
 Env MAUDSLAY_FAKE_LOG: write LOG.<random> holding {"argv", "cwd", "files", "kind", "id", "repair", "pid"} per call
 (after the last event).
 Env MAUDSLAY_FAKE_SCENARIO: JSON with optional
-  "producer": {EO: "block"|"bad_sheet"|"fail"|"badclaim"|"checkfail"}, "repair_fails": [EO],
+  "producer": {EO: "block"|"bad_sheet"|"fail"|"badclaim"|"checkfail"|"unverified"|"strictfail"}, "repair_fails": [EO],
   "reviewer": {"A"|"B": {"miss_controls": bool, "reject": [EO], "fail": bool, "touch": [string], "reasons": str}},
   "touch": {EO: [string]} (extra producer tool-call arguments), "usd": {"producer"|"reviewer": x}, "tokens": n,
   "sleep": {EO: s}, "sleep_once": {EO: s}, "turns": n, "turn_sleep": s, "end_date": "2000-01-02",
@@ -116,6 +116,10 @@ def produce(prompt, sc):
         text += " BADCLAIM"
     if mode == "checkfail" and not fixed:
         text += " CHECKFAIL"
+    if mode == "unverified" and not fixed:
+        text += " UNVERIFIED"   # the fake checker gives it an unverified entry (an out-of-universe quote)
+    if mode == "strictfail" and not fixed:
+        text += " STRICTFAIL"   # the fake kit's strict check_claim error (CHECK_AUDIT.json only)
     (work / "RATIONALES.json").write_text(json.dumps({f"{s}.main": text}), encoding="utf-8")
     (work / "ASSESSMENT.json").write_text(json.dumps({"id": iid, "outcome": r["outcome"]}), encoding="utf-8")
     (work / "REPORT.md").write_text(f"synthetic {iid} {r['outcome']}\n", encoding="utf-8")

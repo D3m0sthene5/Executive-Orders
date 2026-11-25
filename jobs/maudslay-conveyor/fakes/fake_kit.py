@@ -2,6 +2,7 @@
 the conveyor reads (next, prepare, dispatch-check, apply, batch-check, complete, and the status-overlay commands
 overlay-review-sheet, overlay-propose, overlay-assemble, overlay-check), with no corpus, no checker and no legal content.
 Every call is appended to REPO/FAKE_CALLS.jsonl. REPO/FAKE_KIT.json may hold {"blocked": [ids]} and
+{"skip_actual_checker": true} (batch-check reports the completion checker not run) and
 {"undecided": {id: repo-relative EVIDENCE.json}}: such an order is prepared as undecided (packet/undecided/EO_N/ with
 its evidence and a blank STATUS_DECISION.json), and apply leaves it awaiting_status_review. A working claim carries a
 "fake_seal" (sha of the rest of the claim), so a fake reviewer can tell any planted change, typed or dated."""
@@ -274,7 +275,29 @@ def main(argv):
         claims = [json.loads(l) for l in (a.applied / "CLAIMS.proposed.jsonl").read_text(encoding="utf-8").splitlines() if l.strip()]
         fails = [{"instrument_id": c["instrument_id"], "errors": ["checker: synthetic custody failure"]}
                  for c in claims if "CHECKFAIL" in c.get("research_rationale", "")]
-        (a.applied / "CHECK_SUMMARY.json").write_text(json.dumps({"claims_checked": len(claims), "actionable_failures": fails}))
+        summary = {"claims_checked": len(claims), "actionable_failures": fails}
+        if cfg.get("skip_actual_checker"):
+            summary["requires_actual_claim_checker"] = True   # as the kit's check() with actual=False
+        else:
+            # As the kit: strict check_claim errors go to CHECK_AUDIT.json only, and the completion checker writes
+            # actual-checker/PER_CLAIM.json. An UNVERIFIED claim is left out of actionable_failures here (a summary
+            # that lost it), so only a gate reading PER_CLAIM.json directly stops it.
+            dump(a.applied / "CHECK_AUDIT.json", [
+                {"instrument_id": c["instrument_id"], "line": n, "claim_sha256": sha(c),
+                 "errors": ["strict: synthetic claim gate error"] if "STRICTFAIL" in c.get("research_rationale", "") else []}
+                for n, c in enumerate(claims, 1)])
+            per = []
+            for c in claims:
+                t = c.get("research_rationale", "")
+                unv = ["quote_identity:out_of_universe_order@whole_order_end.source.quote"] if "UNVERIFIED" in t else []
+                gate = ["checker: synthetic custody failure"] if "CHECKFAIL" in t else []
+                per.append({"instrument_id": c["instrument_id"], "all_checks_passed": not (unv or gate),
+                            "mechanical_result": "pass_with_unverified" if unv else "pass", "gate_errors": gate,
+                            "failures": [], "unverified": unv})
+            dump(a.applied / "actual-checker" / "PER_CLAIM.json", {"claims": per})
+            summary["requires_actual_claim_checker"] = False
+            summary["actual_claim_checker"] = {"claims_checked": len(claims)}
+        (a.applied / "CHECK_SUMMARY.json").write_text(json.dumps(summary))
         return int(bool(fails))
     if a.cmd == "complete":
         m = json.loads(a.manifest.read_text(encoding="utf-8"))
