@@ -1,16 +1,16 @@
 # Tischendorf: originals for transcription-only orders
 
-Targets: 2932 (corroborate 94, fr_by_date 395, ia_fulltext 2443).
-Located with every strong check passed: **116**. Leads needing a page check: 606.
+Targets: 2935 (corroborate 94, fr_by_date 395, ia_fulltext 2446).
+Located with every strong check passed: **116**. Leads needing a page check: 608.
 Planted controls: 57/60 true pairs confirmed, 0/119 false pairs accepted (passed).
-Requests this run: 151.
+Requests this run: 125.
 
 | Route | Verdict | Orders |
 |---|---|---:|
 | corroborate/fr-originals | lead | 7 |
 | corroborate/fr-originals | strong | 25 |
 | corroborate/isthmian-canal-1911 | lead | 1 |
-| lead/ia_fulltext | lead | 575 |
+| lead/ia_fulltext | lead | 577 |
 | official/fr_issue_by_date | lead | 10 |
 | official/fr_issue_by_date | strong | 90 |
 | official/ia_fulltext | lead | 13 |

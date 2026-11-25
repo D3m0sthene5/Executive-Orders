@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-12 14:57 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-24 22:18 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 Readiness below is the latest published tracker generation. Exact claim-receipt coverage is reported separately; matching versions alone does not verify every source or policy input.
 
@@ -9,7 +9,7 @@ Readiness below is the latest published tracker generation. Exact claim-receipt 
 | Measure | Count | Meaning |
 |---|---:|---|
 | Numbered series: working identities | 15,002 | Bibliographic inventory; historical census remains incomplete. Every proportion below is of this series |
-| Unnumbered series (catalogued_unnumbered), observed | 2,334 | Raw catalogue identities; capture-recapture model output 4,101 to 5,095, not a national estimate; a separate denominator with no readiness count |
+| Unnumbered series (catalogued_unnumbered), identified | 1,816 | Counted, individually sourced (census audit 2026-11-12; 1,405 without inferred power-site groups); no defensible estimate of every unnumbered order ever issued; a separate denominator with no readiness count |
 | **Ready for human review, published** | **1,251** | Every applicable tracker step passed or was documented exhausted; independent human verification is separate |
 | Ready with original-supported text | 725 | Tracker's text-evidence tier |
 | Ready dependent on provisional transcriptions | 526 | Explicit working-text limitations remain |
@@ -19,8 +19,8 @@ Readiness below is the latest published tracker generation. Exact claim-receipt 
 | Superseded or repeated claim lines | 304 | Difference between valid lines and unique orders |
 | Human-certified whole histories, published register | 0 | Separate Stage19 human-review record; never inferred from AI passes |
 
-Tracker generation: **2026-11-12 14:57 EST**; input commit `c55f076794cd7bf4289345041783dbd2568c9507`.
-[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/43290372543).
+Tracker generation: **2026-11-24 22:18 EST**; input commit `1eda17e7665a2054c31ea1930663003c79fc54f7`.
+[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45533525823).
 
 ## Receipt coverage and freshness
 
@@ -63,13 +63,13 @@ File acquisition and machine text do not establish legal conclusions or independ
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `c55f076794cd7bf4289345041783dbd2568c9507`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `1eda17e7665a2054c31ea1930663003c79fc54f7`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
-| Readiness | 2026-11-12 14:57 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
-| Claim checker | 2026-11-12 14:56 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
-| ProQuest ingestion | 2026-11-12 13:25 EST | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
+| Readiness | 2026-11-24 22:18 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
+| Claim checker | 2026-11-24 22:17 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
+| ProQuest ingestion | 2026-11-24 16:29 EST | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
 | Web-source custody | 2026-11-10 19:09 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
 
 [Canonical provisional statuses](../../../research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv) · [Published human-review record](../../../research/stage19/output/PROGRESS.json) · [Exact dashboard data and input hashes](DASHBOARD.json) · [Daily changes](DIGEST.md)
