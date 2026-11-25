@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (10)
+## Waiting for the owner (11)
 
-**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-generate-verify-comparison**, **A-20261112-lind-repair-12437-11943**, **A-20261113-lind-12753-reconfirm**, **A-20261124-3**, **A-20261124-stateless-gauge**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-generate-verify-comparison**, **A-20261112-lind-repair-12437-11943**, **A-20261113-lind-12753-reconfirm**, **A-20261124-3**, **A-20261124-stateless-gauge**, **A-20261125-2**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -18,7 +18,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 - **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
-## Owner decisions not yet carried out by the tools (32)
+## Owner decisions not yet carried out by the tools (33)
 
 - **D-20261021-report-deadline** (partly wired): A board order whose only command is to report within a deadline ends on its express revocation (usually EO 12553), not when the board reports; record the report date and standstil… Checked 2026-11-06 (Justinian F3): assemble.py:554 refuses a report deadline as an end; AGENT_PROTOCOL.md:47. No tool r…
 - **D-20261021-strike-and-insert** (not wired): A clause amended by striking and inserting words continues, amended, until the parent order ends; record the text before and after. 43 clauses in 26 committed claims that treat am… Checked 2026-11-06 (Justinian F3): no code or instruction; claim_gate/checker validate later_events structure only, wit…
@@ -52,17 +52,18 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261112-graunt-apply** (partly wired): Owner, 2026-11-12, answering A-20261112-graunt-admit-numbered, A-20261112-graunt-corrections and A-20261112-graunt-unnumbered-seed: yes. (1) Admit the 29 numbered labels the audit… Unnumbered seed done (PR 296). 4 numbered orders admitted with checked pages (EO 2539, 2703, 3493, 3733); 14 more order…
 - **D-20261124-bartolus** (partly wired): Owner, 2026-11-24, in chat (AskUserQuestion): approve Augur plan research/bartolus/WAVE.json, sha256 d3ee295b0475e3fa17fd114e30fc7a90cb4c613a3e2c1a0f4318b6135c7860ec (stage 2: 32… Augur receipt research/bartolus/AUGUR_RECEIPT.json PASS; adoption applied per batch by the Bartolus coordinator
 - **D-20261125-maudslay-wave1** (partly wired): Owner, in chat 2026-11-25 01:34 ET, asked Claude to run wave 1 stateless ('can you /goal wave #1 stateless? you can even take over my terminal'). That is the owner's approval of s… Augur and the conveyor enforce the plan; the GO_STATELESS precondition is an operator check in RUN.md, not code.
+- **D-20261125-board-cover-date** (not wired): Owner (2026-11-25, AskUserQuestion: 'Yes, disclosed'): under D-20261108-board-rule, when the transmittal letter's date line is OCR-damaged or not found but the report's cover date… olney.py still sends these 37 orders to exceptions (letter_date_unreadable_or_unlocated)
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure, D-20261124-1.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 415; `search` finds the rest)
+## Newest results (6 of 419; `search` finds the rest)
 
 - 2026-11-25 F-20261125-stateless-gauge **stopped at gate**: The paired stateless gauge (research/stateless-calls-2026-11-24, gauge_stateless.py) on the owner's PC: 55 Pa… Lesson: Stateless calls cut cost per attempted order by about half but not per filed claim: the upheld rate (0.34) and submit rate (0.21) dominate, and reviewers, not producers, are most of the cost. The pro…
+- 2026-11-25 F-20261125-sparse-checkout-defect **failed**: Coordinator ran the claim kit on a sparse checkout without jobs/selden-fr-*, ptolemy-custody, astra-source-re… Lesson: Never prepare from a trimmed checkout. Safe exclusions: ProQuest folders, jobs/_attempts, other waves' PACKET.json, views, READ.md, LOOKUPS and page images.
 - 2026-11-25 F-20261125-photius-peiresc-s0 **worked**: Stage 0 (Augur PASS, owner review D-20261125-peiresc-page-check) of the Photius page check on the 17 Peiresc… Lesson: Federal Register-era replicas are page runs that start with the tail of the preceding order: the reader credited EO 7756's FDR signature and date to EO 7757, and read 11030's first-page dateline that…
 - 2026-11-25 F-20261125-photius-peiresc-full **worked**: Owner exception D-20261125-peiresc-page-check-exception: the Photius page check of the 2,084 remaining Peires… Lesson: Sonnet readers given optional page images skipped them on about a quarter of weak cases (119 of the first 450 passes) and some reconstructed dates from garbled OCR; a mechanical rule (image required…
+- 2026-11-25 F-20261125-lean-trial **inconclusive**: Lean two-arm trial: 30 seeded YES orders per arm; arm 0 current route; arm 1 strict Larrey (kept 15 out), seq… Lesson: No verified saving at this size. Pooling review sets and pre-screening blocks are the larger measured levers (F-20261125-gilbreth).
 - 2026-11-25 F-20261125-larrey-strict **analysis**: Back-tested candidate pre-production gates on 570 past attempts (520 orders, 91 filed) from Papinian, Haloand… Lesson: Strict is in-sample on all five waves; adopt it only after a gated wave (30 strict-admitted vs 15-30 kept-out orders) shows at least 1.5x filed rate and the kept-out arm supplies at most 15% of filed…
-- 2026-11-25 F-20261125-kitp4-replica-text **worked**: Wire D-20261106-photius-p4 into claim-kit text selection (build.text_tier/rank_text): a Photius-checked ProQu… Lesson: Before the Peiresc wave a rerun alone would not have helped: under the old rank a checked replica sat at tier 2 with leads and lost to every registered transcription, while an unchecked Pinakes text…
-- 2026-11-25 F-20261125-1 **analysis**: Design (no spend) of Domat, a batch-by-type status route for the 11,057 orders blocked only by NO_PROVISIONAL… Lesson: X1 sheets never became statuses because rules were approved as leads only, the kit refuses tracker-credited replicas, Jacquard covered only spent/swept and its L1 premise was declined, and the Pothie…
 
-Register: 99 owner decisions, 64 answered questions, 415 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 101 owner decisions, 64 answered questions, 419 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

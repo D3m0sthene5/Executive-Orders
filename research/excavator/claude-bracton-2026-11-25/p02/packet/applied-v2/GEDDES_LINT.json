@@ -1,0 +1,73 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "C:\\Users\\danie\\eo-wt\\bracton-pc\\research\\excavator\\claude-bracton-2026-11-25\\p02\\packet\\PACKET.json",
+  "seconds": 57.375,
+  "files_read": 66751,
+  "file_reads": 133666,
+  "packet_fingerprint": "df8403c81784afb9275b5673dd2fd067d4d377eb889a2c639ac4d21587a0cbf5",
+  "claims_checked": 3,
+  "defect_flags": 0,
+  "coverage_gaps": 3,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:11708",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "unclassified_instrument_mention",
+          "scope_id": "EO:11708#sec3",
+          "actor": "EO:11248",
+          "detail": "Acting versus prior-parent context requires source examination."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:11812",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "literal_name_corpus_scope",
+          "inventory_commit": "5bed8b158892f7b43a160177982cedc8e18f2186",
+          "inventory_kind": "tracked_jobs_texts",
+          "inventory_sha256": "168e3a062222fc4f791f9d1ff74b4fcde378594d3c4c9275311446ba1c6fb025",
+          "tracked_files": 66745,
+          "verified_files": 66745,
+          "missing_files": 0,
+          "changed_files": [],
+          "full_discovered_corpus_covered": true,
+          "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+        },
+        {
+          "code": "literal_name_search_performed",
+          "field": "claim.operative_clauses[0].judgment_reason",
+          "names": [
+            "eo 11812 and the packet s later event chain lists only eo 11883"
+          ],
+          "after_date": null,
+          "counterexamples": 0,
+          "negative_established": false,
+          "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:12162",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
