@@ -46,6 +46,8 @@ ROWS = [
     row(9022, "no", "open", "open", "NO_OFFICIAL_SOURCE_LOCATED|ONLY_COMPILED_TRANSCRIPTION_FOUND|" + NONGATE + "|NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"),
     # page check covers original-found plus compiled; must not also count for fetch-officials
     row(9030, "no", "open", "done", "ORIGINAL_FOUND_NEEDS_PAGE_CHECK|ONLY_COMPILED_TRANSCRIPTION_FOUND|" + NONGATE),
+    # a ProQuest replica clears every original-text blocker once it passes the page check (D-20261106-photius-p4)
+    row(9031, "no", "open", "done", "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK|ORIGINAL_FOUND_NEEDS_PAGE_CHECK|ONLY_COMPILED_TRANSCRIPTION_FOUND|" + NONGATE),
     # one step away: claim present, exactly one applicable step open
     row(9040, "no", "done", "done", "CLAIM_INCOMPLETE:ending_or_current_basis", claim="yes", clause="done", end="open", sav="done"),
     row(9041, "no", "done", "done", "CLAIM_INCOMPLETE:ending_or_current_basis", claim="yes", clause="done", end="open", sav="done", opus="open"),  # two open
@@ -67,6 +69,7 @@ TRACKER_MD = """# Readiness tracker
 """
 SHARED = [(30, "machine_job", "Fetch an official original for orders held only as a compiled transcription", "ONLY_COMPILED_TRANSCRIPTION_FOUND"),
           (8, "agent_check", "Check the page location of fr-originals and official-compilation finds marked medium/low confidence", "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"),
+          (4, "agent_check", "Compare the ProQuest replica scan's pages with the order", "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"),
           (10, "one_source", "Retrieve shared source EO::4314", "SHARED_SOURCE_NOT_RETRIEVED:EO::4314"),
           (6, "one_source", "Retrieve shared source EO::6868", "SHARED_SOURCE_NOT_RETRIEVED:EO::6868"),
           (5, "machine_job", "Re-fetch the PDFs Opus downloaded but left out of its release", "OPUS_MEDIA_REFETCH_NEEDED")]
@@ -170,7 +173,11 @@ class CandidatesTest(unittest.TestCase):
         seen = []
         for a in self.out["actions"]:
             seen += [u["orders"] for u in a["unlocks"]]
-        self.assertEqual(sum(seen), 1 + 1 + 1 + 1)
+        self.assertEqual(sum(seen), 1 + 1 + 1 + 1 + 1)
+        replica = self.by["acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"]
+        self.assertEqual(self.unlock_total("acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"), 1)   # 9031
+        self.assertEqual(replica["orders"], 1)   # an agent acquisition names the orders it works on
+        self.assertEqual(fetch["orders"], 0)     # a machine one names none
         for a in self.out["actions"]:
             for u in a["unlocks"]:
                 self.assertTrue({"orders", "rate_key", "delay_days", "basis"} <= set(u))

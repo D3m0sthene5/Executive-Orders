@@ -1,14 +1,14 @@
 {
   "generated_from": {
-    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "776257d1541334f9bb9a48608b6d7d55db999a5a6a842413fc17057b73dce0f4",
-    "jobs/readiness-tracker/output/TRACKER.md": "c47b323179159326c11b6f6ad46afd320498115880110c9514192e7ad0b965dd",
-    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "fc3d3254b7bda5003ce763fcaabfb3d56a0f3cd11610431c5b5fdd252f204ce4",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "4bc95a7a2b3819a05cb4911b59df2053f86cbcd3bdac20f8bfe9be32b11f8ea4",
+    "jobs/readiness-tracker/output/TRACKER.md": "d5259c1938b98e1fcaff74b654101aba10da4c1c7335816ed1376c3229494e0d",
+    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "99281cc078a3449641c70a0c69ea32e47d2504892988d54d361bead5e6091eb5",
     "jobs/polya/output/CANDIDATE_ACTIONS.json": "84598534fd7c46a64e98beab939a22be95818c6d559846b3ec200b143529989e",
     "jobs/polya/output/COMPARE.json": "bc2e04eb23e79c487f962e8ab495920144f1855acfe2dba565d97a5d378fdf07",
     "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json": "688bd3c450081288a998382e30e330ed0b51e8bfc6ce712090a6c46f9eeeee4d",
     "research/excavator/claude-tribonian-2026-11-04/REPORT.md": "6ae4b9e7ebfda4b74f02dc670f483fcea4b1874528c378448786641bcc073fd8",
     "jobs/larrey-triage/output/GATES.jsonl": "eca6f34b4cfc98dacc3cee128cfac38bb1d9b9f10c41079227eff27627b2fbe5",
-    "jobs/linnaeus-types/output/SUMMARY.json": "7b974d1f8796c4c0e8ace4305906e6ecb52e5fd4f63be8fc2f57cb033c7e84e3"
+    "jobs/linnaeus-types/output/SUMMARY.json": "6212023578b1e9f699a84ead03f39c94161da0473dad9efb3b61ef82edfc5a71"
   },
   "pool": {
     "decided_not_ready_orders": 2537,
@@ -351,21 +351,14 @@
       "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
       "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 706 includes undecided orders, which unlock nothing until they have a provisional status)",
-      "orders": 0,
+      "orders": 1,
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "production.per_attempt",
       "cost_override_usd": null,
-      "cost_units": 17,
+      "cost_units": 1,
       "unlocks": [
         {
-          "orders": 14,
-          "rate_key": "filed_per_attempt.no.fr",
-          "delay_days": 2,
-          "delay_basis": "estimate: agent page check of a located original, then tracker re-run",
-          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {ONLY_COMPILED_TRANSCRIPTION_FOUND, ORIGINAL_FOUND_NEEDS_PAGE_CHECK}, with clause inventory, ending and savings open; assigned to this action only."
-        },
-        {
-          "orders": 3,
+          "orders": 1,
           "rate_key": "filed_per_attempt.yes.fr",
           "delay_days": 2,
           "delay_basis": "estimate: agent page check of a located original, then tracker re-run",
@@ -393,23 +386,38 @@
     {
       "id": "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
-      "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 10 includes undecided orders, which unlock nothing until they have a provisional status)",
-      "orders": 0,
+      "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 2101 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "orders": 17,
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "production.per_attempt",
       "cost_override_usd": null,
-      "cost_units": 0,
-      "unlocks": [],
+      "cost_units": 17,
+      "unlocks": [
+        {
+          "orders": 15,
+          "rate_key": "filed_per_attempt.no.fr",
+          "delay_days": 3,
+          "delay_basis": "estimate: agent page comparison against the ProQuest scan under the 2026-10-21 owner rulings",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK, NO_OFFICIAL_SOURCE_LOCATED, ONLY_COMPILED_TRANSCRIPTION_FOUND, ORIGINAL_FOUND_NEEDS_PAGE_CHECK}, with clause inventory, ending and savings open; assigned to this action only."
+        },
+        {
+          "orders": 2,
+          "rate_key": "filed_per_attempt.yes.fr",
+          "delay_days": 3,
+          "delay_basis": "estimate: agent page comparison against the ProQuest scan under the 2026-10-21 owner rulings",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK, NO_OFFICIAL_SOURCE_LOCATED, ONLY_COMPILED_TRANSCRIPTION_FOUND, ORIGINAL_FOUND_NEEDS_PAGE_CHECK}, with clause inventory, ending and savings open; assigned to this action only."
+        }
+      ],
       "overlaps_with": [],
       "prerequisites": [
         "agent time to check pages, one order at a time (cost_units orders)"
       ],
-      "tracker_reach_orders": 10,
+      "tracker_reach_orders": 2101,
       "tracker_kind": "agent_check",
       "basis": "Tracker reach from jobs/readiness-tracker/output/SHARED_UNLOCKS.csv; unlock counts computed from jobs/readiness-tracker/output/READINESS_BY_ORDER.csv under the one-assignment rule.",
       "evidence": [
         {
-          "quote": "| 10 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |",
+          "quote": "| 2,101 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |",
           "source": "jobs/readiness-tracker/output/TRACKER.md"
         },
         {
@@ -427,15 +435,7 @@
       "cost_key": null,
       "cost_override_usd": 0,
       "cost_units": null,
-      "unlocks": [
-        {
-          "orders": 1,
-          "rate_key": "filed_per_attempt.no.fr",
-          "delay_days": 3,
-          "delay_basis": "estimate: GitHub Actions fetch job (fr-originals route) and tracker re-run; era fr only because the tracker text says orders from 1936 on were printed in the Federal Register",
-          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {NO_OFFICIAL_SOURCE_LOCATED, ONLY_COMPILED_TRANSCRIPTION_FOUND}, with clause inventory, ending and savings open; assigned to this action only."
-        }
-      ],
+      "unlocks": [],
       "overlaps_with": [],
       "prerequisites": [],
       "tracker_reach_orders": 2168,
@@ -546,7 +546,7 @@
         "status_assignment.undecided"
       ],
       "yield_lift_not_counted": {
-        "orders": 2118,
+        "orders": 2114,
         "applies_to": [
           "status_assignment.undecided"
         ],
