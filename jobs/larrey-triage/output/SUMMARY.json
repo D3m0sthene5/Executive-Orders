@@ -1,14 +1,14 @@
 {
  "schema": "larrey.triage/v1",
- "generated_at": "2026-11-25T01:01:16Z",
+ "generated_at": "2026-11-25T08:51:29Z",
  "inputs": {
   "claim_kit_summary_sha256": "1e9c7a7063d980f72619d4616c36e2d3735decdfa351c79857ebc31508b6d50c",
-  "tracker_sha256": "776257d1541334f9bb9a48608b6d7d55db999a5a6a842413fc17057b73dce0f4"
+  "tracker_sha256": "6cef81df5206f8e09be83c24a4f92390617fed0b666b869bfe07deadebd72ddd"
  },
  "code_sha256": {
-  "jobs/larrey-triage/larrey.py": "d148ea4bff03fa1f0e68c25d1673c8858c346caa7059d16a6168cddfe451339e",
-  "jobs/llull/kit_features.py": "9fe51bf31bce988a7377b26010b0fe29c80e1db9d5411471abb8e1ffa855960d",
-  "jobs/llull/llull.py": "1a549f4669671159f4c33fe0bf06d2f7057eb969985c6a1d206b3df6b0ba942f"
+  "jobs/larrey-triage/larrey.py": "9e5ef3489e821b0a1f2b6c13f8af14cb908b850cc092754fc52030bac050732d",
+  "jobs/llull/kit_features.py": "cf9b2522ef4b1cf9d4a87b9f60b330a6eaae10e233c84bb33d25817fbd055314",
+  "jobs/llull/llull.py": "001b1391aacbdb53ba44a8f708c68320f6303653ec234ca5178c503392da64f7"
  },
  "routes": {
   "status_only": {
@@ -20,6 +20,9 @@
    "soft": [
     "no_page_check_owed",
     "later_order_text_held"
+   ],
+   "strict": [
+    "status_events_at_most_5"
    ]
   },
   "undecided_full": {
@@ -32,6 +35,9 @@
    "soft": [
     "no_page_check_owed",
     "later_order_text_held"
+   ],
+   "strict": [
+    "status_events_at_most_5"
    ]
   },
   "decided_lifecycle": {
@@ -42,6 +48,10 @@
    ],
    "soft": [
     "nea_notice_if_emergency"
+   ],
+   "strict": [
+    "no_contradicting_status_lead",
+    "status_events_at_most_5"
    ]
   }
  },
@@ -93,8 +103,8 @@
   }
  },
  "orders_with_compiled_inputs": 15002,
- "tracker_orders": 15002,
- "gates_commit": "057512d533ff4c97a56837aad6f3ded95a277612",
+ "tracker_orders": 15003,
+ "gates_commit": "2af423e15fdce83ebb7eb07cb5fc246a75b5700a",
  "kit_rules_loaded": [
   "own_text.records",
   "status_overlay.working_text_basis"
