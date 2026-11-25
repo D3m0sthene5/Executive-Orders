@@ -10,7 +10,7 @@ New York date: 2026-11-25. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45703841573-1:3038e0cc364b473d5acd42c57ee49a87dd080c8e85a7115dea875447de816c8b` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45712081450-1:d4bd96017e0c8a8b063cc4a6bb3c9efb8dfd92195f54b57ae105c18e6343a980` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -33,7 +33,7 @@ Comparison snapshot: 2026-11-24; intervening runs may be absent.
 - clause-drafts: clauses_total: 71756 → 71760; fragments_from_app_transcription: 4958 → 4960; fragments_written: 9796 → 9798; orders_in_universe: 15002 → 15003
 - cotton-capture-custody: not_web_sources: 1251 → 1536; published: 757 → 759; wanted_hashes: 2009 → 2296
 - cruden-fr-concordance: bytes_downloaded: 3608561552 → 3652885870; fragments: 671 → 672; orders_with_located_citation: 287 → 288; searches_made_this_run: 0 → 45
-- family-rules: saved_texts_scanned: 88318 → 90239
+- family-rules: saved_texts_scanned: 88318 → 87091
 - gessner-cards: not_researched: 11214 → 11202; numbered_series_orders: 15002 → 15003; one_step_from_ready: 217 → 192; orders: 15002 → 15003
 - gratian-niebuhr-leads: date_leads_in_census: 40 → 41
 - lachmann: assessed: 2359 → 952; complete_text_confirmed: 1398 → 858; identity_confirmed: 1147 → 862; in_scope: 2359 → 952
@@ -79,4 +79,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45703841573)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45712081450)
