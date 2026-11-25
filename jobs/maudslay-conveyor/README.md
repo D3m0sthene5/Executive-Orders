@@ -301,6 +301,95 @@ After the batch:
 - check the gate verdict in the ledger;
 - when the wave ends, run `bentham.py usage --wave NAME --phase LABEL`.
 
+## Stateless mode and the gauge
+
+**Finding.** On Papinian (`research/excavator/claude-papinian-2026-11-10`) each agent worker made about 60-110 calls
+at about 170-214k context per call, about 2.3M tokens: $0.64 per attempted order and $4.71 per filed claim. The
+evidence one order needs is about 16.5k tokens for a producer and 9.7k for a reviewer. Making every model stage one
+request with no tools projects a 2.4x saving with Sonnet producers and 5-8x with Haiku 5.5 producers. `--stateless`
+is that mode. It is opt-in; without it nothing changes.
+
+**What a stateless stage is.** One `claude -p` request, no tools, answer through `--json-schema`:
+
+```text
+claude -p --tools "" --system-prompt-file PREFIX --json-schema SCHEMA --setting-sources "" --strict-mcp-config \
+       --output-format stream-json --verbose --model MODEL            (not --bare: it needs an API key)
+```
+
+The template is `ST.STATELESS_TEMPLATE` in `stateless.py`; give a role the command `claude-stateless` in the workers
+file, or any explicit list containing `--system-prompt-file`, and edit it freely (placeholders `{model}`,
+`{prefix_file}`, `{schema}`). `validate_worker_command` still refuses session reuse and bypass flags, and for a
+stateless command also refuses `--bare`, `--add-dir`, `--permission-mode`, `--mcp-config` and any `--tools` value
+but the empty one. The prompt goes on stdin. Not verified here: `claude` is not installed on the build machine, so
+the flags (and where `--json-schema` puts the answer: `structured_output` on the result event, else a
+`StructuredOutput` tool call, else JSON in the result text) were written from the owner's specification.
+
+| Role | Prefix (system prompt file, cached) | Stdin (suffix) |
+|---|---|---|
+| producer | the rule files (`PRODUCTION_ROUTE.md`, `CLAIM_SCHEMA.md`, the `BATCH.md` section "Before assigning a producer" and the paragraph "Read every original and common source independently", the owner rulings 2026-10-28-evidence-not-convenience, 2026-10-21-transcription-as-text, 2026-10-21-until-and-further-exempt, 2026-10-21-strike-and-insert, and for undecided routes 2026-11-05-empty-status-history, the NIRA brief section "Sheet fields for a plain code approval"), then `prompts/stateless_producer.txt` with the route brief. Byte-identical for every order of a route | the order's evidence: clause inventory, the held order text in full, +/-600 characters around every cited span in other held texts, cruden number citations, hash and quoted-span receipts, the grep for "Revoked by" / "Superseded by" in the order's held texts and LOOKUPS row, a digest of the view (missing list, machine-search coverage, later-event chain, prior research) |
+| reviewer | the same rules, `REVIEWER_BRIEF.md`, `prompts/stateless_reviewer.txt`, then the order's evidence built from the claim's own cited spans. Byte-identical for arm A and arm B of one claim, so arm B reads arm A's cached prefix | the arm's text and the claim |
+
+The conveyor runs arm B on a claim straight after arm A (in waves of `2 x --parallel` claims) so B's prefix is still
+in the cache. One request per claim and arm replaces the chunked sessions; each set's answers are written to
+`BLIND_REVIEW.jsonl` / `AFTER_REVEAL.jsonl` in a folder of their own, so `arm_records`, the control rule, the
+reveal and the both-uphold rule are unchanged.
+
+**What the scripts compute, not the model.** The receipts (file sha256 against the recorded `text_sha256`; each
+quoted span against `text[start:end]`), the grep, the windows, and `claim_sha256`. The producer's answer
+(`decision`, `clauses`, `rationales`, `assessment`) is turned into `decisions.csv`, `clauses.csv`,
+`RATIONALES.json` and `ASSESSMENT.json` in the worker's folder with exactly the prepared sheets' column sets
+(`instrument_id`, `dossier_sha256` and `agent` are filled by the conveyor); `collect`, `apply` and `batch-check` then
+run unchanged. An answer that is not a usable sheet leaves the order `unresolved` ("stateless answer unusable").
+
+**need_more.** An answer may instead list up to six `{path, start, end}` requests for named repository files and
+byte ranges. A script serves them (repository-relative paths only; at most 20,000 bytes a range and 80,000 in all;
+refuses `..`, absolute paths, symlinks out of the repository, anything under the scratch or control folders, review,
+completion, `applied-v*`, `complete-v*` folders, decision sheets, `ASSESSMENT`, `RATIONALES`, the ledger and filed
+claims under `research/readiness/claims/`) and the worker answers once more; a second request is a failure. The
+served material is kept in `BATCH/stateless/need_more/`.
+
+**150k cutoff.** An order whose rendered prompt (prefix + suffix, characters / 4) exceeds 150,000 tokens is not sent
+as a stateless request. With a `producer_agent` role in the workers file (an ordinary `claude` agent worker) it runs
+on the agent route; without one it is listed in `ADJUDICATE.json` as `prompt_over_cap`, informational, and not
+dispatched.
+
+**Scope.** Decided orders only: `--stateless` refuses an `undecided` action (the status decision and overlay evidence
+are not rendered). Cruden's number search runs once per stage for the orders not yet cached
+(`BATCH/stateless/cruden/`); it took about 17 seconds for one order and over two minutes for about 100 on the build
+machine, so time a real batch before relying on a figure (Kean F-20261112-runner-deadline). Every worker record
+carries `stateless.calls`, the per-model-call `input`, `cache_read`, `cache_write` and `output`, and `MEASURES.json`
+adds `stateless_cache`: per prefix, whether the second and later processes read about the prefix size from the cache.
+
+### The gauge: does stateless keep the Papinian lane's quality?
+
+`gauge_stateless.py` replays Papinian work through stateless workers for under $25 at list price. The full
+description and the stop rule are in `research/stateless-calls-2026-11-24/README.md`. Owner-PC commands (log in to
+the Claude CLI first: run `claude` once and sign in; `claude -p` must work from a terminal):
+
+```text
+python -I jobs/maudslay-conveyor/test_conveyor.py
+python -I jobs/maudslay-conveyor/gauge_stateless.py --dry-run --scratch C:/Users/danie/maudslay-scratch/stateless-gauge
+python -I jobs/maudslay-conveyor/gauge_stateless.py --scratch C:/Users/danie/maudslay-scratch/stateless-gauge --cap-usd 25
+type research\stateless-calls-2026-11-24\GAUGE_REPORT.md
+```
+
+`--dry-run` renders every prompt, prefix and schema under `--scratch` (a temp folder if omitted) and prints token
+estimates and the cost forecast; it calls no model. Its cruden number search (about 8 minutes for the 99 orders, measured
+on the build machine) is cached in `SCRATCH/cruden-hits.json`, so give the dry run and the paid run the same `--scratch`. The paid run resumes from `SCRATCH/gauge-state.jsonl` if it stops, and
+stops launching when measured spend plus the forecast of calls in flight would pass `--cap-usd`.
+
+A stateless conveyor batch (after the gauge says GO_STATELESS, and only through Augur and Bentham as for any batch):
+
+```text
+python -I jobs/maudslay-conveyor/conveyor.py commands --workers jobs/maudslay-conveyor/workers.stateless.example.json
+python -I jobs/maudslay-conveyor/conveyor.py run --run-dir research/excavator/claude-maudslay-2026-11-25 --batch p01 \
+    --agent maudslay --action production.claim_ready.yes.fr --n 30 --stateless \
+    --route research/excavator/claude-papinian-2026-11-10/tools/prompts/route_yes.txt \
+    --workers jobs/maudslay-conveyor/workers.stateless.example.json \
+    --wave research/excavator/claude-maudslay-2026-11-25/WAVE.json \
+    --scratch-root C:/Users/danie/maudslay-scratch/claude-maudslay-2026-11-25/p01 --batch-usd 40 --parallel 4 --publish
+```
+
 ## Tests
 
 ```text
@@ -330,5 +419,6 @@ The kit test needs a checkout that holds the kit's imports (`jobs/norton`, `jobs
 `jobs/status-history`, `jobs/later-events`, `research/stage19/code`, ...). It skips in a sparse checkout unless
 `MAUDSLAY_KIT_HOME` points at one.
 
-Not verified here: `claude` and `codex` are not installed on the build machine, so neither template has been run
-against the real CLIs.
+Not verified here: `claude` and `codex` are not installed on the build machine, so no template (the stateless one
+included) has been run against the real CLIs. The stateless tests use `fakes/fake_stateless_worker.py`, which emits
+stream-json with a `structured_output` answer and simulates the prefix cache across processes.

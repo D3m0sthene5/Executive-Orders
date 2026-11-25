@@ -56,6 +56,9 @@ from pathlib import Path
 HERE = Path(__file__).resolve().parent
 REPO = HERE.parents[1]
 PROMPTS = HERE / "prompts"
+if str(HERE) not in sys.path:
+    sys.path.insert(0, str(HERE))   # python -I does not add the script's folder
+import stateless as ST  # noqa: E402  (the opt-in stateless render mode)
 
 EXIT_DONE, EXIT_FAILED, EXIT_STOPPED, EXIT_PAUSED, EXIT_GATE_STOP, EXIT_NO_GATE, EXIT_BUDGET = 0, 1, 2, 3, 4, 5, 6
 # A planted control is caught only when a word or field name in the reviewer's `defects` is one of these.
@@ -65,7 +68,7 @@ OUTCOMES = ("submit", "unresolved", "blocked", "route_owner")
 # Settings fixed when a batch starts; a re-run may change only budgets, concurrency, timeouts and switches.
 FIXED = ("agent", "action", "n", "ids", "route", "replacement_proposal", "publication", "publication_mode",
          "prompt_cap_chars", "review_chunk", "repair_rounds", "adjudicator", "keys_dir", "scratch_root", "wave",
-         "controls", "producer")
+         "controls", "producer", "stateless")
 MUTABLE = ("parallel", "item_usd", "item_tokens", "batch_usd", "batch_tokens", "item_timeout", "publish",
            "defer_adjudication", "batches_file", "tools", "workers")
 
@@ -77,6 +80,9 @@ DEFAULT_TOOLS = {
              "--write", "{out}"],
     "gate": ["{python}", "-I", "{repo}/jobs/bentham/bentham.py", "gate", "--action", "{action}", "--batches",
              "{batches}"],
+    # --stateless: one cruden number search for many orders (args: EO:N ... --write FILE)
+    "cruden_number": ["{python}", "-X", "utf8", "-I", "{repo}/research/excavator/claude-nira-sweep-2026-10-29/cruden.py",
+                      "number"],
 }
 
 # Worker templates. Every call is a fresh session in a fresh folder outside the repository.
@@ -414,7 +420,12 @@ def validate_worker_command(argv, family):
         raise Fail(f"worker command disables the sandbox or approvals: {unsafe}")
     if any("rollout_token_budget" in t for t in toks):
         raise Fail("rollout_token_budget does not exist in the installed Codex build; remove it")
-    if family == "claude":
+    if family == "claude" and ST.is_stateless_command(toks):
+        try:
+            ST.validate_stateless_command(toks)
+        except ValueError as exc:
+            raise Fail(str(exc))
+    elif family == "claude":
         for flag in ("-p", "--max-turns", "--max-budget-usd", "--output-format", "--verbose"):
             if flag not in toks:
                 raise Fail(f"claude worker command lacks {flag}")
@@ -874,6 +885,8 @@ class Batch:
             self.tools.update(read_json(cfg["tools"], {}) or {})
         self.workers = load_workers(cfg["workers"])
         self.spend_lock = threading.Lock()
+        self.agent_route = set()   # --stateless: orders over the token cutoff, which stay on the agent route
+        self._texts, self._producer_prefix = None, None
         self.live, self.live_lock = {}, threading.Lock()
         if cfg.get("batch_usd") is None:
             raise Fail("--batch-usd is required")
@@ -1001,9 +1014,10 @@ class Batch:
         v = w.get(f"item_{kind}")
         return v if v is not None else self.cfg.get(f"item_{kind}")
 
-    def command(self, role, folder):
+    def command(self, role, folder, schema=None):
         w = self.workers[role]
-        mapping = {"model": w["model"], "max_turns": w.get("max_turns", 80), "repo": self.repo.as_posix(),
+        mapping = {"prefix_file": (Path(folder) / "PREFIX.txt").as_posix(),
+                   "schema": schema or ST.schema_text({"type": "object"}), "model": w["model"], "max_turns": w.get("max_turns", 80), "repo": self.repo.as_posix(),
                    "reasoning_effort": w.get("reasoning_effort", "medium"),
                    "cwd": Path(folder).as_posix(), "item_usd": self.cap(role, "usd"),
                    "auto_compact_tokens": w.get("auto_compact_tokens", 120000),
@@ -1107,12 +1121,23 @@ class Batch:
         if item.get("setup"):
             item["setup"](folder)
         prompt = item["render"](folder)
-        if len(prompt) > int(self.cfg["prompt_cap_chars"]):
+        stateless = item.get("prefix") is not None
+        if stateless:
+            # One request, no tools: the system prompt file holds the byte-identical prefix; stdin holds the rest.
+            if ST.over_cutoff(item["prefix"], prompt):
+                raise Fail(f"{label}: rendered prompt exceeds {ST.CUTOFF_TOKENS} tokens (it stays on the agent route)")
+            (folder / "PREFIX.txt").write_text(item["prefix"], encoding="utf-8", newline="\n")
+            psha = ST.sha256_text(item["prefix"])
+            (self.dir / "prompts").mkdir(parents=True, exist_ok=True)
+            pre_copy = self.dir / "prompts" / f"stateless-prefix-{psha[:12]}.txt"
+            if not pre_copy.exists():
+                pre_copy.write_text(item["prefix"], encoding="utf-8", newline="\n")
+        elif len(prompt) > int(self.cfg["prompt_cap_chars"]):
             raise Fail(f"{label}: prompt of {len(prompt)} chars exceeds the cap")
-        (folder / "PROMPT.txt").write_text(prompt, encoding="utf-8")
+        (folder / "PROMPT.txt").write_text(prompt, encoding="utf-8", newline="\n" if stateless else None)
         (self.dir / "prompts").mkdir(parents=True, exist_ok=True)
         (self.dir / "prompts" / f"{label}.txt").write_text(prompt, encoding="utf-8")
-        argv = self.command(role, folder)
+        argv = self.command(role, folder, schema=ST.schema_text(item["schema"]) if stateless else None)
         exe = shutil.which(argv[0])
         if exe:
             argv[0] = exe
@@ -1138,8 +1163,43 @@ class Batch:
         finally:
             with self.live_lock:
                 self.live.pop(key, None)
-        return self.record(label, role, stage, folder, out_path, text, proc.returncode, killed, started,
-                           round(time.monotonic() - t0, 3), len(prompt), argv, rollout)
+        extra = None
+        if stateless:
+            extra = {"stateless": {"prefix_sha256": psha, "prefix_tokens_est": ST.est_tokens(item["prefix"]),
+                                   "suffix_tokens_est": ST.est_tokens(prompt), "kind": item.get("kind")}}
+        rec = self.record(label, role, stage, folder, out_path, text, proc.returncode, killed, started,
+                          round(time.monotonic() - t0, 3), len(prompt) + (len(item["prefix"]) if stateless else 0),
+                          argv, rollout, extra=extra)
+        if stateless:
+            self.judge_stateless_answer(rec, text, item, folder)
+        return rec
+
+    @staticmethod
+    def judge_stateless_answer(rec, text, item, folder):
+        """A stateless worker finished only if its answer is usable: a sheet or verdict, or (producers and reviewers,
+        first round only) a need_more request. Per-call usage goes in the record, for the cache evidence."""
+        parsed = ST.parse_stream(text)
+        rec["stateless"]["calls"] = parsed["calls"]
+        rec["stateless"]["answer_from"] = parsed["answer_from"]
+        ans, err = parsed["answer"], None
+        if not isinstance(ans, dict):
+            err = "no structured answer in the event stream"
+        elif ans.get("need_more"):
+            if not item.get("allow_more"):
+                err = "need_more in the final round"
+            else:
+                rec["need_more"] = ans["need_more"]
+        elif item.get("kind") == "producer":
+            d = ans.get("decision")
+            if not isinstance(d, dict) or d.get("outcome") not in ST.OUTCOMES:
+                err = "the answer has no decision with an outcome"
+        elif ans.get("verdict") not in ("upheld", "rejected", "upheld_after_reveal"):
+            err = "the answer has no verdict"
+        if isinstance(ans, dict):
+            (Path(folder) / "ANSWER.json").write_text(json.dumps(ans, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        if err:
+            rec["answer_error"] = err
+            rec["ok"] = False
 
     def watch(self, proc, out_path, role, folder, t0, epoch=None):
         """Follow the worker's event file; kill it on a blinding violation, the item token cap or the timeout.
@@ -1214,7 +1274,7 @@ class Batch:
                 roll["usage"] = t
 
     def record(self, label, role, stage, folder, out_path, text, rc, killed, started, wall, prompt_chars, argv,
-               rollout=None):
+               rollout=None, extra=None):
         w = self.workers[role]
         u = parse_usage(text)
         if rollout and rollout.get("input") is not None and rollout["input"] + rollout["output"] > tokens(u):
@@ -1236,7 +1296,10 @@ class Batch:
                "result_seen": u["result_seen"], "blinding_violations": sorted(set(violations)),
                "started_utc": started, "ended_utc": now(), "wall_seconds": wall, "prompt_chars": prompt_chars,
                "folder": Path(folder).as_posix(), "out": Path(out_path).as_posix(), "rollout": rollout,
-               "argv": [Path(argv[0]).name] + list(argv[1:]) if argv else None}
+               "argv": [Path(argv[0]).name] + [t if len(t) <= 200 else f"<{len(t)} chars>" for t in argv[1:]]
+               if argv else None}
+        if extra:
+            rec.update(extra)
         over = []
         ct, cu = self.cap(role, "tokens"), self.cap(role, "usd")
         if ct and rec["tokens"] > ct:
@@ -1442,7 +1505,159 @@ class Batch:
             t = t.replace(k, v)
         return t + self.undecided_note(iid, folder) + extra
 
+    # -- stateless render mode (--stateless) ------------------------------------------------------------------
+    def stateless(self):
+        return bool(self.cfg.get("stateless"))
+
+    def check_stateless(self):
+        if "undecided" in str(self.cfg.get("action") or ""):
+            raise Fail("--stateless does not cover undecided orders yet (their status decision and overlay evidence are "
+                       "not rendered); run an undecided batch on the agent route")
+        roles = ["reviewer_A", "reviewer_B"] + ([] if self.cfg.get("producer") == "nalimov" else ["producer"])
+        for role in roles:
+            if not self.workers[role].get("stateless"):
+                raise Fail(f"--stateless needs {role} to be a stateless claude worker (command 'claude-stateless')")
+
+    def texts(self):
+        if self._texts is None:
+            self._texts = ST.Texts(self.repo)
+        return self._texts
+
+    def producer_prefix_text(self):
+        """The byte-identical producer prefix of this batch: the rule files plus the producer role and route text."""
+        if self._producer_prefix is None:
+            route = Path(self.cfg["route"])
+            route = route if route.is_absolute() else self.repo / route
+            self._producer_prefix = ST.producer_prefix(self.repo, route.stem, route.read_text(encoding="utf-8"))
+        return self._producer_prefix
+
+    def cruden_hits(self, ids):
+        """{iid: [hits]} from one `cruden.py number` search for the orders not cached yet (BATCH/stateless/cruden/)."""
+        cache = self.dir / "stateless" / "cruden"
+        cache.mkdir(parents=True, exist_ok=True)
+        out, missing = {}, []
+        for iid in dict.fromkeys(ids):
+            hit = read_json(cache / f"{slug(iid)}.json")
+            if isinstance(hit, list):
+                out[iid] = hit
+            else:
+                missing.append(iid)
+        if missing:
+            tmp = cache / "_cruden_result.json"
+            rc, _ = self.tool("cruden_number", missing + ["--write", tmp], log="cruden-number")
+            if rc or not tmp.exists():
+                raise Fail(f"cruden number exit {rc}; see logs/cruden-number.err")
+            got = ST.cruden_hits_from_file(tmp, missing)
+            tmp.unlink()
+            for iid in missing:
+                write_json(cache / f"{slug(iid)}.json", got[iid])
+                out[iid] = got[iid]
+        return out
+
+    def lookups_row(self, iid):
+        data = read_json(self.packet / "LOOKUPS.json", {}) or {}
+        return (data.get("members") or {}).get(iid)
+
+    def stateless_suffix(self, iid, view_rel, hits, repair=None):
+        view = read_json(self.repo / view_rel) or {}
+        if view.get("instrument_id") not in (None, iid):
+            raise Fail(f"view for {iid} names {view.get('instrument_id')}")
+        _, prows = read_csv(self.dir / "prepared" / "decisions.csv")
+        _, crows = read_csv(self.dir / "prepared" / "clauses.csv")
+        prep = next(r for r in prows if r["instrument_id"] == iid)
+        evidence, _ = ST.producer_evidence(self.repo, iid, view, prep, [c for c in crows if c["instrument_id"] == iid],
+                                           hits.get(iid), self.lookups_row(iid), self.texts())
+        return ST.producer_suffix(evidence, repair)
+
+    def render_stateless(self, targets, views):
+        prefix = self.producer_prefix_text()
+        hits = self.cruden_hits(targets)
+        ok, over, sizes, agent = [], {}, {}, []
+        for iid in targets:
+            suffix = self.stateless_suffix(iid, views[iid], hits)
+            sizes[iid] = len(prefix) + len(suffix)
+            if ST.over_cutoff(prefix, suffix):
+                over[iid] = sizes[iid]
+                if "producer_agent" in self.workers:
+                    agent.append(iid)
+                    del over[iid]
+                continue
+            ok.append(iid)
+        return {"rendered": ok, "agent_route": agent, "over_cap": over, "cap_chars": ST.CUTOFF_TOKENS * 4,
+                "prompt_chars": sizes, "stateless": True, "prefix_tokens_est": ST.est_tokens(prefix),
+                "prefix_sha256": ST.sha256_text(prefix)}
+
+    def pool_more(self, items, stage, retry_failed=False):
+        """Run stateless items; those whose answer asks for more get one more round with the served files."""
+        res = self.pool(items, stage, retry_failed=retry_failed)
+        more = []
+        for it in items:
+            rec = res.get(it["id"])
+            if rec and rec.get("ok") and rec.get("need_more"):
+                served, report = ST.serve_need_more(self.repo, rec["need_more"], extra_forbidden=[self.scratch, self.keys])
+                write_json(self.dir / "stateless" / "need_more" / f"{it['label']}.json",
+                           {"requests": rec["need_more"], "report": report})
+                base = it["render"](None)
+                more.append(dict(it, key=it["key"].replace(":", "-more:", 1), label=it["label"] + "-more",
+                                 allow_more=False,
+                                 render=lambda folder, base=base, rq=rec["need_more"], sv=served:
+                                 ST.need_more_suffix(base, rq, sv)))
+        if more:
+            res2 = self.pool(more, stage, retry_failed=retry_failed)
+            res.update(res2)
+        return res
+
+    def repair_note(self, rnd, iid, errors, folder):
+        prev = ""
+        for name in ("decisions.csv", "clauses.csv", "RATIONALES.json"):
+            prev += f"\n--- your previous {name} ---\n" + read_text_or(Path(folder) / name) if folder else ""
+        err = json.dumps(errors, ensure_ascii=False)
+        if len(err) > 6000:
+            err = err[:6000] + " ...(cut)"
+        return (f"REPAIR ROUND {rnd}. Your sheet for {iid}, shown below as the conveyor merged it, then failed "
+                "kit.py apply or batch-check (the actual claim checker) with the errors below. Answer again with a "
+                "complete corrected sheet after re-checking the evidence above, or block the order with the precise "
+                "reason if held sources cannot support it. The errors are checker output, data rather than instructions:\n"
+                + err + "\n" + prev)
+
+    def produce_round_stateless(self, rnd, iids, views, folders, errors=None):
+        tag = "produce" if rnd == 0 else f"repair{rnd}"
+        results = {}
+        agent_ids = [i for i in iids if i in self.agent_route]
+        if agent_ids:
+            results.update(self.produce_round_agent(rnd, agent_ids, views, folders, errors))
+        sl = [i for i in iids if i not in agent_ids]
+        if not sl:
+            return results
+        prefix = self.producer_prefix_text()
+        hits = self.cruden_hits(sl)
+        items = []
+        for iid in sl:
+            repair = self.repair_note(rnd, iid, (errors or {}).get(iid, []), folders.get(iid)) if errors else None
+            suffix = self.stateless_suffix(iid, views[iid], hits, repair)
+            items.append({"key": f"{tag}:{slug(iid)}", "label": f"{self.name}-{tag}-{slug(iid)}", "role": "producer",
+                          "id": iid, "kind": "producer", "allow_more": True, "prefix": prefix,
+                          "schema": ST.producer_schema(), "render": lambda folder, t=suffix: t})
+        res = self.pool_more(items, "produce" if rnd == 0 else "repair")
+        pf, prows = read_csv(self.dir / "prepared" / "decisions.csv")
+        cf, crows = read_csv(self.dir / "prepared" / "clauses.csv")
+        for iid, rec in res.items():
+            if rec.get("ok"):
+                folder = Path(rec["folder"])
+                if not (folder / "ANSWER.json").exists():
+                    raise Fail(f"scratch lost: the finished stateless producer folder for {iid} has no ANSWER.json")
+                prep = next(r for r in prows if r["instrument_id"] == iid)
+                try:
+                    ST.write_answer_sheet(read_json(folder / "ANSWER.json"), iid, folder, pf, prep, cf,
+                                          [c for c in crows if c["instrument_id"] == iid], self.cfg["agent"])
+                except ValueError as exc:
+                    rec = dict(rec, ok=False, answer_error=str(exc))
+            results[iid] = rec
+        return results
+
     def render(self, targets, views):
+        if self.stateless():
+            return self.render_stateless(targets, views)
         cap = int(self.cfg["prompt_cap_chars"])
         ok, over, sizes = [], {}, {}
         for iid in targets:
@@ -1468,6 +1683,11 @@ class Batch:
         self.seed_status_decision(iid, folder)
 
     def produce_round(self, rnd, iids, views, folders, errors=None):
+        if self.stateless():
+            return self.produce_round_stateless(rnd, iids, views, folders, errors)
+        return self.produce_round_agent(rnd, iids, views, folders, errors)
+
+    def produce_round_agent(self, rnd, iids, views, folders, errors=None):
         items = []
         cap = int(self.cfg["prompt_cap_chars"])
         for iid in iids:
@@ -1482,7 +1702,8 @@ class Batch:
                          .replace("<<ROUND>>", str(rnd)).replace("<<ORDER>>", iid).replace("<<ERRORS>>", err))
                 return self.producer_prompt(iid, views[iid], folder, "\n\n" + extra)
             tag = "produce" if rnd == 0 else f"repair{rnd}"
-            items.append({"key": f"{tag}:{slug(iid)}", "label": f"{self.name}-{tag}-{slug(iid)}", "role": "producer",
+            role = "producer_agent" if (self.stateless() and iid in self.agent_route) else "producer"
+            items.append({"key": f"{tag}:{slug(iid)}", "label": f"{self.name}-{tag}-{slug(iid)}", "role": role,
                           "id": iid, "render": render,
                           "setup": lambda folder, iid=iid: self.seed_sheet(iid, folder, folders.get(iid) if rnd else None)})
         return self.pool(items, "produce" if rnd == 0 else "repair")
@@ -1538,6 +1759,8 @@ class Batch:
                 out[iid] = {"reason": f"worker over the item cap ({rec['over_item_cap']}); sheet held, not used"}
             elif rec.get("blinding_violations"):
                 out[iid] = {"reason": f"worker named a forbidden path ({rec['blinding_violations'][0]}); not used"}
+            elif rec.get("answer_error"):
+                out[iid] = {"reason": f"stateless answer unusable: {rec['answer_error']}"}
             elif not rec.get("ok"):
                 out[iid] = {"reason": f"worker did not finish (exit {rec.get('exit')}, {rec.get('killed') or 'error'})"}
             else:
@@ -2123,6 +2346,62 @@ class Batch:
                   "held source bytes as above and judge it on its merits.")
         return t
 
+    def review_calls_stateless(self, mode, sets):
+        """--stateless review: one request per claim and arm (no tools), arm B straight after arm A so it reads A's
+        cached prefix (rules + the order's evidence). Each set's answers are written as that set's review file in a
+        folder of its own, so arm_records reads them exactly as it reads an agent reviewer's file."""
+        tag = "review" if mode == "blind" else "reveal"
+        fname = "AFTER_REVEAL.jsonl" if mode == "after_reveal" else "BLIND_REVIEW.jsonl"
+        schema = ST.reviewer_schema(mode)
+        rows = {name: read_jsonl(src) for name, src in sorted(sets.items())}
+        ids = sorted({c["instrument_id"] for r in rows.values() for c in r})
+        hits = self.cruden_hits(ids)
+        prefixes = {}
+
+        def prefix_for(c):
+            sha = canon(c)
+            if sha not in prefixes:   # one rendering per claim: arm A and arm B get the same bytes
+                ev, _ = ST.reviewer_evidence(self.repo, c, hits.get(c["instrument_id"]), self.lookups_row(c["instrument_id"]),
+                                             self.texts())
+                prefixes[sha] = ST.reviewer_prefix(self.repo, ev)
+            return prefixes[sha]
+
+        def item(name, c):
+            arm, iid = name[0], c["instrument_id"]
+            return {"key": f"{tag}:{name}:{slug(iid)}", "label": f"{self.name}-{tag}-{name}-{slug(iid)}",
+                    "role": f"reviewer_{arm}", "id": f"{name}:{iid}", "kind": "reviewer", "allow_more": True,
+                    "prefix": prefix_for(c), "schema": schema,
+                    "render": lambda folder, arm=arm, c=c: ST.reviewer_suffix(arm, mode, c)}
+        by_arm = {a: sorted(((n, c) for n, r in rows.items() if n[0] == a for c in r),
+                            key=lambda x: (x[1]["instrument_id"], x[0])) for a in "AB"}
+        wave = max(1, int(self.cfg.get("parallel") or 1)) * 2
+        results = {}
+        for k in range(0, max(len(by_arm["A"]), len(by_arm["B"])), wave):
+            for arm in "AB":   # arm A's wave finishes before the same claims go to arm B (cache reads)
+                part = by_arm[arm][k:k + wave]
+                if part:
+                    results.update(self.pool_more([item(n, c) for n, c in part], tag, retry_failed=True))
+        out = {}
+        for name, claims in rows.items():
+            folder = self.scratch / "workers" / f"{self.name}-{tag}-{name}"
+            folder.mkdir(parents=True, exist_ok=True)
+            recs, viol, ok = [], [], True
+            for c in claims:
+                r = results.get(f"{name}:{c['instrument_id']}") or {}
+                viol += r.get("blinding_violations") or []
+                if not r.get("ok"):
+                    ok = False
+                    continue
+                ans = read_json(Path(r["folder"]) / "ANSWER.json") or {}
+                recs.append({"instrument_id": c["instrument_id"], "claim_sha256": canon(c), "verdict": ans.get("verdict"),
+                             "defects": ans.get("defects") if isinstance(ans.get("defects"), list) else [],
+                             "reasons": ans.get("reasons") or "", "scope": "whole_case",
+                             "started_utc": r.get("started_utc"), "ended_utc": r.get("ended_utc")})
+            write_jsonl(folder / fname, recs)
+            out[name] = {"folder": folder.as_posix(), "label": f"{self.name}-{tag}-{name}", "ok": ok,
+                         "blinding_violations": sorted(set(viol)), "role": f"reviewer_{name[0]}"}
+        return out
+
     def run_reviews(self, mode, sets):
         """One fresh session per arm (or chunk), each in its own folder holding only its prompt and its set."""
         items = []
@@ -2134,7 +2413,7 @@ class Batch:
                           "id": name, "render": lambda folder, arm=arm: self.reviewer_prompt(arm, folder, mode),
                           "setup": lambda folder, src=src: (shutil.copyfile(src, folder / dest),
                                                             self.reviewer_context(folder, src, mode))})
-        res = self.pool(items, tag, retry_failed=True)
+        res = self.review_calls_stateless(mode, sets) if self.stateless() else self.pool(items, tag, retry_failed=True)
         bad = {k: r["blinding_violations"] for k, r in res.items() if r.get("blinding_violations")}
         if bad:
             raise Stop(f"{mode} review: blinding broken, arm(s) {sorted(bad)} named forbidden paths: "
@@ -2327,12 +2606,24 @@ def load_workers(path):
         if cmd in ("claude", "codex"):
             w["command"] = list(CLAUDE_TEMPLATE if cmd == "claude" else CODEX_TEMPLATE)
             w["family"] = w.get("family") or cmd
+        elif cmd == "claude-stateless":
+            w["command"] = list(ST.STATELESS_TEMPLATE)
+            w["family"] = w.get("family") or "claude"
         elif isinstance(cmd, list) and cmd:
             w["family"] = w.get("family") or program_family(cmd[0]) or "generic"
         else:
             raise Fail(f"{role}: command must be 'claude', 'codex' or a non-empty list")
         w.setdefault("model_family", {"claude": "Anthropic", "codex": "OpenAI"}.get(w["family"], "unknown"))
+        w["stateless"] = bool(w["family"] == "claude" and ST.is_stateless_command(w["command"]))
         out[role] = w
+    if isinstance(raw.get("producer_agent"), dict) and raw["producer_agent"].get("model"):
+        # --stateless: orders whose rendered prompt exceeds 150k tokens stay on the agent route with this worker.
+        w = dict(raw["producer_agent"])
+        w["command"] = list(CLAUDE_TEMPLATE) if w.get("command", "claude") == "claude" else w["command"]
+        w["family"] = w.get("family") or "claude"
+        w.setdefault("model_family", "Anthropic")
+        w["stateless"] = False
+        out["producer_agent"] = w
     if "reviewer_S" not in out:
         # The status reviewer (undecided orders) reuses reviewer_A's worker definition under its own reviewer name.
         out["reviewer_S"] = dict(out["reviewer_A"], reused_from="reviewer_A")
@@ -2364,6 +2655,8 @@ def _run(b, cfg):
         b.check_budget()
         b.check_ownership()
         b.check_status_reviewer()
+        if cfg.get("stateless"):
+            b.check_stateless()
         if "undecided" in str(cfg.get("action") or ""):
             b.check_overlay_publication()   # an undecided action: refuse own_claims before anything is reserved
         b.reap()
@@ -2393,7 +2686,8 @@ def _run(b, cfg):
             for iid, n in rend["over_cap"].items():
                 adjudicate.append({"instrument_id": iid, "kind": "prompt_over_cap", "blocks_completion": False,
                                    "detail": f"rendered producer prompt {n} chars > cap {rend['cap_chars']}; not dispatched"})
-            go = rend["rendered"]
+            b.agent_route = set(rend.get("agent_route") or [])   # --stateless: over the token cutoff, agent route
+            go = rend["rendered"] + list(rend.get("agent_route") or [])
         if not go:
             raise Stop("render: zero orders can be dispatched (all source-blocked, viewless or over the prompt cap)", quality=True)
         pending = [i for i in go if not (b.latest(f"produce:{slug(i)}")[1] or {}).get("ok")]
@@ -2711,6 +3005,8 @@ def write_measures(b, cfg, state, done, verdict, stopped=None):
                     "adoption_note": "adoption happens after completion (Respondendi or a named owner decision); "
                                      "divide by the adopted count from that record"},
          "producer": cfg.get("producer") or "workers", "controls_kind": cfg.get("controls") or "date",
+         "stateless": bool(cfg.get("stateless")),
+         "stateless_cache": ST.cache_evidence(list(b.ledger.workers())) if cfg.get("stateless") else None,
          "gate": verdict, "human_certified": 0,
          "note": "Tokens and dollars are the workers' own reported usage (claude stream-json result; codex exec "
                  "turn.completed usage priced from the workers file). A worker with unknown dollars counts at its "
@@ -2804,6 +3100,10 @@ def main(argv=None):
     r.add_argument("--batches-file", help="Bentham gate batch file (default RUN/BATCHES.json)")
     r.add_argument("--producer", choices=("workers", "nalimov"),
                    help="producer stage: model workers (default) or the Nalimov drafter (zero tokens, no repair rounds)")
+    r.add_argument("--stateless", action="store_true", default=None,
+                   help="stateless render mode: every model stage is one request with no tools (claude -p --tools "
+                        "\"\" --system-prompt-file PREFIX --json-schema SCHEMA); workers file roles use command "
+                        "'claude-stateless'. Orders whose prompt exceeds 150k tokens use the optional producer_agent role")
     r.add_argument("--controls", choices=("date", "typed"),
                    help="planted controls: date shifts (default for workers) or typed plants (default for nalimov)")
     s = sub.add_parser("status", help="print one batch's ledger summary")
@@ -2824,6 +3124,8 @@ def main(argv=None):
         if a.cmd == "commands":
             for role, w in load_workers(a.workers).items():
                 argv_ = render_args(w["command"], {"model": w["model"], "max_turns": w.get("max_turns", 80),
+                                                  "prefix_file": "PREFIX.txt",
+                                                  "schema": ST.schema_text({"type": "object"}),
                                                   "reasoning_effort": w.get("reasoning_effort", "medium"),
                                                   "repo": REPO.as_posix(), "cwd": "WORKER_FOLDER",
                                                   "item_usd": w.get("item_usd", a.item_usd),

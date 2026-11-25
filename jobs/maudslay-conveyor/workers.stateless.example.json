@@ -1,0 +1,7 @@
+{
+  "_note": "--stateless workers. command 'claude-stateless' is: claude -p --tools \"\" --system-prompt-file PREFIX --json-schema SCHEMA --setting-sources \"\" --strict-mcp-config --output-format stream-json --verbose --model MODEL (not --bare, which needs an API key). Log in first with `claude` (subscription) once on the PC. Placeholders: {model} {prefix_file} {schema}. Every call is one request with no tools; the answer comes back through --json-schema. item_usd is checked after the call against the list price. The optional producer_agent role runs orders whose prompt exceeds 150k tokens on the agent route.",
+  "producer": {"command": "claude-stateless", "model": "claude-sonnet-5-5", "model_family": "Anthropic", "item_usd": 1.0},
+  "reviewer_A": {"command": "claude-stateless", "model": "claude-opus-5-5", "model_family": "Anthropic", "item_usd": 1.5},
+  "reviewer_B": {"command": "claude-stateless", "model": "claude-opus-5-5", "model_family": "Anthropic", "item_usd": 1.5},
+  "producer_agent": {"command": "claude", "model": "sonnet", "model_family": "Anthropic", "max_turns": 80, "item_usd": 3}
+}

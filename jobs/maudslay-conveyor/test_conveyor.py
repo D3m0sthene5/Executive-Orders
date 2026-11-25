@@ -1209,5 +1209,492 @@ class UnitTests(unittest.TestCase):
             self.assertEqual(C.move_aside(p, "packet.incomplete").name, "packet.incomplete-1")
 
 
+# ---------------------------------------------------------------------------------------------------------------
+# Stateless render mode (--stateless) and the paired-replay gauge
+
+import hashlib  # noqa: E402
+import importlib.util  # noqa: E402
+
+import stateless as ST  # noqa: E402
+import gauge_stateless as G  # noqa: E402
+
+STATELESS_FAKE = [PY, str(FAKES / "fake_stateless_worker.py"), "-p", "--tools", "", "--system-prompt-file", "{prefix_file}",
+                  "--json-schema", "{schema}", "--setting-sources", "", "--strict-mcp-config", "--output-format",
+                  "stream-json", "--verbose", "--model", "{model}"]
+RULE_FILES = [ST.PRODUCTION_ROUTE, ST.CLAIM_SCHEMA, ST.BATCH_MD, ST.PRODUCER_BRIEF, ST.REVIEWER_BRIEF,
+              *[ST.RULINGS_DIR + n for n in ST.RULINGS + (ST.UNDECIDED_RULING,)]]
+PAPINIAN_DIR = C.REPO / G.PAPINIAN
+
+
+def copy_rule_files(repo):
+    for rel in RULE_FILES:
+        dst = Path(repo) / rel
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        dst.write_bytes((C.REPO / rel).read_bytes())
+
+
+def synthetic_claim(iid, end="2000-01-02"):
+    return {"instrument_id": iid, "whole_order_status": "no", "whole_order_end": {"date": end},
+            "operative_clauses": [{"scope_id": iid + "#lead", "first_end": {"date": end}}]}
+
+
+class StatelessPrefixTests(unittest.TestCase):
+    def test_producer_prefix_is_byte_identical_across_orders_and_holds_every_rule_file(self):
+        route = "decided, synthetic route.\n"
+        a = ST.producer_prefix(C.REPO, "route_test", route)
+        b = ST.producer_prefix(C.REPO, "route_test", route)
+        self.assertEqual(a.encode("utf-8"), b.encode("utf-8"))
+        for needle in ("PRODUCTION_ROUTE.md", "CLAIM_SCHEMA.md", 'section "Before assigning a producer"',
+                       "Read every original and common source independently", "2026-10-28-evidence-not-convenience.md",
+                       "2026-10-21-transcription-as-text.md", "2026-10-21-until-and-further-exempt.md",
+                       "2026-10-21-strike-and-insert.md", 'section "Sheet fields for a plain code approval"',
+                       "ROLE: PRODUCER", "decided, synthetic route."):
+            self.assertIn(needle, a)
+        self.assertNotIn("2026-11-05-empty-status-history.md", a)
+        self.assertIn("2026-11-05-empty-status-history.md", ST.producer_prefix(C.REPO, "u", route, undecided=True))
+        # nothing machine- or order-specific: no repository path, no order number
+        self.assertNotIn(C.REPO.as_posix(), a)
+
+    def test_reviewer_prefix_is_the_same_for_both_arms_and_starts_with_the_common_rules(self):
+        claim = synthetic_claim("EO:7")
+        ev, _ = ST.reviewer_evidence(C.REPO, claim, [])
+        pre = ST.reviewer_prefix(C.REPO, ev)
+        # the arm text and the claim are the suffix: only they differ between arms
+        sa, sb = ST.reviewer_suffix("A", "blind", claim), ST.reviewer_suffix("B", "blind", claim)
+        self.assertNotEqual(sa, sb)
+        self.assertEqual(pre, ST.reviewer_prefix(C.REPO, ST.reviewer_evidence(C.REPO, claim, [])[0]))
+        self.assertTrue(pre.startswith(ST.common_block(C.REPO, "reviewer")))
+        self.assertIn("ORDER EVIDENCE", pre)
+        self.assertNotIn("REVIEW ARM", pre)
+        self.assertIn(json.dumps(claim, sort_keys=True, ensure_ascii=False, indent=1), sa)
+        self.assertNotIn('"whole_order_end"', pre)   # the claim is not in the prefix
+
+    def test_evidence_sections_computed_by_script(self):
+        with tempfile.TemporaryDirectory() as t:
+            repo = Path(t)
+            body = "x" * 700 + "Revoked by EO 9999, 1990." + "y" * 700
+            (repo / "texts").mkdir()
+            (repo / "texts/o.txt").write_text(body, encoding="utf-8")
+            (repo / "texts/later.txt").write_text("a" * 2000 + "THE SPAN" + "b" * 2000, encoding="utf-8")
+            sha = hashlib.sha256((repo / "texts/o.txt").read_bytes()).hexdigest()
+            lsha = hashlib.sha256((repo / "texts/later.txt").read_bytes()).hexdigest()
+            claim = {"instrument_id": "EO:5", "original_representation": {"text_path": "texts/o.txt", "text_sha256": sha,
+                                                                         "char_start": 0, "char_end": 10, "quote": body[:10]},
+                     "operative_clauses": [{"first_end": {"text_path": "texts/later.txt", "text_sha256": lsha,
+                                                          "char_start": 2000, "char_end": 2008, "quote": "WRONG!!!"}}]}
+            ev, _ = ST.reviewer_evidence(repo, claim, [])
+            self.assertIn("Revoked by EO 9999", ev)                       # the grep
+            self.assertIn("HELD ORDER TEXT, IN FULL", ev)
+            self.assertIn("MISMATCH", ev)                                 # the quoted-span receipt
+            self.assertIn("exact", ev)
+            win = ev[ev.index("--- WINDOW texts/later.txt"):]
+            self.assertIn("a" * 600 + "THE SPAN" + "b" * 600, win)        # +/-600 characters
+            self.assertNotIn("a" * 601 + "THE SPAN", win)
+
+
+class StatelessSheetTests(unittest.TestCase):
+    FIELDS = G.DEC_FIELDS
+    CFIELDS = G.CLAUSE_FIELDS
+
+    def prep(self, iid="EO:5"):
+        row = {k: "" for k in self.FIELDS}
+        row.update(instrument_id=iid, dossier_sha256="d" * 64, agent="x", approved="false", search_ids="[]",
+                   conflict_resolutions="{}", unresolved_material_gaps="[]")
+        cl = [dict({k: "" for k in self.CFIELDS}, instrument_id=iid, scope_id=f"{iid}#{n}", clause_id=f"CLAUSES:{iid}#{n}",
+                   later_event_ids="[]", later_events="[]") for n in ("lead", "sec1")]
+        return row, cl
+
+    def answer(self, iid="EO:5", outcome="submit"):
+        s = iid.replace(":", "_")
+        return {"decision": {"outcome": outcome, "approved": True, "original_confirmed": True, "original_pages_confirmed": True,
+                             "inventory_confirmed": True, "research_rationale": f"@rationale:{s}.main",
+                             "search_ids": ["current-law:usc"], "conflict_resolutions": {}, "unresolved_material_gaps": []},
+                "clauses": [{"scope_id": f"{iid}#lead", "state": "terminated", "effective_date": "1990-02-03",
+                             "effective_date_confirmed": True, "later_events": [{"id": "x", "date": "1990-02-03"}]},
+                            {"scope_id": f"{iid}#sec1", "state": "operative", "current_basis_id": "ORIGINAL:EO:5",
+                             "checked_through": "2026-10-14", "effective_date_confirmed": False}],
+                "rationales": {f"{s}.main": "Because."}, "assessment": {"operative_force_at_cutoff": "yes"}}
+
+    def test_columns_match_the_kits_and_the_answer_becomes_the_four_files(self):
+        spec = importlib.util.spec_from_file_location("kit_batch_cols", C.REPO / "jobs/claim-kit/batch.py")
+        text = (C.REPO / "jobs/claim-kit/batch.py").read_text(encoding="utf-8")
+        self.assertIn("'dossier_sha256','agent','outcome'", text.replace(" ", "").replace("\n", ""))
+        self.assertEqual(self.CFIELDS[:3], ["instrument_id", "scope_id", "clause_id"])
+        row, cl = self.prep()
+        with tempfile.TemporaryDirectory() as t:
+            r, crows = ST.write_answer_sheet(self.answer(), "EO:5", t, self.FIELDS, row, self.CFIELDS, cl, "stateless-agent")
+            f, rows = ST.read_csv_file(Path(t) / "decisions.csv")
+            f2, rows2 = ST.read_csv_file(Path(t) / "clauses.csv")
+            self.assertEqual((f, f2), (self.FIELDS, self.CFIELDS))   # exactly the prepared column sets
+            self.assertEqual(rows[0]["approved"], "true")
+            self.assertEqual(rows[0]["agent"], "stateless-agent")
+            self.assertEqual(rows[0]["dossier_sha256"], "d" * 64)
+            self.assertEqual(json.loads(rows[0]["search_ids"]), ["current-law:usc"])
+            self.assertEqual(rows2[0]["clause_id"], "CLAUSES:EO:5#lead")   # defaulted from the prepared row
+            self.assertEqual(json.loads(rows2[0]["later_events"]), [{"id": "x", "date": "1990-02-03"}])
+            self.assertEqual(rows2[1]["effective_date_confirmed"], "false")
+            self.assertEqual(json.loads((Path(t) / "ASSESSMENT.json").read_text())["id"], "EO:5")
+            self.assertEqual(json.loads((Path(t) / "RATIONALES.json").read_text()), {"EO_5.main": "Because."})
+            got = ST.validate_sheet_folder(t, "EO:5", self.FIELDS, row, self.CFIELDS)
+            self.assertEqual(got[0]["outcome"], "submit")
+
+    def test_blocked_keeps_the_prepared_clauses_and_bad_answers_are_refused(self):
+        row, cl = self.prep()
+        with tempfile.TemporaryDirectory() as t:
+            ans = {"decision": {"outcome": "blocked", "unresolved_material_gaps": ["no source"]}, "clauses": [{"scope_id": "z"}]}
+            _, crows = ST.write_answer_sheet(ans, "EO:5", t, self.FIELDS, row, self.CFIELDS, cl, "a")
+            self.assertEqual([c["scope_id"] for c in crows], ["EO:5#lead", "EO:5#sec1"])
+            ST.validate_sheet_folder(t, "EO:5", self.FIELDS, row, self.CFIELDS)
+            with self.assertRaises(ValueError):
+                ST.write_answer_sheet({"decision": {"outcome": "maybe"}}, "EO:5", t, self.FIELDS, row, self.CFIELDS, cl, "a")
+            with self.assertRaises(ValueError):
+                ST.write_answer_sheet({"note": 1}, "EO:5", t, self.FIELDS, row, self.CFIELDS, cl, "a")
+            bad = self.answer()
+            bad["rationales"] = {"EO_9.main": "wrong slug"}
+            bad["decision"]["research_rationale"] = "@rationale:EO_9.main"
+            ST.write_answer_sheet(bad, "EO:5", t, self.FIELDS, row, self.CFIELDS, cl, "a")
+            with self.assertRaises(ValueError):
+                ST.validate_sheet_folder(t, "EO:5", self.FIELDS, row, self.CFIELDS)
+
+
+class NeedMoreServerTests(unittest.TestCase):
+    def test_serves_bounded_ranges_and_refuses_unsafe_paths(self):
+        with tempfile.TemporaryDirectory() as t:
+            repo = Path(t) / "repo"
+            (repo / "jobs").mkdir(parents=True)
+            (repo / "jobs/ok.txt").write_text("0123456789" * 10, encoding="utf-8")
+            (repo / "research/x/packet/reviews").mkdir(parents=True)
+            (repo / "research/x/packet/reviews/BLIND_REVIEW_A.jsonl").write_text("secret", encoding="utf-8")
+            (repo / "research/x/packet/decisions.csv").write_text("secret", encoding="utf-8")
+            (repo / "research/readiness/claims").mkdir(parents=True)
+            (repo / "research/readiness/claims/a.jsonl").write_text("secret", encoding="utf-8")
+            scratch, control = Path(t) / "scratch", Path(t) / "control"
+            scratch.mkdir()
+            control.mkdir()
+            (scratch / "w.txt").write_text("secret", encoding="utf-8")
+            (Path(t) / "outside.txt").write_text("secret", encoding="utf-8")
+            (repo / "link.txt").symlink_to(Path(t) / "outside.txt")
+            reqs = [{"path": "jobs/ok.txt", "start": 5, "end": 15},
+                    {"path": "../outside.txt", "start": 0, "end": 6},
+                    {"path": str(Path(t) / "outside.txt"), "start": 0, "end": 6},
+                    {"path": str(scratch / "w.txt"), "start": 0, "end": 6},
+                    {"path": "link.txt", "start": 0, "end": 6},
+                    {"path": "research/x/packet/reviews/BLIND_REVIEW_A.jsonl", "start": 0, "end": 6},
+                    {"path": "research/x/packet/decisions.csv", "start": 0, "end": 6},
+                    {"path": "research/readiness/claims/a.jsonl", "start": 0, "end": 6}]
+            text, report = ST.serve_need_more(repo, reqs, extra_forbidden=[scratch, control], max_requests=10)
+            self.assertEqual([r["served"] for r in report], [True] + [False] * 7)
+            self.assertIn("5678901234", text)
+            self.assertNotIn("secret", text)
+            self.assertIn("only repository-relative paths", report[1]["reason"])
+            self.assertIn("outside the repository", report[4]["reason"])
+            # a scratch folder INSIDE the repository's tree is refused too
+            (repo / "inside").mkdir()
+            (repo / "inside/w.txt").write_text("secret", encoding="utf-8")
+            text, report = ST.serve_need_more(repo, [{"path": "inside/w.txt", "start": 0, "end": 6}],
+                                              extra_forbidden=[repo / "inside"])
+            self.assertFalse(report[0]["served"])
+            self.assertNotIn("secret", text)
+            # bounds: bytes per range and requests per answer
+            big = repo / "jobs/big.txt"
+            big.write_text("z" * 50000, encoding="utf-8")
+            _, report = ST.serve_need_more(repo, [{"path": "jobs/big.txt", "start": 0, "end": 50000}])
+            self.assertEqual(report[0]["bytes"], ST.NEED_MAX_BYTES)
+            _, report = ST.serve_need_more(repo, [{"path": "jobs/ok.txt", "start": 0, "end": 5}] * 8)
+            self.assertEqual(sum(r["served"] for r in report), ST.NEED_MAX_REQUESTS)
+
+
+class CutoffTests(unittest.TestCase):
+    def test_prompts_over_150k_tokens_stay_on_the_agent_route(self):
+        self.assertEqual(ST.CUTOFF_TOKENS, 150_000)
+        pre = "p" * 400_000                       # 100k tokens (chars / 4)
+        self.assertFalse(ST.over_cutoff(pre, "s" * 199_996))   # 149,999 tokens
+        self.assertFalse(ST.over_cutoff(pre, "s" * 200_000))   # exactly 150,000
+        self.assertTrue(ST.over_cutoff(pre, "s" * 200_004))    # 150,001
+        self.assertEqual(ST.est_tokens("abcde"), 2)
+
+
+class StopRuleStatelessTests(unittest.TestCase):
+    ok_controls = [{"caught_A": True, "caught_B": True}] * 3
+
+    def rule(self, controls=None, dis=(3, 40), cost=1.0, haiku=True, complete=True):
+        return G.stop_rule(controls if controls is not None else self.ok_controls, {"count": dis[0], "n": dis[1]}, cost,
+                           haiku, complete)
+
+    def test_go_only_when_every_test_passes(self):
+        r = self.rule()
+        self.assertEqual((r["verdict"], r["haiku_matches_sonnet"], r["reasons"]), ("GO_STATELESS", True, []))
+        self.assertEqual(self.rule(haiku=False)["haiku_matches_sonnet"], False)
+
+    def test_any_missed_control_keeps_the_agent_route(self):
+        r = self.rule(controls=self.ok_controls + [{"caught_A": True, "caught_B": False}])
+        self.assertEqual(r["verdict"], "KEEP_AGENT_ROUTE")
+        self.assertIn("control", r["reasons"][0])
+
+    def test_disagreement_above_the_agent_arms_own_7_of_85(self):
+        self.assertEqual(self.rule(dis=(3, 40))["verdict"], "GO_STATELESS")      # 0.075 <= 7/85 = 0.0824
+        self.assertEqual(self.rule(dis=(4, 40))["verdict"], "KEEP_AGENT_ROUTE")  # 0.100
+        self.assertEqual(self.rule(dis=(7, 85))["verdict"], "GO_STATELESS")      # equal is not above
+
+    def test_cost_per_filed_claim_limit_and_incomplete_runs(self):
+        self.assertEqual(self.rule(cost=2.50)["verdict"], "GO_STATELESS")
+        self.assertEqual(self.rule(cost=2.51)["verdict"], "KEEP_AGENT_ROUTE")
+        self.assertEqual(self.rule(cost=None)["verdict"], "KEEP_AGENT_ROUTE")
+        self.assertEqual(self.rule(complete=False)["verdict"], "KEEP_AGENT_ROUTE")
+
+
+@unittest.skipUnless((PAPINIAN_DIR / "y01/packet/completion/COMPLETION.json").exists(), "Papinian packets not checked out")
+class ControlRegenerationTests(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        spec = importlib.util.spec_from_file_location("papinian_review_prep", PAPINIAN_DIR / "tools/review_prep.py")
+        cls.rp = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(cls.rp)   # defines functions and constants only; main() is not called
+        cls.batches = G.papinian_batches(C.REPO)
+
+    def test_regeneration_matches_review_prep_and_the_planted_hashes_the_agents_reviewed(self):
+        self.assertGreaterEqual(len(self.batches), 16)
+        n = 0
+        for b in self.batches:
+            bd = G.load_batch(C.REPO, b)
+            claims = bd["claims"]
+            review_set, genuine, controls, mode = G.regenerate_controls(b, claims)
+            # the same pick, mode and planted bytes as review_prep.py's own functions
+            elig = [c for c in claims if self.rp.has_end(c)]
+            want_mode = "end"
+            if not elig:
+                elig, want_mode = [c for c in claims if self.rp.has_event(c)], "event"
+            if not elig:
+                elig, want_mode = list(claims), "signing"
+            self.assertEqual(mode, want_mode, b)
+            rng = self.rp.random.Random(self.rp.hashlib.sha256(("papinian-controls:" + b).encode()).hexdigest())
+            k = max(1, round(len(claims) / 15))
+            picks = {c["instrument_id"] for c in rng.sample(sorted(elig, key=lambda c: c["instrument_id"]), min(k, len(elig)))}
+            self.assertEqual({c["instrument_id"] for c in controls}, picks, b)
+            for c in controls:
+                g = next(x for x in claims if x["instrument_id"] == c["instrument_id"])
+                planted, _ = self.rp.plant(g, want_mode)
+                self.assertEqual(c["planted"], self.rp.canon(planted), b)
+                self.assertEqual(c["genuine"], self.rp.canon(g), b)
+                # and the very hash the Papinian completion recorded (and both agent arms rejected)
+                self.assertIn(c["planted"], {x["planted_claim_sha256"] for x in bd["controls"]}, b)
+                self.assertEqual((bd["reviews"]["A"][c["planted"]]["verdict"], bd["reviews"]["B"][c["planted"]]["verdict"]),
+                                 ("rejected", "rejected"))
+                n += 1
+        self.assertEqual(n, 16)   # y01-y14, c01, r01b; the other two of Papinian's 18 left no reviewable packet here
+
+    def test_draws_are_deterministic_and_the_right_size(self):
+        bds = [G.load_batch(C.REPO, b) for b in self.batches]
+        p1, p2 = G.producer_draw(bds, "s"), G.producer_draw(bds, "s")
+        self.assertEqual(p1, p2)
+        self.assertEqual((sum(p["filed"] for p in p1), sum(not p["filed"] for p in p1)), (30, 30))
+        self.assertNotEqual(p1, G.producer_draw(bds, "other"))
+        r1 = G.reviewed_draw(bds, "s")
+        self.assertEqual(r1, G.reviewed_draw(bds, "s"))
+        self.assertEqual(len(r1), 40)
+        ctl = {(b["batch"], k["instrument_id"]) for b in bds for k in G.regenerate_controls(b["batch"], b["claims"])[2]}
+        self.assertFalse({(r["batch"], r["iid"]) for r in r1} & ctl)
+
+
+class StreamAndCallTests(unittest.TestCase):
+    def setUp(self):
+        t = tempfile.TemporaryDirectory()
+        self.addCleanup(t.cleanup)
+        self.dir = Path(t.name)
+        self.cache = self.dir / "cache"
+        env = {"MAUDSLAY_FAKE_CACHE": str(self.cache), "MAUDSLAY_FAKE_LOG": str(self.dir / "LOG")}
+        p = mock.patch.dict(os.environ, env)
+        p.start()
+        self.addCleanup(p.stop)
+        self.prices = ST.load_prices(C.REPO)
+        self.repo = self.dir / "repo"
+        (self.repo / "jobs").mkdir(parents=True)
+        (self.repo / "jobs/more.txt").write_text("held text of the file", encoding="utf-8")
+        self.ctx = {"repo": self.repo, "scratch": self.dir / "scratch", "template": STATELESS_FAKE,
+                    "program": PY, "prices": self.prices, "timeout": 60}
+        # the fake template starts with the fake script: argv[0] is replaced by the program, so rebuild it
+        self.ctx["template"] = [PY] + STATELESS_FAKE[1:]
+
+    def call(self, iid, prefix="P" * 4000, kind="producer", sc=None):
+        if sc is not None:
+            (self.dir / "sc.json").write_text(json.dumps(sc))
+            os.environ["MAUDSLAY_FAKE_SCENARIO"] = str(self.dir / "sc.json")
+        suffix = (f"ORDER: {iid}\nPREPARED CLAUSE ROWS (scope_id / clause_id): "
+                  + json.dumps([{"scope_id": iid + "#lead", "clause_id": "C:" + iid}]) + "\n")
+        pre = "=== ROLE: PRODUCER ===\n" + prefix
+        return {"id": f"P-{iid}", "stage": "producer-sonnet", "model": "claude-sonnet-5-5", "prefix": pre, "suffix": suffix,
+                "schema": ST.producer_schema(), "kind": kind}
+
+    def test_stream_parse_records_cache_per_call_and_prices_at_list(self):
+        r1 = G.run_call(self.call("EO:1"), self.ctx)
+        r2 = G.run_call(self.call("EO:2"), self.ctx)
+        for r in (r1, r2):
+            self.assertEqual(r["answer"]["decision"]["outcome"], "submit")
+            self.assertEqual(len(r["rounds"][0]["calls"]), 2)
+        ptok = r1["prefix_tokens_est"]
+        self.assertEqual(r1["prefix_sha256"], r2["prefix_sha256"])
+        self.assertEqual(r1["rounds"][0]["calls"][0]["cache_read"], 0)
+        self.assertGreaterEqual(r1["rounds"][0]["calls"][0]["cache_write"], ptok)
+        self.assertGreaterEqual(r2["rounds"][0]["calls"][0]["cache_read"], ptok)   # the second process reads the prefix
+        ev = ST.cache_evidence([{"label": r["id"], "started_utc": r["rounds"][0]["started_utc"],
+                                 "stateless": {"prefix_sha256": r["prefix_sha256"], "prefix_tokens_est": ptok,
+                                               "calls": r["rounds"][0]["calls"]}} for r in (r1, r2)])
+        self.assertEqual((ev[0]["processes"], ev[0]["later_processes"], ev[0]["later_processes_with_cache_read_near_prefix"]),
+                         (2, 1, 1))
+        row = ST.price_row(self.prices, "claude-sonnet-5-5")
+        c = r2["rounds"][0]["calls"][0]
+        want = (c["input"] * row["input"] + c["cache_read"] * row["cache_read"] + c["cache_write"] * row["cache_write_5m"]
+                + c["output"] * row["output"]) / 1e6
+        self.assertAlmostEqual(ST.call_usd(self.prices, "claude-sonnet-5-5", c), want)
+
+    def test_haiku_long_prompt_rates_and_unknown_models(self):
+        short = {"input": 0, "cache_read": 0, "cache_write": 50_000, "cache_write_1h": 0, "output": 1000}
+        long_ = dict(short, cache_write=150_000)
+        h = "claude-haiku-5-5"
+        self.assertAlmostEqual(ST.call_usd(self.prices, h, short), (50_000 * 0.125 + 1000 * 0.5) / 1e6)
+        self.assertAlmostEqual(ST.call_usd(self.prices, h, long_), (150_000 * 0.625 + 1000 * 2.5) / 1e6)
+        self.assertIsNone(ST.call_usd(self.prices, "claude-mystery-9", short))
+
+    def test_need_more_round_is_served_once_and_junk_or_a_second_request_fails(self):
+        sc = {"producer": {"EO:3": "need_more"}, "need_more": {"path": "jobs/more.txt", "start": 0, "end": 8}}
+        r = G.run_call(self.call("EO:3", sc=sc), self.ctx)
+        self.assertEqual(len(r["rounds"]), 2)
+        self.assertEqual(r["rounds"][0]["need_more"][0]["served"], True)
+        self.assertEqual(r["answer"]["decision"]["outcome"], "submit")
+        r = G.run_call(self.call("EO:4", sc={"producer": {"EO:4": "need_more_twice"}}), self.ctx)
+        self.assertIsNone(r["answer"])
+        self.assertIn("need_more", r["error"])
+        r = G.run_call(self.call("EO:5", sc={"producer": {"EO:5": "junk"}}), self.ctx)
+        self.assertEqual(r["answer"], {"note": "no decision here"})   # parsed; the sheet check, not the stream, refuses it
+
+    def test_parse_stream_fallbacks_and_the_command_template(self):
+        ev = [{"type": "assistant", "message": {"id": "a", "usage": {"input_tokens": 1, "output_tokens": 2}, "content": [
+            {"type": "text", "text": "```json\n{\"verdict\": \"upheld\"}\n```"}]}},
+              {"type": "result", "is_error": False, "result": "```json\n{\"verdict\": \"upheld\"}\n```", "usage": {}}]
+        p = ST.parse_stream("\n".join(json.dumps(e) for e in ev))
+        self.assertEqual((p["answer"], p["answer_from"], len(p["calls"])), ({"verdict": "upheld"}, "result_text", 1))
+        argv = G.build_argv(list(ST.STATELESS_TEMPLATE), "claude", "claude-opus-5-5", "/p/PREFIX.txt", ST.reviewer_schema())
+        for flag in ("-p", "--tools", "--system-prompt-file", "--json-schema", "--setting-sources", "--strict-mcp-config",
+                     "--output-format", "--verbose", "--model"):
+            self.assertIn(flag, argv)
+        self.assertEqual(argv[argv.index("--tools") + 1], "")
+        self.assertEqual(argv[argv.index("--system-prompt-file") + 1], "/p/PREFIX.txt")
+        self.assertNotIn("--bare", argv)
+        with self.assertRaises(ValueError):
+            ST.validate_stateless_command(argv + ["--add-dir", "/repo"])
+        bad = list(argv)
+        bad[bad.index("--tools") + 1] = "Bash"
+        with self.assertRaises(ValueError):
+            ST.validate_stateless_command(bad)
+
+
+class StatelessConveyorTests(ConveyorCase):
+    """The state machine in --stateless mode, with fakes/fake_stateless_worker.py as the claude command."""
+
+    def setUp(self):
+        super().setUp()
+        copy_rule_files(self.repo)
+        tools = json.loads((self.repo / "tools.json").read_text())
+        tools["cruden_number"] = [PY, str(FAKES / "fake_tool.py"), "number"]
+        (self.repo / "tools.json").write_text(json.dumps(tools))
+        w = {"producer": {"command": STATELESS_FAKE, "family": "claude", "model": "claude-sonnet-5-5", "model_family": "Anthropic"},
+             "reviewer": {"command": STATELESS_FAKE, "family": "claude", "model": "claude-opus-5-5", "model_family": "Anthropic"}}
+        (self.repo / "workers.json").write_text(json.dumps(w))
+        self.cache = Path(self.scratch.parent) / "fake-cache"
+        os.environ["MAUDSLAY_FAKE_CACHE"] = str(self.cache)
+        self.addCleanup(os.environ.pop, "MAUDSLAY_FAKE_CACHE", None)
+
+    def stateless_calls(self):
+        return self.worker_calls()
+
+    def test_full_stateless_batch_files_claims_and_shares_prefixes(self):
+        self.kit({"blocked": ["EO:4"]})
+        self.assertEqual(self.run_cli("--stateless", "--publish"), C.EXIT_DONE)
+        self.assertEqual(sorted(c["instrument_id"] for c in self.published()), ["EO:1", "EO:2", "EO:3"])
+        calls = self.worker_calls()
+        prod = [c for c in calls if c["kind"] == "producer"]
+        rev = [c for c in calls if c["kind"] == "reviewer"]
+        self.assertEqual(len(prod), 3)
+        self.assertEqual(len({c["prefix_sha256"] for c in prod}), 1)           # byte-identical across orders
+        by_claim = {}
+        for c in rev:
+            by_claim.setdefault(c["prefix_sha256"], []).append(c["id"].split(":")[-1])
+        # every prefix is shared by arm A and arm B equally often (an order's planted claim and its genuine twin share
+        # their evidence, so a control's prefix serves four requests)
+        self.assertTrue(all(v.count("A") == v.count("B") >= 1 for v in by_claim.values()), by_claim)
+        for c in calls:
+            self.assertIn("--tools", c["argv"])
+            self.assertNotIn("--max-turns", c["argv"])
+        m = json.loads((self.bdir / "MEASURES.json").read_text(encoding="utf-8"))
+        self.assertTrue(m["stateless"])
+        cache = m["stateless_cache"]
+        self.assertTrue(any(c["later_processes_with_cache_read_near_prefix"] >= 1 for c in cache), cache)
+        # the sheet columns are the prepared sheets' (the conveyor merged them and the kit's apply accepted them)
+        _, rows = C.read_csv(self.bdir / "packet/decisions.csv")
+        self.assertEqual({r["instrument_id"]: r["outcome"] for r in rows}, {"EO:1": "submit", "EO:2": "submit",
+                                                                            "EO:3": "submit", "EO:4": "blocked"})
+        self.assertEqual(len(list((self.scratch / "workers").glob("b01-produce-*/ANSWER.json"))), 3)
+
+    def test_need_more_round_and_a_junk_answer(self):
+        self.scenario({"producer": {"EO:2": "need_more", "EO:3": "junk"},
+                       "need_more": {"path": "FAKE_POOL.json", "start": 0, "end": 12}})
+        self.kit({})
+        self.assertEqual(self.run_cli("--stateless"), C.EXIT_DONE)
+        calls = [c for c in self.worker_calls("producer") if c["id"] == "EO:2"]
+        self.assertEqual(sorted(c["round"] for c in calls), [1, 2])
+        _, rows = C.read_csv(self.bdir / "packet/decisions.csv")
+        out = {r["instrument_id"]: r for r in rows}
+        self.assertEqual(out["EO:2"]["outcome"], "submit")
+        self.assertEqual(out["EO:3"]["outcome"], "unresolved")
+        self.assertIn("stateless answer unusable", out["EO:3"]["unresolved_material_gaps"])
+        served = json.loads(next((self.bdir / "stateless/need_more").glob("*.json")).read_text())
+        self.assertTrue(served["report"][0]["served"])
+
+    def test_missed_control_stops_a_stateless_batch(self):
+        self.scenario({"reviewer": {"A": {"miss_controls": True}}})
+        self.assertEqual(self.run_cli("--stateless"), C.EXIT_STOPPED)
+        self.assertIn("planted control", self.run_state()["data"]["reason"])
+
+    def test_refusals(self):
+        # an agent worker command under --stateless is refused before anything is reserved
+        (self.repo / "workers.json").write_text(json.dumps({"producer": {"command": CLAUDE_FAKE, "family": "claude",
+                                                                         "model": "m", "model_family": "Anthropic"},
+                                                            "reviewer": {"command": CLAUDE_FAKE, "family": "claude",
+                                                                         "model": "m", "model_family": "Anthropic"}}))
+        self.assertEqual(self.run_cli("--stateless"), C.EXIT_FAILED)
+        self.assertIn("stateless", self.run_state()["data"]["reason"])
+        # undecided actions stay on the agent route
+        with self.assertRaises(C.Fail):
+            C.Batch(dict(json.loads((self.bdir / "CONFIG.json").read_text()), action="status_assignment.undecided",
+                         stateless=True), self.repo).check_stateless()
+
+    def test_over_150k_tokens_goes_to_the_agent_worker_or_is_left_out(self):
+        big = "z" * (ST.CUTOFF_TOKENS * 4 + 100)
+        with mock.patch.object(ST, "producer_prefix", return_value=big):
+            b = C.Batch(dict(self.base_cfg(), stateless=True), self.repo)
+            views = {"EO:1": "v.json"}
+            (self.repo / "v.json").write_text(json.dumps({"instrument_id": "EO:1"}))
+            (b.dir / "prepared").mkdir(parents=True, exist_ok=True)
+            C.write_csv(b.dir / "prepared/decisions.csv", G.DEC_FIELDS, [dict({k: "" for k in G.DEC_FIELDS},
+                                                                              instrument_id="EO:1", dossier_sha256="d")])
+            C.write_csv(b.dir / "prepared/clauses.csv", G.CLAUSE_FIELDS, [])
+            rend = b.render_stateless(["EO:1"], views)
+            self.assertEqual((rend["rendered"], list(rend["over_cap"]), rend["agent_route"]), ([], ["EO:1"], []))
+            b.workers["producer_agent"] = dict(b.workers["producer"], stateless=False)
+            rend = b.render_stateless(["EO:1"], views)
+            self.assertEqual((rend["rendered"], rend["over_cap"], rend["agent_route"]), ([], {}, ["EO:1"]))
+
+    def base_cfg(self):
+        self.run_cli("--stateless", n=1)   # writes CONFIG.json (a short run); the config is what we reuse
+        return json.loads((self.bdir / "CONFIG.json").read_text())
+
+    def test_stateless_commands_print_and_validate(self):
+        with contextlib.redirect_stdout(io.StringIO()) as out:
+            C.main(["commands", "--workers", str(HERE / "workers.stateless.example.json")])
+        text = out.getvalue()
+        self.assertIn("--tools  --system-prompt-file PREFIX.txt", text.replace('""', ""))
+        self.assertIn("--setting-sources", text)
+
+
 if __name__ == "__main__":
     unittest.main()

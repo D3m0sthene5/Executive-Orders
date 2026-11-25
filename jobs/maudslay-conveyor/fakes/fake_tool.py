@@ -21,6 +21,11 @@ def main(a):
                                    "whole_order_status": "no", "view_bytes": 120, "missing": [],
                                    "own_text_boundary": {"verified_whole_order": True}}), encoding="utf-8")
         return 0
+    if a[0] == "number":
+        # cruden.py number EO:N ... --write FILE (only the --stateless mode asks for it)
+        ids = [x for x in a[1:a.index("--write")]]
+        Path(a[a.index("--write") + 1]).write_text(json.dumps({"queries": {i: {"hits": []} for i in ids}}), encoding="utf-8")
+        return 0
     if a[0] == "gate":
         if os.environ.get("MAUDSLAY_FAKE_GATE") == "REFUSE":
             print("production.test: not a ranked production action in output/PLAN.json; run `plan` first")
