@@ -6,8 +6,12 @@ usage: python -I finish_pair.py BATCH [--publish]     (env REPLACEMENT=1: isolat
   both-uphold rule: a submitted member files only if arm B also upheld the exact same claim hash (blind, or
   upheld_after_reveal for a genuine control); otherwise it becomes a blocked member quoting arm B's defects. Arm B's
   review files are pinned as receipts. Then runs kit.py complete into a new complete-vN (--publish only when asked).
-  Publication: agent bartolus -> research/readiness/claims/bartolus-2026-11-24-BATCH.jsonl; agent claude (own-claim
-  corrections) -> research/readiness/claims/claude-2026-11-24-bartolus-BATCH.jsonl."""
+  Publication (own claims): the claim kit chooses the file name (`kit.py publication-name`, completion.py
+  own_publication_path): AGENT-2026-11-24-bartolus-BATCH.jsonl when that sorts after every existing claim file of the
+  submitted members, otherwise LAST_STEM_corrected-2026-11-24-bartolus-BATCH.jsonl after the member file that sorts
+  last. (Files this wave already published used hand-chosen names: bartolus-2026-11-24-BATCH.jsonl and
+  claude-2026-11-24-bartolus-BATCH.jsonl.) A hand-made dated name sorts before older undated files and completion
+  refuses it (EO 14006, Bracton p04, 2026-11-25)."""
 import json
 import os
 import subprocess
@@ -19,6 +23,7 @@ SCR = Path('/home/claude/bartolus-scr')
 RUN = REPO / 'research/excavator/claude-bartolus-2026-11-24'
 MAKE = REPO / 'research/excavator/claude-nira-sweep-2026-10-29/make_completion.py'
 ADJ = 'claude-coordinator-bartolus-2026-11-24'
+DATE, WAVE = '2026-11-24', 'bartolus'
 WORDS = ('date', 'first_end', 'whole_order_end', 'signing', 'later_event', 'effective', 'year')
 
 
@@ -62,10 +67,8 @@ def main(batch, *flags):
         return 2
     if os.environ.get('REPLACEMENT'):
         pub = f'research/excavator/claude-bartolus-2026-11-24/{batch}/REPLACEMENT_PROPOSAL.jsonl'
-    elif agent == 'claude':
-        pub = f'research/readiness/claims/claude-2026-11-24-bartolus-{batch}.jsonl'
     else:
-        pub = f'research/readiness/claims/{agent}-2026-11-24-{batch}.jsonl'
+        pub = f'research/readiness/claims/{agent}-{DATE}-{WAVE}-{batch}.jsonl'  # placeholder; chosen below
     receipts = [str(rv / f) for f in ('BLIND_REVIEW_B.jsonl', 'AFTER_REVEAL_B.jsonl') if (rv / f).exists()]
     for extra in ('CARRY.json', 'PRODUCER_REPORT.md', 'ASSESSMENT.jsonl'):
         if (packet / extra).exists():
@@ -93,6 +96,21 @@ def main(batch, *flags):
             demoted.append(mem['instrument_id'])
     if os.environ.get('REPLACEMENT'):
         m['publication'] = {'mode': 'replacement_proposal', 'path': pub}
+    elif [x for x in m['members'] if x['outcome'] == 'submit']:  # nothing to file: the placeholder is never written
+        ids = [x['instrument_id'] for x in m['members'] if x['outcome'] == 'submit']
+        name = subprocess.run(['python3', '-X', 'utf8', 'jobs/claim-kit/kit.py', 'publication-name', '--agent', agent,
+                               '--date', DATE, '--wave', WAVE, '--batch', batch,
+                               *[a for iid in ids for a in ('--order', iid)]],
+                              cwd=REPO, capture_output=True, text=True, encoding='utf-8')
+        if name.returncode:
+            print(json.dumps({'batch': batch, 'publication_name_refused': name.stderr.strip()[-600:],
+                              'action': 'STOP: not completed'}))
+            return name.returncode
+        chosen = json.loads(name.stdout)
+        if chosen['other_owner_members']:
+            print(json.dumps({'batch': batch, 'other_owner_members_need_REPLACEMENT_run': chosen['other_owner_members']}))
+        pub = chosen['path']
+        m['publication'] = {'mode': 'own_claims', 'path': pub}
     mpath.write_text(json.dumps(m, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     print(json.dumps({'batch': batch, 'agent': agent, 'publication': pub,
                       'submit_after_pair_rule': sum(x['outcome'] == 'submit' for x in m['members']),
