@@ -78,3 +78,30 @@ and a separate reviewer must check the sources before any pilot claim is copied.
 Run `python -m unittest discover -s jobs/claim-kit -p 'test_*.py'` for synthetic,
 fixture round-trip and integration tests. The committed baseline regressions skip
 when their authoritative census/status files are absent in a sparse checkout.
+
+## Held sources and the pre-screen at prepare (Naude, Gilbreth)
+
+`prepare` writes `HELD_SOURCES.json`: for each member, every `jobs/*/output/SOURCES.jsonl` row whose
+`instrument_ids`, `requested_for_instrument_ids` or `mentioned_instrument_ids` name it and whose bytes and text the
+dossier does not already cite, with the actual checker's offline custody status. A row that only declares the
+order's own text (a mirror, say) is left to the original and working-text routes. States: `supplement_ready`
+(bytes held on this machine, text hash matches, spans by the ACTOR_TEXT rule: the whole text up to 50,000 bytes,
+else windows around lexical mentions of the number), `held_needs_span` (a large held text that never prints the
+number; someone must declare the span), `bytes_not_held` (held text but no held bytes: acquire, never cite),
+`held_bytes_not_on_this_machine`, `held_locator_incomplete`, `text_unavailable`, and
+`census_actor_text_without_evidence` (a paired census actor whose large text the compiler could not window).
+The `supplement_ready` spans are written as a `source_supplement` declaration, `HELD_SUPPLEMENT.json`.
+`kit.py prepare ... --held-supplement` seals it into a new packet `<write>-held`, which is the one to dispatch; its
+`SUPPLEMENT:` excerpts are unreviewed held text and need a `basis_eligible` mark to be a NO basis, exactly as
+for any supplement. Nothing here decides relevance or a status.
+
+`DISPATCH_CHECK.json` carries an advisory `prescreen` per member and a packet summary (`flagged_ids`). Rule
+`gilbreth_r3r`, correction route only (an owner-reviewable replacement of a filed claim): the member needs an
+actual-event fact and no event source (a TERM:/FACT: record other than the order's own page or a Presidency
+Project mirror) has held bytes. Gilbreth measured 66 of 79 correction-route blocks predicted and 0 of 9
+submissions flagged; on the YES route the rule flagged two claims later upheld, so it is not applied there. The
+pre-screen never blocks: `ok` and `dispatchable_ids` are unchanged. A coordinator may hold a flagged order for
+acquisition.
+
+`kit.py prepare` exits 0 when every member is dispatchable, 1 when it wrote the packet but some member is
+source-blocked (read `dispatch_check`), and 2 when it refused or failed.

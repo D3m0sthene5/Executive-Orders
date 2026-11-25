@@ -599,10 +599,19 @@ def prepare(repo,out,dest,ids,agent,dossier_paths=None,replacement_proposal=Fals
         'model_tokens':None,'no_legal_outcomes_inferred':True}
     # Check custody before assigning a model, using the existing checker policy.
     # Preserve the full packet, including blocked members, for source research.
-    from dispatch import check as dispatch_check
-    dispatch=dispatch_check(repo,dest)
+    from dispatch import actual_checker,source_context,check as dispatch_check
+    checker=actual_checker();context=(checker,source_context(repo,checker))
+    dispatch=dispatch_check(repo,dest,context=context)
     dump(dest/'DISPATCH_CHECK.json',dispatch)
     metrics['dispatch_check']={k:dispatch[k] for k in ('ok','dispatchable_ids','source_blocked_ids','state')}
+    metrics['prescreen']={k:dispatch['prescreen'][k] for k in ('rule','advisory_only','flagged_ids')}
+    # Naude: held sources the registry names for a member that its dossier does not cite (advisory), and the
+    # source_supplement declaration for the ones with held bytes and mechanical spans (kit prepare --held-supplement).
+    import held_sources
+    held=held_sources.scan(repo,dossiers,*context);declared,overflow=held_sources.declaration(held)
+    dump(dest/'HELD_SOURCES.json',held)
+    if declared['sources']:dump(dest/'HELD_SUPPLEMENT.json',declared)
+    metrics['held_sources']=held_sources.summary(held,declared,overflow)
     if admitted:admission.record(dest,action,new,agent,repo)
     dump(dest/'PREPARE.json',metrics);return metrics
 
