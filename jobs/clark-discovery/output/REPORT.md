@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-25T10:15:15Z. Leads only; no census, count or identity changes.
+Generated 2026-11-25T23:57:08Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -77,32 +77,32 @@ Generated 2026-11-25T10:15:15Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-28 of 28 unknowns advanced this run (0 never searched yet); 293 of 1100 requests used. 5503 hits on file, 158 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 22 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+1 of 28 unknowns advanced this run (0 never searched yet); 5 of 2 requests used. 5503 hits on file, 158 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 22 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
-List pages: 60 read, 236 order numbers named, **4 absent from the census**: `WEB_LISTED_ORDERS.csv`.
+List pages: 10 read, 69 order numbers named, **4 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
 | Engine | Status |
 |---|---|
 | bing_api | needs_key |
-| bing_rss | blocked_by_robots_txt |
-| brave_api | error |
-| brave_html | blocked_by_robots_txt |
-| duckduckgo_html | http_403 |
-| duckduckgo_lite | http_403 |
-| federal_register_api | ok |
-| google_books | http_429 |
+| bing_rss | not_tried |
+| brave_api | not_tried |
+| brave_html | not_tried |
+| duckduckgo_html | error |
+| duckduckgo_lite | error |
+| federal_register_api | not_tried |
+| google_books | not_tried |
 | google_cse | needs_key |
-| govinfo_search_page | blocked_by_robots_txt |
-| hathitrust_catalog | blocked_by_robots_txt |
-| internet_archive | ok |
-| loc_books | error |
-| loc_manuscripts | error |
-| loc_newspapers | ok |
-| marginalia | error |
-| mojeek_html | blocked_by_robots_txt |
+| govinfo_search_page | not_tried |
+| hathitrust_catalog | not_tried |
+| internet_archive | not_tried |
+| loc_books | not_tried |
+| loc_manuscripts | not_tried |
+| loc_newspapers | not_tried |
+| marginalia | not_tried |
+| mojeek_html | not_tried |
 | nara_catalog | needs_key |
-| presidency_project | ok |
+| presidency_project | not_tried |
 | serpapi_google | needs_key |
-| wikipedia_search | blocked_by_robots_txt |
-| wikisource_search | blocked_by_robots_txt |
-| yandex_html | blocked_by_robots_txt |
+| wikipedia_search | not_tried |
+| wikisource_search | not_tried |
+| yandex_html | not_tried |
