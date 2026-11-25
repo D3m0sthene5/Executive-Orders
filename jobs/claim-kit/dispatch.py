@@ -97,7 +97,54 @@ def readiness_scope(dossier, flight, prior, sources):
         'legal_requirement_coverage': 'unknown', 'scientific_approval': False}
 
 
-def check(repo, folder, orders=None):
+PRESCREEN_RULE = 'gilbreth_r3r'
+PRESCREEN_PASS = {'held_bytes_verified', 'held_bytes_in_release_or_repo', 'gpo_published_hash_match'}
+PRESCREEN_EVIDENCE = ('Gilbreth 2026-11-25 (research/excavator/claude-bracton-2026-11-25/GILBRETH.md section 4.2): on the '
+                      'correction route the rule predicted 66 of 79 blocks and flagged 0 of 9 submissions (zero in 9 is '
+                      'consistent with a false-flag rate up to about 28%); on the YES route it flagged 4 submissions, 2 '
+                      'later upheld by both reviewers, so it is not applied there.')
+
+
+def event_sources(sources):
+    """Sources that could show an actual event: TERM: or FACT: records other than the order's own original page
+    and other than a Presidency Project mirror of the order (Gilbreth's definition)."""
+    own = next(((s.get('source') or {}).get('page_or_item') for s in sources
+                if str(s.get('evidence_id', '')).startswith('ORIGINAL:')), None)
+    out = []
+    for s in sources:
+        eid = str(s.get('evidence_id') or '')
+        ref = s.get('source') or {}
+        if not eid.startswith(('TERM:', 'FACT:')):
+            continue
+        if own and ref.get('page_or_item') == own:
+            continue
+        if any(m in (ref.get('text_path') or '') for m in ('app-executive-orders', 'app-transcriptions')):
+            continue
+        out.append(s)
+    return out
+
+
+def prescreen(sources, tasks, route):
+    """Advisory zero-token pre-screen (Gilbreth R3r), never a blocker.
+
+    Correction route only (an owner-reviewable replacement of a filed claim): flag a member that needs an
+    actual-event fact (an ``actual_event_fact`` research task) when no event source has held bytes. A coordinator
+    may hold a flagged order for acquisition; dispatchability and every check are unchanged."""
+    if route != 'owner_reviewable_replacement_proposal':
+        return {'rule': PRESCREEN_RULE, 'applies': False, 'flag': False,
+                'reason': 'not the correction route (no filed claim being replaced); the rule misfired on the YES route'}
+    needs = any(t.get('kind') == 'actual_event_fact' for t in tasks or [])
+    events = event_sources(sources)
+    held = [s['evidence_id'] for s in events
+            if s.get('checks') and all(c.get('status') in PRESCREEN_PASS for c in s['checks'])]
+    flag = needs and not held
+    return {'rule': PRESCREEN_RULE, 'applies': True, 'flag': flag, 'needs_actual_event_fact': needs,
+            'event_sources': len(events), 'event_sources_held': len(held),
+            'meaning': ('advisory: likely source-blocked; consider holding for acquisition of an event source'
+                        if flag else 'not flagged'), 'advisory_only': True}
+
+
+def check(repo, folder, orders=None, context=None):
     """Recheck the whole seal; screen the explicitly requested members (all by default).
 
     Required original/inventory evidence blocks dispatch when mechanically unusable.
@@ -113,10 +160,13 @@ def check(repo, folder, orders=None):
     ids = list(dossiers) if orders is None else list(orders)
     if not ids or len(set(ids)) != len(ids) or set(ids) - set(dossiers):
         raise ValueError('dispatch order selection must be distinct packet members')
-    checker = actual_checker()
     # Only custody APIs are needed; avoid Context's unrelated status, gate and
     # signing loads. allow_download=False is explicit, independent of env/global budgets.
-    ctx = source_context(repo, checker)
+    # ``context`` (checker, source context) lets prepare build the custody index once.
+    checker, ctx = context if context is not None else (None, None)
+    if checker is None:
+        checker = actual_checker()
+        ctx = source_context(repo, checker)
     checked, texts, members = {}, {}, []
     for iid in ids:
         d = dossiers[iid]
@@ -178,9 +228,11 @@ def check(repo, folder, orders=None):
                     quote = item.get('text', item.get('provision_text'))
                     if type(a) is not int or type(b) is not int or not 0 <= a < b <= len(body) or body[a:b] != quote:
                         blockers.append({'kind': 'required_span_not_verified', 'evidence_id': eid})
+        route = (packet.get('ownership', {}).get(iid) or {}).get('route')
         members.append({'instrument_id': iid, 'state': 'source_blocked' if blockers else 'dispatchable_for_research',
                         'blockers': blockers, 'sources': source_results,
                         'research_tasks': packet['preflight'][iid]['mechanical_tasks'],
+                        'prescreen': prescreen(source_results, packet['preflight'][iid]['mechanical_tasks'], route),
                         'readiness_scope': readiness_scope(d, packet['preflight'][iid],
                             packet.get('prior_research', {}).get('orders', {}).get(iid, {}), source_results)})
     blocked = [m['instrument_id'] for m in members if m['blockers']]
@@ -189,7 +241,12 @@ def check(repo, folder, orders=None):
             'packet_fingerprint': packet['fingerprint'], 'packet_members': list(dossiers), 'checked_ids': ids,
             'state': 'source_blocked' if blocked else 'dispatchable_for_research', 'ok': not blocked,
             'dispatchable_ids': [m['instrument_id'] for m in members if not m['blockers']],
-            'source_blocked_ids': blocked, 'members': members, 'unique_custody_checks': len(checked),
+            'source_blocked_ids': blocked, 'members': members,
+            'prescreen': {'rule': PRESCREEN_RULE, 'advisory_only': True,
+                          'flagged_ids': [m['instrument_id'] for m in members if m['prescreen'].get('flag')],
+                          'applied_ids': [m['instrument_id'] for m in members if m['prescreen'].get('applies')],
+                          'evidence': PRESCREEN_EVIDENCE},
+            'unique_custody_checks': len(checked),
             'unique_required_text_checks': len(texts), 'wall_seconds': round(time.monotonic()-started, 6),
             'source_index_notes': ctx.index.notes, 'source_recovery_tasks': recovery_tasks(members),
             'legal_requirement_coverage': 'unknown',
@@ -219,6 +276,8 @@ def summary(result):
         ('task_id', 'expected_sha256', 'check_statuses', 'native_wanted', 'next_action')}
         for t in result['source_recovery_tasks']]
     out['legal_requirement_coverage'] = result['legal_requirement_coverage']
+    if result.get('prescreen'):
+        out['prescreen'] = {k: result['prescreen'][k] for k in ('rule', 'advisory_only', 'flagged_ids', 'applied_ids')}
     return out
 
 

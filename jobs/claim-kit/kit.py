@@ -183,7 +183,7 @@ def main(argv=None):
     s=sub.add_parser('history-impact',help='use Valla to identify historical answers requiring revalidation');s.add_argument('results',type=Path);s.add_argument('--changed',type=Path,required=True);s.add_argument('--write',type=Path)
     s=sub.add_parser('factual-at',help='query reviewed bounded occurrence facts, not legal state');s.add_argument('packet',type=Path);s.add_argument('--order',required=True);s.add_argument('--on',required=True)
     s=sub.add_parser('status-sheet');s.add_argument('instrument_id');s.add_argument('--agent',required=True);s.add_argument('--write',type=Path,required=True)
-    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--action',help='Bentham action id; every order must be in its list');s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--history-bundle',type=Path,action='append',default=[]);s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch')
+    s=sub.add_parser('prepare');s.add_argument('instrument_ids',nargs='+');s.add_argument('--agent',required=True);s.add_argument('--action',help='Bentham action id; every order must be in its list');s.add_argument('--write',type=Path,required=True);s.add_argument('--replacement-proposal',action='store_true');s.add_argument('--history-bundle',type=Path,action='append',default=[]);s.add_argument('--research-only',action='store_true',help='export source-blocked work without approving production dispatch');s.add_argument('--held-supplement',action='store_true',help='also seal the packet\'s HELD_SUPPLEMENT.json (held registry sources the dossiers do not cite) into a new packet <write>-held through source_supplement; dispatch that packet')
     s=sub.add_parser('dispatch-check');s.add_argument('packet',type=Path);s.add_argument('--order',action='append');s.add_argument('--write',type=Path)
     s=sub.add_parser('apply');s.add_argument('packet',type=Path);s.add_argument('--write',type=Path,required=True)
     s=sub.add_parser('batch-check');s.add_argument('packet',type=Path);s.add_argument('applied',type=Path);s.add_argument('--geddes-strict',action='store_true',help='exit nonzero unless every Geddes lint flag has a resolution (geddes gate)')
@@ -356,7 +356,20 @@ def main(argv=None):
                     result['selected_source_check']={'state':'no_proposed_claims','scientific_approval':False}
             if a.command=='prepare':
                 result['research_only']=a.research_only
-                failed=failed or (not result['dispatch_check']['ok'] and not a.research_only)
+                gate=result['dispatch_check']
+                if a.held_supplement and (a.write/'HELD_SUPPLEMENT.json').is_file():
+                    import source_supplement
+                    target=a.write.with_name(a.write.name+'-held')
+                    receipt=source_supplement.prepare(repo,a.write,a.write/'HELD_SUPPLEMENT.json',a.agent,target)
+                    gate=receipt['native_prepare']['dispatch_check']
+                    result['held_supplement']={'packet':str(target),'parent_packet':str(a.write),
+                        'declared_excerpts':result['held_sources']['declared_excerpts'],'dispatch_check':gate,
+                        'notice':'Dispatch the -held packet; its SUPPLEMENT: excerpts are unreviewed held text, not a basis by themselves.'}
+                elif a.held_supplement:
+                    result['held_supplement']={'packet':None,'declared_excerpts':0}
+                # Exit 1 means the packet was written and at least one member is source-blocked (see dispatch_check);
+                # exit 2 means prepare refused or failed and wrote no usable packet.
+                failed=failed or (not gate['ok'] and not a.research_only)
             actual=result.get('actual_claim_checker',{})
             if a.command=='batch-check':
                 failed=failed or actual.get('claims_all_checks_passed',0)!=result.get('claims_checked',0)
