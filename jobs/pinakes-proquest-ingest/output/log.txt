@@ -55,13 +55,14 @@ ok
 test_text_quality_flags_handwriting (test_ingest.Ingest.test_text_quality_flags_handwriting) ... ok
 
 ----------------------------------------------------------------------
-Ran 3 tests in 0.041s
+Ran 3 tests in 0.036s
 
 OK
+OCR: 121 orders, 175 pages, 4 workers
 {
   "files": {
-    "pdf_files": 2806,
-    "unique_by_sha256": 2750,
+    "pdf_files": 4903,
+    "unique_by_sha256": 4841,
     "stray_or_bad": 0,
     "folders": [
       "ProQuest Pre-1937 Orders",
@@ -69,33 +70,38 @@ OK
     ]
   },
   "orders": {
-    "with_pdf": 2750,
-    "in_census": 2750,
+    "with_pdf": 4841,
+    "in_census": 4841,
     "not_in_census": [],
     "by_era": {
-      "1860s": 2,
-      "1870s": 6,
-      "1880s": 2,
-      "1890s": 9,
-      "1900s": 286,
-      "1910s": 1040,
-      "1920s": 1401,
-      "1930s": 1,
-      "1940s": 3
+      "1860s": 6,
+      "1870s": 12,
+      "1880s": 4,
+      "1890s": 75,
+      "1900s": 971,
+      "1910s": 1936,
+      "1920s": 1742,
+      "1930s": 34,
+      "1940s": 40,
+      "1950s": 10,
+      "1960s": 2,
+      "1970s": 4,
+      "1980s": 2,
+      "1990s": 3
     }
   },
   "texts": {
     "by_source": {
-      "ocr": 453,
-      "layer": 2297
+      "ocr": 857,
+      "layer": 3984
     },
-    "usable": 2440,
-    "low_quality_probably_handwritten": 310,
-    "ocr_this_run": 0,
-    "ocr_pages_this_run": 0,
+    "usable": 4267,
+    "low_quality_probably_handwritten": 574,
+    "ocr_this_run": 121,
+    "ocr_pages_this_run": 175,
     "ocr_page_budget": 4000,
     "ocr_workers": 4,
-    "carried_from_prior_run": 453,
+    "carried_from_prior_run": 736,
     "still_without_text": 0,
     "deferred_by_budget": 0,
     "ocr_available_here": true
@@ -104,8 +110,59 @@ OK
     "total": 2765,
     "with_pdf": 2750,
     "missing": 15,
-    "pdfs_for_orders_not_on_list": [],
-    "pdfs_for_orders_not_on_list_count": 0
+    "pdfs_for_orders_not_on_list": [
+      "EO:1",
+      "EO:1001",
+      "EO:1003",
+      "EO:1004",
+      "EO:1005",
+      "EO:1006",
+      "EO:101",
+      "EO:1010",
+      "EO:1011",
+      "EO:1012",
+      "EO:1014",
+      "EO:1015",
+      "EO:1016",
+      "EO:1017",
+      "EO:1018",
+      "EO:1019",
+      "EO:102",
+      "EO:10214",
+      "EO:1024",
+      "EO:10246",
+      "EO:1025",
+      "EO:1026",
+      "EO:1028",
+      "EO:1029",
+      "EO:103",
+      "EO:1031",
+      "EO:1033",
+      "EO:1034",
+      "EO:1035",
+      "EO:1036",
+      "EO:1037",
+      "EO:1038",
+      "EO:1039",
+      "EO:104",
+      "EO:1040",
+      "EO:1041",
+      "EO:10417",
+      "EO:1042",
+      "EO:10427",
+      "EO:1043",
+      "EO:1045",
+      "EO:1046",
+      "EO:1047",
+      "EO:1049",
+      "EO:105",
+      "EO:1050",
+      "EO:10524",
+      "EO:1053",
+      "EO:1055",
+      "EO:1057"
+    ],
+    "pdfs_for_orders_not_on_list_count": 2091
   },
   "problems": []
 }

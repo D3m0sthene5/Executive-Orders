@@ -1,0 +1,201 @@
+{
+ "sample": {
+  "orders": 80,
+  "numbered": 73,
+  "per_cell": {
+   "C01": 4,
+   "C02": 6,
+   "C03": 10,
+   "C04": 10,
+   "C05": 10,
+   "C06": 3,
+   "C07": 7,
+   "C08": 10,
+   "C09": 10,
+   "C10": 3,
+   "C11": 7
+  },
+  "population_numbered": 15002
+ },
+ "tier_share_percent": {
+  "census_machine": {
+   "T0": 0.5,
+   "T1": 15.0,
+   "T2": 61.0,
+   "T3": 12.9,
+   "T4": 2.3,
+   "T5": 8.4
+  },
+  "worker_confirmed_start_weighted": {
+   "T0": 0.5,
+   "T1": 51.2,
+   "T2": 48.3,
+   "T3": 0.0,
+   "T4": 0.0,
+   "T5": 0.0
+  },
+  "reviewer_supported_after_one_pass_weighted": {
+   "T0": 0.5,
+   "T1": 12.4,
+   "T2": 25.7,
+   "T3": 7.9,
+   "T4": 42.6,
+   "T5": 10.9
+  }
+ },
+ "census_vs_worker_start": {
+  "T0->T0": 4,
+  "T1->T1": 16,
+  "T2->T1": 11,
+  "T2->T2": 16,
+  "T3->T1": 9,
+  "T3->T2": 4,
+  "T4->T1": 3,
+  "T4->T2": 7,
+  "T5->T1": 1,
+  "T5->T2": 2
+ },
+ "census_vs_reviewed": {
+  "T0->T0": 4,
+  "T1->T1": 11,
+  "T1->T2": 1,
+  "T1->T4": 4,
+  "T2->T2": 8,
+  "T2->T3": 2,
+  "T2->T4": 12,
+  "T2->T5": 5,
+  "T3->T1": 2,
+  "T3->T2": 5,
+  "T3->T3": 2,
+  "T3->T4": 2,
+  "T3->T5": 2,
+  "T4->T4": 5,
+  "T4->T5": 5,
+  "T5->T3": 1,
+  "T5->T4": 2
+ },
+ "missing_evidence": {
+  "all_listed_gaps_by_stop_code": {
+   "WEB": 77,
+   "NOT_FOUND": 47,
+   "NEEDS_RULING": 28,
+   "OFFLINE": 13,
+   "HELD_UNROUTED": 7,
+   "TOOL_DEFECT": 6,
+   "BUDGET": 2
+  },
+  "first_stop_of_orders_below_T5": {
+   "WEB": 22,
+   "NOT_FOUND": 14,
+   "NEEDS_RULING": 10,
+   "none listed": 7,
+   "OFFLINE": 6,
+   "TOOL_DEFECT": 2,
+   "HELD_UNROUTED": 1
+  },
+  "first_stop_weighted_percent": {
+   "WEB": 38.9,
+   "NOT_FOUND": 26.5,
+   "none listed": 12.9,
+   "NEEDS_RULING": 10.8,
+   "OFFLINE": 10.5,
+   "TOOL_DEFECT": 0.3,
+   "HELD_UNROUTED": 0.1
+  },
+  "stop_code_verdicts": {
+   "confirmed": 37,
+   "no_gap": 21,
+   "wrong (WE": 9,
+   "wrong (HE": 1,
+   "wrong (NO": 7,
+   "wrong (LO": 1,
+   "wrong (ON": 1,
+   "wrong (an": 1,
+   "wrong (BU": 1,
+   "wrong (TO": 1
+  }
+ },
+ "proposition_locations": {
+  "H": 419,
+  "W": 184,
+  "N": 2
+ },
+ "blind_audit": [
+  {
+   "id": "EO:10559",
+   "cell": "C10",
+   "ledger": "no",
+   "probe": "NO",
+   "reviewer": "upheld",
+   "agrees": true,
+   "census_tier": "T5",
+   "reviewed_tier": "T4",
+   "stop": null
+  },
+  {
+   "id": "EO:10886",
+   "cell": "C06",
+   "ledger": "no",
+   "probe": "NO",
+   "reviewer": "rejected",
+   "agrees": false,
+   "census_tier": "T3",
+   "reviewed_tier": "T2",
+   "stop": "NEEDS_RULING"
+  },
+  {
+   "id": "EO:11666",
+   "cell": "C06",
+   "ledger": "no",
+   "probe": "OPEN",
+   "reviewer": "upheld",
+   "agrees": false,
+   "census_tier": "T3",
+   "reviewed_tier": "T4",
+   "stop": "NEEDS_RULING"
+  },
+  {
+   "id": "EO:5614",
+   "cell": "C10",
+   "ledger": "no",
+   "probe": "NO",
+   "reviewer": "upheld",
+   "agrees": true,
+   "census_tier": "T5",
+   "reviewed_tier": "T4",
+   "stop": null
+  },
+  {
+   "id": "EO:6313",
+   "cell": "C10",
+   "ledger": "no",
+   "probe": "OPEN",
+   "reviewer": "upheld",
+   "agrees": false,
+   "census_tier": "T5",
+   "reviewed_tier": "T3",
+   "stop": "NEEDS_RULING"
+  },
+  {
+   "id": "EO:8163",
+   "cell": "C06",
+   "ledger": "no",
+   "probe": "NO",
+   "reviewer": "rejected",
+   "agrees": false,
+   "census_tier": "T3",
+   "reviewed_tier": "T2",
+   "stop": "WEB"
+  }
+ ],
+ "units": {
+  "per_order_mean": 98180,
+  "per_order_max": 209579,
+  "by_step": {
+   "units_producer": 3610337,
+   "units_review": 2273979,
+   "units_repair": 1970085
+  },
+  "repairs_run": 52
+ }
+}

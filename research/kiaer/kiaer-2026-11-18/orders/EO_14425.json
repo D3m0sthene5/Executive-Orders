@@ -1,0 +1,635 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C04",
+ "census_overstated": false,
+ "conclusion": "YES",
+ "conclusion_verdict": "unverifiable",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "sec. 2: Agriculture, Interior, USTR, FDA and SBA to submit to the President within 90 days a report assessing rules and policies affecting ranchers, with recommendations",
+    "end": null,
+    "props": [
+     "p2",
+     "p10"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 3(a): within 90 days, Interior to determine whether gray and Mexican wolves meet ESA recovery criteria and, if so, begin delisting or downlisting",
+    "end": null,
+    "props": [
+     "p3",
+     "p9",
+     "p12"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 3(b): within 90 days, Interior to submit to the President a legislative recommendation to delist or downlist the wolves",
+    "end": null,
+    "props": [
+     "p4",
+     "p10",
+     "p12"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 3(c): within 90 days and only upon Interior's determination that recovery criteria are met, Intergovernmental Affairs with Agriculture to engage States on State wolf listings and lethal-take standards",
+    "end": null,
+    "props": [
+     "p5",
+     "p8",
+     "p12"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 3(d)-(e): within 90 days, Interior and Agriculture to consider amending depredation-compensation rules and standards; Interior to consider revising lethal-removal criteria",
+    "end": null,
+    "props": [
+     "p12",
+     "p13"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 4: Agriculture to review within 90 days authorities for mandatory country-of-origin labeling of beef and give a summary and economic analysis; may then issue rules or legislative recommendations",
+    "end": null,
+    "props": [
+     "p6",
+     "p10"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 5: each agency head to take appropriate steps so the measures benefit consumers through lower prices",
+    "end": null,
+    "props": [
+     "p7"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 6(d): costs of publishing the order to be borne by the Department of Agriculture",
+    "end": null,
+    "props": [
+     "p11"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "positive_current_source",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "YES"
+  },
+  "data_errors": [],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Whether the sec. 2 report, the sec. 3(b) legislative recommendation and the sec. 4 summary and economic analysis had been delivered by 2026-10-14 (deadline about 2026-12-03)",
+    "where_to_look": "USDA, Interior, USTR and White House press releases and records; any later Federal Register notice reciting the submissions. These records were not examined."
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether Interior had made the sec. 3(a) recovery determination by 2026-10-14, which also decides whether sec. 3(c) was triggered; the 12 Oct USDA bulletin suggests not, but no Interior record was read",
+    "where_to_look": "doi.gov and fws.gov press releases; Federal Register proposed rules on gray wolf and Mexican wolf listing status"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether Interior and Agriculture were considering the sec. 3(d)-(e) changes to compensation rules and lethal-removal criteria at the cutoff",
+    "where_to_look": "Interior, FWS and USDA (APHIS, FSA) notices, handbooks and rulemaking dockets citing EO 14425"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "A clause-specific current source for sec. 5 (consumer prices)",
+    "where_to_look": "agency records citing sec. 5 of EO 14425"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether the Department of Agriculture paid the publication costs under sec. 6(d), and when",
+    "where_to_look": "Office of the Federal Register or GPO billing records; USDA records"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Character-exact check of the USDA bulletin quotations in p8 and p9 and of the search result in p10; the reviewer could not retrieve either URL, and here both were read only through a summarising fetch tool",
+    "where_to_look": "https://content.govdelivery.com/accounts/USDAOC/bulletins/42ee4e6 in a browser; the matching usda.gov press release (usda.gov/node/69329 returned HTTP 403 earlier); the Federal Register search page for \"Executive Order 14425\""
+   }
+  ],
+  "id": "EO:14425",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held file is the text layer of the official Federal Register PDF (91 FR 57765-57767), fully legible; operative clauses listed, now including sec. 6(d) and the sec. 3 lead-in and sec. 3(c) condition the reviewer pointed out.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "YES on the order as a whole: a USDA bulletin dated 2026-10-12 names EO 14425 as what its outreach follows (re-fetched 2026-11-18, same date, title and wording as before); the Federal Register search re-run 2026-11-18 returned count 1, the order itself; the order's own 90-day deadlines (about 2026-12-03) fall after the cutoff and are performance deadlines, not endings. Caveats: the reviewer could not retrieve either web source, and both were read here through a summarising fetch tool that relays the bulletin sentences in segments, so the quotations are not character-verified. If the bulletin cannot be confirmed independently, the supported result is OPEN at T2.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": false,
+    "from": "T3",
+    "note": "No clause has a clause-specific source. The USDA bulletin does not show that Interior made the sec. 3(a) determination, that the Intergovernmental Affairs duty in sec. 3(c) was triggered, or that the sec. 3(d)-(e) considerations were under way. Delivery of the sec. 2 report, sec. 3(b) recommendation and sec. 4 summary, and payment under sec. 6(d), are unsourced. Agency and White House records were not examined.",
+    "stop_code": "WEB",
+    "to": "T4"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_14425.txt (https://www.govinfo.gov/content/pkg/FR-2026-09-10/pdf/2026-18571.pdf)"
+  },
+  "propositions": [
+   {
+    "claim": "EO 14425 of 4 Sep 2026 is printed in the Federal Register at 91 FR 57765, 10 Sep 2026.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "57765 Federal Register / Vol. 91, No. 174 / Thursday, September 10, 2026 / Presidential Documents Executive Order 14425 of September 4, 2026 Supporting America's Ranchers",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 2 requires a report to the President within 90 days.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "Within 90 days of the date of this order, the Secretary of Agriculture, the Secretary of the Interior, the United States Trade Representative",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 3(a) requires an Interior determination on wolf recovery criteria.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "The Secretary of the Interior shall make a determination as to whether the gray wolf and the Mexican wolf have met the recovery criteria for delisting or downlisting",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 3(b) requires a legislative recommendation to the President.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "shall prepare and submit to the President a legislative recommendation to fully delist or downlist the gray wolf and the Mexican wolf under the ESA",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 3(c) directs Intergovernmental Affairs, with Agriculture, to engage with States, conditional on Interior's determination (see p12).",
+    "location": "H",
+    "pid": "p5",
+    "quote": "shall engage with States to encourage them to delist gray wolves and Mexican wolves from any State-specific lists of protected species",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 4 requires a review of country-of-origin labeling authorities within 90 days.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "shall review all statutory and regulatory authorities that may permit the establishment of mandatory country-of-origin labeling for beef products",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 5 is a direction to every agency head with no time limit stated. This shows the textual duty only, not its operation at the cutoff.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "the head of each agency shall take such steps as may be appropriate to ensure that the measures directed in this order",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "A USDA bulletin dated 12 Oct 2026, titled \"Following President Trump's Executive Order, USDA Urges States to Review Wolf Management Policies and Strengthen Engagement with Ranchers\", names EO 14425 as what its outreach to States follows. It is a current agency record treating the order as in force; it does not show that Interior made the sec. 3(a) determination or that the sec. 3(c) duty was triggered. Re-fetched 2026-11-18 with the same date, title and wording; the fetch tool summarises and relays the sentence in segments, so the quotation is not character-verified.",
+    "location": "W",
+    "pid": "p8",
+    "quote": "This outreach follows President Trump's Executive Order 14425, titled \"Supporting America's Ranchers,\"",
+    "supports": "current",
+    "where": "https://content.govdelivery.com/accounts/USDAOC/bulletins/42ee4e6"
+   },
+   {
+    "claim": "The same 12 Oct 2026 USDA bulletin says ranchers still await federal clarity on the wolf question. This is a lead that the Interior determination was pending, not proof of the state of sec. 3(a). Same re-fetch and same verbatim caveat as p8.",
+    "location": "W",
+    "pid": "p9",
+    "quote": "As ranchers await federal clarity on this issue, I am urging states to listen to their producers, review state-specific",
+    "supports": "current",
+    "where": "https://content.govdelivery.com/accounts/USDAOC/bulletins/42ee4e6"
+   },
+   {
+    "claim": "A Federal Register API full-text search for \"Executive Order 14425\", re-run 2026-11-18, returned count 1: the order itself (document 2026-18571, Presidential Document, published 2026-09-10). No later Federal Register document naming the order was found. This covers Federal Register documents only, not unpublished agency or White House records. The quotation is the result fields as relayed by the fetch tool, not a verbatim copy of the JSON.",
+    "location": "W",
+    "pid": "p10",
+    "quote": "Count: 1. Title: Supporting America's Ranchers; Type: Presidential Document; Document number: 2026-18571; Publication date: 2026-09-10",
+    "supports": "counterevidence",
+    "where": "https://www.federalregister.gov/api/v1/documents.json?conditions[term]=%22Executive+Order+14425%22&order=oldest"
+   },
+   {
+    "claim": "Sec. 6(d) directs that the costs of publishing the order be borne by the Department of Agriculture. No source for payment was read; the printing carries billing code 3410-18-P, which is only a lead.",
+    "location": "H",
+    "pid": "p11",
+    "quote": "The costs for publication of this order shall be borne by the Department of Agriculture.",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "The 90-day period introduces all of sec. 3, so it also governs sec. 3(c)-(e); and sec. 3(c) applies only upon Interior's determination that the recovery criteria are met. The 90 days is a performance deadline, not an ending.",
+    "location": "H",
+    "pid": "p12",
+    "quote": "Upon a determination by the Secretary of the Interior that the ESA recovery criteria has been met with respect to the gray wolf and the Mexican wolf",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 3(d) directs Interior and Agriculture to consider developing or amending depredation-compensation rules; sec. 3(e) directs Interior to consider revising lethal-removal criteria.",
+    "location": "H",
+    "pid": "p13",
+    "quote": "shall consider developing or amending their respective Departments' producer compensation regulations, evidentiary standards, and program handbooks",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by the reviewer; confirmed against the held file."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by the reviewer."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by the reviewer; the sec. 3(a) clause state is changed from operating to open because no Interior record was read."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld by the reviewer."
+   },
+   {
+    "change": "fixed",
+    "pid": "p5",
+    "why": "Narrowed to sec. 3(c), which is all the quotation covers; the condition is in new p12 and sec. 3(d)-(e) in new p13. Clause states changed from operating to open."
+   },
+   {
+    "change": "kept",
+    "pid": "p6",
+    "why": "Upheld by the reviewer."
+   },
+   {
+    "change": "kept",
+    "pid": "p7",
+    "why": "Upheld by the reviewer; added that it shows the textual duty only."
+   },
+   {
+    "change": "fixed",
+    "pid": "p8",
+    "why": "Re-fetched 2026-11-18: same date, title and sentence. Claim narrowed from 'acting under the order' to 'names the order as what the outreach follows'; no longer used to mark any wolf clause as operating. Still read through a summarising tool."
+   },
+   {
+    "change": "fixed",
+    "pid": "p9",
+    "why": "Re-fetched 2026-11-18 with the same sentence. Recast as a lead that the determination was pending, not proof of the sec. 3(a) state. Quote trimmed to the first relayed segment."
+   },
+   {
+    "change": "fixed",
+    "pid": "p10",
+    "why": "Search re-run 2026-11-18 returned count 1. The quotation now gives the result fields instead of order text, and the claim is limited to Federal Register documents."
+   },
+   {
+    "change": "fixed",
+    "pid": "p11",
+    "why": "New: sec. 6(d) publication-cost clause the reviewer said was missed; confirmed in the held file, state open."
+   },
+   {
+    "change": "fixed",
+    "pid": "p12",
+    "why": "New: the sec. 3(c) condition and the 90-day lead-in for all of sec. 3, as the reviewer noted; confirmed in the held file."
+   },
+   {
+    "change": "fixed",
+    "pid": "p13",
+    "why": "New: gives sec. 3(d)-(e) their own quotation from the held file, which p5 lacked."
+   }
+  ],
+  "searches": [
+   "Read held file jobs/fr-originals/output/texts/EO_14425.txt in full (again on 2026-11-18)",
+   "Web search: Executive Order 14425 Supporting America's Ranchers gray wolf implementation Interior USDA October 2026 (earlier run)",
+   "Federal Register API full-text search for \"Executive Order 14425\", oldest first: re-run 2026-11-18, count 1, the order itself",
+   "Fetched USDA govdelivery bulletin 42ee4e6 again on 2026-11-18: dated 2026-10-12, same title and sentences as the earlier fetch",
+   "Fetch of usda.gov/node/69329 failed with HTTP 403 (earlier run; not retried)"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T3"
+ },
+ "group": "modern",
+ "id": "EO:14425",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T3",
+ "reached_final": "T3",
+ "reached_reviewed": "T2",
+ "result": {
+  "clauses": [
+   {
+    "clause": "sec. 2: Agriculture, Interior, USTR, FDA and SBA to submit to the President within 90 days a report assessing rules and policies affecting ranchers, with recommendations",
+    "end": null,
+    "props": [
+     "p2",
+     "p10"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 3(a): Interior to determine within 90 days whether gray and Mexican wolves meet ESA recovery criteria and, if so, begin delisting or downlisting",
+    "end": null,
+    "props": [
+     "p3",
+     "p8",
+     "p9"
+    ],
+    "state": "operating"
+   },
+   {
+    "clause": "sec. 3(b): Interior to submit to the President within 90 days a legislative recommendation to delist or downlist the wolves",
+    "end": null,
+    "props": [
+     "p4",
+     "p10"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 3(c): on Interior's determination, Intergovernmental Affairs with Agriculture to engage States on State wolf listings and lethal-take standards",
+    "end": null,
+    "props": [
+     "p5",
+     "p8",
+     "p9"
+    ],
+    "state": "operating"
+   },
+   {
+    "clause": "sec. 3(d)-(e): Interior and Agriculture to consider amending depredation-compensation rules and standards; Interior to consider revising lethal-removal criteria",
+    "end": null,
+    "props": [
+     "p5",
+     "p8"
+    ],
+    "state": "operating"
+   },
+   {
+    "clause": "sec. 4: Agriculture to review within 90 days authorities for mandatory country-of-origin labeling of beef and give a summary and economic analysis; may then issue rules or legislative recommendations",
+    "end": null,
+    "props": [
+     "p6",
+     "p10"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "sec. 5: each agency head to take appropriate steps so the measures benefit consumers through lower prices",
+    "end": null,
+    "props": [
+     "p7"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "positive_current_source",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "YES"
+  },
+  "data_errors": [],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether the sec. 2 report, the sec. 3(b) legislative recommendation and the sec. 4 summary and economic analysis had been delivered to the White House by 2026-10-14 (deadline about 2026-12-03)",
+    "where_to_look": "USDA, Interior and White House press releases after 2026-10-14; any later Federal Register notice reciting the submissions"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether Interior had made the sec. 3(a) recovery determination by 2026-10-14; the 12 Oct USDA bulletin suggests not, but no Interior record was read",
+    "where_to_look": "doi.gov and fws.gov press releases; Federal Register proposed rules on gray wolf and Mexican wolf listing status"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "A clause-specific current source for sec. 5 (consumer prices)",
+    "where_to_look": "agency records citing sec. 5 of EO 14425"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Verbatim check of the USDA bulletin quotations in p8 and p9, which came through a summarising fetch tool that split sentences",
+    "where_to_look": "https://content.govdelivery.com/accounts/USDAOC/bulletins/42ee4e6 and the matching usda.gov press release (usda.gov/node/69329 returned HTTP 403)"
+   }
+  ],
+  "id": "EO:14425",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held file is the text layer of the official Federal Register PDF (91 FR 57765-57767), fully legible; operative clauses listed.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "YES: USDA bulletin of 2026-10-12 acts under the order by name; Federal Register search finds no later document naming it; own 90-day deadlines (about 2026-12-03) fall after the cutoff.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": false,
+    "from": "T3",
+    "note": "No public source shows whether the sec. 2 report, sec. 3(b) legislative recommendation or sec. 4 summary had been delivered by 2026-10-14; no clause-specific current source for sec. 5.",
+    "stop_code": "NOT_FOUND",
+    "to": "T4"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_14425.txt (https://www.govinfo.gov/content/pkg/FR-2026-09-10/pdf/2026-18571.pdf)"
+  },
+  "propositions": [
+   {
+    "claim": "EO 14425 of 4 Sep 2026 is printed in the Federal Register at 91 FR 57765, 10 Sep 2026.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "57765 Federal Register / Vol. 91, No. 174 / Thursday, September 10, 2026 / Presidential Documents Executive Order 14425 of September 4, 2026 Supporting America's Ranchers",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 2 requires a report to the President within 90 days.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "Within 90 days of the date of this order, the Secretary of Agriculture, the Secretary of the Interior, the United States Trade Representative",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 3(a) requires an Interior determination on wolf recovery criteria.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "The Secretary of the Interior shall make a determination as to whether the gray wolf and the Mexican wolf have met the recovery criteria for delisting or downlisting",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 3(b) requires a legislative recommendation to the President.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "shall prepare and submit to the President a legislative recommendation to fully delist or downlist the gray wolf and the Mexican wolf under the ESA",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 3(c) directs engagement with States; sec. 3(d)-(e) direct consideration of rule changes.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "shall engage with States to encourage them to delist gray wolves and Mexican wolves from any State-specific lists of protected species",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 4 requires a review of country-of-origin labeling authorities within 90 days.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "shall review all statutory and regulatory authorities that may permit the establishment of mandatory country-of-origin labeling for beef products",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "Sec. 5 is a standing direction to every agency head with no time limit.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "the head of each agency shall take such steps as may be appropriate to ensure that the measures directed in this order",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_14425.txt"
+   },
+   {
+    "claim": "On 12 Oct 2026 USDA issued a bulletin acting under EO 14425 by name. Quote relayed by a fetch summariser in segments; verify verbatim.",
+    "location": "W",
+    "pid": "p8",
+    "quote": "This outreach follows President Trump's Executive Order 14425, titled \"Supporting America's Ranchers,\"",
+    "supports": "current",
+    "where": "https://content.govdelivery.com/accounts/USDAOC/bulletins/42ee4e6"
+   },
+   {
+    "claim": "On 12 Oct 2026 the Secretary of Agriculture described the federal wolf question as still pending. Same verbatim caveat.",
+    "location": "W",
+    "pid": "p9",
+    "quote": "As ranchers await federal clarity on this issue, I am urging states to listen to their producers, review state-specific wolf protections",
+    "supports": "current",
+    "where": "https://content.govdelivery.com/accounts/USDAOC/bulletins/42ee4e6"
+   },
+   {
+    "claim": "A Federal Register full-text search for \"Executive Order 14425\" on 2026-11-18 returned one document, the order itself; no later instrument naming it was found.",
+    "location": "W",
+    "pid": "p10",
+    "quote": "Executive Order 14425 of September 4, 2026 Supporting America's Ranchers By the authority vested in me as President",
+    "supports": "counterevidence",
+    "where": "https://www.federalregister.gov/api/v1/documents.json?conditions[term]=%22Executive+Order+14425%22&order=oldest"
+   }
+  ],
+  "searches": [
+   "Read held file jobs/fr-originals/output/texts/EO_14425.txt in full",
+   "Web search: Executive Order 14425 Supporting America's Ranchers gray wolf implementation Interior USDA October 2026",
+   "Federal Register API full-text search for \"Executive Order 14425\", oldest first: 1 result, the order itself",
+   "Fetched USDA govdelivery bulletin 42ee4e6 (dated 2026-10-12)",
+   "Fetch of usda.gov/node/69329 failed with HTTP 403"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T3"
+ },
+ "review": {
+  "conclusion_reason": "YES depends on an unverified current agency source. The original establishes duties but does not independently establish their operation at the cutoff under the project's positive-current-source rule. The supported assessment is OPEN pending a retrievable current implementation source and ending check. Formal status remains only a limited no-ending-found observation: the slice lists no later naming instruments, but the claimed search could not be confirmed.",
+  "conclusion_verdict": "unverifiable",
+  "id": "EO:14425",
+  "missed_evidence": [
+   "The held EO_14425.txt, PDF page 3, section 6(d), adds an omitted operative payment direction: 'The costs for publication of this order shall be borne by the Department of Agriculture.' Its performance or continuing status needs a clause state.",
+   "The held text, PDF page 1, makes section 3(c) conditional: 'Upon a determination by the Secretary of the Interior that the ESA recovery criteria has been met'. Generic Agriculture outreach would not alone prove that Interior made this determination or that the specified Intergovernmental Affairs duty was operating.",
+   "The held text, PDF page 1, introduces all of section 3 with 'Within 90 days of the date of this order'. This also qualifies sections 3(c)-(e); it is a performance deadline, not evidence of termination."
+  ],
+  "stop_code_verdict": "wrong (WEB fits): the slice provides no held agency completion records or current-law evidence, and the result identifies unexamined agency/White House records as the missing sources. Its Federal Register naming search would not establish that submissions were not found in those records. NOT_FOUND is not substantiated.",
+  "suspected_defect": "Possible unsupported promotion of wolf-related clauses to operating: the cited outreach quotation, even if verified, would not establish Interior's determination or implementation of the compensation and lethal-removal consideration duties. No deliberate fabrication can be established from the accessible evidence.",
+  "tier_supported": "T2",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The named held Federal Register text confirms the number, date, title, and 91 FR 57765 publication citation.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Section 2 expressly requires the listed officials to submit the report to the President within 90 days; the full paragraph confirms the truncated quotation.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "Section 3(a) contains the quoted determination requirement and conditional direction to begin delisting or downlisting.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "Section 3(b) expressly requires preparation and submission of the legislative recommendation to the President.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "Section 3(c) confirms conditional State engagement; the separately inspected sections 3(d) and 3(e) confirm the consideration requirements, although the supplied quotation covers only 3(c).",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "Section 4 confirms the quoted review requirement and its 90-day deadline.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "Section 5 directs each agency head to take appropriate steps toward lower consumer prices and specifies no termination date. This confirms the textual duty, not its current operation independently.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p8",
+    "reason": "The exact GovDelivery URL failed retrieval through both the web tool and a direct request. Neither the quotation nor the bulletin date could be confirmed.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p9",
+    "reason": "The cited bulletin could not be retrieved; the quotation and its context remain unconfirmed.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p10",
+    "reason": "The exact Federal Register API URL failed retrieval. The quoted order text does not itself establish the claimed result count or absence of later instruments.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 205.8,
+ "start": "T2",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "wrong (WEB fits): the slice provides no held agency completion records or current-law evidence, and the result identifies unexamined agency/White House records as the missing sources. Its Federal Register naming search would not establish that submissions were not found in those records. NOT_FOUND is not substantiated.",
+ "tokens": 178557,
+ "units": 111210,
+ "units_producer": 41328,
+ "units_repair": 48817,
+ "units_review": 21065
+}

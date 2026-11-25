@@ -1,0 +1,46 @@
+{
+  "reviewer_model": "gpt-6",
+  "stage0": {
+    "plan_sha256": "5bbccb42ee66f12ab44d7c6e535443fb71c8ce905ac339a13ac359d293d824b9",
+    "verdict": "reject",
+    "reasons": [
+      "The objective passes Augur: reviewer-upheld tier moves per unit are an outcome, and spending is a limit. One lane, 29 genuine orders and 6,000,000 units fit STAGE_CAPS[0]. All required supervisor fields are positive; their non-enforcement is disclosed. The owner's exceptions are accepted.",
+      "Third-review change 1 is met: reconcile rejects non-finite, boolean, nonpositive and below-charge figures before updating the charge or reconciliation flag. The CLI returns REFUSED with exit code 2. The supplied regression tests cover the requested refusal paths.",
+      "Third-review change 2 remains incomplete. bridge.codex.parse_events validates usage only after selecting a dictionary. After a valid event, a turn.completed event with usage:null, usage:[], or missing usage is silently ignored. Likewise, token_count with info.last_token_usage:{} and no total_token_usage becomes None through the fallback expression and is ignored. Earlier valid counters survive, so the adapter supplies all four counters and Engine._usage treats incomplete turn accounting as measured.",
+      "For example, a valid event reporting input_tokens=100, cached_input_tokens=40 and output_tokens=7 followed by a completion event with usage:null produces a measured charge of 92 units, without an estimated flag or admission halt. Consumption associated with the malformed event is unaccounted for. Repeated mixed event streams can accumulate omitted consumption beyond the disclosed in-flight overshoot. This contradicts the asserted handling of malformed usage and leaves the third review's accounting requirement unmet.",
+      "Third-review change 3 is met: planting is conditional, retries are bounded per job with ceiling exclusions, estimates use recording or recovery time, and test coverage is narrowed. All eight lesson answers are plan-specific. At least three concrete pre-mortem guards are implemented, including reservations, saved-state checks and artifact ownership.",
+      "The supplied execution paths restrict model writes and keep run state outside the repository. I found no direct mechanism in those paths to file claims or change statuses or counts outside the owner-authorized report output. First-pass artifacts are protected from reviewer and repair replacement."
+    ],
+    "risks_noted": [
+      "Producer blindness remains imperfect as disclosed: public search snippets can reveal ledger information. Reviewer blindness is instruction-only; reviewer access can bias its verdict and contaminate repair feedback, although repair cannot replace the first-pass result.",
+      "In-flight consumption can exceed reservations, and an estimate is not a measured bound until reconciled. The disclosed supervisor fields and additional owner stop conditions depend on the directing session.",
+      "Only the named finding-aid inputs are hashed. Held texts, model defaults and the configurable system prompt remain outside that binding.",
+      "Database job creation and STATE.json replacement are not atomic. Disagreement fails closed on restart, but crashes can require recovery or skip orders.",
+      "The blind-slice test checks a minimal dictionary and source text rather than exercising build with representative ledger data. CLI read and fetch denials remain untested, as disclosed.",
+      "This was a static review of the supplied code and tests. Tests were not rerun; Python was unavailable in the review shell."
+    ]
+  },
+  "stage1": {
+    "plan_sha256": "eb6a80d30c51561588490490575f0e7abdb9ca2ed7e0ef2fac902e907ee1dbbe",
+    "verdict": "reject",
+    "reasons": [
+      "The outcome objective passes. Three lanes, 235 cumulative genuine orders and 10,000,000 cumulative units fit STAGE_CAPS[1], which permits three lanes, 300 orders and 40,000,000 units. The owner's Bentham and configuration-ramp exceptions are accepted; the ramp is not independently unsafe once accounting is reliable and the owner's stop conditions are applied.",
+      "The supplied launch and saved-state checks constrain workers, drawable orders and the requested cap. Initial full-run execution follows the stage-0 completion and projection checks; reservations count concurrent work and exclude jobs still held by another worker.",
+      "Third-review change 1 is met: non-finite reconciliation figures cannot remove a charge or clear the admission block. Third-review change 2 remains incomplete because parse_events ignores malformed accounting events whose usage is not a dictionary, and can skip an empty last_token_usage object through its fallback expression.",
+      "A valid usage event followed by usage:null, usage:[], missing completion usage, or token_count with only an empty last_token_usage retains the earlier counters. The engine then records measured usage and starts further turns. Consequently, both cumulative accounting and the stage-0 estimated-turn gate can miss omitted consumption; three-worker reservations do not bound consumption that is repeatedly omitted from recorded charges. This exceeds the disclosed overshoot mechanism.",
+      "Third-review change 3 is met. The lesson answers are specific, and the implemented pre-mortem guards satisfy Augur's substantive requirements. The forecast limitations, supervisor non-enforcement, environment settings and conditional planting are disclosed.",
+      "I found no direct unauthorized repository-write mechanism in the supplied execution paths. Artifact ownership preserves the producer's first-pass result; the authorized report command is the intended repository output."
+    ],
+    "risks_noted": [
+      "The projection remains a forecast: it includes failed-order costs, omits finishing costs for orders stopped at the stage-0 cap, and uses pooled costs for sparse cells. Reservations still permit disclosed in-flight excess.",
+      "The directing session must apply the owner's additional stop conditions. At the smoke-test costs, requiring another 40 orders to fit could prevent stage1 even when the code's reduced-sample projection passes.",
+      "Report SUMMARY.json counts estimated turns only for genuine orders and defines failed orders by missing result/review pairs. The directing session should also inspect engine totals and job statuses for planted-turn estimates and repair failures; the full-run estimated-turn gate itself uses engine totals.",
+      "Search snippets can contaminate producers, and instruction-only reviewer blindness can bias audit agreement. Shared finding aids further limit independence.",
+      "Adaptive stopping, reduced cell sizes, census-based starting tiers and unreviewed repairs limit statistical interpretation. Augur's absent-action forecast is not evidence of zero cost or zero yield.",
+      "Restart atomicity and unpinned inputs remain disclosed limitations. Tests and the live Augur check were not executed during this read-only review."
+    ]
+  },
+  "required_changes": [
+    "Complete Codex usage validation before approving either plan. Identify supported accounting events before filtering their usage payload to dictionaries. A turn.completed event with missing, null or non-dictionary usage must invalidate the turn's usage; supported token_count payloads must distinguish an absent field from an explicitly empty or malformed field rather than masking it with an 'or' fallback. Preserve invalidation across the entire event stream so any such malformed accounting event makes parse_events return no usage, even after valid events. Add regression cases for valid events followed by missing/null/list/string usage and empty last_token_usage, and verify through the adapter and engine that these streams receive an estimated charge and block further admission until reconciliation. Retain the existing reconciliation fix and corrected plan wording."
+  ]
+}

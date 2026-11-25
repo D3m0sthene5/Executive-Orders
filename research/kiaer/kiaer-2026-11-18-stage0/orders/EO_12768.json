@@ -1,0 +1,334 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C02",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "sole clause: amends sec. 4(b) of EO 12700 by replacing the termination date 'June 30, 1991' with 'June 30, 1993' (clause list taken from the transcription, not an accepted original)",
+    "end": "1993-11-23",
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "express_named_ending",
+   "first_end": "1993-11-23",
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/fr-originals/output/texts/EO_12768.txt does not contain EO 12768. It holds PDF pages 4-9 of FR-1991-07-02 (masthead, contents, Proclamation 6311 at 30307); its header says 'confidence low'. The slice's label 'official_found_page_check_pending' is therefore wrong for this file.",
+   "Probable issue-date error behind the wrong file: the OFR table gives '56 FR 30302; July 2, 1991', but the 2 July 1991 issue starts at 30307 and its contents list only Proc. 6311 under Presidential Documents. Page 30302 is probably in the 1 July 1991 issue (not verified).",
+   "The slice's current-law snippet for 42 U.S.C. 6601 note is correctly tagged as an ended-status line, not a current-force source; no positive current source exists.",
+   "first_end 1993-11-23 is a verified ending (express revocation by EO 12882), but it has not been established as the earliest ending: whether the parent EO 12700 or this amendment ended earlier (for example at the 30 June 1993 termination date) was not checked."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "An accepted original printing of EO 12768 has not been read, so the operative words and the clause list rest on a transcription.",
+    "where_to_look": "56 FR 30302. Page 30302 precedes the first page (30307) of the 2 July 1991 issue, so it is probably in the 1 July 1991 issue (Vol. 56 No. 126): https://www.govinfo.gov/content/pkg/FR-1991-07-01/pdf/FR-1991-07-01.pdf, near the end. That inference is not verified. Alternative: 3 CFR, 1991 Compilation."
+   }
+  ],
+  "id": "EO:12768",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Held FR file EO_12768.txt does not contain the order (PDF pages 4-9 of the 2 July 1991 issue: front matter, contents, Proc. 6311 at 30307). Only the APP transcription is held. The govinfo issue PDFs (FR-1991-07-01 and the /link/fr/56/30302 redirect) exceed the 10 MB fetch limit, so no accepted original was read.",
+    "stop_code": "WEB",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Status evidence is complete (express named revocation read in the held FR printing of EO 12882), but T3 needs T2 first.",
+    "stop_code": "WEB",
+    "to": "T3"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "jobs/app-executive-orders/output/texts/executive-order-12768-extension-the-presidents-council-advisors-science-and-technology.txt (transcription only); official printing at 56 FR 30302, not read"
+  },
+  "propositions": [
+   {
+    "claim": "The order's only command amends sec. 4(b) of EO 12700 to extend the Council's termination date to 30 June 1993 (transcription, a lead only).",
+    "location": "H",
+    "pid": "p1",
+    "quote": "it is hereby ordered that Section 4(b) of Executive Order No. 12700 is amended by deleting \"June 30, 1991\" and inserting \"June 30, 1993\" in lieu thereof.",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-12768-extension-the-presidents-council-advisors-science-and-technology.txt"
+   },
+   {
+    "claim": "EO 12882 of 23 November 1993 expressly revokes EO 12768 by number, together with its parent EO 12700 (Federal Register printing, OCR).",
+    "location": "H",
+    "pid": "p2",
+    "quote": "(c) Executive Orders Nos. 12700, 12768, and Section 2 of Executive Order No. 12869 are hereby revoked.",
+    "supports": "ending",
+    "where": "jobs/fr-originals/output/texts/EO_12882.txt"
+   },
+   {
+    "claim": "The OFR disposition table records EO 12768 as amending EO 12700 and as revoked by EO 12882.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "Revoked by: EO 12882, November 23, 1993",
+    "supports": "ending",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1991.html"
+   },
+   {
+    "claim": "Corroboration only, not relied on for the conclusion or the clause state: on a second fetch (2026-11-18) of the 1994 U.S. Code chapter page, the fetch tool again relayed a note under 42 U.S.C. 6601 saying EO 12700, as amended by EO 12768, was revoked by sec. 4(c) of EO 12882. The page was not read directly; the tool returns the text in fragments and one join is garbled (it repeats the sec. 4(c) reference), so the exact wording is unconfirmed. The quotation here is one relayed fragment.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "administration, and termination on June 30, 1993, was revoked by section 4(c) of Ex. Ord. No. 12882,",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/USCODE-1994-title42/html/USCODE-1994-title42-chap79.htm"
+   },
+   {
+    "claim": "The held file filed as the FR original of EO 12768 begins its Presidential Documents at page 30307 with Proclamation 6311, not at 30302 with the order.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "Presidential Documents 30307 Title 3— Proclamation 6311 of June 28, 1991",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_12768.txt"
+   },
+   {
+    "claim": "The OFR disposition table cites the order to 56 FR 30302 and dates that page 2 July 1991 (this confirms what the table reports, not that its issue date is right).",
+    "location": "W",
+    "pid": "p6",
+    "quote": "Federal Register page and date: 56 FR 30302; July 2, 1991",
+    "supports": "original",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1991.html"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review; remains transcription evidence only."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld; express named revocation in the held FR printing of EO 12882."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld; OFR disposition table."
+   },
+   {
+    "change": "fixed",
+    "pid": "p4",
+    "why": "Re-fetched the page: the relayed note does contain the revocation words, so the quote now includes them. Still tool-relayed in fragments with one garbled join, so it is downgraded to corroboration only and removed from the clause's props."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Upheld; held file is the wrong document."
+   },
+   {
+    "change": "kept",
+    "pid": "p6",
+    "why": "Upheld; claim now says it confirms the table's report, not the issue date's accuracy."
+   }
+  ],
+  "searches": [
+   "Read held jobs/fr-originals/output/texts/EO_12768.txt in full: order not present",
+   "Read held APP transcription of EO 12768",
+   "Grep of held FR text of EO 12882 for 12768 / revoked",
+   "archives.gov 1991 executive orders disposition table",
+   "govinfo FR-1991-07-01 PDF and govinfo /link/fr/56/30302: both over the 10 MB fetch limit",
+   "federalregister.gov API, term 12768: 0 results",
+   "uscode.house.gov 42 USC 6601 prelim: 404",
+   "Web search for 12768 / 56 F.R. 30302 / 12882; govinfo USCODE-1994 title 42 chapter 79 note",
+   "Repair pass 2026-11-18: re-fetched govinfo USCODE-1994 title 42 chapter 79 page; the fetch tool relayed the 6601 note in fragments, including the revocation words"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "group": "modern",
+ "id": "EO:12768",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T1",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "sole clause: amends sec. 4(b) of EO 12700 by replacing the termination date 'June 30, 1991' with 'June 30, 1993' (clause list taken from the transcription, not an accepted original)",
+    "end": "1993-11-23",
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "express_named_ending",
+   "first_end": "1993-11-23",
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/fr-originals/output/texts/EO_12768.txt does not contain EO 12768. It holds PDF pages 4-9 of FR-1991-07-02 (masthead, contents, Proclamation 6311 at 30307); its header says 'confidence low'. The slice's label 'official_found_page_check_pending' is therefore wrong for this file.",
+   "Probable issue-date error behind the wrong file: the OFR table gives '56 FR 30302; July 2, 1991', but the 2 July 1991 issue starts at 30307 and its contents list only Proc. 6311 under Presidential Documents. Page 30302 is probably in the 1 July 1991 issue (not verified).",
+   "The slice's current-law snippet for 42 U.S.C. 6601 note is correctly tagged as an ended-status line, not a current-force source; no positive current source exists."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "An accepted original printing of EO 12768 has not been read, so the operative words and the clause list rest on a transcription.",
+    "where_to_look": "56 FR 30302. Page 30302 precedes the first page (30307) of the 2 July 1991 issue, so it is probably in the 1 July 1991 issue (Vol. 56 No. 126): https://www.govinfo.gov/content/pkg/FR-1991-07-01/pdf/FR-1991-07-01.pdf, near the end. That inference is not verified. Alternative: 3 CFR, 1991 Compilation."
+   }
+  ],
+  "id": "EO:12768",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Held FR file EO_12768.txt does not contain the order (PDF pages 4-9 of the 2 July 1991 issue: front matter, contents, Proc. 6311 at 30307). Only the APP transcription is held. The govinfo issue PDFs (FR-1991-07-01 and the /link/fr/56/30302 redirect) exceed the 10 MB fetch limit, so no accepted original was read.",
+    "stop_code": "WEB",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Status evidence is complete (express named revocation read in the held FR printing of EO 12882), but T3 needs T2 first.",
+    "stop_code": "WEB",
+    "to": "T3"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "jobs/app-executive-orders/output/texts/executive-order-12768-extension-the-presidents-council-advisors-science-and-technology.txt (transcription only); official printing at 56 FR 30302, not read"
+  },
+  "propositions": [
+   {
+    "claim": "The order's only command amends sec. 4(b) of EO 12700 to extend the Council's termination date to 30 June 1993 (transcription, a lead only).",
+    "location": "H",
+    "pid": "p1",
+    "quote": "it is hereby ordered that Section 4(b) of Executive Order No. 12700 is amended by deleting \"June 30, 1991\" and inserting \"June 30, 1993\" in lieu thereof.",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-12768-extension-the-presidents-council-advisors-science-and-technology.txt"
+   },
+   {
+    "claim": "EO 12882 of 23 November 1993 expressly revokes EO 12768 by number, together with its parent EO 12700 (Federal Register printing, OCR).",
+    "location": "H",
+    "pid": "p2",
+    "quote": "(c) Executive Orders Nos. 12700, 12768, and Section 2 of Executive Order No. 12869 are hereby revoked.",
+    "supports": "ending",
+    "where": "jobs/fr-originals/output/texts/EO_12882.txt"
+   },
+   {
+    "claim": "The OFR disposition table records EO 12768 as amending EO 12700 and as revoked by EO 12882.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "Revoked by: EO 12882, November 23, 1993",
+    "supports": "ending",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1991.html"
+   },
+   {
+    "claim": "The 1994 U.S. Code note to 42 U.S.C. 6601 treats EO 12700 as amended by EO 12768 as revoked by sec. 4(c) of EO 12882 (quotation relayed by the fetch tool in fragments; the page was not read directly).",
+    "location": "W",
+    "pid": "p4",
+    "quote": "as amended by Ex. Ord. No. 12768, June 28, 1991, 56 F.R. 30302,",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/USCODE-1994-title42/html/USCODE-1994-title42-chap79.htm"
+   },
+   {
+    "claim": "The held file filed as the FR original of EO 12768 begins its Presidential Documents at page 30307 with Proclamation 6311, not at 30302 with the order.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "Presidential Documents 30307 Title 3— Proclamation 6311 of June 28, 1991",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_12768.txt"
+   },
+   {
+    "claim": "The OFR disposition table cites the order to 56 FR 30302 and dates that page 2 July 1991.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "Federal Register page and date: 56 FR 30302; July 2, 1991",
+    "supports": "original",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1991.html"
+   }
+  ],
+  "searches": [
+   "Read held jobs/fr-originals/output/texts/EO_12768.txt in full: order not present",
+   "Read held APP transcription of EO 12768",
+   "Grep of held FR text of EO 12882 for 12768 / revoked",
+   "archives.gov 1991 executive orders disposition table",
+   "govinfo FR-1991-07-01 PDF and govinfo /link/fr/56/30302: both over the 10 MB fetch limit",
+   "federalregister.gov API, term 12768: 0 results",
+   "uscode.house.gov 42 USC 6601 prelim: 404",
+   "Web search for 12768 / 56 F.R. 30302 / 12882; govinfo USCODE-1994 title 42 chapter 79 note"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "review": {
+  "conclusion_reason": "The confirmed express revocation names both EO 12768 and parent EO 12700, supporting operative NO and formal revocation by November 23, 1993 under rule (a). That date is a verified ending; its characterization as the earliest ending is not independently established by the reviewed evidence.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:12768",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed — WEB: inspection confirms the slice's purported original contains the wrong document, so obtaining the actual official printing remains necessary. The slice's page-check lead does not itself establish that an accepted original is held.",
+  "suspected_defect": null,
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The named APP file contains exactly the quoted amendment and no additional command; it remains transcription evidence only.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held EO_12882.txt prints the order dated November 23, 1993 and section 4(c), at 58 FR 62494: 'Executive Orders Nos. 12700, 12768, and Section 2 of Executive Order No. 12869 are hereby revoked.'",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The opened Archives disposition table lists EO 12768 as amending EO 12700 and 'Revoked by: EO 12882, November 23, 1993.'",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The cited GovInfo page could not be retrieved through either the web tool or direct request. The supplied quotation fragment alone does not establish revocation.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p5",
+    "reason": "The named held file contains masthead and contents pages followed by PDF page 9, printed page 30307, headed 'Proclamation 6311 of June 28, 1991'; it does not contain EO 12768's text.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "The opened Archives entry explicitly says 'Federal Register page and date: 56 FR 30302; July 2, 1991.' This confirms what the table reports, not the accuracy of its issue date.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 162.9,
+ "start": "T1",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed — WEB: inspection confirms the slice's purported original contains the wrong document, so obtaining the actual official printing remains necessary. The slice's page-check lead does not itself establish that an accepted original is held.",
+ "tokens": 253176,
+ "units": 126044,
+ "units_producer": 54562,
+ "units_repair": 27773,
+ "units_review": 43709
+}

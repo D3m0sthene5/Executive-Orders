@@ -1,0 +1,404 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C02",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "rejected",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sentence 1: flag to be flown at half-staff until the day of interment on all federal buildings, grounds and naval vessels in D.C., the United States and its Territories and possessions",
+    "end": null,
+    "gap": "Verified source that the interment took place and on what date (expected 1974-09-06, Arlington National Cemetery); also the accepted original to confirm the words 'until the day of interment'.",
+    "props": [
+     "p2",
+     "p5"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Sentence 2: flag to be flown at half-staff during the same period at U.S. embassies, consular offices and other facilities abroad, including military facilities and naval vessels and stations",
+    "end": null,
+    "gap": "Same as sentence 1: verified interment date and the accepted original.",
+    "props": [
+     "p3",
+     "p5"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "own_terms candidate (rule b), not established: the stated event (interment) lacks a verified source",
+   "first_end": null,
+   "formal_status": "no express revocation or supersession found in the checked material (NARA disposition table entry only); not proof that none exists",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "jobs/fr-originals/output/texts/EO_11802.txt holds the wrong page: PDF page 11 of FR-1974-09-05 is the Rules and Regulations section (36 CFR 327, 40 CFR 52) and contains none of EO 11802. The file itself flags 'confidence low'. The slice's best_held 'official_found_page_check_pending' is therefore not yet true of the held text.",
+   "Printed page number is uncertain: the OCR header of the held page reads '32111A' while NARA cites the order at 39 FR 32111; the order may be on a preceding or unlettered page.",
+   "Observation outside the project's files: the Ford Daily Diary scan for September 6, 1974 labels the day 'THURSDAY'; the date was a Friday."
+  ],
+  "gaps": [
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Accepted original not read: the Federal Register printing of EO 11802 (operative words 'until the day of interment' confirmed only from the APP transcription).",
+    "where_to_look": "FR-1974-09-05.pdf, 39 FR 32111 per NARA; the held extraction took PDF page 11, which is the Rules section, so check the Presidential Documents pages just before it (PDF pages 7-10) and the printed page numbers; or 3 CFR 1971-1975 Compilation"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Verified source that the interment took place and its date (believed 1974-09-06 at Arlington National Cemetery). This is the fact that decides the operative status under rule (b). Unverified leads, not evidence: a search-result summary attributes to the Michigan Daily of 1974-09-07 a report that Abrams was buried the previous day at Arlington; search-result summaries attribute to Army General Orders No. 32 (1974) a plan for interment to follow the 6 September funeral (a plan, not a record of the event).",
+    "where_to_look": "Michigan Daily 1974-09-07, https://digital.bentley.umich.edu/midaily/mdp.39015071754431/89 (HTTP 403 to the fetch tool); Army General Orders No. 32, 1974, https://generalstaff.org/WW3/Docs/USA-GO/GO_32-74.htm (HTTP 403, twice); https://arlingtoncemetery.net/?p=15305 (HTTP 522); Arlington National Cemetery burial record via ANC Explorer, reported Section 21 Site S-33; New York Times or Washington Post 1974-09-07"
+   }
+  ],
+  "id": "EO:11802",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "The held FR file (jobs/fr-originals/output/texts/EO_11802.txt, PDF page 11, 'confidence low') contains only 36 CFR 327 and 40 CFR 52 rules; no word of the order. The official issue PDF on govinfo exceeds the 10 MB fetch limit, so the original page was not read. Only the APP transcription is held. Clause list below is drawn from the transcription and is provisional.",
+    "stop_code": "TOOL_DEFECT",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Not reached because T2 failed. Status is OPEN: the order's own term is 'until the day of interment' (transcription only), and the interment event is not verified. Funeral services on 1974-09-06 are confirmed in Ford's Daily Diary, but that entry records the funeral, not the interment. Repair attempts to verify interment failed: generalstaff.org HTTP 403, arlingtoncemetery.net HTTP 522, the official Arlington notable-graves page has no Abrams entry.",
+    "stop_code": "TOOL_DEFECT",
+    "to": "T3"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "https://www.govinfo.gov/content/pkg/FR-1974-09-05/pdf/FR-1974-09-05.pdf (39 FR 32111 per NARA table; not read, file too large; held OCR file shows the wrong page)"
+  },
+  "propositions": [
+   {
+    "claim": "The held FR text file for this order does not contain the order; its page begins with unrelated Corps of Engineers rules.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "PART 327— RULES AND REGULATIONS GOVERNING PUBLIC USE O F WATER RESOURGE DEVELOPMENT PROJECTS",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_11802.txt"
+   },
+   {
+    "claim": "The order (transcription only, not an accepted original) commands half-staff flags only until the day of interment.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "until the day of interment the flag of the United States shall be flown at half-staff on all buildings, grounds, and naval vessels of the Federal Government",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-11802-general-creighton-w-abrams-chief-staff-united-states-army.txt"
+   },
+   {
+    "claim": "The second command (transcription only) covers posts abroad for the same period.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "I also direct that the flag shall be flown at half-staff during this same period at all United States embassies, consular offices, and other facilities abroad",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-11802-general-creighton-w-abrams-chief-staff-united-states-army.txt"
+   },
+   {
+    "claim": "NARA's disposition table cites the order at 39 FR 32111 (September 5, 1974) and its entry lists no amendment or revocation. This shows only what that table lists; it is not proof that no ending exists.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "39 FR 32111",
+    "supports": "original",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1974-ford.html"
+   },
+   {
+    "claim": "Funeral services for General Abrams were held on September 6, 1974 (read directly from the scanned diary). The entry documents the funeral, not the interment, so it does not by itself establish the ending event.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "The President and the First Lady attended funeral services for Gen. Creighton W. Abrams, Army Chief of Staff.",
+    "supports": "context",
+    "where": "https://www.fordlibrarymuseum.gov/sites/default/files/pdf_documents/library/document/0036/pdd740906.pdf"
+   },
+   {
+    "claim": "The evidence slice gives the OFR 1989 table disposition as Temporary. This describes the slice only; the table file was not opened, and the label gives no ending date and does not establish an ending.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "Temporary",
+    "supports": "context",
+    "where": "evidence slice, ofr_1989_table.disposition"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review; unchanged."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld; wording now says transcription only, not an accepted original."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld; wording now says transcription only."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld; claim narrowed to what the table lists, per reviewer."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Upheld; relabelled as context because it records the funeral, not the interment."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p6",
+    "why": "Unverifiable: Bentley page 403, quotation never read. Kept only as a lead in the gaps."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p7",
+    "why": "Unverifiable: page 403 again on retry, and it is a plan, not a record of interment. Kept only as a lead in the gaps."
+   },
+   {
+    "change": "kept",
+    "pid": "p8",
+    "why": "Upheld as a description of the slice only; relabelled as context, no longer offered as support for an ending."
+   },
+   {
+    "change": "fixed",
+    "pid": "conclusion",
+    "why": "NO and 'not later than 1974-09-07' replaced by OPEN: rule (b) needs evidence the interment occurred and none was verified. Clause states changed from ended to open with the gap named. Formal status limited to the checked material."
+   }
+  ],
+  "searches": [
+   "Read both held texts named in the slice",
+   "Grep 'Abrams' in jobs/fr-originals/output/texts/EO_118*.txt: no match",
+   "WebFetch govinfo FR-1974-09-05 issue PDF: failed, over 10 MB",
+   "WebFetch NARA 1974 Ford executive order disposition table: 39 FR 32111, no amendment or revocation notes",
+   "WebSearch Abrams funeral and interment date, Arlington, September 1974 (two standard searches)",
+   "WebFetch Ford Daily Diary 1974-09-06 PDF, read pages 1-3",
+   "WebFetch generalstaff.org GO 32-74 and Bentley Michigan Daily page: both HTTP 403",
+   "Repair pass: WebFetch arlingtoncemetery.mil Notable Graves Army page for Abrams: navigation page, no Abrams entry or burial date",
+   "Repair pass: WebSearch 'Creighton Abrams buried Arlington National Cemetery \"September 6, 1974\" interment' (standard): summaries only, no page opened that states the interment date",
+   "Repair pass: WebFetch APP page for EO 11802: same transcription wording, no Federal Register citation",
+   "Repair pass: WebFetch arlingtoncemetery.net/?p=15305: HTTP 522; WebFetch generalstaff.org GO_32-74: HTTP 403"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "group": "modern",
+ "id": "EO:11802",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T1",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sentence 1: flag to be flown at half-staff until the day of interment on all federal buildings, grounds and naval vessels in D.C., the United States and its Territories and possessions",
+    "end": "not later than 1974-09-07 (provisional: transcription text; interment date not read from a primary source)",
+    "props": [
+     "p2",
+     "p5",
+     "p6"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Sentence 2: flag to be flown at half-staff during the same period at U.S. embassies, consular offices and other facilities abroad, including military facilities and naval vessels and stations",
+    "end": "not later than 1974-09-07 (provisional, same basis)",
+    "props": [
+     "p3",
+     "p5",
+     "p6"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "own_terms",
+   "first_end": "not later than 1974-09-07",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/fr-originals/output/texts/EO_11802.txt holds the wrong page: PDF page 11 of FR-1974-09-05 is the Rules and Regulations section (36 CFR 327, 40 CFR 52) and contains none of EO 11802. The file itself flags 'confidence low'. The slice's best_held 'official_found_page_check_pending' is therefore not yet true of the held text.",
+   "Printed page number is uncertain: the OCR header of the held page reads '32111A' while NARA cites the order at 39 FR 32111; the order may be on a preceding or unlettered page.",
+   "Observation outside the project's files: the Ford Daily Diary scan for September 6, 1974 labels the day 'THURSDAY'; the date was a Friday."
+  ],
+  "gaps": [
+   {
+    "stop_code": "TOOL_DEFECT",
+    "what": "Accepted original not read: the Federal Register printing of EO 11802 (operative words 'until the day of interment' confirmed only from the APP transcription).",
+    "where_to_look": "FR-1974-09-05.pdf, 39 FR 32111 per NARA; the held extraction took PDF page 11, which is the Rules section, so check the Presidential Documents pages just before it (PDF pages 7-10) and the printed page numbers; or 3 CFR 1971-1975 Compilation"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Primary or directly read source for the interment date (believed 1974-09-06 at Arlington National Cemetery).",
+    "where_to_look": "Michigan Daily 1974-09-07 (Bentley digital, page 403 to the fetch tool); Arlington National Cemetery burial record, Section 21 Site S-33; New York Times or Washington Post 1974-09-07; Army General Orders No. 32, 1974"
+   }
+  ],
+  "id": "EO:11802",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "The held FR file (jobs/fr-originals/output/texts/EO_11802.txt, PDF page 11, 'confidence low') contains only 36 CFR 327 and 40 CFR 52 rules; no word of the order. The official issue PDF on govinfo exceeds the 10 MB fetch limit, so the original page was not read. Only the APP transcription is held. Clause list below is drawn from the transcription and is provisional.",
+    "stop_code": "TOOL_DEFECT",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Not reached because T2 failed. Status evidence was still gathered: own-terms expiry 'until the day of interment'; funeral 1974-09-06 confirmed in Ford's Daily Diary (read directly); interment that day supported only by a search-result summary of the Michigan Daily, page not opened (HTTP 403).",
+    "stop_code": "TOOL_DEFECT",
+    "to": "T3"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "https://www.govinfo.gov/content/pkg/FR-1974-09-05/pdf/FR-1974-09-05.pdf (39 FR 32111 per NARA table; not read, file too large; held OCR file shows the wrong page)"
+  },
+  "propositions": [
+   {
+    "claim": "The held FR text file for this order does not contain the order; its page begins with unrelated Corps of Engineers rules.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "PART 327— RULES AND REGULATIONS GOVERNING PUBLIC USE O F WATER RESOURGE DEVELOPMENT PROJECTS",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_11802.txt"
+   },
+   {
+    "claim": "The order (transcription) commands half-staff flags only until the day of interment.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "until the day of interment the flag of the United States shall be flown at half-staff on all buildings, grounds, and naval vessels of the Federal Government",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-11802-general-creighton-w-abrams-chief-staff-united-states-army.txt"
+   },
+   {
+    "claim": "The second command (transcription) covers posts abroad for the same period.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "I also direct that the flag shall be flown at half-staff during this same period at all United States embassies, consular offices, and other facilities abroad",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-11802-general-creighton-w-abrams-chief-staff-united-states-army.txt"
+   },
+   {
+    "claim": "NARA's disposition table cites the order at 39 FR 32111 (September 5, 1974) and lists no amendment or revocation. Reported by a fetch-tool summary, not a verbatim quotation.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "39 FR 32111",
+    "supports": "original",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1974-ford.html"
+   },
+   {
+    "claim": "The funeral services for General Abrams were held on September 6, 1974 (read directly from the scanned diary).",
+    "location": "W",
+    "pid": "p5",
+    "quote": "The President and the First Lady attended funeral services for Gen. Creighton W. Abrams, Army Chief of Staff.",
+    "supports": "ending",
+    "where": "https://www.fordlibrarymuseum.gov/sites/default/files/pdf_documents/library/document/0036/pdd740906.pdf"
+   },
+   {
+    "claim": "Lead, not verified: a search-result summary says the Michigan Daily of September 7, 1974 reported Abrams buried 'yesterday' at Arlington. The page returned HTTP 403, so the words are the summary's paraphrase, not a checked quotation.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "Gen. Creighton Abrams was buried yesterday in rain-swept Arlington National Cemetery",
+    "supports": "ending",
+    "where": "https://digital.bentley.umich.edu/midaily/mdp.39015071754431/89"
+   },
+   {
+    "claim": "Lead, not verified: a search-result summary says Army General Orders No. 32 (1974) scheduled interment to follow the 6 September funeral. The page returned HTTP 403; the order is a plan, not a record of the event.",
+    "location": "W",
+    "pid": "p7",
+    "quote": "Funeral services will be conducted at Fort Myer Memorial Chapel at 1100 hours on Friday, 6 September 1974. Interment will follow at Arlington National Cemetery.",
+    "supports": "ending",
+    "where": "https://generalstaff.org/WW3/Docs/USA-GO/GO_32-74.htm"
+   },
+   {
+    "claim": "The project's copy of the OFR 1989 table marks the order Temporary (taken from the evidence slice; the table file was not opened).",
+    "location": "H",
+    "pid": "p8",
+    "quote": "Temporary",
+    "supports": "ending",
+    "where": "evidence slice, ofr_1989_table.disposition"
+   }
+  ],
+  "searches": [
+   "Read both held texts named in the slice",
+   "Grep 'Abrams' in jobs/fr-originals/output/texts/EO_118*.txt: no match",
+   "WebFetch govinfo FR-1974-09-05 issue PDF: failed, over 10 MB",
+   "WebFetch NARA 1974 Ford executive order disposition table: 39 FR 32111, no amendment or revocation notes",
+   "WebSearch Abrams funeral and interment date, Arlington, September 1974 (two standard searches)",
+   "WebFetch Ford Daily Diary 1974-09-06 PDF, read pages 1-3",
+   "WebFetch generalstaff.org GO 32-74 and Bentley Michigan Daily page: both HTTP 403"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "review": {
+  "conclusion_reason": "NO and the asserted end no later than September 7, 1974 are unsupported under rule (b): the interment event has not been verified. Funeral attendance and a Temporary finding-aid label do not close that gap. The defensible operative assessment is OPEN pending verified interment evidence and an accepted original. Formal status can be reported only as no express ending found in the checked material, not proof that none exists.",
+  "conclusion_verdict": "rejected",
+  "id": "EO:11802",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: TOOL_DEFECT fits the first gap. The held extraction selected an unrelated rules page, and opening the cited official PDF failed because its content length exceeds the web tool limit. The accepted original remains unexamined.",
+  "suspected_defect": "The categorical NO and ended clause states contradict the worker's acknowledged unverified interment evidence. This looks like an unsupported promotion of provisional leads into a final ending determination; deliberate intent cannot be established.",
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Read the entire named held FR extraction. It contains Corps of Engineers and EPA rules, including the quoted Part 327 heading, but no EO 11802.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The named APP file contains the quoted half-staff command and 'until the day of interment'. This confirms transcription text only.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The named APP file contains the quoted command for facilities abroad 'during this same period', including military facilities and naval vessels and stations.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The cited NARA page's EO 11802 entry gives '39 FR 32111; September 5, 1974' and lists no amendment or revocation. That omission establishes only what this table lists.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "Page 1 of the cited diary, dated September 6, 1974, records the quoted funeral attendance. Its header also says THURSDAY. The entry documents funeral services, not interment.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "The cited Bentley page returns 403. Neither the purported quotation nor the burial date could be confirmed; the worker correctly labels this an unchecked lead.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p7",
+    "reason": "The cited General Orders page is inaccessible through the tool. The quotation cannot be confirmed and, as presented, describes a planned interment rather than completed performance.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p8",
+    "reason": "The supplied evidence slice explicitly gives disposition 'Temporary'. Upheld only as a description of that slice, not independent verification of the underlying OFR table or an ending date.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 233.6,
+ "start": "T1",
+ "status": "completed",
+ "stop": "TOOL_DEFECT",
+ "stop_code_verdict": "confirmed: TOOL_DEFECT fits the first gap. The held extraction selected an unrelated rules page, and opening the cited official PDF failed because its content length exceeds the web tool limit. The accepted original remains unexamined.",
+ "tokens": 218582,
+ "units": 130139,
+ "units_producer": 56838,
+ "units_repair": 36602,
+ "units_review": 36699
+}

@@ -1,0 +1,382 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C03",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: Louis Marcks may be reinstated as a clerk or carrier in the post-office service without regard to the civil-service rules' time limits (one-time permission to a named person). The second sentence is a recital of reasons.",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p5",
+     "p6"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "The slice's best_held 'transcription_only' and tracker blockers NO_OFFICIAL_SOURCE_LOCATED / ONLY_COMPILED_TRANSCRIPTION_FOUND may understate the held file: the job's records map it to a GPO Serial Set printing (SERIALSET-08501_00_00-002-0445-0000, pdf page 173). That mapping has not been checked against the page image.",
+   "The slice's president field is empty; the date 1924-02-16 falls in Coolidge's term.",
+   "The slice title has OCR run-ons: 'eligiblefor', 'carrierin', 'OfficeService', 'separa tionfrom'.",
+   "The held OCR has a stray opening quote mark before 'involved'."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "The printed page of the 1924 report (printed p. 110, pdf page 173) has not been viewed, so the held OCR has not been compared with the image. This blocks T2 and every tier above it.",
+    "where_to_look": "https://www.govinfo.gov/content/pkg/SERIALSET-08501_00_00-002-0445-0000/pdf/SERIALSET-08501_00_00-002-0445-0000.pdf (233 pages, over the 10 MB fetch limit; needs a local download and a check against the sha256 in REPORTS_FETCHED.csv line 29, or the job's cached copy)"
+   },
+   {
+    "stop_code": "OFFLINE",
+    "what": "Whether and when Louis Marcks was reinstated as a clerk or carrier under the order (performance, rule e).",
+    "where_to_look": "NARA National Personnel Records Center, St. Louis: civilian service record or card for Louis Marcks, St. Louis post office; Post Office Department records (RG 28) and St. Louis post office rosters, 1924 onward."
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether the project's death bound for the named person (PD-CS-ONE-PERSON: 2010-06-13, calculated from service since 1887 and the longest verified life) can count as an ending when performance is unsourced. The bound is a doctrine calculation, not evidence of Marcks's death, and the task rules list no such ending and bar inference from time passing. It is recorded as a candidate only. A death record for Marcks would be a separate fact, not searched for here.",
+    "where_to_look": "Owner ruling on research/pothier/doctrines/PD-CS-ONE-PERSON.md; for an actual death date, Missouri death certificates (Missouri State Archives) for Louis Marcks, St. Louis."
+   }
+  ],
+  "id": "EO:3959",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Held text is OCR that the job's records (CITATION_RESULTS.csv line 673, REPORTS_FETCHED.csv line 29) map to pdf page 173 of the govinfo Serial Set scan of the Civil Service Commission's 1924 annual report. The govinfo details page confirms that package is the Forty-first annual report, H. Doc. 68-445, Serial Set 8501, GPO. The page image itself was not viewed: the PDF exceeds the fetch size limit (10 MB) in this repair, and the reviewer could not open it either. Until the OCR is compared with printed p. 110, the original is not treated as accepted. One operative clause is listed provisionally.",
+    "stop_code": "WEB",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Blocked by T2. Provisional finding, upheld by the reviewer: OPEN with named gap. The order is a one-time permission to a named person (rule e), with no source for performance and no express ending found in the sources searched.",
+    "stop_code": "WEB",
+    "to": "T3"
+   },
+   {
+    "achieved": false,
+    "from": "T3",
+    "note": "Blocked by T2. Provisionally, the single operative clause has a state: open, gap named.",
+    "stop_code": "WEB",
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "The performance record (reinstatement) is offline. Project doctrine PD-CS-ONE-PERSON records a latest-death bound of 2010-06-13, but that is a doctrine calculation, not evidence of Marcks's death, and the task rules list no death-bound ending and bar inferring an ending from time passing.",
+    "stop_code": "OFFLINE",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "ocr_of_official_printing_per_job_records_page_image_not_compared",
+   "where": "jobs/csc-annual-reports/output/texts/EO_3959.txt (OCR; the job's records map it to https://www.govinfo.gov/content/pkg/SERIALSET-08501_00_00-002-0445-0000/pdf/SERIALSET-08501_00_00-002-0445-0000.pdf, pdf page 173, cited as 1924 CSR 110)"
+  },
+  "propositions": [
+   {
+    "claim": "The order, dated February 16, 1924, permits reinstatement of Louis Marcks as a clerk or carrier regardless of the time limits.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mr. Louis Marcks may be reinstated as a clerk or carrier in the post-office service without regard to the time limitations of the civil-service rules.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_3959.txt"
+   },
+   {
+    "claim": "The order recites that it remedies his removal on November 4, 1915, as a carrier at St. Louis.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "to remedy, as far as possible, the injustice",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_3959.txt (the text continues: 'involved in his removal on November 4, 1915, from the position of carrier in the St. Louis, Mo., post office')"
+   },
+   {
+    "claim": "The order's text says Marcks had served since 1887.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "where he had served since 1887.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_3959.txt"
+   },
+   {
+    "claim": "The job's citation table records that the order's date line was found on pdf page 173 of govinfo package SERIALSET-08501_00_00-002-0445-0000, matching the index citation 1924 CSR 110. The job's fetch log records that package as its 1924 report, with a sha256 hash. The govinfo details page identifies the package as the Forty-first annual report of the Civil Service Commission for the fiscal year ended June 30, 1924 (H. Doc. 68-445, Serial Set 8501, GPO). This shows what the job's records and govinfo's metadata say. It does not prove that the held OCR matches the printed page, which was not viewed.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "EO:3959,1924 CSR 110,Feb 16 1924,civil_service_individual,SERIALSET-08501_00_00-002-0445-0000,173,high,date line on pdf page 173 (cited page offset +0)",
+    "supports": "provenance_record",
+    "where": "jobs/csc-annual-reports/output/CITATION_RESULTS.csv line 673; jobs/csc-annual-reports/output/REPORTS_FETCHED.csv line 29 (sha256 a421e7a711f36d4523c533208a01dbba93147a7273b99d146abe18f104aedbae); https://www.govinfo.gov/app/details/SERIALSET-08501_00_00-002-0445-0000 (title as reported by the fetch tool's summary, not read verbatim)"
+   },
+   {
+    "claim": "The project's one-person doctrine records a latest-death bound of 2010-06-13 for Marcks, calculated from the 1887 service date. This is what the doctrine records. It is not evidence of an actual death date.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "| EO:3959 | 1924-02-16 | \"where he had served since 1887\" | alive by 1887-12-31 | 1887-12-31 | 2010-06-13 |",
+    "supports": "candidate",
+    "where": "research/pothier/doctrines/PD-CS-ONE-PERSON.md line 443"
+   },
+   {
+    "claim": "The doctrine's bound rests on the longest verified human life, a source the project reads on the web and does not hold. This states the doctrine's provenance only; the longest verified life is not a proven upper limit on any person's life.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "122 years 164 days",
+    "supports": "candidate",
+    "where": "research/pothier/doctrines/PD-CS-ONE-PERSON.md line 206 (source S1, Guinness World Records, as recorded there; not re-read on the web)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld; re-read in the held text."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld; quote shortened to end before the stray OCR quote mark so it matches the held file exactly."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld; re-read in the held text."
+   },
+   {
+    "change": "fixed",
+    "pid": "p4",
+    "why": "Narrowed to what the job's records and govinfo metadata say; added the fetch-log hash row and the details page. The page image could not be opened, so the original is no longer accepted and the tier drops to T1."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Upheld as a record of the doctrine only; relabelled as a candidate, not an ending."
+   },
+   {
+    "change": "kept",
+    "pid": "p6",
+    "why": "Upheld as provenance only; relabelled as a candidate, and the 'certain death' wording in the second gap is withdrawn."
+   }
+  ],
+  "searches": [
+   "Read jobs/csc-annual-reports/output/texts/EO_3959.txt (re-read in repair)",
+   "Grep 'Marcks' in jobs/csc-annual-reports/output: only the order's own text (earlier run)",
+   "Grep 'EO:3959' in jobs/csc-annual-reports/output/CITATION_RESULTS.csv: line 673 (re-checked in repair)",
+   "Grep 'SERIALSET-08501_00_00-002-0445-0000' in jobs/csc-annual-reports/output/REPORTS_FETCHED.csv: line 29 (re-checked in repair)",
+   "Grep 'PD-CS-ONE-PERSON' in research/ and '3959' in research/pothier: doctrine row and member list (earlier run, not re-read in repair)",
+   "WebFetch of the govinfo PDF: failed, file exceeds the 10 MB fetch limit",
+   "WebFetch of https://www.govinfo.gov/app/details/SERIALSET-08501_00_00-002-0445-0000: package metadata confirmed (title, H. Doc. 68-445, Serial Set 8501, GPO)",
+   "No web search for a reinstatement record or a later instrument naming the order: a 1924 individual reinstatement record is not expected online, and the evidence slice lists no later instrument"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "group": "pre1937",
+ "id": "EO:3959",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: Louis Marcks may be reinstated as a clerk or carrier in the post-office service without regard to the civil-service rules' time limits (one-time permission to a named person). The second sentence is a recital of reasons.",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p5",
+     "p6"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "The slice's best_held 'transcription_only' and tracker blockers NO_OFFICIAL_SOURCE_LOCATED / ONLY_COMPILED_TRANSCRIPTION_FOUND understate the held file: it is OCR of a GPO Serial Set printing (SERIALSET-08501_00_00-002-0445-0000, pdf page 173).",
+   "The slice's president field is empty; the date 1924-02-16 falls in Coolidge's term.",
+   "The slice title has OCR run-ons: 'eligiblefor', 'carrierin', 'OfficeService', 'separa tionfrom'.",
+   "The held OCR has a stray opening quote mark before 'involved'."
+  ],
+  "gaps": [
+   {
+    "stop_code": "OFFLINE",
+    "what": "Whether and when Louis Marcks was reinstated as a clerk or carrier under the order (performance, rule e).",
+    "where_to_look": "NARA National Personnel Records Center, St. Louis: civilian service record or card for Louis Marcks, St. Louis post office; Post Office Department records (RG 28) and St. Louis post office rosters, 1924 onward."
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether the certain death of the named person (born by 1887, so dead by 2010-06-13 under PD-CS-ONE-PERSON) counts as an ending when performance is unsourced. The task rules list no such ending and bar inference from time passing. If accepted, the status would be NO, not later than 2010-06-13.",
+    "where_to_look": "Owner ruling on research/pothier/doctrines/PD-CS-ONE-PERSON.md"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "The printed page of the 1924 report (printed p. 110, pdf page 173) was not viewed; the held OCR was not compared with the image.",
+    "where_to_look": "https://www.govinfo.gov/content/pkg/SERIALSET-08501_00_00-002-0445-0000/pdf/SERIALSET-08501_00_00-002-0445-0000.pdf"
+   }
+  ],
+  "id": "EO:3959",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held text is OCR of the GPO Serial Set printing of the Civil Service Commission 1924 annual report (job's CITATION_RESULTS and REPORTS_FETCHED rows). Treated as an official compilation printing; the tracker labels it a compiled transcription. Page image not viewed by this worker. One operative clause listed.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN with named gap: a one-time permission to a named person (rule e), with no source for performance and no express ending found.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single operative clause has a state: open, gap named.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Project doctrine PD-CS-ONE-PERSON bounds Marcks's death at 2010-06-13 (served since 1887, plus the longest verified life), but the task rules list no death-bound ending and bar inferring an ending from time passing. Performance record (reinstatement) is OFFLINE.",
+    "stop_code": "NEEDS_RULING",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/csc-annual-reports/output/texts/EO_3959.txt (OCR of https://www.govinfo.gov/content/pkg/SERIALSET-08501_00_00-002-0445-0000/pdf/SERIALSET-08501_00_00-002-0445-0000.pdf, pdf page 173, printed p. 110)"
+  },
+  "propositions": [
+   {
+    "claim": "The order, dated February 16, 1924, permits reinstatement of Louis Marcks as a clerk or carrier regardless of the time limits.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mr. Louis Marcks may be reinstated as a clerk or carrier in the post-office service without regard to the time limitations of the civil-service rules.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_3959.txt"
+   },
+   {
+    "claim": "The order recites that it remedies his removal on November 4, 1915, as a carrier at St. Louis.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "to remedy, as far as possible, the injustice involved in his removal on November 4, 1915, from the position of carrier in the St. Louis, Mo., post office",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_3959.txt"
+   },
+   {
+    "claim": "The order's text says Marcks had served since 1887.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "where he had served since 1887.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_3959.txt"
+   },
+   {
+    "claim": "The held text was cut from the govinfo Serial Set scan of the 1924 Commission report, pdf page 173, matching the index citation 1924 CSR 110.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "EO:3959,1924 CSR 110,Feb 16 1924,civil_service_individual,SERIALSET-08501_00_00-002-0445-0000,173,high,date line on pdf page 173 (cited page offset +0)",
+    "supports": "original",
+    "where": "jobs/csc-annual-reports/output/CITATION_RESULTS.csv line 673"
+   },
+   {
+    "claim": "The project's one-person doctrine records a latest-death bound of 2010-06-13 for Marcks, taken from the 1887 service date.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "| EO:3959 | 1924-02-16 | \"where he had served since 1887\" | alive by 1887-12-31 | 1887-12-31 | 2010-06-13 |",
+    "supports": "ending",
+    "where": "research/pothier/doctrines/PD-CS-ONE-PERSON.md line 443"
+   },
+   {
+    "claim": "That bound rests on the longest verified human life, a source the project reads on the web and does not hold.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "122 years 164 days",
+    "supports": "ending",
+    "where": "research/pothier/doctrines/PD-CS-ONE-PERSON.md line 206 (source S1, Guinness World Records, as recorded there; not re-read on the web)"
+   }
+  ],
+  "searches": [
+   "Read jobs/csc-annual-reports/output/texts/EO_3959.txt",
+   "Grep 'Marcks' in jobs/csc-annual-reports/output: only the order's own text",
+   "Grep '3959' in jobs/csc-annual-reports/output/CITATION_RESULTS.csv and '1924' in REPORTS_FETCHED.csv: provenance rows",
+   "Grep 'PD-CS-ONE-PERSON' in research/ and '3959' in research/pothier: doctrine row and member list",
+   "No web search run: a 1924 individual reinstatement record is not expected online, and the evidence slice lists no later instrument naming the order"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "OPEN follows rule (e): 'may be reinstated' authorizes an act but does not establish its performance. No performance evidence or express ending appears in the reviewed sources. Formal status is supportable only as no express ending found in this bounded evidence, not proof none exists. The purported certain-death bound cannot establish an ending under the project rules.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:3959",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: OFFLINE fits the first gap's missing personnel-record evidence of reinstatement; the evidence slice identifies the same service-card gap and supplies no performance source.",
+  "suspected_defect": "The accepted-original assertion exceeds the verified evidence: an OCR text and citation mapping are treated as authenticated original printing despite the acknowledged missing page comparison. Separately, the second gap incorrectly calls death by 2010-06-13 certain: the longest verified lifespan is not a universal upper bound or evidence of Marcks's death.",
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held text contains the date and quoted reinstatement permission.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Held text confirms the removal date, position, location, and remedial recital; OCR corruption does not obscure the words.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "Held text explicitly says he had served since 1887.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "CSV contains the quoted mapping to the Serial Set and page 173, but that mapping alone does not authenticate extraction or establish correspondence with the original printing. The cited govinfo PDF could not be opened.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p5",
+    "reason": "The doctrine table records exactly the quoted date calculation. This confirms what the doctrine records, not an actual death date or valid maximum lifespan.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "The doctrine's S1 row explicitly records 122 years 164 days and marks the source as not held, read on the web. This verifies the provenance statement only.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 164.4,
+ "start": "T1",
+ "status": "completed",
+ "stop": "NEEDS_RULING",
+ "stop_code_verdict": "confirmed: OFFLINE fits the first gap's missing personnel-record evidence of reinstatement; the evidence slice identifies the same service-card gap and supplies no performance source.",
+ "tokens": 195487,
+ "units": 115331,
+ "units_producer": 46530,
+ "units_repair": 40662,
+ "units_review": 28139
+}

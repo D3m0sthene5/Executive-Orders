@@ -1,0 +1,340 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C08",
+ "census_overstated": true,
+ "conclusion": "NO",
+ "conclusion_verdict": "rejected",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: all public lands in the listed townships (Sixth P.M., Nebraska; Black Hills and Fifth P.M., South Dakota) temporarily withdrawn from settlement, location, sale, entry and all appropriation, for soil classification, subject to valid existing rights.",
+    "end": null,
+    "gap": "Text of Public Land Order 711 (16 FR 3348): revoking sentence, whether it covers all of EO 6604, and its effective terms. Candidate ending: PLO 711 signed 1951-04-10, known only from the BLM table entry (p5).",
+    "props": [
+     "p2",
+     "p3",
+     "p4",
+     "p5"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "open_named_gap",
+   "first_end": null,
+   "formal_status": "unconfirmed",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "jobs/photius-gpo-volumes/output/texts/EO_6604.txt begins with the full text of a different order, No. 6603-A (House Naval Affairs Committee inspection of tax returns), before EO 6604; the page range is one page too early.",
+   "The same photius file cuts off the signature line ('No. [ 6604 ] FRAN'); the operative words are legible.",
+   "The evidence slice lists two American Presidency Project files for other orders (6604-A laundry trade code, 6604-B restaurant industry code) as own texts of EO 6604.",
+   "type_lead classes the order as mineral_withdrawal; the text is a withdrawal for soil classification."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Text of Public Land Order 711: its revoking sentence, whether the revocation covers the whole of EO 6604, its effective date, and any restoration or opening schedule for the released lands. The Federal Register issue date is also unconfirmed. Until this is read, both operative status and formal status are undetermined; no positive current source that the withdrawal was in force on 2026-10-14 was found either.",
+    "where_to_look": "Federal Register vol. 16, p. 3348 (April 1951), on govinfo.gov or the Library of Congress Federal Register collection; the issue PDF tried (FR-1951-04-17, date guessed) is over the 10 MB fetch limit, so it needs a page-level or local download."
+   }
+  ],
+  "id": "EO:6604",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Two held GPO slip printings read; the order has one operative clause (temporary withdrawal of listed townships).",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Status is OPEN with a named gap, not NO. The order has no expiry term of its own (p3). The only evidence of an ending is a finding-aid entry (BLM table of Public Land Orders) saying PLO 711 of 1951-04-10 revoked EO 6604; the revoking instrument itself is unread, so no ending is proved. The review scored the earlier NO result at T2; T3 is claimed here only on the OPEN-with-named-gap limb of the tier rule.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The sole clause is in state open with the gap named (text of PLO 711 at 16 FR 3348). Nothing is claimed as ended or as operating. If the coordinator reads T3/T4 as needing a decided status, the supported tier is T2.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Text of PLO 711 at 16 FR 3348 not read. The govinfo issue PDF tried (FR-1951-04-17, issue date guessed) again failed in this repair pass with 'maxContentLength size of 10485760 exceeded'. The revoking words, whole-or-partial scope, effective date and restoration terms are unquoted.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/mabillon-held-printings/output/texts/EO_6604.txt"
+  },
+  "propositions": [
+   {
+    "claim": "A GPO slip printing of EO 6604, dated February 16, 1934 and signed by Franklin D. Roosevelt, is held.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "FRANKLIN D. ROOSEVELT. Tue Waite Houss, February 16, 1934. [No. 6604] U.S. GOVERNMENT PRINTING OFFICE: 1934",
+    "supports": "original",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6604.txt"
+   },
+   {
+    "claim": "The order's one command is a temporary withdrawal of public lands in the listed townships for soil classification.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "all public lands in the townships hereinafter described be, and they are hereby, temporarily withdrawn from settlement, location, sale, entry, and all forms of appropriation, for the purpose of soil classification",
+    "supports": "clause",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6604.txt"
+   },
+   {
+    "claim": "The withdrawal was made under the Pickett Act as amended, subject to its conditions and valid existing rights; the order has no expiry term of its own.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "By virtue of the authority vested in me by the act of June 25, 1910 (ch. 421, 36 Stat. 847), as amended by the act of August 24, 1912",
+    "supports": "clause",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6604.txt"
+   },
+   {
+    "claim": "A second GPO printing (bound slip-order volume, HathiTrust hvd.hl2725) carries the same operative words.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "temporarily withdrawn from settlement , location , sale , entry , and all forms ofappropriation , for the purpose of soil classification",
+    "supports": "original",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6604.txt"
+   },
+   {
+    "claim": "Lead only, not proof of an ending: the BLM table of Public Land Orders (a finding aid) lists Public Land Order 711, signature date April 10, 1951, as revoking EO 6604 by number and date, with the citation 16 FR 3348. The text of PLO 711 has not been read, so its revoking words, scope and effective date are not established.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "711 Apr. 10, 1951 Nebraska and South Dakota; revoking EO No. 6604 of Feb. 16, 1934; withdrawing public lands for soil classification. 16 FR 3348",
+    "supports": "candidate_ending",
+    "where": "jobs/shepard-citations/fixtures/blm_table_695-2250_pages.txt (source: https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_695-2250.pdf)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "fixed",
+    "pid": "p5",
+    "why": "Narrowed to what the finding aid shows: a table entry naming PLO 711 as revoking EO 6604. Now a candidate ending, not proof; PLO text at 16 FR 3348 still unread after a retried fetch and search."
+   },
+   {
+    "change": "fixed",
+    "pid": "conclusion",
+    "why": "NO / revoked / first_end 1951-04-10 withdrawn. Now OPEN with formal status unconfirmed, pending the text of PLO 711."
+   }
+  ],
+  "searches": [
+   "Read both held GPO printings of EO 6604 (mabillon, photius).",
+   "Grep for 6604 inside jobs/shepard-citations; read the BLM table fixture row for PLO 711.",
+   "Web, standard: \"Public Land Order 711\" 1951 \"Executive Order No. 6604\" Nebraska South Dakota: only the BLM table and APP transcription returned, no PLO text.",
+   "Web, extended: \"Public Land Order 711\" \"6604\" \"is hereby revoked\" Federal Register April 1951: no PLO text found.",
+   "WebFetch of https://www.govinfo.gov/content/pkg/FR-1951-04-17/pdf/FR-1951-04-17.pdf: failed, file over size limit.",
+   "Repair pass: Grep for 6604 inside jobs/shepard-citations/fixtures: the PLO 711 row re-read and confirmed as quoted in p5.",
+   "Repair pass, web standard: \"Public Land Order 711\" 1951 \"6604\" Nebraska South Dakota \"16 FR 3348\" revoked: only the BLM table and the APP transcription returned, no PLO text.",
+   "Repair pass: WebFetch of https://www.govinfo.gov/content/pkg/FR-1951-04-17/pdf/FR-1951-04-17.pdf failed again: 'maxContentLength size of 10485760 exceeded'."
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "group": "pre1937",
+ "id": "EO:6604",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T2",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: all public lands in the listed townships (Sixth P.M., Nebraska; Black Hills and Fifth P.M., South Dakota) temporarily withdrawn from settlement, location, sale, entry and all appropriation, for soil classification, subject to valid existing rights.",
+    "end": "1951-04-10",
+    "props": [
+     "p2",
+     "p3",
+     "p4",
+     "p5"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "express_named_ending",
+   "first_end": "1951-04-10",
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/photius-gpo-volumes/output/texts/EO_6604.txt begins with the full text of a different order, No. 6603-A (House Naval Affairs Committee inspection of tax returns), before EO 6604; the page range is one page too early.",
+   "The same photius file cuts off the signature line ('No. [ 6604 ] FRAN'); the operative words are legible.",
+   "The evidence slice lists two American Presidency Project files for other orders (6604-A laundry trade code, 6604-B restaurant industry code) as own texts of EO 6604.",
+   "type_lead classes the order as mineral_withdrawal; the text is a withdrawal for soil classification."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Text of Public Land Order 711: its revoking sentence, whether the revocation covers the whole of EO 6604, and any restoration or opening schedule for the released lands. The Federal Register issue date is also unconfirmed.",
+    "where_to_look": "Federal Register vol. 16, p. 3348 (April 1951), on govinfo.gov or the Library of Congress Federal Register collection; the issue PDF tried (FR-1951-04-17) is over the 10 MB fetch limit, so it needs a page-level download."
+   }
+  ],
+  "id": "EO:6604",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Two held GPO slip printings read; the order has one operative clause (temporary withdrawal of listed townships).",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Express named revocation by PLO 711 of 1951-04-10, quoted from the BLM table of Public Land Orders (held fixture and public PDF).",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The only clause is ended 1951-04-10 on the BLM table entry; the table states the revocation without qualification.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Text of PLO 711 at 16 FR 3348 not read: the govinfo issue PDF tried (FR-1951-04-17, issue date guessed) exceeded the fetch size limit. The revoking words, whole-or-partial scope and restoration terms are unquoted.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/mabillon-held-printings/output/texts/EO_6604.txt"
+  },
+  "propositions": [
+   {
+    "claim": "A GPO slip printing of EO 6604, dated February 16, 1934 and signed by Franklin D. Roosevelt, is held.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "FRANKLIN D. ROOSEVELT. Tue Waite Houss, February 16, 1934. [No. 6604] U.S. GOVERNMENT PRINTING OFFICE: 1934",
+    "supports": "original",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6604.txt"
+   },
+   {
+    "claim": "The order's one command is a temporary withdrawal of public lands in the listed townships for soil classification.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "all public lands in the townships hereinafter described be, and they are hereby, temporarily withdrawn from settlement, location, sale, entry, and all forms of appropriation, for the purpose of soil classification",
+    "supports": "clause",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6604.txt"
+   },
+   {
+    "claim": "The withdrawal was made under the Pickett Act as amended, subject to its conditions and valid existing rights; the order has no expiry term of its own.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "By virtue of the authority vested in me by the act of June 25, 1910 (ch. 421, 36 Stat. 847), as amended by the act of August 24, 1912",
+    "supports": "clause",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_6604.txt"
+   },
+   {
+    "claim": "A second GPO printing (bound slip-order volume, HathiTrust hvd.hl2725) carries the same operative words.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "temporarily withdrawn from settlement , location , sale , entry , and all forms ofappropriation , for the purpose of soil classification",
+    "supports": "original",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6604.txt"
+   },
+   {
+    "claim": "Public Land Order 711, signed April 10, 1951, revoked EO 6604 by number and date; it is printed at 16 FR 3348.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "711 Apr. 10, 1951 Nebraska and South Dakota; revoking EO No. 6604 of Feb. 16, 1934; withdrawing public lands for soil classification. 16 FR 3348",
+    "supports": "ending",
+    "where": "jobs/shepard-citations/fixtures/blm_table_695-2250_pages.txt (source: https://www.blm.gov/sites/blm.gov/files/uploads/programs_lands-and-realty_land-tenure_withdrawals_public-land-orders_695-2250.pdf)"
+   }
+  ],
+  "searches": [
+   "Read both held GPO printings of EO 6604 (mabillon, photius).",
+   "Grep for 6604 inside jobs/shepard-citations; read the BLM table fixture row for PLO 711.",
+   "Web, standard: \"Public Land Order 711\" 1951 \"Executive Order No. 6604\" Nebraska South Dakota: only the BLM table and APP transcription returned, no PLO text.",
+   "Web, extended: \"Public Land Order 711\" \"6604\" \"is hereby revoked\" Federal Register April 1951: no PLO text found.",
+   "WebFetch of https://www.govinfo.gov/content/pkg/FR-1951-04-17/pdf/FR-1951-04-17.pdf: failed, file over size limit."
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "NO, formal revocation, and a first ending on April 10, 1951 are asserted despite an acknowledged gap in the revoking instrument. The table's signature date does not establish the operative ending date. The supported assessment is OPEN pending PLO 711's actual revocation language, scope, and effective terms at 16 FR 3348; formal revocation likewise remains unconfirmed. T2 is the highest tier of the submitted result whose required propositions are upheld.",
+  "conclusion_verdict": "rejected",
+  "id": "EO:6604",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: WEB fits the evidence slice, which supplies a public citation and URL for PLO 711 but no held acting text. The claimed prior download-size failure is not independently established by the slice.",
+  "suspected_defect": "The result promotes a finding-aid revocation entry into a proved express named ending while explicitly acknowledging that the revoking sentence and its scope remain unread.",
+  "tier_supported": "T2",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The held mabillon text contains Roosevelt's signature, February 16, 1934, [No. 6604], and U.S. GOVERNMENT PRINTING OFFICE: 1934.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held original contains the quoted withdrawal command and the township list; no additional operative command appears.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The full original cites both acts and expressly says 'subject to the conditions therein expressed and to all valid existing rights.' No expiry date or terminating event is specified in its text.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The photius file identifies the GPO bound volume and HathiTrust identifier and reproduces the same withdrawal language. Its preceding unrelated order and truncated signature do not obscure that command.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The held table confirms the quoted entry, signature date, and 16 FR 3348 citation. However, it is a finding aid: the actual PLO 711 revoking sentence, scope, and effective terms were not supplied. The substantive ending claim cannot be upheld from this entry alone under the project rules.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 146.7,
+ "start": "T3",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed: WEB fits the evidence slice, which supplies a public citation and URL for PLO 711 but no held acting text. The claimed prior download-size failure is not independently established by the slice.",
+ "tokens": 158076,
+ "units": 88791,
+ "units_producer": 38454,
+ "units_repair": 32538,
+ "units_review": 17800
+}

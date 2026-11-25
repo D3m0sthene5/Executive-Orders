@@ -1,0 +1,358 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C05",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: trust periods on Absentee Shawnee and Citizen Pottawatomie allotments in Oklahoma expiring in calendar year 1917 are extended 10 years from their expiration dates, except the listed allotments.",
+    "end": "not later than 1927-12-31",
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p5"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Exception list (Absentee Shawnee and Citizen Pottawatomie allottees by number and name): limits the coverage of the sole clause and contains no command of its own, so its state follows the sole clause. What happened to the excepted trusts is not established here, except that six of them were extended by the separate order of 15 January 1917.",
+    "end": "not later than 1927-12-31 (with the sole clause)",
+    "props": [
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "own_terms",
+   "first_end": "not later than 1927-12-31",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/numbered-early-orders/output/texts/EO_2494__KAPPLER_IV_i707.txt is not the text of EO 2494: the slice begins with the 24 November 1916 signature line of the preceding order and then prints a different order dated 15 January 1917 covering six allotments. The 25 CFR chapter I appendix lists an EO 2512 of that date for these tribes, which is probably this order; the slice itself was not re-read for a number. The match was made on date and subject words only.",
+   "The triage flag 'original_not_usable:government_printed_copy' overlooks the held ProQuest replica, which is an accepted original.",
+   "The web search listed an Oklahoma State treaties page (treaties.okstate.edu) titled 'executive order 2493' for this subject; the held replica is numbered 2494 and the 25 CFR chapter I appendix also gives 2494. Page not opened."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Text of EO 4557 (23 December 1926; number and date confirmed by the 25 CFR chapter I appendix) to confirm it is a fresh extension that neither names nor continues EO 2494.",
+    "where_to_look": "ProQuest replica of EO 4557; Kappler vol. IV or V; American Presidency Project Coolidge orders (lead only)"
+   },
+   {
+    "stop_code": "OFFLINE",
+    "what": "Individual allotment trust expiry dates in 1917, needed for an exact end date for each allotment rather than 'not later than 1927-12-31'.",
+    "where_to_look": "BIA Shawnee Agency allotment and trust patent records, National Archives RG 75 (Fort Worth)"
+   }
+  ],
+  "id": "EO:2494",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "ProQuest replica of the State Department copy is held and legible, with signature, date and number; one operative clause plus an exception list.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "NO under the order's own terms: a fixed 10-year extension running from expiry dates in 1917, so the extension this order conferred ran out during 1927. This is the duration of EO 2494's grant, not a finding on when the underlying trusts finally ended under other instruments.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single clause ended not later than 1927-12-31; the exception list only limits that clause and commands nothing of its own.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "The 25 CFR chapter I appendix confirms the follow-on order is EO 4557 of 23 December 1926 for these tribes, but its text was not read, so it is unconfirmed that it is a fresh extension that neither names nor continues EO 2494; individual allotment expiry dates are not held.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "checked_replica",
+   "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held ProQuest replica is EO 2494, signed by Woodrow Wilson on 24 November 1916.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "WOODROW WILSON : THE Wuite House, ; _ 24 November, 1916. ; . ; [No. 2494.]",
+    "supports": "original",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt"
+   },
+   {
+    "claim": "The order extends trust periods expiring in calendar year 1917 for ten years from the dates of expiration, with listed exceptions.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "which trust expires during the calendar year, 1917, be, and is hereby, extended for a period of ten years from the dates of expiration, with the exception of the following",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt"
+   },
+   {
+    "claim": "The extension is self-limiting: ten years from a date in 1917 ends in 1927, so the extension conferred by this order ended not later than 1927-12-31. This bounds EO 2494's own grant, not the ultimate termination of the underlying trusts under other instruments.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "extended for a period of ten years from the dates of expiration",
+    "supports": "ending",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt"
+   },
+   {
+    "claim": "A separate order of 15 January 1917 extended for 10 years the trust on six allotments that EO 2494 had excepted (e.g. 234 Burnett, 186 Panther).",
+    "location": "H",
+    "pid": "p4",
+    "quote": "that the trust period on the following Indian allotments in Oklahoma, which [...] trust expires during 1917, be, and is hereby, extended",
+    "supports": "counterevidence",
+    "where": "jobs/numbered-early-orders/output/texts/EO_2494__KAPPLER_IV_i707.txt"
+   },
+   {
+    "claim": "The 25 CFR chapter I appendix table of trust-period extensions lists three orders for the Absentee Shawnee and Citizen Potawatomi in Oklahoma: EO 2494 (Nov. 24, 1916), EO 2512 (Jan. 15, 1917) and EO 4557 (Dec. 23, 1926). EO 4557 is therefore a candidate separate later instrument. Its text was not read, so its coverage, any exceptions and whether it names EO 2494 are not established. The period column for these rows is a ditto mark, so the length of each extension is not quoted here. The quote is the rows as returned by a fetch of the page through a summarising tool, not a direct reading of the page.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "Oklahoma | Absentee Shawnee and Citizen Potawatomi | 2494 | Nov. 24, 1916 | Do. / Do | ......do | 2512 | Jan. 15, 1917 | Do. / Do | ......do | 4557 | Dec. 23, 1926 | Do.",
+    "supports": "counterevidence",
+    "where": "https://www.law.cornell.edu/cfr/text/25/appendix-to_chapter_I"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld; added the reviewer's limit that it bounds this order's grant, not the final end of the trusts."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld by review; claim and quote unchanged."
+   },
+   {
+    "change": "fixed",
+    "pid": "p5",
+    "why": "UNT page returned 403, so the unchecked catalog wording and the 1927-coverage and exceptions claims were withdrawn. Re-based on the fetched 25 CFR appendix rows, which confirm only the number and date of EO 4557."
+   }
+  ],
+  "searches": [
+   "Read the held ProQuest replica jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt",
+   "Read the held Kappler slice jobs/numbered-early-orders/output/texts/EO_2494__KAPPLER_IV_i707.txt",
+   "One standard web search for a 1926/1927 executive order extending Absentee Shawnee and Citizen Pottawatomie trust periods expiring in 1927; result pages not opened",
+   "Repair pass: fetched https://www.law.cornell.edu/cfr/text/25/appendix-to_chapter_I and got the three rows for these tribes",
+   "Repair pass: fetched https://mocat.library.unt.edu/catalog/385-ch1181 and got HTTP 403, so the Monthly Catalog wording stays unchecked and was withdrawn"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "group": "pre1937",
+ "id": "EO:2494",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T4",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: trust periods on Absentee Shawnee and Citizen Pottawatomie allotments in Oklahoma expiring in calendar year 1917 are extended 10 years from their expiration dates, except the listed allotments.",
+    "end": "not later than 1927-12-31",
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p5"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Exception list (Absentee Shawnee and Citizen Pottawatomie allottees by number and name): excluded from the extension; no command, their trusts ran out in 1917 unless separately extended.",
+    "end": "1916-11-24",
+    "props": [
+     "p2",
+     "p4"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "own_terms",
+   "first_end": "not later than 1927-12-31",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "jobs/numbered-early-orders/output/texts/EO_2494__KAPPLER_IV_i707.txt is not the text of EO 2494: the slice begins with the 24 November 1916 signature line of the preceding order and then prints a different order dated 15 January 1917 covering six allotments. The match was made on date and subject words only.",
+   "The triage flag 'original_not_usable:government_printed_copy' overlooks the held ProQuest replica, which is an accepted original.",
+   "The web search listed an Oklahoma State treaties page (treaties.okstate.edu) titled 'executive order 2493' for this subject; the held replica is numbered 2494. Page not opened, so the numbering conflict is unresolved."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Text of the 1926 follow-on extension order (apparently EO 4557, 23 December 1926, per the 25 CFR chapter I appendix table as summarised by search; not confirmed) to confirm it is a fresh extension that neither names nor continues EO 2494.",
+    "where_to_look": "25 CFR chapter I appendix (law.cornell.edu/cfr/text/25/appendix-to_chapter_I); American Presidency Project Coolidge orders; ProQuest replica of EO 4557"
+   },
+   {
+    "stop_code": "OFFLINE",
+    "what": "Individual allotment trust expiry dates in 1917, needed for an exact end date for each allotment rather than 'not later than 1927-12-31'.",
+    "where_to_look": "BIA Shawnee Agency allotment and trust patent records, National Archives RG 75 (Fort Worth)"
+   }
+  ],
+  "id": "EO:2494",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "ProQuest replica of the State Department copy is held and legible, with signature, date and number; one operative clause plus an exception list.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "NO under the order's own terms: a fixed 10-year extension running from expiry dates in 1917, so it ran out during 1927.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single clause ended not later than 1927-12-31; the exception list commands nothing.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Text of the 1926 follow-on order (apparently EO 4557) not read, so it is unconfirmed that it is a fresh extension that does not continue or name EO 2494; individual allotment expiry dates are not held.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "checked_replica",
+   "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held ProQuest replica is EO 2494, signed by Woodrow Wilson on 24 November 1916.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "WOODROW WILSON : THE Wuite House, ; _ 24 November, 1916. ; . ; [No. 2494.]",
+    "supports": "original",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt"
+   },
+   {
+    "claim": "The order extends trust periods expiring in calendar year 1917 for ten years from the dates of expiration, with listed exceptions.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "which trust expires during the calendar year, 1917, be, and is hereby, extended for a period of ten years from the dates of expiration, with the exception of the following",
+    "supports": "clause",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt"
+   },
+   {
+    "claim": "The extension is self-limiting: ten years from a date in 1917 ends in 1927, so the order's own term ended not later than 1927-12-31.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "extended for a period of ten years from the dates of expiration",
+    "supports": "ending",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt"
+   },
+   {
+    "claim": "A separate order of 15 January 1917 extended for 10 years the trust on six allotments that EO 2494 had excepted (e.g. 234 Burnett, 186 Panther).",
+    "location": "H",
+    "pid": "p4",
+    "quote": "that the trust period on the following Indian allotments in Oklahoma, which [...] trust expires during 1917, be, and is hereby, extended",
+    "supports": "counterevidence",
+    "where": "jobs/numbered-early-orders/output/texts/EO_2494__KAPPLER_IV_i707.txt"
+   },
+   {
+    "claim": "A later, separate executive order extended for 10 years the trust periods of these tribes expiring in 1927, with named exceptions. This comes from a web search summary of a Monthly Catalog entry; the page was not opened and the quote is the summary's wording, not checked against the source.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "expire during calendar year 1927, be extended for period of 10 years, except those named in order",
+    "supports": "counterevidence",
+    "where": "https://mocat.library.unt.edu/catalog/385-ch1181"
+   }
+  ],
+  "searches": [
+   "Read the held ProQuest replica jobs/pinakes-proquest-ingest/output/texts/EO_2494.txt",
+   "Read the held Kappler slice jobs/numbered-early-orders/output/texts/EO_2494__KAPPLER_IV_i707.txt",
+   "One standard web search for a 1926/1927 executive order extending Absentee Shawnee and Citizen Pottawatomie trust periods expiring in 1927; result pages not opened"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "NO is supported under own_terms: the original extends only trusts expiring in 1917 for ten years. The later extension remains a candidate separate instrument; its existence does not itself prolong EO 2494's fixed grant. Formal status is supportable only as the limited finding that no express ending was found in the checked evidence, not proof that none exists. The exception list limits coverage and is not a command terminating trusts; the asserted 1917 endings of excluded trusts are not independently established.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:2494",
+  "missed_evidence": [
+   "The cited CFR appendix directly confirms the follow-on's identity: rows 127–129 list EO 2494 (Nov. 24, 1916), EO 2512 (Jan. 15, 1917), and EO 4557 (Dec. 23, 1926) for Absentee Shawnee and Citizen Potawatomi, with ten-year periods. This resolves the tentative number/date identification, but not the follow-on's full wording: https://www.law.cornell.edu/cfr/text/25/appendix-to_chapter_I ."
+  ],
+  "stop_code_verdict": "confirmed: WEB fits the first gap. Neither named held file contains EO 4557, and the evidence slice supplies no held follow-on text. The public CFR table confirms its identity but leaves its operative wording unresolved.",
+  "suspected_defect": null,
+  "tier_supported": "T4",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The held ProQuest OCR ends with WOODROW WILSON, 24 November, 1916, and [No. 2494.], confirming identity and signature date.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held original expressly covers trusts expiring during calendar year 1917, extends them ten years from their expiration dates, and supplies the exception lists.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The quoted ten-year term combined with the express 1917 expiration window bounds this order's extension by 1927-12-31. This establishes the duration conferred by EO 2494, not the ultimate termination of the underlying trusts under other instruments.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The Kappler slice prints a separate order dated 15 January 1917 extending six listed allotments for ten years. All six numbers (234, 245, 497, 714, 733, 186) occur in EO 2494's exceptions. Its initial November signature belongs to the preceding text.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The cited UNT catalog URL could not be opened, and a targeted search did not recover the quoted entry. The CFR appendix independently confirms EO 4557 dated December 23, 1926 for these tribes, but does not confirm the claimed 1927 coverage or named exceptions.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 137.4,
+ "start": "T2",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed: WEB fits the first gap. Neither named held file contains EO 4557, and the evidence slice supplies no held follow-on text. The public CFR table confirms its identity but leaves its operative wording unresolved.",
+ "tokens": 201490,
+ "units": 108774,
+ "units_producer": 30747,
+ "units_repair": 28616,
+ "units_review": 49411
+}

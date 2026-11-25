@@ -10,7 +10,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 ## Waiting for the owner (9)
 
-**A-20261108-lean-main**, **A-20261110-larrey-soft-probe**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-lind-stage0**, **A-20261112-lind-stage0-v2**, **A-20261124-3**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-generate-verify-comparison**, **A-20261112-lind-repair-12437-11943**, **A-20261113-lind-12753-reconfirm**, **A-20261124-3**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -55,13 +55,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 391; `search` finds the rest)
+## Newest results (6 of 409; `search` finds the rest)
 
+- 2026-11-25 F-20261125-photius-peiresc-s0 **worked**: Stage 0 (Augur PASS, owner review D-20261125-peiresc-page-check) of the Photius page check on the 17 Peiresc… Lesson: Federal Register-era replicas are page runs that start with the tail of the preceding order: the reader credited EO 7756's FDR signature and date to EO 7757, and read 11030's first-page dateline that…
+- 2026-11-24 F-20261124-peiresc-harvest **worked**: Fetched ProQuest 'Replica of Original' PDFs for the 2,192 numbered orders the tracker held with no official t… Lesson: Transfer route that works: get_page_text inside browser_batch saves to a file at up to about 16 MB per batch (7 chunks of 1.35 MB binary); a lone get_page_text from a subagent is capped at 50,000 cha…
 - 2026-11-24 F-20261124-9 **worked**: Read every result page of ProQuest Congressional's 'Unnumbered Executive Orders, Directives, and Proclamation… Lesson: A full reading of the catalog list is cheap (about 2 hours of browser paging) and replaces a wide sample estimate; it confirmed the estimate's centre. Pad the page DOM so get_page_text output overflo…
 - 2026-11-24 F-20261124-8 **worked**: List every ProQuest unnumbered record in the land-order series (coal, petroleum, public water, phosphate, pot… Lesson: get_page_text output over about 50 KB is saved to a workspace file, which is a lossless channel from browser to workspace: pad the page to force it. Result-list paging via the Next Page button and di…
 - 2026-11-24 F-20261124-7 **worked**: Owner-requested browse of ProQuest Congressional in the owner's Chrome (NYU OpenAthens), no downloads: counts… Lesson: The census's biggest gap is the numbered land-order series of 1909-1936 other than power sites; enumerate each series end to end. ProQuest's result list reads well via div.itemPagingDiv and div.itemP…
 - 2026-11-24 F-20261124-6 **worked**: Apply A-20261124-1: admit EO 6585, rename EO:7010P to EO:7010F, re-key the APP EO 4224 1/2 text Lesson: Half-numbered APP titles ('4224 1/2') were truncated to the whole number by the APP id regex; only one title was affected.
-- 2026-11-24 F-20261124-5 **partly worked**: Petty lane D (Sonnet worker, about 189k tokens, 23 min): find any text for the 70 register rows with best_hel… Lesson: Wikisource, APP and FRUS were productive; beware state and county orders with the same number. Re-key 7010P to 7010F and the EO:4224 APP text to 4224 1/2 in the census and app-executive-orders keys (…
-- 2026-11-24 F-20261124-4 **partly worked**: Petty lane B (Sonnet worker, about 243k tokens, 35 min): official pages for the 14 numbered labels admitted i… Lesson: HathiTrust full-text search, govinfo PDFs and archives.federalregister.gov are refused to WebFetch; archive.org full-text search and djvu text work. Admission still needs the pages held: FETCH_URLS.t…
 
-Register: 92 owner decisions, 60 answered questions, 391 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 94 owner decisions, 64 answered questions, 409 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

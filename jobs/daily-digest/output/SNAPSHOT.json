@@ -4306,7 +4306,7 @@
         "jobs/app-transcriptions/output/SOURCES.jsonl": 9902,
         "jobs/astra-source-retention/output/SOURCES.jsonl": 314,
         "jobs/cassiodorus/output/SOURCES.jsonl": 297,
-        "jobs/clark-discovery/output/SOURCES.jsonl": 229,
+        "jobs/clark-discovery/output/SOURCES.jsonl": 233,
         "jobs/clause-drafts/output/SOURCES.jsonl": 9796,
         "jobs/cotton-capture-custody/output/SOURCES.jsonl": 757,
         "jobs/cruden-fr-concordance/output/SOURCES.jsonl": 927,
@@ -4323,7 +4323,7 @@
         "jobs/isthmian-canal-1911/data/PROVENANCE.json": 1,
         "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": 105,
         "jobs/later-events/output/SOURCES.jsonl": 17753,
-        "jobs/lewis-originals/output/SOURCES.jsonl": 486,
+        "jobs/lewis-originals/output/SOURCES.jsonl": 431,
         "jobs/mabillon-held-printings/output/SOURCES.jsonl": 2037,
         "jobs/numbered-early-orders/output/SOURCES.jsonl": 197,
         "jobs/ofr-codification-1989/data/PROVENANCE.json": 1,
@@ -4354,7 +4354,7 @@
         "stage21_acquisition_log": 406,
         "stage21_custody": 385
       },
-      "held_distinct_sha256": 59168,
+      "held_distinct_sha256": 59120,
       "job": "claim-checker",
       "job_limit": null,
       "legal_cutoff": "2026-10-14",
@@ -4421,10 +4421,10 @@
           "order_exists:out_of_universe_number_in_verbatim_quote": 97,
           "quote_verbatim:exact": 66626,
           "quote_verbatim:too_short_to_verify": 5130,
-          "source_held:custody_record_only": 35622,
+          "source_held:custody_record_only": 36436,
           "source_held:gpo_published_hash_match": 12428,
           "source_held:held_bytes_in_release_or_repo": 828,
-          "source_held:held_bytes_verified": 29750,
+          "source_held:held_bytes_verified": 28936,
           "source_identity:recorded_for_this_order": 78628,
           "working_text_policy:invalid_working_text": 112342
         },
@@ -4433,12 +4433,12 @@
           "pass": 8510,
           "pass_with_unverified": 1166
         },
-        "note": "jobs/claim-checker imported; 115458 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
+        "note": "jobs/claim-checker imported; 115450 held copies indexed (0 from CLAIM_DRAFTS_INPUTS folders)"
       },
       "decided_orders_with_draft": 3788,
       "drafts_needing_only_judgment_plus_a_recorded_later_source_search": 0,
       "drafts_whose_only_remaining_gaps_are_judgment_fields": 1157,
-      "elapsed_seconds": 1043.0,
+      "elapsed_seconds": 888.0,
       "establishes": "nothing legal: machine drafts and to-do lists only; no status, ledger or count is changed",
       "estimated_effort": {
         "large": 8081,
@@ -4536,7 +4536,7 @@
         "sources_read:app-transcriptions": 9902,
         "sources_read:astra-source-retention": 314,
         "sources_read:cassiodorus": 297,
-        "sources_read:clark-discovery": 272,
+        "sources_read:clark-discovery": 276,
         "sources_read:clause-drafts": 9796,
         "sources_read:cotton-capture-custody": 757,
         "sources_read:cruden-fr-concordance": 927,
@@ -4553,7 +4553,7 @@
         "sources_read:indian-reservations-1912": 0,
         "sources_read:isthmian-canal-1911": 0,
         "sources_read:later-events": 17753,
-        "sources_read:lewis-originals": 617,
+        "sources_read:lewis-originals": 622,
         "sources_read:mabillon-held-printings": 2037,
         "sources_read:namier": 0,
         "sources_read:norton": 0,
@@ -4835,7 +4835,7 @@
         {
           "complete": true,
           "entry": {
-            "checked_on": "2026-11-23",
+            "checked_on": "2026-11-24",
             "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 89 census orders have no held text and were not searched; 301 of 2245 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
             "repository": "held order texts in this repository (30725 text files for 14913 of 15002 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
             "searched_by": "jobs/namier (machine search)"
@@ -5130,7 +5130,7 @@
         "decided": 3359,
         "universe": 14972
       },
-      "input_commit": "51ff6665fb11e062baf93adb16b48f4bd681a765",
+      "input_commit": "755c685bb41504d24e1dc5124d281a826709d370",
       "jsonl_shard_sha256": {
         "ACTING_PROVISIONS.jsonl": "baf414b2e01973a446ac53675c5c9b7be019c0e360c55a3e2f88f62e978bac80",
         "ACTING_PROVISIONS.part0001.jsonl": "942086becbf000c4ea743aa780a489820181d0431c440581c36952aba646b370",
@@ -5140,12 +5140,12 @@
         "CLAUSES.jsonl": "e8da5e3a0551c63a7d9e3e60120130a4426a0e9cc01b12d8ac5366ed00deaa3e",
         "CLAUSES.part0001.jsonl": "9f57aa77fd348e07b719d3c5ff025843c740128eb5dd9a77414a78b2c58e0ee4",
         "MISSING_SOURCES.jsonl": "544af504f7f57b77a6c734c6b428ccf129a280ac23aeb6d0f968481faa205828",
-        "OVERLAY_INPUTS.jsonl": "dec5f6641cbe4d9672587db87b6e4f705d8d8fa37f2e112d73550bd9ee94bb84",
-        "OVERLAY_INPUTS.part0001.jsonl": "4d4fcf0ad912b05733963faca403eaa1a67564d8b1b8870546202aac2ff2787c",
-        "OVERLAY_INPUTS.part0002.jsonl": "d9e5109e10965e843058dec317d3bb0ffd5fec65d7ba2e91afcbc72805764c23",
+        "OVERLAY_INPUTS.jsonl": "edaf9547a6dc5dcdbd7a827a6442603e9c9dc21d22a2e9ee70e6fa1c56b92acd",
+        "OVERLAY_INPUTS.part0001.jsonl": "40ba7f12aa57fa8d31ee3d8180c2fbad68d5bf7a3ff2747b2b9102fbd87bb15d",
+        "OVERLAY_INPUTS.part0002.jsonl": "71a7085dc7facc1803cf0b74399debd0763c2d0b50b4bbd4805e294e986671f1",
         "OWN_TERMS.jsonl": "a1e1a2d523c703a4850504b1fe84f872cb3be427e092003c15a0795f93e7ba18",
         "OWN_TERMS.part0001.jsonl": "96e6f3782f12fd606f5be605bd5dc37674633c499cfe022b7dcd7016e6d6f37d",
-        "STATUS_LEADS.jsonl": "1c7c9b5875a1b6afa398db0d256c73dd195a3adba220493a4516d640bf027770",
+        "STATUS_LEADS.jsonl": "4063fc1af53b61a0a7fa643e76b466aca7721f0f06bdc937272a098915a47f75",
         "STATUS_LEADS.part0001.jsonl": "23895908d6548fd990dc97cfa7754d1fc1ef04e59622211cafd0007854c68447",
         "TEXT_CLAUSES.jsonl": "5c01ff24f4202478c5ff9f8dd7c51b07656c3be378e6f46d800b5ca991c631cf",
         "TEXT_CLAUSES.part0001.jsonl": "485f747f57f228dbc24aaaa276808deffda7bd7e2e0457961a7c6ae7508db178",
@@ -5552,7 +5552,7 @@
         "distinct_dates": 117,
         "rows": 193
       },
-      "generated_utc": "2026-11-24T00:37:08Z",
+      "generated_utc": "2026-11-25T01:32:50Z",
       "handoff_to_lewis": {
         "by_class": {
           "cited_but_unknown": 5,
@@ -5662,7 +5662,7 @@
       "clauses_total": 71756,
       "fragments_from_app_transcription": 4958,
       "fragments_written": 9796,
-      "generated_utc": "2026-11-23T21:55:53Z",
+      "generated_utc": "2026-11-24T20:46:12Z",
       "identity_quarantine_reasons": {
         "body_cites_its_own_order_number_identity_doubtful": 2,
         "identity_doubt_app_page_date": 1,
@@ -5715,7 +5715,7 @@
       "orders_not_segmented": 148,
       "orders_processed": 9953,
       "orders_with_candidate_text": 9953,
-      "seconds": 205.3,
+      "seconds": 209.3,
       "segmentation_outcomes_by_input": {
         "by_input": {
           "app_transcription_job": {
@@ -7654,7 +7654,7 @@
           "rows": 5996
         }
       },
-      "commit": "71d5c117096825f3d5877aefa458bc06ac944b86",
+      "commit": "1d279ad4e2a636f30270c492af0d9e51a29e203c",
       "schema": "dagron-collection-manifest/v1"
     },
     "domesday-register": {
@@ -7685,11 +7685,11 @@
         "classed": 23,
         "web_confirmed_page": 29
       },
-      "generated_utc": "2026-11-24T01:02:16Z",
+      "generated_utc": "2026-11-25T00:50:21Z",
       "job": "domesday-register",
       "lewis": {
         "routed": 2453,
-        "web_confirmed_page": 144
+        "web_confirmed_page": 148
       },
       "orders": 15002,
       "problems": [],
@@ -8288,8 +8288,8 @@
       "bounded_checks_passed": 0,
       "job": "family-rules",
       "rules": 25,
-      "saved_texts_scanned": 88220,
-      "sweep_manifest_sha256": "7c5759c56b3596024b98f6da1567d7a07848a679d50ecf0769f9446f6d71019f",
+      "saved_texts_scanned": 88318,
+      "sweep_manifest_sha256": "5ac79fd8577ed6b061c538ea28f8f7506488b0bafd0de3134f44341a34cb1141",
       "targets": 748
     },
     "fr-originals": {
@@ -8376,7 +8376,7 @@
       "committed_pdfs": 28,
       "distinct_pages": 30,
       "failures": 0,
-      "generated_utc": "2026-11-24T01:08:58Z",
+      "generated_utc": "2026-11-25T01:07:51Z",
       "job": "fr-pages",
       "note": "Location leads with confidence labels; a person checks the PDF pages. No status, count or codebook change.",
       "pages_held": 30,
@@ -8429,11 +8429,11 @@
       "presidents_from_register": 9991,
       "readiness_rows_missing_from_register": [],
       "ready_for_human_review": 1251,
-      "register_generated_utc": "2026-11-24T01:02:16Z",
-      "tracker_commit": "fe618699781553dc4c3f67ac2c1f740c67967927",
-      "tracker_finished_utc": "2026-11-24T14:44:16Z",
+      "register_generated_utc": "2026-11-25T00:50:21Z",
+      "tracker_commit": "1eda17e7665a2054c31ea1930663003c79fc54f7",
+      "tracker_finished_utc": "2026-11-25T03:18:22Z",
       "tracker_result": "succeeded",
-      "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45412803480",
+      "tracker_run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45533525823",
       "unnumbered_series_estimate_95": null,
       "unnumbered_series_observed": 1816,
       "with_provisional_status": 3788
@@ -8995,9 +8995,9 @@
       "seed": "jacquard-2026-10-31"
     },
     "kean": {
-      "decisions": 91,
+      "decisions": 92,
       "errors": [],
-      "findings": 377,
+      "findings": 382,
       "legacy_reports_unsummarized": 16,
       "open_owner_questions": 9,
       "warnings": []
@@ -9006,7 +9006,7 @@
       "assessed": 2359,
       "by_blocker": {
         "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 9,
-        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 1499
+        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 1467
       },
       "by_chosen_grade": {
         "archival_replica_scan_pending_codebook": 157,
@@ -9022,9 +9022,7 @@
       },
       "complete_text_confirmed": 1398,
       "confirmed": 808,
-      "confirmed_by_blocker": {
-        "ONLY_COMPILED_TRANSCRIPTION_FOUND": 32
-      },
+      "confirmed_by_blocker": {},
       "confirmed_by_grade": {
         "archival_replica_scan_pending_codebook": 142,
         "machine_read_government_printed_copy": 87,
@@ -9160,7 +9158,7 @@
       "packets_covering_half_of_targets": 3,
       "pool_LAMBC": 403,
       "pool_LAMBS": 44,
-      "repo_head": "71d5c1170",
+      "repo_head": "1d279ad4e",
       "rules": [
         "prefills and draft search records are leads a reader confirms; nothing here closes a step",
         "writes no claim, EXHAUSTED line, status or tier; codebook unchanged; certified stays 0",
@@ -9237,11 +9235,11 @@
         "jobs/llull/kit_features.py": "9fe51bf31bce988a7377b26010b0fe29c80e1db9d5411471abb8e1ffa855960d",
         "jobs/llull/llull.py": "1a549f4669671159f4c33fe0bf06d2f7057eb969985c6a1d206b3df6b0ba942f"
       },
-      "gates_commit": "94c7e0b88df017e5155edd8b937c2d9041b94470",
-      "generated_at": "2026-11-24T00:35:40Z",
+      "gates_commit": "057512d533ff4c97a56837aad6f3ded95a277612",
+      "generated_at": "2026-11-25T01:01:16Z",
       "inputs": {
-        "claim_kit_summary_sha256": "1e3a26bc800e1a3453ef7f4c4ab71e210ca71c09349bcd7eaf1e8f95c5c00fc7",
-        "tracker_sha256": "dbfae7d1a713c60b4f48b4835032c3ebcac5c434465bb366c25e1250dba86aaa"
+        "claim_kit_summary_sha256": "1e9c7a7063d980f72619d4616c36e2d3735decdfa351c79857ebc31508b6d50c",
+        "tracker_sha256": "776257d1541334f9bb9a48608b6d7d55db999a5a6a842413fc17057b73dce0f4"
       },
       "kit_rules_loaded": [
         "own_text.records",
@@ -9406,7 +9404,7 @@
         "owner": 2178
       },
       "fragments_written": 0,
-      "generated_utc": "2026-11-24T00:50:45Z",
+      "generated_utc": "2026-11-24T23:57:10Z",
       "handoff": {
         "all_proposals": 67,
         "states": {
@@ -9492,9 +9490,9 @@
     "linnaeus-types": {
       "by_era": {
         "1862-1906": 409,
-        "1907-1936": 3493,
+        "1907-1936": 3495,
         "1937-1945": 514,
-        "1946-1989": 133,
+        "1946-1989": 127,
         "1990-2026": 29,
         "undated": 14
       },
@@ -9502,23 +9500,23 @@
         "AMENDING_OR_REVOKING": {
           "era:1907-1936": 2,
           "era:1937-1945": 17,
-          "era:1946-1989": 10,
+          "era:1946-1989": 9,
           "era:1990-2026": 12,
-          "form_derivative": 41,
-          "held_ending_lead_unrouted": 4,
+          "form_derivative": 40,
+          "held_ending_lead_unrouted": 3,
           "m1118_gap": 0,
-          "total": 41,
+          "total": 40,
           "unsourced": 37
         },
         "CANAL_ZONE": {
           "era:1862-1906": 4,
-          "era:1907-1936": 34,
+          "era:1907-1936": 35,
           "era:1937-1945": 11,
           "form_derivative": 4,
-          "held_ending_lead_unrouted": 5,
-          "m1118_gap": 8,
+          "held_ending_lead_unrouted": 6,
+          "m1118_gap": 9,
           "pothier_decided_lead": 4,
-          "total": 49,
+          "total": 50,
           "unsourced": 40
         },
         "CS_ONE_PERSON": {
@@ -9536,15 +9534,15 @@
         },
         "CS_RULES": {
           "era:1862-1906": 103,
-          "era:1907-1936": 267,
+          "era:1907-1936": 266,
           "era:1937-1945": 44,
           "era:1990-2026": 2,
           "form_derivative": 73,
           "held_ending_lead_unrouted": 12,
-          "m1118_gap": 268,
+          "m1118_gap": 267,
           "pothier_decided_lead": 272,
-          "total": 416,
-          "unsourced": 132
+          "total": 415,
+          "unsourced": 131
         },
         "CUSTOMS_CONSULAR": {
           "era:1862-1906": 15,
@@ -9574,21 +9572,21 @@
         "INDIAN_LAND": {
           "era:1862-1906": 8,
           "era:1907-1936": 47,
-          "era:1946-1989": 2,
+          "era:1946-1989": 1,
           "form_derivative": 1,
           "held_ending_lead_unrouted": 1,
           "m1118_gap": 13,
           "pothier_decided_lead": 19,
-          "total": 57,
-          "unsourced": 37
+          "total": 56,
+          "unsourced": 36
         },
         "LAND_WITHDRAWAL": {
           "era:1862-1906": 31,
-          "era:1907-1936": 461,
+          "era:1907-1936": 462,
           "era:1937-1945": 123,
-          "era:1946-1989": 11,
+          "era:1946-1989": 10,
           "era:undated": 1,
-          "form_derivative": 198,
+          "form_derivative": 199,
           "held_ending_lead_unrouted": 32,
           "m1118_gap": 65,
           "pothier_decided_lead": 194,
@@ -9597,15 +9595,15 @@
         },
         "MILITARY_RESERVATION": {
           "era:1862-1906": 25,
-          "era:1907-1936": 150,
+          "era:1907-1936": 149,
           "era:1937-1945": 13,
-          "era:1946-1989": 17,
-          "form_derivative": 9,
+          "era:1946-1989": 16,
+          "form_derivative": 7,
           "held_ending_lead_unrouted": 9,
           "m1118_gap": 77,
           "pothier_decided_lead": 88,
-          "total": 205,
-          "unsourced": 108
+          "total": 203,
+          "unsourced": 106
         },
         "NATIONAL_FOREST": {
           "era:1907-1936": 374,
@@ -9642,27 +9640,27 @@
         },
         "REFUGE_LIGHTHOUSE": {
           "era:1862-1906": 12,
-          "era:1907-1936": 102,
+          "era:1907-1936": 103,
           "era:1937-1945": 7,
           "era:1946-1989": 1,
           "form_derivative": 8,
           "held_ending_lead_unrouted": 5,
-          "m1118_gap": 27,
+          "m1118_gap": 28,
           "pothier_decided_lead": 49,
-          "total": 122,
-          "unsourced": 68
+          "total": 123,
+          "unsourced": 69
         },
         "REGULATIONS": {
           "era:1862-1906": 16,
-          "era:1907-1936": 135,
+          "era:1907-1936": 136,
           "era:1937-1945": 36,
           "era:1946-1989": 11,
           "era:1990-2026": 4,
-          "form_derivative": 29,
+          "form_derivative": 30,
           "held_ending_lead_unrouted": 33,
           "m1118_gap": 35,
-          "pothier_decided_lead": 53,
-          "total": 202,
+          "pothier_decided_lead": 54,
+          "total": 203,
           "unsourced": 116
         },
         "SPENT_ONE_TIME": {
@@ -9681,14 +9679,14 @@
           "era:1862-1906": 10,
           "era:1907-1936": 50,
           "era:1937-1945": 19,
-          "era:1946-1989": 9,
+          "era:1946-1989": 7,
           "era:undated": 1,
           "form_derivative": 2,
-          "held_ending_lead_unrouted": 9,
+          "held_ending_lead_unrouted": 8,
           "m1118_gap": 15,
           "pothier_decided_lead": 7,
-          "total": 89,
-          "unsourced": 73
+          "total": 87,
+          "unsourced": 72
         },
         "UNKNOWN": {
           "era:1862-1906": 10,
@@ -9715,7 +9713,7 @@
           "unsourced": 166
         }
       },
-      "cruden_targets": 2118,
+      "cruden_targets": 2114,
       "cs_one_person_left_to_ulpian": 1249,
       "inputs": {
         "app": "jobs/app-executive-orders/output/INDEX.csv",
@@ -9730,7 +9728,7 @@
         "tracker": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv",
         "types": "jobs/x1-class-engine/output/TYPES.csv"
       },
-      "m1118_gap_overlap": 1472,
+      "m1118_gap_overlap": 1473,
       "matched_sources": {
         "AMENDING_OR_REVOKING": {
           "job": "own_text",
@@ -9805,25 +9803,25 @@
           "source": "Federal Register 1936-1993 number search (Office of Alien Property orders); the 1921 joint resolution names no order, so it is no end by itself (D-20261021-unnamed-instruments)"
         }
       },
-      "no_lead": 4592,
+      "no_lead": 4588,
       "notice": "Type leads only. A finding aid's silence about an order is never evidence about it. No status, identity, census, codebook or count is changed (human-certified 0).",
       "residual_replica_gap_overlap": 108,
       "schema": "linnaeus-no-lead-types/v1",
       "strata": {
-        "held_ending_lead_unrouted": 260,
-        "pothier_decided_lead": 1081,
-        "unsourced": 3251
+        "held_ending_lead_unrouted": 259,
+        "pothier_decided_lead": 1082,
+        "unsourced": 3247
       },
       "type_source": {
         "linnaeus_title_pattern": 39,
         "none": 222,
         "pothier_doctrine": 1,
-        "title_form": 41,
-        "x1_taxonomy_on_app_title": 503,
-        "x1_types": 3786
+        "title_form": 40,
+        "x1_taxonomy_on_app_title": 498,
+        "x1_types": 3788
       },
       "undecided": 11214,
-      "unsourced_named_without_ending_word": 396
+      "unsourced_named_without_ending_word": 391
     },
     "mabillon-held-printings": {
       "by_route_verdict_in_frame": {
@@ -9877,7 +9875,7 @@
         "jobs/tischendorf-originals/fingerprint.py": "de1fdea0ba41f2ac0dfbc338a581d037385a1da18bbe66e0a2e81e35feb44fd4",
         "jobs/tischendorf-originals/tischendorf.py": "ac89ca38e0bb0ad12c3e1e65339a02452d20e6be08cb6acd5e0b605e3181e3ce"
       },
-      "seconds": 45,
+      "seconds": 80,
       "strong": 1787,
       "strong_rules": "own number heading or closing tag on the pages (an OCR-damaged or mid-line heading only with a text score >= 0.6; in a compilation that prints no numbers, the signing date), text fingerprint score >= 0.5, distinctive fingerprint (>= 8 rare shingles), government-printed source, and no planted control failed this run; scored on the order's own printed segment (between the previous closing number tag and its own); and the claimed order's text beats every order numbered within 3 of it by at least 0.15",
       "targets": 2037,
@@ -10558,7 +10556,7 @@
         "subjects_with_later_hit_not_citing_number": 129,
         "subjects_with_too_many_leads_to_attach": 1
       },
-      "generated_utc": "2026-11-23T23:10:46Z",
+      "generated_utc": "2026-11-24T21:29:47Z",
       "job": "namier",
       "legal_conclusions": 0,
       "legal_cutoff": "2026-10-14",
@@ -10566,7 +10564,7 @@
         {
           "complete": true,
           "entry": {
-            "checked_on": "2026-11-23",
+            "checked_on": "2026-11-24",
             "query_or_scope": "the full name of the person this order concerns (given name, any middle names or initials, surname; also 'Surname, Given'), case-insensitive, in every other held order text; 89 census orders have no held text and were not searched; 301 of 2245 one-person orders had no parsable name and were not searched (SEARCH_COVERAGE.csv); a match is a name match, not an identity authentication",
             "repository": "held order texts in this repository (30725 text files for 14913 of 15002 census orders, produced by app-executive-orders, csc-annual-reports, fr-originals, hathi-gpo-orders, indian-reservations-1912, isthmian-canal-1911, numbered-early-orders, ofr-compilations, pinakes-proquest-ingest, richardson-volumes, wikisource-texts)",
             "searched_by": "jobs/namier (machine search)"
@@ -13444,7 +13442,7 @@
         "stray_or_bad": 0,
         "unique_by_sha256": 2750
       },
-      "generated_utc": "2026-11-23T22:48:21Z",
+      "generated_utc": "2026-11-24T21:29:43Z",
       "job": "pinakes-proquest-ingest",
       "orders": {
         "by_era": {
@@ -13578,7 +13576,7 @@
         "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 68
       },
       "formal_revocation_after_earlier_cessation": 33,
-      "generation_id": "45412803480-1:7fad683e3d7aad75ad3e897b9ca22b5ff3cb34adf51967715b2da040e8000c43",
+      "generation_id": "45533525823-1:f2932eaa5bd1df051260aa3e7f874ba6fde76cefe1bcbf3a7e46f84184a602c9",
       "historical_census_candidates_OUTSIDE_DENOMINATOR": {
         "LOC_items_with_original_page_images": 3,
         "LOC_transcribed_items": 0,
@@ -14970,7 +14968,7 @@
       },
       "extracts_committed_bytes": 255048664,
       "failures": 1,
-      "generated_utc": "2026-11-24T02:33:25Z",
+      "generated_utc": "2026-11-25T02:08:23Z",
       "issues_gpo_premis_match": 804,
       "issues_gpo_premis_other": {
         "mismatch": 804
@@ -15016,7 +15014,7 @@
       "failures": 0,
       "fragments": 8097,
       "fragments_relocated_with_new_locator": 0,
-      "generated_utc": "2026-11-24T02:11:30Z",
+      "generated_utc": "2026-11-25T00:43:22Z",
       "job": "selden-fr-citers",
       "legal_cutoff": "2026-10-14",
       "limits": "Leads only: a printed relation word near a citation. 1994 on only (full-text search coverage).",
@@ -15054,10 +15052,10 @@
     },
     "shepard-citations": {
       "blm_fetch": {
-        "bytes_downloaded": 163088,
-        "cache_hits": 24,
+        "bytes_downloaded": 1942733,
+        "cache_hits": 0,
         "listing": "read: 24 table links",
-        "requests": 2
+        "requests": 26
       },
       "blm_tables_failed": [],
       "edges": 10674,
@@ -15097,7 +15095,7 @@
         "entries": 817,
         "texts_with_codification_guide": 369
       },
-      "generated_utc": "2026-11-24T01:08:47Z",
+      "generated_utc": "2026-11-25T01:07:43Z",
       "held_texts": {
         "date_mentions": 2108,
         "number_mentions": 9836,
@@ -15646,7 +15644,7 @@
       },
       "reserves_indexed": 182,
       "reserves_resolved": 179,
-      "seconds": 84.7,
+      "seconds": 84.8,
       "skipped_already_in_later_events_or_codification": {
         "shepard_blm_plo_table": 155,
         "shepard_fr_contents": 493,
@@ -15668,7 +15666,7 @@
     },
     "source-ladder": {
       "attempts_logged": 180,
-      "bytes_downloaded": 96738954,
+      "bytes_downloaded": 135890416,
       "caution": "Source custody and leads only. No legal conclusion, status or count is changed.",
       "distinct_new_source_hashes": 0,
       "earlier_found_carried_with_defect": 0,
@@ -15704,7 +15702,7 @@
       "from_fetch_queue": 1365,
       "from_opus_refetch": 774,
       "from_stage20_shared_sources": 90,
-      "http_requests": 45,
+      "http_requests": 133,
       "items_in_queue": 2229,
       "items_worked": 274,
       "job": "source-ladder",
@@ -15715,11 +15713,11 @@
       "not_attempted_budget": 0,
       "offline": false,
       "orders_covered_by_found_sources": 1049,
-      "pool_cache_hits": 5,
-      "pool_network_requests": 45,
+      "pool_cache_hits": 0,
+      "pool_network_requests": 140,
       "prefetched_urls": 0,
       "quarantined_prior_sources": 21,
-      "range_bytes": 96494715,
+      "range_bytes": 96429179,
       "range_requests": 1500,
       "report_date_items": 82,
       "report_date_records_found": 0,
@@ -15729,11 +15727,11 @@
         "unresolved": 2,
         "valid": 1321
       },
-      "retained_prior_attempt_records": 2826,
+      "retained_prior_attempt_records": 2882,
       "retained_prior_failure_records": 510,
       "retry_later": 49,
-      "run_date": "2026-11-23",
-      "seconds": 1552.4,
+      "run_date": "2026-11-24",
+      "seconds": 1692.2,
       "source_evidence_tiers": {
         "custody_only": 3,
         "document_text": 968,
@@ -15745,7 +15743,7 @@
         "method": "up to 10 carried-defect re-walks first (queue requests, then ID), then FETCH_QUEUE requests (untried before tried), then readiness proximity, step opportunity, downstream work, stable ID",
         "queue_fingerprint": "e48810c3adb54b5858ddfdd8f32764605fcad4adc72fc44d713e42c5de10aac3",
         "schema": "eo-source-plan/v1",
-        "tracker_sha256": "a3d8b7060c7dbad09bbefe9047379cc48da7dd721c56ed638dd6b7e39b5b36d1",
+        "tracker_sha256": "74da5530df6c55138f71edd4fbbfa3e0ff627e222228fb090f8a41e527a3dacc",
         "wanted_ids": [
           "queue:EO:10029:Actual report date of the board created by EO 10029 (Presidential Emergency Board (Railway Labor Act sec. 10): the Northwest Airlines , Inc., and Certain of Its Employees): the board's report to the President and its transmittal letter date; not the order's report deadline, and the 1986 revocation by EO 12553 is only an upper bound.",
           "queue:EO:10078:Actual report date of the board created by EO 10078 (Presidential Emergency Board (Railway Labor Act sec. 10): Presidential Emergency Board): the board's report to the President and its transmittal letter date; not the order's report deadline, and the revocation by EO 12553 is only an upper bound.",

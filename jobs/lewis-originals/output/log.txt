@@ -33,10 +33,10 @@ incorrect startxref pointer(1)
 parsing for Object Streams
 incorrect startxref pointer(1)
 parsing for Object Streams
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-81swzwo5/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:242: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-7y3s60vc/_out/WEB_NUMBERS_NAMED.csv' mode='r' encoding='utf-8'>
   self.assertIn("5999", open(os.path.join(self.out, "WEB_NUMBERS_NAMED.csv"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
-/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-81swzwo5/_out/REPORT.md' mode='r' encoding='utf-8'>
+/home/runner/work/Executive-Orders/Executive-Orders/jobs/lewis-originals/test_lewis.py:243: ResourceWarning: unclosed file <_io.TextIOWrapper name='/tmp/lewis-7y3s60vc/_out/REPORT.md' mode='r' encoding='utf-8'>
   self.assertIn("## Web search", open(os.path.join(self.out, "REPORT.md"), encoding="utf-8").read())
 ResourceWarning: Enable tracemalloc to get the object allocation traceback
 ok
@@ -149,7 +149,7 @@ test_qualified_request_not_conflated (test_handoff.HandoffTests.test_qualified_r
 test_shared_result_matches_each_exact_target (test_handoff.HandoffTests.test_shared_result_matches_each_exact_target) ... ok
 
 ----------------------------------------------------------------------
-Ran 35 tests in 4.801s
+Ran 35 tests in 3.657s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
@@ -172,10 +172,9 @@ test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLay
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 18 tests in 26.162s
+Ran 18 tests in 26.207s
 
 OK
-fontTools is required to fully parse the encoding of a CFF Type1 font in font dictionary {'/BaseFont': '/COLEGP+NewspaperPiBT-Regular', '/Encoding': IndirectObject(57, 0, 125235660588672), '/FirstChar': 2, '/FontDescriptor': IndirectObject(59, 0, 125235660588672), '/LastChar': 2, '/Subtype': '/Type1', '/Type': '/Font', '/Widths': [944]}, but is not installed. Consider installing fontTools if you encounter encoding problems.
 {
   "scope": {
     "orders": 2469,
@@ -220,12 +219,12 @@ fontTools is required to fully parse the encoding of a CFF Type1 font in font di
 Offline stage done; starting the web search stage
 {
   "advanced_this_run": 100,
-  "requests_used": 195,
-  "hits_total": 30946,
-  "leads_page_confirmed": 220,
+  "requests_used": 750,
+  "hits_total": 32316,
+  "leads_page_confirmed": 228,
   "engines": {
-    "duckduckgo_html": "http_403",
-    "duckduckgo_lite": "http_403",
+    "duckduckgo_html": "error",
+    "duckduckgo_lite": "error",
     "bing_rss": "blocked_by_robots_txt",
     "mojeek_html": "blocked_by_robots_txt",
     "brave_html": "blocked_by_robots_txt",

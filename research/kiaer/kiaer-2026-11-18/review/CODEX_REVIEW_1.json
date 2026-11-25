@@ -1,0 +1,51 @@
+{
+  "reviewer_model": "gpt-6",
+  "stage0": {
+    "plan_sha256": "86d72085ca3fecc5d00dd60469e60f8c081a483e2fef577f9b7800c595af6714",
+    "verdict": "reject",
+    "reasons": [
+      "The objective passes: reviewer-upheld tier moves per unit are an outcome, and the text does not make spending or activity a goal. The declared 1 lane, 29 orders and 6,000,000 units fit Augur's stage-0 caps.",
+      "For a fresh, unmodified draw, the CLI forces one worker and stage0() selects at most 29 orders. However, stage0() marks the stage done and calls set_cap(self.cap), normally raising the engine ceiling to 10,000,000 before returning. Jobs stopped as CAP remain queued or paused rather than demonstrably cancelled, so this can permit unfinished stage-0 work to run beyond 6,000,000. Existing state and DRAW.json are also trusted without enforcing the signed plan's order count or frame.",
+      "A hard unit ceiling is not demonstrated. Engine is not supplied, and checking recorded usage before starting another turn does not bound that turn's eventual usage. No $2 ceiling is passed to either provider by the supplied code; max_turns=3 and a timeout do not establish a dollar ceiling. The other declared supervisor limits are likewise not visibly enforced.",
+      "All six acknowledged_findings answers describe plan-specific responses rather than boilerplate: fresh slices, provenance, measured transitions, a small initial probe, independent review without filing, and identity-only research. Several remain unsupported implementation claims: current inputs are hashed but not checked against the signed frame during execution, and source verification and printing distinctions depend on unseen prompts and providers.",
+      "The pre-mortem contains six concrete failures, but at least three implemented guards cannot be established from the supplied material. Reviewer input filtering and plant scheduling are visible; actual source checking, starting-tier confirmation, whole-tree-search restrictions, slice sanitization and provider enforcement are not. Outcome scoring also contradicts parts of the guards: it compares against machine_tier rather than the confirmed starting tier, and does not explicitly exclude records marked stopped.",
+      "The read-only promise is not established. The CLI keeps --out outside the repository, but Probe itself does not enforce that boundary, producer write restrictions are not shown, and the report command explicitly targets REPO/research/kiaer/ID. No supplied code proves that providers cannot file claims or alter repository status/count files.",
+      "Blindness is not established. prompts.producer receives the entire cell, including its revealing label and machine_tier map. STATE.json stores ledger_status outside the listed deny paths. The reviewer has no corresponding read restrictions, and its review.json is passed to the producer's repair step. The unseen prompts and provider controls would need to prevent all these disclosure routes.",
+      "Audit scoring has a concrete correctness defect: a missing ledger status becomes an empty string, and a missing operative_status also defaults to an empty string. With conclusion_verdict='upheld', these can compare equal and count as an audit success."
+    ],
+    "risks_noted": [
+      "The owner-directed Bentham exception and pending review binding are accepted and are not rejection grounds. The missing Bentham action means Augur's resulting zero forecast must not be interpreted as a measured zero cost or yield.",
+      "The smoke test establishes measured usage for one order only. Plant coverage is approximate, can be below 12% when mutations cannot be made, and provides little catch-rate precision at this stage.",
+      "The supplied Engine, provider, prompt, slice and report implementations were not available for this review; missing guarantees are identified as unverified rather than asserted to be absent from those modules."
+    ]
+  },
+  "stage1": {
+    "plan_sha256": "f12e594c83b2557d27394a401c67703eaa68f1a0416decb7c2238bc7fe1fe5bc",
+    "verdict": "reject",
+    "reasons": [
+      "The outcome objective passes. The declared 3 lanes, 235 orders and 10,000,000 cumulative units fit Augur's stage-1 caps of 3 lanes, 300 orders and 40,000,000 units, and the owner's stricter budget.",
+      "The declared limits are not execution ceilings. --workers accepts values above 3 and --token-cap accepts values above 10,000,000. Probe trusts DRAW.json and persisted caps rather than validating the signed frame and 235-order maximum. The supplied code also does not establish the $2 per-turn ceiling or enforcement of the other supervisor limits.",
+      "The owner's projection condition is not enforced. full() starts finishing CAP-stopped orders before fit_caps(), ignores fit_caps()'s returned projection, and never requires projected_total_units <= cap. stage0_done records procedural completion even if work stopped at the cap; it does not certify a usable measured projection.",
+      "_admit() is an estimate, not admission of only orders the remaining budget can finish. It uses a pooled observed p80, which can underestimate expensive cells and excludes CAP-stopped queued/paused jobs from the cost sample. Missing observations fall back to one unit. Retries and plants have no conservative reserved completion budget, and plants are launched separately without admission. Parallel turns can exceed a ceiling based solely on recorded completed usage.",
+      "All six lesson answers are specific, but the budget/ramp response is not delivered by full(), and provenance and independent source-checking claims depend on unverified components. The pre-mortem is concrete on paper but its hard-budget, blindness, confirmed-starting-tier and failure-scoring guards are not adequately implemented or demonstrated.",
+      "The read-only and blind-audit defects described for stage 0 also apply here: repository-writing report destination, unverified producer permissions, revealing cell metadata supplied to prompt construction, ledger-bearing STATE.json, and unrestricted reviewer output feeding producer repair.",
+      "Outcome validity remains a launch blocker: moves are scored against machine_tier rather than a validated starting tier, stopped records are not explicitly forced to no move, and missing audit statuses can produce a false successful agreement."
+    ],
+    "risks_noted": [
+      "The owner-authorized Bentham and configuration-record exceptions, and pending review binding, are accepted. The configuration exception is unsafe with the current implementation because the measured-projection condition on that exception is not enforced.",
+      "Even a correctly enforced p80 projection is a forecast, not a completion guarantee. Three initial observations per ordinary cell and one per audit cell provide limited evidence about expensive tails.",
+      "Repeated Wilson-interval stopping and budget-driven sample reductions require careful reporting; ordinary fixed-sample 95% intervals do not automatically retain that coverage under repeated stopping."
+    ]
+  },
+  "required_changes": [
+    "Keep the stage-0 engine ceiling at min(requested_cap, 6,000,000) through shutdown. Leave unfinished jobs durably suspended and unable to start until an explicitly validated full-run transition; do not raise the cap inside stage0(). Validate resume state before starting the engine or resuming jobs.",
+    "Enforce the approved configuration at the execution boundary: stage 0 at most 1 worker and 30 orders, full run at most 3 workers and 235 cumulative genuine orders, and at most 10,000,000 cumulative units including stage 0, retries and plants. Validate DRAW.json's frame and persisted state against the approved plan; reject incompatible command-line overrides or reused data directories.",
+    "Implement or demonstrate atomic budget reservations covering all concurrent work and conservative completion costs for each admitted order, including permitted retries and plant reviews. Bound each provider turn's possible unit usage against its reservation. Account for failed or interrupted calls, and stop admission when reliable usage or completion bounds are unavailable.",
+    "Pass and enforce the declared $2 ceiling for every applicable model turn, including retries and reviews, and implement the remaining declared supervisor limits or revise those declarations to explicitly approved probe-specific controls. Supply the relevant Engine/provider implementation for verification.",
+    "Before any full-run work resumes or launches, require adequate measured stage-0 usage, shrink caps if necessary, and explicitly refuse unless the resulting cumulative projection fits within 10,000,000 units. Treat missing or truncated cost observations conservatively rather than as zero or one-unit work.",
+    "Enforce repository read-only access for both model providers, with write access only to isolated external artifacts. Enforce the external-output boundary inside Probe as well as the CLI. Move the report destination outside the repository for this read-only probe, and demonstrate that claim filing and status/count mutation tools are unavailable.",
+    "Construct blind producer inputs without cell identifiers, revealing labels, machine tiers or ledger fields. Isolate ledger-bearing state and other control artifacts from producers. Prevent reviewers from reading the ledger and ensure repair feedback cannot introduce it. Supply the actual prompts, slice sanitization and provider restrictions, with checks covering initial and repair turns.",
+    "Score moves against an independently validated starting tier, explicitly implement the promised failure/no-move policy, and require valid nonempty ledger and producer statuses before counting audit agreement. Verify that reports retain every launched order and expose missing reviews and stop reasons.",
+    "Provide implementation evidence for at least three concrete pre-mortem guards, including source verification and restricted evidence access. Verify input provenance at execution time. Update any plan wording that overstates guarantees, then obtain a new review binding for each changed plan."
+  ]
+}
