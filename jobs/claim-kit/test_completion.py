@@ -102,6 +102,32 @@ class CompletionTests(B.BatchTests):
         with self.assertRaisesRegex(ValueError, 'fresh research'):
             C.complete(self.repo, self.manifest_path, self.dest)
 
+    def test_own_correction_name_chosen_by_kit_passes_guard_that_refuses_dated_name(self):
+        # EO 14006 (Bracton p04): the prior own claim sits in an undated-prefix file, so the hand-made dated
+        # name sorts before it. The guard keeps refusing that name; the kit's chosen name files and wins.
+        self.setup_completion()
+        prior = self.repo / 'research/readiness/claims/producer-lambertini-b02-2026-10-20.jsonl'
+        prior.parent.mkdir(parents=True, exist_ok=True)
+        prior.write_text(json.dumps({'instrument_id': 'EO:1', 'v': 'prior'}) + '\n')
+        dated = 'research/readiness/claims/producer-2026-11-25-bracton-p04.jsonl'
+        self.manifest['publication']['path'] = dated
+        refused = self.run_completion()
+        self.assertEqual(refused['eligible'], [])
+        self.assertIn('own replacement would be shadowed by an existing claim filename',
+                      next(r for r in refused['outcomes'] if r['instrument_id'] == 'EO:1')['error'])
+        chosen = C.own_publication_path(self.repo, 'producer', '2026-11-25', 'bracton', 'p04', ['EO:1'])
+        self.assertEqual(chosen['rule'], 'successor')
+        self.assertEqual(chosen['dated_name'], Path(dated).name)
+        self.assertEqual(chosen['path'], 'research/readiness/claims/'
+                         'producer-lambertini-b02-2026-10-20_corrected-2026-11-25-bracton-p04.jsonl')
+        self.manifest['publication']['path'] = chosen['path']
+        self.dest = self.folder / 'complete-chosen'
+        result = self.run_completion(publish=True)
+        self.assertEqual(result['eligible'], ['EO:1'], result['outcomes'])
+        self.assertEqual((self.repo / chosen['path']).read_bytes(), self.producer.read_bytes())
+        self.assertEqual(batch.owners(self.repo)['EO:1']['path'], chosen['path'])  # native readers keep the correction
+        self.assertEqual(prior.read_text(), json.dumps({'instrument_id': 'EO:1', 'v': 'prior'}) + '\n')  # never renamed
+
     def test_stale_exact_review_is_exception_and_no_publication(self):
         self.setup_completion()
         batch.dump(self.review_path, dict(self.review, claim_sha256='0' * 64))
@@ -595,6 +621,108 @@ for base in (B.BatchTests, B.T.BuildIntegrationTests):
         if name.startswith('test_') and name not in CompletionTests.__dict__:
             setattr(CompletionTests, name, None)
 del base
+
+class OwnPublicationPathTests(unittest.TestCase):
+    """completion.own_publication_path: the chosen own-claims name sorts after every member's claim file."""
+    def setUp(self):
+        import tempfile
+        self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
+        self.repo = Path(self.temp.name); self.claims = self.repo / 'research/readiness/claims'
+        self.claims.mkdir(parents=True)
+
+    def put(self, name, *iids):
+        (self.claims / name).write_text(''.join(json.dumps({'instrument_id': i}) + '\n' for i in iids))
+
+    def name(self, *iids, agent='claude', date='2026-11-25', wave='bracton', label='p04'):
+        return C.own_publication_path(self.repo, agent, date, wave, label, list(iids))
+
+    def test_eo_14006_dated_name_sorts_before_undated_file_so_successor_is_chosen(self):
+        self.put('claude-lambertini-b02-2026-10-20.jsonl', 'EO:14006', 'EO:1')
+        self.put('claude-2026-11-24-bartolus-s01.jsonl', 'EO:2')
+        self.assertLess('claude-2026-11-25-bracton-p04.jsonl', 'claude-lambertini-b02-2026-10-20.jsonl')  # the defect
+        got = self.name('EO:14006')
+        self.assertEqual(got['path'], 'research/readiness/claims/'
+                         'claude-lambertini-b02-2026-10-20_corrected-2026-11-25-bracton-p04.jsonl')
+        self.assertEqual((got['rule'], got['sorts_after']), ('successor', 'research/readiness/claims/claude-lambertini-b02-2026-10-20.jsonl'))
+        self.assertEqual(got, self.name('EO:14006'))  # deterministic
+        self.put(Path(got['path']).name, 'EO:14006')
+        self.assertEqual(batch.owners(self.repo)['EO:14006']['path'], got['path'])
+        self.assertEqual(batch.owners(self.repo)['EO:1']['path'], 'research/readiness/claims/claude-lambertini-b02-2026-10-20.jsonl')
+
+    def test_dated_name_when_it_already_sorts_last_or_members_are_new(self):
+        self.assertEqual(self.name('EO:5')['rule'], 'dated')
+        self.put('claude-2026-11-04-tribonian-a01.jsonl', 'EO:5')
+        got = self.name('EO:5', 'EO:6')
+        self.assertEqual((got['rule'], got['path']), ('dated', 'research/readiness/claims/claude-2026-11-25-bracton-p04.jsonl'))
+
+    def test_successor_follows_the_member_file_that_sorts_last_and_chains(self):
+        self.put('claude-lambertini-b02-2026-10-20.jsonl', 'EO:1')
+        self.put('claude-viapar-m-2026-10-20.jsonl', 'EO:2')
+        first = self.name('EO:1', 'EO:2')
+        self.assertEqual(Path(first['path']).name, 'claude-viapar-m-2026-10-20_corrected-2026-11-25-bracton-p04.jsonl')
+        self.put(Path(first['path']).name, 'EO:1', 'EO:2')
+        again = self.name('EO:2', date='2026-12-01', wave='cujas', label='c09')
+        self.assertEqual(Path(again['path']).name, 'claude-viapar-m-2026-10-20_corrected-2026-11-25-bracton-p04'
+                         '_corrected-2026-12-01-cujas-c09.jsonl')
+        self.assertGreater(Path(again['path']).name, Path(first['path']).name)
+
+    def test_chosen_name_sorts_after_every_member_file_for_many_name_shapes(self):
+        import random
+        rng = random.Random(14006)
+        alphabet = 'abcxyz0129-_.ZA'
+        for case in range(300):
+            for p in self.claims.iterdir():
+                p.unlink()
+            iids = []
+            for k in range(rng.randint(1, 4)):
+                stem = 'claude-' + ''.join(rng.choice(alphabet) for _ in range(rng.randint(1, 12)))
+                iid = 'EO:%d' % k
+                self.put(stem + '.jsonl', iid); iids.append(iid)
+            got = self.name(*iids)
+            final = batch.owners(self.repo)
+            for iid in iids:
+                self.assertGreater(Path(got['path']).name, Path(final[iid]['path']).name, (case, got))
+            self.assertTrue(Path(got['path']).name.startswith('claude-'))
+
+    def test_other_owner_members_are_listed_not_used(self):
+        self.put('zeta-2026-10-01.jsonl', 'EO:5825')
+        self.put('claude-lambertini-b02-2026-10-20.jsonl', 'EO:14006')
+        got = self.name('EO:14006', 'EO:5825')
+        self.assertEqual(got['other_owner_members'], {'EO:5825': 'research/readiness/claims/zeta-2026-10-01.jsonl'})
+        self.assertEqual(Path(got['path']).name, 'claude-lambertini-b02-2026-10-20_corrected-2026-11-25-bracton-p04.jsonl')
+
+    def test_refusals(self):
+        for kwargs, message in (({'date': '2026-13-01'}, 'YYYY-MM-DD'), ({'date': '25 Nov'}, 'YYYY-MM-DD'),
+                                ({'wave': 'brac ton'}, 'wave label'), ({'label': 'p04.part0001'}, 'batch label'),
+                                ({'agent': 'claude/x'}, 'simple agent')):
+            with self.subTest(**kwargs), self.assertRaisesRegex(ValueError, message):
+                self.name('EO:1', **kwargs)
+        with self.assertRaisesRegex(ValueError, 'at least one member'):
+            self.name()
+        self.put('claude-2026-11-25-bracton-p04.jsonl', 'EO:9')
+        with self.assertRaisesRegex(ValueError, 'already exists'):
+            self.name('EO:1')
+        self.put('claude.jsonl', 'EO:7')  # owner == agent, yet no 'claude-' name sorts after 'claude.jsonl'
+        with self.assertRaisesRegex(ValueError, 'no own-agent claims file name can sort after'):
+            self.name('EO:7', label='p05')
+
+    def test_kit_cli_prints_the_choice(self):
+        import contextlib, io
+        import kit
+        self.put('claude-lambertini-b02-2026-10-20.jsonl', 'EO:14006')
+        manifest = self.repo / 'M.json'
+        manifest.write_text(json.dumps({'members': [{'instrument_id': 'EO:14006', 'outcome': 'submit'},
+                                                    {'instrument_id': 'EO:1', 'outcome': 'blocked'}]}))
+        for args in (['--order', 'EO:14006'], ['--manifest', str(manifest)]):
+            out = io.StringIO()
+            with contextlib.redirect_stdout(out):
+                code = kit.main(['--repo', str(self.repo), 'publication-name', '--agent', 'claude', '--date', '2026-11-25',
+                                 '--wave', 'bracton', '--batch', 'p04', *args])
+            self.assertEqual(code, 0)
+            got = json.loads(out.getvalue())
+            self.assertEqual(Path(got['path']).name, 'claude-lambertini-b02-2026-10-20_corrected-2026-11-25-bracton-p04.jsonl')
+            self.assertEqual(list(got['own_members_with_existing_claims']), ['EO:14006'])
+
 
 class PublicationAuditTests(unittest.TestCase):
     """Separate clones bypass the lock; the merge-time audit must see what Git merges silently."""
