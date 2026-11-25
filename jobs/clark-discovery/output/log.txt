@@ -20,7 +20,7 @@ test_number_gaps_with_windows_and_index_evidence (test_clark.SyntheticRepo.test_
 test_outputs_are_deterministic (test_clark.SyntheticRepo.test_outputs_are_deterministic) ... ok
 
 ----------------------------------------------------------------------
-Ran 20 tests in 5.721s
+Ran 20 tests in 5.610s
 
 OK
 test_advance_searches_reads_pages_harvests_numbers_and_carries_state (test_eo_websearch.SearchLayer.test_advance_searches_reads_pages_harvests_numbers_and_carries_state) ... ok
@@ -43,31 +43,31 @@ test_unavailable_engine_is_only_probed_once_per_run (test_eo_websearch.SearchLay
 test_unwrap_redirects (test_eo_websearch.SearchLayer.test_unwrap_redirects) ... ok
 
 ----------------------------------------------------------------------
-Ran 18 tests in 26.163s
+Ran 18 tests in 26.149s
 
 OK
 {
   "number_gaps": {
-    "total": 20,
+    "total": 19,
     "by_strength": {
       "cited": 8,
       "number_only": 9,
-      "strong": 3
+      "strong": 2
     },
     "highest_numbered_order": 14435
   },
   "cited_but_unknown": {
-    "distinct_ids": 135,
-    "rows": 265,
+    "distinct_ids": 140,
+    "rows": 271,
     "by_plausibility": {
-      "plausible": 30,
-      "rare_suffix_letter": 4,
+      "plausible": 29,
+      "rare_suffix_letter": 5,
       "likely_ocr_letter_for_digit": 18,
-      "likely_ocr_footnote_digit": 213
+      "likely_ocr_footnote_digit": 219
     },
-    "mentions_raw": 494,
-    "texts_scanned": 30725,
-    "ofr_notes_scanned": 5064
+    "mentions_raw": 500,
+    "texts_scanned": 32816,
+    "ofr_notes_scanned": 5067
   },
   "identity_unknown": {
     "orders": 23,
@@ -81,14 +81,14 @@ OK
     "number_only": 22
   },
   "dated_unnumbered": {
-    "rows": 193,
-    "distinct_dates": 117
+    "rows": 197,
+    "distinct_dates": 121
   },
   "handoff_to_lewis": {
-    "rows": 17,
+    "rows": 16,
     "by_class": {
       "cited_but_unknown": 5,
-      "number_gap": 11,
+      "number_gap": 10,
       "identity_unknown": 1
     }
   },
@@ -96,8 +96,8 @@ OK
 }
 Offline stage done; starting the web search stage
 {
-  "advanced_this_run": 29,
-  "requests_used": 222,
+  "advanced_this_run": 28,
+  "requests_used": 293,
   "hits_total": 5503,
   "leads_page_confirmed": 158,
   "engines": {
@@ -112,9 +112,9 @@ Offline stage done; starting the web search stage
     "bing_api": "needs_key",
     "brave_api": "error",
     "serpapi_google": "needs_key",
-    "loc_newspapers": "http_429",
-    "loc_books": "http_429",
-    "loc_manuscripts": "http_429",
+    "loc_newspapers": "ok",
+    "loc_books": "error",
+    "loc_manuscripts": "error",
     "internet_archive": "ok",
     "google_books": "http_429",
     "hathitrust_catalog": "blocked_by_robots_txt",

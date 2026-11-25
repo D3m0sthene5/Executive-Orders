@@ -1,14 +1,14 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-25T01:32:50Z. Leads only; no census, count or identity changes.
+Generated 2026-11-25T10:15:15Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
-| Numbers with no census row (1 to 14435) | 20 | NUMBER_GAPS.csv |
-| Numbers cited in texts or OFR notes but absent from the census | 135 ids (30 plausible) | CITED_BUT_UNKNOWN.csv |
+| Numbers with no census row (1 to 14435) | 19 | NUMBER_GAPS.csv |
+| Numbers cited in texts or OFR notes but absent from the census | 140 ids (29 plausible) | CITED_BUT_UNKNOWN.csv |
 | Census orders known by number only | 23 | IDENTITY_UNKNOWN.csv |
-| Dated unnumbered references matching nothing known | 193 | DATED_UNNUMBERED.csv |
-| Handed to Lewis with identity evidence | 17 | HANDOFF_TO_LEWIS.jsonl |
+| Dated unnumbered references matching nothing known | 197 | DATED_UNNUMBERED.csv |
+| Handed to Lewis with identity evidence | 16 | HANDOFF_TO_LEWIS.jsonl |
 
 ## Number gaps
 
@@ -33,11 +33,10 @@ Generated 2026-11-25T01:32:50Z. Leads only; no census, count or identity changes
 | EO:53 | EO:50 1894-11-02 -> EO:54 1894-11-02 | cited |  |
 | EO:92 | EO:91 1896-11-02 -> EO:93 1896-12-23 | strong | cited_with_date:1896-11-02 |
 | EO:2103 | EO:2102 1914-12-07 -> EO:2104 1914-12-09 | number_only |  |
-| EO:6585 | EO:6584 1934-02-06 -> EO:6586 1934-02-06 | strong | app_index:1934-02-06:Executive Order 6585—Deferring Effective Date of Section 18 of Executive Order N ; cited_with_date: |
 
 ## Cited but unknown (plausible rows first)
 
-265 (cited id, citing document) pairs from 30725 saved texts and 5064 OFR notes. By plausibility: likely_ocr_footnote_digit 213, likely_ocr_letter_for_digit 18, plausible 30, rare_suffix_letter 4. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
+271 (cited id, citing document) pairs from 32816 saved texts and 5067 OFR notes. By plausibility: likely_ocr_footnote_digit 219, likely_ocr_letter_for_digit 18, plausible 29, rare_suffix_letter 5. A number larger than any order signed by the citing document's date is read as an OCR artifact (a footnote digit glued to a real number) and listed last; it still names a real citing sentence to check.
 
 | Cited | Stated date | Cited by | Plausibility | Quote |
 |---|---|---|---|---|
@@ -70,7 +69,6 @@ Generated 2026-11-25T01:32:50Z. Leads only; no census, count or identity changes
 | EO:2687A | 1917-08-21 | EO:2770 | plausible | Executive Order 2687-A, August 21, 1917; |
 | EO:5151A |  | EO:5151 | plausible | Executive Order 5151-A |
 | EO:5151A |  | EO:5152 | plausible | Executive Order 5151-A |
-| EO:6585 | 1934-02-06 | EO:6586 | plausible | 6166 has been further deferred to April 10, 1934, by Executive Order No. 6585 of February 6, 1934; and |
 
 ## Identity unknown
 
@@ -79,7 +77,7 @@ Generated 2026-11-25T01:32:50Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-29 of 29 unknowns advanced this run (0 never searched yet); 222 of 1100 requests used. 5503 hits on file, 158 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+28 of 28 unknowns advanced this run (0 never searched yet); 293 of 1100 requests used. 5503 hits on file, 158 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 22 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
 List pages: 60 read, 236 order numbers named, **4 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
@@ -97,9 +95,9 @@ List pages: 60 read, 236 order numbers named, **4 absent from the census**: `WEB
 | govinfo_search_page | blocked_by_robots_txt |
 | hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
-| loc_books | http_429 |
-| loc_manuscripts | http_429 |
-| loc_newspapers | http_429 |
+| loc_books | error |
+| loc_manuscripts | error |
+| loc_newspapers | ok |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
