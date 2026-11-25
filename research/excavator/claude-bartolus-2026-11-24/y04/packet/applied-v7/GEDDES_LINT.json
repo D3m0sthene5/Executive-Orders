@@ -1,0 +1,101 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/d3m0sthene5/executive-orders/research/excavator/claude-bartolus-2026-11-24/y04/packet/PACKET.json",
+  "seconds": 76.09,
+  "files_read": 64663,
+  "file_reads": 129613,
+  "packet_fingerprint": "77f6e54cfd0deece56617b49e8985c38f8b296a335b6d1e702ae9f3666902a83",
+  "claims_checked": 6,
+  "defect_flags": 0,
+  "coverage_gaps": 5,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:13666",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:11269",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:12458",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "literal_name_corpus_scope",
+          "inventory_commit": "ee4f62847ca721ef77a420d1defbcdf10a7be524",
+          "inventory_kind": "tracked_jobs_texts",
+          "inventory_sha256": "d0de08cdd07909ff8561c1d07fe9b8408af5a285b63eaa7587754cea88ee80f0",
+          "tracked_files": 64656,
+          "verified_files": 64656,
+          "missing_files": 0,
+          "changed_files": [],
+          "full_discovered_corpus_covered": true,
+          "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+        },
+        {
+          "code": "literal_name_search_performed",
+          "field": "claim.research_rationale",
+          "names": [
+            "section 573 d 3 proviso of paragraph 24"
+          ],
+          "after_date": null,
+          "counterexamples": 0,
+          "negative_established": false,
+          "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 4,
+      "instrument_id": "EO:11701",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 5,
+      "instrument_id": "EO:13257",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 6,
+      "instrument_id": "EO:10111",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.operative_clauses[0].judgment_reason",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

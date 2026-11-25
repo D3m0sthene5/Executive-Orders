@@ -1,0 +1,130 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/d3m0sthene5/executive-orders/research/excavator/claude-bartolus-2026-11-24/y04/packet/PACKET.json",
+  "seconds": 109.395,
+  "files_read": 64663,
+  "file_reads": 129613,
+  "packet_fingerprint": "77f6e54cfd0deece56617b49e8985c38f8b296a335b6d1e702ae9f3666902a83",
+  "claims_checked": 6,
+  "defect_flags": 2,
+  "coverage_gaps": 5,
+  "claims_with_flags": 2,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:13666",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:11269",
+      "flags": [
+        {
+          "code": "event_precedes_order",
+          "scope_id": "EO:11269#o-sec5",
+          "field": "operative_clauses[12].first_end.date",
+          "span": "1966-01-01",
+          "detail": "The recorded date 1966-01-01 precedes the order's own date 1966-02-14.",
+          "flag_id": "3dc9bbad954f2fd7"
+        }
+      ],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:12458",
+      "flags": [
+        {
+          "code": "unaddressed_citing_instrument",
+          "scope_id": "whole",
+          "field": "claim",
+          "span": "EO:12292 (1981-02-23)",
+          "detail": "Held EO:12292 (1981-02-23) revokes EO 12163, which this order amends or modifies; the claim never mentions EO:12292 in its ends, events, reasoning, searches or gaps.",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12292-foreign-service-act-1980.txt",
+            "text_sha256": "79edbb48034bfef0c2fa0876306d3b8f2199f3085929d73788a1ac1fa0e58d6a",
+            "char_start": 4318,
+            "char_end": 4413,
+            "quote": "Sec. 8. Executive Order No. 12163 is amended as follows:\n\n(a) Section 1-201(a) (14) is revoked.",
+            "instrument_id": "EO:12292",
+            "date": "1981-02-23",
+            "identity_basis": "app_publisher_listing",
+            "cited_order": "EO:12163"
+          },
+          "flag_id": "0e2ac32c582b5867"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "literal_name_corpus_scope",
+          "inventory_commit": "ee4f62847ca721ef77a420d1defbcdf10a7be524",
+          "inventory_kind": "tracked_jobs_texts",
+          "inventory_sha256": "d0de08cdd07909ff8561c1d07fe9b8408af5a285b63eaa7587754cea88ee80f0",
+          "tracked_files": 64656,
+          "verified_files": 64656,
+          "missing_files": 0,
+          "changed_files": [],
+          "full_discovered_corpus_covered": true,
+          "detail": "Exact tracked path membership and source bytes define this search scope; a matching count is insufficient."
+        },
+        {
+          "code": "literal_name_search_performed",
+          "field": "claim.research_rationale",
+          "names": [
+            "section 573 d 3 proviso of paragraph 24"
+          ],
+          "after_date": null,
+          "counterexamples": 0,
+          "negative_established": false,
+          "detail": "A name match is evidence to inspect, not a legal-effect conclusion. Missing files or unlinked identities prevent an all-held-text negative."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 4,
+      "instrument_id": "EO:11701",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 5,
+      "instrument_id": "EO:13257",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 6,
+      "instrument_id": "EO:10111",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.operative_clauses[0].judgment_reason",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
