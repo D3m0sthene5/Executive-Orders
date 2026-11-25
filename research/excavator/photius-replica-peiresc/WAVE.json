@@ -1,0 +1,59 @@
+{
+ "wave": "photius-peiresc-2026-11-25",
+ "author": "claude-opus-5-5",
+ "stage": 0,
+ "objective": {
+  "metric": "ready_gain_per_unit",
+  "text": "Page-check the 17 ProQuest replicas (Peiresc harvest, 2026-11-24) whose passing would move decided orders into the claim-ready pool, under D-20261106-photius-p4; measure reader and adjudicator cost and pass rate so Bentham can rank the wider replica set."
+ },
+ "actions": [
+  {
+   "id": "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+   "orders": 17,
+   "lanes": 1
+  }
+ ],
+ "configuration": {
+  "orchestrator": "claude-scripted",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "claude-sonnet-5-5"
+ },
+ "limits": {
+  "chain_budget_units": 6000000,
+  "spend_per_claim_units": 3000000,
+  "no_claim_minutes": 40,
+  "context_kill_tokens": 120000,
+  "reviews_per_hour": 6,
+  "coordinator_units_per_hour": 1000000
+ },
+ "premortem": [
+  {
+   "failure": "Readers pass replicas on the regex pre-read without reading the page (rubber-stamping)",
+   "guard": "PROMPT.md forbids passing on auto_verdict; Opus adjudicates every fail, every unsure and a seeded 5% sample of passes, and disagreement on the sample is reported"
+  },
+  {
+   "failure": "A file holds the neighbouring order or a cover slate and is credited to the wrong number",
+   "guard": "pass requires the expected number visible or, with no number, date within a day plus signature block plus matching subject; the Opus sample checks pages, not the reader's text"
+  },
+  {
+   "failure": "Image-heavy packets blow the context and cost (740 orders have no machine number or date hit)",
+   "guard": "renders are 110 dpi grayscale, first/second/last page only; context_kill_tokens 120k; stage 0 measures tokens per packet before any wider run"
+  },
+  {
+   "failure": "Post-1937 orders in the harvest fall outside the signature-word list and get unsure",
+   "guard": "unsure is an allowed answer and goes to Opus; the probe packet is the lowest numbers, the wider stages report unsure rate by era"
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261110-mommsen-unranked-pools": "Only orders in the named Bentham action acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK, drawn from extract.py targets; stage 0 is one lane and 30 orders; an unranked refusal stops the wave.",
+  "F-20261107-haloander-undecided-probe": "This wave assigns no status and runs no overlay route; it only page-checks replicas. Undecided orders gain a checked text, not a status, and the report says so.",
+  "F-20261028-4": "Packets are built after Pinakes regenerated on this branch (runs 45547393448 and 45550428437) and the tracker re-ran (45551893827), as the lesson asks.",
+  "F-20261018-7": "Every replica's sha256 and length were verified at harvest (2,097 of 2,097) and Pinakes rehashed them; renders are made from the committed bytes, so host success is measured, not forecast."
+ },
+ "review": {
+  "reviewer": "owner",
+  "verdict": "approve",
+  "plan_sha256": "25bf104d85c71810fc97600a7163b17f1c768019bf91a9aec7ce03386787c47f",
+  "basis": "Owner in chat 2026-11-25 00:20 ET: 'i pre approve that plan keep going'; 00:3x ET chose 'Fix Bentham, then follow it' (Kean decision D-20261125-peiresc-page-check)."
+ }
+}
