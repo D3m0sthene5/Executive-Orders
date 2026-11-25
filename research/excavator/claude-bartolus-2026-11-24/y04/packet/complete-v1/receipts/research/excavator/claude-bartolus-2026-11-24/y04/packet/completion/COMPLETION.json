@@ -1,0 +1,139 @@
+{
+ "schema": "eo-claim-kit-completion/v1",
+ "agent": "bartolus",
+ "producer_model_family": "Anthropic",
+ "independence_requirement": "same_family_separate_context",
+ "publication": {
+  "mode": "own_claims",
+  "path": "research/readiness/claims/bartolus-2026-11-24-y04.jsonl"
+ },
+ "members": [
+  {
+   "instrument_id": "EO:13666",
+   "outcome": "submit",
+   "claim_sha256": "9c9f49c19566d279d01a941b71f3748c24f5e9dbbf27f2241766c4d5a53e42c1",
+   "claim": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/applied-v7/CLAIMS.proposed.jsonl",
+    "sha256": "181593ae757962b2dc8739a415533e397ffe42ed3c0c664e5cf6bd4173baf67e",
+    "line": 1
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/PACKET.json",
+    "sha256": "b53aacdb567d3bac89d4e1ec0b40283e7f816ae1dfb38ff8dd835e66e4959c2f"
+   },
+   "review": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "457320470a7f5af05ce44dfd6881b44f024592865f1aff6b95b122b120f51830",
+    "line": 2
+   }
+  },
+  {
+   "instrument_id": "EO:10860",
+   "outcome": "blocked",
+   "reason": "[\"The registered original text of 25 FR 1089 (jobs/fr-originals/data/full_run/texts/EO_10860.txt) is the whole Federal Register page and carries front matter whose OCR misreads EO 10860 as 'EO 1086-Q' (Codification Guide entry for EO 10823). Every claim quote cut from that source, including original_representation.quote, is reported by the actual checker as order_exists:out_of_universe_number_in_verbatim_quote (pass_with_unverified), which fails strict completion, and the original_representation quote cannot be shortened by a producer. Needed: a registered original text of EO 10860 that excludes the neighbouring front matter, or a checker fix. Legally the order looks operative: sections 1 to 4 have no term, section 5 only fixes the effective date (1960-07-04) and supersedes EO 10823, and no later instrument was found.\"]"
+  },
+  {
+   "instrument_id": "EO:11269",
+   "outcome": "blocked",
+   "reason": "Independent review did not uphold this version: [{\"field\": \"operative_clauses[EO:11269#o-sec3-1, #o-sec3-2, #o-sec3-c, #o-sec4, #o-sec4-b].later_events[EO:12164].source\", \"claim_says\": \"Each clause's EO 12164 event (1979-10-01) cites EO_12164.txt chars 1133-1376 as the source for amendments of 3(a)(1), 3(a)(2), 3(e), 4(a)(2) and the new section 7.\", \"source_says\": \"Chars 1133-1376 are section 1-101 only (the insertion of the IDCA Director in section 1(b)). The amendments the judgment reasons attribute to EO 12164 are in sections 1-102, 1-103 and 1-104 of the held text, outside the quoted span. The cited source does not show the event claimed for these five clauses.\"}, {\"field\": \"operative_clauses[EO:11269#o-sec1-b].later_events / judgment_reason / research_rationale\", \"claim_says\": \"EO 11808 (1974-09-30) adds the Assistant to the President for Economic Affairs as Deputy Chairman, and 1(b) continues so amended. The claim names no later act affecting that insertion.\", \"source_says\": \"Held EO 11975 (1977-03-07, 42 FR 13267) section 1 reads 'Executive Order No. 11808, as amended, is hereby revoked.' The held 1989 OFR Codification of EO 11269 prints section 1(b) without the Assistant to the President for Economic Affairs, and its note says 'Sec. 1 amended by EO 12164 ... EO 12188' with no EO 11808. The held U.S. Code note (22 U.S.C. 286b note) still prints the Deputy Chairman. The claim addresses neither EO 11975 nor this conflict between the held editorial sources about the text of 1(b).\"}, {\"field\": \"operative_clauses[EO:11269#o-sec5, #o-sec6].first_end.mechanism\", \"claim_says\": \"mechanism 'performed_on_stated_effective_date', date 1966-02-14\", \"source_says\": \"The stated effective date is 1966-01-01 (section 6). The judgment reasons rest the end on the signing date, 1966-02-14, so the mechanism label contradicts both the date given and the reasons (minor).\"}]"
+  },
+  {
+   "instrument_id": "EO:12458",
+   "outcome": "blocked",
+   "reason": "Independent review did not uphold this version: [{\"field\": \"research_rationale (member checks earlier_end_check) / later_source_search honesty\", \"claim_says\": \"'A search of the held Federal Register texts for the number 12163 after 1984 found thirteen later orders; only those named in the clauses delete, restate or replace words in the target subsections.'\", \"source_says\": \"Held EO 12608 section 30 (1987) amends section 1-201(a) 'by revoking paragraphs (23) and (24), and by renumbering paragraphs (25), (26), (27), and (28)'. These are the same paragraph numbers EO 12458 created. Held EO 12738 section 3 (1990) redesignates paragraphs (9) through (31) of 1-201(a), and held EO 12639 rewrites paragraphs (22) and (26). None is named in the clauses. The claim's 1999 end for paragraph (24) rests on tracking that paragraph through renumbering, but the claim never addresses EO 12608's revocation of a paragraph numbered (24) in the same subsection. On this reviewer's reading the 1987 revocation reached EO 12560's new paragraphs, not EO 12458's, so the outcome may stand. The statement about the search is still false, and the identification is not reasoned against the intervening deletions.\"}, {\"field\": \"research_rationale (clause labels)\", \"claim_says\": \"'subsections (a) and (c) of section 2 and subsections (b) and (c) of section 3'; EO 13118 section 3 'ended section 2(c) of EO 12458'\", \"source_says\": \"EO 12458's section 2 has subsections (a) and (b), and its section 3 has (a) and (b). There is no section 2(c) of EO 12458. The clause judgment_reasons correctly say 'subsection (b) of section 2' and 'section 3(a) and (b)', so the rationale is internally inconsistent with the clauses.\"}]"
+  },
+  {
+   "instrument_id": "EO:13485",
+   "outcome": "blocked",
+   "reason": "[\"The state of five offices listed in section 1 on 2026-10-14 cannot be decided from held evidence: section 1(i) (Research and Innovative Technology Administration), 1(j) (Saint Lawrence Seaway Development Corporation), 1(k) (Regional Administrator, Southern Region, Federal Aviation Administration), 1(l) (Director, Resource Center, Lakewood, Colorado, Federal Highway Administration) and 1(m) (Regional Administrator, Northwest Mountain Region, Federal Aviation Administration) are named offices of the Department of Transportation that may have been renamed, merged or abolished after 2009. No held statute, reorganization notice or Department of Transportation document shows whether each office existed or was succeeded on 2026-10-14; a clause listing an office that no longer exists cannot be carried as operative without that source. Needed: held current statutory or regulatory text (for example the current Department of Transportation organization provisions of 49 U.S.C. chapter 1 and 49 CFR part 1, or an FAA and FHWA reorganization notice) stating the existence or succession of each of these five offices. The held 49 CFR part 1 sections in jobs/theophilus-sources (1.27, 1.38, 1.38a, 1.45, 1.74, 1.81, 1.97) do not name them.\", \"The packet holds no current-law record for this order (the U.S. Code search records one hit, the eCFR search none, and no CURRENT: record is in the packet's citable evidence); the order's own held text shows no end and no later instrument amends or revokes it, which would support the offices in section 1(a) to (h) and sections 2 to 4 but cannot decide the five offices above.\"]"
+  },
+  {
+   "instrument_id": "EO:11701",
+   "outcome": "blocked",
+   "reason": "Control order without an upheld after-reveal review of the genuine version."
+  },
+  {
+   "instrument_id": "EO:14283",
+   "outcome": "blocked",
+   "reason": "[\"Section 6 directs the Administrator of the Environmental Protection Agency, within 14 days of the order (deadline 2025-05-07), to terminate the Historically Black Colleges and Universities and Minority Serving Institutions Advisory Council. No held source shows that the Administrator did terminate the council or when; a search of the held texts for the council's name finds only the order's own texts and the 20 U.S.C. 1060 note that reprints the order, and EO 14354 (continuance of certain Federal advisory committees) and FR Doc. 2025-18033 do not name the council. A deadline is not an end, and whether the command was performed is not established, so the clause can be carried neither as operative nor as terminated with an exact first end. Needed: a held EPA charter-termination record, Federal Register notice or other dated EPA document showing the termination of that advisory council.\", \"The remaining clauses of EO 14283 (the White House Initiative, the President's Board of Advisors on HBCUs, accountability and general provisions) are supported by the held 20 U.S.C. 1060 note and EO 14354 (2025-09-29), which continues the Board, so only section 6's second sentence blocks a submission; the first sentence of section 6 (revocation of Executive Order 14041) was performed on issuance.\"]"
+  },
+  {
+   "instrument_id": "EO:13257",
+   "outcome": "submit",
+   "claim_sha256": "e37311bbd4f11bf1db1af9ce7511904a25d9b2c3ebc46158f4098d1bffef3977",
+   "claim": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/applied-v7/CLAIMS.proposed.jsonl",
+    "sha256": "181593ae757962b2dc8739a415533e397ffe42ed3c0c664e5cf6bd4173baf67e",
+    "line": 5
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/PACKET.json",
+    "sha256": "b53aacdb567d3bac89d4e1ec0b40283e7f816ae1dfb38ff8dd835e66e4959c2f"
+   },
+   "review": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "457320470a7f5af05ce44dfd6881b44f024592865f1aff6b95b122b120f51830",
+    "line": 3
+   }
+  },
+  {
+   "instrument_id": "EO:10111",
+   "outcome": "submit",
+   "claim_sha256": "728c3e71c73099739a52a112597aa748770661c66e192aa693ecc577f2a28407",
+   "claim": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/applied-v7/CLAIMS.proposed.jsonl",
+    "sha256": "181593ae757962b2dc8739a415533e397ffe42ed3c0c664e5cf6bd4173baf67e",
+    "line": 6
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/PACKET.json",
+    "sha256": "b53aacdb567d3bac89d4e1ec0b40283e7f816ae1dfb38ff8dd835e66e4959c2f"
+   },
+   "review": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "457320470a7f5af05ce44dfd6881b44f024592865f1aff6b95b122b120f51830",
+    "line": 4
+   }
+  }
+ ],
+ "controls": [
+  {
+   "instrument_id": "EO:11701",
+   "planted_claim_sha256": "8b5cbaeea9fd549500ae95c829ca28ed372accb514c1f3b19f95624878644b5c",
+   "seed": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/completion/SEED_RECEIPT_EO_11701.json",
+    "sha256": "40ecc8749f6dfe47b0058ba226e76cdd862cd9b714cd828c2bfb0f550d835edc"
+   },
+   "review": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "457320470a7f5af05ce44dfd6881b44f024592865f1aff6b95b122b120f51830",
+    "line": 5
+   },
+   "adjudication": {
+    "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/completion/CONTROL_ADJUDICATION_EO_11701.json",
+    "sha256": "5e1759d39a83d062fa19152e302b4bbab0468b98f996172f1bf68cbf5a8904b5"
+   }
+  }
+ ],
+ "receipts": [
+  {
+   "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/reviews/BLIND_REVIEW_B.jsonl",
+   "sha256": "3e45896e42fee735dfa488b88cf78a70d8255dcd15898c68c5cb0f8d95feb84a"
+  },
+  {
+   "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/reviews/AFTER_REVEAL_B.jsonl",
+   "sha256": "d4d9969c9a0cd41d0c07421741b07acca1619e0e1863226b217b82cd8836139e"
+  },
+  {
+   "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/PRODUCER_REPORT.md",
+   "sha256": "a013826b9064de2ca4ef5a7ffc68f325afefa243d06b8cb195e13970362775eb"
+  },
+  {
+   "path": "research/excavator/claude-bartolus-2026-11-24/y04/packet/ASSESSMENT.jsonl",
+   "sha256": "41a017a83b805704ef361884b82a33b5235d82ea6b97c8f1601ec5c718d38b2e"
+  }
+ ]
+}

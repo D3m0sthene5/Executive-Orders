@@ -1,0 +1,102 @@
+{
+ "wave": "bartolus-2026-11-24-C",
+ "author": "claude-opus-5-5",
+ "stage": 2,
+ "objective": {
+  "metric": "ready_gain_per_unit",
+  "text": "Orders brought to ready (6/6) per dollar: recovery and YES claims filed canonically, undecided orders ready after owner adoption of upheld proposals. Spend is a limit, not a goal."
+ },
+ "actions": [
+  {
+   "id": "recovery.custody_stranded",
+   "orders": 6,
+   "lanes": 1
+  },
+  {
+   "id": "recovery.working_text_stale",
+   "orders": 26,
+   "lanes": 0
+  },
+  {
+   "id": "production.claim_ready.yes.fr",
+   "orders": 200,
+   "lanes": 1
+  },
+  {
+   "id": "status_assignment.undecided",
+   "orders": 1200,
+   "lanes": 6
+  }
+ ],
+ "configuration": {
+  "orchestrator": "claude-scripted",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "claude-sonnet-5-5",
+  "status_reviewer_model": "claude-opus-5-5",
+  "lifecycle_review": "two fresh blind claude-opus-5-5 arms per batch, one planted control, both-uphold rule",
+  "recovery_route": "Cujas/Haloander h01 route (producer word-by-word comparison against the held official printing, two blind arms)",
+  "larrey_level": "hard"
+ },
+ "budget_usd_list_price": 1500,
+ "limits": {
+  "chain_budget_units": 300000000,
+  "spend_per_claim_units": 3000000,
+  "no_claim_minutes": 40,
+  "context_kill_tokens": 120000,
+  "reviews_per_hour": 6,
+  "coordinator_units_per_hour": 1000000
+ },
+ "sequence": [
+  "1. Recovery lane: the 6 custody-stranded and 26 working-text-stale orders (Bentham ranks 7-8), batches of up to 26.",
+  "2. YES lane: the Larrey-admitted members of production.claim_ready.yes.fr, all previously worked by Papinian on 2026-11-10 and blocked mainly by NEA continuation notices (now held: theophilus-sources, 673 notices) and EO 13286 (now held: fr-originals 68 FR 10619). First batch of 25 is a checkpoint: continue only if 4 or more are filed.",
+  "3. Undecided lane: first batch is the Lind stage-0 draw exactly (research/lind/stage0/draw.py, 15 all-gates + 15 hard-only, seed 20261112). Continue only under the Lind 7.3 decision rules (success: a >= 3 and all-gates dollars per ready <= 9.30); continuation batches of 30 drawn at random from the all-gates pool (1 in 5 from hard-only if soft gates hold).",
+  "4. Every batch runs under bentham.py gate; STOP ends the action. Completions run one at a time."
+ ],
+ "premortem": [
+  {
+   "failure": "YES re-run repeats Papinian's failures because the new sources are not in the claim-kit build",
+   "guard": "Before the YES batch, confirm one blocked order's packet now carries the theophilus notice or EO 13286 record; 25-order checkpoint stops the lane below 4 filed"
+  },
+  {
+   "failure": "Undecided yield stays at the old 3-10% and money goes to failed dispatches",
+   "guard": "Lind stage-0 decision rules gate any continuation; dispatch-check before every producer; blocked orders recorded, not retried"
+  },
+  {
+   "failure": "Coordinator context grows and dominates cost, as in Haloander",
+   "guard": "Scripts from the Papinian and Cujas tools do clerical work; stop a lane if coordinator dollars exceed 0.25 per attempt after 10 orders"
+  },
+  {
+   "failure": "A review error is read as yield",
+   "guard": "Planted control per review set, two fresh blind Opus arms, both-uphold rule; any missed control stops the lane for adjudication"
+  },
+  {
+   "failure": "Concurrent completions corrupt each other's receipts",
+   "guard": "Completions strictly serial; merge main into the production tree only between batches"
+  },
+  {
+   "failure": "Disk fills (1.5 GB free) and a completion fails midway",
+   "guard": "Completion receipts gzipped as Papinian did; temporary packets outside git removed after each batch"
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261110-papinian-undecided-u23": "Producer brief carries the YES-route current-law and later-event checklist; endpoint is ready (6/6) after adoption, not accepted status.",
+  "F-20261110-papinian-undecided-u01b": "Claim-kit output on main was rebuilt 2026-11-24T23:13Z; prepare is run on one order before each undecided draw; adoption asked per batch.",
+  "F-20261110-mommsen3-undecided-probe01": "Producers must prove first end, scope, savings and current predicate; status proposals stay isolated for owner adoption; Lind 7.3 rules gate any continuation.",
+  "F-20261110-mommsen3-codex-core-sandbox": "Not a Codex or Windows run: Claude Agent-tool workers in a Linux session read the pinned packet; kit.py checks results.",
+  "F-20261110-mommsen-unranked-pools": "Only ranked Bentham actions; claim-kit admission with LARREY_LEVEL=hard; every batch under bentham.py gate, STOP ends the action.",
+  "F-20261108-cujas-photius-recheck": "Recovery lane replaces own Tribonian claims as agent claude with later-sorting file names; producer reads held FR Revoked-by notes first.",
+  "F-20261107-haloander-undecided-probe": "Bentham now ranks status_assignment.undecided with a measured rate; the transcription refusal was fixed (Accursius F6); adoption is the owner's step.",
+  "F-20261104-sol-runtime-economy-rejected": "No runtime economy experiment: packets are prepared fresh and retained files are validated by kit.py before completion.",
+  "F-20261104-5": "Larrey hard gates (original usable, status basis, clause inventory) run before dispatch; YES orders now have Theophilus current-law sections; dispatch-check before each producer.",
+  "F-20261104-2": "dispatch-check custody preflight runs before every batch; custody-stranded orders get a fresh prepare and fresh blind review, never reuse.",
+  "F-20261103-bacon-recovery": "No recovery from chat summaries: every packet is prepared fresh from committed claim-kit outputs and held source bytes.",
+  "F-20261029-codex-proquest-census": "Packets pin effective versions and source hashes; deferred tails stay visible; scientific holds are preserved by kit.py.",
+  "F-20261028-4": "Packets are prepared fresh from the rebuilt claim-kit output; nothing is reused from earlier packets or supplements.",
+  "F-20261018-7": "No URL forecasting: every cited source is a held file with a hash in the packet; forecasts use measured yields only."
+ },
+ "review": {
+  "reviewer": "owner (Danny Kind), in chat 2026-11-24 19:5x ET",
+  "verdict": "approve",
+  "plan_sha256": "d3ee295b0475e3fa17fd114e30fc7a90cb4c613a3e2c1a0f4318b6135c7860ec"
+ }
+}

@@ -1,3 +1,18 @@
+## 2026-11-24 ET, late night (Claude: Bartolus wave, agent-route part)
+
+- **Owner orders:** make as many finished dossiers as possible with an agent swarm; signed Augur plan C
+  (D-20261124-bartolus, adoption of upheld undecided proposals in advance); then paused new batches for a stateless
+  gauge, finish in-flight on the agent route.
+- **Result:** 42 claims filed canonically + 4 undecided statuses adopted (decided 3,788 -> 3,792); 8/8 controls caught
+  by both arms. Branch `claude/bartolus-2026-11-24`, report `research/excavator/claude-bartolus-2026-11-24/REPORT.md`
+  (F-20261124-bartolus-agent-route).
+- **Lind stage 0:** a=3, h=1 -> success, soft gates hold; continuation waits for the gauge.
+- **Stateless gauge built, not run:** `jobs/maudslay-conveyor/stateless.py`, `gauge_stateless.py`; owner runs on PC
+  (A-20261124-stateless-gauge). claude -p cannot authenticate in the cloud workspace; the owner's PC lacks Claude Code.
+- **Traps:** a new owner-ruling file invalidates every open packet; completion fails claims with unverified checker
+  entries; YES producers need one resumed pass. EO 8613/8639 (r01) need a fresh prepare to refile.
+- **Next (in plan, after the gauge):** remaining YES (about 150 all-gates/hard-only), undecided stage 1, and the board
+  orders in production.one_step_away (NMB report bytes now verified held per r01's dispatch check; needs a new plan).
 ## 2026-11-24 ET, night (Claude: ProQuest pass closed, second reader run)
 
 - **Owner order:** "finish it up" (F-20261124-14).

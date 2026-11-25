@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (9)
+## Waiting for the owner (10)
 
-**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-generate-verify-comparison**, **A-20261112-lind-repair-12437-11943**, **A-20261113-lind-12753-reconfirm**, **A-20261124-3**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-generate-verify-comparison**, **A-20261112-lind-repair-12437-11943**, **A-20261113-lind-12753-reconfirm**, **A-20261124-3**, **A-20261124-stateless-gauge**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -18,7 +18,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 - **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
-## Owner decisions not yet carried out by the tools (31)
+## Owner decisions not yet carried out by the tools (32)
 
 - **D-20261021-report-deadline** (partly wired): A board order whose only command is to report within a deadline ends on its express revocation (usually EO 12553), not when the board reports; record the report date and standstil… Checked 2026-11-06 (Justinian F3): assemble.py:554 refuses a report deadline as an end; AGENT_PROTOCOL.md:47. No tool r…
 - **D-20261021-strike-and-insert** (not wired): A clause amended by striking and inserting words continues, amended, until the parent order ends; record the text before and after. 43 clauses in 26 committed claims that treat am… Checked 2026-11-06 (Justinian F3): no code or instruction; claim_gate/checker validate later_events structure only, wit…
@@ -51,17 +51,18 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261110-ulpian-l1r-correction** (partly wired): Owner, 2026-11-10, in the Ulpian session: 'Yes, read them'. Read the 527 wave-2 Jacquard L1R provisional NO statuses dated on or after 1904-05-03, the 26 undated L1R rows and the… Correction PR (claude/ulpian-l1r-correction): 556 read by two blind arms in 6 batches, 547/556 agreement, 18/18 control…
 - **D-20261112-graunt-adopted** (partly wired): Owner, 2026-11-12: if the Astra census audit did a good job, percolate its understanding through the whole project. Claude verified it and adopts it for reporting: counted identif… README, ESTIMAND.md, domesday README and the dashboard line updated; census admission, corrections and unnumbered seed…
 - **D-20261112-graunt-apply** (partly wired): Owner, 2026-11-12, answering A-20261112-graunt-admit-numbered, A-20261112-graunt-corrections and A-20261112-graunt-unnumbered-seed: yes. (1) Admit the 29 numbered labels the audit… Unnumbered seed done (PR 296). 4 numbered orders admitted with checked pages (EO 2539, 2703, 3493, 3733); 14 more order…
+- **D-20261124-bartolus** (partly wired): Owner, 2026-11-24, in chat (AskUserQuestion): approve Augur plan research/bartolus/WAVE.json, sha256 d3ee295b0475e3fa17fd114e30fc7a90cb4c613a3e2c1a0f4318b6135c7860ec (stage 2: 32… Augur receipt research/bartolus/AUGUR_RECEIPT.json PASS; adoption applied per batch by the Bartolus coordinator
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure, D-20261124-1.
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 409; `search` finds the rest)
+## Newest results (6 of 410; `search` finds the rest)
 
 - 2026-11-25 F-20261125-photius-peiresc-s0 **worked**: Stage 0 (Augur PASS, owner review D-20261125-peiresc-page-check) of the Photius page check on the 17 Peiresc… Lesson: Federal Register-era replicas are page runs that start with the tail of the preceding order: the reader credited EO 7756's FDR signature and date to EO 7757, and read 11030's first-page dateline that…
 - 2026-11-24 F-20261124-peiresc-harvest **worked**: Fetched ProQuest 'Replica of Original' PDFs for the 2,192 numbered orders the tracker held with no official t… Lesson: Transfer route that works: get_page_text inside browser_batch saves to a file at up to about 16 MB per batch (7 chunks of 1.35 MB binary); a lone get_page_text from a subagent is capped at 50,000 cha…
+- 2026-11-24 F-20261124-bartolus-agent-route **worked**: Bartolus wave (owner-signed Augur plan C) on the agent route until the owner paused new batches for a statele… Lesson: A new owner-ruling file invalidates every open packet via current_rulings: write it only after open packets complete. Completion fails any claim with an unverified checker entry even when batch-check…
 - 2026-11-24 F-20261124-9 **worked**: Read every result page of ProQuest Congressional's 'Unnumbered Executive Orders, Directives, and Proclamation… Lesson: A full reading of the catalog list is cheap (about 2 hours of browser paging) and replaces a wide sample estimate; it confirmed the estimate's centre. Pad the page DOM so get_page_text output overflo…
 - 2026-11-24 F-20261124-8 **worked**: List every ProQuest unnumbered record in the land-order series (coal, petroleum, public water, phosphate, pot… Lesson: get_page_text output over about 50 KB is saved to a workspace file, which is a lossless channel from browser to workspace: pad the page to force it. Result-list paging via the Next Page button and di…
 - 2026-11-24 F-20261124-7 **worked**: Owner-requested browse of ProQuest Congressional in the owner's Chrome (NYU OpenAthens), no downloads: counts… Lesson: The census's biggest gap is the numbered land-order series of 1909-1936 other than power sites; enumerate each series end to end. ProQuest's result list reads well via div.itemPagingDiv and div.itemP…
-- 2026-11-24 F-20261124-6 **worked**: Apply A-20261124-1: admit EO 6585, rename EO:7010P to EO:7010F, re-key the APP EO 4224 1/2 text Lesson: Half-numbered APP titles ('4224 1/2') were truncated to the whole number by the APP id regex; only one title was affected.
 
-Register: 94 owner decisions, 64 answered questions, 409 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 95 owner decisions, 64 answered questions, 410 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
