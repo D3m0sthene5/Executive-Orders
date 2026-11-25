@@ -54,28 +54,59 @@ def filename(iid):
         return 'ID_'+hashlib.sha256(iid.encode()).hexdigest()[:24]
     return 'EO_'+iid[3:]
 
-def text_tier(r, registered=None):
+OFFICIAL_PRINTING='official_printing'
+
+def replica_orders(registered):
+    """Orders holding a Photius P4 checked replica that inputs.load_corpus registered (grade archival_replica_checked)."""
+    return frozenset(iid for iid,_,grade in (registered or ()) if grade==W.REPLICA_GRADE)
+
+def _registered(r, registered):
+    return registered is None or (r.get('instrument_id'),r.get('text_path'),r.get('grade')) in registered
+
+def credited_rank(r, registered=None, replicas=None):
+    """Within tier 1: 0 an R37 official printing of an order that holds a checked replica, 1 the checked replica
+    itself, 2 any other registered working text. Each of the first two counts only with no page check owed."""
+    if r.get('acceptable_as_original') or r.get('requires_page_check'):
+        return 2
+    grade=r.get('grade')
+    if grade==W.REPLICA_GRADE and _registered(r,registered):
+        return 1
+    if grade==OFFICIAL_PRINTING:
+        replicas=replica_orders(registered) if replicas is None else replicas
+        if r.get('instrument_id') in replicas:
+            return 0
+    return 2
+
+def text_tier(r, registered=None, replicas=None):
     """0: declared original candidate; 1: registered working text; 2: unverified lead.
 
     A lead (held_text_lead, derivative_lead, an ungraded text layer) never outranks
     a working text registered under the 2026-10-21 ruling: the assembler cannot
     cite a lead as an original, and a lead's identity is unconfirmed. `registered`
     holds (instrument_id, text_path, grade) of producer-registered working texts
-    (inputs.load_corpus); without it a working-text grade label is taken as given."""
+    (inputs.load_corpus); without it a working-text grade label is taken as given.
+
+    A Photius P4 checked replica (decision D-20261106-photius-p4) is a registered working text: inputs registers
+    it only when the Photius fragment passed the page check (needs_page_check false, final pass) and its
+    text_sha256 matches the held Pinakes text. It ranks first among working texts, so it replaces an
+    unconfirmed transcription or machine-read copy as the order's text. A page-checked R37 official printing
+    of the same order still ranks above the replica (Claude review of #262, blocking finding 1: 545 orders
+    would otherwise switch from an official printing to the ProQuest replica). An official printing of an
+    order with no checked replica keeps its old rank: ranking R37 printings against other working texts is
+    a separate, measured change."""
     if r.get('acceptable_as_original'):
         return 0
-    # A Photius P4 checked replica (archival_replica_checked) is not ranked above other texts here: it stays at
-    # tier 2 as on main, so a held Photius R37 official_printing of the same order keeps winning (545 orders
-    # would otherwise switch from an official printing to a ProQuest replica). Ranking official printings and
-    # replicas is a separate, measured change (Claude review of #262, blocking finding 1).
-    if r.get('grade') in W.GRADES and (registered is None or
-            (r.get('instrument_id'),r.get('text_path'),r.get('grade')) in registered):
+    if credited_rank(r,registered,replicas)<2:
+        return 1
+    if r.get('grade') in W.GRADES and _registered(r,registered):
         return 1
     return 2
 
-def rank_text(r, registered=None):
+def rank_text(r, registered=None, replicas=None):
     grade=str(r.get('grade') or '').lower()
-    return (text_tier(r,registered), 'needs_page_check' in grade,
+    if replicas is None:
+        replicas=replica_orders(registered)
+    return (text_tier(r,registered,replicas), credited_rank(r,registered,replicas), 'needs_page_check' in grade,
             'mirror' in grade or 'transcription' in grade, 'codification' in grade,
             r['text_path'])
 
@@ -135,7 +166,7 @@ def prints_order(iid, text):
     # enough not to contradict identity. Shorter numbers need an explicit form.
     return len(re.sub(r'\D','',number))>=4 and bool(re.search(r'(?<![\d:/.,-])'+digits+r'(?![\d])',body))
 
-def identity_conflict(iid, r, text, registered=None):
+def identity_conflict(iid, r, text, registered=None, replicas=None):
     """Why this held text cannot be the dossier original of iid, or None.
 
     Only contradictions are tested; nothing here confirms identity. Every tier is
@@ -157,7 +188,7 @@ def identity_conflict(iid, r, text, registered=None):
     first=next((ln.strip() for ln in text.splitlines() if ln.strip()),'')
     if LAW_HEADING.search(first):
         return 'text is headed as a statute or public law ('+first[:40]+')'
-    if text_tier(r,registered)==2 and _fr_printing(source) and not prints_order(iid,text):
+    if text_tier(r,registered,replicas)==2 and _fr_printing(source) and not prints_order(iid,text):
         return 'unverified Federal Register lead does not print or name '+iid+' (other documents on the cited issue/pages)'
     return None
 
@@ -554,7 +585,8 @@ def build(repo, out, cache=None):
     if cache_path:cache_path.mkdir(parents=True,exist_ok=True)
     cache_hits=0
     registered={tuple(k) for k in corpus.get('registered_working_texts',[])}
-    rank=lambda r:rank_text(r,registered)
+    replicas=replica_orders(registered)
+    rank=lambda r:rank_text(r,registered,replicas)
     declared=sorted(corpus['texts'],key=lambda r:(rank(r),r['instrument_id']))
     text_records=[];seen_texts=set();refused=collections.defaultdict(list)
     # Clause-level citations often declare the same file hundreds of times with
@@ -596,7 +628,7 @@ def build(repo, out, cache=None):
             line(all_clauses,data['clauses'])
             counts['held_texts_scanned']+=1
             if counts['held_texts_scanned']%250==0:print(f"claim-kit: scanned {counts['held_texts_scanned']}/{len(text_records)} held representations",flush=True)
-            refusal=identity_conflict(iid,r,text,registered)
+            refusal=identity_conflict(iid,r,text,registered,replicas)
             if refusal:
                 # Contradicted identity: keep the declaration and its inventory, but the text is
                 # neither this order's original nor a source of its terms or acting provisions.

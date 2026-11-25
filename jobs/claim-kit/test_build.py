@@ -415,7 +415,8 @@ class PrintedReferenceTests(unittest.TestCase):
 
 class ReplicaRankTests(unittest.TestCase):
     """Claude review of #262, blocking finding 1: a registered P4 checked replica must not outrank an
-    R37 official printing of the same order (545 orders on main would switch to the ProQuest replica)."""
+    R37 official printing of the same order (545 orders on main would switch to the ProQuest replica).
+    The replica is a registered working text (tier 1, D-20261106-photius-p4); the printing ranks above it."""
 
     def test_checked_replica_stays_below_an_official_printing(self):
         replica = {"instrument_id": "EO:1", "grade": "archival_replica_checked", "acceptable_as_original": False,
@@ -423,8 +424,11 @@ class ReplicaRankTests(unittest.TestCase):
         printing = {"instrument_id": "EO:1", "grade": "official_printing", "acceptable_as_original": False,
                     "text_path": "jobs/photius-gpo-volumes/output/texts/EO_1.txt"}
         registered = {("EO:1", replica["text_path"], "archival_replica_checked")}
-        self.assertEqual(B.text_tier(replica, registered), 2)
+        self.assertEqual(B.text_tier(replica, registered), 1)
         self.assertLess(B.rank_text(printing, registered), B.rank_text(replica, registered))
+        # A page check still owed on the printing removes its precedence.
+        owed = dict(printing, requires_page_check=True)
+        self.assertLess(B.rank_text(replica, registered), B.rank_text(owed, registered))
 
 
 if __name__ == "__main__":

@@ -37,6 +37,22 @@ Unattributed book dumps never become order originals. Richardson and editorial
 codifications remain derivative leads. Missing local files, unsafe paths and hash
 mismatches are reported. No network request or LFS download occurs inside the kit.
 
+When an order has no acceptable original, the kit chooses its text from the provisional working texts that a
+producer registered under the owner's 2026-10-21 transcription ruling. A ProQuest replica that passed the
+Photius page check (owner decision D-20261106-photius-p4) is one of these working texts, and it comes first
+among them. The kit reads the Pinakes text file named in the Photius fragment
+(`jobs/pinakes-proquest-ingest/output/texts/`), hashes it, and uses it only when the hash equals the
+fragment's `text_sha256`, the fragment's grade is `archival_replica_checked`, no page check is owed and the
+check's final verdict is pass. That text then becomes the order's held text: the kit inventories its
+clauses, own terms and change mentions from it, and the dossier and overlay input disclose it with the grade
+`archival_replica_checked` and `acceptable_as_original: false`. The source keeps the ProQuest PDF's SHA-256
+and URL, so custody is judged on ProQuest's bytes, and the dossier says the bytes remain ProQuest-dependent.
+A replica whose check failed or is still pending, or whose text file no longer matches the recorded hash,
+earns no credit and does not displace another text. A page-checked R37 official printing of the same order
+still ranks above the replica. For an order with no checked replica, an official printing keeps its earlier
+rank, and lifecycle claims on an official printing are still refused by `assemble.py`; wiring R37 into the
+kit is a separate change.
+
 Acting texts of instruments outside the census (public land orders, statutes, agency
 Federal Register documents) are declared in SOURCES.jsonl with `role: acting_instrument_text`
 and `instrument_ids: [acting instrument, target orders...]`. That binds the text to the
