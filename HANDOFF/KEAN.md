@@ -59,13 +59,13 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 419; `search` finds the rest)
+## Newest results (6 of 420; `search` finds the rest)
 
 - 2026-11-25 F-20261125-stateless-gauge **stopped at gate**: The paired stateless gauge (research/stateless-calls-2026-11-24, gauge_stateless.py) on the owner's PC: 55 Pa… Lesson: Stateless calls cut cost per attempted order by about half but not per filed claim: the upheld rate (0.34) and submit rate (0.21) dominate, and reviewers, not producers, are most of the cost. The pro…
 - 2026-11-25 F-20261125-sparse-checkout-defect **failed**: Coordinator ran the claim kit on a sparse checkout without jobs/selden-fr-*, ptolemy-custody, astra-source-re… Lesson: Never prepare from a trimmed checkout. Safe exclusions: ProQuest folders, jobs/_attempts, other waves' PACKET.json, views, READ.md, LOOKUPS and page images.
+- 2026-11-25 F-20261125-pin-text-hash-zero **failed**: Pinned text_sha256 after the fact in source-ladder (1,095), fr-originals (6,497) and clause-drafts (9,796) re… Lesson: Before pinning, check the blocked orders' actual dispatch reasons; the remaining lever is a record for fr-originals/data/full_run/texts.
 - 2026-11-25 F-20261125-photius-peiresc-s0 **worked**: Stage 0 (Augur PASS, owner review D-20261125-peiresc-page-check) of the Photius page check on the 17 Peiresc… Lesson: Federal Register-era replicas are page runs that start with the tail of the preceding order: the reader credited EO 7756's FDR signature and date to EO 7757, and read 11030's first-page dateline that…
 - 2026-11-25 F-20261125-photius-peiresc-full **worked**: Owner exception D-20261125-peiresc-page-check-exception: the Photius page check of the 2,084 remaining Peires… Lesson: Sonnet readers given optional page images skipped them on about a quarter of weak cases (119 of the first 450 passes) and some reconstructed dates from garbled OCR; a mechanical rule (image required…
 - 2026-11-25 F-20261125-lean-trial **inconclusive**: Lean two-arm trial: 30 seeded YES orders per arm; arm 0 current route; arm 1 strict Larrey (kept 15 out), seq… Lesson: No verified saving at this size. Pooling review sets and pre-screening blocks are the larger measured levers (F-20261125-gilbreth).
-- 2026-11-25 F-20261125-larrey-strict **analysis**: Back-tested candidate pre-production gates on 570 past attempts (520 orders, 91 filed) from Papinian, Haloand… Lesson: Strict is in-sample on all five waves; adopt it only after a gated wave (30 strict-admitted vs 15-30 kept-out orders) shows at least 1.5x filed rate and the kept-out arm supplies at most 15% of filed…
 
-Register: 110 owner decisions, 67 answered questions, 419 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 110 owner decisions, 67 answered questions, 420 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

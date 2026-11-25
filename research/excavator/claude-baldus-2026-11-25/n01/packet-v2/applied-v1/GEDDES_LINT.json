@@ -1,0 +1,86 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-baldus-2026-11-25/n01/packet-v2/PACKET.json",
+  "seconds": 16.419,
+  "files_read": 65349,
+  "file_reads": 130724,
+  "packet_fingerprint": "ff52fdd31b235e1f356f2179a2f577e37fbf1592ede2aa7bdaeb42ae4b72583f",
+  "claims_checked": 2,
+  "defect_flags": 0,
+  "coverage_gaps": 9,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:11963",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.operative_clauses[0].judgment_reason",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.research_rationale",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.research_rationale",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "de0e8dad65bca101efabc45ab817fe149da37feb",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:7565",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.research_rationale",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.research_rationale.member_checks.earlier_end_check",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "de0e8dad65bca101efabc45ab817fe149da37feb",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
