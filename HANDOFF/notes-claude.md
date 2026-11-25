@@ -1,3 +1,30 @@
+## 2026-11-25 ET, night (Claude: all PRs merged; Photius Peiresc wave done; stateless gauge says keep the agent route)
+
+- **Merged:** #300, #303-#306, #308-#314 (#310 was merged by the owner). Conflicts were only in the Kean register
+  and HANDOFF, plus two others:
+  - `research/lind/stage0/DRAW.json`: the 11-24 Lind rerun keeps the path, and the 11-12 draw is kept as
+    `DRAW_2026-11-12.json`;
+  - `CLAIM_KIT_LOCK.json`: three-way merge; the 20 orders reserved twice keep the newer Bartolus reservation.
+- **Photius Peiresc wave** (#313, F-20261125-photius-peiresc-full, owner exception
+  D-20261125-peiresc-page-check-exception):
+  - 2,084 pass, 11 unsure and 6 fail of 2,101 replicas; FRAGMENTS.jsonl now credits 4,628 (was 2,561).
+  - Opus seeded sample: 100/100 agree. About $35 list.
+  - Readers now must open the page whenever the machine read lacks a number or an exact date, and the assembler
+    rejects text-only passes on those. 128 such passes were re-read before credit.
+- **Stateless gauge** (#314, F-20261125-stateless-gauge): KEEP_AGENT_ROUTE, run incomplete at the $25 cap.
+  - Controls: 16/16 caught.
+  - Producer outcome agreement with the agent route: 22/55 (Sonnet), 20/55 (Haiku).
+  - Cost per filed claim: $4.30 Sonnet and $2.15 Haiku, against $4.71 on the agent route.
+  - Wave 1 stateless (D-20261125-maudslay-wave1, plan in `research/excavator/claude-maudslay-2026-11-25/`) does not
+    run, because its GO precondition is false.
+- **Next:**
+  1. Claim-checker run 45562310535 (started 06:40 UTC) credits the 46 Bartolus claims. When it ends, run
+     `gh workflow run run-jobs.yml --ref main -f job="readiness-tracker bentham" -f only=true` so the tracker
+     picks up the 4,628 replica credits.
+  2. Owner to choose between a gauge rerun with a bigger cap (about $40) and agent-route production in Bentham
+     order: one_step_away, then claim_ready.yes.fr.
+- **No count changed by hand.** Certified is still 0.
+
 ## 2026-11-24 ET, late night (Claude: Bartolus wave, agent-route part)
 
 - **Owner orders:** make as many finished dossiers as possible with an agent swarm; signed Augur plan C
