@@ -1,16 +1,16 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,251 of 15,002 orders (8.3%)**
+**Numbered series: ready for human review 1,251 of 15,003 orders (8.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45557065624-1:a7e7cea36d4055d497af010dc76089a129aa64787140439b464f72459c5d42f5` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45560499112-1:a54a7e2b5806e511ebd2f50852c4e65f893f1e37fa0f91061c0a32ca7871dcfc` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
 `research/readiness/EXHAUSTED.jsonl`. Human verification is a later, separate count.
 
-Orders with a provisional YES/NO status: 3,788. The other 11,214 have not been researched yet.
+Orders with a provisional YES/NO status: 3,792. The other 11,211 have not been researched yet.
 
 Ready by text evidence: {'original_supported': 725, 'transcription_dependent': 526}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 883; quotation rechecks: 883. These remain work after readiness.
@@ -21,12 +21,12 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Step | Done | Of | Share |
 |---|---:|---:|---:|
-| Has a provisional YES/NO status | 3,788 | 3,788 | 100.0% |
-| Original or explicitly reviewed provisional working text saved | 3,551 | 3,788 | 93.7% |
-| Complete inventory of the order's operative clauses | 1,493 | 3,788 | 39.4% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,283 | 3,788 | 33.9% |
-| Savings clauses and surviving effects closed | 1,480 | 3,788 | 39.1% |
-| Search for later contrary sources recorded, no open conflicts | 2,884 | 3,788 | 76.1% |
+| Has a provisional YES/NO status | 3,792 | 3,792 | 100.0% |
+| Original or explicitly reviewed provisional working text saved | 3,555 | 3,792 | 93.8% |
+| Complete inventory of the order's operative clauses | 1,493 | 3,792 | 39.4% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,283 | 3,792 | 33.8% |
+| Savings clauses and surviving effects closed | 1,480 | 3,792 | 39.0% |
+| Search for later contrary sources recorded, no open conflicts | 2,888 | 3,792 | 76.2% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 788 | 15.9% |
 
@@ -38,6 +38,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | 2,084 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 690 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
+| 46 | machine job | Run claim-checker on the newest claims (it reruns on every claims change and daily) |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source EO::6964 |
@@ -49,24 +50,25 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
-| `NO_PROVISIONAL_STATUS` | 0 | 11,214 |
-| `NO_CLAUSE_INVENTORY` | 2,185 | 2,185 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,185 | 2,185 |
+| `NO_PROVISIONAL_STATUS` | 0 | 11,211 |
+| `NO_CLAUSE_INVENTORY` | 2,167 | 2,167 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,167 | 2,167 |
 | `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 212 | 2,151 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 211 | 2,084 |
-| `FIRST_END_UNPROVED` | 1,870 | 1,870 |
-| `NO_OFFICIAL_SOURCE_LOCATED` | 122 | 1,541 |
+| `FIRST_END_UNPROVED` | 1,869 | 1,869 |
+| `NO_OFFICIAL_SOURCE_LOCATED` | 122 | 1,540 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 721 | 721 |
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 98 | 690 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
-| `CURRENT_BASIS_UNPROVED` | 315 | 315 |
+| `CURRENT_BASIS_UNPROVED` | 298 | 298 |
 | `FIRST_END_UNRESOLVED` | 184 | 184 |
 | `OPUS_MEDIA_NONE_CITED` | 161 | 161 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
 | `CLAIM_INCOMPLETE` | 82 | 82 |
-| `CLAIM_CHECK_FAILED` | 71 | 71 |
-| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 68 | 68 |
 | `OPUS_MEDIA_PARTLY_RESOLVED` | 52 | 52 |
+| `CLAIM_CHECK_FAILED` | 47 | 47 |
+| `CLAIM_NOT_YET_CHECKED` | 46 | 46 |
+| `WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED` | 44 | 44 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 24 | 24 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 18 | 18 |

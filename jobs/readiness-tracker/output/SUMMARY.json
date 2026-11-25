@@ -1,15 +1,15 @@
 {
-  "orders_total": 15002,
-  "orders_with_provisional_status": 3788,
+  "orders_total": 15003,
+  "orders_with_provisional_status": 3792,
   "ready_for_human_review": 1251,
   "status_contested": 0,
   "claims_by_schema": {
     "eo-lifecycle-claim/v2": 184,
-    "eo-lifecycle-claim/v1": 1420
+    "eo-lifecycle-claim/v1": 1442
   },
   "whole_end_date_kind": {
     "not_later_than": 184,
-    "exact": 1254
+    "exact": 1259
   },
   "formal_revocation_after_earlier_cessation": 33,
   "ready_by_tier": {
@@ -89,29 +89,29 @@
   },
   "step_done_among_decided": {
     "provisional_status": {
-      "done": 3788,
-      "applicable": 3788
+      "done": 3792,
+      "applicable": 3792
     },
     "original_text": {
-      "done": 3551,
-      "applicable": 3788,
+      "done": 3555,
+      "applicable": 3792,
       "provisional": 17
     },
     "clause_inventory": {
       "done": 1493,
-      "applicable": 3788
+      "applicable": 3792
     },
     "ending_or_current_basis": {
       "done": 1283,
-      "applicable": 3788
+      "applicable": 3792
     },
     "savings_residuals": {
       "done": 1480,
-      "applicable": 3788
+      "applicable": 3792
     },
     "counterevidence": {
-      "done": 2884,
-      "applicable": 3788
+      "done": 2888,
+      "applicable": 3792
     },
     "shared_sources": {
       "done": 212,
@@ -128,7 +128,7 @@
     "2/6": 579,
     "2/7": 55,
     "2/8": 3,
-    "3/6": 753,
+    "3/6": 757,
     "3/7": 416,
     "3/8": 32,
     "4/6": 28,
@@ -144,24 +144,25 @@
     "8/8": 5
   },
   "orders_blocked_by": {
-    "NO_PROVISIONAL_STATUS": 11214,
-    "NO_CLAUSE_INVENTORY": 2185,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 2185,
+    "NO_PROVISIONAL_STATUS": 11211,
+    "NO_CLAUSE_INVENTORY": 2167,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 2167,
     "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2151,
     "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2084,
-    "FIRST_END_UNPROVED": 1870,
-    "NO_OFFICIAL_SOURCE_LOCATED": 1541,
+    "FIRST_END_UNPROVED": 1869,
+    "NO_OFFICIAL_SOURCE_LOCATED": 1540,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 721,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 690,
     "OPUS_MEDIA_REFETCH_NEEDED": 431,
-    "CURRENT_BASIS_UNPROVED": 315,
+    "CURRENT_BASIS_UNPROVED": 298,
     "FIRST_END_UNRESOLVED": 184,
     "OPUS_MEDIA_NONE_CITED": 161,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
     "CLAIM_INCOMPLETE": 82,
-    "CLAIM_CHECK_FAILED": 71,
-    "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 68,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "CLAIM_CHECK_FAILED": 47,
+    "CLAIM_NOT_YET_CHECKED": 46,
+    "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 44,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 24,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
@@ -169,12 +170,12 @@
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
   },
   "decided_orders_blocked_by": {
-    "NO_CLAUSE_INVENTORY": 2185,
-    "SAVINGS_RESIDUALS_NOT_CLOSED": 2185,
-    "FIRST_END_UNPROVED": 1870,
+    "NO_CLAUSE_INVENTORY": 2167,
+    "SAVINGS_RESIDUALS_NOT_CLOSED": 2167,
+    "FIRST_END_UNPROVED": 1869,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 721,
     "OPUS_MEDIA_REFETCH_NEEDED": 431,
-    "CURRENT_BASIS_UNPROVED": 315,
+    "CURRENT_BASIS_UNPROVED": 298,
     "ONLY_COMPILED_TRANSCRIPTION_FOUND": 212,
     "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 211,
     "FIRST_END_UNRESOLVED": 184,
@@ -183,9 +184,10 @@
     "NO_OFFICIAL_SOURCE_LOCATED": 122,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 98,
     "CLAIM_INCOMPLETE": 82,
-    "CLAIM_CHECK_FAILED": 71,
-    "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 68,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
+    "CLAIM_CHECK_FAILED": 47,
+    "CLAIM_NOT_YET_CHECKED": 46,
+    "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 44,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 24,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
@@ -217,6 +219,12 @@
       "kind": "machine_job",
       "orders_unblocked": 431,
       "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
+    },
+    {
+      "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
+      "kind": "machine_job",
+      "orders_unblocked": 46,
+      "blocker": "CLAIM_NOT_YET_CHECKED"
     },
     {
       "action": "Retrieve shared source EO::4314",
@@ -303,7 +311,7 @@
     "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT",
     "INVALID_MONTFAUCON_OFFICIAL_FRAGMENT"
   ],
-  "numbered_series_orders": 15002,
+  "numbered_series_orders": 15003,
   "unnumbered_series_observed": 1816,
   "unnumbered_series_estimate_95": null,
   "historical_census_candidates_OUTSIDE_DENOMINATOR": {
@@ -315,7 +323,7 @@
     "newly_admitted_EOs": 0,
     "separate_from_14972_census": true
   },
-  "generation_id": "45557065624-1:a7e7cea36d4055d497af010dc76089a129aa64787140439b464f72459c5d42f5",
+  "generation_id": "45560499112-1:a54a7e2b5806e511ebd2f50852c4e65f893f1e37fa0f91061c0a32ca7871dcfc",
   "inputs": {
     "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
     "decided": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
