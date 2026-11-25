@@ -55,7 +55,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 
 <!-- kean:drift -->
 <!-- /kean:drift -->
-## Newest results (6 of 384; `search` finds the rest)
+## Newest results (6 of 386; `search` finds the rest)
 
 - 2026-11-25 F-20261125-photius-peiresc-s0 **worked**: Stage 0 (Augur PASS, owner review D-20261125-peiresc-page-check) of the Photius page check on the 17 Peiresc… Lesson: Federal Register-era replicas are page runs that start with the tail of the preceding order: the reader credited EO 7756's FDR signature and date to EO 7757, and read 11030's first-page dateline that…
 - 2026-11-24 F-20261124-peiresc-harvest **worked**: Fetched ProQuest 'Replica of Original' PDFs for the 2,192 numbered orders the tracker held with no official t… Lesson: Transfer route that works: get_page_text inside browser_batch saves to a file at up to about 16 MB per batch (7 chunks of 1.35 MB binary); a lone get_page_text from a subagent is capped at 50,000 cha…
@@ -64,4 +64,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-24 F-20261124-3 **stopped at gate**: Petty lane C (Sonnet preparer, about 150k tokens, 5 min): prepare Montfaucon m011 for the 69 register rows be… Lesson: Read OUTCOMES.json before treating ORIGINAL_FOUND_NEEDS_PAGE_CHECK as unchecked; the domesday label official_found_page_check_pending should say when a final fail exists.
 - 2026-11-24 F-20261124-2 **partly worked**: Petty lane E (coordinator, Opus, in the owner's Chrome with NYU OpenAthens): the 30-document pilot of A-20261… Lesson: Permalinks t67.d72.<CIS accession> work and the record page gives signed flag, record group and revocation cross-references; fetch() from the page context reads them in bulk. Before admitting any, a…
 
-Register: 93 owner decisions, 58 answered questions, 384 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 93 owner decisions, 58 answered questions, 386 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
