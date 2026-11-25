@@ -1,0 +1,37 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "research/excavator/claude-junto-lean-2026-11-25/arm0/a03/packet/PACKET.json",
+  "seconds": 52.568,
+  "files_read": 65349,
+  "file_reads": 130734,
+  "packet_fingerprint": "1111958f744b337deec1808005399fea3041f569c5ee5368291ee980e661fcdf",
+  "claims_checked": 1,
+  "defect_flags": 0,
+  "coverage_gaps": 1,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:13613",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

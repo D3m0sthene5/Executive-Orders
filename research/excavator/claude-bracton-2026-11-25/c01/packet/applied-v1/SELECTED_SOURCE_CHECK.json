@@ -1,0 +1,282 @@
+{
+  "code_pins": {
+    "assemble.py": "b3558f5b7720a32c65e31b2893f109c052dde442e5240a0ca50083e66360855f",
+    "checker.py": "969034e0f0b740d0fecc4982a2321b7d0685ac7dab7ea7d5fe28377ddbda6481",
+    "dispatch.py": "19167f9d8ec0dcea98ad0c383d8366d9b9e1261c12092cfaf6e6e221489027c4",
+    "sources.py": "6eff9028f980fc1d0a35df6b09e5419ab5840f687cc7b7736d3a38de2bf3f68f"
+  },
+  "members": [
+    {
+      "blockers": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "no saved copy with sha256 afc5c581e901... and no saved copy of https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-067-Report.pdf",
+              "field": "source",
+              "result": "fail",
+              "status": "not_held",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "FACT:NA:codex-series-10029-report-record-v1:NE:codex-series-10029-transmittal-v1",
+          "field": "operative_clauses[0].later_events[0].source",
+          "kind": "selected_source_custody"
+        }
+      ],
+      "claim_sha256": "0c7183a0a1024fefbda4a930a58ca6f60cb30ba0fc4e2d8bf2a5dc901b3c0c48",
+      "instrument_id": "EO:10029",
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1949-01-20/pdf/FR-1949-01-20.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1949-01-20/premis.xml, checked 2026-10-18T00:55:08Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:10029",
+          "field": "operative_clauses[0].first_end.source",
+          "required": true,
+          "source": {
+            "page_or_item": "14 FR 289, PDF pages 1-1",
+            "sha256": "8ac8280e036c696ae42bd90bf95b28e89fedfa0a4de6e589857fca8e9ed0ed0d",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10029.txt",
+            "text_sha256": "2e2f9c13ff34e88e3462a43b1ac23a00926af7e8c5e50be5277aade8b0fb785e",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1949-01-20/pdf/FR-1949-01-20.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "no saved copy with sha256 afc5c581e901... and no saved copy of https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-067-Report.pdf",
+              "field": "source",
+              "result": "fail",
+              "status": "not_held",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "FACT:NA:codex-series-10029-report-record-v1:NE:codex-series-10029-transmittal-v1",
+          "field": "operative_clauses[0].later_events[0].source",
+          "required": true,
+          "source": {
+            "page_or_item": "PEB 67 report, PDF page 2, dated transmittal letter",
+            "sha256": "afc5c581e901d6a22180aebbd1dcba9cf853d1b4301b339fc05a647b158bbee9",
+            "text_path": "jobs/astra-source-retention/output/pages/afc5c581e901d6a22180aebbd1dcba9cf853d1b4301b339fc05a647b158bbee9/e726ca5f3c289197c5592ae1279cd5530acb72504eb1ee15bc8ab725ac253d5a/selected-pages.txt",
+            "text_sha256": "a71e9407c6ef1b7576b5b229add3f14bba6cd5a9bd6f9a2743fe56a56e6afbd3",
+            "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-067-Report.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl, opus_stage11_fetch_meta; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1986-03-03/premis.xml, checked 2026-10-18T00:55:52Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:10029>EO:12553",
+          "field": "operative_clauses[0].later_events[1].source",
+          "required": true,
+          "source": {
+            "page_or_item": "51 FR 7237, PDF pages 9-15",
+            "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+            "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1949-01-20/pdf/FR-1949-01-20.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1949-01-20/premis.xml, checked 2026-10-18T00:55:08Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:10029#whole",
+          "field": "operative_clauses[0].original_source",
+          "required": true,
+          "source": {
+            "page_or_item": "14 FR 289, PDF pages 1-1",
+            "sha256": "8ac8280e036c696ae42bd90bf95b28e89fedfa0a4de6e589857fca8e9ed0ed0d",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10029.txt",
+            "text_sha256": "2e2f9c13ff34e88e3462a43b1ac23a00926af7e8c5e50be5277aade8b0fb785e",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1949-01-20/pdf/FR-1949-01-20.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1949-01-20/pdf/FR-1949-01-20.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1949-01-20/premis.xml, checked 2026-10-18T00:55:08Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:10029",
+          "field": "original_representation",
+          "required": true,
+          "source": {
+            "page_or_item": "14 FR 289, PDF pages 1-1",
+            "sha256": "8ac8280e036c696ae42bd90bf95b28e89fedfa0a4de6e589857fca8e9ed0ed0d",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10029.txt",
+            "text_sha256": "2e2f9c13ff34e88e3462a43b1ac23a00926af7e8c5e50be5277aade8b0fb785e",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1949-01-20/pdf/FR-1949-01-20.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl, opus_stage11_fetch_meta; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1986-03-03/premis.xml, checked 2026-10-18T00:55:52Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACT:EO:10029>EO:12553",
+          "field": "savings_residuals.source",
+          "required": true,
+          "source": {
+            "page_or_item": "51 FR 7237, PDF pages 9-15",
+            "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+            "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1949-01-20/pdf/FR-1949-01-20.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1949-01-20/premis.xml, checked 2026-10-18T00:55:08Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:10029",
+          "field": "whole_order_end.source",
+          "required": true,
+          "source": {
+            "page_or_item": "14 FR 289, PDF pages 1-1",
+            "sha256": "8ac8280e036c696ae42bd90bf95b28e89fedfa0a4de6e589857fca8e9ed0ed0d",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_10029.txt",
+            "text_sha256": "2e2f9c13ff34e88e3462a43b1ac23a00926af7e8c5e50be5277aade8b0fb785e",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1949-01-20/pdf/FR-1949-01-20.pdf"
+          }
+        }
+      ],
+      "state": "source_blocked"
+    }
+  ],
+  "model_tokens": null,
+  "network_requests": 0,
+  "notice": "Fresh selected-source check only. Exact claim hashes identify this observation; changed claims/sources require a new check. Legal applicability, source grades, independent review and ordinary checker/completion gates remain required.",
+  "ok": false,
+  "packet_fingerprint": "bd9b919a28e8196c9e10d4fae7a41f16cf07558fae00925f1d61d58da067abae",
+  "packet_sha256": "ce0c0c70c851248a032b4c492511fa5cf42bbfd2e73c0b18ebf7b50c00bc62e3",
+  "schema": "eo-claim-kit-selected-sources/v1",
+  "scientific_approval": false,
+  "source_index_notes": [
+    "jobs/app-executive-orders/output/SOURCES.jsonl: 792 source records (0 with saved bytes on this machine)",
+    "jobs/app-transcriptions/output/SOURCES.jsonl: 9902 source records (0 with saved bytes on this machine)",
+    "jobs/astra-source-retention/output/SOURCES.jsonl: 314 source records (314 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 0 records without a usable sha256, 7 unusable text_path/cache_path values",
+    "jobs/cassiodorus/output/SOURCES.jsonl: 297 source records (297 with saved bytes on this machine)",
+    "jobs/clark-discovery/output/SOURCES.jsonl: 233 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 39 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/clause-drafts/output/SOURCES.jsonl: 9796 source records (0 with saved bytes on this machine)",
+    "jobs/cotton-capture-custody/output/SOURCES.jsonl: 758 source records (758 with saved bytes on this machine)",
+    "jobs/cruden-fr-concordance/output/SOURCES.jsonl: 927 source records (209 with saved bytes on this machine)",
+    "jobs/current-law/output/SOURCES.jsonl: 1991 source records (0 with saved bytes on this machine)",
+    "jobs/duodecim-tableiv/output/SOURCES.jsonl: 16 source records (0 with saved bytes on this machine)",
+    "jobs/eumenes-nmb-reports/output/SOURCES.jsonl: 119 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-sources/output/SOURCES.jsonl: 2 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-tail/output/SOURCES.jsonl: 1 source records (0 with saved bytes on this machine)",
+    "jobs/fr-originals/output/SOURCES.jsonl: 6497 source records (7 with saved bytes on this machine)",
+    "jobs/fr-pages/output/SOURCES.jsonl: 30 source records (28 with saved bytes on this machine)",
+    "jobs/hathi-gpo-orders/output/SOURCES.jsonl: 1531 source records (0 with saved bytes on this machine)",
+    "jobs/later-events/output/SOURCES.jsonl: 17753 source records (0 with saved bytes on this machine)",
+    "jobs/lewis-originals/output/SOURCES.jsonl: 431 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 314 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/mabillon-held-printings/output/SOURCES.jsonl: 2037 source records (0 with saved bytes on this machine)",
+    "jobs/numbered-early-orders/output/SOURCES.jsonl: 197 source records (0 with saved bytes on this machine)",
+    "jobs/opus-media-match/output/SOURCES.jsonl: 496 source records (0 with saved bytes on this machine)",
+    "jobs/peano-formulario/output/SOURCES.jsonl: 33 source records (27 with saved bytes on this machine)",
+    "jobs/pothier/output/SOURCES.jsonl: 94 source records (0 with saved bytes on this machine)",
+    "jobs/ptolemy-custody/output/SOURCES.jsonl: 3060 source records (3060 with saved bytes on this machine)",
+    "jobs/repetita-lsa/output/SOURCES.jsonl: 729 source records (0 with saved bytes on this machine)",
+    "jobs/selden-fr-acting/output/SOURCES.jsonl: 1361 source records (557 with saved bytes on this machine)",
+    "jobs/selden-fr-citers/output/SOURCES.jsonl: 4820 source records (4820 with saved bytes on this machine)",
+    "jobs/selden-statutes/output/SOURCES.jsonl: 1912 source records (75 with saved bytes on this machine)",
+    "jobs/shepard-citations/output/SOURCES.jsonl: 24 source records (24 with saved bytes on this machine)",
+    "jobs/source-ladder/output/SOURCES.jsonl: 1097 source records (0 with saved bytes on this machine)",
+    "jobs/theophilus-sources/output/SOURCES.jsonl: 1377 source records (1377 with saved bytes on this machine)",
+    "jobs/wikisource-texts/output/SOURCES.jsonl: 1639 source records (1639 with saved bytes on this machine)",
+    "jobs/youngstown-courts/output/SOURCES.jsonl: 1137 source records (0 with saved bytes on this machine)",
+    "jobs/indian-reservations-1912: 1 committed volume(s) and 55 per-order text(s) indexed",
+    "jobs/isthmian-canal-1911: 1 committed volume(s) and 105 per-order text(s) indexed",
+    "jobs/ofr-codification-1989: 1 committed volume(s) and 0 per-order text(s) indexed",
+    "jobs/ofr-compilations: 1 committed volume(s) and 500 per-order text(s) indexed",
+    "jobs/richardson-volumes: 3 committed volume(s) and 68 per-order text(s) indexed",
+    "Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)",
+    "no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip"
+  ],
+  "source_recovery_tasks": [
+    {
+      "affected_references": [
+        {
+          "evidence_id": "FACT:NA:codex-series-10029-report-record-v1:NE:codex-series-10029-transmittal-v1",
+          "field": "operative_clauses[0].later_events[0].source",
+          "instrument_id": "EO:10029",
+          "required": true
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "not_held"
+      ],
+      "expected_sha256": "afc5c581e901d6a22180aebbd1dcba9cf853d1b4301b339fc05a647b158bbee9",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:10029"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-067-Report.pdf"
+        ],
+        "wanted_id": "dispatch-7e81cd2b112d94277dac0143"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "page_or_item": "PEB 67 report, PDF page 2, dated transmittal letter",
+          "sha256": "afc5c581e901d6a22180aebbd1dcba9cf853d1b4301b339fc05a647b158bbee9",
+          "text_path": "jobs/astra-source-retention/output/pages/afc5c581e901d6a22180aebbd1dcba9cf853d1b4301b339fc05a647b158bbee9/e726ca5f3c289197c5592ae1279cd5530acb72504eb1ee15bc8ab725ac253d5a/selected-pages.txt",
+          "text_sha256": "a71e9407c6ef1b7576b5b229add3f14bba6cd5a9bd6f9a2743fe56a56e6afbd3",
+          "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-067-Report.pdf"
+        }
+      ],
+      "task_id": "SOURCE:7e81cd2b112d94277dac0143"
+    }
+  ],
+  "unique_custody_checks": 3,
+  "unique_text_checks": 3,
+  "wall_seconds": 13.162143
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-junto-lean-2026-11-25/arm0/a02-refresh/packet/PACKET.json",
+  "seconds": 18.389,
+  "files_read": 65350,
+  "file_reads": 130731,
+  "packet_fingerprint": "86c545616abc898d3f498597bf0b1aebe73b074f416719e331b7bc34dac62218",
+  "claims_checked": 2,
+  "defect_flags": 0,
+  "coverage_gaps": 4,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:12648",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:12985",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

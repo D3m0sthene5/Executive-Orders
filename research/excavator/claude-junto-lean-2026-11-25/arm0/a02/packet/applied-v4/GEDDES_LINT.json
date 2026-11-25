@@ -1,0 +1,81 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-junto-lean-2026-11-25/arm0/a02/packet/PACKET.json",
+  "seconds": 20.286,
+  "files_read": 65351,
+  "file_reads": 130944,
+  "packet_fingerprint": "1cef1c788af8b7e262ec3b36eea82b087d92bb42d7d98a07e37c77a9e5c5ca6d",
+  "claims_checked": 2,
+  "defect_flags": 1,
+  "coverage_gaps": 4,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:12648",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:13549",
+      "flags": [
+        {
+          "code": "unaddressed_citing_instrument",
+          "scope_id": "whole",
+          "field": "claim",
+          "span": "EO:13381 (2005-06-27)",
+          "detail": "Held EO:13381 (2005-06-27) revokes EO 12333, which this order amends or modifies; the claim never mentions EO:13381 in its ends, events, reasoning, searches or gaps.",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-13381-strengthening-processes-relating-determining-eligibility-for-access.txt",
+            "text_sha256": "34636e3987167aea65c9ca9a7e20e4b56c32784061185fd80dc90ac662b54cf2",
+            "char_start": 7040,
+            "char_end": 7586,
+            "quote": "(a) Nothing in this order shall be construed to supersede, impede, or otherwise affect:\n\n(1)\nExecutive Order 10865 of February 20, 1960, as amended;\n(2)\nExecutive Order 12333 of December 4, 1981, as amended;\n(3)\nExecutive Order 12958, as amended;\n(4)\nExecutive Order 12968 of August 2, 1995;\n(5)\nExecutive Order 12829 of January 6, 1993, as amended;\n(6)\nsubsections 102A(i) and (j) of the National Security Act of 1947 (50 U.S.C. 403–1(i) and (j)); and\n(7)\nsections 141 through 146 of the Atomic Energy Act of 1954 (42\n\nU.S.C. 2161 through 2166).",
+            "instrument_id": "EO:13381",
+            "date": "2005-06-27",
+            "identity_basis": "app_publisher_listing",
+            "cited_order": "EO:12333"
+          },
+          "flag_id": "91991c7c59e226c4"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

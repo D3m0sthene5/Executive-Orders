@@ -1,0 +1,137 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-junto-lean-2026-11-25/arm1/b02/packet/PACKET.json",
+  "seconds": 25.152,
+  "files_read": 65351,
+  "file_reads": 130833,
+  "packet_fingerprint": "f8c68df70c8c6542c834c27a45ab67a6158ea54eefa95de5877272ce84e72590",
+  "claims_checked": 4,
+  "defect_flags": 3,
+  "coverage_gaps": 8,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 4,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:12261",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:12423",
+      "flags": [
+        {
+          "code": "later_instrument_named_without_event_source",
+          "scope_id": "EO:12423#sec1",
+          "actor": "EO:12163",
+          "reasoning_sentence": "EO 12163 remains in force; no held later instrument rewrites 1-301(b) (later amendments touch other subsections); and EO 13637 revokes EO 11958, not EO 12163",
+          "detail": "Reasoning describes EO:12163 as a later actor but this clause has no source-backed later_events entry for it.",
+          "flag_id": "2ff18f11c24fd6af"
+        },
+        {
+          "code": "later_instrument_named_without_event_source",
+          "scope_id": "EO:12423#sec1",
+          "actor": "EO:13637",
+          "reasoning_sentence": "EO 12163 remains in force; no held later instrument rewrites 1-301(b) (later amendments touch other subsections); and EO 13637 revokes EO 11958, not EO 12163",
+          "detail": "Reasoning describes EO:13637 as a later actor but this clause has no source-backed later_events entry for it.",
+          "flag_id": "d8028b9121ef39ac"
+        },
+        {
+          "code": "unaddressed_citing_instrument",
+          "scope_id": "whole",
+          "field": "claim",
+          "span": "EO:12292 (1981-02-23)",
+          "detail": "Held EO:12292 (1981-02-23) revokes EO 12163, which this order amends or modifies; the claim never mentions EO:12292 in its ends, events, reasoning, searches or gaps.",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12292-foreign-service-act-1980.txt",
+            "text_sha256": "79edbb48034bfef0c2fa0876306d3b8f2199f3085929d73788a1ac1fa0e58d6a",
+            "char_start": 4318,
+            "char_end": 4413,
+            "quote": "Sec. 8. Executive Order No. 12163 is amended as follows:\n\n(a) Section 1-201(a) (14) is revoked.",
+            "instrument_id": "EO:12292",
+            "date": "1981-02-23",
+            "identity_basis": "app_publisher_listing",
+            "cited_order": "EO:12163"
+          },
+          "flag_id": "3bf15517cab7b0cd"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:12908",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 4,
+      "instrument_id": "EO:14368",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

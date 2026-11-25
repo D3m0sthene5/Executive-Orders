@@ -1,0 +1,45 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-bracton-2026-11-25/olney/s1/supplemented-refresh/PACKET.json",
+  "seconds": 10.121,
+  "files_read": 65348,
+  "file_reads": 130712,
+  "packet_fingerprint": "41d025c941d219216bf1b9a281fa3b4da74ec2ea26785ff6197e5fdc33bcb6e5",
+  "claims_checked": 1,
+  "defect_flags": 0,
+  "coverage_gaps": 3,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:11663",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "fd919ffe9e2323d6e37b5e300a88387959dd9d1c",
+          "tracked_files": 66744,
+          "verified_files": 65343,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
