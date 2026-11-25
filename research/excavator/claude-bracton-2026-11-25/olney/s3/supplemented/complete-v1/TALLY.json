@@ -1,0 +1,83 @@
+{
+  "attempted": 6,
+  "claims_published": 0,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:11343",
+      "planted_claim_sha256": "fb1ae8b22c5c3e6cfe6b84a3ed674b40ddf379a0ddda74b867f94bebe2f95ad0",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 4,
+    "eligible": 2
+  },
+  "eligible": [
+    "EO:11343",
+    "EO:9702"
+  ],
+  "eligible_per_attempt": 0.3333333333333333,
+  "exceptions": 0,
+  "finished_utc": "2026-11-25T14:02:34.738242+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "after_reveal": true,
+      "claim_sha256": "5ef753c5ab7d59b95cd8819366eac6aa4444b12a9b05e0a5a5904803cc04bee5",
+      "gate_errors": [],
+      "instrument_id": "EO:11343",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:11445",
+      "outcome": "blocked",
+      "reason": "Independent review did not uphold this version: [{\"field\": \"operative_clauses[EO:11445#board].later_events and research_rationale (earlier_end_check)\", \"claim_says\": \"'Olney screened the whole report PDF ... for wording extending the board's time to report; it records no extension.' No extension later event is recorded.\", \"source_says\": \"Held report, PDF page 5: 'the parties agreed to e~tend the time within which the Board must repor~ its findings to the President until March 7, 1969. On February 6, 1969, this extension was approved by President Nixon.'\", \"problem\": \"the held source records a presidential approval of an extension (1969-02-06, to 1969-03-07) that the claim omits as a later event and denies exists; the search is misdescribed\"}, {\"field\": \"operative_clauses[*].judgment_reason and research_rationale\", \"claim_says\": \"'no letter of transmittal date line was found in the held text'; rationale: 'no letter of transmittal is legible in the held text'\", \"source_says\": \"Held report PDF page 3 has a legible 'LETTER OF TRANSMITTAL' that submits the report 'herewith', with the date line 'WASHIN(]TON~ I).C.~ Marel~ 7~ 1968.'\", \"problem\": \"misstates the source: the letter exists and is legible; its date line is present but garbled (OCR year 1968), which should be disclosed as unreadable rather than as absent\"}, {\"field\": \"savings_residuals.reason\", \"claim_says\": \"'their dates are not established by a held reviewed source, so no earlier end is claimed'\", \"source_says\": \"The same claim asserts clause ends of 1969-03-07 and 1969-04-06, earlier than EO 12553.\", \"problem\": \"internally inconsistent with the claimed first ends\"}]"
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "2b893545679862a949389b73a89afc2df71fe6b92fe4c775f0469f9facfe6e86",
+      "gate_errors": [],
+      "instrument_id": "EO:9702",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:9918",
+      "outcome": "blocked",
+      "reason": "Independent review did not uphold this version: [{\"field\": \"operative_clauses[EO:9918#board].judgment_reason and operative_clauses[EO:9918#standstill] (by reference)\", \"claim_says\": \"'no letter of transmittal date line was found in the held text; ... and the letter submits the report herewith'\", \"source_says\": \"Held report PDF page 2, inside the claim's own quoted span: 'WASHINGTOS. D. C.. JCI?~UU~J $8: 1958. THE PRESIDENT. ...' followed by the letter submitting the report 'herewith'.\", \"problem\": \"misstates the source and is internally inconsistent: the letter's date line is present in the quoted span but unreadable (its OCR year reads 1958); D-20261125-board-cover-date applies to an unreadable date line, and the claim should disclose that reading rather than say no date line was found\"}]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:9936",
+      "outcome": "blocked",
+      "reason": "[\"olney: dispatch_source_blocked\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:9991",
+      "outcome": "blocked",
+      "reason": "[\"olney: dispatch_source_blocked\"]"
+    }
+  ],
+  "packet_loads": {
+    "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented": 2
+  },
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 2,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-25T13:58:32.447497+00:00",
+  "submitted": 2,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 242.290772958
+}

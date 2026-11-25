@@ -13,11 +13,11 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 5 | acquire.shared.CFR_26_CFR_458.324 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 6 | recovery.working_text_stale | recovery | 2 | 1.3 | 0.0 | $0.46 | 276.7 | $0.46 |
 | 7 | recovery.custody_stranded | recovery | 5 | 3.2 | 0.0 | $1.15 | 276.7 | $1.61 |
-| 8 | production.one_step_away | production | 219 | 139.8 | 0.0 | $73 | 192.0 | $74 |
-| 9 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 1 | 0.0 | 0.2 | $0.18 | 128.0 | $75 |
-| 10 | production.claim_ready.yes.fr | production | 281 | 65.6 | 0.0 | $93 | 70.2 | $168 |
-| 11 | status_assignment.undecided | status_assignment | 11211 | 1121.1 | 0.0 | $3,728 | 30.1 | $3,896 |
-| 12 | production.claim_ready.no.fr | production | 1043 | 34.8 | 0.0 | $347 | 10.0 | $4,242 |
+| 8 | production.one_step_away | production | 203 | 129.6 | 0.0 | $68 | 192.0 | $69 |
+| 9 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 1 | 0.0 | 0.2 | $0.18 | 128.0 | $69 |
+| 10 | production.claim_ready.yes.fr | production | 281 | 65.6 | 0.0 | $93 | 70.2 | $163 |
+| 11 | status_assignment.undecided | status_assignment | 11211 | 1121.1 | 0.0 | $3,728 | 30.1 | $3,890 |
+| 12 | production.claim_ready.no.fr | production | 1057 | 35.2 | 0.0 | $351 | 10.0 | $4,242 |
 | 13 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,242 |
 | 14 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,242 |
 | 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $4,242 |
@@ -44,9 +44,11 @@ Measured waves (Kean findings' structured measures; list-price dollars; not pool
 | 2026-11-10-papinian | $297 | 17% | 467 | 63 | $4.71 | 0 of 18 |
 | 2026-11-10-respondendi | $273 | 7% | 0 | 0 |  | 0 of 0 |
 | accursius-2026-11-10 | $182 | 28% |  |  |  |  |
+| bracton-2026-11-25 | $107 |  | 161 | 8 | $13 | 0 of 13 |
 | cujas-2026-11-08 | $23 | 34% | 75 | 68 | $0.34 | 0 of 6 |
 | gutenberg-2026-11-09 | $28 | 100% |  |  |  |  |
 | haloander-2026-11-07 | $63 | 72% |  |  |  |  |
+| junto-lean-2026-11-25 |  |  | 59 | 8 |  | 0 of 5 |
 | kiaer-2026-11-18 | $65 |  | 80 | 0 |  | 1 of 9 |
 | lind-stage0-2026-11-12 | $23 | 44% | 30 | 0 |  | 0 of 1 |
 | photius-peiresc-2026-11-25-full | $35 |  | 2084 | 0 |  | 0 of 0 |

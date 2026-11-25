@@ -145,7 +145,7 @@
     {
       "id": "production.one_step_away",
       "kind": "production",
-      "orders": 219,
+      "orders": 203,
       "description": "Close the single open step of orders that already have a claim and exactly one applicable step open. Excludes recovery orders.",
       "notes": [],
       "rate": {
@@ -156,16 +156,16 @@
         "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 139.8,
+      "expected_now": 129.6,
       "fecundity": 0.0,
-      "value": 139.8,
-      "cost_usd": 72.82,
-      "cost_basis": "219 x 0.33 USD (attempted_order)",
+      "value": 129.6,
+      "cost_usd": 67.5,
+      "cost_basis": "203 x 0.33 USD (attempted_order)",
       "per_usd": 1.9204898855013672,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 74.43,
-      "cumulative_value": 145.1,
+      "cumulative_usd": 69.11,
+      "cumulative_value": 134.9,
       "share_of_week": null
     },
     {
@@ -183,8 +183,8 @@
       "per_usd": 1.2796103075112808,
       "cost_key": "production.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 74.61,
-      "cumulative_value": 145.3,
+      "cumulative_usd": 69.29,
+      "cumulative_value": 135.1,
       "share_of_week": null
     },
     {
@@ -192,7 +192,9 @@
       "kind": "production",
       "orders": 281,
       "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "notes": [],
+      "notes": [
+        "Larrey triage not applied: Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
+      ],
       "rate": {
         "key": "filed_per_attempt.yes.fr",
         "value": 0.23333333333333334,
@@ -209,8 +211,8 @@
       "per_usd": 0.7017639141360341,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 168.04,
-      "cumulative_value": 210.9,
+      "cumulative_usd": 162.72,
+      "cumulative_value": 200.7,
       "share_of_week": null
     },
     {
@@ -219,7 +221,7 @@
       "orders": 11211,
       "description": "Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided (claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such.",
       "notes": [
-        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
+        "Larrey triage not applied: Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
       ],
       "rate": {
         "key": "filed_per_attempt.undecided",
@@ -237,16 +239,18 @@
       "per_usd": 0.30075596320115755,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 3895.65,
-      "cumulative_value": 1332.0,
+      "cumulative_usd": 3890.33,
+      "cumulative_value": 1321.8,
       "share_of_week": null
     },
     {
       "id": "production.claim_ready.no.fr",
       "kind": "production",
-      "orders": 1043,
+      "orders": 1057,
       "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "notes": [],
+      "notes": [
+        "Larrey triage not applied: Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
+      ],
       "rate": {
         "key": "filed_per_attempt.no.fr",
         "value": 0.03333333333333333,
@@ -255,16 +259,16 @@
         "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 34.8,
+      "expected_now": 35.2,
       "fecundity": 0.0,
-      "value": 34.8,
-      "cost_usd": 346.79,
-      "cost_basis": "1043 x 0.33 USD (attempted_order)",
+      "value": 35.2,
+      "cost_usd": 351.45,
+      "cost_basis": "1057 x 0.33 USD (attempted_order)",
       "per_usd": 0.10025198773371917,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 4242.44,
-      "cumulative_value": 1366.8,
+      "cumulative_usd": 4241.78,
+      "cumulative_value": 1357.0,
       "share_of_week": null
     },
     {
@@ -282,8 +286,8 @@
       "per_usd": 0.0,
       "cost_key": "production.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 4242.44,
-      "cumulative_value": 1366.8,
+      "cumulative_usd": 4241.78,
+      "cumulative_value": 1357.0,
       "share_of_week": null
     },
     {
@@ -300,8 +304,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4242.44,
-      "cumulative_value": 1366.8,
+      "cumulative_usd": 4241.78,
+      "cumulative_value": 1357.0,
       "share_of_week": null
     },
     {
@@ -318,8 +322,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4242.44,
-      "cumulative_value": 1366.8,
+      "cumulative_usd": 4241.78,
+      "cumulative_value": 1357.0,
       "share_of_week": null
     },
     {
@@ -336,8 +340,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4242.44,
-      "cumulative_value": 1366.8,
+      "cumulative_usd": 4241.78,
+      "cumulative_value": 1357.0,
       "share_of_week": null
     },
     {
@@ -354,8 +358,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4242.44,
-      "cumulative_value": 1366.8,
+      "cumulative_usd": 4241.78,
+      "cumulative_value": 1357.0,
       "share_of_week": null
     },
     {
@@ -372,8 +376,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4242.44,
-      "cumulative_value": 1366.8,
+      "cumulative_usd": 4241.78,
+      "cumulative_value": 1357.0,
       "share_of_week": null
     }
   ],
@@ -641,6 +645,26 @@
       "coordinator_share": 0.2842
     },
     {
+      "wave": "bracton-2026-11-25",
+      "finding": "F-20261125-bracton-wave",
+      "usd_total": 107,
+      "usd_basis": "list_price",
+      "usd_by_role": {},
+      "usd_by_model": {},
+      "orders": {
+        "attempted": 161,
+        "filed": 8,
+        "submitted": 40
+      },
+      "controls": {
+        "missed": 0,
+        "planted": 13
+      },
+      "usd_per_attempted": 0.6646,
+      "usd_per_filed": 13.375,
+      "filed_per_attempt": 0.0497
+    },
+    {
       "wave": "cujas-2026-11-08",
       "finding": "F-20261108-cujas-usage",
       "usd_total": 23.27,
@@ -701,6 +725,24 @@
       "orders": {},
       "controls": {},
       "coordinator_share": 0.7231
+    },
+    {
+      "wave": "junto-lean-2026-11-25",
+      "finding": "F-20261125-lean-trial",
+      "usd_total": null,
+      "usd_basis": null,
+      "usd_by_role": {},
+      "usd_by_model": {},
+      "orders": {
+        "attempted": 59,
+        "filed": 8,
+        "submitted": 22
+      },
+      "controls": {
+        "missed": 0,
+        "planted": 5
+      },
+      "filed_per_attempt": 0.1356
     },
     {
       "wave": "kiaer-2026-11-18",

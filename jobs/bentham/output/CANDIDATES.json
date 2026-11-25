@@ -1,8 +1,8 @@
 {
   "generated_from": {
-    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "9a32bd3346e6ae5ba6f9e45a1c83821448608b36853b497944128eb93db2c448",
-    "jobs/readiness-tracker/output/TRACKER.md": "668c7aa27faba3bb1695bf228a4ebb8680bdbaabea4481e60ddfc8cbe904beb5",
-    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "ed4ebd0f8305bebd7b5fb83e4971d71fd96fefcd237dc95dec9daa44b1b69cc1",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "beead1232494a393f311a71b1a861cd0929929f78a525e4b733e56208cea8a6d",
+    "jobs/readiness-tracker/output/TRACKER.md": "a946fad468a209a56f62c425f969272efce644fb6d3d4d5e8baac7f73abc8966",
+    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "c3ac8aace832e374a7c59cc278ed1d4bf5756c4101035ef2230059dc8a70e2eb",
     "jobs/polya/output/CANDIDATE_ACTIONS.json": "84598534fd7c46a64e98beab939a22be95818c6d559846b3ec200b143529989e",
     "jobs/polya/output/COMPARE.json": "bc2e04eb23e79c487f962e8ab495920144f1855acfe2dba565d97a5d378fdf07",
     "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json": "688bd3c450081288a998382e30e330ed0b51e8bfc6ce712090a6c46f9eeeee4d",
@@ -18,14 +18,14 @@
     "Unlock counts are additive across acquisition actions (one assignment per order); orders needing two acquisitions are uncounted.",
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE (orders absent from the OFR catalog) has no tracker action, so no acquisition is proposed for it.",
     "Polya counts reach, not yield; they are cited, never added.",
-    "Larrey triage: orders are those its zero-token check admits for production.claim_ready.no.fr, production.claim_ready.yes.fr; not applied to status_assignment.undecided."
+    "Larrey triage: orders are those its zero-token check admits for no action; not applied to production.claim_ready.no.fr, production.claim_ready.yes.fr, status_assignment.undecided."
   ],
   "actions": [
     {
       "id": "production.claim_ready.no.fr",
       "kind": "production",
       "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "orders": 1043,
+      "orders": 1057,
       "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.no.fr.txt",
       "rate_key": "filed_per_attempt.no.fr",
       "cost_key": "wave.per_attempt",
@@ -38,17 +38,9 @@
           "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
         }
       ],
-      "orders_before_triage": 1044,
       "triage": {
-        "applied": true,
-        "route": "decided_lifecycle",
-        "level": "hard",
-        "kept_out": 1,
-        "top_reasons": {
-          "original_not_usable": 1
-        },
-        "lifts": null,
-        "source": "jobs/larrey-triage/output/GATES.jsonl"
+        "applied": false,
+        "reason": "Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
       }
     },
     {
@@ -68,22 +60,16 @@
           "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
         }
       ],
-      "orders_before_triage": 281,
       "triage": {
-        "applied": true,
-        "route": "decided_lifecycle",
-        "level": "hard",
-        "kept_out": 0,
-        "top_reasons": {},
-        "lifts": null,
-        "source": "jobs/larrey-triage/output/GATES.jsonl"
+        "applied": false,
+        "reason": "Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
       }
     },
     {
       "id": "production.one_step_away",
       "kind": "production",
       "description": "Close the single open step of orders that already have a claim and exactly one applicable step open. Excludes recovery orders.",
-      "orders": 219,
+      "orders": 203,
       "order_ids_path": "jobs/bentham/output/strata/production.one_step_away.txt",
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "wave.per_attempt",
@@ -116,14 +102,7 @@
       ],
       "triage": {
         "applied": false,
-        "reason": "route not enforced: kit code changed since Larrey's back-test",
-        "receipt": {
-          "larrey_route": "undecided_full",
-          "larrey_level": "hard",
-          "larrey_enforced": false,
-          "larrey_summary_sha256": "7877bfdab4178a13c8bc687c39f2f76705f2393d5b9d78ac72c8d9b099c31671",
-          "tracker_current": true
-        }
+        "reason": "Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
       }
     },
     {
@@ -464,7 +443,7 @@
         "acquire.current_law_sections"
       ],
       "yield_lift_not_counted": {
-        "orders": 277,
+        "orders": 269,
         "applies_to": [
           "production.claim_ready.yes.fr"
         ],
