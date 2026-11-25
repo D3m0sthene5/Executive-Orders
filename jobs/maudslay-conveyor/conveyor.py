@@ -12,7 +12,9 @@ resumable state machine.
     python -I jobs/maudslay-conveyor/conveyor.py commands --workers WORKERS.json      (print worker commands)
 
 Stages, each recorded in BATCH/LEDGER.jsonl and skipped on a re-run once done: reserve, prepare, dispatch, render,
-produce, collect, check (with repair rounds), plant, review, controls, reveal, agree, complete, measure. See README.md.
+produce, collect, check (with repair rounds and the mechanical pre-review gate), plant, review (arm A first, then arm B
+on what arm A did not reject and on every planted control; --review-mode parallel restores both arms on everything),
+controls, reveal, agree, complete, measure. See README.md.
 Undecided orders (status unset; the kit's apply leaves them awaiting_status_review) take the status-overlay route
 between check and plant: status_install, status_gate, status_review (an independent status reviewer), status_take,
 overlay_propose (with producer reconfirmation) and overlay_assemble; their working claims then join plant unchanged.
@@ -68,7 +70,7 @@ OUTCOMES = ("submit", "unresolved", "blocked", "route_owner")
 # Settings fixed when a batch starts; a re-run may change only budgets, concurrency, timeouts and switches.
 FIXED = ("agent", "action", "n", "ids", "route", "replacement_proposal", "publication", "publication_mode",
          "prompt_cap_chars", "review_chunk", "repair_rounds", "adjudicator", "keys_dir", "scratch_root", "wave",
-         "controls", "producer", "stateless")
+         "controls", "producer", "stateless", "review_mode")
 MUTABLE = ("parallel", "item_usd", "item_tokens", "batch_usd", "batch_tokens", "item_timeout", "publish",
            "defer_adjudication", "batches_file", "tools", "workers")
 
@@ -1902,6 +1904,41 @@ class Batch:
                     "claims": len(claims)}
         return self.ledger.once(key, go)
 
+    def prereview_gate(self, chk):
+        """The mechanical pre-review gate: zero tokens, run on every pass of the check loop (also when apply and
+        batch-check come from the ledger of a resumed batch). No claim reaches a paid reviewer unless the offline
+        completion checker passed it. Returns {iid: [reasons]}; the loop merges them with batch-check's failures, so a
+        failing claim gets the one existing repair round or is marked unresolved.
+
+        It refuses the batch when batch-check says it did not run the completion checker
+        (requires_actual_claim_checker still true), and it adds two things batch-check's actionable_failures leave
+        out: the kit's strict check_claim errors (CHECK_AUDIT.json), and every claim of actual-checker/PER_CLAIM.json,
+        read directly, that did not pass every check or carries any unverified entry (for example an out-of-universe
+        order number inside a quote) or that the checker has no record of."""
+        applied = self.repo / chk["applied"]
+        claims = read_jsonl(applied / "CLAIMS.proposed.jsonl")
+        if not claims:
+            return {}
+        summ = read_json(applied / "CHECK_SUMMARY.json")
+        if not isinstance(summ, dict):
+            raise Fail(f"pre-review gate: {self.rel(applied / 'CHECK_SUMMARY.json')} is missing")
+        if summ.get("requires_actual_claim_checker") is True:
+            raise Fail("pre-review gate: kit batch-check did not run the offline completion checker "
+                       "(requires_actual_claim_checker is still true); no claim goes to review unchecked")
+        out = {}
+        for r in read_json(applied / "CHECK_AUDIT.json", []) or []:
+            if isinstance(r, dict) and r.get("errors"):
+                out.setdefault(r.get("instrument_id"), []).extend(str(e) for e in r["errors"])
+        pc = applied / "actual-checker" / "PER_CLAIM.json"
+        ran = (summ.get("actual_claim_checker") or {}).get("claims_checked")
+        if pc.exists():
+            for iid, reasons in checker_failures(read_json(pc), {c["instrument_id"] for c in claims}).items():
+                out.setdefault(iid, []).extend(reasons)
+        elif ran:
+            raise Fail(f"pre-review gate: batch-check reports {ran} claim(s) checked but wrote no "
+                       f"{self.rel(pc)}; no claim goes to review unchecked")
+        return out
+
     # -- status overlay (undecided orders) ----------------------------------------------------------------
     # The hand route of the Papinian u01b and Haloander waves, as stages: the producer's status decision is installed
     # in the packet, an independent status reviewer accepts or rejects it, the kit builds an isolated proposal bundle
@@ -2249,6 +2286,12 @@ class Batch:
         if rc or len(rows) != 1:
             err = read_text_or(self.dir / "logs" / f"overlay-check-{slug(iid)}-{bundle.name}.err")
             return {"error": f"kit overlay-check failed (exit {rc}): {(out.strip() or err.strip())[-600:]}"}
+        # The pre-review gate on the working claim: the completion checker's own per-claim record, read directly.
+        pc = bundle / "actual-checker" / "PER_CLAIM.json"
+        bad = checker_failures(read_json(pc), {iid}).get(iid) if pc.exists() else None
+        if bad:
+            return {"error": "the offline completion checker did not pass the working claim (pre-review gate): "
+                             + "; ".join(bad[:8])[:600]}
         return {"claims": self.rel(claims), "claim_sha256": canon(rows[0]), "reconfirmation": self.rel(bundle / "RECONFIRMATION.json")}
 
     def overlay_stage(self, chk):
@@ -2314,11 +2357,16 @@ class Batch:
     def reviewer_name(self, arm):
         return f"maudslay-blind-reviewer-{self.name}-{arm}"
 
-    def review_sets(self, rset, key):
+    def review_mode(self):
+        """sequential or parallel. A new batch records sequential in CONFIG.json; a batch started before the setting
+        existed has none and resumes in parallel, the mode its review sets were written for."""
+        return self.cfg.get("review_mode") or "parallel"
+
+    def review_sets(self, rset, key, arms="AB"):
         """Per arm (and chunk), a separately shuffled copy of the planted set, kept in the control folder."""
         sets = {}
         chunk = int(self.cfg.get("review_chunk") or 0)
-        for arm in "AB":
+        for arm in arms:
             rows = list(rset)
             random.Random(f"{key['salt']}-{arm}").shuffle(rows)
             parts = [rows[i:i + chunk] for i in range(0, len(rows), chunk)] if chunk else [rows]
@@ -2426,6 +2474,33 @@ class Batch:
             raise Stop(f"{mode} review: worker(s) {failed} did not finish; re-run to retry them "
                        "(not scored as control misses)")
         return res
+
+    def blind_reviews(self, rset, key, hashes):
+        """The blind review. Returns (results by set name, sequential record or None).
+
+        parallel: both arms review every claim of the planted set at once.
+        sequential (early exit): arm A reviews every claim first. Arm B then reviews, blind, every claim arm A did not
+        reject (upheld, or no record) and every planted control, whatever arm A said of it, so a control is still
+        caught only if both arms reject it. Arm B's set is its own shuffle (arm B's salt) of those claims; it never
+        holds arm A's verdicts, defects or text. A genuine claim arm A rejected cannot be filed under the both-uphold
+        rule, so arm B is not run on it: it is recorded as blocked with arm B not_run_after_arm_A_block."""
+        if self.review_mode() == "parallel":
+            return self.run_reviews("blind", self.review_sets(rset, key)), None
+        res = dict(self.run_reviews("blind", self.review_sets(rset, key, arms="A")))
+        recs_a = self.arm_records(res, "BLIND_REVIEW.jsonl", hashes)["A"]
+        rejected = {r["claim_sha256"] for r in recs_a if r.get("verdict") == "rejected"}
+        planted = {k["planted"] for k in key["controls"]}
+        to_b = [c for c in rset if canon(c) in planted or canon(c) not in rejected]
+        skipped = [{"instrument_id": c["instrument_id"], "claim_sha256": canon(c), "arm_A": "rejected",
+                    "arm_B": "not_run_after_arm_A_block"} for c in rset if canon(c) not in planted and canon(c) in rejected]
+        if to_b:
+            res.update(self.run_reviews("blind", self.review_sets(to_b, key, arms="B")))
+        # Written only after arm B has finished; it names genuine claims only (a planted hash is never skipped).
+        info = {"mode": "sequential", "arm_A_claims": len(rset), "arm_B_claims": len(to_b),
+                "controls_to_arm_B": sum(canon(c) in planted for c in to_b), "skipped": skipped}
+        if not self.ledger.done("sequential_review"):
+            self.ledger.mark("sequential_review", "done", **info)
+        return res, info
 
     def arm_records(self, results, fname, hashes):
         """{arm: [record]} from each reviewer's own output file, with the session identity the conveyor knows."""
@@ -2590,6 +2665,29 @@ def control_adjudication(k, iid, review_ref, adjudicator):
     return rec
 
 
+def checker_failures(per_claim, ids):
+    """{iid: [reasons]} from the completion checker's PER_CLAIM.json: each claim that did not pass every check or
+    carries any unverified entry, and each of ids the checker has no record of."""
+    rows = per_claim.get("claims") if isinstance(per_claim, dict) else None
+    if not isinstance(rows, list):
+        return {iid: ["the completion checker's PER_CLAIM.json holds no claims list"] for iid in ids}
+    out, seen = {}, set()
+    for r in rows:
+        if not isinstance(r, dict):
+            continue
+        iid = r.get("instrument_id")
+        seen.add(iid)
+        reasons = [str(e) for e in (r.get("gate_errors") or [])] + [str(e) for e in (r.get("failures") or [])][:10]
+        reasons += [str(u) for u in (r.get("unverified") or [])][:10]
+        if not reasons and r.get("all_checks_passed") is not True:
+            reasons = ["the offline completion checker did not pass this claim"]
+        if reasons:
+            out.setdefault(iid, []).extend(reasons)
+    for iid in sorted(set(ids) - seen):
+        out[iid] = ["the offline completion checker has no record of this claim"]
+    return out
+
+
 def check_plan(augur_module, plan, repo):
     """Augur's own check(plan) -> (refusals, receipt). A separate function so tests can substitute it."""
     return augur_module.check(plan, repo=repo)
@@ -2723,16 +2821,22 @@ def _run(b, cfg):
         rnd = 0
         while True:
             chk = b.apply_and_check(col["sheets_fingerprint"])
-            if not chk["failures"]:
+            # The mechanical pre-review gate, on every pass (a resumed batch's cached check included): its failures
+            # join batch-check's, so a claim the completion checker did not pass never reaches a reviewer.
+            gate = L.once(f"prereview_gate:{chk['applied']}", lambda: {"failures": b.prereview_gate(chk)})["failures"]
+            fails = {i: list(v) for i, v in chk["failures"].items()}
+            for i, v in gate.items():
+                fails[i] = list(dict.fromkeys(fails.get(i, []) + [str(e) for e in v]))[:20]
+            if not fails:
                 if not chk["claims"] and not b.awaiting_status(chk):
                     raise Stop("check: zero claims assembled", quality=True)
                 break
-            failing = [i for i in chk["failures"] if i in col["submit"]]
+            failing = [i for i in fails if i in col["submit"]]
             if not failing:
-                raise Fail(f"mechanical failures name no submitted order: {sorted(chk['failures'])[:5]}")
+                raise Fail(f"mechanical failures name no submitted order: {sorted(map(str, fails))[:5]}")
             if rnd < int(cfg.get("repair_rounds") or 0) and not nalimov:   # a script has nothing to repair with
                 rnd += 1
-                rr = b.produce_round(rnd, failing, views, folders, chk["failures"])
+                rr = b.produce_round(rnd, failing, views, folders, fails)
                 for iid, v in b.produced_map(rr).items():
                     if v.get("folder"):
                         produced[iid] = v
@@ -2742,7 +2846,7 @@ def _run(b, cfg):
             else:
                 for iid in failing:
                     demoted[iid] = ("mechanical checks failed after "
-                                    f"{rnd} repair round(s): {'; '.join(chk['failures'][iid])[:400]}")
+                                    f"{rnd} repair round(s): {'; '.join(fails[iid])[:400]}")
                 L.mark("demoted", "done", **demoted)
             col = b.collect(prep, produced, demoted)
             state["submitted"] = len(col["submit"])
@@ -2780,7 +2884,7 @@ def _run(b, cfg):
         key = read_json(kp)
         rset = read_jsonl(b.keys / f"{b.name}.REVIEW_SET.jsonl")
         hashes = {canon(c) for c in rset}
-        blind_res = b.run_reviews("blind", b.review_sets(rset, key))
+        blind_res, seq = b.blind_reviews(rset, key, hashes)
         blind_recs = b.arm_records(blind_res, "BLIND_REVIEW.jsonl", hashes)
         blind = {a: {r["claim_sha256"]: r for r in blind_recs[a]} for a in "AB"}
 
@@ -2806,9 +2910,10 @@ def _run(b, cfg):
         ghash = {canon(c) for c in read_jsonl(genuine_path)}
         after_recs = b.arm_records(reveal_res, "AFTER_REVEAL.jsonl", ghash)
         after = {a: {r["claim_sha256"]: r for r in after_recs[a]} for a in "AB"}
-        # Arm agreement. The conveyor files only what both arms upheld and blocks only what both rejected;
-        # everything else goes to the coordinator.
+        # Arm agreement. The conveyor files only what both arms upheld and blocks only what both rejected, or (sequential
+        # review) what arm A rejected and arm B was therefore not run on; everything else goes to the coordinator.
         ctrl = {k["instrument_id"] for k in key["controls"]}
+        not_run_b = {x["claim_sha256"] for x in (seq or {}).get("skipped", [])}
         agree = {}
         for c in claims:
             iid, sha = c["instrument_id"], canon(c)
@@ -2820,6 +2925,11 @@ def _run(b, cfg):
             elif va == "rejected" and vb == "rejected":
                 agree[iid] = {"decision": "block", "reason": "Both independent blind arms rejected this exact version: "
                               + json.dumps({"A": ra.get("defects"), "B": rb.get("defects")}, ensure_ascii=False)}
+            elif va == "rejected" and rb is None and sha in not_run_b and iid not in ctrl:
+                agree[iid] = {"decision": "block", "arm_B": "not_run_after_arm_A_block",
+                              "reason": "Blind arm A rejected this exact version, so it cannot be upheld by both arms; "
+                              "arm B was not run (sequential review, not_run_after_arm_A_block): "
+                              + json.dumps({"A": ra.get("defects")}, ensure_ascii=False)}
             else:
                 adjudicate.append({"instrument_id": iid, "kind": "arm_disagreement" if ra and rb else "missing_review",
                                    "blocks_completion": True, "claim_sha256": sha, "control_genuine": iid in ctrl,
@@ -2948,6 +3058,35 @@ def gate_line(b, cfg, state, filed):
     return verdict
 
 
+def review_measures(b):
+    """MEASURES.json "review": the review mode and, for sequential review, the arm-B reviews skipped after an arm-A
+    block and the dollars that saved, estimated as skipped claims x the measured arm-B blind-review dollars per claim
+    arm B reviewed (falling back to arm A's per claim). A worker with unknown dollars counts at its item cap."""
+    seq = b.ledger.data("sequential_review")
+    out = {"mode": b.review_mode()}
+    if not seq:
+        out["arm_B_reviews_skipped"] = 0 if out["mode"] == "parallel" else None
+        return out
+    usd = {"A": 0.0, "B": 0.0}
+    for w in b.ledger.workers():
+        role = w.get("role") or ""
+        if w.get("stage") == "review" and role in ("reviewer_A", "reviewer_B"):
+            v = w.get("usd")
+            usd[role[-1]] += float(v if v is not None else (b.cap(role, "usd") or 0))
+    claims = {"A": int(seq.get("arm_A_claims") or 0), "B": int(seq.get("arm_B_claims") or 0)}
+    per = {a: (usd[a] / claims[a] if claims[a] and usd[a] else None) for a in "AB"}
+    basis = "arm_B_measured" if per["B"] is not None else "arm_A_measured" if per["A"] is not None else None
+    unit = per["B"] if per["B"] is not None else per["A"]
+    skipped = len(seq.get("skipped") or [])
+    out.update(arm_A_claims=claims["A"], arm_B_claims=claims["B"], controls_to_arm_B=seq.get("controls_to_arm_B"),
+               arm_B_reviews_skipped=skipped, blind_usd_by_arm={a: round(usd[a], 6) for a in "AB"},
+               usd_per_claim_basis=basis, usd_per_claim=round(unit, 6) if unit is not None else None,
+               estimated_usd_saved=round(unit * skipped, 4) if unit is not None else None,
+               note="An estimate: agent reviewers review a chunk per session, so a skipped claim saves its share of "
+                    "a session (or a whole session when its chunk empties), not an exact measured amount.")
+    return out
+
+
 def write_measures(b, cfg, state, done, verdict, stopped=None):
     stages = {}
     for w in b.ledger.workers():
@@ -2987,6 +3126,16 @@ def write_measures(b, cfg, state, done, verdict, stopped=None):
                              "status_reviews_not_accepted": sum(1 for v in took if not v.get("accepted")),
                              "working_claims": sum(1 for k, v in rows.items()
                                                    if k.startswith("overlay_assemble:") and v.get("claims"))}
+    review = review_measures(b)
+    gates = [r["data"].get("failures") or {} for r in b.ledger.rows
+             if str(r.get("key", "")).startswith("prereview_gate:") and r.get("status") == "done"
+             and isinstance(r.get("data"), dict)]
+    prereview = {"passes": len(gates), "claims_stopped": len({i for g in gates for i in g}),
+                 "unverified_or_failed_entries": sum(len(v) for g in gates for v in g.values()),
+                 "note": "claims the mechanical pre-review gate found failing on any pass of the check loop (strict "
+                         "check errors and the completion checker's per-claim record, whether or not batch-check's "
+                         "summary also listed them); each got the repair round or was marked unresolved, and none "
+                         "reached a reviewer"}
     stages["adjudication"] = {"workers": 0, "usd": None, "note": "coordinator adjudication time is not measured here"}
     usd = sum(s["usd"] for s in stages.values() if isinstance(s.get("usd"), (int, float)))
     lp_all = [s.get("usd_list_price") for k, s in stages.items() if k != "adjudication"]
@@ -3010,6 +3159,7 @@ def write_measures(b, cfg, state, done, verdict, stopped=None):
          "producer": cfg.get("producer") or "workers", "controls_kind": cfg.get("controls") or "date",
          "stateless": bool(cfg.get("stateless")),
          "stateless_cache": ST.cache_evidence(list(b.ledger.workers())) if cfg.get("stateless") else None,
+         "review": review, "prereview_gate": prereview,
          "gate": verdict, "human_certified": 0,
          "note": "Tokens and dollars are the workers' own reported usage (claude stream-json result; codex exec "
                  "turn.completed usage priced from the workers file). A worker with unknown dollars counts at its "
@@ -3050,7 +3200,7 @@ def build_config(a, repo):
                "scratch_root": scratch.as_posix(), "keys_dir": (scratch / "control").as_posix(),
                "batches_file": (Path(a.run_dir) / "BATCHES.json").as_posix(),
                "publication": f"research/readiness/claims/{given['agent']}-{datetime.now(timezone.utc).date()}-"
-                              f"{name}-{a.batch}.jsonl", "producer": "workers"}
+                              f"{name}-{a.batch}.jsonl", "producer": "workers", "review_mode": "sequential"}
         cfg.update(given)
         # Typed controls by default for the Nalimov route and for every undecided batch (Respondendi adopts only with
         # typed controls); other worker batches keep date plants unless told otherwise.
@@ -3107,6 +3257,10 @@ def main(argv=None):
                    help="stateless render mode: every model stage is one request with no tools (claude -p --tools "
                         "\"\" --system-prompt-file PREFIX --json-schema SCHEMA); workers file roles use command "
                         "'claude-stateless'. Orders whose prompt exceeds 150k tokens use the optional producer_agent role")
+    r.add_argument("--review-mode", choices=("sequential", "parallel"),
+                   help="blind review: sequential (default for a new batch) runs arm A on every claim, then arm B only "
+                        "on claims arm A did not reject plus every planted control; parallel runs both arms on every "
+                        "claim. A batch started before this setting existed resumes in parallel")
     r.add_argument("--controls", choices=("date", "typed"),
                    help="planted controls: date shifts (default for workers) or typed plants (default for nalimov)")
     s = sub.add_parser("status", help="print one batch's ledger summary")
