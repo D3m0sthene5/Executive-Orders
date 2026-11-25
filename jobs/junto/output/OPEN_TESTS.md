@@ -52,5 +52,6 @@ Each saver below has a tool a wave coordinator uses (`jobs/carnot-coordinator/PR
 | accursius-2026-11-10 |  | $181.58 | 28% | 0 |
 | cujas-2026-11-08 |  | $23.27 | 34% | 0 |
 | haloander-2026-11-07 |  | $62.55 | 72% | 0 |
+| lind-stage0-2026-11-12 |  | $23.07 | 44% | 0 |
 
 Unpriced models (tokens not counted): ? (3)
