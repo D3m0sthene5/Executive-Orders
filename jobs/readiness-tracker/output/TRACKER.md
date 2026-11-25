@@ -1,10 +1,10 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,363 of 15,003 orders (9.1%)**
+**Numbered series: ready for human review 1,393 of 15,003 orders (9.3%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45692746377-1:8a382d4b148fcb1954e7188965168a590f01ec63d580239c70f2c3ad5874361b` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45703841573-1:3038e0cc364b473d5acd42c57ee49a87dd080c8e85a7115dea875447de816c8b` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -12,8 +12,8 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 3,801. The other 11,202 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 813, 'transcription_dependent': 550}. Provisional working texts do not authenticate originals.
-Outstanding original replacement obligations: 883; quotation rechecks: 883. These remain work after readiness.
+Ready by text evidence: {'original_supported': 838, 'transcription_dependent': 551, 'custody_text_only': 4}. Provisional working texts do not authenticate originals.
+Outstanding original replacement obligations: 884; quotation rechecks: 884. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 284. Confirmations rejected: {'grade_not_a_working_text_grade': 1, 'not_confirmed': 143}.
 
@@ -23,9 +23,9 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,801 | 3,801 | 100.0% |
 | Original or explicitly reviewed provisional working text saved | 3,775 | 3,801 | 99.3% |
-| Complete inventory of the order's operative clauses | 1,591 | 3,801 | 41.9% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,400 | 3,801 | 36.8% |
-| Savings clauses and surviving effects closed | 1,578 | 3,801 | 41.5% |
+| Complete inventory of the order's operative clauses | 1,610 | 3,801 | 42.4% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,430 | 3,801 | 37.6% |
+| Savings clauses and surviving effects closed | 1,597 | 3,801 | 42.0% |
 | Search for later contrary sources recorded, no open conflicts | 2,899 | 3,801 | 76.3% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 763 | 16.4% |
@@ -50,13 +50,13 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,202 |
-| `NO_CLAUSE_INVENTORY` | 2,124 | 2,124 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,124 | 2,124 |
-| `FIRST_END_UNPROVED` | 1,869 | 1,869 |
+| `NO_CLAUSE_INVENTORY` | 2,105 | 2,105 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,105 | 2,105 |
+| `FIRST_END_UNPROVED` | 1,867 | 1,867 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 721 | 721 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
-| `CURRENT_BASIS_UNPROVED` | 255 | 255 |
-| `FIRST_END_UNRESOLVED` | 165 | 165 |
+| `CURRENT_BASIS_UNPROVED` | 238 | 238 |
+| `FIRST_END_UNRESOLVED` | 154 | 154 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
 | `OPUS_MEDIA_NONE_CITED` | 136 | 136 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 4 | 126 |
@@ -108,8 +108,8 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 4,841
 - lachmann working-text confirmations (provisional text step only, never an original): 952
 - opus-media-match status: 1,155
-- source-ladder: 1,097
-- claim-checker: 1,678
+- source-ladder: 1,100
+- claim-checker: 1,697
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities

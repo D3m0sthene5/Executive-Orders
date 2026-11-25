@@ -11,6 +11,8 @@
     "astra-cumulative-2026-10-24.jsonl",
     "astra-source-first-2026-10-24.jsonl",
     "baldus-2026-11-25-adopt-upool1.jsonl",
+    "baldus-2026-11-25-baldus-n01.jsonl",
+    "baldus-2026-11-25-baldus-n02.jsonl",
     "baldus-2026-11-25-baldus-y04.jsonl",
     "baldus-2026-11-25-baldus-y05.jsonl",
     "baldus-2026-11-25-baldus-y06.jsonl",
@@ -21,6 +23,11 @@
     "baldus-2026-11-25-baldus-y12.jsonl",
     "baldus-2026-11-25-baldus-y13.jsonl",
     "baldus-2026-11-25-baldus-y14.jsonl",
+    "baldus-2026-11-25-baldus-y15.jsonl",
+    "baldus-2026-11-25-baldus-y16.jsonl",
+    "baldus-2026-11-25-baldus-y17.jsonl",
+    "baldus-2026-11-25-baldus-y18.jsonl",
+    "baldus-2026-11-25-baldus-y19.jsonl",
     "baldus-2026-11-25-bracton-y01.jsonl",
     "baldus-2026-11-25-bracton-y02.jsonl",
     "baldus-2026-11-25-bracton-y03.jsonl",
@@ -200,6 +207,9 @@
     "mommsen-3-2026-11-10-decided01.jsonl",
     "mommsen1-2026-11-10-no01.jsonl",
     "novellae-2026-11-25-adopt-bracton-13.jsonl",
+    "novellae-2026-11-25-baldus2-m01.jsonl",
+    "novellae-2026-11-25-baldus2-m02.jsonl",
+    "novellae-2026-11-25-baldus2-m03.jsonl",
     "novellae-2026-11-25-olney-o2-o3.jsonl",
     "novellae-2026-11-25-olney-o4.jsonl",
     "papinian-2026-11-10-r01b.jsonl",
@@ -218,69 +228,71 @@
     "papinian-2026-11-10-y13.jsonl",
     "papinian-2026-11-10-y14.jsonl"
   ],
-  "claim_lines_found": 2028,
+  "claim_lines_found": 2058,
   "job_limit": null,
-  "claims_checked": 2028,
+  "claims_checked": 2058,
   "claims_parse_errors": 0,
   "claims_checker_errors": 0,
-  "orders_with_claim": 1678,
-  "claims_all_checks_passed": 1860,
-  "claims_mechanical_pass": 1946,
+  "orders_with_claim": 1697,
+  "claims_all_checks_passed": 1890,
+  "claims_mechanical_pass": 1976,
   "claims_mechanical_unverified": 2,
   "claims_mechanical_fail": 80,
-  "claims_gate_passed": 1938,
+  "claims_gate_passed": 1968,
   "steps_checker_passed_effective_claims": {
-    "original_text": 1603,
-    "clause_inventory": 1592,
-    "ending_or_current_basis": 1555,
-    "savings_residuals": 1579,
-    "counterevidence": 1580
+    "original_text": 1622,
+    "clause_inventory": 1611,
+    "ending_or_current_basis": 1574,
+    "savings_residuals": 1598,
+    "counterevidence": 1599
   },
   "check_results": {
     "source_held": {
-      "pass": 26071,
+      "pass": 28017,
       "skip": 3
     },
     "source_identity": {
-      "pass": 10567
+      "pass": 11006
     },
     "quote_verbatim": {
       "fail": 7,
-      "pass": 33769
+      "pass": 36120
     },
     "date_valid": {
-      "pass": 40078
+      "pass": 42528
     },
     "date_after_signing": {
-      "pass": 12668
+      "pass": 14138
     },
     "order_exists": {
-      "pass": 14369,
+      "pass": 14504,
       "warn": 12
     },
     "working_text_policy": {
       "fail": 1074,
-      "pass": 672
+      "pass": 673
     },
     "factual_event_policy": {},
     "structural_gate": {
       "fail": 733,
-      "pass": 1938
+      "pass": 1968
     },
     "parse": {},
     "checker_error": {}
   },
   "source_status_counts": {
     "custody_record_only": 3,
-    "gpo_published_hash_match": 10867,
+    "custody_text_only": 13,
+    "custody_text_only_disclosed": 4,
+    "gpo_published_hash_match": 10923,
     "held_bytes_in_release_or_repo": 123,
-    "held_bytes_verified": 15081
+    "held_bytes_verified": 16954
   },
   "source_identity_counts": {
-    "recorded_for_this_order": 10567
+    "recorded_for_this_order": 11006
   },
   "quote_status_counts": {
-    "exact": 33758,
+    "exact": 36109,
     "normalised": 11,
     "not_found": 7
   },
@@ -294,7 +306,7 @@
   "claim_checks_csv": {
     "mode": "non_pass_rows",
     "rows_written": 1829,
-    "rows_total": 142250,
+    "rows_total": 152057,
     "max_mb": 50.0,
     "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
   },
@@ -304,7 +316,7 @@
     "jobs/astra-source-retention/output/SOURCES.jsonl": 317,
     "jobs/cassiodorus/output/SOURCES.jsonl": 298,
     "jobs/clark-discovery/output/SOURCES.jsonl": 284,
-    "jobs/clause-drafts/output/SOURCES.jsonl": 9796,
+    "jobs/clause-drafts/output/SOURCES.jsonl": 9798,
     "jobs/cotton-capture-custody/output/SOURCES.jsonl": 759,
     "jobs/cruden-fr-concordance/output/SOURCES.jsonl": 928,
     "jobs/current-law/output/SOURCES.jsonl": 1991,
@@ -338,7 +350,7 @@
     "jobs/selden-fr-citers/output/SOURCES.jsonl": 4820,
     "jobs/selden-statutes/output/SOURCES.jsonl": 1912,
     "jobs/shepard-citations/output/SOURCES.jsonl": 24,
-    "jobs/source-ladder/output/SOURCES.jsonl": 1097,
+    "jobs/source-ladder/output/SOURCES.jsonl": 1100,
     "jobs/theophilus-sources/output/SOURCES.jsonl": 1377,
     "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
     "jobs/youngstown-courts/output/SOURCES.jsonl": 1137,
