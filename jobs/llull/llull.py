@@ -523,6 +523,30 @@ def g_nea_notice_if_emergency(row, D):
     return _held(f["notice_held"])
 
 
+# Larrey strict level (2026-11-25, research/plans/LARREY_STRICT_2026-11-25.md): an order whose status history
+# records more later events than this has that many more changes to reconcile clause by clause.
+STRICT_MAX_STATUS_EVENTS = 5
+
+
+def g_no_contradicting_status_lead(row, D):
+    """Larrey strict: a decided order whose held records contradict its provisional status (a claim-kit conflict,
+    or a whole-scope ending ACT lead on a provisional YES) must be reconciled before a dossier can be filed; na for
+    an undecided order. A lead, not an ending: the ACT may be partial in effect or later revoked."""
+    f = _kit(row, D)
+    st = row["provisional_status"]
+    if st not in ("yes", "no") or not f:
+        return "na"
+    return _held(not (f.get("conflicts") or 0) and not (st == "yes" and (f.get("whole_end_acts") or 0)))
+
+
+def g_status_events_at_most(row, D):
+    """Larrey strict: the order's status history records at most STRICT_MAX_STATUS_EVENTS later events (an order
+    with no status history has none recorded)."""
+    f = _kit(row, D)
+    n = (f or {}).get("status_events")
+    return _held(n is None or n <= STRICT_MAX_STATUS_EVENTS)
+
+
 GATES = {
     "status_present": ("provisional_status is yes or no (readiness tracker)",
                        lambda r, D: _held(r["provisional_status"] in ("yes", "no"))),
@@ -560,6 +584,11 @@ GATES = {
                               g_later_order_text),
     "nea_notice_if_emergency": ("emergency order declared before 2025-10-14: a National Emergencies Act continuation "
                                 "notice is held; na otherwise", g_nea_notice_if_emergency),
+    "no_contradicting_status_lead": ("decided order: no claim-kit conflict and, on a provisional YES, no whole-scope "
+                                     "ending ACT lead; na for an undecided order (claim-kit)",
+                                     g_no_contradicting_status_lead),
+    "status_events_at_most_5": ("the status history records at most 5 later events (status-history via claim-kit)",
+                                g_status_events_at_most),
 }
 
 
