@@ -25,6 +25,105 @@ REPLICA_PATH = 'jobs/photius-replica-check/output/FRAGMENTS.jsonl'
 REPLICA_GRADE = 'archival_replica_checked'
 REPLICA_FLAG = 'REPLICA_CHECKED_PROQUEST_BYTES'
 
+# Owner decision D-20261125-fr-capture-later-events: a federalregister.gov full-text capture of a Federal Register
+# document (selden-fr-citers grade "fr_document_full_text", held under the document's own FRDOC identity) may be the
+# held source of a LATER EVENT (for example a National Emergencies Act continuation notice), disclosed in the claim
+# under grade FR_CAPTURE_GRADE. It is never any order's own original, never an end or a current basis, and it is not
+# a working text: it needs no transcription confirmation, but its FR citation (volume, page, FR Doc number) must
+# match the capture's own printed header and its bytes must be held and hash to the pins.
+FR_CAPTURE_GRADE = 'fr_fulltext_capture'
+FR_CAPTURE_DECISION = 'D-20261125-fr-capture-later-events'
+FR_CAPTURE_SOURCE_GRADE = 'fr_document_full_text'
+FR_CAPTURE_NOTE = ('federalregister.gov full-text capture of a Federal Register document, not the official govinfo '
+                   'printing; cited only as the held source of a later event; never an order\'s own original; '
+                   'replace with the official printing when held.')
+FR_CAPTURE_ROLE = 'acting_instrument_text'
+LATER_EVENT_PATH = re.compile(r'operative_clauses\[\d+\]\.later_events\[\d+\]\.source')
+_FR_CAPTURE_URL = re.compile(r'https://www\.federalregister\.gov/documents/full_text/(?:text|xml|html)/'
+                             r'\d{4}/\d{2}/\d{2}/([0-9A-Za-z-]+)\.(?:txt|xml|html)')
+_CITED_FR = re.compile(r'(\d{1,3}) FR (\d{1,6})(?!\d)')
+_HEADER_VOLUME = re.compile(r'\[Federal Register Volume (\d{1,3}), Number \d+')
+_HEADER_PAGES = re.compile(r'\[Pages? (\d{1,6})(?:\s*-\s*(\d{1,6}))?\]')
+_HEADER_DOC = re.compile(r'\[FR Doc No: ([0-9A-Za-z-]+)\]')
+_HEADER_CHARS = 2000
+
+
+def fr_capture_source(ref):
+    """The producer declares this reference as a federalregister.gov full-text capture (no check implied)."""
+    grade = ref.get('grade') if isinstance(ref, dict) else None
+    return (isinstance(grade, str) and ref.get('acceptable_as_original') is False
+            and (grade == FR_CAPTURE_SOURCE_GRADE or grade.startswith(FR_CAPTURE_SOURCE_GRADE + ' (')))
+
+
+def fr_citation(ref):
+    """'<volume> FR <page>' cited at the start of the reference's page_or_item, or None."""
+    m = _CITED_FR.match(ref.get('page_or_item') or '') if isinstance(ref.get('page_or_item'), str) else None
+    return f'{int(m[1])} FR {int(m[2])}' if m else None
+
+
+def fr_capture_rejection(path, ref, claim, repo):
+    """None when ``ref`` at ``path`` is an acceptable later-event capture under the owner's decision, else why not.
+
+    Only the operative_clauses[i].later_events[j].source role qualifies; an original, an end, a current basis or a
+    note never does. The capture keeps its own FRDOC identity (never a census order's), its URL is the
+    federalregister.gov full text, the cited volume and page and the FR Doc number agree with the capture's printed
+    header, and the held bytes hash to both pins.
+    """
+    if not fr_capture_source(ref):
+        return 'not_an_fr_fulltext_capture'
+    if not LATER_EVENT_PATH.fullmatch(path):
+        return 'role_not_later_event'
+    iid = ref.get('instrument_id')
+    if (ref.get('role') != FR_CAPTURE_ROLE or not isinstance(iid, str) or not iid.startswith('FRDOC:')
+            or iid == (claim.get('instrument_id') if isinstance(claim, dict) else None)):
+        return 'identity_not_a_later_fr_document'
+    url = _FR_CAPTURE_URL.fullmatch(ref.get('url') or '') if isinstance(ref.get('url'), str) else None
+    if not url or url[1] != iid[len('FRDOC:'):]:
+        return 'url_not_the_documents_federalregister_full_text'
+    cited = _CITED_FR.match(ref.get('page_or_item') or '') if isinstance(ref.get('page_or_item'), str) else None
+    if not cited:
+        return 'no_fr_citation_in_reference'
+    sha, text_sha = source_sha(ref), ref.get('text_sha256')
+    if not sha or sha != text_sha:
+        return 'capture_bytes_not_pinned'
+    try:
+        raw = _child(repo, ref.get('text_path')).read_bytes()
+        text = raw.decode('utf-8')
+    except (OSError, ValueError, UnicodeError, TypeError):
+        return 'capture_bytes_not_held'
+    if hashlib.sha256(raw).hexdigest() != text_sha:
+        return 'capture_bytes_not_held'
+    head = text[:_HEADER_CHARS]
+    volume, pages, doc = _HEADER_VOLUME.search(head), _HEADER_PAGES.search(head), _HEADER_DOC.search(head)
+    if not volume or not pages or int(volume[1]) != int(cited[1]):
+        return 'fr_citation_mismatch'
+    first, last = int(pages[1]), int(pages[2] or pages[1])
+    if not first <= int(cited[2]) <= last:
+        return 'fr_citation_mismatch'
+    if not doc or doc[1] != iid[len('FRDOC:'):]:
+        return 'fr_document_number_mismatch'
+    return None
+
+
+def fr_capture_disclosure(refs):
+    """The exact disclosure a claim carries for the captures it cites as later events (sorted, one per capture)."""
+    rows = {}
+    for ref in refs:
+        row = {'instrument_id': ref.get('instrument_id'), 'fr_citation': fr_citation(ref), 'url': ref.get('url'),
+               'sha256': ref.get('sha256'), 'text_path': ref.get('text_path'), 'text_sha256': ref.get('text_sha256')}
+        rows[json.dumps(row, sort_keys=True)] = row
+    return {'grade': FR_CAPTURE_GRADE, 'decision': FR_CAPTURE_DECISION, 'note': FR_CAPTURE_NOTE,
+            'captures': [rows[k] for k in sorted(rows)]}
+
+
+def fr_captures(claim, repo, index=None):
+    """[(path, ref)] of the claim's acceptable later-event captures (as ``policy`` accepts them, given its index)."""
+    found = [(path, ref) for path, ref in references(claim)
+             if fr_capture_source(ref) and fr_capture_rejection(path, ref, claim, repo) is None]
+    if found and index is not None:
+        found = [(path, ref) for path, ref in found if not index.by_sha.get(source_sha(ref))]
+    return found
+
 
 def replica_version(row, declaration_path):
     data = row.get('data') if isinstance(row.get('data'), dict) else {}
@@ -374,10 +473,11 @@ def _held_quote_errors(repo, path, ref):
     return errors
 
 
-def policy(claim, repo, index=None, flags=None):
+def policy(claim, repo, index=None, flags=None, captures=None):
     """Return (errors, exact dependent refs). Bytes/quotes are additional checks.
 
     ``flags``, when a list, receives non-blocking recheck flags (the owner's skipped-witness switch only).
+    ``captures``, when a list, receives (path, ref) of each accepted later-event FR full-text capture.
 
     No claim may relabel a derivative as original. Identity/completeness are
     explicit producer confirmations pinned to the declared representation; the
@@ -391,7 +491,20 @@ def policy(claim, repo, index=None, flags=None):
             errors.append('checked_replica:proquest_bytes_flag_required')
     elif REPLICA_FLAG in (claim.get('informational_flags') or []):
         errors.append('checked_replica:proquest_bytes_flag_without_pass')
+    accepted_captures = []
     for path, ref in references(claim):
+        if fr_capture_source(ref):
+            why = fr_capture_rejection(path, ref, claim, repo)
+            if why is None and index.by_sha.get(source_sha(ref)):
+                why = 'hash_declared_as_an_order_representation'
+            if why is None:
+                # D-20261125-fr-capture-later-events: a disclosed later-event source, not a working text.
+                accepted_captures.append((path, ref))
+                errors.extend(_held_quote_errors(repo, path, ref))
+                continue
+            if LATER_EVENT_PATH.fullmatch(path):
+                errors.append(path + ':fr_fulltext_capture_' + why)
+            # Any other role, or a failed capture check, keeps every refusal below.
         matches = index.match(ref)
         known_derivative_hash = bool(index.by_sha.get(source_sha(ref)))
         flagged = ref.get('acceptable_as_original') is False or ref.get('grade') in GRADES
@@ -430,6 +543,14 @@ def policy(claim, repo, index=None, flags=None):
         if isinstance(ref, dict) and (ref.get('acceptable_as_original') is False or index.by_sha.get(source_sha(ref))) and not index.exact_official(ref):
             if clause.get('original_operative_text') != ref.get('quote'):
                 errors.append(f'operative_clauses[{n}]:working_text_operative_quote_mismatch')
+    capture_disclosure = claim.get('fr_fulltext_captures') if isinstance(claim, dict) else None
+    if accepted_captures:
+        if capture_disclosure != fr_capture_disclosure([ref for _, ref in accepted_captures]):
+            errors.append('fr_fulltext_capture:disclosure_required')
+    elif capture_disclosure is not None:
+        errors.append('fr_fulltext_capture:disclosure_without_capture')
+    if captures is not None:
+        captures.extend(accepted_captures)
     if not dependent:
         if claim.get('working_text'):
             errors.append('working_text:disclosure_without_dependent_source')
