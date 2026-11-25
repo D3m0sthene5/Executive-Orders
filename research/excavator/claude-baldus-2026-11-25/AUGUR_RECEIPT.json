@@ -1,0 +1,62 @@
+{
+ "schema": "augur-receipt/v1",
+ "plan_sha256": "4d5e38dbbf144e14e8dda3c0d50c5db5aecca6295e74ddb13f8c194699f239bc",
+ "verdict": "PASS",
+ "stage": 2,
+ "configuration": "claude-scripted|anthropic|anthropic",
+ "configuration_passed_stage": 2,
+ "forecast": {
+  "expected_filed": 75.3,
+  "expected_usd": 172.9,
+  "by_action": {
+   "production.claim_ready.yes.fr": {
+    "orders": 190,
+    "expected_filed": 44.3,
+    "expected_usd": 63.17,
+    "rate_basis": {
+     "key": "filed_per_attempt.yes.fr",
+     "value": 0.23333333333333334,
+     "num": 7,
+     "den": 30,
+     "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
+    }
+   },
+   "production.claim_ready.no.fr": {
+    "orders": 30,
+    "expected_filed": 1.0,
+    "expected_usd": 9.97,
+    "rate_basis": {
+     "key": "filed_per_attempt.no.fr",
+     "value": 0.03333333333333333,
+     "num": 1,
+     "den": 30,
+     "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
+    }
+   },
+   "status_assignment.undecided": {
+    "orders": 300,
+    "expected_filed": 30.0,
+    "expected_usd": 99.75,
+    "rate_basis": {
+     "key": "filed_per_attempt.undecided",
+     "value": 0.1,
+     "num": 3,
+     "den": 30,
+     "source": "research/excavator/claude-haloander-2026-11-07/evidence/DISPOSITION.json"
+    }
+   }
+  }
+ },
+ "lessons_checked": [
+  "F-20261118-kiaer-stopped-at-review",
+  "F-20261110-papinian-undecided-u23",
+  "F-20261110-papinian-undecided-u01b",
+  "F-20261110-mommsen3-undecided-probe01",
+  "F-20261110-mommsen3-codex-core-sandbox",
+  "F-20261110-mommsen-unranked-pools",
+  "F-20261107-haloander-undecided-probe",
+  "F-20261028-4",
+  "F-20261018-7"
+ ],
+ "refusals": []
+}

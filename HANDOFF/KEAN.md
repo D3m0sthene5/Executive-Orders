@@ -18,7 +18,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 - **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
-## Owner decisions not yet carried out by the tools (33)
+## Owner decisions not yet carried out by the tools (35)
 
 - **D-20261021-report-deadline** (partly wired): A board order whose only command is to report within a deadline ends on its express revocation (usually EO 12553), not when the board reports; record the report date and standstil… Checked 2026-11-06 (Justinian F3): assemble.py:554 refuses a report deadline as an end; AGENT_PROTOCOL.md:47. No tool r…
 - **D-20261021-strike-and-insert** (not wired): A clause amended by striking and inserting words continues, amended, until the parent order ends; record the text before and after. 43 clauses in 26 committed claims that treat am… Checked 2026-11-06 (Justinian F3): no code or instruction; claim_gate/checker validate later_events structure only, wit…
@@ -51,8 +51,10 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261112-graunt-adopted** (partly wired): Owner, 2026-11-12: if the Astra census audit did a good job, percolate its understanding through the whole project. Claude verified it and adopts it for reporting: counted identif… README, ESTIMAND.md, domesday README and the dashboard line updated; census admission, corrections and unnumbered seed…
 - **D-20261112-graunt-apply** (partly wired): Owner, 2026-11-12, answering A-20261112-graunt-admit-numbered, A-20261112-graunt-corrections and A-20261112-graunt-unnumbered-seed: yes. (1) Admit the 29 numbered labels the audit… Unnumbered seed done (PR 296). 4 numbered orders admitted with checked pages (EO 2539, 2703, 3493, 3733); 14 more order…
 - **D-20261124-bartolus** (partly wired): Owner, 2026-11-24, in chat (AskUserQuestion): approve Augur plan research/bartolus/WAVE.json, sha256 d3ee295b0475e3fa17fd114e30fc7a90cb4c613a3e2c1a0f4318b6135c7860ec (stage 2: 32… Augur receipt research/bartolus/AUGUR_RECEIPT.json PASS; adoption applied per batch by the Bartolus coordinator
-- **D-20261125-reuse-identical-reviews** (not wired): Owner, 2026-11-25: reuse both arms' reviews when a re-prepared claim is byte-identical (REVIEW_REUSE.json receipt); any content change needs fresh review. coordinator scripts apply it; no kit command yet
-- **D-20261125-cfr-newer-copy** (not wired): Owner, 2026-11-25: if the cited CFR copy is held only as a hash, a newer held GovInfo copy may be the current-law source, edition disclosed.
+- **D-20261125-reuse-identical-reviews** (not wired): Owner, 2026-11-25: reuse both arms' reviews for a byte-identical re-prepared claim, with a REVIEW_REUSE.json receipt. coordinator scripts apply it; no kit command yet
+- **D-20261125-cfr-newer-copy** (not wired): Owner, 2026-11-25: a newer held GovInfo CFR copy may be the current-law source when the cited copy is hash-only, edition disclosed.
+- **D-20261125-custody-text-only** (not wired): Owner, 2026-11-25: held text without original bytes may support a claim if quotes match; tier custody_text_only, disclosed; hash-only still blocks.
+- **D-20261125-plo-table-no-status** (not wired): Owner, 2026-11-25 (Domat item 3 only): a provisional NO status may rest on a BLM PLO table row, disclosed.
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure, D-20261124-1.
 
 <!-- kean:drift -->
@@ -66,4 +68,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-25 F-20261125-lean-trial **inconclusive**: Lean two-arm trial: 30 seeded YES orders per arm; arm 0 current route; arm 1 strict Larrey (kept 15 out), seq… Lesson: No verified saving at this size. Pooling review sets and pre-screening blocks are the larger measured levers (F-20261125-gilbreth).
 - 2026-11-25 F-20261125-larrey-strict **analysis**: Back-tested candidate pre-production gates on 570 past attempts (520 orders, 91 filed) from Papinian, Haloand… Lesson: Strict is in-sample on all five waves; adopt it only after a gated wave (30 strict-admitted vs 15-30 kept-out orders) shows at least 1.5x filed rate and the kept-out arm supplies at most 15% of filed…
 
-Register: 106 owner decisions, 66 answered questions, 419 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 109 owner decisions, 66 answered questions, 419 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).

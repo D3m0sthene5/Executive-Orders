@@ -1,0 +1,56 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-baldus-2026-11-25/y02/packet/PACKET.json",
+  "seconds": 17.875,
+  "files_read": 65350,
+  "file_reads": 130744,
+  "packet_fingerprint": "e0d42d19d79596d6ca93c3d6c16d14366f5efb387a109d9aa50e6648ee993113",
+  "claims_checked": 1,
+  "defect_flags": 1,
+  "coverage_gaps": 1,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:10977",
+      "flags": [
+        {
+          "code": "held_source_left_unpinned",
+          "scope_id": "whole",
+          "field": "claim.research_rationale",
+          "span": "held text of EO 12977 does not mention EO 10977, so it is not cited",
+          "detail": "The reasoning relies on the held text of EO 12977 but states it is not cited; an identity-bound held text exists and no claim source pins it.",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-12977-interagency-security-committee.txt",
+            "text_sha256": "54c33ff9773637a7069398873b35e9b3d107ed5ac2667b92ad445b96e0eae151",
+            "char_start": 0,
+            "char_end": 5180,
+            "quote": "By the authority vested in me as President by the Constitution and the laws of the United States of America, and in order to enhance the quality and effectiveness of security in and protection of buildings and facilities in the United States occupied by Federal employees for nonmilitary activities (\"Federal facilities\"), and to provide a permanent body to address continuing government-wide security for Federal facilities, it is hereby ordered as follows:\n\nSection 1. Establishment. There is hereby established within the executive branch the Interagency Security Committee (\"Committee\"). The Committee shall consist of: (a) the Administrator of General Services (\"Administrator\");\n\n(b) representatives from the following agencies, appointed by the agency heads:\n\n(1) Department of State;\n\n(2) Department of the Treasury;\n\n(3) Department of Defense;\n\n(4) Department of Justice;\n\n(5) Department of the Interior;\n\n(6) Department of Agriculture;\n\n(7) Department of Commerce;\n\n(8) Department of Labor;\n\n(9) Department of Health and Human Services;\n\n(10) Department of Housing and Urban Development;\n\n(11) Department of Transportation;\n\n(12) Department of Energy;\n\n(13) Department of Education;\n\n(14) Department of Veterans Affairs;\n\n(15) Environmental Protection Agency;\n\n(16) Central Intelligence Agency; and\n\n(17) Office of Management and Budget;\n\n(c) the following individuals or their designees:\n\n(1) the Director, United States Marshals Service;\n\n(2) the Assistant Commissioner of the Federal Protective Service of the Public Buildings Service, General Services Administration (\"Assistant Commissioner\");\n\n(3) the Assistant to the President for National Security Affairs; and\n\n(4) the Director, Security Policy Board; and\n\n(d) such other Federal employees as the President shall appoint.\n\nSec. 2. Chair. The Committee shall be chaired by the Administrator, or the designee of the Administrator.\n\nSec. 3. Working Groups. The Committee is authorized to establish interagency working groups to perform such tasks as may be directed by the Committee.\n\nSec. 4. Consultation. The Committee may consult with other parties, including the Administrative Office of the United States Courts, to perform its responsibilities under this order, and, at the discretion of the Committee, such other parties may participate in the working groups.\n\nSec. 5. Duties and Responsibilities. (a) The Committee shall: (1) establish policies for security in and protection of Federal facilities;\n\n(2) develop and evaluate security standards for Federal facilities, develop a strategy for ensuring compliance with such standards, and oversee the implementation of appropriate security measures in Federal facilities; and\n\n(3) take such actions as may be necessary to enhance the quality and effectiveness of security and protection of Federal facilities, including but not limited to:\n\n(A) encouraging agencies with security responsibilities to share security-related intelligence in a timely and cooperative manner;\n\n(B) assessing technology and information systems as a means of providing cost-effective improvements to security in Federal facilities;\n\n(C) developing long-term construction standards for those locations with threat levels or missions that require blast resistant structures or other specialized security requirements;\n\n(D) evaluating standards for the location of, and special security related to, day care centers in Federal facilities; and\n\n(E) assisting the Administrator in developing and maintaining a centralized security data base of all Federal facilities.\n\nSec. 6. Agency Support and Cooperation.\n\n(a) Administrative Support. To the extent permitted by law and subject to the availability of appropriations, the Administrator, acting by and through the Assistant Commissioner, shall provide the Committee such administrative services, funds, facilities, staff and other support services as may be necessary for the performance of its functions under this order.\n\n(b) Cooperation. Each executive agency and department shall cooperate and comply with the policies and recommendations of the Committee issued pursuant to this order, except where the Director of Central Intelligence determines that compliance would jeopardize intelligence sources and methods. To the extent permitted by law and subject to the availability of appropriations, executive agencies and departments shall provide such support as may be necessary to enable the Committee to perform its duties and responsibilities under this order.\n\n(c) Compliance. The Administrator, acting by and through the Assistant Commissioner, shall be responsible for monitoring Federal agency compliance with the policies and recommendations of the Committee.\n\nSec. 7. Judicial Review. This order is intended only to improve the internal management of the Federal Government, and is not intended, and should not be construed, to create any right or benefit, substantive or procedural, enforceable at law by a party against the United States, its agencies, its officers, or its employees.\n\nWilliam J. Clinton\n\nThe White House,\n\nOctober 19, 1995.\n\n[Filed with the Office of the Federal Register, 2:55 p.m., October 20, 1995]\n",
+            "instrument_id": "EO:12977",
+            "date": "1995-10-19",
+            "identity_basis": "app_publisher_listing"
+          },
+          "flag_id": "06a21fb36bc0823a"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "7b274ed6eb6d766838b3e16a40301de15b6ad409",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

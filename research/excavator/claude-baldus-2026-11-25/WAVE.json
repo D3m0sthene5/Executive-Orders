@@ -1,0 +1,78 @@
+{
+ "wave": "baldus-2026-11-25",
+ "author": "claude-opus-5-5",
+ "stage": 2,
+ "objective": {
+  "metric": "filed_dossiers_per_unit",
+  "text": "File whole-lifecycle claims for as many claim-ready decided orders as the measured route allows: the remaining claim-ready YES pool (about 190), a 30-order probe of the best Larrey-gated claim-ready NO orders (the NO stratum is below Augur's 0.2 per dollar floor), then a 300-order probe of status assignment for undecided orders, using Gilbreth's measured cuts (correction-route pre-screen, held-source registration at prep, pooled review sets of 7 or more, FR-capture later events). Scripted Claude coordination in this cloud session; Sonnet producers; two blind Opus arms; claims file only when both uphold."
+ },
+ "actions": [
+  {
+   "id": "production.claim_ready.yes.fr",
+   "orders": 190,
+   "lanes": 3
+  },
+  {
+   "id": "production.claim_ready.no.fr",
+   "orders": 30,
+   "lanes": 1
+  },
+  {
+   "id": "status_assignment.undecided",
+   "orders": 300,
+   "lanes": 2
+  }
+ ],
+ "configuration": {
+  "orchestrator": "claude-scripted",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "claude-sonnet-5-5"
+ },
+ "limits": {
+  "chain_budget_units": 800000000,
+  "spend_per_claim_units": 3000000,
+  "no_claim_minutes": 90,
+  "context_kill_tokens": 150000,
+  "reviews_per_hour": 20,
+  "coordinator_units_per_hour": 3000000
+ },
+ "budget_usd_cap": 1000,
+ "premortem": [
+  {
+   "failure": "The cloud container (2 CPUs, about 3 GB free disk) stalls or fills while many packets run kit apply and batch-check",
+   "guard": "at most 6 producer lanes at once; completion receipts over 50 MB gzipped at each batch end; each finished batch committed and its heavy files dropped from the working tree before the next starts; the coordinator stops new launches below 1 GB free"
+  },
+  {
+   "failure": "The NO pool is mostly source-blocked like the one-step stratum, so producer dollars buy blocks",
+   "guard": "draw NO orders at the Larrey soft level, run DISPATCH_CHECK's advisory pre-screen and HELD_SOURCES at prep, hold flagged orders, and run the Bentham gate after every batch with stop on STOP"
+  },
+  {
+   "failure": "A reviewer misses a planted control or a defect slips through because review sets are pooled",
+   "guard": "planted controls in every review set at the usual rate, both arms review every claim blind, a claim files only if both uphold, and any missed control stops the wave"
+  },
+  {
+   "failure": "The undecided probe spends without yield, as the Lind stage-0 did (0 of 30)",
+   "guard": "undecided orders run in 30-order batches after the first YES batches; the coordinator stops the stratum after any two batches that file nothing (F-20261110-mommsen3-undecided-probe01) and runs the Bentham gate after each batch"
+  },
+  {
+   "failure": "Packets go stale mid-wave (the Bracton sparse-checkout defect)",
+   "guard": "prepare only from the full data checkout with every jobs folder present; merges to main that change claim-kit inputs wait until a batch's completion is done"
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261118-kiaer-stopped-at-review": "Every guard is something the coordinator runs from committed tools: prep.sh and kit.py prepare (dispatch check, HELD_SOURCES, advisory pre-screen), kit apply and batch-check, review_prep.py, finish_pair.py, adopt_replacement.py, gzip_receipts.py and the Bentham gate; the budget is sized from Bracton and trial measures (about 5 USD per filed claim).",
+  "F-20261110-papinian-undecided-u23": "Undecided producers get the YES route's current-law and later-event checklist (route_undecided.txt plus the producer brief's pitfalls list, which covers U.S. Code notes and later amendments).",
+  "F-20261110-papinian-undecided-u01b": "The claim kit was rebuilt on main today (run 45614623733) with current status_overlay code; the first undecided batch prepares one order first and stops on any refusal; statuses go to owner adoption.",
+  "F-20261110-mommsen3-undecided-probe01": "Status proposals stay isolated for owner adoption; claims file only with first end, scope, savings and current predicate proved and both arms upholding; the stratum stops after two zero-file batches.",
+  "F-20261110-mommsen3-codex-core-sandbox": "No Windows or Codex producers: Sonnet producers run in this cloud session on Linux with full file tools.",
+  "F-20261110-mommsen-unranked-pools": "Only Bentham-ranked actions; the NO stratum, below the per-dollar floor, runs as a one-lane 30-order probe; claim-kit admission refuses orders outside the named action; the Bentham gate runs after every batch.",
+  "F-20261107-haloander-undecided-probe": "The undecided rate is now measured from Bartolus u01 (4 adopted of 30) and Lind stage 0 (0 of 30); this wave adds measured batches and stops after two zero-file batches.",
+  "F-20261028-4": "Every packet is prepared fresh from the claim kit rebuilt on main today.",
+  "F-20261018-7": "Producers fetch no new hosts; they work only from held texts, and the forecast uses Bentham's measured rates."
+ },
+ "review": {
+  "reviewer": "owner (Danny), AskUserQuestion 2026-11-25: 'Sign, $1,000 cap' for plan hash 4d5e38db...39bc",
+  "verdict": "approve",
+  "plan_sha256": "4d5e38dbbf144e14e8dda3c0d50c5db5aecca6295e74ddb13f8c194699f239bc"
+ }
+}
