@@ -1,0 +1,464 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C07",
+ "census_overstated": false,
+ "conclusion": "YES",
+ "conclusion_verdict": "unverifiable",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "(a): in the second preamble paragraph of EO 11755, replace 'section 4082 of title 18 ... the Attorney General' with 'sections 3621 and 3622 of title 18 ... the Bureau of Prisons'",
+    "end": null,
+    "props": [
+     "p2",
+     "p4",
+     "p5",
+     "p7",
+     "p9"
+    ],
+    "state": "operating"
+   },
+   {
+    "clause": "(b): add sec. 1(c) to EO 11755, exempting purchases made under the micropurchase authority of section 32 of the OFPP Act",
+    "end": null,
+    "props": [
+     "p3",
+     "p5",
+     "p6",
+     "p7",
+     "p9"
+    ],
+    "state": "operating"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "amendment_follows_parent",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "YES"
+  },
+  "data_errors": [
+   "jobs/fr-originals/output/texts/EO_12943.txt covers PDF pages 13-17 and so includes unrelated 7 CFR rule documents after line 33; the order itself is on page 13 only (lines 13-32).",
+   "Evidence slice lists later_instruments_naming_it as empty and gives no parent status for EO 11755, although the parent's current-law leads are the deciding evidence for this amendment-only order."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Official U.S. Code printing of the 18 U.S.C. 3622 note at the cutoff, showing the amended preamble and sec. 1(c) as in force. Only an unofficial Cornell copy was read.",
+    "where_to_look": "uscode.house.gov, title 18 section 3622, Executive Documents note (the URL tried returned 404 on both attempts); or the govinfo USCODE title 18 edition"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "No quotation shows the absence of a revocation of EO 11755 or EO 12943; it rests on the held texts, the Cornell note and the two cutoff-date CFR citations.",
+    "where_to_look": "Federal Register executive order disposition tables for EO 11755 and EO 12943 (archives.gov)"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "The reviewer could not open the eCFR point-in-time URLs behind p5 and p9. They were fetched successfully here through a summarising fetch tool, not read as raw XML.",
+    "where_to_look": "https://www.ecfr.gov/on/2026-10-14/title-48/section-22.201 and https://www.ecfr.gov/on/2026-10-14/title-48/section-52.222-3, or a held copy of the eCFR title 48 XML for 2026-10-14"
+   }
+  ],
+  "id": "EO:12943",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Federal Register printing at 59 FR 64553 is held and legible; the order has two amendatory clauses, (a) and (b).",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Amendment-only order, so it follows parent EO 11755. Re-fetched on 2026-11-18: the eCFR point-in-time text for 2026-10-14 of 48 CFR 22.201(a) cites EO 11755 as amended by EO 12608 and EO 12943, and 48 CFR 52.222-3 (clause dated JUN 2003) cites EO 11755 as amended by EOs 12608 and 12943. No ending was found. Status YES. The reviewer could not open the eCFR URL; if the coordinator cannot reproduce the fetch, the fallback status is OPEN at T2.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Both amendments live only in the amended text of EO 11755, which two cutoff-date CFR provisions treat as in force as amended by EO 12943. The amended wording itself, including sec. 1(c), was read on the unofficial Cornell LII copy of the 18 U.S.C. 3622 note.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "The official U.S. Code note was not retrieved (uscode.house.gov returned 404 again on 2026-11-18). The amended wording was read only on Cornell LII, which is unofficial and not pinned to the cutoff. The absence of any revocation rests on searches, not a quotation.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_12943.txt (59 FR 64553, govinfo FR-1994-12-15, PDF page 13)"
+  },
+  "propositions": [
+   {
+    "claim": "EO 12943 of 13 Dec 1994 is printed at 59 FR 64553 and does nothing but amend EO 11755.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "it is hereby ordered that Executive Order No. 11755, as amended, is further amended as follows",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_12943.txt lines 20-21"
+   },
+   {
+    "claim": "Clause (a) substitutes a phrase in the second preamble paragraph of EO 11755.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "inserting in lieu thereof the following phrase: \"sections 3621 and 3622 of title 18, United States Code, the Bureau of Prisons\"",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_12943.txt lines 21-25"
+   },
+   {
+    "claim": "Clause (b) adds a new subsection (c) to section 1 of EO 11755.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "The provisions of this order do not apply to purchases made under the micropurchase authority contained in section 32 of the Office of Federal Procurement Policy Act, as amended.",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_12943.txt lines 26-30"
+   },
+   {
+    "claim": "The original EO 11755 (39 FR 779) contains the preamble phrase that clause (a) replaces, and its sec. 1 is a continuing contract-stipulation command.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "Under section 4082 of title 18 of the United States Code, the Attorney General is empowered to authorize Federal prisoners to work at paid employment",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_11755.txt lines 19-21 (OCR letter-spacing normalised)"
+   },
+   {
+    "claim": "On the cutoff date, 48 CFR 22.201(a) cites EO 11755 as amended by EO 12943 as the governing statement of policy.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "Executive Order 11755, December 29, 1973, as amended by Executive Order 12608, September 9, 1987, and Executive Order 12943, December 13, 1994, states:",
+    "supports": "current",
+    "where": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-14/title-48.xml?section=22.201 (re-fetched 2026-11-18; the fetch tool returned the passage as two excerpts and stated they are contiguous with no intervening text). Version list https://www.ecfr.gov/api/versioner/v1/versions/title-48.json?section=22.201 shows two entries, latest amendment date 2017-01-01, latest issue date 2023-04-05, removed: false."
+   },
+   {
+    "claim": "The Cornell LII copy of the 18 U.S.C. 3622 note prints EO 11755 as amended, including the micropurchase subsection (c) added by EO 12943. This shows the page's contents, not status at the cutoff.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "The provisions of this order do not apply to purchases made under the micropurchase authority",
+    "supports": "current",
+    "where": "https://www.law.cornell.edu/uscode/text/18/3622 (unofficial copy, not pinned to the cutoff)"
+   },
+   {
+    "claim": "The project's held current-law index records the 18 U.S.C. 3622 note status line naming EO 12943 as an amending order (taken from the evidence slice, not re-read at the official source; a lead only).",
+    "location": "H",
+    "pid": "p7",
+    "quote": "Ex. Ord. No. 11755, Dec. 29, 1973, 39 F.R. 779, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617; Ex. Ord. No. 12943, Dec. 13, 1994, 59 F.R. 64553, provided:",
+    "supports": "current",
+    "where": "evidence slice, current_law_mentions (18 U.S.C. 3622 note)"
+   },
+   {
+    "claim": "The only supersession language in the EO 11755 text or its U.S. Code note concerns a different order, EO 325A.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "Executive Order No. 325A is hereby superseded.",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_11755.txt line 86; same sentence on the Cornell LII note page"
+   },
+   {
+    "claim": "On the cutoff date, the FAR contract clause at 48 CFR 52.222-3, Convict Labor (JUN 2003), cites EO 11755 as amended by EO 12943 as its governing authority.",
+    "location": "W",
+    "pid": "p9",
+    "quote": "Executive Order 11755, as amended by Executive Orders 12608 and 12943.",
+    "supports": "current",
+    "where": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-14/title-48.xml?section=52.222-3 (fetched 2026-11-18; excerpt returned verbatim by the fetch tool, rest of the clause summarised)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "fixed",
+    "pid": "p5",
+    "why": "Reviewer could not open the URL. Re-fetched 2026-11-18: the cutoff-date text has the quoted citation as one contiguous passage; quote extended to 'states:' and version-list data added. Read through a summarising fetch tool, not raw XML."
+   },
+   {
+    "change": "fixed",
+    "pid": "p6",
+    "why": "Upheld; claim narrowed to say it is the Cornell copy and shows page contents, not cutoff status, as the reviewer noted."
+   },
+   {
+    "change": "kept",
+    "pid": "p7",
+    "why": "Upheld as a limited claim about the slice; marked as a lead only."
+   },
+   {
+    "change": "kept",
+    "pid": "p8",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "fixed",
+    "pid": "p9",
+    "why": "New proposition closing the former second gap: 48 CFR 52.222-3 at the cutoff was opened and cites EO 11755 as amended by EOs 12608 and 12943."
+   },
+   {
+    "change": "kept",
+    "pid": "conclusion",
+    "why": "Reviewer's OPEN/T2 rested only on p5 being unreachable. p5 is now re-verified and p9 added, so YES at T4 stands. T5 not reached: official U.S. Code note still unread."
+   }
+  ],
+  "searches": [
+   "Grep and read of held FR text EO_12943.txt (operative lines 13-32)",
+   "Grep and read of held FR text EO_11755.txt (lines 14-88) for sections and any revocation or supersession language",
+   "eCFR versioner API, title 48 section 22.201 as of 2026-10-14 (fetched in the first pass; re-fetched twice on 2026-11-18)",
+   "eCFR versioner API, title 48 section 52.222-3 as of 2026-10-14 (fetched 2026-11-18)",
+   "eCFR versioner API, version list for title 48 section 22.201 (fetched 2026-11-18)",
+   "uscode.house.gov, 18 U.S.C. 3622 (404 in the first pass and again on 2026-11-18)",
+   "law.cornell.edu, 18 U.S.C. 3622 notes (fetched in the first pass)"
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T4"
+ },
+ "group": "modern",
+ "id": "EO:12943",
+ "ledger_status": null,
+ "producer_start": "T2",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T2",
+ "result": {
+  "clauses": [
+   {
+    "clause": "(a): in the second preamble paragraph of EO 11755, replace 'section 4082 of title 18 ... the Attorney General' with 'sections 3621 and 3622 of title 18 ... the Bureau of Prisons'",
+    "end": null,
+    "props": [
+     "p2",
+     "p4",
+     "p5",
+     "p7"
+    ],
+    "state": "operating"
+   },
+   {
+    "clause": "(b): add sec. 1(c) to EO 11755, exempting purchases made under the micropurchase authority of section 32 of the OFPP Act",
+    "end": null,
+    "props": [
+     "p3",
+     "p5",
+     "p6",
+     "p7"
+    ],
+    "state": "operating"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "amendment_follows_parent",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "YES"
+  },
+  "data_errors": [
+   "jobs/fr-originals/output/texts/EO_12943.txt covers PDF pages 13-17 and so includes unrelated 7 CFR rule documents after line 33; the order itself is on page 13 only (lines 13-32).",
+   "Evidence slice lists later_instruments_naming_it as empty and gives no parent status for EO 11755, although the parent's current-law leads are the deciding evidence for this amendment-only order."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Official U.S. Code printing of the 18 U.S.C. 3622 note at the cutoff, showing the amended preamble and sec. 1(c) as in force. Only an unofficial Cornell copy was read.",
+    "where_to_look": "uscode.house.gov, title 18 section 3622, Executive Documents note (the URL tried returned 404); or the govinfo USCODE title 18 edition"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "48 CFR 52.222-3 at the cutoff was not opened; the slice snippet says it cites EO 11755 as amended by EOs 12608 and 12943.",
+    "where_to_look": "https://www.ecfr.gov/on/2026-10-14/title-48/section-52.222-3"
+   }
+  ],
+  "id": "EO:12943",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Federal Register printing at 59 FR 64553 is held and legible; the order has two amendatory clauses, (a) and (b).",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Amendment-only order, so it follows parent EO 11755. The parent is cited as amended by EO 12943 in 48 CFR 22.201 on 2026-10-14, and no ending was found. Status YES.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Both amendments are carried in the amended text of EO 11755, which is operating as a whole (eCFR at the cutoff; amended text on the Cornell LII copy of the 18 U.S.C. 3622 note).",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "The official U.S. Code note was not retrieved (uscode.house.gov URL returned 404). The amended wording, including sec. 1(c), was read only on Cornell LII, which is unofficial and not pinned to the cutoff. The absence of any revocation rests on searches, not a quotation.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_12943.txt (59 FR 64553, govinfo FR-1994-12-15, PDF page 13)"
+  },
+  "propositions": [
+   {
+    "claim": "EO 12943 of 13 Dec 1994 is printed at 59 FR 64553 and does nothing but amend EO 11755.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "it is hereby ordered that Executive Order No. 11755, as amended, is further amended as follows",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_12943.txt lines 20-21"
+   },
+   {
+    "claim": "Clause (a) substitutes a phrase in the second preamble paragraph of EO 11755.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "inserting in lieu thereof the following phrase: \"sections 3621 and 3622 of title 18, United States Code, the Bureau of Prisons\"",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_12943.txt lines 21-25"
+   },
+   {
+    "claim": "Clause (b) adds a new subsection (c) to section 1 of EO 11755.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "The provisions of this order do not apply to purchases made under the micropurchase authority contained in section 32 of the Office of Federal Procurement Policy Act, as amended.",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_12943.txt lines 26-30"
+   },
+   {
+    "claim": "The original EO 11755 (39 FR 779) contains the preamble phrase that clause (a) replaces, and its sec. 1 is a continuing contract-stipulation command.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "Under section 4082 of title 18 of the United States Code, the Attorney General is empowered to authorize Federal prisoners to work at paid employment",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_11755.txt lines 19-21 (OCR letter-spacing normalised)"
+   },
+   {
+    "claim": "On the cutoff date, 48 CFR 22.201(a) treats EO 11755 as amended by EO 12943 as the governing statement of policy.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "Executive Order 11755, December 29, 1973, as amended by Executive Order 12608, September 9, 1987, and Executive Order 12943, December 13, 1994",
+    "supports": "current",
+    "where": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-14/title-48.xml?section=22.201 (fetched; quote assembled from two contiguous excerpts returned by the fetch tool)"
+   },
+   {
+    "claim": "The 18 U.S.C. 3622 note prints EO 11755 as amended, including the micropurchase subsection (c) added by EO 12943.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "The provisions of this order do not apply to purchases made under the micropurchase authority",
+    "supports": "current",
+    "where": "https://www.law.cornell.edu/uscode/text/18/3622 (unofficial copy, not pinned to the cutoff)"
+   },
+   {
+    "claim": "The project's held current-law index records the 18 U.S.C. 3622 note status line naming EO 12943 as an amending order (taken from the evidence slice, not re-read at the official source).",
+    "location": "H",
+    "pid": "p7",
+    "quote": "Ex. Ord. No. 11755, Dec. 29, 1973, 39 F.R. 779, as amended by Ex. Ord. No. 12608, Sept. 9, 1987, 52 F.R. 34617; Ex. Ord. No. 12943, Dec. 13, 1994, 59 F.R. 64553, provided:",
+    "supports": "current",
+    "where": "evidence slice, current_law_mentions (18 U.S.C. 3622 note)"
+   },
+   {
+    "claim": "The only supersession language in the EO 11755 text or its U.S. Code note concerns a different order, EO 325A.",
+    "location": "H",
+    "pid": "p8",
+    "quote": "Executive Order No. 325A is hereby superseded.",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_11755.txt line 86; same sentence on the Cornell LII note page"
+   }
+  ],
+  "searches": [
+   "Grep and read of held FR text EO_12943.txt (operative lines 13-32)",
+   "Grep and read of held FR text EO_11755.txt (lines 14-88) for sections and any revocation or supersession language",
+   "eCFR versioner API, title 48 section 22.201 as of 2026-10-14 (fetched)",
+   "uscode.house.gov, 18 U.S.C. 3622 (404)",
+   "law.cornell.edu, 18 U.S.C. 3622 notes (fetched)"
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "The amendment-follows-parent rule is appropriate, but the sole asserted cutoff-specific current source could not be verified. The upheld original and unpinned Cornell note do not establish YES on October 14, 2026. Review-supported status is OPEN pending verified cutoff-date evidence that EO 11755 as amended remained operative. No express ending was found in the inspected sources; that limited formal-status observation does not establish operative status.",
+  "conclusion_verdict": "unverifiable",
+  "id": "EO:12943",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: WEB; the first gap concerns an official cutoff-date U.S. Code note not supplied as a held text in the evidence slice. The slice's status-line lead does not itself close that gap.",
+  "suspected_defect": null,
+  "tier_supported": "T2",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held Federal Register OCR identifies EO 12943, December 13, 1994, at 59 FR 64553; its entire operative text consists of two amendments to EO 11755.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Held original expressly replaces the second preamble paragraph's section 4082/Attorney General phrase with sections 3621 and 3622/Bureau of Prisons.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "Held original adds section 1(c), with the quoted micropurchase exception.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "Held EO 11755 contains the quoted preamble language and section 1(a)'s continuing requirement that future covered contracts contain a stipulation.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The cited cutoff-date eCFR API URL and corresponding point-in-time page were inaccessible; a direct retrieval also failed. The evidence-slice excerpt is a lead, not independent confirmation.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p6",
+    "reason": "The cited Cornell page prints the amended EO 11755, including section 1(c)'s quoted exception. This confirms the page's contents, not its status at the cutoff.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "The supplied evidence slice contains the exact status line. Uphold only the explicitly limited claim about what the slice records; the underlying official index was not independently verified.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p8",
+    "reason": "Both the held EO 11755 and Cornell note contain section 3: 'Executive Order No. 325A is hereby superseded.' Their supersession language concerns that other order.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 159.0,
+ "start": "T2",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed: WEB; the first gap concerns an official cutoff-date U.S. Code note not supplied as a held text in the evidence slice. The slice's status-line lead does not itself close that gap.",
+ "tokens": 173971,
+ "units": 100592,
+ "units_producer": 40097,
+ "units_repair": 39828,
+ "units_review": 20667
+}

@@ -80,9 +80,14 @@ def clean(fragment):
 
 
 def instrument_id(title):
-    """EO:<number><suffix> from an APP title such as 'Executive Order 14356—...'; None if unnumbered."""
-    m = re.match(r"\s*Executive Order\s+(?:No\.\s*)?(\d+)(?:-?([A-Z]{1,2}))?(?![\w])", title)
-    return ("EO:" + str(int(m[1])) + (m[2] or ""), m[0].strip()) if m else (None, "")
+    """EO:<number><suffix> from an APP title such as 'Executive Order 14356—...'; None if unnumbered.
+
+    A half-number ('Executive Order 4224 1/2—...' or '4224½') maps to the census spelling EO:4224½ (Petty, 2026-11-24:
+    the old pattern read it as EO:4224 and filed EO 4224½'s text under EO 4224)."""
+    m = re.match(r"\s*Executive Order\s+(?:No\.\s*)?(\d+)(?:(\s*1/2|\s*½)|-?([A-Z]{1,2}))?(?![\w/])", title)
+    if not m:
+        return (None, "")
+    return ("EO:" + str(int(m[1])) + ("½" if m[2] else (m[3] or "")), m[0].strip())
 
 
 def check_page(raw):

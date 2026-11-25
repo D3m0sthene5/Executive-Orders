@@ -1,0 +1,265 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C05",
+ "census_overstated": false,
+ "conclusion": "YES",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": null,
+ "group": "pre1937",
+ "id": "EO:7229",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T4",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Reservation: about 8,000 acres in Plaquemines Parish, La., reserved and set apart for the Department of Agriculture as a refuge and breeding ground for migratory birds and other wildlife",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p4",
+     "p5",
+     "p6",
+     "p8",
+     "p9"
+    ],
+    "state": "operating"
+   },
+   {
+    "clause": "Name: the refuge shall be known as the Delta Migratory Waterfowl Refuge",
+    "end": "1940-08-16",
+    "props": [
+     "p3",
+     "p7"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "positive_current_source",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "YES"
+  },
+  "data_errors": [
+   "jobs/mabillon-held-printings/output/texts/EO_7229.txt OCR reads the signing date as 'November 19, 1936'; the photius printing and EO 7383, 7538 and 8517 all give 1935.",
+   "jobs/photius-gpo-volumes/output/texts/EO_7229.txt: the second page's OCR is broken into one-word lines and the signature is cut off ('FRANKLIN D RO'); the operative words remain legible.",
+   "Triage flag 'original_not_usable:machine_read_government_printed_copy' is overstated: the operative words are legible in both held printings.",
+   "Evidence slice has current_law null although 50 CFR 32.37(m) covers Delta National Wildlife Refuge.",
+   "The slice's later-events entry labels EO 8517 an 'amendment' of EO 7229; it is a rename plus enlargement, and EO 7383 has no held official printing (APP transcription only)."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "No current source names EO 7229 itself as the authority for the reservation; the CFR and FWS page name only the refuge. The link to EO 7229 rests on EO 8517 sec. 1.",
+    "where_to_look": "FWS Annual Report of Lands / refuge establishing-authority table; Delta NWR Comprehensive Conservation Plan"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether any Public Land Order, exchange or disposal removed part of the 1935 tract from the reservation.",
+    "where_to_look": "Federal Register PLO index; BLM land status records for T. 20-21 S., R. 19-20 E., St. Helena Meridian; FWS Realty"
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether the transfer of administration from Agriculture to Interior (candidate: Reorganization Plan No. II of 1939, which does not name the order) counts as ending the words 'for the use of the Department of Agriculture'.",
+    "where_to_look": "project rules on unnamed general instruments; 53 Stat. 1431"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Verbatim wording of the two web quotations (p8, p9), which came through a summarising fetch.",
+    "where_to_look": "eCFR 50 CFR 32.37(m) (ecfr.gov redirected to an unblock page); fws.gov/refuge/delta"
+   }
+  ],
+  "id": "EO:7229",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "GPO slip-order printing held (HathiTrust hvd.hl2726, pp. 819-820) and a second government printing; operative words legible in both. Two operative clauses listed.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "YES: no revocation found; EO 8517 (1940) continued and enlarged the refuge under a new name; 50 CFR 32.37(m) and the FWS refuge page treat Delta NWR as an operating refuge after the cutoff.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Reservation clause operating (current CFR and FWS record); naming clause ended 1940-08-16 by EO 8517 sec. 1.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "No current source names EO 7229 itself; Public Land Orders and land-status records not searched for partial revocations of the 1935 tract; web quotes were read through a summarising fetch, not verbatim page text.",
+    "stop_code": "NOT_FOUND",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/photius-gpo-volumes/output/texts/EO_7229.txt"
+  },
+  "propositions": [
+   {
+    "claim": "A GPO printing of EO 7229 is held and reserves the lands as a refuge.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "be, and they are hereby , reserved and set apart for the use of the Department of Agriculture , subject to valid existing rights , as a refuge and breeding ground for migratory birds",
+    "supports": "original",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_7229.txt"
+   },
+   {
+    "claim": "A second held government printing carries the same reservation words and the order number.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "reserved and set apart for the use of the Department of Agriculture, subject to valid existing rights, as a refuge and breeding ground for migratory birds and other wildlife",
+    "supports": "clause",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_7229.txt"
+   },
+   {
+    "claim": "The order names the refuge.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "This refuge shall be known as the Delta Migratory Waterfowl Refuge.",
+    "supports": "clause",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_7229.txt"
+   },
+   {
+    "claim": "EO 7383 (1936-06-05) added lands to the refuge and did not revoke EO 7229 (transcription only; a lead).",
+    "location": "H",
+    "pid": "p4",
+    "quote": "as an addition to the Delta Migratory Waterfowl Refuge, established by Executive Order No. 7229 of November 19, 1935",
+    "supports": "current",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-7383-enlarging-delta-migratory-waterfowl-refuge-louisiana.txt"
+   },
+   {
+    "claim": "EO 7538 (1937-01-19, 2 FR 141) added lands to the refuge and did not revoke EO 7229.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "as .an addition to the Delta M igratory W aterfowl Refuge, established by Executive Order No. 7229 o f November 19, 1935",
+    "supports": "current",
+    "where": "jobs/fr-originals/output/texts/EO_7538.txt"
+   },
+   {
+    "claim": "EO 8517 (1940-08-16, 5 FR 2881) sec. 2 enlarged the refuge, continuing the reservation rather than ending it.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "are hereby included in and reserved as a part of the refuge",
+    "supports": "current",
+    "where": "jobs/fr-originals/output/texts/EO_8517.txt"
+   },
+   {
+    "claim": "EO 8517 sec. 1 expressly changed the name given by EO 7229.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "established by Executive Order No. 7229, of November 19, 1935, and enlarged by Executive Or­ders l^os. 7383, of June 5, 1936, and 7538, of January 19, 1937, is hereby changed to Delta National Wildlife Refuge",
+    "supports": "ending",
+    "where": "jobs/fr-originals/output/texts/EO_8517.txt"
+   },
+   {
+    "claim": "The current CFR regulates hunting on Delta National Wildlife Refuge; the page's latest amendment citation is 91 FR 56326, Sept. 1, 2026 (quote relayed by the fetch tool, not read verbatim).",
+    "location": "W",
+    "pid": "p8",
+    "quote": "Delta National Wildlife Refuge—(1) Migratory game bird hunting.",
+    "supports": "current",
+    "where": "https://www.law.cornell.edu/cfr/text/50/32.37"
+   },
+   {
+    "claim": "The FWS refuge page, fetched 2026-11-18, shows a managed refuge with 2026-2027 hunting information (quote relayed by the fetch tool, not read verbatim).",
+    "location": "W",
+    "pid": "p9",
+    "quote": "lush wetlands and marshes provide habitat for migratory birds",
+    "supports": "current",
+    "where": "https://www.fws.gov/refuge/delta"
+   }
+  ],
+  "searches": [
+   "Read both held government printings of EO 7229",
+   "Read held FR texts of EO 8517 and EO 7538 and the APP text of EO 7383",
+   "Web search: Delta National Wildlife Refuge established 1935 Executive Order 7229 fws.gov",
+   "Fetched fws.gov/refuge/delta and /about-us (about-us returned navigation only)",
+   "Fetched archived FWS fact sheet dltcon.pdf at UNT web archive (returned empty)",
+   "Fetched ecfr.gov 50 CFR 32.37 (redirected to unblock page); fetched law.cornell.edu 50 CFR 32.37"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "YES is supported by the current refuge regulation and FWS management record, connected to EO 7229 through EO 8517's express identification and rename. The project rules do not require the current agency record itself to repeat the order number. No whole-order ending appears in the checked sources; formal status is upheld only as the bounded statement 'never_expressly_ended_found.' The original naming command ended on August 16, 1940. Exact survival of every original parcel and the administration language remain unresolved.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:7229",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: the evidence slice supplies no current source naming EO 7229 as present reservation authority. NOT_FOUND is supported within this bounded record, not as a claim that the proposed FWS sources were exhaustively searched.",
+  "suspected_defect": null,
+  "tier_supported": "T4",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held GPO OCR contains the quoted reservation, including other wildlife, and identifies EO 7229 dated November 19, 1935.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Second held government printing contains the reservation words and [No. 7229]; its signing-year OCR discrepancy does not affect those words.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The held printing expressly says: 'This refuge shall be known as the Delta Migratory Waterfowl Refuge.'",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The complete cited APP transcription adds land to the refuge established by EO 7229 and contains no revocation of that order. Its transcription-only limitation is correctly stated.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "Held 2 FR 141 text expressly reserves additional land as an addition to the refuge established by EO 7229; the order contains no revocation of EO 7229.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "Held EO 8517 section 2 says the additional lands are 'included in and reserved as a part of the refuge.' This confirms continuation in 1940, not independently at the cutoff.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "Held EO 8517 section 1 names EO 7229 and expressly changes the refuge's name to Delta National Wildlife Refuge; its signature date is August 16, 1940.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p8",
+    "reason": "The cited Cornell page contains the quoted Delta heading at subsection (m). Its amendment history ends with 91 FR 56326, September 1, 2026, exactly as claimed.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p9",
+    "reason": "The cited FWS page contains the exact habitat phrase and a '2026-2027 Hunting Information' heading with a public-use brochure link. The historical fetch event itself is not independently auditable, but the page content is confirmed.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 119.2,
+ "start": "T2",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "confirmed: the evidence slice supplies no current source naming EO 7229 as present reservation authority. NOT_FOUND is supported within this bounded record, not as a claim that the proposed FWS sources were exhaustively searched.",
+ "tokens": 242104,
+ "units": 98791,
+ "units_producer": 63320,
+ "units_repair": 0,
+ "units_review": 35471
+}

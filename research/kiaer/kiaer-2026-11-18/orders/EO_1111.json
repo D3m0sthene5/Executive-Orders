@@ -1,0 +1,163 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C08",
+ "census_overstated": true,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": null,
+ "group": "pre1937",
+ "id": "EO:1111",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T1",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: EO 1084 (1909-06-08) and EO 1096 (1909-06-25), four-hour Saturdays in July-September, shall not apply to employees on the Isthmus of Panama. Provisional, read from the transcription.",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "unknown",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "The slice gives best_held as 'official_original_counted', but the only own text it lists is a Wikisource transcription; no official original is routed to this order.",
+   "The slice title has a stray period ('providing that .the two orders') and the president field is blank (William H. Taft per the transcription).",
+   "it_acts_on lists EO:1096 twice (cross_reference and amendment), while EO:1084 is cross_reference only although the order's text treats both identically.",
+   "jobs/wikisource-texts/output/texts/EO_1111.txt carries Wikisource page navigation text around the order text."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "An accepted original printing of EO 1111 (needed for T2).",
+    "where_to_look": "ProQuest/CIS Presidential Executive Orders and Proclamations replica of the State Department copy; NARA RG 11 numbered executive orders; Canal Zone executive order compilations (GPO) and the Canal Record, July 1909; Monthly Catalog entry at mocat.library.unt.edu/catalog/175-ch477 (HTTP 403 here) for the citation."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether and when EO 1096 (the parent) was expressly revoked or superseded. EO 1111 is an exemption from it and follows its status (rule d). Candidate only, it does not name the order as far as found: Saturday half-holiday Act of March 3, 1931.",
+    "where_to_look": "The project's EO:1096 dossier; later civil-service hours orders of 1909-1945; the 1931 Act's text (46 Stat. 1482) for any repeal or supersession clause; Truman-era workweek orders."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether a later Canal Zone or Panama Canal instrument expressly revoked or superseded EO 1111 itself.",
+    "where_to_look": "Executive Orders Relating to the Panama Canal (annotated compilations of 1921 and later); Canal Zone Code revision tables."
+   }
+  ],
+  "id": "EO:1111",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Only a Wikisource transcription is held. No accepted original printing was located in the slice or by two web searches. A GPO Monthly Catalog entry (UNT mocat 175-ch477) appears to list the order but returned HTTP 403, and a catalog entry is not a printing of the text. The original is probably only in the State Department numbered series (ProQuest/CIS microfiche) or NARA RG 11, which would be OFFLINE.",
+    "stop_code": "WEB",
+    "to": "T2"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "jobs/wikisource-texts/output/texts/EO_1111.txt (transcription only)"
+  },
+  "propositions": [
+   {
+    "claim": "EO 1111 of 16 July 1909 has one operative sentence, exempting Isthmus of Panama employees from EO 1084 and EO 1096 (transcription, not an original).",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Executive Order No. 1084, made June 8, 1909, and Executive Order No. 1096, made June 25, 1909, shall have no application to employes upon the Isthmus of Panama.",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1111.txt"
+   },
+   {
+    "claim": "EO 1096 superseded EO 1084, so the exemption's live parent is EO 1096 (transcription).",
+    "location": "H",
+    "pid": "p2",
+    "quote": "The following order will supersede that of June 8, 1909, as to hours of labor on Saturday during the months mentioned.",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1096.txt"
+   },
+   {
+    "claim": "EO 1096 runs each year 'until further notice', with no fixed end date in its own terms (transcription).",
+    "location": "H",
+    "pid": "p3",
+    "quote": "during the months of July, August and September of each year until further notice, four hours, exclusive of time for luncheon, shall constitute a day's work on Saturdays",
+    "supports": "counterevidence",
+    "where": "jobs/wikisource-texts/output/texts/EO_1096.txt"
+   },
+   {
+    "claim": "EO 1084 also ran 'until further notice' and applied to all Federal employees wherever employed (transcription).",
+    "location": "H",
+    "pid": "p4",
+    "quote": "until further notice, four hours, exclusive of time for luncheon, shall constitute a day's work for all employees in the Federal public service, wherever employed",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1084.txt"
+   }
+  ],
+  "searches": [
+   "Read the held Wikisource texts for EO 1111, EO 1084 and EO 1096.",
+   "Grep for EO 1111 in jobs/wikisource-texts/output: timed out, no result.",
+   "Web: EO 1096 June 25 1909 Saturdays four hours, revoked/superseded/amended: only EO 1111 found as a later instrument; no revocation found.",
+   "Web: exact phrase 'shall have no application to employes upon the Isthmus of Panama': Wikisource mirrors and a Monthly Catalog entry only; no original printing.",
+   "Web: Saturday half holiday, June 25 1909 order and Act of March 3, 1931: no instrument naming EO 1096 or EO 1111 found.",
+   "WebFetch of mocat.library.unt.edu/catalog/175-ch477: HTTP 403, not read."
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "review": {
+  "conclusion_reason": "OPEN and formal status unknown are warranted on the checked evidence: neither an ending nor positive current operation is established. Rule (d) supplies the parent-status inquiry identified in the gaps; the conclusion's basis_rule 'none' is imprecise. No accepted original was inspected, so the clause inventory remains provisional.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:1111",
+  "missed_evidence": [
+   "The supplied evidence slice marks best_held as 'official_original_counted'. This is an unresolved held-original lead, not proof of an original's contents, but it prevents treating the first gap as solely a web-acquisition problem. The slice supplies no original file path."
+  ],
+  "stop_code_verdict": "wrong (LOCAL held-original location/routing gap fits; WEB is premature while the slice reports an official original already held)",
+  "suspected_defect": "Possible stop-code/routing error: the worker treats the absence of an original path in own_texts as evidence that no original is routed, despite best_held='official_original_counted'. No quotation fabrication was found.",
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The held EO_1111.txt contains the quoted sole operative sentence and July 16, 1909 date. It is explicitly a Wikisource transcription.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "EO_1096.txt contains the exact supersession sentence identifying the June 8, 1909 order. This supports EO 1096 as the relevant parent, not its continued operation at the cutoff.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "EO_1096.txt contains the exact quoted annual recurrence and 'until further notice' language; its text supplies no fixed termination date.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "EO_1084.txt contains the quoted 'until further notice' and 'wherever employed' language. The claim accurately describes the transcription.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 94.5,
+ "start": "T3",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "wrong (LOCAL held-original location/routing gap fits; WEB is premature while the slice reports an official original already held)",
+ "tokens": 107679,
+ "units": 59704,
+ "units_producer": 36983,
+ "units_repair": 0,
+ "units_review": 22721
+}

@@ -1,0 +1,180 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C04",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": null,
+ "group": "modern",
+ "id": "EO:7714",
+ "ledger_status": null,
+ "producer_start": "T2",
+ "reached_claimed": "T5",
+ "reached_final": "T5",
+ "reached_reviewed": "T5",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole operative clause: exempts Charles R. Torbert from sec. 204 of the act of June 30, 1932 (compulsory retirement for age) and continues him in the service until October 1, 1938",
+    "end": "1938-10-01",
+    "props": [
+     "p3",
+     "p4",
+     "p5"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "own_terms",
+   "first_end": "1938-10-01",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "The evidence slice title spells the name 'Torbet'; both government printings and the transcription read 'Torbert'.",
+   "jobs/mabillon-held-printings/output/texts/EO_7714.txt has OCR noise in the header and footer ('DEPOSED SY te', 'Tue Wuite Hovss', 'PRINTING OFFICE: 19397'); the operative words are legible.",
+   "jobs/photius-gpo-volumes/output/texts/EO_7714.txt truncates the signature to 'FRANKLI'; the operative words are legible."
+  ],
+  "gaps": [],
+  "id": "EO:7714",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Two held GPO printings give the same legible operative sentence; the order sets its own end date, so status is NO under the own-terms rule.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The order has one operative clause (exempt and continue in service until October 1, 1938); it ended on that fixed date.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": true,
+    "from": "T4",
+    "note": "No open gap: the limit is a calendar date, not an event, and every proposition is quoted from a held official printing. Any later extension of Torbert would be a separate order.",
+    "stop_code": null,
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/photius-gpo-volumes/output/texts/EO_7714.txt (GPO bound slip-order volume, HathiTrust hvd.hl272j, PDF pages 363-364); second printing at jobs/mabillon-held-printings/output/texts/EO_7714.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held GPO slip-order volume text is a printing of EO 7714 dated September 23, 1937.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "THE WHITE HOUSE , September 23 , 1937 [No. 7714]",
+    "supports": "original",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_7714.txt"
+   },
+   {
+    "claim": "A second held government printing carries the same number, signature and a GPO imprint.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "FRANKLIN D ROOSEVELT Tue Wuite Hovss, September 23, 1937. [No. 7714] U.S. GOVERNMENT PRINTING OFFICE",
+    "supports": "original",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_7714.txt"
+   },
+   {
+    "claim": "The only operative sentence exempts one named person and continues him in service until a fixed date.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "I do hereby exempt Charles R. Torbert from the provisions thereof and continue him in the service until October 1 , 1938 .",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_7714.txt"
+   },
+   {
+    "claim": "The second printing gives the same operative sentence and the same terminal date.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "I do hereby exempt Charles R. Torbert from the provisions thereof and continue him in the service until October 1, 1938.",
+    "supports": "ending",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_7714.txt"
+   },
+   {
+    "claim": "The recital confirms the exemption was meant to last only until October 1, 1938.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "be exempted from the provisions of this section and continued in the service until October 1, 1938;",
+    "supports": "ending",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_7714.txt"
+   },
+   {
+    "claim": "The authority used is a person-by-person exemption power, so the order is an individual act and not a general rule.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "Provided, That the President may, by Executive Order, exempt from the provisions of this section any person when, in his judgment, the public interest so requires",
+    "supports": "clause",
+    "where": "jobs/mabillon-held-printings/output/texts/EO_7714.txt"
+   }
+  ],
+  "searches": [
+   "Read the three held texts named in the evidence slice (photius GPO volume, mabillon held printing, American Presidency Project transcription).",
+   "No web search run: the order's own fixed end date settles operative status.",
+   "Formal status rests on the evidence slice's empty list of later instruments naming the order; no independent search for a later revocation was made."
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T5"
+ },
+ "review": {
+  "conclusion_reason": "NO follows under own-terms expiry: the recital and operative sentence limit the individual exemption and continued service to October 1, 1938, before the cutoff. No contingent event or proof of actual retirement is required for this fixed-date expiration. Formal status is upheld only as the limited finding that no express ending was found in the supplied evidence, not proof that none exists.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:7714",
+  "missed_evidence": [],
+  "stop_code_verdict": "no_gap",
+  "suspected_defect": null,
+  "tier_supported": "T5",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held GPO OCR contains the quoted date and order number; its header identifies the official printing.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Second held printing contains the signature, September 23, 1937 date, number 7714, and U.S. GOVERNMENT PRINTING OFFICE imprint.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The sole operative sentence expressly exempts Charles R. Torbert and continues his service until October 1, 1938.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "Second printing independently reproduces the operative sentence with the same terminal date.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The recital expressly links both exemption and continued service to October 1, 1938, confirming the exemption's duration.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "Quoted statutory proviso authorizes exemption of any person; the operative sentence exercises that authority for Torbert alone.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 49.8,
+ "start": "T2",
+ "status": "completed",
+ "stop": null,
+ "stop_code_verdict": "no_gap",
+ "tokens": 77097,
+ "units": 34721,
+ "units_producer": 22160,
+ "units_repair": 0,
+ "units_review": 12561
+}

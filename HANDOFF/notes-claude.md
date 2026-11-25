@@ -13,6 +13,327 @@
   entries; YES producers need one resumed pass. EO 8613/8639 (r01) need a fresh prepare to refile.
 - **Next (in plan, after the gauge):** remaining YES (about 150 all-gates/hard-only), undecided stage 1, and the board
   orders in production.one_step_away (NMB report bytes now verified held per r01's dispatch check; needs a new plan).
+## 2026-11-24 ET, night (Claude: ProQuest pass closed, second reader run)
+
+- **Owner order:** "finish it up" (F-20261124-14).
+- **Total:** ProQuest holds **2,206** executive orders the census lacks, 95 probable, 28 unread
+  (`research/petty-census-closure-2026-11-24/scan-check/REPORT.md`).
+- **Same-date land records (384 "G"):** each compared with every census entry of its date: 266 held, 81 distinct
+  orders the census lacks, 24 undecided, 13 no order (`scan-check/FINISH_READING.csv`, `G_MATCH_RUBRIC.md`).
+- **Unread records (124):** re-read from up to 8 page images; 8 presidential orders. Five signed land orders found
+  that ProQuest files as copies of unsigned attachments (a `classify_match.py` gap). 28 remain unreadable or have no PDF.
+- **Second reader (Sonnet, blind, 344 judgments):** disputes 20 of 196 text-read operative orders (letters of
+  instruction, statements), 2 of 33 text land orders, 1 of 40 image reads; agrees with every sampled "not an EO"
+  and rule verdict. About 70 of the 2,206 are in dispute; floor about 2,140 (`scan-check/SECOND_READER.csv`).
+- **Requests:** owner ruling A-20261124-3 (which kinds count) still open; a reviewer of another model family or a
+  human sample would test the count beyond one family. Workers this pass: Haiku x7 (about 1.9M tokens), Sonnet x6
+  (about 0.7M tokens), roughly 40 minutes wall time.
+
+## 2026-11-24 ET, late evening (Claude: ProQuest finished)
+
+- **Owner order:** "if not finish it off" (F-20261124-13).
+- **Unnumbered 1789-1936:** re-read newest first, so all 20,028 records are now captured. The 111 first missed are
+  attachments; none is a new candidate.
+- **Unsigned unmatched (1,472):** 28 presidential orders. The rest are FPC section-24 restorations (590), orders a
+  Secretary signed by command (291), departmental orders and others.
+- **Military orders and pardons:** 654 pre-1937 general orders read; 52 presidential.
+- **Total ProQuest EOs missing from the census:** 2,112, about 2,180 with probable land files.
+  `scan-check/UNSIGNED_AND_MILITARY_READING.csv`, `proquest-scan/PQ_MILITARY_ORDERS_1789_1983.psv`.
+- **Left unread by design:** post-1936 unnumbered (25,735; all EOs numbered after 1936), pardons, nominations,
+  proclamations.
+
+## 2026-11-24 ET, late night (Claude: handwritten missing-candidate documents read from page images)
+
+- **Owner order:** "ok get the next ones then".
+- **Method** (F-20261124-12):
+  - The 1,252 handwritten or illegible documents were decoded in-page with `scan-check/g4_page_decoder.js`.
+  - The first and last pages went to ten Haiku readers.
+- **Result:**
+  - The image pass found 525 more executive orders.
+  - Totals: 2,032 executive orders on their face (1,531 land, 501 operative), 70 probable, 1,808 not orders, 31
+    unreadable.
+  - `CENSUS.md`, `scan-check/REPORT.md` and `FULL_READING_3941.csv` are updated.
+- **Housekeeping:**
+  - Page images (36 MB) are in the session workspace only, not committed.
+  - One image reader called send_later by mistake. A stray "unused" scheduled message fired once; its deletion was
+    refused by the classifier.
+- **Next:**
+  - A second reader on a random sample of verdicts.
+  - Middle pages of handwritten documents.
+  - The owner's ruling A-20261124-3.
+
+## 2026-11-24 ET, night (Claude: every missing ProQuest record's document fetched and read)
+
+- **Owner order:** "you have permission to get them. GO". All 3,941 PDFs were fetched in-page.
+- **Method** (F-20261124-11; `scan-check/REPORT.md`, `scan-check/FULL_READING_3941.csv`):
+  - Text layers are saved in `PQ_TEXT_LAYER_3941.jsonl.gz`.
+  - 838 land orders were found by the order-language rule.
+  - 2,082 documents were read by six Haiku readers (1.49M tokens, about 18 minutes).
+- **Result:**
+  - 1,507 executive orders on their face, plus 70 probable land files.
+  - 1,110 are not orders.
+  - 1,254 handwritten documents, estimated at 375-630 orders.
+  - The census lacks about 2,000 EOs from this collection.
+  - `CENSUS.md`, the ProQuest report and `COMPLETENESS_PLAN.md` are updated.
+- **Next:**
+  - Read the handwritten 1,254 from page images.
+  - Second-read a sample of the Haiku verdicts.
+  - Get the owner's ruling A-20261124-3.
+
+## 2026-11-24 ET, late (Claude: documents behind 50 missing ProQuest records read)
+
+- **Owner order:** read the candidates yourself.
+- **Sample** (F-20261124-10): 50 random records from `proquest-scan/CANDIDATES_MISSING.csv`, in `scan-check/`. 48
+  were read: printed text from the PDFs' text layer, handwriting from rendered page images. Two large scans are unread.
+- **Result:**
+  - Land records: 19 of 20 are executive orders. "Other orders": only 6 of 28.
+  - Estimated executive orders missing from the census: about 2,100 (land about 1,600; other about 500, 95%
+    230-890).
+  - `CENSUS.md` brief, section 4 and section 6, the scan report and `COMPLETENESS_PLAN.md` now carry this figure.
+- **Warning:** navigating to a ProQuest PDF link downloads it, because Chrome's PDF viewer is off. One file landed
+  on the owner's computer: `PT1-1838-12-25.pdf`.
+- **Asks:** @Owner: A-20261124-3 (which kinds count) still open.
+
+## 2026-11-24 ET, evening (Claude: ProQuest unnumbered collection read in full and matched to the census)
+
+- **Owner order:** pull everything ProQuest has. The owner reports the NYU librarian approved this use of NYU's
+  access. Catalog data only; no scan was downloaded.
+- **Harvest** (F-20261124-9): every result page of "Unnumbered Executive Orders, Directives, and Proclamations",
+  1789-1936, read oldest first. 19,918 of 20,028 records saved; about 110 were lost to same-date reordering.
+  `proquest-scan/PQ_UNNUMBERED_1789_1936.psv`.
+- **Classification and match** (`proquest-scan/classify_match.py`, deterministic):
+  - Signed first copies: 3,411 land orders and 2,609 other operative orders. The census holds 1,695, and 384 share
+    a date and series with a census entry.
+  - **3,941 are missing**: 1,699 land orders (893 in the 1909-1936 numbered series) and 2,242 other orders.
+    `proquest-scan/CANDIDATES_MISSING.csv`. This confirms the 29-month estimate of 3,900.
+  - Other signed kinds are tallied but not counted: treaties, NRA codes, arms-export exceptions, pardons and others.
+  - Checks: the title rules match the hand sample for 202 of 215 records. In a random 40 unmatched records, none
+    has a census counterpart within 45 days.
+- **Updated:** `CENSUS.md` brief, section 4 and section 6; `COMPLETENESS_PLAN.md`; `proquest-scan/REPORT.md`.
+- **Next:**
+  - Read the scans of a random sample of the 3,941.
+  - Recover the about 110 missed records by narrow date ranges.
+  - Check the land series against the GLO and Interior schedules.
+- **Asks:** @Owner: A-20261124-3, which kinds of presidential document count.
+
+## 2026-11-24 ET, afternoon (Claude: census corrections; ProQuest browse measures the unnumbered gap)
+
+- **Census corrections** (A-20261124-1, owner yes): EO 6585 admitted (census 15,003); EO:7010P renamed EO:7010F; the
+  APP text was re-keyed from EO:4224 to EO:4224½, and the APP id pattern was fixed. PR #308.
+- **Owner corrections recorded:**
+  - TDM Studio carries no executive orders (A-20261124-2, withdrawn).
+  - HathiTrust and ProQuest numbered PDFs were already done. `COMPLETENESS_PLAN.md` now lists the work already done.
+- **ProQuest browse** (owner's Chrome, no downloads; `research/petty-census-closure-2026-11-24/proquest-scan/`):
+  - 14,703 signed unnumbered records for 1789-1936.
+  - A 29-month sample estimates about 3,900 presidential orders the census lacks (95% roughly 800-7,100).
+  - Direct phrase counts find about 1,600 records in the coal, petroleum, phosphate, potash and public-water land
+    series, of which the census holds about 41.
+- **Next:** list each land-order series end to end from ProQuest result lists and the GLO and Interior schedules.
+  Read sample scans to check ProQuest's signed flag.
+- **Asks:** @Owner: none new.
+## 2026-11-18 ET, overnight (Claude: Kiaer tier probe ran under the owner's review; 80 orders; no count changes)
+
+- **Owner took the reviewer's role** for both plans (D-20261118-kiaer-owner-directed-wave; ask
+  A-20261118-kiaer-fourth-rejection answered). No further Codex review was run. Augur's only refusals were "not in
+  Bentham's plan" and the stage-1 ramp, both owner-directed.
+- **Ran:** stage 0 (29 orders, 1 lane, 74 minutes) and the full run (51 more, 3 lanes, 47 minutes). 80 orders and
+  9 planted reviews; every order scored with a review, none failed, no turn estimated, none of the owner's stop
+  conditions met. Report: `research/kiaer/kiaer-2026-11-18/REPORT.md`; finding F-20261118-kiaer-tier-probe.
+- **Cost:** 8,082,009 units, 16,275,221 raw tokens, about 98,000 units an order;
+  8,865,278 units with the smoke tests and plan reviews. 1.9M of the 10M cap was left unspent
+  (cells were sized at the 80th-percentile cost). Units count each CLI's main model; Claude Code's side model for
+  web-fetch summaries used a further 9.0M raw tokens (about 1 to 2% of Claude's dollars).
+- **Moves upheld at first pass (numbered orders):** T2 to T3 23 of 32, T3 to T4 24 of 33; T1 to T2 5 of 16,
+  T4 to T5 12 of 34, T0 to T1 0 of 4. Stops are mostly WEB and NOT_FOUND, rarely HELD_UNROUTED; the reviewer
+  marked 22 of 59 stop codes wrong, so stop-code shares are soft.
+- **Census check:** the independent pass did not reach the census tier for 7 of 13 census-T3 orders and all 3
+  census-T5 orders. Blind audit: 2 of 6 conclusions matched the ledger. These are leads for adjudication; nothing
+  was changed.
+- **Planted errors:** 9 planted, 6 informative, 5 caught, 1 missed (a removed ending left the NO standing).
+- **Not done / to know:** the pull request is a draft and must not be merged without the owner. `bentham.py
+  usage` was not run: this was a Relay run outside the Claude agent sessions and the owner limited writes to the
+  probe folder, Kean and these notes. After an interrupted turn the kit prints STOPPED until
+  `python -m kiaer reconcile` records a figure. Kit: `%USERPROFILE%/Relay-kiaer/`.
+
+## 2026-11-18 ET, night (Claude: Kiaer probe rejected a fourth time on one ground; fixed, not reviewed; nothing ran)
+
+- **Owner answered** A-20261118-kiaer-third-rejection in chat: "Fourth review". Codex rejected both plans again
+  (`research/kiaer/kiaer-2026-11-18/review/CODEX_REVIEW_4.json`, F-20261118-kiaer-fourth-rejection). Every earlier
+  ground was found met; one was left: the Codex adapter skipped a usage event whose usage field was missing, null
+  or not an object, so such a turn still counted as measured. No repository write path was found.
+- **That ground is fixed and tested, not reviewed** (62 tests pass, selftest exit 0; `CHANGES.md` round 4). The
+  current plans are `review/WAVE_stage*.current-unreviewed.json` (stage 0 `2244eae8...`, stage 1 `4d36c76d...`);
+  Augur refuses them only on Bentham, the stage-1 ramp and the missing review.
+- **Still not done:** no review is bound, no owner exception is recorded (no `add-decision`), stage 0 and the full
+  run have not started, nothing is pushed, there is no pull request. No count changed.
+- **Spent:** 783,269 units, 1,659,693 raw tokens (two smoke tests, four reviews), outside this session's own use.
+- **Open for the owner:** A-20261118-kiaer-fourth-rejection (fifth review, sign the plans yourself, or drop it).
+
+## 2026-11-18 ET, late (Claude: Kiaer probe rejected a third time; three last grounds fixed, not reviewed; nothing ran)
+
+- **Owner answered** A-20261118-kiaer-review-rejected in chat: "Fix and re-review". All seven grounds of Codex's
+  second review were fixed in the kit (zero cap, saved state bound to the plan, reservation race, unmeasured turns
+  stop the run, artifact ownership, provider limits ahead of the environment, provenance wording).
+- **Second smoke test passed** on the changed code: EO 9703, 186,931 units, slowest turn 112 s. With the first
+  (167,712) that is about 53 to 59 orders for 10M units, not 235.
+- **Third review rejected both plans** (`research/kiaer/kiaer-2026-11-18/review/CODEX_REVIEW_3.json`,
+  F-20261118-kiaer-third-rejection): the seven grounds were met except part of one, and it found three more:
+  `reconcile --units nan` erased a charge; empty or partial provider usage counted as measured; four plan
+  statements were stronger than the code. It again found no way for a model turn to write to the repository.
+- **Those three are fixed and tested, not reviewed** (58 tests pass, selftest exit 0; `CHANGES.md` round 3). The
+  current plans are `review/WAVE_stage*.current-unreviewed.json`; Augur refuses them only on Bentham, the stage-1
+  ramp and the missing review.
+- **Still not done:** no review is bound, no owner exception is recorded (no `add-decision`), stage 0 and the full
+  run have not started, nothing is pushed, there is no pull request. No count changed.
+- **Spent:** 644,809 units, 1,301,929 raw tokens (two smoke tests, three reviews), outside this session's own use.
+- **Open for the owner:** A-20261118-kiaer-third-rejection (fourth review, sign stage 0 yourself, or drop it; and
+  whether 10M units is the right budget for 11 cells).
+- **To resume:** kit in `%USERPROFILE%/Relay-kiaer/` (launcher `run-kiaer.ps1`, review call `codex-review.ps1`);
+  data in `%LOCALAPPDATA%/Relay/kiaer-2026-11-18` (physical path in `REPORT.md`). After any interrupted turn the
+  run now prints STOPPED until `python -m kiaer reconcile` records a figure for it.
+
+## 2026-11-18 ET (Claude: Kiaer tier probe stopped at the plan review; nothing ran)
+
+- **Stopped:** the owner-directed Kiaer probe (Relay, `Relay-kiaer.zip`) did not start. Codex (gpt-6-astra)
+  reviewed the stage-0 and stage-1 plans against Augur and rejected both, twice; the owner's rule for this probe
+  was to stop after a second rejection. No owner exception was recorded. No claim, status, census row, codebook or
+  tracker changed. Report: `research/kiaer/kiaer-2026-11-18/REPORT.md`.
+- **Done without tokens:** machine tier census of 15,002 orders (T0 70, T1 2,245, T2 9,144, T3 1,940, T4 348,
+  T5 1,255, T6 0; 2,938 undecided with a rule lead) and a seeded draw (11 cells, 235 orders at most).
+- **Smoke test passed:** EO 9703 through producer, review and repair; 167,712 units, every turn measured. At that
+  cost 10M units buys about 59 orders, not 235.
+- **Reviews:** the first found four real defects, fixed (`CHANGES.md`, 38 tests pass). The second found seven more
+  grounds, not fixed: a zero-cap bypass, saved state not bound to the plan, a reservation race in Relay's engine
+  with more than one worker, unaccounted failed turns, unprotected first-pass artifacts, overridable ceilings and
+  overstated provenance wording. It found no way for a model turn to write to the repository.
+- **Spent:** 317,849 units (599,608 raw tokens): smoke test plus two Codex reviews; this session's own usage not
+  included.
+- **Owner ask A-20261118-kiaer-review-rejected:** fix the seven grounds and allow a third review; or sign stage 0
+  yourself and hold the full run for the fixes; or drop the probe.
+- **Recorded:** Kean F-20261118-kiaer-stopped-at-review. Branch `claude/kiaer-probe-2026-11-18`, committed locally,
+  not pushed. Human-certified 0.
+- **This PC:** `claude`, `codex`, `node` and `npm` are not on PATH. Relay ran on the CLI binaries bundled with the
+  desktop apps (`RELAY_CLAUDE_BIN`, `RELAY_CODEX_BIN`; launcher `%USERPROFILE%/Relay-kiaer/run-kiaer.ps1`). Data
+  written under `%LOCALAPPDATA%` from a Claude desktop session lands in
+  `AppData\Local\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Local\Relay\kiaer-2026-11-18`.
+## 2026-11-13 ET (Claude: FEPC fiscal source challenge, EO-SUP-04)
+
+- **Report:** `research/lind/fepc-fiscal-review/REVIEW.md`, with source hashes and page crops. A source challenge only.
+- **Result:** the producer's FY1947 figures are confirmed. The function-list sourcing is corrected (FR 270.1(h)(1), not AR p. 118). The 1945 account lapsed to the surplus fund in FY1947. One cell has a $2.00 printing error.
+- **Open:** six legal predicates (section 4); the May 18, 1946 letter is still unlocated.
+
+## 2026-11-13 ET, early (Claude: conveyor audit for supervisor dispatches EO-SUP-01 and EO-SUP-02)
+
+- **Audit:** `research/lind/conveyor-audit/AUDIT.md`; Kean F-20261113-conveyor-audit.
+  - The $6.59 / 51-call comparison was whole-batch. At the aligned boundary the manual run used 48 requests, $5.78,
+    with at most 33 ($4.03) removable.
+  - The 30-order replay on saved inputs: 0 coordinator calls, 7 proposals matching the pilot's, stop at producer
+    reconfirmation.
+  - "518k" is the mean per-request prompt.
+- **Sol recovery compatibility** (judged from the supervisor's description; the commit is not fetchable here): no
+  overlap. Rerun the 30-order replay on the combined tree, because the EO-list matcher can change prepared dossiers.
+- **PR #304:** title and body corrected (text in `research/lind/conveyor-audit/PR_304_METADATA.md`). The EO 12753
+  eligibility and adoption claim is withdrawn; open ask A-20261113-lind-12753-reconfirm, not approved.
+- **EO-SUP-03 corrections:**
+  - cache read is 99.759% of prompt tokens (cache creation 0.241%, uncached 0.0004%);
+  - the $24.1 subagent gap is an inference;
+  - Kean F-20261113-conveyor-audit-correction.
+  - Root's exact-tree test on main 5ace518 replaces my description-based compatibility judgment.
+- **Not authorized:** the $25 batch, the EO 12753 paid reconfirmation, merges, adoption.
+
+## 2026-11-13 ET (Claude: coordination cost measured; conveyor fixed for the undecided route; real-kit replay; board handoff corrected)
+
+Compact handoff. Read only the files named.
+
+- **Board correction** (commit 60627d325): `research/lind/board-candidates-2026-11-13/RESULT.md` section 0.
+  - The NMB "closed" field is undefined; inventory agreement is not independent lineage (`INVENTORY_AGREES`).
+  - Unreadable images are kept apart from failed OCR. The owner rule says "held report"; block-if-unreadable is in the
+    producer brief only.
+  - The 67 are candidate inputs. The 10-order pilot was not bought.
+- **Efficiency result:** `research/lind/conveyor-replay/RESULT.md`; Kean F-20261113-conveyor-replay.
+  - Long-context coordinator calls cost $0.13-0.21 each; 77-82% of that is context re-reading; decisions were 9-22% of
+    calls.
+  - The Maudslay conveyor's undecided route was broken on the real kit (blank STATUS_DECISION copies under research/
+    tripped the prior-research scan). Fixed: the copies now live in scratch; tests 75/78 (3 pre-existing Windows).
+  - Replay of 5 Lind orders with saved real outputs: 37 s, 0 coordinator calls through overlay proposal; identical
+    evidence and status decisions; stops at producer reconfirmation as the owner rule requires.
+- **Compliance finding:** F-20261113-lind-mechanical-reconfirmation. My manual Lind route reconfirmed model producers by
+  script, which D-20261110-no-mechanical-reconfirmation-for-models declines.
+  - A-20261112-lind-adopt-12753 is withdrawn; the new owner ask is **A-20261113-lind-12753-reconfirm**.
+- **Sol handoff:** `research/lind/conveyor-replay/HANDOFF_TO_SOL.md`.
+- **Next, if approved:** one paid conveyor batch, $25 cap, with the decision rule in RESULT.md section 6. It needs a
+  reconfirmation decision first.
+- **Cost of this assignment:** about $7.5 coordinator (list price); no production or review.
+
+## 2026-11-12 ET, late (Claude: Lind stage-0 diagnosis; EO 12753 recovered to eligible; offline check before review)
+
+Compact handoff for a fresh coordinator context. Read only the files named.
+
+- **Pilot result** (PR #303): stays 0 ready of 30. Report: `research/excavator/claude-lind-2026-11-12/REPORT.md`.
+- **Diagnosis:** `research/excavator/claude-lind-2026-11-12/FAILURES.md` (per order, by category);
+  Kean F-20261112-lind-stage0-diagnosis.
+- **EO 12753** (PR #304, branch `claude/lind-12753-recovery`):
+  - Cotton run 43324287671 kept its ending source's bytes;
+  - `completion/complete-v2` is eligible, with the same claim (sha256 47f70df6...) and the same reviews;
+  - waiting on owner ask **A-20261112-lind-adopt-12753**.
+  - On yes, file it as D-20261110-papinian-adopt did (`ADOPTION_ROWS.csv`, canonical claim file under
+    `research/readiness/claims/`, a readiness-tracker run). Report it separately from the pilot.
+- **Earlier check** (PR #305, branch `claude/cotton-precheck`): `kit.py overlay-check` now runs the actual checker
+  offline before blind review (`batch.actual_check_offline`).
+- **Optional ask A-20261112-lind-repair-12437-11943** ($8 cap): if approved, run it from a fresh context.
+  - Use `/root/lind-sealed/overlay_review_lind.py`. It is outside the repo, so copy or recreate it from Papinian's
+    `tools/overlay_review.py` with Linux paths.
+  - Re-render the producer brief so it credits F6 `working_text_basis`.
+- **Costs:**
+  - optimization analysis: about $39;
+  - pilot: $23.07;
+  - post-pilot coordinator time: measured in the PR #304 description.
+
+## 2026-11-12 ET, night (Claude: Lind stage 0 run; 0 ready; unsuccessful row)
+
+- **Run** (owner-approved, A-20261112-lind-stage0-v2): 30 undecided orders, 15 passing every gate and 15 hard-only.
+  Report: `research/excavator/claude-lind-2026-11-12/REPORT.md`; Kean F-20261112-lind-stage0.
+- **Result: ready 0 in both groups, so no stage 1.**
+
+  | | Dispatch-blocked | Producer-blocked | Statuses accepted | Claims reviewed | Upheld by both arms |
+  |---|---:|---:|---:|---:|---:|
+  | All gates | 2 | 6 | 7 | 6 | 1 (EO 12753) |
+  | Hard-only | 5 | 9 | 1 | 1 | 0 |
+
+  - EO 12753 failed the actual checker on a custody-only ending source.
+  - Both arms caught the planted control.
+- **Cost:** $23.07 of the $35 cap: producers 5.79, reviewers 7.12, coordinator 10.16. The coordinator came to $0.34 per
+  attempt, over the $0.25 stop rule.
+- **Next, owner's call (not asked yet):**
+  - zero-production diagnosis of the 30;
+  - or custody retention for EO 12753's ending source, plus text corrections of 5 rejected claims, then a fresh review.
+- **Augur:** this run is recorded in `CONFIGURATIONS.json` as stage 0, not passed.
+## 2026-11-25 ET (Claude: Peiresc replica harvest; Bentham fix; Photius stage 0)
+
+- **Harvest (PR #310, Kean F-20261124-peiresc-harvest):** 2,097 of the 2,192 numbered orders that had no official
+  text now have a ProQuest replica. Each file's sha256 and length were verified. Files are in
+  `research/pre-1937-sources/ProQuest Pre-1937 Orders/`; the record and NOT_FETCHED.csv are in
+  `research/excavator/peiresc-2026-11-24/`. Not fetched: 95 orders (15 returned 404; 80 returned 500, 73 of them
+  lettered suffix orders).
+- **Pinakes and tracker re-run on the branch:** replicas now cover 4,841 orders, every one with text. 2,101 orders
+  carry `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK`:
+  - 1,873 are undecided;
+  - 210 are decided but also need an OFR catalog search;
+  - 17 are decided orders that a pass moves into the claim-ready pool.
+- **Bentham fix (0eb9ee0):** a passing replica now clears every original-text blocker (P4), and agent acquisitions
+  list their orders. Before the fix, Augur refused every agent acquisition. Bentham now ranks the replica check at
+  17 orders, $3.03.
+- **Photius stage 0** (Augur PASS; owner review D-20261125-peiresc-page-check; F-20261125-photius-peiresc-s0):
+  - 17 of 17 pass. Opus agreed on 6 of 6, and the upper-bound cost is about $1.15 list.
+  - `assemble.py` now carries several waves; Lane 4's rows are unchanged.
+  - Lesson: Federal Register-era scans start with the tail of the preceding order. Readers must credit the order's
+    own closing block.
+- **Next:** wider replica checks run only as Bentham ranks them. Most of the replica value is for the 1,873
+  undecided orders. A checked replica removes the transcription refusal that capped undecided yield
+  (F-20261107-haloander-undecided-probe); measure that on the next undecided probe.
+- **Stateless gauge:** running on the owner's PC. One test failed only because Windows blocked symlink creation
+  (WinError 1314); Developer Mode is now on, and the tests are being rerun before the dry run.
+- **No count changed.** No statuses changed, and certified is still 0.
 
 ## 2026-11-24 ET (Claude: Petty census-closure wave; census paper drafted; CIS pilot run)
 

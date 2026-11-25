@@ -187,3 +187,10 @@ pages already saved.
 - **Cotton uses fixed captures.** Its live APP route is removed, and both initial URLs and redirects to
   APP are refused. Commons file redirects remain supported. Missing exact live bytes remain a custody hold;
   archive successors require ordinary claim re-citation and review.
+
+## 2026-11-24 (Claude, Petty)
+
+`instrument_id` now reads half-numbered titles ("Executive Order 4224 1/2") as `EO:4224½`. The old pattern truncated
+them to the whole number, so the one affected page (4224-12, Coolidge visa fees) had been filed as EO:4224. Its rows in
+`output/INDEX.csv`, `INDEX.jsonl`, `DOCUMENTS.jsonl`, `FRAGMENTS.jsonl` and `SOURCES.jsonl` were re-keyed by hand;
+no other title is affected (Kean A-20261124-1).

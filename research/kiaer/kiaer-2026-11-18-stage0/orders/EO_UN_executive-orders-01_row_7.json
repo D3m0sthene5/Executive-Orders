@@ -1,0 +1,374 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C01",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "sole known command (inferred from the revoking proclamation, not from the order's text): withdraws public lands for lighthouse purposes",
+    "end": "1938-11-25",
+    "props": [
+     "p2",
+     "p3",
+     "p4",
+     "p8"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "express_named_ending",
+   "first_end": "1938-11-25",
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "Census row has an empty subject and status 'indeterminate'; the NARA table and Proc. 2319 show it is a lighthouse land withdrawal revoked by Proc. 2313.",
+   "Not a project-file error: the Federal Register printing of Proc. 2319 reads 'this 11th day of December' although the proclamation was filed 13 Jan 1939; Proc. 2336 identifies it as 'Proclamation No. 2319 of January 11, 1939'.",
+   "Not a project-file error: Procs. 2313 and 2319 call the companion order 'October 20, 1874'; Proc. 2336 (4 FR 2025) corrects the date to October 26, 1874, matching the NARA table. This affects the neighbouring row 8, not this row."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Text of the 21 July 1874 order (which lands, any other commands, signer); without it T1 and T2 cannot be reached and the clause list is inferred. An ending earlier than 25 Nov 1938 is also not excluded.",
+    "where_to_look": "National Archives RG 49 (General Land Office) executive order files and RG 26 (Lighthouse Service) site files for Michigan; GLO Michigan tract books; possibly the ProQuest executive orders collection"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Proc. 2313's own printing was not read directly; its revoking words are taken from the quotation inside Proc. 2319.",
+    "where_to_look": "3 FR 2799-2800 (govinfo FR-1938-11-30); 53 Stat. (proclamations); American Presidency Project page for Proc. 2313 (HTTP 504 twice)"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether another presidential order bears the same date 21 July 1874 (a search summary points to a White Mountain Indian Reservation order in a University of Wisconsin compilation, while the American Presidency Project dates a similar order June 21, 1874); no page showing it was opened, so the lead is unverified. The row's identity rests on the NARA table's link to Proc. 2313.",
+    "where_to_look": "Executive Orders Relating to Indian Reservations (1912 compilation), White Mountain entries; search.library.wisc.edu digital copy (page text did not load)"
+   }
+  ],
+  "id": "EO:UN:executive-orders-01:row:7",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "No text of the 21 July 1874 lighthouse withdrawal order is held or was found online; the census row carries only date and NARA table source. The ending was nevertheless found in an official printing, so the conclusion below is recorded although the tier cannot rise.",
+    "stop_code": "NOT_FOUND",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": "none held; none found online"
+  },
+  "propositions": [
+   {
+    "claim": "The census identifies this row only by date 1874-07-21 and its NARA 1989 codification source row; no text is attached.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "EO:UN:executive-orders-01:row:7,documented_unnumbered,1,1,unadjudicated,unadjudicated,unadjudicated,unadjudicated,,nara_codification_1989_source_row,1874-07-21",
+    "supports": "original",
+    "where": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv line 14966"
+   },
+   {
+    "claim": "NARA's codification disposition table lists the order of July 21, 1874 as revoked by Proclamation 2313 (table read through a page summary, not verbatim HTML; the reviewer opened the table and confirmed the entry).",
+    "location": "W",
+    "pid": "p2",
+    "quote": "Revoked by Proc. 2313",
+    "supports": "ending",
+    "where": "https://www.archives.gov/federal-register/codification/executive-orders-01.html"
+   },
+   {
+    "claim": "Proc. 2313 of 25 Nov 1938, as quoted in the Federal Register printing of Proc. 2319, revoked the July 21, 1874 order by date and subject.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "The Executive Orders of July 21, 1874, and October 20, 1874, withdrawing public lands for lighthouse purposes are hereby revoked",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1939-01-14/pdf/FR-1939-01-14.pdf (4 FR 229, page image read)"
+   },
+   {
+    "claim": "Proc. 2319 corrected that paragraph so the July 21, 1874 order is revoked outright, without the 'in so far as' limit that applies to the other two orders.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "The Executive Order of July 21, 1874, withdrawing public lands for lighthouse purposes, is hereby revoked.",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1939-01-14/pdf/FR-1939-01-14.pdf (4 FR 229, page image read)"
+   },
+   {
+    "claim": "Proc. 2319 reestablished only the October 20, 1874 order, not the July 21, 1874 order.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "the aforesaid Executive order of October 20, 1874, is hereby reestablished, subject to the modification thereof made by this proclamation",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1939-01-14/pdf/FR-1939-01-14.pdf (4 FR 229, page image read)"
+   },
+   {
+    "claim": "Proc. 2313 is dated 25 Nov 1938 and printed at 3 FR 2799, per Proc. 2319's recital and footnote.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "Proclamation No. 2313 of November 25, 1938, enlarging the Marquette National Forest in the State of Michigan",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1939-01-14/pdf/FR-1939-01-14.pdf (4 FR 229; footnote '3 F.R. 2799 DI.')"
+   },
+   {
+    "claim": "Proc. 2336 (signed 11 May 1939, filed 15 May 1939, 4 FR 2025) corrects Procs. 2313 and 2319 only by substituting 'October 26, 1874' for 'October 20, 1874'; it does not mention the July 21, 1874 order, so that order's revocation stands. It also dates Proc. 2319 as January 11, 1939 and cites 3 F.R. 2799 and 4 F.R. 229.",
+    "location": "W",
+    "pid": "p8",
+    "quote": "the aforesaid proclamations are hereby corrected by substituting the date \"October 26, 1874,\" for the date \"October 20, 1874,\" wherever the latter date may appear in such proclamations",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1939-05-16/pdf/FR-1939-05-16.pdf (4 FR 2025, page image read)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld; noted that the reviewer opened the table and confirmed the entry."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p6",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p7",
+    "why": "Cited URL is a 29 May 1874 Light-House Service order, not a July 21 order; no opened page confirms a same-date White Mountain order, so it is now an unverified lead in gaps."
+   },
+   {
+    "change": "fixed",
+    "pid": "p8",
+    "why": "New proposition from the reviewer's missed evidence: Proc. 2336 read from the 4 FR 2025 page image; replaces the former third gap."
+   }
+  ],
+  "searches": [
+   "Grep of the row id in research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv and in research/stage15 (one hit, the census row)",
+   "Fetch of the NARA codification table executive-orders-01.html",
+   "Web: Proclamation 2313 1938 'July 21, 1874' revoked",
+   "Web: 'Proclamation 2313' Federal Register national forest 'Executive order of July 21, 1874'",
+   "Web: Proclamation 2336 1939 correcting Marquette proclamations",
+   "Web: 'July 21, 1874' executive order lighthouse purposes Michigan (no text found)",
+   "Fetch of APP Proc. 2313 (504 twice) and APP Proc. 2319 (read)",
+   "govinfo FR-1939-01-14 PDF, pages 229-230 read as images",
+   "Repair: govinfo FR-1939-05-16 PDF, page 2025 read as image (Proc. 2336 confirmed)",
+   "Repair: Web: Grant executive order 'July 21, 1874' White Mountain Indian Reservation Arizona (summary only; sources disagree on the date)",
+   "Repair: Fetch of search.library.wisc.edu text page for the Indian reserves compilation (only site navigation returned)"
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "group": "pre1937",
+ "id": "EO:UN:executive-orders-01:row:7",
+ "ledger_status": null,
+ "producer_start": "T0",
+ "reached_claimed": "T0",
+ "reached_final": "T0",
+ "reached_reviewed": "T0",
+ "result": {
+  "clauses": [
+   {
+    "clause": "sole known command (inferred from the revoking proclamation, not from the order's text): withdraws public lands for lighthouse purposes",
+    "end": "1938-11-25",
+    "props": [
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "express_named_ending",
+   "first_end": "1938-11-25",
+   "formal_status": "revoked_or_superseded",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "Census row has an empty subject and status 'indeterminate'; the NARA table and Proc. 2319 show it is a lighthouse land withdrawal revoked by Proc. 2313.",
+   "Not a project-file error: the Federal Register printing of Proc. 2319 reads 'this 11th day of December' although the proclamation was filed 13 Jan 1939 and is catalogued as 11 Jan 1939.",
+   "Not a project-file error: Procs. 2313 and 2319 call the companion order 'October 20, 1874'; the NARA table lists Oct. 26, 1874, and Proc. 2336 reportedly corrects the date. This may affect the neighbouring row 8."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Text of the 21 July 1874 order (which lands, any other commands, signer); without it T1 and T2 cannot be reached and the clause list is inferred.",
+    "where_to_look": "National Archives RG 49 (General Land Office) executive order files and RG 26 (Lighthouse Service) site files for Michigan; GLO Michigan tract books; possibly the ProQuest executive orders collection"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Proc. 2313's own printing was not read directly; its revoking words are taken from the quotation inside Proc. 2319.",
+    "where_to_look": "3 FR 2799-2800 (govinfo FR-1938-11-30); 53 Stat. (proclamations); American Presidency Project page for Proc. 2313 (HTTP 504 twice)"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Proc. 2336 (11 May 1939, 4 FR 2025) not read directly; a search summary says it only changes 'October 20, 1874' to 'October 26, 1874', leaving the July 21 revocation untouched.",
+    "where_to_look": "govinfo FR-1939-05-16, p. 2025"
+   }
+  ],
+  "id": "EO:UN:executive-orders-01:row:7",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T0",
+    "note": "No text of the 21 July 1874 lighthouse withdrawal order is held or was found online; the census row carries only date and NARA table source. The ending was nevertheless found in an official printing, so the conclusion below is recorded although the tier cannot rise.",
+    "stop_code": "NOT_FOUND",
+    "to": "T1"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "none",
+   "where": "none held; none found online"
+  },
+  "propositions": [
+   {
+    "claim": "The census identifies this row only by date 1874-07-21 and its NARA 1989 codification source row; no text is attached.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "EO:UN:executive-orders-01:row:7,documented_unnumbered,1,1,unadjudicated,unadjudicated,unadjudicated,unadjudicated,,nara_codification_1989_source_row,1874-07-21",
+    "supports": "original",
+    "where": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv line 14966"
+   },
+   {
+    "claim": "NARA's codification disposition table lists the order of July 21, 1874 as revoked by Proclamation 2313 (table read through a page summary, not verbatim HTML).",
+    "location": "W",
+    "pid": "p2",
+    "quote": "Revoked by Proc. 2313",
+    "supports": "ending",
+    "where": "https://www.archives.gov/federal-register/codification/executive-orders-01.html"
+   },
+   {
+    "claim": "Proc. 2313 of 25 Nov 1938, as quoted in the Federal Register printing of Proc. 2319, revoked the July 21, 1874 order by date and subject.",
+    "location": "W",
+    "pid": "p3",
+    "quote": "The Executive Orders of July 21, 1874, and October 20, 1874, withdrawing public lands for lighthouse purposes are hereby revoked",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1939-01-14/pdf/FR-1939-01-14.pdf (4 FR 229, page image read)"
+   },
+   {
+    "claim": "Proc. 2319 corrected that paragraph so the July 21, 1874 order is revoked outright, without the 'in so far as' limit that applies to the other two orders.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "The Executive Order of July 21, 1874, withdrawing public lands for lighthouse purposes, is hereby revoked.",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1939-01-14/pdf/FR-1939-01-14.pdf (4 FR 229, page image read)"
+   },
+   {
+    "claim": "Proc. 2319 reestablished only the October 20, 1874 order, not the July 21, 1874 order.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "the aforesaid Executive order of October 20, 1874, is hereby reestablished, subject to the modification thereof made by this proclamation",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1939-01-14/pdf/FR-1939-01-14.pdf (4 FR 229, page image read)"
+   },
+   {
+    "claim": "Proc. 2313 is dated 25 Nov 1938 and printed at 3 FR 2799, per Proc. 2319's recital and footnote.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "Proclamation No. 2313 of November 25, 1938, enlarging the Marquette National Forest in the State of Michigan",
+    "supports": "ending",
+    "where": "https://www.govinfo.gov/content/pkg/FR-1939-01-14/pdf/FR-1939-01-14.pdf (4 FR 229; footnote '3 F.R. 2799 DI.')"
+   },
+   {
+    "claim": "Counter-check: another order of the same date exists (Grant, White Mountain Indian Reservation, Arizona), so identity of this row rests on the NARA table's link to Proc. 2313. Search-result summary only; page not opened.",
+    "location": "W",
+    "pid": "p7",
+    "quote": "EXECUTIVE MANSION, July 21, 1874",
+    "supports": "counterevidence",
+    "where": "https://presidency.ucsb.edu/documents/executive-order-377"
+   }
+  ],
+  "searches": [
+   "Grep of the row id in research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv and in research/stage15 (one hit, the census row)",
+   "Fetch of the NARA codification table executive-orders-01.html",
+   "Web: Proclamation 2313 1938 'July 21, 1874' revoked",
+   "Web: 'Proclamation 2313' Federal Register national forest 'Executive order of July 21, 1874'",
+   "Web: Proclamation 2336 1939 correcting Marquette proclamations",
+   "Web: 'July 21, 1874' executive order lighthouse purposes Michigan (no text found)",
+   "Fetch of APP Proc. 2313 (504 twice) and APP Proc. 2319 (read)",
+   "govinfo FR-1939-01-14 PDF, pages 229-230 read as images"
+  ],
+  "start_tier_confirmed": "T0",
+  "tier_reached": "T0"
+ },
+ "review": {
+  "conclusion_reason": "The NARA source-row identity and express whole-order revocation reproduced in Proc. 2319 support operative NO and formal revoked status, with the documented revocation dated November 25, 1938. This does not establish a complete original clause inventory or exclude an earlier ending. Missing original text prevents advancement beyond T0 under the cumulative tier rules.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:UN:executive-orders-01:row:7",
+  "missed_evidence": [
+   "Proc. 2336, 4 FR 2025, https://www.govinfo.gov/content/pkg/FR-1939-05-16/pdf/FR-1939-05-16.pdf, page 1 extracted text, directly confirms that the correction substitutes October 26 for October 20 in Procs. 2313 and 2319. It leaves the July revocation untouched and explicitly identifies Proc. 2319 as January 11, 1939. This resolves the worker's third gap; page-image retrieval failed."
+  ],
+  "stop_code_verdict": "confirmed: NOT_FOUND fits the supplied slice, which points only to the date/provenance catalogue row and supplies no original-text location. This confirms the bounded record's gap, not exhaustive absence online or in archives.",
+  "suspected_defect": "p7 has a mismatched citation and quotation: its URL is a May 29, 1874 order, not the asserted July 21 reservation order. Whether deliberate cannot be determined.",
+  "tier_supported": "T0",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Named local CSV line 14966 matches the quoted identifier, provenance and date; it supplies no order text.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Opened NARA table explicitly lists July 21, 1874 as revoked by Proc. 2313.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "Govinfo PDF extracted text, page 229, reproduces the quoted revocation of both dated lighthouse orders. Page-image retrieval failed; confirmation rests on the PDF text.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "Page 229 expressly revokes the July order in a separate sentence; the following sentence limits revocation of the October order and EO 4430 to specified lands.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "Page 229 reestablishes only the October order, subject to the proclamation's modification.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "Page 229 identifies Proc. 2313 as November 25, 1938, and its footnote cites 3 F.R. 2799.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "The cited APP URL, opened with www, displays Grant's May 29, 1874 approval of Light-House Service civil-service rules. It contains neither the claimed July date quotation nor the White Mountain reservation order.",
+    "verdict": "rejected"
+   }
+  ]
+ },
+ "seconds": 295.4,
+ "start": "T0",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "confirmed: NOT_FOUND fits the supplied slice, which points only to the date/provenance catalogue row and supplies no original-text location. This confirms the bounded record's gap, not exhaustive absence online or in archives.",
+ "tokens": 261683,
+ "units": 119640,
+ "units_producer": 52802,
+ "units_repair": 36127,
+ "units_review": 30711
+}
