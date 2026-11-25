@@ -30,8 +30,18 @@ def source_context(repo, checker, cache_dir=None):
     With ``cache_dir`` (a packet's gitignored .validation-cache), Pergamon-stored copies are fetched and re-hashed
     there exactly as batch-check's checker run does; no other download is enabled."""
     index = checker.S.build_index(repo, Path(checker.__file__).parent, exclude_jobs=('claim-checker',))
+    # repo and a lazily built working-text index serve the checker's text-only custody rule
+    # (D-20261125-custody-text-only): a held text is read from this checkout, and an own original qualifies only
+    # as a declared working text.
     return SimpleNamespace(index=index, reader=checker.S.TextReader(cache_dir, packed=index.packed_texts),
-                           gpo_matched=checker.load_gpo_matched(repo), archive_captures={}, cache_dir=None)
+                           gpo_matched=checker.load_gpo_matched(repo), archive_captures={}, cache_dir=None,
+                           repo=Path(repo).resolve(), working_text_index=None)
+
+
+# The reference fields one custody check depends on: the bytes, and for text-only custody (D-20261125-custody-text-only)
+# the cited held text and, for an own original, the working-text declaration fields.
+CUSTODY_KEY_FIELDS = ('sha256', 'local_file_sha256', 'url', 'archival_id', 'text_path', 'text_sha256',
+                      'instrument_id', 'grade', 'acceptable_as_original')
 
 
 def recovery_tasks(members):
@@ -101,7 +111,9 @@ def readiness_scope(dossier, flight, prior, sources):
 
 
 PRESCREEN_RULE = 'gilbreth_r3r'
-PRESCREEN_PASS = {'held_bytes_verified', 'held_bytes_in_release_or_repo', 'gpo_published_hash_match'}
+# custody_text_only (D-20261125-custody-text-only) is a usable event source too: held text pinned to its record.
+PRESCREEN_PASS = {'held_bytes_verified', 'held_bytes_in_release_or_repo', 'gpo_published_hash_match',
+                  'custody_text_only'}
 PRESCREEN_EVIDENCE = ('Gilbreth 2026-11-25 (research/excavator/claude-bracton-2026-11-25/GILBRETH.md section 4.2): on the '
                       'correction route the rule predicted 66 of 79 blocks and flagged 0 of 9 submissions (zero in 9 is '
                       'consistent with a false-flag rate up to about 28%); on the YES route it flagged 4 submissions, 2 '
@@ -192,11 +204,14 @@ def check(repo, folder, orders=None, context=None):
                 if mandatory:
                     blockers.append({'kind': 'required_source_absent', 'evidence_id': eid})
                 continue
-            # Custody depends on byte hash/URL/archive id, not producer prose or grade.
-            key = batch.canon({k: ref.get(k) for k in ('sha256', 'local_file_sha256', 'url', 'archival_id')})
+            # Custody depends on byte hash/URL/archive id, not producer prose or grade; text-only custody
+            # (D-20261125-custody-text-only) also on the cited held text and on the role: the required original
+            # and inventory records are the order's own original, every other record is not.
+            role = 'original' if mandatory else 'other'
+            key = batch.canon({k: ref.get(k) for k in CUSTODY_KEY_FIELDS} | {'role': role})
             if key not in checked:
                 rows = []
-                checker.check_source(ref, 'source', ctx, rows, allow_download=False)
+                checker.check_source(ref, 'source', ctx, rows, allow_download=False, role=role)
                 checked[key] = rows
             results = checked[key]
             result = {'evidence_id': eid, 'required': mandatory,
@@ -346,10 +361,11 @@ def check_selected(repo, folder, claims):
                 if errors or ref != expected:
                     blockers.append({'kind': 'selected_source_not_dossier_evidence', 'field': field,
                                      'evidence_id': ident})
-                ckey = batch.canon({k: ref.get(k) for k in ('sha256', 'local_file_sha256', 'url', 'archival_id')})
+                role = checker.source_role(field)
+                ckey = batch.canon({k: ref.get(k) for k in CUSTODY_KEY_FIELDS} | {'role': role})
                 if ckey not in custody:
                     rows = []
-                    checker.check_source(ref, 'source', ctx, rows, allow_download=False)
+                    checker.check_source(ref, 'source', ctx, rows, allow_download=False, role=role)
                     custody[ckey] = rows
                 checks = custody[ckey]
                 result = {'field': field, 'evidence_id': ident, 'required': True,

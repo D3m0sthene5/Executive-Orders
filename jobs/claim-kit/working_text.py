@@ -125,6 +125,53 @@ def fr_captures(claim, repo, index=None):
     return found
 
 
+# Owner decision D-20261125-custody-text-only: a cited source held only as a custody record whose TEXT is held (its
+# original bytes are not) may support a claim when every quotation from it matches the held text byte for byte and
+# the text hashes to the text hash its custody record pins (claim-checker sources.text_custody). The claim discloses
+# each such source under CUSTODY_TEXT_ONLY_KEY, written by the assembler and required to match by the checker; the
+# claim's text evidence tier is CUSTODY_TEXT_ONLY_GRADE, never original_supported. For an order's own original it
+# applies only where working_text_reference accepts the reference as a declared non-original working text. A record
+# with only a hash and no held text still blocks.
+CUSTODY_TEXT_ONLY_GRADE = 'custody_text_only'
+CUSTODY_TEXT_ONLY_DECISION = 'D-20261125-custody-text-only'
+CUSTODY_TEXT_ONLY_KEY = 'custody_text_only_sources'
+CUSTODY_TEXT_ONLY_NOTE = ('original bytes not held: only a custody record and its held text; each quotation was '
+                          'matched byte for byte to that text, whose hash matches the record. Not original_supported; '
+                          'retain the original bytes and re-check when they can be held.')
+
+
+def custody_text_only_disclosure(refs):
+    """The exact disclosure a claim carries for the text-only sources it cites (sorted, one row per source).
+
+    The rows sit under "cited", never under a source key ("source", "sources", ...), so that no reference walker
+    mistakes a disclosure row for a cited source."""
+    rows = {}
+    for ref in refs:
+        row = {'url': ref.get('url'), 'sha256': source_sha(ref), 'text_path': ref.get('text_path'),
+               'text_sha256': ref.get('text_sha256')}
+        rows[json.dumps(row, sort_keys=True)] = row
+    return {'grade': CUSTODY_TEXT_ONLY_GRADE, 'decision': CUSTODY_TEXT_ONLY_DECISION,
+            'note': CUSTODY_TEXT_ONLY_NOTE, 'cited': [rows[k] for k in sorted(rows)]}
+
+
+def working_text_reference(ref, index):
+    """True when the owner's existing working-text rules accept ``ref`` as a declared non-original working text.
+
+    The reference must declare acceptable_as_original false with a working-text grade and match an order-specific
+    fragment declaration exactly (instrument, grade, bytes, text path and text hash), as ``policy`` requires of a
+    transcription_dependent text; an FR full-text capture, a checked replica, an exact official representation or a
+    text declared incomplete never qualifies. Only this test lets an order's own original rest on held text alone
+    (D-20261125-custody-text-only); ``policy`` still requires the claim's working-text disclosure and confirmations.
+    """
+    if (not isinstance(ref, dict) or fr_capture_source(ref) or ref.get('acceptable_as_original') is not False
+            or ref.get('grade') not in GRADES or checked_replica(ref, index) or index.exact_official(ref)):
+        return False
+    exact = [r for r in index.match(ref) if all(r.get(k) == ref.get(k)
+             for k in ('instrument_id', 'grade', 'sha256', 'text_path', 'text_sha256'))
+             and isinstance(r.get('text_sha256'), str) and len(r['text_sha256']) == 64]
+    return bool(exact) and not any(r.get('complete_text') is False for r in exact)
+
+
 def replica_version(row, declaration_path):
     data = row.get('data') if isinstance(row.get('data'), dict) else {}
     return (declaration_path == REPLICA_PATH and row.get('kind') == 'original_representation'

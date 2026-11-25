@@ -904,6 +904,9 @@ def build(root, *, planning_closures=None):
             later_formal = v1_formal_after_cessation(claim)
         else:
             later_formal = None
+        text_only_custody = claim is not None and (
+            claim.get(W.CUSTODY_TEXT_ONLY_KEY) is not None
+            or (checked_current and check.get("text_evidence_tier") == W.CUSTODY_TEXT_ONLY_GRADE))
         if i in holds:
             ready = False
             steps['counterevidence'] = False
@@ -922,7 +925,11 @@ def build(root, *, planning_closures=None):
             "ready_tier": ("machine_exhausted" if exhausted_steps else "complete_claim") if ready else "",
             "exhausted_steps": "|".join(exhausted_steps),
             "claim_present": "yes" if claim else "no",
-            "text_evidence_tier": ("transcription_dependent" if dependent_texts or text_provisional
+            # D-20261125-custody-text-only: a claim that cites a source resting on held text alone (disclosed in the
+            # claim, or so graded by the checker for this exact claim) is its own tier; it never upgrades to
+            # original_supported.
+            "text_evidence_tier": (W.CUSTODY_TEXT_ONLY_GRADE if text_only_custody
+                                   else "transcription_dependent" if dependent_texts or text_provisional
                                    else ("original_supported" if steps['original_text'] else "missing")),
             "original_copy_replacement_required": "yes" if dependent_texts or text_provisional else "no",
             "quotation_recheck_required": "yes" if dependent_texts or text_provisional else "no",
