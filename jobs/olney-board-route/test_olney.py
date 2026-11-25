@@ -88,7 +88,7 @@ class Spans(unittest.TestCase):
         span, problems = olney.report_span(bad, c, 'EO:10999', None)
         self.assertEqual(problems, [])
         self.assertEqual((span['date_basis'], span['date'], span['cover_date_raw']), ('cover', '1962-05-03', 'May 3, 1962'))
-        self.assertEqual(span['letter']['letter_date_raw'], 'MAY 3, 196~')
+        self.assertEqual((span['letter']['letter_date_raw'], span['letter']['status']), ('MAY 3, 196~.', 'unreadable'))
         self.assertTrue(bad[span['char_start']:span['char_end']].endswith('recommendations.'))
 
     def test_garbled_letter_and_unclean_cover_stays_exception(self):
@@ -183,14 +183,14 @@ class Extensions(unittest.TestCase):
                 'the Executive order, the last extension being to May 24, 1961.')
         self.assertEqual(self.events(['Cover', text], report='1961-05-20')[1], ['report_extension_multiple:p2'])
 
-    def test_undated_approval_is_kept_only_when_no_other_date_is_printed(self):
+    def test_undated_approval_is_an_exception(self):
+        # Run v3: an extension printed without its approval date cannot be dated exactly, so the order is an
+        # exception (run v2 wrote it as an undated source note).
         text = ('Before the hearings were closed the parties agreed to an extension to September 7 of the original '
                 'time limit for the submission of the report of this Board, and in due course the President approved '
                 'this extension of time.')
         events, problems = self.events(['Cover', text], signing='1952-07-20', report='1952-09-05')
-        self.assertEqual(problems, [])
-        self.assertEqual((events[0]['approval_date'], events[0]['new_deadline'], events[0]['approval_printed']),
-                         (None, '1952-09-07', True))
+        self.assertEqual((events, problems), ([], ['report_extension_approval_date_not_printed:p2']))
         other = text.replace('in due course', 'on August 20 at the request of the parties')
         self.assertEqual(self.events(['Cover', other], signing='1952-07-20', report='1952-09-05')[1],
                          ['report_extension_approval_date_unparsed:p2'])
@@ -219,11 +219,16 @@ class Sheets(unittest.TestCase):
         sel = {'instrument_id': 'EO:10999', 'peb': 145, 'report_sha256': 'a' * 64, 'report_local_path': 'x.pdf',
                'report_text_path': 't.txt', 'report_text_sha256': 'b' * 64, 'report_url': 'https://nmb.gov/x.pdf',
                'report_page_or_item': 'p1', 'claim_file': 'c.jsonl', 'board_range': [0, 10], 'standstill_range': [11, 20],
-               'span': {'date': '1962-05-03', 'char_start': 0, 'char_end': 50, 'identity': 'order_number'}}
+               'span': {'date': '1962-05-03', 'char_start': 0, 'char_end': 50, 'identity': 'order_number'},
+               'savings_scan': {'instrument': 'EO:12553', 'text_path': 'EO_12553.txt', 'hits_in_table': 3,
+                                'hits_outside_table': 0},
+               'full_report_screen': {'pages': 9, 'tool': 'pdftotext', 'pages_without_text': 0,
+                                      'held_text_pages': [1, 2, 3, 4], 'extension_pages': []}}
         eid = olney.base64.urlsafe_b64encode(b'ACT:EO:10999>EO:12553').decode().rstrip('=')
         claim = {'operative_clauses': [{'first_end': {'actor': 'EO:12553', 'date': '1986-02-25', 'mechanism': 'express_revocation',
                                                       'source': {'evidence_id': eid}}}],
-                 'savings_residuals': {'state': 'none_after_bounded_search', 'reason': 'none', 'source': {'evidence_id': eid}},
+                 'savings_residuals': {'state': 'none_after_bounded_search', 'reason': 'the order created a board for '
+                                       'one dispute; no earlier end is claimed', 'source': {'evidence_id': eid}},
                  'later_source_search': [{'repository': 'R'}], 'claim_kit': {'original_pages_confirmed': False}}
         dossier = {'evidence': {'ACT:EO:10999>EO:12553': {}}, 'original_source_id': 'ORIGINAL:EO:10999'}
         searches = [{'search_id': 's1', 'complete': True, 'entry': {'repository': 'R'}}]
@@ -236,16 +241,22 @@ class Sheets(unittest.TestCase):
         decl = olney.declaration([sel])
         self.assertEqual([e['alias'] for e in decl['sources']], ['olney_board_10999', 'olney_standstill_10999'])
         self.assertNotIn('source_notes', row)
+        # The savings reason is generated from this claim's ends and Olney's reading, never carried (o2/o3 review).
+        self.assertNotIn('one dispute', row['savings_reason'])
+        self.assertNotIn('no earlier end', row['savings_reason'])
+        self.assertIn('the board clause on 1962-05-03 (completion of its task) and the no-change period on '
+                      '1962-06-02 (its own terms)', row['savings_reason'])
+        self.assertIn('found them only in the subject lines', row['savings_reason'])
+        self.assertIn('It found no wording extending', row['earlier_end_check'])
+        self.assertIn('none of the procedural wording', row['earlier_end_check'])
 
-        # A dated extension is a later event of the board clause; an undated one a source note; the cover basis
-        # is disclosed under D-20261125-board-cover-date.
-        sel['span'].update(date_basis='cover', cover_date_raw='MAY 3, 1962', letter={'letter_date_raw': 'MAY 3, 196~'},
-                           submission_offset=None)
+        # A dated extension is a later event of the board clause; the cover basis is disclosed under
+        # D-20261125-board-cover-date and the unreadable letter line is quoted, never called absent.
+        sel['span'].update(date_basis='cover', cover_date_raw='MAY 3, 1962', submission_offset=None,
+                           letter={'status': 'unreadable', 'letter_date_raw': 'MAY 3, 196~.', 'legible_differences': []})
         sel['extensions'] = [
             {'approval_date': '1962-03-30', 'approval_year_inferred': False, 'approval_printed': True,
-             'new_deadline': '1962-05-03', 'deadline_year_inferred': False, 'page': 4, 'char_start': 5, 'char_end': 40},
-            {'approval_date': None, 'approval_year_inferred': False, 'approval_printed': True,
-             'new_deadline': '1962-05-10', 'deadline_year_inferred': True, 'page': 4, 'char_start': 41, 'char_end': 60}]
+             'new_deadline': '1962-05-03', 'deadline_year_inferred': False, 'page': 4, 'char_start': 5, 'char_end': 40}]
         sel['full_report_screen'] = {'pages': 9, 'tool': 'pdftotext', 'pages_without_text': 0,
                                      'held_text_pages': [1, 2, 3, 4], 'extension_pages': [4]}
         row, clauses, problems = olney.fill_rows(sel, dossier, claim, {'instrument_id': 'EO:10999'}, searches)
@@ -255,20 +266,212 @@ class Sheets(unittest.TestCase):
         self.assertEqual(board[1]['effective_date'], '1962-03-30')
         self.assertEqual(json.loads(clauses[0]['later_event_ids']), [e['id'] for e in board])
         self.assertEqual([e['id'] for e in json.loads(clauses[1]['later_events'])], ['ACT:EO:10999>EO:12553'])
-        (note,) = json.loads(row['source_notes'])
-        self.assertEqual(note['id'], 'SUPPLEMENT:olney_ext2_10999')
-        self.assertIn('prints no date', note['date_qualification'])
+        self.assertNotIn('source_notes', row)
         self.assertIn('D-20261125-board-cover-date', clauses[0]['reason'])
-        self.assertIn("'MAY 3, 196~'", clauses[0]['reason'])
-        self.assertIn('records 2 extension', row['earlier_end_check'])
+        self.assertIn("is in the held text but does not read cleanly as a date ('MAY 3, 196~.')", clauses[0]['reason'])
+        self.assertNotIn('not found', clauses[0]['reason'])
+        self.assertIn('records one extension', row['earlier_end_check'])
         aliases = [e['alias'] for e in olney.declaration([sel])['sources']]
-        self.assertEqual(aliases, ['olney_board_10999', 'olney_standstill_10999', 'olney_ext1_10999', 'olney_ext2_10999'])
+        self.assertEqual(aliases, ['olney_board_10999', 'olney_standstill_10999', 'olney_ext1_10999'])
+        # An undated extension can no longer reach the sheets: it blocks the order.
+        sel['extensions'].append(dict(sel['extensions'][0], approval_date=None, new_deadline='1962-05-10'))
+        self.assertEqual(olney.fill_rows(sel, dossier, claim, {'instrument_id': 'EO:10999'}, searches)[2],
+                         ['extension_without_approval_date:SUPPLEMENT:olney_ext2_10999'])
+        # Letter wording for the other statuses, each true of the held text.
+        sel['span']['letter'] = {'status': 'not_found_before_address'}
+        self.assertIn('has no date line before its address', olney.date_words(sel['span']))
+        sel['span']['letter'] = {'status': 'unreadable', 'letter_date_raw': 'Marel~ 7~ 1968.', 'signing_date': '1969-01-13',
+                                 'legible_differences': [('year', '1968', '1969')], 'legible_year_before_signing': True}
+        self.assertIn("its legible year reads 1968 where the cover reads 1969, and that year is earlier than the "
+                      "order's signing on 1969-01-13", olney.date_words(sel['span']))
+        sel['span']['letter'] = {}
+        with self.assertRaises(ValueError):
+            olney.date_words(sel['span'])
+
+
+class ReviewCasesV3(unittest.TestCase):
+    """Regression cases from the o2/o3 blind reviews of run v2 (texts quoted from the held reports)."""
+
+    def events(self, page, signing, report):
+        return olney.extension_events(held('Cover', page), signing, report, ['Cover', page], '10999')
+
+    def test_eo_10969_undated_presidential_extension_is_an_exception(self):
+        page = ('The Board, therefore, deemed it advisable to await this ratification before making its report to the '
+                'President. In consequence, with the concurrence of the parties, the President extended to December '
+                '10, 1961 the date for the filing of this report. We are now informed that the agreement of Novem-\n'
+                'ber 2, 1961 has been ratified.')
+        self.assertEqual(olney.screen_full_report(['Cover', page]), {2: 1})
+        self.assertEqual(self.events(page, '1961-10-11', '1961-12-05'),
+                         ([], ['report_extension_approval_date_not_printed:p2']))
+
+    def test_eo_10147_relative_extension_and_stipulation_are_exceptions(self):
+        page = ('During the course of the hearings it became apparent that the Board would\nbe unable to conclude the '
+                'investigation and render its report within 30 days of the Executive order and accordingly the parties '
+                'stipulated and the President approved an extension of 30 days for the rendition of said report. The '
+                'evidence indicates that the dispute had its inception in a disagreement.')
+        events, problems = self.events(page, '1950-08-04', '1950-09-13')
+        self.assertEqual((events, problems), ([], ['report_extension_deadline_not_printed:p2']))
+        self.assertEqual(olney.procedural_problems(held('Cover', page), ['Cover', page], events, '1950-08-04',
+                                                   '1950-09-13'), ['report_procedural_event:stipulation:p2'])
+
+    EO_11445 = ('President Johnson appointed the following persons as members of the Board : Laurence E. Seibe], '
+                'Chairman; and Roll VMtin, arbitrator from Washin~on, D.C., Member. Shortly after the appointment of '
+                'the Board, the parties agreed to e~tend the time within which the Board must repor~ its findings to '
+                'the President until March 7, 1969. On Feb-\nruary 6, 1969, this extension was approved by President '
+                'Nixon. The Board convened in Washington, D.C., on February 6, 1969, to discuss procedural matters.')
+
+    def test_eo_11445_ocr_damaged_extension_is_dated(self):
+        events, problems = self.events(self.EO_11445, '1969-01-13', '1969-03-07')
+        self.assertEqual(problems, [])
+        (e,) = events
+        self.assertEqual((e['approval_date'], e['new_deadline']), ('1969-02-06', '1969-03-07'))
+        quoted = held('Cover', self.EO_11445)[e['char_start']:e['char_end']]
+        self.assertTrue(quoted.startswith('Shortly after') and quoted.endswith('President \nNixon.'.replace(' \n', ' ')) or
+                        quoted.endswith('Nixon.'), quoted)
+
+    def test_eo_10760_stipulated_one_member_board_and_new_period_are_exceptions(self):
+        page = ('The Board convened in Washington, D. C., on June 10, 1958. The pa~fies then executed a stipulation as '
+                'follows:\nSTIPULATION\nIt is hereby stipulated by Trans World Airlines, Inc., that the Emergency Board '
+                'proceedings instituted on March 27, 1958, be continued subject to the following modifications: 1. That '
+                'the investigation and report be made by an Emergency Board consisting of one of the three Board members '
+                'designated by the President namely, Dudley E. Whiting, in place of the three-man Board; 4. That the '
+                'Board as thus constituted shall report its findings to the President within 30 days from June 23, '
+                '1958.')
+        self.assertEqual(self.events(page, '1958-03-27', '1958-07-25'), ([], []))
+        problems = olney.procedural_problems(held('Cover', page), ['Cover', page], [], '1958-03-27', '1958-07-25')
+        self.assertEqual(problems, ['report_procedural_event:reconstitution:p2', 'report_procedural_event:restarted_period:p2',
+                                    'report_procedural_event:stipulation:p2'])
+        # Off the held pages it is an exception too.
+        self.assertEqual(olney.procedural_problems(held('Cover'), ['Cover', page], [], '1958-03-27', '1958-07-25'),
+                         ['report_procedural_event_outside_held_text:reconstitution:p2',
+                          'report_procedural_event_outside_held_text:restarted_period:p2',
+                          'report_procedural_event_outside_held_text:stipulation:p2'])
+
+    def test_stipulation_inside_a_dated_extension_is_that_extension(self):
+        page = ('On April 6th, counsel for the parties entered a stipulation agreeing to extend until April 20, 1946 '
+                'the date for the Board to submit its report to the President. The President, on April 8th, approved '
+                "the Board's requested extension of time. The Board is indebted to the Secretary of Labor.")
+        events, problems = olney.extension_events(held('Cover', page), '1946-03-08', '1946-04-18', ['Cover', page])
+        self.assertEqual((problems, [e['approval_date'] for e in events]), ([], ['1946-04-08']))
+        info = {}
+        self.assertEqual(olney.procedural_problems(held('Cover', page), ['Cover', page], events, '1946-03-08',
+                                                   '1946-04-18', info), [])
+        self.assertEqual(info['covered_stipulation_pages'], [2])
+        self.assertEqual(olney.procedural_problems(held('Cover', page), ['Cover', page], [], '1946-03-08',
+                                                   '1946-04-18'), ['report_procedural_event:stipulation:p2'])
+
+    def test_unrelated_extend_and_stipulation_wording_is_not_flagged(self):
+        # The contractual stipulation is EO 10150's (report p. 31): the board is named only in the sentence after it.
+        page = ('No conclusion was then reached on the retroactive increase. This issue was preserved by a contractual '
+                'stipulation that "Any claim for back time will remain open." The carrier did not appear before this '
+                'Board at the outset of the proceedings. The carrier extends a distance of 99.2 miles from McNeil to '
+                'Chestnut. After extended hearings the Board reported to the President on October 29, 1938. Changes '
+                'would be extended promptly to all employees of the agency. The agreement ran to a date which the '
+                'parties extended to June 10, 1934.')
+        self.assertEqual(olney.screen_full_report(['Cover', page]), {})
+        self.assertEqual(olney.procedural_problems(held('Cover', page), ['Cover', page], [], '1950-08-11',
+                                                   '1950-09-09'), [])
+
+    def test_period_from_the_signing_date_is_not_a_restarted_period(self):
+        page = 'The Board shall report to the President within thirty days from August 4, 1950, under the Executive order.'
+        self.assertEqual(olney.procedural_hits(page, '1950-08-04', '1950-09-13'), [])
+        self.assertTrue(olney.procedural_hits(page, '1950-08-01', '1950-09-13'))
+
+
+def report(cover_block, letter_block):
+    return ("REPORT TO THE PRESIDENT\nEMERGENCY BOARD\nAPPOINTED BY EXECUTIVE ORDER 10999\n" + cover_block +
+            "\n(No. 145)\n=== PDF page 2 ===\n" + letter_block)
+
+
+def cover_cand(text, kind='OBSERVED_BODY_ONLY'):
+    return {'peb': 145, 'candidate': {'board_clause_end': {'date': '1962-05-03'}}, 'report_date_status': 'INVENTORY_AGREES',
+            'cover': {'offset': text.index('MAY 3, 1962'), 'raw': 'MAY 3, 1962'},
+            'transmittal': {'kind': kind, 'offset': None, 'raw': ''}}
+
+
+class LetterLinesV3(unittest.TestCase):
+    """The cover route says truly what the held letter shows (o2/o3 review: EO 10050, 10067, 9918, 10630, 11445)."""
+    COVER = 'WASHINGTON, D.C.\nMAY 3, 1962'
+    BODY = ("THE PRESIDENT,\nThe White House.\nMR. PRESIDENT: The Emergency Board appointed under Executive Order "
+            "10999 has the honor to submit herewith its report.\nRespectfully submitted.\n")
+
+    def span(self, letter, signing='1962-03-03'):
+        text = report(self.COVER, letter)
+        span, problems = olney.report_span(text, cover_cand(text), 'EO:10999', signing)
+        return text, span, problems
+
+    def test_eo_10050_date_line_present_but_unreadable(self):
+        text, span, problems = self.span('LETTER OF TRANSMITTAL\nWASHINGTON, D. C., May 3, I$@\n' + self.BODY)
+        self.assertEqual(problems, [])
+        self.assertEqual((span['date_basis'], span['letter']['status'], span['letter']['letter_date_raw']),
+                         ('cover', 'unreadable', 'WASHINGTON, D. C., May 3, I$@'))
+        self.assertEqual(span['letter']['legible_differences'], [])
+        self.assertTrue(span['char_start'] <= span['letter']['letter_date_offset'] < span['char_end'])
+        words = olney.date_words(span)
+        self.assertIn("is in the held text but does not read cleanly as a date ('WASHINGTON, D. C., May 3, I$@')", words)
+        self.assertNotIn('not found', words)
+        # A legible month and day that differ from the cover read as another day: a conflict, not 'unreadable'.
+        self.assertEqual(self.span('LETTER OF TRANSMITTAL\nWASHINGTON, D. C., May 6, I$@\n' + self.BODY)[2],
+                         ['letter_date_legible_part_conflicts'])
+
+    def test_eo_10067_damaged_line_without_digits_is_a_date_line(self):
+        _, span, problems = self.span('ST. LOUIS, MO., AW~US~ a, IQQ.\n' + self.BODY.replace('THE PRESIDENT,', 'THE PRESIDENT,'))
+        self.assertEqual((problems, span['letter']['status']), ([], 'unreadable'))
+        self.assertEqual(span['letter']['letter_date_raw'], 'ST. LOUIS, MO., AW~US~ a, IQQ.')
+
+    def test_eo_11445_damaged_address_herewith_order_and_conflicting_year_disclosed(self):
+        body = self.BODY.replace('THE PRESIDENT,', 'THE IORESIDENT,').replace(
+            'has the honor to submit herewith', 'has the honor herewith to submit')
+        _, span, problems = self.span('LETTER OF TRANSMITTAL\nWASHIN(]TON~ I).C.~ Marel~ 3~ 1961.\n' + body,
+                                      signing='1962-03-03')
+        self.assertEqual(problems, [])
+        self.assertIsNotNone(span['submission_offset'])
+        self.assertEqual(span['letter']['legible_differences'], [('year', '1961', '1962')])
+        self.assertTrue(span['letter']['legible_year_before_signing'])
+        self.assertIn("its legible year reads 1961 where the cover reads 1962, and that year is earlier than the "
+                      "order's signing", olney.date_words(span))
+
+    def test_letter_without_date_line_says_so_and_only_when_true(self):
+        _, span, problems = self.span(self.BODY)
+        self.assertEqual((problems, span['letter']['status']), ([], 'not_found_before_address'))
+        self.assertIn('has no date line before its address', olney.date_words(span))
+        other = self.BODY.replace('has the honor', 'on April 30, 1962 has the honor')
+        self.assertIn('letter_date_line_status_uncertain', self.span(other)[2])
+
+    def test_held_letter_without_submission_sentence_is_an_exception(self):
+        body = self.BODY.replace('has the honor to submit herewith its report', 'reports as follows')
+        self.assertEqual(self.span('LETTER OF TRANSMITTAL\nMay 3, 196~.\n' + body)[2], ['letter_held_submission_not_found'])
+
+    def test_letter_line_reading_cleanly_as_another_date_is_a_conflict(self):
+        self.assertEqual(self.span('LETTER OF TRANSMITTAL\nWASHINGTON, D. C., May 8, 1962.\n' + self.BODY)[2],
+                         ['cover_date_differs_from_letter'])
+
+
+class SavingsV3(unittest.TestCase):
+    def claim(self, path):
+        eid = olney.base64.urlsafe_b64encode(b'ACT:EO:10999>EO:12553').decode().rstrip('=')
+        return {'operative_clauses': [{'first_end': {'actor': 'EO:12553', 'date': '1986-02-25', 'source': {'evidence_id': eid}}}],
+                'savings_residuals': {'state': 'none_after_bounded_search', 'source': {'text_path': path}}}
+
+    def test_savings_scan_reads_the_revoking_order(self):
+        import tempfile
+        body = ("Executive Order 12553 of February 25, 1986\nRevocation\nit is hereby ordered that the following "
+                "Executive Orders are revoked:\nNo. Subject\n10999 Providing for a board\nTHE W HITE HOUSE,\n"
+                "[FR Doc. 86-1]\n")
+        with tempfile.TemporaryDirectory() as d:
+            (Path(d) / 'EO_12553.txt').write_text(body)
+            scan, problem = olney.savings_scan(d, self.claim('EO_12553.txt'))
+            self.assertEqual((problem, scan['hits_in_table'], scan['hits_outside_table']), (None, 1, 0))
+            (Path(d) / 'EO_12553.txt').write_text(body.replace('Revocation', 'Nothing herein affects pending matters'))
+            self.assertEqual(olney.savings_scan(d, self.claim('EO_12553.txt'))[1], 'savings_source_wording_outside_table')
+            self.assertEqual(olney.savings_scan(d, self.claim('EO_10999.txt'))[1], 'savings_source_not_the_revoking_order')
 
 
 class Selection(unittest.TestCase):
     def test_upheld_orders_are_not_rerun_and_10944_is(self):
         self.assertEqual(len(olney.UPHELD), 8)
         self.assertNotIn('EO:10944', olney.UPHELD)
+        self.assertEqual(olney.UPHELD_V2, {'EO:10105', 'EO:9702'})
 
     def test_pergamon_route_follows_the_checkout_kit(self):
         import tempfile

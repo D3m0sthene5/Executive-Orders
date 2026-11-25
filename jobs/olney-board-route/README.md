@@ -10,15 +10,17 @@ exceptions list with its reasons.
 
 ```bash
 export OLNEY_CACHE_DIR=~/.cache/eo-olney                        # pdftotext and Pergamon copies, outside the repo
-python3 -I jobs/olney-board-route/olney.py select              # output/SELECTION.json (run v2)
-python3 -I jobs/olney-board-route/olney.py run --batch s2 --n 20
+python3 -I jobs/olney-board-route/olney.py select              # output/SELECTION.json (run v3)
+python3 -I jobs/olney-board-route/olney.py run --batch s5 --n 20
 OLNEY_ASSUME_PERGAMON_KIT=1 python3 -I jobs/olney-board-route/olney.py select --out /tmp/preview.json
 python3 -I jobs/olney-board-route/olney.py report --preview /tmp/preview.json   # output/RESULT.json, RESULT.md
 python3 -I jobs/olney-board-route/test_olney.py
 ```
 
-Run v1 (batches s0, s1) is kept as it was reviewed. Run v2 (batch s2 on) skips the 8 orders both blind arms upheld
-in v1 (EO 10032, 10056, 10071, 10112, 10140, 10757, 10872, 11663) and reruns the rest, EO 10944 included.
+Run v1 (batches s0, s1) is kept as it was reviewed. Run v2 (batches s2-s4) skips the 8 orders both blind arms
+upheld in v1 (EO 10032, 10056, 10071, 10112, 10140, 10757, 10872, 11663) and reruns the rest, EO 10944 included.
+Run v3 (batch s5 on) also skips EO 10105 and 9702, upheld by both arms in v2, and applies the fixes below for the
+defects the o2 and o3 blind reviews found in Olney's own screens and generated text.
 
 ## Universe and selection
 
@@ -41,6 +43,14 @@ checks pass:
     ends on the cover date. The claim's reasons quote the unreadable line, or say none was found, and disclose
     the rule. A letter date line that reads cleanly as another date is a conflict and stays an exception, and an
     uncorroborated report date never uses the cover.
+- **Letter of transmittal on the cover route (run v3, o2/o3 review):** Olney reads the held letter itself: its
+  address to the President (OCR-damaged forms such as "THE IORESIDENT" included) and the last line before it that
+  is not page furniture. The claim then says which of three things is true of the quoted span: the date line is
+  there but does not read cleanly (quoted as held), the letter has no date line before its address, or no letter
+  was found after the cover. A legible year that differs from the cover's is disclosed; a legible month or day that
+  differs is a conflict and an exception. A held letter without a submission sentence, an address Olney cannot
+  place, a "no date line" statement contradicted by another date in the span, and a reading that disagrees with
+  Lind's are exceptions.
 - **Report span:** the span runs from the cover to the sentence submitting the report (periods of abbreviations
   such as "No." or "Co." do not end it). On the cover route with no legible letter, it runs through the cover's
   date line and board-number line.
@@ -50,12 +60,27 @@ checks pass:
     deadline, is recorded as a later event of the board clause. The event is dated by the approval, and its source
     is the quoted held passage, declared as a supplement excerpt. A date printed without its year takes the only
     year inside the order's window, and the claim says so.
-  - When the passage prints the new deadline and no other date, the extension is recorded as a claim source note
-    whose date qualification says that no approval date is printed.
+  - In run v2, a passage that printed the new deadline and no other date was recorded as a claim source note saying
+    that no approval date is printed. Run v3 makes such an order an exception (see below).
   - Several extensions, a passage off the held pages, or an unparsed or ambiguous date make the order an
     exception.
   - Modal wording ("the time can be extended") in a report made within the order's own thirty days is not an
     extension.
+  - **Run v3 screen (o2/o3 review).** The v2 phrase screen missed EO 10969 ("extended to December 10, 1961 the date
+    for the filing"), EO 10147 ("an extension of 30 days for the rendition of said report") and EO 11445 ("e~tend the
+    time", "this extension was approved"), because it needed "time", "date" or "deadline" within two words of an
+    undamaged "extend". The screen now also counts any form of "extend" or "extension" (a damaged x included), and
+    more or postponed time, whose own sentence names the report, its filing or its time (a noun may name it in the
+    next or previous sentence). Adjectival uses ("after extended hearings") and statute names are not counted. The
+    v2 screen is kept, so the v3 screen only widens it.
+  - **Run v3 dating.** An extension printed without the President's approval date, or without an absolute new
+    deadline, makes the order an exception; the v2 route that wrote an undated source note is closed. A claim never
+    says that no extension exists: it states what the screen covered and what it found.
+- **Procedural events (run v3, o2 review of EO 10760):** pdftotext pages and held pages are screened for a stipulation
+  about the proceedings, a reconstituted board or changed member, a reconvening, and a report period restarted from a
+  later date than the order's signing. The proceedings must be named in the sentence or the two before it. Any such
+  wording makes the order an exception, except a stipulation inside the held passage of a dated extension that Olney
+  records, which is that extension's own record.
 - **Pergamon-only reports:** when the checkout's claim kit carries the Pergamon supplement route
   (`source_supplement.held_bytes`), a report held only in the Pergamon store is fetched and re-hashed, then
   declared with `local_path: null`. Without that route the order is the exception `report_bytes_pergamon_only_kit_gap`.
@@ -82,8 +107,12 @@ checks pass:
      states the exclusive reading, D + 29 days.
    - **Cleanup revocation:** the filed claim's cleanup revocation (EO 12553 or EO 12379) is recorded on every
      clause as a later event. It stays the formal disposition.
-   - **Values carried from the filed claim:** savings, the later-source search (matched by repository),
-     `original_pages_confirmed`, and the original's identity.
+   - **Values carried from the filed claim:** the savings state and source, the later-source search (matched by
+     repository), `original_pages_confirmed`, and the original's identity.
+   - **Savings reason (run v3):** generated, never carried. Olney reads the revoking order's held text (the filed
+     claim's savings source must be that text) from its heading to its FR document line for savings words; a hit
+     outside its table of revoked orders makes the order an exception. The reason states this claim's own clause
+     ends and no count taken from another claim.
    - **Blocked orders:** an order that is dispatch-blocked, or whose dossier changed, is written `blocked` with the
      reason.
 4. **Apply and check:** `kit.py apply` writes `supplemented/applied-v1`, then `kit.py batch-check` runs. The actual
@@ -120,4 +149,4 @@ Pergamon-only orders run only after this change is merged. A preview (`OLNEY_ASS
 `research/excavator/claude-bracton-2026-11-25/olney/x1-extension-trial` (receipt marked `trial`,
 `NOT_FOR_REVIEW.txt`) applies the extension route to two exception orders: EO 10010, with a dated later event,
 and EO 10372, with a source note. Both pass apply and the claim checker. These claims are not for review or
-filing.
+filing. The source-note route that EO 10372 used was closed in run v3.
