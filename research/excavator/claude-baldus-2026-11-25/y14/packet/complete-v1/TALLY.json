@@ -1,0 +1,92 @@
+{
+  "attempted": 9,
+  "claims_published": 0,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:13566",
+      "planted_claim_sha256": "b228f656a061aa6a69ae938ee6d53781d53099a859f14e43c34f5514b372bae4",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 4,
+    "exception": 5
+  },
+  "eligible": [],
+  "eligible_per_attempt": 0.0,
+  "exceptions": 5,
+  "finished_utc": "2026-11-25T18:58:51.353231+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "claim_sha256": "ce6ec4ab13b69d9f9c8d9aa9ac68fcaef43906010f7bbd0ca7bc544fa2c76067",
+      "error": "changed Valla review context; prepare a new version",
+      "instrument_id": "EO:13536",
+      "outcome": "exception"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13551",
+      "outcome": "blocked",
+      "reason": "Independent review did not uphold this version: [{\"field\": \"operative_clauses (inventory completeness)\", \"problem\": \"operative scope-expansion of the emergency omitted\", \"claim_says\": \"24 clauses beginning at char 2389 ('I hereby order:' merged into sec1); research_rationale asserts the inventory is complete\", \"source_says\": \"EO 13551 preamble: 'I, BARACK OBAMA ... hereby expand the scope of the national emergency declared in Executive Order 13466 of June 26, 2008, finding that ...'. The expansion is an operative act on which the claim's predicate ('expanded in scope by Executive Order 13551') relies, and it is not inventoried.\"}]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13553",
+      "outcome": "blocked",
+      "reason": "Independent review did not uphold this version: [{\"field\": \"operative_clauses[EO:13553#sec8].judgment_reason\", \"problem\": \"misdescribes the clause\", \"claim_says\": \"This clause authorizes the Secretary of the Treasury, in consultation with the Secretary of State, to take actions, including rules and regulations, and to use IEEPA powers to carry out the order, and directs agencies to cooperate.\", \"source_says\": \"Sec. 8 authorizes the Secretary of the Treasury to employ IEEPA powers 'as may be necessary to carry out section 104 of CISADA (22 U.S.C. 8513)' and to redelegate; it contains no direction to agencies (that sentence is in sec. 5).\"}]"
+    },
+    {
+      "claim_sha256": "ed1ed1a357614d1fc2a6f2e6903793a36c33804f240434a704d1a37fd4c7e5ac",
+      "error": "changed Valla review context; prepare a new version",
+      "instrument_id": "EO:13566",
+      "outcome": "exception"
+    },
+    {
+      "claim_sha256": "03f5a2fe2ca2601e7136ccece2712c9ba8258346cdcfd9cb1e03f2b62804d6e1",
+      "error": "changed Valla review context; prepare a new version",
+      "instrument_id": "EO:13570",
+      "outcome": "exception"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13581",
+      "outcome": "blocked",
+      "reason": "Independent review did not uphold this version: [{\"field\": \"operative_clauses (inventory completeness)\", \"problem\": \"operative emergency declaration omitted\", \"claim_says\": \"22 clauses beginning at char 2081 ('I hereby order:' merged into sec1); research_rationale asserts the inventory is complete\", \"source_says\": \"EO 13581 preamble (chars ~1880-2070): 'I therefore determine that significant transnational criminal organizations constitute an unusual and extraordinary threat ... and hereby declare a national emergency to deal with that threat.' The NEA declaration that every clause's predicate rests on is not inventoried, although sibling claims (EO 13566, 13536, 13611) treat the same declaration as an operative lead clause.\"}]"
+    },
+    {
+      "claim_sha256": "d2a824c778d255b65a8c8f8dcf10f9d7482da6e72a00a3eeb1a80de9b0acd7e6",
+      "error": "changed Valla review context; prepare a new version",
+      "instrument_id": "EO:13599",
+      "outcome": "exception"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13606",
+      "outcome": "blocked",
+      "reason": "Independent review did not uphold this version: [{\"field\": \"research_rationale\", \"problem\": \"misstates the source of EO 14312\", \"claim_says\": \"Executive Order 14312 is held as an American Presidency Project mirror transcription (grade mirror_transcription); its working-text confirmation is recorded in working_text, original not yet held; replace and re-check when an official copy is registered for this packet.\", \"source_says\": \"The claim's own later event on EO:13606#sec1 cites jobs/fr-originals/data/full_run/texts/EO_14312.txt, the govinfo Federal Register original (90 FR 29395, FR Doc. 2025-12506, sha256 f8e16f10...), which the packet registers as ACTOR_TEXT:EO:14312; the dossier has no working_text_confirmation (null). The statement contradicts the cited source.\"}]"
+    },
+    {
+      "claim_sha256": "8b7dfcc438b76dfb0f2600bf047a3f464bbcfc496578dd517e961940b34cc581",
+      "error": "changed Valla review context; prepare a new version",
+      "instrument_id": "EO:13611",
+      "outcome": "exception"
+    }
+  ],
+  "packet_loads": {
+    "research/excavator/claude-baldus-2026-11-25/y14/packet": 1
+  },
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 0,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-25T18:56:46.371547+00:00",
+  "submitted": 5,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 124.98170588599999
+}

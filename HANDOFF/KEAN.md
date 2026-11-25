@@ -68,4 +68,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-25 F-20261125-lean-trial **inconclusive**: Lean two-arm trial: 30 seeded YES orders per arm; arm 0 current route; arm 1 strict Larrey (kept 15 out), seq… Lesson: No verified saving at this size. Pooling review sets and pre-screening blocks are the larger measured levers (F-20261125-gilbreth).
 - 2026-11-25 F-20261125-larrey-strict **analysis**: Back-tested candidate pre-production gates on 570 past attempts (520 orders, 91 filed) from Papinian, Haloand… Lesson: Strict is in-sample on all five waves; adopt it only after a gated wave (30 strict-admitted vs 15-30 kept-out orders) shows at least 1.5x filed rate and the kept-out arm supplies at most 15% of filed…
 
-Register: 109 owner decisions, 66 answered questions, 419 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 110 owner decisions, 67 answered questions, 419 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
