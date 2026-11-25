@@ -13,17 +13,17 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 5 | acquire.shared.CFR_26_CFR_458.324 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 6 | recovery.working_text_stale | recovery | 2 | 1.3 | 0.0 | $0.46 | 276.7 | $0.46 |
 | 7 | recovery.custody_stranded | recovery | 5 | 3.2 | 0.0 | $1.15 | 276.7 | $1.61 |
-| 8 | production.one_step_away | production | 199 | 127.1 | 0.0 | $66 | 192.0 | $68 |
-| 9 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 1 | 0.0 | 0.2 | $0.18 | 128.0 | $68 |
-| 10 | production.claim_ready.yes.fr | production | 273 | 63.7 | 0.0 | $91 | 70.2 | $159 |
-| 11 | status_assignment.undecided | status_assignment | 11211 | 1121.1 | 0.0 | $3,728 | 30.1 | $3,886 |
-| 12 | production.claim_ready.no.fr | production | 1044 | 34.8 | 0.0 | $347 | 10.0 | $4,233 |
-| 13 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,233 |
-| 14 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,233 |
-| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $4,233 |
-| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,233 |
-| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,233 |
-| 18 | acquire.cruden_fr_statute_concordance | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,233 |
+| 8 | production.one_step_away | production | 202 | 129.0 | 0.0 | $67 | 192.0 | $69 |
+| 9 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 1 | 0.0 | 0.2 | $0.18 | 128.0 | $69 |
+| 10 | production.claim_ready.yes.fr | production | 260 | 60.7 | 0.0 | $86 | 70.2 | $155 |
+| 11 | status_assignment.undecided | status_assignment | 11211 | 1121.1 | 0.0 | $3,728 | 30.1 | $3,883 |
+| 12 | production.claim_ready.no.fr | production | 1044 | 34.8 | 0.0 | $347 | 10.0 | $4,230 |
+| 13 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,230 |
+| 14 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,230 |
+| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $4,230 |
+| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,230 |
+| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,230 |
+| 18 | acquire.cruden_fr_statute_concordance | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,230 |
 
 Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
 
