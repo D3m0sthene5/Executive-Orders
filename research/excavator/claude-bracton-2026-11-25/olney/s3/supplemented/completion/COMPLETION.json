@@ -1,0 +1,101 @@
+{
+ "schema": "eo-claim-kit-completion/v1",
+ "agent": "claude",
+ "producer_model_family": "Anthropic",
+ "independence_requirement": "same_family_separate_context",
+ "publication": {
+  "mode": "replacement_proposal",
+  "path": "research/excavator/claude-bracton-2026-11-25/o3/REPLACEMENT_PROPOSAL.jsonl"
+ },
+ "members": [
+  {
+   "instrument_id": "EO:11343",
+   "outcome": "submit",
+   "claim_sha256": "5ef753c5ab7d59b95cd8819366eac6aa4444b12a9b05e0a5a5904803cc04bee5",
+   "claim": {
+    "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/applied-v1/CLAIMS.proposed.jsonl",
+    "sha256": "2e24b6aa40d963c267789839beb0206b5025639a67a7c997104d7e71862a26d5",
+    "line": 1
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/PACKET.json",
+    "sha256": "c240892d47bc45524652b7e97a559ff101596d3fb08eb0c65afa9868fdcfdfaf"
+   },
+   "after_reveal_review": {
+    "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/reviews/AFTER_REVEAL_A.jsonl",
+    "sha256": "6beba5121fe64e7b855fcd51b02f26f8e1acc49d25385272abd5735771804585",
+    "line": 1
+   }
+  },
+  {
+   "instrument_id": "EO:11445",
+   "outcome": "blocked",
+   "reason": "Independent review did not uphold this version: [{\"field\": \"operative_clauses[EO:11445#board].later_events and research_rationale (earlier_end_check)\", \"claim_says\": \"'Olney screened the whole report PDF ... for wording extending the board's time to report; it records no extension.' No extension later event is recorded.\", \"source_says\": \"Held report, PDF page 5: 'the parties agreed to e~tend the time within which the Board must repor~ its findings to the President until March 7, 1969. On February 6, 1969, this extension was approved by President Nixon.'\", \"problem\": \"the held source records a presidential approval of an extension (1969-02-06, to 1969-03-07) that the claim omits as a later event and denies exists; the search is misdescribed\"}, {\"field\": \"operative_clauses[*].judgment_reason and research_rationale\", \"claim_says\": \"'no letter of transmittal date line was found in the held text'; rationale: 'no letter of transmittal is legible in the held text'\", \"source_says\": \"Held report PDF page 3 has a legible 'LETTER OF TRANSMITTAL' that submits the report 'herewith', with the date line 'WASHIN(]TON~ I).C.~ Marel~ 7~ 1968.'\", \"problem\": \"misstates the source: the letter exists and is legible; its date line is present but garbled (OCR year 1968), which should be disclosed as unreadable rather than as absent\"}, {\"field\": \"savings_residuals.reason\", \"claim_says\": \"'their dates are not established by a held reviewed source, so no earlier end is claimed'\", \"source_says\": \"The same claim asserts clause ends of 1969-03-07 and 1969-04-06, earlier than EO 12553.\", \"problem\": \"internally inconsistent with the claimed first ends\"}]"
+  },
+  {
+   "instrument_id": "EO:9702",
+   "outcome": "submit",
+   "claim_sha256": "2b893545679862a949389b73a89afc2df71fe6b92fe4c775f0469f9facfe6e86",
+   "claim": {
+    "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/applied-v1/CLAIMS.proposed.jsonl",
+    "sha256": "2e24b6aa40d963c267789839beb0206b5025639a67a7c997104d7e71862a26d5",
+    "line": 3
+   },
+   "publication_kind": "whole_case",
+   "packet": {
+    "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/PACKET.json",
+    "sha256": "c240892d47bc45524652b7e97a559ff101596d3fb08eb0c65afa9868fdcfdfaf"
+   },
+   "review": {
+    "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "279d014c20519678f3f66898be832682928a8aebff0be1650ad95e47d188dea0",
+    "line": 1
+   }
+  },
+  {
+   "instrument_id": "EO:9918",
+   "outcome": "blocked",
+   "reason": "Independent review did not uphold this version: [{\"field\": \"operative_clauses[EO:9918#board].judgment_reason and operative_clauses[EO:9918#standstill] (by reference)\", \"claim_says\": \"'no letter of transmittal date line was found in the held text; ... and the letter submits the report herewith'\", \"source_says\": \"Held report PDF page 2, inside the claim's own quoted span: 'WASHINGTOS. D. C.. JCI?~UU~J $8: 1958. THE PRESIDENT. ...' followed by the letter submitting the report 'herewith'.\", \"problem\": \"misstates the source and is internally inconsistent: the letter's date line is present in the quoted span but unreadable (its OCR year reads 1958); D-20261125-board-cover-date applies to an unreadable date line, and the claim should disclose that reading rather than say no date line was found\"}]"
+  },
+  {
+   "instrument_id": "EO:9936",
+   "outcome": "blocked",
+   "reason": "[\"olney: dispatch_source_blocked\"]"
+  },
+  {
+   "instrument_id": "EO:9991",
+   "outcome": "blocked",
+   "reason": "[\"olney: dispatch_source_blocked\"]"
+  }
+ ],
+ "controls": [
+  {
+   "instrument_id": "EO:11343",
+   "planted_claim_sha256": "fb1ae8b22c5c3e6cfe6b84a3ed674b40ddf379a0ddda74b867f94bebe2f95ad0",
+   "seed": {
+    "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/completion/SEED_RECEIPT_EO_11343.json",
+    "sha256": "599eef17f53333997a1b9e2e761ad7f0a7b1eff5d2b5a56c8b0852fcede6eac0"
+   },
+   "review": {
+    "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/reviews/BLIND_REVIEW_A.jsonl",
+    "sha256": "279d014c20519678f3f66898be832682928a8aebff0be1650ad95e47d188dea0",
+    "line": 2
+   },
+   "adjudication": {
+    "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/completion/CONTROL_ADJUDICATION_EO_11343.json",
+    "sha256": "34bb053130ecf82570c1a1ff3339d3b8430ca85c08fbb572e82d0081d2d1b703"
+   }
+  }
+ ],
+ "receipts": [
+  {
+   "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/reviews/BLIND_REVIEW_B.jsonl",
+   "sha256": "bbfa75fbfe9ae4bc4c52446a8c5534401a3bf6a307822551013b63fafedf7527"
+  },
+  {
+   "path": "research/excavator/claude-bracton-2026-11-25/olney/s3/supplemented/reviews/AFTER_REVEAL_B.jsonl",
+   "sha256": "af26493020530161571ae8b4870f863d6a171ea2e9e2a5558696086c1fbf461a"
+  }
+ ]
+}

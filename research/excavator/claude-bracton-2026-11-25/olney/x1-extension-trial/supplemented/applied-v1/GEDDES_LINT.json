@@ -1,0 +1,73 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-bracton-2026-11-25/olney/x1-extension-trial/supplemented/PACKET.json",
+  "seconds": 14.146,
+  "files_read": 65349,
+  "file_reads": 130735,
+  "packet_fingerprint": "736b81dabebc8eea00acabd6e128c2ad21a38e76ed1868d9c00cd3ba629f9543",
+  "claims_checked": 2,
+  "defect_flags": 1,
+  "coverage_gaps": 2,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:10010",
+      "flags": [
+        {
+          "code": "unaddressed_citing_instrument",
+          "scope_id": "whole",
+          "field": "claim",
+          "span": "EO:10015 (1948-11-05)",
+          "detail": "Held EO:10015 (1948-11-05) cites this order by number; the claim never mentions EO:10015 in its ends, events, reasoning, searches or gaps.",
+          "source": {
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-10015-amendment-executive-order-no-10010-creating-emergency-board.txt",
+            "text_sha256": "4aee9798526955f4352e23e4a3c0616d4f8e00f0b0dce327f465b3a65edafcc4",
+            "char_start": 0,
+            "char_end": 351,
+            "quote": "By virtue of authority vested in me by section 10 of the Railway Labor Act, as amended (45 U.S.C. 160), Executive Order No. 10010 of October 18, 1948, entitled \"Creating an Emergency Board to Investigate Disputes between the Akron & Barberton Belt Railroad Company and Other Carriers, and Certain of Their Employees,\" is hereby amended as follows:\n\n1.",
+            "instrument_id": "EO:10015",
+            "date": "1948-11-05",
+            "identity_basis": "app_publisher_listing",
+            "cited_order": "EO:10010"
+          },
+          "flag_id": "d7fa1d64c9f16d27"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "2805da47c4e61a8f202b4c59e080fd6de7d52009",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:10372",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "2805da47c4e61a8f202b4c59e080fd6de7d52009",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

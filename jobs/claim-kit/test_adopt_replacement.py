@@ -123,6 +123,24 @@ class AdoptReplacementTests(unittest.TestCase):
         self.write(A.ASKS, line({'id': 'A-1', 'rev': 0, 'status': 'answered', 'decision': DECISION, 'question': 'Adopt EO 5?'}))
         self.refuses('not named in the owner-answered ask: EO:7')
 
+    def test_standing_rule_needs_no_order_names(self):
+        self.write(A.ASKS, line({'id': 'A-1', 'rev': 0, 'status': 'answered', 'decision': DECISION, 'question': 'Standing rule?'}))
+        self.write(RULING, ('# Standing owner rule\n' + DECISION + '\n').encode())
+        receipt = A.adopt(self.repo, DECISION, RULING, [FOLDER], TARGET, RECEIPT, True, standing=True)
+        self.assertTrue(receipt['standing_rule'])
+
+    def test_standing_rule_needs_standing_ruling_file(self):
+        self.write(A.ASKS, line({'id': 'A-1', 'rev': 0, 'status': 'answered', 'decision': DECISION, 'question': 'Standing rule?'}))
+        with self.assertRaisesRegex(ValueError, 'Standing owner rule'):
+            A.adopt(self.repo, DECISION, RULING, [FOLDER], TARGET, RECEIPT, True, standing=True)
+
+    def test_standing_rule_still_needs_controls_caught(self):
+        self.write(A.ASKS, line({'id': 'A-1', 'rev': 0, 'status': 'answered', 'decision': DECISION, 'question': 'Standing rule?'}))
+        self.write(RULING, ('# Standing owner rule\n' + DECISION + '\n').encode())
+        self.publish(tally={'plants_caught': 0, 'controls': [{'instrument_id': 'EO:1', 'caught': False}]})
+        with self.assertRaises(ValueError):
+            A.adopt(self.repo, DECISION, RULING, [FOLDER], TARGET, RECEIPT, True, standing=True)
+
     def test_ruling_must_name_decision(self):
         self.write(RULING, b'Owner: yes.\n')
         self.refuses('does not name')
