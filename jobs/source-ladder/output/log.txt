@@ -1,9 +1,9 @@
 ...............................................................................................................................................................................................................
 ----------------------------------------------------------------------
-Ran 207 tests in 1.745s
+Ran 207 tests in 1.565s
 
 OK
-Queue: 1365 from FETCH_QUEUE.jsonl, 90 shared sources not yet retrieved, 774 Opus originals to re-fetch; working on 274 (0 already found in union: folder /home/runner/work/Executive-Orders/Executive-Orders/.job-cache/runner-prior/44365198947-1/source-ladder; git 69372304ff28504997b20357dc2b6351992d8bcb:jobs/source-ladder/output; git 603098f5cd5dc240c6a7fcb7176f2bbf0bec149b:jobs/source-ladder/output; git bd4450ab101cf0c14e736678614cd645c59312f0:jobs/source-ladder/output and carried forward).
+Queue: 1365 from FETCH_QUEUE.jsonl, 90 shared sources not yet retrieved, 774 Opus originals to re-fetch; working on 274 (0 already found in union: folder /home/runner/work/Executive-Orders/Executive-Orders/.job-cache/runner-prior/45477592753-1/source-ladder; git 69372304ff28504997b20357dc2b6351992d8bcb:jobs/source-ladder/output; git 603098f5cd5dc240c6a7fcb7176f2bbf0bec149b:jobs/source-ladder/output; git bd4450ab101cf0c14e736678614cd645c59312f0:jobs/source-ladder/output and carried forward).
   problem: FETCH_QUEUE.jsonl line 515: ending_or_current_basis: ending instrument not unambiguously identified; do not refetch the original as ending evidence
   problem: FETCH_QUEUE.jsonl line 523: ending_or_current_basis: ending instrument not unambiguously identified; do not refetch the original as ending evidence
   problem: FETCH_QUEUE.jsonl line 562: unknown step 'later_events'
@@ -528,13 +528,10 @@ Queue: 1365 from FETCH_QUEUE.jsonl, 90 shared sources not yet retrieved, 774 Opu
 [260/274] queue:EO:12946:Date the President submitted the final report of the President's Advisory Board on Arms Proliferation Policy to the Congress (sec. 4(a): the Board terminates 30 days after that date), from the Weekly Compilation of Presidential Documents / Public Papers of the Presidents (Clinton, 1995-1997), the Congressional Record, or Department of Defense records, window 1995-01 to 1997-09; or a statement that no such report was transmitted before the revocation by EO 13062 (effective 1997-09-30). (1 orders)
   not found, retry_later: 19 route(s) failed for a passing reason: content_check: rd_not_the_report_record: body_name_missing(a; content_check: rd_not_the_report_record: no_word_report
 [261/274] queue:EO:11256:National Advisory Commission on Food and Fiber: actual final report submission/transmittal evidence, not report deadline (1 orders)
-    retry 1 after HTTP 504 for https://web.archive.org/web/20261021151107id_/https://www.govinfo.gov/content/pkg/PPP-1967-book1/pdf/PPP-1967-book1.pdf (waiting 2s)
-    retry 2 after URLError for https://web.archive.org/web/20261021151107id_/https://www.govinfo.gov/content/pkg/PPP-1967-book1/pdf/PPP-1967-book1.pdf
-    retry 3 after URLError for https://web.archive.org/web/20261021151107id_/https://www.govinfo.gov/content/pkg/PPP-1967-book1/pdf/PPP-1967-book1.pdf
+    retry 1 after URLError for https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Fwww.govinfo.gov%2Fcontent%2Fpkg%2FPPP-1967-book2%2Fpdf%2FPPP-1967-book2.pdf&output=json&limit=-3&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cmimetype%2Cstatuscode%2Cdigest
     retry 1 after URLError for https://web.archive.org/web/20250217093331id_/https://www.govinfo.gov/content/pkg/PPP-1967-book2/pdf/PPP-1967-book2.pdf
     retry 2 after URLError for https://web.archive.org/web/20250217093331id_/https://www.govinfo.gov/content/pkg/PPP-1967-book2/pdf/PPP-1967-book2.pdf
-    retry 3 after URLError for https://web.archive.org/web/20250217093331id_/https://www.govinfo.gov/content/pkg/PPP-1967-book2/pdf/PPP-1967-book2.pdf
-  not found, retry_later: 12 route(s) failed for a passing reason: FetchError: download exceeds bound; FetchError: robots unavailable: 301; URLError: <urlopen error [Errno 111] Connection refused>; content_check: index_page: the URL lists documents; it is no
+  not found, retry_later: 12 route(s) failed for a passing reason: FetchError: download exceeds bound; FetchError: robots unavailable: 301; content_check: index_page: the URL lists documents; it is no
 [262/274] queue:EO:11829:Hopi-Navajo Land Settlement Mediator completion determination/notice and Interagency Committee records-transfer documentation (1 orders)
   not found, retry_later: 8 route(s) failed for a passing reason: FetchError: robots unavailable: 301; content_check: index_page: the URL lists documents; it is no
 [263/274] queue:EO:12486:Actual emergency-board report submitted under EO12486, including submission date; section4 termination and section3 independent standstill (1 orders)
@@ -548,23 +545,23 @@ Queue: 1365 from FETCH_QUEUE.jsonl, 90 shared sources not yet retrieved, 774 Opu
 [267/274] queue:EO:12607:Actual date of the President's Commission on Privatization, created by EO 12607: submission of the Commission's findings and recommendations (due 1988-03-01); the record of its termination; not the order's report deadline, and the later revocation is only an upper bound. (1 orders)
   not found, retry_later: 2 route(s) failed for a passing reason: rd_range_budget_reached: range request budget of 1500 reache
 [268/274] queue:EO:1126:Exact acting-source custody recovery for b03; expected sha256 55729302e8e429a7dbabf6742fa80dbf2af46eecb64a873ec99fa5393750f543 (1 orders)
+    retry 1 after URLError for https://web.archive.org/cdx/search/cdx?url=https%3A%2F%2Farchive.org%2Fdetails%2Fminutesofmee19121914isth%2Fpage%2Fn63&output=json&limit=-3&filter=statuscode%3A200&fl=timestamp%2Coriginal%2Cmimetype%2Cstatuscode%2Cdigest
   not found, retry_later: 3 route(s) failed for a passing reason: FetchError: robots unavailable: 302; bot_or_captcha_page:captcha; http_403
 [269/274] queue:EO:11513:Date the President's Commission on School Finance submitted its final report to the President (due not later than 1972-03-03, two years from the order of 1970-03-03; the Commission terminates 30 days after submission), from the Public Papers of the Presidents (Nixon, 1971 and 1972) or the Weekly Compilation of Presidential Documents, window 1971-09 to 1972-06; also any White House notice of the Commission's termination. (1 orders)
   not found, retry_later: 1 route(s) failed for a passing reason: rd_range_budget_reached: range request budget of 1500 reache
-[270/274] queue:EO:11633:36 FR 32197 (1 orders)
-  every route ended definitively (1 attempts); proposed as exhausted
-[271/274] queue:EO:12387:47 FR 44981-44990 (Oct. 13, 1982), page images of EO 12387 with Schedules 1-8 (1 orders)
-    retry 1 after URLError for https://web.archive.org/web/20260511093642id_/https://www.govinfo.gov/content/pkg/FR-1982-10-13/pdf/FR-1982-10-13.pdf
-    retry 2 after URLError for https://web.archive.org/web/20260511093642id_/https://www.govinfo.gov/content/pkg/FR-1982-10-13/pdf/FR-1982-10-13.pdf
-    retry 3 after URLError for https://web.archive.org/web/20260511093642id_/https://www.govinfo.gov/content/pkg/FR-1982-10-13/pdf/FR-1982-10-13.pdf
+[270/274] queue:EO:12387:47 FR 44981-44990 (Oct. 13, 1982), page images of EO 12387 with Schedules 1-8 (1 orders)
+    retry 1 after URLError for https://web.archive.org/web/20251120203729id_/https://www.govinfo.gov/content/pkg/FR-1982-10-13/pdf/FR-1982-10-13.pdf
+    retry 2 after URLError for https://web.archive.org/web/20251120203729id_/https://www.govinfo.gov/content/pkg/FR-1982-10-13/pdf/FR-1982-10-13.pdf
   not found, retry_later: 4 route(s) failed for a passing reason: FetchError: download exceeds bound; FetchError: robots unavailable: 301
-[272/274] queue:EO:12826:57 FR 62909 (1 orders)
+[271/274] queue:EO:12829:58 FR 3479 (1 orders)
   not found, retry_later: 1 route(s) failed for a passing reason: FetchError: download exceeds bound
-[273/274] queue:EO:12829:58 FR 3479 (1 orders)
-  not found, retry_later: 1 route(s) failed for a passing reason: FetchError: download exceeds bound
-[274/274] queue:EO:12886:58 FR 68708 (1 orders)
-  not found, retry_later: 1 route(s) failed for a passing reason: FetchError: download exceeds bound
+[272/274] queue:EO:5704:EO 6390 (1 orders)
+  every route ended definitively (1 attempts); proposed as exhausted
+[273/274] queue:EO:8505:Public Land Order 1649, May 29, 1958, 23 FR 3967 (1 orders)
+  not found, retry_later: 2 route(s) failed for a passing reason: FetchError: robots unavailable: 301; content_check: index_page: the URL lists documents; it is no
+[274/274] queue:EO:10030:ActAugust10,1956,ch1041,section49,70AStat640 (1 orders)
+  not found, retry_later: 1 route(s) failed for a passing reason: FetchError: robots unavailable: 301
 
-Done in 1854.6 s. Worked 274 items: 1097 found (1097 carried forward from the last committed output), 1 with every route ending definitively (proposed as exhausted, 1 order lines), 49 to retry later (a passing failure such as a timeout, a block or an offline run; NOT proposed as exhausted), 224 with no route, 0 not attempted.
-52 HTTP requests (1500 Range reads of large files), 96.7 MB downloaded. Cache: /home/runner/work/Executive-Orders/Executive-Orders/.job-cache/source-ladder
+Done in 1692.2 s. Worked 274 items: 1097 found (1097 carried forward from the last committed output), 1 with every route ending definitively (proposed as exhausted, 1 order lines), 49 to retry later (a passing failure such as a timeout, a block or an offline run; NOT proposed as exhausted), 224 with no route, 0 not attempted.
+133 HTTP requests (1500 Range reads of large files), 135.9 MB downloaded. Cache: /home/runner/work/Executive-Orders/Executive-Orders/.job-cache/source-ladder
 Nothing here changes a status or count; found files are source custody for human review.

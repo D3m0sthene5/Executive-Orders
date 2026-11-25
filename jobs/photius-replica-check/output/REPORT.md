@@ -1,7 +1,7 @@
 # Photius replica check: report
 
-Targets 2557; read 2557; reader verdicts {'pass': 2516, 'unsure': 35, 'fail': 6}; adjudicated 219 ({'pass': 206, 'unsure': 5, 'fail': 8}); final {'pass': 2544, 'unsure': 5, 'fail': 8}.
-Credited as archival_replica_checked: 2544 (1967 below EO 4306).
+Targets 4648; read 2574; reader verdicts {'pass': 2533, 'unsure': 35, 'fail': 6}; adjudicated 225 ({'pass': 212, 'unsure': 5, 'fail': 8}); final {'pass': 2561, 'unsure': 5, 'fail': 8, 'unread': 2074}.
+Credited as archival_replica_checked: 2561 (1967 below EO 4306).
 
 Fails and unsure after adjudication:
 

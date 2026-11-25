@@ -83,6 +83,153 @@
   desktop apps (`RELAY_CLAUDE_BIN`, `RELAY_CODEX_BIN`; launcher `%USERPROFILE%/Relay-kiaer/run-kiaer.ps1`). Data
   written under `%LOCALAPPDATA%` from a Claude desktop session lands in
   `AppData\Local\Packages\Claude_pzs8sxrjxfjjc\LocalCache\Local\Relay\kiaer-2026-11-18`.
+## 2026-11-13 ET (Claude: FEPC fiscal source challenge, EO-SUP-04)
+
+- **Report:** `research/lind/fepc-fiscal-review/REVIEW.md`, with source hashes and page crops. A source challenge only.
+- **Result:** the producer's FY1947 figures are confirmed. The function-list sourcing is corrected (FR 270.1(h)(1), not AR p. 118). The 1945 account lapsed to the surplus fund in FY1947. One cell has a $2.00 printing error.
+- **Open:** six legal predicates (section 4); the May 18, 1946 letter is still unlocated.
+
+## 2026-11-13 ET, early (Claude: conveyor audit for supervisor dispatches EO-SUP-01 and EO-SUP-02)
+
+- **Audit:** `research/lind/conveyor-audit/AUDIT.md`; Kean F-20261113-conveyor-audit.
+  - The $6.59 / 51-call comparison was whole-batch. At the aligned boundary the manual run used 48 requests, $5.78,
+    with at most 33 ($4.03) removable.
+  - The 30-order replay on saved inputs: 0 coordinator calls, 7 proposals matching the pilot's, stop at producer
+    reconfirmation.
+  - "518k" is the mean per-request prompt.
+- **Sol recovery compatibility** (judged from the supervisor's description; the commit is not fetchable here): no
+  overlap. Rerun the 30-order replay on the combined tree, because the EO-list matcher can change prepared dossiers.
+- **PR #304:** title and body corrected (text in `research/lind/conveyor-audit/PR_304_METADATA.md`). The EO 12753
+  eligibility and adoption claim is withdrawn; open ask A-20261113-lind-12753-reconfirm, not approved.
+- **EO-SUP-03 corrections:**
+  - cache read is 99.759% of prompt tokens (cache creation 0.241%, uncached 0.0004%);
+  - the $24.1 subagent gap is an inference;
+  - Kean F-20261113-conveyor-audit-correction.
+  - Root's exact-tree test on main 5ace518 replaces my description-based compatibility judgment.
+- **Not authorized:** the $25 batch, the EO 12753 paid reconfirmation, merges, adoption.
+
+## 2026-11-13 ET (Claude: coordination cost measured; conveyor fixed for the undecided route; real-kit replay; board handoff corrected)
+
+Compact handoff. Read only the files named.
+
+- **Board correction** (commit 60627d325): `research/lind/board-candidates-2026-11-13/RESULT.md` section 0.
+  - The NMB "closed" field is undefined; inventory agreement is not independent lineage (`INVENTORY_AGREES`).
+  - Unreadable images are kept apart from failed OCR. The owner rule says "held report"; block-if-unreadable is in the
+    producer brief only.
+  - The 67 are candidate inputs. The 10-order pilot was not bought.
+- **Efficiency result:** `research/lind/conveyor-replay/RESULT.md`; Kean F-20261113-conveyor-replay.
+  - Long-context coordinator calls cost $0.13-0.21 each; 77-82% of that is context re-reading; decisions were 9-22% of
+    calls.
+  - The Maudslay conveyor's undecided route was broken on the real kit (blank STATUS_DECISION copies under research/
+    tripped the prior-research scan). Fixed: the copies now live in scratch; tests 75/78 (3 pre-existing Windows).
+  - Replay of 5 Lind orders with saved real outputs: 37 s, 0 coordinator calls through overlay proposal; identical
+    evidence and status decisions; stops at producer reconfirmation as the owner rule requires.
+- **Compliance finding:** F-20261113-lind-mechanical-reconfirmation. My manual Lind route reconfirmed model producers by
+  script, which D-20261110-no-mechanical-reconfirmation-for-models declines.
+  - A-20261112-lind-adopt-12753 is withdrawn; the new owner ask is **A-20261113-lind-12753-reconfirm**.
+- **Sol handoff:** `research/lind/conveyor-replay/HANDOFF_TO_SOL.md`.
+- **Next, if approved:** one paid conveyor batch, $25 cap, with the decision rule in RESULT.md section 6. It needs a
+  reconfirmation decision first.
+- **Cost of this assignment:** about $7.5 coordinator (list price); no production or review.
+
+## 2026-11-12 ET, late (Claude: Lind stage-0 diagnosis; EO 12753 recovered to eligible; offline check before review)
+
+Compact handoff for a fresh coordinator context. Read only the files named.
+
+- **Pilot result** (PR #303): stays 0 ready of 30. Report: `research/excavator/claude-lind-2026-11-12/REPORT.md`.
+- **Diagnosis:** `research/excavator/claude-lind-2026-11-12/FAILURES.md` (per order, by category);
+  Kean F-20261112-lind-stage0-diagnosis.
+- **EO 12753** (PR #304, branch `claude/lind-12753-recovery`):
+  - Cotton run 43324287671 kept its ending source's bytes;
+  - `completion/complete-v2` is eligible, with the same claim (sha256 47f70df6...) and the same reviews;
+  - waiting on owner ask **A-20261112-lind-adopt-12753**.
+  - On yes, file it as D-20261110-papinian-adopt did (`ADOPTION_ROWS.csv`, canonical claim file under
+    `research/readiness/claims/`, a readiness-tracker run). Report it separately from the pilot.
+- **Earlier check** (PR #305, branch `claude/cotton-precheck`): `kit.py overlay-check` now runs the actual checker
+  offline before blind review (`batch.actual_check_offline`).
+- **Optional ask A-20261112-lind-repair-12437-11943** ($8 cap): if approved, run it from a fresh context.
+  - Use `/root/lind-sealed/overlay_review_lind.py`. It is outside the repo, so copy or recreate it from Papinian's
+    `tools/overlay_review.py` with Linux paths.
+  - Re-render the producer brief so it credits F6 `working_text_basis`.
+- **Costs:**
+  - optimization analysis: about $39;
+  - pilot: $23.07;
+  - post-pilot coordinator time: measured in the PR #304 description.
+
+## 2026-11-12 ET, night (Claude: Lind stage 0 run; 0 ready; unsuccessful row)
+
+- **Run** (owner-approved, A-20261112-lind-stage0-v2): 30 undecided orders, 15 passing every gate and 15 hard-only.
+  Report: `research/excavator/claude-lind-2026-11-12/REPORT.md`; Kean F-20261112-lind-stage0.
+- **Result: ready 0 in both groups, so no stage 1.**
+
+  | | Dispatch-blocked | Producer-blocked | Statuses accepted | Claims reviewed | Upheld by both arms |
+  |---|---:|---:|---:|---:|---:|
+  | All gates | 2 | 6 | 7 | 6 | 1 (EO 12753) |
+  | Hard-only | 5 | 9 | 1 | 1 | 0 |
+
+  - EO 12753 failed the actual checker on a custody-only ending source.
+  - Both arms caught the planted control.
+- **Cost:** $23.07 of the $35 cap: producers 5.79, reviewers 7.12, coordinator 10.16. The coordinator came to $0.34 per
+  attempt, over the $0.25 stop rule.
+- **Next, owner's call (not asked yet):**
+  - zero-production diagnosis of the 30;
+  - or custody retention for EO 12753's ending source, plus text corrections of 5 rejected claims, then a fresh review.
+- **Augur:** this run is recorded in `CONFIGURATIONS.json` as stage 0, not passed.
+## 2026-11-25 ET (Claude: Peiresc replica harvest; Bentham fix; Photius stage 0)
+
+- **Harvest (PR #310, Kean F-20261124-peiresc-harvest):** 2,097 of the 2,192 numbered orders that had no official
+  text now have a ProQuest replica. Each file's sha256 and length were verified. Files are in
+  `research/pre-1937-sources/ProQuest Pre-1937 Orders/`; the record and NOT_FETCHED.csv are in
+  `research/excavator/peiresc-2026-11-24/`. Not fetched: 95 orders (15 returned 404; 80 returned 500, 73 of them
+  lettered suffix orders).
+- **Pinakes and tracker re-run on the branch:** replicas now cover 4,841 orders, every one with text. 2,101 orders
+  carry `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK`:
+  - 1,873 are undecided;
+  - 210 are decided but also need an OFR catalog search;
+  - 17 are decided orders that a pass moves into the claim-ready pool.
+- **Bentham fix (0eb9ee0):** a passing replica now clears every original-text blocker (P4), and agent acquisitions
+  list their orders. Before the fix, Augur refused every agent acquisition. Bentham now ranks the replica check at
+  17 orders, $3.03.
+- **Photius stage 0** (Augur PASS; owner review D-20261125-peiresc-page-check; F-20261125-photius-peiresc-s0):
+  - 17 of 17 pass. Opus agreed on 6 of 6, and the upper-bound cost is about $1.15 list.
+  - `assemble.py` now carries several waves; Lane 4's rows are unchanged.
+  - Lesson: Federal Register-era scans start with the tail of the preceding order. Readers must credit the order's
+    own closing block.
+- **Next:** wider replica checks run only as Bentham ranks them. Most of the replica value is for the 1,873
+  undecided orders. A checked replica removes the transcription refusal that capped undecided yield
+  (F-20261107-haloander-undecided-probe); measure that on the next undecided probe.
+- **Stateless gauge:** running on the owner's PC. One test failed only because Windows blocked symlink creation
+  (WinError 1314); Developer Mode is now on, and the tests are being rerun before the dry run.
+- **No count changed.** No statuses changed, and certified is still 0.
+
+## 2026-11-24 ET (Claude: Petty census-closure wave; census paper drafted; CIS pilot run)
+
+- **Owner order** (Kean D-20261124-1): finish the census thread now, with a coordinated agent run, and update GitHub.
+  Output: `research/petty-census-closure-2026-11-24/CENSUS.md`, a paper for a legal scholar. Named for William
+  Petty, Graunt's collaborator in political arithmetic.
+- **Cross-check** (F-20261124-1): 14,865 of 14,983 numbered census labels (99.2%) are named by the WPA 1944 list or
+  the OFR catalog. Of the 118 named by neither, 65 have an official printing held. 214 date conflicts are listed,
+  none adjudicated. Sonnet worker, about 143k tokens.
+- **CIS pilot** (answers A-20261112-cis-unnumbered-check): 30 ProQuest records read from catalog data only, because
+  the scans would not render in the extension browser.
+  - 22 are signed presidential orders found in no project list (about 470-770 of the 875 by extrapolation).
+  - 3 resolve audit entries carried at count 0, and 1 duplicates EO 4456A.
+  - 14 of the 30 carry CIS revocation cross-references, a lifecycle source for unnumbered land orders.
+- **The 69 "page check pending" rows** were already finally failed by Montfaucon (66 fail, 1 unsure, 2 blocked). A
+  recheck needs corrected-span fragments, and the owner's stop after m010 still stands. Plan and fetch job are in
+  `page-check-69/`; nothing was dispatched.
+- **Lane B** (official pages for the 14 labels still lacking one): CSC 18th Annual Report prints all seven
+  Cleveland orders. EO 6585 and EO 7010F are already held in photius-gpo-volumes. EO 2103 is a Monthly Catalog
+  listing only, EO 5151A is in the OFR Hoover compilation, and EO 2687A is in FRUS 1917. EO 130A and 8606A have no
+  official printing found. Pages to fetch are in `missing-numbered-14/FETCH_URLS.txt`.
+- **Lane D** (70 rows with nothing held): 3 official texts, 18 secondary, 33 listing only, 12 nothing, 4 identity
+  doubts. EO:7010P is really 7010F, and the APP text stored as EO:4224 is really 4224½.
+- **Cost:** Sonnet workers: lane A 143k tokens (5 min), B 243k (35 min), C 150k (5 min), D 189k (23 min), and an
+  independent fact-check of CENSUS.md 92k (1 min; its corrections are applied). The Opus coordinator's tokens were not
+  metered. Bentham and Augur were not used: this is census work, outside their lifecycle actions.
+- **PR #307** is ready for review.
+- **No count changed.** There were no admissions, claim filings or readiness changes, and certified is still 0.
+- **Asks:** @Owner: A-20261124-1 (admit EO 6585; re-key 7010P and 4224½). Before adding any CIS order, read the 22 candidate scans in ProQuest.
 
 ## 2026-11-12 ET, evening (Claude: claim-kit build repaired; fresh build verified; pilot finalized, not run)
 
