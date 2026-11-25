@@ -26,4 +26,9 @@ try:
     print("back-test re-run on the current kit code ->", out / "BACKTEST.json")
 except (OSError, KeyError, ValueError) as exc:
     print("back-test not re-run (", exc, "); the committed BACKTEST.json calibrates the routes")
+try:
+    import strict_backtest  # noqa: E402  (the opt-in strict level, scored on filed dossiers; enforces nothing)
+    strict_backtest.main(["--json", str(out / "STRICT_BACKTEST.json")])
+except (OSError, KeyError, ValueError) as exc:
+    print("strict back-test not run (", exc, ")")
 sys.exit(larrey.main(["triage", "--no-pools", "--out", str(out)]))

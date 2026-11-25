@@ -76,6 +76,45 @@ class FeatureTests(unittest.TestCase):
         import working_text
         self.assertEqual(KF.WORKING_GRADES, frozenset(working_text.GRADES))
 
+    def test_ending_verbs_match_the_kit(self):
+        import own_text
+        self.assertEqual(KF.ENDING_VERBS, frozenset(own_text.ENDING_VERBS))
+
+    def test_strict_features_conflicts_whole_end_acts_and_status_events(self):
+        act = lambda actor, verb, scope: held(actor_id=actor, verb=verb, scope=scope)
+        d = dossier("EO:1", "yes", records=[
+            ("ACT:EO:1>EO:2", act("EO:2", "revoke", "whole")),
+            ("ACT:EO:1>EO:2@alt", act("EO:2", "revoke", "whole")),     # an alternative text of the same act
+            ("ACT:EO:1>EO:3", act("EO:3", "amend", "whole")),          # not an ending verb
+            ("ACT:EO:1>EO:4", act("EO:4", "supersede", "partial")),    # not whole scope
+        ])
+        f = KF.from_dossier(d)
+        self.assertEqual((f["conflicts"], f["whole_end_acts"], f["status_events"]), (0, 1, None))
+        d["conflicts"] = [{"code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER", "detail": "x"}]
+        d["status_history"] = {"event_count": 7}
+        f = KF.from_dossier(d)
+        self.assertEqual((f["conflicts"], f["status_events"]), (1, 7))
+        inputs = {"instrument_id": "EO:5", "selected": {"acceptable_as_original": True, "source": dict(SRC)}}
+        acts = [{"actor_id": "EO:6", "verb": "terminate", "scope": "whole"},
+                {"actor_id": "EO:7", "verb": "amend", "scope": "whole"}]
+        g = KF.from_overlay(inputs, [], acts, {"clauses": [{"scope_id": "EO:5#1"}]}, lambda a: False,
+                            lead={"status_history": {"event_count": 2}})
+        self.assertEqual((g["conflicts"], g["whole_end_acts"], g["status_events"]), (0, 1, 2))
+
+    def test_strict_gates(self):
+        gate = lambda name, f, st: llull.GATES[name][1]({"instrument_id": "EO:1", "provisional_status": st},
+                                                        L._FeatData({"EO:1": f}))
+        base = KF.from_dossier(dossier("EO:1", "yes"))
+        c = "no_contradicting_status_lead"
+        self.assertEqual(gate(c, base, "yes"), "held")
+        self.assertEqual(gate(c, dict(base, whole_end_acts=1), "yes"), "no")
+        self.assertEqual(gate(c, dict(base, whole_end_acts=1), "no"), "held")   # on a NO it is the ending lead
+        self.assertEqual(gate(c, dict(base, conflicts=1), "no"), "no")
+        self.assertEqual(gate(c, dict(base, conflicts=1), ""), "na")              # undecided: no status to contradict
+        e = "status_events_at_most_5"
+        self.assertEqual([gate(e, dict(base, status_events=n), "yes") for n in (None, 0, 5, 6)],
+                         ["held", "held", "held", "no"])
+
 
 class Fixture:
     """A miniature repository: tracker, compiled claim-kit outputs and (optionally) Bentham strata."""
@@ -87,13 +126,13 @@ class Fixture:
         (self.out / "actor-texts").mkdir()
         self.rows, self.jsonl = [], {}
 
-    def decided(self, iid, status, **kw):
-        d = dossier(iid, status, **kw)
+    def decided(self, iid, status, extra=None, **kw):
+        d = dict(dossier(iid, status, **kw), **(extra or {}))
         (self.out / "dossiers" / (iid.replace(":", "_") + ".json")).write_text(json.dumps(d), encoding="utf-8")
         self.rows.append({"instrument_id": iid, "provisional_status": status})
 
     def undecided(self, iid, acceptable=True, page_check=False, terms=(), acts=(), known=(), clauses=1,
-                  grade="original_representation_unverified"):
+                  grade="original_representation_unverified", status_history=None):
         sel = {"instrument_id": iid, "acceptable_as_original": acceptable, "requires_page_check": page_check,
                "grade": grade, "source": dict(SRC), "text_path": SRC["text_path"]}
         self.add("OVERLAY_INPUTS", {"instrument_id": iid, "schema": "eo-claim-kit-overlay-input/v1",
@@ -105,7 +144,8 @@ class Fixture:
                                            "provision_text": "revoked", "verb": "revoke", "scope": "whole"})
         self.add("CLAUSES", {"instrument_id": iid, "source": dict(SRC),
                              "clauses": [{"scope_id": f"{iid}#{n}"} for n in range(clauses)]})
-        self.add("STATUS_LEADS", {"instrument_id": iid, "status": None, "current_law_leads": []})
+        self.add("STATUS_LEADS", dict({"instrument_id": iid, "status": None, "current_law_leads": []},
+                                      **({"status_history": status_history} if status_history else {})))
         self.rows.append({"instrument_id": iid, "provisional_status": ""})
 
     def actor(self, iid, overflow=False):
@@ -277,7 +317,7 @@ class AdmittedTests(_Base):
         ok, _, rec = L.admitted(self.tmp.name, "status_assignment.undecided")
         self.assertEqual(ok, {"EO:8001"})
         self.assertEqual(rec["larrey_level"], "soft")
-        os.environ["LARREY_LEVEL"] = "off"
+        os.environ["LARREY_LEVEL"] = "off"          # there is no off setting
         with self.assertRaisesRegex(ValueError, "LARREY_LEVEL"):
             L.admitted(self.tmp.name, "status_assignment.undecided")
 
@@ -391,6 +431,83 @@ class AdmittedTests(_Base):
         self.assertEqual((s["cost_usd"], s["expected_now"]), (0.5, 0.1))
 
 
+class StrictLevelTests(_Base):
+    """LARREY_LEVEL=strict (2026-11-25): hard, soft and strict gates; opt-in, never the default."""
+
+    def setUp(self):
+        super().setUp()
+        f = self.f
+        f.decided("EO:9101", "yes", extra={"conflicts": [{"code": "PARTIAL_END_CANDIDATE_ON_YES_ORDER"}]})
+        f.decided("EO:9102", "yes", records=[("ACT:EO:9102>EO:9500",
+                                              held(actor_id="EO:9500", verb="revoke", scope="whole"))])
+        f.decided("EO:9103", "no", records=[("ACT:EO:9103>EO:9500",
+                                             held(actor_id="EO:9500", verb="revoke", scope="whole"))],
+                  extra={"status_history": {"event_count": 5}})
+        f.decided("EO:9104", "yes", extra={"status_history": {"event_count": 9}})
+        f.undecided("EO:8101", acts=["EO:9500"], status_history={"event_count": 6})
+        f.undecided("EO:8102", acts=["EO:9500"], status_history={"event_count": 1})
+        f.write()
+        f.install_larrey()
+        os.environ.pop("LARREY_LEVEL", None)
+
+    def tearDown(self):
+        os.environ.pop("LARREY_LEVEL", None)
+        super().tearDown()
+
+    def test_strict_verdicts_reasons_and_levels(self):
+        (_, reasons, _), out = self.run_triage()
+        lines = {(x["route"], x["instrument_id"]): x for x in
+                 map(json.loads, (out / L.GATES_FILE).read_text(encoding="utf-8").splitlines())}
+        dl = lambda i: lines[("decided_lifecycle", i)]
+        self.assertEqual([dl(i)["pass_strict"] for i in ("EO:9001", "EO:9101", "EO:9102", "EO:9103", "EO:9104")],
+                         [True, False, False, True, False])
+        self.assertTrue(all(dl(i)["pass"] for i in ("EO:9101", "EO:9102", "EO:9104")))   # soft is unchanged
+        self.assertEqual(dl("EO:9101")["missing_strict"], ["no_contradicting_status_lead"])
+        self.assertEqual(dl("EO:9104")["missing_strict"], ["status_events_at_most_5"])
+        self.assertFalse(dl("EO:9005")["pass_strict"])            # fails a soft gate, so fails strict too
+        self.assertEqual(reasons["decided_lifecycle"]["admitted_strict"], 4)    # 9001, 9002, 9003, 9103
+        ok, why, rec = L.admitted(self.tmp.name, "production.claim_ready.yes.fr")
+        self.assertEqual(rec["larrey_level"], "hard")             # the default stays hard
+        self.assertTrue({"EO:9101", "EO:9102", "EO:9104"} <= ok)
+        os.environ["LARREY_LEVEL"] = "strict"
+        ok, why, rec = L.admitted(self.tmp.name, "production.claim_ready.yes.fr")
+        self.assertEqual(rec["larrey_level"], "strict")
+        self.assertEqual(ok, {"EO:9001", "EO:9002", "EO:9003", "EO:9103"})
+        self.assertEqual(why["EO:9101"], "strict:contradicting_status_lead")
+        self.assertEqual(why["EO:9005"], "soft:nea_continuation_notice_not_held")
+        ok, why, _ = L.admitted(self.tmp.name, "status_assignment.undecided")
+        self.assertEqual(ok, {"EO:8001", "EO:8102"})
+        self.assertEqual(why["EO:8101"], "strict:status_events_over_5")
+        msg = L.refusal("status_assignment.undecided", ["EO:8101"], ok, why)
+        self.assertIn("EO:8101 (strict:status_events_over_5)", msg)
+        self.assertEqual(L._code("strict:status_events_over_5"), "strict:status_events_over_5")
+
+    def test_output_without_strict_verdicts_fails_closed_at_strict_only(self):
+        _, out = self.run_triage()
+        g = out / L.GATES_FILE
+        old = [json.loads(l) for l in g.read_text(encoding="utf-8").splitlines()]
+        for x in old:
+            x.pop("pass_strict"), x.pop("missing_strict")
+        g.write_text("".join(json.dumps(x) + "\n" for x in old), encoding="utf-8")
+        self.assertIn("EO:9001", L.admitted(self.tmp.name, "production.claim_ready.yes.fr")[0])
+        os.environ["LARREY_LEVEL"] = "strict"
+        ok, why, _ = L.admitted(self.tmp.name, "production.claim_ready.yes.fr")
+        self.assertEqual(ok, set())
+        self.assertIn("strict:no_strict_verdict", why["EO:9001"])
+
+    def test_bentham_assumes_no_lift_at_strict(self):
+        sys.path.insert(0, str(REPO / "jobs/bentham"))
+        import candidates
+        self.f.strata("production.claim_ready.yes.fr", ["EO:9001", "EO:9101", "EO:9104"])
+        self.run_triage()
+        os.environ["LARREY_LEVEL"] = "strict"
+        actions = [{"id": "production.claim_ready.yes.fr", "kind": "production", "orders": 3,
+                    "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.yes.fr.txt"}]
+        candidates.apply_triage(Path(self.tmp.name), actions)
+        t = actions[0]["triage"]
+        self.assertEqual((actions[0]["orders"], t["level"], t["lifts"]), (1, "strict", None))
+
+
 class KitRulesTests(unittest.TestCase):
     """Accursius F5/F6 (Whitworth I2): the gates call the kit's own freeze-time functions when it has them."""
 
@@ -443,7 +560,7 @@ class ActionRouteTests(unittest.TestCase):
 
     def test_every_route_gate_is_registered_in_llull_with_a_reason(self):
         for spec in L.ROUTES.values():
-            for g in spec["hard"] + spec["soft"]:
+            for g in spec["hard"] + spec["soft"] + spec["strict"]:
                 self.assertIn(g, llull.GATES)
                 self.assertIn(g, L.REASONS)
 

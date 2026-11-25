@@ -583,8 +583,9 @@ class GateTests(ConveyorCase):
 
 class AdjudicationTests(ConveyorCase):
     def test_arm_disagreement_goes_to_adjudicate_not_to_a_decision(self):
+        # Parallel review: arm B also reviews what arm A rejected (sequential review blocks it; SequentialReviewTests).
         self.scenario({"reviewer": {"A": {"reject": ["EO:2"]}}})
-        self.assertEqual(self.run_cli("--publish"), C.EXIT_PAUSED)
+        self.assertEqual(self.run_cli("--publish", "--review-mode", "parallel"), C.EXIT_PAUSED)
         self.assertEqual(self.calls("complete"), [])
         items = json.loads((self.bdir / "ADJUDICATE.json").read_text())["items"]
         self.assertEqual([(i["instrument_id"], i["kind"], i["blocks_completion"]) for i in items],
@@ -593,12 +594,12 @@ class AdjudicationTests(ConveyorCase):
         # A decision written where workers could reach it (the batch folder) is not read.
         (self.bdir / "ADJUDICATION.json").write_text(json.dumps({"decisions": [
             {"instrument_id": "EO:2", "claim_sha256": items[0]["claim_sha256"], "decision": "file", "adjudicator": "x"}]}))
-        self.assertEqual(self.run_cli("--publish"), C.EXIT_PAUSED)
+        self.assertEqual(self.run_cli("--publish", "--review-mode", "parallel"), C.EXIT_PAUSED)
         time.sleep(0.05)
         (self.control / "ADJUDICATION.json").write_text(json.dumps({"decisions": [
             {"instrument_id": "EO:2", "claim_sha256": items[0]["claim_sha256"], "decision": "block",
              "reason": "arm A's defect stands", "adjudicator": "coord"}]}))
-        self.assertEqual(self.run_cli("--publish"), C.EXIT_DONE)
+        self.assertEqual(self.run_cli("--publish", "--review-mode", "parallel"), C.EXIT_DONE)
         self.assertEqual(sorted(c["instrument_id"] for c in self.published()), ["EO:1", "EO:3", "EO:4"])
         man = json.loads((self.bdir / "packet/completion/COMPLETION.json").read_text(encoding="utf-8"))
         eo2 = next(m for m in man["members"] if m["instrument_id"] == "EO:2")
@@ -610,7 +611,7 @@ class AdjudicationTests(ConveyorCase):
         self.assertEqual(len(self.worker_calls("reviewer")), 4)  # no review was rerun
 
     def test_adjudication_must_name_the_claim_hash_and_an_adjudicator(self):
-        self.scenario({"reviewer": {"A": {"reject": ["EO:2"]}}})
+        self.scenario({"reviewer": {"B": {"reject": ["EO:2"]}}})
         self.assertEqual(self.run_cli(), C.EXIT_PAUSED)
         time.sleep(0.05)
         (self.control / "ADJUDICATION.json").write_text(json.dumps({"decisions": [
@@ -633,6 +634,156 @@ class AdjudicationTests(ConveyorCase):
         self.assertEqual(self.run_cli("--publish"), C.EXIT_DONE)
         self.assertNotIn("EO:1", [c["instrument_id"] for c in self.published()])
         self.assertEqual(json.loads((self.bdir / "ADJUDICATE.json").read_text())["items"], [])
+
+
+def plant_on(iid):
+    """conveyor.plant_controls, re-salted until its one control lands on iid (four claims plant one), so a test knows
+    which order is the control. The batch's own salt still shuffles the review sets."""
+    orig = C.plant_controls
+
+    def plant(claims, salt):
+        for k in range(2000):
+            rset, controls = orig(claims, f"{salt}-{k}")
+            if [c["instrument_id"] for c in controls] == [iid]:
+                return rset, controls
+        raise AssertionError(f"no salt planted on {iid}")
+    return mock.patch.object(C, "plant_controls", plant)
+
+
+class SequentialReviewTests(ConveyorCase):
+    """Sequential review with early exit (the default): arm A reviews every claim; arm B reviews, blind, only the
+    claims arm A did not reject plus every planted control. The both-uphold rule, control scoring and reveal are
+    unchanged."""
+
+    def set_ids(self, arm):
+        return sorted(c["instrument_id"] for p in sorted((self.control / "sets").glob(f"b01-{arm}*.jsonl")) for c in jl(p))
+
+    def run_planted(self, *extra, control="EO:1"):
+        with plant_on(control):
+            return self.run_cli(*extra)
+
+    def measures(self):
+        return json.loads((self.bdir / "MEASURES.json").read_text(encoding="utf-8"))
+
+    def test_arm_b_is_skipped_after_an_arm_a_block(self):
+        self.scenario({"reviewer": {"A": {"reject": ["EO:2", "EO:3"], "reasons": "ARM-A-PRIVATE-REASONS"}}})
+        self.assertEqual(self.run_planted("--publish"), C.EXIT_DONE)
+        self.assertEqual(json.loads((self.bdir / "CONFIG.json").read_text())["review_mode"], "sequential")
+        self.assertEqual(sorted(c["instrument_id"] for c in self.published()), ["EO:1", "EO:4"])
+        self.assertEqual(self.set_ids("A"), ["EO:1", "EO:2", "EO:3", "EO:4"])
+        self.assertEqual(self.set_ids("B"), ["EO:1", "EO:4"])   # the control and the claim arm A upheld
+        self.assertEqual(json.loads((self.bdir / "ADJUDICATE.json").read_text())["items"], [])
+        man = json.loads((self.bdir / "packet/completion/COMPLETION.json").read_text(encoding="utf-8"))
+        for iid in ("EO:2", "EO:3"):
+            m = next(m for m in man["members"] if m["instrument_id"] == iid)
+            self.assertEqual(m["outcome"], "blocked")
+            self.assertIn("not_run_after_arm_A_block", m["reason"])
+        self.assertEqual(sorted(r["instrument_id"] for r in jl(self.bdir / "packet/reviews/BLIND_REVIEW_B.jsonl")),
+                         ["EO:1", "EO:4"])
+        seq = next(r for r in self.ledger() if r["key"] == "sequential_review")["data"]
+        self.assertEqual({x["instrument_id"]: x["arm_B"] for x in seq["skipped"]},
+                         {"EO:2": "not_run_after_arm_A_block", "EO:3": "not_run_after_arm_A_block"})
+        # Arm B stays blind: its folder holds its prompt, its own set and its own output, with no verdict or text of
+        # arm A.
+        folder = self.scratch / "workers/b01-review-B0"
+        self.assertEqual(sorted(p.name for p in folder.iterdir() if p.is_file()),
+                         ["BLIND_REVIEW.jsonl", "PROMPT.txt", "REVIEW_SET.jsonl"])
+        for p in folder.rglob("*"):
+            if p.is_file():
+                self.assertNotIn("ARM-A-PRIVATE-REASONS", p.read_text(encoding="utf-8"))
+        self.assertFalse(any("verdict" in c for c in jl(folder / "REVIEW_SET.jsonl")))
+        r = self.measures()["review"]
+        # Fake reviewers report $0.50 a session: arm B spent $0.50 on 2 claims, so 2 skipped claims save about $0.50.
+        self.assertEqual((r["mode"], r["arm_A_claims"], r["arm_B_claims"], r["arm_B_reviews_skipped"]),
+                         ("sequential", 4, 2, 2))
+        self.assertEqual((r["usd_per_claim_basis"], r["usd_per_claim"], r["estimated_usd_saved"]),
+                         ("arm_B_measured", 0.25, 0.5))
+
+    def test_controls_go_to_both_arms_even_when_arm_a_rejects_every_claim(self):
+        self.scenario({"reviewer": {"A": {"reject": ["EO:1", "EO:2", "EO:3", "EO:4"]}}})
+        self.assertEqual(self.run_planted("--publish"), C.EXIT_PAUSED)
+        self.assertEqual(self.set_ids("B"), ["EO:1"])   # only the planted control
+        ctl = json.loads((self.bdir / "CONTROLS.json").read_text())["controls"]
+        self.assertEqual([(c["instrument_id"], c["caught_A"], c["caught_B"]) for c in ctl], [("EO:1", True, True)])
+        # The control's genuine claim goes to both arms after the reveal; arm A rejects it there, arm B upholds it.
+        items = json.loads((self.bdir / "ADJUDICATE.json").read_text())["items"]
+        self.assertEqual([(i["instrument_id"], i["kind"], i["control_genuine"]) for i in items],
+                         [("EO:1", "arm_disagreement", True)])
+
+    def test_a_control_arm_b_misses_still_stops_the_batch(self):
+        self.scenario({"reviewer": {"A": {"reject": ["EO:2", "EO:3", "EO:4"]}, "B": {"miss_controls": True}}})
+        self.assertEqual(self.run_planted("--publish"), C.EXIT_STOPPED)
+        self.assertEqual(self.set_ids("B"), ["EO:1"])
+        self.assertEqual(self.batch_lines()[0]["controls_missed"], 1)
+
+    def test_both_uphold_rule_is_unchanged(self):
+        self.scenario({"reviewer": {"B": {"reject": ["EO:4"]}}})
+        self.assertEqual(self.run_planted("--publish"), C.EXIT_PAUSED)
+        self.assertEqual(self.set_ids("B"), ["EO:1", "EO:2", "EO:3", "EO:4"])
+        items = json.loads((self.bdir / "ADJUDICATE.json").read_text())["items"]
+        self.assertEqual([(i["instrument_id"], i["kind"], i["arm_A"]["verdict"], i["arm_B"]["verdict"]) for i in items],
+                         [("EO:4", "arm_disagreement", "upheld", "rejected")])
+        self.assertEqual(self.calls("complete"), [])
+
+    def test_parallel_flag_restores_both_arms_on_every_claim(self):
+        self.scenario({"reviewer": {"A": {"reject": ["EO:2"]}}})
+        self.assertEqual(self.run_planted("--publish", "--review-mode", "parallel"), C.EXIT_PAUSED)
+        self.assertEqual(self.set_ids("B"), ["EO:1", "EO:2", "EO:3", "EO:4"])
+        items = json.loads((self.bdir / "ADJUDICATE.json").read_text())["items"]
+        self.assertEqual([(i["instrument_id"], i["kind"]) for i in items], [("EO:2", "arm_disagreement")])
+        self.assertFalse([r for r in self.ledger() if r["key"] == "sequential_review"])
+        self.assertEqual(self.measures()["review"], {"mode": "parallel", "arm_B_reviews_skipped": 0})
+        # The review mode is fixed for the batch.
+        self.assertEqual(self.run_planted("--publish", "--review-mode", "sequential"), C.EXIT_FAILED)
+
+    def test_a_batch_without_a_review_mode_resumes_in_parallel(self):
+        b = C.Batch.__new__(C.Batch)
+        b.cfg = {}
+        self.assertEqual(b.review_mode(), "parallel")
+        b.cfg = {"review_mode": "sequential"}
+        self.assertEqual(b.review_mode(), "sequential")
+
+
+class PreReviewGateTests(ConveyorCase):
+    """The mechanical pre-review gate: no claim reaches a paid reviewer unless the offline completion checker passed
+    it, read from the checker's own per-claim record; a failing claim gets the one repair round or is unresolved."""
+
+    def reviewed_ids(self):
+        return {c["instrument_id"] for p in (self.control / "sets").glob("b01-*.jsonl") for c in jl(p)}
+
+    def test_an_unverified_checker_entry_never_reaches_review(self):
+        # EO:2's repair clears it; EO:3 stays unverified after its repair. batch-check's summary lists neither.
+        self.scenario({"producer": {"EO:2": "unverified", "EO:3": "unverified"}, "repair_fails": ["EO:3"]})
+        self.assertEqual(self.run_cli("--publish"), C.EXIT_DONE)
+        self.assertEqual(sorted(c["id"] for c in self.worker_calls("producer") if c["repair"]), ["EO:2", "EO:3"])
+        self.assertEqual(sorted(c["instrument_id"] for c in self.published()), ["EO:1", "EO:2", "EO:4"])
+        self.assertNotIn("EO:3", self.reviewed_ids())
+        man = json.loads((self.bdir / "packet/completion/COMPLETION.json").read_text(encoding="utf-8"))
+        eo3 = next(m for m in man["members"] if m["instrument_id"] == "EO:3")
+        self.assertEqual(eo3["outcome"], "blocked")
+        self.assertIn("out_of_universe_order", eo3["reason"])
+        g = json.loads((self.bdir / "MEASURES.json").read_text(encoding="utf-8"))["prereview_gate"]
+        self.assertEqual((g["passes"], g["claims_stopped"]), (3, 2))
+
+    def test_strict_check_errors_count_as_failures(self):
+        self.scenario({"producer": {"EO:4": "strictfail"}, "repair_fails": ["EO:4"]})
+        self.assertEqual(self.run_cli("--publish"), C.EXIT_DONE)
+        self.assertNotIn("EO:4", self.reviewed_ids())
+        self.assertNotIn("EO:4", [c["instrument_id"] for c in self.published()])
+
+    def test_a_check_that_skipped_the_completion_checker_is_refused_before_review(self):
+        self.kit({"skip_actual_checker": True})
+        self.assertEqual(self.run_cli("--publish"), C.EXIT_FAILED)
+        self.assertIn("requires_actual_claim_checker", self.run_state()["data"]["reason"])
+        self.assertEqual(self.worker_calls("reviewer"), [])
+
+    def test_checker_failures_reads_the_per_claim_record(self):
+        rec = {"claims": [{"instrument_id": "EO:1", "all_checks_passed": True, "unverified": []},
+                          {"instrument_id": "EO:2", "all_checks_passed": True, "unverified": ["quote:skip@x"]},
+                          {"instrument_id": "EO:3", "all_checks_passed": False}]}
+        self.assertEqual(C.checker_failures(rec, {"EO:1", "EO:2", "EO:3", "EO:4"}),
+                         {"EO:2": ["quote:skip@x"], "EO:3": ["the offline completion checker did not pass this claim"],
+                          "EO:4": ["the offline completion checker has no record of this claim"]})
 
 
 class RepairTests(ConveyorCase):

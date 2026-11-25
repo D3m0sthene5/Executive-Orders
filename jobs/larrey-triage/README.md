@@ -62,6 +62,19 @@ dossiers on every gate input. The independent review found one later recompile (
 Since 2026-11-12 the default applies only the hard gates (the soft gates are predictors fitted on the back-test sample and stay experimental until a prospective test, Kean F-20261112-soft-gates-untested); `LARREY_LEVEL=soft` adds them.
 There is no "off" setting.
 
+**Strict level (opt-in, 2026-11-25; `LARREY_LEVEL=strict`).** Strict applies the hard and soft gates plus two strict
+gates, scored on filed dossiers (`strict_backtest.py`, plan `research/plans/LARREY_STRICT_2026-11-25.md`):
+- `no_contradicting_status_lead` (decided route only): no claim-kit conflict (such as a partial ending found for a
+  provisional YES), and on a provisional YES no held whole-scope ending ACT lead.
+- `status_events_at_most_5` (all routes): the order's status history records at most 5 later events.
+
+On 570 past attempts in five waves, strict admitted 299 attempts and 83 of the 91 filed dossiers. That is 27.8% filed
+among admitted against 16.6% at the default level (1.67x), with 91% of filed dossiers kept. About 1.36x of that lift
+comes from the soft gates. Among soft-admitted attempts, the two strict gates add 1.22x, and 1.38x on the 50 Bartolus
+YES re-runs, whose dossiers already held the NEA notices. Strict is a predictor of complexity, not an input the route
+requires: it is experimental until a gated wave measures what it keeps out, and Bentham assumes no lift for it.
+`GATES.jsonl` carries `pass_strict` and `missing_strict`; output written before the strict tier fails closed at strict.
+
 ## Back-test on real outcomes (`BACKTEST.json`)
 
 Every gate was evaluated on each order's **frozen** dossier, exactly as its producer received it: the overlay

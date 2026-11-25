@@ -1,0 +1,508 @@
+{
+ "schema": "larrey.strict_backtest/v1",
+ "generated_at": "2026-11-25T08:51:15Z",
+ "outcome": "filed dossier (publishable lifecycle claim or filed undecided replacement proposal)",
+ "base": "hard (default level)",
+ "segments": {
+  "all": {
+   "hard (default)": {
+    "attempts": 570,
+    "admitted": 548,
+    "filed": 91,
+    "filed_admitted": 91,
+    "rate": 0.1661,
+    "lift_vs_base": 1.0,
+    "filed_kept": 1.0
+   },
+   "soft": {
+    "attempts": 570,
+    "admitted": 397,
+    "filed": 91,
+    "filed_admitted": 90,
+    "rate": 0.2267,
+    "lift_vs_base": 1.365,
+    "filed_kept": 0.989
+   },
+   "strict": {
+    "attempts": 570,
+    "admitted": 299,
+    "filed": 91,
+    "filed_admitted": 83,
+    "rate": 0.2776,
+    "lift_vs_base": 1.672,
+    "filed_kept": 0.9121
+   },
+   "soft + no_contradicting_status_lead only": {
+    "attempts": 570,
+    "admitted": 339,
+    "filed": 91,
+    "filed_admitted": 86,
+    "rate": 0.2537,
+    "lift_vs_base": 1.528,
+    "filed_kept": 0.9451
+   },
+   "soft + status_events_at_most_5 only": {
+    "attempts": 570,
+    "admitted": 330,
+    "filed": 91,
+    "filed_admitted": 87,
+    "rate": 0.2636,
+    "lift_vs_base": 1.588,
+    "filed_kept": 0.956
+   },
+   "strict with events <= 3": {
+    "attempts": 570,
+    "admitted": 255,
+    "filed": 91,
+    "filed_admitted": 76,
+    "rate": 0.298,
+    "lift_vs_base": 1.795,
+    "filed_kept": 0.8352
+   },
+   "strict with events <= 4": {
+    "attempts": 570,
+    "admitted": 293,
+    "filed": 91,
+    "filed_admitted": 82,
+    "rate": 0.2799,
+    "lift_vs_base": 1.685,
+    "filed_kept": 0.9011
+   },
+   "strict with events <= 6": {
+    "attempts": 570,
+    "admitted": 308,
+    "filed": 91,
+    "filed_admitted": 85,
+    "rate": 0.276,
+    "lift_vs_base": 1.662,
+    "filed_kept": 0.9341
+   }
+  },
+  "decided route": {
+   "hard (default)": {
+    "attempts": 420,
+    "admitted": 420,
+    "filed": 78,
+    "filed_admitted": 78,
+    "rate": 0.1857,
+    "lift_vs_base": 1.0,
+    "filed_kept": 1.0
+   },
+   "soft": {
+    "attempts": 420,
+    "admitted": 324,
+    "filed": 78,
+    "filed_admitted": 78,
+    "rate": 0.2407,
+    "lift_vs_base": 1.296,
+    "filed_kept": 1.0
+   },
+   "strict": {
+    "attempts": 420,
+    "admitted": 232,
+    "filed": 78,
+    "filed_admitted": 71,
+    "rate": 0.306,
+    "lift_vs_base": 1.648,
+    "filed_kept": 0.9103
+   },
+   "soft + no_contradicting_status_lead only": {
+    "attempts": 420,
+    "admitted": 266,
+    "filed": 78,
+    "filed_admitted": 74,
+    "rate": 0.2782,
+    "lift_vs_base": 1.498,
+    "filed_kept": 0.9487
+   },
+   "soft + status_events_at_most_5 only": {
+    "attempts": 420,
+    "admitted": 263,
+    "filed": 78,
+    "filed_admitted": 75,
+    "rate": 0.2852,
+    "lift_vs_base": 1.536,
+    "filed_kept": 0.9615
+   },
+   "strict with events <= 3": {
+    "attempts": 420,
+    "admitted": 196,
+    "filed": 78,
+    "filed_admitted": 64,
+    "rate": 0.3265,
+    "lift_vs_base": 1.758,
+    "filed_kept": 0.8205
+   },
+   "strict with events <= 4": {
+    "attempts": 420,
+    "admitted": 228,
+    "filed": 78,
+    "filed_admitted": 70,
+    "rate": 0.307,
+    "lift_vs_base": 1.653,
+    "filed_kept": 0.8974
+   },
+   "strict with events <= 6": {
+    "attempts": 420,
+    "admitted": 239,
+    "filed": 78,
+    "filed_admitted": 73,
+    "rate": 0.3054,
+    "lift_vs_base": 1.645,
+    "filed_kept": 0.9359
+   }
+  },
+  "undecided route": {
+   "hard (default)": {
+    "attempts": 150,
+    "admitted": 128,
+    "filed": 13,
+    "filed_admitted": 13,
+    "rate": 0.1016,
+    "lift_vs_base": 1.0,
+    "filed_kept": 1.0
+   },
+   "soft": {
+    "attempts": 150,
+    "admitted": 73,
+    "filed": 13,
+    "filed_admitted": 12,
+    "rate": 0.1644,
+    "lift_vs_base": 1.619,
+    "filed_kept": 0.9231
+   },
+   "strict": {
+    "attempts": 150,
+    "admitted": 67,
+    "filed": 13,
+    "filed_admitted": 12,
+    "rate": 0.1791,
+    "lift_vs_base": 1.763,
+    "filed_kept": 0.9231
+   },
+   "soft + no_contradicting_status_lead only": {
+    "attempts": 150,
+    "admitted": 73,
+    "filed": 13,
+    "filed_admitted": 12,
+    "rate": 0.1644,
+    "lift_vs_base": 1.619,
+    "filed_kept": 0.9231
+   },
+   "soft + status_events_at_most_5 only": {
+    "attempts": 150,
+    "admitted": 67,
+    "filed": 13,
+    "filed_admitted": 12,
+    "rate": 0.1791,
+    "lift_vs_base": 1.763,
+    "filed_kept": 0.9231
+   },
+   "strict with events <= 3": {
+    "attempts": 150,
+    "admitted": 59,
+    "filed": 13,
+    "filed_admitted": 12,
+    "rate": 0.2034,
+    "lift_vs_base": 2.003,
+    "filed_kept": 0.9231
+   },
+   "strict with events <= 4": {
+    "attempts": 150,
+    "admitted": 65,
+    "filed": 13,
+    "filed_admitted": 12,
+    "rate": 0.1846,
+    "lift_vs_base": 1.818,
+    "filed_kept": 0.9231
+   },
+   "strict with events <= 6": {
+    "attempts": 150,
+    "admitted": 69,
+    "filed": 13,
+    "filed_admitted": 12,
+    "rate": 0.1739,
+    "lift_vs_base": 1.712,
+    "filed_kept": 0.9231
+   }
+  },
+  "Papinian (fit)": {
+   "hard (default)": {
+    "attempts": 460,
+    "admitted": 449,
+    "filed": 67,
+    "filed_admitted": 67,
+    "rate": 0.1492,
+    "lift_vs_base": 1.0,
+    "filed_kept": 1.0
+   },
+   "soft": {
+    "attempts": 460,
+    "admitted": 321,
+    "filed": 67,
+    "filed_admitted": 67,
+    "rate": 0.2087,
+    "lift_vs_base": 1.399,
+    "filed_kept": 1.0
+   },
+   "strict": {
+    "attempts": 460,
+    "admitted": 240,
+    "filed": 67,
+    "filed_admitted": 61,
+    "rate": 0.2542,
+    "lift_vs_base": 1.703,
+    "filed_kept": 0.9104
+   },
+   "soft + no_contradicting_status_lead only": {
+    "attempts": 460,
+    "admitted": 271,
+    "filed": 67,
+    "filed_admitted": 63,
+    "rate": 0.2325,
+    "lift_vs_base": 1.558,
+    "filed_kept": 0.9403
+   },
+   "soft + status_events_at_most_5 only": {
+    "attempts": 460,
+    "admitted": 268,
+    "filed": 67,
+    "filed_admitted": 65,
+    "rate": 0.2425,
+    "lift_vs_base": 1.625,
+    "filed_kept": 0.9701
+   },
+   "strict with events <= 3": {
+    "attempts": 460,
+    "admitted": 207,
+    "filed": 67,
+    "filed_admitted": 59,
+    "rate": 0.285,
+    "lift_vs_base": 1.91,
+    "filed_kept": 0.8806
+   },
+   "strict with events <= 4": {
+    "attempts": 460,
+    "admitted": 237,
+    "filed": 67,
+    "filed_admitted": 61,
+    "rate": 0.2574,
+    "lift_vs_base": 1.725,
+    "filed_kept": 0.9104
+   },
+   "strict with events <= 6": {
+    "attempts": 460,
+    "admitted": 248,
+    "filed": 67,
+    "filed_admitted": 63,
+    "rate": 0.254,
+    "lift_vs_base": 1.702,
+    "filed_kept": 0.9403
+   }
+  },
+  "Haloander + Bartolus (later waves)": {
+   "hard (default)": {
+    "attempts": 110,
+    "admitted": 99,
+    "filed": 24,
+    "filed_admitted": 24,
+    "rate": 0.2424,
+    "lift_vs_base": 1.0,
+    "filed_kept": 1.0
+   },
+   "soft": {
+    "attempts": 110,
+    "admitted": 76,
+    "filed": 24,
+    "filed_admitted": 23,
+    "rate": 0.3026,
+    "lift_vs_base": 1.248,
+    "filed_kept": 0.9583
+   },
+   "strict": {
+    "attempts": 110,
+    "admitted": 59,
+    "filed": 24,
+    "filed_admitted": 22,
+    "rate": 0.3729,
+    "lift_vs_base": 1.538,
+    "filed_kept": 0.9167
+   },
+   "soft + no_contradicting_status_lead only": {
+    "attempts": 110,
+    "admitted": 68,
+    "filed": 24,
+    "filed_admitted": 23,
+    "rate": 0.3382,
+    "lift_vs_base": 1.395,
+    "filed_kept": 0.9583
+   },
+   "soft + status_events_at_most_5 only": {
+    "attempts": 110,
+    "admitted": 62,
+    "filed": 24,
+    "filed_admitted": 22,
+    "rate": 0.3548,
+    "lift_vs_base": 1.464,
+    "filed_kept": 0.9167
+   },
+   "strict with events <= 3": {
+    "attempts": 110,
+    "admitted": 48,
+    "filed": 24,
+    "filed_admitted": 17,
+    "rate": 0.3542,
+    "lift_vs_base": 1.461,
+    "filed_kept": 0.7083
+   },
+   "strict with events <= 4": {
+    "attempts": 110,
+    "admitted": 56,
+    "filed": 24,
+    "filed_admitted": 21,
+    "rate": 0.375,
+    "lift_vs_base": 1.547,
+    "filed_kept": 0.875
+   },
+   "strict with events <= 6": {
+    "attempts": 110,
+    "admitted": 60,
+    "filed": 24,
+    "filed_admitted": 22,
+    "rate": 0.3667,
+    "lift_vs_base": 1.512,
+    "filed_kept": 0.9167
+   }
+  },
+  "Bartolus decided (NEA notices held)": {
+   "hard (default)": {
+    "attempts": 50,
+    "admitted": 50,
+    "filed": 17,
+    "filed_admitted": 17,
+    "rate": 0.34,
+    "lift_vs_base": 1.0,
+    "filed_kept": 1.0
+   },
+   "soft": {
+    "attempts": 50,
+    "admitted": 50,
+    "filed": 17,
+    "filed_admitted": 17,
+    "rate": 0.34,
+    "lift_vs_base": 1.0,
+    "filed_kept": 1.0
+   },
+   "strict": {
+    "attempts": 50,
+    "admitted": 34,
+    "filed": 17,
+    "filed_admitted": 16,
+    "rate": 0.4706,
+    "lift_vs_base": 1.384,
+    "filed_kept": 0.9412
+   },
+   "soft + no_contradicting_status_lead only": {
+    "attempts": 50,
+    "admitted": 42,
+    "filed": 17,
+    "filed_admitted": 17,
+    "rate": 0.4048,
+    "lift_vs_base": 1.19,
+    "filed_kept": 1.0
+   },
+   "soft + status_events_at_most_5 only": {
+    "attempts": 50,
+    "admitted": 37,
+    "filed": 17,
+    "filed_admitted": 16,
+    "rate": 0.4324,
+    "lift_vs_base": 1.272,
+    "filed_kept": 0.9412
+   },
+   "strict with events <= 3": {
+    "attempts": 50,
+    "admitted": 27,
+    "filed": 17,
+    "filed_admitted": 11,
+    "rate": 0.4074,
+    "lift_vs_base": 1.198,
+    "filed_kept": 0.6471
+   },
+   "strict with events <= 4": {
+    "attempts": 50,
+    "admitted": 33,
+    "filed": 17,
+    "filed_admitted": 15,
+    "rate": 0.4545,
+    "lift_vs_base": 1.337,
+    "filed_kept": 0.8824
+   },
+   "strict with events <= 6": {
+    "attempts": 50,
+    "admitted": 35,
+    "filed": 17,
+    "filed_admitted": 16,
+    "rate": 0.4571,
+    "lift_vs_base": 1.345,
+    "filed_kept": 0.9412
+   }
+  }
+ },
+ "strict_over_soft": {
+  "all": {
+   "attempts": 397,
+   "admitted": 299,
+   "filed": 90,
+   "filed_admitted": 83,
+   "rate": 0.2776,
+   "lift_vs_base": 1.224,
+   "filed_kept": 0.9222
+  },
+  "decided route": {
+   "attempts": 324,
+   "admitted": 232,
+   "filed": 78,
+   "filed_admitted": 71,
+   "rate": 0.306,
+   "lift_vs_base": 1.271,
+   "filed_kept": 0.9103
+  },
+  "undecided route": {
+   "attempts": 73,
+   "admitted": 67,
+   "filed": 12,
+   "filed_admitted": 12,
+   "rate": 0.1791,
+   "lift_vs_base": 1.09,
+   "filed_kept": 1.0
+  },
+  "Papinian (fit)": {
+   "attempts": 321,
+   "admitted": 240,
+   "filed": 67,
+   "filed_admitted": 61,
+   "rate": 0.2542,
+   "lift_vs_base": 1.218,
+   "filed_kept": 0.9104
+  },
+  "Haloander + Bartolus (later waves)": {
+   "attempts": 76,
+   "admitted": 59,
+   "filed": 23,
+   "filed_admitted": 22,
+   "rate": 0.3729,
+   "lift_vs_base": 1.232,
+   "filed_kept": 0.9565
+  },
+  "Bartolus decided (NEA notices held)": {
+   "attempts": 50,
+   "admitted": 34,
+   "filed": 17,
+   "filed_admitted": 16,
+   "rate": 0.4706,
+   "lift_vs_base": 1.384,
+   "filed_kept": 0.9412
+  }
+ }
+}

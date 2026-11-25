@@ -38,6 +38,9 @@ GATES_FILE = "GATES.jsonl"
 # Each route lists its gates (names in Llull's GATES registry). Hard gates are what the route itself requires:
 # without them the kit cannot accept the result whatever the agent finds. Soft gates are measured predictors,
 # chosen from the back-test curve (BACKTEST.json); the default level applies the hard gates only; `LARREY_LEVEL=soft` adds the soft gates (experimental).
+# Strict gates (2026-11-25, research/plans/LARREY_STRICT_2026-11-25.md) are a third, opt-in tier on top of hard and
+# soft: `LARREY_LEVEL=strict` applies all three. They are back-tested predictors of a filed dossier, not inputs the
+# route requires, and stay experimental until a gated wave measures them.
 # A page check is soft, not hard: status_overlay and assemble accept a producer's page confirmation, and 296 filed
 # orders still carry requires_page_check. On the decided route it is no gate at all (independent review, S1).
 ROUTES = {
@@ -45,18 +48,21 @@ ROUTES = {
         "title": "undecided order, status-only tier (independent status review; no lifecycle sheet)",
         "hard": ["original_usable", "status_basis_record"],
         "soft": ["no_page_check_owed", "later_order_text_held"],
+        "strict": ["status_events_at_most_5"],
         "calibrated_on": ["jobs/claim-kit/status_overlay.py", "jobs/claim-kit/build.py"],
     },
     "undecided_full": {
         "title": "undecided order, status plus whole-lifecycle sheet (Haloander/Papinian overlay route)",
         "hard": ["original_usable", "status_basis_record", "clause_inventory_present"],
         "soft": ["no_page_check_owed", "later_order_text_held"],
+        "strict": ["status_events_at_most_5"],
         "calibrated_on": ["jobs/claim-kit/status_overlay.py", "jobs/claim-kit/build.py"],
     },
     "decided_lifecycle": {
         "title": "decided (provisional YES/NO) order, whole-lifecycle dossier",
         "hard": ["original_usable", "clause_inventory_present"],
         "soft": ["nea_notice_if_emergency"],
+        "strict": ["no_contradicting_status_lead", "status_events_at_most_5"],
         "calibrated_on": ["jobs/claim-kit/assemble.py", "jobs/claim-kit/working_text.py"],
     },
 }
@@ -76,7 +82,14 @@ REASONS = {
     "nea_notice_if_emergency": ("nea_continuation_notice_not_held",
                                 "the National Emergencies Act continuation notices through 2026-10-14",
                                 "acquire.nea_continuation_notices"),
+    "no_contradicting_status_lead": ("contradicting_status_lead",
+                                     "a reconciliation of the claim-kit conflict or whole-scope ending ACT lead with "
+                                     "the provisional status", None),
+    "status_events_at_most_5": ("status_events_over_5",
+                                "none: a complex order; work it at the hard or soft level when the budget allows",
+                                None),
 }
+LEVELS = ("hard", "soft", "strict")
 
 
 def action_route(action):
@@ -115,15 +128,16 @@ def level():
     inputs the route requires; the soft gates are predictors fitted on the back-test sample and stay experimental
     until a prospective test measures what they exclude. LARREY_LEVEL=soft opts in to soft exclusions."""
     v = os.environ.get("LARREY_LEVEL", "hard").strip().lower() or "hard"
-    if v not in ("soft", "hard"):
-        raise ValueError("LARREY_LEVEL must be hard (default: hard gates only) or soft (hard and soft gates)")
+    if v not in LEVELS:
+        raise ValueError("LARREY_LEVEL must be hard (default: hard gates only), soft (hard and soft gates) or "
+                         "strict (hard, soft and strict gates; experimental)")
     return v
 
 
 def evaluate(row, D, route, G):
-    """{'hard': [failed gate...], 'soft': [failed gate...]} for one tracker row on one route."""
+    """{'hard': [failed gate...], 'soft': [...], 'strict': [...]} for one tracker row on one route."""
     spec = ROUTES[route]
-    return {k: [g for g in spec[k] if G[g][1](row, D) not in ("held", "na")] for k in ("hard", "soft")}
+    return {k: [g for g in spec.get(k, []) if G[g][1](row, D) not in ("held", "na")] for k in LEVELS}
 
 
 def reason_codes(failed, feats):
@@ -158,16 +172,23 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
             failed = evaluate(r, D, route, G)
             hard = reason_codes(failed["hard"], feats.get(iid))
             soft = reason_codes(failed["soft"], feats.get(iid))
+            strict = reason_codes(failed["strict"], feats.get(iid))
             verdicts.append({"instrument_id": iid, "provisional_status": r.get("provisional_status") or "",
                              "route": route, "admit": "yes" if not hard and not soft else "no",
                              "admit_hard_only": "yes" if not hard else "no",
+                             "admit_strict": "yes" if not hard and not soft and not strict else "no",
                              "missing": failed["hard"] + failed["soft"],
-                             "reasons": ";".join(hard + ["soft:" + c for c in soft])})
+                             "missing_strict": failed["strict"],
+                             "reasons": ";".join(hard + ["soft:" + c for c in soft]),
+                             "reasons_strict": ";".join("strict:" + c for c in strict)})
             t = tallies.setdefault(route, {"orders": 0, "admitted": 0, "admitted_hard_only": 0,
+                                           "admitted_strict": 0, "strict": Counter(),
                                            "any": Counter(), "sole": Counter(), "detail": Counter()})
             t["orders"] += 1
             t["admitted"] += not hard and not soft
             t["admitted_hard_only"] += not hard
+            t["admitted_strict"] += not hard and not soft and not strict
+            t["strict"].update(failed["strict"])
             base = [c.split(":")[0] for c in hard] + ["soft:" + c.split(":")[0] for c in soft]
             t["any"].update(set(base))
             if len(base) == 1:
@@ -179,6 +200,7 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
         {"instrument_id": v["instrument_id"], "route": v["route"], "pass": v["admit"] == "yes",
          "missing": v["missing"], "pass_hard": v["admit_hard_only"] == "yes",
          "reasons": [x for x in v["reasons"].split(";") if x], "provisional_status": v["provisional_status"],
+         "pass_strict": v["admit_strict"] == "yes", "missing_strict": v["missing_strict"],
          "gates_commit": commit}, sort_keys=True) + "\n"
         for v in sorted(verdicts, key=lambda v: (v["route"], v["instrument_id"]))))
     gate_tally = {}
@@ -186,6 +208,7 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
         if v["admit"] != "yes":
             gate_tally.setdefault(v["route"], Counter()).update(v["missing"])
     reasons = {route: {"orders": t["orders"], "admitted": t["admitted"], "admitted_hard_only": t["admitted_hard_only"],
+                       "admitted_strict": t["admitted_strict"], "strict_gates_failed": dict(t["strict"].most_common()),
                        "kept_out": t["orders"] - t["admitted"],
                        "reasons_any": dict(t["any"].most_common()), "reasons_sole": dict(t["sole"].most_common()),
                        "missing_gates_any": dict(gate_tally.get(route, Counter()).most_common()),
@@ -199,7 +222,7 @@ def triage(repo=REPO, out_dir=None, strata_dir=None, pools=True):
                "inputs": {"claim_kit_summary_sha256": sha_file(repo / KIT_SUMMARY),
                           "tracker_sha256": sha_file(repo / "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv")},
                "code_sha256": {p: sha_file(HERE.parents[1] / p) for p in CODE_FILES},
-               "routes": {k: {kk: v[kk] for kk in ("title", "hard", "soft")} for k, v in ROUTES.items()},
+               "routes": {k: {kk: v[kk] for kk in ("title", "hard", "soft", "strict")} for k, v in ROUTES.items()},
                "calibration": calib,
                "orders_with_compiled_inputs": len(feats), "tracker_orders": len(rows),
                "gates_commit": commit, "kit_rules_loaded": _kf().KitRules(_kf().CODE_KIT).loaded,
@@ -267,8 +290,9 @@ def gates_commit(repo):
 def _code(reason):
     """A reason without its detail: 'original_not_usable:mirror_transcription' -> 'original_not_usable';
     'soft:no_later_order_text_held' stays as it is."""
-    if reason.startswith("soft:"):
-        return "soft:" + reason[5:].split(":")[0]
+    for tier in ("soft:", "strict:"):
+        if reason.startswith(tier):
+            return tier + reason[len(tier):].split(":")[0]
     return reason.split(":")[0]
 
 
@@ -292,6 +316,7 @@ def action_pools(repo, verdicts, strata_dir=None):
                 c["no_verdict_on_route"] += len(missing_ids)
             rec.update(admitted=sum(v["admit"] == "yes" for v in vs),
                        admitted_hard_only=sum(v["admit_hard_only"] == "yes" for v in vs),
+                       admitted_strict=sum(v["admit_strict"] == "yes" for v in vs),
                        no_verdict_kept_out=missing, top_reasons=dict(c.most_common(8)))
         pools[action] = rec
     return pools
@@ -316,6 +341,10 @@ def todo_md(reasons, pools, calib):
         lines.append(f"### {route}: {t['kept_out']} of {t['orders']} kept out"
                      + ("" if enforced else " (advisory: kit code changed since the back-test)"))
         lines.append("")
+        lines.append(f"Strict level (opt-in, `LARREY_LEVEL=strict`): {t['admitted_strict']} admitted; strict gates "
+                     f"failed: " + (", ".join(f"{k} {v}" for k, v in t["strict_gates_failed"].items()) or "none")
+                     + ".")
+        lines.append("")
         lines.append("| Reason | Orders (any) | Orders (sole reason) | What admits them | Bentham action |")
         lines.append("|---|---:|---:|---|---|")
         for code, n in t["reasons_any"].items():
@@ -338,9 +367,17 @@ def verdicts_for(repo, route):
                 continue
             g = json.loads(line)
             if g["route"] == route:
+                strict = g.get("pass_strict")
                 out[g["instrument_id"]] = {"admit": "yes" if g["pass"] else "no",
                                            "admit_hard_only": "yes" if g["pass_hard"] else "no",
-                                           "reasons": ";".join(g.get("reasons") or [])}
+                                           # output written before the strict tier has no strict verdict:
+                                           # fail closed at the strict level
+                                           "admit_strict": "yes" if g["pass"] and strict else "no",
+                                           "reasons": ";".join(g.get("reasons") or []),
+                                           "reasons_strict": ";".join(
+                                               (g.get("reasons") or []) + ["strict:" + REASONS[x][0] for x in
+                                                                           g.get("missing_strict") or []]
+                                               + ([] if strict is not None else ["strict:no_strict_verdict"]))}
     return out
 
 
@@ -376,10 +413,11 @@ def admitted(repo, action):
         warnings.warn(f"Larrey triage is advisory for {route} (kit code changed since the committed back-test, or "
                       f"the back-test loses a success): {action} is not triaged; see jobs/larrey-triage/README.md")
         return None, {}, receipt
-    key = "admit_hard_only" if lv == "hard" else "admit"
+    key = {"hard": "admit_hard_only", "soft": "admit", "strict": "admit_strict"}[lv]
+    why = "reasons_strict" if lv == "strict" else "reasons"
     rows = verdicts_for(repo, route)
     return ({i for i, r in rows.items() if r[key] == "yes"},
-            {i: r["reasons"] for i, r in rows.items() if r[key] != "yes"}, receipt)
+            {i: r[why] for i, r in rows.items() if r[key] != "yes"}, receipt)
 
 
 def refusal(action, ids, ok, why):

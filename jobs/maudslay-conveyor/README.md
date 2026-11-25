@@ -68,14 +68,57 @@ already done.
 | render | One producer prompt per order, from `prompts/producer.txt`, the route brief and that order's view only. A prompt over `--prompt-cap-chars` (default 16,000) is not sent | Papinian `render_producer.py` |
 | produce | Fresh sessions, concurrent up to `--parallel`, each in its own folder seeded with that order's prepared rows | Cujas `launch.sh`, carnot `worker.py` |
 | collect | Validates each sheet and merges it into the packet's `decisions.csv`, `clauses.csv` and `RATIONALES.json`. A missing or invalid sheet leaves the order `unresolved`, with the reason | new |
-| check | `kit.py apply` into a new `applied-vN`, then `kit.py batch-check` with the actual checker. A failing order gets `--repair-rounds` fresh sessions (in a new folder, with a copy of its sheet and the errors); if it still fails it is demoted to `unresolved` | Papinian producer prompt |
+| check | `kit.py apply` into a new `applied-vN`, then `kit.py batch-check` with the actual checker, then the mechanical pre-review gate (below). A failing order gets `--repair-rounds` fresh sessions (in a new folder, with a copy of its sheet and the errors); if it still fails it is demoted to `unresolved` | Papinian producer prompt |
 | plant | Sealed planted controls, `max(1, round(n/15))`: every end date (or later-event date, or signing date) moved back three years. A secret random salt picks the orders. All control material stays in `SCRATCH/control`; the ledger holds only counts and the key's hash | Cujas `plant.py`, Papinian `review_prep.py` |
-| review | Two independent blind arms (A, B), each in its own folders holding only a prompt and a separately shuffled set, `--review-chunk` claims per session (default 10) | Papinian `review_prep.py` |
+| review | Two independent blind arms (A, B), each in its own folders holding only a prompt and a separately shuffled set, `--review-chunk` claims per session (default 10). By default arm A reviews first and arm B reviews only what arm A did not reject, plus every planted control (sequential review, below) | Papinian `review_prep.py` |
 | controls | A control is caught only if both arms rejected its exact planted hash and a whole word or field name in their `defects` names a date (`date`, `first_end`, `whole_order_end`, `signing_date`, `effective_date`, `later_events`, `year` ...). `reasons` are not read, and "mandate" or "update" does not count. Any miss stops the batch | Papinian `finish_pair.py`, tightened |
 | reveal | A fresh session per arm, in a new folder holding only the genuine control claims (`upheld_after_reveal`) | Papinian reveal prompt, without `--resume` |
-| agree | An order files only if both arms upheld the exact version, and is blocked only if both rejected it. Anything else goes to `ADJUDICATE.json` | Papinian `finish_pair.py` both-uphold rule |
+| agree | An order files only if both arms upheld the exact version. It is blocked if both rejected it, or if arm A rejected it and arm B was therefore not run on it (`not_run_after_arm_A_block`). Anything else goes to `ADJUDICATE.json` | Papinian `finish_pair.py` both-uphold rule |
 | complete | Writes the review records and manifest, then runs `kit.py complete`, adding `--publish` only when asked. The publication mode is `own_claims`, or `replacement_proposal` when `--replacement-proposal` is given. With `--replacement-proposal`, `--publication-mode own_claims` is allowed only when every order's existing canonical claim is in a `research/readiness/claims/<agent>-*.jsonl` file whose prefix is this run's `--agent` (Papinian's c01 precedent). Otherwise the run is refused before any work, naming the orders and their owning files. Under owner ruling D-20261110-papinian-board-bytes, another agent's corrected claims become canonical only by a named owner decision. If a `complete-vN/PUBLICATION.json` already says `written: true` (a run killed after publishing), that publication is adopted and recorded instead | nira-sweep `make_completion.py` |
 | measure | Writes `MEASURES.json`, upserts the batch line in `RUN/BATCHES.json`, and runs `bentham.py gate` | Bentham README "During a wave" |
+
+### The mechanical pre-review gate
+
+No reviewer is paid for a claim that the offline completion checker has not passed. On every pass of the check loop,
+including a resumed batch whose `apply` and `batch-check` results come from the ledger, the conveyor reads the
+check's own files and adds to batch-check's failures:
+
+- every strict `check_claim` error in `CHECK_AUDIT.json`, which batch-check's `actionable_failures` does not list;
+- every claim in `actual-checker/PER_CLAIM.json`, read directly, that did not pass every check or carries any
+  `unverified` entry, and every claim the checker has no record of. An out-of-universe order number inside a quote,
+  a known cause of late completion failures, is such an entry.
+
+A claim the gate stops gets the one existing repair round and, if it still fails, is marked `unresolved`; it never
+reaches a reviewer. The gate refuses the whole batch (exit 1) when batch-check says it did not run the completion
+checker (`requires_actual_claim_checker` still true), or says it checked claims but left no `PER_CLAIM.json`. A
+working claim on the status-overlay route meets the same per-claim reading after `kit overlay-check`, and a failure
+there leaves the order unresolved. Each pass is a `prereview_gate:APPLIED` ledger record, and `MEASURES.json`
+`prereview_gate` counts the passes and the claims stopped. The gate costs no tokens.
+
+### Sequential review with early exit
+
+A claim files only if both blind arms uphold it, so once arm A has rejected a genuine claim, arm B's review of it
+cannot change the outcome. By default (`--review-mode sequential`, recorded in `CONFIG.json` and fixed for the batch)
+arm A reviews the whole planted set first. Arm B then reviews every claim arm A did not reject, including any claim
+arm A left without a record, and every planted control, whatever arm A said of it. A control therefore still counts
+as caught only if both arms rejected it, and control catching stays measured on both arms.
+
+Arm B stays blind. Its set is its own shuffle, with arm B's salt, of the claims it receives, and it never holds arm
+A's verdicts, defects or text. The skipped claims are recorded only after arm B has finished, in the
+`sequential_review` ledger record. A genuine claim arm A rejected is blocked with arm B `not_run_after_arm_A_block`
+and is not filed. The reveal pass, the both-uphold rule and the adjudication of disagreements are unchanged.
+`--review-mode parallel` restores the old behaviour, in which both arms review every claim at once. A batch started
+before this setting existed has no `review_mode` and resumes in parallel.
+
+`MEASURES.json` `review` gives the mode, the claims each arm reviewed, the arm-B reviews skipped and
+`estimated_usd_saved`. That figure is the number of skipped claims times the measured arm-B blind-review dollars per
+claim arm B reviewed; when arm B has no measured dollars, the conveyor uses arm A's dollars per claim. A worker with
+unknown dollars counts at its item cap. It is an estimate: an agent reviewer reviews a chunk per session, so a
+skipped claim saves its share of a session, or a whole session when its chunk empties. In `--stateless` mode arm B no
+longer runs straight after arm A's wave on the same claims: it starts after arm A's whole pass. Whenever that pass
+takes longer than the prompt-cache lifetime, arm B loses the cache reads of arm A's prefix (the rules plus the
+order's evidence) that parallel review gave it, and `estimated_usd_saved` does not count that loss. Compare
+`stateless_cache` in `MEASURES.json` before relying on the saving there.
 
 ### Undecided orders: the status-overlay stage
 
@@ -408,7 +451,11 @@ emits stream-json or codex events), so no model and no network are used. Two set
   - the Augur gate, through its real `check()` on a stub plan;
   - stop rules and gate exits;
   - the control rule;
-  - adjudication, repair and invalid sheets.
+  - adjudication, repair and invalid sheets;
+  - sequential review (`SequentialReviewTests`): arm B skipped after an arm-A block, controls reviewed by both arms,
+    the both-uphold rule unchanged, and `--review-mode parallel` restoring the old behaviour;
+  - the pre-review gate (`PreReviewGateTests`): an `unverified` checker entry, a strict check error, and a check that
+    skipped the completion checker.
 - **The committed claim kit.** `RealKitFixtureTests` runs the kit on its own integration corpus
   (`jobs/claim-kit/test_build.py` `BuildIntegrationTests`, with `test_dispatch.py`'s raw-source retention). It uses
   the real `next`, `prepare`, `dispatch-check`, Geddes views, `apply`, `batch-check` with the actual checker, and

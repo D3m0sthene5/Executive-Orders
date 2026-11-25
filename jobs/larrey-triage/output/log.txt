@@ -1,7 +1,7 @@
 test_backtest_operating_points_are_the_route_gates (test_larrey.ActionRouteTests.test_backtest_operating_points_are_the_route_gates) ... ok
 test_every_route_gate_is_registered_in_llull_with_a_reason (test_larrey.ActionRouteTests.test_every_route_gate_is_registered_in_llull_with_a_reason) ... ok
 test_routes (test_larrey.ActionRouteTests.test_routes) ... ok
-test_a_backtest_that_loses_a_success_turns_the_route_advisory (test_larrey.AdmittedTests.test_a_backtest_that_loses_a_success_turns_the_route_advisory) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/larrey.py:376: UserWarning: Larrey triage is advisory for undecided_full (kit code changed since the committed back-test, or the back-test loses a success): status_assignment.undecided is not triaged; see jobs/larrey-triage/README.md
+test_a_backtest_that_loses_a_success_turns_the_route_advisory (test_larrey.AdmittedTests.test_a_backtest_that_loses_a_success_turns_the_route_advisory) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/larrey.py:413: UserWarning: Larrey triage is advisory for undecided_full (kit code changed since the committed back-test, or the back-test loses a success): status_assignment.undecided is not triaged; see jobs/larrey-triage/README.md
   warnings.warn(f"Larrey triage is advisory for {route} (kit code changed since the committed back-test, or "
 ok
 test_admitted_sets_and_levels (test_larrey.AdmittedTests.test_admitted_sets_and_levels) ... ok
@@ -10,15 +10,21 @@ test_changed_gate_code_makes_the_output_stale (test_larrey.AdmittedTests.test_ch
 test_claim_kit_admission_applies_larrey (test_larrey.AdmittedTests.test_claim_kit_admission_applies_larrey) ... ok
 test_missing_or_stale_output_is_refused (test_larrey.AdmittedTests.test_missing_or_stale_output_is_refused) ... ok
 test_refusal_names_the_missing_input_and_fails_closed (test_larrey.AdmittedTests.test_refusal_names_the_missing_input_and_fails_closed) ... ok
-test_untriaged_action_and_changed_kit_code_are_not_enforced (test_larrey.AdmittedTests.test_untriaged_action_and_changed_kit_code_are_not_enforced) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/larrey.py:376: UserWarning: Larrey triage is advisory for undecided_full (kit code changed since the committed back-test, or the back-test loses a success): status_assignment.undecided is not triaged; see jobs/larrey-triage/README.md
+test_untriaged_action_and_changed_kit_code_are_not_enforced (test_larrey.AdmittedTests.test_untriaged_action_and_changed_kit_code_are_not_enforced) ... /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/larrey.py:413: UserWarning: Larrey triage is advisory for undecided_full (kit code changed since the committed back-test, or the back-test loses a success): status_assignment.undecided is not triaged; see jobs/larrey-triage/README.md
   warnings.warn(f"Larrey triage is advisory for {route} (kit code changed since the committed back-test, or "
 ok
 test_basis_kinds_mirror_status_overlay (test_larrey.FeatureTests.test_basis_kinds_mirror_status_overlay) ... ok
 test_emergency_needs_notice_only_when_declared_before_the_anniversary (test_larrey.FeatureTests.test_emergency_needs_notice_only_when_declared_before_the_anniversary) ... ok
+test_ending_verbs_match_the_kit (test_larrey.FeatureTests.test_ending_verbs_match_the_kit) ... ok
+test_strict_features_conflicts_whole_end_acts_and_status_events (test_larrey.FeatureTests.test_strict_features_conflicts_whole_end_acts_and_status_events) ... ok
+test_strict_gates (test_larrey.FeatureTests.test_strict_gates) ... ok
 test_working_grades_match_the_kit (test_larrey.FeatureTests.test_working_grades_match_the_kit) ... ok
 test_kit_rules_load_from_the_real_kit_without_error (test_larrey.KitRulesTests.test_kit_rules_load_from_the_real_kit_without_error) ... ok
 test_own_text_records_become_a_status_basis_on_the_undecided_route_only (test_larrey.KitRulesTests.test_own_text_records_become_a_status_basis_on_the_undecided_route_only) ... ok
 test_working_text_basis_credits_an_undecided_original (test_larrey.KitRulesTests.test_working_text_basis_credits_an_undecided_original) ... ok
+test_bentham_assumes_no_lift_at_strict (test_larrey.StrictLevelTests.test_bentham_assumes_no_lift_at_strict) ... ok
+test_output_without_strict_verdicts_fails_closed_at_strict_only (test_larrey.StrictLevelTests.test_output_without_strict_verdicts_fails_closed_at_strict_only) ... ok
+test_strict_verdicts_reasons_and_levels (test_larrey.StrictLevelTests.test_strict_verdicts_reasons_and_levels) ... ok
 test_gates_file_carries_the_whitworth_fields (test_larrey.TriageTests.test_gates_file_carries_the_whitworth_fields) ... ok
 test_light_reader_agrees_with_a_dossier_of_the_same_order (test_larrey.TriageTests.test_light_reader_agrees_with_a_dossier_of_the_same_order) ... ok
 test_no_pools_mode_reads_no_strata (test_larrey.TriageTests.test_no_pools_mode_reads_no_strata) ... ok
@@ -26,10 +32,71 @@ test_pools_per_bentham_action_keep_out_orders_without_a_verdict (test_larrey.Tri
 test_verdicts_and_reasons (test_larrey.TriageTests.test_verdicts_and_reasons) ... ok
 
 ----------------------------------------------------------------------
-Ran 22 tests in 0.685s
+Ran 28 tests in 1.087s
 
 OK
 back-test re-run on the current kit code -> /home/runner/work/Executive-Orders/Executive-Orders/jobs/larrey-triage/output/BACKTEST.json
-decided_lifecycle: 3562 of 3788 admitted (3661 on hard gates only)
-status_only: 3513 of 11214 admitted (5374 on hard gates only)
-undecided_full: 3513 of 11214 admitted (5374 on hard gates only)
+== all: 570 attempts, 91 filed
+  hard (default)                             admitted  548  filed  91  rate  16.6%  x1.00  kept 100.0%
+  soft                                       admitted  397  filed  90  rate  22.7%  x1.36  kept 98.9%
+  strict                                     admitted  299  filed  83  rate  27.8%  x1.67  kept 91.2%
+  soft + no_contradicting_status_lead only   admitted  339  filed  86  rate  25.4%  x1.53  kept 94.5%
+  soft + status_events_at_most_5 only        admitted  330  filed  87  rate  26.4%  x1.59  kept 95.6%
+  strict with events <= 3                    admitted  255  filed  76  rate  29.8%  x1.79  kept 83.5%
+  strict with events <= 4                    admitted  293  filed  82  rate  28.0%  x1.69  kept 90.1%
+  strict with events <= 6                    admitted  308  filed  85  rate  27.6%  x1.66  kept 93.4%
+== decided route: 420 attempts, 78 filed
+  hard (default)                             admitted  420  filed  78  rate  18.6%  x1.00  kept 100.0%
+  soft                                       admitted  324  filed  78  rate  24.1%  x1.30  kept 100.0%
+  strict                                     admitted  232  filed  71  rate  30.6%  x1.65  kept 91.0%
+  soft + no_contradicting_status_lead only   admitted  266  filed  74  rate  27.8%  x1.50  kept 94.9%
+  soft + status_events_at_most_5 only        admitted  263  filed  75  rate  28.5%  x1.54  kept 96.2%
+  strict with events <= 3                    admitted  196  filed  64  rate  32.6%  x1.76  kept 82.0%
+  strict with events <= 4                    admitted  228  filed  70  rate  30.7%  x1.65  kept 89.7%
+  strict with events <= 6                    admitted  239  filed  73  rate  30.5%  x1.65  kept 93.6%
+== undecided route: 150 attempts, 13 filed
+  hard (default)                             admitted  128  filed  13  rate  10.2%  x1.00  kept 100.0%
+  soft                                       admitted   73  filed  12  rate  16.4%  x1.62  kept 92.3%
+  strict                                     admitted   67  filed  12  rate  17.9%  x1.76  kept 92.3%
+  soft + no_contradicting_status_lead only   admitted   73  filed  12  rate  16.4%  x1.62  kept 92.3%
+  soft + status_events_at_most_5 only        admitted   67  filed  12  rate  17.9%  x1.76  kept 92.3%
+  strict with events <= 3                    admitted   59  filed  12  rate  20.3%  x2.00  kept 92.3%
+  strict with events <= 4                    admitted   65  filed  12  rate  18.5%  x1.82  kept 92.3%
+  strict with events <= 6                    admitted   69  filed  12  rate  17.4%  x1.71  kept 92.3%
+== Papinian (fit): 460 attempts, 67 filed
+  hard (default)                             admitted  449  filed  67  rate  14.9%  x1.00  kept 100.0%
+  soft                                       admitted  321  filed  67  rate  20.9%  x1.40  kept 100.0%
+  strict                                     admitted  240  filed  61  rate  25.4%  x1.70  kept 91.0%
+  soft + no_contradicting_status_lead only   admitted  271  filed  63  rate  23.2%  x1.56  kept 94.0%
+  soft + status_events_at_most_5 only        admitted  268  filed  65  rate  24.2%  x1.62  kept 97.0%
+  strict with events <= 3                    admitted  207  filed  59  rate  28.5%  x1.91  kept 88.1%
+  strict with events <= 4                    admitted  237  filed  61  rate  25.7%  x1.73  kept 91.0%
+  strict with events <= 6                    admitted  248  filed  63  rate  25.4%  x1.70  kept 94.0%
+== Haloander + Bartolus (later waves): 110 attempts, 24 filed
+  hard (default)                             admitted   99  filed  24  rate  24.2%  x1.00  kept 100.0%
+  soft                                       admitted   76  filed  23  rate  30.3%  x1.25  kept 95.8%
+  strict                                     admitted   59  filed  22  rate  37.3%  x1.54  kept 91.7%
+  soft + no_contradicting_status_lead only   admitted   68  filed  23  rate  33.8%  x1.40  kept 95.8%
+  soft + status_events_at_most_5 only        admitted   62  filed  22  rate  35.5%  x1.46  kept 91.7%
+  strict with events <= 3                    admitted   48  filed  17  rate  35.4%  x1.46  kept 70.8%
+  strict with events <= 4                    admitted   56  filed  21  rate  37.5%  x1.55  kept 87.5%
+  strict with events <= 6                    admitted   60  filed  22  rate  36.7%  x1.51  kept 91.7%
+== Bartolus decided (NEA notices held): 50 attempts, 17 filed
+  hard (default)                             admitted   50  filed  17  rate  34.0%  x1.00  kept 100.0%
+  soft                                       admitted   50  filed  17  rate  34.0%  x1.00  kept 100.0%
+  strict                                     admitted   34  filed  16  rate  47.1%  x1.38  kept 94.1%
+  soft + no_contradicting_status_lead only   admitted   42  filed  17  rate  40.5%  x1.19  kept 100.0%
+  soft + status_events_at_most_5 only        admitted   37  filed  16  rate  43.2%  x1.27  kept 94.1%
+  strict with events <= 3                    admitted   27  filed  11  rate  40.7%  x1.20  kept 64.7%
+  strict with events <= 4                    admitted   33  filed  15  rate  45.5%  x1.34  kept 88.2%
+  strict with events <= 6                    admitted   35  filed  16  rate  45.7%  x1.34  kept 94.1%
+== strict over soft (among soft-admitted attempts)
+  all                                        admitted  299/ 397  filed  83/ 90  x1.22
+  decided route                              admitted  232/ 324  filed  71/ 78  x1.27
+  undecided route                            admitted   67/  73  filed  12/ 12  x1.09
+  Papinian (fit)                             admitted  240/ 321  filed  61/ 67  x1.22
+  Haloander + Bartolus (later waves)         admitted   59/  76  filed  22/ 23  x1.23
+  Bartolus decided (NEA notices held)        admitted   34/  50  filed  16/ 17  x1.38
+decided_lifecycle: 3566 of 3792 admitted (3665 on hard gates only)
+status_only: 3510 of 11211 admitted (5370 on hard gates only)
+undecided_full: 3510 of 11211 admitted (5370 on hard gates only)

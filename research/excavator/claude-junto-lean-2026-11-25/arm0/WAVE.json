@@ -1,0 +1,61 @@
+{
+ "wave": "junto-lean-arm0-2026-11-25",
+ "author": "claude-opus-5-5",
+ "stage": 1,
+ "objective": {
+  "metric": "filed_dossiers_per_unit",
+  "text": "Trial arm 0, stage 1, run in-session by the scripted Claude coordinator with up to three parallel Sonnet producer lanes: current workflow (parallel two-arm review, current Larrey level, current coordination) on 30 seed-drawn claim-ready decided-YES orders, giving the baseline filed dossiers and list-price cost per filed claim for the Junto lean two-arm test."
+ },
+ "actions": [
+  {
+   "id": "production.claim_ready.yes.fr",
+   "orders": 30,
+   "lanes": 3
+  }
+ ],
+ "configuration": {
+  "orchestrator": "claude-scripted",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "claude-sonnet-5-5"
+ },
+ "limits": {
+  "chain_budget_units": 40000000,
+  "spend_per_claim_units": 3000000,
+  "no_claim_minutes": 40,
+  "context_kill_tokens": 150000,
+  "reviews_per_hour": 6,
+  "coordinator_units_per_hour": 1000000
+ },
+ "premortem": [
+  {
+   "failure": "The draw is not disjoint or not matched, so the arms differ by order mix",
+   "guard": "lean_draw.py draws both arms from one pool by seed, asserts disjointness and records pool and list hashes in DRAW.json before either arm runs"
+  },
+  {
+   "failure": "The batch overruns its cap with repairs and reviewer sessions",
+   "guard": "a 45 USD cap per arm in the coordinator ledger (cost.py on every worker transcript after each step); no new worker launches once measured spend plus the next step forecast would pass it"
+  },
+  {
+   "failure": "A review set misses a planted control",
+   "guard": "controls are planted in every review set; any miss ends the trial and keeps arm 0 under the stop rule"
+  },
+  {
+   "failure": "Parallel producer lanes reserve or write the same order or file",
+   "guard": "each lane gets a disjoint packet of drawn ids reserved under its own claim-kit agent name through kit.py's lock guard, and writes only inside its own batch folder"
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261113-conveyor-audit": "MEASURES.json records requests and per-request prompt size, cache reads and writes for each arm, and the trial compares both arms at request level, not on summed tokens alone.",
+  "F-20261110-mommsen-unranked-pools": "One Bentham-ranked action only (production.claim_ready.yes.fr); claim-kit admission refuses orders outside it; stage 0 is one lane and 30 orders per arm.",
+  "F-20261107-haloander-undecided-probe": "No undecided orders: the draw pool contains only decided-YES claim-ready orders.",
+  "F-20261109-gutenberg-carnot": "Arm 1 is the measured lean-coordination arm this finding asked for; arm 0 is the unchanged comparison.",
+  "F-20261118-kiaer-stopped-at-review": "Every guard in the pre-mortem is code the conveyor runs; planted controls reach both review arms in both configurations, and the both-uphold rule is unchanged.",
+  "F-20261028-4": "Every packet is prepared fresh from the current claim kit (main at the trial start, after the P4 and Larrey merges), so no packet predates the kit fixes.",
+  "F-20261018-7": "Producers work only from held texts already in each kit dossier and fetch no new hosts; the forecast uses measured Papinian and Bartolus rates, not URL availability."
+ },
+ "review": {
+  "reviewer": "owner (Danny), AskUserQuestion answer 2026-11-25: 'Approve both' for plan hashes f170e502...1650 (arm 0) and e568f097...d0 (arm 1)",
+  "verdict": "approve",
+  "plan_sha256": "f170e502a30ae04f0a0a9985c98ec89d24d2a7aa36d480b893c6ec9f815b1650"
+ }
+}

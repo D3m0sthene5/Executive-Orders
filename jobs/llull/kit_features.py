@@ -33,6 +33,9 @@ WORKING_GRADES = frozenset({"government_printed_reproduction", "government_print
 EMERGENCY = re.compile(r"national emergency|International Emergency Economic Powers|National Emergencies Act", re.I)
 NEA_BEFORE = "2025-10-14"
 NOTICE_PREFIXES = ("NOTICE:", "NEA_NOTICE:")
+# own_text.ENDING_VERBS (claim-kit), copied for the same reason; a test checks the copy. Larrey strict level
+# (2026-11-25): a held whole-scope ACT with one of these verbs on a provisional-YES order is a contradicting lead.
+ENDING_VERBS = frozenset({"revoke", "supersede", "terminate", "abolish", "rescind"})
 
 
 def _editorial(rec):
@@ -54,8 +57,21 @@ def _held(rec):
     return isinstance(src, dict) and bool(src.get("text_path")) and bool(rec.get("text"))
 
 
+def _whole_end_actors(acts):
+    """Distinct actors with a whole-scope ACT whose verb ends an order (a machine lead, not an ending)."""
+    return len({a.get("actor_id") for a in acts if isinstance(a, dict) and a.get("scope") == "whole"
+                and a.get("verb") in ENDING_VERBS})
+
+
+def _status_events(history):
+    """status-history event_count, or None when the order has no status history."""
+    if not isinstance(history, dict) or history.get("event_count") is None:
+        return None
+    return int(history["event_count"])
+
+
 def _features(iid, status, orig, clauses, basis_kinds, actor_text, notice_held, original_text=None,
-              working_confirmation=False, current_leads=0):
+              working_confirmation=False, current_leads=0, conflicts=0, whole_end_acts=0, status_events=None):
     grade = (orig or {}).get("grade") or ((orig or {}).get("source") or {}).get("grade")
     signing = (orig or {}).get("signing_date") or ""
     emergency = bool(original_text) and bool(EMERGENCY.search(original_text)) and bool(signing) and signing < NEA_BEFORE
@@ -75,6 +91,10 @@ def _features(iid, status, orig, clauses, basis_kinds, actor_text, notice_held, 
         "emergency_needs_notice": emergency,
         "notice_held": bool(notice_held),
         "current_leads": int(current_leads),
+        # Larrey strict level (2026-11-25): kit conflicts, whole-scope ending ACT leads, status-history events.
+        "conflicts": int(conflicts),
+        "whole_end_acts": int(whole_end_acts),
+        "status_events": status_events,
     }
 
 
@@ -158,7 +178,10 @@ def from_dossier(d, status=None, rules=None):
     f = _features(d.get("instrument_id"), status, orig, clauses, kinds, actor_text, notice,
                   original_text=(orig or {}).get("text"),
                   working_confirmation=d.get("working_text_confirmation") is not None,
-                  current_leads=len(d.get("current_law_leads") or []))
+                  current_leads=len(d.get("current_law_leads") or []),
+                  conflicts=len(d.get("conflicts") or []),
+                  whole_end_acts=_whole_end_actors(v for k, v in recs.items() if k.startswith("ACT:")),
+                  status_events=_status_events(d.get("status_history")))
     f["working_text_basis"] = f["working_text_basis"] or wtb
     return f
 
@@ -208,7 +231,8 @@ def from_overlay(inputs, terms, acts, clause, actor_ok, lead=None, rules=None, r
         wtb = _apply_rules(iid, original, (clause or {}).get("clauses"), dossier, kinds, rules)
     f = _features(iid, None, orig, nclauses, kinds, actor_text, False,
                   working_confirmation=inputs.get("working_text_confirmation") is not None,
-                  current_leads=current)
+                  current_leads=current, whole_end_acts=_whole_end_actors(acts),
+                  status_events=_status_events((lead or {}).get("status_history")))
     f["working_text_basis"] = f["working_text_basis"] or wtb
     return f
 
