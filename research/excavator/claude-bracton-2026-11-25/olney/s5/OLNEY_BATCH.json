@@ -1,0 +1,151 @@
+{
+  "batch": "s5",
+  "code_sha256": "c40a91f1c7a0a670cc4069588ee8565495c502616615043804f563f7d55a58a6",
+  "finished_utc": "2026-11-25T14:20:27.495540+00:00",
+  "model_tokens": 0,
+  "orders": [
+    "EO:9918",
+    "EO:9991",
+    "EO:10050",
+    "EO:10067",
+    "EO:10150",
+    "EO:10630",
+    "EO:11445"
+  ],
+  "per_order": {
+    "EO:10050": {
+      "apply_errors": [],
+      "apply_outcome": "assembled_proposal",
+      "board_end": "1949-05-06",
+      "checker_all_checks_passed": true,
+      "checker_failures": [],
+      "checker_gate_errors": [],
+      "checker_unverified": [],
+      "date_basis": "cover",
+      "extensions": [],
+      "outcome": "submit",
+      "selected_source_blockers": [],
+      "selected_source_state": "selected_sources_mechanically_usable",
+      "standstill_end": "1949-06-05"
+    },
+    "EO:10067": {
+      "apply_errors": [],
+      "apply_outcome": "assembled_proposal",
+      "board_end": "1949-08-02",
+      "checker_all_checks_passed": true,
+      "checker_failures": [],
+      "checker_gate_errors": [],
+      "checker_unverified": [],
+      "date_basis": "cover",
+      "extensions": [],
+      "outcome": "submit",
+      "selected_source_blockers": [],
+      "selected_source_state": "selected_sources_mechanically_usable",
+      "standstill_end": "1949-09-01"
+    },
+    "EO:10150": {
+      "apply_errors": [],
+      "apply_outcome": "assembled_proposal",
+      "board_end": "1950-09-09",
+      "checker_all_checks_passed": true,
+      "checker_failures": [],
+      "checker_gate_errors": [],
+      "checker_unverified": [],
+      "date_basis": "cover",
+      "extensions": [],
+      "outcome": "submit",
+      "selected_source_blockers": [],
+      "selected_source_state": "selected_sources_mechanically_usable",
+      "standstill_end": "1950-10-09"
+    },
+    "EO:10630": {
+      "apply_errors": [],
+      "apply_outcome": "assembled_proposal",
+      "board_end": "1955-09-14",
+      "checker_all_checks_passed": true,
+      "checker_failures": [],
+      "checker_gate_errors": [],
+      "checker_unverified": [],
+      "date_basis": "cover",
+      "extensions": [],
+      "outcome": "submit",
+      "selected_source_blockers": [],
+      "selected_source_state": "selected_sources_mechanically_usable",
+      "standstill_end": "1955-10-14"
+    },
+    "EO:11445": {
+      "apply_errors": [],
+      "apply_outcome": "assembled_proposal",
+      "board_end": "1969-03-07",
+      "checker_all_checks_passed": true,
+      "checker_failures": [],
+      "checker_gate_errors": [],
+      "checker_unverified": [],
+      "date_basis": "cover",
+      "extensions": [
+        {
+          "approval_date": "1969-02-06",
+          "new_deadline": "1969-03-07",
+          "page": 5
+        }
+      ],
+      "outcome": "submit",
+      "selected_source_blockers": [],
+      "selected_source_state": "selected_sources_mechanically_usable",
+      "standstill_end": "1969-04-06"
+    },
+    "EO:9918": {
+      "apply_errors": [],
+      "apply_outcome": "assembled_proposal",
+      "board_end": "1948-01-28",
+      "checker_all_checks_passed": true,
+      "checker_failures": [],
+      "checker_gate_errors": [],
+      "checker_unverified": [],
+      "date_basis": "cover",
+      "extensions": [],
+      "outcome": "submit",
+      "selected_source_blockers": [],
+      "selected_source_state": "selected_sources_mechanically_usable",
+      "standstill_end": "1948-02-27"
+    },
+    "EO:9991": {
+      "apply_errors": [],
+      "apply_outcome": "blocked",
+      "outcome": "blocked",
+      "problems": [
+        "dispatch_source_blocked"
+      ]
+    }
+  },
+  "run": "v3",
+  "schema": "eo-olney-batch/v2",
+  "selection_sha256": "37fbd9f197b9f592def194f43766e957c264e6debb84c0fa42bdcca5e646f1e3",
+  "started_utc": "2026-11-25T14:18:34.736717+00:00",
+  "steps": {
+    "apply": {
+      "returncode": 0,
+      "wall_seconds": 24.16
+    },
+    "batch_check": {
+      "returncode": 0,
+      "wall_seconds": 43.84
+    },
+    "prepare": {
+      "output_tail": [
+        "{\n  \"orders\": 7,\n  \"source_files_validated\": 34,\n  \"input_pretty_json_bytes\": 552388,\n  \"lossless_packet_json_bytes\": 863866,\n  \"readable_view_bytes\": 562856,\n  \"round_trip_exact\": true,\n  \"shared_text_blocks\": 45,\n  \"source_catalogue_entries\": 34,\n  \"known_mechanical_tasks\": 49,\n  \"bounded_preparation_seconds\": 6.4013,\n  \"model_tokens\": null,\n  \"no_legal_outcomes_inferred\": true,\n  \"dispatch_check\": {\n    \"ok\": false,\n    \"dispatchable_ids\": [\n      \"EO:10050\",\n      \"EO:10067\",\n      \"EO:10150\",\n      \"EO:10630\",\n      \"EO:11445\",\n      \"EO:9918\"\n    ],\n    \"source_blocked_ids\": [\n      \"EO:9991\"\n    ],\n    \"state\": \"source_blocked\"\n  },\n  \"prescreen\": {\n    \"rule\": \"gilbreth_r3r\",\n    \"advisory_only\": true,\n    \"flagged_ids\": [\n      \"EO:10067\",\n      \"EO:10630\",\n      \"EO:11445\",\n      \"EO:9918\",\n      \"EO:9991\"\n    ]\n  },\n  \"held_sources\": {\n    \"counts\": {\n      \"bytes_not_held\": 1,\n      \"held_locator_incomplete\": 14,\n      \"held_needs_span\": 2,\n      \"supplement_ready\": 3\n    },\n    \"declared_excerpts\": 3,\n    \"declared_overflow\": 0,\n    \"members_with_held_sources\": [\n      \"EO:10050\",\n      \"EO:10067\",\n      \"EO:10150\",\n      \"EO:10630\",\n      \"EO:11445\",\n      \"EO:9918\",\n      \"EO:9991\"\n    ]\n  },\n  \"research_only\": false\n}\n",
+        ""
+      ],
+      "returncode": 1,
+      "wall_seconds": 17.92
+    },
+    "supplement": {
+      "returncode": 0,
+      "wall_seconds": 26.13
+    },
+    "write_sheets": {
+      "returncode": 0,
+      "wall_seconds": 0.0
+    }
+  }
+}
