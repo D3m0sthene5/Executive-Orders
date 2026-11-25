@@ -2,7 +2,7 @@
 
 You are the PC lane coordinator for wave Bracton (plan `WAVE.json` in this folder; Augur PASS, signed by the owner,
 `AUGUR_RECEIPT.json`). The cloud coordinator runs lanes c01-c12 and does all review, reveal and filing. You run the
-producer step for packets p01-p11 only, four at a time, and hand the packets back by branch. You make no legal judgment
+producer step for packets p01-p05 only (non-board orders; the 117 emergency-board orders go to a separate scripted route), four at a time, and hand the packets back by branch. You make no legal judgment
 yourself and file nothing.
 
 ## 1. Set up (once)
@@ -15,7 +15,7 @@ yourself and file nothing.
 2. Scratch root: `C:\Users\danie\maudslay-scratch\bracton` (call it SCR). Create `SCR\transcripts`.
 3. Record your start time and model in `SCR\LANES.csv` (header `label,agent_id,model,start_utc,end_utc,tokens,tool_uses,ms,result`).
 
-## 2. For each packet pNN (p01 to p11)
+## 2. For each packet pNN (p01 to p05)
 
 1. Prepare (scripts, no tokens):
    `python -X utf8 research/excavator/claude-bracton-2026-11-25/tools/prep_pc.py pNN`, then
@@ -37,4 +37,4 @@ yourself and file nothing.
   pushes a file `STOP` to this folder on main, or if any producer reports "changed prior research".
 - Never run review, reveal, `finish_pair`, Kean or HANDOFF edits; the cloud coordinator does those.
 - Never edit another packet's folder, never re-prepare a packet that has an `applied-v1`, never force-push.
-- When all eleven packets are handed back, write `SCR\DONE.txt` with the LANES.csv totals and stop.
+- When all five packets are handed back, write `SCR\DONE.txt` with the LANES.csv totals and stop.
