@@ -17,10 +17,10 @@ Strict level (opt-in, `LARREY_LEVEL=strict`): 2876 admitted; strict gates failed
 |---|---:|---:|---|---|
 | original_not_usable | 123 | 123 | an official original, or a working text the route accepts |  |
 | soft:nea_continuation_notice_not_held | 99 | 99 | the National Emergencies Act continuation notices through 2026-10-14 | acquire.nea_continuation_notices |
-| no_held_text | 4 | 0 | an official original, or a working text the route accepts |  |
 | no_clause_inventory | 4 | 0 | a machine clause inventory (segmenter) |  |
+| no_held_text | 4 | 0 | an official original, or a working text the route accepts |  |
 
-### status_only: 7701 of 11211 kept out
+### status_only: 7701 of 11211 kept out (advisory: kit code changed since the back-test)
 
 Strict level (opt-in, `LARREY_LEVEL=strict`): 3157 admitted; strict gates failed: status_events_at_most_5 379.
 
@@ -32,7 +32,7 @@ Strict level (opt-in, `LARREY_LEVEL=strict`): 3157 admitted; strict gates failed
 | soft:page_check_owed | 2935 | 173 | a page/image check of the official printing | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK |
 | no_held_text | 62 | 21 | an official original, or a working text the route accepts |  |
 
-### undecided_full: 7701 of 11211 kept out
+### undecided_full: 7701 of 11211 kept out (advisory: kit code changed since the back-test)
 
 Strict level (opt-in, `LARREY_LEVEL=strict`): 3157 admitted; strict gates failed: status_events_at_most_5 379.
 
@@ -42,6 +42,6 @@ Strict level (opt-in, `LARREY_LEVEL=strict`): 3157 admitted; strict gates failed
 | original_not_usable | 3944 | 453 | an official original, or a working text the route accepts |  |
 | no_status_basis_record | 3617 | 0 | a held ending instrument, own-terms text or current-status record (or the Accursius F3/F5 route fixes that frame held ones) |  |
 | soft:page_check_owed | 2935 | 173 | a page/image check of the official printing | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK |
-| no_held_text | 62 | 0 | an official original, or a working text the route accepts |  |
 | no_clause_inventory | 62 | 0 | a machine clause inventory (segmenter) |  |
+| no_held_text | 62 | 0 | an official original, or a working text the route accepts |  |
 

@@ -1,13 +1,13 @@
 {
   "generated_from": {
-    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "6cef81df5206f8e09be83c24a4f92390617fed0b666b869bfe07deadebd72ddd",
-    "jobs/readiness-tracker/output/TRACKER.md": "6571c3733b0fd5ba46b47ffe558b8d3d753fe059cd6f7a041b06358ce0c6f8dc",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "9a32bd3346e6ae5ba6f9e45a1c83821448608b36853b497944128eb93db2c448",
+    "jobs/readiness-tracker/output/TRACKER.md": "668c7aa27faba3bb1695bf228a4ebb8680bdbaabea4481e60ddfc8cbe904beb5",
     "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "ed4ebd0f8305bebd7b5fb83e4971d71fd96fefcd237dc95dec9daa44b1b69cc1",
     "jobs/polya/output/CANDIDATE_ACTIONS.json": "84598534fd7c46a64e98beab939a22be95818c6d559846b3ec200b143529989e",
     "jobs/polya/output/COMPARE.json": "bc2e04eb23e79c487f962e8ab495920144f1855acfe2dba565d97a5d378fdf07",
     "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json": "688bd3c450081288a998382e30e330ed0b51e8bfc6ce712090a6c46f9eeeee4d",
     "research/excavator/claude-tribonian-2026-11-04/REPORT.md": "6ae4b9e7ebfda4b74f02dc670f483fcea4b1874528c378448786641bcc073fd8",
-    "jobs/larrey-triage/output/GATES.jsonl": "eca6f34b4cfc98dacc3cee128cfac38bb1d9b9f10c41079227eff27627b2fbe5",
+    "jobs/larrey-triage/output/GATES.jsonl": "cfa37d8928160fb60bc3eb3bc0f149030af46fe28ff2312420f93a61baab21ab",
     "jobs/linnaeus-types/output/SUMMARY.json": "6212023578b1e9f699a84ead03f39c94161da0473dad9efb3b61ef82edfc5a71"
   },
   "pool": {
@@ -18,7 +18,7 @@
     "Unlock counts are additive across acquisition actions (one assignment per order); orders needing two acquisitions are uncounted.",
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE (orders absent from the OFR catalog) has no tracker action, so no acquisition is proposed for it.",
     "Polya counts reach, not yield; they are cited, never added.",
-    "Larrey triage: orders are those its zero-token check admits for production.claim_ready.no.fr, production.claim_ready.yes.fr, status_assignment.undecided."
+    "Larrey triage: orders are those its zero-token check admits for production.claim_ready.no.fr, production.claim_ready.yes.fr; not applied to status_assignment.undecided."
   ],
   "actions": [
     {
@@ -101,7 +101,7 @@
       "id": "status_assignment.undecided",
       "kind": "status_assignment",
       "description": "Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided (claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such.",
-      "orders": 5370,
+      "orders": 11211,
       "order_ids_path": "jobs/bentham/output/strata/status_assignment.undecided.txt",
       "rate_key": "filed_per_attempt.undecided",
       "cost_key": "wave.per_attempt",
@@ -114,22 +114,16 @@
           "source": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv"
         }
       ],
-      "orders_before_triage": 11211,
       "triage": {
-        "applied": true,
-        "route": "undecided_full",
-        "level": "hard",
-        "kept_out": 5841,
-        "top_reasons": {
-          "soft:no_later_order_text_held": 4565,
-          "original_not_usable": 3944,
-          "no_status_basis_record": 3615,
-          "soft:page_check_owed": 2664,
-          "no_held_text": 60,
-          "no_clause_inventory": 60
-        },
-        "lifts": null,
-        "source": "jobs/larrey-triage/output/GATES.jsonl"
+        "applied": false,
+        "reason": "route not enforced: kit code changed since Larrey's back-test",
+        "receipt": {
+          "larrey_route": "undecided_full",
+          "larrey_level": "hard",
+          "larrey_enforced": false,
+          "larrey_summary_sha256": "7877bfdab4178a13c8bc687c39f2f76705f2393d5b9d78ac72c8d9b099c31671",
+          "tracker_current": true
+        }
       }
     },
     {

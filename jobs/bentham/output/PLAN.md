@@ -16,14 +16,14 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 8 | production.one_step_away | production | 219 | 139.8 | 0.0 | $73 | 192.0 | $74 |
 | 9 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 1 | 0.0 | 0.2 | $0.18 | 128.0 | $75 |
 | 10 | production.claim_ready.yes.fr | production | 281 | 65.6 | 0.0 | $93 | 70.2 | $168 |
-| 11 | status_assignment.undecided | status_assignment | 5370 | 537.0 | 0.0 | $1,786 | 30.1 | $1,954 |
-| 12 | production.claim_ready.no.fr | production | 1043 | 34.8 | 0.0 | $347 | 10.0 | $2,300 |
-| 13 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,300 |
-| 14 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,300 |
-| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $2,300 |
-| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,300 |
-| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,300 |
-| 18 | acquire.cruden_fr_statute_concordance | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $2,300 |
+| 11 | status_assignment.undecided | status_assignment | 11211 | 1121.1 | 0.0 | $3,728 | 30.1 | $3,896 |
+| 12 | production.claim_ready.no.fr | production | 1043 | 34.8 | 0.0 | $347 | 10.0 | $4,242 |
+| 13 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,242 |
+| 14 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,242 |
+| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $4,242 |
+| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,242 |
+| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,242 |
+| 18 | acquire.cruden_fr_statute_concordance | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,242 |
 
 Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
 
