@@ -126,11 +126,11 @@ class HeldCopy:
     """One saved copy the project records."""
 
     __slots__ = ("origin", "sha256", "url", "bytes", "local_path", "text_path",
-                 "zip_members", "page_or_item", "instrument_ids", "note", "custody", "pergamon")
+                 "zip_members", "page_or_item", "instrument_ids", "note", "custody", "pergamon", "text_sha256")
 
     def __init__(self, origin, sha256, url=None, nbytes=None, local_path=None,
                  text_path=None, zip_members=(), page_or_item=None,
-                 instrument_ids=(), note="", custody="repo_file", pergamon=None):
+                 instrument_ids=(), note="", custody="repo_file", pergamon=None, text_sha256=None):
         self.origin = origin
         self.sha256 = sha256
         self.url = url if isinstance(url, str) else None
@@ -143,6 +143,10 @@ class HeldCopy:
         self.note = note if isinstance(note, str) else ""
         self.custody = custody if custody in CUSTODY_KINDS else "record_only"
         self.pergamon = pergamon if isinstance(pergamon, dict) else None  # manifest record: backend, locator, ext
+        # The SHA-256 this custody record pins for its held text (text_path), when it records one. Owner decision
+        # D-20261125-custody-text-only: a record-only source may support a claim through its held text only when the
+        # text hashes to this pin (see text_custody).
+        self.text_sha256 = sha_hex(text_sha256)
 
     @property
     def bytes_kept(self):
@@ -163,6 +167,9 @@ class HeldIndex:
         self.origin_counts = {}
         self.notes = []  # plain-English notes about inputs (missing files etc.)
         self.packed_texts = {}  # sha256 -> (pages, how), from the committed Opus text pack
+        # origin sha256 -> [HeldCopy] of item extracts (one U.S. Code note, one CFR section) a producer cut from
+        # those origin bytes and declared with extracted_from; each extract copy pins its own text.
+        self.extracts_by_origin = {}
 
     def add(self, copy):
         if not copy.sha256:
@@ -179,6 +186,13 @@ class HeldIndex:
     def lookup_url(self, url):
         u = norm_url(url)
         return self.by_url.get(u, []) if u else []
+
+    def add_extract(self, origin_sha, copy):
+        if origin_sha and copy.sha256:
+            self.extracts_by_origin.setdefault(origin_sha, []).append(copy)
+
+    def lookup_extracts(self, origin_sha):
+        return self.extracts_by_origin.get(origin_sha, [])
 
 
 def _read_csv(path):
@@ -277,7 +291,7 @@ def load_job_sources(index, repo, cache_roots=(), exclude_jobs=()):
         # index, as before. Keep only fields this adapter consumes and release
         # each compact row as soon as it is processed.
         fields = ("sha256", "text_path", "cache_path", "instrument_ids", "url",
-                  "bytes", "page_or_item", "route", "pergamon")
+                  "bytes", "page_or_item", "route", "pergamon", "text_sha256", "item_extract", "extracted_from")
         try:
             bad_lines = []
             records = collections.deque(tuple(rec.get(k) for k in fields)
@@ -311,11 +325,20 @@ def load_job_sources(index, repo, cache_roots=(), exclude_jobs=()):
                 pg = rec.get("pergamon")
                 pg = pg if (local is None and isinstance(pg, dict) and sha_hex(pg.get("sha256")) == sha
                             and _str(pg.get("locator"))) else None
-                index.add(HeldCopy(f"jobs/{job}/output/SOURCES.jsonl", sha, rec.get("url"),
-                                   _int(rec.get("bytes")), local, text, (), rec.get("page_or_item"),
-                                   ids if isinstance(ids, list) else [], rec.get("route") or "",
-                                   custody="job_cache" if local is not None else
-                                   "pergamon_store" if pg is not None else "record_only", pergamon=pg))
+                # The record's pin for its text: its text_sha256; for an item extract, whose own bytes are the
+                # extracted text, its text_sha256 or else its sha256 (as current_evidence pins item extracts).
+                extract = bool(rec.get("item_extract"))
+                pin = sha_hex(rec.get("text_sha256")) or (sha if extract else None)
+                copy = HeldCopy(f"jobs/{job}/output/SOURCES.jsonl", sha, rec.get("url"),
+                                _int(rec.get("bytes")), local, text, (), rec.get("page_or_item"),
+                                ids if isinstance(ids, list) else [], rec.get("route") or "",
+                                custody="job_cache" if local is not None else
+                                "pergamon_store" if pg is not None else "record_only", pergamon=pg,
+                                text_sha256=pin if text is not None else None)
+                index.add(copy)
+                origin = rec.get("extracted_from")
+                if extract and text is not None and isinstance(origin, dict):
+                    index.add_extract(sha_hex(origin.get("sha256")), copy)
                 n += 1
                 local_found += local is not None
             except (TypeError, ValueError, AttributeError, OSError):
@@ -650,7 +673,8 @@ def load_replica_fragments(index, repo, exclude_jobs=()):
                            _int(data.get("bytes")), raw if held else None, text, (),
                            data.get("page_or_item"), [row["instrument_id"]],
                            "provisional replica; identity/pages and original grade remain unverified",
-                           custody="repo_file" if held else "record_only"))
+                           custody="repo_file" if held else "record_only",
+                           text_sha256=data.get("text_sha256") if text is not None else None))
         count += 1
     index.origin_counts["pinakes_replica_fragments"] = count
 
@@ -666,6 +690,74 @@ def build_index(repo, job_dir, cache_roots=(), exclude_jobs=()):
     load_stage18(index, repo)
     load_opus(index, repo, pathlib.Path(job_dir))
     return index
+
+
+# ---------- owner decision D-20261125-custody-text-only ----------
+
+# Custody kinds that keep the original bytes in a committed place (or a store with a locator). A source with a copy of
+# one of these kinds, or with GPO's published hash, is judged by its bytes alone and is never "text only".
+COMMITTED_CUSTODY = ("repo_file", "opus_release", "pergamon_store")
+
+
+def _same_file(a, b):
+    try:
+        return pathlib.Path(a).resolve() == pathlib.Path(b).resolve()
+    except (OSError, RuntimeError, TypeError, ValueError):
+        return False
+
+
+def text_custody(index, sha, ref, repo, record_only_required=True):
+    """(ok, why, text): may ``ref`` (citing bytes ``sha``) rest on held text alone (D-20261125-custody-text-only)?
+
+    Only for bytes held in no committed place (no copy kept in the repository, the Opus release or the Pergamon
+    store), unless ``record_only_required`` is false (the caller asks only whether the text conditions hold). ``ok``
+    is True when
+    a custody record of these bytes (a SOURCES.jsonl row for them, or an item extract declared as cut from them)
+    names the very text file the reference cites at ``text_path``, pins a text SHA-256 equal to the reference's
+    ``text_sha256``, and the file held in this checkout hashes to that pin and reads as UTF-8; ``text`` is then its
+    text, the only text a quotation from this reference may be checked against. Otherwise ``why`` says what is
+    missing; a record with only a hash and no held text never qualifies (nothing can be quoted from it). Role rules
+    (an order's own original) are the caller's.
+    """
+    copies = list(index.lookup_sha(sha))
+    if not copies or (record_only_required and any(c.custody in COMMITTED_CUSTODY for c in copies)):
+        return False, "not a record-only source", None
+    records = copies + [c for c in index.lookup_extracts(sha) if c not in copies]
+    texts = [c for c in records if isinstance(c.text_path, pathlib.Path)]
+    if not texts:
+        zipped = any(c.text_path is not None for c in records)
+        return False, ("hash only: no custody record of these bytes holds a text file in this repository"
+                       + (" (its extracted text is only inside the Opus release, with no pinned text hash)"
+                          if zipped else "") + ", so nothing can be quoted from it"), None
+    rel, pin = ref.get("text_path"), sha_hex(ref.get("text_sha256"))
+    if not isinstance(rel, str) or pin is None:
+        return False, "the reference does not name the held text and its hash (text_path and text_sha256)", None
+    target = _safe_child(pathlib.Path(repo), rel)
+    named = [c for c in texts if target is not None and _same_file(c.text_path, target)]
+    if not named:
+        return False, (f"no custody record of these bytes names the cited text {rel}; the recorded texts are "
+                       + ", ".join(sorted({c.origin for c in texts}))[:200]), None
+    pinned = [c for c in named if c.text_sha256 == pin]
+    if not pinned:
+        if any(c.text_sha256 for c in named):
+            return False, (f"the custody record ({', '.join(sorted({c.origin for c in named}))}) pins a different "
+                           f"hash for {rel} than the reference's text_sha256"), None
+        return False, (f"the custody record ({', '.join(sorted({c.origin for c in named}))}) names {rel} but pins "
+                       "no text hash, so the held text cannot be matched to its record"), None
+    try:
+        if is_lfs_pointer(target):
+            return False, f"the held text {rel} is a Git LFS pointer in this checkout", None
+        raw = target.read_bytes()
+    except OSError:
+        return False, f"the held text {rel} is not in this checkout", None
+    if hashlib.sha256(raw).hexdigest() != pin:
+        return False, f"the held text {rel} hashes differently from its custody record's text hash", None
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeError:
+        return False, f"the held text {rel} is not UTF-8", None
+    origins = ", ".join(sorted({c.origin for c in pinned}))
+    return True, f"held text {rel} hashes to the text hash its custody record ({origins}) pins", text
 
 
 # ---------- reading saved bytes and text ----------

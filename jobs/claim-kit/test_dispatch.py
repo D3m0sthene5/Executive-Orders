@@ -7,6 +7,7 @@ import unittest
 from unittest.mock import patch
 
 import test_build as T
+import assemble
 import batch
 import dispatch
 import kit
@@ -15,6 +16,8 @@ import kit
 class DispatchTests(unittest.TestCase):
     setUp = T.BuildIntegrationTests.setUp
     run_build = T.BuildIntegrationTests.run_build
+    dossier = T.BuildIntegrationTests.dossier
+    decision = T.BuildIntegrationTests.decision
 
     def retain(self, missing=()):
         records = json.loads((self.repo/'jobs/future-source/data/PROVENANCE.json').read_text())['representations']
@@ -41,6 +44,93 @@ class DispatchTests(unittest.TestCase):
         with redirect_stdout(out), redirect_stderr(io.StringIO()):
             code = kit.main(['--repo', str(self.repo), *map(str, args)])
         return code, out.getvalue()
+
+    def text_only_sources(self, record_only=('EO:5',), pinned=True, text=True):
+        """Owner decision D-20261125-custody-text-only fixture: texts under the producer's output folder; the listed
+        orders' bytes are held nowhere, their SOURCES rows naming (and, if ``pinned``, hashing) the held text."""
+        provenance_path = self.repo/'jobs/future-source/data/PROVENANCE.json'
+        provenance = json.loads(provenance_path.read_text())
+        rows = []
+        for r in provenance['representations']:
+            name = r['instrument_id'].replace(':', '_')
+            held = self.repo/'jobs/future-source/output/texts'/(name + '.txt')
+            held.parent.mkdir(parents=True, exist_ok=True)
+            held.write_bytes((self.repo/r['text_path']).read_bytes())
+            r['text_path'] = held.relative_to(self.repo).as_posix()
+            row = {**r['source'], 'instrument_ids': [r['instrument_id']], 'text_path': 'texts/' + name + '.txt'}
+            if r['instrument_id'] in record_only:
+                row['cache_path'] = None
+                if not pinned:
+                    row.pop('text_sha256')
+                if not text:
+                    row.pop('text_path')
+                    row.pop('text_sha256', None)
+            else:
+                raw = self.repo/'jobs/future-source/output/raw'/(name + '.bin')
+                raw.parent.mkdir(parents=True, exist_ok=True)
+                raw.write_bytes(held.read_bytes())
+                row['cache_path'] = 'raw/' + name + '.bin'
+            rows.append(row)
+        T.write_json(provenance_path, provenance)
+        T.write_jsonl(self.repo/'jobs/future-source/output/SOURCES.jsonl', rows)
+        self.run_build()
+
+    def member(self, report, iid):
+        return next(m for m in report['members'] if m['instrument_id'] == iid)
+
+    def test_text_only_actor_source_passes_but_own_official_original_stays_blocked(self):
+        self.text_only_sources(record_only=('EO:1', 'EO:5'))
+        folder = self.repo/'research/test/packet'
+        batch.prepare(self.repo, self.out, folder, ['EO:1', 'EO:2'], 'producer')
+        report = dispatch.check(self.repo, folder)
+        self.assertEqual(report['source_blocked_ids'], ['EO:1'])
+        own = self.member(report, 'EO:1')['blockers']
+        self.assertTrue(own and all(b['kind'] == 'required_source_custody' for b in own), own)
+        detail = json.dumps(own)
+        self.assertIn('custody_record_only', detail)
+        self.assertIn('own original needs held bytes', detail)
+        actor = [s for s in self.member(report, 'EO:2')['sources'] if not s['required']]
+        self.assertTrue(actor)
+        self.assertEqual({c['status'] for s in actor for c in s['checks']}, {'custody_text_only'})
+        self.assertNotIn('EO:2', [e['instrument_id'] for e in dispatch.summary(report)['exceptions']])
+
+    def test_hash_only_or_unpinned_actor_records_still_fail_custody(self):
+        for kw, words in (({'text': False}, 'hash only'), ({'pinned': False}, 'pins no text hash')):
+            self.setUp()
+            self.text_only_sources(**kw)
+            folder = self.repo/'research/test/packet'
+            batch.prepare(self.repo, self.out, folder, ['EO:2'], 'producer')
+            report = dispatch.check(self.repo, folder)
+            actor = [c for s in self.member(report, 'EO:2')['sources'] if not s['required'] for c in s['checks']]
+            self.assertEqual({c['status'] for c in actor}, {'custody_record_only'}, kw)
+            self.assertIn(words, json.dumps(actor))
+            self.assertIn('EO:2', [e['instrument_id'] for e in dispatch.summary(report)['exceptions']])
+
+    def test_assembler_discloses_text_only_ending_source_and_selected_check_accepts_it(self):
+        self.text_only_sources(record_only=('EO:5',))
+        folder = self.repo/'research/test/packet'
+        batch.prepare(self.repo, self.out, folder, ['EO:1'], 'producer')
+        _, dossiers = batch.load_packet(folder, self.repo)
+        sheet = self.decision('EO:1')
+        claim, errors = assemble.assemble(sheet, dossiers['EO:1'], self.repo)
+        self.assertEqual(errors, [])
+        disclosure = claim['custody_text_only_sources']
+        self.assertEqual(disclosure['grade'], 'custody_text_only')
+        self.assertEqual(disclosure['decision'], 'D-20261125-custody-text-only')
+        self.assertEqual([r['text_path'] for r in disclosure['cited']], ['jobs/future-source/output/texts/EO_5.txt'])
+        result = dispatch.check_selected(self.repo, folder, [claim])
+        self.assertTrue(result['ok'], dispatch.selected_summary(result))
+        statuses = {c['status'] for s in result['members'][0]['sources'] for c in s['checks']}
+        self.assertIn('custody_text_only', statuses)
+        # With every source's bytes held, nothing is disclosed.
+        self.setUp()
+        self.text_only_sources(record_only=())
+        folder = self.repo/'research/test/packet'
+        batch.prepare(self.repo, self.out, folder, ['EO:1'], 'producer')
+        _, dossiers = batch.load_packet(folder, self.repo)
+        claim, errors = assemble.assemble(self.decision('EO:1'), dossiers['EO:1'], self.repo)
+        self.assertEqual(errors, [])
+        self.assertNotIn('custody_text_only_sources', claim)
 
     def test_prepare_wires_source_check_and_deduplicates_shared_references(self):
         folder = self.packet()

@@ -335,6 +335,26 @@ class PalsgrafTests(unittest.TestCase):
         PG.write_trace(out, trace)
 
 
+class ExtractLookupTraceTests(unittest.TestCase):
+    """D-20261125-custody-text-only reads item extracts by origin hash; the lookup must be a recorded input."""
+
+    def test_extract_lookup_is_recorded_and_fingerprinted(self):
+        index = S.HeldIndex()
+        copy = S.HeldCopy("jobs/x/output/SOURCES.jsonl", "a" * 64, text_path=pathlib.Path("/t.txt"),
+                          custody="record_only", text_sha256="a" * 64)
+        index.add_extract("b" * 64, copy)
+        seen = []
+        rec = mock.Mock(active=lambda: True, add=seen.append)
+        traced = PG.TracedIndex(index, rec)
+        self.assertEqual(traced.lookup_extracts("b" * 64), [copy])
+        self.assertEqual(seen, ["x:" + "b" * 64])
+        fp = PG.Fingerprinter({"index": index}, mock.MagicMock())
+        before = fp._compute("x:" + "b" * 64)
+        index.add_extract("b" * 64, S.HeldCopy("jobs/y/output/SOURCES.jsonl", "c" * 64, custody="record_only"))
+        self.assertNotEqual(before, fp._compute("x:" + "b" * 64))
+        self.assertEqual(fp._compute("x:" + "e" * 64), fp._compute("x:" + "f" * 64))
+
+
 class DecideTests(unittest.TestCase):
     """The pure selection rule, without the checker."""
 

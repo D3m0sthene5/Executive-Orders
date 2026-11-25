@@ -60,6 +60,10 @@ SOURCE_STATUS_RESULT = {
     "gpo_published_hash_match": "pass",       # GPO publishes these exact bytes at the URL under this SHA-256
                                               # (jobs/official-fixity), so anyone can re-fetch and verify them
     "custody_record_only": "skip",            # only a record (hash, maybe text); the bytes are in no committed place
+    "custody_text_only": "pass",              # D-20261125-custody-text-only: bytes in no committed place, but the
+                                              # cited held text hashes to its custody record's text hash; quotations
+                                              # must match that text byte for byte, the claim must disclose it and its
+                                              # tier is custody_text_only (never original_supported)
 }
 # Warnings that also stop a step from counting as checker-passed (they need a person to look).
 BLOCKING_WARN_STATUSES = {"too_short_to_verify", "recorded_for_other_order_but_text_names_this_order",
@@ -683,7 +687,38 @@ def _row(rows, step, check, field, result, status, detail=""):
                  "status": status, "detail": (detail or "")[:600]})
 
 
-def check_source(ref, field, ctx, rows, *, allow_download=True):
+def _text_only(ref, sha, ctx, role, record_only_required=True):
+    """(ok, why, text) under D-20261125-custody-text-only for this reference in this role.
+
+    ``role`` is "original" (an order's own original, the conservative default) or "other" (a later event, a
+    current-law predicate, an ending source, any other cited source). An own original qualifies only when the
+    working-text rules accept the reference as a declared non-original working text. With
+    ``record_only_required`` false only the held-text conditions are judged (whether a source MAY be disclosed)."""
+    if record_only_required and sha in ctx.gpo_matched:
+        return False, "GPO publishes these bytes", None
+    ok, why, text = S.text_custody(ctx.index, sha, ref, getattr(ctx, "repo", None) or pathlib.Path("."),
+                                   record_only_required=record_only_required)
+    if ok and role != "other":
+        wi = getattr(ctx, "working_text_index", None)
+        if wi is None:
+            wi = ctx.working_text_index = W.Index(ctx.repo)
+        if not W.working_text_reference(ref, wi):
+            return False, (why + ", but an order's own original needs held bytes unless the owner's working-text "
+                           "rules accept it as a declared non-original working text"), None
+    return ok, why, text
+
+
+def source_role(field):
+    """"original" for an order's own original (original_representation, a clause's original_source), else "other"."""
+    return "original" if IDENTITY_FIELD.match(field or "") else "other"
+
+
+def check_source(ref, field, ctx, rows, *, allow_download=True, role="original", text_only=None):
+    """Check custody of one cited source; append one source_held row and return its sha256 (or None).
+
+    A source whose bytes are verified nowhere (custody_record_only before) passes as custody_text_only when its held
+    text qualifies under D-20261125-custody-text-only in ``role``; ``text_only``, when a dict, then receives
+    id(ref) -> (field, ref, text). Bytes verified by any route always take precedence."""
     step = step_for_path(field)
     raw = ref.get("sha256") or ref.get("local_file_sha256")
     sha = S.sha_hex(raw)
@@ -703,12 +738,12 @@ def check_source(ref, field, ctx, rows, *, allow_download=True):
         kept = [c for c in copies if c.bytes_kept]
         checks = [ctx.reader.verify_bytes(c) for c in kept]
         origins = sorted({c.origin for c in copies})
-        if True in checks:
-            status, detail = "held_bytes_verified", "saved bytes re-hashed on this machine and match"
-        elif False in checks:
+        if False in checks and True not in checks:
             _row(rows, step, "source_held", field, "fail", "held_record_but_local_bytes_differ",
                  f"a custody record ({', '.join(origins)}) lists this hash but the saved file hashes differently")
             return sha
+        if True in checks:
+            status, detail = "held_bytes_verified", "saved bytes re-hashed on this machine and match"
         elif any(c.custody in ("repo_file", "opus_release") for c in kept):
             where = sorted({"the Opus LFS release" if c.custody == "opus_release" else "a committed repo file"
                             for c in kept if c.custody in ("repo_file", "opus_release")})
@@ -726,10 +761,19 @@ def check_source(ref, field, ctx, rows, *, allow_download=True):
             status, detail = "held_bytes_verified", (
                 f"re-fetched from the archived capture ({cap.get('archive')} {cap.get('captured_utc', '')}) "
                 "and re-hashed on this machine; match")
+        elif (text_custody := _text_only(ref, sha, ctx, role))[0]:
+            if text_only is not None:
+                text_only[id(ref)] = (field, ref, text_custody[2])
+            status, detail = "custody_text_only", (
+                f"the original bytes are held nowhere this machine can verify, but the {text_custody[1]} (owner "
+                f"decision {W.CUSTODY_TEXT_ONLY_DECISION}); quotations must match it byte for byte and the claim must "
+                "disclose it")
         else:
             status, detail = "custody_record_only", (
                 "only a custody record (hash, perhaps extracted text) exists; the original bytes are in no "
-                "committed place (another job's download cache or not kept). Unverified until the bytes are held")
+                "committed place (another job's download cache or not kept). Unverified until the bytes are held"
+                + (f"; text-only custody ({W.CUSTODY_TEXT_ONLY_DECISION}) does not apply: {text_custody[1]}"
+                   if text_custody[1] != "not a record-only source" else ""))
         detail = f"recorded in {', '.join(origins)}; {detail}"
         urls = {S.norm_url(c.url) for c in copies if c.url}
         if url and urls and S.norm_url(url) not in urls:
@@ -803,6 +847,80 @@ def check_quote(quote, field, ref, ref_field, ctx, rows):
                  + detail)
             return
     _row(rows, step, "quote_verbatim", field, "fail" if status == "not_found" else "pass", status, detail)
+
+
+def check_text_only_disclosure(claim, resting, cited, ctx, rows):
+    """Check the claim's custody_text_only_sources disclosure; return {id(ref): text} of the sources resting on text.
+
+    ``resting`` maps id(ref) -> (field, ref, text) for the sources whose custody row is custody_text_only (their
+    bytes were verified nowhere): every one must be disclosed. A cited source whose bytes this machine did verify
+    (a cache the assembler's machine lacked, a re-download) may still be disclosed when its held text meets the same
+    conditions, so the disclosure never depends on which machine assembled or checks; nothing else may be. The
+    disclosure must be exactly what working_text.custody_text_only_disclosure writes for the disclosed sources.
+    Disclosed sources rest on their held text: their quotations are checked only against it, byte for byte."""
+    key = W.CUSTODY_TEXT_ONLY_KEY
+    disclosure = claim.get(key)
+    chosen = {}  # id(ref) -> (field, ref, text)
+    if disclosure is not None:
+        listed = disclosure.get("cited") if isinstance(disclosure, dict) else None
+        listed_keys = {json.dumps(x, sort_keys=True) for x in (listed if isinstance(listed, list) else [])
+                       if isinstance(x, dict)}
+        for field, ref in cited:
+            k = json.dumps(W.custody_text_only_disclosure([ref])["cited"][0], sort_keys=True)
+            if k not in listed_keys:
+                continue
+            if id(ref) in resting:
+                chosen[id(ref)] = resting[id(ref)]
+                continue
+            sha = S.sha_hex(ref.get("sha256")) or S.sha_hex(ref.get("local_file_sha256"))
+            ok, _, text = _text_only(ref, sha, ctx, source_role(field), record_only_required=False) if sha else \
+                (False, "", None)
+            if ok:
+                chosen[id(ref)] = (field, ref, text)
+        if not chosen or disclosure != W.custody_text_only_disclosure([ref for _, ref, _ in chosen.values()]):
+            _row(rows, "claim_record", "source_held", key, "fail", "custody_text_only_disclosure_mismatch",
+                 "the disclosure must be exactly what the assembler writes (grade, decision, note, one row per source) "
+                 "and may list only cited sources whose held text qualifies under "
+                 f"{W.CUSTODY_TEXT_ONLY_DECISION}; re-assemble the claim")
+    missing = sorted(f for i, (f, _, _) in resting.items() if i not in chosen)
+    if missing:
+        _row(rows, "claim_record", "source_held", key, "fail", "custody_text_only_disclosure_required",
+             f"{len(missing)} cited source(s) rest on held text alone ({', '.join(missing)[:300]}); the claim must "
+             f"disclose them in {key} ({W.CUSTODY_TEXT_ONLY_DECISION}); re-assemble the claim")
+    elif chosen and not any(r["field"] == key and r["result"] == "fail" for r in rows):
+        _row(rows, "claim_record", "source_held", key, "pass", "custody_text_only_disclosed",
+             f"{len(chosen)} cited source(s) disclosed as {W.CUSTODY_TEXT_ONLY_GRADE}: held text only, never "
+             "original_supported")
+    return {i: text for i, (_, _, text) in {**resting, **chosen}.items()}
+
+
+def check_text_only_quote(quote, field, ref, ref_field, text, rows):
+    """A quotation from a text-only source must occur byte for byte in its pinned held text (and at its offsets)."""
+    step = step_for_path(field)
+    if not isinstance(quote, str) or not quote.strip():
+        _row(rows, step, "quote_verbatim", field, "fail", "empty_or_not_text", "quotation is empty or not text")
+        return
+    where = f"{ref.get('text_path')} (text sha256 {str(ref.get('text_sha256'))[:12]}..., as cited at {ref_field})"
+    a, b = ref.get("char_start"), ref.get("char_end")
+    own = field == f"{ref_field}.quote"
+    if own and (a is not None or b is not None):
+        exact = type(a) is int and type(b) is int and 0 <= a < b <= len(text) and text[a:b] == quote
+    else:
+        exact = quote in text
+    if not exact:
+        _row(rows, step, "quote_verbatim", field, "fail", "custody_text_only_quote_not_byte_exact",
+             f"the source rests on its held text alone ({W.CUSTODY_TEXT_ONLY_DECISION}), so the quotation must occur "
+             f"in {where} byte for byte" + (" at its char_start/char_end" if own else ""))
+        return
+    nq = norm_quote(quote)
+    n_words, times = len(nq.split()), text.count(quote)
+    detail = f"byte-exact in the held text {where}; occurs {times} time(s)"
+    if n_words < MIN_QUOTE_WORDS and len(nq) < MIN_QUOTE_CHARS:
+        _row(rows, step, "quote_verbatim", field, "warn", "too_short_to_verify",
+             f"found but only {n_words} word(s) / {len(nq)} characters: too short to show that the claimed text is "
+             f"in the source (needs {MIN_QUOTE_WORDS}+ words or {MIN_QUOTE_CHARS}+ characters); " + detail)
+        return
+    _row(rows, step, "quote_verbatim", field, "pass", "exact", detail)
 
 
 def _order_number_pattern(iid):
@@ -1055,6 +1173,8 @@ def check_claim(claim, ctx):
     for path, ref in captures:
         _row(rows, "claim_record", "fr_capture_disclosure", path, "pass", W.FR_CAPTURE_GRADE,
              f"{ref.get('instrument_id')} ({W.fr_citation(ref)}): {W.FR_CAPTURE_NOTE}")
+    resting = {}  # id(ref) -> (field, ref, text): rests on held text alone (D-20261125-custody-text-only)
+    cited = []
     for path, key, val, chain in walk(claim):
         refs = []
         if key in SOURCE_KEYS and isinstance(val, dict):
@@ -1062,11 +1182,14 @@ def check_claim(claim, ctx):
         elif key in SOURCE_LIST_KEYS and isinstance(val, list):
             refs = [(f"{path}[{n}]", v) for n, v in enumerate(val) if isinstance(v, dict)]
         for field, ref in refs:
-            sha = check_source(ref, field, ctx, rows)
+            cited.append((field, ref))
+            sha = check_source(ref, field, ctx, rows, role=source_role(field), text_only=resting)
             if sha is None or not any(c.bytes_kept for c in ctx.index.lookup_sha(sha)):
                 ctx.not_held.append((field, ref))
             if IDENTITY_FIELD.match(field):
                 check_identity(ref, field, claim.get("instrument_id"), ctx, rows)
+    resting = check_text_only_disclosure(claim, resting, cited, ctx, rows)
+    for path, key, val, chain in walk(claim):
         if key is None:
             continue
         quotes = []
@@ -1094,7 +1217,10 @@ def check_claim(claim, ctx):
                         break
             if ref is None:
                 ref, ref_field = claim.get("original_representation"), "original_representation"
-            check_quote(q, field, ref, ref_field, ctx, rows)
+            if isinstance(ref, dict) and id(ref) in resting:
+                check_text_only_quote(q, field, ref, ref_field, resting[id(ref)], rows)
+            else:
+                check_quote(q, field, ref, ref_field, ctx, rows)
     check_dates(claim, ctx, rows)
     check_orders(claim, ctx, rows)
     errors, status = check_gate(claim, ctx, rows)
@@ -1112,6 +1238,17 @@ def parts_present(claim):
         "savings_residuals": isinstance(claim.get("savings_residuals"), dict),
         "counterevidence": isinstance(claim.get("later_source_search"), list) and bool(claim.get("later_source_search")),
     }
+
+
+def text_evidence_tier(rows):
+    """custody_text_only when any cited source rests on held text alone (D-20261125-custody-text-only; it never
+    counts as original_supported), else transcription_dependent for a working text, else original_supported."""
+    if any(r["check"] == "source_held" and r["status"] in ("custody_text_only", "custody_text_only_disclosed")
+           for r in rows):
+        return W.CUSTODY_TEXT_ONLY_GRADE
+    if any(r["check"] == "working_text_policy" for r in rows):
+        return "transcription_dependent"
+    return "original_supported"
 
 
 def summarise_claim(key, file_rel, line, claim, rows, errors, status, ctx):
@@ -1145,8 +1282,7 @@ def summarise_claim(key, file_rel, line, claim, rows, errors, status, ctx):
         "instrument_id": claim.get("instrument_id"),
         "claim_sha256": ctx.gate.claim_sha(claim),
         "provisional_status": status,
-        "text_evidence_tier": "transcription_dependent" if any(
-            r["check"] == "working_text_policy" for r in rows) else "original_supported",
+        "text_evidence_tier": text_evidence_tier(rows),
         "working_text_policy_version": W.RULING,
         "mechanical_result": mechanical,
         "gate_passed": not errors,

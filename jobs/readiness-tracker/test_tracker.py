@@ -739,6 +739,32 @@ class TrackerTest(unittest.TestCase):
         self.assertEqual(summary['original_replacement_obligations'], 1)
         self.assertEqual(summary['quotation_recheck_obligations'], 1)
 
+    def test_custody_text_only_is_its_own_tier_and_never_original_supported(self):
+        # D-20261125-custody-text-only: a claim disclosing a source that rests on held text alone.
+        claim = copy.deepcopy(COMPLETE_NO_CLAIM)
+        ref = claim['operative_clauses'][0].get('original_source') or claim['original_representation']
+        claim[tracker.W.CUSTODY_TEXT_ONLY_KEY] = tracker.W.custody_text_only_disclosure([ref])
+        orders, summary = self.run_tracker([claim])
+        self.assertEqual(orders['EO:2']['ready_for_human_review'], 'yes')
+        self.assertEqual(orders['EO:2']['text_evidence_tier'], 'custody_text_only')
+        self.assertEqual(summary['ready_by_text_evidence_tier'], {'custody_text_only': 1})
+        # The checker's grade for this exact claim also sets the tier, even without the claim's own disclosure.
+        plain = copy.deepcopy(COMPLETE_NO_CLAIM)
+        orders, _ = self.run_tracker([plain])
+        self.assertEqual(orders['EO:2']['text_evidence_tier'], 'original_supported')
+        checker = json.loads((self.root / tracker.J['checker']).read_text())
+        checker['by_instrument']['EO:2']['text_evidence_tier'] = 'custody_text_only'
+        self.write(tracker.J['checker'], json.dumps(checker))
+        orders = {o['instrument_id']: o for o in tracker.build(str(self.root))[0]}
+        self.assertEqual(orders['EO:2']['text_evidence_tier'], 'custody_text_only')
+        # A working text resting on held text alone reports custody_text_only and keeps its replacement debt.
+        claim = self.working_claim()
+        claim[tracker.W.CUSTODY_TEXT_ONLY_KEY] = tracker.W.custody_text_only_disclosure([claim['original_representation']])
+        orders, summary = self.run_tracker([claim])
+        self.assertEqual(orders['EO:2']['text_evidence_tier'], 'custody_text_only')
+        self.assertEqual(orders['EO:2']['original_copy_replacement_required'], 'yes')
+        self.assertEqual(summary['ready_by_text_evidence_tier'], {'custody_text_only': 1})
+
     def test_working_text_still_needs_other_steps_and_current_checker(self):
         claim = self.working_claim()
         orders, _ = self.run_tracker([claim], checked={'original_text':True})

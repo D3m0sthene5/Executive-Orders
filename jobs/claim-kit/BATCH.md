@@ -137,6 +137,18 @@ review approval; keep its receipt outside blind reviewer prompts by default.
 Direct `batch.apply` callers must run `dispatch.check_selected` themselves before
 assigning review; the CLI hook does not intercept external model launchers.
 
+Owner decision D-20261125-custody-text-only: a cited source whose bytes are held
+nowhere but whose custody record pins the held text the reference cites passes as
+`custody_text_only` for a later event, current-law predicate, ending or any other
+role; for the order's own original only when it is a declared working text. The
+assembler writes the claim's `custody_text_only_sources` disclosure itself (do not
+edit it); the checker requires it, checks every quotation from such a source byte
+for byte against that text, and grades the claim `custody_text_only`, never
+`original_supported`. A record with only a hash still blocks. Packets prepared
+before this change fail the code pins: prepare a new packet (same `kit.py prepare`
+arguments, new `--write` folder); decision rows carry over when the dossier
+fingerprints are unchanged.
+
 `batch-check` repeats exact dossier/claim checks and invokes the actual
 claim-checker against the proposed lines, using held evidence with network
 verification disabled. It prints compact counts and actionable assembly errors;

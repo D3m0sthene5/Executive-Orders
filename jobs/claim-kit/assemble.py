@@ -632,6 +632,11 @@ def _assemble(sheet, dossier, repo, interval_partial=False):
     if captures:
         # Owner decision D-20261125-fr-capture-later-events: disclose each later-event capture under its grade.
         claim["fr_fulltext_captures"] = W.fr_capture_disclosure([ref for _, ref in captures])
+    # Owner decision D-20261125-custody-text-only: disclose every cited source that rests on its held text alone
+    # (bytes in no committed place, text pinned to its custody record), as the actual checker judges it offline.
+    text_only = custody_text_only_refs(claim, repo)
+    if text_only:
+        claim[W.CUSTODY_TEXT_ONLY_KEY] = W.custody_text_only_disclosure(text_only)
     capture_paths = {path for path, _ in captures}
     if isinstance(claim.get("working_text"), dict):
         used = {W.key(ref) for path, ref in W.references(claim)
@@ -662,6 +667,67 @@ def _assemble(sheet, dossier, repo, interval_partial=False):
     errors.extend(checks)
     errors = list(dict.fromkeys(errors))
     return (None, errors) if errors else (claim, [])
+
+
+_CUSTODY = {}  # resolved repo -> (inputs stamp, (checker module, offline source context, memo))
+CUSTODY_STAMP_GLOBS = ("jobs/*/output/SOURCES.jsonl", "jobs/*/data/PROVENANCE.json", "jobs/*/output/FRAGMENTS.jsonl",
+                       "jobs/official-fixity/output/MATCHED_BY_SHA256.json", "jobs/claim-checker/*.py")
+
+
+def _custody_stamp(repo):
+    stamp = []
+    for pattern in CUSTODY_STAMP_GLOBS:
+        for path in sorted(repo.glob(pattern)):
+            try:
+                st = path.stat()
+            except OSError:
+                continue
+            stamp.append((path.relative_to(repo).as_posix(), st.st_mtime_ns, st.st_size))
+    return tuple(stamp)
+
+
+def _custody_context(repo):
+    """The actual checker and its offline source context for ``repo``, reused while its custody inputs are unchanged.
+
+    A stale context can only make the assembler's disclosure differ from the checker's own judgment, which the
+    checker refuses (custody_text_only_disclosure_*): the checker, not this cache, decides."""
+    repo = Path(repo).resolve()
+    stamp = _custody_stamp(repo)
+    hit = _CUSTODY.get(str(repo))
+    if hit is None or hit[0] != stamp:
+        import dispatch  # deferred: dispatch imports this module
+        checker = dispatch.actual_checker()
+        _CUSTODY.clear()
+        _CUSTODY[str(repo)] = hit = (stamp, (checker, dispatch.source_context(repo, checker), {}))
+    return hit[1]
+
+
+def custody_text_only_refs(claim, repo):
+    """The claim's cited sources that rest on held text alone (D-20261125-custody-text-only), in citation order.
+
+    Uses the actual checker's check_source offline, with each reference's role (an own original qualifies only as a
+    declared working text), exactly as the checker enumerates references. Grants nothing: the checker re-judges."""
+    checker, ctx, memo = _custody_context(repo)
+    found = {}
+    for path, key, val, _ in checker.walk(claim):
+        refs = []
+        if key in checker.SOURCE_KEYS and isinstance(val, dict):
+            refs = [(path, val)]
+        elif key in checker.SOURCE_LIST_KEYS and isinstance(val, list):
+            refs = [(f"{path}[{n}]", v) for n, v in enumerate(val) if isinstance(v, dict)]
+        for field, ref in refs:
+            role = checker.source_role(field)
+            mkey = json.dumps({k: ref.get(k) for k in ("sha256", "local_file_sha256", "url", "archival_id",
+                                                       "text_path", "text_sha256", "instrument_id", "grade",
+                                                       "acceptable_as_original")} | {"role": role},
+                              sort_keys=True, default=str)
+            if mkey not in memo:
+                eligible = {}
+                checker.check_source(ref, field, ctx, [], allow_download=False, role=role, text_only=eligible)
+                memo[mkey] = bool(eligible)
+            if memo[mkey]:
+                found[id(ref)] = ref
+    return list(found.values())
 
 
 def check_claim(claim, repo, dossier=None):

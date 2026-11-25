@@ -1126,5 +1126,229 @@ class ReplicaFragmentTests(unittest.TestCase):
         self.assertEqual(self.index_replica(), [])
 
 
+LATER_TEXT = ("Report of the Test Board to the President, dated June 1, 1955: the Board has completed its work "
+              "under Executive Order 90001 and reports accordingly.\n")
+LATER_QUOTE = "the Board has completed its work under Executive Order 90001"
+
+
+@unittest.skipUnless(REAL_GATE.is_file(), "research/stage19/code/claim_gate.py not checked out")
+class CustodyTextOnlyTests(unittest.TestCase):
+    """Owner decision D-20261125-custody-text-only: held text pinned to a record-only custody record."""
+
+    def setUp(self):
+        clean = {k: v for k, v in os.environ.items()
+                 if not k.startswith("CLAIM_CHECKER_") and k not in ("JOB_LIMIT", "JOB_CACHE_DIR")}
+        clean["CLAIM_CHECKER_VERIFY_DOWNLOADS"] = "0"
+        patcher = mock.patch.dict(os.environ, clean, clear=True)
+        patcher.start()
+        self.addCleanup(patcher.stop)
+        C._VERIFY.update(left=None, last=0.0)
+        self.tmp = tempfile.mkdtemp(prefix="claim-checker-textonly-")
+        self.addCleanup(shutil.rmtree, self.tmp, True)
+        self.repo, self.jobdir = build_repo(self.tmp)
+        self.out = self.repo / "jobs/report-job/output"
+        (self.out / "texts").mkdir(parents=True)
+        (self.out / "texts/report.txt").write_text(LATER_TEXT, "utf-8")
+        self.pdf_sha = "d" * 64  # the report PDF: its bytes are held nowhere
+        self.record = {"source_id": "r1", "instrument_ids": ["EO:90001"], "url": "https://nmb.gov/PEB-900-Report.pdf",
+                       "sha256": self.pdf_sha, "text_path": "texts/report.txt",
+                       "text_sha256": sha(LATER_TEXT.encode()), "cache_path": None, "page_or_item": "pp. 1-2"}
+        self.write_records([self.record])
+
+    def write_records(self, records):
+        (self.out / "SOURCES.jsonl").write_text("".join(json.dumps(r) + "\n" for r in records), "utf-8")
+        self.ctx = C.Context(self.repo, self.jobdir, pathlib.Path(self.tmp) / "cache", today=C.dt.date(2026, 10, 17))
+
+    def ref(self, quote=LATER_QUOTE, text=LATER_TEXT):
+        start = text.index(quote)
+        return {"url": "https://nmb.gov/PEB-900-Report.pdf", "sha256": self.pdf_sha, "page_or_item": "pp. 1-2",
+                "text_path": "jobs/report-job/output/texts/report.txt", "text_sha256": sha(text.encode()),
+                "quote": quote, "char_start": start, "char_end": start + len(quote)}
+
+    def claim(self, disclose=True, **ref_kw):
+        claim = good_claim()
+        source = self.ref(**ref_kw)
+        claim["operative_clauses"][1]["later_events"] = [
+            {"effective_date": "1955-06-01", "actor": "Test Board", "mechanism": "report made", "source": source}]
+        if disclose:
+            claim[C.W.CUSTODY_TEXT_ONLY_KEY] = C.W.custody_text_only_disclosure([source])
+        return claim
+
+    def check(self, claim):
+        rows, errors, status = C.check_claim(claim, self.ctx)
+        return rows, C.summarise_claim("k", "f", 1, claim, rows, errors, status, self.ctx)
+
+    def status(self, rows, field):
+        return next(r for r in rows if r["check"] == "source_held" and r["field"] == field)
+
+    LATER = "operative_clauses[1].later_events[0].source"
+
+    def test_pinned_text_of_a_record_only_later_event_passes_disclosed_and_tiered(self):
+        rows, summary = self.check(self.claim())
+        self.assertTrue(summary["all_checks_passed"], (summary["failures"], summary["unverified"]))
+        row = self.status(rows, self.LATER)
+        self.assertEqual((row["result"], row["status"]), ("pass", "custody_text_only"))
+        self.assertIn("D-20261125-custody-text-only", row["detail"])
+        self.assertEqual(summary["text_evidence_tier"], "custody_text_only")
+        quote = next(r for r in rows if r["field"] == self.LATER + ".quote")
+        self.assertEqual((quote["result"], quote["status"]), ("pass", "exact"))
+        self.assertIn("byte-exact", quote["detail"])
+
+    def test_disclosure_is_required_and_must_match_exactly(self):
+        rows, summary = self.check(self.claim(disclose=False))
+        self.assertFalse(summary["all_checks_passed"])
+        self.assertIn("source_held:custody_text_only_disclosure_required@custody_text_only_sources", summary["failures"])
+        self.assertFalse(any(s["checker_passed"] for s in summary["steps"].values()))
+        for tamper in (lambda d: d.update(note="bytes held"), lambda d: d.update(grade="original_supported"),
+                       lambda d: d["cited"].append(dict(d["cited"][0], sha256="e" * 64)),
+                       lambda d: d["cited"][0].update(text_sha256="0" * 64)):
+            claim = self.claim()
+            tamper(claim[C.W.CUSTODY_TEXT_ONLY_KEY])
+            rows, summary = self.check(claim)
+            self.assertFalse(summary["all_checks_passed"])
+            self.assertTrue(any(f.startswith("source_held:custody_text_only_disclosure") for f in summary["failures"]),
+                            summary["failures"])
+
+    def test_disclosure_without_a_text_only_source_fails(self):
+        claim = good_claim()
+        claim[C.W.CUSTODY_TEXT_ONLY_KEY] = C.W.custody_text_only_disclosure([self.ref()])
+        rows, summary = self.check(claim)
+        self.assertIn("source_held:custody_text_only_disclosure_mismatch@custody_text_only_sources", summary["failures"])
+        self.assertEqual(summary["text_evidence_tier"], "original_supported")
+
+    def test_quotes_must_match_the_held_text_byte_for_byte(self):
+        # A whitespace variant the ordinary normalised search would accept.
+        claim = self.claim()
+        src = claim["operative_clauses"][1]["later_events"][0]["source"]
+        claim["operative_clauses"][1]["later_events"][0]["quote"] = LATER_QUOTE.replace(" its ", "  its ")
+        rows, summary = self.check(claim)
+        self.assertIn("quote_verbatim:custody_text_only_quote_not_byte_exact@operative_clauses[1].later_events[0].quote",
+                      summary["failures"])
+        # The reference's own quote must sit at its offsets.
+        claim = self.claim()
+        src = claim["operative_clauses"][1]["later_events"][0]["source"]
+        src["char_start"] += 1
+        src["char_end"] += 1
+        claim[C.W.CUSTODY_TEXT_ONLY_KEY] = C.W.custody_text_only_disclosure([src])
+        rows, summary = self.check(claim)
+        self.assertIn("quote_verbatim:custody_text_only_quote_not_byte_exact@" + self.LATER + ".quote",
+                      summary["failures"])
+
+    def test_hash_only_record_still_blocks_with_a_clear_message(self):
+        self.write_records([dict(self.record, text_path=None, text_sha256=None)])
+        rows, summary = self.check(self.claim(disclose=False))
+        row = self.status(rows, self.LATER)
+        self.assertEqual((row["result"], row["status"]), ("skip", "custody_record_only"))
+        self.assertIn("hash only", row["detail"])
+        self.assertIn("nothing can be quoted", row["detail"])
+        self.assertFalse(summary["all_checks_passed"])
+        self.assertEqual(summary["text_evidence_tier"], "original_supported")
+
+    def test_unpinned_mismatched_or_unnamed_texts_do_not_qualify(self):
+        cases = [(dict(self.record, text_sha256=None), "pins no text hash"),
+                 (dict(self.record, text_sha256="0" * 64), "pins a different hash"),
+                 (dict(self.record, text_path="texts/other.txt"), "names the cited text")]
+        (self.out / "texts/other.txt").write_text("other", "utf-8")
+        for record, words in cases:
+            self.write_records([record])
+            rows, summary = self.check(self.claim(disclose=False))
+            row = self.status(rows, self.LATER)
+            self.assertEqual(row["status"], "custody_record_only", words)
+            self.assertIn(words, row["detail"])
+            self.assertFalse(summary["all_checks_passed"])
+        # The held file changed after its record pinned it.
+        self.write_records([self.record])
+        (self.out / "texts/report.txt").write_text(LATER_TEXT + "edited", "utf-8")
+        claim = self.claim(disclose=False)
+        claim["operative_clauses"][1]["later_events"][0]["source"]["text_sha256"] = self.record["text_sha256"]
+        rows, summary = self.check(claim)
+        self.assertIn("hashes differently", self.status(rows, self.LATER)["detail"])
+
+    def test_item_extract_declared_from_the_origin_bytes_qualifies(self):
+        extract = {"source_id": "usc:note", "instrument_ids": [], "url": "https://uscode.house.gov/x.zip",
+                   "sha256": sha(LATER_TEXT.encode()), "text_path": "texts/report.txt", "cache_path": None,
+                   "item_extract": "page_or_item", "page_or_item": "pp. 1-2",
+                   "extracted_from": {"url": "https://nmb.gov/PEB-900-Report.pdf", "sha256": self.pdf_sha}}
+        origin = {"source_id": "zip", "url": "https://nmb.gov/PEB-900-Report.pdf", "sha256": self.pdf_sha,
+                  "cache_path": "zips/x.zip"}
+        self.write_records([origin, extract])
+        rows, summary = self.check(self.claim())
+        self.assertEqual(self.status(rows, self.LATER)["status"], "custody_text_only")
+        self.assertTrue(summary["all_checks_passed"], summary["failures"])
+
+    def test_own_original_needs_bytes_unless_it_is_a_declared_working_text(self):
+        claim = good_claim()
+        orig = dict(self.ref(quote=LATER_QUOTE))
+        claim["original_representation"] = orig
+        rows = []
+        C.check_source(orig, "original_representation", self.ctx, rows, role="original")
+        self.assertEqual((rows[0]["result"], rows[0]["status"]), ("skip", "custody_record_only"))
+        self.assertIn("own original needs held bytes", rows[0]["detail"])
+        # check_source's default role is the conservative one.
+        rows = []
+        C.check_source(orig, "source", self.ctx, rows)
+        self.assertEqual(rows[0]["status"], "custody_record_only")
+        rows = []
+        C.check_source(orig, "source", self.ctx, rows, role="other")
+        self.assertEqual(rows[0]["status"], "custody_text_only")
+
+    def test_working_text_original_held_only_as_text_is_custody_text_only_tier(self):
+        text = ORIGINAL_TEXT
+        rel = "jobs/app-executive-orders/output/texts/EO_90001.txt"
+        path = self.repo / rel
+        path.parent.mkdir(parents=True)
+        path.write_text(text, encoding="utf-8")
+        page_sha = "f" * 64  # the APP page: its bytes are held nowhere
+        record = {"source_id": "app", "instrument_ids": ["EO:90001"], "url": "https://www.presidency.ucsb.edu/eo90001",
+                  "sha256": page_sha, "text_path": "texts/EO_90001.txt", "text_sha256": sha(text.encode()),
+                  "cache_path": None}
+        (path.parent.parent / "SOURCES.jsonl").write_text(json.dumps(record) + "\n", "utf-8")
+        source = {"url": record["url"], "sha256": page_sha, "page_or_item": "web page", "text_path": rel,
+                  "text_sha256": sha(text.encode()), "grade": "mirror_transcription",
+                  "acceptable_as_original": False, "instrument_id": "EO:90001",
+                  "char_start": 0, "char_end": len(text), "quote": text}
+        (path.parent.parent / "FRAGMENTS.jsonl").write_text(json.dumps(
+            {"kind": "original_representation", "instrument_id": "EO:90001", "data": source}) + "\n")
+        claim = good_claim()
+        claim["original_representation"] = source
+        snippets = ["There is hereby established the Test Board, which shall advise the Presi-\ndent on testing.",
+                    "Executive Order No. 90002 of January 1, 1949, is superseded."]
+        for clause, quote in zip(claim["operative_clauses"], snippets):
+            start = text.index(quote)
+            clause["original_source"] = dict(source, quote=quote, char_start=start, char_end=start + len(quote))
+            clause["original_operative_text"] = quote
+        claim["working_text"] = C.W.blank([source])
+        claim["working_text"]["confirmations"][0].update(identity_confirmed=True, complete_text_confirmed=True)
+        claim[C.W.CUSTODY_TEXT_ONLY_KEY] = C.W.custody_text_only_disclosure([source])
+        self.ctx = C.Context(self.repo, self.jobdir, pathlib.Path(self.tmp) / "cache", today=C.dt.date(2026, 10, 17))
+        rows, summary = self.check(claim)
+        self.assertTrue(summary["all_checks_passed"], (summary["failures"], summary["unverified"]))
+        self.assertEqual(self.status(rows, "original_representation")["status"], "custody_text_only")
+        self.assertEqual(summary["text_evidence_tier"], "custody_text_only")
+        # Without the working-text declaration the same bytes cannot be the order's own original.
+        self.assertTrue(C.W.working_text_reference(source, self.ctx.working_text_index))
+        self.assertFalse(C.W.working_text_reference(dict(source, acceptable_as_original=True),
+                                                    self.ctx.working_text_index))
+
+    def test_committed_or_verified_bytes_are_never_text_only(self):
+        rows, summary = self.check(good_claim())
+        self.assertNotIn("custody_text_only", {r["status"] for r in rows})
+        self.assertEqual(summary["text_evidence_tier"], "original_supported")
+
+    def test_text_only_source_whose_bytes_this_machine_verifies_may_be_disclosed(self):
+        cache = self.repo / "jobs/report-job-cache/blobs"
+        cache.mkdir(parents=True)
+        raw = b"%PDF report bytes"
+        (cache / "r.pdf").write_bytes(raw)
+        self.pdf_sha = sha(raw)
+        self.write_records([dict(self.record, sha256=self.pdf_sha, cache_path="blobs/r.pdf")])
+        for disclose in (True, False):
+            rows, summary = self.check(self.claim(disclose=disclose))
+            self.assertEqual(self.status(rows, self.LATER)["status"], "held_bytes_verified")
+            self.assertTrue(summary["all_checks_passed"], summary["failures"])
+            self.assertEqual(summary["text_evidence_tier"],
+                             "custody_text_only" if disclose else "original_supported")
+
+
 if __name__ == "__main__":
     unittest.main()

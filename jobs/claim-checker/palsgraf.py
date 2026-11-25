@@ -325,6 +325,11 @@ class TracedIndex:
             self._rec.add("u:" + str(url))
         return self._index.lookup_url(url)
 
+    def lookup_extracts(self, sha):
+        if self._rec.active():
+            self._rec.add("x:" + str(sha))
+        return self._index.lookup_extracts(sha)
+
     def __getattr__(self, name):
         return getattr(self._index, name)
 
@@ -431,6 +436,8 @@ class Fingerprinter:
             return _h(_canon(self.raw["index"].lookup_sha(rest)))
         if kind == "u":
             return _h(_canon(self.raw["index"].lookup_url(rest)))
+        if kind == "x":
+            return _h(_canon(self.raw["index"].lookup_extracts(rest)))
         if kind == "m":
             table, _, key = rest.partition("\0")
             data = self.raw.get(table)
