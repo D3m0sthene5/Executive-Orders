@@ -52,9 +52,12 @@ ACTION = 'production.one_step_away'
 CLEANUP = {'EO:12553': '1986-02-25', 'EO:12379': '1982-08-17'}
 COVER_RULE = 'D-20261125-board-cover-date'
 COVER_RULE_SOURCE = 'jobs/kean/register/decisions.jsonl'
-RUN = 'v2'
+LIND_AGREES = 'Lind, research/lind/board-candidates-2026-11-13/CANDIDATES.json: report_date_status INVENTORY_AGREES'
+RUN = 'v3'
 # Upheld by both blind arms in the first run (o0/o1 review); not rerun. EO 10944 was not upheld and is rerun.
 UPHELD = {'EO:10032', 'EO:10056', 'EO:10071', 'EO:10112', 'EO:10140', 'EO:10757', 'EO:10872', 'EO:11663'}
+# Upheld by both blind arms in run v2 (o2 review of batch s4, o3 review of batch s3); not rerun in v3.
+UPHELD_V2 = {'EO:10105', 'EO:9702'}
 
 MONTHS = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER',
           'NOVEMBER', 'DECEMBER']
@@ -80,8 +83,8 @@ OTHER_COMMAND = re.compile(
     r'compensat|expens|per\s+diem|Defense\s+Production|section\s+502|Secretary\s+of|shall\s+be\s+paid|'
     r'is\s+hereby\s+amended|hereby\s+extended|extend(ed|ing)\s+the\s+time|Executive\s+Order\s+No\.?\s*\d|'
     r'reconven|revoked|superseded', re.I)
-SUBMISSION = re.compile(r'(sub\W{0,3}mit|trans\W{0,3}mit)\w*\s+(\w+\s+){0,3}?here\W{0,3}with|honor\s+to\s+sub\W{0,3}mit',
-                        re.I)
+SUBMISSION = re.compile(r'(sub\W{0,3}mit|trans\W{0,3}mit)\w*\s+(\w+\s+){0,3}?here\W{0,3}with|honor\s+to\s+sub\W{0,3}mit|'
+                        r'honor\s+here\W{0,3}with\s+to\s+(?:sub|trans)\W{0,3}mit', re.I)
 
 
 def canon(v):
@@ -257,6 +260,73 @@ def letter_reading(text, cand, date):
     return off, raw, None
 
 
+PAGE_LINE = re.compile(r'^=== PDF page \d+(?: of \d+)? ===$')
+
+
+def address_line(line):
+    """Whether a line is the letter's address to the President ('THE PRESIDENT,', OCR-damaged 'THE IORESIDENT,',
+    'The PItESmENT', 'DEAR MR. PRESIDENT:')."""
+    words = re.findall(r'\S+', line)
+    if not words or len(line.strip()) > 60 or not re.match(r'(?:THE|The|TH\S|DEAR|Dear|MR\.?|Mr\.?)$', words[0]):
+        return False
+    import difflib
+    return any(difflib.SequenceMatcher(None, re.sub(r'[^A-Za-z]', '', w).upper(), 'PRESIDENT').ratio() >= 0.6
+               for w in words[1:3])
+
+
+def letter_section(text, c_end, limit=2500):
+    """The held letter of transmittal after the cover: {'heading', 'address', 'date_line'} offsets and raw lines,
+    any of them None. The date line is the last line before the address to the President, after the cover and
+    the heading, that is not page furniture; a line with no digit, no damaged character and no month-like word is a
+    place line, not a date line."""
+    stop = COVER_STOP.search(text, c_end, c_end + limit)
+    end = stop.start() if stop else min(len(text), c_end + limit)
+    out = {'heading': None, 'address': None, 'date_line': None, 'date_line_offset': None}
+    h = re.search(r'LETTER\s+OF\s+TRANSMITTAL', text[c_end:end], re.I)
+    if h:
+        out['heading'] = c_end + h.start()
+    pos, lines = c_end, []
+    for raw in text[c_end:end].split('\n'):
+        if address_line(raw):
+            out['address'] = pos
+            break
+        lines.append((pos, raw))
+        pos += len(raw) + 1
+    if out['address'] is None:
+        return out
+    import difflib
+    for off, raw in reversed(lines):
+        if out['heading'] is not None and off + len(raw) <= out['heading']:
+            break
+        line = raw.strip()
+        if (not line or PAGE_LINE.match(line) or re.match(r'LETTER\s+OF\s+TRANSMITTAL', line, re.I)
+                or re.fullmatch(r'\(?(?:No\.?|Emergency\s+Board\s+No\.?|A-|Case\s+No\.?\s*A-)\s*[\w\']{1,6}\)?\.?', line, re.I)
+                or len(re.sub(r'\W', '', line)) < 3):
+            continue
+        monthish = any(difflib.SequenceMatcher(None, w.upper(), m).ratio() >= 0.6
+                       for w in re.findall(r'[A-Za-z~(\]$@%]{3,10}', line) for m in MONTHS)
+        if re.search(r'\d|[~$@%(\]]', line) or monthish:
+            out['date_line'], out['date_line_offset'] = line, off + raw.index(line)
+        break
+    return out
+
+
+def legible_parts(raw, date):
+    """Differences between a damaged date line's cleanly legible parts and the date: [('year', '1968', '1969'), ...]."""
+    d = dt.date.fromisoformat(date)
+    out = []
+    for m in re.finditer(r'(?<![\w$@~])(1[789]\d\d)(?![\w$@~])', raw):
+        if int(m.group(1)) != d.year:
+            out.append(('year', m.group(1), str(d.year)))
+    for m in re.finditer(r'\b(' + '|'.join(MONTHS) + r')\b', raw, re.I):
+        if MONTHS.index(m.group(1).upper()) + 1 != d.month:
+            out.append(('month', m.group(1), MONTHS[d.month - 1].title()))
+        day = re.match(r'\.?\s+(\d{1,2})(?=[,.:;]?\s)', raw[m.end():] + ' ')
+        if day and int(day.group(1)) != d.day:
+            out.append(('day', day.group(1), str(d.day)))
+    return out
+
+
 # Letter-date failures that D-20261125-board-cover-date covers: the date line is unreadable or was not found. An
 # offset mismatch is a data defect, not an unreadable line, and stays an exception.
 LETTER_UNREADABLE = ('letter_date_not_located', 'letter_date_not_found_after_cover', 'letter_date_ocr_damaged')
@@ -293,7 +363,35 @@ def report_span(text, cand, iid, signing_date):
             return None, [why]
         if raw and parse_date(raw) not in (None, date):
             return None, ['cover_date_differs_from_letter']
-        basis, letter_note = 'cover', {'reason': why, 'letter_date_raw': raw, 'letter_date_offset': off}
+        # Run v3 (o2/o3 review): the claim must say truly whether the held letter's date line is present but
+        # unreadable, absent before the address, or whether no letter is held at all. Olney reads the held letter
+        # itself rather than relying on Lind's label.
+        sec = letter_section(text, clean[0] + len(clean[1]))
+        line, line_off = sec['date_line'], sec['date_line_offset']
+        if line:
+            readings = {parse_date(d.group(0)) for d in DATE_RE.finditer(line)} - {None}
+            if readings - {date}:
+                return None, ['cover_date_differs_from_letter']
+            if readings:
+                return None, ['letter_date_line_reads_cleanly_but_lind_did_not']
+            status = 'unreadable'
+        elif sec['address'] is not None:
+            status = 'not_found_before_address'
+        elif sec['heading'] is not None:
+            return None, ['letter_address_not_located']
+        else:
+            status = 'no_letter_held'
+        if raw and (not line or raw.strip(' .') not in line):
+            return None, ['letter_date_line_location_disagrees']
+        diffs = legible_parts(line, date) if line else []
+        if any(k in ('month', 'day') for k, _, _ in diffs):
+            # A legible month or day that differs from the cover reads as another day: a conflict, as a clean
+            # reading of another date is. A differing legible year alone (OCR digit errors) is disclosed.
+            return None, ['letter_date_legible_part_conflicts']
+        before = bool(signing_date and any(k == 'year' and int(a) < int(signing_date[:4]) for k, a, _ in diffs))
+        basis, letter_note = 'cover', {'reason': why, 'status': status, 'letter_date_raw': line,
+                                       'letter_date_offset': line_off, 'legible_differences': diffs,
+                                       'legible_year_before_signing': before, 'signing_date': signing_date}
         off, raw = clean
     c_end = off + len(raw)
     if basis == 'letter':
@@ -308,6 +406,12 @@ def report_span(text, cand, iid, signing_date):
         m = SUBMISSION.search(text, c_end, limit)
         if m and not re.search(r'PRESIDENT', text[c_end:m.start()], re.I):
             m = None
+        if letter_note['status'] == 'no_letter_held' and (m or re.search(r'PRESIDENT|P\S{0,2}ESID\S{0,2}NT', text[c_end:limit])):
+            # A submission sentence or an address the line screen did not recognise: the letter may be held, so
+            # 'no letter was found' would not be safe to state.
+            return None, ['letter_address_not_located']
+        if letter_note['status'] != 'no_letter_held' and not m:
+            return None, ['letter_held_submission_not_found']
     if m:
         stop = sentence_stop(text, m.end())
         if stop < 0 or stop - off > 2500:
@@ -337,6 +441,16 @@ def report_span(text, cand, iid, signing_date):
     span = text[start:end]
     if len(span) > 4000:
         problems.append('span_too_long')
+    if basis == 'cover':
+        if letter_note['letter_date_offset'] is not None and not start <= letter_note['letter_date_offset'] < end:
+            problems.append('letter_date_line_outside_span')
+        if letter_note['status'] == 'not_found_before_address':
+            # 'The letter has no date line' must hold of the quoted span: no printed date in it other than the
+            # cover's own date line and the order's signing date.
+            for d in DATE_RE.finditer(span):
+                if start + d.start() != off and parse_date(d.group(0)) != signing_date:
+                    problems.append('letter_date_line_status_uncertain')
+                    break
     me = order_number(iid)
     named = numbers_named(span.replace('\n', ' '))
     other = sorted(n for n in named if n != me)
@@ -391,7 +505,9 @@ APPROVAL = [re.compile(p, re.I) for p in (
     r'approv\w*\s+(?:by\s+(?:the\s+)?President\s+)?(?:(?:\w+\s+){0,4}?on\s+|\s*:\s*)(' + DATEX + ')',
     r'\bon\s+(' + DATEX + r'),?\s+(?:President\s+\w+\s+|the\s+President\s+)(?:\w+\s+){0,2}?(?:approv|extend|grant)\w*',
     r'President,?\s+on\s+(' + DATEX + r'),?\s+(?:approv|extend|grant)\w*',
-    r'(?:granted|extended)\s+by\s+the\s+President\s+on\s+(' + DATEX + ')')]
+    r'(?:granted|extended)\s+by\s+the\s+President\s+on\s+(' + DATEX + ')',
+    # 'On February 6, 1969, this extension was approved by President Nixon' (EO 11445, o3 review)
+    r'\bon\s+(' + DATEX + r'),?\s+(?:\w+\s+){0,4}?(?:was|were|had\s+been)\s+(?:duly\s+)?approv\w*')]
 DEADLINE = re.compile(r'(?:not\s+later\s+than(?:\s+and\s+including)?|until|to\s+and\s+including|to\s+on\s+or\s+before|'
                       r'on\s+or\s+before|to|through)\s+(' + DATEX + ')', re.I)
 APPROVED_WORDING = re.compile(r'approv|grant|President\s+(?:\w+\s+){0,3}?extended|extended\s+by\s+the\s+President', re.I)
@@ -428,14 +544,126 @@ def unspace(text):
 
 
 def extension_hits(text):
-    """Start offsets of report-time extension wording in text (whitespace-normalized by the caller if needed)."""
-    out = []
+    """Start offsets of report-time extension wording in text (whitespace-normalized by the caller if needed).
+
+    Two screens, united so the run v2 screen is never narrowed: the v2 phrase screen, and (run v3, after the o2/o3
+    review found three misses) any extension word, OCR-damaged or not ('extended to December 10, 1961 the date',
+    'an extension of 30 days', 'e~tend the time', 'this extension was approved'), or wording of more or postponed
+    time, whose own sentence or a neighbouring one speaks of the report, its filing or its time."""
+    out = set()
     for m in EXT_PHRASE.finditer(text):
         window = text[max(0, m.start() - 300):m.end() + 300]
         if EXT_NOT.search(text[max(0, m.start() - 10):m.end() + 10]) or not EXT_CONTEXT.search(window):
             continue
-        out.append(m.start())
-    return out
+        out.add(m.start())
+    for m in EXT_WORD.finditer(text):
+        if EXT_WORD_NOT.search(text[max(0, m.start() - 40):m.end() + 40]):
+            continue
+        # A verb ('extended to December 10, 1961 the date for the filing') carries its object in its own sentence;
+        # a noun ('an extension', 'a postponement') may name the report in a neighbouring sentence.
+        noun = re.match(r'(?:ex|e\W{1,2})tension|postpon|continuance|additional|more|further', m.group(0), re.I)
+        if EXT_REPORT_TIME.search(around(text, m.start(), 1 if noun else 0)):
+            out.add(m.start())
+    return sorted(out)
+
+
+# Run v3 broad screen. An extension word: 'extend', 'extended', 'extension', with OCR damage in the x ('e~tend',
+# 'e*tension'); or more or postponed time.
+EXT_WORD = re.compile(r'\b(?:ex|e[^\w\s]{1,2})ten(?:d|sion)\w*|\badditional\s+(?:time|period|\d+\s+days|thirty\s+days)'
+                      r'|\b(?:more|further)\s+time\b|\bpostpon\w*|\bcontinuance\b', re.I)
+# Uses that are not a grant of time: an adjective before a noun ('after extended hearings'), and statute names.
+EXT_WORD_NOT = re.compile(r'extended\s+(?:hearings?|periods?|discussions?|negotiations?|conferences?|sessions?|'
+                          r'study|consideration)\b|for\s+an\s+extended\b|Extension\s+Act', re.I)
+# The report-time context the extension word's sentence (or a neighbouring one) must carry.
+EXT_REPORT_TIME = re.compile(r'\breport|\brendition\b|\bfil(?:e|ed|ing)\b|\bsubmi|\btime\s+(?:limit|within|for)\b|'
+                             r'\b(?:30|thirty)[- ]days?\b|\bdeadline|exten\w*\s+of\s+(?:the\s+)?time|'
+                             r'exten\w*\s+(?:the\s+)?time', re.I)
+SENTENCE_END = re.compile(r'[.;!?]["\'\u201d\u2019)]*(?=\s+[A-Z0-9("\'\u201c])')
+
+
+def around(text, i, k=1, ahead=None):
+    """The sentence holding offset i together with k sentences before it and ``ahead`` (default k) after it
+    (sentence ends are approximate: initials such as 'D. C.' split one, which only narrows the context)."""
+    ahead = k if ahead is None else ahead
+    ends = [m.end() for m in SENTENCE_END.finditer(text)]
+    before = [e for e in ends if e <= i]
+    after = [e for e in ends if e > i]
+    lo = before[-1 - k] if len(before) > k else 0
+    hi = after[ahead] if len(after) > ahead else len(text)
+    return text[lo:hi]
+
+
+# Procedural events the board rule does not decide (o2 review, EO 10760): a stipulation of the parties about the
+# proceedings, a reconstitution of the board (another membership, a one-member board, a replaced member), a
+# reconvening, and a report period restarted from a later date. Any of them sends the order to exceptions, except
+# a stipulation that is part of a report-time extension Olney records as a dated later event.
+PROC_TERMS = [
+    ('stipulation', re.compile(r'\bstipulat\w*', re.I)),
+    ('reconstitution', re.compile(r'\breconstitut\w*|\bin\s+place\s+of\s+(?:the\s+)?(?:[\w-]+\s+){0,2}(?:board|members?)\b|'
+                                  r'\bone[\s-]*(?:man|member)\s+board|\bthus\s+constituted', re.I)),
+    ('member_change', re.compile(r'\b(?:resign\w*|vacanc\w*|replac\w*|substitut\w*|successor|to\s+succeed|'
+                                 r'succeed\w*\s+(?:\w+\s+){0,3}?as\s+(?:a\s+)?(?:member|chairman))', re.I)),
+    ('reconvening', re.compile(r'\breconven\w*', re.I)),
+    ('restarted_period', re.compile(r'\bdays\s+(?:from|after)\s+(' + DATEX + r')|\bnew\s+(?:period|board)\b|'
+                                    r'\b(?:begin|start|commenc|run)\w*\s+(?:anew|again)\b|'
+                                    r'\bproceedings?\s+(?:\w+\s+){0,6}?continued\b|\bcontinu\w*\s+(?:the\s+)?proceedings', re.I)),
+]
+PROC_CONTEXT = re.compile(r'\bEmergency\s+Board\b|\b(?:the|this|said|such|our)\s+Board\b|\bproceedings?\b|'
+                          r'\bExecutive\s+order\b|\bthe\s+President\b|\breport\s+(?:to|its|of)\b|\binvestigation\b', re.I)
+
+
+def procedural_hits(text, signing=None, report_date=None):
+    """[(offset, kind)] of procedural-event wording in text. A member change counts only when its context names a
+    member of a board; 'N days from <date>' does not count when the date is the order's own signing date."""
+    out = []
+    for kind, rx in PROC_TERMS:
+        for m in rx.finditer(text):
+            # The proceedings are named in the sentence itself or the two before it (a stipulation follows the
+            # board's convening; an agreement's own 'stipulation' is not followed back to the board).
+            ctx = around(text, m.start(), 2, 0)
+            if not PROC_CONTEXT.search(ctx):
+                continue
+            if kind == 'member_change' and not re.search(r'\bmember', ctx, re.I):
+                continue
+            if kind == 'restarted_period' and m.group(1) and signing:
+                when = resolve(m.group(1), plus_days(signing, -366), plus_days(report_date or signing, 366))
+                if when and when[0] == signing:
+                    continue
+            out.append((m.start(), kind))
+    return sorted(out)
+
+
+def procedural_problems(text, full_pages, events, signing, report_date, info=None):
+    """Problems for the procedural events the report records (the whole report PDF and the held text). A stipulation
+    inside the held passage of a recorded, dated extension is that extension's record and is not a problem; its
+    page goes to ``info['covered_stipulation_pages']``."""
+    info = {} if info is None else info
+    info.setdefault('covered_stipulation_pages', [])
+    if full_pages is None:
+        return ['report_pdf_text_unreadable']
+    pages = held_pages(text)
+    held_max = max((p for p, _, _ in pages), default=0)
+    full = {}
+    for n, page in enumerate(full_pages, 1):
+        hits = procedural_hits(unspace(re.sub(r'\s+', ' ', soft(page)[0])), signing, report_date)
+        if hits:
+            full[n] = sorted({k for _, k in hits})
+    problems = {f'report_procedural_event_outside_held_text:{k}:p{p}' for p, ks in full.items() if p > held_max
+                for k in ks}
+    norm, back = soft(text)
+    for page, lo, hi in pages:
+        nlo, nhi = next(i for i, b in enumerate(back) if b >= lo), next(i for i, b in enumerate(back) if b >= hi)
+        hits = procedural_hits(norm[nlo:nhi], signing, report_date)
+        if page in full and not hits:
+            problems.add(f'report_procedural_event_not_located_in_held_text:p{page}')
+        for off, kind in hits:
+            raw = back[nlo + off]
+            if kind == 'stipulation' and any(e['char_start'] <= raw < e['char_end'] and e.get('approval_date')
+                                             for e in events):
+                info['covered_stipulation_pages'].append(page)
+                continue
+            problems.add(f'report_procedural_event:{kind}:p{page}')
+    return sorted(problems)
 
 
 def screen_full_report(pages):
@@ -471,13 +699,17 @@ def sentences(norm, lo, hi):
     return out
 
 
-def extension_events(text, signing, report_date, full_pages, me=None):
+def extension_events(text, signing, report_date, full_pages, me=None, info=None):
     """(events, problems) for the report-time extensions a held report records.
 
     ``full_pages`` are the whole report's pdftotext pages (or None when the PDF could not be read). An extension
     becomes an event only when its passage is in the held text (``text``) and prints the President's approval date
     and the new report deadline as full dates; the event's span is the held passage. Any extension wording the held
-    text cannot carry this way is a problem, so the order stays an exception rather than omitting the event."""
+    text cannot carry this way is a problem, so the order stays an exception rather than omitting the event. An
+    extension printed without the President's approval date is a problem too (run v3): it cannot be dated exactly.
+    ``info``, when given, receives the pages whose only extension wording is modal ('modal_pages')."""
+    info = {} if info is None else info
+    info.setdefault('modal_pages', [])
     if full_pages is None:
         return [], ['report_pdf_text_unreadable']
     found = screen_full_report(full_pages)
@@ -487,11 +719,11 @@ def extension_events(text, signing, report_date, full_pages, me=None):
     norm, back = soft(text)
     events = []
     for page, lo, hi in pages:
-        if page not in found:
-            continue
         nlo, nhi = next(i for i, b in enumerate(back) if b >= lo), next(i for i, b in enumerate(back) if b >= hi)
+        hits = extension_hits(norm[nlo:nhi])
+        if page not in found and not hits:
+            continue
         sents = sentences(norm, nlo, nhi)
-        hits = [h for h in extension_hits(norm[nlo:nhi])]
         if not hits:
             problems.append(f'report_extension_not_located_in_held_text:p{page}')
             continue
@@ -499,14 +731,15 @@ def extension_events(text, signing, report_date, full_pages, me=None):
         for h in hits:
             idx = next((i for i, (s, e) in enumerate(sents) if s <= nlo + h < e), None)
             if idx is None:
+                problems.append(f'report_extension_not_located_in_held_text:p{page}')
                 continue
             chosen.add(idx)
             # The sentence before, when it too speaks of extending ('agreeing to extend until April 20, 1946 the
             # date for the Board to submit its report'), belongs to the same record.
-            if idx and re.search(r'exten\w*', norm[sents[idx - 1][0]:sents[idx - 1][1]], re.I):
+            if idx and EXT_WORD.search(norm[sents[idx - 1][0]:sents[idx - 1][1]]):
                 chosen.add(idx - 1)
             for j in range(idx + 1, min(idx + 3, len(sents))):
-                if re.search(r'President|approv|grant|exten', norm[sents[j][0]:sents[j][1]], re.I):
+                if re.search(r'President|approv|grant|exten|e[^\w\s]{1,2}ten', norm[sents[j][0]:sents[j][1]], re.I):
                     chosen.add(j)
                 else:
                     break
@@ -544,6 +777,7 @@ def extension_events(text, signing, report_date, full_pages, me=None):
                 # Wording that time 'can be extended', with no extension granted, in a report made within the
                 # order's own thirty days: no extension is recorded.
                 if signing and report_date <= plus_days(signing, 30):
+                    info['modal_pages'].append(page)
                     continue
             if len({d for d, _ in approvals}) > 1:
                 problems.append(f'report_extension_approval_date_ambiguous:p{page}')
@@ -557,6 +791,11 @@ def extension_events(text, signing, report_date, full_pages, me=None):
                 # Another date is printed in the record (perhaps the approval in wording the patterns do not read):
                 # 'no approval date printed' would not be safe to state.
                 problems.append(f'report_extension_approval_date_unparsed:p{page}')
+                continue
+            if approved is None:
+                # Run v3 (o2 review, EO 10969): an extension the report prints without the President's approval date
+                # cannot be dated exactly, so the order is an exception (it is never recorded as an undated note).
+                problems.append(f'report_extension_approval_date_not_printed:p{page}')
                 continue
             if approved and not approved < deadline:
                 problems.append(f'report_extension_dates_out_of_order:p{page}')
@@ -735,6 +974,60 @@ def cleanup_of(claim):
     return found.pop() if len(found) == 1 else None
 
 
+SAVINGS_WORDS = re.compile(r'\b(?:sav(?:e|es|ed|ing|ings)|except\w*|provid\w*|nothing|pending|notwithstanding|'
+                           r'continu\w*|effect\w*)\b', re.I)
+SAVINGS_TERMS = "save or saving, except, provided, nothing, pending, notwithstanding, continue and effect"
+
+
+def savings_scan(repo, claim):
+    """(scan, problem). The filed claim's savings source must be the held text of the revoking order (EO 12553 or
+    EO 12379). Olney reads that order from its heading to its FR document line for savings wording; a hit outside
+    the subject lines of its table of revoked orders is a problem (o2/o3 review: the savings text is generated
+    from what Olney itself read, never carried from another claim)."""
+    cleanup = cleanup_of(claim)
+    src = (claim.get('savings_residuals') or {}).get('source') or {}
+    path = src.get('text_path')
+    if not cleanup or not path or Path(path).name != f'EO_{order_number(cleanup[0])}.txt':
+        return None, 'savings_source_not_the_revoking_order'
+    full = Path(repo) / path
+    if not full.is_file():
+        return None, 'savings_source_text_missing'
+    raw = full.read_bytes()
+    if src.get('text_sha256') not in (None, hashlib.sha256(raw).hexdigest()):
+        return None, 'savings_source_text_changed'
+    text = raw.decode('utf-8')
+    head = re.search(r'Executive\s+Order\s+' + order_number(cleanup[0]) + r'\b', text)
+    revoked = re.search(r'are\s+revoked\s*:', text[head.end():]) if head else None
+    if not revoked:
+        return None, 'savings_source_table_not_found'
+    t0 = head.end() + revoked.end()
+    close = re.search(r'^\s*(?:Editorial\s+note|T\s?H\s?E\s+W\s?H\s?I\s?T\s?E\s+H\s?O\s?U\s?S\s?E)', text[t0:], re.M | re.I)
+    doc = re.search(r'\[FR\s+Doc', text[t0:])
+    if not close or not doc or doc.start() < close.start():
+        return None, 'savings_source_table_not_found'
+    t1, end = t0 + close.start(), t0 + doc.start()
+    inside = outside = 0
+    for m in SAVINGS_WORDS.finditer(text, head.start(), end):
+        if t0 <= m.start() < t1:
+            inside += 1
+        else:
+            outside += 1
+    scan = {'instrument': cleanup[0], 'text_path': path, 'hits_in_table': inside, 'hits_outside_table': outside}
+    return scan, ('savings_source_wording_outside_table' if outside else None)
+
+
+def savings_words(r, actor, cdate, ends):
+    """The savings reason, generated from what Olney read and from this claim's own clause ends."""
+    sc = r['savings_scan']
+    found = (f"found them only in the subject lines of its table of revoked orders" if sc['hits_in_table']
+             else "found none")
+    return (f"{actor} ({cdate}) revokes this order by number. Olney read its held text ({sc['text_path']}), from "
+            f"its heading to its Federal Register document line, for {SAVINGS_TERMS} and {found}, so it carries no "
+            f"savings or transition provision. This claim ends {ends}, before that revocation, and no held source "
+            f"read for this claim shows a command of the order continuing after that. Section 10 of the Railway "
+            f"Labor Act, which the order applied, does not depend on the order.")
+
+
 def load_inputs(repo):
     repo = Path(repo)
     stratum = set((repo / STRATUM).read_text().split())
@@ -833,21 +1126,29 @@ def judge(repo, iid, cand, ctx):
             reasons.append('multi_clause_claim')
         if cleanup_of(claim) is None:
             reasons.append('filed_claim_cleanup_revocation_not_found')
+        rec['savings_scan'], problem = savings_scan(repo, claim)
+        if problem:
+            reasons.append(problem)
     if text is not None and not any(r.startswith(('letter_date', 'report_date')) for r in reasons):
         span, problems = report_span(text, cand, iid, signing)
         reasons += problems
         rec['span'] = span
         if span and pdf is not None:
             pages = pdftotext_pages(pdf, cache_dir)
-            events, problems = extension_events(text, signing, span['date'], pages, order_number(iid))
+            ext_info, proc_info = {}, {}
+            events, problems = extension_events(text, signing, span['date'], pages, order_number(iid), ext_info)
             reasons += problems
             rec['extensions'] = events
+            # Run v3 (o2 review, EO 10760): stipulations, reconstitution and restarted periods are exceptions.
+            reasons += procedural_problems(text, pages, events, signing, span['date'], proc_info)
             if pages is not None:
                 rec['full_report_screen'] = {
                     'tool': pdftotext_version(), 'pages': len(pages),
                     'pages_without_text': sum(1 for pg in pages if len(re.sub(r'\s', '', pg)) < 40),
                     'held_text_pages': [p for p, _, _ in held_pages(text)],
-                    'extension_pages': sorted(screen_full_report(pages))}
+                    'extension_pages': sorted(screen_full_report(pages)),
+                    'modal_only_pages': sorted(set(ext_info['modal_pages'])),
+                    'covered_stipulation_pages': sorted(set(proc_info['covered_stipulation_pages']))}
     if dossier and len(dossier.get('clauses') or []) == 1:
         c = dossier['clauses'][0]
         orig = dossier['evidence'][dossier['original_source_id']]
@@ -875,7 +1176,7 @@ def select(repo, include_pc=False):
     ctx = (eumenes, ptolemy, ladder, readiness, locks, claims, lanes, include_pc, cache_dir)
     selected, exceptions, excluded = [], [], []
     for iid in universe:
-        if iid in UPHELD:
+        if iid in UPHELD | UPHELD_V2:
             excluded.append(iid)
             continue
         rec, reasons = judge(repo, iid, cands[iid], ctx)
@@ -910,16 +1211,37 @@ def ext_alias(iid, k):
     return f'olney_ext{k}_' + re.sub(r'\W', '_', order_number(iid))
 
 
+def letter_words(sp):
+    """What the held text shows of the letter of transmittal on the cover route, true of the quoted span (run v3,
+    o2/o3 review: a date line present but unreadable is never described as not found)."""
+    letter = sp.get('letter') or {}
+    status = letter.get('status')
+    if status == 'unreadable':
+        out = (f"the letter of transmittal's date line is in the held text but does not read cleanly as a date "
+               f"('{letter['letter_date_raw']}')")
+        diffs = letter.get('legible_differences') or []
+        if diffs:
+            out += '; ' + ' and '.join(f"its legible {k} reads {a} where the cover reads {b}" for k, a, b in diffs)
+            if letter.get('legible_year_before_signing'):
+                out += f", and that year is earlier than the order's signing on {letter['signing_date']}"
+        return out
+    if status == 'not_found_before_address':
+        return 'the held letter of transmittal has no date line before its address to the President'
+    if status == 'no_letter_held':
+        return 'no letter of transmittal was found after the cover in the held text'
+    raise ValueError('cover route without a letter status: ' + str(status))
+
+
+BASIS_WORDS = {'unreadable': "the letter's date line does not read cleanly",
+               'not_found_before_address': 'the held letter has no date line',
+               'no_letter_held': 'no letter of transmittal was found after the cover'}
+
+
 def date_words(sp):
     """How the span dates the report: the clean letter date line, or (D-20261125-board-cover-date) the cover."""
     if sp.get('date_basis') == 'cover':
-        letter = sp.get('letter') or {}
-        if letter.get('letter_date_raw'):
-            why = f"the letter of transmittal's date line is unreadable in the held text ('{letter['letter_date_raw']}')"
-        else:
-            why = 'no letter of transmittal date line was found in the held text'
-        return (f"{why}; under owner decision {COVER_RULE} the report is dated by its cover, whose date line "
-                f"'{sp['cover_date_raw']}' reads cleanly as {sp['date']} and agrees with the NMB inventory closing date")
+        return (f"{letter_words(sp)}; under owner decision {COVER_RULE} the report is dated by its cover, whose date "
+                f"line '{sp['cover_date_raw']}' reads cleanly as {sp['date']}")
     raw = sp.get('letter_date_raw') or sp.get('date_raw') or sp['date']
     return f"the letter of transmittal's date line '{raw}' reads cleanly as {sp['date']}"
 
@@ -959,17 +1281,38 @@ def declaration(sel):
     return {'schema': 'eo-source-excerpt-declarations/v1', 'sources': entries}
 
 
+def pages_words(pages):
+    pages = sorted(set(pages))
+    return ('page ' if len(pages) == 1 else 'pages ') + ', '.join(map(str, pages))
+
+
 def screen_words(r):
+    """What Olney's whole-report screen found, stated only as far as the screen reaches."""
     sc = r.get('full_report_screen') or {}
     exts = r.get('extensions') or []
-    held = sc.get('held_text_pages') or []
-    out = (f"Olney screened the whole report PDF ({sc.get('pages')} pages; {sc.get('tool')}; "
-           f"{sc.get('pages_without_text')} pages without a text layer) for wording extending the board's time to "
-           f"report")
-    if not exts:
-        return out + '; it records no extension.'
-    return out + (f"; every such passage is on the held pages {held[0]}-{held[-1]}, and the report records "
-                  f"{len(exts)} extension, recorded below.")
+    pages, blank = sc.get('pages'), sc.get('pages_without_text') or 0
+    out = (f"Olney screened the {pages - blank} of {pages} report PDF pages that have a text layer ({sc.get('tool')})"
+           + (f"; the other {blank} have fewer than 40 characters of text and could not be screened" if blank else '')
+           + ". It looked for wording that extends the board's time to report (any form of 'extend' or 'extension', "
+             "also with a damaged x, or more or postponed time, in or near a sentence about the report or its time) "
+             "and for wording about the proceedings of a stipulation, a reconstituted board, a changed member, a "
+             "reconvening or a restarted report period.")
+    if exts:
+        out += (f" The extension wording it found is on the held {pages_words(e['page'] for e in exts)} and records "
+                + ('one extension' if len(exts) == 1 else f'{len(exts)} extensions')
+                + ", recorded as a later event of the board clause.")
+    elif sc.get('modal_only_pages'):
+        out += (f" The only extension wording it found, on {pages_words(sc['modal_only_pages'])}, says that the time "
+                f"for the report can be extended; no extension was granted, and the report was made within the "
+                f"order's thirty days.")
+    else:
+        out += " It found no wording extending the board's time to report."
+    if sc.get('covered_stipulation_pages'):
+        out += (f" The only stipulation it found, on {pages_words(sc['covered_stipulation_pages'])}, is the parties' "
+                f"agreement to that extension; it found no other procedural wording.")
+    else:
+        out += ' It found none of the procedural wording.'
+    return out
 
 
 def fill_rows(r, dossier, claim, decision_row, searches):
@@ -1002,10 +1345,10 @@ def fill_rows(r, dossier, claim, decision_row, searches):
         disclosure = ('The transmittal letter evidences submission on its date; receipt by the President may have '
                       'been later.')
     exts = r.get('extensions') or []
+    whole_end = plus_days(D, 30) if r.get('standstill_range') else D
     later = [{'id': ceid, 'effective_date': cdate, 'effective_date_confirmed': True,
               'mechanism': f'{cmech} (formal disposition: {actor} cleanup revocation, kept under {RULE})'}]
     board_later = list(later)
-    notes = []
     ext_words = []
     for k, e in enumerate(exts, 1):
         eid = 'SUPPLEMENT:' + ext_alias(iid, k)
@@ -1014,33 +1357,32 @@ def fill_rows(r, dossier, claim, decision_row, searches):
             inferred.append('the approval date')
         if e['deadline_year_inferred']:
             inferred.append('the new deadline')
-        year_note = (f" The passage prints {' and '.join(inferred)} without the year; the year is the only one "
-                     f"that puts it between the order's signing and the report ({D})." if inferred else '')
-        if e['approval_date']:
-            board_later.append({'id': eid, 'effective_date': e['approval_date'], 'effective_date_confirmed': True,
-                                'mechanism': f"extension of the board's time to report, to {e['new_deadline']}, "
-                                             f"approved by the President on {e['approval_date']} (held report, PDF "
-                                             f"page {e['page']}); the board clause continued and its report of {D} "
-                                             f"completed it.{year_note}"})
-            ext_words.append(f"extended to {e['new_deadline']} with the President's approval of {e['approval_date']} "
-                             f"(later event {eid})")
-        else:
-            who = ("with the President's approval" if e['approval_printed'] else
-                   '(the passage does not say who approved the extension)')
-            notes.append({'id': eid,
-                          'reason': f"Later event of the board clause: the held report records that the board's time "
-                                    f"to report was extended to {e['new_deadline']} {who}.{year_note}",
-                          'date_qualification': f"The held report prints no date for the extension; it falls after "
-                                                f"the order's signing and before the report of {D}."})
-            ext_words.append(f"extended to {e['new_deadline']} (date not printed; source note {eid})")
+        year_note = ''
+        if e['approval_year_inferred']:
+            year_note += (" The passage prints the approval date without the year; the year is the only one that "
+                          f"puts it between the order's signing and the report ({D}).")
+        if e['deadline_year_inferred']:
+            year_note += (" The passage prints the new deadline without the year; the year is the only one that puts "
+                          "it within a year after the approval.")
+        if not e['approval_date']:
+            # Run v3: an extension without a printed approval date is an exception at selection; never written.
+            problems.append('extension_without_approval_date:' + eid)
+            continue
+        board_later.append({'id': eid, 'effective_date': e['approval_date'], 'effective_date_confirmed': True,
+                            'mechanism': f"extension of the board's time to report, to {e['new_deadline']}, "
+                                         f"approved by the President on {e['approval_date']} (held report, PDF "
+                                         f"page {e['page']}); the board clause continued and its report of {D} "
+                                         f"completed it.{year_note}"})
+        ext_words.append(f"extended to {e['new_deadline']} with the President's approval of {e['approval_date']} "
+                         f"(later event {eid})")
     board_reason = (f"Ended by completion of its task under {rule_ref} (a): the board was created to investigate the "
                     f"dispute and report to the President. The held report of Emergency Board No. {r['peb']} "
-                    f"(SHA-256 {r['report_sha256'][:12]}..., NMB inventory closing date agrees) is dated {D}: "
-                    f"{date_words(sp)}"
-                    + (" and the letter submits the report herewith" if sp.get('submission_offset') is not None else '')
-                    + f"; so the task was performed on {D}. {disclosure}"
-                    + (f" The order's thirty-day report time was {'; '.join(ext_words)}; an extension moved the "
-                       f"deadline and did not end the clause." if ext_words else '')
+                    f"(SHA-256 {r['report_sha256'][:12]}...) is dated {D}: {date_words(sp)}"
+                    + ("; the letter submits the report" if sp.get('submission_offset') is not None else '')
+                    + f". The NMB inventory's closing date for the board agrees ({LIND_AGREES}). So the task was "
+                      f"performed on {D}. {disclosure}"
+                    + (f" The order's report time was {'; '.join(ext_words)}; an extension moved the deadline and did "
+                       f"not end the clause." if ext_words else '')
                     + f" The report deadline in the order is not the end. {actor} ({cdate}) stays the formal "
                       f"disposition, recorded as a later event.")
     clause_base = {'instrument_id': iid, 'clause_id': '', 'state': 'terminated', 'effective_date_confirmed': 'true',
@@ -1076,8 +1418,11 @@ def fill_rows(r, dossier, claim, decision_row, searches):
                                  f"event."),
                          inventory_char_start=str(s0), inventory_char_end=str(s1),
                          inventory_reason=inv.format(rule=RULE, a=s0, b=s1)))
-    basis_words = (f'the cover date (letter date line unreadable or not found; {COVER_RULE})' if cover
+    basis_words = (f"the cover date ({BASIS_WORDS[sp['letter']['status']]}; {COVER_RULE})" if cover
                    else 'the letter of transmittal date')
+    has_standstill = bool(r.get('standstill_range'))
+    ends = f"the board clause on {D} (completion of its task)" + (
+        f" and the no-change period on {whole_end} (its own terms)" if has_standstill else '')
     row = dict(decision_row)
     row.update(outcome='submit', approved='true', original_confirmed='true', inventory_confirmed='true',
                original_pages_confirmed='true' if (claim.get('claim_kit') or {}).get('original_pages_confirmed') else 'false',
@@ -1088,28 +1433,31 @@ def fill_rows(r, dossier, claim, decision_row, searches):
                    f"{r['report_local_path'] or 'in the Pergamon store'}, text {r['report_text_path']}; the quoted "
                    f"span runs from the cover"
                    + (" to the sentence submitting the report" if sp.get('submission_offset') is not None else
-                      " through its date line (no letter of transmittal is legible in the held text)")
+                      " through its date line (no letter of transmittal was found after the cover in the held text)")
                    + f", and names the order by {sp['identity'].replace('_', ' ')}. Report dated by {basis_words}. "
                    f"Clause ends: board {D}"
                    + (f"; no-change period {whole_end} (inclusive; exclusive {plus_days(D, 29)})" if r.get('standstill_range') else '')
                    + f". Whole-order end {whole_end}. Formal disposition {actor} of {cdate}. "
                    + (f"Report-time extensions recorded: {len(exts)}. " if exts else '')
-                   + "Savings and later-source search are carried from the filed claim."),
+                   + f"The savings state and the later-source search are carried from the filed claim; the "
+                     f"savings reason is generated from Olney's own reading of {actor}."),
                savings_state=sav.get('state') or '', savings_source_id=sav_id or '',
-               savings_reason=sav.get('reason') or '', search_ids=canon(chosen), conflict_resolutions='{}',
-               unresolved_material_gaps='[]', publication_kind='whole_case',
-               earlier_end_check=(f"No earlier end: the board's task could not be complete before its report of {D}, "
-                                  f"and the no-change period runs from the report. {screen_words(r)} No amendment, "
-                                  f"reconvening, supplemental report or congressional action is flagged for this "
-                                  f"order (Lind exception checks; NMB inventory)."),
-               scope_check=f"The clauses cover the order's operative text: board clause and (if present) the "
-                           f"no-change sentence; the recitals and heading stay with the board clause.",
-               independent_command_check=("No command other than create-investigate-report and the no-change "
-                                          "sentence is present (scripted wording screen; any other wording sends the "
-                                          "order to exceptions)."),
-               savings_check=f"Carried from the filed claim: {sav.get('state')}.")
-    if notes:
-        row['source_notes'] = canon(notes)
+               savings_reason=savings_words(r, actor, cdate, ends), search_ids=canon(chosen),
+               conflict_resolutions='{}', unresolved_material_gaps='[]', publication_kind='whole_case',
+               earlier_end_check=(f"No earlier end: the board's task could not be complete before its report of {D}"
+                                  + (", and the no-change period runs from the report" if has_standstill else '')
+                                  + f". {screen_words(r)} No amendment, reconvening, supplemental report or "
+                                    f"congressional action is flagged for this order in Lind's exception checks or "
+                                    f"the NMB inventory."),
+               scope_check=("The clauses cover the order's operative text: the board clause"
+                            + (" and the no-change sentence" if has_standstill else '')
+                            + "; the recitals and heading stay with the board clause."),
+               independent_command_check=("No command other than create-investigate-report"
+                                          + (" and the no-change sentence" if has_standstill else '')
+                                          + " is present (scripted wording screen; any other wording sends the "
+                                            "order to exceptions)."),
+               savings_check=(f"Savings state {sav.get('state')} is the filed claim's; the reason is Olney's reading "
+                              f"of {actor}'s held text and this claim's own clause ends."))
     return row, rows, problems
 
 
@@ -1253,7 +1601,11 @@ PRIORITY = ['no_current_claim', 'filed_claim_changed_since_lind', 'tracker_not_s
             'reserved_by_other_agent', 'pc_lane_order', 'follow_on_order', 'report_shared_with_follow_on_order',
             'congressional_action', 'reconvened_or_supplemental_report', 'nmb_lists_extra_documents',
             'multi_clause_claim', 'dossier_inventory_not_single_clause', 'report_date_not_corroborated']
-GROUP = [('letter_date', 'letter_date_unreadable_and_cover_not_clean'), ('cover_date', 'letter_and_cover_dates_conflict'),
+GROUP = [('letter_date_legible_part_conflicts', 'letter_and_cover_dates_conflict'),
+         ('letter_date_line', 'letter_reading_doubt'), ('letter_address', 'letter_reading_doubt'),
+         ('letter_held_submission', 'submission_sentence_not_found'),
+         ('report_procedural', 'report_procedural_event'), ('savings_source', 'savings_source_doubt'),
+         ('letter_date', 'letter_date_unreadable_and_cover_not_clean'), ('cover_date', 'letter_and_cover_dates_conflict'),
          ('submission', 'submission_sentence_not_found'), ('order_identity', 'report_identity_doubt'),
          ('other_order', 'report_identity_doubt'), ('board_number', 'report_identity_doubt'),
          ('span_too_long', 'report_identity_doubt'), ('report_extension', 'report_extension_not_scriptable'),
@@ -1292,8 +1644,20 @@ NEEDS = {
                              'number), or names another order; needs a producer identity check.',
     'report_extension_not_scriptable': 'The report records a report-time extension Olney cannot carry as a later '
                                        'event: outside the held pages (needs a held text of the later pages), '
-                                       'several extensions, an unparsed or ambiguous approval date or deadline. '
+                                       'several extensions, an unparsed or ambiguous approval date or deadline, '
+                                       'or (run v3) no printed approval date or new deadline. '
                                        'Needs a producer to record each extension, or a held text of the pages.',
+    'filed_claim_changed_since_lind': 'A claim file newer than the one Lind read names the order (EO 11343 was filed '
+                                      'by standing auto-adoption after the v2 review); Olney does not replace it.',
+    'report_procedural_event': 'The report records a stipulation about the proceedings, a reconstituted board or '
+                               'changed member, a reconvening or a report period restarted from a later date (o2 '
+                               'review, EO 10760). The board rule does not say which act completed the task or when '
+                               'the no-change period ran; needs a producer claim that records the event.',
+    'letter_reading_doubt': "Olney's reading of the held letter (its date line or its address to the President) "
+                            "disagrees with Lind's, or a 'no date line' statement would not hold of the quoted span; "
+                            'needs a page-image reading of the letter.',
+    'savings_source_doubt': "The filed claim's savings source is not the revoking order's held text, or that text has "
+                            'savings wording outside its table of revoked orders; needs a producer savings reading.',
     'clause_inventory_doubt': 'The order text has wording beyond create-investigate-report and the no-change '
                               'sentence (another command, damaged or interleaved FR text); needs a producer '
                               'clause inventory.',
@@ -1382,7 +1746,7 @@ def report(repo, preview=None):
     lines = ['# Olney result (run ' + str(result['run']) + ')', '',
              f"Rules {RULE} and {result['cover_rule']}; zero model tokens. The universe is the "
              f"{result['universe']} board orders in production.one_step_away (Lind candidates). The "
-             f"{len(result['excluded_already_upheld'])} orders upheld by both blind arms in the first run are not "
+             f"{len(result['excluded_already_upheld'])} orders upheld by both blind arms in earlier runs are not "
              f"rerun ({', '.join(result['excluded_already_upheld'])}), so {result['judged']} orders were judged.", '',
              f"- Selected: {result['selected']} ({len(result['selected_by_date_basis']['letter'])} dated by the "
              f"letter of transmittal, {len(result['selected_by_date_basis']['cover'])} by the cover under "
