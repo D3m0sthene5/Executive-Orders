@@ -11,8 +11,9 @@ record by record on 2026-11-24 (all 20,028 catalog entries). It holds about 3,90
 President that are land orders or other operative orders and that no census list holds: about 1,700 land orders,
 including about 900 in the numbered coal, petroleum, phosphate, potash and public-water series, and about 2,200
 other orders and directives by their titles (`proquest-scan/REPORT.md`, `proquest-scan/CANDIDATES_MISSING.csv`).
-Reading the document behind every one of them, from text or page images, shows 2,032 executive orders on their face
-and 70 probable land orders (`scan-check/REPORT.md`).
+Reading the document behind every one of them, from text or page images, shows 2,038 executive orders on their face
+and 70 probable land orders. With the land orders on dates the census covers, the unsigned and military records and
+the signed copies, ProQuest holds 2,206 executive orders the census lacks, 95 more probable (`scan-check/REPORT.md`).
 
 The literal claim, that the project holds every executive order mentioned anywhere online, cannot be shown,
 because no one can enumerate every web page. A defensible claim can be made: **every major digitized corpus that
@@ -61,7 +62,8 @@ the owner's standing rule to use tools before spending tokens.
    "Executive Order", "by direction of the President" and "approved:" combined with reservation and withdrawal
    terms. Measure 5 to 10 queries before any full run.
 6. **Check the land-order series against the General Land Office annual reports and Interior's withdrawal schedules,**
-   and have a second reader check a sample of the model verdicts in `scan-check/`.
+   and have a reader of another model family or a person check a sample of the model verdicts in `scan-check/`
+   (a same-family second reader has checked 344, `scan-check/SECOND_READER.csv`).
 7. **Read the candidates.** Every machine candidate from steps 1 to 6 needs a person, or a two-reader machine
    check, to look at the document and decide whether it is presidential, distinct and an executive order. The CIS
    pilot showed that catalog data alone cannot settle this.

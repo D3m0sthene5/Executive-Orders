@@ -16,8 +16,10 @@ date and a series or subject with a census entry. A 29-month random sample read 
 about 3,900 missing orders (95% interval 800 to 7,100), which the full reading confirms.
 
 The documents behind all 3,941 were then fetched and read, from text or page images (`../scan-check/REPORT.md`).
-2,032 are executive orders on their face, 1,531 of them land orders, and 70 more are probable land orders. Reading
-the unsigned unnumbered records and the military-orders collection adds 80, for 2,112.
+2,038 are executive orders on their face, 1,533 of them land orders, and 70 more are probable land orders.
+Comparing the 384 same-date land records with the census entries of their dates finds 81 distinct orders. Reading
+the unsigned unnumbered records, the military-orders collection and five signed records filed as copies adds 87,
+for 2,206.
 
 ## The collection
 
@@ -219,4 +221,7 @@ copies, its match class and the census identifier it matched.
 - ProQuest's dates and signed flags have not been checked against the scans.
 - A held order dated more than a week away from ProQuest's date will show as missing, and an unrelated census entry
   that shares two distinctive words on the same date will hide a missing one.
-- The 384 G records are left out of the missing count, though some are separate orders.
+- The 384 G records are left out of the title-based missing count. Their documents were compared with the census
+  entries of the same date in `../scan-check/FINISH_READING.csv`: 81 are distinct orders the census lacks.
+- The matcher drops a signed record that ProQuest files as a second copy of an unsigned record. Five such signed
+  records are land orders the census lacks (`../scan-check/FINISH_READING.csv`).

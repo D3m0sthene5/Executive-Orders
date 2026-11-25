@@ -1,3 +1,19 @@
+## 2026-11-24 ET, night (Claude: ProQuest pass closed, second reader run)
+
+- **Owner order:** "finish it up" (F-20261124-14).
+- **Total:** ProQuest holds **2,206** executive orders the census lacks, 95 probable, 28 unread
+  (`research/petty-census-closure-2026-11-24/scan-check/REPORT.md`).
+- **Same-date land records (384 "G"):** each compared with every census entry of its date: 266 held, 81 distinct
+  orders the census lacks, 24 undecided, 13 no order (`scan-check/FINISH_READING.csv`, `G_MATCH_RUBRIC.md`).
+- **Unread records (124):** re-read from up to 8 page images; 8 presidential orders. Five signed land orders found
+  that ProQuest files as copies of unsigned attachments (a `classify_match.py` gap). 28 remain unreadable or have no PDF.
+- **Second reader (Sonnet, blind, 344 judgments):** disputes 20 of 196 text-read operative orders (letters of
+  instruction, statements), 2 of 33 text land orders, 1 of 40 image reads; agrees with every sampled "not an EO"
+  and rule verdict. About 70 of the 2,206 are in dispute; floor about 2,140 (`scan-check/SECOND_READER.csv`).
+- **Requests:** owner ruling A-20261124-3 (which kinds count) still open; a reviewer of another model family or a
+  human sample would test the count beyond one family. Workers this pass: Haiku x7 (about 1.9M tokens), Sonnet x6
+  (about 0.7M tokens), roughly 40 minutes wall time.
+
 ## 2026-11-24 ET, late evening (Claude: ProQuest finished)
 
 - **Owner order:** "if not finish it off" (F-20261124-13).
