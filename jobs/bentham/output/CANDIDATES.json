@@ -1,8 +1,8 @@
 {
   "generated_from": {
-    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "c8a150163859768cc18f8127d52293cd4a04016a2245b5c656a843b9a587fba9",
-    "jobs/readiness-tracker/output/TRACKER.md": "89513bd780374a1eebb5a67c8b06e7a8631360be98aa641d0b84d11b6bf36880",
-    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "c3ac8aace832e374a7c59cc278ed1d4bf5756c4101035ef2230059dc8a70e2eb",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "1bb2bc6e6a99e3f2745d4faae9a0c68fbfccdeaa06953b7fbbfe53a7d2b05f8f",
+    "jobs/readiness-tracker/output/TRACKER.md": "c2116e9d1539d0f84c7cc7bd4def67fdca68eeb635b658fd5d7eaa45a1416733",
+    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "ed4ebd0f8305bebd7b5fb83e4971d71fd96fefcd237dc95dec9daa44b1b69cc1",
     "jobs/polya/output/CANDIDATE_ACTIONS.json": "84598534fd7c46a64e98beab939a22be95818c6d559846b3ec200b143529989e",
     "jobs/polya/output/COMPARE.json": "bc2e04eb23e79c487f962e8ab495920144f1855acfe2dba565d97a5d378fdf07",
     "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json": "688bd3c450081288a998382e30e330ed0b51e8bfc6ce712090a6c46f9eeeee4d",
@@ -11,7 +11,7 @@
     "jobs/linnaeus-types/output/SUMMARY.json": "6212023578b1e9f699a84ead03f39c94161da0473dad9efb3b61ef82edfc5a71"
   },
   "pool": {
-    "decided_not_ready_orders": 2497,
+    "decided_not_ready_orders": 2469,
     "held_by_unretrieved_source_or_quarantine": 21
   },
   "notes": [
@@ -25,7 +25,7 @@
       "id": "production.claim_ready.no.fr",
       "kind": "production",
       "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "orders": 1057,
+      "orders": 1044,
       "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.no.fr.txt",
       "rate_key": "filed_per_attempt.no.fr",
       "cost_key": "wave.per_attempt",
@@ -47,7 +47,7 @@
       "id": "production.claim_ready.yes.fr",
       "kind": "production",
       "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "orders": 281,
+      "orders": 273,
       "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.yes.fr.txt",
       "rate_key": "filed_per_attempt.yes.fr",
       "cost_key": "wave.per_attempt",
@@ -69,7 +69,7 @@
       "id": "production.one_step_away",
       "kind": "production",
       "description": "Close the single open step of orders that already have a claim and exactly one applicable step open. Excludes recovery orders.",
-      "orders": 203,
+      "orders": 199,
       "order_ids_path": "jobs/bentham/output/strata/production.one_step_away.txt",
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "wave.per_attempt",
