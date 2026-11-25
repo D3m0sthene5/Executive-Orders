@@ -1,0 +1,62 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "C:\\Users\\danie\\eo-wt\\bracton-pc\\research\\excavator\\claude-bracton-2026-11-25\\p04\\packet\\PACKET.json",
+  "seconds": 123.422,
+  "files_read": 66751,
+  "file_reads": 133557,
+  "packet_fingerprint": "ca8e23c29de024c627c1dcf88a6ffa583d82f36f74740223888a0f76a9a5f2fc",
+  "claims_checked": 2,
+  "defect_flags": 2,
+  "coverage_gaps": 0,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 0,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:14006",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:5825",
+      "flags": [
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.operative_clauses[0].judgment_reason: attributed quotation 'Executive Order No. 5825 dated March' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/ofr-compilations/output/texts/EO_5825.txt",
+            "text_sha256": "768f60e02a24924c4789b19d0ed1aecb9fc5fc6cae092773335e785cb2772a55",
+            "char_start": 927,
+            "char_end": 1866,
+            "boundary": "trailing_number",
+            "source_id": "ORIGINAL:EO:5825"
+          },
+          "flag_id": "8cfa398e1a5853f6"
+        },
+        {
+          "code": "attributed_quote_not_verbatim",
+          "detail": "claim.operative_clauses[1].judgment_reason: attributed quotation 'Executive Order No. 5825 dated March' is absent verbatim from the verified order body",
+          "source": {
+            "text_path": "jobs/ofr-compilations/output/texts/EO_5825.txt",
+            "text_sha256": "768f60e02a24924c4789b19d0ed1aecb9fc5fc6cae092773335e785cb2772a55",
+            "char_start": 927,
+            "char_end": 1866,
+            "boundary": "trailing_number",
+            "source_id": "ORIGINAL:EO:5825"
+          },
+          "flag_id": "bdada69a606a665d"
+        }
+      ],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
