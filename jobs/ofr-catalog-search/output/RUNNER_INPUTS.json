@@ -1,6 +1,6 @@
 {
-  "base_commit": "38eed8f72a89970cfd58a8a6666c834bbf3fb639",
-  "base_output_sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+  "base_commit": "080d23b8319c1598ff22edd5171e4ced47a61f52",
+  "base_output_sha256": "5b64f6cb8d3205701ec3650d04dc2f0c6507f3f825465c5421ba3e6094e79687",
   "inputs": {
     ".github/scripts/ariadne.py": "100644:d399a2673707559e0f96ddc2dbbf260fd06e4106",
     ".github/scripts/arsenale.py": "100644:57a03c52a7b004f93e1cc1260941db669352d41f",
@@ -25,15 +25,18 @@
     "jobs/ofr-catalog-search/job.py": "100644:cd1aaa4089b26c37bcc5c28fd2b0e0189480dd34",
     "jobs/ofr-catalog-search/needs.txt": "100644:f5b6dfe7482ea35fb4113ffd5d04006509198cef",
     "jobs/ofr-catalog-search/ofr_catalog_search.py": "100644:1f84ceac25cbf3d001e25fb2af684f96c11ab0bf",
-    "jobs/ofr-catalog-search/test_ofr_catalog_search.py": "100644:685295a8df29b1c3e59c5d41d28385ce302021e5"
+    "jobs/ofr-catalog-search/test_ofr_catalog_search.py": "100644:685295a8df29b1c3e59c5d41d28385ce302021e5",
+    "jobs/ofr-catalog-search/triggers.txt": "100644:9e297f90be99e149117e8f0a18f0dae4d9e1f61e"
   },
-  "inputs_sha256": "5d0a991b5127fb974e39de7a80a688068c92391b83aae2b5692e2bfbd58a773b",
+  "inputs_sha256": "476049cfdc4c5029221a81c1f9361777f2f553760d6c72a7910b280d39c97419",
   "job": "ofr-catalog-search",
-  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45608570670",
+  "run_url": "https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45720817597",
   "schema": 1,
   "scope": {
     "exclude": "jobs/ofr-catalog-search/output",
-    "patterns": [],
+    "patterns": [
+      "jobs/_lib/runner_limits.py"
+    ],
     "roots": [
       ".github/scripts/ariadne.py",
       ".github/scripts/arsenale.py",
