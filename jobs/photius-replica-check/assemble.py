@@ -28,6 +28,17 @@ PK = REPO / "research/excavator/photius-replica/packets"
 ADJ = REPO / "research/excavator/photius-replica/adjudication"
 SEED = 20261106
 SAMPLE = 0.05
+# Each wave: its candidate list (extract.py output), the folders holding reader results, the folders holding Opus
+# adjudications, and its own sampling seed. Lane 4 (2026-11-06) keeps its original inputs and seed, so its rows and
+# sample are unchanged; later waves add rows. A later wave's row replaces an earlier one for the same order only when
+# the later wave has read it.
+WAVES = [
+    {"name": "photius-lane4-2026-11-06", "candidates": REPO / "jobs" / JOB / "work/CANDIDATES.csv",
+     "readers": [PK], "adjudication": [ADJ], "seed": SEED},
+    {"name": "photius-peiresc-2026-11-25", "candidates": REPO / "research/excavator/photius-replica-peiresc/CANDIDATES.csv",
+     "readers": [REPO / "research/excavator/photius-replica-peiresc/packets", REPO / "research/excavator/photius-replica-peiresc/probe"],
+     "adjudication": [REPO / "research/excavator/photius-replica-peiresc/adjudication"], "seed": 20261125},
+]
 
 
 def read_results(root):
@@ -53,12 +64,28 @@ def main(argv=None):
     a = ap.parse_args(argv)
     out = REPO / "jobs" / JOB / "output"
     out.mkdir(parents=True, exist_ok=True)
-    cands = {r["instrument_id"]: r for r in csv.DictReader(open(REPO / "jobs" / JOB / "work/CANDIDATES.csv", encoding="utf-8"))}
-    readers = read_results(PK)
-    adjud = read_results(ADJ) if ADJ.exists() else {}
     pq = {r["instrument_id"]: r for r in csv.DictReader(open(REPO / "jobs/pinakes-proquest-ingest/output/ORDERS.csv", encoding="utf-8"))}
+    by_id, queue = {}, []
+    for wave in WAVES:
+        if not wave["candidates"].exists():
+            continue
+        cands = {r["instrument_id"]: r for r in csv.DictReader(open(wave["candidates"], encoding="utf-8"))}
+        readers, adjud = {}, {}
+        for root in wave["readers"]:
+            if root.exists():
+                readers.update(read_results(root))
+        for root in wave["adjudication"]:
+            if root.exists():
+                adjud.update(read_results(root))
+        wave_rows, wave_queue = assemble_wave(cands, readers, adjud, random.Random(wave["seed"]))
+        for r in wave_rows:
+            if r["reader_verdict"] or r["instrument_id"] not in by_id:
+                by_id[r["instrument_id"]] = dict(r, wave=wave["name"])
+        queue += [dict(q, wave=wave["name"]) for q in wave_queue]
+    write_outputs(a, out, list(by_id.values()), queue, pq)
 
-    rnd = random.Random(SEED)
+
+def assemble_wave(cands, readers, adjud, rnd):
     rows, queue = [], []
     for iid, c in cands.items():
         rd = readers.get(iid)
@@ -90,8 +117,12 @@ def main(argv=None):
             "reader_reason": (rd or {}).get("reason", ""), "sampled_for_adjudication": "yes" if sampled else "no",
             "adjudication_verdict": adj_verdict, "adjudication_reason": (ad or {}).get("reason", ""), "final": final,
         })
+    return rows, queue
+
+
+def write_outputs(a, out, rows, queue, pq):
     with open(out / "ADJUDICATION_QUEUE.csv", "w", newline="", encoding="utf-8") as f:
-        w = csv.DictWriter(f, fieldnames=["instrument_id", "reader_verdict", "why", "packet"])
+        w = csv.DictWriter(f, fieldnames=["instrument_id", "reader_verdict", "why", "packet", "wave"])
         w.writeheader()
         w.writerows(queue)
     counts = collections.Counter(r["final"] for r in rows)

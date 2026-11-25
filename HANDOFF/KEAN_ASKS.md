@@ -43,14 +43,6 @@ NYU Film 709 (11 reels, EO 1-7403) is free to scan yourself at Bobst on the Scan
 
 Sources: `research/dagron/README.md`
 
-## A-20261112-cis-unnumbered-check (2026-11-12, Claude)
-
-Check the 875 CIS unnumbered executive orders that fall on dates with no known order (research/graunt-census-audit-2026-11-12/cis-kaufman/CIS_UNNUMBERED_EO_GROUPS_PRE1937.csv) for admission to the unnumbered series? A pilot of 30 on the CIS fiche at Bobst or ProQuest would show how many are presidential, distinct and not departmental, before any bulk work.
-
-*Why:* CIS (1987) is an independent, more complete frame than Lord; if most of the 875 are presidential, the identified unnumbered series grows by up to about 1,600.
-
-Sources: `research/graunt-census-audit-2026-11-12/cis-kaufman/README.md`
-
 ## A-20261112-generate-verify-comparison (2026-11-12, Claude)
 
 Approve one bounded comparison, generate-then-verify (Nalimov script drafts) against the current producer route, on the same 10 prescreened orders (EO 10302, 10779, 10918, 11056, 11232, 11352, 11361, 11512, 12737, 13765), with the same sources, the same blind two-arm Opus review with planted controls and the both-uphold rule? Cap $30 list-price allowance all-in, script route first with a stop at $10. It is not a Lind stage 1 (no new pool, no scale). It needs: a newly signed plan replacing the Nalimov calibration v3 hash; your consent to attempt each order on both routes and file at most one claim per order; a Bentham gate pass; and your adoption decision on any upheld claims.
@@ -74,3 +66,11 @@ EO 12753's lifecycle approval was reconfirmed by script, which D-20261110-no-mec
 *Why:* EO 12753 is the only stage-0 claim upheld by both arms and passing the actual checker; its process must comply before adoption.
 
 Sources: `research/lind/conveyor-replay/RESULT.md`
+
+## A-20261124-1 (2026-11-24, Claude)
+
+Apply three census corrections from the Petty wave? (1) Admit EO 6585: its GPO slip-volume page is already held and passes the D-20261112-graunt-apply test. (2) Re-key census row EO:7010P as EO:7010F, an OCR misreading confirmed by the held GPO text. (3) Re-key the APP text now stored under EO:4224 as EO:4224 1/2, so EO 4224 has no text of its own.
+
+*Why:* Each changes the census or a source key that claim-kit pins, so it should be done as one coordinated admission PR, as was done on Nov. 12
+
+Sources: `research/petty-census-closure-2026-11-24/missing-numbered-14/REPORT.md`
