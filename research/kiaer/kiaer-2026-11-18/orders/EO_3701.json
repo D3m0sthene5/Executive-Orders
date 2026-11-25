@@ -1,0 +1,377 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C03",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: waives the two-year actual-residence requirement of the Executive order of May 10, 1921 (as revised July 27, 1921) for Mrs. Grace S. Prentiss, applicant for postmaster at Fairfax, Okla.",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4",
+     "p5"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "e (one-time authorization to a named person; performance not sourced, so OPEN)",
+   "first_end": null,
+   "formal_status": "no_express_ending_found_in_evidence_searched",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Slice says best_held 'transcription_only' and the tracker says ONLY_COMPILED_TRANSCRIPTION_FOUND, but the held texts are OCR of a GPO printing (Civil Service Commission annual report), which the project rules list as an accepted original.",
+   "jobs/tischendorf-originals/output/texts/EO_3701.txt Location line dates the volume 'G.P.O. ... 1903'; the page is from the Thirty-ninth Report (fiscal year ended June 30, 1922). This looks like series-level catalogue metadata.",
+   "Slice title has OCR/typing noise ('eligiblefor', 'E. 0.') and the president field is blank (the date falls in Harding's term).",
+   "Slice it_acts_on lists only EO:3455; the order text also names the revision of July 27, 1921, which is not routed.",
+   "The tischendorf text file carries neighbouring orders (Nafew, Williamson, Crow, Ashley, the Aug. 1, 1922 veterans order) along with EO 3701; only the June 29, 1922 paragraph belongs to this order."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "Whether Mrs. Grace S. Prentiss was admitted to the Fairfax, Okla., postmaster examination and/or appointed (performance of the one-person waiver), or whether the vacancy was filled by another person, with date.",
+    "where_to_look": "Senate Executive Journal, 67th Congress (1922-23), nominations for postmaster at Fairfax, Okla.; USPS Postmaster Finder (Fairfax, Oklahoma); NARA Record of Appointment of Postmasters 1832-1971 (M841), Osage County, Okla.; Official Register 1923; Gateway to Oklahoma History newspapers (Fairfax, 1922)"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "If performance cannot be shown: a fact bounding Mrs. Prentiss's death before 2026-10-14, which under the project's one-person doctrine lead would end the permission.",
+    "where_to_look": "Oklahoma death records, Find a Grave, Osage County newspapers"
+   },
+   {
+    "stop_code": "HELD_UNROUTED",
+    "what": "Status of the parent requirement (the order of May 10, 1921, EO 3455, as revised July 27, 1921): its supersession would be only a candidate ending, since it would not name EO 3701.",
+    "where_to_look": "The project's files for EO 3455 and later presidential-postmaster examination orders; not opened in this run"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "OCR not compared against the page image of printed p. 124 (the tracker's page check is still owed).",
+    "where_to_look": "https://archive.org/details/annualreportuni02commgoog/page/n174"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Content of the Monthly Catalog entry for this order (page returned HTTP 403).",
+    "where_to_look": "https://mocat.library.unt.edu/catalog/331-ch586 or a HathiTrust/GPO scan of the Monthly Catalog of U.S. Public Documents, mid-1922"
+   }
+  ],
+  "id": "EO:3701",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held text is OCR of a GPO printing (39th Annual Report of the Civil Service Commission, p. 124); operative words legible; one operative clause listed. OCR not compared against the scan image. The two held extractions share one underlying OCR, so they are one witness, not two.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN with named gap under rule (e): a one-person waiver is spent on performance, but no source of performance was found; no named revocation found in the evidence searched.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The order has a single operative clause; its state is open with the gap named.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Proof that Mrs. Prentiss was examined or appointed at Fairfax (or that the vacancy was filled by another) was not found in the web searches run; several online routes (Senate Executive Journal 1922-23, USPS Postmaster Finder, Gateway to Oklahoma History, NARA M841 images) remain unexamined, so no offline-only barrier is shown.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/tischendorf-originals/output/texts/EO_3701.txt (https://archive.org/details/annualreportuni02commgoog/page/n174, printed p. 124)"
+  },
+  "propositions": [
+   {
+    "claim": "The order is printed in the GPO-published Thirty-ninth Report of the Civil Service Commission at p. 124, under date June 29, 1922.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "124 THIBTY-NINTH REPORT U. S. CIVIL SERVICE COMMISSION",
+    "supports": "original",
+    "where": "jobs/tischendorf-originals/output/texts/EO_3701.txt"
+   },
+   {
+    "claim": "The order waives the two-year residence requirement for one named applicant at one named post office.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "is hereby waived in the case of Mrs. Grace S. Prentiss, an applicant for post- master appointment at Fairfax, Okla.",
+    "supports": "clause",
+    "where": "jobs/tischendorf-originals/output/texts/EO_3701.txt"
+   },
+   {
+    "claim": "The requirement waived is that of the order of May 10, 1921 as revised July 27, 1921.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "contained in the Executive order of May 10, 1921, as revised July 27, 1921, governing admission to examinations for presidential postmasterships",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_3701.txt"
+   },
+   {
+    "claim": "The second held extraction of the same page gives the same heading and text (printed page 124, scan image 175). It derives from the same underlying OCR as the first, so it is a duplicate, not independent corroboration.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "REQUIREMENT OF TWO YEARS ACTUAL RESIDENCE PRECEDING EXAMINATION DATE WAIVED IN CASE OF MRS. GRACE S. PRENTISS, FAIRFAX, OKLA.",
+    "supports": "original",
+    "where": "jobs/numbered-early-orders/output/texts/EO_3701__CSR_1922_i175.txt"
+   },
+   {
+    "claim": "Negative search result only, bounded to the searches listed: no source of performance (examination taken, or appointment of Prentiss at Fairfax) and no instrument naming and ending the order was found. This is not proof that none exists. The Monthly Catalog page at the cited URL could not be opened (HTTP 403 on 2026-11-18), so nothing is claimed about its content; a search-result snippet for that page shows Mrs. Grace S. Prentiss as an applicant for postmaster appointment at Fairfax and says nothing about the outcome. It is a lead, not evidence.",
+    "location": "N",
+    "pid": "p5",
+    "quote": "",
+    "supports": "gap",
+    "where": "https://mocat.library.unt.edu/catalog/331-ch586 (not retrievable; lead only)"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld; claim now says the two extractions share one OCR and are not independent."
+   },
+   {
+    "change": "fixed",
+    "pid": "p5",
+    "why": "Catalog page returned HTTP 403 again; claim about its content withdrawn and kept as a lead only. Now a bounded negative-search statement, supports changed from counterevidence to gap."
+   },
+   {
+    "change": "fixed",
+    "pid": "conclusion",
+    "why": "Basis rule now names rule (e); formal status worded as no express ending found in the evidence searched; first gap and T4-T5 stop code changed from OFFLINE to WEB."
+   }
+  ],
+  "searches": [
+   "Read the three held texts named in the slice (earlier run)",
+   "Web: \"Grace S. Prentiss\" postmaster Fairfax Oklahoma 1922 - only a Monthly Catalog entry for the order itself (earlier run)",
+   "Web: Fairfax Osage County Oklahoma postmasters list Prentiss 1922 OR 1923 - no postmaster list found (earlier run)",
+   "Fetch: okgenweb.net/~okosage2/postoffice.html - HTTP 404 (earlier run)",
+   "Web: Prentiss \"to be postmaster at Fairfax, Okla.\" Senate nomination 1922 - nothing; surfaced a Wikipedia article on Marvin B. Prentiss, said to have moved to Fairfax in 1906, relation unconfirmed (earlier run)",
+   "Repair run 2026-11-18: Fetch https://mocat.library.unt.edu/catalog/331-ch586 - HTTP 403",
+   "Repair run 2026-11-18: Web: \"Prentiss\" postmaster Fairfax Oklahoma 1922 OR 1923 \"Fairfax, Okla.\" - only the same Monthly Catalog page (snippet: applicant, no outcome); no result on appointment or examination"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "group": "pre1937",
+ "id": "EO:3701",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T4",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: waives the two-year actual-residence requirement of the Executive order of May 10, 1921 (as revised July 27, 1921) for Mrs. Grace S. Prentiss, applicant for postmaster at Fairfax, Okla.",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4",
+     "p5"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Slice says best_held 'transcription_only' and the tracker says ONLY_COMPILED_TRANSCRIPTION_FOUND, but the held texts are OCR of a GPO printing (Civil Service Commission annual report), which the project rules list as an accepted original.",
+   "jobs/tischendorf-originals/output/texts/EO_3701.txt Location line dates the volume 'G.P.O. ... 1903'; the page is from the Thirty-ninth Report (fiscal year ended June 30, 1922). This looks like series-level catalogue metadata.",
+   "Slice title has OCR/typing noise ('eligiblefor', 'E. 0.') and the president field is blank (the date falls in Harding's term).",
+   "Slice it_acts_on lists only EO:3455; the order text also names the revision of July 27, 1921, which is not routed.",
+   "The tischendorf text file carries neighbouring orders (Nafew, Williamson, Crow, Ashley, the Aug. 1, 1922 veterans order) along with EO 3701; only the June 29, 1922 paragraph belongs to this order."
+  ],
+  "gaps": [
+   {
+    "stop_code": "OFFLINE",
+    "what": "Whether Mrs. Grace S. Prentiss was admitted to the Fairfax, Okla., postmaster examination and/or appointed (performance of the one-person waiver), or whether the vacancy was filled by another person, with date.",
+    "where_to_look": "Senate Executive Journal, 67th Congress (1922-23), nominations for postmaster at Fairfax, Okla.; NARA Record of Appointment of Postmasters 1832-1971 (M841), Osage County, Okla.; USPS Postmaster Finder (Fairfax, Oklahoma); Official Register 1923; Gateway to Oklahoma History newspapers (Fairfax, 1922)"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "If performance cannot be shown: a fact bounding Mrs. Prentiss's death before 2026-10-14, which under the project's one-person doctrine lead would end the permission.",
+    "where_to_look": "Oklahoma death records, Find a Grave, Osage County newspapers"
+   },
+   {
+    "stop_code": "HELD_UNROUTED",
+    "what": "Status of the parent requirement (the order of May 10, 1921, EO 3455, as revised July 27, 1921): its supersession would be only a candidate ending, since it would not name EO 3701.",
+    "where_to_look": "The project's files for EO 3455 and later presidential-postmaster examination orders; not opened in this run"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "OCR not compared against the page image of printed p. 124 (the tracker's page check is still owed).",
+    "where_to_look": "https://archive.org/details/annualreportuni02commgoog/page/n174"
+   }
+  ],
+  "id": "EO:3701",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held text is OCR of a GPO printing (39th Annual Report of the Civil Service Commission, p. 124); operative words legible; one operative clause listed. OCR not compared against the scan image in this run.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN with named gap: one-person waiver (rule e) is spent on performance, but no source of performance was found; no named revocation found.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The order has a single operative clause; its state is open with the gap named.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Proof that Mrs. Prentiss was examined or appointed at Fairfax (or that the vacancy was filled by another) was not found on the open web; likely in the Senate Executive Journal 1922-23 or NARA postmaster appointment records.",
+    "stop_code": "OFFLINE",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/tischendorf-originals/output/texts/EO_3701.txt (https://archive.org/details/annualreportuni02commgoog/page/n174, printed p. 124)"
+  },
+  "propositions": [
+   {
+    "claim": "The order is printed in the GPO-published Thirty-ninth Report of the Civil Service Commission at p. 124, under date June 29, 1922.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "124 THIBTY-NINTH REPORT U. S. CIVIL SERVICE COMMISSION",
+    "supports": "original",
+    "where": "jobs/tischendorf-originals/output/texts/EO_3701.txt"
+   },
+   {
+    "claim": "The order waives the two-year residence requirement for one named applicant at one named post office.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "is hereby waived in the case of Mrs. Grace S. Prentiss, an applicant for post- master appointment at Fairfax, Okla.",
+    "supports": "clause",
+    "where": "jobs/tischendorf-originals/output/texts/EO_3701.txt"
+   },
+   {
+    "claim": "The requirement waived is that of the order of May 10, 1921 as revised July 27, 1921.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "contained in the Executive order of May 10, 1921, as revised July 27, 1921, governing admission to examinations for presidential postmasterships",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_3701.txt"
+   },
+   {
+    "claim": "The second held extraction of the same page gives the same heading and text (printed page 124, scan image 175).",
+    "location": "H",
+    "pid": "p4",
+    "quote": "REQUIREMENT OF TWO YEARS ACTUAL RESIDENCE PRECEDING EXAMINATION DATE WAIVED IN CASE OF MRS. GRACE S. PRENTISS, FAIRFAX, OKLA.",
+    "supports": "original",
+    "where": "jobs/numbered-early-orders/output/texts/EO_3701__CSR_1922_i175.txt"
+   },
+   {
+    "claim": "No source of performance (examination taken, or appointment of Prentiss at Fairfax) and no instrument naming and ending the order was found; the search summaries reported a Monthly Catalog entry for the order that shows her only as an applicant (entry not opened).",
+    "location": "N",
+    "pid": "p5",
+    "quote": "",
+    "supports": "counterevidence",
+    "where": "https://mocat.library.unt.edu/catalog/331-ch586"
+   }
+  ],
+  "searches": [
+   "Read the three held texts named in the slice",
+   "Web: \"Grace S. Prentiss\" postmaster Fairfax Oklahoma 1922 - only a Monthly Catalog entry for the order itself",
+   "Web: Fairfax Osage County Oklahoma postmasters list Prentiss 1922 OR 1923 - no postmaster list found",
+   "Fetch: okgenweb.net/~okosage2/postoffice.html - HTTP 404",
+   "Web: Prentiss \"to be postmaster at Fairfax, Okla.\" Senate nomination 1922 - nothing; surfaced a Wikipedia article on Marvin B. Prentiss, said to have moved to Fairfax in 1906, relation unconfirmed"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "OPEN is supported under rule (e): the quoted clause gives a named applicant a personal examination waiver, but the reviewed evidence does not establish its exercise or another ending. No current positive source establishes YES. Formal status is supportable only as the bounded statement that no express ending was found in this evidence, not proof that none exists. The basis should identify rule (e), rather than 'none'.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:3701",
+  "missed_evidence": [],
+  "stop_code_verdict": "wrong (WEB fits the first gap's unexamined online performance-evidence routes; OFFLINE is not established by the slice).",
+  "suspected_defect": "The first gap's OFFLINE code appears unsupported: its proposed sources include online research routes, and the evidence slice provides no demonstrated offline-only barrier.",
+  "tier_supported": "T4",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The held file identifies a GPO annual-report source, prints the page-124 Thirty-ninth Report header, and dates the Prentiss paragraph June 29, 1922. Its 1903 catalogue metadata is inconsistent, as the worker acknowledges.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held paragraph expressly waives two years' actual residence for Mrs. Grace S. Prentiss, applicant for postmaster appointment at Fairfax, Oklahoma.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The cited annual-report extraction contains the quoted reference to May 10, 1921, as revised July 27, 1921.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The second extraction contains the same heading and operative paragraph; its metadata identifies printed page 124 and scanned image 175. Both extractions cite the same underlying OCR checksum, so this is duplication rather than independent corroboration.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The cited catalog URL could not be retrieved. No search summaries are supplied to verify the alleged applicant-only entry or the scope of the negative search. The provided evidence itself supplies neither performance nor a named ending.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 130.9,
+ "start": "T1",
+ "status": "completed",
+ "stop": "OFFLINE",
+ "stop_code_verdict": "wrong (WEB fits the first gap's unexamined online performance-evidence routes; OFFLINE is not established by the slice).",
+ "tokens": 151358,
+ "units": 83933,
+ "units_producer": 38316,
+ "units_repair": 30795,
+ "units_review": 14823
+}

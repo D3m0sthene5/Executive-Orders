@@ -1,0 +1,284 @@
+--- review3/kiaer/__main__.py
++++ now/kiaer/__main__.py
+@@ -112,5 +112,9 @@
+         pr = run.Probe(repo, out, providers(True), workers=1, token_cap=1, timeout=60)
+         try:
+-            row = pr.engine.reconcile(a.turn, a.units, a.note)
++            try:
++                row = pr.engine.reconcile(a.turn, a.units, a.note)
++            except ValueError as exc:
++                print("REFUSED:", exc)
++                return 2
+             print(f"turn {row['id']} ({row['actor']} step {row['step']}): charged {row['units']:,.0f} units; "
+                   f"{len(pr.engine.unmeasured())} unmeasured turn(s) left")
+--- review3/kiaer/wave.py
++++ now/kiaer/wave.py
+@@ -13,8 +13,20 @@
+ 
+ LESSONS = {
+-    "F-20261118-kiaer-stopped-at-review": "Every guard these plans state was checked against the code and has a "
+-        "test (tests/test_kiaer_gate.py and tests/test_kiaer_round3.py: plan binding, caps, saved state, the "
+-        "reservation, unmeasured turns, artifact ownership, provider limits); the reviewer is given all the code "
+-        "the run uses; what code does not enforce is listed under limits_enforced_by.not_enforced_by_code and "
++    "F-20261118-kiaer-third-rejection": "This plan is on its fourth cross-family review, each with all the code; "
++        "the kit's code was fixed and tested after each (4, 7, then 3 grounds). Every number that feeds the cap "
++        "is now validated: caps must be positive; provider usage must be complete, finite and non-negative or the "
++        "turn is charged an estimate and stops the run; an operator's reconciliation figure must be finite and "
++        "not below the charge. The run still starts only on an approving review bound to the plan's hash.",
++    "F-20261118-kiaer-stopped-at-review": "The guards these plans state were read against the code, and the "
++        "reviewer is given all the code the run uses. Tests cover these guards and no others (tests/"
++        "test_kiaer_gate.py, tests/test_kiaer_round3.py, tests/test_pipeline.py): the plan binding (review hash, "
++        "stage, frame, hashed inputs, lanes, cap); refusal of non-positive caps; the saved-state checks; one "
++        "worker in stage 0; no resume before stage 0 is done; no claim of a job whose turn is still held; "
++        "artifact ownership in the engine and in scoring; the halt on unmeasured, empty or partial usage and its "
++        "reconciliation (finite figures only); attempts left open by a crash; the reservation from the largest "
++        "measured turn; step options ahead of the environment; reviewer inputs with the tier removed; blind "
++        "slices without ledger fields. Not covered by a test: the full run's projection gate and wave admission "
++        "(exercised by the selftest only), the read and fetch denials inside the Claude CLI, and the planting "
++        "rate. What code does not enforce is listed under limits_enforced_by.not_enforced_by_code and "
+         "stages.gate. Budget: two smoke tests cost 167,712 and 186,931 units for one order, so 10M units buys "
+         "about 53 to 59 orders, not the 235 drawn; the full run's gate shrinks the cells to fit (to 3 orders at "
+@@ -126,12 +138,16 @@
+                 "6,000,000 units until the full run's gate has passed.",
+             "unmeasured_turns": "Every attempt is written to the database before its provider starts. A turn that "
+-                "returns no usage (timeout, kill, cancellation), or an attempt found open after a crash, is charged "
+-                "the reservation figure, flagged as estimated, and stops the run: the engine starts no further "
++                "returns no usage (timeout, kill, cancellation) or usage that is empty, partial, negative or not "
++                "finite, or an attempt found open after a crash, is charged the estimate as it stands when the "
++                "turn is recorded or recovered (the larger of 150,000 units and the largest turn measured for that "
++                "provider by then, which can be more than the reservation made when it started), flagged as "
++                "estimated, and stops the run: the engine starts no further "
+                 "turn and the probe retries nothing until the operator records a measured or bounding figure for "
+-                "it, never below the charge already made (python -m kiaer reconcile, logged as an event; the turn "
++                "it, finite and never below the charge already made (python -m kiaer reconcile, logged as an event; the turn "
+                 "stays flagged). Until then the true "
+                 "total is unknown by that turn's excess over its charge, plus the excess of the turns in flight "
+-                "when it stopped (at most one per lane). A failed turn that did report usage is charged what it "
+-                "reported and retried once.",
++                "when it stopped (at most one per lane). A failed turn that reported complete usage is charged what "
++                "it reported. The probe retries a failed job at most once (one retry per order or planted review, "
++                "not per turn), and not at all after a spend or tool-call ceiling.",
+             "per_turn_usd_ceiling": "Claude Code --max-budget-usd 2 and --max-turns 40 on every producer and repair "
+                 "turn, fixed in each step's options (run.py CLAUDE_LIMITS), which bridge/claude.py puts ahead of the "
+@@ -154,5 +170,9 @@
+                 "must be named in STATE.json under the matching tag. stage0 refuses a data directory that holds a "
+                 "full run. full refuses an unfinished stage 0 and resumes nothing until its gate has passed. "
+-                "Opening the engine pauses every unfinished job, so nothing runs before these checks.",
++                "Opening the engine pauses every unfinished job, so nothing runs before these checks. Creating a "
++                "job and saving STATE.json are two steps, not one transaction: a crash between them leaves a job "
++                "the next start refuses (it fails closed and needs the operator), and a crash while a wave is "
++                "being created can leave a cell's progress counter ahead of the jobs created, which skips those "
++                "orders.",
+             "artifacts": "Each pipeline step owns one artifact name. The engine records only that artifact: any "
+                 "other a step returns is discarded and logged, and two copies fail the step. Scoring reads "
+@@ -186,6 +206,7 @@
+              "guard": "the reviewer sees only result.json (tier, moves and searches removed) and the sources, never "
+                       "the producer's argument; the engine lets no step record another step's artifact, so a "
+-                      "producer cannot supply its own review; about 12% planted errors (at least one per wave) "
+-                      "measure the catch rate; the first-pass reviewed tier is the primary outcome"},
++                      "producer cannot supply its own review; planted errors measure the catch rate: each wave "
++                      "targets about 12% of its reviewed orders (one at least), and yields none when no reviewed "
++                      "result can be altered; the first-pass reviewed tier is the primary outcome"},
+             {"failure": "Spend runs past the 10M-unit cap through parallel workers, a runaway turn or a turn whose "
+                         "usage never comes back",
+@@ -211,5 +232,7 @@
+                       "and repair turns, are denied reads of the tracker, claim kit, drafts, claims and handoff "
+                       "folders and fetches of the project's GitHub; the ledger status is kept only in STATE.json "
+-                      "outside the repository. The Codex CLI cannot deny reads, so the reviewer of an audit order "
++                      "outside the repository. Web search stays on for blind producers and only fetches of the "
++                      "project's own sites are denied, so a search-result snippet of a public project page could "
++                      "still show a producer a status; audit agreement is read with that in mind. The Codex CLI cannot deny reads, so the reviewer of an audit order "
+                       "is only instructed not to open the ledger. A reviewer who ignored that could bias its own "
+                       "verdict, and could pass the ledger status to the repair turn through review.json: the "
+--- review3/bridge/engine.py
++++ now/bridge/engine.py
+@@ -1,4 +1,5 @@
+ """Transactional local ledger and one cancellable CLI worker for a pair of agents."""
+ import json
++import math
+ import os
+ import re
+@@ -431,6 +432,7 @@
+         """Record the operator's figure for a turn whose usage was unknown; the turn stays flagged as estimated."""
+         note = _string(note, "note", 2000).strip()
+-        if isinstance(units, bool) or not isinstance(units, (int, float)) or units <= 0:
+-            raise ValueError("units must be a positive number")
++        if (isinstance(units, bool) or not isinstance(units, (int, float)) or not math.isfinite(units)
++                or units <= 0):
++            raise ValueError("units must be a positive, finite number")
+         with self.cv, self.db:
+             row = self.db.execute("SELECT * FROM turns WHERE id=?", (turn_id,)).fetchone()
+@@ -564,22 +566,30 @@
+         return max(150000.0, float(largest or 0))
+ 
++    @staticmethod
++    def _usage(tel):
++        """The four token counts if the provider reported all of them as finite, non-negative numbers that are
++        not all zero; otherwise None. Missing, empty or partial usage is never treated as measured."""
++        parts = []
++        for key in ("input_tokens", "cache_read_tokens", "cache_write_tokens", "output_tokens"):
++            v = tel.get(key)
++            if isinstance(v, bool) or not isinstance(v, (int, float)) or not math.isfinite(v) or v < 0:
++                return None
++            parts.append(int(v))
++        return parts if sum(parts) > 0 else None
++
+     def _record_turn(self, job, actor, event, ok, started, began, prompt, raw):
+         self.db.execute("UPDATE attempts SET open=0 WHERE id=?", (job.get("attempt_id"),))
+         tel = getattr(raw, "telemetry", None) or {}
+-        def num(key):
+-            v = tel.get(key)
+-            return int(v) if isinstance(v, (int, float)) else None
+-        parts = [num(k) for k in ("input_tokens", "cache_read_tokens", "cache_write_tokens", "output_tokens")]
+-        total = num("total_tokens")
+-        if total is None and any(v is not None for v in parts):
+-            total = sum(v or 0 for v in parts)
++        parts = self._usage(tel)
+         estimated = 0
+-        if total is None:
+-            # No usage came back (timeout, crash, unknown event format). Charge a conservative estimate so the
+-            # cap still sees the turn, and flag it.
++        if parts is None:
++            # No complete usage came back (timeout, crash, unknown event format, empty or partial counters).
++            # Charge the estimate as it stands now, so the cap still sees the turn, and flag it.
++            parts, total = [None, None, None, None], None
+             units = self._estimate(actor)
+             estimated = 1
+         else:
+-            inp, cread, cwrite, out = (v or 0 for v in parts)
++            inp, cread, cwrite, out = parts
++            total = sum(parts)
+             units = 0.1 * cread + inp + cwrite + 4 * out
+         cost = tel.get("cost_usd")
+--- review3/bridge/codex.py
++++ now/bridge/codex.py
+@@ -2,4 +2,5 @@
+ 
+ import json
++import math
+ import os
+ from pathlib import Path
+@@ -77,5 +78,9 @@
+     last = None
+     usage = {"input_tokens": 0, "cached_input_tokens": 0, "output_tokens": 0, "reasoning_output_tokens": 0}
+-    seen = False
++    seen = bad = False
++
++    def count(value):
++        return (not isinstance(value, bool) and isinstance(value, (int, float)) and math.isfinite(value)
++                and value >= 0)
+     for line in stdout.splitlines():
+         line = line.strip()
+@@ -95,9 +100,15 @@
+             found = event["info"].get("last_token_usage") or event["info"].get("total_token_usage")
+         if isinstance(found, dict) and event.get("type") in ("turn.completed", "token_count", None):
++            # A usage event must carry the three counters units are computed from, and cached input is part of
++            # input. Anything else (an empty object, a missing counter) makes the whole turn unmeasured.
++            if not (all(count(found.get(k)) for k in ("input_tokens", "cached_input_tokens", "output_tokens"))
++                    and found["cached_input_tokens"] <= found["input_tokens"]):
++                bad = True
++                continue
+             seen = True
+             for key in usage:
+-                if isinstance(found.get(key), (int, float)):
++                if count(found.get(key)):
+                     usage[key] += int(found[key])
+-    return last, (usage if seen else {})
++    return last, (usage if seen and not bad else {})
+ 
+ 
+--- review3/tests/test_kiaer_round3.py
++++ now/tests/test_kiaer_round3.py
+@@ -25,5 +25,5 @@
+                             "artifacts": [{"name": n, "content": c} for n, c in artifacts]}))
+     out.telemetry = {"input_tokens": tokens, "cache_read_tokens": 0, "cache_write_tokens": 0,
+-                     "output_tokens": 0} if usage else {}
++                     "output_tokens": 0} if usage is True else (usage or {})
+     return out
+ 
+@@ -150,7 +150,9 @@
+             bad = e.unmeasured()
+             self.assertEqual((len(bad), bad[0]["units"]), (1, 150000.0))
+-            for low in (0, 149999):
++            for refused in (0, 149999, float("nan"), float("inf"), float("-inf"), True):
+                 with self.assertRaises(ValueError):
+-                    e.reconcile(bad[0]["id"], low, "nothing")
++                    e.reconcile(bad[0]["id"], refused, "nothing")
++            self.assertEqual([(b["id"], b["units"]) for b in e.unmeasured()], [(bad[0]["id"], 150000.0)])
++            self.assertEqual(e.totals()["units"], 150000.0)
+             e.reconcile(bad[0]["id"], 200000, "bounded by the provider's own usage page")
+             wait_for(e, second, "completed")
+@@ -346,2 +348,73 @@
+ if __name__ == "__main__":
+     unittest.main()
++
++
++class UsageValidationTest(unittest.TestCase):
++    """Third review: empty or partial usage is not measured usage, and a reconciliation figure must be finite."""
++
++    def setUp(self):
++        self.tmp = tempfile.TemporaryDirectory()
++        self.path = Path(self.tmp.name)
++        self.addCleanup(self.tmp.cleanup)
++
++    def test_codex_empty_or_incomplete_usage_events_are_not_usage(self):
++        ok = '{"type":"turn.completed","usage":{"input_tokens":100,"cached_input_tokens":40,"output_tokens":7}}'
++        self.assertEqual(codex_adapter.parse_events(ok)[1]["input_tokens"], 100)
++        for bad in ('{"type":"turn.completed","usage":{}}',
++                    '{"type":"turn.completed","usage":{"input_tokens":100,"output_tokens":7}}',
++                    '{"type":"turn.completed","usage":{"input_tokens":100,"cached_input_tokens":40}}',
++                    '{"type":"turn.completed","usage":{"input_tokens":10,"cached_input_tokens":40,"output_tokens":7}}',
++                    '{"type":"turn.completed","usage":{"input_tokens":-1,"cached_input_tokens":0,"output_tokens":7}}'):
++            self.assertEqual(codex_adapter.parse_events(bad)[1], {}, bad)
++            self.assertEqual(codex_adapter.parse_events(ok + "\n" + bad)[1], {}, bad)
++
++    def test_partial_or_empty_usage_is_charged_an_estimate_and_stops_admission(self):
++        for usage in ({"input_tokens": 500, "output_tokens": 9},
++                      {"input_tokens": 500, "cache_read_tokens": 0, "cache_write_tokens": 0},
++                      {"input_tokens": 0, "cache_read_tokens": 0, "cache_write_tokens": 0, "output_tokens": 0},
++                      {"input_tokens": float("nan"), "cache_read_tokens": 0, "cache_write_tokens": 0,
++                       "output_tokens": 5},
++                      {"total_tokens": 900}):
++            with self.subTest(usage=usage), tempfile.TemporaryDirectory() as tmp:
++                provider = lambda *_: reply([("a.json", "{}")], usage=usage)
++                e = Engine(Path(tmp) / "db.sqlite3", tmp, {"claude": provider, "codex": provider},
++                           token_cap=5_000_000, halt_unmeasured=True)
++                try:
++                    first = e.create_pipeline("a", [{"actor": "claude", "prompt": "A", "inputs": []}])["id"]
++                    wait_for(e, first, "completed")
++                    turn = e.get(first)["turn_records"][0]
++                    self.assertEqual((turn["estimated"], turn["units"], turn["total_tokens"]), (1, 150000.0, None))
++                    second = e.create_pipeline("b", [{"actor": "claude", "prompt": "B", "inputs": []}])["id"]
++                    time.sleep(0.3)
++                    self.assertEqual(e.get(second)["status"], "queued")
++                    self.assertEqual(len(e.unmeasured()), 1)
++                finally:
++                    e.close()
++
++    def test_the_reconcile_command_refuses_nan(self):
++        from kiaer import __main__ as cli
++        repo, out = self.path / "repo", self.path / "data"
++        repo.mkdir()
++        out.mkdir()
++        plan = fake_draw(out, repo)
++        (out / "STATE.json").write_text(json.dumps(
++            {"next": {"C01": 0, "C06": 0}, "settled": {}, "jobs": {}, "plants": {}, "stage0_done": False,
++             "caps": {"C01": 5, "C06": 2}, "frame_sha256": plan["frame_sha256"], "stage0_plan_sha256": "abc"}),
++            encoding="utf-8")
++        provider = lambda *_a, **_k: reply([("a.json", "{}")], usage=False)
++        with patch.object(census, "unnumbered", lambda repo: []):
++            pr = run.Probe(repo, out, {"claude": provider, "codex": provider}, timeout=60, log=lambda *_: None)
++            job = pr.engine.create_pipeline("a", [{"actor": "claude", "prompt": "A", "inputs": []}])["id"]
++            wait_for(pr.engine, job, "completed")
++            turn = pr.engine.unmeasured()[0]["id"]
++            pr.close()
++            args = ["reconcile", "--repo", str(repo), "--out", str(out), "--turn", str(turn), "--note", "why"]
++            for bad in ("nan", "inf", "-inf", "1"):
++                self.assertEqual(cli.main(args + ["--units=" + bad]), 2, bad)
++            pr = run.Probe(repo, out, {"claude": provider, "codex": provider}, timeout=60, log=lambda *_: None)
++            try:
++                self.assertEqual([(b["id"], b["units"]) for b in pr.engine.unmeasured()], [(turn, 150000.0)])
++                self.assertEqual(pr.engine.totals()["units"], 150000.0)
++            finally:
++                pr.close()
++            self.assertEqual(cli.main(args + ["--units=160000"]), 0)

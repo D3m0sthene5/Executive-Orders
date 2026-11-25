@@ -1,0 +1,222 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C04",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": null,
+ "group": "modern",
+ "id": "EO:7805",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T4",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: corrects the western longitudinal limitation in EO 6897 (San Clemente Island transfer to the Navy) to read 118 deg 36'30\" W.",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4",
+     "p5",
+     "p6",
+     "p7"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "amendment_follows_parent",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "jobs/fr-originals/output/texts/EO_7805.txt: OCR prints the corrected longitude as 'H8°36'30\" W.' instead of 118°36'30\" W. (APP transcription gives 118); the same file runs on into the next order (Fort William D. Davis, Canal Zone).",
+   "Evidence slice lists EO 7805 as acting on EO 6897 three times (amendment, cross_reference, correction) for one correcting act.",
+   "Web search summaries report that one American Presidency Project page titles the 7 Nov 1934 transfer order as EO 6896; not checked against the page, lead only."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "A source current at 2026-10-14 that treats EO 6897 (as corrected by EO 7805) as in force, or an instrument that expressly revokes or supersedes EO 6897. Two web searches found neither.",
+    "where_to_look": "33 CFR 165.1141 preamble and later Coast Guard or Navy rules for San Clemente Island; Navy San Clemente Island INRMP; BLM California land status records and public land orders; National Archives disposition table for 1934 (the 1934.html URL returned 404)"
+   },
+   {
+    "stop_code": "OFFLINE",
+    "what": "An accepted original of parent EO 6897 (7 Nov 1934, before the Federal Register began); only an American Presidency Project transcription is held.",
+    "where_to_look": "ProQuest replica of the State Department copy of EO 6897; National Archives RG 11 executive orders"
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether a correction of a description in a transfer order is itself spent on issue (rule c) or follows the parent (rule d); rule d was applied here.",
+    "where_to_look": "Project owner ruling on correction orders"
+   }
+  ],
+  "id": "EO:7805",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held Federal Register printing (3 FR 327) is legible; the order has one operative clause, listed here.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN. Amendment-only order follows parent EO 6897; no ending of the parent found and no positive source at the cutoff.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The single clause has a state: open, with the gap named.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Parent EO 6897 status at 2026-10-14 not settled: no revocation found and no cutoff-current source; no accepted original of EO 6897 held.",
+    "stop_code": "NOT_FOUND",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_7805.txt (3 FR 327, https://www.govinfo.gov/content/pkg/FR-1938-02-08/pdf/FR-1938-02-08.pdf)"
+  },
+  "propositions": [
+   {
+    "claim": "EO 7805 was printed in the Federal Register of 8 Feb 1938 at 3 FR 327, dated 5 Feb 1938.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "February 5,1938. [No. 7805] [P. R. Doc. 38-409; Piled, February 7,1938; 11:17 a. m.]",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_7805.txt"
+   },
+   {
+    "claim": "Its only command corrects the western longitude in EO 6897 (OCR prints 'H8' for '118').",
+    "location": "H",
+    "pid": "p2",
+    "quote": "it is ordered that the description of the said western longitudinal limitation be, and it is hereby, corrected to read as follows: \"H8°36'30\" W.\"",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_7805.txt"
+   },
+   {
+    "claim": "The corrected order, EO 6897, transferred lands off southern California to the Navy.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "Executive Order No. 6897 of November 7, 1934, transferring to the control and jurisdiction of the Secretary of the Navy certain lands off the southern coast of California",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_7805.txt"
+   },
+   {
+    "claim": "Parent EO 6897 (transcription only, a lead) transferred San Clemente Island to the Navy and has no fixed term.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "This order shall continue in full force and effect unless and until revoked by the President or by act of Congress.",
+    "supports": "counterevidence",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-6897-transferring-the-control-and-jurisdiction-the-secretary-the-navy.txt"
+   },
+   {
+    "claim": "The transcription of EO 6897 gives the western limit as 118 deg 26'30\" W, the figure EO 7805 replaced.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "between longitude 118°20'45\"' W. and 118°26'30\" W. and latitude 32°48'15\" N. and 33°02'15\"' N., containing 31,500 acres, more or less",
+    "supports": "clause",
+    "where": "jobs/app-executive-orders/output/texts/executive-order-6897-transferring-the-control-and-jurisdiction-the-secretary-the-navy.txt"
+   },
+   {
+    "claim": "The National Archives disposition table for 1938 lists EO 7805 as amending EO 6897 and shows no later amendment, revocation or supersession of EO 7805 (as reported by a fetch summary of the page).",
+    "location": "W",
+    "pid": "p6",
+    "quote": "Amends: EO 6897, November 7, 1934",
+    "supports": "counterevidence",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1938.html"
+   },
+   {
+    "claim": "A 2010 Coast Guard rule in the Federal Register relied on EO 6897 as the source of Navy control of San Clemente Island; it is not a source at the 2026 cutoff.",
+    "location": "W",
+    "pid": "p7",
+    "quote": "In 1934, Executive Order 6897 transferred full ownership of SCI from the Department of Commerce to the Department of the Navy",
+    "supports": "current",
+    "where": "https://www.govinfo.gov/content/pkg/FR-2010-05-20/html/2010-12063.htm"
+   }
+  ],
+  "searches": [
+   "Repo: fr-originals and app-executive-orders text folders for EO 6897 (only an APP transcription found)",
+   "Web: 'Executive Order 6897' San Clemente Island revoked/amended/7805 - no revocation found; EO 7747, 8536, 9787, 9894 concern the defensive sea area, not EO 6897 itself",
+   "Web: San Clemente Island 'Executive Order 6897' INRMP / public land order / Federal Register - found 75 FR 28194 (2010) only",
+   "Fetched archives.gov 1938 disposition table (EO 7805 entry); 1934 table URL returned 404",
+   "Fetched govinfo FR-2010-05-20 2010-12063 for the EO 6897 sentence"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "Rule d applies to the sole correction of the parent's description. The held original says the limitation is 'hereby, corrected'; the parent transcription says it continues until presidential or congressional revocation. Neither a qualifying ending nor positive cutoff evidence is established. OPEN with the parent's cutoff status explicitly missing is supported. Formal status is upheld only as no express ending found in the reviewed evidence, not a categorical finding that none ever occurred.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:7805",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: NOT_FOUND matches the slice's absent current-law evidence and later naming instruments. The reported two searches are not independently documented, but the slice supplies no overlooked status source. The parent's original-access gap is separate.",
+  "suspected_defect": null,
+  "tier_supported": "T4",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held Federal Register text confirms February 5, 1938 signature, No. 7805, and publication February 8 at page 327.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Held official text contains one command correcting the western longitudinal limitation. Its OCR gives H8; the separately held APP transcription gives 118 degrees 36 minutes 30 seconds W.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The official text's recital identifies EO 6897 and its transfer of control and jurisdiction to the Secretary of the Navy.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The named parent transcription contains the San Clemente Island transfer and the quoted continuation-until-revocation sentence. Upheld only as a transcription lead, not an accepted parent original.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The named parent transcription gives the western limit as 118 degrees 26 minutes 30 seconds W and the quoted acreage and other bounds.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "Direct inspection of the Archives 1938 table, EO 7805 entry, confirms Amends: EO 6897, November 7, 1934 and no listed later disposition. This is only a statement about that table, not proof that no ending exists.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "The HTML URL failed, but the same govinfo document's PDF, https://www.govinfo.gov/content/pkg/FR-2010-05-20/pdf/2010-12063.pdf, page 28194, confirms the quoted historical transfer in its Basis and Purpose section. It does not establish status at the 2026 cutoff.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 111.7,
+ "start": "T2",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "confirmed: NOT_FOUND matches the slice's absent current-law evidence and later naming instruments. The reported two searches are not independently documented, but the slice supplies no overlooked status source. The parent's original-access gap is separate.",
+ "tokens": 195120,
+ "units": 90688,
+ "units_producer": 42590,
+ "units_repair": 0,
+ "units_review": 48098
+}

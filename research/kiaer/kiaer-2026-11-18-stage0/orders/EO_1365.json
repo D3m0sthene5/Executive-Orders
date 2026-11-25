@@ -1,0 +1,140 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C03",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": null,
+ "group": "pre1937",
+ "id": "EO:1365",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T1",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole sentence, part 1: James B. Horigan may be retained in the Forest Service with his present excepted status",
+    "end": null,
+    "props": [
+     "p1",
+     "p2"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Sole sentence, part 2: he may be paid from the statutory position of law clerk",
+    "end": null,
+    "props": [
+     "p1"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "unknown",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "The slice's title and wpa_summary say 'without regard to Civil Service Rules'; the held transcription has no such words and says only 'may be retained in the service with his present excepted status'.",
+   "The slice's title has run-together words ('eligiblefor', 'hissalary', 'ex cepted') and is cut off.",
+   "The slice's president field is empty; the held transcription names William H. Taft.",
+   "The slice's type_lead class 'spent' has no performance source behind it; rule (e) requires one."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "An accepted original printing of EO 1365. The transcription's citation '1911 CSR 112' appears to point to page 112 of the Civil Service Commission's annual report covering 1911; that reading is not confirmed.",
+    "where_to_look": "U.S. Civil Service Commission annual report for 1911, p. 112 (HathiTrust, Google Books or the print volume); ProQuest replica of the State Department copy. A Monthly Catalog entry for the order appeared in search results (mocat.library.unt.edu/catalog/198-ch518) but was not opened."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Performance and end of the permission: whether Horigan was in fact retained, and the date of his separation from the Forest Service or his death.",
+    "where_to_look": "Official Register of the United States 1911 and 1913 (Department of Agriculture, Forest Service); Department of Agriculture personnel records at the National Archives (NPRC official personnel folder)."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether any later instrument expressly revoked or superseded EO 1365. The slice lists none and the web searches surfaced none; no dedicated search for one was run.",
+    "where_to_look": "Later Civil Service Commission annual reports; CIS Index to Presidential Executive Orders and Proclamations."
+   }
+  ],
+  "id": "EO:1365",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "Only a Wikisource transcription is held. Two standard web searches found no official printing; the transcription cites 1911 CSR 112, which was not located online.",
+    "stop_code": "NOT_FOUND",
+    "to": "T2"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription",
+   "where": "jobs/wikisource-texts/output/texts/EO_1365.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The transcription gives the order as a one-sentence permission to retain one named person and pay him from the law clerk position (lead only, not an original).",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mr. James B. Horigan, an expert in an excepted position in the Forest Service, Department of Agriculture, may be retained in the service with his present excepted status",
+    "supports": "clause",
+    "where": "jobs/wikisource-texts/output/texts/EO_1365.txt"
+   },
+   {
+    "claim": "The transcription attributes the order to Taft, dated May 29, 1911, and cites a printing at 1911 CSR 112.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "Signed by President William H. Taft Monday, May 29, 1911 1911 CSR 112",
+    "supports": "original",
+    "where": "jobs/wikisource-texts/output/texts/EO_1365.txt"
+   }
+  ],
+  "searches": [
+   "Read the held file jobs/wikisource-texts/output/texts/EO_1365.txt",
+   "Web (standard): Horigan + Forest Service + 'may be retained in the service' + 'law clerk' + 1911 Civil Service Commission annual report; returned only a Wikisource mirror and Monthly Catalog entries",
+   "Web (standard): 'James B. Horigan' Forest Service law clerk; returned only the Wikisource mirror, no biographical or service record"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "review": {
+  "conclusion_reason": "OPEN and formal status unknown are warranted: the available evidence establishes neither performance or another ending nor continuing operation at the cutoff. The result names the missing original, performance/separation/death evidence, and later-instrument evidence. The absence of an accepted original prevents T2 and all higher tiers.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:1365",
+  "missed_evidence": [
+   "The held file’s title explicitly says ‘Authorizing Retention of James B. Horigan in Forest Service Without Regard to Civil Service Rules.’ Thus the data_errors assertion that the held transcription has ‘no such words’ is false as written, although those words are absent from its operative sentence. This does not decide operative status."
+  ],
+  "stop_code_verdict": "wrong (ONLY_COMPILED_TRANSCRIPTION_FOUND fits the first gap: the slice identifies a held transcription and original_not_usable:mirror_transcription; NOT_FOUND fails to distinguish that evidence from no text found)",
+  "suspected_defect": null,
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The named file contains the quoted retention permission and continues: ‘and paid from the statutory position of law clerk.’ It is a Wikisource transcription, not an accepted original.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The file explicitly gives ‘Signed by President William H. Taft Monday, May 29, 1911’ followed by ‘1911 CSR 112’; the signature and date also appear beneath the operative sentence. This confirms the attribution and citation, not the identity of the cited publication.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 52.1,
+ "start": "T1",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "wrong (ONLY_COMPILED_TRANSCRIPTION_FOUND fits the first gap: the slice identifies a held transcription and original_not_usable:mirror_transcription; NOT_FOUND fails to distinguish that evidence from no text found)",
+ "tokens": 71158,
+ "units": 43506,
+ "units_producer": 22768,
+ "units_repair": 0,
+ "units_review": 20738
+}

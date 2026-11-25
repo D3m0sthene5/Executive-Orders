@@ -1,0 +1,251 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C05",
+ "census_overstated": false,
+ "conclusion": "NO",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": null,
+ "group": "pre1937",
+ "id": "EO:4398",
+ "ledger_status": null,
+ "producer_start": "T2",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T3",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: trust period on Kiowa, Comanche, Apache and Wichita allotments expiring in calendar year 1926 extended ten years",
+    "end": "not later than 1936-12-31",
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p5",
+     "p6"
+    ],
+    "state": "ended"
+   },
+   {
+    "clause": "Exceptions: 50 named allottees (33 Kiowa-Comanche-Apache, 17 Wichita) left out of the extension; no command, their trusts expired in 1926 under prior terms",
+    "end": "1926-03-18",
+    "props": [
+     "p4"
+    ],
+    "state": "ended"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "own_terms",
+   "first_end": "not later than 1936-12-31",
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "NO"
+  },
+  "data_errors": [
+   "Evidence slice 'it_acts_on' EO:960 (cross_reference) is a false lead: '960' in the text is Wichita allotment number 960 (Nancy Long), not an executive order.",
+   "PD-INDIAN.md M9 quotes sec. 13 as enacted and does not mention that a 1990 amendment removed sec. 2 from the proviso (per the 25 U.S.C. 5118 page); this does not change EO 4398, whose term ended in 1936, but matters for periods running in 1990.",
+   "Slice title has a run-together word ('allotmentsmade') and the president field is empty; the text shows Calvin Coolidge.",
+   "ProQuest OCR misreads allotment numbers (178 for 173, 17 for 1117, 384 for 334); the GPO OCR scrambles the order of numbers 758-765 and their names."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "IRA sec. 13 as enacted on June 18, 1934, including 'Sections 2, 4, 7, 16, 17, and 18', not read from an original printing",
+    "where_to_look": "48 Stat. 986-987 (GovInfo Statutes at Large); Pub. L. 101-301 sec. 3 (1990) for the amendment"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Which instrument extended the Kiowa, Comanche, Apache and Wichita trusts that EO 4398 carried to 1936 (candidate only: a general Oklahoma order for 1936 expiries, possibly EO 7206; number and date not confirmed)",
+    "where_to_look": "25 CFR chapter I appendix, General Orders table; the held text of EO 7206 if any"
+   },
+   {
+    "stop_code": "OFFLINE",
+    "what": "Individual allotment trust expiry dates within 1926, which fix the exact 1936 end dates",
+    "where_to_look": "BIA Anadarko (Kiowa) Agency allotment schedules and trust patents, National Archives RG 75"
+   }
+  ],
+  "id": "EO:4398",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "Two held originals agree. The single command extends for ten years trusts expiring in 1926; the term ran out in 1936 under the order's own words.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "One operative clause (the extension) plus a list of 50 excepted allottees that commands nothing; the clause ended not later than 1936-12-31.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "IRA sec. 13 as enacted in 1934 (48 Stat. 986) was read only through the project doctrine file and the amended U.S.C. text; the order that took over the 1936 expiries is not identified; individual allotment expiry dates are not held.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/photius-gpo-volumes/output/texts/EO_4398.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The GPO slip-order printing holds the order, signed by Coolidge on March 18, 1926.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "It is hereby ordered , under authority contained in Section 5 of the Act of February 8, 1887 (24 Stat . 389 )",
+    "supports": "original",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_4398.txt"
+   },
+   {
+    "claim": "The ProQuest replica of the State Department copy carries the same text and the number.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "March 18, 1926. [...] [No. 4398]",
+    "supports": "original",
+    "where": "jobs/pinakes-proquest-ingest/output/texts/EO_4398.txt"
+   },
+   {
+    "claim": "The order extends only trusts expiring in 1926, and only for ten years, so its term ends in 1936.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "which trust expires during the calendar year , 1926, be, and is hereby extended for a period of ten years , with the following exceptions",
+    "supports": "ending",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_4398.txt"
+   },
+   {
+    "claim": "The rest of the order is a list of excepted allottees by allotment number and name.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "Allottees on the Wichita Reservation [...] 960 Nancy Long (deceased )",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_4398.txt"
+   },
+   {
+    "claim": "The project doctrine holds that IRA sec. 13 kept sec. 2 from continuing periods for the listed Oklahoma tribes, so EO 4398's stated end stands.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "So for an order whose text names a listed tribe in Oklahoma, the order's stated end stands (EO 3363, 4281, 4384, 4398",
+    "supports": "ending",
+    "where": "research/pothier/doctrines/PD-INDIAN.md"
+   },
+   {
+    "claim": "The current U.S.C. proviso still excludes Kiowa, Comanche, Apache and Wichita from certain IRA sections; the page notes a 1990 amendment replaced 'sections 2, 4,' with 'sections 4,'.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "shall not apply to the following-named Indian tribes",
+    "supports": "ending",
+    "where": "https://www.law.cornell.edu/uscode/text/25/5118"
+   },
+   {
+    "claim": "The current 25 CFR chapter I appendix lists E.O. 4398 (Mar. 18, 1926) under Kiowa, Comanche, Apache and Wichita as a past ten-year extension; it is a historical list of citations.",
+    "location": "W",
+    "pid": "p7",
+    "quote": "This appendix contains citations of Executive orders and acts of Congress continuing the trust or restricted period of Indian land, which would have expired otherwise.",
+    "supports": "counterevidence",
+    "where": "https://www.law.cornell.edu/cfr/text/25/appendix-to_chapter_I"
+   },
+   {
+    "claim": "The appendix says reservations without an asterisk depend on later instruments for extension, so later extensions are separate instruments.",
+    "location": "W",
+    "pid": "p8",
+    "quote": "such reservation is dependent upon acts of Congress or Executive orders for extension",
+    "supports": "ending",
+    "where": "https://www.law.cornell.edu/cfr/text/25/appendix-to_chapter_I"
+   },
+   {
+    "claim": "The project doctrine treats later blanket extension orders as new instruments, not continuations of the earlier order.",
+    "location": "H",
+    "pid": "p9",
+    "quote": "Each is a new instrument running from the expiry of the period it extends.",
+    "supports": "ending",
+    "where": "research/pothier/doctrines/PD-INDIAN.md"
+   }
+  ],
+  "searches": [
+   "Read both held texts of EO 4398 in full",
+   "Grep research/ for trust_extension_term_expired_sec13_oklahoma; read PD-INDIAN.md M1-M3, M9 and branch list",
+   "Web search: 1936 executive order extending Kiowa, Comanche, Apache, Wichita trust periods; 25 CFR appendix",
+   "Fetched 25 CFR chapter I appendix (Cornell LII) for the EO 4398 entry and introductory text",
+   "Fetched 25 U.S.C. 5118 (Cornell LII) for the sec. 13 Oklahoma proviso"
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "The ten-year extension of 1926 expiries supports NO under own_terms, with the historical Oklahoma exclusion supported by the quoted doctrine and the statutory amendment history. No express ending was found in the reviewed sources; that formal-status statement remains a bounded search result. The exceptions merely limit coverage: their asserted 1926 expiry and March 18 ending are not established.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:4398",
+  "missed_evidence": [
+   "The held GPO and ProQuest texts list 32 Kiowa-Comanche-Apache exceptions and 18 Wichita exceptions, not 33 and 17. Neither establishes actual expiry of excluded trusts or an ending on March 18, 1926.",
+   "The cited CFR appendix, General Orders table, confirms EO 7206's number, October 14, 1935 date, Oklahoma-only scope and ten-year period; PD-INDIAN.md's EO 7206 row identifies 1936 expiries. Its application to these particular allotments remains a candidate, but number and date are not unconfirmed."
+  ],
+  "stop_code_verdict": "confirmed: WEB fits the first gap, which specifically requests an original printing of the historical statute; the evidence slice identifies held originals of the executive order, not that statute. The doctrine's quotation and Cornell amendment note narrow but do not fulfill that original-printing request.",
+  "suspected_defect": "The exception clause misallocates the 50 exceptions as 33/17 instead of 32/18 and converts exclusion from this extension into an unsupported finding of actual trust expiry, with an inconsistent order-date ending.",
+  "tier_supported": "T3",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "Held GPO printing contains the quoted opening, CALVIN COOLIDGE, and March 18, 1926.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "Held ProQuest OCR confirms the operative text, date, and [No. 4398].",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The original expressly extends trusts expiring during 1926 for ten years, supporting a stated-term outer bound of December 31, 1936.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The original lists excepted allottees and includes 960 Nancy Long (deceased). This supports exclusion only, not the separate assertion that their trusts actually expired.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "PD-INDIAN.md M9 contains the quoted conclusion and specifically includes EO 4398. Confirmed as the doctrine's position; it is not an original statutory printing.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "The cited section lists all four tribes; its amendment note confirms removal of section 2 in 1990. The current proviso itself does not exclude section 2.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "The appendix lists EO 4398 under the four tribes, dated March 18, 1926, with a ten-year extension. Its historical citation does not independently establish present operation.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p8",
+    "reason": "The appendix states that unstarred reservations depend on statutes or executive orders for extensions. This supports the need for additional instruments, not an independent finding that EO 4398 ended.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p9",
+    "reason": "PD-INDIAN.md M3 contains the quoted sentence characterizing subsequent extensions as new instruments.",
+    "verdict": "upheld"
+   }
+  ]
+ },
+ "seconds": 153.6,
+ "start": "T2",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed: WEB fits the first gap, which specifically requests an original printing of the historical statute; the evidence slice identifies held originals of the executive order, not that statute. The doctrine's quotation and Cornell amendment note narrow but do not fulfill that original-printing request.",
+ "tokens": 226906,
+ "units": 103656,
+ "units_producer": 55828,
+ "units_repair": 0,
+ "units_review": 47828
+}

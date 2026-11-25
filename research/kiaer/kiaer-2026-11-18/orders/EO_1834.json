@@ -1,0 +1,333 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C03",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: Mrs. Mary D. Hanna may be appointed to a clerkship in the classified service, subject to tests of fitness set by the Civil Service Commission (examination waived).",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "no_express_ending_found_in_evidence_searched",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Slice labels the held text best_held 'transcription_only' / 'compiled_transcription_lead' while own_texts describes it as a Civil Service Commission annual report printing; the two labels conflict, and the file itself does not settle it.",
+   "Slice title has run-together words from OCR ('eligiblefor', 'classifiedservicesubject', 'testof').",
+   "Held text has OCR noise: 'it 18 now necessary' for 'it is now necessary'; ends with a comma instead of a full stop.",
+   "Slice president field is empty; the date 1913-10-01 falls in Woodrow Wilson's term."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "The held text is not authenticated as an accepted original: it has no publication identification and was not compared with a page image of the Civil Service Commission 30th Annual Report, p. 131.",
+    "where_to_look": "govinfo GOVPUB-CS1 or HathiTrust scan of the Civil Service Commission 30th Annual Report (1913), p. 131; or the separately printed executive order of October 1, 1913."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether and when Mrs. Mary D. Hanna was appointed to a classified clerkship under the order (performance), or her date of death.",
+    "where_to_look": "Official Register of the United States 1915 and 1917, War Department clerks (archive.org officialregister30unit or HathiTrust full text); Civil Service Commission 31st Annual Report (1914) list of appointments under special exceptions; NPRC civilian personnel file."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether any later instrument expressly revoked the order: none is named in the evidence slice and none was searched for beyond it.",
+    "where_to_look": "Later executive orders on Mary D. Hanna in the CSC annual reports for 1914 onward."
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether the Monthly Catalog of U.S. Public Documents lists the order as a separately printed executive order: a lead seen only as a search-result snippet, not confirmed.",
+    "where_to_look": "Monthly Catalog, October-November 1913 issues (UNT mocat.library.unt.edu, which returned HTTP 403, or a HathiTrust scan)."
+   }
+  ],
+  "id": "EO:1834",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "The held text (12 lines, re-read) carries no publication title, page number or page image; the evidence slice labels it a compiled transcription lead. Its description as a Civil Service Commission annual report printing (1913 CSR 131) rests on a finding-aid label only and was not checked against a page image, so it is not established as an accepted original. The operative words are legible and one operative clause is listed provisionally.",
+    "stop_code": "WEB",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Not reached because T2 is not met. Provisional status on the held text is OPEN: the order is a one-time authorization to a named person (rule (e)), spent when performed, and no source for performance was found.",
+    "stop_code": "WEB",
+    "to": "T3"
+   },
+   {
+    "achieved": false,
+    "from": "T3",
+    "note": "Not reached because T2 is not met. Provisionally, the single operative clause is open with the gap named.",
+    "stop_code": "WEB",
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "No record of Mrs. Hanna's appointment or death was found in two web searches; the Official Register 1915 exists on archive.org but its text was not searched.",
+    "stop_code": "NOT_FOUND",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "compiled_transcription_lead",
+   "where": "jobs/csc-annual-reports/output/texts/EO_1834.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held text is dated October 1, 1913 and permits the appointment of one named person to a classified clerkship.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mrs. Mary D. Hanna may be appointed to a clerkship in the classified service subject to such tests of fitness as the Civil Service Commission may require.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1834.txt"
+   },
+   {
+    "claim": "The beneficiary is an individual, the widow of an Army officer killed on duty; the permission is personal to her.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "Mrs. Hanna is the widow of Capt. Guy B. G. Hanna, Coast Artillery, who met his death while in the line of duty",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1834.txt"
+   },
+   {
+    "claim": "The order waives the examination requirement on the Secretary of War's recommendation, which suggests but does not prove a War Department appointment.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "the Secretary of War recommended the issuance of an Executive order waiving the requirement of examination under the civil-service rules to permit her appointment",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1834.txt"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review; quote re-confirmed in the held file. Support changed from 'original' to 'clause' because the held file is no longer claimed as an accepted original."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by review; quote re-confirmed in the held file."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review; quote re-confirmed in the held file (line-break hyphen in 'exami-nation' joined)."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p4",
+    "why": "Unverifiable: the catalog page returned HTTP 403 and the quote came only from a search snippet. Moved to gaps as a lead; the related data_errors note on the 'Hanua' spelling is also removed."
+   },
+   {
+    "change": "fixed",
+    "pid": "original",
+    "why": "Reviewer's suspected defect accepted: the held file has no publication identification or page image, so original.accepted is now false, grade is compiled_transcription_lead, and tier_reached drops from T4 to T1."
+   },
+   {
+    "change": "fixed",
+    "pid": "conclusion",
+    "why": "OPEN kept (upheld). Formal status reworded to say only that no express ending was found in the evidence searched, as the reviewer required."
+   }
+  ],
+  "searches": [
+   "Read jobs/csc-annual-reports/output/texts/EO_1834.txt (re-read in repair: 12 lines, no publication or page identification)",
+   "Grep of jobs/csc-annual-reports for 'Mary D. Hanna', 'EO_1834', '\"1834\"': no matches (default .ignore may hide output files)",
+   "Web: \"Mary D. Hanna\" clerk War Department Official Register 1915 OR 1917 widow \"Guy B. G. Hanna\": no appointment record",
+   "Web: \"Hanna, Mary D\" clerk Official Register of the United States 1915 War Department: no appointment record",
+   "WebFetch of mocat.library.unt.edu/catalog/226-ch521: HTTP 403",
+   "Repair pass: no new web searches run"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "group": "pre1937",
+ "id": "EO:1834",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: Mrs. Mary D. Hanna may be appointed to a clerkship in the classified service, subject to tests of fitness set by the Civil Service Commission (examination waived).",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Slice labels the held text best_held 'transcription_only' / 'compiled_transcription_lead' while own_texts describes it as a Civil Service Commission annual report printing, which is an official compilation; the two labels conflict.",
+   "Slice title has run-together words from OCR ('eligiblefor', 'classifiedservicesubject', 'testof').",
+   "Held text has OCR noise: 'it 18 now necessary' for 'it is now necessary'; ends with a comma instead of a full stop.",
+   "Slice president field is empty; the date 1913-10-01 falls in Woodrow Wilson's term.",
+   "Monthly Catalog index entry (UNT) spells the name 'Hanua' per the search snippet; external, not a project file."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether and when Mrs. Mary D. Hanna was appointed to a classified clerkship under the order (performance), or her date of death.",
+    "where_to_look": "Official Register of the United States 1915 and 1917, War Department clerks (archive.org officialregister30unit or HathiTrust full text); Civil Service Commission 31st Annual Report (1914) list of appointments under special exceptions; NPRC civilian personnel file."
+   },
+   {
+    "stop_code": "WEB",
+    "what": "The held CSC annual report text was not compared with a page image of the 30th Annual Report, p. 131.",
+    "where_to_look": "govinfo GOVPUB-CS1 or HathiTrust scan of the Civil Service Commission 30th Annual Report (1913), p. 131."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether any later instrument expressly revoked the order: none is named in the evidence slice and none was searched for beyond it.",
+    "where_to_look": "Later executive orders on Mary D. Hanna in the CSC annual reports for 1914 onward."
+   }
+  ],
+  "id": "EO:1834",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held text is the Civil Service Commission annual report printing (title cites 1913 CSR 131), accepted as an official compilation printing; operative words legible. Not checked against a page image; the tracker labels it compiled_transcription_lead, so the coordinator may wish to rule on that.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN with named gap: rule (e) one-time authorization to a named person is spent when performed, and no source for performance was found.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The order has one operative clause; its state is open with the gap named.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "No record of Mrs. Hanna's appointment (or death) found in two web searches; the Official Register 1915 exists on archive.org but its text was not searched.",
+    "stop_code": "NOT_FOUND",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/csc-annual-reports/output/texts/EO_1834.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The order is dated October 1, 1913 and permits the appointment of one named person to a classified clerkship.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Mrs. Mary D. Hanna may be appointed to a clerkship in the classified service subject to such tests of fitness as the Civil Service Commission may require.",
+    "supports": "original",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1834.txt"
+   },
+   {
+    "claim": "The beneficiary is an individual, the widow of an Army officer killed on duty; the permission is personal to her.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "Mrs. Hanna is the widow of Capt. Guy B. G. Hanna, Coast Artillery, who met his death while in the line of duty",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1834.txt"
+   },
+   {
+    "claim": "The order waives the examination requirement on the Secretary of War's recommendation, which suggests but does not prove a War Department appointment.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "the Secretary of War recommended the issuance of an Executive order waiving the requirement of examination under the civil-service rules to permit her appointment",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_1834.txt"
+   },
+   {
+    "claim": "The Monthly Catalog lists the order as a separately printed executive order; this was seen only as a search-result snippet (the page returned HTTP 403), and it says nothing about performance.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "Executive order [authorizing appointment of Mrs. Mary D. Hanna to clerkship in classified service]",
+    "supports": "original",
+    "where": "https://mocat.library.unt.edu/catalog/226-ch521"
+   }
+  ],
+  "searches": [
+   "Read jobs/csc-annual-reports/output/texts/EO_1834.txt",
+   "Grep of jobs/csc-annual-reports for 'Mary D. Hanna', 'EO_1834', '\"1834\"': no matches (default .ignore may hide output files)",
+   "Web: \"Mary D. Hanna\" clerk War Department Official Register 1915 OR 1917 widow \"Guy B. G. Hanna\": no appointment record",
+   "Web: \"Hanna, Mary D\" clerk Official Register of the United States 1915 War Department: no appointment record",
+   "WebFetch of mocat.library.unt.edu/catalog/226-ch521: HTTP 403"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "OPEN is appropriate: the text says she 'may be appointed,' which authorizes rather than completes an appointment. No performance, death, or express ending is established. Formal status is supportable only as no express ending found in the supplied evidence, not proof that none exists.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:1834",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: NOT_FOUND is consistent with the evidence slice, which supplies neither performance nor death evidence; this does not establish that the suggested repositories were searched.",
+  "suspected_defect": "The original.accepted=true and official_printing grade overstate authentication. The opened TXT contains no publication identification or page image establishing an accepted official printing. The evidence slice explicitly calls it a compiled transcription lead, and the worker acknowledges that comparison with the annual-report page remains outstanding. A descriptive finding-aid label does not resolve this gap.",
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The held file contains the October 1, 1913 date and the quoted personal appointment permission.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held file confirms the named beneficiary was Captain Hanna's widow and that he died in the line of duty. The permission names her individually.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The held file confirms the Secretary of War recommended an examination waiver. A War Department appointment remains explicitly tentative, not established.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "The cited catalog URL was inaccessible. Neither the quotation nor the reported search snippet and HTTP 403 could be independently confirmed.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 133.6,
+ "start": "T1",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "confirmed: NOT_FOUND is consistent with the evidence slice, which supplies neither performance nor death evidence; this does not establish that the suggested repositories were searched.",
+ "tokens": 115918,
+ "units": 78326,
+ "units_producer": 33698,
+ "units_repair": 23673,
+ "units_review": 20955
+}

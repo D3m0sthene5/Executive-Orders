@@ -1,0 +1,627 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C08",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Approval: approves the industry's application and amends the code, effective immediately",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p7"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Par. 1: redefines the code's 'expiration date' in Art. I from February 1, 1935 to June 16, 1935 (or earlier declared end of emergency)",
+    "end": null,
+    "props": [
+     "p3",
+     "p7",
+     "p8"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Par. 2, first and second sentences: time and one-half for work over 48 hours a week; inconsistent code provisions modified",
+    "end": null,
+    "props": [
+     "p4",
+     "p7"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Par. 2, third sentence: the overtime requirement does not authorize work over 48 hours where the code prohibits it",
+    "end": null,
+    "props": [
+     "p12",
+     "p7"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Par. 3: members requested and authorized to agree on Fall announcements of new models and Fall automobile shows",
+    "end": null,
+    "props": [
+     "p5",
+     "p7"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Par. 4: members will comply with the labor-controversy settlement provisions in operation since March 1934, confirmed and continued",
+    "end": null,
+    "props": [
+     "p6",
+     "p7",
+     "p13"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "d (amendment-only: parent code status unproved); own-terms expiry under b unresolved",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "jobs/app-executive-orders/output/texts/executive-order-6955-amending-executive-order-no-6877-providing-rules-and-regulations-for.txt is routed to EO 6955 but is a different order: it amends EO 6877 on the Wool Textile Code and is dated Feb 1, 1935.",
+   "The slice's type lead classes the order as 'nra_code_approval'; the text is a code amendment, not an original approval.",
+   "jobs/mabillon-held-printings/output/texts/EO_6955.txt has OCR noise in the imprint line ('GOVERNMENT PRINTING OFFICE: t938'); operative words are legible."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "The code's own clause that uses 'expiration date' (what stops on that date: the whole code or only some provisions). Without it the June 16, 1935 date cannot be applied as an own-terms expiry of the code and of pars. 2-4.",
+    "where_to_look": "Official text of Code No. 17, NRA Codes of Fair Competition vol. I (GPO), and the amendment at XXI NRA Codes 203; UMN Darrow collection PDFs or HathiTrust"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether any instrument after January 31, 1935 extended the automobile code's expiration date past June 16, 1935, and whether EO 7076's general extension (which names neither the order nor the code and excludes code approval and enforcement) reached this amendment.",
+    "where_to_look": "NRA Codes of Fair Competition vols. XXI-XXIII amendment lists; executive orders of May-June 1935; official printing of EO 7076"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Exact wording of the joint resolution of June 14, 1935 (ch. 246, 49 Stat. 375) on existing codes; it does not name the order, so it is a candidate only. The earlier court paraphrase of it has been withdrawn as unverifiable.",
+    "where_to_look": "govinfo Statutes at Large vol. 49 p. 375"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether par. 4's labor-settlement machinery (the March 1934 automobile settlement) ended with the code, continued under EO 7076's general extension of agencies to April 1, 1936, or ended by a separate act.",
+    "where_to_look": "Executive orders and NRA records on the Automobile Labor Board, 1935"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "A positive current source at the cutoff, or an express ending. No search established that no current source treats EO 6955 as in force; the formal status is a limited search report only.",
+    "where_to_look": "Current U.S. Code notes to 15 U.S.C. ch. 15; Federal Register disposition tables; later executive orders revoking NRA orders"
+   }
+  ],
+  "id": "EO:6955",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "GPO slip-order printing held (photius, HathiTrust hvd.hl2726, closing tag [No. 6955]); re-read in repair. Operative clauses listed, now including the par. 2 limitation sentence the reviewer found missing.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN with named gap under rule (d): the order only amends the Automobile Manufacturing Code, so it follows the parent code, whose status is unproved. The order resets the code's 'expiration date' to June 16, 1935, but the code clause that says what ends on that date was not found, so rule (b) own-terms expiry cannot be applied.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "After repair every operative clause, including the par. 2 limitation, has a state. All are 'open' on named gaps; none is proved ended or operating. The reviewer supported T3 only because the limitation clause was missing from the inventory; that is now fixed.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Need the official code text (Code No. 17, Art. I and the clause using 'expiration date'), proof of whether the code was extended past June 16, 1935, the 49 Stat. 375 wording, and the fate of the March 1934 labor-settlement machinery. Not retrieved.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held GPO printing is EO 6955 of January 31, 1935.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "THE WHITE HOUSE January 31 , 1935 [No. 6955]",
+    "supports": "original",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "The order approves an application and amends the existing code; it is amendment-only.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "the said Code of Fair Competition for the Automobile Manufacturing Industry be and it is hereby amended as follows",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Par. 1 sets the code's expiration date at June 16, 1935 or an earlier declared end of the emergency.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "The term ' expiration date ' as used herein means June 16 , 1935, or the earliest date prior thereto on which the President shall by proclamation",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Par. 2 requires overtime pay above 48 hours.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "Work by any employe in excess of forty -eight hours in any week shall be paid for at the rate of time and one-half for such overtime",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Par. 3 authorizes agreements on Fall model announcements and shows.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "The members of the industry are requested and authorized to enter into agreements with one another with respect to Fall announcements of new models",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Par. 4 confirms and continues the labor-controversy settlement machinery of March 1934.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "which were established by the government and have been in operation since March 1934 , and which are hereby confirmed and continued",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "The parent code was approved August 26, 1933 under NIRA Title I.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "the Code of Fair Competition for the Automobile Manufacturing Industry duly approved on August 26, 1933",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Lead (transcription; the reviewer read the page directly and confirmed it): the 'expiration date' definition was earlier moved from December 31, 1933 to September 4, 1934 by an order of December 18, 1933.",
+    "location": "W",
+    "pid": "p8",
+    "quote": "The term 'expiration date' as used herein means September 4, 1934, or the earliest date prior thereto",
+    "supports": "ending",
+    "where": "https://www.presidency.ucsb.edu/documents/executive-order-6513-k-amending-code-fair-competition-for-the-automobile-manufacturing"
+   },
+   {
+    "claim": "Candidate only (transcription): EO 7076 of June 15, 1935 recites that the June 14, 1935 joint resolution extended NIRA Title I as amended; it does not name EO 6955.",
+    "location": "W",
+    "pid": "p9",
+    "quote": "extends until April 1, 1936, the provisions of Title I of the National Industrial Recovery Act",
+    "supports": "counterevidence",
+    "where": "https://www.presidency.ucsb.edu/documents/executive-order-7076-extending-the-activities-the-nra"
+   },
+   {
+    "claim": "The current U.S. Code shows the NIRA code sections, 15 U.S.C. 703 to 712, as omitted (reviewer confirmed the page says this). This is context only; it does not name EO 6955 and proves no ending.",
+    "location": "W",
+    "pid": "p11",
+    "quote": "15 U.S. Code § 703 to 712 - Omitted",
+    "supports": "counterevidence",
+    "where": "https://www.law.cornell.edu/uscode/text/15/703"
+   },
+   {
+    "claim": "Par. 2 adds a limitation: the overtime requirement does not authorize work over 48 hours where the code prohibits it.",
+    "location": "H",
+    "pid": "p12",
+    "quote": "quirement shall not be construed to authorize or permit work in excess of forty -eight hours when such work is prohibited under any of the provisions of the code",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Candidate only (transcription, read through a fetch tool that returned the paragraph in segments): EO 7076 generally continued all existing Title I executive orders, and the agencies created under them, until April 1, 1936 so far as consistent with the amended Act, with a proviso that it does not approve or prescribe codes or provide for their enforcement. It does not name EO 6955 or the automobile code, so it neither proves continuation nor an ending of this order; it bears on the extension and labor-machinery gaps.",
+    "location": "W",
+    "pid": "p13",
+    "quote": "to approve or prescribe codes of fair competition, to provide for the enforcement of such codes,",
+    "supports": "counterevidence",
+    "where": "https://www.presidency.ucsb.edu/documents/executive-order-7076-extending-the-activities-the-nra"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld; re-read in the held printing."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld; clause label narrowed to the first two sentences of par. 2."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Upheld."
+   },
+   {
+    "change": "kept",
+    "pid": "p6",
+    "why": "Upheld."
+   },
+   {
+    "change": "kept",
+    "pid": "p7",
+    "why": "Upheld."
+   },
+   {
+    "change": "kept",
+    "pid": "p8",
+    "why": "Upheld as a transcription lead; claim now notes the reviewer read the page directly."
+   },
+   {
+    "change": "kept",
+    "pid": "p9",
+    "why": "Upheld as a candidate; URL corrected to the www hostname that opens."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p10",
+    "why": "The URL failed for the reviewer and it was only a court paraphrase from a search summary; the 49 Stat. 375 wording stays a named gap."
+   },
+   {
+    "change": "fixed",
+    "pid": "p11",
+    "why": "Narrowed to what the page shows (sections 703-712 omitted); the unsupported 'no current source treats EO 6955 as in force' is removed and recorded as a gap; reclassed from ending to context."
+   },
+   {
+    "change": "fixed",
+    "pid": "p12",
+    "why": "New: missed par. 2 limitation sentence, confirmed in the held GPO printing and given its own clause and state."
+   },
+   {
+    "change": "fixed",
+    "pid": "p13",
+    "why": "New: missed EO 7076 general extension to April 1, 1936 and its code proviso, confirmed on the APP page via fetch tool; candidate only because it does not name EO 6955."
+   }
+  ],
+  "searches": [
+   "Read both held government printings and one of the two APP files named in the slice",
+   "Web: automobile code text with 'expiration date' and 'shall continue in effect' (no code text found)",
+   "Web: extension or expiry of the automobile code at June 16, 1935 (EO 7076 found, nothing code-specific)",
+   "Web: 49 Stat. 375 repeal wording (only a court paraphrase found; now withdrawn)",
+   "Fetched APP pages for the August 26, 1933 approval order and the December 18, 1933 amendment; fetched Cornell 15 U.S.C. 703-712",
+   "Web: second search for the code's duration clause (not found)",
+   "Repair: re-read the held photius GPO printing in full (par. 2 limitation sentence confirmed)",
+   "Repair: fetched the APP page for EO 7076 (www hostname); operative paragraph and proviso returned by the fetch tool in segments; EO 6955 and the automobile code not named"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "group": "pre1937",
+ "id": "EO:6955",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T3",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Approval: approves the industry's application and amends the code, effective immediately",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p7"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Par. 1: redefines the code's 'expiration date' in Art. I from February 1, 1935 to June 16, 1935 (or earlier declared end of emergency)",
+    "end": null,
+    "props": [
+     "p3",
+     "p7",
+     "p8"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Par. 2: time and one-half for work over 48 hours a week; inconsistent code provisions modified",
+    "end": null,
+    "props": [
+     "p4",
+     "p7"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Par. 3: members requested and authorized to agree on Fall announcements of new models and Fall automobile shows",
+    "end": null,
+    "props": [
+     "p5",
+     "p7"
+    ],
+    "state": "open"
+   },
+   {
+    "clause": "Par. 4: members will comply with the labor-controversy settlement provisions in operation since March 1934, confirmed and continued",
+    "end": null,
+    "props": [
+     "p6",
+     "p7"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "jobs/app-executive-orders/output/texts/executive-order-6955-amending-executive-order-no-6877-providing-rules-and-regulations-for.txt is routed to EO 6955 but is a different order: it amends EO 6877 on the Wool Textile Code and is dated Feb 1, 1935.",
+   "The slice's type lead classes the order as 'nra_code_approval'; the text is a code amendment, not an original approval.",
+   "jobs/mabillon-held-printings/output/texts/EO_6955.txt has OCR noise in the imprint line ('GOVERNMENT PRINTING OFFICE: t938'); operative words are legible."
+  ],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "The code's own clause that uses 'expiration date' (what stops on that date: the whole code or only some provisions). Without it the June 16, 1935 date cannot be applied as an own-terms expiry of the code and of pars. 2-4.",
+    "where_to_look": "Official text of Code No. 17, NRA Codes of Fair Competition vol. I (GPO), and the amendment at XXI NRA Codes 203; UMN Darrow collection PDFs or HathiTrust"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Whether any instrument after January 31, 1935 extended the automobile code's expiration date past June 16, 1935.",
+    "where_to_look": "NRA Codes of Fair Competition vols. XXI-XXIII amendment lists; executive orders of May-June 1935"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Exact wording of the joint resolution of June 14, 1935 (ch. 246, 49 Stat. 375) on existing codes; it does not name the order, so it is a candidate only.",
+    "where_to_look": "govinfo Statutes at Large vol. 49 p. 375"
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether par. 4's labor-settlement machinery (the March 1934 automobile settlement) ended with the code or by a separate act.",
+    "where_to_look": "Executive orders and NRA records on the Automobile Labor Board, 1935"
+   }
+  ],
+  "id": "EO:6955",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "GPO slip-order printing held (photius, HathiTrust hvd.hl2726, closing tag [No. 6955]); mabillon printing agrees; four operative clauses listed.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN with named gap. The order is amendment-only to the Automobile Manufacturing Code and itself resets the code's 'expiration date' to June 16, 1935, but the code clause that makes that date end the code was not found.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Every clause has a state, but all four are 'open' on the same named gap; none is proved ended or operating.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Need the official code text (Code No. 17, Art. I and duration clause), proof of no extension past June 16, 1935, and the 49 Stat. 375 wording. Likely online in NRA Codes of Fair Competition volumes and govinfo; not retrieved.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The held GPO printing is EO 6955 of January 31, 1935.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "THE WHITE HOUSE January 31 , 1935 [No. 6955]",
+    "supports": "original",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "The order approves an application and amends the existing code; it is amendment-only.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "the said Code of Fair Competition for the Automobile Manufacturing Industry be and it is hereby amended as follows",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Par. 1 sets the code's expiration date at June 16, 1935 or an earlier declared end of the emergency.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "The term ' expiration date ' as used herein means June 16 , 1935, or the earliest date prior thereto on which the President shall by proclamation",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Par. 2 requires overtime pay above 48 hours.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "Work by any employe in excess of forty -eight hours in any week shall be paid for at the rate of time and one-half for such overtime",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Par. 3 authorizes agreements on Fall model announcements and shows.",
+    "location": "H",
+    "pid": "p5",
+    "quote": "The members of the industry are requested and authorized to enter into agreements with one another with respect to Fall announcements of new models",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Par. 4 confirms and continues the labor-controversy settlement machinery of March 1934.",
+    "location": "H",
+    "pid": "p6",
+    "quote": "which were established by the government and have been in operation since March 1934 , and which are hereby confirmed and continued",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "The parent code was approved August 26, 1933 under NIRA Title I.",
+    "location": "H",
+    "pid": "p7",
+    "quote": "the Code of Fair Competition for the Automobile Manufacturing Industry duly approved on August 26, 1933",
+    "supports": "clause",
+    "where": "jobs/photius-gpo-volumes/output/texts/EO_6955.txt"
+   },
+   {
+    "claim": "Lead (transcription, as summarized by a fetch tool, not read directly): the 'expiration date' definition was earlier moved from December 31, 1933 to September 4, 1934 by an order of December 18, 1933.",
+    "location": "W",
+    "pid": "p8",
+    "quote": "The term 'expiration date' as used herein means September 4, 1934, or the earliest date prior thereto",
+    "supports": "ending",
+    "where": "https://www.presidency.ucsb.edu/documents/executive-order-6513-k-amending-code-fair-competition-for-the-automobile-manufacturing"
+   },
+   {
+    "claim": "Candidate only (search-result summary of a transcription): EO 7076 of June 15, 1935 recites that the June 14, 1935 joint resolution extended NIRA Title I as amended; it does not name EO 6955.",
+    "location": "W",
+    "pid": "p9",
+    "quote": "extends until April 1, 1936, the provisions of Title I of the National Industrial Recovery Act",
+    "supports": "counterevidence",
+    "where": "https://presidency.ucsb.edu/documents/executive-order-7076-extending-the-activities-the-nra"
+   },
+   {
+    "claim": "Candidate only (search-result summary of a court opinion's paraphrase, not the statute): the June 14, 1935 resolution repealed the code-approval and enforcement powers.",
+    "location": "W",
+    "pid": "p10",
+    "quote": "all of the provisions of the National Industrial Recovery Act delegating power to the President to approve or prescribe Codes of Fair Competition and providing for the enforcement of such codes were repealed",
+    "supports": "ending",
+    "where": "https://hallapproved.com/us/cases/ca7/1935/6966789/"
+   },
+   {
+    "claim": "Current U.S. Code treats the NIRA code sections as omitted (fetch-tool summary of the page); no current source treats EO 6955 as in force.",
+    "location": "W",
+    "pid": "p11",
+    "quote": "15 U.S. Code § 703 to 712 - Omitted",
+    "supports": "ending",
+    "where": "https://www.law.cornell.edu/uscode/text/15/703"
+   }
+  ],
+  "searches": [
+   "Read both held government printings and one of the two APP files named in the slice",
+   "Web: automobile code text with 'expiration date' and 'shall continue in effect' (no code text found)",
+   "Web: extension or expiry of the automobile code at June 16, 1935 (EO 7076 found, nothing code-specific)",
+   "Web: 49 Stat. 375 repeal wording (only a court paraphrase found)",
+   "Fetched APP pages for the August 26, 1933 approval order and the December 18, 1933 amendment; fetched Cornell 15 U.S.C. 703-712",
+   "Web: second search for the code's duration clause (not found)"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "OPEN is justified under amendment-only rule (d): the parent code's controlling expiration provision and subsequent status remain unproved. The held definition says June 16, 1935 but does not identify what expires. Paragraph 4's continuing machinery also lacks a proved ending. Formal status is upheld only as the limited search report that no express ending was found, not proof that none exists. The basis_rule field should identify rule (d) and the unresolved own-terms-expiry inquiry under rule (b), rather than none.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:6955",
+  "missed_evidence": [
+   "The held GPO printing, paragraph 2, adds: 'This requirement shall not be construed to authorize or permit work in excess of forty-eight hours when such work is prohibited under any of the provisions of the code.' This operative limitation is absent from the clause inventory and lacks its own explicit state, preventing T4.",
+   "The cited EO 7076 transcription, operative paragraph, contains a conditional general extension of existing Title I executive orders and agency activities to April 1, 1936, together with a proviso excluding code approval and enforcement authority. This is material to the extension and labor-machinery gaps, although it does not by itself resolve EO 6955 under the project's rules. Location: https://www.presidency.ucsb.edu/documents/executive-order-7076-extending-the-activities-the-nra ."
+  ],
+  "stop_code_verdict": "confirmed — the first gap concerns the parent code's operative expiration provision. The evidence slice lists held texts of EO 6955, not the parent code; the inspected government printings supply only the amended definition. WEB fits the identified external-source gap.",
+  "suspected_defect": null,
+  "tier_supported": "T3",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The held GPO printing contains the automobile-code title, January 31, 1935 date, and closing number 6955.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held printing approves the application and immediately amends the existing code through the four numbered paragraphs.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "Paragraph 1 expressly substitutes June 16, 1935, subject to an earlier presidential proclamation or congressional joint resolution declaring the emergency ended.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "Paragraph 2 contains the quoted time-and-one-half requirement for work exceeding forty-eight hours weekly.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "Paragraph 3 expressly requests and authorizes agreements concerning Fall passenger-model announcements and Fall automobile shows.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p6",
+    "reason": "Paragraph 4 requires compliance with the labor-settlement provisions operating since March 1934 and expressly confirms and continues them.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "The held printing's preamble confirms the August 26, 1933 approval date and Title I framework.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p8",
+    "reason": "The cited APP page, read directly, dates EO 6513-K December 18, 1933 and prints the change from December 31, 1933 to September 4, 1934. Upheld as a transcription lead only.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p9",
+    "reason": "The cited APP page was accessible with the www hostname. Its June 15, 1935 text confirms the quoted statutory extension and does not name EO 6955. Upheld as a candidate transcription only.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p10",
+    "reason": "The cited hallapproved.com URL failed to open on two attempts; neither the quotation nor its context could be confirmed.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p11",
+    "reason": "The Cornell page confirms that sections 703–712 are omitted. It does not establish the broader assertion that no current source treats EO 6955 as in force, nor provide cutoff-specific proof of that assertion.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 227.9,
+ "start": "T3",
+ "status": "completed",
+ "stop": "WEB",
+ "stop_code_verdict": "confirmed — the first gap concerns the parent code's operative expiration provision. The evidence slice lists held texts of EO 6955, not the parent code; the inspected government printings supply only the amended definition. WEB fits the identified external-source gap.",
+ "tokens": 215102,
+ "units": 121130,
+ "units_producer": 57361,
+ "units_repair": 41093,
+ "units_review": 22675
+}

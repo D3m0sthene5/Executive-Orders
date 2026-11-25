@@ -1,0 +1,423 @@
+{
+ "blind_audit_reads": {
+  "denied_paths_cited": [],
+  "refused_tool_calls": [
+   {
+    "order": "EO:6313",
+    "step": 1,
+    "target": "C:\\Users\\danie\\Projects\\Executive-Orders\\.claude\\worktrees\\kiaer-probe-coordination-dedc17\\research\\readiness\\owner_rulings",
+    "tool": "Grep"
+   }
+  ]
+ },
+ "census_overstated": 3,
+ "claude_side_models": {
+  "claude_reported_usd": 23.34,
+  "side_model_raw_tokens": 4040068
+ },
+ "cost_per_move_units": {
+  "T0->T1": {
+   "band80": [
+    11618,
+    56306
+   ],
+   "units": 31660
+  },
+  "T1->T2": {
+   "band80": [
+    16343,
+    56084
+   ],
+   "units": 33558
+  },
+  "T2->T3": {
+   "band80": [
+    0,
+    28432
+   ],
+   "units": 20524
+  },
+  "T3->T4": {
+   "band80": [
+    0,
+    26923
+   ],
+   "units": 5361
+  },
+  "T4->T5": {
+   "band80": [
+    0,
+    15435
+   ],
+   "units": 318
+  },
+  "fixed_per_order": {
+   "band80": [
+    29522,
+    61988
+   ],
+   "units": 52288
+  }
+ },
+ "estimated_turns": 0,
+ "genuine_review_flag_rate": 0.552,
+ "orders_failed": {},
+ "orders_launched": 29,
+ "orders_scored_with_review": 29,
+ "plants": {
+  "catch_rate_ci95": [
+   0.34,
+   1.0
+  ],
+  "caught": 2,
+  "informative": 2,
+  "missed": 0,
+  "planted": 3
+ },
+ "raw_tokens_total": 6124129,
+ "remaining_work": {
+  "modern|T0": {
+   "expected_reaching_T5_per_pass": null,
+   "expected_stalls_by_move": null,
+   "orders": 8,
+   "units_one_pass_total": 640944,
+   "units_per_pass_median": 80118
+  },
+  "modern|T1": {
+   "expected_reaching_T5_per_pass": 8,
+   "expected_stalls_by_move": {
+    "T1->T2": 69,
+    "T2->T3": 12,
+    "T3->T4": 0,
+    "T4->T5": 15
+   },
+   "orders": 103,
+   "units_one_pass_total": 13404317,
+   "units_per_pass_median": 130139
+  },
+  "modern|T2": {
+   "expected_reaching_T5_per_pass": 918,
+   "expected_stalls_by_move": {
+    "T2->T3": 1400,
+    "T3->T4": 0,
+    "T4->T5": 1814
+   },
+   "orders": 4133,
+   "units_one_pass_total": 418406322,
+   "units_per_pass_median": 101236
+  },
+  "modern|T3": {
+   "expected_reaching_T5_per_pass": 483,
+   "expected_stalls_by_move": {
+    "T3->T4": 0,
+    "T4->T5": 953
+   },
+   "orders": 1436,
+   "units_one_pass_total": null,
+   "units_per_pass_median": null
+  },
+  "modern|T4": {
+   "expected_reaching_T5_per_pass": 115,
+   "expected_stalls_by_move": {
+    "T4->T5": 226
+   },
+   "orders": 341,
+   "units_one_pass_total": 26732354,
+   "units_per_pass_median": 78394
+  },
+  "pre1937|T0": {
+   "expected_reaching_T5_per_pass": null,
+   "expected_stalls_by_move": null,
+   "orders": 62,
+   "units_one_pass_total": 10205789,
+   "units_per_pass_median": 164610
+  },
+  "pre1937|T1": {
+   "expected_reaching_T5_per_pass": 0,
+   "expected_stalls_by_move": {
+    "T1->T2": 2142,
+    "T2->T3": 0,
+    "T3->T4": 0,
+    "T4->T5": 0
+   },
+   "orders": 2142,
+   "units_one_pass_total": 222219648,
+   "units_per_pass_median": 103744
+  },
+  "pre1937|T2": {
+   "expected_reaching_T5_per_pass": 153,
+   "expected_stalls_by_move": {
+    "T2->T3": 0,
+    "T3->T4": 305,
+    "T4->T5": 4553
+   },
+   "orders": 5011,
+   "units_one_pass_total": 397352256,
+   "units_per_pass_median": 79296
+  },
+  "pre1937|T3": {
+   "expected_reaching_T5_per_pass": 15,
+   "expected_stalls_by_move": {
+    "T3->T4": 31,
+    "T4->T5": 458
+   },
+   "orders": 504,
+   "units_one_pass_total": 30090816,
+   "units_per_pass_median": 59704
+  },
+  "pre1937|T4": {
+   "expected_reaching_T5_per_pass": 0,
+   "expected_stalls_by_move": {
+    "T4->T5": 7
+   },
+   "orders": 7,
+   "units_one_pass_total": null,
+   "units_per_pass_median": null
+  }
+ },
+ "schema": "kiaer-report/v2",
+ "settled": {},
+ "stop_codes_marked_wrong": "10/23",
+ "transitions": {
+  "all numbered|T0->T1": {
+   "attempts": 3,
+   "ci95_unweighted": [
+    0.0,
+    0.562
+   ],
+   "ok_after_repair": 0,
+   "ok_first_pass": 0,
+   "rate_weighted": 0.0,
+   "stops": {
+    "NOT_FOUND": 1,
+    "OFFLINE": 1,
+    "REVIEW_REJECTED": 1
+   }
+  },
+  "all numbered|T1->T2": {
+   "attempts": 6,
+   "ci95_unweighted": [
+    0.03,
+    0.564
+   ],
+   "ok_after_repair": 1,
+   "ok_first_pass": 1,
+   "rate_weighted": 0.015,
+   "stops": {
+    "NOT_FOUND": 1,
+    "OFFLINE": 1,
+    "TOOL_DEFECT": 1,
+    "WEB": 2
+   }
+  },
+  "all numbered|T2->T3": {
+   "attempts": 10,
+   "ci95_unweighted": [
+    0.397,
+    0.892
+   ],
+   "ok_after_repair": 8,
+   "ok_first_pass": 7,
+   "rate_weighted": 0.846,
+   "stops": {
+    "REVIEW_REJECTED": 3
+   }
+  },
+  "all numbered|T3->T4": {
+   "attempts": 10,
+   "ci95_unweighted": [
+    0.49,
+    0.943
+   ],
+   "ok_after_repair": 8,
+   "ok_first_pass": 8,
+   "rate_weighted": 0.959,
+   "stops": {
+    "NEEDS_RULING": 1,
+    "WEB": 1
+   }
+  },
+  "all numbered|T4->T5": {
+   "attempts": 11,
+   "ci95_unweighted": [
+    0.152,
+    0.646
+   ],
+   "ok_after_repair": 6,
+   "ok_first_pass": 4,
+   "rate_weighted": 0.146,
+   "stops": {
+    "NEEDS_RULING": 1,
+    "NOT_FOUND": 2,
+    "OFFLINE": 1,
+    "REVIEW_REJECTED": 2,
+    "WEB": 1
+   }
+  },
+  "modern|T0->T1": {
+   "attempts": 1,
+   "ci95_unweighted": [
+    0.0,
+    0.793
+   ],
+   "ok_after_repair": 0,
+   "ok_first_pass": 0,
+   "rate_weighted": 0.0,
+   "stops": {
+    "OFFLINE": 1
+   }
+  },
+  "modern|T1->T2": {
+   "attempts": 3,
+   "ci95_unweighted": [
+    0.061,
+    0.792
+   ],
+   "ok_after_repair": 1,
+   "ok_first_pass": 1,
+   "rate_weighted": 0.333,
+   "stops": {
+    "TOOL_DEFECT": 1,
+    "WEB": 1
+   }
+  },
+  "modern|T2->T3": {
+   "attempts": 7,
+   "ci95_unweighted": [
+    0.25,
+    0.842
+   ],
+   "ok_after_repair": 5,
+   "ok_first_pass": 4,
+   "rate_weighted": 0.661,
+   "stops": {
+    "REVIEW_REJECTED": 3
+   }
+  },
+  "modern|T3->T4": {
+   "attempts": 4,
+   "ci95_unweighted": [
+    0.51,
+    1.0
+   ],
+   "ok_after_repair": 4,
+   "ok_first_pass": 4,
+   "rate_weighted": 1.0,
+   "stops": {}
+  },
+  "modern|T4->T5": {
+   "attempts": 7,
+   "ci95_unweighted": [
+    0.158,
+    0.75
+   ],
+   "ok_after_repair": 5,
+   "ok_first_pass": 3,
+   "rate_weighted": 0.336,
+   "stops": {
+    "NEEDS_RULING": 1,
+    "NOT_FOUND": 1,
+    "REVIEW_REJECTED": 2
+   }
+  },
+  "pre1937|T0->T1": {
+   "attempts": 2,
+   "ci95_unweighted": [
+    0.0,
+    0.658
+   ],
+   "ok_after_repair": 0,
+   "ok_first_pass": 0,
+   "rate_weighted": 0.0,
+   "stops": {
+    "NOT_FOUND": 1,
+    "REVIEW_REJECTED": 1
+   }
+  },
+  "pre1937|T1->T2": {
+   "attempts": 3,
+   "ci95_unweighted": [
+    0.0,
+    0.562
+   ],
+   "ok_after_repair": 0,
+   "ok_first_pass": 0,
+   "rate_weighted": 0.0,
+   "stops": {
+    "NOT_FOUND": 1,
+    "OFFLINE": 1,
+    "WEB": 1
+   }
+  },
+  "pre1937|T2->T3": {
+   "attempts": 3,
+   "ci95_unweighted": [
+    0.438,
+    1.0
+   ],
+   "ok_after_repair": 3,
+   "ok_first_pass": 3,
+   "rate_weighted": 1.0,
+   "stops": {}
+  },
+  "pre1937|T3->T4": {
+   "attempts": 6,
+   "ci95_unweighted": [
+    0.3,
+    0.903
+   ],
+   "ok_after_repair": 4,
+   "ok_first_pass": 4,
+   "rate_weighted": 0.939,
+   "stops": {
+    "NEEDS_RULING": 1,
+    "WEB": 1
+   }
+  },
+  "pre1937|T4->T5": {
+   "attempts": 4,
+   "ci95_unweighted": [
+    0.046,
+    0.699
+   ],
+   "ok_after_repair": 1,
+   "ok_first_pass": 1,
+   "rate_weighted": 0.032,
+   "stops": {
+    "NOT_FOUND": 1,
+    "OFFLINE": 1,
+    "WEB": 1
+   }
+  },
+  "unnumbered|T0->T1": {
+   "attempts": 3,
+   "ci95_unweighted": [
+    0.061,
+    0.792
+   ],
+   "ok_after_repair": 1,
+   "ok_first_pass": 1,
+   "rate_weighted": 0.333,
+   "stops": {
+    "NOT_FOUND": 2
+   }
+  },
+  "unnumbered|T1->T2": {
+   "attempts": 1,
+   "ci95_unweighted": [
+    0.0,
+    0.793
+   ],
+   "ok_after_repair": 0,
+   "ok_first_pass": 0,
+   "rate_weighted": 0.0,
+   "stops": {
+    "WEB": 1
+   }
+  }
+ },
+ "turns_by_outcome": {
+  "measured": 79
+ },
+ "units_total": 3025975
+}

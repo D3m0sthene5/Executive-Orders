@@ -1,0 +1,103 @@
+{
+ "acknowledged_findings": {
+  "F-20261028-4": "Evidence slices are rebuilt from main's current job outputs at draw time; nothing is reused from earlier packets or supplements.",
+  "F-20261029-codex-proquest-census": "Inputs are pinned by sha256 in DRAW.json and CENSUS.json, and the run refuses to start if an input changed since the draw; results record every path and URL read; no scientific hold is removed or promoted.",
+  "F-20261107-haloander-undecided-probe": "The probe measures yield per tier move from its own seeded sample and hands Bentham a transition table; it does not rely on Bentham's undecided rate.",
+  "F-20261110-mommsen-unranked-pools": "Owner-directed probe recorded as a Kean decision; stage 0 is 1 lane, 29 orders, 6M units; the full run starts only after run.py's gate finds a measured projection that fits the 10M cap.",
+  "F-20261110-nalimov-review-v1": "Nothing is filed: every producer result is checked by a second-family reviewer against its cited sources, and no file goes into research/readiness/claims.",
+  "F-20261112-graunt-admissions-checked": "No census admission: the unnumbered cell only researches identities; workers state what a printing holds (text or catalogue entry) and the reviewer checks the source."
+ },
+ "actions": [
+  {
+   "id": "probe.kiaer-tier-census",
+   "lanes": 3,
+   "orders": 235
+  }
+ ],
+ "author": "claude-opus-5-5 (probe kit); revised after review by claude-fable-5-2 (coordinating session)",
+ "configuration": {
+  "coordinator_model": "script (no model)",
+  "draw_seed": 20261118,
+  "frame_sha256": "40636c0c08be8c2ade0f46b25ec3967a2538b415bd09ca0fbcfb80fd4c51d884",
+  "orchestrator": "relay-kiaer",
+  "producer_model": "claude (Claude Code CLI, research profile)",
+  "reviewer_model": "codex (Codex CLI, read-only sandbox, web search)"
+ },
+ "limits": {
+  "chain_budget_units": 10000000,
+  "context_kill_tokens": 400000,
+  "coordinator_units_per_hour": 1,
+  "no_claim_minutes": 60,
+  "per_turn_usd_ceiling": 2,
+  "reviews_per_hour": 60,
+  "spend_per_claim_units": 1000000,
+  "unit_definition": "0.1 x cache reads + 1 x other input + 4 x output (savigny meter.py)"
+ },
+ "limits_enforced_by": {
+  "chain_budget_units": "Relay's engine (bridge/engine.py _claim): before each turn it reserves the larger of 150,000 units and the largest turn yet measured for that provider, counts every in-flight reservation, and starts no turn that would pass the cap. A turn in flight is not interrupted, so the total can pass the cap only by the amount each in-flight turn (at most one per lane) exceeds its reservation; waves are admitted against 95% of the cap. The engine stays at 6,000,000 units until the full run's gate has passed.",
+  "lanes_orders_budget": "python -m kiaer stage0|full refuses to start (wave.verify) unless this plan carries an approving review bound to its hash, DRAW.json is the reviewed frame, no input changed since the draw, and the workers, drawable orders and unit cap asked are within this plan.",
+  "not_enforced_by_code": "spend_per_claim_units, no_claim_minutes, context_kill_tokens, reviews_per_hour and coordinator_units_per_hour are fields of the Savigny supervisor that Augur's format requires. Relay does not run Savigny. The coordinator is a script and uses no model; the probe files no claims; the directing session reads the log every 10 to 15 minutes and stops on the owner's listed stop conditions.",
+  "per_turn_usd_ceiling": "Claude Code --max-budget-usd 2 and --max-turns 40 on every producer and repair turn (bridge/claude.py). Codex review turns have no dollar ceiling: they are bounded by the 900-second turn timeout, medium reasoning effort and the unit cap."
+ },
+ "objective": {
+  "metric": "verified_claims_per_unit",
+  "text": "Reviewer-upheld tier moves per token, and the share of each tier and cost of each move, measured on a seeded stratified sample; no status, count or certification changes"
+ },
+ "premortem": [
+  {
+   "failure": "A producer inflates its tier or the reviewer rubber-stamps it",
+   "guard": "the reviewer sees only result.json (tier, moves and searches removed) and the sources, never the producer's argument; about 12% planted errors measure the catch rate; the first-pass reviewed tier is the primary outcome"
+  },
+  {
+   "failure": "Spend runs past the 10M-unit cap through parallel workers or a runaway turn",
+   "guard": "the engine reserves a high turn cost before each turn and starts none that would pass the cap; waves are admitted only for the orders 95% of the remaining budget can finish at the 80th-percentile cost; Claude turns carry a 2-dollar ceiling; the stage-0 ceiling is lifted only by the full run's gate"
+  },
+  {
+   "failure": "The machine tier census misplaces orders, so cells are mislabeled",
+   "guard": "each worker first states the starting tier it found; moves are scored from the census start tier against the reviewer-supported tier, and the report shows per cell how often the reviewed tier fell below the census start and how often the worker agreed with it"
+  },
+  {
+   "failure": "Workers wander the 200,000-file repository and burn tokens",
+   "guard": "a pre-built evidence slice names the files; the system prompt forbids whole-tree search; Claude turns stop at 40 tool turns"
+  },
+  {
+   "failure": "Blind audit cells leak the ledger status through the slice or the repository",
+   "guard": "blind slices carry no tracker, claim or blocker fields (tested); blind producers, on first and repair turns, are denied reads of the tracker, claim kit, drafts, claims and handoff folders and fetches of the project's GitHub; the ledger status is kept only in STATE.json outside the repository. The Codex CLI cannot deny reads, so the reviewer of an audit order is only instructed not to open the ledger. The audit compares the producer's first-pass conclusion, written before any review, with the ledger and also requires the reviewer to uphold it: a reviewer who ignored the instruction could bias that verdict but cannot change the producer's conclusion. After-repair results are reported separately"
+  },
+  {
+   "failure": "Failed or cut-off orders drop out of the rates and flatter the yield",
+   "guard": "every launched order is scored; an order without both a result and a review counts as no move with its stop reason; an audit agreement needs a ledger status and a conclusion"
+  }
+ ],
+ "review": {
+  "plan_sha256": "",
+  "reviewer": "",
+  "verdict": ""
+ },
+ "smoke_test": {
+  "cell": "C04",
+  "date": "2026-11-18",
+  "estimated_turns": 0,
+  "note": "every turn reported measured usage; one order, costs vary; run before the fixes made after the first plan review, which do not change a non-blind order's prompts",
+  "order": "EO:9703",
+  "producer_model_observed": "claude-fable-5-2 (Claude Code CLI 2.1.326 default; claude-haiku-5-5 for tool summaries)",
+  "raw_tokens": 318823,
+  "result": "PASS",
+  "reviewer_model_observed": "gpt-6-astra (Codex CLI 0.167.0-alpha.3.2 default), reasoning effort medium",
+  "steps": 3,
+  "units": 167712,
+  "units_by_step": {
+   "producer": 64078,
+   "repair": 40033,
+   "review": 63601
+  }
+ },
+ "stage": 1,
+ "stages": {
+  "full_max_orders": 235,
+  "gate": "run.py full() refuses to start unless stage 0 finished at least 10 orders, no stage-0 turn was charged an estimate instead of measured usage, and the projection (80th-percentile cost per cell) fits under the cap after shrinking the cells",
+  "stage0_orders": 29
+ },
+ "wave": "kiaer-tier-probe-stage1",
+ "writes": "Model turns have read-only tools (Claude: Read, Grep, Glob, WebSearch, WebFetch, reads outside the repository blocked; Codex: read-only sandbox). Run state goes to a data directory that Probe refuses to place inside the repository. The only repository write is the report command, which the owner directs to research/kiaer/<run-id>/. Nothing is written to claims, statuses, the census, the codebook or the tracker."
+}

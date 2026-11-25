@@ -1,0 +1,418 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C07",
+ "census_overstated": false,
+ "conclusion": "YES",
+ "conclusion_verdict": "unverifiable",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole operative clause: approves the described design as the official seal of the United States Coast Guard (description as substituted by EO 11319 in 1966)",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4",
+     "p5",
+     "p6",
+     "p7",
+     "p9"
+    ],
+    "state": "operating"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "positive_current_source",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "YES"
+  },
+  "data_errors": [],
+  "gaps": [
+   {
+    "stop_code": "WEB",
+    "what": "The cutoff-date authority line of 33 CFR part 23 (p5), its text (p8) and the version list (p9) were read through a summarising fetch tool; the p9 quote is a row of the tool's table, not raw JSON. The words were not checked against the raw pages, and the reviewer could not open the dated XML.",
+    "where_to_look": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-14/title-33.xml?part=23 read raw (the HTML page https://www.ecfr.gov/on/2026-10-14/title-33/part-23 redirects to unblock.federalregister.gov); or the 2026 annual printing of 33 CFR part 23 on govinfo (revised as of 2026-07-01) when published"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "Candidate weakness, not a stop: part 23's text covers the emblem, ensign and pennant and does not mention the seal, so the authority citation is the only current source found. No current Coast Guard record treating the seal itself as in force was looked for.",
+    "where_to_look": "A current Coast Guard record on the seal, e.g. the Coast Guard heraldry manual (COMDTINST M5200.14 series)"
+   }
+  ],
+  "id": "EO:10707",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "YES on positive current source: the eCFR versioner XML for 33 CFR part 23 dated 2026-10-14 was fetched again in repair and again returned an authority line citing E.O. 10707. The eCFR version list for part 23 shows no change after 2020-09-18, and the 2025 annual CFR printing (confirmed by the reviewer from the official PDF) carries the same line. No ending found in the OFR disposition table.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The order has one operative clause (approval of the seal); state operating. The 1966 amendment replaced only the descriptive paragraph.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "The cutoff-date CFR text was read twice through a summarising fetch tool, not from the raw page; the direct eCFR HTML page redirects to a block page and the reviewer could not open the dated XML. Until the dated authority line is read directly, the current-source quotation is not fully verified.",
+    "stop_code": "WEB",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_10707.txt (22 FR 3211, govinfo FR-1957-05-08 PDF page 1)"
+  },
+  "propositions": [
+   {
+    "claim": "The Federal Register printing of EO 10707 is held and its operative words are legible.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "I hereby approve such seal as the official seal of the United States Coast Guard.",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_10707.txt"
+   },
+   {
+    "claim": "The order makes the seal design part of the order and describes it in heraldic terms; this is recital, not a separate command.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "the design of which accompanies and is hereby made a part of this order, and which is described in heraldic terms as follows",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_10707.txt"
+   },
+   {
+    "claim": "EO 11319 of 1966-12-09 amended EO 10707 by replacing its second (descriptive) paragraph; it did not revoke it.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "Executive Order No. 10707 of May 6,1957, is amended by substituting for the second paragraph of the order the following",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_11319.txt"
+   },
+   {
+    "claim": "The substituted paragraph drops the 1957 sentence that the seal's central device is the Coast Guard emblem and otherwise repeats the description.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "superimposed upon a light blue disk with gold rope rim.",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_11319.txt"
+   },
+   {
+    "claim": "33 CFR part 23 as dated 2026-10-14 in the eCFR versioner XML cites EO 10707 as authority (read through a summarising fetch tool on two separate fetches, not from the raw XML).",
+    "location": "W",
+    "pid": "p5",
+    "quote": "14 U.S.C. 933, 934; E.O. 10707; 3 CFR, 1954-1958 Comp., p. 364.",
+    "supports": "current",
+    "where": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-14/title-33.xml?part=23"
+   },
+   {
+    "claim": "The 2025 annual CFR printing of 33 CFR part 23 carries the same authority line (reviewer confirmed it on printed page 98 of the official PDF).",
+    "location": "W",
+    "pid": "p6",
+    "quote": "14 U.S.C. 933, 934; E.O. 10707; 3 CFR, 1954-1958 Comp., p. 364.",
+    "supports": "current",
+    "where": "https://www.govinfo.gov/content/pkg/CFR-2025-title33-vol1/pdf/CFR-2025-title33-vol1-part23.pdf"
+   },
+   {
+    "claim": "The OFR disposition table entry for EO 10707 lists only an amendment and no revocation or supersession.",
+    "location": "W",
+    "pid": "p7",
+    "quote": "Amended by: EO 11319, December 9, 1966",
+    "supports": "counterevidence",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1957.html"
+   },
+   {
+    "claim": "The text of 33 CFR part 23 dated 2026-10-14, as reported by the fetch tool on a second fetch, regulates the Coast Guard emblem (section 23.10(a)) and does not contain the word seal. The reviewer found the same in the 2025 annual PDF.",
+    "location": "W",
+    "pid": "p8",
+    "quote": "The distinctive emblem of the Coast Guard shall be as follows:",
+    "supports": "counterevidence",
+    "where": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-14/title-33.xml?part=23"
+   },
+   {
+    "claim": "The eCFR version list for 33 CFR part 23, as reported by the fetch tool, shows no section amended after 2020-09-18 and no section removed, so the part as printed in the 2025 annual edition is the part in force on 2026-10-14.",
+    "location": "W",
+    "pid": "p9",
+    "quote": "23.30 | 2020-09-18 | 2020-09-18 | § 23.30 Penalty. | false",
+    "supports": "current",
+    "where": "https://www.ecfr.gov/api/versioner/v1/versions/title-33.json?part=23"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p2",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p4",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "kept",
+    "pid": "p5",
+    "why": "Dated XML fetched again and returned the same authority line; version list shows no change after 2020-09-18. Claim now states it was read through a summarising tool."
+   },
+   {
+    "change": "fixed",
+    "pid": "p6",
+    "why": "Upheld; source pointed to the official PDF the reviewer could open."
+   },
+   {
+    "change": "kept",
+    "pid": "p7",
+    "why": "Upheld by review."
+   },
+   {
+    "change": "fixed",
+    "pid": "p8",
+    "why": "Second fetch of the dated XML returned the emblem sentence at section 23.10(a) and no seal language; claim reworded and section named."
+   },
+   {
+    "change": "fixed",
+    "pid": "p9",
+    "why": "New proposition from a checked source: eCFR version list ties the confirmed 2025 printing to the cutoff date."
+   }
+  ],
+  "searches": [
+   "Read held FR printing of EO 10707 (22 FR 3211)",
+   "Read held FR printing of EO 11319 (31 FR 15629)",
+   "Fetched eCFR 33 CFR part 23 as of 2026-10-14: HTML page redirected to a block page; versioner API XML returned",
+   "Fetched govinfo CFR 2025 title 33 vol. 1 part 23 XML",
+   "Fetched National Archives disposition table for 1957, entry for EO 10707",
+   "Repair: fetched the eCFR versioner XML for 2026-10-14 part 23 again; authority line and emblem sentence returned as before, no occurrence of the word seal reported",
+   "Repair: fetched the eCFR versions list for title 33 part 23; latest amendment 2020-09-18 (section 23.30), no removals",
+   "Repair: fetched https://www.ecfr.gov/on/2026-10-14/title-33/part-23 again; 302 redirect to unblock.federalregister.gov"
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T4"
+ },
+ "group": "modern",
+ "id": "EO:10707",
+ "ledger_status": null,
+ "producer_start": "T2",
+ "reached_claimed": "T4",
+ "reached_final": "T4",
+ "reached_reviewed": "T2",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole operative clause: approves the described design as the official seal of the United States Coast Guard (description as substituted by EO 11319 in 1966)",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4",
+     "p5",
+     "p6",
+     "p7"
+    ],
+    "state": "operating"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "positive_current_source",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "YES"
+  },
+  "data_errors": [],
+  "gaps": [
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Whether a CFR authority citation alone is a sufficient positive current source for the seal clause, when the part's text covers the emblem and not the seal; no current source treating the seal itself as in force was looked for.",
+    "where_to_look": "Project owner ruling; a current Coast Guard record on the seal (e.g. the Coast Guard heraldry manual, COMDTINST M5200.14 series) would close it on the facts"
+   },
+   {
+    "stop_code": "WEB",
+    "what": "33 CFR part 23 and the OFR disposition table were read through a summarising fetch tool; the quoted words were not checked against the raw pages.",
+    "where_to_look": "https://www.ecfr.gov/on/2026-10-14/title-33/part-23 (the direct page redirected to unblock.federalregister.gov) and https://www.archives.gov/federal-register/executive-orders/1957.html"
+   }
+  ],
+  "id": "EO:10707",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "YES on positive current source: 33 CFR part 23 authority line cites E.O. 10707 at the cutoff; no ending found in the OFR disposition table.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "The order has one operative clause (approval of the seal); state operating. The 1966 amendment replaced only the descriptive paragraph.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "The only current source is an authority citation in a CFR part whose text, as read, covers the emblem and flags and does not mention the seal. Rules do not say whether that suffices without a source treating the seal itself as current. CFR text was read through a summarising fetch tool, not directly.",
+    "stop_code": "NEEDS_RULING",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/fr-originals/output/texts/EO_10707.txt (22 FR 3211, govinfo FR-1957-05-08 PDF page 1)"
+  },
+  "propositions": [
+   {
+    "claim": "The Federal Register printing of EO 10707 is held and its operative words are legible.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "I hereby approve such seal as the official seal of the United States Coast Guard.",
+    "supports": "original",
+    "where": "jobs/fr-originals/output/texts/EO_10707.txt"
+   },
+   {
+    "claim": "The order makes the seal design part of the order and describes it in heraldic terms; this is recital, not a separate command.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "the design of which accompanies and is hereby made a part of this order, and which is described in heraldic terms as follows",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_10707.txt"
+   },
+   {
+    "claim": "EO 11319 of 1966-12-09 amended EO 10707 by replacing its second (descriptive) paragraph; it did not revoke it.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "Executive Order No. 10707 of May 6,1957, is amended by substituting for the second paragraph of the order the following",
+    "supports": "counterevidence",
+    "where": "jobs/fr-originals/output/texts/EO_11319.txt"
+   },
+   {
+    "claim": "The substituted paragraph drops the 1957 sentence that the seal's central device is the Coast Guard emblem and otherwise repeats the description.",
+    "location": "H",
+    "pid": "p4",
+    "quote": "superimposed upon a light blue disk with gold rope rim.",
+    "supports": "clause",
+    "where": "jobs/fr-originals/output/texts/EO_11319.txt"
+   },
+   {
+    "claim": "33 CFR part 23 as in force on 2026-10-14 cites EO 10707 as authority.",
+    "location": "W",
+    "pid": "p5",
+    "quote": "14 U.S.C. 933, 934; E.O. 10707; 3 CFR, 1954-1958 Comp., p. 364.",
+    "supports": "current",
+    "where": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-14/title-33.xml?part=23"
+   },
+   {
+    "claim": "The 2025 annual CFR printing of 33 CFR part 23 carries the same authority line.",
+    "location": "W",
+    "pid": "p6",
+    "quote": "14 U.S.C. 933, 934; E.O. 10707; 3 CFR, 1954-1958 Comp., p. 364.",
+    "supports": "current",
+    "where": "https://www.govinfo.gov/content/pkg/CFR-2025-title33-vol1/xml/CFR-2025-title33-vol1-part23.xml"
+   },
+   {
+    "claim": "The OFR disposition table entry for EO 10707 lists only an amendment and no revocation or supersession.",
+    "location": "W",
+    "pid": "p7",
+    "quote": "Amended by: EO 11319, December 9, 1966",
+    "supports": "counterevidence",
+    "where": "https://www.archives.gov/federal-register/executive-orders/1957.html"
+   },
+   {
+    "claim": "The text of 33 CFR part 23, as reported by the fetch tool, regulates the Coast Guard emblem and does not mention the seal.",
+    "location": "W",
+    "pid": "p8",
+    "quote": "The distinctive emblem of the Coast Guard shall be as follows:",
+    "supports": "counterevidence",
+    "where": "https://www.ecfr.gov/api/versioner/v1/full/2026-10-14/title-33.xml?part=23"
+   }
+  ],
+  "searches": [
+   "Read held FR printing of EO 10707 (22 FR 3211)",
+   "Read held FR printing of EO 11319 (31 FR 15629)",
+   "Fetched eCFR 33 CFR part 23 as of 2026-10-14: HTML page redirected to a block page; versioner API XML returned",
+   "Fetched govinfo CFR 2025 title 33 vol. 1 part 23 XML",
+   "Fetched National Archives disposition table for 1957, entry for EO 10707"
+  ],
+  "start_tier_confirmed": "T2",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "YES depends on the unverified cutoff-date citation. The confirmed 2025 citation supports the asserted type of evidence but does not independently establish its currency on October 14, 2026. The limited formal-status finding is consistent with the checked OFR entry. Pending verification, operative status is OPEN: obtain the dated part 23 authority citation or another current source treating EO 10707 as operative.",
+  "conclusion_verdict": "unverifiable",
+  "id": "EO:10707",
+  "missed_evidence": [],
+  "stop_code_verdict": "wrong (WEB fits the unresolved cutoff-source verification). The project rules expressly allow a current CFR citation treating the order as in force; the evidence slice identifies exactly that predicate and reports no post-cutoff change. NEEDS_RULING is not established merely because the regulatory text concerns the emblem. The dated citation must first be verified.",
+  "suspected_defect": null,
+  "tier_supported": "T2",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The named held Federal Register OCR contains the quoted approval sentence, legibly, at 22 FR 3211.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The held original contains the quoted incorporation language and heraldic description within its recital; these define the seal approved by the operative sentence.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p3",
+    "reason": "The held EO 11319 printing expressly substitutes the second paragraph of EO 10707 and is dated December 9, 1966. It contains no revocation.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "Comparison of both held originals confirms that the replacement repeats the description through 'gold rope rim' and omits the sentence identifying the central device as the emblem.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p5",
+    "reason": "The cited cutoff-date XML and the evidence slice's dated HTML page were inaccessible. The finding-aid snippet is only a lead and cannot independently verify the cutoff-date claim.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p6",
+    "reason": "The XML was inaccessible, but the corresponding official annual PDF confirms the exact authority line on printed page 98: https://www.govinfo.gov/content/pkg/CFR-2025-title33-vol1/pdf/CFR-2025-title33-vol1-part23.pdf.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p7",
+    "reason": "The cited National Archives page's EO 10707 entry lists 'Amended by: EO 11319, December 9, 1966' and no revocation or supersession.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p8",
+    "reason": "The cited cutoff-date text could not be retrieved. The 2025 annual PDF corroborates the emblem quotation and absence of seal language in part 23, but cannot verify the specified 2026 version.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 174.2,
+ "start": "T2",
+ "status": "completed",
+ "stop": "NEEDS_RULING",
+ "stop_code_verdict": "wrong (WEB fits the unresolved cutoff-source verification). The project rules expressly allow a current CFR citation treating the order as in force; the evidence slice identifies exactly that predicate and reports no post-cutoff change. NEEDS_RULING is not established merely because the regulatory text concerns the emblem. The dated citation must first be verified.",
+ "tokens": 201908,
+ "units": 111783,
+ "units_producer": 34581,
+ "units_repair": 31863,
+ "units_review": 45339
+}

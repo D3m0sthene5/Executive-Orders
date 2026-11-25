@@ -1,0 +1,312 @@
+{
+ "agrees_with_ledger": null,
+ "cell": "C03",
+ "census_overstated": false,
+ "conclusion": "OPEN",
+ "conclusion_verdict": "upheld",
+ "errors": [],
+ "estimated_turns": 0,
+ "final": {
+  "clauses": [
+   {
+    "clause": "Sole clause: Miss Maude H. Bundy may be appointed to a position in the Government Printing Office without reference to the civil-service rules (one-time permission to a named person).",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Slice title has run-together and split words from OCR: 'eligiblefor', 'posi tion', 'Officewithout'.",
+   "Slice president field is empty; the date 1915-10-14 falls in Woodrow Wilson's term. The held text carries no signature line.",
+   "Held text has an OCR stray period: 'may. be appointed'."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "An accepted original of the order: either the scan of the Civil Service Commission annual report page the index cites (1916 CSR 109), checked against the held text, or the separate slip print.",
+    "where_to_look": "govinfo or HathiTrust scans of the Civil Service Commission annual report for fiscal 1916, page 109; the Monthly Catalog of Government Publications for late 1915 for the slip print (the UNT record https://mocat.library.unt.edu/catalog/250-ch475 was a search lead only and returned HTTP 403 when opened)."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether and when Maude H. Bundy was appointed to a GPO position under this order (performance, rule e), or failing that her date of death.",
+    "where_to_look": "Official Register of the United States 1917 and 1919 (GPO list; digitized at HathiTrust and archive.org); Public Printer annual reports 1915-1916; GPO personnel file at the National Personnel Records Center, St. Louis (offline); D.C. death records."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Any later instrument naming EO 2256; none is held and none was searched for beyond the two web queries listed. The formal status is only the finding that no express ending was found in the evidence examined, not proof that none exists.",
+    "where_to_look": "Later civil-service executive orders and CSC annual reports 1916-1920."
+   }
+  ],
+  "id": "EO:2256",
+  "moves": [
+   {
+    "achieved": false,
+    "from": "T1",
+    "note": "The held text is a plain-text file of 11 lines with no publication header, imprint, page number or page image. Its claimed source (Civil Service Commission annual report, index cite 1916 CSR 109) is not shown by the file itself and the scan was not opened. No accepted original is held, so T2 is not reached. The sole operative clause is listed below from the held text as a lead.",
+    "stop_code": "NOT_FOUND",
+    "to": "T2"
+   },
+   {
+    "achieved": false,
+    "from": "T2",
+    "note": "Blocked by the missing accepted original. The provisional status reading is OPEN with a named gap: a one-time permission to appoint a named person, spent on performance under rule (e), with no source for the appointment or her death.",
+    "stop_code": "NOT_FOUND",
+    "to": "T3"
+   },
+   {
+    "achieved": false,
+    "from": "T3",
+    "note": "Blocked by the missing accepted original. The single clause is provisionally open with the gap named.",
+    "stop_code": "NOT_FOUND",
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Two web searches found no record of Bundy's appointment at GPO or of her death. Official Register volumes and personnel files were not opened.",
+    "stop_code": "NOT_FOUND",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": false,
+   "grade": "transcription_only",
+   "where": "jobs/csc-annual-reports/output/texts/EO_2256.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The order permits the appointment of one named person to a GPO position outside the civil-service rules.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Miss Maude H. Bundy may. be appointed to a position in the Government Printing Office without reference to the civil-service rules.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_2256.txt"
+   },
+   {
+    "claim": "The held text is dated October 14, 1915. The file carries no header, imprint or page marker, so its provenance from a Civil Service Commission annual report is not shown by the file and is not claimed here.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "October 14, 1915.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_2256.txt"
+   },
+   {
+    "claim": "The order was issued on the Public Printer's recommendation, in consideration of her late father's service; the text contains no term, expiry or continuing command.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "the Public Printer recom- mends that an Executive order be issued authorizing her appointment. The Civil Service Commission does not concur in the recommendation.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_2256.txt"
+   }
+  ],
+  "repairs": [
+   {
+    "change": "kept",
+    "pid": "p1",
+    "why": "Upheld by review; quote re-read in the held file."
+   },
+   {
+    "change": "fixed",
+    "pid": "p2",
+    "why": "Narrowed to the date only; the file has no imprint or page marker, so the annual-report provenance claim is dropped and the original is no longer marked accepted."
+   },
+   {
+    "change": "kept",
+    "pid": "p3",
+    "why": "Upheld by review; quote re-read in the held file."
+   },
+   {
+    "change": "withdrawn",
+    "pid": "p4",
+    "why": "The UNT catalog page returned HTTP 403 on a fresh fetch; the listing was never read and would not authenticate the held text anyway. Kept only as a lead in the gaps."
+   }
+  ],
+  "searches": [
+   "Read held file jobs/csc-annual-reports/output/texts/EO_2256.txt (whole, 11 lines); re-read in repair, quotes for p1-p3 confirmed",
+   "Web: \"Maude H. Bundy\" Government Printing Office - only a search-result summary of a Monthly Catalog entry for the order itself",
+   "Web: \"Bundy, Maude H\" Official Register of the United States 1917 Government Printing Office - no listing found; the register volumes were not opened",
+   "Repair: fetched https://mocat.library.unt.edu/catalog/250-ch475 - HTTP 403 Forbidden, page not read"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T1"
+ },
+ "group": "pre1937",
+ "id": "EO:2256",
+ "ledger_status": null,
+ "producer_start": "T1",
+ "reached_claimed": "T4",
+ "reached_final": "T1",
+ "reached_reviewed": "T1",
+ "result": {
+  "clauses": [
+   {
+    "clause": "Sole clause: Miss Maude H. Bundy may be appointed to a position in the Government Printing Office without reference to the civil-service rules (one-time permission to a named person).",
+    "end": null,
+    "props": [
+     "p1",
+     "p2",
+     "p3",
+     "p4"
+    ],
+    "state": "open"
+   }
+  ],
+  "conclusion": {
+   "basis_rule": "none",
+   "first_end": null,
+   "formal_status": "never_expressly_ended_found",
+   "operative_status": "OPEN"
+  },
+  "data_errors": [
+   "Slice title has run-together and split words from OCR: 'eligiblefor', 'posi tion', 'Officewithout'.",
+   "Slice president field is empty; the date 1915-10-14 falls in Woodrow Wilson's term. The held text carries no signature line.",
+   "Held text has an OCR stray period: 'may. be appointed'.",
+   "Slice marks best_held as transcription_only although the held text's kind is a Civil Service Commission annual report printing (a GPO-printed official report); the grading may be too low or needs a ruling."
+  ],
+  "gaps": [
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Whether and when Maude H. Bundy was appointed to a GPO position under this order (performance, rule e), or failing that her date of death.",
+    "where_to_look": "Official Register of the United States 1917 and 1919 (GPO list; digitized at HathiTrust and archive.org); Public Printer annual reports 1915-1916; GPO personnel file at the National Personnel Records Center, St. Louis (offline); D.C. death records."
+   },
+   {
+    "stop_code": "NEEDS_RULING",
+    "what": "Page check of the held OCR against the scan of the Civil Service Commission annual report at the page the index cites (1916 CSR 109), and confirmation that a CSC report printing counts as an accepted original.",
+    "where_to_look": "govinfo GOVPUB-CS1 annual report scans; the mocat record 250-ch475 points to the separate slip print of the order."
+   },
+   {
+    "stop_code": "NOT_FOUND",
+    "what": "Any later instrument naming EO 2256; none is held and none was searched for beyond the two queries below.",
+    "where_to_look": "Later civil-service executive orders and CSC annual reports 1916-1920."
+   }
+  ],
+  "id": "EO:2256",
+  "moves": [
+   {
+    "achieved": true,
+    "from": "T1",
+    "note": "Held text is the Civil Service Commission annual report printing (index cites 1916 CSR 109), a GPO-printed official report; operative words legible. Accepted as official compilation printing, but the project grades it compiled_transcription_lead and the page check against the scan was not done. If the coordinator does not accept CSC report printings, the true tier is T1.",
+    "stop_code": null,
+    "to": "T2"
+   },
+   {
+    "achieved": true,
+    "from": "T2",
+    "note": "OPEN with named gap: one-time permission to appoint a named person; spent on performance, but no source for the appointment (or her death) found.",
+    "stop_code": null,
+    "to": "T3"
+   },
+   {
+    "achieved": true,
+    "from": "T3",
+    "note": "Only one operative clause; its state is open with the gap named.",
+    "stop_code": null,
+    "to": "T4"
+   },
+   {
+    "achieved": false,
+    "from": "T4",
+    "note": "Two web searches found no record of Bundy's appointment at GPO or of her death. Official Register volumes and personnel files not opened.",
+    "stop_code": "NOT_FOUND",
+    "to": "T5"
+   }
+  ],
+  "original": {
+   "accepted": true,
+   "grade": "official_printing",
+   "where": "jobs/csc-annual-reports/output/texts/EO_2256.txt"
+  },
+  "propositions": [
+   {
+    "claim": "The order permits the appointment of one named person to a GPO position outside the civil-service rules.",
+    "location": "H",
+    "pid": "p1",
+    "quote": "Miss Maude H. Bundy may. be appointed to a position in the Government Printing Office without reference to the civil-service rules.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_2256.txt"
+   },
+   {
+    "claim": "The held text is dated October 14, 1915, and comes from a Civil Service Commission annual report printing.",
+    "location": "H",
+    "pid": "p2",
+    "quote": "October 14, 1915.",
+    "supports": "original",
+    "where": "jobs/csc-annual-reports/output/texts/EO_2256.txt"
+   },
+   {
+    "claim": "The order was issued on the Public Printer's recommendation, in consideration of her late father's service; the text contains no term, expiry or continuing command.",
+    "location": "H",
+    "pid": "p3",
+    "quote": "the Public Printer recom- mends that an Executive order be issued authorizing her appointment. The Civil Service Commission does not concur in the recommendation.",
+    "supports": "clause",
+    "where": "jobs/csc-annual-reports/output/texts/EO_2256.txt"
+   },
+   {
+    "claim": "The Monthly Catalog of Government Publications lists the order as a separate print, per a web search result summary; the catalog page itself was not opened and the title is as reported by the search tool.",
+    "location": "W",
+    "pid": "p4",
+    "quote": "Executive order [authorizing appointment of Maude H. Bundy to position in Government Printing Office]",
+    "supports": "original",
+    "where": "https://mocat.library.unt.edu/catalog/250-ch475"
+   }
+  ],
+  "searches": [
+   "Read held file jobs/csc-annual-reports/output/texts/EO_2256.txt (whole, 11 lines)",
+   "Web: \"Maude H. Bundy\" Government Printing Office - only the Monthly Catalog entry for the order itself",
+   "Web: \"Bundy, Maude H\" Official Register of the United States 1917 Government Printing Office - no listing found; the register volumes were not opened"
+  ],
+  "start_tier_confirmed": "T1",
+  "tier_reached": "T4"
+ },
+ "review": {
+  "conclusion_reason": "OPEN is warranted: permission to appoint does not itself perform the appointment, and no source establishes performance under rule (e), death, or an express ending. The named performance gap is appropriate. Formal status is upheld only as the limited finding that no express ending was found in the supplied evidence, not proof that none exists.",
+  "conclusion_verdict": "upheld",
+  "id": "EO:2256",
+  "missed_evidence": [],
+  "stop_code_verdict": "confirmed: NOT_FOUND fits the first gap because neither appointment performance nor death is established in the evidence slice. This confirms the supplied evidence gap, not exhaustion of the proposed sources.",
+  "suspected_defect": "The result promotes the held OCR to accepted=true and official_printing despite the evidence slice's transcription-only classification and its own unresolved scan-check gap. An authenticated official printing has not been demonstrated.",
+  "tier_supported": "T1",
+  "verdicts": [
+   {
+    "pid": "p1",
+    "reason": "The held file contains the quoted sentence permitting Miss Maude H. Bundy's appointment without reference to civil-service rules.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p2",
+    "reason": "The date October 14, 1915 is confirmed. The plain-text file contains no publication header, page image, or imprint authenticating its claimed annual-report provenance; the date quotation cannot establish an accepted original.",
+    "verdict": "unverifiable"
+   },
+   {
+    "pid": "p3",
+    "reason": "The complete held text confirms the Public Printer's recommendation in consideration of her late father's service and the Commission's nonconcurrence. It contains appointment permission but no express expiry, term, or continuing command.",
+    "verdict": "upheld"
+   },
+   {
+    "pid": "p4",
+    "reason": "Opening the cited UNT catalog URL returned an accessibility error. Neither the catalog quotation nor the reported search summary could be independently confirmed; a catalog listing would not itself authenticate the held OCR.",
+    "verdict": "unverifiable"
+   }
+  ]
+ },
+ "seconds": 94.3,
+ "start": "T1",
+ "status": "completed",
+ "stop": "NOT_FOUND",
+ "stop_code_verdict": "confirmed: NOT_FOUND fits the first gap because neither appointment performance nor death is established in the evidence slice. This confirms the supplied evidence gap, not exhaustion of the proposed sources.",
+ "tokens": 99151,
+ "units": 59627,
+ "units_producer": 27398,
+ "units_repair": 22076,
+ "units_review": 10153
+}
