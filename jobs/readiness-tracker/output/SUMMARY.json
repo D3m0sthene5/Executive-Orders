@@ -1,7 +1,7 @@
 {
   "orders_total": 15003,
   "orders_with_provisional_status": 3792,
-  "ready_for_human_review": 1251,
+  "ready_for_human_review": 1295,
   "status_contested": 0,
   "claims_by_schema": {
     "eo-lifecycle-claim/v2": 184,
@@ -13,21 +13,23 @@
   },
   "formal_revocation_after_earlier_cessation": 33,
   "ready_by_tier": {
-    "complete_claim": 1251
+    "complete_claim": 1295
   },
   "ready_by_text_evidence_tier": {
-    "original_supported": 725,
-    "transcription_dependent": 526
+    "original_supported": 745,
+    "transcription_dependent": 550
   },
   "original_replacement_obligations": 883,
   "quotation_recheck_obligations": 883,
   "human_verified": "not counted here; see the Stage 19 tracker",
   "opus_media_not_applicable": [
     "EO:10104",
+    "EO:10111",
     "EO:10253",
     "EO:10307",
     "EO:10347",
     "EO:10352",
+    "EO:10485",
     "EO:10488",
     "EO:10552",
     "EO:10718",
@@ -38,10 +40,12 @@
     "EO:10870",
     "EO:10967",
     "EO:10978",
+    "EO:10982",
     "EO:11129",
     "EO:11141",
     "EO:11219",
     "EO:11228",
+    "EO:11295",
     "EO:11302",
     "EO:11396",
     "EO:11423",
@@ -55,13 +59,17 @@
     "EO:11758",
     "EO:11830",
     "EO:11850",
+    "EO:11935",
     "EO:11961",
     "EO:12024",
     "EO:12046",
     "EO:12073",
     "EO:12081",
+    "EO:12101",
+    "EO:12109",
     "EO:12112",
     "EO:12114",
+    "EO:12318",
     "EO:12344",
     "EO:12391",
     "EO:12403",
@@ -76,6 +84,7 @@
     "EO:12568",
     "EO:12598",
     "EO:12626",
+    "EO:12631",
     "EO:12638",
     "EO:12641",
     "EO:12642"
@@ -98,15 +107,15 @@
       "provisional": 17
     },
     "clause_inventory": {
-      "done": 1493,
+      "done": 1539,
       "applicable": 3792
     },
     "ending_or_current_basis": {
-      "done": 1283,
+      "done": 1329,
       "applicable": 3792
     },
     "savings_residuals": {
-      "done": 1480,
+      "done": 1526,
       "applicable": 3792
     },
     "counterevidence": {
@@ -119,7 +128,7 @@
     },
     "opus_media": {
       "done": 125,
-      "applicable": 788
+      "applicable": 779
     }
   },
   "decided_by_steps_done": {
@@ -128,19 +137,19 @@
     "2/6": 579,
     "2/7": 55,
     "2/8": 3,
-    "3/6": 757,
-    "3/7": 416,
+    "3/6": 722,
+    "3/7": 408,
     "3/8": 32,
     "4/6": 28,
     "4/7": 57,
-    "4/8": 156,
+    "4/8": 153,
     "5/6": 198,
     "5/8": 21,
-    "6/6": 1218,
-    "6/7": 11,
+    "6/6": 1260,
+    "6/7": 12,
     "6/8": 1,
-    "7/7": 29,
-    "7/8": 8,
+    "7/7": 31,
+    "7/8": 9,
     "8/8": 5
   },
   "orders_blocked_by": {
@@ -156,12 +165,11 @@
     "OPUS_MEDIA_REFETCH_NEEDED": 431,
     "CURRENT_BASIS_UNPROVED": 298,
     "FIRST_END_UNRESOLVED": 184,
-    "OPUS_MEDIA_NONE_CITED": 161,
+    "OPUS_MEDIA_NONE_CITED": 152,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
     "CLAIM_INCOMPLETE": 82,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "CLAIM_CHECK_FAILED": 47,
-    "CLAIM_NOT_YET_CHECKED": 46,
     "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 44,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 24,
@@ -179,14 +187,13 @@
     "ONLY_COMPILED_TRANSCRIPTION_FOUND": 212,
     "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 211,
     "FIRST_END_UNRESOLVED": 184,
-    "OPUS_MEDIA_NONE_CITED": 161,
+    "OPUS_MEDIA_NONE_CITED": 152,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
     "NO_OFFICIAL_SOURCE_LOCATED": 122,
     "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 98,
     "CLAIM_INCOMPLETE": 82,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "CLAIM_CHECK_FAILED": 47,
-    "CLAIM_NOT_YET_CHECKED": 46,
     "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 44,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 24,
@@ -219,12 +226,6 @@
       "kind": "machine_job",
       "orders_unblocked": 431,
       "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
-    },
-    {
-      "action": "Run claim-checker on the newest claims (it reruns on every claims change and daily)",
-      "kind": "machine_job",
-      "orders_unblocked": 46,
-      "blocker": "CLAIM_NOT_YET_CHECKED"
     },
     {
       "action": "Retrieve shared source EO::4314",
@@ -323,7 +324,7 @@
     "newly_admitted_EOs": 0,
     "separate_from_14972_census": true
   },
-  "generation_id": "45560499112-1:a54a7e2b5806e511ebd2f50852c4e65f893f1e37fa0f91061c0a32ca7871dcfc",
+  "generation_id": "45562844393-1:19fdbce1a407fcbf253ea9bc2c8e35b83f6b7370632c7fefc71fd501206e43b4",
   "inputs": {
     "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
     "decided": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
@@ -379,7 +380,7 @@
       "lachmann working-text confirmations (provisional text step only, never an original)": 2359,
       "opus-media-match status": 1155,
       "source-ladder": 1097,
-      "claim-checker": 1604,
+      "claim-checker": 1626,
       "machine later-source search": 6938
     }
   }

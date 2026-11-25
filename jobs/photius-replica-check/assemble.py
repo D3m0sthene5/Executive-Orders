@@ -36,8 +36,12 @@ WAVES = [
     {"name": "photius-lane4-2026-11-06", "candidates": REPO / "jobs" / JOB / "work/CANDIDATES.csv",
      "readers": [PK], "adjudication": [ADJ], "seed": SEED},
     {"name": "photius-peiresc-2026-11-25", "candidates": REPO / "research/excavator/photius-replica-peiresc/CANDIDATES.csv",
-     "readers": [REPO / "research/excavator/photius-replica-peiresc/packets", REPO / "research/excavator/photius-replica-peiresc/probe"],
-     "adjudication": [REPO / "research/excavator/photius-replica-peiresc/adjudication"], "seed": 20261125},
+     "readers": [REPO / "research/excavator/photius-replica-peiresc/packets", REPO / "research/excavator/photius-replica-peiresc/probe",
+                 REPO / "research/excavator/photius-replica-peiresc/reread"],
+     "adjudication": [REPO / "research/excavator/photius-replica-peiresc/adjudication"], "seed": 20261125,
+     # PROMPT.md "When you must look at the page": a pass with text-only evidence on an order whose machine read
+     # found no number or no exact date, or whose text is unusable, is not accepted.
+     "require_image_when_weak": True},
 ]
 
 
@@ -77,6 +81,12 @@ def main(argv=None):
         for root in wave["adjudication"]:
             if root.exists():
                 adjud.update(read_results(root))
+        if wave.get("require_image_when_weak"):
+            for iid, r in list(readers.items()):
+                c = cands.get(iid)
+                if (c and r.get("verdict") == "pass" and r.get("evidence", "text") == "text"
+                        and (c.get("number_found") == "no" or c.get("date_exact") == "no" or c.get("text_usable") == "no")):
+                    readers[iid] = dict(r, verdict="unsure", reason="text-only pass where the brief requires the page image; " + r.get("reason", ""))
         wave_rows, wave_queue = assemble_wave(cands, readers, adjud, random.Random(wave["seed"]))
         for r in wave_rows:
             if r["reader_verdict"] or r["instrument_id"] not in by_id:
