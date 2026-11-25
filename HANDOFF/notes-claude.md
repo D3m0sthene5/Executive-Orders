@@ -1,3 +1,30 @@
+## 2026-11-25 ET, evening (Claude: Baldus wave finished; Baldus-2 board corrections; status adoption)
+
+**Filed today in Baldus.** Both blind Opus arms upheld every claim below, and both caught every planted control. These are AI reviews; the human-certified count stays at 0.
+- 52 YES claims (y01-y19; the forecast was 44).
+- 2 NO claims, EO 7565 and 13322 (the forecast was 1).
+- 9 undecided orders adopted as NO by the owner (upool1; D-20261125-adopt-upool1). The decided count went from 3,792 to 3,801.
+- Baldus-2 (signed by the owner; Augur PASS): 11 NMB emergency-board corrections adopted under D-20261125-auto-adopt-replacements (m01 6, m02 4, m03 1; the forecast was 14.7). The report spans became citable through excerpt declarations made with `jobs/claim-kit/source_supplement.py` (a DECL.json in each batch folder).
+
+**Why packets kept going stale (read this before the next wave):**
+- Every packet's prior research pins each file under research/readiness/owner_rulings/. One new ruling file therefore invalidates every packet in flight. Record decisions in Kean (jobs/kean) without a ruling file where possible, and write ruling files only between waves.
+- jobs/claim-kit/BATCH.md is a Valla protocol pin. The owner merged PR #342 mid-wave, and that invalidated every packet prepared before it.
+- A completion's receipts/ folder copies repo files that name many orders (SOURCE_AUDIT_HOLDS.jsonl, MANSFIELD_AUDIT.json). Finishing one batch can therefore invalidate other packets in flight. prior_research.py still binds receipts/ files on purpose (test_completion_folder_other_files_still_bind).
+- The recovery that worked has four steps: re-prepare the packet, carry the sheets over (refreshing dossier_sha256), apply, and compare the claims. If the claims are byte-identical, or differ only in claim_kit.dossier_sha256, reuse the reviews (owner standing rule, D-20261125-reuse-identical-reviews rev 1). The scripts are in /home/claude/baldus-scr/tools/: reapply.sh, remap_reviews.py, remap_finish.sh, reuse_finish.sh and current.sh. current.sh checks whether a packet is still current without writing anything.
+
+**Other findings:**
+- F-20261125-pin-text-hash-zero: the owner approved pinning text_sha256 after the fact. The pins cleared 0 of 57 blocked orders, so I reverted them. The lever that remains is 75 references to fr-originals/data/full_run/texts that no record names.
+- CI `bounded-offline-pilot` fails on main with "pilot claim changed: EO:13101". jobs/valla/pilot.py freezes a sample of claims, and today's Bracton-13 adoption replaced the claim for EO 13101. Fixing it needs an owner choice: re-freeze the sample, or exempt adopted replacements.
+- In y16, arm A rejected EO 13755, 13823 and 13848 on conventions no ruling covers. One is a revocation that took effect on signing but was recorded as still operative. The other is a one-time deadline whose performance is unknown being closed as operative. Arm B upheld all three. An owner ruling would settle the question.
+- In y18 and y19, reviewers caught a defect repeated across the Russia orders. The claims say "the national emergency it declares" for orders that declared none, and they leave out 22 U.S.C. 10802(d).
+
+**Not done:**
+- u06 and u07 undecided status review.
+- EO 14006 re-prepare.
+- y13: EO 13438 and 13461 (their short quotes could not be verified).
+- y15: EO 13620 and 13685 (their continuation notices are now in the supplement).
+- y20 and y21 filed nothing.
+
 ## 2026-11-25 ET, morning (Claude: Bracton wave, lean two-arm trial, Olney board route, Gilbreth cost probe)
 
 **Filed:** 8 canonical claims from the lean trial (arm 0: EO 11990, 12432, 12648, 12985, 13613; arm 1: EO 12908, 12261, 12423), each upheld by both blind Opus arms. **Replacement proposals awaiting owner adoption (A-20261125-2):** 13, in research/excavator/claude-bracton-2026-11-25/{c09-refresh,c10-refresh2,o0-refresh,o1-refresh,p02}/REPLACEMENT_PROPOSAL.jsonl. Every planted control was caught by both arms. Human-certified stays 0.
