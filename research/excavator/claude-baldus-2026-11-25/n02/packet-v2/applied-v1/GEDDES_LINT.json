@@ -1,0 +1,79 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-baldus-2026-11-25/n02/packet-v2/PACKET.json",
+  "seconds": 14.378,
+  "files_read": 65349,
+  "file_reads": 130789,
+  "packet_fingerprint": "8c993907b9b6e7e210dc8210aeab788134a8e9c098e693c6a0592e2fe97e3be3",
+  "claims_checked": 2,
+  "defect_flags": 0,
+  "coverage_gaps": 7,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:11434",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.operative_clauses[1].judgment_reason",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.operative_clauses[3].judgment_reason",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "de0e8dad65bca101efabc45ab817fe149da37feb",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:13322",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.operative_clauses[15].judgment_reason",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.operative_clauses[15].judgment_reason",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "unclassified_instrument_mention",
+          "scope_id": "EO:13322#sec8",
+          "actor": "EO:13291",
+          "detail": "Acting versus prior-parent context requires source examination."
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "de0e8dad65bca101efabc45ab817fe149da37feb",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
