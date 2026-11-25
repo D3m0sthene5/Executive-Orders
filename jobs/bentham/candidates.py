@@ -160,7 +160,9 @@ def acquisition_specs(shared_rows):
     for b, clears, eras, delay, why in (
         ("ORIGINAL_FOUND_NEEDS_PAGE_CHECK", {"ORIGINAL_FOUND_NEEDS_PAGE_CHECK", "ONLY_COMPILED_TRANSCRIPTION_FOUND"},
          ("fr", "prefr"), 2, "estimate: agent page check of a located original, then tracker re-run"),
-        ("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK", {"ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK", "NO_OFFICIAL_SOURCE_LOCATED"},
+        # A replica that passes the Photius page check credits the whole original-text step (D-20261106-photius-p4),
+        # so it clears every original-text blocker the order carries, not only the missing-source one.
+        ("ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK", set(ORIGINAL_BLOCKERS),
          ("fr", "prefr"), 3, "estimate: agent page comparison against the ProQuest scan under the 2026-10-21 owner rulings"),
         ("ONLY_COMPILED_TRANSCRIPTION_FOUND", {"ONLY_COMPILED_TRANSCRIPTION_FOUND", "NO_OFFICIAL_SOURCE_LOCATED"},
          ("fr",), 3, "estimate: GitHub Actions fetch job (fr-originals route) and tracker re-run; era fr only because the "
@@ -327,7 +329,8 @@ def build(repo, write_ids=True):
             "id": "acquire." + re.sub(r"[^A-Za-z0-9_.]+", "_", key).strip("_"),
             "kind": "acquisition",
             "description": r["action"] + (" (tracker reach %d includes undecided orders, which unlock nothing until they have a provisional status)" % r["orders_reach"]),
-            "orders": 0, "rate_key": "filed_per_attempt.correction",
+            # An agent acquisition works on the orders it is assigned (cost_units); a machine one assigns no agent work.
+            "orders": 0 if machine else sum(by_group.values()), "rate_key": "filed_per_attempt.correction",
             "cost_key": None if machine else "production.per_attempt", "cost_override_usd": 0 if machine else None,
             "cost_units": None if machine else sum(by_group.values()),
             "unlocks": unlocks, "overlaps_with": ["acquire." + re.sub(r"[^A-Za-z0-9_.]+", "_", k).strip("_") for k in overlaps],
