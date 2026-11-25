@@ -1,0 +1,78 @@
+{
+ "wave": "bracton-2026-11-25",
+ "author": "claude-opus-5-5",
+ "stage": 2,
+ "objective": {
+  "metric": "filed_dossiers_per_unit",
+  "text": "Close the single open tracker step of orders that already carry a filed claim (Bentham rank 8, production.one_step_away, 219 orders; mostly an unresolved first-end date) and recover the custody-stranded and stale-working-text orders (ranks 6-7), by complete new claims from held sources or precise blocks, raising orders ready for human review. Scripted Claude coordination: four producer lanes in this cloud session and four in a Claude Code session on the owner's PC, on disjoint packets, one shared review and filing path; one measurement probe (Gilbreth) records per-call usage, per-step time and read sizes so later waves can be made cheaper."
+ },
+ "actions": [
+  {
+   "id": "recovery.working_text_stale",
+   "orders": 2,
+   "lanes": 1
+  },
+  {
+   "id": "recovery.custody_stranded",
+   "orders": 5,
+   "lanes": 1
+  },
+  {
+   "id": "production.one_step_away",
+   "orders": 219,
+   "lanes": 8
+  }
+ ],
+ "configuration": {
+  "orchestrator": "claude-scripted",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "claude-sonnet-5-5"
+ },
+ "limits": {
+  "chain_budget_units": 200000000,
+  "spend_per_claim_units": 3000000,
+  "no_claim_minutes": 60,
+  "context_kill_tokens": 150000,
+  "reviews_per_hour": 12,
+  "coordinator_units_per_hour": 3000000
+ },
+ "premortem": [
+  {
+   "failure": "Producer lanes plus kit apply and batch-check overload the 2-CPU cloud container or the two hosts diverge",
+   "guard": "at most 4 lanes on each host; the PC lanes work in their own git worktree on disjoint packets prepared there, and hand back only their packet folders by branch; the cloud coordinator alone runs review, reveal and filing on main"
+  },
+  {
+   "failure": "A correction copies the old claim's unsupported sentences, so reviewers uphold a claim that repeats a defect",
+   "guard": "the correction route requires a complete new claim checked against held bytes; two blind Opus arms review every submission and planted controls in every review set; a claim files only if both arms uphold"
+  },
+  {
+   "failure": "Spend runs past the cap because first-end research is open-ended",
+   "guard": "block-at-once rule for any source not held; Bentham gate after every batch with stop on STOP; coordinator ledger stops new launches when measured spend plus the next step forecast would pass 150 USD"
+  },
+  {
+   "failure": "Lanes collide on orders or files",
+   "guard": "each packet's ids are disjoint, reserved under the wave's claim-kit agent name through kit.py's lock guard, and each worker writes only inside its own packet folder and scratch folder"
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261118-kiaer-stopped-at-review": "Every guard names code the coordinator runs and the owner can open: prep.sh (kit.py prepare with dispatch check, cruden lookups, Geddes views), kit apply and batch-check, review_prep.py controls, finish_pair.py; the budget is sized from Papinian and Bartolus measured per-order costs, not a guess.",
+  "F-20261112-lind-stage0-diagnosis": "No undecided orders in this wave; every submission passes the actual claim checker inside batch-check before any review session, and custody is checked at prepare (dispatch) and again by batch-check.",
+  "F-20261112-lind-stage0": "Not the undecided route; custody of ending sources is settled at prepare and batch-check before review; coordination is scripted (prep.sh, render_producer.py, review_prep.py, finish_pair.py) and the coordinator reads only handbacks and failures.",
+  "F-20261110-mommsen-unranked-pools": "Only Bentham-ranked actions (ranks 6, 7, 8), taken in rank order; claim-kit admission refuses any order outside the named action; the Bentham gate runs after every batch and STOP ends the wave.",
+  "F-20261108-cujas-photius-recheck": "The producer brief requires reconciling every held FR 'Revoked by' or 'Superseded by' note; corrections replace own claims under agent claude; jobs/** and the rule folders are checked out before prepare.",
+  "F-20261107-haloander-undecided-probe": "No undecided stratum: every order already has an adopted provisional status and a filed claim, and the rate is Bentham's measured correction rate (53 of 83).",
+  "F-20261104-sol-runtime-economy-rejected": "Packets, applied versions, review receipts and the Gilbreth probe's raw measurements are kept as written and committed; nothing is sealed from a summary.",
+  "F-20261104-5": "A source held only as a hash is a block at batch-check under the brief; YES corrections need a held current-law predicate; NEA continuation notices and EO 13286 are now held.",
+  "F-20261104-2": "Recovery.custody_stranded orders get a new prepare for exactly those ids, custody preflight runs at prepare, and every claim gets a fresh two-arm review; no reuse of old review receipts.",
+  "F-20261103-bacon-recovery": "All artifacts are written to the wave folder in the repository and committed by PR at each batch end, not kept in chat or local-only bundles.",
+  "F-20261029-codex-proquest-census": "Producers work from the kit's pinned held bytes and effective versions; any held order or block is preserved as written, and blocks name the exact missing source.",
+  "F-20261028-4": "Every packet is prepared fresh from the current claim kit on main at wave start.",
+  "F-20261018-7": "Producers fetch no new hosts; they work only from held texts in each dossier, and the forecast uses Bentham's measured rates."
+ },
+ "review": {
+  "reviewer": "owner (Danny), AskUserQuestion answer 2026-11-25: 'Approve, $150 cap' for plan hash e8c1f67f...3c8e2",
+  "verdict": "approve",
+  "plan_sha256": "e8c1f67f5c9b0f21a0e38d9af3533b4d019d6fee3f89d184646b64ee6a93c8e2"
+ },
+ "budget_usd_cap": 150
+}
