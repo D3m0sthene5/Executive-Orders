@@ -90,7 +90,7 @@
     "EO:12642"
   ],
   "text_step_provisional_working_text": 284,
-  "text_step_from_checked_replica": 1985,
+  "text_step_from_checked_replica": 4052,
   "working_text_confirmations_counting": 808,
   "rejected_working_text_confirmations": {
     "grade_not_a_working_text_grade": 2,
@@ -102,7 +102,7 @@
       "applicable": 3792
     },
     "original_text": {
-      "done": 3555,
+      "done": 3766,
       "applicable": 3792,
       "provisional": 17
     },
@@ -132,14 +132,14 @@
     }
   },
   "decided_by_steps_done": {
-    "1/6": 214,
-    "1/7": 4,
-    "2/6": 579,
-    "2/7": 55,
-    "2/8": 3,
+    "1/6": 7,
+    "1/7": 1,
+    "2/6": 786,
+    "2/7": 58,
+    "2/8": 2,
     "3/6": 722,
     "3/7": 408,
-    "3/8": 32,
+    "3/8": 33,
     "4/6": 28,
     "4/7": 57,
     "4/8": 153,
@@ -156,24 +156,24 @@
     "NO_PROVISIONAL_STATUS": 11211,
     "NO_CLAUSE_INVENTORY": 2167,
     "SAVINGS_RESIDUALS_NOT_CLOSED": 2167,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 2151,
-    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 2084,
     "FIRST_END_UNPROVED": 1869,
-    "NO_OFFICIAL_SOURCE_LOCATED": 1540,
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 721,
-    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 690,
     "OPUS_MEDIA_REFETCH_NEEDED": 431,
     "CURRENT_BASIS_UNPROVED": 298,
     "FIRST_END_UNRESOLVED": 184,
     "OPUS_MEDIA_NONE_CITED": 152,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
+    "NO_OFFICIAL_SOURCE_LOCATED": 126,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 93,
     "CLAIM_INCOMPLETE": 82,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "CLAIM_CHECK_FAILED": 47,
     "WORKING_TEXT_REVIEW_OR_DISCLOSURE_REQUIRED": 44,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 37,
     "QUARANTINED_RELATIONSHIP_CONFLICT": 36,
     "SHARED_SOURCE_NOT_RETRIEVED": 24,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
+    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 17,
     "OPEN_SOURCE_AUDIT": 6,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1
   },
@@ -184,13 +184,9 @@
     "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE": 721,
     "OPUS_MEDIA_REFETCH_NEEDED": 431,
     "CURRENT_BASIS_UNPROVED": 298,
-    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 212,
-    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 211,
     "FIRST_END_UNRESOLVED": 184,
     "OPUS_MEDIA_NONE_CITED": 152,
     "MACHINE_SEARCH_FOUND_CONTRARY_LEAD": 139,
-    "NO_OFFICIAL_SOURCE_LOCATED": 122,
-    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 98,
     "CLAIM_INCOMPLETE": 82,
     "OPUS_MEDIA_PARTLY_RESOLVED": 52,
     "CLAIM_CHECK_FAILED": 47,
@@ -199,33 +195,37 @@
     "SHARED_SOURCE_NOT_RETRIEVED": 24,
     "OPUS_MEDIA_ORIGINAL_NOT_KEPT": 18,
     "OPEN_SOURCE_AUDIT": 6,
+    "ORIGINAL_FOUND_NEEDS_PAGE_CHECK": 5,
+    "ONLY_COMPILED_TRANSCRIPTION_FOUND": 4,
+    "NO_OFFICIAL_SOURCE_LOCATED": 4,
     "OPUS_MEDIA_MATCH_AMBIGUOUS": 1,
-    "NO_PROVISIONAL_STATUS": 0
+    "NO_PROVISIONAL_STATUS": 0,
+    "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK": 0
   },
   "shared_unlocks": [
-    {
-      "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
-      "kind": "machine_job",
-      "orders_unblocked": 2151,
-      "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
-    },
-    {
-      "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held",
-      "kind": "agent_check",
-      "orders_unblocked": 2084,
-      "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
-    },
-    {
-      "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
-      "kind": "agent_check",
-      "orders_unblocked": 690,
-      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
-    },
     {
       "action": "Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl",
       "kind": "machine_job",
       "orders_unblocked": 431,
       "blocker": "OPUS_MEDIA_REFETCH_NEEDED"
+    },
+    {
+      "action": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy",
+      "kind": "machine_job",
+      "orders_unblocked": 93,
+      "blocker": "ONLY_COMPILED_TRANSCRIPTION_FOUND"
+    },
+    {
+      "action": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence",
+      "kind": "agent_check",
+      "orders_unblocked": 37,
+      "blocker": "ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+    },
+    {
+      "action": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held",
+      "kind": "agent_check",
+      "orders_unblocked": 17,
+      "blocker": "ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
     },
     {
       "action": "Retrieve shared source EO::4314",
@@ -324,7 +324,7 @@
     "newly_admitted_EOs": 0,
     "separate_from_14972_census": true
   },
-  "generation_id": "45562844393-1:19fdbce1a407fcbf253ea9bc2c8e35b83f6b7370632c7fefc71fd501206e43b4",
+  "generation_id": "45569504028-1:f17851929931feb8f2e2e21e15d4c59ec53df42fea09b7cf6affaf272bea631f",
   "inputs": {
     "universe": "research/stage15/CENSUS/IDENTITY_LAYER_PROJECTION_14972.csv",
     "decided": "research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv",
@@ -374,7 +374,7 @@
       "numbered-early-orders (lead only, never counted as the original)": 184,
       "wikisource-texts (lead only, never counted as the original)": 1639,
       "csc-annual-reports (lead only, never counted as the original)": 798,
-      "photius-replica-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent)": 2574,
+      "photius-replica-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent)": 4648,
       "montfaucon-page-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent)": 0,
       "pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade)": 4841,
       "lachmann working-text confirmations (provisional text step only, never an original)": 2359,
