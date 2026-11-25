@@ -145,6 +145,8 @@ J = {
     "cl_summary": "jobs/current-law/output/SUMMARY.json",
     "cl_conflicts": "jobs/current-law/output/POSSIBLE_CONFLICTS.csv",
     "cl_status": "jobs/current-law/output/STATUS.json",
+    # Panizzi (jobs/ofr-catalog-search): per-order record of what the OFR catalog holds. Optional.
+    "ofr_search_records": "jobs/ofr-catalog-search/output/SEARCH_RECORDS.csv",
 }
 
 # Owner ruling of 2026-10-31 (extends the 2026-10-21 transcription-as-text ruling): a standalone check that confirms an
@@ -455,6 +457,55 @@ def load_machine_search(root, problems):
             "texts": le.get("text_documents_scanned") or 0}
 
 
+# Kean decision D-20261125-ofr-catalog-scope. The OFR catalog (federalregister.gov API v1, as read by later-events) begins
+# at EO 7532 of 1937-01-08. An order numbered below that is outside its coverage: the catalog cannot have an entry, so
+# "searched, none found" says nothing about later events. The catalog half of the search counts as complete for such an
+# order only when jobs/ofr-catalog-search recorded, for it, a finished read of the whole catalog plus the coverage
+# statement, AND the order has a later-source search the tracker accepts without the catalog. Today the only such search
+# for a pre-1937 order is a filed claim whose counterevidence step passes the gate and claim-checker. An out-of-scope
+# search never counts as evidence of no later events by itself.
+FIRST_CATALOG_EO = 7532
+OFR_SCOPE_FLAG = "OFR_CATALOG_OUT_OF_SCOPE_LATER_SOURCE_SEARCH_ACCEPTED"
+OFR_SCOPE_BLOCKER = "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE:OUT_OF_SCOPE_NO_ACCEPTED_LATER_SOURCE_SEARCH"
+_SHA = re.compile(r"^[0-9a-f]{64}$")
+
+
+def load_ofr_scope_records(root):
+    """{instrument_id: row} for searched_complete_no_entry rows of jobs/ofr-catalog-search; {} when absent."""
+    path = os.path.join(root, J["ofr_search_records"])
+    if not os.path.exists(path):
+        return {}
+    with open(path, encoding="utf-8", newline="") as fh:
+        return {r["instrument_id"]: r for r in csv.DictReader(fh)
+                if r.get("instrument_id") and r.get("outcome") == "searched_complete_no_entry"}
+
+
+def ofr_scope_proves_out_of_scope(i, row):
+    """True when the order is numbered below the catalog's first entry and the record shows the catalog does not reach it."""
+    m = re.match(r"\d+", i.split(":", 1)[-1])
+    if not m or int(m.group()) >= FIRST_CATALOG_EO or not row:
+        return False
+    try:
+        lowest = int(row.get("catalog_lowest_number") or "")
+    except ValueError:
+        return False
+    hashes = [h for h in (row.get("page_sha256") or "").split(";")]
+    return (lowest >= FIRST_CATALOG_EO and int(m.group()) < lowest
+            and "1937" in (row.get("coverage_quote") or "")
+            and bool(hashes) and all(_SHA.match(h) for h in hashes))
+
+
+def ofr_scope_decision(i, row, later_source_ok):
+    """(clears, blocker_or_None) for an order that is not in the catalog. Called only when it is not.
+
+    clears needs BOTH the out-of-scope proof (a) and an accepted later-source search (b)."""
+    if not ofr_scope_proves_out_of_scope(i, row):
+        return False, None            # no record, or in-scope: the old code stands unchanged
+    if later_source_ok:
+        return True, None
+    return False, OFR_SCOPE_BLOCKER
+
+
 def machine_search_record(i, search):
     """Claim-shaped later_source_search entries for what the machines searched for this order."""
     n = i.split(":", 1)[1]
@@ -581,6 +632,7 @@ def build(root, *, planning_closures=None):
     import claim_gate  # the project's own structural gate
 
     jobs, job_problems = load_job_outputs(root)
+    ofr_scope = load_ofr_scope_records(root)
 
     universe = [r["id"] for r in read_csv(root, "universe") if r["included_in_bibliography"] == "1"]
     # Owner ruling R9 (2026-11-06): the census renamed EO:7933a to EO:7933A; the hash-pinned ledger and
@@ -731,6 +783,12 @@ def build(root, *, planning_closures=None):
                     code = "MACHINE_SEARCH_FOUND_CONTRARY_LEAD:" + "+".join(flagged)
                 elif srch["complete"]:
                     code = "NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE"
+                    clears, scope_code = ofr_scope_decision(i, ofr_scope.get(i), from_claim(step))
+                    if clears:  # out of scope (a) and a claim-based later-source search accepted (b)
+                        steps[step] = True
+                        flags.append(OFR_SCOPE_FLAG)
+                        continue
+                    code = scope_code or code
             if not steps[step] and status:  # unresearched orders are blocked by status alone
                 blockers[step].append(claim_blocker(step, code))
         if int(cq.get("quarantined_relationship_count") or 0):

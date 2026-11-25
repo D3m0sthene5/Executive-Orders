@@ -545,6 +545,51 @@ class TrackerTest(unittest.TestCase):
         claim["later_source_search"] = recs["EO:2"]
         self.assertNotIn("bounded_later_search", claim_gate.validate_claim(claim, expected_status="no"))
 
+    def ofr_row(self, i, **kw):
+        row = {"instrument_id": i, "outcome": "searched_complete_no_entry", "catalog_lowest_number": "7532",
+               "coverage_quote": "The tables list status from January 8, 1937 - January 19, 2017.",
+               "page_sha256": "b" * 64 + ";" + "c" * 64}
+        row.update(kw)
+        return row
+
+    def ofr_files(self, rows):
+        out = io.StringIO()
+        w = csv.DictWriter(out, fieldnames=list(rows[0]))
+        w.writeheader()
+        w.writerows(rows)
+        return {tracker.J["ofr_search_records"]: out.getvalue()}
+
+    def test_ofr_scope_in_scope_order_unchanged(self):
+        base, _ = self.run_tracker(files=self.search_files())
+        files = self.search_files()
+        files.update(self.ofr_files([self.ofr_row("EO:2")]))
+        orders, _ = self.run_tracker(files=files)
+        self.assertEqual(orders["EO:2"]["blockers"], base["EO:2"]["blockers"])
+        self.assertEqual(orders["EO:2"]["step_counterevidence"], "done")
+        self.assertFalse(tracker.ofr_scope_proves_out_of_scope("EO:7532", self.ofr_row("EO:7532")))
+
+    def test_ofr_scope_a_and_b_clears_in_the_decision_rule(self):
+        row = self.ofr_row("EO:1")
+        self.assertEqual(tracker.ofr_scope_decision("EO:1", row, True), (True, None))
+
+    def test_ofr_scope_a_only_does_not_clear_and_says_which_search_is_missing(self):
+        self.assertEqual(tracker.ofr_scope_decision("EO:1", self.ofr_row("EO:1"), False),
+                         (False, tracker.OFR_SCOPE_BLOCKER))
+        files = self.search_files()
+        files.update(self.ofr_files([self.ofr_row("EO:1")]))
+        orders, _ = self.run_tracker(files=files)
+        self.assertEqual(orders["EO:1"]["step_counterevidence"], "open")
+        self.assertIn(tracker.OFR_SCOPE_BLOCKER, orders["EO:1"]["blockers"])
+        # a record without the coverage quote or page hashes proves nothing
+        for bad in ({"coverage_quote": ""}, {"page_sha256": "xyz"}, {"page_sha256": ""}, {"catalog_lowest_number": "7"}):
+            self.assertEqual(tracker.ofr_scope_decision("EO:1", self.ofr_row("EO:1", **bad), True), (False, None))
+
+    def test_ofr_scope_missing_records_file_changes_nothing(self):
+        orders, _ = self.run_tracker(files=self.search_files())
+        self.assertIn("NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE", orders["EO:1"]["blockers"])
+        self.assertNotIn("OUT_OF_SCOPE", orders["EO:1"]["blockers"])
+        self.assertEqual(tracker.load_ofr_scope_records(str(self.root)), {})
+
     def test_machine_search_never_counts_from_a_sample_run(self):
         orders, s = self.run_tracker(files=self.search_files(sample=True))
         self.assertEqual(orders["EO:2"]["step_counterevidence"], "open")
