@@ -1,0 +1,82 @@
+{
+  "batch": "x1-extension-trial",
+  "code_sha256": "1b1bb11a3d253384fbd95d0f18e1fa975e286a539f23d9b354090385d5d6937e",
+  "finished_utc": "2026-11-25T11:54:09.840865+00:00",
+  "model_tokens": 0,
+  "orders": [
+    "EO:10010",
+    "EO:10372"
+  ],
+  "per_order": {
+    "EO:10010": {
+      "apply_errors": [],
+      "apply_outcome": "assembled_proposal",
+      "board_end": "1948-12-17",
+      "checker_all_checks_passed": true,
+      "checker_failures": [],
+      "checker_gate_errors": [],
+      "checker_unverified": [],
+      "date_basis": "cover",
+      "extensions": [
+        {
+          "approval_date": "1948-11-09",
+          "new_deadline": "1948-12-17",
+          "page": 7
+        }
+      ],
+      "outcome": "submit",
+      "selected_source_blockers": [],
+      "selected_source_state": "selected_sources_mechanically_usable",
+      "standstill_end": "1949-01-16"
+    },
+    "EO:10372": {
+      "apply_errors": [],
+      "apply_outcome": "assembled_proposal",
+      "board_end": "1952-08-29",
+      "checker_all_checks_passed": true,
+      "checker_failures": [],
+      "checker_gate_errors": [],
+      "checker_unverified": [],
+      "date_basis": "cover",
+      "extensions": [
+        {
+          "approval_date": null,
+          "new_deadline": "1952-09-08",
+          "page": 5
+        }
+      ],
+      "outcome": "submit",
+      "selected_source_blockers": [],
+      "selected_source_state": "selected_sources_mechanically_usable",
+      "standstill_end": "1952-09-28"
+    }
+  },
+  "run": "v2",
+  "schema": "eo-olney-batch/v2",
+  "selection_sha256": "c4979f7ce96bd87e2014115219a6249dd9dbd761169da1797c0b4231dacb9552",
+  "started_utc": "2026-11-25T11:52:38.452052+00:00",
+  "steps": {
+    "apply": {
+      "returncode": 0,
+      "wall_seconds": 18.0
+    },
+    "batch_check": {
+      "returncode": 0,
+      "wall_seconds": 35.78
+    },
+    "prepare": {
+      "returncode": 0,
+      "wall_seconds": 14.85
+    },
+    "supplement": {
+      "returncode": 0,
+      "wall_seconds": 22.42
+    },
+    "write_sheets": {
+      "returncode": 0,
+      "wall_seconds": 0.0
+    }
+  },
+  "trial": true,
+  "trial_note": "Mechanical trial only: these orders are Olney exceptions (EO:10010: ['report_shared_with_follow_on_order']; EO:10372: ['text_after_standstill:In performing its functions under this \\n']). The claims test that a recorded report-time extension (later event or source note) passes apply and the claim checker. Not for blind review, adoption or filing."
+}

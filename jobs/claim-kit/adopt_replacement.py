@@ -24,6 +24,12 @@ answer to a Kean ask is what lets it count. This tool carries out that answer an
    new line, and writes an adoption receipt that records the decision, the ask, the ruling, each proposal line and
    each replaced claim. Existing claim files are never changed (the publication audit allows appends only).
 
+A standing rule (--standing) replaces step 1's per-order naming: the owner may adopt in advance every replacement
+proposal that both blind arms uphold in a batch whose planted controls were all caught (D-20261125-auto-adopt-
+replacements). Then the decision's answered ask need not name the orders, but the ruling file must begin with
+"# Standing owner rule", and step 2's receipts are still checked in full, including every planted control caught.
+The receipt records standing_rule true.
+
 Human certification is unchanged at 0. Without --write it prints the plan and writes nothing.
 """
 from __future__ import annotations
@@ -71,7 +77,7 @@ def latest(path):
     return rows
 
 
-def owner_approval(repo, decision_id, ruling):
+def owner_approval(repo, decision_id, ruling, standing=False):
     decision = latest(repo / DECISIONS).get(decision_id)
     require(decision is not None, 'Kean decision not found: ' + decision_id)
     asks = [a for a in latest(repo / ASKS).values() if a.get('decision') == decision_id and a.get('status') == 'answered']
@@ -83,6 +89,9 @@ def owner_approval(repo, decision_id, ruling):
     require(ruling_path.is_file() and ruling_path.parent == repo / RULINGS_DIR, 'owner ruling file required under ' + RULINGS_DIR)
     ruling_raw = ruling_path.read_bytes()
     require(decision_id.encode() in ruling_raw, 'owner ruling file does not name ' + decision_id)
+    if standing:
+        require(ruling_raw.startswith(b'# Standing owner rule'), 'standing adoption needs a ruling file that begins "# Standing owner rule"')
+        numbers = None
     return decision, asks, numbers, {'path': rel(repo, ruling_path), 'sha256': sha(ruling_raw)}
 
 
@@ -151,9 +160,9 @@ def held(repo):
     return result
 
 
-def plan(repo, decision_id, ruling, folders, target):
+def plan(repo, decision_id, ruling, folders, target, standing=False):
     repo = Path(repo).resolve()
-    decision, asks, numbers, ruling_ref = owner_approval(repo, decision_id, ruling)
+    decision, asks, numbers, ruling_ref = owner_approval(repo, decision_id, ruling, standing)
     target_path = batch.safe(repo, target)
     require(target_path.parent == repo / CLAIMS_DIR and target_path.suffix == '.jsonl', 'target must be a top-level ' + CLAIMS_DIR + ' *.jsonl file')
     require(not target_path.exists(), 'target already exists: ' + target)
@@ -167,7 +176,7 @@ def plan(repo, decision_id, ruling, folders, target):
     gate, holds = load_gate(repo), held(repo)
     for c in claims:
         iid = c['instrument_id']
-        require(iid.split(':', 1)[-1] in numbers, 'order not named in the owner-answered ask: ' + iid)
+        require(numbers is None or iid.split(':', 1)[-1] in numbers, 'order not named in the owner-answered ask: ' + iid)
         prior = existing.get(iid)
         require(prior is not None, 'no claim of record to replace (use own filing or status adoption): ' + iid)
         prior_path = Path(prior['path'])
@@ -188,7 +197,7 @@ def plan(repo, decision_id, ruling, folders, target):
     raw = b''.join(c['raw'] for c in claims)
     receipt = {
         'schema': SCHEMA, 'decision': decision_id, 'decision_rev': decision.get('rev', 0), 'decision_date': decision.get('date'),
-        'asks': sorted(a['id'] for a in asks), 'ruling': ruling_ref,
+        'asks': sorted(a['id'] for a in asks), 'ruling': ruling_ref, 'standing_rule': numbers is None,
         'publication': {'path': rel(repo, target_path), 'sha256': sha(raw), 'claims': len(claims),
                         'byte_identical_to_reviewed_proposals': True},
         'claims': [{'instrument_id': c['instrument_id'], 'claim_sha256': c['claim_sha256'], 'line': n,
@@ -202,18 +211,18 @@ def plan(repo, decision_id, ruling, folders, target):
     return receipt, raw, target_path
 
 
-def adopt(repo, decision_id, ruling, folders, target, receipt_path, write=False):
+def adopt(repo, decision_id, ruling, folders, target, receipt_path, write=False, standing=False):
     repo = Path(repo).resolve()
     receipt_file = batch.safe(repo, receipt_path)
     require(receipt_file.suffix == '.json' and not receipt_file.is_relative_to(repo / CLAIMS_DIR), 'receipt must be a .json file outside the claims folder')
     require(not receipt_file.exists(), 'receipt already exists: ' + receipt_path)
     if not write:
-        receipt, _, _ = plan(repo, decision_id, ruling, folders, target)
+        receipt, _, _ = plan(repo, decision_id, ruling, folders, target, standing)
         return dict(receipt, written=False)
     lock = completion.PublicationLock(repo, receipt_file.parent)
     lock.acquire()
     try:
-        receipt, raw, target_path = plan(repo, decision_id, ruling, folders, target)
+        receipt, raw, target_path = plan(repo, decision_id, ruling, folders, target, standing)
         with target_path.open('xb') as stream:
             stream.write(raw)
         try:
@@ -242,10 +251,11 @@ def main(argv=None):
     ap.add_argument('--completion', action='append', required=True, help='completion result directory (repeatable)')
     ap.add_argument('--target', required=True, help='new canonical claims file, sorting after every replaced file')
     ap.add_argument('--receipt', required=True, help='adoption receipt (.json) to create')
+    ap.add_argument('--standing', action='store_true', help='decision is a standing owner rule (ruling file begins "# Standing owner rule")')
     ap.add_argument('--write', action='store_true')
     a = ap.parse_args(argv)
     try:
-        result = adopt(a.repo, a.decision, a.ruling, a.completion, a.target, a.receipt, a.write)
+        result = adopt(a.repo, a.decision, a.ruling, a.completion, a.target, a.receipt, a.write, a.standing)
     except (ValueError, OSError, KeyError, TypeError) as exc:
         print(json.dumps({'ok': False, 'error': str(exc)}, indent=2))
         return 1
