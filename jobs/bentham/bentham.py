@@ -67,7 +67,9 @@ def score(measured, action, half_life=HALF_LIFE_DAYS):
     out = {"id": action["id"], "kind": action.get("kind"), "orders": action.get("orders", 0),
            "description": action.get("description", ""), "notes": []}
     now = 0.0
-    if action.get("orders"):
+    # An agent acquisition lists the orders it works on (so a launch plan can name them), but it files nothing itself:
+    # its value is what it unlocks (fecundity below), so it earns no dossiers "now" from its own work set.
+    if action.get("orders") and action.get("kind") != "acquisition":
         r = rate_of(measured, action.get("rate_key"))
         if r is not None and (r.get("den") or 0) < PROBE_ORDERS:
             out["notes"].append(f"yield {action.get('rate_key')!r} rests on {r.get('num')}/{r.get('den')} attempts, "
