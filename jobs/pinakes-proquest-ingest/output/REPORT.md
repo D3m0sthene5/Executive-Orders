@@ -1,6 +1,6 @@
 # Pinakes: ProQuest PDFs wired in
 
-Generated 2026-11-25T05:07:53Z.
+Generated 2026-11-25T11:09:33Z.
 
 **4903 PDF files** (4841 unique) in `ProQuest Pre-1937 Orders`, `research/pre-1937-sources/ProQuest Pre-1937 Orders` cover **4841 orders**, 4841 of them in the census. The owner's link list has 2765 links: 2750 now have a PDF, **15 are still missing** (`MISSING_FROM_UPLOAD.csv`); 2091 PDFs are for orders not on the list.
 
@@ -12,7 +12,7 @@ Generated 2026-11-25T05:07:53Z.
 | Usable quality | 4267 |
 | Low quality (probably handwritten; needs a person) | 574 |
 
-This run OCR'd 121 orders (175 of 4000 budgeted pages), carried 736 texts forward from the last run, and left 0 for the next run.
+This run OCR'd 0 orders (0 of 4000 budgeted pages), carried 857 texts forward from the last run, and left 0 for the next run.
 
 Every order has a fragment in `FRAGMENTS.jsonl` with `acceptable_as_original: false` and `needs_page_check: true`; the readiness tracker reads them as the lead class ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK. A person comparing the pages and the codebook assigning the grade is what would let one count.
 
