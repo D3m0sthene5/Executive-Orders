@@ -47,3 +47,6 @@ READ.md (first 6000 bytes only), LOOKUPS.details.json (the EO:12437 member entry
 - Later-order sources flagged requires_page_check fail the working-text check even when they are Federal Register texts.
 - EO 11609 machine candidate date 1971-10-20 applies the 90-day delay to all of Sec. 11; Sec. 12 limits it to paragraphs (1) to (13) and (19) of section 1.
 - The Federal Register note for EO 11294 reads EO 10960 where the held text of Sec. 4 reads EO 10970.
+
+## Overlay follow-up (coordinator request)
+For EO:12437, 11943, 12701, 11294 and 9155, each proposal-v1/LIFECYCLE_DECISION.json differed from the applied sheet only in dossier_sha256 (rebound to the working dossier) and approved (reset to false). I set approved to true and changed nothing else. overlay-assemble succeeded and overlay-check reported 1 checked, 0 failures for all five.

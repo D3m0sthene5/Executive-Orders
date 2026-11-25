@@ -1,0 +1,63 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/d3m0sthene5/executive-orders/research/excavator/claude-bartolus-2026-11-24/y04/packet/PACKET.json",
+  "seconds": 28.078,
+  "files_read": 64663,
+  "file_reads": 129455,
+  "packet_fingerprint": "77f6e54cfd0deece56617b49e8985c38f8b296a335b6d1e702ae9f3666902a83",
+  "claims_checked": 4,
+  "defect_flags": 0,
+  "coverage_gaps": 3,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:13666",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:11701",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:13257",
+      "flags": [],
+      "coverage_gaps": [],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 4,
+      "instrument_id": "EO:10111",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "order_description_body_unverified",
+          "field": "claim.operative_clauses[0].judgment_reason",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

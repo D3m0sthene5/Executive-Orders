@@ -50,3 +50,17 @@ PACKET.json (loaded once in a script for the 12020 and 12109 evidence lists and 
 
 ## Tool defects
 None blocking. The view hides some current-law hit text, so the MENTIONS.csv and note files were read directly. first_cause has no value for in-force orders (left empty in ASSESSMENT.jsonl).
+
+## Second pass (coordinator follow-up)
+End: 2026-11-25 (UTC), final directory applied-v8 (applied-v1 to v7 kept).
+Submitted now 9 (first pass 4: 10444, 11448, 12109, 14085; second pass 5: 10694, 11145, 10485, 10982, 12318); blocked 16.
+- 10694: override inventory of 8 clauses; item 4 ended by performance 1957-01-10; later events EO 13286 (2003-03-01) and EO 14085 (2022-10-03).
+- 11145: seven clauses; EO 11565 and 25 continuation orders as later events (12692 and 12489 held but not accepted by the checker as cited sources, disclosed in the rationale).
+- 10485: ten override clauses; sec. 2 ended 1977-10-01 by EO 12038; sec. 5 ended 1953-09-03; EO 12038 later event on the rest.
+- 10982: twelve override clauses; EO 12107 (1979-01-01) and EO 12748 sec. 5 (1991-05-04 default) as later events.
+- 12318: nine override clauses; 4(a) and 5 ended 1981-08-23; EO 12518 later event on 4(b).
+- Still blocked, not reconciled in this pass: 11514, 11287, 11738 (clause reconciliation not completed), 12333, 12883; 10173 (33 CFR part 6 not in the packet) and 12639 (text of EO 12163 as amended not held).
+- Change from first draft: CURRENT: Code-note sources are custody_record_only (bytes not held), so the checker marked them unverified; operative predicates for the second-pass orders cite the order's own held text spans (OVERRIDE ids and CLAUSES ids) read with the three bounded searches, with the Code notes described in the legal basis.
+Batch-check (applied-v8): 25 members, 9 claims checked, strict pass 9, fail 0; actual checker all checks passed 9, mechanical unverified 0, fail 0. No claim has an unverified entry.
+Geddes (applied-v8): 0 defect flags, 4 coverage gaps (12318 own-body heading, two 14085 mentions, one more own-body entry), resolutions in GEDDES_RESOLUTIONS.json. An earlier flag on 10485 (EO 12038 named without event source) was fixed.
+Files opened: the held texts of EO 10982, 12107, 12748, the views, MENTIONS.csv and EDGES.csv, as in the first pass.

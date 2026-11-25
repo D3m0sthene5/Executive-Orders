@@ -43,3 +43,11 @@ packet_members 5; claims_checked 3; strict_claim_pass 3; strict_claim_fail 0; bl
 - batch-check wrote no GEDDES_LINT.json into v1 (the v2 run did). The lint was run manually.
 - Original page images were not inspected (the PDFs are not held on disk), so `original_pages_confirmed` is false for the three submitted orders; none requires a page check.
 - The held OCR text prints the EO 8341 closing number line as "[No. 83411" and omits the number from its heading (a packet segmentation lead). Identity rests on the heading, date, FR Doc. line and page, and this is disclosed in the rationale.
+
+## Follow-up: applied-v3 (coordinator request) — not produced
+
+Request: shorten the quotes for EO:8613 and EO:8639 that carry neighbouring order numbers. Plan (drafted, saved only in scratch at /home/claude/bartolus-scr/work/r01/decisions.v3draft.csv and clauses.v3draft.csv): use inventory_overrides to re-select each clause span (EO:8639 chars 2351-2733; EO:8613 chars 3102-3924 and 3925-4123), cite the derived OVERRIDE evidence ids as end and savings sources, and set EO:8341 to route_owner so it is not re-submitted.
+
+Result: `kit.py apply ... --write applied-v3` stopped with "claim-kit: changed Valla review context; prepare a new version". Per the instructions I did not work around it. No applied-v3 exists. decisions.csv and clauses.csv in the packet were restored to the state that produced applied-v1.
+
+Open issue even with a new packet: original_representation.quote is the whole-page ORIGINAL span, which sheets cannot shorten, so that one unverified entry may remain for EO:8613 and EO:8639. The OVERRIDE spans would remove the other four entries; untested because apply stopped.
