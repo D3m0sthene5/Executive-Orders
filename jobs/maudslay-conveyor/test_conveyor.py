@@ -1375,7 +1375,11 @@ class NeedMoreServerTests(unittest.TestCase):
             control.mkdir()
             (scratch / "w.txt").write_text("secret", encoding="utf-8")
             (Path(t) / "outside.txt").write_text("secret", encoding="utf-8")
-            (repo / "link.txt").symlink_to(Path(t) / "outside.txt")
+            try:
+                (repo / "link.txt").symlink_to(Path(t) / "outside.txt")
+                have_link = True
+            except OSError:   # Windows without Developer Mode or admin (WinError 1314): no symlink to test
+                have_link = False
             reqs = [{"path": "jobs/ok.txt", "start": 5, "end": 15},
                     {"path": "../outside.txt", "start": 0, "end": 6},
                     {"path": str(Path(t) / "outside.txt"), "start": 0, "end": 6},
@@ -1389,7 +1393,8 @@ class NeedMoreServerTests(unittest.TestCase):
             self.assertIn("5678901234", text)
             self.assertNotIn("secret", text)
             self.assertIn("only repository-relative paths", report[1]["reason"])
-            self.assertIn("outside the repository", report[4]["reason"])
+            if have_link:   # a symlink pointing out of the repository is refused as outside it
+                self.assertIn("outside the repository", report[4]["reason"])
             # a scratch folder INSIDE the repository's tree is refused too
             (repo / "inside").mkdir()
             (repo / "inside/w.txt").write_text("secret", encoding="utf-8")
