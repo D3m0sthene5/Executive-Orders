@@ -74,3 +74,11 @@ Apply three census corrections from the Petty wave? (1) Admit EO 6585: its GPO s
 *Why:* Each changes the census or a source key that claim-kit pins, so it should be done as one coordinated admission PR, as was done on Nov. 12
 
 Sources: `research/petty-census-closure-2026-11-24/missing-numbered-14/REPORT.md`
+
+## A-20261124-stateless-gauge (2026-11-24, Claude (Opus 5.5))
+
+Run the stateless gauge on your PC (install Claude Code with 'irm https://claude.ai/install.ps1 | iex', log in, then the commands in jobs/maudslay-conveyor/README.md 'Stateless mode and the gauge'; dry-run forecast 24.24 USD against a 25 USD cap). Also: the gauge's disagreement threshold was given as the agent arms' 7/85, but the recorded Papinian arms disagreed on 16 of 83; which baseline should the stop rule use?
+
+*Why:* Remaining Bartolus batches wait on the gauge verdict (owner instruction 2026-11-24 20:14 ET); claude -p cannot authenticate in the cloud workspace
+
+Sources: `research/stateless-calls-2026-11-24/README.md`
