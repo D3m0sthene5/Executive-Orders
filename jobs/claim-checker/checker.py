@@ -1042,13 +1042,19 @@ def check_claim(claim, ctx):
     rows = []
     for error in F.claim_errors(claim, ctx.repo):
         _row(rows, "claim_record", "factual_event_policy", "", "fail", "invalid_factual_event", error)
-    working_errors, dependent = W.policy(claim, ctx.repo, ctx.working_text_index)
+    captures = []
+    working_errors, dependent = W.policy(claim, ctx.repo, ctx.working_text_index, captures=captures)
     for error in working_errors:
         _row(rows, "claim_record", "working_text_policy", error.split(":", 1)[0], "fail",
              "invalid_working_text", error)
     if dependent and not working_errors:
         _row(rows, "claim_record", "working_text_policy", "working_text", "pass",
              "provisional_working_text", W.NOTE)
+    # Owner decision D-20261125-fr-capture-later-events: informational, outside MECHANICAL_CHECKS; a defect in a
+    # capture is a working_text_policy failure above.
+    for path, ref in captures:
+        _row(rows, "claim_record", "fr_capture_disclosure", path, "pass", W.FR_CAPTURE_GRADE,
+             f"{ref.get('instrument_id')} ({W.fr_citation(ref)}): {W.FR_CAPTURE_NOTE}")
     for path, key, val, chain in walk(claim):
         refs = []
         if key in SOURCE_KEYS and isinstance(val, dict):

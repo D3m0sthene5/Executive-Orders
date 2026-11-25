@@ -81,6 +81,20 @@ members whose claim belongs to another owner (they still need a replacement
 proposal) and refuses an existing target or a name that cannot sort last. It never
 renames an existing file, and the completion guard still checks the final name.
 
+
+When the owner adopts such a proposal by a Kean decision, `adopt_replacement.py`
+(Novellae) files it: it rechecks the completion's PUBLICATION, TALLY and INPUTS
+receipts, the answered Kean ask, an owner-ruling file naming the decision, the
+ledger status, the Stage 19 gate, source-audit holds and the filename-sort rule,
+then writes a new canonical claims file byte-identical to the reviewed lines and
+an adoption receipt. Status-overlay proposals still need the status-adoption route.
+
+```bash
+python3 -I jobs/claim-kit/adopt_replacement.py --decision D-... --ruling research/readiness/owner_rulings/....md \
+  --completion RUN/complete-v1 [--completion ...] --target research/readiness/claims/novellae-....jsonl \
+  --receipt RUN/REPLACEMENT_ADOPTION.json [--write]
+```
+
 For the existing experimental status-overlay route, a member instead supplies
 `overlay_bundle` with four whole-file `{path, sha256}` references named
 `evidence`, `decision`, `review`, and `proposal`. They must select `EVIDENCE.json`,
