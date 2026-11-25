@@ -1,0 +1,6152 @@
+{
+ "schema": "stateless-gauge/v1",
+ "seed": "stateless-gauge-2026-11-24",
+ "summary": {
+  "models": {
+   "sonnet": "claude-sonnet-5-5",
+   "haiku": "claude-haiku-5-5",
+   "opus": "claude-opus-5-5"
+  },
+  "cap_usd": 25.0,
+  "spent_usd": 25.0581,
+  "skipped_calls": [
+   "R-A-EO_11494-27436278",
+   "R-A-EO_12261-9a4e31d2",
+   "R-A-EO_12322-8b4a512d",
+   "R-A-EO_13251-8f107784",
+   "R-A-EO_13973-abec1df3",
+   "R-A-EO_14368-a743e2a4",
+   "R-A-EO_10717-8eb1b7fa",
+   "R-A-EO_12648-2201f08c",
+   "R-B-EO_11499-4ae4bbec",
+   "R-B-EO_13965-c764dea6",
+   "R-B-EO_11471-1508e045",
+   "R-B-EO_12112-f0ae527a",
+   "R-B-EO_12642-35110aaf",
+   "R-B-EO_14177-74632287",
+   "R-B-EO_11494-27436278",
+   "R-B-EO_12261-9a4e31d2"
+  ],
+  "failed_calls": [],
+  "complete": false,
+  "stage_usd": {
+   "producer-haiku": 1.073805,
+   "producer-sonnet": 8.897945,
+   "review-A": 10.214076,
+   "review-B": 4.872312
+  },
+  "producers": {
+   "haiku": {
+    "n_ran": 55,
+    "n_valid_sheet": 55,
+    "outcome_match": 20,
+    "outcome_n": 55,
+    "status_match": 17,
+    "status_n": 55,
+    "end_dates_match": 2,
+    "end_dates_n": 2,
+    "submit_rate_filed": 0.06896551724137931,
+    "submit_rate_unfiled": 0.11538461538461539,
+    "usd_total": 1.0738,
+    "usd_mean": 0.017896750000000003,
+    "usd_mean_filed": 0.0036977666666666666,
+    "usd_mean_unfiled": 0.032095733333333334,
+    "submit_rate_population": 0.1076275777638624,
+    "usd_per_order_population": 0.027350184526967285
+   },
+   "sonnet": {
+    "n_ran": 55,
+    "n_valid_sheet": 55,
+    "outcome_match": 22,
+    "outcome_n": 55,
+    "status_match": 15,
+    "status_n": 55,
+    "end_dates_match": 5,
+    "end_dates_n": 5,
+    "submit_rate_filed": 0.18518518518518517,
+    "submit_rate_unfiled": 0.21428571428571427,
+    "usd_total": 8.8979,
+    "usd_mean": 0.14829908333333333,
+    "usd_mean_filed": 0.0624018,
+    "usd_mean_unfiled": 0.23419636666666666,
+    "submit_rate_population": 0.20942276114689906,
+    "usd_per_order_population": 0.20548799080459768
+   }
+  },
+  "controls": {
+   "expected": 18,
+   "regenerated": 16,
+   "caught_A": 16,
+   "caught_B": 16,
+   "caught_both": 16,
+   "n_reviewed": 16,
+   "n": 16,
+   "agent_arms_caught_both": 16
+  },
+  "review_agreement": {
+   "genuine_claims": 40,
+   "compared": 2,
+   "pair_disagreements": 2,
+   "arm_A_disagreements": 3,
+   "arm_B_disagreements": 2,
+   "agent_arms_own_disagreement_this_sample": "13/40",
+   "agent_arms_own_disagreement_owner_figure": "7/85"
+  },
+  "cost": {
+   "reviewer_pair_usd_mean": 0.44122399999999995,
+   "upheld_rate_population": 0.3373493975903614,
+   "population_weights": {
+    "order_filed_share": 0.16710875331564987,
+    "reviewed_genuine_filed_share": 0.6626506024096386,
+    "orders_attempted": 377,
+    "orders_filed": 63
+   },
+   "usd_per_filed_claim": {
+    "haiku": 2.1484,
+    "sonnet": 4.3037
+   },
+   "formula": "(producer usd per order + submit_rate x (reviewer pair usd x (1 + 1/15 reveal))) / (submit_rate x upheld_rate); strata reweighted to the Papinian corpus",
+   "agent_reference_usd_per_filed": 4.71
+  },
+  "cache": [
+   {
+    "prefix_sha256": "0efcc8fb5eda577db1c6d5946f07e6318ce7ea6c2e306607d8d135ca4755cf6f",
+    "prefix_tokens_est": 13193,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_10347-623d4012",
+      "started_utc": "2026-11-25T07:03:15Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 54415,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_10347-623d4012",
+      "started_utc": "2026-11-25T07:03:42Z",
+      "first_call_cache_read": 21202,
+      "first_call_cache_write": 33887,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "15aade16883a0cc5193df90938753a7a390f8be9058e2035da56164607f3ec23",
+    "prefix_tokens_est": 11699,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_11085-9473a26a",
+      "started_utc": "2026-11-25T07:01:56Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 64954,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_11085-9473a26a",
+      "started_utc": "2026-11-25T07:02:39Z",
+      "first_call_cache_read": 18292,
+      "first_call_cache_write": 47336,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "1fd7386f7c0a482c60051040d225cff767e2abd9c6e1c80aed2b5f23ed3fa713",
+    "prefix_tokens_est": 12091,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_12019-053810e5",
+      "started_utc": "2026-11-25T07:03:18Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 34121,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_12019-053810e5",
+      "started_utc": "2026-11-25T07:03:44Z",
+      "first_call_cache_read": 19434,
+      "first_call_cache_write": 15361,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "214d19e79099203e9ad3311dc5f6ca04ae5e98decb885e3afd664f74a1ee17ac",
+    "prefix_tokens_est": 8688,
+    "processes": 8,
+    "later_processes_with_cache_read_near_prefix": 6,
+    "later_processes": 7,
+    "detail": [
+     {
+      "label": "P-haiku-EO_11367",
+      "started_utc": "2026-11-25T06:37:20Z",
+      "first_call_cache_read": 0,
+      "first_call_cache_write": 44540,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_8399",
+      "started_utc": "2026-11-25T06:38:52Z",
+      "first_call_cache_read": 13693,
+      "first_call_cache_write": 13065,
+      "first_call_input": 2,
+      "calls": 2
+     },
+     {
+      "label": "P-haiku-EO_11499",
+      "started_utc": "2026-11-25T06:38:52Z",
+      "first_call_cache_read": 13693,
+      "first_call_cache_write": 22562,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12487",
+      "started_utc": "2026-11-25T06:43:21Z",
+      "first_call_cache_read": 13693,
+      "first_call_cache_write": 11376,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11367",
+      "started_utc": "2026-11-25T06:55:10Z",
+      "first_call_cache_read": 0,
+      "first_call_cache_write": 44519,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_8399",
+      "started_utc": "2026-11-25T06:55:52Z",
+      "first_call_cache_read": 13693,
+      "first_call_cache_write": 13044,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11499",
+      "started_utc": "2026-11-25T06:55:52Z",
+      "first_call_cache_read": 13693,
+      "first_call_cache_write": 22541,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12487",
+      "started_utc": "2026-11-25T06:57:49Z",
+      "first_call_cache_read": 13693,
+      "first_call_cache_write": 11355,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "2e0e65b85a590511b9179d1b77cf4c46b4f46a171ada39bd493562f3a0ffe352",
+    "prefix_tokens_est": 10909,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_13736-d7b9c9bb",
+      "started_utc": "2026-11-25T07:02:11Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 58275,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_13736-d7b9c9bb",
+      "started_utc": "2026-11-25T07:02:45Z",
+      "first_call_cache_read": 17241,
+      "first_call_cache_write": 41708,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "34cedfdfc455f0f4ee835fb603bb0039b26320714e75d5a714d254bda46a4775",
+    "prefix_tokens_est": 13104,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_13900-02805681",
+      "started_utc": "2026-11-25T07:01:42Z",
+      "first_call_cache_read": 0,
+      "first_call_cache_write": 50939,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_13900-02805681",
+      "started_utc": "2026-11-25T07:02:25Z",
+      "first_call_cache_read": 20326,
+      "first_call_cache_write": 30613,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "3a51d22d3fe7927450af826dfd4625eba25da1a642936b0039ee546f1850f3ce",
+    "prefix_tokens_est": 11099,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_11262-ec06dc1d",
+      "started_utc": "2026-11-25T07:03:58Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 29909,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_11262-ec06dc1d",
+      "started_utc": "2026-11-25T07:05:14Z",
+      "first_call_cache_read": 17663,
+      "first_call_cache_write": 12920,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "3b53adb40fddd45ae3a15e9a2cc2c8c90280f41a41d734135baedbe160ffb654",
+    "prefix_tokens_est": 11712,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_10979-b2ca372f",
+      "started_utc": "2026-11-25T07:02:59Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 38179,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_10979-b2ca372f",
+      "started_utc": "2026-11-25T07:03:28Z",
+      "first_call_cache_read": 18145,
+      "first_call_cache_write": 20708,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "40b1ef877f1dc4e7896c615f5691348f5fadd6717cd0ac289e287c469ff814b7",
+    "prefix_tokens_est": 10397,
+    "processes": 1,
+    "later_processes_with_cache_read_near_prefix": 0,
+    "later_processes": 0,
+    "detail": [
+     {
+      "label": "R-A-EO_11471-1508e045",
+      "started_utc": "2026-11-25T07:04:20Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 24430,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "45195bca323bc14b6ae173d676fc472eabe0776c8fefd42021f90e31ec981389",
+    "prefix_tokens_est": 16228,
+    "processes": 1,
+    "later_processes_with_cache_read_near_prefix": 0,
+    "later_processes": 0,
+    "detail": [
+     {
+      "label": "R-A-EO_14177-74632287",
+      "started_utc": "2026-11-25T07:04:33Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 169593,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "4589f167247ce62c9abaa0d35152e544bff143544f360572d81edc63930beeff",
+    "prefix_tokens_est": 20197,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_11295-ee92b42f",
+      "started_utc": "2026-11-25T07:03:11Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 79986,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_11295-ee92b42f",
+      "started_utc": "2026-11-25T07:03:41Z",
+      "first_call_cache_read": 33333,
+      "first_call_cache_write": 47327,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "4aaa94fbdbab653bd6b4ee5fcaddeafed750672046cfd7e79d90c245310ec78d",
+    "prefix_tokens_est": 12629,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_11701-ee4ed834",
+      "started_utc": "2026-11-25T07:01:57Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 36078,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_11701-ee4ed834",
+      "started_utc": "2026-11-25T07:02:41Z",
+      "first_call_cache_read": 20190,
+      "first_call_cache_write": 16562,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "4cb9bc889b024f92a7c920dcfd250e4f2003e7a89596fc72cf239e6bf8b073c1",
+    "prefix_tokens_est": 10758,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_13709-83058f3a",
+      "started_utc": "2026-11-25T07:03:11Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 47255,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_13709-83058f3a",
+      "started_utc": "2026-11-25T07:03:41Z",
+      "first_call_cache_read": 16541,
+      "first_call_cache_write": 31388,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "4e30d4da35b9f0824c6c9c4e87fbebbb34eb86e17c0a7c78f5accd3095bba2d6",
+    "prefix_tokens_est": 13100,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_11468-27f4ebb5",
+      "started_utc": "2026-11-25T07:03:58Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 43665,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_11468-27f4ebb5",
+      "started_utc": "2026-11-25T07:05:14Z",
+      "first_call_cache_read": 21627,
+      "first_call_cache_write": 22712,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "69173c051b6aefa95c8a359672bf25f5a88819ed32d05b805cf7cb68d944a848",
+    "prefix_tokens_est": 10452,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_12109-8c059f92",
+      "started_utc": "2026-11-25T07:02:59Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 24488,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_12109-8c059f92",
+      "started_utc": "2026-11-25T07:03:28Z",
+      "first_call_cache_read": 16398,
+      "first_call_cache_write": 8764,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "8db27c1afd9e69390c5f7947e2504d8bf0db5f653ed69d15e7285565f0ffadd8",
+    "prefix_tokens_est": 10892,
+    "processes": 1,
+    "later_processes_with_cache_read_near_prefix": 0,
+    "later_processes": 0,
+    "detail": [
+     {
+      "label": "R-A-EO_13965-c764dea6",
+      "started_utc": "2026-11-25T07:03:58Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 47279,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "951291d5aea2a7ac772c7c082f477f38151b764bfc2d422fd566970c05f2d733",
+    "prefix_tokens_est": 12319,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_12047-774242fd",
+      "started_utc": "2026-11-25T07:02:59Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 35533,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_12047-774242fd",
+      "started_utc": "2026-11-25T07:03:28Z",
+      "first_call_cache_read": 19443,
+      "first_call_cache_write": 16764,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "a64733e67c69ac19105960a72906efd5f89c769904531f137996e648cf4101ba",
+    "prefix_tokens_est": 8691,
+    "processes": 4,
+    "later_processes_with_cache_read_near_prefix": 2,
+    "later_processes": 3,
+    "detail": [
+     {
+      "label": "P-haiku-EO_13900",
+      "started_utc": "2026-11-25T06:38:52Z",
+      "first_call_cache_read": 1519,
+      "first_call_cache_write": 26275,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_14012",
+      "started_utc": "2026-11-25T06:43:28Z",
+      "first_call_cache_read": 13696,
+      "first_call_cache_write": 60885,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13900",
+      "started_utc": "2026-11-25T06:55:52Z",
+      "first_call_cache_read": 1519,
+      "first_call_cache_write": 26254,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_14012",
+      "started_utc": "2026-11-25T06:57:50Z",
+      "first_call_cache_read": 13696,
+      "first_call_cache_write": 60864,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "a6cf4e4b12c4bdee236a8cad0142de35b068d78780c74f454722c6bde0f6b73c",
+    "prefix_tokens_est": 17979,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_14354-41b94fd3",
+      "started_utc": "2026-11-25T07:01:42Z",
+      "first_call_cache_read": 0,
+      "first_call_cache_write": 160893,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_14354-41b94fd3",
+      "started_utc": "2026-11-25T07:02:25Z",
+      "first_call_cache_read": 28910,
+      "first_call_cache_write": 131983,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "a8df9062fbd4ef224da013b53882570b97f0eb84ae9f0a8c3da41db88575aae0",
+    "prefix_tokens_est": 11382,
+    "processes": 1,
+    "later_processes_with_cache_read_near_prefix": 0,
+    "later_processes": 0,
+    "detail": [
+     {
+      "label": "R-A-EO_11499-4ae4bbec",
+      "started_utc": "2026-11-25T07:03:58Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 28022,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "ae0914adcb7711400d7f9c910d777927e79f8345e03d7c2772b7903e0c47fd4a",
+    "prefix_tokens_est": 10754,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_8399-2bc9913e",
+      "started_utc": "2026-11-25T07:01:42Z",
+      "first_call_cache_read": 0,
+      "first_call_cache_write": 37890,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_8399-2bc9913e",
+      "started_utc": "2026-11-25T07:02:25Z",
+      "first_call_cache_read": 17141,
+      "first_call_cache_write": 20749,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "af365796694cddd1bac1cec2142cc704c35b1fadf8ab1e4dd6c70364445b9ce1",
+    "prefix_tokens_est": 18720,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_11552-38a73dd3",
+      "started_utc": "2026-11-25T07:01:56Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 82000,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_11552-38a73dd3",
+      "started_utc": "2026-11-25T07:02:40Z",
+      "first_call_cache_read": 29621,
+      "first_call_cache_write": 53053,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "bc471c0ef1b40fd09457aafb848db201ef30e9df8c7a0d4427418b7d81e61d08",
+    "prefix_tokens_est": 9698,
+    "processes": 1,
+    "later_processes_with_cache_read_near_prefix": 0,
+    "later_processes": 0,
+    "detail": [
+     {
+      "label": "R-A-EO_12112-f0ae527a",
+      "started_utc": "2026-11-25T07:04:30Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 21355,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "c201de9e44a0c05df5507faa1ceb723ba8e1d671741e02439a36e4c79095a0da",
+    "prefix_tokens_est": 10749,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_13613-4ee3beb4",
+      "started_utc": "2026-11-25T07:02:59Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 46340,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_13613-4ee3beb4",
+      "started_utc": "2026-11-25T07:03:28Z",
+      "first_call_cache_read": 16919,
+      "first_call_cache_write": 30095,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "e0a02c465bbd7199aef4550756953fe0934e9fa65fea944d2e2e548d9c836961",
+    "prefix_tokens_est": 10433,
+    "processes": 2,
+    "later_processes_with_cache_read_near_prefix": 1,
+    "later_processes": 1,
+    "detail": [
+     {
+      "label": "R-A-EO_11884-c4e675d5",
+      "started_utc": "2026-11-25T07:01:42Z",
+      "first_call_cache_read": 0,
+      "first_call_cache_write": 33978,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "R-B-EO_11884-c4e675d5",
+      "started_utc": "2026-11-25T07:02:25Z",
+      "first_call_cache_read": 16436,
+      "first_call_cache_write": 17542,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "e68065f0af940b8a744316486c6859584afcc3109af2cd849a6719ce11cb6e25",
+    "prefix_tokens_est": 11248,
+    "processes": 1,
+    "later_processes_with_cache_read_near_prefix": 0,
+    "later_processes": 0,
+    "detail": [
+     {
+      "label": "R-A-EO_12642-35110aaf",
+      "started_utc": "2026-11-25T07:04:32Z",
+      "first_call_cache_read": 674,
+      "first_call_cache_write": 26431,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   },
+   {
+    "prefix_sha256": "f3c8a47af3a79a8f079e470f2d3580a5d15984745786f5433f68bd25ad1c44a1",
+    "prefix_tokens_est": 8782,
+    "processes": 108,
+    "later_processes_with_cache_read_near_prefix": 106,
+    "later_processes": 107,
+    "detail": [
+     {
+      "label": "P-haiku-EO_10253",
+      "started_utc": "2026-11-25T06:38:52Z",
+      "first_call_cache_read": 1519,
+      "first_call_cache_write": 37806,
+      "first_call_input": 2,
+      "calls": 2
+     },
+     {
+      "label": "P-haiku-EO_11267",
+      "started_utc": "2026-11-25T06:39:27Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7385,
+      "first_call_input": 2,
+      "calls": 2
+     },
+     {
+      "label": "P-haiku-EO_11494",
+      "started_utc": "2026-11-25T06:39:37Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7205,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_11689",
+      "started_utc": "2026-11-25T06:39:46Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6803,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13973",
+      "started_utc": "2026-11-25T06:39:55Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 14010,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_11396",
+      "started_utc": "2026-11-25T06:39:56Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 13269,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12014",
+      "started_utc": "2026-11-25T06:40:06Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 5821,
+      "first_call_input": 2,
+      "calls": 2
+     },
+     {
+      "label": "P-haiku-EO_10552",
+      "started_utc": "2026-11-25T06:40:07Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 9443,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_11302",
+      "started_utc": "2026-11-25T06:40:32Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 17383,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12572",
+      "started_utc": "2026-11-25T06:40:39Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6327,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_10978",
+      "started_utc": "2026-11-25T06:40:42Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 11879,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12403",
+      "started_utc": "2026-11-25T06:40:47Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 13266,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12478",
+      "started_utc": "2026-11-25T06:41:04Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 9375,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12561",
+      "started_utc": "2026-11-25T06:41:13Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7663,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13830",
+      "started_utc": "2026-11-25T06:41:36Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 28182,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_10307",
+      "started_utc": "2026-11-25T06:41:37Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7660,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_11129",
+      "started_utc": "2026-11-25T06:41:41Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6550,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12081",
+      "started_utc": "2026-11-25T06:42:03Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7712,
+      "first_call_input": 2,
+      "calls": 2
+     },
+     {
+      "label": "P-haiku-EO_12568",
+      "started_utc": "2026-11-25T06:42:18Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 8838,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13709",
+      "started_utc": "2026-11-25T06:42:21Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6784,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_11698",
+      "started_utc": "2026-11-25T06:42:30Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 5661,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12638",
+      "started_utc": "2026-11-25T06:42:36Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6454,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12436",
+      "started_utc": "2026-11-25T06:42:44Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 8544,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12548",
+      "started_utc": "2026-11-25T06:42:46Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 10784,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12641",
+      "started_utc": "2026-11-25T06:43:10Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 5548,
+      "first_call_input": 2,
+      "calls": 2
+     },
+     {
+      "label": "P-haiku-EO_12019",
+      "started_utc": "2026-11-25T06:43:20Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 9562,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12154",
+      "started_utc": "2026-11-25T06:43:57Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 44700,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12423",
+      "started_utc": "2026-11-25T06:44:20Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 17422,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12261",
+      "started_utc": "2026-11-25T06:45:02Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 8979,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12908",
+      "started_utc": "2026-11-25T06:45:12Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 9991,
+      "first_call_input": 2,
+      "calls": 2
+     },
+     {
+      "label": "P-haiku-EO_11438",
+      "started_utc": "2026-11-25T06:45:16Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 26051,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12445",
+      "started_utc": "2026-11-25T06:45:39Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 12729,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12372",
+      "started_utc": "2026-11-25T06:45:41Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 138401,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12648",
+      "started_utc": "2026-11-25T06:45:52Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6428,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13606",
+      "started_utc": "2026-11-25T06:46:17Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 83377,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_9586",
+      "started_utc": "2026-11-25T06:46:39Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 30184,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12793",
+      "started_utc": "2026-11-25T06:46:49Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 37660,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_8685",
+      "started_utc": "2026-11-25T06:46:53Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 11582,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13219",
+      "started_utc": "2026-11-25T06:47:11Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 100976,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13276",
+      "started_utc": "2026-11-25T06:47:55Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 26526,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12281",
+      "started_utc": "2026-11-25T06:47:58Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 29824,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13692",
+      "started_utc": "2026-11-25T06:48:24Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 114251,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13959",
+      "started_utc": "2026-11-25T06:48:48Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 62128,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12597",
+      "started_utc": "2026-11-25T06:49:01Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 19918,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13827",
+      "started_utc": "2026-11-25T06:50:22Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 59076,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_11139",
+      "started_utc": "2026-11-25T06:50:28Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 13148,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12549",
+      "started_utc": "2026-11-25T06:51:03Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 101227,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13722",
+      "started_utc": "2026-11-25T06:51:14Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 62244,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_14039",
+      "started_utc": "2026-11-25T06:52:05Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 39157,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12228",
+      "started_utc": "2026-11-25T06:52:20Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 21004,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12382",
+      "started_utc": "2026-11-25T06:52:46Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 87864,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_12748",
+      "started_utc": "2026-11-25T06:52:50Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 48004,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_10457",
+      "started_utc": "2026-11-25T06:52:54Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 8896,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-haiku-EO_13372",
+      "started_utc": "2026-11-25T06:53:13Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 29526,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_10253",
+      "started_utc": "2026-11-25T06:55:52Z",
+      "first_call_cache_read": 1519,
+      "first_call_cache_write": 37785,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11267",
+      "started_utc": "2026-11-25T06:56:04Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7364,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11494",
+      "started_utc": "2026-11-25T06:56:09Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7184,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11689",
+      "started_utc": "2026-11-25T06:56:17Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6782,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13973",
+      "started_utc": "2026-11-25T06:56:23Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 13989,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11396",
+      "started_utc": "2026-11-25T06:56:25Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 13248,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12014",
+      "started_utc": "2026-11-25T06:56:27Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 5800,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_10552",
+      "started_utc": "2026-11-25T06:56:34Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 9422,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11302",
+      "started_utc": "2026-11-25T06:56:38Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 17362,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12572",
+      "started_utc": "2026-11-25T06:56:39Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6306,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_10978",
+      "started_utc": "2026-11-25T06:56:46Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 11858,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12478",
+      "started_utc": "2026-11-25T06:56:50Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 9354,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12403",
+      "started_utc": "2026-11-25T06:56:50Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 13245,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12561",
+      "started_utc": "2026-11-25T06:56:59Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7642,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13830",
+      "started_utc": "2026-11-25T06:57:03Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 28161,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_10307",
+      "started_utc": "2026-11-25T06:57:05Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7639,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11129",
+      "started_utc": "2026-11-25T06:57:05Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6529,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12081",
+      "started_utc": "2026-11-25T06:57:10Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 7691,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12568",
+      "started_utc": "2026-11-25T06:57:15Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 8817,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13709",
+      "started_utc": "2026-11-25T06:57:18Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6763,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11698",
+      "started_utc": "2026-11-25T06:57:22Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 5640,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12638",
+      "started_utc": "2026-11-25T06:57:23Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6433,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12436",
+      "started_utc": "2026-11-25T06:57:27Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 8523,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12548",
+      "started_utc": "2026-11-25T06:57:28Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 10763,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12641",
+      "started_utc": "2026-11-25T06:57:40Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 5527,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12019",
+      "started_utc": "2026-11-25T06:57:47Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 9541,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12154",
+      "started_utc": "2026-11-25T06:58:00Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 44679,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12423",
+      "started_utc": "2026-11-25T06:58:01Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 17401,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12261",
+      "started_utc": "2026-11-25T06:58:05Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 8958,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12908",
+      "started_utc": "2026-11-25T06:58:10Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 9970,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11438",
+      "started_utc": "2026-11-25T06:58:16Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 26030,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12445",
+      "started_utc": "2026-11-25T06:58:23Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 12708,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12372",
+      "started_utc": "2026-11-25T06:58:25Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 138380,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12648",
+      "started_utc": "2026-11-25T06:58:35Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 6407,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13606",
+      "started_utc": "2026-11-25T06:58:38Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 83356,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_9586",
+      "started_utc": "2026-11-25T06:58:46Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 30163,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12793",
+      "started_utc": "2026-11-25T06:58:46Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 37639,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_8685",
+      "started_utc": "2026-11-25T06:58:47Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 11561,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13219",
+      "started_utc": "2026-11-25T06:59:04Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 100955,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13276",
+      "started_utc": "2026-11-25T06:59:07Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 26505,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12281",
+      "started_utc": "2026-11-25T06:59:15Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 29803,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13692",
+      "started_utc": "2026-11-25T06:59:29Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 114230,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13959",
+      "started_utc": "2026-11-25T06:59:30Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 62107,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12597",
+      "started_utc": "2026-11-25T06:59:42Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 19897,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13827",
+      "started_utc": "2026-11-25T06:59:46Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 59055,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_11139",
+      "started_utc": "2026-11-25T07:00:03Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 13127,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12549",
+      "started_utc": "2026-11-25T07:00:33Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 101206,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13722",
+      "started_utc": "2026-11-25T07:00:34Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 62223,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_14039",
+      "started_utc": "2026-11-25T07:00:40Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 39136,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12228",
+      "started_utc": "2026-11-25T07:00:53Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 20983,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12382",
+      "started_utc": "2026-11-25T07:00:55Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 87843,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_12748",
+      "started_utc": "2026-11-25T07:01:01Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 47983,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_10457",
+      "started_utc": "2026-11-25T07:01:09Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 8875,
+      "first_call_input": 2,
+      "calls": 1
+     },
+     {
+      "label": "P-sonnet-EO_13372",
+      "started_utc": "2026-11-25T07:01:16Z",
+      "first_call_cache_read": 13817,
+      "first_call_cache_write": 29505,
+      "first_call_input": 2,
+      "calls": 1
+     }
+    ]
+   }
+  ],
+  "stop_rule": {
+   "verdict": "KEEP_AGENT_ROUTE",
+   "reasons": [
+    "stateless-vs-agent verdict disagreement 2/2 = 1.000 exceeds the agent arms' own 7/85 = 0.082",
+    "measured cost $4.30 per filed claim exceeds $2.50",
+    "the run is incomplete (dollar cap reached or calls failed), so no GO can be concluded"
+   ],
+   "haiku_matches_sonnet": false
+  },
+  "planned_requests": 178
+ },
+ "dry_run_forecast": {
+  "orders_producer": 60,
+  "filed": 30,
+  "reviewed_claims": 56,
+  "genuine_reviewed": 40,
+  "controls": 16,
+  "controls_expected": 18,
+  "controls_regenerated": 16,
+  "requests": 232,
+  "producer_prefix_tokens": {
+   "route_correction.txt": 8688,
+   "route_recovery.txt": 8691,
+   "route_yes.txt": 8782
+  },
+  "producer_prefix_identical_per_route": true,
+  "producer_evidence_tokens": {
+   "n": 60,
+   "min": 2752,
+   "median": 7137,
+   "max": 86554
+  },
+  "reviewer_prefix_tokens_(rules+evidence)": {
+   "n": 56,
+   "min": 9698,
+   "median": 11705,
+   "max": 61789
+  },
+  "reviewer_suffix_tokens": {
+   "n": 56,
+   "min": 3200,
+   "median": 10945,
+   "max": 90807
+  },
+  "over_150k_tokens": [],
+  "forecast_usd": {
+   "by_stage": {
+    "producer-haiku": 0.2486,
+    "producer-sonnet": 4.9213,
+    "review-A": 11.4442,
+    "review-B": 7.6285
+   },
+   "total": 24.2425
+  },
+  "forecast_assumptions": {
+   "output_tokens": {
+    "producer": 4000,
+    "reviewer": 2500
+   },
+   "need_more_rounds": 0,
+   "note": "suffix tokens are priced as cache writes (the dearer case)"
+  }
+ },
+ "producers": {
+  "haiku": [
+   {
+    "batch": "c01",
+    "iid": "EO:11367",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1973-03-23"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.015765,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1973-03-23"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": true,
+     "both_submit": true
+    }
+   },
+   {
+    "batch": "c01",
+    "iid": "EO:11499",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1973-03-23"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.009643,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "c01",
+    "iid": "EO:8399",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1968-04-25"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.004698,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "r01b",
+    "iid": "EO:13900",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2019-12-24"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.005272,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:10253",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.009993,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:11267",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002821,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:11494",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001582,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:11689",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.0015,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:13973",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2021-01-08"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002943,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:11396",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002794,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:12014",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1977-10-19"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002717,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y05",
+    "iid": "EO:10552",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002028,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y06",
+    "iid": "EO:11302",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.003616,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y07",
+    "iid": "EO:12572",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001405,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:10978",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002517,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:12403",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002793,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y09",
+    "iid": "EO:12478",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002015,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y09",
+    "iid": "EO:12561",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001673,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "rationale keys must start with EO_12561.: ['@rationale:EO_12561.earlier', '@rationale:EO_12561.scope', '@rationale:EO_12561.independent']",
+    "stateless": null
+   },
+   {
+    "batch": "y09",
+    "iid": "EO:13830",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.011949,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y10",
+    "iid": "EO:10307",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001672,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:11129",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001449,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:12081",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002837,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:12568",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001908,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:13709",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2015-10-02"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001497,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:11698",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.00305,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": true,
+     "both_submit": true
+    }
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:12638",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001433,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y13",
+    "iid": "EO:12436",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001851,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y13",
+    "iid": "EO:12548",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002296,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y13",
+    "iid": "EO:12641",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.003162,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "unresolved",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y14",
+    "iid": "EO:12019",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002054,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "c01",
+    "iid": "EO:12487",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.006995,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "r01b",
+    "iid": "EO:14012",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.012316,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y01",
+    "iid": "EO:12154",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.009079,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y01",
+    "iid": "EO:12423",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.003624,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:12261",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.004355,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:12908",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.003377,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y03",
+    "iid": "EO:11438",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.011418,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y03",
+    "iid": "EO:12445",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002686,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:12372",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "unresolved",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.139098,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:12648",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001427,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:13606",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.016818,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:9586",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.006179,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y06",
+    "iid": "EO:12793",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.016045,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y06",
+    "iid": "EO:8685",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002456,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "undefined rationale EO_8685.identity @rationale:EO_8685.partial @rationale:EO_8685.authority @rationale:EO_8685.current",
+    "stateless": null
+   },
+   {
+    "batch": "y07",
+    "iid": "EO:13219",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.206494,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2001-06-29"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y07",
+    "iid": "EO:13276",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.005445,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:12281",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "unresolved",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.006107,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:13692",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.114953,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "undefined rationale EO_13692.continuation",
+    "stateless": null
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:13959",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.026388,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2021-06-03"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y09",
+    "iid": "EO:12597",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.008618,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y10",
+    "iid": "EO:13827",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.011958,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2018-03-19"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:11139",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.002769,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "unresolved",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:12549",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.101931,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:13722",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.012588,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:14039",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.019835,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "undefined rationale EO_14039.authority_sunset @rationale:EO_14039.sec1_predicate @rationale:EO_14039.emergency @rationale:EO_14039.later_events",
+    "stateless": null
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:12228",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.004341,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "undefined rationale EO_12228.block_summary @rationale:EO_12228.amendment_chain @rationale:EO_12228.inventory_and_statutes",
+    "stateless": null
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:12382",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.181129,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:12748",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.009741,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y14",
+    "iid": "EO:10457",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.001919,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y14",
+    "iid": "EO:13372",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.012783,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   }
+  ],
+  "sonnet": [
+   {
+    "batch": "c01",
+    "iid": "EO:11367",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1973-03-23"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.323765,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1973-03-23"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": true,
+     "both_submit": true
+    }
+   },
+   {
+    "batch": "c01",
+    "iid": "EO:11499",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1973-03-23"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.189718,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1973-03-23"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": true,
+     "both_submit": true
+    }
+   },
+   {
+    "batch": "c01",
+    "iid": "EO:8399",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1968-04-25"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.053569,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "r01b",
+    "iid": "EO:13900",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2019-12-24"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.105192,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2019-12-24"
+     ],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": true,
+     "both_submit": true
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:10253",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.151316,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:11267",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.030912,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:11494",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.030142,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:11689",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.028534,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:13973",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2021-01-08"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.057362,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2021-01-08"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": true,
+     "both_submit": true
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:11396",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.054428,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "rationale keys must start with EO_11396.: ['block']",
+    "stateless": null
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:12014",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1977-10-19"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.024616,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y05",
+    "iid": "EO:10552",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.039144,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "rationale keys must start with EO_10552.: ['block']",
+    "stateless": null
+   },
+   {
+    "batch": "y06",
+    "iid": "EO:11302",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.070854,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y07",
+    "iid": "EO:12572",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.02663,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:10978",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.048888,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:12403",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.054386,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y09",
+    "iid": "EO:12478",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.038822,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y09",
+    "iid": "EO:12561",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.031974,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y09",
+    "iid": "EO:13830",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.11406,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y10",
+    "iid": "EO:10307",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.031992,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:11129",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.027522,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:12081",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.03217,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:12568",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.036724,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:13709",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2015-10-02"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.028458,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:11698",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.070608,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": true,
+     "both_submit": true
+    }
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:12638",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.027148,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "rationale keys must start with EO_12638.: ['main', 'earlier', 'scope']",
+    "stateless": null
+   },
+   {
+    "batch": "y13",
+    "iid": "EO:12436",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.035528,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y13",
+    "iid": "EO:12548",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.044458,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y13",
+    "iid": "EO:12641",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.023514,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y14",
+    "iid": "EO:12019",
+    "agent_filed": true,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.03962,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "c01",
+    "iid": "EO:12487",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.046813,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "r01b",
+    "iid": "EO:14012",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "no"
+    },
+    "ran": true,
+    "usd": 0.24485,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "no",
+     "operative_force_at_cutoff": "no"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y01",
+    "iid": "EO:12154",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.180122,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y01",
+    "iid": "EO:12423",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.07104,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:12261",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.090266,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y02",
+    "iid": "EO:12908",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.041286,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y03",
+    "iid": "EO:11438",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.250694,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y03",
+    "iid": "EO:12445",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.052288,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:12372",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "unresolved",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.554926,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "rationale keys must start with EO_12372.: ['block']",
+    "stateless": null
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:12648",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.027084,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:13606",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.689998,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y04",
+    "iid": "EO:9586",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.122058,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y06",
+    "iid": "EO:12793",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.317294,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "1992-03-20"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y06",
+    "iid": "EO:8685",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.04765,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y07",
+    "iid": "EO:13219",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.833774,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y07",
+    "iid": "EO:13276",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.107436,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:12281",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "unresolved",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.120618,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:13692",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.458326,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y08",
+    "iid": "EO:13959",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.539716,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [
+      "2021-06-03"
+     ],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y09",
+    "iid": "EO:12597",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.080994,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y10",
+    "iid": "EO:13827",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.49232,
+    "error": null,
+    "sheet_valid": false,
+    "sheet_error": "undefined rationale EO_13827.savings",
+    "stateless": null
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:11139",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.053914,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:12549",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.40628,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:13722",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.250298,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y11",
+    "iid": "EO:14039",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.15795,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:12228",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.085388,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:12382",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.352778,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y12",
+    "iid": "EO:12748",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "ran": true,
+    "usd": 0.193338,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": true,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y14",
+    "iid": "EO:10457",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.036906,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "submit",
+     "submit": true,
+     "end_dates": [],
+     "claimed_status": "yes",
+     "operative_force_at_cutoff": "yes"
+    },
+    "compare": {
+     "outcome_match": false,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   },
+   {
+    "batch": "y14",
+    "iid": "EO:13372",
+    "agent_filed": false,
+    "agent": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "yes"
+    },
+    "ran": true,
+    "usd": 0.119486,
+    "error": null,
+    "sheet_valid": true,
+    "stateless": {
+     "outcome": "blocked",
+     "submit": false,
+     "end_dates": [],
+     "claimed_status": "",
+     "operative_force_at_cutoff": "unknown"
+    },
+    "compare": {
+     "outcome_match": true,
+     "status_match": false,
+     "end_dates_match": null,
+     "both_submit": false
+    }
+   }
+  ]
+ },
+ "reviews": [
+  {
+   "batch": "c01",
+   "iid": "EO:11468",
+   "claim_sha256": "27f4ebb5df348b15a516959db8c33abd07258e9888316f1a34ea7595a0f19056",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.349623,
+   "usd_B": 0.186189,
+   "ran": true,
+   "agent_pair": "file",
+   "stateless_pair": "block",
+   "pair_agrees_with_agent": false,
+   "arm_A_agrees": false,
+   "arm_B_agrees": false
+  },
+  {
+   "batch": "c01",
+   "iid": "EO:11499",
+   "claim_sha256": "4ae4bbec3e6d7ff92fb3d80624d04e6a700c0b510e46defca190bc4b95edb6f8",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": "rejected",
+   "stateless_B": null,
+   "usd_A": 0.224379,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": false,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "r01b",
+   "iid": "EO:13965",
+   "claim_sha256": "c764dea6a36176cca486117f4a9cfbd74dfa72239ef1c7055a9a84dd0033dddd",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": "upheld",
+   "stateless_B": null,
+   "usd_A": 0.378575,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": true,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y01",
+   "iid": "EO:12642",
+   "claim_sha256": "35110aaf8009fa45c182fb3acff0848672a52dc61c410c675cebef83dd33a7e5",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": "upheld",
+   "stateless_B": null,
+   "usd_A": 0.211691,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": true,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y01",
+   "iid": "EO:12112",
+   "claim_sha256": "f0ae527ae563e68de63d7d062be0168556cd20cad06c8db9cf254f9a8c117612",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": "upheld",
+   "stateless_B": null,
+   "usd_A": 0.171063,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": true,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y02",
+   "iid": "EO:11494",
+   "claim_sha256": "27436278297bc7cca8c5a9a78bdeb87175e196bc013630970f602faed878acd0",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y02",
+   "iid": "EO:13973",
+   "claim_sha256": "abec1df3880b185df2ab40376ad688d8c8362cd5575412005308c96bba0313e6",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y04",
+   "iid": "EO:14373",
+   "claim_sha256": "97e0420ffdc278b75ab8a4b26be70d938299c5cc9f955802a47632e20218ee3d",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y05",
+   "iid": "EO:10670",
+   "claim_sha256": "10bde9bc051c8477ac9f6a730b64b2872b69d6bfe2a1c3c330eb2555097ecddd",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y06",
+   "iid": "EO:11302",
+   "claim_sha256": "1382bcf0a9abb6dec481f8e9d3dadcf2f6b96c1cd05e8ffd4bf7aaf53ed3b1ad",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y06",
+   "iid": "EO:11904",
+   "claim_sha256": "1cc91b7ee12301bbeca0c5dba219c4326a703ef4b6953c2b7b7ea860fb760793",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y08",
+   "iid": "EO:10352",
+   "claim_sha256": "c113f34d955be5ed231e5a2a35ba40e5516827e54d73978b6e154542d661143b",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y11",
+   "iid": "EO:12626",
+   "claim_sha256": "964327d76711e8b609fdeb86241454b774b7bb57e5a7a1b86f3aa7e1c651c788",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y11",
+   "iid": "EO:11129",
+   "claim_sha256": "b34b26f016ce89a4d8429b4ec93a809ef168830abdc1d4d188a36b6e048f96a1",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y11",
+   "iid": "EO:12081",
+   "claim_sha256": "c55bba72ec7e8b0d931b9aba6a71e640eac4ec1f3dd352ab5e0399023d8c35d5",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y12",
+   "iid": "EO:10826",
+   "claim_sha256": "33cd686d12f6a833e621e0b5119db1b4b37e22495e01cb0962fa526490b04be8",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y12",
+   "iid": "EO:11698",
+   "claim_sha256": "51f5043aa0a26db695c512dc85cd1550b60cefc0ebc97d1f78ad9f155c244a56",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y12",
+   "iid": "EO:12638",
+   "claim_sha256": "5250cf1fb879c1b610958a0805522d4fa0feb1ddc67c1ea039ad774f55cf0128",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y13",
+   "iid": "EO:12548",
+   "claim_sha256": "b6eb3f97184c36f8874c61508595b30ee99d9d5eeea64f27e9d6109b94e6ee7f",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y14",
+   "iid": "EO:10488",
+   "claim_sha256": "fb8872713168911d68f69413f0d1e7657a7a306c5813b9c516eecec3403792d6",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "file",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "c01",
+   "iid": "EO:11262",
+   "claim_sha256": "ec06dc1d91ca5328201ee90915d807f5ff92cee7cdc70eb1c5d707d2dc51ced5",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "upheld",
+   "stateless_B": "upheld",
+   "usd_A": 0.239575,
+   "usd_B": 0.107061,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "file",
+   "pair_agrees_with_agent": false,
+   "arm_A_agrees": false,
+   "arm_B_agrees": false
+  },
+  {
+   "batch": "y01",
+   "iid": "EO:11471",
+   "claim_sha256": "1508e04589e57c3f8e58a5ed4b8bd8aa3ef5509256bceffacb0a18ffab7aa7b9",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": null,
+   "usd_A": 0.195783,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "block",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": true,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y03",
+   "iid": "EO:10717",
+   "claim_sha256": "8eb1b7fabf8d1a3e30d94a9022ec12c25aca0afbc4b886a5b92ffab6f704091b",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "block",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y04",
+   "iid": "EO:12648",
+   "claim_sha256": "2201f08cef2179542aca55908943e697278f33c234ed7ce6ae9c0b4e62a7e58f",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "block",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y09",
+   "iid": "EO:9158",
+   "claim_sha256": "150c3d311b61092a022ef85fa6f716a8fa3dd58f33832349a3f80c705b98d926",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "block",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y10",
+   "iid": "EO:13755",
+   "claim_sha256": "227d695f4224cec138ab07030d74d71a1498a407768a82ae79fa8cf99090732d",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "block",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y11",
+   "iid": "EO:12549",
+   "claim_sha256": "2ab82e31db3483ed24e056bdbe8ffa42e5d34e5a5c5540cfc788f744288d9d77",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "block",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y02",
+   "iid": "EO:12322",
+   "claim_sha256": "8b4a512d38c98524e8386ad148d05eb66276b80b851a2b6457f03a92936085e9",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y02",
+   "iid": "EO:13251",
+   "claim_sha256": "8f107784197bba8c0a24f62b63a8a22d3603f558b85ea9881e4eec95222dd765",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y02",
+   "iid": "EO:12261",
+   "claim_sha256": "9a4e31d275faa0ac2319ded1d34d1a26ac0abf9c4fce4af0e449071efd6f8e94",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y02",
+   "iid": "EO:14368",
+   "claim_sha256": "a743e2a4661096a18f1ed950d1c306f12e96ddea7137b6e698f9da3b72e468aa",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y05",
+   "iid": "EO:11935",
+   "claim_sha256": "586c4e391cf6a10906e73630137da74d536d1e0e6810537e2f85a0cf19269492",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y07",
+   "iid": "EO:11298",
+   "claim_sha256": "0e19c8f45d90b8aad78d8f4241117d746f256c0130ad942dea77090a1c0f3352",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y07",
+   "iid": "EO:11851",
+   "claim_sha256": "bfcf5372a2c450eaff6ab3b487bc117e18f2488fb7cb8bafae051ec7ce0b2402",
+   "planted": false,
+   "agent_A": "rejected",
+   "agent_B": "upheld",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y01",
+   "iid": "EO:14177",
+   "claim_sha256": "746322874565b3de6d056e37e119845dcd20e47e064e3eb0461c87f47f1a7c2e",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "rejected",
+   "stateless_A": "upheld",
+   "stateless_B": null,
+   "usd_A": 1.356927,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": true,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y06",
+   "iid": "EO:11545",
+   "claim_sha256": "cddd0560146b5c577cc66a764cf2a72f77f1a36037223aa5f45cf68052d12c12",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y07",
+   "iid": "EO:13276",
+   "claim_sha256": "97423fc93546d4f3c43962305695e4918793171ce9a0569f0b5fbf097756ebc0",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y11",
+   "iid": "EO:10834",
+   "claim_sha256": "cae2b35358ee6593bc08c072e5a740d1d482ca62aa00546501596be7daec16b3",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y12",
+   "iid": "EO:10444",
+   "claim_sha256": "720d69d1dcf6a623e80356c6492d8245f6a3812017117639f4779a6c97b6d056",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y13",
+   "iid": "EO:12260",
+   "claim_sha256": "81fe36d342693fbfdb8c016fc703b116317b113563c09c9d635537c65857e311",
+   "planted": false,
+   "agent_A": "upheld",
+   "agent_B": "rejected",
+   "stateless_A": null,
+   "stateless_B": null,
+   "usd_A": null,
+   "usd_B": null,
+   "ran": false,
+   "agent_pair": "split",
+   "stateless_pair": null,
+   "pair_agrees_with_agent": null,
+   "arm_A_agrees": null,
+   "arm_B_agrees": null
+  },
+  {
+   "batch": "y01",
+   "iid": "EO:14354",
+   "claim_sha256": "41b94fd33a5fd5daaa6eb617422fa543d4433767d7bee829c7586e4a256698a1",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 1.287252,
+   "usd_B": 1.061814,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y02",
+   "iid": "EO:11884",
+   "claim_sha256": "c4e675d545ced79dd91fe542d55e329bcc9cd3a139abfb0e980732fe05ed155c",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.271992,
+   "usd_B": 0.143791,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y03",
+   "iid": "EO:11085",
+   "claim_sha256": "9473a26a127c7b6a78b92607b3b856c9873648c2e75bd1b6d03136fee9d558a1",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.519935,
+   "usd_B": 0.382454,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y04",
+   "iid": "EO:11552",
+   "claim_sha256": "38a73dd3f4c7e59e9ff2197bfa3edaea7e7963001ff5789f4f0e8d84eb47302e",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.656303,
+   "usd_B": 0.430416,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y05",
+   "iid": "EO:11701",
+   "claim_sha256": "ee4ed8348a89474eab0e98ca85c90f8ef520351485832775a040a27802871145",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.288927,
+   "usd_B": 0.136702,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y06",
+   "iid": "EO:13736",
+   "claim_sha256": "d7b9c9bb3df1009eba08fdd108865173d52a93532cd3c1ed2eb1a3b0a437d182",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.466503,
+   "usd_B": 0.33728,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y07",
+   "iid": "EO:12109",
+   "claim_sha256": "8c059f9208a8c071d14f84b3a8123b80375c5a82ba60acfa42b2114122b47605",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.196087,
+   "usd_B": 0.07352,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y08",
+   "iid": "EO:12047",
+   "claim_sha256": "774242fde65255c380484242d7d5babbb3db38801c20686eff304a6d24e8555b",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.284567,
+   "usd_B": 0.138169,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y09",
+   "iid": "EO:10979",
+   "claim_sha256": "b2ca372fb253f3ca04113df6832ec5a8e0bb5f835164c933f8c7b5e3b02965b4",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.305735,
+   "usd_B": 0.169461,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y10",
+   "iid": "EO:13613",
+   "claim_sha256": "4ee3beb462dcbe97dbcf7948830f88a683deaf6dcea48cd01b87ec20bc551051",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.371023,
+   "usd_B": 0.244252,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y11",
+   "iid": "EO:13709",
+   "claim_sha256": "83058f3a329b99da6fda208f19b2b3652116e8feafee2d4447dea356a8ebd91e",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.378243,
+   "usd_B": 0.25458,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y12",
+   "iid": "EO:11295",
+   "claim_sha256": "ee92b42fc0c803428f8335179e6e412e66527c18f45c2f6237307c57c5918b5a",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.640191,
+   "usd_B": 0.385451,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y13",
+   "iid": "EO:10347",
+   "claim_sha256": "623d40126ee9e635251a08907c4da4846f275d23005eb76b13286c658793ed1a",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.435623,
+   "usd_B": 0.275504,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "y14",
+   "iid": "EO:12019",
+   "claim_sha256": "053810e565bf3ad58ea649ccdc13d9ab68889fe73d70c5b486c9eb7eaa27f635",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.273211,
+   "usd_B": 0.126883,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_event"
+  },
+  {
+   "batch": "c01",
+   "iid": "EO:8399",
+   "claim_sha256": "2bc9913ef4e53dee25fa1a130f78c3171eb583e6b874dbcaab426f6d4a230cb6",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.303288,
+   "usd_B": 0.169628,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  },
+  {
+   "batch": "r01b",
+   "iid": "EO:13900",
+   "claim_sha256": "0280568173af2fa1fb062e20a869a329355c3e6b2468ccb6bcb4156dc820e998",
+   "planted": true,
+   "agent_A": "rejected",
+   "agent_B": "rejected",
+   "stateless_A": "rejected",
+   "stateless_B": "rejected",
+   "usd_A": 0.40758,
+   "usd_B": 0.249157,
+   "ran": true,
+   "agent_pair": "block",
+   "stateless_pair": "block",
+   "caught_A": true,
+   "caught_B": true,
+   "control_type": "date_shift_end"
+  }
+ ],
+ "prefix_checks": {
+  "producer_prefix_identical_per_route": true
+ }
+}
