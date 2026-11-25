@@ -1,6 +1,6 @@
 # Clark: orders the project cannot yet identify
 
-Generated 2026-11-24T00:37:08Z. Leads only; no census, count or identity changes.
+Generated 2026-11-24T23:33:58Z. Leads only; no census, count or identity changes.
 
 | Unknown | Count | File |
 |---|---:|---|
@@ -79,9 +79,9 @@ Generated 2026-11-24T00:37:08Z. Leads only; no census, count or identity changes
 
 ## Web search (online stage)
 
-29 of 29 unknowns advanced this run (0 never searched yet); 225 of 1100 requests used. 5479 hits on file, 157 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
+29 of 29 unknowns advanced this run (0 never searched yet); 221 of 1100 requests used. 5502 hits on file, 157 pages confirmed to name the order (51 unknowns): `WEB_LEADS.csv`. 24 order numbers named on pages read are absent from the census: `WEB_NUMBERS_NAMED.csv`.
 
-List pages: 60 read, 236 order numbers named, **4 absent from the census**: `WEB_LISTED_ORDERS.csv`.
+List pages: 60 read, 231 order numbers named, **4 absent from the census**: `WEB_LISTED_ORDERS.csv`.
 
 | Engine | Status |
 |---|---|
@@ -103,7 +103,7 @@ List pages: 60 read, 236 order numbers named, **4 absent from the census**: `WEB
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
-| presidency_project | ok |
+| presidency_project | error |
 | serpapi_google | needs_key |
 | wikipedia_search | blocked_by_robots_txt |
 | wikisource_search | blocked_by_robots_txt |

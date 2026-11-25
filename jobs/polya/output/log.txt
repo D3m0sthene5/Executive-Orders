@@ -1,4 +1,4 @@
-# POLYA compare (generated; repo_head 94c7e0b88df017e5155edd8b937c2d9041b94470)
+# POLYA compare (generated; repo_head 1d279ad4e2a636f30270c492af0d9e51a29e203c)
 
 Pool: 15002 orders, 1251 ready, 13751 not ready (2537 decided, 11214 undecided). Reach is not yield.
 
@@ -17,7 +17,7 @@ Pool: 15002 orders, 1251 ready, 13751 not ready (2537 decided, 11214 undecided).
 
 Distinct not-ready orders reached across nonbaseline frames: 13751 (deduplicated union).
 Potential is conditional on completing all affected clauses. Realized readiness change is unmeasured. A single blocker category can require several research actions.
-Input snapshot SHA-256: 5beef4146e09529d3665697e4c7aede7a519adb20cef7202a35b4a0e9be5388b
+Input snapshot SHA-256: 54933d87055596f011cabdd72277c4ff8e478e5aa2c3bd67373669de7e9d3dad
 
 | step | open (not ready) | open (decided, not ready) | views reaching orders with it open |
 |---|---:|---:|---|
