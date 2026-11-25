@@ -24,10 +24,13 @@ def actual_checker():
     return module
 
 
-def source_context(repo, checker):
-    """Use the ordinary offline custody policy without loading unrelated gates."""
+def source_context(repo, checker, cache_dir=None):
+    """Use the ordinary offline custody policy without loading unrelated gates.
+
+    With ``cache_dir`` (a packet's gitignored .validation-cache), Pergamon-stored copies are fetched and re-hashed
+    there exactly as batch-check's checker run does; no other download is enabled."""
     index = checker.S.build_index(repo, Path(checker.__file__).parent, exclude_jobs=('claim-checker',))
-    return SimpleNamespace(index=index, reader=checker.S.TextReader(packed=index.packed_texts),
+    return SimpleNamespace(index=index, reader=checker.S.TextReader(cache_dir, packed=index.packed_texts),
                            gpo_matched=checker.load_gpo_matched(repo), archive_captures={}, cache_dir=None)
 
 
@@ -288,7 +291,10 @@ def check_selected(repo, folder, claims):
     accepts exact proposed claims (including partial research), revalidates the
     packet/runtime, binds each reference to immutable dossier evidence, and uses
     the actual checker's OFFLINE custody rule. Call again after any claim/source
-    change; there is deliberately no receipt-as-permission or cache bypass.
+    change; there is deliberately no receipt-as-permission or cache bypass. A
+    copy held only in the Pergamon store is fetched into the packet's
+    .validation-cache and re-hashed, exactly as batch-check's checker run does;
+    no other download is made.
     """
     started = time.monotonic()
     repo, folder = Path(repo).resolve(), Path(folder).resolve()
@@ -300,7 +306,7 @@ def check_selected(repo, folder, claims):
     if len(ids) != len(claims) or any(not isinstance(i, str) for i in ids) or len(set(ids)) != len(ids) or set(ids) - set(dossiers):
         raise ValueError('selected claims must name distinct packet members')
     checker = actual_checker()
-    ctx = source_context(repo, checker)
+    ctx = source_context(repo, checker, folder / '.validation-cache')
     custody, texts, members = {}, {}, []
     for claim in claims:
         iid = claim['instrument_id']

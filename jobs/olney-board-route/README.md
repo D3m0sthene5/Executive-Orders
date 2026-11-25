@@ -9,12 +9,16 @@ spends no model tokens and applies the rule only to orders it fits directly. Eve
 exceptions list with its reasons.
 
 ```bash
-python3 -I jobs/olney-board-route/olney.py select            # output/SELECTION.json
-python3 -I jobs/olney-board-route/olney.py run --batch s0 --n 8
-python3 -I jobs/olney-board-route/olney.py run --batch s1 --n 20
-python3 -I jobs/olney-board-route/olney.py report            # output/RESULT.json, output/RESULT.md
+export OLNEY_CACHE_DIR=~/.cache/eo-olney                        # pdftotext and Pergamon copies, outside the repo
+python3 -I jobs/olney-board-route/olney.py select              # output/SELECTION.json (run v2)
+python3 -I jobs/olney-board-route/olney.py run --batch s2 --n 20
+OLNEY_ASSUME_PERGAMON_KIT=1 python3 -I jobs/olney-board-route/olney.py select --out /tmp/preview.json
+python3 -I jobs/olney-board-route/olney.py report --preview /tmp/preview.json   # output/RESULT.json, RESULT.md
 python3 -I jobs/olney-board-route/test_olney.py
 ```
+
+Run v1 (batches s0, s1) is kept as it was reviewed. Run v2 (batch s2 on) skips the 8 orders both blind arms upheld
+in v1 (EO 10032, 10056, 10071, 10112, 10140, 10757, 10872, 11663) and reruns the rest, EO 10944 included.
 
 ## Universe and selection
 
@@ -32,14 +36,35 @@ checks pass:
 - **Letter date:** the letter of transmittal's own date line reads cleanly as the corroborated date.
   - Lind's `OBSERVED_NO_HEADING` readings in this universe are the cover's date line, not the letter's. Olney looks
     for the letter's date between the cover and the address to the President instead.
-  - A garbled letter date is an exception, even when the cover is clean.
-- **Report span:** the span runs from the cover to the sentence submitting the report, and contains submission
-  wording.
+  - **Cover date (owner decision D-20261125-board-cover-date):** when the letter's date line is unreadable or not
+    found, and the cover's date line reads cleanly (the whole line) as the corroborated date, the board clause
+    ends on the cover date. The claim's reasons quote the unreadable line, or say none was found, and disclose
+    the rule. A letter date line that reads cleanly as another date is a conflict and stays an exception, and an
+    uncorroborated report date never uses the cover.
+- **Report span:** the span runs from the cover to the sentence submitting the report (periods of abbreviations
+  such as "No." or "Co." do not end it). On the cover route with no legible letter, it runs through the cover's
+  date line and board-number line.
+- **Report-time extensions (batch o1 review):** pdftotext reads the whole report PDF, and Olney screens every page
+  for wording that extends the board's time to report.
+  - An extension whose passage is on the held pages, and which prints the President's approval date and the new
+    deadline, is recorded as a later event of the board clause. The event is dated by the approval, and its source
+    is the quoted held passage, declared as a supplement excerpt. A date printed without its year takes the only
+    year inside the order's window, and the claim says so.
+  - When the passage prints the new deadline and no other date, the extension is recorded as a claim source note
+    whose date qualification says that no approval date is printed.
+  - Several extensions, a passage off the held pages, or an unparsed or ambiguous date make the order an
+    exception.
+  - Modal wording ("the time can be extended") in a report made within the order's own thirty days is not an
+    extension.
+- **Pergamon-only reports:** when the checkout's claim kit carries the Pergamon supplement route
+  (`source_supplement.held_bytes`), a report held only in the Pergamon store is fetched and re-hashed, then
+  declared with `local_path: null`. Without that route the order is the exception `report_bytes_pergamon_only_kit_gap`.
 - **Identity:** the span names the order by number, or by an appointment date equal to the order's signing date. No
   other order number or board number appears in it.
 - **Clauses:** the kit dossier has one clause. Its text has exactly one "hereby create" sentence and at most one
   no-change sentence, and that sentence ("thirty days after the board has made its report", "no change", "except
-  by agreement") ends the clause. Only page furniture may follow it, meaning text with no "shall", "hereby" or
+  by agreement") ends the clause. One OCR-damaged letter in "the", "board", "has" or "change" of that fixed
+  wording is tolerated, and the claim quotes the held text as it stands. Only page furniture may follow it, meaning text with no "shall", "hereby" or
   similar verb. No wording suggests another command, such as compensation, Defense Production Act section 502, an
   amendment, an extension or a reconvening.
 
@@ -75,20 +100,24 @@ checks pass:
 - **Completeness:** the selection checks are documented, but an exception they cannot see is not ruled out. One
   example is an unlisted reconvening.
 
-## Known gap and proposed patch
+## Pergamon route in the claim kit
 
-The kit's supplement route needs the raw bytes at a repository path (`local_path`). A report held only in the
-Pergamon store cannot be added. This affects 41 orders, and for 3 of them (EO 10770, 11343, 11745) it is the only
-exception.
+The kit's supplement route used to need the raw bytes at a repository path (`local_path`), so a report held only
+in the Pergamon store could not be added. Branch `claude/olney-v2` changes the kit:
 
-The kit's selected-source check (`dispatch.check_selected`) also reads custody with no cache folder, so a
-Pergamon-only copy grades `custody_record_only` there. Batch-check's checker run already fetches and re-hashes such
-copies.
+- `source_supplement.held_bytes` accepts `local_path: null` when a `jobs/*/output/SOURCES.jsonl` record gives a
+  Pergamon locator for the same SHA-256. It fetches the bytes through `pergamon_store.Store.get_verified` and
+  re-hashes them. The copy is kept under the kit cache and re-hashed on every packet load.
+- `dispatch.check_selected` reads custody with the packet's `.validation-cache`, as batch-check's checker run
+  does.
 
-`proposed/pergamon_supplement.patch` (not applied) fixes both:
+The text hash is checked exactly as before. Packets pin the kit code of the checkout that prepares them, so
+Pergamon-only orders run only after this change is merged. A preview (`OLNEY_ASSUME_PERGAMON_KIT=1 select
+--out`) shows which of them would then be selected.
 
-- **`source_supplement.py`:** accepts `local_path: null` when a `jobs/*/output/SOURCES.jsonl` record gives a
-  Pergamon locator for the same SHA-256. It fetches the bytes and re-hashes them.
-- **`dispatch.source_context`:** gets the packet's gitignored `.validation-cache`.
+## Mechanical trial of the extension route
 
-The patched `derive()` was tested on EO 10770's span.
+`research/excavator/claude-bracton-2026-11-25/olney/x1-extension-trial` (receipt marked `trial`,
+`NOT_FOR_REVIEW.txt`) applies the extension route to two exception orders: EO 10010, with a dated later event,
+and EO 10372, with a source note. Both pass apply and the claim checker. These claims are not for review or
+filing.

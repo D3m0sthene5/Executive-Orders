@@ -50,6 +50,11 @@ RULE_FILE = 'research/readiness/owner_rulings/2026-11-08-haloander-decisions.md'
 AGENT = 'claude'
 ACTION = 'production.one_step_away'
 CLEANUP = {'EO:12553': '1986-02-25', 'EO:12379': '1982-08-17'}
+COVER_RULE = 'D-20261125-board-cover-date'
+COVER_RULE_SOURCE = 'jobs/kean/register/decisions.jsonl'
+RUN = 'v2'
+# Upheld by both blind arms in the first run (o0/o1 review); not rerun. EO 10944 was not upheld and is rerun.
+UPHELD = {'EO:10032', 'EO:10056', 'EO:10071', 'EO:10112', 'EO:10140', 'EO:10757', 'EO:10872', 'EO:11663'}
 
 MONTHS = ['JANUARY', 'FEBRUARY', 'MARCH', 'APRIL', 'MAY', 'JUNE', 'JULY', 'AUGUST', 'SEPTEMBER', 'OCTOBER',
           'NOVEMBER', 'DECEMBER']
@@ -113,6 +118,31 @@ def git_show(repo, rel):
         return path.read_bytes()
     run = subprocess.run(['git', '-c', 'gc.auto=0', 'show', 'origin/main:' + rel], cwd=repo, capture_output=True)
     return run.stdout if run.returncode == 0 else None
+
+
+def kit_supports_pergamon(repo):
+    """Whether the checkout's claim kit accepts a held excerpt whose raw bytes are only in the Pergamon store."""
+    if os.environ.get('OLNEY_ASSUME_PERGAMON_KIT') == '1':
+        return True  # preview only (select --out): what the selection would be once the kit change is merged
+    path = Path(repo) / SUPPLEMENT
+    return path.is_file() and 'def held_bytes(' in path.read_text(encoding='utf-8')
+
+
+def pergamon_pdf(repo, record, cache_dir):
+    """A verified local copy of a Pergamon-stored report (fetched once into cache_dir), or None."""
+    target = Path(cache_dir) / 'pergamon' / (record['sha256'] + '.pdf')
+    if target.is_file() and sha_file(target) == record['sha256']:
+        return target
+    try:
+        sys.path.insert(0, str(Path(repo) / 'jobs/_lib'))
+        import pergamon_store
+        data = pergamon_store.Store.from_env().get_verified(record)
+    except Exception:  # noqa: BLE001  (offline or refused: the order stays an exception)
+        return None
+    target.parent.mkdir(parents=True, exist_ok=True)
+    target.with_suffix('.tmp').write_bytes(data)
+    os.replace(target.with_suffix('.tmp'), target)
+    return target
 
 
 def lane_ids(repo):
@@ -184,17 +214,28 @@ def numbers_named(text):
     return found
 
 
-def report_span(text, cand, iid, signing_date):
-    """Locate the held span over the report's cover date and transmittal letter, through the submission sentence.
+ABBREVIATION = re.compile(r'(?:\b(?:No|Nos|Co|Cos|Inc|Corp|Ltd|Mr|Messrs|Jr|Sr|St|Ry|R\.\s?R|Bros|U\.\s?S|D\.\s?C|'
+                          r'N\.\s?Y|Ill|Pa|Mass|Tex|Ind|Mo|Calif|Wash|Va|Md|Del|Conn|Mich|Wis|Minn|Ky|Tenn|Ala|Ga|Fla|'
+                          r'La|Ark|Okla|Kans|Nebr|Colo|Ariz|Oreg|Mont|Wyo|Nev|Vt|Me|vs|et\s+al)|\b[A-Z])$')
 
-    Returns (span, problems). Offsets are code-point offsets into the held text. The letter's own date line must
-    read cleanly as the corroborated date; a garbled letter date is an exception even when the cover is clean."""
-    problems = []
-    date = (cand.get('candidate') or {}).get('board_clause_end', {}).get('date')
+
+def sentence_stop(text, i):
+    """Offset of the period that ends the sentence running on from i, skipping the periods of abbreviations
+    ('Executive Order No. 10147', 'Railroad Co.', 'D. C.'); -1 if none."""
+    while True:
+        stop = text.find('.', i)
+        if stop < 0 or not ABBREVIATION.search(text[max(0, stop - 12):stop]):
+            return stop
+        i = stop + 1
+
+
+def letter_reading(text, cand, date):
+    """(offset, raw, None) of the letter of transmittal's own date line when it reads cleanly as ``date``, else
+    (offset_or_None, raw_or_None, reason). The reason names why the letter date is not usable."""
     t = cand.get('transmittal') or {}
     cover = cand.get('cover') or {}
     if t.get('kind') not in ('OBSERVED_DATELINE', 'OBSERVED_NO_HEADING') or not isinstance(t.get('offset'), int):
-        return None, ['letter_date_not_located:' + str(t.get('kind'))]
+        return None, None, 'letter_date_not_located:' + str(t.get('kind'))
     off, raw = t['offset'], t.get('raw') or ''
     if isinstance(cover.get('offset'), int) and off <= cover['offset']:
         # Lind's OBSERVED_NO_HEADING reading is the cover's date line here. Look for the letter's own date line:
@@ -207,31 +248,85 @@ def report_span(text, cand, iid, signing_date):
             for d in re.finditer(r'[A-Za-z]{3,10}\.?\s+\d{1,2},\s*\S{4,6}', window):
                 found = d
         if not found:
-            return None, ['letter_date_not_found_after_cover']
+            return None, None, 'letter_date_not_found_after_cover'
         off, raw = c_end + found.start(), found.group(0)
-        if parse_date(raw) != date:
-            return None, ['letter_date_ocr_damaged' + ('_cover_clean' if parse_date(cover.get('raw') or '') == date else '')]
     if text[off:off + len(raw)] != raw:
-        return None, ['letter_date_offset_mismatch']
+        return off, raw, 'letter_date_offset_mismatch'
     if parse_date(raw) != date:
-        reason = 'letter_date_ocr_damaged'
-        if parse_date(cover.get('raw') or '') == date:
-            reason += '_cover_clean'
-        return None, [reason]
-    m = SUBMISSION.search(text, off, off + 2500)
-    if not m:
-        return None, ['submission_sentence_not_found']
-    stop = text.find('.', m.end())
-    if stop < 0 or stop - off > 2500:
-        return None, ['submission_sentence_not_closed']
-    end = stop + 1
+        return off, raw, 'letter_date_ocr_damaged'
+    return off, raw, None
+
+
+# Letter-date failures that D-20261125-board-cover-date covers: the date line is unreadable or was not found. An
+# offset mismatch is a data defect, not an unreadable line, and stays an exception.
+LETTER_UNREADABLE = ('letter_date_not_located', 'letter_date_not_found_after_cover', 'letter_date_ocr_damaged')
+COVER_STOP = re.compile(r'TABLE\s+OF\s+CONTENTS|^\s*CONTENTS\s*$|INTRODUCT|^\s*I\.\s', re.I | re.M)
+
+
+def cover_clean(text, cand, date):
+    """The cover date line, if it is held at its offset and reads cleanly (the whole line) as ``date``."""
+    cover = cand.get('cover') or {}
+    off, raw = cover.get('offset'), cover.get('raw') or ''
+    if not isinstance(off, int) or not raw or text[off:off + len(raw)] != raw or parse_date(raw) != date:
+        return None
+    return off, raw
+
+
+def report_span(text, cand, iid, signing_date):
+    """Locate the held span over the report's cover date and transmittal letter, through the submission sentence.
+
+    Returns (span, problems). Offsets are code-point offsets into the held text. The letter's own date line ends
+    the board clause when it reads cleanly as the corroborated date. When it is unreadable or not found and the
+    cover date reads cleanly as that date, the cover date is used instead under D-20261125-board-cover-date
+    (``date_basis`` 'cover'), and the claim discloses it. A letter date line that reads cleanly as another date is a
+    conflict and stays an exception."""
+    problems = []
+    date = (cand.get('candidate') or {}).get('board_clause_end', {}).get('date')
+    cover = cand.get('cover') or {}
+    off, raw, why = letter_reading(text, cand, date)
+    basis, letter_note = 'letter', None
+    if why:
+        clean = cover_clean(text, cand, date) if date and cand.get('report_date_status') in (None, 'INVENTORY_AGREES') else None
+        if not why.startswith(LETTER_UNREADABLE) or clean is None:
+            if why == 'letter_date_ocr_damaged' and parse_date(cover.get('raw') or '') == date:
+                why += '_cover_clean'
+            return None, [why]
+        if raw and parse_date(raw) not in (None, date):
+            return None, ['cover_date_differs_from_letter']
+        basis, letter_note = 'cover', {'reason': why, 'letter_date_raw': raw, 'letter_date_offset': off}
+        off, raw = clean
+    c_end = off + len(raw)
+    if basis == 'letter':
+        m = SUBMISSION.search(text, off, off + 2500)
+        if not m:
+            return None, ['submission_sentence_not_found']
+    else:
+        # The letter, if held, follows the cover: its submission sentence must come after an address to the
+        # President and before the contents or introduction.
+        stop = COVER_STOP.search(text, c_end, c_end + 2500)
+        limit = stop.start() if stop else min(len(text), c_end + 2500)
+        m = SUBMISSION.search(text, c_end, limit)
+        if m and not re.search(r'PRESIDENT', text[c_end:m.start()], re.I):
+            m = None
+    if m:
+        stop = sentence_stop(text, m.end())
+        if stop < 0 or stop - off > 2500:
+            return None, ['submission_sentence_not_closed']
+        end = stop + 1
+    else:
+        # No legible letter: the span is the cover through its date line and the board-number line after it.
+        nl = text.find('\n', c_end)
+        end = c_end if nl < 0 else nl
+        after = re.match(r'\s*\(No\.\s*\d{1,3}\)', text[end:end + 40])
+        if after:
+            end += after.end()
     start = line_start(text, off)
     heading = None
     for h in re.finditer(r'LETTER\s+OF\s+TRANSMITTAL', text[max(0, off - 400):off], re.I):
         heading = max(0, off - 400) + h.start()
     if heading is not None:
         start = line_start(text, heading)
-    if isinstance(cover.get('offset'), int) and 0 <= start - cover['offset'] <= 1500:
+    if isinstance(cover.get('offset'), int) and (basis == 'cover' or 0 <= start - cover['offset'] <= 1500):
         c = cover['offset']
         if parse_date(cover.get('raw') or '') not in (None, date):
             problems.append('cover_date_differs_from_letter')
@@ -249,23 +344,280 @@ def report_span(text, cand, iid, signing_date):
         problems.append('other_order_number_in_span:' + '+'.join(other))
     by_number = me in named
     by_date = False
+    boards = {int(b) for b in re.findall(r'(?:Emergency\s+Board\s+No\.?|\(No\.)\s*(\d{1,3})\b', span, re.I)}
     if not by_number and signing_date:
         for d in DATE_RE.finditer(span):
-            if parse_date(d.group(0)) == signing_date and re.search(r'(appointed|created)\s+by\s+you\s*(on\s*)?$',
-                                                                    span[max(0, d.start() - 40):d.start()].replace('\n', ' '), re.I):
+            if parse_date(d.group(0)) != signing_date:
+                continue
+            before = span[max(0, d.start() - 40):d.start()].replace('\n', ' ')
+            if re.search(r'(appointed|created)\s+by\s+you\s*(on\s*)?$', before, re.I):
+                by_date = True
+            # The cover's own 'APPOINTED <date>' line names the order by its signing date only together with the
+            # matching board number, since two boards can be appointed on one day.
+            elif re.search(r'(appointed|created)\s*(on\s*)?$', before, re.I) and cand.get('peb') in boards:
                 by_date = True
     if not (by_number or by_date):
         problems.append('order_identity_not_in_span')
-    boards = {int(b) for b in re.findall(r'(?:Emergency\s+Board\s+No\.?|\(No\.)\s*(\d{1,3})\b', span, re.I)}
     if boards and cand.get('peb') not in boards:
         problems.append('board_number_mismatch:' + '+'.join(map(str, sorted(boards))))
-    return {'char_start': start, 'char_end': end, 'date': date, 'letter_date_raw': raw, 'letter_date_offset': off,
-            'identity': 'order_number' if by_number else 'appointment_date' if by_date else None,
-            'board_numbers_in_span': sorted(boards), 'submission_offset': m.start()}, problems
+    out = {'char_start': start, 'char_end': end, 'date': date, 'date_basis': basis, 'date_raw': raw,
+           'date_offset': off, 'identity': 'order_number' if by_number else 'appointment_date' if by_date else None,
+           'board_numbers_in_span': sorted(boards), 'submission_offset': m.start() if m else None}
+    if basis == 'letter':
+        out.update(letter_date_raw=raw, letter_date_offset=off)
+    else:
+        out.update(cover_date_raw=raw, cover_date_offset=off, letter=letter_note)
+    return out, problems
 
 
-STANDSTILL = re.compile(r'thirty\s+days\s+after\s+(the\s+)?(said\s+)?board\s+(has\s+)?(shall\s+have\s+)?made\s+its\s+report',
-                        re.I)
+# ------------------------------------------------------------------------------------- report-time extensions
+#
+# Batch o1 review: a President-approved extension of the board's report time that the held report records is a
+# later event of the board clause. Olney screens the whole report PDF (pdftotext, no model) for extension wording,
+# and records an extension only when its passage is in the held text and prints the approval date and the new
+# deadline in full. Anything else is an exception.
+
+EXT_PHRASE = re.compile(
+    r'exten(?:sion|sions|d|ds|ded|ding)\s+(?:of\s+)?(?:the\s+|its\s+|this\s+|our\s+)?(?:original\s+)?'
+    r'(?:\w+\s+){0,2}?(?:time|date|deadline)\b'
+    r'|(?:time|date)\s+(?:limit\s+)?(?:\w+\s+){0,12}?(?:was|be|been|is|were)\s+(?:thus\s+)?extended', re.I)
+EXT_NOT = re.compile(r'extended\s+periods?\b|for\s+an\s+extended', re.I)
+EXT_CONTEXT = re.compile(r'report|file\b|filing|time\s+limit|President|Emergency\s+Board|the\s+Board', re.I)
+EXT_MULTIPLE = re.compile(r'\btwice\b|two\s+occasions|further\s+extension|another\s+extension|second\s+extension|'
+                          r'ultimately|\bagain\b|extensions\b', re.I)
+# A printed date with or without its year: 'December 17', 'December 17, 1948', 'September 1,1950'.
+DATEX = r'(?:' + '|'.join(MONTHS) + r')\.?\s+\d{1,2}(?:st|nd|rd|th|d)?(?:,?\s*\d{4})?\b'
+APPROVAL = [re.compile(p, re.I) for p in (
+    r'approv\w*\s+(?:by\s+(?:the\s+)?President\s+)?(?:(?:\w+\s+){0,4}?on\s+|\s*:\s*)(' + DATEX + ')',
+    r'\bon\s+(' + DATEX + r'),?\s+(?:President\s+\w+\s+|the\s+President\s+)(?:\w+\s+){0,2}?(?:approv|extend|grant)\w*',
+    r'President,?\s+on\s+(' + DATEX + r'),?\s+(?:approv|extend|grant)\w*',
+    r'(?:granted|extended)\s+by\s+the\s+President\s+on\s+(' + DATEX + ')')]
+DEADLINE = re.compile(r'(?:not\s+later\s+than(?:\s+and\s+including)?|until|to\s+and\s+including|to\s+on\s+or\s+before|'
+                      r'on\s+or\s+before|to|through)\s+(' + DATEX + ')', re.I)
+APPROVED_WORDING = re.compile(r'approv|grant|President\s+(?:\w+\s+){0,3}?extended|extended\s+by\s+the\s+President', re.I)
+MODAL_ONLY = re.compile(r'(?:can|could|may|might|would)\s+be\s+extended', re.I)
+
+
+def resolve(raw, lo, hi):
+    """(iso, year_inferred) for a printed date: as printed when the year is printed, otherwise the one year that
+    puts it between lo and hi (ISO dates). None when unreadable, outside the bounds or not unique."""
+    raw = re.sub(r'(\d)(?:st|nd|rd|th|d)\b', r'\1', raw)
+    full = parse_date(raw) or parse_date(re.sub(r'(\d)\s+(\d{4})$', r'\1, \2', raw.strip()))
+    if full:
+        return (full, False) if lo <= full <= hi else None
+    m = re.fullmatch(r'\s*(' + '|'.join(MONTHS) + r')\.?\s+(\d{1,2})\s*', raw, re.I)
+    if not m:
+        return None
+    found = []
+    for year in range(int(lo[:4]), int(hi[:4]) + 1):
+        try:
+            iso = dt.date(year, MONTHS.index(m.group(1).upper()) + 1, int(m.group(2))).isoformat()
+        except ValueError:
+            continue
+        if lo <= iso <= hi:
+            found.append(iso)
+    return (found[0], True) if len(found) == 1 else None
+
+
+PAGE_MARK = re.compile(r'^=== PDF page (\d+)(?: of \d+)? ===$', re.M)
+
+
+def unspace(text):
+    """Join letters a damaged text layer prints one by one ('r e p o r t' -> 'report')."""
+    return re.sub(r'\b(?:[A-Za-z] ){2,}[A-Za-z]\b', lambda m: m.group(0).replace(' ', ''), text)
+
+
+def extension_hits(text):
+    """Start offsets of report-time extension wording in text (whitespace-normalized by the caller if needed)."""
+    out = []
+    for m in EXT_PHRASE.finditer(text):
+        window = text[max(0, m.start() - 300):m.end() + 300]
+        if EXT_NOT.search(text[max(0, m.start() - 10):m.end() + 10]) or not EXT_CONTEXT.search(window):
+            continue
+        out.append(m.start())
+    return out
+
+
+def screen_full_report(pages):
+    """{page_number: hit_count} of extension wording over the whole report (pdftotext pages, 1-based)."""
+    found = {}
+    for n, page in enumerate(pages, 1):
+        hits = extension_hits(unspace(re.sub(r'\s+', ' ', soft(page)[0])))
+        if hits:
+            found[n] = len(hits)
+    return found
+
+
+def held_pages(text):
+    """[(page_number, start, end)] of the held text's '=== PDF page N ===' sections."""
+    marks = list(PAGE_MARK.finditer(text))
+    return [(int(m.group(1)), m.end(), marks[i + 1].start() if i + 1 < len(marks) else len(text))
+            for i, m in enumerate(marks)]
+
+
+def sentences(norm, lo, hi):
+    """[(start, end)] sentence ranges of norm[lo:hi] (a period, semicolon or colon followed by space and a capital,
+    digit or parenthesis ends a sentence; initials such as 'D. C.' may split one, which only fails closed)."""
+    out, s = [], lo
+    for m in re.finditer(r'[.;](?=\s+[A-Z0-9(])', norm[lo:hi]):
+        e = lo + m.end()
+        if e - s > 1:
+            out.append((s, e))
+        s = e
+        while s < hi and norm[s].isspace():
+            s += 1
+    if hi - s > 1:
+        out.append((s, hi))
+    return out
+
+
+def extension_events(text, signing, report_date, full_pages, me=None):
+    """(events, problems) for the report-time extensions a held report records.
+
+    ``full_pages`` are the whole report's pdftotext pages (or None when the PDF could not be read). An extension
+    becomes an event only when its passage is in the held text (``text``) and prints the President's approval date
+    and the new report deadline as full dates; the event's span is the held passage. Any extension wording the held
+    text cannot carry this way is a problem, so the order stays an exception rather than omitting the event."""
+    if full_pages is None:
+        return [], ['report_pdf_text_unreadable']
+    found = screen_full_report(full_pages)
+    pages = held_pages(text)
+    held_max = max((p for p, _, _ in pages), default=0)
+    problems = sorted({f'report_extension_outside_held_text:p{p}' for p in found if p > held_max})
+    norm, back = soft(text)
+    events = []
+    for page, lo, hi in pages:
+        if page not in found:
+            continue
+        nlo, nhi = next(i for i, b in enumerate(back) if b >= lo), next(i for i, b in enumerate(back) if b >= hi)
+        sents = sentences(norm, nlo, nhi)
+        hits = [h for h in extension_hits(norm[nlo:nhi])]
+        if not hits:
+            problems.append(f'report_extension_not_located_in_held_text:p{page}')
+            continue
+        chosen = set()
+        for h in hits:
+            idx = next((i for i, (s, e) in enumerate(sents) if s <= nlo + h < e), None)
+            if idx is None:
+                continue
+            chosen.add(idx)
+            # The sentence before, when it too speaks of extending ('agreeing to extend until April 20, 1946 the
+            # date for the Board to submit its report'), belongs to the same record.
+            if idx and re.search(r'exten\w*', norm[sents[idx - 1][0]:sents[idx - 1][1]], re.I):
+                chosen.add(idx - 1)
+            for j in range(idx + 1, min(idx + 3, len(sents))):
+                if re.search(r'President|approv|grant|exten', norm[sents[j][0]:sents[j][1]], re.I):
+                    chosen.add(j)
+                else:
+                    break
+        groups, run = [], []
+        for i in sorted(chosen):
+            if run and i != run[-1] + 1:
+                groups.append(run)
+                run = []
+            run.append(i)
+        if run:
+            groups.append(run)
+        for g in groups:
+            s0, s1 = sents[g[0]][0], sents[g[-1]][1]
+            passage = re.sub(r'\s+', ' ', norm[s0:s1])
+            if EXT_MULTIPLE.search(passage):
+                problems.append(f'report_extension_multiple:p{page}')
+                continue
+            if numbers_named(passage) - {me}:
+                problems.append(f'report_extension_by_executive_order:p{page}')
+                continue
+            lo = signing or '1900-01-01'
+            approvals = {resolve(m.group(1), lo, report_date) for rx in APPROVAL for m in rx.finditer(passage)}
+            approval_raw = {m.group(1) for rx in APPROVAL for m in rx.finditer(passage)}
+            deadline_raw = {m.group(1) for m in DEADLINE.finditer(passage)} - approval_raw
+            # A deadline printed without its year is read as the one such date within a year after the approval
+            # (or, undated, after the signing); whether the report met it is checked below, never assumed.
+            dated = {d for d, _ in approvals if d}
+            start = min(dated) if len(dated) == 1 else lo
+            deadlines = {resolve(r, lo, plus_days(report_date, 3660)) if parse_date(r) else
+                         resolve(r, start, plus_days(start, 364)) for r in deadline_raw}
+            if None in approvals or None in deadlines:
+                problems.append(f'report_extension_date_unresolved:p{page}')
+                continue
+            if not deadlines and not approvals and MODAL_ONLY.search(passage) and not APPROVED_WORDING.search(passage):
+                # Wording that time 'can be extended', with no extension granted, in a report made within the
+                # order's own thirty days: no extension is recorded.
+                if signing and report_date <= plus_days(signing, 30):
+                    continue
+            if len({d for d, _ in approvals}) > 1:
+                problems.append(f'report_extension_approval_date_ambiguous:p{page}')
+                continue
+            if len({d for d, _ in deadlines}) != 1:
+                problems.append(f'report_extension_deadline_{"not_printed" if not deadlines else "ambiguous"}:p{page}')
+                continue
+            (deadline, d_inferred), = deadlines
+            approved, a_inferred = next(iter(approvals)) if approvals else (None, False)
+            if approved is None and {m.group(0) for m in re.finditer(DATEX, passage, re.I)} - deadline_raw:
+                # Another date is printed in the record (perhaps the approval in wording the patterns do not read):
+                # 'no approval date printed' would not be safe to state.
+                problems.append(f'report_extension_approval_date_unparsed:p{page}')
+                continue
+            if approved and not approved < deadline:
+                problems.append(f'report_extension_dates_out_of_order:p{page}')
+                continue
+            if report_date > deadline:
+                problems.append(f'report_after_extended_deadline:p{page}')
+                continue
+            raw0 = back[s0]
+            raw1 = back[s1] if s1 < len(back) else len(text)
+            while raw1 > raw0 and text[raw1 - 1].isspace():
+                raw1 -= 1
+            events.append({'approval_date': approved, 'approval_year_inferred': a_inferred,
+                           'approval_printed': bool(APPROVED_WORDING.search(passage)),
+                           'new_deadline': deadline, 'deadline_year_inferred': d_inferred, 'page': page,
+                           'char_start': raw0, 'char_end': raw1})
+    # One extension printed twice (the narrative and the NMB letter, say) is one event.
+    # A dated record of the same deadline wins over an undated one.
+    merged = {}
+    for e in sorted(events, key=lambda e: e['approval_date'] is None):
+        key = e['new_deadline']
+        if key not in merged:
+            merged[key] = e
+        elif e['approval_date'] and e['approval_date'] != merged[key]['approval_date']:
+            problems.append('report_extension_records_disagree')
+    events = sorted(merged.values(), key=lambda e: e['new_deadline'])
+    if len(events) > 1:
+        problems.append('report_extension_multiple:records')
+    return events, sorted(set(problems))
+
+
+def pdftotext_pages(pdf, cache_dir):
+    """The PDF's text by page (pdftotext, reading order), cached by the PDF's SHA-256; None if unreadable."""
+    raw = Path(pdf).read_bytes()
+    sha = hashlib.sha256(raw).hexdigest()
+    cache = Path(cache_dir) / (sha + '.txt')
+    if not cache.is_file():
+        cache.parent.mkdir(parents=True, exist_ok=True)
+        run = subprocess.run(['pdftotext', '-q', str(pdf), str(cache) + '.tmp'], capture_output=True)
+        if run.returncode or not Path(str(cache) + '.tmp').is_file():
+            return None
+        os.replace(str(cache) + '.tmp', cache)
+    pages = cache.read_text(encoding='utf-8', errors='replace').split('\f')
+    if pages and not pages[-1].strip():
+        pages = pages[:-1]
+    return pages
+
+
+def pdftotext_version():
+    try:
+        run = subprocess.run(['pdftotext', '-v'], capture_output=True, text=True)
+        return (run.stderr or run.stdout).splitlines()[0].strip()
+    except (OSError, IndexError):
+        return None
+
+
+# The statutory no-change sentence. OCR of the Federal Register damages single words of this fixed wording
+# ('thff board', 'nas made', 'ehange'); one damaged letter in 'the', 'board', 'has' or 'change' is tolerated, and
+# the claim quotes the held text as it stands.
+STANDSTILL = re.compile(r'thirty\s+days\s+after\s+(th[a-z]{1,2}\s+)?(said\s+)?[bB][a-z]{3,4}\s+([hn]as\s+)?'
+                        r'(shall\s+have\s+)?made\s+its\s+report', re.I)
+NO_CHANGE = re.compile(r'no\s+(change|[a-z]hange|[a-z]?nange|c[a-z]ange|ch[a-z]nge)\b', re.I)
 
 
 def split_clause(clause_text, clause_start):
@@ -283,7 +635,7 @@ def split_clause(clause_text, clause_start):
     if len(hits) > 1 or loose > len(hits):
         return None, None, problems + ['standstill_sentence_ambiguous']
     if not hits:
-        if re.search(r'no\s+change', norm, re.I):
+        if NO_CHANGE.search(norm):
             problems.append('no_change_wording_without_standstill_pattern')
         other = OTHER_COMMAND.search(norm)
         if other:
@@ -300,7 +652,7 @@ def split_clause(clause_text, clause_start):
         return None, None, problems + ['standstill_sentence_end_not_found']
     s1 = h.end() + tail.end()
     sentence = norm[s0:s1]
-    if not re.search(r'no\s+change', sentence, re.I) or not re.search(r'except\s+by\s+agreement', sentence, re.I):
+    if not NO_CHANGE.search(sentence) or not re.search(r'except\s+by\s+agreement', sentence, re.I):
         problems.append('standstill_sentence_lacks_no_change_or_agreement')
     rest = norm[s1:].strip()
     # Text after the standstill is accepted only as page furniture (signature, place and date, FR document line,
@@ -401,7 +753,7 @@ def load_inputs(repo):
 
 def judge(repo, iid, cand, ctx):
     """(record, reasons): the mechanical plan for one order, and every reason the rule does not apply directly."""
-    eumenes, ptolemy, ladder, readiness, locks, claims, lanes, include_pc = ctx
+    eumenes, ptolemy, ladder, readiness, locks, claims, lanes, include_pc, cache_dir = ctx
     reasons, rec = [], {'instrument_id': iid, 'peb': cand.get('peb'), 'lane': lanes.get(iid)}
     if lanes.get(iid, '').startswith('p') and not include_pc:
         reasons.append('pc_lane_order:' + lanes[iid])
@@ -428,9 +780,22 @@ def judge(repo, iid, cand, ctx):
         reasons.append('report_not_in_eumenes_store')
     kept = ptolemy.get(sha)
     local = f"jobs/ptolemy-custody/output/{kept['cache_path']}" if kept and kept.get('cache_path') else None
+    pdf = None
     if not local or not (Path(repo) / local).is_file():
-        reasons.append('report_bytes_pergamon_only_kit_gap')
         local = None
+        # A report held only in the Pergamon store goes through the kit's Pergamon supplement route when the
+        # checkout's claim kit carries it (proposed/pergamon_supplement.patch, applied as a code change).
+        pg = (eumenes.get(sha) or {}).get('pergamon')
+        if not kit_supports_pergamon(repo):
+            reasons.append('report_bytes_pergamon_only_kit_gap')
+        elif not (isinstance(pg, dict) and pg.get('sha256') == sha and pg.get('locator')):
+            reasons.append('report_bytes_not_held')
+        else:
+            pdf = pergamon_pdf(repo, pg, cache_dir)
+            if pdf is None:
+                reasons.append('report_pergamon_fetch_failed')
+    else:
+        pdf = Path(repo) / local
     lrec = ladder.get((sha, cand.get('report_text_path')))
     text = text_sha = None
     if not lrec:
@@ -472,6 +837,17 @@ def judge(repo, iid, cand, ctx):
         span, problems = report_span(text, cand, iid, signing)
         reasons += problems
         rec['span'] = span
+        if span and pdf is not None:
+            pages = pdftotext_pages(pdf, cache_dir)
+            events, problems = extension_events(text, signing, span['date'], pages, order_number(iid))
+            reasons += problems
+            rec['extensions'] = events
+            if pages is not None:
+                rec['full_report_screen'] = {
+                    'tool': pdftotext_version(), 'pages': len(pages),
+                    'pages_without_text': sum(1 for pg in pages if len(re.sub(r'\s', '', pg)) < 40),
+                    'held_text_pages': [p for p, _, _ in held_pages(text)],
+                    'extension_pages': sorted(screen_full_report(pages))}
     if dossier and len(dossier.get('clauses') or []) == 1:
         c = dossier['clauses'][0]
         orig = dossier['evidence'][dossier['original_source_id']]
@@ -495,9 +871,13 @@ def select(repo, include_pc=False):
     lanes = lane_ids(repo)
     universe = sorted((set(cands) & stratum), key=lambda i: int(re.sub(r'\D', '', i) or 0))
     claims = filed_claims(repo, set(universe))
-    ctx = (eumenes, ptolemy, ladder, readiness, locks, claims, lanes, include_pc)
-    selected, exceptions = [], []
+    cache_dir = Path(os.environ.get('OLNEY_CACHE_DIR') or Path.home() / '.cache/eo-olney')
+    ctx = (eumenes, ptolemy, ladder, readiness, locks, claims, lanes, include_pc, cache_dir)
+    selected, exceptions, excluded = [], [], []
     for iid in universe:
+        if iid in UPHELD:
+            excluded.append(iid)
+            continue
         rec, reasons = judge(repo, iid, cands[iid], ctx)
         (exceptions if reasons else selected).append(dict(rec, reasons=reasons) if reasons else rec)
     by_reason = {}
@@ -509,8 +889,10 @@ def select(repo, include_pc=False):
     for e in exceptions:
         key = e['reasons'][0].split(':', 1)[0]
         primary[key] = primary.get(key, 0) + 1
-    return {'schema': 'eo-olney-selection/v1', 'rule': RULE, 'universe': len(universe),
+    return {'schema': 'eo-olney-selection/v2', 'rule': RULE, 'cover_rule': COVER_RULE, 'run': RUN,
+            'universe': len(universe), 'excluded_already_upheld': excluded, 'judged': len(universe) - len(excluded),
             'universe_definition': 'Lind CANDIDATES.json orders in the production.one_step_away stratum',
+            'kit_supports_pergamon': kit_supports_pergamon(repo),
             'universe_lanes': dict({k: sum(1 for i in universe if lanes.get(i, '').startswith(k)) for k in ('c', 'p')},
                                    none=sum(1 for i in universe if i not in lanes)),
             'include_pc_lanes': include_pc, 'selected': selected, 'exceptions': exceptions,
@@ -524,8 +906,27 @@ def alias(iid, part):
     return f'olney_{part}_' + re.sub(r'\W', '_', order_number(iid))
 
 
+def ext_alias(iid, k):
+    return f'olney_ext{k}_' + re.sub(r'\W', '_', order_number(iid))
+
+
+def date_words(sp):
+    """How the span dates the report: the clean letter date line, or (D-20261125-board-cover-date) the cover."""
+    if sp.get('date_basis') == 'cover':
+        letter = sp.get('letter') or {}
+        if letter.get('letter_date_raw'):
+            why = f"the letter of transmittal's date line is unreadable in the held text ('{letter['letter_date_raw']}')"
+        else:
+            why = 'no letter of transmittal date line was found in the held text'
+        return (f"{why}; under owner decision {COVER_RULE} the report is dated by its cover, whose date line "
+                f"'{sp['cover_date_raw']}' reads cleanly as {sp['date']} and agrees with the NMB inventory closing date")
+    raw = sp.get('letter_date_raw') or sp.get('date_raw') or sp['date']
+    return f"the letter of transmittal's date line '{raw}' reads cleanly as {sp['date']}"
+
+
 def declaration(sel):
-    """source_supplement declaration: the report span twice (board end, standstill end), held bytes from Ptolemy."""
+    """source_supplement declaration: the report span twice (board end, standstill end), and each recorded
+    report-time extension's held passage, from the same held report."""
     entries = []
     for r in sel:
         sp = r['span']
@@ -533,17 +934,42 @@ def declaration(sel):
                   'text_sha256': r['report_text_sha256'], 'page_or_item': r['report_page_or_item'],
                   'local_path': r['report_local_path']}
         board = f"Emergency Board No. {r['peb']} ({r['instrument_id']})"
+        what = ('Report cover and letter of transmittal' if sp.get('submission_offset') is not None
+                else 'Report cover')
+        rule = RULE + (f' (a); dated by the cover under {COVER_RULE}' if sp.get('date_basis') == 'cover' else ' (a)')
         entries.append({'alias': alias(r['instrument_id'], 'board'), 'instrument_ids': [r['instrument_id']],
                         'actor_id': board, 'source': source, 'char_start': sp['char_start'], 'char_end': sp['char_end'],
-                        'reason': f"Report cover and letter of transmittal of {board}, dated {sp['date']}, through "
-                                  f"the sentence submitting the report; evidences submission on that date ({RULE} (a))."})
+                        'reason': f"{what} of {board}, dated {sp['date']}"
+                                  + (', through the sentence submitting the report' if sp.get('submission_offset') is not None else '')
+                                  + f"; evidences the report on that date ({rule})."})
         if r.get('standstill_range'):
             entries.append({'alias': alias(r['instrument_id'], 'standstill'), 'instrument_ids': [r['instrument_id']],
                             'actor_id': r['instrument_id'], 'source': source, 'char_start': sp['char_start'],
                             'char_end': sp['char_end'],
                             'reason': f"Same report span: dates the report ({sp['date']}) from which the order's own "
                                       f"no-change sentence runs thirty days ({RULE} (b))."})
+        for k, e in enumerate(r.get('extensions') or [], 1):
+            entries.append({'alias': ext_alias(r['instrument_id'], k), 'instrument_ids': [r['instrument_id']],
+                            'actor_id': f"The President (extension of the report time of {board})",
+                            'source': source, 'char_start': e['char_start'], 'char_end': e['char_end'],
+                            'reason': f"Held report passage (PDF page {e['page']}) recording an extension of the "
+                                      f"board's time to report, to {e['new_deadline']}"
+                                      + (f", approved on {e['approval_date']}" if e['approval_date'] else '')
+                                      + '; a later event of the board clause (batch o1 review).'})
     return {'schema': 'eo-source-excerpt-declarations/v1', 'sources': entries}
+
+
+def screen_words(r):
+    sc = r.get('full_report_screen') or {}
+    exts = r.get('extensions') or []
+    held = sc.get('held_text_pages') or []
+    out = (f"Olney screened the whole report PDF ({sc.get('pages')} pages; {sc.get('tool')}; "
+           f"{sc.get('pages_without_text')} pages without a text layer) for wording extending the board's time to "
+           f"report")
+    if not exts:
+        return out + '; it records no extension.'
+    return out + (f"; every such passage is on the held pages {held[0]}-{held[-1]}, and the report records "
+                  f"{len(exts)} extension, recorded below.")
 
 
 def fill_rows(r, dossier, claim, decision_row, searches):
@@ -567,16 +993,56 @@ def fill_rows(r, dossier, claim, decision_row, searches):
         problems.append('filed_later_source_search_not_in_dossier')
     orig_id = dossier['original_source_id']
     rule_ref = f'owner rule {RULE} ({RULE_FILE} item 2)'
-    disclosure = ('The transmittal letter evidences submission on its date; receipt by the President may have been '
-                  'later.')
+    cover = sp.get('date_basis') == 'cover'
+    if cover:
+        disclosure = (f'Disclosed under {COVER_RULE}: the report date is read from the cover, not from the letter '
+                      f'of transmittal; the report was made on or about that date, and receipt by the President may '
+                      f'have been later.')
+    else:
+        disclosure = ('The transmittal letter evidences submission on its date; receipt by the President may have '
+                      'been later.')
+    exts = r.get('extensions') or []
     later = [{'id': ceid, 'effective_date': cdate, 'effective_date_confirmed': True,
               'mechanism': f'{cmech} (formal disposition: {actor} cleanup revocation, kept under {RULE})'}]
+    board_later = list(later)
+    notes = []
+    ext_words = []
+    for k, e in enumerate(exts, 1):
+        eid = 'SUPPLEMENT:' + ext_alias(iid, k)
+        inferred = []
+        if e['approval_year_inferred']:
+            inferred.append('the approval date')
+        if e['deadline_year_inferred']:
+            inferred.append('the new deadline')
+        year_note = (f" The passage prints {' and '.join(inferred)} without the year; the year is the only one "
+                     f"that puts it between the order's signing and the report ({D})." if inferred else '')
+        if e['approval_date']:
+            board_later.append({'id': eid, 'effective_date': e['approval_date'], 'effective_date_confirmed': True,
+                                'mechanism': f"extension of the board's time to report, to {e['new_deadline']}, "
+                                             f"approved by the President on {e['approval_date']} (held report, PDF "
+                                             f"page {e['page']}); the board clause continued and its report of {D} "
+                                             f"completed it.{year_note}"})
+            ext_words.append(f"extended to {e['new_deadline']} with the President's approval of {e['approval_date']} "
+                             f"(later event {eid})")
+        else:
+            who = ("with the President's approval" if e['approval_printed'] else
+                   '(the passage does not say who approved the extension)')
+            notes.append({'id': eid,
+                          'reason': f"Later event of the board clause: the held report records that the board's time "
+                                    f"to report was extended to {e['new_deadline']} {who}.{year_note}",
+                          'date_qualification': f"The held report prints no date for the extension; it falls after "
+                                                f"the order's signing and before the report of {D}."})
+            ext_words.append(f"extended to {e['new_deadline']} (date not printed; source note {eid})")
     board_reason = (f"Ended by completion of its task under {rule_ref} (a): the board was created to investigate the "
                     f"dispute and report to the President. The held report of Emergency Board No. {r['peb']} "
-                    f"(SHA-256 {r['report_sha256'][:12]}..., NMB inventory closing date agrees) has a letter of "
-                    f"transmittal dated {D} that submits the report herewith, so the task was performed on {D}. "
-                    f"{disclosure} The report deadline in the order is not the end. {actor} ({cdate}) stays the "
-                    f"formal disposition, recorded as a later event.")
+                    f"(SHA-256 {r['report_sha256'][:12]}..., NMB inventory closing date agrees) is dated {D}: "
+                    f"{date_words(sp)}"
+                    + (" and the letter submits the report herewith" if sp.get('submission_offset') is not None else '')
+                    + f"; so the task was performed on {D}. {disclosure}"
+                    + (f" The order's thirty-day report time was {'; '.join(ext_words)}; an extension moved the "
+                       f"deadline and did not end the clause." if ext_words else '')
+                    + f" The report deadline in the order is not the end. {actor} ({cdate}) stays the formal "
+                      f"disposition, recorded as a later event.")
     clause_base = {'instrument_id': iid, 'clause_id': '', 'state': 'terminated', 'effective_date_confirmed': 'true',
                    'current_basis_id': '', 'current_legal_basis': '', 'checked_through': '',
                    'later_event_ids': canon([ceid]), 'later_events': canon(later),
@@ -588,6 +1054,7 @@ def fill_rows(r, dossier, claim, decision_row, searches):
     b0, b1 = r['board_range']
     rows.append(dict(clause_base, scope_id=iid + '#board', end_id='SUPPLEMENT:' + alias(iid, 'board'),
                      effective_date=D, mechanism='completion_of_task', reason=board_reason,
+                     later_event_ids=canon([e['id'] for e in board_later]), later_events=canon(board_later),
                      inventory_char_start=str(b0), inventory_char_end=str(b1),
                      inventory_reason=(inv if r.get('standstill_range') else
                                        "Board clause under {rule}: the whole operative text (create, investigate, "
@@ -601,38 +1068,48 @@ def fill_rows(r, dossier, claim, decision_row, searches):
         rows.append(dict(clause_base, scope_id=iid + '#standstill', end_id='SUPPLEMENT:' + alias(iid, 'standstill'),
                          effective_date=end, mechanism='expiry_by_own_terms',
                          reason=(f"Ended by its own terms under {rule_ref} (b): the sentence runs 'for thirty days "
-                                 f"after the board has made its report'. Report date {D} (held letter of transmittal, "
-                                 f"above). Inclusive reading: the period ends at the end of the thirtieth day after "
-                                 f"{D}, that is {D} + 30 days = {end}. Exclusive reading, stated as the alternative: "
-                                 f"{plus_days(D, 29)}. {disclosure} {actor} ({cdate}) stays the formal disposition, "
-                                 f"recorded as a later event."),
+                                 f"after the board has made its report'. Report date {D} (held report, above"
+                                 + (f"; dated by the cover under {COVER_RULE}" if cover else '') + f"). Inclusive "
+                                 f"reading: the period ends at the end of the thirtieth day after {D}, that is {D} + "
+                                 f"30 days = {end}. Exclusive reading, stated as the alternative: {plus_days(D, 29)}. "
+                                 f"{disclosure} {actor} ({cdate}) stays the formal disposition, recorded as a later "
+                                 f"event."),
                          inventory_char_start=str(s0), inventory_char_end=str(s1),
                          inventory_reason=inv.format(rule=RULE, a=s0, b=s1)))
+    basis_words = (f'the cover date (letter date line unreadable or not found; {COVER_RULE})' if cover
+                   else 'the letter of transmittal date')
     row = dict(decision_row)
     row.update(outcome='submit', approved='true', original_confirmed='true', inventory_confirmed='true',
                original_pages_confirmed='true' if (claim.get('claim_kit') or {}).get('original_pages_confirmed') else 'false',
                research_rationale=(
-                   f"Scripted replacement proposal (Olney, zero model tokens) applying {rule_ref} to {iid}. Original: "
-                   f"the dossier's held original {orig_id}, the same printing the filed claim ({r['claim_file']}) "
-                   f"cites. Report: NMB report of Emergency Board No. {r['peb']}, held bytes "
-                   f"{r['report_local_path']} (also in the Pergamon store), text {r['report_text_path']}; the quoted "
-                   f"span runs from the cover to the sentence submitting the report, and names the order by "
-                   f"{sp['identity'].replace('_', ' ')}. Clause ends: board {D}"
+                   f"Scripted replacement proposal (Olney {RUN}, zero model tokens) applying {rule_ref} to {iid}. "
+                   f"Original: the dossier's held original {orig_id}, the same printing the filed claim "
+                   f"({r['claim_file']}) cites. Report: NMB report of Emergency Board No. {r['peb']}, held bytes "
+                   f"{r['report_local_path'] or 'in the Pergamon store'}, text {r['report_text_path']}; the quoted "
+                   f"span runs from the cover"
+                   + (" to the sentence submitting the report" if sp.get('submission_offset') is not None else
+                      " through its date line (no letter of transmittal is legible in the held text)")
+                   + f", and names the order by {sp['identity'].replace('_', ' ')}. Report dated by {basis_words}. "
+                   f"Clause ends: board {D}"
                    + (f"; no-change period {whole_end} (inclusive; exclusive {plus_days(D, 29)})" if r.get('standstill_range') else '')
-                   + f". Whole-order end {whole_end}. Formal disposition {actor} of {cdate}. Savings and later-source "
-                   f"search are carried from the filed claim."),
+                   + f". Whole-order end {whole_end}. Formal disposition {actor} of {cdate}. "
+                   + (f"Report-time extensions recorded: {len(exts)}. " if exts else '')
+                   + "Savings and later-source search are carried from the filed claim."),
                savings_state=sav.get('state') or '', savings_source_id=sav_id or '',
                savings_reason=sav.get('reason') or '', search_ids=canon(chosen), conflict_resolutions='{}',
                unresolved_material_gaps='[]', publication_kind='whole_case',
                earlier_end_check=(f"No earlier end: the board's task could not be complete before its report of {D}, "
-                                  f"and the no-change period runs from the report. No extension, amendment or "
-                                  f"reconvening is flagged for this order (Lind exception checks; NMB inventory)."),
+                                  f"and the no-change period runs from the report. {screen_words(r)} No amendment, "
+                                  f"reconvening, supplemental report or congressional action is flagged for this "
+                                  f"order (Lind exception checks; NMB inventory)."),
                scope_check=f"The clauses cover the order's operative text: board clause and (if present) the "
                            f"no-change sentence; the recitals and heading stay with the board clause.",
                independent_command_check=("No command other than create-investigate-report and the no-change "
                                           "sentence is present (scripted wording screen; any other wording sends the "
                                           "order to exceptions)."),
                savings_check=f"Carried from the filed claim: {sav.get('state')}.")
+    if notes:
+        row['source_notes'] = canon(notes)
     return row, rows, problems
 
 
@@ -677,7 +1154,8 @@ def run_batch(repo, name, ids, selection):
     if folder.exists():
         raise SystemExit('batch folder exists: ' + str(folder))
     folder.mkdir(parents=True)
-    receipt = {'schema': 'eo-olney-batch/v1', 'batch': name, 'orders': ids, 'steps': {}, 'per_order': {},
+    receipt = {'schema': 'eo-olney-batch/v2', 'run': RUN, 'batch': name, 'orders': ids, 'steps': {}, 'per_order': {},
+               'code_sha256': sha_file(__file__), 'selection_sha256': sha_file(HERE / 'output/SELECTION.json'),
                'model_tokens': 0, 'started_utc': dt.datetime.now(dt.timezone.utc).isoformat()}
     path = folder / 'OLNEY_BATCH.json'
 
@@ -732,6 +1210,9 @@ def run_batch(repo, name, ids, selection):
             out_d.append(drow)
             out_c += crows
             receipt['per_order'][iid] = {'outcome': 'submit', 'board_end': r['span']['date'],
+                                         'date_basis': r['span'].get('date_basis'),
+                                         'extensions': [{k: e[k] for k in ('approval_date', 'new_deadline', 'page')}
+                                                        for e in r.get('extensions') or []],
                                          'standstill_end': crows[1]['effective_date'] if len(crows) > 1 else None}
     write_csv(packet / 'decisions.csv', dfields, out_d)
     write_csv(packet / 'clauses.csv', cfields, out_c)
@@ -772,6 +1253,55 @@ PRIORITY = ['no_current_claim', 'filed_claim_changed_since_lind', 'tracker_not_s
             'reserved_by_other_agent', 'pc_lane_order', 'follow_on_order', 'report_shared_with_follow_on_order',
             'congressional_action', 'reconvened_or_supplemental_report', 'nmb_lists_extra_documents',
             'multi_clause_claim', 'dossier_inventory_not_single_clause', 'report_date_not_corroborated']
+GROUP = [('letter_date', 'letter_date_unreadable_and_cover_not_clean'), ('cover_date', 'letter_and_cover_dates_conflict'),
+         ('submission', 'submission_sentence_not_found'), ('order_identity', 'report_identity_doubt'),
+         ('other_order', 'report_identity_doubt'), ('board_number', 'report_identity_doubt'),
+         ('span_too_long', 'report_identity_doubt'), ('report_extension', 'report_extension_not_scriptable'),
+         ('report_after_extended', 'report_extension_not_scriptable'), ('report_pdf', 'report_extension_not_scriptable'),
+         ('report_pergamon_fetch', 'report_bytes_pergamon_only_kit_gap')]
+# What each remaining exception needs before the rule can be applied to it (handback item 4).
+NEEDS = {
+    'follow_on_order': 'A producer claim: the order amends or extends another board order, so its end follows the '
+                       'parent board and the instrument that names it (not covered by the board rule as written).',
+    'report_shared_with_follow_on_order': 'One report answers two orders (a board order and its follow-on); a '
+                                          'producer must assign the report to each order and decide whether the '
+                                          'follow-on reset the deadline. Needs a two-order claim, reviewed together.',
+    'congressional_action': 'Congress legislated on the dispute (NMB inventory); a producer must decide whether '
+                            'the statute ended or displaced the board or the no-change period. Owner rule does not '
+                            'cover it.',
+    'reconvened_or_supplemental_report': 'The board reconvened or filed a supplemental report; which report '
+                                         'completed the task needs a producer judgment and a second span.',
+    'nmb_lists_extra_documents': 'The NMB lists further documents for the board (letters, a second report); a '
+                                 'producer must read them for a later report or reconvening.',
+    'multi_clause_claim': 'The filed claim has more than two clauses (extra commands); each needs its own end '
+                          'beyond the board rule.',
+    'dossier_inventory_not_single_clause': 'The kit dossier splits the order into several clauses (often FR '
+                                           'layout or added commands); a producer must reconcile the inventory '
+                                           'before the scripted split applies.',
+    'report_date_not_corroborated': "Lind's report date is not corroborated (image check needed or held readings "
+                                    'conflict); needs a page-image check of the cover and letter (Lind '
+                                    'UNREAD_IMAGE_CHECK_NEEDED/CONFLICT_IMAGE_CHECK_NEEDED).',
+    'letter_date_unreadable_and_cover_not_clean': 'Neither the letter date line nor the cover date reads cleanly '
+                                                  'as the corroborated date; needs a page-image reading.',
+    'letter_and_cover_dates_conflict': 'The letter date line reads cleanly as a date other than the cover date '
+                                       '(an OCR misreading or a real difference); needs a page-image reading of '
+                                       'both lines. D-20261125-board-cover-date covers only an unreadable line.',
+    'submission_sentence_not_found': 'The letter is held but no submission sentence was found; needs a manual '
+                                     'span or a page check.',
+    'report_identity_doubt': 'The quoted span does not name the order (number, or appointment date with the board '
+                             'number), or names another order; needs a producer identity check.',
+    'report_extension_not_scriptable': 'The report records a report-time extension Olney cannot carry as a later '
+                                       'event: outside the held pages (needs a held text of the later pages), '
+                                       'several extensions, an unparsed or ambiguous approval date or deadline. '
+                                       'Needs a producer to record each extension, or a held text of the pages.',
+    'clause_inventory_doubt': 'The order text has wording beyond create-investigate-report and the no-change '
+                              'sentence (another command, damaged or interleaved FR text); needs a producer '
+                              'clause inventory.',
+    'report_bytes_pergamon_only_kit_gap': 'The report bytes are only in the Pergamon store; needs the claim-kit '
+                                          'change on branch claude/olney-v2 merged, then an Olney rerun.',
+    'original_bytes_not_held': "The order's own Federal Register bytes are only a custody record; needs the "
+                               'original PDF kept (dispatch refuses the packet).',
+}
 
 
 def primary(reasons):
@@ -782,22 +1312,21 @@ def primary(reasons):
         if k in keys:
             return k
     rest = [k for k in keys if k != 'report_bytes_pergamon_only_kit_gap']
-    group = {'letter_date': 'letter_date_unreadable_or_unlocated', 'submission': 'letter_date_unreadable_or_unlocated',
-             'cover_date': 'letter_date_unreadable_or_unlocated', 'order_identity': 'report_identity_doubt',
-             'other_order': 'report_identity_doubt', 'board_number': 'report_identity_doubt'}
     for k in rest:
-        for prefix, name in group.items():
+        for prefix, name in GROUP:
             if k.startswith(prefix):
                 return name
     return 'clause_inventory_doubt' if rest else 'report_bytes_pergamon_only_kit_gap'
 
 
-def report(repo):
+def report(repo, preview=None):
     repo = Path(repo)
     selection = json.loads((HERE / 'output/SELECTION.json').read_bytes())
     batches = []
     for p in sorted((repo / OLNEY).glob('*/OLNEY_BATCH.json')):
-        batches.append(json.loads(p.read_bytes()))
+        b = json.loads(p.read_bytes())
+        if b.get('run') == selection.get('run') and not b.get('trial'):
+            batches.append(b)
     per = {}
     for b in batches:
         for i, v in b['per_order'].items():
@@ -806,39 +1335,82 @@ def report(repo):
                                          'selected_source_blockers', 'checker_failures', 'checker_unverified',
                                          'checker_gate_errors') if v.get(k)}
                for i, v in per.items() if not v.get('checker_all_checks_passed')}
-    result = {'schema': 'eo-olney-result/v1', 'rule': RULE, 'model_tokens': 0,
+    # An order the kit refuses at dispatch (its original's bytes are only a custody record) is an exception too.
+    after = {e['instrument_id']: list(e['reasons']) for e in selection['exceptions']}
+    for i, v in failing.items():
+        if 'dispatch_source_blocked' in (v.get('problems') or []):
+            after[i] = ['original_bytes_not_held:dispatch_source_blocked']
+    by_primary = {}
+    for i, reasons in after.items():
+        k = 'original_bytes_not_held' if reasons[0].startswith('original_bytes_not_held') else primary(reasons)
+        by_primary.setdefault(k, []).append(i)
+    passing_ids = sorted(i for i, v in per.items() if v.get('checker_all_checks_passed'))
+    folders = {b['batch']: f"{OLNEY}/{b['batch']}/supplemented" for b in batches}
+    result = {'schema': 'eo-olney-result/v2', 'run': selection.get('run'), 'rule': RULE,
+              'cover_rule': selection.get('cover_rule'), 'model_tokens': 0,
               'universe': selection['universe'], 'universe_lanes': selection['universe_lanes'],
+              'excluded_already_upheld': selection.get('excluded_already_upheld', []),
+              'judged': selection.get('judged', selection['universe']),
+              'kit_supports_pergamon': selection.get('kit_supports_pergamon'),
               'selected': len(selection['selected']), 'selected_ids': [r['instrument_id'] for r in selection['selected']],
-              'exceptions': len(selection['exceptions']),
+              'selected_by_date_basis': {k: sorted(r['instrument_id'] for r in selection['selected']
+                                                   if r['span'].get('date_basis') == k) for k in ('letter', 'cover')},
+              'selected_with_extensions': {r['instrument_id']: r['extensions'] for r in selection['selected']
+                                           if r.get('extensions')},
+              'exceptions': len(after),
               'exceptions_by_reason_any': selection['exceptions_by_reason_any'],
-              'exceptions_by_primary_reason': dict(sorted(
-                  {k: sum(1 for e in selection['exceptions'] if primary(e['reasons']) == k)
-                   for k in {primary(e['reasons']) for e in selection['exceptions']}}.items(), key=lambda x: -x[1])),
-              'exceptions_list': {e['instrument_id']: e['reasons'] for e in selection['exceptions']},
+              'exceptions_by_primary_reason': {k: len(v) for k, v in sorted(by_primary.items(), key=lambda x: -len(x[1]))},
+              'exceptions_by_primary_reason_ids': {k: sorted(v) for k, v in sorted(by_primary.items())},
+              'exception_needs': {k: NEEDS.get(k, '') for k in sorted(by_primary)},
+              'exceptions_list': after,
               'prepared': sum(len(b['orders']) for b in batches if 'prepare' in b['steps']),
-              'checker_passing': sorted(i for i, v in per.items() if v.get('checker_all_checks_passed')),
+              'checker_passing': passing_ids,
+              'checker_passing_by_batch': {b['batch']: sorted(passing(b)) for b in batches},
+              'review_packets': {b['batch']: folders[b['batch']] for b in batches if passing(b)},
               'failing': failing,
               'batches': [{'batch': b['batch'], 'orders': len(b['orders']), 'passing': len(passing(b)),
                            'wall_seconds': {k: v.get('wall_seconds') for k, v in b['steps'].items()}} for b in batches],
               'selection_wall_seconds': selection['wall_seconds']}
+    if preview:
+        pv = json.loads(Path(preview).read_bytes())
+        extra = sorted({r['instrument_id'] for r in pv['selected']} - set(result['selected_ids']))
+        result['pergamon_kit_preview'] = {
+            'note': 'Selection with the claim-kit Pergamon change assumed merged (select --out, '
+                    'OLNEY_ASSUME_PERGAMON_KIT=1); no packet was prepared for these orders.',
+            'selected': len(pv['selected']), 'additional_orders': extra}
     dump(HERE / 'output/RESULT.json', result)
-    lines = ['# Olney result', '',
-             f"Rule {RULE}; zero model tokens. Universe {result['universe']} board orders in production.one_step_away "
-             f"({result['universe_lanes'].get('c')} were in cloud lanes c01-c12, {result['universe_lanes'].get('p')} in PC "
-             f"lanes, {result['universe_lanes'].get('none')} unassigned after the PC repack).", '',
-             f"- Selected: {result['selected']}",
-             f"- Exceptions: {result['exceptions']} (an order can carry several reasons)",
+    lines = ['# Olney result (run ' + str(result['run']) + ')', '',
+             f"Rules {RULE} and {result['cover_rule']}; zero model tokens. The universe is the "
+             f"{result['universe']} board orders in production.one_step_away (Lind candidates). The "
+             f"{len(result['excluded_already_upheld'])} orders upheld by both blind arms in the first run are not "
+             f"rerun ({', '.join(result['excluded_already_upheld'])}), so {result['judged']} orders were judged.", '',
+             f"- Selected: {result['selected']} ({len(result['selected_by_date_basis']['letter'])} dated by the "
+             f"letter of transmittal, {len(result['selected_by_date_basis']['cover'])} by the cover under "
+             f"{result['cover_rule']}; {len(result['selected_with_extensions'])} with recorded report-time "
+             f"extensions)",
              f"- Prepared: {result['prepared']}",
-             f"- Checker-passing: {len(result['checker_passing'])}",
-             f"- Failing: {len(failing)}", '', '## Exceptions, one primary reason per order', '',
-             '| Primary reason | Orders |', '|---|---:|']
-    lines += [f'| {k} | {v} |' for k, v in result['exceptions_by_primary_reason'].items()]
+             f"- Checker-passing: {len(passing_ids)}",
+             f"- Exceptions: {result['exceptions']} (including orders the kit refused at dispatch)", '']
+    if result['review_packets']:
+        lines += ['## Checker-passing packets for blind review', '', '| Batch | Packet | Orders |', '|---|---|---|']
+        lines += [f"| {k} | `{v}` | {', '.join(result['checker_passing_by_batch'][k])} |"
+                  for k, v in result['review_packets'].items()]
+        lines += ['']
+    lines += ['## Exceptions, one primary reason per order, and what each needs', '',
+              '| Primary reason | Orders | Needs |', '|---|---:|---|']
+    lines += [f"| {k} | {v} | {result['exception_needs'].get(k, '')} |"
+              for k, v in result['exceptions_by_primary_reason'].items()]
     lines += ['', '## Exceptions, every reason (an order can carry several)', '', '| Reason | Orders |', '|---|---:|']
     lines += [f'| {k} | {v} |' for k, v in sorted(result['exceptions_by_reason_any'].items(), key=lambda x: -x[1])]
+    if result.get('pergamon_kit_preview'):
+        pv = result['pergamon_kit_preview']
+        lines += ['', '## After the claim-kit Pergamon change is merged', '',
+                  f"A preview selection with the change assumed selects {pv['selected']} orders, adding "
+                  f"{len(pv['additional_orders'])}: {', '.join(pv['additional_orders'])}. {pv['note']}"]
     lines += ['', '## Batches', '', '| Batch | Orders | Passing | Wall seconds by step |', '|---|---:|---:|---|']
     lines += [f"| {b['batch']} | {b['orders']} | {b['passing']} | {canon(b['wall_seconds'])} |" for b in result['batches']]
     if failing:
-        lines += ['', '## Failing', '']
+        lines += ['', '## Not checker-passing', '']
         lines += [f'- {i}: {canon(v)[:400]}' for i, v in sorted(failing.items())]
     (HERE / 'output/RESULT.md').write_text('\n'.join(lines) + '\n', encoding='utf-8')
     return result
@@ -850,16 +1422,20 @@ def main(argv=None):
     sub = p.add_subparsers(dest='command', required=True)
     s = sub.add_parser('select')
     s.add_argument('--include-pc-lanes', action='store_true', help='also select orders assigned to the PC lanes')
+    s.add_argument('--out', type=Path, help='write the selection here instead of output/SELECTION.json (previews)')
     s = sub.add_parser('run')
     s.add_argument('--batch', required=True)
     s.add_argument('--n', type=int, default=8)
     s.add_argument('--ids', nargs='*')
-    sub.add_parser('report')
+    s = sub.add_parser('report')
+    s.add_argument('--preview', type=Path, help='a Pergamon-kit preview selection to summarize')
     a = p.parse_args(argv)
     repo = a.repo.resolve()
     if a.command == 'select':
         result = select(repo, a.include_pc_lanes)
-        dump(HERE / 'output/SELECTION.json', result)
+        if os.environ.get('OLNEY_ASSUME_PERGAMON_KIT') == '1' and not a.out:
+            raise SystemExit('a Pergamon preview is written with --out, never as the run selection')
+        dump(a.out or HERE / 'output/SELECTION.json', result)
         print(json.dumps({k: result[k] for k in ('universe', 'universe_lanes', 'exceptions_by_reason_any', 'wall_seconds')}
                          | {'selected': len(result['selected']), 'exceptions': len(result['exceptions'])}, indent=2))
         return 0
@@ -867,7 +1443,9 @@ def main(argv=None):
         selection = json.loads((HERE / 'output/SELECTION.json').read_bytes())
         done = set()
         for p_ in (repo / OLNEY).glob('*/OLNEY_BATCH.json'):
-            done |= set(json.loads(p_.read_bytes())['orders'])
+            b = json.loads(p_.read_bytes())
+            if b.get('run') == RUN:
+                done |= set(b['orders'])
         ids = a.ids or [r['instrument_id'] for r in selection['selected'] if r['instrument_id'] not in done][:a.n]
         if not ids or len(ids) > 20:
             raise SystemExit('1-20 orders per batch')
@@ -877,7 +1455,7 @@ def main(argv=None):
                          indent=2))
         return 0
     if a.command == 'report':
-        r = report(repo)
+        r = report(repo, a.preview)
         print(json.dumps({k: r[k] for k in ('selected', 'exceptions', 'prepared')} | {'passing': len(r['checker_passing'])}))
         return 0
 
