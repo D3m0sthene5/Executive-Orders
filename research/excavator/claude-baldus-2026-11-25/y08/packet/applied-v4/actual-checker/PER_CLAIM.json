@@ -1,0 +1,122 @@
+{
+ "schema": "eo-claim-check/v1",
+ "legal_cutoff": "2026-10-14",
+ "note": "Mechanical checks only. Passing is not a legal conclusion and changes no status or count.",
+ "by_instrument": {
+  "EO:12322": {
+   "claim_key": "research/excavator/claude-baldus-2026-11-25/y08/packet/applied-v4/CLAIMS.proposed.jsonl:1",
+   "claim_sha256": "323422bdbafc8703168b19e56a33ff422bf0a5f5780134eeb1a01b09186995a7",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "text_evidence_tier": "original_supported",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "steps_checker_passed": {
+    "original_text": true,
+    "clause_inventory": true,
+    "ending_or_current_basis": false,
+    "savings_residuals": true,
+    "counterevidence": true
+   }
+  }
+ },
+ "claims": [
+  {
+   "claim_key": "research/excavator/claude-baldus-2026-11-25/y08/packet/applied-v4/CLAIMS.proposed.jsonl:1",
+   "file": "research/excavator/claude-baldus-2026-11-25/y08/packet/applied-v4/CLAIMS.proposed.jsonl",
+   "line": 1,
+   "instrument_id": "EO:12322",
+   "claim_sha256": "323422bdbafc8703168b19e56a33ff422bf0a5f5780134eeb1a01b09186995a7",
+   "provisional_status": "yes",
+   "text_evidence_tier": "original_supported",
+   "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md",
+   "mechanical_result": "fail",
+   "gate_passed": true,
+   "all_checks_passed": false,
+   "gate_errors": [],
+   "gate_claim_level_errors": [],
+   "steps": {
+    "original_text": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "clause_inventory": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "ending_or_current_basis": {
+     "present": true,
+     "mechanical": "fail",
+     "gate": "pass",
+     "checker_passed": false
+    },
+    "savings_residuals": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    },
+    "counterevidence": {
+     "present": true,
+     "mechanical": "pass",
+     "gate": "pass",
+     "checker_passed": true
+    }
+   },
+   "check_counts": {
+    "source_held": {
+     "pass": 11,
+     "skip": 8
+    },
+    "source_identity": {
+     "pass": 9
+    },
+    "quote_verbatim": {
+     "fail": 5,
+     "pass": 19,
+     "skip": 3
+    },
+    "date_valid": {
+     "pass": 23
+    },
+    "date_after_signing": {
+     "pass": 9
+    },
+    "order_exists": {
+     "pass": 3
+    },
+    "working_text_policy": {},
+    "factual_event_policy": {},
+    "structural_gate": {
+     "pass": 1
+    }
+   },
+   "failures": [
+    "quote_verbatim:not_found@operative_clauses[0].current_predicate.source.quote",
+    "quote_verbatim:not_found@operative_clauses[4].current_predicate.source.quote",
+    "quote_verbatim:not_found@operative_clauses[5].current_predicate.source.quote",
+    "quote_verbatim:not_found@operative_clauses[6].current_predicate.source.quote",
+    "quote_verbatim:not_found@operative_clauses[7].current_predicate.source.quote"
+   ],
+   "failures_total": 5,
+   "unverified": [
+    "source_held:custody_record_only@operative_clauses[0].current_predicate.source",
+    "source_held:custody_record_only@operative_clauses[1].current_predicate.source",
+    "quote_verbatim:source_text_not_available@operative_clauses[1].current_predicate.source.quote",
+    "source_held:custody_record_only@operative_clauses[2].current_predicate.source",
+    "quote_verbatim:source_text_not_available@operative_clauses[2].current_predicate.source.quote",
+    "source_held:custody_record_only@operative_clauses[3].current_predicate.source",
+    "quote_verbatim:source_text_not_available@operative_clauses[3].current_predicate.source.quote",
+    "source_held:custody_record_only@operative_clauses[4].current_predicate.source",
+    "source_held:custody_record_only@operative_clauses[5].current_predicate.source",
+    "source_held:custody_record_only@operative_clauses[6].current_predicate.source",
+    "source_held:custody_record_only@operative_clauses[7].current_predicate.source"
+   ],
+   "effective_for_tracker": true
+  }
+ ]
+}

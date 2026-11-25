@@ -1,0 +1,54 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-baldus-2026-11-25/y09/packet/PACKET.json",
+  "seconds": 11.405,
+  "files_read": 65350,
+  "file_reads": 130755,
+  "packet_fingerprint": "6c498c3c5cff9adb931fd6813c02572cdaf8fe376f782f30b43737993bb32803",
+  "claims_checked": 1,
+  "defect_flags": 1,
+  "coverage_gaps": 3,
+  "claims_with_flags": 1,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:12353",
+      "flags": [
+        {
+          "code": "later_instrument_named_without_event_source",
+          "scope_id": "EO:12353#c8",
+          "actor": "EO:12404",
+          "reasoning_sentence": "No held later instrument amends it; the extracted 5 U.S.C. 1101 note (not cited) reproduces it, and OPM implements it in 5 CFR part 950, whose definitions cite the order as amended by Executive Order 12404.",
+          "detail": "Reasoning describes EO:12404 as a later actor but this clause has no source-backed later_events entry for it.",
+          "flag_id": "01c2c852657a3773"
+        }
+      ],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "7b274ed6eb6d766838b3e16a40301de15b6ad409",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
