@@ -13,9 +13,15 @@ decide legal questions. Nothing you write changes a status or count.
   of handwriting, which can invent words), `text_usable`, `pages`, `machine_read` (a regex pre-read: numbers, dates and
   signature words it saw, first and last words, and `auto_verdict`), `head` (first 1,500 characters), `tail` (last
   1,200 characters) and `marker_lines` (every line with a number, date or signature word).
-- Page images, when you need them: `<RENDERS>/EO_<number><suffix>_first.png` (RENDERS is given in your instructions), `_second.png` (when 3+ pages) and
-  `_last.png` at 110 dpi grayscale. Use the Read tool on the PNG. Use images when `text_usable` is "no", when the text is
-  garbled, or when the text does not settle number and date. If an image file is missing, say so in `reason`.
+- Page images, when you need them: in the RENDERS folder named in your instructions, `EO_<number><suffix>_p<k>.png`
+  for every page of a scan of up to 8 pages (first 3 and last 3 pages otherwise), plus `_first.png`, `_second.png`
+  (3+ pages) and `_last.png` aliases, at 110 dpi grayscale. Use the Read tool on the PNG. Use images when
+  `text_usable` is "no", when the text is garbled, or when the text does not settle number and date. If an image file
+  is missing, say so in `reason`.
+- Federal Register-era scans (about 1936 on) are page runs: the first page often ends the PRECEDING order (its
+  signature and dateline) and the last page often begins the NEXT one. Credit only the expected order's own heading
+  and its own closing block (signature and date just before the next order's heading); look at every page image of
+  the scan when the excerpts do not show that closing block.
 - Do not open any other file, do not run scripts, do not fetch anything from the network.
 
 ## What to record for each order
@@ -42,6 +48,12 @@ Write one JSON line per order to `RESULT.jsonl` in the packet folder, fields:
   clearly does not match the title, or the file is plainly another document (a cover sheet only, an unrelated letter).
 - `unsure`: anything else, including unreadable scans, a missing image you needed, or a number/date conflict you cannot
   resolve. An OCR digit error ("39 00", "3900.1") is not a conflict when the rest agrees; say what you saw.
+
+**When you must look at the page.** If `machine_read.number_found` is "no", or `machine_read.date_exact` is "no", or
+`text_usable` is "no", open the page image(s) before you give a verdict, and record `evidence` as `image` or
+`text+image`. Never pass an order on a date or number you reconstructed from garbled OCR ("iS", "r8", "zo0"): read it
+on the image. A result that passes such an order with `evidence` "text" is rejected by the assembler and the packet is
+read again.
 
 Do not guess; `unsure` is a fine answer. Do not pass an order because the machine pre-read said "strong"; read it.
 

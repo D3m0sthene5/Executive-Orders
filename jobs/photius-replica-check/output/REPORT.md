@@ -1,20 +1,27 @@
 # Photius replica check: report
 
-Targets 4648; read 2574; reader verdicts {'pass': 2533, 'unsure': 35, 'fail': 6}; adjudicated 225 ({'pass': 212, 'unsure': 5, 'fail': 8}); final {'pass': 2561, 'unsure': 5, 'fail': 8, 'unread': 2074}.
-Credited as archival_replica_checked: 2561 (1967 below EO 4306).
+Targets 4648; read 4648; reader verdicts {'pass': 4578, 'unsure': 62, 'fail': 8}; adjudicated 353 ({'pass': 333, 'unsure': 11, 'fail': 9}); final {'pass': 4628, 'unsure': 11, 'fail': 9}.
+Credited as archival_replica_checked: 4628 (3954 below EO 4306).
 
 Fails and unsure after adjudication:
 
-- EO:339: Agree: the only render is a blank leaf with the clipped left edge of a typed regulations amendment (Sec. I-V, 'of labor...', 'Regula...'), so no number, date or signature can be read.
-- EO:1183: Image is EO 1182 1/2 of March 25, 1910 extending Alaska fox-island leasing to other fur-bearers; 1183 and the El Reno Land Office subject appear nowhere.
-- EO:2694: Pages 1 and 4 are the Schofield Barracks boundary order (subject matches) but the rendered pages show no legible number, dateline or signature for it, and page 2 belongs to EO 2692 (27 August 1917), so identity cannot be settled from these renders.
-- EO:2699: The only page is a '1917 EO 2700' divider slate with no order text, so the Skull Valley Indian reservation order 2699 is absent.
-- EO:3087A: The 3087-A pages are only a CIS slate stating that no Executive Order with this number is on record (see No. 3086-A); the only order text in the file is 3086-A, dated 12 May 1919, so this is a cover slate with no order text of its own.
-- EO:3653: The only page is a black cover slate reading 1922 EO 3653-A, with no order text and no Flamingo transfer, and it names 3653-A, not 3653.
-- EO:4276A: The only page is a typed 'Temporary' slate giving number, date and a bracketed title, with no order text and no signature block; the rules make a cover slate a fail even though number and date match.
+- EO:339: The scan is cropped to a narrow strip showing only fragments of a regulations amendment ('The La...', 'July of'), with no legible number or date.
+- EO:1183: The scan is No. 1182 1/2 of March 25, 1910, extending Alaska fox-island leasing to other fur-bearing animals; 1183 and the El Reno Land Office subject appear nowhere.
+- EO:2694: Pages 1 and 3-5 hold the Schofield Barracks boundary text and break off mid-sentence with no closing block; page 2 is the last page of No. 2692 (27 Aug 1917, defensive sea areas), so no number, date or signature confirms 2694.
+- EO:2699: The only page is a black microfilm separator slate reading 1917 EO 2700, with no order text.
+- EO:3087A: The 3087-A sheets say there is no record of any order bearing that number and refer to 3086-A; the only order text is No. 3086-A of 12 May 1919.
+- EO:3653: The single page is a separator slate for 3653-A, a different number, with no order text.
+- EO:4276A: The page is a placeholder slip whose number, date and bracketed Southern Ry. stock subject all match, but it carries no order text and no signature, so it identifies the order without containing it.
 - EO:4524: The one-page scan is EO 4525 (Saint Joseph's Bay Military Reservation, Florida, transferred to Commerce for a lighthouse), not the Oregon E.O. 4220 revocation expected for 4524, and 4524 appears nowhere.
 - EO:4593: The one-page scan is EO 4592 (Alaska muskrat and beaver preserves and Curry game refuge), not the Ruth M. Cranford Post Office reinstatement order expected for 4593, and 4593 appears nowhere.
 - EO:4613: Image shows E.O. 4614 of March 17, 1927 revoking E.O. 3474 (naval petroleum reserves), not the Mahogany Administrative Site, Idaho order 4613, which appears nowhere.
-- EO:4846A: Rendered pages are Hoover's March 30, 1928 transmittal (noted 'Order signed March 30, 1928') and the radio committee report; the confidential order text and signature are not on the first, second or last page of the 11-page file, so I cannot confirm the order is in the file or rule it out.
-- EO:4919A: The number and the San Carlos Irrigation Project withdrawal match, but the printed dateline clearly reads June 24, 1924, not 1928; a four-year gap is either a printing error or a late-numbered 1924 order, and the pages cannot tell which.
-- EO:9457: Heading matches the expected title word for word (one-time Bonsal reinstatement), the stamp reads 945 with the last digit clipped, FDR's signature is present, and the handwritten July day (14 or 19, with Federal Register filing stamp Jul 24) is within a few days, so nothing contradicts identity.
+- EO:4846A: The rendered pages 1-3 and 9-11 hold Hoover's transmittal (annotated 'Order signed March 30, 1928') and the committee and radio-policy reports; pages 4-8 were not rendered, so whether the order text is present cannot be seen.
+- EO:1: The scan is Lincoln's Oct 20 1862 order establishing a provisional court in Louisiana (the order CIS numbers EO 1), so it does not match the index row's Feb 14 1862 Political Prisoners title and date; the index row, not the scan, likely needs correcting.
+- EO:123: The only rendered page is a blank, noise-textured sheet with no legible text, so the order is not on the scan as rendered and the source should be re-fetched.
+- EO:124: The only rendered page is a blank, noise-textured sheet with no legible text, so the order is not on the scan as rendered and the source should be re-fetched.
+- EO:154: The special rule for the assistant commissioner of immigration at New York matches the subject and Roosevelt signs, but the approval date is too faint to read, so rule (b) cannot be met.
+- EO:230: The subject (striking Schedule A Section VI clause 13, pension agency clerk) matches and Roosevelt signs, but the approval line is blank apart from 1903, so the date cannot be checked.
+- EO:546: Handwritten 546 matches, but the order reserves Makapuu Point, Oahu, for a lighthouse (dated Jan 12), while the index title is the Tutuila vessel-certificates order of Jan 15, and the page cannot show which record is wrong.
+- EO:1674: The scan is War Department General Orders No. 55 remitting Capt. John E. Hunt's court-martial rank reduction, not the order making Ralph D. Converse eligible for reinstatement.
+- EO:3060: No. 3060 is printed and stamped, but the order sets regulations for selling Girdwood Townsite, Alaska lots (3 March 1919), while the index title is the Robert L. Stancill eligibility order of Feb 27, and the pages cannot settle which is right.
+- EO:4224: The scan is No. 4224 of May 14, 1925, authorizing the Alien Property Custodian to sell Manhattan real estate, but the index title names EO 4224 1/2 on visa fees, so the index row merges two instruments and the pages cannot say which one the row means.
