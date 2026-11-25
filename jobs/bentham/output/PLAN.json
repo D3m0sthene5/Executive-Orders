@@ -171,10 +171,10 @@
     {
       "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
-      "orders": 0,
+      "orders": 1,
       "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 706 includes undecided orders, which unlock nothing until they have a provisional status)",
       "notes": [],
-      "probe_cost_usd": 0.0,
+      "probe_cost_usd": 0.18,
       "expected_now": 0.0,
       "fecundity": 0.2,
       "value": 0.2,
@@ -214,6 +214,25 @@
       "share_of_week": null
     },
     {
+      "id": "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+      "kind": "acquisition",
+      "orders": 17,
+      "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 2101 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "notes": [],
+      "probe_cost_usd": 3.03,
+      "expected_now": 0.0,
+      "fecundity": 0.9,
+      "value": 0.9,
+      "cost_usd": 3.03,
+      "cost_basis": "17 x 0.18 USD (attempted_order)",
+      "per_usd": 0.30825604333887796,
+      "cost_key": "production.per_attempt",
+      "within_budget": true,
+      "cumulative_usd": 181.16,
+      "cumulative_value": 230.0,
+      "share_of_week": null
+    },
+    {
       "id": "status_assignment.undecided",
       "kind": "status_assignment",
       "orders": 5374,
@@ -235,8 +254,8 @@
       "per_usd": 0.3007559632011575,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 1964.96,
-      "cumulative_value": 766.5,
+      "cumulative_usd": 1967.99,
+      "cumulative_value": 767.4,
       "share_of_week": null
     },
     {
@@ -261,27 +280,8 @@
       "per_usd": 0.10025198773371917,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 2306.77,
-      "cumulative_value": 800.8,
-      "share_of_week": null
-    },
-    {
-      "id": "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
-      "kind": "acquisition",
-      "orders": 0,
-      "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 2101 includes undecided orders, which unlock nothing until they have a provisional status)",
-      "notes": [],
-      "probe_cost_usd": 0.0,
-      "expected_now": 0.0,
-      "fecundity": 0.0,
-      "value": 0.0,
-      "cost_usd": 0.0,
-      "cost_basis": "0 x 0.18 USD (attempted_order)",
-      "per_usd": 0.0,
-      "cost_key": "production.per_attempt",
-      "within_budget": true,
-      "cumulative_usd": 2306.77,
-      "cumulative_value": 800.8,
+      "cumulative_usd": 2309.8,
+      "cumulative_value": 801.7,
       "share_of_week": null
     },
     {
@@ -298,8 +298,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 2306.77,
-      "cumulative_value": 800.8,
+      "cumulative_usd": 2309.8,
+      "cumulative_value": 801.7,
       "share_of_week": null
     },
     {
@@ -316,8 +316,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 2306.77,
-      "cumulative_value": 800.8,
+      "cumulative_usd": 2309.8,
+      "cumulative_value": 801.7,
       "share_of_week": null
     },
     {
@@ -334,8 +334,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 2306.77,
-      "cumulative_value": 800.8,
+      "cumulative_usd": 2309.8,
+      "cumulative_value": 801.7,
       "share_of_week": null
     },
     {
@@ -352,8 +352,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 2306.77,
-      "cumulative_value": 800.8,
+      "cumulative_usd": 2309.8,
+      "cumulative_value": 801.7,
       "share_of_week": null
     },
     {
@@ -370,8 +370,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 2306.77,
-      "cumulative_value": 800.8,
+      "cumulative_usd": 2309.8,
+      "cumulative_value": 801.7,
       "share_of_week": null
     }
   ],
@@ -402,14 +402,14 @@
         "acquire.shared.EO_6964",
         "acquire.shared.EO_6910",
         "acquire.shared.CFR_26_CFR_458.324",
-        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "recovery.working_text_stale",
         "recovery.custody_stranded",
         "production.one_step_away",
+        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "production.claim_ready.yes.fr",
         "status_assignment.undecided",
-        "production.claim_ready.no.fr",
         "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+        "production.claim_ready.no.fr",
         "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "zero_agent.opus_media_refetch",
         "acquire.nea_continuation_notices",
@@ -422,14 +422,14 @@
         "acquire.shared.EO_6964",
         "acquire.shared.EO_6910",
         "acquire.shared.CFR_26_CFR_458.324",
-        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "recovery.working_text_stale",
         "recovery.custody_stranded",
         "production.one_step_away",
+        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "production.claim_ready.yes.fr",
         "status_assignment.undecided",
-        "production.claim_ready.no.fr",
         "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+        "production.claim_ready.no.fr",
         "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "zero_agent.opus_media_refetch",
         "acquire.nea_continuation_notices",
@@ -452,34 +452,12 @@
       {
         "weight": "cache_read_weight_1.0",
         "usd_order": [
-          "recovery.custody_stranded",
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+          "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+          "status_assignment.undecided"
         ],
         "window_order": [
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
-          "recovery.custody_stranded"
-        ]
-      },
-      {
-        "weight": "cache_read_weight_1.0",
-        "usd_order": [
-          "recovery.working_text_stale",
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
-        ],
-        "window_order": [
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
-          "recovery.working_text_stale"
-        ]
-      },
-      {
-        "weight": "cache_read_weight_1.0",
-        "usd_order": [
-          "production.one_step_away",
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
-        ],
-        "window_order": [
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
-          "production.one_step_away"
+          "status_assignment.undecided",
+          "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
         ]
       },
       {
@@ -496,34 +474,12 @@
       {
         "weight": "cache_read_weight_0.1",
         "usd_order": [
-          "recovery.custody_stranded",
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
+          "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
+          "status_assignment.undecided"
         ],
         "window_order": [
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
-          "recovery.custody_stranded"
-        ]
-      },
-      {
-        "weight": "cache_read_weight_0.1",
-        "usd_order": [
-          "recovery.working_text_stale",
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
-        ],
-        "window_order": [
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
-          "recovery.working_text_stale"
-        ]
-      },
-      {
-        "weight": "cache_read_weight_0.1",
-        "usd_order": [
-          "production.one_step_away",
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK"
-        ],
-        "window_order": [
-          "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
-          "production.one_step_away"
+          "status_assignment.undecided",
+          "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK"
         ]
       }
     ]

@@ -351,7 +351,7 @@
       "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
       "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 706 includes undecided orders, which unlock nothing until they have a provisional status)",
-      "orders": 0,
+      "orders": 1,
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "production.per_attempt",
       "cost_override_usd": null,
@@ -387,12 +387,27 @@
       "id": "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
       "kind": "acquisition",
       "description": "Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held (tracker reach 2101 includes undecided orders, which unlock nothing until they have a provisional status)",
-      "orders": 0,
+      "orders": 17,
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "production.per_attempt",
       "cost_override_usd": null,
-      "cost_units": 0,
-      "unlocks": [],
+      "cost_units": 17,
+      "unlocks": [
+        {
+          "orders": 15,
+          "rate_key": "filed_per_attempt.no.fr",
+          "delay_days": 3,
+          "delay_basis": "estimate: agent page comparison against the ProQuest scan under the 2026-10-21 owner rulings",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK, NO_OFFICIAL_SOURCE_LOCATED, ONLY_COMPILED_TRANSCRIPTION_FOUND, ORIGINAL_FOUND_NEEDS_PAGE_CHECK}, with clause inventory, ending and savings open; assigned to this action only."
+        },
+        {
+          "orders": 2,
+          "rate_key": "filed_per_attempt.yes.fr",
+          "delay_days": 3,
+          "delay_basis": "estimate: agent page comparison against the ProQuest scan under the 2026-10-21 owner rulings",
+          "basis": "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv: decided orders whose only gating blocker(s) are in {ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK, NO_OFFICIAL_SOURCE_LOCATED, ONLY_COMPILED_TRANSCRIPTION_FOUND, ORIGINAL_FOUND_NEEDS_PAGE_CHECK}, with clause inventory, ending and savings open; assigned to this action only."
+        }
+      ],
       "overlaps_with": [],
       "prerequisites": [
         "agent time to check pages, one order at a time (cost_units orders)"
