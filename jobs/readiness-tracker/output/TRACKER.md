@@ -1,10 +1,10 @@
 # Readiness tracker
 
-**Numbered series: ready for human review 1,333 of 15,003 orders (8.9%)**
+**Numbered series: ready for human review 1,349 of 15,003 orders (9.0%)**
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45658563181-1:6d0c231e5f0b1dba14d4a0cfa833db3d5ce393693ac8d50d58b8f1133909c425` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45671652091-1:40856862f5a6d6af0f92f4c25fd704291e69011145f5b8f17dbcc2cbf3add5fe` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -12,7 +12,7 @@ source or a claim that passes the Stage 19 claim gate, or is recorded as searche
 
 Orders with a provisional YES/NO status: 3,792. The other 11,211 have not been researched yet.
 
-Ready by text evidence: {'original_supported': 783, 'transcription_dependent': 550}. Provisional working texts do not authenticate originals.
+Ready by text evidence: {'original_supported': 799, 'transcription_dependent': 550}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 883; quotation rechecks: 883. These remain work after readiness.
 
 Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 284. Confirmations rejected: {'grade_not_a_working_text_grade': 1, 'not_confirmed': 143}.
@@ -23,12 +23,12 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,792 | 3,792 | 100.0% |
 | Original or explicitly reviewed provisional working text saved | 3,766 | 3,792 | 99.3% |
-| Complete inventory of the order's operative clauses | 1,560 | 3,792 | 41.1% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,369 | 3,792 | 36.1% |
-| Savings clauses and surviving effects closed | 1,547 | 3,792 | 40.8% |
+| Complete inventory of the order's operative clauses | 1,577 | 3,792 | 41.6% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,386 | 3,792 | 36.6% |
+| Savings clauses and surviving effects closed | 1,564 | 3,792 | 41.2% |
 | Search for later contrary sources recorded, no open conflicts | 2,890 | 3,792 | 76.2% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
-| Opus evidence images matched to this order (Opus cases only) | 125 | 767 | 16.3% |
+| Opus evidence images matched to this order (Opus cases only) | 125 | 763 | 16.4% |
 
 ## Do these first: one action, many orders
 
@@ -39,7 +39,6 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | 37 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
 | 17 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 10 | one source | Retrieve shared source EO::4314 |
-| 7 | machine job | Run claim-checker on the newest claims (it reruns on every claims change and daily) |
 | 6 | one source | Retrieve shared source EO::6868 |
 | 3 | one source | Retrieve shared source EO::6964 |
 | 3 | one source | Retrieve shared source EO::6910 |
@@ -51,15 +50,15 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,211 |
-| `NO_CLAUSE_INVENTORY` | 2,139 | 2,139 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,139 | 2,139 |
+| `NO_CLAUSE_INVENTORY` | 2,129 | 2,129 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,129 | 2,129 |
 | `FIRST_END_UNPROVED` | 1,869 | 1,869 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 721 | 721 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
-| `CURRENT_BASIS_UNPROVED` | 270 | 270 |
+| `CURRENT_BASIS_UNPROVED` | 260 | 260 |
 | `FIRST_END_UNRESOLVED` | 165 | 165 |
-| `OPUS_MEDIA_NONE_CITED` | 140 | 140 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
+| `OPUS_MEDIA_NONE_CITED` | 136 | 136 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 4 | 126 |
 | `ONLY_COMPILED_TRANSCRIPTION_FOUND` | 4 | 93 |
 | `CLAIM_INCOMPLETE` | 82 | 82 |
@@ -71,7 +70,6 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `SHARED_SOURCE_NOT_RETRIEVED` | 24 | 24 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 18 | 18 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 0 | 17 |
-| `CLAIM_NOT_YET_CHECKED` | 7 | 7 |
 | `OPEN_SOURCE_AUDIT` | 4 | 4 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 
@@ -111,7 +109,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - lachmann working-text confirmations (provisional text step only, never an original): 952
 - opus-media-match status: 1,155
 - source-ladder: 1,097
-- claim-checker: 1,647
+- claim-checker: 1,664
 - machine later-source search: 6,938
 
 ## Historical census candidates — separate from the 14,972 working identities
