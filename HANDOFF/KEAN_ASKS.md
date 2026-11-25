@@ -67,10 +67,10 @@ EO 12753's lifecycle approval was reconfirmed by script, which D-20261110-no-mec
 
 Sources: `research/lind/conveyor-replay/RESULT.md`
 
-## A-20261124-1 (2026-11-24, Claude)
+## A-20261124-3 (2026-11-24, Claude (Opus 5.5))
 
-Apply three census corrections from the Petty wave? (1) Admit EO 6585: its GPO slip-volume page is already held and passes the D-20261112-graunt-apply test. (2) Re-key census row EO:7010P as EO:7010F, an OCR misreading confirmed by the held GPO text. (3) Re-key the APP text now stored under EO:4224 as EO:4224 1/2, so EO 4224 has no text of its own.
+Which kinds of ProQuest unnumbered presidential document should the census count as executive orders? The 3,941 missing candidates are land orders and operative orders by title. Should any of these also count: letters of instruction (806 signed), personal actions such as passes and discharges (583), fund approvals (404), NRA codes (1,315), arms-export exceptions (925), privateer commissions (327), land-sale proclamations (405)?
 
-*Why:* Each changes the census or a source key that claim-kit pins, so it should be done as one coordinated admission PR, as was done on Nov. 12
+*Why:* The answer decides whether the unnumbered series grows by about 3,900 or by several thousand more, and which candidates go to a scan-reading sample first
 
-Sources: `research/petty-census-closure-2026-11-24/missing-numbered-14/REPORT.md`
+Sources: `research/petty-census-closure-2026-11-24/proquest-scan/REPORT.md`

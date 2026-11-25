@@ -10,11 +10,11 @@ in it has been certified by a human reviewer.
 The project has identified **16,400 to 16,811 executive orders** signed or specifically approved by presidents from
 1789 through October 14, 2026. The count has two parts that are never added together without saying so.
 
-- **The numbered series, EO 1 to EO 14435:** 15,002 census rows, of which 14,983 carry an executive-order number.
+- **The numbered series, EO 1 to EO 14435:** 15,003 census rows, of which 14,984 carry an executive-order number.
   Two published catalogs together cover the whole number range: the WPA's *Presidential Executive Orders, Numbered
   1-8030* (Clifford L. Lord, ed., 1944) and the Office of the Federal Register's catalog, which begins at EO 7532.
-  **14,865 of the 14,983 numbered labels (99.2%) appear in one or both of those catalogs.** The other 118 are
-  accounted for individually below. For 12,470 census orders the project holds an official government printing
+  **14,865 of the 14,983 numbered labels checked (99.2%) appear in one or both of those catalogs.** The other 118
+  are accounted for individually below. (The check was run before EO 6585 was added on November 24.) For 12,470 census orders the project holds an official government printing
   of the text, such as a Federal Register page.
 - **The unnumbered series:** orders issued before numbering began, or outside it, mostly land withdrawals,
   military and Indian reservations and Panama Canal orders. 1,405 to 1,816 are identified individually, each with
@@ -23,9 +23,19 @@ The project has identified **16,400 to 16,811 executive orders** signed or speci
 
 **Nobody can say how many executive orders have ever been issued, and this paper does not offer a number.** The
 familiar figures of 15,000 and 50,000 unnumbered orders trace back to unsupported guesses in Lord's 1943 preface
-and a 1957 House committee print. The identified count is a floor. A 30-document test run for this paper suggests
-that the CIS microfiche index of presidential documents holds several hundred more presidential land and canal
-orders that no list the project uses has captured (section 4).
+and a 1957 House committee print. The identified count is a floor, and it is known to be far from complete.
+ProQuest's collection of unnumbered presidential documents for 1789 to 1936 (the CIS index in digital form) has
+been read record by record, all 20,028 of its catalog entries. Sorted by title and checked against every census
+list, it holds 3,941 documents marked signed by the President that are land orders or other orders by their titles
+and that the census lacks. The document behind each one was then fetched and read, from ProQuest's text layer or,
+for handwriting, from images of the pages. 2,038 are executive orders on their face (1,533 land orders and 505
+other orders signed, approved or issued by the President), 70 more are land-order files whose order page is
+unreadable, 1,824 are letters, appointments, personal actions, fund approvals, proclamations and similar papers, and
+9 could not be read. Comparing 384 further land records with the census entries of their own dates finds 81 distinct
+orders the census lacks. Reading ProQuest's unsigned unnumbered records, its military orders and five signed records
+it files as copies adds 87 more. **In all, ProQuest holds 2,206 executive orders that the census lacks**, with 95
+more probable, which would more than double the identified unnumbered series (section 4). A second reader disputes
+about 70 of the 2,206, almost all on the line between an operative order and a letter of instruction.
 
 ## 1. What is counted
 
@@ -95,10 +105,10 @@ an unused number.
   for each. For EO 2703, 3493 and 3733 that page is an entry in the GPO's *Monthly Catalog*, which names the order's
   number, date and subject but does not print its text. For EO 2539 it is the printed text in the *Alaska Railroad
   Record*.
-- **EO 6585** is printed in the GPO's bound volume of 1934 slip orders, and the project already holds that page.
-  It meets the owner's November 12 test for admission and has not yet been admitted.
-- **EO 7010F** appears to be in the census already, misread as "EO 7010P" (see below). The project holds its
-  printing in the GPO's 1935 slip-order volume.
+- **EO 6585** is printed in the GPO's bound volume of 1934 slip orders, and the project holds that page. It was
+  admitted on November 24 (`research/stage15/CENSUS/ADMISSIONS_2026-11-24.csv`).
+- **EO 7010F** was in the census under a misread suffix, "EO 7010P" (see below), and was renamed on November 24.
+  The project holds its printing in the GPO's 1935 slip-order volume.
 - **EO 2103** is listed in the December 1914 *Monthly Catalog* (No. 240, page 321), which gives its number and date
   but no text. **EO 5151A** is printed in the Office of the Federal Register's 1974 compilation of Hoover's
   proclamations and orders, and **EO 2687A** in *Foreign Relations of the United States*, 1917. The project does not
@@ -110,8 +120,9 @@ Details and the searches behind them are in `missing-numbered-14/`.
 
 ### What the project holds for each census order
 
-The table covers all 15,002 census rows: the 14,983 numbered labels plus 19 unnumbered orders the census already
-carried.
+The table covers the 15,002 census rows as they stood before November 24: the 14,983 numbered labels plus 19
+unnumbered orders the census already carried. The admission of EO 6585 and the renaming of EO 7010F move one order
+each from the last row to the first.
 
 | What is held | Orders |
 |---|---:|
@@ -133,16 +144,15 @@ Record*. It found secondary transcriptions for 18 more, mostly Wikisource pages 
 Roosevelt, Taft and Wilson years. Of the rest, 33 are known only from a catalog line and 12 from a date. Four
 look like errors in the census itself:
 
-- **EO 7010P is very likely EO 7010F.** The WPA list's sequence reads A, B, C, D, E, P, G, H, and the "P" entry
-  describes the same Miami electrical-contracting agreement as the American Presidency Project's EO 7010-F and the
-  GPO slip printing the project holds for 7010-F. The census therefore
-  already holds one of the labels listed as missing above, under a misread letter.
+- **EO 7010P was EO 7010F.** The WPA list's sequence reads A, B, C, D, E, P, G, H, and the "P" entry describes
+  the same Miami electrical-contracting agreement as the American Presidency Project's EO 7010-F and the GPO slip
+  printing the project holds, which closes "[No. 7010-F.]" The census row was renamed on November 24.
 - **One unnumbered entry duplicates another,** with the same date (August 8, 1914) and the same later amending
   order (EO 8507).
 - **The March 10, 1863 Lincoln item** is a proclamation that Wikisource labels EO 1-A.
 - **EO 4361½** has the same date as EO 4361 and no title in any index.
 
-The search also found that the text the project holds for EO 4224 is in fact EO 4224½, and that six "A" orders on
+The search also found that the text the project held for EO 4224 was in fact EO 4224½ (re-filed on November 24), and that six "A" orders on
 radio frequencies (such as EO 9132-A and 10369-A) were confidential and never published, so no official text of
 them is expected to exist.
 
@@ -169,7 +179,7 @@ land-office and military-reservation records, so agreement between Lord and thos
 For that reason the project no longer reports the capture-recapture estimate (about 4,100 to 5,100) that an earlier
 job computed from them: the method assumes independent lists.
 
-## 4. A test of what the lists miss: 30 CIS documents
+## 4. What the lists miss: the CIS index and ProQuest's collection
 
 The most complete compilation of presidential documents ever made is the *CIS Index to Presidential Executive Orders
 and Proclamations* (Congressional Information Service, 1987). It is published on microfiche and now as ProQuest
@@ -215,12 +225,88 @@ two. CIS files them as a single eight-page document signed by President Johnson.
 1963-03-2933, Feb. 11, 1963" or "partially revoked by 1939-EO-8295." CIS therefore records later revocations and
 modifications of unnumbered land orders, which is where the project's lifecycle research has the least evidence.
 
+### What ProQuest's own collection holds
+
+ProQuest Congressional files 20,028 records dated 1789 to 1936 as "Unnumbered Executive Orders, Directives, and
+Proclamations." On November 24, 2026 every page of that result list was read through NYU's subscription, oldest
+first, and each record's CIS accession number, date, signed-by-the-President flag, administration and title was
+saved (`proquest-scan/PQ_UNNUMBERED_1789_1936.psv`). Records that share a date can change order between page loads,
+so a first reading captured 19,918 distinct records; a second reading, newest first, captured all 20,028, and the 111
+added are maps, attachments and second copies.
+
+Each record was sorted by kind from its title and checked against every census layer: the numbered register, the
+audited unnumbered series, Lord's unnumbered list, and every row of the audit's findings and reconciled inventory,
+including rows the audit did not count (`proquest-scan/classify_match.py`). A land order in a numbered series
+matches a census entry of the same series, number and state dated within a week. Any other record matches a census
+entry that shares at least two distinctive subject words on the same date, or three within a week. On the 215
+records of an earlier hand-coded sample of months, the title rules and the hand coding agree for 202 on whether a
+record is a land order or an operative order. In a random draw of 40 unmatched records, none had a census entry
+within 45 days that describes the same act.
+
+Among the first copies signed by the President, 3,411 are land orders and 2,609 are other operative orders, rules or
+directives. Of these 6,020, the census holds 1,695. Another 384 land orders share their date and their series or
+subject with a census entry; their documents were compared with those entries separately (below). **The other 3,941
+are missing from the census:**
+
+| Era | Land orders in numbered series | Other land orders | Other orders and directives | Total |
+|---|---:|---:|---:|---:|
+| 1789-1861 | 0 | 110 | 565 | 675 |
+| 1862-1906 | 0 | 322 | 1,146 | 1,468 |
+| 1907-1936 | 893 | 374 | 531 | 1,798 |
+| **All** | **893** | **806** | **2,242** | **3,941** |
+
+The list is `proquest-scan/CANDIDATES_MISSING.csv`, which also gives the 1,472 unsigned records that match nothing.
+An earlier estimate from 29 months drawn at random put the missing records at about 3,900, with a 95% interval of
+800 to 7,100, and the full reading agrees.
+
+**What the documents show.** Every one of the 3,941 documents was fetched from ProQuest (two have no PDF) and read
+(`scan-check/REPORT.md`, `scan-check/FULL_READING_3941.csv`). 2,687 were read from ProQuest's text layer: 838 land
+orders by their order language, the rest by Claude Haiku readers under a fixed rubric. The 1,252 handwritten or
+illegible ones were read from page images by Claude Haiku readers, after a decoder written for the job turned
+ProQuest's fax-format scans into page images inside the browser. The readers agree with Claude's own scan readings
+for 36 of 40 documents. Records with no readable text or first and last page were fetched again and read from up
+to eight pages. In all, 1,533 are land orders and 505 are other operative orders, 70 are probable land orders, 9 are
+unreadable or have no PDF, and 1,824 are not executive orders: 455 actions on one person, 367 letters of
+instruction, 254 other letters, 172 fund approvals, 172 orders a Secretary signed "by command of the President," 132
+appointments, 70 proclamations, 33 pardons, 17 treaties and 152 others. **The census therefore lacks 2,038
+executive orders among these records, about 1,530 of them land orders.**
+
+A reader compared each of the 384 land records that share a date with a census land entry against every census
+entry of that date. 266 are orders the census holds, 81 are distinct orders it lacks (mostly numbered power-site,
+coal, petroleum and public-water orders of 1910 to 1926), 24 cannot be decided and 13 hold no order. The same
+document reading of ProQuest's 1,472 unsigned unnumbered records and of 654 general orders in its military-orders
+collection finds 82 more presidential orders, and five signed land orders that ProQuest files as copies of unsigned
+attachments add 5, for **2,206 in all** (about 2,300 with the 95 probable records).
+
+A second reader (Claude Sonnet) re-read 344 judgments blind: all 196 text-read operative orders and random samples
+of the rest. It disputes 20 operative orders, which it reads as letters of instruction or statements, 2 text-read
+land orders and 1 image-read order, and agrees with every sampled "not an executive order" verdict
+(`scan-check/SECOND_READER.csv`). Carried over to the judgments it did not re-read, about 70 of the 2,206 are in
+dispute, so a count that drops every disputed record is about 2,140. ProQuest's "signed by the President" flag marks a recorded presidential act, not always a signature.
+Genuine missing orders include Van Buren's transfer of $500,000 to the Mint (July 20, 1838), Lincoln's order making
+Arkansas one revenue collection district (March 1, 1865), McKinley's Philippine government orders of 1899 to 1901,
+Taft's Coal Land Restoration, Washington No. 6 (October 8, 1912), and Harding's order vacating Alaskan Withdrawal
+No. 1 (May 19, 1921).
+
+The rest of the collection is presidential paperwork that most definitions of an executive order leave out. The
+signed first copies include 1,203 treaties and conventions, 1,315 NRA codes of fair competition and amendments, 925
+exceptions to the arms-export embargo, almost all from 1912 to 1917, 907 pardons and remissions, 777 appointments,
+806 letters of instruction, 583 passes, discharges and other actions on one person, 404 fund approvals, 405 land-sale
+proclamations and notices, 327 privateer commissions of 1798 to 1814 and 219 *Official Bulletin* compilations. A broad definition
+could count some of them; that is a ruling for the owner (section 6).
+
+Three limits apply. The readers' judgments could be wrong for a few hundred documents in either direction, and
+only the first and last page of each handwritten document was read. The definition used leaves out letters of
+instruction, orders a Secretary signed by command, appointments and fund approvals, which would add several hundred
+more. A held order whose census date differs by more than a week from ProQuest's, as with the Papago reservation
+(ProQuest June 24, 1874; Lord July 1, 1874), will appear as missing.
+
 ## 5. Why there is no total
 
 The identified count is a floor, for three reasons. Unnumbered orders were filed in many departments and never
 gathered into one series. The surviving compilations copy from one another, so their overlap says little about what
-none of them saw. The sample in section 4 shows that a large compilation the project has not yet absorbed holds
-hundreds of orders the other lists miss.
+none of them saw. Section 4 shows that the largest compilation, which the project has not yet absorbed, holds
+thousands of presidential orders the other lists miss.
 
 The published totals do not fill the gap. Lord's 1943 preface mentions Harold Ickes's figure of 15,000 and others'
 figure of 50,000 without deriving either. The 1957 House Committee on Government Operations print estimated that
@@ -233,9 +319,10 @@ has found derives a total of all orders ever issued (`research/graunt-census-aud
 
 | Task | What it would settle | Who |
 |---|---|---|
-| Read the scans of the 22 CIS candidates, then a larger CIS sample | Whether CIS's signed-by-the-President flag is reliable, and how many of the 875 (and of the 1,645 on shared dates) to add | A person with NYU ProQuest access; the scans open in ProQuest's own viewer |
+| Have a reader of another model family, or a person, check a random sample of the verdicts, and read the middle pages of the first-pass handwritten documents | An error rate for the 2,206 that does not rest on one model family | Another model family or a human reader; browser reading of ProQuest's PDFs |
+| Rule on which kinds of presidential document count: letters of instruction, appointments, personal actions such as passes and discharges, fund approvals, orders a Secretary signed by the President's command, NRA codes, arms-export exceptions, privateer commissions | Whether the unnumbered series grows by about 2,100 to 2,300 or by several thousand more | Owner, ideally with a scholar of the presidency |
 | Recheck the 69 failed page citations with corrected spans | Official text credit for 69 orders | Machine page check with two readers, once the source job records the corrected spans |
-| Fetch and hold the located pages for the Cleveland orders, EO 2103, 2687A and 5151A; admit EO 6585; re-key EO 7010P as 7010F and EO 4224's text as 4224½ | Whether the numbered series is complete | Machine fetch through the project's runner, then a census admission under the owner's November 12 rule |
+| Fetch and hold the located pages for the Cleveland orders, EO 2103, 2687A and 5151A | Whether the numbered series is complete | Machine fetch through the project's runner, then a census admission under the owner's November 12 rule |
 | Search further for EO 130A and 8606A | Whether these two labels are real orders | Archival search (ProQuest, National Archives) |
 | Resolve the 214 date conflicts | Correct dates for the affected orders | Machine first pass, then human review |
 | Rule on the definitional choices in section 1, especially the 411 power-site groups | The width of the identified range | Owner, ideally with a scholar of the presidency |
@@ -247,6 +334,14 @@ Everything is under `research/petty-census-closure-2026-11-24/`:
 - `crosswalk/`: the cross-check script, `NUMBERED_CROSSWALK.csv` (one row per numbered label), the sources and their
   hashes, the exceptions, the absent numbers, the date conflicts, and the summary.
 - `cis-pilot/`: the 30-document sample and the record-level results with ProQuest permalinks.
+- `proquest-scan/`: every ProQuest unnumbered record for 1789 to 1936 as read (`PQ_UNNUMBERED_1789_1936.psv`), the
+  classification and census match of each (`PQ_UNNUMBERED_CLASSIFIED.psv`, `classify_match.py`,
+  `CLASSIFY_SUMMARY.json`), the list of missing orders (`CANDIDATES_MISSING.csv`), the land-series listing, the
+  29-month sample with its matching review and estimate script, and the series counts.
+- `scan-check/`: the reading of every missing record's document (`FULL_READING_3941.csv`), the unsigned and military
+  readings (`UNSIGNED_AND_MILITARY_READING.csv`), the same-date land comparison and late re-reads
+  (`FINISH_READING.csv`), the second reading (`SECOND_READER.csv`), the text layers (`PQ_TEXT_LAYER_3941.jsonl.gz`),
+  the page decoder (`g4_page_decoder.js`), the three reader rubrics, the 50-record hand reading and the report.
 - `missing-numbered-14/`: the search for official pages for the numbered labels the census still lacks.
 - `nothing-held-70/`: the search for texts of the 70 census orders with nothing held, 51 of them numbered.
 - `page-check-69/`: why the 69 page checks are not pending, the worklist, and a ready fetch job for a corrected

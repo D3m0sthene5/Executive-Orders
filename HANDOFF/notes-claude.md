@@ -1,3 +1,121 @@
+## 2026-11-24 ET, night (Claude: ProQuest pass closed, second reader run)
+
+- **Owner order:** "finish it up" (F-20261124-14).
+- **Total:** ProQuest holds **2,206** executive orders the census lacks, 95 probable, 28 unread
+  (`research/petty-census-closure-2026-11-24/scan-check/REPORT.md`).
+- **Same-date land records (384 "G"):** each compared with every census entry of its date: 266 held, 81 distinct
+  orders the census lacks, 24 undecided, 13 no order (`scan-check/FINISH_READING.csv`, `G_MATCH_RUBRIC.md`).
+- **Unread records (124):** re-read from up to 8 page images; 8 presidential orders. Five signed land orders found
+  that ProQuest files as copies of unsigned attachments (a `classify_match.py` gap). 28 remain unreadable or have no PDF.
+- **Second reader (Sonnet, blind, 344 judgments):** disputes 20 of 196 text-read operative orders (letters of
+  instruction, statements), 2 of 33 text land orders, 1 of 40 image reads; agrees with every sampled "not an EO"
+  and rule verdict. About 70 of the 2,206 are in dispute; floor about 2,140 (`scan-check/SECOND_READER.csv`).
+- **Requests:** owner ruling A-20261124-3 (which kinds count) still open; a reviewer of another model family or a
+  human sample would test the count beyond one family. Workers this pass: Haiku x7 (about 1.9M tokens), Sonnet x6
+  (about 0.7M tokens), roughly 40 minutes wall time.
+
+## 2026-11-24 ET, late evening (Claude: ProQuest finished)
+
+- **Owner order:** "if not finish it off" (F-20261124-13).
+- **Unnumbered 1789-1936:** re-read newest first, so all 20,028 records are now captured. The 111 first missed are
+  attachments; none is a new candidate.
+- **Unsigned unmatched (1,472):** 28 presidential orders. The rest are FPC section-24 restorations (590), orders a
+  Secretary signed by command (291), departmental orders and others.
+- **Military orders and pardons:** 654 pre-1937 general orders read; 52 presidential.
+- **Total ProQuest EOs missing from the census:** 2,112, about 2,180 with probable land files.
+  `scan-check/UNSIGNED_AND_MILITARY_READING.csv`, `proquest-scan/PQ_MILITARY_ORDERS_1789_1983.psv`.
+- **Left unread by design:** post-1936 unnumbered (25,735; all EOs numbered after 1936), pardons, nominations,
+  proclamations.
+
+## 2026-11-24 ET, late night (Claude: handwritten missing-candidate documents read from page images)
+
+- **Owner order:** "ok get the next ones then".
+- **Method** (F-20261124-12):
+  - The 1,252 handwritten or illegible documents were decoded in-page with `scan-check/g4_page_decoder.js`.
+  - The first and last pages went to ten Haiku readers.
+- **Result:**
+  - The image pass found 525 more executive orders.
+  - Totals: 2,032 executive orders on their face (1,531 land, 501 operative), 70 probable, 1,808 not orders, 31
+    unreadable.
+  - `CENSUS.md`, `scan-check/REPORT.md` and `FULL_READING_3941.csv` are updated.
+- **Housekeeping:**
+  - Page images (36 MB) are in the session workspace only, not committed.
+  - One image reader called send_later by mistake. A stray "unused" scheduled message fired once; its deletion was
+    refused by the classifier.
+- **Next:**
+  - A second reader on a random sample of verdicts.
+  - Middle pages of handwritten documents.
+  - The owner's ruling A-20261124-3.
+
+## 2026-11-24 ET, night (Claude: every missing ProQuest record's document fetched and read)
+
+- **Owner order:** "you have permission to get them. GO". All 3,941 PDFs were fetched in-page.
+- **Method** (F-20261124-11; `scan-check/REPORT.md`, `scan-check/FULL_READING_3941.csv`):
+  - Text layers are saved in `PQ_TEXT_LAYER_3941.jsonl.gz`.
+  - 838 land orders were found by the order-language rule.
+  - 2,082 documents were read by six Haiku readers (1.49M tokens, about 18 minutes).
+- **Result:**
+  - 1,507 executive orders on their face, plus 70 probable land files.
+  - 1,110 are not orders.
+  - 1,254 handwritten documents, estimated at 375-630 orders.
+  - The census lacks about 2,000 EOs from this collection.
+  - `CENSUS.md`, the ProQuest report and `COMPLETENESS_PLAN.md` are updated.
+- **Next:**
+  - Read the handwritten 1,254 from page images.
+  - Second-read a sample of the Haiku verdicts.
+  - Get the owner's ruling A-20261124-3.
+
+## 2026-11-24 ET, late (Claude: documents behind 50 missing ProQuest records read)
+
+- **Owner order:** read the candidates yourself.
+- **Sample** (F-20261124-10): 50 random records from `proquest-scan/CANDIDATES_MISSING.csv`, in `scan-check/`. 48
+  were read: printed text from the PDFs' text layer, handwriting from rendered page images. Two large scans are unread.
+- **Result:**
+  - Land records: 19 of 20 are executive orders. "Other orders": only 6 of 28.
+  - Estimated executive orders missing from the census: about 2,100 (land about 1,600; other about 500, 95%
+    230-890).
+  - `CENSUS.md` brief, section 4 and section 6, the scan report and `COMPLETENESS_PLAN.md` now carry this figure.
+- **Warning:** navigating to a ProQuest PDF link downloads it, because Chrome's PDF viewer is off. One file landed
+  on the owner's computer: `PT1-1838-12-25.pdf`.
+- **Asks:** @Owner: A-20261124-3 (which kinds count) still open.
+
+## 2026-11-24 ET, evening (Claude: ProQuest unnumbered collection read in full and matched to the census)
+
+- **Owner order:** pull everything ProQuest has. The owner reports the NYU librarian approved this use of NYU's
+  access. Catalog data only; no scan was downloaded.
+- **Harvest** (F-20261124-9): every result page of "Unnumbered Executive Orders, Directives, and Proclamations",
+  1789-1936, read oldest first. 19,918 of 20,028 records saved; about 110 were lost to same-date reordering.
+  `proquest-scan/PQ_UNNUMBERED_1789_1936.psv`.
+- **Classification and match** (`proquest-scan/classify_match.py`, deterministic):
+  - Signed first copies: 3,411 land orders and 2,609 other operative orders. The census holds 1,695, and 384 share
+    a date and series with a census entry.
+  - **3,941 are missing**: 1,699 land orders (893 in the 1909-1936 numbered series) and 2,242 other orders.
+    `proquest-scan/CANDIDATES_MISSING.csv`. This confirms the 29-month estimate of 3,900.
+  - Other signed kinds are tallied but not counted: treaties, NRA codes, arms-export exceptions, pardons and others.
+  - Checks: the title rules match the hand sample for 202 of 215 records. In a random 40 unmatched records, none
+    has a census counterpart within 45 days.
+- **Updated:** `CENSUS.md` brief, section 4 and section 6; `COMPLETENESS_PLAN.md`; `proquest-scan/REPORT.md`.
+- **Next:**
+  - Read the scans of a random sample of the 3,941.
+  - Recover the about 110 missed records by narrow date ranges.
+  - Check the land series against the GLO and Interior schedules.
+- **Asks:** @Owner: A-20261124-3, which kinds of presidential document count.
+
+## 2026-11-24 ET, afternoon (Claude: census corrections; ProQuest browse measures the unnumbered gap)
+
+- **Census corrections** (A-20261124-1, owner yes): EO 6585 admitted (census 15,003); EO:7010P renamed EO:7010F; the
+  APP text was re-keyed from EO:4224 to EO:4224½, and the APP id pattern was fixed. PR #308.
+- **Owner corrections recorded:**
+  - TDM Studio carries no executive orders (A-20261124-2, withdrawn).
+  - HathiTrust and ProQuest numbered PDFs were already done. `COMPLETENESS_PLAN.md` now lists the work already done.
+- **ProQuest browse** (owner's Chrome, no downloads; `research/petty-census-closure-2026-11-24/proquest-scan/`):
+  - 14,703 signed unnumbered records for 1789-1936.
+  - A 29-month sample estimates about 3,900 presidential orders the census lacks (95% roughly 800-7,100).
+  - Direct phrase counts find about 1,600 records in the coal, petroleum, phosphate, potash and public-water land
+    series, of which the census holds about 41.
+- **Next:** list each land-order series end to end from ProQuest result lists and the GLO and Interior schedules.
+  Read sample scans to check ProQuest's signed flag.
+- **Asks:** @Owner: none new.
 ## 2026-11-18 ET, overnight (Claude: Kiaer tier probe ran under the owner's review; 80 orders; no count changes)
 
 - **Owner took the reviewer's role** for both plans (D-20261118-kiaer-owner-directed-wave; ask
