@@ -1,0 +1,62 @@
+{
+ "wave": "maudslay-stateless-2026-11-25",
+ "author": "claude-opus-5-5",
+ "stage": 0,
+ "objective": {
+  "metric": "filed_dossiers_per_unit",
+  "text": "Wave 1, stage 0: file Stage-19-valid dossiers for claim-ready decided-YES Federal Register orders through the Maudslay conveyor's stateless mode (one request per stage, no tools), and measure filed dossiers, controls caught and list-price cost per filed claim against the agent route."
+ },
+ "actions": [
+  {
+   "id": "production.claim_ready.yes.fr",
+   "orders": 30,
+   "lanes": 1
+  }
+ ],
+ "configuration": {
+  "orchestrator": "maudslay-conveyor",
+  "coordinator_model": "claude-opus-5-5",
+  "producer_model": "claude-sonnet-5-5"
+ },
+ "limits": {
+  "chain_budget_units": 6000000,
+  "spend_per_claim_units": 3000000,
+  "no_claim_minutes": 40,
+  "context_kill_tokens": 150000,
+  "reviews_per_hour": 6,
+  "coordinator_units_per_hour": 1000000
+ },
+ "precondition": "The stateless gauge (research/stateless-calls-2026-11-24) must report GO_STATELESS before this batch reserves any order; on KEEP_AGENT_ROUTE or an incomplete gauge the batch does not run.",
+ "premortem": [
+  {
+   "failure": "Stateless reviewers uphold claims the agent arms would block (reviewer quality drop)",
+   "guard": "precondition: the paired gauge's stop rule (any missed control, disagreement above 7/85, or more than $2.50 per filed claim keeps the agent route); the batch plants a control per review set and the both-uphold rule is unchanged"
+  },
+  {
+   "failure": "claude -p flags behave differently from the specification (answers lost, tools on, sessions reused)",
+   "guard": "the gauge exercises the same STATELESS_TEMPLATE first; validate_worker_command refuses --bare, bypass flags and any non-empty --tools; an unusable answer leaves the order unresolved, not filed"
+  },
+  {
+   "failure": "Large orders blow the 150k prompt cap or cost",
+   "guard": "orders over 150k tokens are not sent stateless (listed prompt_over_cap); --batch-usd 40 caps the batch and the conveyor stops launching when spend plus in-flight forecast would pass it"
+  },
+  {
+   "failure": "Cruden number search or prepare runs past the runner wall or stalls the PC",
+   "guard": "the batch runs on the owner's PC, not a GitHub runner; cruden is cached per order under BATCH/stateless/cruden and timed on the first orders before the rest"
+  }
+ ],
+ "acknowledged_findings": {
+  "F-20261118-kiaer-stopped-at-review": "Every code guard in the premortem is code the conveyor already runs on main (validate_worker_command, the 150k cutoff, --batch-usd, the planted control and both-uphold rule). The gauge precondition is not code: it is an operator check in RUN.md (read GAUGE_RESULTS.json; stop unless GO_STATELESS), stated as such.",
+  "F-20261113-conveyor-audit": "MEASURES.json records per-request prompt size, cache reads and writes and output per model call (stateless.calls), and the stage-0 finding will compare at the reserve-to-publish boundary with request counts, not summed tokens alone.",
+  "F-20261110-mommsen-unranked-pools": "One Bentham-ranked action only (production.claim_ready.yes.fr, measured 7/30); claim-kit admission refuses orders outside it; stage 0 is one lane and 30 orders.",
+  "F-20261107-haloander-undecided-probe": "No undecided orders: --stateless refuses undecided actions, and this plan names only a decided-YES production action.",
+  "F-20261028-4": "Prepare runs after the 2026-11-24/25 Pinakes, tracker and Bentham regenerations on main, so packets carry the current working-text grades.",
+  "F-20261018-7": "No URL fetching in this batch: evidence comes from held texts with sha256 receipts that the conveyor checks before any model call."
+ },
+ "review": {
+  "reviewer": "owner",
+  "verdict": "approve",
+  "plan_sha256": "8ee981756e92bd9dcba17c83aa02279114f540c6ce91ff45f2960cf6cc13de9a",
+  "basis": "Owner in chat 2026-11-25 01:34 ET: 'can you /goal wave #1 stateless? you can even take over my terminal' (Kean D-20261125-maudslay-wave1)."
+ }
+}

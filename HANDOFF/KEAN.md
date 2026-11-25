@@ -18,7 +18,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 - **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
-## Owner decisions not yet carried out by the tools (32)
+## Owner decisions not yet carried out by the tools (33)
 
 - **D-20261021-report-deadline** (partly wired): A board order whose only command is to report within a deadline ends on its express revocation (usually EO 12553), not when the board reports; record the report date and standstil… Checked 2026-11-06 (Justinian F3): assemble.py:554 refuses a report deadline as an end; AGENT_PROTOCOL.md:47. No tool r…
 - **D-20261021-strike-and-insert** (not wired): A clause amended by striking and inserting words continues, amended, until the parent order ends; record the text before and after. 43 clauses in 26 committed claims that treat am… Checked 2026-11-06 (Justinian F3): no code or instruction; claim_gate/checker validate later_events structure only, wit…
@@ -52,6 +52,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261112-graunt-adopted** (partly wired): Owner, 2026-11-12: if the Astra census audit did a good job, percolate its understanding through the whole project. Claude verified it and adopts it for reporting: counted identif… README, ESTIMAND.md, domesday README and the dashboard line updated; census admission, corrections and unnumbered seed…
 - **D-20261112-graunt-apply** (partly wired): Owner, 2026-11-12, answering A-20261112-graunt-admit-numbered, A-20261112-graunt-corrections and A-20261112-graunt-unnumbered-seed: yes. (1) Admit the 29 numbered labels the audit… Unnumbered seed done (PR 296). 4 numbered orders admitted with checked pages (EO 2539, 2703, 3493, 3733); 14 more order…
 - **D-20261124-bartolus** (partly wired): Owner, 2026-11-24, in chat (AskUserQuestion): approve Augur plan research/bartolus/WAVE.json, sha256 d3ee295b0475e3fa17fd114e30fc7a90cb4c613a3e2c1a0f4318b6135c7860ec (stage 2: 32… Augur receipt research/bartolus/AUGUR_RECEIPT.json PASS; adoption applied per batch by the Bartolus coordinator
+- **D-20261125-maudslay-wave1** (partly wired): Owner, in chat 2026-11-25 01:34 ET, asked Claude to run wave 1 stateless ('can you /goal wave #1 stateless? you can even take over my terminal'). That is the owner's approval of s… Augur and the conveyor enforce the plan; the GO_STATELESS precondition is an operator check in RUN.md, not code.
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure, D-20261124-1.
 
 <!-- kean:drift -->
@@ -65,4 +66,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-24 F-20261124-8 **worked**: List every ProQuest unnumbered record in the land-order series (coal, petroleum, public water, phosphate, pot… Lesson: get_page_text output over about 50 KB is saved to a workspace file, which is a lossless channel from browser to workspace: pad the page to force it. Result-list paging via the Next Page button and di…
 - 2026-11-24 F-20261124-7 **worked**: Owner-requested browse of ProQuest Congressional in the owner's Chrome (NYU OpenAthens), no downloads: counts… Lesson: The census's biggest gap is the numbered land-order series of 1909-1936 other than power sites; enumerate each series end to end. ProQuest's result list reads well via div.itemPagingDiv and div.itemP…
 
-Register: 95 owner decisions, 64 answered questions, 410 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 96 owner decisions, 64 answered questions, 410 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
