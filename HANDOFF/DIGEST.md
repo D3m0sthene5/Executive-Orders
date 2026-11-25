@@ -10,7 +10,7 @@ New York date: 2026-11-24. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45520809185-1:820bb273158a2781ec3c51e59f81107e35e3b2743f3e5d3e005958a00562856a` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45527698540-1:05f52ddbaadc3cf2016e3f69e7554d2e7d563c9ca230893fb70d36a70f8bbaf4` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -26,9 +26,11 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-23; intervening runs may be absent.
-- claim-checker: claims_all_checks_passed: 1746 → 1740; claims_mechanical_fail: 74 → 80; claims_mechanical_pass: 1832 → 1826
+- claim-checker: claims_all_checks_passed: 1746 → 1740; claims_mechanical_fail: 74 → 80; claims_mechanical_pass: 1832 → 1826; held_distinct_sha256: 59168 → 59120
 - family-rules: saved_texts_scanned: 88220 → 88318
 - gessner-cards: one_step_from_ready: 218 → 217; ready_for_human_review: 1255 → 1251
+- kean: decisions: 91 → 92; findings: 377 → 382
+- linnaeus-types: cruden_targets: 2118 → 2114; m1118_gap_overlap: 1472 → 1473; no_lead: 4592 → 4588; unsourced_named_without_ending_word: 396 → 391
 - readiness-tracker: original_replacement_obligations: 846 → 883; quotation_recheck_obligations: 846 → 883; ready_for_human_review: 1255 → 1251; text_step_provisional_working_text: 252 → 284
 - source-ladder: bytes_downloaded: 96738954 → 135890416; http_requests: 45 → 133; pool_cache_hits: 5 → 0; pool_network_requests: 45 → 140
 - tischendorf-originals: bytes_downloaded: 1872604776 → 869456604; leads: 617 → 608; replacement_strong: 71 → 36; replacement_targets: 735 → 698
@@ -64,4 +66,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45520809185)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45527698540)
