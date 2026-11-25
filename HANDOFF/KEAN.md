@@ -8,9 +8,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Stop:** record results (`add-finding`), questions for the owner (`add-ask`; cite the id in your notes) and
   owner decisions you received (`add-decision`, `wire`). Routine progress stays in your notes. See `jobs/kean/README.md`.
 
-## Waiting for the owner (11)
+## Waiting for the owner (10)
 
-**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-generate-verify-comparison**, **A-20261112-lind-repair-12437-11943**, **A-20261113-lind-12753-reconfirm**, **A-20261124-3**, **A-20261124-stateless-gauge**, **A-20261125-2**. Full questions: `HANDOFF/KEAN_ASKS.md`.
+**A-20261108-lean-main**, **A-20261110-respondendi-standing-rule**, **A-20261110-respondendi-standing-rule-v2**, **A-20261110-ulpian-named-war**, **A-20261111-film709-count**, **A-20261112-generate-verify-comparison**, **A-20261112-lind-repair-12437-11943**, **A-20261113-lind-12753-reconfirm**, **A-20261124-3**, **A-20261124-stateless-gauge**. Full questions: `HANDOFF/KEAN_ASKS.md`.
 
 ## Standing owner requirements
 
@@ -18,7 +18,7 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **Coordinate by model tier** (D-20261029-tiered-delegation): Unless a task is small, the strongest available model plans, keeps legal judgment, control adjudication and integration, and delegates bounded tasks with exact inputs and deliverables to cheaper models; deterministic work goes to scripts. Skip delegation when briefing and checking cost about as much as the task. Review rules are unchanged; record each worker's model, tokens and time.
 - **Brave Search API: paid, use only when needed** (D-20261105-brave-paid-search): Owner bought about $29 of Brave Search API credit (about 5,800-7,000 queries) and added the repo secret BRAVE_SEARCH_KEY. A paid engine is asked only when the free engines found nothing worth reading for that step. Caps: 100 paid queries per job run, 2,500 per job lifetime, 5,000 total. Do not raise the caps without asking the owner.
 
-## Owner decisions not yet carried out by the tools (35)
+## Owner decisions not yet carried out by the tools (34)
 
 - **D-20261021-report-deadline** (partly wired): A board order whose only command is to report within a deadline ends on its express revocation (usually EO 12553), not when the board reports; record the report date and standstil… Checked 2026-11-06 (Justinian F3): assemble.py:554 refuses a report deadline as an end; AGENT_PROTOCOL.md:47. No tool r…
 - **D-20261021-strike-and-insert** (not wired): A clause amended by striking and inserting words continues, amended, until the parent order ends; record the text before and after. 43 clauses in 26 committed claims that treat am… Checked 2026-11-06 (Justinian F3): no code or instruction; claim_gate/checker validate later_events structure only, wit…
@@ -51,10 +51,9 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - **D-20261112-graunt-adopted** (partly wired): Owner, 2026-11-12: if the Astra census audit did a good job, percolate its understanding through the whole project. Claude verified it and adopts it for reporting: counted identif… README, ESTIMAND.md, domesday README and the dashboard line updated; census admission, corrections and unnumbered seed…
 - **D-20261112-graunt-apply** (partly wired): Owner, 2026-11-12, answering A-20261112-graunt-admit-numbered, A-20261112-graunt-corrections and A-20261112-graunt-unnumbered-seed: yes. (1) Admit the 29 numbered labels the audit… Unnumbered seed done (PR 296). 4 numbered orders admitted with checked pages (EO 2539, 2703, 3493, 3733); 14 more order…
 - **D-20261124-bartolus** (partly wired): Owner, 2026-11-24, in chat (AskUserQuestion): approve Augur plan research/bartolus/WAVE.json, sha256 d3ee295b0475e3fa17fd114e30fc7a90cb4c613a3e2c1a0f4318b6135c7860ec (stage 2: 32… Augur receipt research/bartolus/AUGUR_RECEIPT.json PASS; adoption applied per batch by the Bartolus coordinator
-- **D-20261125-maudslay-wave1** (partly wired): Owner, in chat 2026-11-25 01:34 ET, asked Claude to run wave 1 stateless ('can you /goal wave #1 stateless? you can even take over my terminal'). That is the owner's approval of s… Augur and the conveyor enforce the plan; the GO_STATELESS precondition is an operator check in RUN.md, not code.
-- **D-20261125-board-cover-date** (not wired): Owner (2026-11-25, AskUserQuestion: 'Yes, disclosed'): under D-20261108-board-rule, when the transmittal letter's date line is OCR-damaged or not found but the report's cover date… olney.py still sends these 37 orders to exceptions (letter_date_unreadable_or_unlocated)
-- **D-20261125-adopt-bracton-13** (not wired): Owner (2026-11-25, AskUserQuestion: 'Adopt all 13'): the replacement proposals upheld by both blind arms for EO 12376, 13101, 13148, 11812, 12162, 10032, 10056, 10071, 10112, 1014… filing by the adoption route pending
-- **D-20261125-fr-capture-later-events** (not wired): Owner (2026-11-25, AskUserQuestion: 'Yes, for later events'): a federalregister.gov full-text capture whose FR citation matches counts as a held source for a later event (for exam…
+- **D-20261125-board-cover-date** (not wired): Owner, 2026-11-25: if the transmittal date line is unreadable, the board clause may end on the clean report cover date, disclosed. olney.py still sends these 37 orders to exceptions (letter_date_unreadable_or_unlocated)
+- **D-20261125-adopt-bracton-13** (not wired): Owner, 2026-11-25: adopt the 13 both-arm-upheld replacement proposals (A-20261125-2 list) as claims of record. filing by the adoption route pending
+- **D-20261125-fr-capture-later-events** (not wired): Owner, 2026-11-25: a federalregister.gov capture with a matching FR citation may support a later event (e.g. an NEA notice), disclosed; never an order's own original.
 - Not yet checked against the tools: D-20261106-encyclopedie-budget, D-20261106-encyclopedie-installs, D-20261106-encyclopedie-ocr-reference, D-20261106-encyclopedie-thesis-measure, D-20261124-1.
 
 <!-- kean:drift -->
@@ -68,4 +67,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-25 F-20261125-lean-trial **inconclusive**: Lean two-arm trial: 30 seeded YES orders per arm; arm 0 current route; arm 1 strict Larrey (kept 15 out), seq… Lesson: No verified saving at this size. Pooling review sets and pre-screening blocks are the larger measured levers (F-20261125-gilbreth).
 - 2026-11-25 F-20261125-larrey-strict **analysis**: Back-tested candidate pre-production gates on 570 past attempts (520 orders, 91 filed) from Papinian, Haloand… Lesson: Strict is in-sample on all five waves; adopt it only after a gated wave (30 strict-admitted vs 15-30 kept-out orders) shows at least 1.5x filed rate and the kept-out arm supplies at most 15% of filed…
 
-Register: 103 owner decisions, 64 answered questions, 419 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 103 owner decisions, 65 answered questions, 419 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
