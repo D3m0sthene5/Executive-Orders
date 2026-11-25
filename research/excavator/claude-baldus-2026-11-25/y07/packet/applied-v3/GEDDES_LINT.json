@@ -1,0 +1,97 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-baldus-2026-11-25/y07/packet/PACKET.json",
+  "seconds": 34.661,
+  "files_read": 65350,
+  "file_reads": 130845,
+  "packet_fingerprint": "5d2529e36c2d22569c4c7dc9a3953ad8bcd2997a1141aa7c15c864bb0faea5e7",
+  "claims_checked": 3,
+  "defect_flags": 0,
+  "coverage_gaps": 9,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 3,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:12105",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "7b274ed6eb6d766838b3e16a40301de15b6ad409",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:12139",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "other_scope_instrument_mention",
+          "scope_id": "EO:12139#sec1-104",
+          "actor": "EO:12333",
+          "detail": "Reasoning treats this instrument as acting on another scope; independent source examination must verify that distinction."
+        },
+        {
+          "code": "other_scope_instrument_mention",
+          "scope_id": "EO:12139#sec1-105",
+          "actor": "EO:12333",
+          "detail": "Reasoning treats this instrument as acting on another scope; independent source examination must verify that distinction."
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "7b274ed6eb6d766838b3e16a40301de15b6ad409",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 3,
+      "instrument_id": "EO:12208",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "own_order_body_unverified",
+          "reason": "order_heading_unresolved"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "7b274ed6eb6d766838b3e16a40301de15b6ad409",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        },
+        {
+          "code": "citing_own_body_unverified",
+          "reason": "order_heading_unresolved"
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
