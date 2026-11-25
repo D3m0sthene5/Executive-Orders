@@ -1,6 +1,6 @@
 # Executive Orders — current research dashboard
 
-Generated 2026-11-25 05:10 EST. Legal cutoff: **2026-10-14** (America/New_York).
+Generated 2026-11-25 07:59 EST. Legal cutoff: **2026-10-14** (America/New_York).
 
 Readiness below is the latest published tracker generation. Exact claim-receipt coverage is reported separately; matching versions alone does not verify every source or policy input.
 
@@ -10,25 +10,25 @@ Readiness below is the latest published tracker generation. Exact claim-receipt 
 |---|---:|---|
 | Numbered series: working identities | 15,003 | Bibliographic inventory; historical census remains incomplete. Every proportion below is of this series |
 | Unnumbered series (catalogued_unnumbered), identified | 1,816 | Counted, individually sourced (census audit 2026-11-12; 1,405 without inferred power-site groups); no defensible estimate of every unnumbered order ever issued; a separate denominator with no readiness count |
-| **Ready for human review, published** | **1,295** | Every applicable tracker step passed or was documented exhausted; independent human verification is separate |
-| Ready with original-supported text | 745 | Tracker's text-evidence tier |
+| **Ready for human review, published** | **1,314** | Every applicable tracker step passed or was documented exhausted; independent human verification is separate |
+| Ready with original-supported text | 764 | Tracker's text-evidence tier |
 | Ready dependent on provisional transcriptions | 550 | Explicit working-text limitations remain |
 | Provisional YES / NO | 405 / 3,387 | Current status register, unique admitted identities |
 | Without a provisional status | 11,211 | Working identities without a recognized YES/NO |
-| Filed claim lines / distinct orders | 1,954 / 1,626 | Includes partial claims and replacement versions; not a completion measure |
-| Superseded or repeated claim lines | 328 | Difference between valid lines and unique orders |
+| Filed claim lines / distinct orders | 1,975 / 1,634 | Includes partial claims and replacement versions; not a completion measure |
+| Superseded or repeated claim lines | 341 | Difference between valid lines and unique orders |
 | Human-certified whole histories, published register | 0 | Separate Stage19 human-review record; never inferred from AI passes |
 
-Tracker generation: **2026-11-25 05:09 EST**; input commit `6964f4718be96ec1afae94b7400b2b4a31a42e24`.
-[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45578475711).
+Tracker generation: **2026-11-25 07:59 EST**; input commit `690344c4f3b4995d1b65e6d9d9d5e0d0cd35ca95`.
+[Tracker workflow](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45610282250).
 
 ## Receipt coverage and freshness
 
 | Measure | Count |
 |---|---:|
-| Current claim lines with an exact checker receipt | 1,954 / 1,954 |
+| Current claim lines with an exact checker receipt | 1,975 / 1,975 |
 | Current claim lines without a matching receipt | 0 |
-| Latest claim per order with a matching checker receipt | 1,626 / 1,626 |
+| Latest claim per order with a matching checker receipt | 1,634 / 1,634 |
 | Distinct orders whose latest claim lacks a matching receipt | 0 |
 | Original-replacement / quotation-recheck obligations | 883 / 883 |
 
@@ -39,12 +39,12 @@ Receipt matching checks canonical claim content hashes. A matching receipt may r
 | Step | Done / applicable |
 |---|---:|
 | Original or approved working text | 3,766 / 3,792 |
-| Operative clause inventory | 1,539 / 3,792 |
-| Ending or current legal basis | 1,329 / 3,792 |
-| Surviving effects | 1,526 / 3,792 |
-| Counterevidence review | 2,888 / 3,792 |
+| Operative clause inventory | 1,547 / 3,792 |
+| Ending or current legal basis | 1,347 / 3,792 |
+| Surviving effects | 1,534 / 3,792 |
+| Counterevidence review | 2,890 / 3,792 |
 | Shared cited sources | 212 / 236 |
-| Opus evidence images | 125 / 779 |
+| Opus evidence images | 125 / 776 |
 
 Steps overlap across orders and are not equal amounts of work.
 
@@ -56,21 +56,21 @@ Steps overlap across orders and are not equal amounts of work.
 | ProQuest usable machine texts | 4,267 |
 | Low-quality, probably handwritten texts | 574 |
 | Supplied ProQuest links still missing a PDF | 15 |
-| Cotton published web-source copies | 758 |
+| Cotton published web-source copies | 759 |
 | Cotton failed captures | 1 |
 
 File acquisition and machine text do not establish legal conclusions or independently admit an order to the census.
 
 ## Provenance and interpretation
 
-Dashboard run input commit: `6964f4718be96ec1afae94b7400b2b4a31a42e24`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
+Dashboard run input commit: `690344c4f3b4995d1b65e6d9d9d5e0d0cd35ca95`. The JSON records SHA-256 hashes of the exact files read, including outputs regenerated during the same run.
 
 | Input | Published generation | Source |
 |---|---|---|
-| Readiness | 2026-11-25 05:09 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
-| Claim checker | 2026-11-25 05:08 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
-| ProQuest ingestion | 2026-11-25 00:07 EST | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
-| Web-source custody | 2026-11-12 18:00 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
+| Readiness | 2026-11-25 07:59 EST | [jobs/readiness-tracker/output/SUMMARY.json](../../../jobs/readiness-tracker/output/SUMMARY.json) |
+| Claim checker | 2026-11-25 07:58 EST | [jobs/claim-checker/output/SUMMARY.json](../../../jobs/claim-checker/output/SUMMARY.json) |
+| ProQuest ingestion | 2026-11-25 06:09 EST | [jobs/pinakes-proquest-ingest/output/SUMMARY.json](../../../jobs/pinakes-proquest-ingest/output/SUMMARY.json) |
+| Web-source custody | 2026-11-25 04:22 EST | [jobs/cotton-capture-custody/output/SUMMARY.json](../../../jobs/cotton-capture-custody/output/SUMMARY.json) |
 
 [Canonical provisional statuses](../../../research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv) · [Published human-review record](../../../research/stage19/output/PROGRESS.json) · [Exact dashboard data and input hashes](DASHBOARD.json) · [Daily changes](DIGEST.md)
 
