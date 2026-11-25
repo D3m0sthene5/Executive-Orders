@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45585542482-1:514cef47b2333aa0b85131e3d70afa6bded97702359387f26ddadcd1ab339409` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45610427021-1:b427e3acb5324cf8323e246910834e72af836dd73829d191a11fde52491ce61e` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -15,7 +15,7 @@ Orders with a provisional YES/NO status: 3,792. The other 11,211 have not been r
 Ready by text evidence: {'original_supported': 745, 'transcription_dependent': 550}. Provisional working texts do not authenticate originals.
 Outstanding original replacement obligations: 883; quotation rechecks: 883. These remain work after readiness.
 
-Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 284. Confirmations rejected: {'grade_not_a_working_text_grade': 2, 'not_confirmed': 1549}.
+Text step provisional on a confirmed working text (separate from `done`, never an original; owner ruling 2026-10-31): 284. Confirmations rejected: {'grade_not_a_working_text_grade': 1, 'not_confirmed': 143}.
 
 ## Steps finished (orders with a provisional status)
 
@@ -23,9 +23,9 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 |---|---:|---:|---:|
 | Has a provisional YES/NO status | 3,792 | 3,792 | 100.0% |
 | Original or explicitly reviewed provisional working text saved | 3,766 | 3,792 | 99.3% |
-| Complete inventory of the order's operative clauses | 1,539 | 3,792 | 40.6% |
-| When and how it ended (NO), or what keeps it operating now (YES) | 1,329 | 3,792 | 35.0% |
-| Savings clauses and surviving effects closed | 1,526 | 3,792 | 40.2% |
+| Complete inventory of the order's operative clauses | 1,526 | 3,792 | 40.2% |
+| When and how it ended (NO), or what keeps it operating now (YES) | 1,326 | 3,792 | 35.0% |
+| Savings clauses and surviving effects closed | 1,513 | 3,792 | 39.9% |
 | Search for later contrary sources recorded, no open conflicts | 2,888 | 3,792 | 76.2% |
 | Every shared legal source it cites has been retrieved | 212 | 236 | 89.8% |
 | Opus evidence images matched to this order (Opus cases only) | 125 | 779 | 16.0% |
@@ -37,6 +37,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | 431 | machine job | Re-fetch the PDFs Opus downloaded but left out of its release: add their URLs to research/readiness/FETCH_QUEUE.jsonl |
 | 93 | machine job | Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy |
 | 37 | agent check | Check the page location of fr-originals and official-compilation finds marked medium/low confidence |
+| 21 | machine job | Run claim-checker on the newest claims (it reruns on every claims change and daily) |
 | 17 | agent check | Compare the ProQuest replica scan's pages with the order (pinakes-proquest-ingest ORDERS.csv, texts/) and use the scan as provisional working text under the 2026-10-21 owner rulings (proquest-request, transcription-as-text), disclosed and rechecked against an original when one is held |
 | 10 | one source | Retrieve shared source EO::4314 |
 | 6 | one source | Retrieve shared source EO::6868 |
@@ -50,13 +51,13 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | Blocker | Orders with a status | All orders |
 |---|---:|---:|
 | `NO_PROVISIONAL_STATUS` | 0 | 11,211 |
-| `NO_CLAUSE_INVENTORY` | 2,167 | 2,167 |
-| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,167 | 2,167 |
+| `NO_CLAUSE_INVENTORY` | 2,159 | 2,159 |
+| `SAVINGS_RESIDUALS_NOT_CLOSED` | 2,159 | 2,159 |
 | `FIRST_END_UNPROVED` | 1,869 | 1,869 |
 | `NO_OFR_CATALOG_ENTRY_SEARCH_INCOMPLETE` | 721 | 721 |
 | `OPUS_MEDIA_REFETCH_NEEDED` | 431 | 431 |
-| `CURRENT_BASIS_UNPROVED` | 298 | 298 |
-| `FIRST_END_UNRESOLVED` | 184 | 184 |
+| `CURRENT_BASIS_UNPROVED` | 290 | 290 |
+| `FIRST_END_UNRESOLVED` | 174 | 174 |
 | `OPUS_MEDIA_NONE_CITED` | 152 | 152 |
 | `MACHINE_SEARCH_FOUND_CONTRARY_LEAD` | 139 | 139 |
 | `NO_OFFICIAL_SOURCE_LOCATED` | 4 | 126 |
@@ -68,9 +69,10 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 | `ORIGINAL_FOUND_NEEDS_PAGE_CHECK` | 5 | 37 |
 | `QUARANTINED_RELATIONSHIP_CONFLICT` | 36 | 36 |
 | `SHARED_SOURCE_NOT_RETRIEVED` | 24 | 24 |
+| `CLAIM_NOT_YET_CHECKED` | 21 | 21 |
 | `OPUS_MEDIA_ORIGINAL_NOT_KEPT` | 18 | 18 |
 | `ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK` | 0 | 17 |
-| `OPEN_SOURCE_AUDIT` | 6 | 6 |
+| `OPEN_SOURCE_AUDIT` | 4 | 4 |
 | `OPUS_MEDIA_MATCH_AMBIGUOUS` | 1 | 1 |
 
 ## How to move an order forward
@@ -106,7 +108,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - photius-replica-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 4,648
 - montfaucon-page-check (checked ProQuest replica: credits the text step, bytes ProQuest-dependent): 0
 - pinakes-proquest-ingest (archival replica scan, lead only until a page check and a codebook grade): 4,841
-- lachmann working-text confirmations (provisional text step only, never an original): 2,359
+- lachmann working-text confirmations (provisional text step only, never an original): 952
 - opus-media-match status: 1,155
 - source-ladder: 1,097
 - claim-checker: 1,626
@@ -123,6 +125,10 @@ See jobs/census-candidates/output/CENSUS_READINESS.md and ITEM_CANDIDATES.csv.
 
 ## Input problems
 
+- STALE_SOURCE_AUDIT_HOLD:EO:13101: reconcile changed claim with research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl
+- STALE_SOURCE_AUDIT_HOLD:EO:13148: reconcile changed claim with research/valla/pilot-2026-10-20/METHOD_REVIEWS.jsonl
+- STALE_SOURCE_AUDIT_HOLD:EO:13101: reconcile changed claim with research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13101.audit.v1.json
+- STALE_SOURCE_AUDIT_HOLD:EO:13148: reconcile changed claim with research/excavator/astra-portfolio-repair-2026-10-20/lambertini-review/EO_13148.audit.v1.json
 - STALE_SOURCE_AUDIT_HOLD:EO:10622: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json
 - STALE_SOURCE_AUDIT_HOLD:EO:11040: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json
 - STALE_SOURCE_AUDIT_HOLD:EO:11078: reconcile changed claim with research/progress/branch-recovery-2026-10-29/MANSFIELD_AUDIT.json
