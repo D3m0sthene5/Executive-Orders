@@ -12,6 +12,7 @@ marked ``basis_eligible`` (see ``basis_mark``), and a YES a CURRENT: basis.
 """
 import argparse
 from copy import deepcopy
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -25,6 +26,62 @@ import working_text as W
 SCHEMA = 'eo-source-excerpt-declarations/v1'
 EVIDENCE_SUPPLEMENT_SCHEMA = 'eo-status-overlay-evidence-supplement/v1'
 SOURCE_KEYS = {'url', 'sha256', 'text_path', 'text_sha256', 'page_or_item', 'local_path'}
+
+
+def pergamon_record(repo, sha):
+    """The Pergamon store record for raw bytes ``sha`` declared in jobs/*/output/SOURCES.jsonl, or None.
+
+    A source whose bytes are kept only in the Pergamon store (owner decision D-20261110-papinian-board-bytes)
+    declares ``local_path: null``; the claim checker's pergamon_store adapter fetches and re-hashes the bytes."""
+    for path in sorted(Path(repo).glob('jobs/*/output/SOURCES.jsonl')):
+        with path.open(encoding='utf-8') as fh:
+            for line in fh:
+                if sha not in line or '"pergamon"' not in line:
+                    continue
+                try:
+                    row = json.loads(line)
+                except ValueError:
+                    continue
+                pg = row.get('pergamon') if isinstance(row, dict) else None
+                if row.get('sha256') == sha and isinstance(pg, dict) and pg.get('sha256') == sha and pg.get('locator'):
+                    return pg
+    return None
+
+
+def pergamon_fetch(record):
+    """The store's bytes for a Pergamon record; pergamon_store.Store.get_verified refuses bytes that do not hash to
+    the record's SHA-256. Network once per source; tests replace this."""
+    import sys
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / '_lib'))
+    import pergamon_store
+    return pergamon_store.Store.from_env().get_verified(record)
+
+
+def held_bytes(repo, source):
+    """Whether the declared raw bytes are held: a repository file that hashes to ``sha256``, or (``local_path``
+    null) a Pergamon record for ``sha256`` whose bytes hash to it. A fetched copy is kept under the kit cache
+    (fragment_cache.cache_dir()/pergamon) and re-hashed on every use, so a later packet load needs no network;
+    a copy that no longer hashes is fetched again. Unreachable or refused bytes are not held."""
+    sha = source['sha256']
+    if source['local_path'] is not None:
+        return B.file_sha(B.safe(repo, source['local_path'])) == sha
+    record = pergamon_record(repo, sha)
+    if record is None:
+        return False
+    kept = fragment_cache.cache_dir() / 'pergamon' / sha[:2] / sha
+    if kept.is_file() and hashlib.sha256(kept.read_bytes()).hexdigest() == sha:
+        return True
+    try:
+        data = pergamon_fetch(record)
+    except Exception:  # noqa: BLE001  (offline, not found, refused: not held)
+        return False
+    if hashlib.sha256(data).hexdigest() != sha:
+        return False
+    kept.parent.mkdir(parents=True, exist_ok=True)
+    tmp = kept.with_name(kept.name + '.tmp')
+    tmp.write_bytes(data)
+    tmp.replace(kept)
+    return True
 
 
 def official_declarations(repo):
@@ -169,9 +226,13 @@ def derive(repo, dossiers, declaration, provenance, undecided=None):
             raise ValueError('source fields do not declare legal identity or grade')
         if not isinstance(source['url'], str) or not source['url'].startswith('https://') or not source['page_or_item']:
             raise ValueError('HTTPS source locator required')
-        for key, pathkey in [('sha256', 'local_path'), ('text_sha256', 'text_path')]:
-            if not isinstance(source[key], str) or not re.fullmatch(r'[0-9a-f]{64}', source[key]) or B.file_sha(B.safe(repo, source[pathkey])) != source[key]:
+        for key in ('sha256', 'text_sha256'):
+            if not isinstance(source[key], str) or not re.fullmatch(r'[0-9a-f]{64}', source[key]):
                 raise ValueError('source supplement hash mismatch: ' + key)
+        if B.file_sha(B.safe(repo, source['text_path'])) != source['text_sha256']:
+            raise ValueError('source supplement hash mismatch: text_sha256')
+        if not held_bytes(repo, source):
+            raise ValueError('source supplement hash mismatch: sha256')
         text_path = B.safe(repo, source['text_path'])
         if text_path.stat().st_size > 32_000_000:
             raise ValueError('source text exceeds bounded preparation limit')

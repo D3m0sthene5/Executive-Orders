@@ -243,6 +243,55 @@ class SourceSupplementTests(unittest.TestCase):
         (self.dest/'SOURCE_SUPPLEMENT.json').unlink()
         with self.assertRaisesRegex(ValueError,'supplement lineage missing'):B.load_packet(self.dest,self.repo)
 
+    def pergamon_entry(self, record=True):
+        # The excerpt's raw bytes exist only in the Pergamon store: local_path null, and a SOURCES.jsonl record
+        # carries the store locator for the same SHA-256 (D-20261110-papinian-board-bytes).
+        raw = (self.repo/self.entry['source']['text_path']).read_bytes()
+        e = copy.deepcopy(self.entry); e['source']['local_path'] = None
+        e['source']['sha256'] = S.hashlib.sha256(raw).hexdigest()
+        if record:
+            path = self.repo/'jobs/store-job/output/SOURCES.jsonl'; path.parent.mkdir(parents=True, exist_ok=True)
+            path.write_text(json.dumps({'sha256': e['source']['sha256'], 'pergamon': {
+                'backend': 'release', 'sha256': e['source']['sha256'], 'ext': '.bin',
+                'locator': 'https://example.test/pergamon/' + e['source']['sha256'] + '.bin'}}) + '\n')
+        return e, raw
+
+    def test_pergamon_only_bytes_fetched_rehashed_and_cached(self):
+        e, raw = self.pergamon_entry()
+        with patch.object(S, 'pergamon_fetch', return_value=raw) as fetch:
+            out = S.derive(self.repo, self.ds, {'schema':S.SCHEMA,'sources':[e]}, {})
+            self.assertIsNone(out['EO:1']['evidence']['SUPPLEMENT:held-revocation']['source']['local_path'])
+            S.derive(self.repo, self.ds, {'schema':S.SCHEMA,'sources':[e]}, {})
+        self.assertEqual(fetch.call_count, 1)  # the second load re-hashes the kept copy, no network
+        kept = FC.cache_dir()/'pergamon'/e['source']['sha256'][:2]/e['source']['sha256']
+        kept.write_bytes(raw + b'tampered')
+        with patch.object(S, 'pergamon_fetch', return_value=raw) as fetch:
+            S.derive(self.repo, self.ds, {'schema':S.SCHEMA,'sources':[e]}, {})
+        self.assertEqual(fetch.call_count, 1)  # a kept copy that no longer hashes is fetched again
+        self.assertEqual(kept.read_bytes(), raw)
+
+    def test_pergamon_only_bytes_refused_without_record_wrong_bytes_or_store(self):
+        e, raw = self.pergamon_entry(record=False)
+        with patch.object(S, 'pergamon_fetch', return_value=raw), self.assertRaisesRegex(ValueError, 'sha256'):
+            S.derive(self.repo, self.ds, {'schema':S.SCHEMA,'sources':[e]}, {})
+        e, raw = self.pergamon_entry()
+        for fetch in [{'return_value': raw + b' changed'}, {'side_effect': OSError('offline')}]:
+            with self.subTest(fetch=fetch), patch.object(S, 'pergamon_fetch', **fetch), \
+                    self.assertRaisesRegex(ValueError, 'sha256'):
+                S.derive(self.repo, self.ds, {'schema':S.SCHEMA,'sources':[e]}, {})
+        # a null local_path never stands in for a text hash or a repository file
+        e2 = copy.deepcopy(e); e2['source']['text_sha256'] = '0'*64
+        with patch.object(S, 'pergamon_fetch', return_value=raw), self.assertRaisesRegex(ValueError, 'text_sha256'):
+            S.derive(self.repo, self.ds, {'schema':S.SCHEMA,'sources':[e2]}, {})
+
+    def test_pergamon_only_excerpt_prepares_applies_and_verifies(self):
+        e, raw = self.pergamon_entry(); self.write_decl([e])
+        with patch.object(S, 'pergamon_fetch', return_value=raw):
+            self.prepare(); self.fill()
+            result = B.apply(self.repo, self.dest, self.dest/'applied')
+            self.assertEqual(result['counts'], {'assembled_proposal': 1})
+            self.assertEqual(S.verify(self.repo, self.dest)['orders'], 1)
+
     def test_undecided_and_chained_parent_refused(self):
         for change in [{'whole_order_status':None},{'source_supplement':{'schema':'old'}}]:
             ds=copy.deepcopy(self.ds);ds['EO:1'].update(change);ds['EO:1']['fingerprint']=A.canonical_sha(ds['EO:1'])

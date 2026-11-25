@@ -136,6 +136,17 @@ class DispatchTests(unittest.TestCase):
         self.assertEqual(result['network_requests'], 0)
         self.assertFalse(result['ok'])
 
+    def test_source_context_reads_pergamon_copies_only_through_a_given_cache(self):
+        # check_selected passes the packet's .validation-cache so a Pergamon-only copy is fetched and re-hashed as
+        # batch-check's checker run does; without a cache folder the reader stays offline (no materialization).
+        self.packet()
+        checker = dispatch.actual_checker()
+        plain = dispatch.source_context(self.repo, checker)
+        self.assertIsNone(plain.reader.cache_dir)
+        cached = dispatch.source_context(self.repo, checker, self.repo/'research/test/packet/.validation-cache')
+        self.assertEqual(cached.reader.cache_dir, self.repo/'research/test/packet/.validation-cache')
+        self.assertIsNone(cached.cache_dir)
+
     def test_mixed_packet_cli_nonzero_explicit_subset_and_immutable_receipts(self):
         folder = self.packet(missing=('EO:1',))
         receipt = folder/'dispatch-v2.json'

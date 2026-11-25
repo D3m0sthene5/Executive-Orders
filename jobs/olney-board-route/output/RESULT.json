@@ -1,107 +1,251 @@
 {
   "batches": [
     {
-      "batch": "s0",
-      "orders": 8,
-      "passing": 7,
+      "batch": "s2",
+      "orders": 9,
+      "passing": 8,
       "wall_seconds": {
-        "apply": 15.97,
-        "batch_check": 48.01,
-        "prepare": 10.61,
-        "supplement": 16.54,
-        "write_sheets": 0.0
-      }
-    },
-    {
-      "batch": "s1",
-      "orders": 4,
-      "passing": 4,
-      "wall_seconds": {
-        "apply": 14.16,
-        "batch_check": 33.74,
-        "prepare": 9.61,
-        "supplement": 14.81,
+        "apply": 23.85,
+        "batch_check": 42.8,
+        "prepare": 17.24,
+        "supplement": 25.94,
         "write_sheets": 0.0
       }
     }
   ],
   "checker_passing": [
-    "EO:10032",
-    "EO:10056",
-    "EO:10071",
-    "EO:10112",
-    "EO:10140",
-    "EO:10757",
-    "EO:10872",
-    "EO:10904",
-    "EO:10944",
-    "EO:11008",
-    "EO:11663"
+    "EO:10050",
+    "EO:10067",
+    "EO:10105",
+    "EO:10147",
+    "EO:10150",
+    "EO:10630",
+    "EO:10760",
+    "EO:10969"
   ],
-  "exceptions": 105,
+  "checker_passing_by_batch": {
+    "s2": [
+      "EO:10050",
+      "EO:10067",
+      "EO:10105",
+      "EO:10147",
+      "EO:10150",
+      "EO:10630",
+      "EO:10760",
+      "EO:10969"
+    ]
+  },
+  "cover_rule": "D-20261125-board-cover-date",
+  "exception_needs": {
+    "clause_inventory_doubt": "The order text has wording beyond create-investigate-report and the no-change sentence (another command, damaged or interleaved FR text); needs a producer clause inventory.",
+    "congressional_action": "Congress legislated on the dispute (NMB inventory); a producer must decide whether the statute ended or displaced the board or the no-change period. Owner rule does not cover it.",
+    "dossier_inventory_not_single_clause": "The kit dossier splits the order into several clauses (often FR layout or added commands); a producer must reconcile the inventory before the scripted split applies.",
+    "follow_on_order": "A producer claim: the order amends or extends another board order, so its end follows the parent board and the instrument that names it (not covered by the board rule as written).",
+    "letter_and_cover_dates_conflict": "The letter date line reads cleanly as a date other than the cover date (an OCR misreading or a real difference); needs a page-image reading of both lines. D-20261125-board-cover-date covers only an unreadable line.",
+    "multi_clause_claim": "The filed claim has more than two clauses (extra commands); each needs its own end beyond the board rule.",
+    "original_bytes_not_held": "The order's own Federal Register bytes are only a custody record; needs the original PDF kept (dispatch refuses the packet).",
+    "reconvened_or_supplemental_report": "The board reconvened or filed a supplemental report; which report completed the task needs a producer judgment and a second span.",
+    "report_bytes_pergamon_only_kit_gap": "The report bytes are only in the Pergamon store; needs the claim-kit change on branch claude/olney-v2 merged, then an Olney rerun.",
+    "report_date_not_corroborated": "Lind's report date is not corroborated (image check needed or held readings conflict); needs a page-image check of the cover and letter (Lind UNREAD_IMAGE_CHECK_NEEDED/CONFLICT_IMAGE_CHECK_NEEDED).",
+    "report_extension_not_scriptable": "The report records a report-time extension Olney cannot carry as a later event: outside the held pages (needs a held text of the later pages), several extensions, an unparsed or ambiguous approval date or deadline. Needs a producer to record each extension, or a held text of the pages.",
+    "report_identity_doubt": "The quoted span does not name the order (number, or appointment date with the board number), or names another order; needs a producer identity check.",
+    "report_shared_with_follow_on_order": "One report answers two orders (a board order and its follow-on); a producer must assign the report to each order and decide whether the follow-on reset the deadline. Needs a two-order claim, reviewed together.",
+    "submission_sentence_not_found": "The letter is held but no submission sentence was found; needs a manual span or a page check."
+  },
+  "exceptions": 101,
   "exceptions_by_primary_reason": {
-    "clause_inventory_doubt": 7,
+    "clause_inventory_doubt": 6,
     "congressional_action": 4,
     "dossier_inventory_not_single_clause": 12,
     "follow_on_order": 2,
-    "letter_date_unreadable_or_unlocated": 37,
+    "letter_and_cover_dates_conflict": 5,
     "multi_clause_claim": 1,
+    "original_bytes_not_held": 1,
     "reconvened_or_supplemental_report": 1,
-    "report_bytes_pergamon_only_kit_gap": 3,
+    "report_bytes_pergamon_only_kit_gap": 12,
     "report_date_not_corroborated": 29,
-    "report_shared_with_follow_on_order": 9
+    "report_extension_not_scriptable": 14,
+    "report_identity_doubt": 3,
+    "report_shared_with_follow_on_order": 9,
+    "submission_sentence_not_found": 2
+  },
+  "exceptions_by_primary_reason_ids": {
+    "clause_inventory_doubt": [
+      "EO:10285",
+      "EO:10371",
+      "EO:10372",
+      "EO:10635",
+      "EO:10709",
+      "EO:9929"
+    ],
+    "congressional_action": [
+      "EO:11101",
+      "EO:11324",
+      "EO:12095",
+      "EO:12370"
+    ],
+    "dossier_inventory_not_single_clause": [
+      "EO:10048",
+      "EO:10303",
+      "EO:10319",
+      "EO:12085",
+      "EO:12132",
+      "EO:12182",
+      "EO:12207",
+      "EO:12373",
+      "EO:12384",
+      "EO:12385",
+      "EO:12393",
+      "EO:12405"
+    ],
+    "follow_on_order": [
+      "EO:10926",
+      "EO:10933"
+    ],
+    "letter_and_cover_dates_conflict": [
+      "EO:10109",
+      "EO:10314",
+      "EO:10509",
+      "EO:10511",
+      "EO:10811"
+    ],
+    "multi_clause_claim": [
+      "EO:10622"
+    ],
+    "original_bytes_not_held": [
+      "EO:10874"
+    ],
+    "reconvened_or_supplemental_report": [
+      "EO:11876"
+    ],
+    "report_bytes_pergamon_only_kit_gap": [
+      "EO:10142",
+      "EO:10770",
+      "EO:10877",
+      "EO:11343",
+      "EO:11445",
+      "EO:11745",
+      "EO:9702",
+      "EO:9918",
+      "EO:9936",
+      "EO:9940",
+      "EO:9948",
+      "EO:9991"
+    ],
+    "report_date_not_corroborated": [
+      "EO:10114",
+      "EO:10120",
+      "EO:10125",
+      "EO:10449",
+      "EO:10862",
+      "EO:10875",
+      "EO:10888",
+      "EO:10965",
+      "EO:10975",
+      "EO:11006",
+      "EO:11011",
+      "EO:11015",
+      "EO:11027",
+      "EO:11040",
+      "EO:11042",
+      "EO:11050",
+      "EO:11115",
+      "EO:11121",
+      "EO:11127",
+      "EO:11131",
+      "EO:11135",
+      "EO:11180",
+      "EO:11243",
+      "EO:11276",
+      "EO:11291",
+      "EO:11308",
+      "EO:11433",
+      "EO:11443",
+      "EO:11852"
+    ],
+    "report_extension_not_scriptable": [
+      "EO:10038",
+      "EO:10051",
+      "EO:10203",
+      "EO:10306",
+      "EO:10406",
+      "EO:10643",
+      "EO:10749",
+      "EO:10750",
+      "EO:10868",
+      "EO:10904",
+      "EO:10944",
+      "EO:10953",
+      "EO:10963",
+      "EO:11008"
+    ],
+    "report_identity_doubt": [
+      "EO:10693",
+      "EO:9922",
+      "EO:9923"
+    ],
+    "report_shared_with_follow_on_order": [
+      "EO:10010",
+      "EO:10138",
+      "EO:10139",
+      "EO:10919",
+      "EO:10923",
+      "EO:11168",
+      "EO:11169",
+      "EO:11170",
+      "EO:11181"
+    ],
+    "submission_sentence_not_found": [
+      "EO:10165",
+      "EO:11694"
+    ]
   },
   "exceptions_by_reason_any": {
     "board_creation_sentences": 8,
     "congressional_action": 4,
-    "cover_date_differs_from_letter": 1,
+    "cover_date_differs_from_letter": 5,
     "dossier_inventory_not_single_clause": 15,
     "follow_on_order": 2,
-    "letter_date_not_found_after_cover": 4,
-    "letter_date_not_located": 27,
+    "letter_date_not_located": 6,
     "letter_date_ocr_damaged": 1,
-    "letter_date_ocr_damaged_cover_clean": 16,
     "multi_clause_claim": 2,
     "nmb_lists_extra_documents": 4,
     "no_change_wording_without_standstill_pattern": 3,
+    "order_identity_not_in_span": 3,
     "other_command_wording": 5,
-    "other_order_number_in_span": 1,
+    "other_order_number_in_span": 2,
     "reconvened_or_supplemental_report": 1,
     "report_bytes_pergamon_only_kit_gap": 41,
     "report_date_not_corroborated": 35,
+    "report_extension_approval_date_unparsed": 2,
+    "report_extension_deadline_ambiguous": 1,
+    "report_extension_deadline_not_printed": 4,
+    "report_extension_multiple": 11,
+    "report_extension_outside_held_text": 8,
     "report_shared_with_follow_on_order": 11,
-    "standstill_sentence_ambiguous": 7,
-    "standstill_sentence_lacks_no_change_or_agreement": 3,
+    "standstill_sentence_ambiguous": 5,
+    "standstill_sentence_lacks_no_change_or_agreement": 2,
     "submission_sentence_not_found": 3,
     "text_after_standstill": 5
   },
   "exceptions_list": {
     "EO:10010": [
-      "letter_date_not_located:DAMAGED",
       "report_shared_with_follow_on_order"
     ],
     "EO:10038": [
-      "letter_date_ocr_damaged_cover_clean"
+      "report_extension_deadline_ambiguous:p6",
+      "report_extension_multiple:p6"
     ],
     "EO:10048": [
       "dossier_inventory_not_single_clause:4",
-      "letter_date_ocr_damaged_cover_clean"
-    ],
-    "EO:10050": [
-      "letter_date_not_located:OBSERVED_BODY_ONLY"
+      "other_order_number_in_span:100443"
     ],
     "EO:10051": [
-      "letter_date_ocr_damaged_cover_clean"
-    ],
-    "EO:10067": [
-      "letter_date_not_found_after_cover"
-    ],
-    "EO:10105": [
-      "letter_date_not_located:NO_TRANSMITTAL_MARKER"
+      "report_extension_deadline_not_printed:p4"
     ],
     "EO:10109": [
       "board_creation_sentences:0",
-      "letter_date_ocr_damaged_cover_clean"
+      "cover_date_differs_from_letter"
     ],
     "EO:10114": [
       "report_date_not_corroborated:UNREAD_IMAGE_CHECK_NEEDED"
@@ -115,58 +259,51 @@
       "text_after_standstill:H arry  S. T r um an\nChapter IV— Product"
     ],
     "EO:10138": [
-      "letter_date_ocr_damaged_cover_clean",
+      "report_extension_approval_date_unparsed:p6",
       "report_shared_with_follow_on_order"
     ],
     "EO:10139": [
-      "letter_date_ocr_damaged_cover_clean",
+      "report_extension_approval_date_unparsed:p6",
       "report_shared_with_follow_on_order"
     ],
     "EO:10142": [
-      "letter_date_not_found_after_cover",
       "report_bytes_pergamon_only_kit_gap"
-    ],
-    "EO:10147": [
-      "letter_date_not_found_after_cover",
-      "standstill_sentence_ambiguous"
-    ],
-    "EO:10150": [
-      "letter_date_ocr_damaged_cover_clean"
     ],
     "EO:10165": [
       "submission_sentence_not_found"
     ],
     "EO:10203": [
-      "letter_date_not_located:DAMAGED"
+      "report_extension_multiple:p8",
+      "report_extension_outside_held_text:p80"
     ],
     "EO:10285": [
       "other_command_wording:Executive Order No. \n1"
     ],
     "EO:10303": [
       "dossier_inventory_not_single_clause:2",
-      "letter_date_not_located:ABSENT"
+      "report_extension_multiple:p8"
     ],
     "EO:10306": [
-      "letter_date_not_located:ABSENT",
-      "other_command_wording:Executive Order No. \n1"
+      "other_command_wording:Executive Order No. \n1",
+      "report_extension_multiple:p6"
     ],
     "EO:10314": [
       "cover_date_differs_from_letter",
-      "other_command_wording:section 502"
+      "other_command_wording:section 502",
+      "report_extension_deadline_not_printed:p4"
     ],
     "EO:10319": [
       "dossier_inventory_not_single_clause:17",
       "report_date_not_corroborated:UNREAD_IMAGE_CHECK_NEEDED"
     ],
     "EO:10371": [
-      "letter_date_not_located:DAMAGED",
       "text_after_standstill:In performing its functions under this \n"
     ],
     "EO:10372": [
-      "letter_date_not_located:ABSENT",
       "text_after_standstill:In performing its functions under this \n"
     ],
     "EO:10406": [
+      "report_extension_multiple:p5",
       "text_after_standstill:In performing its functions under this \n"
     ],
     "EO:10449": [
@@ -174,70 +311,72 @@
       "text_after_standstill:(Continued on next page)\nCONTENTS  \nTHE "
     ],
     "EO:10509": [
-      "letter_date_ocr_damaged_cover_clean"
+      "cover_date_differs_from_letter"
     ],
     "EO:10511": [
-      "letter_date_ocr_damaged_cover_clean"
+      "cover_date_differs_from_letter"
     ],
     "EO:10622": [
       "dossier_inventory_not_single_clause:3",
       "multi_clause_claim"
     ],
-    "EO:10630": [
-      "letter_date_not_located:OBSERVED_BODY_ONLY"
-    ],
     "EO:10635": [
-      "letter_date_not_located:NO_TRANSMITTAL_MARKER",
       "standstill_sentence_ambiguous"
     ],
     "EO:10643": [
-      "letter_date_not_located:DAMAGED"
+      "report_extension_outside_held_text:p55",
+      "report_extension_outside_held_text:p56"
     ],
     "EO:10693": [
-      "letter_date_not_located:NO_TRANSMITTAL_MARKER"
+      "order_identity_not_in_span",
+      "report_extension_outside_held_text:p9"
     ],
     "EO:10709": [
-      "board_creation_sentences:0",
-      "letter_date_not_located:DAMAGED"
+      "board_creation_sentences:0"
     ],
     "EO:10749": [
+      "report_extension_multiple:p7",
       "standstill_sentence_ambiguous"
     ],
     "EO:10750": [
-      "standstill_sentence_ambiguous"
-    ],
-    "EO:10760": [
+      "report_extension_multiple:p7",
       "standstill_sentence_ambiguous"
     ],
     "EO:10770": [
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:10811": [
-      "letter_date_ocr_damaged_cover_clean",
+      "cover_date_differs_from_letter",
       "other_command_wording:revoked"
     ],
     "EO:10862": [
       "report_date_not_corroborated:UNREAD_IMAGE_CHECK_NEEDED"
     ],
     "EO:10868": [
-      "letter_date_not_located:NO_TRANSMITTAL_MARKER"
+      "report_extension_multiple:p8"
+    ],
+    "EO:10874": [
+      "original_bytes_not_held:dispatch_source_blocked"
     ],
     "EO:10875": [
       "report_date_not_corroborated:UNREAD_IMAGE_CHECK_NEEDED",
       "standstill_sentence_ambiguous"
     ],
     "EO:10877": [
-      "letter_date_not_located:DAMAGED",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:10888": [
       "report_date_not_corroborated:UNREAD_IMAGE_CHECK_NEEDED"
     ],
+    "EO:10904": [
+      "report_extension_multiple:p6"
+    ],
     "EO:10919": [
-      "letter_date_not_located:DAMAGED",
+      "report_extension_deadline_not_printed:p8",
       "report_shared_with_follow_on_order"
     ],
     "EO:10923": [
+      "report_extension_multiple:p7",
       "report_shared_with_follow_on_order"
     ],
     "EO:10926": [
@@ -253,23 +392,29 @@
       "letter_date_ocr_damaged",
       "report_shared_with_follow_on_order"
     ],
+    "EO:10944": [
+      "report_extension_deadline_not_printed:p3",
+      "report_extension_outside_held_text:p33",
+      "report_extension_outside_held_text:p9"
+    ],
     "EO:10953": [
+      "report_extension_outside_held_text:p25",
       "standstill_sentence_lacks_no_change_or_agreement"
     ],
     "EO:10963": [
-      "letter_date_not_located:OBSERVED_BODY_ONLY"
+      "report_extension_multiple:p5"
     ],
     "EO:10965": [
       "report_date_not_corroborated:CONFLICT_IMAGE_CHECK_NEEDED"
-    ],
-    "EO:10969": [
-      "standstill_sentence_lacks_no_change_or_agreement"
     ],
     "EO:10975": [
       "report_date_not_corroborated:UNREAD_IMAGE_CHECK_NEEDED"
     ],
     "EO:11006": [
       "report_date_not_corroborated:UNREAD_IMAGE_CHECK_NEEDED"
+    ],
+    "EO:11008": [
+      "report_extension_outside_held_text:p33"
     ],
     "EO:11011": [
       "report_date_not_corroborated:UNREAD_IMAGE_CHECK_NEEDED"
@@ -378,7 +523,6 @@
       "report_date_not_corroborated:CONFLICT_IMAGE_CHECK_NEEDED"
     ],
     "EO:11445": [
-      "letter_date_not_located:OBSERVED_BODY_ONLY",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:11694": [
@@ -408,8 +552,7 @@
       "report_date_not_corroborated:UNREAD_IMAGE_CHECK_NEEDED"
     ],
     "EO:12132": [
-      "dossier_inventory_not_single_clause:4",
-      "letter_date_not_found_after_cover"
+      "dossier_inventory_not_single_clause:4"
     ],
     "EO:12182": [
       "dossier_inventory_not_single_clause:3",
@@ -449,59 +592,37 @@
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:9702": [
-      "letter_date_ocr_damaged_cover_clean",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:9918": [
-      "letter_date_not_located:NO_TRANSMITTAL_MARKER",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:9922": [
-      "letter_date_not_located:OBSERVED_BODY_ONLY",
+      "order_identity_not_in_span",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:9923": [
-      "letter_date_ocr_damaged_cover_clean",
+      "order_identity_not_in_span",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:9929": [
       "board_creation_sentences:0",
-      "letter_date_not_located:DAMAGED",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:9936": [
-      "letter_date_ocr_damaged_cover_clean",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:9940": [
-      "letter_date_ocr_damaged_cover_clean",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:9948": [
-      "letter_date_ocr_damaged_cover_clean",
       "report_bytes_pergamon_only_kit_gap"
     ],
     "EO:9991": [
-      "letter_date_ocr_damaged_cover_clean",
       "report_bytes_pergamon_only_kit_gap"
     ]
   },
-  "failing": {
-    "EO:10874": {
-      "apply_outcome": "blocked",
-      "batch": "s0",
-      "outcome": "blocked",
-      "problems": [
-        "dispatch_source_blocked"
-      ]
-    }
-  },
-  "model_tokens": 0,
-  "prepared": 12,
-  "rule": "D-20261108-board-rule",
-  "schema": "eo-olney-result/v1",
-  "selected": 12,
-  "selected_ids": [
+  "excluded_already_upheld": [
     "EO:10032",
     "EO:10056",
     "EO:10071",
@@ -509,13 +630,69 @@
     "EO:10140",
     "EO:10757",
     "EO:10872",
-    "EO:10874",
-    "EO:10904",
-    "EO:10944",
-    "EO:11008",
     "EO:11663"
   ],
-  "selection_wall_seconds": 8.03,
+  "failing": {
+    "EO:10874": {
+      "apply_outcome": "blocked",
+      "batch": "s2",
+      "outcome": "blocked",
+      "problems": [
+        "dispatch_source_blocked"
+      ]
+    }
+  },
+  "judged": 109,
+  "kit_supports_pergamon": false,
+  "model_tokens": 0,
+  "pergamon_kit_preview": {
+    "additional_orders": [
+      "EO:11343",
+      "EO:11445",
+      "EO:9702",
+      "EO:9918",
+      "EO:9936",
+      "EO:9991"
+    ],
+    "note": "Selection with the claim-kit Pergamon change assumed merged (select --out, OLNEY_ASSUME_PERGAMON_KIT=1); no packet was prepared for these orders.",
+    "selected": 15
+  },
+  "prepared": 9,
+  "review_packets": {
+    "s2": "research/excavator/claude-bracton-2026-11-25/olney/s2/supplemented"
+  },
+  "rule": "D-20261108-board-rule",
+  "run": "v2",
+  "schema": "eo-olney-result/v2",
+  "selected": 9,
+  "selected_by_date_basis": {
+    "cover": [
+      "EO:10050",
+      "EO:10067",
+      "EO:10105",
+      "EO:10147",
+      "EO:10150",
+      "EO:10630"
+    ],
+    "letter": [
+      "EO:10760",
+      "EO:10874",
+      "EO:10969"
+    ]
+  },
+  "selected_ids": [
+    "EO:10050",
+    "EO:10067",
+    "EO:10105",
+    "EO:10147",
+    "EO:10150",
+    "EO:10630",
+    "EO:10760",
+    "EO:10874",
+    "EO:10969"
+  ],
+  "selected_with_extensions": {},
+  "selection_wall_seconds": 10.62,
   "universe": 117,
   "universe_lanes": {
     "c": 57,
