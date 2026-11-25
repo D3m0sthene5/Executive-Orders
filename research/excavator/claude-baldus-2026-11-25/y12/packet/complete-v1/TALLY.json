@@ -1,0 +1,105 @@
+{
+  "attempted": 9,
+  "claims_published": 3,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:13251",
+      "planted_claim_sha256": "7be201d40f18d6e265547ed404aefc99841070763044083d633709684bfe8451",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 6,
+    "eligible": 3
+  },
+  "eligible": [
+    "EO:13251",
+    "EO:13303",
+    "EO:13309"
+  ],
+  "eligible_per_attempt": 0.3333333333333333,
+  "exceptions": 0,
+  "finished_utc": "2026-11-25T17:14:20.793002+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13118",
+      "outcome": "blocked",
+      "reason": "[\"BLOCKED: no held, checkable source of the current text of EO 12163 Parts 1-1 to 1-9 or of the other orders amended in sec. 10 of EO 13118. The packet's nine CURRENT records are U.S. Code note leads whose source is the release-point zip xml_uscAll@119-121.zip, which the dispatch check reports as custody_record_only (bytes not held); later orders that restate or amend the same parts (EO 13286, 13325, 13346, 13361, 13374, 13637, 13656) are held, but a decision for each of the 42 clauses needs the current text of EO 12163 as amended through 2026-10-14, and the 2025 transfer of the functions of the United States Agency for International Development (sec. 2 of EO 13118 describes it as an independent establishment) is not covered by any held text. Needed: held bytes of the U.S. Code release point (22 U.S.C. 2381 note) or a held current text of EO 12163 as amended, plus any 2025-2026 order or statute on the Agency.\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13219",
+      "outcome": "blocked",
+      "reason": "[\"BLOCKED: the National Emergencies Act continuation chain is not complete in the packet evidence. The dossier carries the notices of 2002 to 2013 and 2015 to 2026 (last: Notice of June 22, 2026, FR Doc. 2026-12837) but not the notice of June 2014 (79 FR 36181), which is only declared in HELD_SUPPLEMENT.json (source-excerpt declaration) and is not dossier evidence, so a later_event cannot cite it. Needed: a held-source supplement packet (kit.py prepare --held-supplement) that adds FR 79 FR 36181; the producer rules forbid running it. The partial-end candidates (EO 13304 of 2003-05-28 and the OFAC regulation reissue effective 2022-09-29) would also need per-clause adjudication once the notice is in evidence.\"]"
+    },
+    {
+      "after_reveal": true,
+      "claim_sha256": "ed7747a5cb78c149aa7c1a3202736aae96c9ac97df73ba45cd8fdbd0790c7f17",
+      "gate_errors": [],
+      "instrument_id": "EO:13251",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13265",
+      "outcome": "blocked",
+      "reason": "[\"The held bytes of the EO 13545 Federal Register text (75 FR 37283, FR Doc. 2010-15851) are custody_record_only and the APP mirror text fails the working-text check (official_copy_available_recheck_required), so the 2010 revision of sections 1 through 5 of EO 13265 cannot be cited as a later event. The order is operative and unrevoked on the held record; a citable official text of EO 13545 is the missing source.\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13268",
+      "outcome": "blocked",
+      "reason": "[\"BLOCKED: the order is emergency-dependent through EO 13224 (sec. 1 adds persons to the Annex of EO 13224 and sec. 2 defines the Taliban for the purposes of EO 13224) and the packet evidence holds no National Emergencies Act continuation notice of the EO 13224 emergency for any year; the notices exist in the repository corpus (for example jobs/selden-fr-citers/output/texts/fr-2026-19053.txt and the annual notices of 2002 to 2025) but are not dossier evidence and not in HELD_SUPPLEMENT.json for this member, so a later_event cannot cite them. Needed: a held-source supplement adding the EO 13224 continuation notices of 2002 to 2026 (last signed before 2026-09-23). The inventory is also a single whole-order clause and would need an inventory correction (revocation of EO 13129 performed 2002-07-02; annex amendment; definition; savings) before any claim.\"]"
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "850d3951488cf92b045f17174c52b5ae43deb3da9eda3afc97b08a56e3b6dea6",
+      "gate_errors": [],
+      "instrument_id": "EO:13303",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "ae4fb9d5d33e8f5a23f162b7987d2cdabf6b83beab47754df5a4482a8b5c981e",
+      "gate_errors": [],
+      "instrument_id": "EO:13309",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13312",
+      "outcome": "blocked",
+      "reason": "[\"BLOCKED: EO 13324 (signed 2004-01-15, effective 2004-01-16, 69 FR 2823; held at jobs/fr-originals/output/texts/EO_13324.txt) terminated the national emergency declared in EO 13194 and expanded in EO 13213 and revoked those two orders, which ends the commands of EO 13312 sec. 3(a) to (d) (amendments of EO 13194 and EO 13213) and the EO 13194 half of sec. 4; EO 13324 is not in the dossier evidence (no ACT or ACTOR_TEXT record), so a later_event cannot cite it, and a claim that omits it would omit a partial revocation. Needed: a held-source supplement adding EO 13324, an inventory correction of the single whole-order clause into sections 1 to 5, and held text of the Clean Diamond Trade Act sections after 19 U.S.C. 3901 (only sec. 3901, the findings, is held) to show the statute is unrepealed.\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13315",
+      "outcome": "blocked",
+      "reason": "[\"BLOCKED: the National Emergencies Act continuation chain is not complete in the packet evidence. The dossier carries the continuation notices of 2004 to 2012 and 2021 to 2026 but not those of 2013 to 2020 (78 FR 30195, 79 FR 29069, 80 FR 29527, 81 FR 32219, 82 FR 22877, 83 FR 23573, 84 FR 23437, 85 FR 31033), which are only declared in HELD_SUPPLEMENT.json and are not dossier evidence, so a later_event cannot cite them. Needed: a held-source supplement packet (kit.py prepare --held-supplement) that adds those eight notices; the producer rules forbid running it. The partial-end candidates (EO 13350 sec. 2 replacing the Annex, and the OFAC list update of 2021-12-22) would also need per-clause adjudication.\"]"
+    }
+  ],
+  "packet_loads": {
+    "research/excavator/claude-baldus-2026-11-25/y12/packet": 2
+  },
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 3,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-25T17:12:20.081883+00:00",
+  "submitted": 3,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 120.71114165700055
+}
