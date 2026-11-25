@@ -1,0 +1,103 @@
+# Proposed (not applied): let source_supplement.py add a held excerpt whose raw bytes are only in the Pergamon
+# store (local_path null), and let dispatch.check_selected verify Pergamon copies the way batch-check's checker run
+# already does. Unblocks the board orders whose report PDF Ptolemy did not keep (EO 10770, 11343, 11745 have no
+# other Olney exception). Apply from the repository root: git apply jobs/olney-board-route/proposed/pergamon_supplement.patch
+# Tested: patched derive() accepts EO 10770's Pergamon-only report span; the current code refuses it (TypeError on
+# local_path None). Needs a claim-kit test and review; network is needed once per prepare/verify for those sources.
+diff -ru a/jobs/claim-kit/dispatch.py b/jobs/claim-kit/dispatch.py
+--- a/jobs/claim-kit/dispatch.py	2026-11-25 04:33:53.485016053 -0500
++++ b/jobs/claim-kit/dispatch.py	2026-11-25 04:34:09.511652519 -0500
+@@ -24,10 +24,13 @@
+     return module
+ 
+ 
+-def source_context(repo, checker):
+-    """Use the ordinary offline custody policy without loading unrelated gates."""
++def source_context(repo, checker, cache_dir=None):
++    """Use the ordinary offline custody policy without loading unrelated gates.
++
++    With ``cache_dir`` (a packet's gitignored .validation-cache), Pergamon-stored copies are fetched and re-hashed
++    there exactly as batch-check's checker run does; no other download is enabled."""
+     index = checker.S.build_index(repo, Path(checker.__file__).parent, exclude_jobs=('claim-checker',))
+-    return SimpleNamespace(index=index, reader=checker.S.TextReader(packed=index.packed_texts),
++    return SimpleNamespace(index=index, reader=checker.S.TextReader(cache_dir, packed=index.packed_texts),
+                            gpo_matched=checker.load_gpo_matched(repo), archive_captures={}, cache_dir=None)
+ 
+ 
+@@ -241,7 +244,7 @@
+     if len(ids) != len(claims) or any(not isinstance(i, str) for i in ids) or len(set(ids)) != len(ids) or set(ids) - set(dossiers):
+         raise ValueError('selected claims must name distinct packet members')
+     checker = actual_checker()
+-    ctx = source_context(repo, checker)
++    ctx = source_context(repo, checker, folder / '.validation-cache')
+     custody, texts, members = {}, {}, []
+     for claim in claims:
+         iid = claim['instrument_id']
+diff -ru a/jobs/claim-kit/source_supplement.py b/jobs/claim-kit/source_supplement.py
+--- a/jobs/claim-kit/source_supplement.py	2026-11-25 04:33:53.484985253 -0500
++++ b/jobs/claim-kit/source_supplement.py	2026-11-25 04:34:09.511487695 -0500
+@@ -12,6 +12,7 @@
+ """
+ import argparse
+ from copy import deepcopy
++import hashlib
+ import json
+ from pathlib import Path
+ import re
+@@ -27,6 +28,40 @@
+ SOURCE_KEYS = {'url', 'sha256', 'text_path', 'text_sha256', 'page_or_item', 'local_path'}
+ 
+ 
++def pergamon_record(repo, sha):
++    """The Pergamon store record for raw bytes ``sha`` declared in jobs/*/output/SOURCES.jsonl, or None.
++
++    A source whose bytes are kept only in the Pergamon store (owner decision D-20261110-papinian-board-bytes)
++    declares ``local_path: null``; the claim checker's pergamon_store adapter fetches and re-hashes the bytes."""
++    for path in sorted(Path(repo).glob('jobs/*/output/SOURCES.jsonl')):
++        with path.open(encoding='utf-8') as fh:
++            for line in fh:
++                if sha not in line or '"pergamon"' not in line:
++                    continue
++                try:
++                    row = json.loads(line)
++                except ValueError:
++                    continue
++                pg = row.get('pergamon') if isinstance(row, dict) else None
++                if row.get('sha256') == sha and isinstance(pg, dict) and pg.get('sha256') == sha and pg.get('locator'):
++                    return pg
++    return None
++
++
++def held_bytes(repo, source):
++    """Check the declared raw bytes: a repository file that hashes to sha256, or (local_path null) a Pergamon record
++    for sha256 whose fetched bytes hash to it. Fetching needs the network once per run; refused bytes raise."""
++    if source['local_path'] is not None:
++        return B.file_sha(B.safe(repo, source['local_path'])) == source['sha256']
++    record = pergamon_record(repo, source['sha256'])
++    if record is None:
++        return False
++    import sys
++    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / '_lib'))
++    import pergamon_store
++    return hashlib.sha256(pergamon_store.Store.from_env().get_verified(record)).hexdigest() == source['sha256']
++
++
+ def official_declarations(repo):
+     """{(text_path, raw sha256): [declarations]} for held official printings declared in jobs/*/output/SOURCES.jsonl.
+     The official grades and roles are the compiler's (build.OFFICIAL_GRADE_PREFIXES, build.OFFICIAL_ROLES)."""
+@@ -169,9 +204,13 @@
+             raise ValueError('source fields do not declare legal identity or grade')
+         if not isinstance(source['url'], str) or not source['url'].startswith('https://') or not source['page_or_item']:
+             raise ValueError('HTTPS source locator required')
+-        for key, pathkey in [('sha256', 'local_path'), ('text_sha256', 'text_path')]:
+-            if not isinstance(source[key], str) or not re.fullmatch(r'[0-9a-f]{64}', source[key]) or B.file_sha(B.safe(repo, source[pathkey])) != source[key]:
++        for key in ('sha256', 'text_sha256'):
++            if not isinstance(source[key], str) or not re.fullmatch(r'[0-9a-f]{64}', source[key]):
+                 raise ValueError('source supplement hash mismatch: ' + key)
++        if B.file_sha(B.safe(repo, source['text_path'])) != source['text_sha256']:
++            raise ValueError('source supplement hash mismatch: text_sha256')
++        if not held_bytes(repo, source):
++            raise ValueError('source supplement hash mismatch: sha256')
+         text_path = B.safe(repo, source['text_path'])
+         if text_path.stat().st_size > 32_000_000:
+             raise ValueError('source text exceeds bounded preparation limit')

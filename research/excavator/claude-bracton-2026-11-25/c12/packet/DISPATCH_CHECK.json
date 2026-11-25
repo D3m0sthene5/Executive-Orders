@@ -1,0 +1,658 @@
+{
+  "checked_ids": [
+    "EO:9991"
+  ],
+  "code_pins": {
+    "checker.py": "969034e0f0b740d0fecc4982a2321b7d0685ac7dab7ea7d5fe28377ddbda6481",
+    "dispatch.py": "19167f9d8ec0dcea98ad0c383d8366d9b9e1261c12092cfaf6e6e221489027c4",
+    "sources.py": "6eff9028f980fc1d0a35df6b09e5419ab5840f687cc7b7736d3a38de2bf3f68f"
+  },
+  "dispatchable_ids": [],
+  "legal_requirement_coverage": "unknown",
+  "members": [
+    {
+      "blockers": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:9991#whole",
+          "kind": "required_source_custody",
+          "source": {
+            "page_or_item": "13 FR 5017, PDF pages 1-1",
+            "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_9991.txt",
+            "text_sha256": "84dc665827950020f095959086151482e8068c37956e79e11342709c23970af6",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:9991",
+          "kind": "required_source_custody",
+          "source": {
+            "page_or_item": "13 FR 5017, PDF pages 1-1",
+            "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_9991.txt",
+            "text_sha256": "84dc665827950020f095959086151482e8068c37956e79e11342709c23970af6",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+          }
+        }
+      ],
+      "instrument_id": "EO:9991",
+      "readiness_scope": {
+        "checked_contract": "Original/inventory custody, exact held spans, frozen packet and runtime only; no predicted filing yield.",
+        "dossier_reported_questions": [
+          "target provision not located: EO:12553"
+        ],
+        "legal_requirement_coverage": "unknown",
+        "recorded_source_blocks": [],
+        "required_evidence_ids": [
+          "CLAUSES:EO:9991#whole",
+          "ORIGINAL:EO:9991"
+        ],
+        "scientific_approval": false,
+        "unresolved_research": [
+          {
+            "availability": "held_not_loaded",
+            "instrument_id": "EO:9991",
+            "kind": "locate_held_provision",
+            "reason": "target provision not located: EO:12553",
+            "shared_key": "EO:12553",
+            "task_id": "TASK:48e06a65c7d130b32bdcd8e2"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:9991",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:9991:TERM:EO:9991:9f450d2103bd5cef@84dc665827950020",
+            "task_id": "TASK:3621c21e57ef1e3459008318"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:9991",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:9991:TERM:EO:9991:ffaed91bd67505a8@84dc665827950020",
+            "task_id": "TASK:f67af39bb14bbd6fa2416e99"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:9991",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:9991:TERM:EO:9991:ce180926036b1a66@f4a9c2a149268aba",
+            "task_id": "TASK:30eea5809c1f5cb7a3c777ab"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:9991",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:9991:TERM:EO:9991:8fed0465e731de95@f4a9c2a149268aba",
+            "task_id": "TASK:87d401d0f556dfa2f8f09d88"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:9991",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:9991:TERM:EO:9991:ba25a32b4678efe9@fbf75bb6cd764c16",
+            "task_id": "TASK:fad67edc3db97832ec170c8d"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:9991",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:9991:TERM:EO:9991:7c760fa438141a65@fbf75bb6cd764c16",
+            "task_id": "TASK:0424cf90782a7b75f8aa9392"
+          },
+          {
+            "availability": "research_required",
+            "instrument_id": "EO:9991",
+            "kind": "actual_event_fact",
+            "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+            "shared_key": "EO:9991:TERM:EO:9991:6d696f31e56b912c@5ae258b2735842c9",
+            "task_id": "TASK:305e5045f84042ee54b0304f"
+          }
+        ],
+        "unusable_declared_source_ids": [
+          "CLAUSES:EO:9991#whole",
+          "ORIGINAL:EO:9991",
+          "TERM:EO:9991:6d696f31e56b912c@5ae258b2735842c9",
+          "TERM:EO:9991:7c760fa438141a65@fbf75bb6cd764c16",
+          "TERM:EO:9991:8fed0465e731de95@f4a9c2a149268aba",
+          "TERM:EO:9991:9f450d2103bd5cef@84dc665827950020",
+          "TERM:EO:9991:ba25a32b4678efe9@fbf75bb6cd764c16",
+          "TERM:EO:9991:ce180926036b1a66@f4a9c2a149268aba",
+          "TERM:EO:9991:ffaed91bd67505a8@84dc665827950020"
+        ]
+      },
+      "research_tasks": [
+        {
+          "availability": "held_not_loaded",
+          "instrument_id": "EO:9991",
+          "kind": "locate_held_provision",
+          "reason": "target provision not located: EO:12553",
+          "shared_key": "EO:12553",
+          "task_id": "TASK:48e06a65c7d130b32bdcd8e2"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:9991",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:9991:TERM:EO:9991:9f450d2103bd5cef@84dc665827950020",
+          "task_id": "TASK:3621c21e57ef1e3459008318"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:9991",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:9991:TERM:EO:9991:ffaed91bd67505a8@84dc665827950020",
+          "task_id": "TASK:f67af39bb14bbd6fa2416e99"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:9991",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:9991:TERM:EO:9991:ce180926036b1a66@f4a9c2a149268aba",
+          "task_id": "TASK:30eea5809c1f5cb7a3c777ab"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:9991",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:9991:TERM:EO:9991:8fed0465e731de95@f4a9c2a149268aba",
+          "task_id": "TASK:87d401d0f556dfa2f8f09d88"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:9991",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:9991:TERM:EO:9991:ba25a32b4678efe9@fbf75bb6cd764c16",
+          "task_id": "TASK:fad67edc3db97832ec170c8d"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:9991",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:9991:TERM:EO:9991:7c760fa438141a65@fbf75bb6cd764c16",
+          "task_id": "TASK:0424cf90782a7b75f8aa9392"
+        },
+        {
+          "availability": "research_required",
+          "instrument_id": "EO:9991",
+          "kind": "actual_event_fact",
+          "reason": "Determine actual report/transfer/completion fact; a deadline/condition is not proof it happened",
+          "shared_key": "EO:9991:TERM:EO:9991:6d696f31e56b912c@5ae258b2735842c9",
+          "task_id": "TASK:305e5045f84042ee54b0304f"
+        }
+      ],
+      "sources": [
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl, opus_stage11_fetch_meta; GPO publishes these bytes at https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf with this SHA-256 (PREMIS https://www.govinfo.gov/metadata/pkg/FR-1986-03-03/premis.xml, checked 2026-10-18T00:55:52Z); verifiable by re-fetching",
+              "field": "source",
+              "result": "pass",
+              "status": "gpo_published_hash_match",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ACTOR_TEXT:EO:12553",
+          "required": false,
+          "source": {
+            "page_or_item": "51 FR 7237, PDF pages 9-15",
+            "sha256": "945348afbba863ae7dc1fbe7df8759682fe1733962734a9255a1062c0561048c",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_12553.txt",
+            "text_sha256": "6361bdc557b6acaeae6e6908cded18f4f8fef9fde1a97cc11fb7c12c8cdea761",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1986-03-03/pdf/FR-1986-03-03.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "CLAUSES:EO:9991#whole",
+          "required": true,
+          "source": {
+            "page_or_item": "13 FR 5017, PDF pages 1-1",
+            "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_9991.txt",
+            "text_sha256": "84dc665827950020f095959086151482e8068c37956e79e11342709c23970af6",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "ORIGINAL:EO:9991",
+          "required": true,
+          "source": {
+            "page_or_item": "13 FR 5017, PDF pages 1-1",
+            "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+            "text_path": "jobs/fr-originals/data/full_run/texts/EO_9991.txt",
+            "text_sha256": "84dc665827950020f095959086151482e8068c37956e79e11342709c23970af6",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/eumenes-nmb-reports/output/SOURCES.jsonl, jobs/source-ladder/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:9991:6d696f31e56b912c@5ae258b2735842c9",
+          "required": false,
+          "source": {
+            "page_or_item": "PEB-064-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+            "sha256": "f930cd4eddbd0170373c3525add883b5389b2ab649db8ac522a605dc2d803929",
+            "text_path": "jobs/source-ladder/output/texts/queue_EO_9991_Actual_report_date_of_the_board_created_by_EO_9991_Presidential_Emergency_Board_Railwa_3dbc850d4c.txt",
+            "text_sha256": "5ae258b2735842c99ad28efb5bd33252ba21156ece4e62903327d5667a205ace",
+            "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-064-Report.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:9991:7c760fa438141a65@fbf75bb6cd764c16",
+          "required": false,
+          "source": {
+            "page_or_item": "FR issue 1948-08-28, whole-issue PDF (Opus text extract): PDF p. 1",
+            "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+            "text_path": "jobs/clause-drafts/output/texts/cd-opus_zip-9991-cdf5e2f4ca.txt",
+            "text_sha256": "fbf75bb6cd764c16c1aae2e25efde6bbba43a8ba4690fb6286e23339ca9c709f",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:9991:8fed0465e731de95@f4a9c2a149268aba",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/231629",
+            "page_or_item": "Executive Order 9991—Creating an Emergency Board to Investigate a Dispute Between the Pittsburgh & West Virginia Railway Company and Certain of Its Employees; August 26, 1948; APP node 231629; common-crawl capture 2025-09-13T08:34:14Z",
+            "sha256": "486b4a05a40f28bace2623312290beddae6abd3aae12871cb7ace78ba13b7fe9",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-9991-creating-emergency-board-investigate-dispute-between-the-pittsburgh.txt",
+            "text_sha256": "f4a9c2a149268abae6e1b3f66abe2d9b89b46f6f0f84724ff35075e28802db79",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-9991-creating-emergency-board-investigate-dispute-between-the-pittsburgh"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:9991:9f450d2103bd5cef@84dc665827950020",
+          "required": false,
+          "source": {
+            "page_or_item": "13 FR 5017, PDF pages 1-1",
+            "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+            "text_path": "jobs/fr-originals/output/texts/EO_9991.txt",
+            "text_sha256": "84dc665827950020f095959086151482e8068c37956e79e11342709c23970af6",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:9991:ba25a32b4678efe9@fbf75bb6cd764c16",
+          "required": false,
+          "source": {
+            "page_or_item": "FR issue 1948-08-28, whole-issue PDF (Opus text extract): PDF p. 1",
+            "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+            "text_path": "jobs/clause-drafts/output/texts/cd-opus_zip-9991-cdf5e2f4ca.txt",
+            "text_sha256": "fbf75bb6cd764c16c1aae2e25efde6bbba43a8ba4690fb6286e23339ca9c709f",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/app-transcriptions/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:9991:ce180926036b1a66@f4a9c2a149268aba",
+          "required": false,
+          "source": {
+            "archival_id": "app:node/231629",
+            "page_or_item": "Executive Order 9991—Creating an Emergency Board to Investigate a Dispute Between the Pittsburgh & West Virginia Railway Company and Certain of Its Employees; August 26, 1948; APP node 231629; common-crawl capture 2025-09-13T08:34:14Z",
+            "sha256": "486b4a05a40f28bace2623312290beddae6abd3aae12871cb7ace78ba13b7fe9",
+            "text_path": "jobs/app-executive-orders/output/texts/executive-order-9991-creating-emergency-board-investigate-dispute-between-the-pittsburgh.txt",
+            "text_sha256": "f4a9c2a149268abae6e1b3f66abe2d9b89b46f6f0f84724ff35075e28802db79",
+            "url": "https://www.presidency.ucsb.edu/documents/executive-order-9991-creating-emergency-board-investigate-dispute-between-the-pittsburgh"
+          }
+        },
+        {
+          "checks": [
+            {
+              "check": "source_held",
+              "detail": "recorded in jobs/clause-drafts/output/SOURCES.jsonl, jobs/fr-originals/output/SOURCES.jsonl, jobs/later-events/output/SOURCES.jsonl, opus_stage11_fetch_meta; only a custody record (hash, perhaps extracted text) exists; the original bytes are in no committed place (another job's download cache or not kept). Unverified until the bytes are held",
+              "field": "source",
+              "result": "skip",
+              "status": "custody_record_only",
+              "step": "claim_record"
+            }
+          ],
+          "evidence_id": "TERM:EO:9991:ffaed91bd67505a8@84dc665827950020",
+          "required": false,
+          "source": {
+            "page_or_item": "13 FR 5017, PDF pages 1-1",
+            "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+            "text_path": "jobs/fr-originals/output/texts/EO_9991.txt",
+            "text_sha256": "84dc665827950020f095959086151482e8068c37956e79e11342709c23970af6",
+            "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+          }
+        }
+      ],
+      "state": "source_blocked"
+    }
+  ],
+  "model_tokens": null,
+  "network_requests": 0,
+  "notice": "Re-run immediately before assignment. A receipt is not a lasting dispatch permit. Optional source gaps remain research tasks; all selected claim sources still require the actual checker and independent review.",
+  "ok": false,
+  "packet_fingerprint": "89f7e54c11dc74797eb73e95a65c549008e2f17fe21e9518232a86cadc7271c9",
+  "packet_members": [
+    "EO:9991"
+  ],
+  "packet_sha256": "e3d8a71d363453c0a628a6398953e792bf9f44926e37f55ab26ee8adde4080ee",
+  "schema": "eo-claim-kit-dispatch-check/v1",
+  "scientific_approval": false,
+  "source_blocked_ids": [
+    "EO:9991"
+  ],
+  "source_index_notes": [
+    "jobs/app-executive-orders/output/SOURCES.jsonl: 792 source records (0 with saved bytes on this machine)",
+    "jobs/app-transcriptions/output/SOURCES.jsonl: 9902 source records (0 with saved bytes on this machine)",
+    "jobs/cassiodorus/output/SOURCES.jsonl: 297 source records (297 with saved bytes on this machine)",
+    "jobs/clark-discovery/output/SOURCES.jsonl: 233 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 39 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/clause-drafts/output/SOURCES.jsonl: 9796 source records (0 with saved bytes on this machine)",
+    "jobs/cotton-capture-custody/output/SOURCES.jsonl: 758 source records (758 with saved bytes on this machine)",
+    "jobs/cruden-fr-concordance/output/SOURCES.jsonl: 927 source records (209 with saved bytes on this machine)",
+    "jobs/current-law/output/SOURCES.jsonl: 1991 source records (0 with saved bytes on this machine)",
+    "jobs/duodecim-tableiv/output/SOURCES.jsonl: 16 source records (0 with saved bytes on this machine)",
+    "jobs/eumenes-nmb-reports/output/SOURCES.jsonl: 119 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-sources/output/SOURCES.jsonl: 2 source records (0 with saved bytes on this machine)",
+    "jobs/family-rule-tail/output/SOURCES.jsonl: 1 source records (0 with saved bytes on this machine)",
+    "jobs/fr-originals/output/SOURCES.jsonl: 6497 source records (7 with saved bytes on this machine)",
+    "jobs/fr-pages/output/SOURCES.jsonl: 30 source records (28 with saved bytes on this machine)",
+    "jobs/hathi-gpo-orders/output/SOURCES.jsonl: 1531 source records (0 with saved bytes on this machine)",
+    "jobs/later-events/output/SOURCES.jsonl: 17753 source records (0 with saved bytes on this machine)",
+    "jobs/lewis-originals/output/SOURCES.jsonl: 431 source records (0 with saved bytes on this machine); ignored 0 non-object/non-JSON lines, 314 records without a usable sha256, 0 unusable text_path/cache_path values",
+    "jobs/mabillon-held-printings/output/SOURCES.jsonl: 2037 source records (0 with saved bytes on this machine)",
+    "jobs/numbered-early-orders/output/SOURCES.jsonl: 197 source records (0 with saved bytes on this machine)",
+    "jobs/opus-media-match/output/SOURCES.jsonl: 496 source records (0 with saved bytes on this machine)",
+    "jobs/peano-formulario/output/SOURCES.jsonl: 33 source records (27 with saved bytes on this machine)",
+    "jobs/pothier/output/SOURCES.jsonl: 94 source records (0 with saved bytes on this machine)",
+    "jobs/repetita-lsa/output/SOURCES.jsonl: 729 source records (0 with saved bytes on this machine)",
+    "jobs/selden-statutes/output/SOURCES.jsonl: 1912 source records (75 with saved bytes on this machine)",
+    "jobs/shepard-citations/output/SOURCES.jsonl: 24 source records (24 with saved bytes on this machine)",
+    "jobs/source-ladder/output/SOURCES.jsonl: 1097 source records (0 with saved bytes on this machine)",
+    "jobs/theophilus-sources/output/SOURCES.jsonl: 1377 source records (1377 with saved bytes on this machine)",
+    "jobs/wikisource-texts/output/SOURCES.jsonl: 1639 source records (1639 with saved bytes on this machine)",
+    "jobs/youngstown-courts/output/SOURCES.jsonl: 1137 source records (0 with saved bytes on this machine)",
+    "jobs/indian-reservations-1912: 1 committed volume(s) and 55 per-order text(s) indexed",
+    "jobs/isthmian-canal-1911: 1 committed volume(s) and 105 per-order text(s) indexed",
+    "jobs/ofr-codification-1989: 1 committed volume(s) and 0 per-order text(s) indexed",
+    "jobs/ofr-compilations: 1 committed volume(s) and 500 per-order text(s) indexed",
+    "jobs/richardson-volumes: 3 committed volume(s) and 68 per-order text(s) indexed",
+    "Opus manifest read from the committed index data/opus_manifest_index.csv.gz (the Opus zip itself is not on this machine; Opus texts come only from the committed text pack data/opus_text_pack.jsonl.gz)",
+    "no Opus text pack (data/opus_text_pack.jsonl.gz); Opus-only quotations need the Opus zip"
+  ],
+  "source_recovery_tasks": [
+    {
+      "affected_references": [
+        {
+          "evidence_id": "CLAUSES:EO:9991#whole",
+          "field": null,
+          "instrument_id": "EO:9991",
+          "required": true
+        },
+        {
+          "evidence_id": "ORIGINAL:EO:9991",
+          "field": null,
+          "instrument_id": "EO:9991",
+          "required": true
+        },
+        {
+          "evidence_id": "TERM:EO:9991:7c760fa438141a65@fbf75bb6cd764c16",
+          "field": null,
+          "instrument_id": "EO:9991",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:9991:9f450d2103bd5cef@84dc665827950020",
+          "field": null,
+          "instrument_id": "EO:9991",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:9991:ba25a32b4678efe9@fbf75bb6cd764c16",
+          "field": null,
+          "instrument_id": "EO:9991",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:9991:ffaed91bd67505a8@84dc665827950020",
+          "field": null,
+          "instrument_id": "EO:9991",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "expected_sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:9991"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+        ],
+        "wanted_id": "dispatch-6b11d595661bcab37b611fed"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "page_or_item": "13 FR 5017, PDF pages 1-1",
+          "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+          "text_path": "jobs/fr-originals/data/full_run/texts/EO_9991.txt",
+          "text_sha256": "84dc665827950020f095959086151482e8068c37956e79e11342709c23970af6",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+        },
+        {
+          "page_or_item": "FR issue 1948-08-28, whole-issue PDF (Opus text extract): PDF p. 1",
+          "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+          "text_path": "jobs/clause-drafts/output/texts/cd-opus_zip-9991-cdf5e2f4ca.txt",
+          "text_sha256": "fbf75bb6cd764c16c1aae2e25efde6bbba43a8ba4690fb6286e23339ca9c709f",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+        },
+        {
+          "page_or_item": "13 FR 5017, PDF pages 1-1",
+          "sha256": "cdf5e2f4caa2817f8046bfc638a2e57faaeec08d9527dade19f842361b4891d1",
+          "text_path": "jobs/fr-originals/output/texts/EO_9991.txt",
+          "text_sha256": "84dc665827950020f095959086151482e8068c37956e79e11342709c23970af6",
+          "url": "https://www.govinfo.gov/content/pkg/FR-1948-08-28/pdf/FR-1948-08-28.pdf"
+        }
+      ],
+      "task_id": "SOURCE:6b11d595661bcab37b611fed"
+    },
+    {
+      "affected_references": [
+        {
+          "evidence_id": "TERM:EO:9991:6d696f31e56b912c@5ae258b2735842c9",
+          "field": null,
+          "instrument_id": "EO:9991",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "expected_sha256": "f930cd4eddbd0170373c3525add883b5389b2ab649db8ac522a605dc2d803929",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:9991"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-064-Report.pdf"
+        ],
+        "wanted_id": "dispatch-6b5e0786a3a5f70e9d7f81a8"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "page_or_item": "PEB-064-Report.pdf PDF pages 1-8 (front matter; transmittal letter)",
+          "sha256": "f930cd4eddbd0170373c3525add883b5389b2ab649db8ac522a605dc2d803929",
+          "text_path": "jobs/source-ladder/output/texts/queue_EO_9991_Actual_report_date_of_the_board_created_by_EO_9991_Presidential_Emergency_Board_Railwa_3dbc850d4c.txt",
+          "text_sha256": "5ae258b2735842c99ad28efb5bd33252ba21156ece4e62903327d5667a205ace",
+          "url": "https://nmb.gov/NMB_Application/wp-content/uploads/2025/05/PEB-064-Report.pdf"
+        }
+      ],
+      "task_id": "SOURCE:6b5e0786a3a5f70e9d7f81a8"
+    },
+    {
+      "affected_references": [
+        {
+          "evidence_id": "TERM:EO:9991:8fed0465e731de95@f4a9c2a149268aba",
+          "field": null,
+          "instrument_id": "EO:9991",
+          "required": false
+        },
+        {
+          "evidence_id": "TERM:EO:9991:ce180926036b1a66@f4a9c2a149268aba",
+          "field": null,
+          "instrument_id": "EO:9991",
+          "required": false
+        }
+      ],
+      "automatically_submitted": false,
+      "check_statuses": [
+        "custody_record_only"
+      ],
+      "expected_sha256": "486b4a05a40f28bace2623312290beddae6abd3aae12871cb7ace78ba13b7fe9",
+      "native_wanted": {
+        "citation": "",
+        "instrument_ids": [
+          "EO:9991"
+        ],
+        "requested_by": "claim-kit dispatch-check",
+        "step": "source_custody",
+        "urls": [
+          "https://www.presidency.ucsb.edu/documents/executive-order-9991-creating-emergency-board-investigate-dispute-between-the-pittsburgh"
+        ],
+        "wanted_id": "dispatch-704a6b27fa83146214390351"
+      },
+      "next_action": "Retain the exact original bytes through the existing source provider or source-ladder, verify the requested hash, and register custody before rechecking. A URL match or text extract alone is insufficient.",
+      "scientific_approval": false,
+      "source_locators": [
+        {
+          "archival_id": "app:node/231629",
+          "page_or_item": "Executive Order 9991—Creating an Emergency Board to Investigate a Dispute Between the Pittsburgh & West Virginia Railway Company and Certain of Its Employees; August 26, 1948; APP node 231629; common-crawl capture 2025-09-13T08:34:14Z",
+          "sha256": "486b4a05a40f28bace2623312290beddae6abd3aae12871cb7ace78ba13b7fe9",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-9991-creating-emergency-board-investigate-dispute-between-the-pittsburgh.txt",
+          "text_sha256": "f4a9c2a149268abae6e1b3f66abe2d9b89b46f6f0f84724ff35075e28802db79",
+          "url": "https://www.presidency.ucsb.edu/documents/executive-order-9991-creating-emergency-board-investigate-dispute-between-the-pittsburgh"
+        }
+      ],
+      "task_id": "SOURCE:704a6b27fa83146214390351"
+    }
+  ],
+  "state": "source_blocked",
+  "unique_custody_checks": 4,
+  "unique_required_text_checks": 1,
+  "wall_seconds": 12.119687
+}
