@@ -53,6 +53,15 @@ still ranks above the replica. For an order with no checked replica, an official
 rank, and lifecycle claims on an official printing are still refused by `assemble.py`; wiring R37 into the
 kit is a separate change.
 
+A federalregister.gov full-text capture of a later Federal Register document (selden-fr-citers grade
+`fr_document_full_text`, held as `ACTOR_TEXT:FRDOC:<number>`) may be cited as the source of a clause's later
+event, such as a National Emergencies Act continuation notice (owner decision D-20261125-fr-capture-later-events).
+`working_text.py` accepts it only at `operative_clauses[i].later_events[j].source`, only under its own FRDOC
+identity, only when its URL is that document's federalregister.gov full text, the cited `<volume> FR <page>` and
+FR Doc number agree with the capture's printed header, and the held bytes hash to both pins. `assemble.py` then
+writes the claim's `fr_fulltext_captures` disclosure (grade `fr_fulltext_capture`), which the checker requires
+exactly. The same capture as an order's original, an end, a current basis or a note is refused as before.
+
 Acting texts of instruments outside the census (public land orders, statutes, agency
 Federal Register documents) are declared in SOURCES.jsonl with `role: acting_instrument_text`
 and `instrument_ids: [acting instrument, target orders...]`. That binds the text to the

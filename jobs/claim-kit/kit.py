@@ -192,6 +192,7 @@ def main(argv=None):
         s.add_argument('--diagnostic-'+key)
     for key in ('final','research-attempt','effort','checkpoint','question'):
         s.add_argument('--diagnostic-'+key,action='append',default=[])
+    s=sub.add_parser('publication-name',help='choose an own-claims publication file name that sorts after every existing claim file of its members');s.add_argument('--agent',required=True);s.add_argument('--date',required=True,help='YYYY-MM-DD');s.add_argument('--wave',required=True);s.add_argument('--batch',required=True);g=s.add_mutually_exclusive_group(required=True);g.add_argument('--order',action='append',help='member instrument id (repeatable)');g.add_argument('--manifest',type=Path,help='completion manifest: its submit members')
     s=sub.add_parser('publication-audit');g=s.add_mutually_exclusive_group();g.add_argument('--base',default='origin/main');g.add_argument('--merge-commit')
     s=sub.add_parser('view');s.add_argument('packet',type=Path);g=s.add_mutually_exclusive_group();g.add_argument('--order');g.add_argument('--source')
     s=sub.add_parser('views');s.add_argument('packet',type=Path);s.add_argument('orders',nargs='+');s.add_argument('--slim',action='store_true');s.add_argument('--full-claim',action='store_true');s.add_argument('--write-dir',type=Path)
@@ -212,6 +213,10 @@ def main(argv=None):
         if a.command=='publication-audit':
             from completion import publication_audit
             result=publication_audit(repo,None if a.merge_commit else a.base,a.merge_commit);print(json.dumps(result,ensure_ascii=False,indent=2));return int(not result['ok'])
+        if a.command=='publication-name':
+            from completion import own_publication_path
+            ids=a.order or [m['instrument_id'] for m in json.loads(a.manifest.read_bytes())['members'] if m.get('outcome')=='submit']
+            print(json.dumps(own_publication_path(repo,a.agent,a.date,a.wave,a.batch,ids),ensure_ascii=False,indent=2));return 0
         if a.command=='complete':
             from completion import complete
             diagnosis={key.removeprefix('diagnostic_'):value for key,value in vars(a).items() if key.startswith('diagnostic_')}

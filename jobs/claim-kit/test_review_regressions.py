@@ -159,7 +159,8 @@ class CommittedBaselineReviewTests(unittest.TestCase):
         # census membership, duplicates, ruling/review pins and accepted deltas.
         self.assertEqual(checked["historical_decided"], 3359)
         # 14,972 original identities + 26 admitted under owner ruling R9 (2026-11-06)
-        self.assertEqual(checked["universe"], 14972 + 26 + 4)
+        # + 4 (D-20261112-graunt-apply) + EO 6585 (A-20261124-1, census 15,002 -> 15,003)
+        self.assertEqual(checked["universe"], 14972 + 26 + 4 + 1)
         self.assertEqual(checked["decided"],
                          checked["historical_decided"] + checked["authorized_additions"])
         # Existing outputs may be stale precisely because this pre-build test

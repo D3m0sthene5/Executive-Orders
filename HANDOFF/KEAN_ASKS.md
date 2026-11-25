@@ -82,11 +82,3 @@ Run the stateless gauge on your PC (install Claude Code with 'irm https://claude
 *Why:* Remaining Bartolus batches wait on the gauge verdict (owner instruction 2026-11-24 20:14 ET); claude -p cannot authenticate in the cloud workspace
 
 Sources: `research/stateless-calls-2026-11-24/README.md`
-
-## A-20261125-2 (2026-11-25, Claude)
-
-Adopt the 13 replacement proposals upheld by both blind arms (EO 12376, 13101, 13148, 11812, 12162; board EO 10032, 10056, 10071, 10112, 10140, 10757, 10872, 11663)?
-
-*Why:* They replace other agents' claims, so they count only on adoption
-
-Sources: `research/excavator/claude-bracton-2026-11-25/o0-refresh/REPLACEMENT_PROPOSAL.jsonl`

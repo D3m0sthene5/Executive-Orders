@@ -131,7 +131,9 @@ def blank_sheet(dossier, agent=""):
         "approved": False,
     }
     refs = [r.get("source", {}) for r in _records(dossier).values()
-            if isinstance(r, dict) and r.get("source", {}).get("acceptable_as_original") is False]
+            if isinstance(r, dict) and r.get("source", {}).get("acceptable_as_original") is False
+            # A federalregister.gov capture is never a working text (D-20261125-fr-capture-later-events).
+            and not W.fr_capture_source(r.get("source"))]
     if refs:
         sheet["working_text"] = W.blank(refs, dossier.get("working_text_confirmation"))
     return sheet
@@ -625,8 +627,15 @@ def _assemble(sheet, dossier, repo, interval_partial=False):
                         by_search[ident]["entry"].get("coverage_warning")))
                       for ident in chosen if isinstance(ident, str)):
         errors.append("search_coverage_incomplete")
+    captures = W.fr_captures(claim, repo, FC.shared(repo)) if any(
+        W.fr_capture_source(ref) for _, ref in W.references(claim)) else []
+    if captures:
+        # Owner decision D-20261125-fr-capture-later-events: disclose each later-event capture under its grade.
+        claim["fr_fulltext_captures"] = W.fr_capture_disclosure([ref for _, ref in captures])
+    capture_paths = {path for path, _ in captures}
     if isinstance(claim.get("working_text"), dict):
-        used = {W.key(ref) for _, ref in W.references(claim) if ref.get("acceptable_as_original") is False}
+        used = {W.key(ref) for path, ref in W.references(claim)
+                if ref.get("acceptable_as_original") is False and path not in capture_paths}
         if not used:
             claim.pop("working_text")
         elif isinstance(claim["working_text"].get("confirmations"), list):

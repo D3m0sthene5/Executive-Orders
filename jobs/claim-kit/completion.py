@@ -676,6 +676,68 @@ def diagnose_completion(repo, dest, options):
     return receipt
 
 
+PUBLICATION_LABEL = re.compile(r'[A-Za-z0-9]+(?:[-_][A-Za-z0-9]+)*')
+CORRECTION_JOIN = '_corrected-'  # '_' sorts after '.', so STEM + '_...' sorts after STEM.jsonl
+
+
+def own_publication_path(repo, agent, date, wave, batch_label, instrument_ids):
+    """Choose the canonical file name for an own-claims publication (EO 14006, Bracton p04, 2026-11-25).
+
+    Native readers keep the version in the claims file whose name sorts last, and completion refuses an own
+    replacement whose file name would not sort after every existing claim file of its members ('own replacement
+    would be shadowed by an existing claim filename'). Coordinators used to choose names by hand, and the dated
+    convention AGENT-YYYY-MM-DD-... sorts before the older undated AGENT-word-... files (digits before letters),
+    so a dated correction of an undated claim was refused. This chooses the name instead; it never renames or
+    edits an existing file and the completion guard is unchanged.
+
+    Rule, deterministic for a given claims directory:
+      1. AGENT-DATE-WAVE-BATCH.jsonl, when it sorts after every existing claim file holding a member;
+      2. otherwise LAST_STEM + '_corrected-DATE-WAVE-BATCH.jsonl', where LAST_STEM names the member claim
+         file that sorts last. It sorts after LAST (same prefix, then '_' against '.') and so after every
+         other member file; it keeps the agent prefix because LAST is the agent's own file.
+    Members whose existing claim belongs to another owner are listed, not used: completion refuses them
+    whatever the name (they need a replacement proposal). A name that cannot sort last, already exists,
+    or is too long is refused with ValueError rather than replaced by a guess.
+    """
+    repo = Path(repo).resolve()
+    claims = repo / 'research/readiness/claims'
+    require(re.fullmatch(r'[A-Za-z0-9_.-]+', agent or '') is not None, 'simple agent name required')
+    try:
+        datetime.strptime(date, '%Y-%m-%d')
+    except (TypeError, ValueError):
+        raise ValueError('publication date must be YYYY-MM-DD: ' + repr(date))
+    for what, value in (('wave', wave), ('batch', batch_label)):
+        require(isinstance(value, str) and PUBLICATION_LABEL.fullmatch(value) is not None,
+                what + ' label must be letters/digits joined by - or _: ' + repr(value))
+    ids = list(dict.fromkeys(instrument_ids))
+    require(bool(ids), 'at least one member instrument id required')
+    existing = batch.owners(repo)
+    own, foreign = {}, {}
+    for iid in ids:
+        if iid not in existing:
+            continue
+        owner = existing[iid]['owner']
+        (own if owner == agent or owner.startswith(agent + '-') else foreign)[iid] = existing[iid]['path']
+    base = f'{agent}-{date}-{wave}-{batch_label}.jsonl'
+    last = max(own.values(), key=lambda p: Path(p).name, default=None)
+    if last is None or base > Path(last).name:
+        name, rule = base, 'dated'
+    else:
+        last_path = repo / last
+        require(last_path.parent == claims and last_path.stem.startswith(agent + '-'),
+                'no own-agent claims file name can sort after ' + last + '; publish a replacement proposal')
+        name, rule = f'{last_path.stem}{CORRECTION_JOIN}{date}-{wave}-{batch_label}.jsonl', 'successor'
+    for iid, path in own.items():  # the completion guard's own comparison, checked here before any review spend
+        require(name > Path(path).name, 'chosen name would be shadowed by ' + path + ' (' + iid + ')')
+    require(name.startswith(agent + '-'), 'chosen name lost the own-agent prefix: ' + name)
+    require(len(name.encode()) <= 255, 'chosen name exceeds 255 bytes: ' + name)
+    require(not (claims / name).exists(), 'publication file already exists: ' + name + '; use a new batch label')
+    return {'schema': 'eo-claim-kit-publication-name/v1', 'path': (claims / name).relative_to(repo).as_posix(),
+            'rule': rule, 'dated_name': base, 'sorts_after': last,
+            'own_members_with_existing_claims': dict(sorted(own.items())),
+            'other_owner_members': dict(sorted(foreign.items()))}
+
+
 def complete(repo, manifest_path, dest, publish=False, *, diagnosis=None):
     started = time.monotonic()
     start_utc = datetime.now(timezone.utc).isoformat()
