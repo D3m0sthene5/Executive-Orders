@@ -1,3 +1,24 @@
+## 2026-11-25 ET, morning (Claude: Bracton wave, lean two-arm trial, Olney board route, Gilbreth cost probe)
+
+**Filed:** 8 canonical claims from the lean trial (arm 0: EO 11990, 12432, 12648, 12985, 13613; arm 1: EO 12908, 12261, 12423), each upheld by both blind Opus arms. **Replacement proposals awaiting owner adoption (A-20261125-2):** 13, in research/excavator/claude-bracton-2026-11-25/{c09-refresh,c10-refresh2,o0-refresh,o1-refresh,p02}/REPLACEMENT_PROPOSAL.jsonl. Every planted control was caught by both arms. Human-certified stays 0.
+
+**What happened (F-20261125-bracton-wave, F-20261125-lean-trial):**
+- 117 of the 199 production.one_step_away orders are emergency-board orders blocked on an NMB report span missing from the dossier (old lessons F-20261110-papinian-board-custody and F-20261113-board-cohort; I missed them when planning). They moved to Olney (jobs/olney-board-route), a zero-token route under the board rule: 12 of 117 selected, 11 checker-passing, 8 upheld.
+- Lean trial: ratio 0.93 of cost per filed claim, so no verified Junto saving.
+- My sparse checkout caused false blocks and stale packets (F-20261125-sparse-checkout-defect). 20 upheld claims were re-prepared hash-only, and the owner approved reusing their reviews (D-20261125-review-reuse).
+- The owner also allowed a clean cover date when the transmittal date line is unreadable (D-20261125-board-cover-date; not yet wired into olney.py).
+
+**Gilbreth (F-20261125-gilbreth; research/excavator/claude-bracton-2026-11-25/GILBRETH.md):**
+- Pre-screen corrections on DISPATCH_CHECK; it predicted 66 of 79 blocks.
+- Pool review sets to 4 or more claims; per-claim review cost falls from 1.24 to 0.45 USD.
+- Register held sources at prep; shrink the 46k-token start prompt; extend scripted routes.
+
+**Open:**
+- EO 14006 (p04, own claim, upheld) cannot file: its publication name sorts before claude-lambertini-b02-2026-10-20.jsonl ("own replacement would be shadowed"). The kit's naming needs an owner or tool decision. EO 5825 (p04) needs the replacement route.
+- Not run: c11 (stale; re-prepare), s01, PC packets p01, p03, p05 (prep_pc.py treated partial source blocks as failure; fix), 60 board orders outside the lanes, and Olney's 105 exceptions (37 now eligible under the cover-date ruling once wired).
+- The claim-kit rerun for D-20261106-photius-p4 (merged #323) is still pending; run it now that the wave is filed.
+- Bentham `usage` was not run because the per-call transcripts are PC-only (2 staged). Gilbreth's measures stand in.
+
 ## 2026-11-25 ET, night (Claude: all PRs merged; Photius Peiresc wave done; stateless gauge says keep the agent route)
 
 - **Merged:** #300, #303-#306, #308-#314 (#310 was merged by the owner). Conflicts were only in the Kean register
