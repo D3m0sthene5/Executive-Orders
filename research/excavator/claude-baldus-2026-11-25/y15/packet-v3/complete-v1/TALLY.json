@@ -1,0 +1,105 @@
+{
+  "attempted": 9,
+  "claims_published": 3,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:13694",
+      "planted_claim_sha256": "b10ca8ad55c835f5f1dc9b4759088da22336ab736cf4ab0a84026bcea196a2fe",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 6,
+    "eligible": 3
+  },
+  "eligible": [
+    "EO:13664",
+    "EO:13687",
+    "EO:13722"
+  ],
+  "eligible_per_attempt": 0.3333333333333333,
+  "exceptions": 0,
+  "finished_utc": "2026-11-25T19:34:21.884050+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13620",
+      "outcome": "blocked",
+      "reason": "[\"Blocked: the National Emergencies Act continuation notices for the Somalia emergency (declared in Executive Order 13536, April 12, 2010) after April 2016 are not citable from this packet. Only the notices of April 2013, 2014, 2015 and 2016 (FR Docs 2013-08310, 2014-08135, 2015-08420, 2016-08084) are sealed as ACTOR_TEXT records. The notices of 2017 to 2026 (FR Docs 2017-07238, 2018-07177, 2019-07414, 2020-07373, 2021-07124, 2022-07103, 2023-07692, 2024-07816, 2025-06289 and 2026-07069) are held on disk under jobs/selden-fr-citers/output/texts/ and are declared in HELD_SUPPLEMENT.json, but the packet was not sealed with kit.py prepare --held-supplement, so they have no citable SUPPLEMENT or ACTOR_TEXT identity. Without them no continuing predicate through 2026-10-14 can be cited for this emergency-dependent order. The 31 CFR 551 current-law leads (CURRENT:EO:13620#0 to #2) are custody_record_only, so they cannot substitute.\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13658",
+      "outcome": "blocked",
+      "reason": "[\"Blocked: the lifecycle of this order cannot be fully supported from citable held sources. (1) Executive Order 14026 section 6 superseded this order 'to the extent it is inconsistent' with it as of January 30, 2022, and the Department of Labor notices of February 9, 2026 (FR Doc. 2026-02466) and October 8, 2026 (FR Doc. 2026-20646, 91 FR 64403) say that Executive Order 14236 section 2(d) revoked Executive Order 14026 on March 14, 2025 and that Executive Order 13658 remains in effect for contracts awarded January 1, 2015 to January 29, 2022 and not renewed or extended on or after January 30, 2022. Executive Order 14236 (90 FR 13037) is held at jobs/fr-originals/data/full_run/texts/EO_14236.txt but is not in the packet's evidence, so it cannot be cited as the later event that revoked Executive Order 14026. (2) The one-time commands of sections 4(a), 4(b) and 8 were performed by the Department of Labor final rule of October 7, 2014 (79 FR 60634) and the Federal Acquisition Regulation rule; neither rule text is held in the packet, and a federalregister.gov capture of a later document (the 2026 Department of Labor notices) may be cited only as a later event, not as an ending source. (3) A clause-by-clause partition of which clauses the January 30, 2022 supersession reached, and whether any revived on March 14, 2025, rests on the agency reading in the Department of Labor notice and has no held presidential text addressing revival. No YES claim was submitted on this evidence.\"]"
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "05dae0bbb6a0eb9aef1fc51766c62ed20e5680a6ac2d208ccb56d3135b1e17fa",
+      "gate_errors": [],
+      "instrument_id": "EO:13664",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13667",
+      "outcome": "blocked",
+      "reason": "Independent review did not uphold this version: [{\"field\": \"research_rationale; operative_clauses[EO:13667#sec1-i].judgment_reason; scope_check\", \"problem\": \"misstates the held original as containing no Annex\", \"claim_says\": \"The print refers to an Annex in sections 1(a)(i) and 9 but contains none (the final PDF page carries only the filing note); sec1-i: 'The held Federal Register print (79 FR 28387, five PDF pages) prints no Annex page'\", \"source_says\": \"The held text layer of PDF page 5 (79 FR 28391) carries, after the filing note and the Treasury billing code 4811-33-C, the graphic marker 'ED15MY14.009</GPH>'. This is the same layout in which other held prints carry the order's Annex as an image: EO 13757 at 82 FR 3 has 'Billing code 4811-33-C ED03JA17.018</GPH>' followed by its Annex text. The final page does not carry only the filing note, and the claim's statement that the print contains no Annex is contradicted by the held bytes.\"}]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13671",
+      "outcome": "blocked",
+      "reason": "[\"Blocked: the National Emergencies Act continuation notice that first continued the Democratic Republic of the Congo emergency (declared in Executive Order 13413, October 27, 2006) after this order's signing on July 8, 2014 is not held. That notice, due before October 27, 2014 (published October 2014), is absent from the packet and from the repository's held Federal Register texts (a search of jobs/ and research/ text files for the phrase 'beyond October 27, 2014' found nothing). The held notices begin with FR Doc. 2015-27275 (October 2015) and run to FR Doc. 2025-19617 (October 2025, 90 FR 48395), so the chain from signing to 2026-10-14 has a one-year hole that the later notices do not fill. The 2026 renewal is not needed for the cutoff because the October 2025 notice continues the emergency beyond October 27, 2025. The 31 CFR 547 current-law leads are custody_record_only.\"]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13685",
+      "outcome": "blocked",
+      "reason": "[\"Blocked: the National Emergencies Act continuation notices for the Ukraine emergency (declared in Executive Order 13660, March 6, 2014) for March 2018, 2019, 2020 and 2021 (FR Docs 2018-04626, 2019-04120, 2020-04192, 2021-04759) are not citable from this packet. Only the notices of 2015, 2016 and January 2017 (FR Docs 2015-05337, 2016-05071, 2017-01369) and of 2022 to 2026 (FR Docs 2022-04744, 2023-04522, 2024-04858, 2025-03462, 2026-03501) are sealed as ACTOR_TEXT records. The four missing notices are held on disk under jobs/selden-fr-citers/output/texts/ and declared in HELD_SUPPLEMENT.json, but the packet was not sealed with kit.py prepare --held-supplement, so they have no citable identity and the continuation chain from signing to 2026-10-14 has a four-year hole. The current-law leads (22 U.S.C. 8909 and 9522 and 31 CFR part 589) are custody_record_only.\"]"
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "69552b216715cace11944a6548c5fe9fcf813981b2e8924269e93b44a3b26efa",
+      "gate_errors": [],
+      "instrument_id": "EO:13687",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13694",
+      "outcome": "blocked",
+      "reason": "Control order without an upheld after-reveal review of the genuine version."
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "fa98eb3b5b1c61136020303609ff28e00e71fd8b79011c58fb51b786a72d577c",
+      "gate_errors": [],
+      "instrument_id": "EO:13722",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    }
+  ],
+  "packet_loads": {
+    "research/excavator/claude-baldus-2026-11-25/y15/packet-v3": 2
+  },
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 3,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-25T19:33:04.437054+00:00",
+  "submitted": 3,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 77.44701807299998
+}

@@ -1,0 +1,37 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-baldus-2026-11-25/y15/packet/PACKET.json",
+  "seconds": 14.847,
+  "files_read": 65350,
+  "file_reads": 131305,
+  "packet_fingerprint": "21a9e63bfb8751d4cc7206304af094f3e496fe3e71a02125994465cd145dd7df",
+  "claims_checked": 1,
+  "defect_flags": 0,
+  "coverage_gaps": 1,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 1,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:13664",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "afc5cb7a288606e218f7a357483e56b8d1cf9e5b",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}

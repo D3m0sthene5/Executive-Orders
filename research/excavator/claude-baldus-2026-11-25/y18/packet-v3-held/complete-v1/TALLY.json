@@ -1,0 +1,192 @@
+{
+  "attempted": 9,
+  "claims_published": 3,
+  "concurrent_disjoint_claim_files": [],
+  "controls": [
+    {
+      "caught": true,
+      "instrument_id": "EO:13959",
+      "planted_claim_sha256": "a767b0c7fd35c30b7e5b9dadb2d41e4f7a7c027ad6b3c3805d2e40e281f2e7b4",
+      "scoring": "strict"
+    }
+  ],
+  "counts": {
+    "blocked": 5,
+    "eligible": 3,
+    "rejected_mechanical": 1
+  },
+  "eligible": [
+    "EO:13959",
+    "EO:14014",
+    "EO:14059"
+  ],
+  "eligible_per_attempt": 0.3333333333333333,
+  "exceptions": 1,
+  "finished_utc": "2026-11-25T20:09:22.328657+00:00",
+  "independent_human_certifications": 0,
+  "model_cost": null,
+  "model_tokens": null,
+  "outcomes": [
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13949",
+      "outcome": "blocked",
+      "reason": "Second independent blind reviewer (arm B) did not uphold this exact version: [{\"field\": \"research_rationale\", \"claim_says\": \"Later Iran orders that cite Executive Order 13949 recite it and add or restate other measures\", \"source_says\": \"The held-corpus number search finds no later executive order citing EO 13949: the hits are the order, the FR copy, the Iran continuation notices of 2021-2026 and the OFAC GL X/X1 rule (FR Doc 2026-20010). EO 14382, the only later Iran order discussed, does not mention it (as the claim itself says), and EO 14389 does not mention it.\"}]"
+    },
+    {
+      "after_reveal": true,
+      "claim_sha256": "b80a8faaa56d3db83f036058a6ab2c7185e62c436ca5b1167eab527c56d20261",
+      "gate_errors": [],
+      "instrument_id": "EO:13959",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:13984",
+      "outcome": "blocked",
+      "reason": "Independent review did not uphold this version: [{\"field\": \"operative_clauses[EO:13984#sec7].current_predicate (legal_basis and source) and research_rationale\", \"claim_says\": \"Section 569.201 of 31 CFR part 569 ... still refers to the national emergency declared in E.O. 13984 and to further Executive orders issued pursuant to it; rationale: 'The held eCFR text of 31 CFR 569.201 ... still refers to the emergency declared in this order'\", \"source_says\": \"31 CFR 569.201 is the Syria-Related Sanctions Regulations' prohibition for EO 13894; Note 5 (chars 5887-6217) speaks of sanctions 'pursuant to section 3 of E.O. 13894, or pursuant to any further Executive orders issued pursuant to the national emergency declared in E.O. 13984', an evident misprint for EO 13894. EO 13984 declared no national emergency: its own text and the claim's rationale say it takes additional steps under the emergency declared in EO 13694\", \"problem\": \"The current predicate for section 7 rests on a typographical cross-reference in an unrelated sanctions program, and states as fact that the CFR refers to an emergency 'declared in this order', contradicting the claim's own statement that the order depends on the EO 13694 emergency. A predicate built on a misread source is not a held current source for the clause\"}]"
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "50985b57dffabe800867af5d0433f217f6ba7a73e223d38b52bc2b13ea3015a6",
+      "gate_errors": [],
+      "instrument_id": "EO:14014",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:14024",
+      "outcome": "blocked",
+      "reason": "Second independent blind reviewer (arm B) did not uphold this exact version: [{\"field\": \"later_events / current_predicate (all clauses); research_rationale\", \"claim_says\": \"the U.S. Code note under 22 U.S.C. 10802 refers to the emergency this order declared as continued on March 24, 2026 (no later event recorded)\", \"source_says\": \"22 U.S.C. 10802(d) (Pub. L. 119-111, div. A, title I, sec. 102, Sept. 18, 2026) is statute text, not only a note: it provides that sanctions and other measures under any Executive Order issued to address that emergency, 'as in effect on the day before September 18, 2026', 'shall remain in effect'. The claim omits this legislative event and its effect on the order's legal basis before the cutoff.\"}]"
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:14032",
+      "outcome": "blocked",
+      "reason": "Second independent blind reviewer (arm B) did not uphold this exact version: [{\"field\": \"research_rationale\", \"claim_says\": \"The Federal Register disposition information for this order records only that it supersedes Executive Order 13959 in part\", \"source_says\": \"The held OFR disposition note for EO 14032 reads 'Supersedes in part: EO 13959 | Revokes: EO 13974 | See: Notice of November 3, 2026 (91 FR 69953)'; it does not record only the partial supersession.\"}]"
+    },
+    {
+      "after_reveal": false,
+      "checker": [
+        {
+          "all_checks_passed": false,
+          "check_counts": {
+            "date_after_signing": {
+              "pass": 47
+            },
+            "date_valid": {
+              "pass": 117
+            },
+            "factual_event_policy": {},
+            "order_exists": {
+              "pass": 5
+            },
+            "quote_verbatim": {
+              "pass": 112,
+              "warn": 3
+            },
+            "source_held": {
+              "pass": 83
+            },
+            "source_identity": {
+              "pass": 34
+            },
+            "structural_gate": {
+              "pass": 1
+            },
+            "working_text_policy": {}
+          },
+          "claim_key": "research/excavator/claude-baldus-2026-11-25/y18/packet-v3-held/complete-v1/CLAIMS.selected.jsonl:3",
+          "claim_sha256": "79e5318c995c4f507e3f71dbb76fb4b66aca67634940c1a84ab88e0b731ec789",
+          "effective_for_tracker": true,
+          "failures": [],
+          "failures_total": 0,
+          "file": "research/excavator/claude-baldus-2026-11-25/y18/packet-v3-held/complete-v1/CLAIMS.selected.jsonl",
+          "gate_claim_level_errors": [],
+          "gate_errors": [],
+          "gate_passed": true,
+          "instrument_id": "EO:14033",
+          "line": 3,
+          "mechanical_result": "pass_with_unverified",
+          "provisional_status": "yes",
+          "steps": {
+            "clause_inventory": {
+              "checker_passed": false,
+              "gate": "pass",
+              "mechanical": "pass_with_unverified",
+              "present": true
+            },
+            "counterevidence": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "ending_or_current_basis": {
+              "checker_passed": false,
+              "gate": "pass",
+              "mechanical": "pass_with_unverified",
+              "present": true
+            },
+            "original_text": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            },
+            "savings_residuals": {
+              "checker_passed": true,
+              "gate": "pass",
+              "mechanical": "pass",
+              "present": true
+            }
+          },
+          "text_evidence_tier": "custody_text_only",
+          "unverified": [
+            "quote_verbatim:too_short_to_verify@operative_clauses[0].current_predicate.source.quote",
+            "quote_verbatim:too_short_to_verify@operative_clauses[0].original_operative_text",
+            "quote_verbatim:too_short_to_verify@operative_clauses[0].original_source.quote"
+          ],
+          "working_text_policy_version": "research/readiness/owner_rulings/2026-10-21-transcription-as-text.md"
+        }
+      ],
+      "claim_sha256": "79e5318c995c4f507e3f71dbb76fb4b66aca67634940c1a84ab88e0b731ec789",
+      "gate_errors": [],
+      "instrument_id": "EO:14033",
+      "outcome": "rejected_mechanical",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    },
+    {
+      "claim_sha256": null,
+      "instrument_id": "EO:14039",
+      "outcome": "blocked",
+      "reason": "[\"EO 14039 (Aug. 20, 2021): blocked, not submitted. The order's operative commands depend on the Protecting Europe's Energy Security Act of 2019 (PEESA, Pub. L. 116-92 div. F title LXXV, as amended by Pub. L. 116-283 sec. 1242): section 1(a) blocks only persons identified in a report to Congress under PEESA section 7503(a)(1)(B), and section 2 implements PEESA section 7503(b). The held text of 22 U.S.C. 9526 and its note (packet evidence id SUPPLEMENT:HELD14039_11_9fc160f5e30e, unreviewed held text, citable but not a basis by itself) sets out PEESA section 7503(h): the authority to impose sanctions with respect to a person involved in construction of a pipeline project described in section 7503(a)(1)(A), and any sanctions imposed with respect to that project, terminate on the earlier of a Presidential certification or 5 years after enactment on Dec. 20, 2019, that is no later than Dec. 20, 2024. The held evidence therefore indicates that the statutory sanctions regime the order implements ended no later than 2024-12-20, before the 2026-10-14 cutoff, and no held instrument revokes the order. The EO 14024 emergency continuation of March 24, 2026 (91 FR 15515) is now citable as SUPPLEMENT:HELD14039_10_3465cac4124a, but it continues only the IEEPA emergency and does not say whether any blocking under this order survived the PEESA sunset. Still missing for a lawful claim in either direction: (1) a reviewed source (not merely the unreviewed held text) that settles whether the section 7503(h) termination reaches the persons identified under section 7503(a)(1)(B) that section 1(a) of this order blocks, with any Presidential certification under section 7503(h)(1); (2) a source showing whether, how and when OFAC or the President ended the blocking under EO 14039 section 1 or kept it (no held Federal Register text from 2024 to 2026 and no held OFAC list or delisting record mentions EO 14039); (3) a packet-citable current-law basis (the only current-law record for the order, CURRENT:EO:14039#0, was not read as showing the blocking in force). Under the assignment rule this order is not claimed YES; the ledger change, if any, belongs to a separate owner route.\"]"
+    },
+    {
+      "after_reveal": false,
+      "claim_sha256": "f03b41dec411649c679b49479b72bc6f27c03d03eab64b2fcfaae034d24728ec",
+      "gate_errors": [],
+      "instrument_id": "EO:14059",
+      "outcome": "eligible",
+      "publication_kind": "whole_case",
+      "source_review_upheld": true
+    }
+  ],
+  "packet_loads": {
+    "research/excavator/claude-baldus-2026-11-25/y18/packet-v3-held": 2
+  },
+  "plants_caught": 1,
+  "plants_placed": 1,
+  "schema": "eo-claim-kit-completion/v1",
+  "source_review_upheld": 4,
+  "stale_publication_locks_removed": [],
+  "started_utc": "2026-11-25T20:08:11.740099+00:00",
+  "submitted": 4,
+  "usage_note": "Completion is deterministic. Agent/research token and cost telemetry is not supplied.",
+  "wall_seconds": 70.58858205700017
+}

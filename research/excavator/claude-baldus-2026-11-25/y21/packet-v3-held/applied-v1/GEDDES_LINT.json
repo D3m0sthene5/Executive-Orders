@@ -1,0 +1,58 @@
+{
+  "schema": "geddes-lint/v1",
+  "mode": "advisory_source_comparison",
+  "packet": "/home/claude/eo-full/research/excavator/claude-baldus-2026-11-25/y21/packet-v3-held/PACKET.json",
+  "seconds": 13.905,
+  "files_read": 65351,
+  "file_reads": 130722,
+  "packet_fingerprint": "0f8b5d36a2197ea8ccd0e4f71845949257a46a064beb1bf713cd0836dc6ba658",
+  "claims_checked": 2,
+  "defect_flags": 0,
+  "coverage_gaps": 3,
+  "claims_with_flags": 0,
+  "claims_with_coverage_gaps": 2,
+  "results": [
+    {
+      "line": 1,
+      "instrument_id": "EO:9158",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "8ebc3e7ebf01c49d4ded28647db617517ceace24",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    },
+    {
+      "line": 2,
+      "instrument_id": "EO:9242A",
+      "flags": [],
+      "coverage_gaps": [
+        {
+          "code": "reasoning_identity_lookup_unavailable",
+          "field": "claim.research_rationale",
+          "reason": "publisher_or_lookup_file_unavailable"
+        },
+        {
+          "code": "citing_corpus_incomplete",
+          "inventory_commit": "8ebc3e7ebf01c49d4ded28647db617517ceace24",
+          "tracked_files": 66745,
+          "verified_files": 65344,
+          "missing_or_changed_files": 1401,
+          "detail": "Missing or changed held texts prevent treating an absent citation as corpus-wide."
+        }
+      ],
+      "held_text_integrity_failures": 0
+    }
+  ],
+  "limitations": [
+    "advisory only; not a legal conclusion or review verdict",
+    "does not establish source authenticity",
+    "heuristic scans can miss paraphrases and produce false positives"
+  ]
+}
