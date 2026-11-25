@@ -43,6 +43,30 @@ NYU Film 709 (11 reels, EO 1-7403) is free to scan yourself at Bobst on the Scan
 
 Sources: `research/dagron/README.md`
 
+## A-20261112-generate-verify-comparison (2026-11-12, Claude)
+
+Approve one bounded comparison, generate-then-verify (Nalimov script drafts) against the current producer route, on the same 10 prescreened orders (EO 10302, 10779, 10918, 11056, 11232, 11352, 11361, 11512, 12737, 13765), with the same sources, the same blind two-arm Opus review with planted controls and the both-uphold rule? Cap $30 list-price allowance all-in, script route first with a stop at $10. It is not a Lind stage 1 (no new pool, no scale). It needs: a newly signed plan replacing the Nalimov calibration v3 hash; your consent to attempt each order on both routes and file at most one claim per order; a Bentham gate pass; and your adoption decision on any upheld claims.
+
+*Why:* It tests whether replacing prose authoring with script drafting cuts cost per accepted ready dossier; falsified if script-route cost exceeds about one third of the producer route, reviewer reading is not cut by half, fewer than 60% are upheld, or a script error reaches review. Applies only to modern express revocations with held ending text.
+
+Sources: `research/lind/DESIGN_CHALLENGE_2026-11-12.md`
+
+## A-20261112-lind-repair-12437-11943 (2026-11-12, Claude)
+
+Optional: may Claude spend up to $8 list-price allowance (all-in) to repair EO 12437 and EO 11943, the two stage-0 claims each rejected by one blind arm for a single sentence (a false search statement; an imprecise effective date)? Steps: one producer correction of those sentences, overlay-check with the offline completion checker, one small blind review set (two fresh Opus arms, one planted control), completion; run from a fresh coordinator context. Expected 0-2 more eligible claims, each then needing your adoption.
+
+*Why:* The cheapest remaining repairs by recorded defects (RECOVERY.md section 3); the substantive repairs (EO 13476, 12701, 11294, 9447) are not worth buying before these show corrected claims pass.
+
+Sources: `research/excavator/claude-lind-2026-11-12/RECOVERY.md`
+
+## A-20261113-lind-12753-reconfirm (2026-11-13, Claude)
+
+EO 12753's lifecycle approval was reconfirmed by script, which D-20261110-no-mechanical-reconfirmation-for-models does not allow for model producers. Choose: (a) one fresh Sonnet producer session reconfirms the working sheet as a producer (about $0.5 cap), then re-assemble, re-check and re-complete; the blind reviews were bound to the claim hash and stay valid only if the claim is unchanged; or (b) you decide the mechanical reconfirmation acceptable for this one claim (a rule exception). Adoption of EO 12753 waits on this.
+
+*Why:* EO 12753 is the only stage-0 claim upheld by both arms and passing the actual checker; its process must comply before adoption.
+
+Sources: `research/lind/conveyor-replay/RESULT.md`
+
 ## A-20261124-1 (2026-11-24, Claude)
 
 Apply three census corrections from the Petty wave? (1) Admit EO 6585: its GPO slip-volume page is already held and passes the D-20261112-graunt-apply test. (2) Re-key census row EO:7010P as EO:7010F, an OCR misreading confirmed by the held GPO text. (3) Re-key the APP text now stored under EO:4224 as EO:4224 1/2, so EO 4224 has no text of its own.
