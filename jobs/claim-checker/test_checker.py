@@ -788,6 +788,31 @@ class CheckerTests(unittest.TestCase):
         rows, _, _ = C.check_claim(claim, self.ctx)
         self.assertTrue(rows_for(rows, 'working_text_policy', 'fail'))
 
+    def test_fr_fulltext_capture_later_event_is_disclosed_not_a_working_text(self):
+        # Owner decision D-20261125-fr-capture-later-events (fixture shared with the claim-kit test).
+        sys.path.insert(0, str(HERE.parent / "claim-kit"))
+        import test_fr_capture_later_events as FC
+        claim = good_claim()
+        capture = FC.capture_ref(self.repo)
+        claim["operative_clauses"][0]["later_events"] = [
+            {"effective_date": "2015-03-03", "actor": capture["instrument_id"], "mechanism": "continuation",
+             "source": capture}]
+        rows, _, _ = C.check_claim(claim, self.ctx)
+        self.assertTrue(rows_for(rows, "working_text_policy", "fail"))
+        claim["fr_fulltext_captures"] = C.W.fr_capture_disclosure([capture])
+        rows, _, _ = C.check_claim(claim, self.ctx)
+        self.assertEqual(rows_for(rows, "working_text_policy", "fail"), [])
+        disclosed = rows_for(rows, "fr_capture_disclosure", "pass")
+        self.assertEqual([(r["field"], r["status"]) for r in disclosed],
+                         [("operative_clauses[0].later_events[0].source", "fr_fulltext_capture")])
+        summary = C.summarise_claim("test", "test.jsonl", 1, claim, rows, [], "no", self.ctx)
+        self.assertEqual(summary["text_evidence_tier"], "original_supported")
+        # The same capture as an end is refused exactly as before.
+        claim["operative_clauses"][0]["first_end"]["source"] = capture
+        rows, _, _ = C.check_claim(claim, self.ctx)
+        self.assertTrue(any("first_end.source:working_text_exact_grade_and_false_flag_required" in r["detail"]
+                            for r in rows_for(rows, "working_text_policy", "fail")))
+
     def replica_claim(self, registered_for='EO:90001'):
         claim = self.working_claim()
         source = claim['original_representation']
