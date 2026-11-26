@@ -10,7 +10,7 @@ New York date: 2026-11-26. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45881602035-1:026a2e798da0b93acdd236639234511e684fa02439552ec9108e81244e519f76` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45888003928-1:0c433378eb4e9c2942f6bcf3d15cc3f802852c55128b44aafa5da30e1c05e529` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -40,7 +40,7 @@ Comparison snapshot: 2026-11-25; intervening runs may be absent.
 - selden-fr-citers: targets_searched_total: 13537 → 13538; targets_total: 13207 → 13057
 - selden-statutes: attempted: 1937 → 1920; committed_pdf_bytes: 169760052 → 168939459; held: 1912 → 1895; orders_with_held_basis_statute: 4123 → 4070
 - shepard-citations: land_targets: 3535 → 3556; land_targets_with_any_edge: 1070 → 1077; land_targets_with_ending_candidate: 626 → 630
-- source-ladder: attempts_logged: 175 → 178; bytes_downloaded: 136472728 → 135955954; distinct_new_source_hashes: 3 → 0; exhausted_proposed_items: 1 → 2
+- source-ladder: attempts_logged: 175 → 184; bytes_downloaded: 136472728 → 96729236; distinct_new_source_hashes: 3 → 0; embedded_cite_items: 9 → 10
 - status-history: printed_snapshot_undecided_identities: 2219 → 2217; undecided_with_history: 4744 → 4735; undecided_with_own_observation: 4572 → 4563
 - theophilus-sources: cfr_targets_planned: 529 → 414; eligible_yes_orders: 298 → 223; failures_total: 68 → 51; usc_sections_planned: 217 → 183
 - tischendorf-originals: bytes_downloaded: 869456604 → 874351704; leads: 608 → 184; replacement_targets: 698 → 699; replacement_targets_ready: 521 → 546
@@ -77,4 +77,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45881602035)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45888003928)
