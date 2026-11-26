@@ -1,28 +1,27 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-11-24T23:57:10Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-11-26T00:04:15Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 2469 orders** (clark_identified 1, clark_identified_not_in_universe 16, transcription_only 2452).
+**Scope: 393 orders** (clark_identified 1, clark_identified_not_in_universe 15, transcription_only 377).
 
 ## Where they stand on the ladder
 
 | Route | Status | Orders |
 |---|---|---:|
-| proquest_phrase_search | manual_lead | 2177 |
-| proquest_local | pinakes_file_record_pages_unchecked | 142 |
-| federal_register | fr_era_not_in_ofr_catalog | 65 |
-| federal_register | retrieval_recorded_needs_review | 63 |
-| federal_register | in_ofr_catalog_no_citation | 11 |
-| gpo_bound_volumes | in_volume_range_not_found | 6 |
-| federal_register | queued_result_not_published | 3 |
+| proquest_phrase_search | manual_lead | 184 |
+| proquest_local | pinakes_file_record_pages_unchecked | 150 |
+| federal_register | fr_era_not_in_ofr_catalog | 47 |
+| federal_register | in_ofr_catalog_no_citation | 6 |
+| gpo_bound_volumes | in_volume_range_not_found | 2 |
+| federal_register | retrieval_recorded_needs_review | 2 |
 | proquest_supplied_link | awaiting_acquisition | 1 |
 | federal_register | queued_retry_later | 1 |
 
 ## ProQuest folder
 
-2750 PDF files (2750 unique by SHA-256) cover 2750 orders; 142 of them are in Lewis's scope and 2608 belong to orders outside it (Clark's no-text orders, mostly). 2440 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 143 for orders in this scope.
+4841 PDF files (4841 unique by SHA-256) cover 4841 orders; 150 of them are in Lewis's scope and 4691 belong to orders outside it (Clark's no-text orders, mostly). 4267 text layers pass the quality screen (handwritten originals give noise and are excluded). The supplied link list has 2765 links, 143 for orders in this scope.
 
-Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2750 inventory records; missing values are unknown, not verification failures or successful checks. Pinakes order records are reused without rereading PDFs or duplicating its fragments.
+Authority: pinakes-proquest-ingest. PDF signature results are not reported for 4841 inventory records; missing values are unknown, not verification failures or successful checks. Pinakes order records are reused without rereading PDFs or duplicating its fragments.
 
 ## Proposed fetch requests
 
@@ -32,61 +31,61 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 2
 
 | Owner | Orders |
 |---|---:|
-| owner | 2178 |
-| agent_check | 287 |
-| machine_job | 4 |
+| agent_check | 207 |
+| owner | 185 |
+| machine_job | 1 |
 
 ## First twenty rows
 
 | Order | Date | Route | Status | Next action |
 |---|---|---|---|---|
-| EO:1 | 1862-02-14 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:1 | 1862-02-14 | proquest_local | pinakes_file_record_pages_unchecked | Compare the PDF pages with the transcription; owner decides the custody grade |
 | EO:2 | 1862-02-27 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:3 | 1865-04-29 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:5 | 1866-04-13 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:6 | 1868-07-20 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:8 | 1872-04-16 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:8-1 | 1873-03-14 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:9 | 1873-01-17 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:9-2 | 1873-01-28 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:11 | 1873-08-05 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:16 | 1874-05-29 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:18 | 1875-07-31 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:19 | 1875-11-22 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:20 | 1876-08-21 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:21 | 1881 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:22 | 1884-04-09 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:23-1 | 1885 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
-| EO:24 | 1885-11-25 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:25 | 1885 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 | EO:27 | 1887-10-24 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:27-1 | 1887-10-24 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:27A |  | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:28-1 | 1891-01-30 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:30-1 | 1893 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:36 | 1894-11-02 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:37 | 1894-11-02 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:41 | 1894-11-02 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:44 | 1894-11-02 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:46 | 1894-11-02 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:47 | 1894-11-02 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
+| EO:49 | 1894-11-02 | proquest_phrase_search | manual_lead | Not on the supplied ProQuest list: find the record by phrase search and add its link to a  |
 
 ## Web search (online stage)
 
-100 of 2469 targets advanced this run (313 never searched yet); 750 of 1500 requests used. 32316 hits on file, 228 pages confirmed to name the order (149 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+1 of 393 targets advanced this run (201 never searched yet); 18 of 12 requests used. 32316 hits on file, 228 pages confirmed to name the order (149 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
 | bing_api | needs_key |
 | bing_rss | blocked_by_robots_txt |
-| brave_api | ok |
+| brave_api | not_tried |
 | brave_html | blocked_by_robots_txt |
 | duckduckgo_html | error |
 | duckduckgo_lite | error |
-| federal_register_api | ok |
+| federal_register_api | not_tried |
 | google_books | http_429 |
 | google_cse | needs_key |
-| govinfo_search_page | blocked_by_robots_txt |
-| hathitrust_catalog | blocked_by_robots_txt |
+| govinfo_search_page | not_tried |
+| hathitrust_catalog | not_tried |
 | internet_archive | ok |
-| loc_books | http_429 |
-| loc_manuscripts | http_429 |
-| loc_newspapers | http_429 |
+| loc_books | ok |
+| loc_manuscripts | ok |
+| loc_newspapers | error |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
-| presidency_project | ok |
+| presidency_project | not_tried |
 | serpapi_google | needs_key |
-| wikipedia_search | blocked_by_robots_txt |
-| wikisource_search | blocked_by_robots_txt |
+| wikipedia_search | not_tried |
+| wikisource_search | not_tried |
 | yandex_html | blocked_by_robots_txt |
