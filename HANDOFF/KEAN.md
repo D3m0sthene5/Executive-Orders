@@ -68,4 +68,4 @@ Thomas Kean, chair of the 9/11 Commission, which found that agencies held the pi
 - 2026-11-25 F-20261125-photius-peiresc-full **worked**: Owner exception D-20261125-peiresc-page-check-exception: the Photius page check of the 2,084 remaining Peires… Lesson: Sonnet readers given optional page images skipped them on about a quarter of weak cases (119 of the first 450 passes) and some reconstructed dates from garbled OCR; a mechanical rule (image required…
 - 2026-11-25 F-20261125-lean-trial **inconclusive**: Lean two-arm trial: 30 seeded YES orders per arm; arm 0 current route; arm 1 strict Larrey (kept 15 out), seq… Lesson: No verified saving at this size. Pooling review sets and pre-screening blocks are the larger measured levers (F-20261125-gilbreth).
 
-Register: 110 owner decisions, 67 answered questions, 420 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
+Register: 111 owner decisions, 67 answered questions, 420 results; 16 older reports not yet summarized (`jobs/kean/register/legacy_reports.txt`).
