@@ -4,7 +4,7 @@
   "chain": {
     "confidence": "medium",
     "events": [],
-    "generic_refs_excluded": 241,
+    "generic_refs_excluded": 240,
     "id": "CHAIN:EO:7565",
     "notes": "Named, located change provisions only; missing provisions and unheld texts remain dossier gaps. Undated events sort last.",
     "target_id": "EO:7565"
@@ -502,7 +502,7 @@
       "text": "Austin , foreman\r\ncarpenter in the United States Capitol Building under the office of the Architect of\r\nthe Capitol , who was exempted from compulsory retirement for a period of two years\r\nby Executive Order No. 6976 of February 26, 1935, be further exempted from the\r\nprovisions of this section and continued in the service until March 1, 1938 ;\r\nNOW , THEREFORE , by virtue of and pursuant to the authority vested in me\r\nby the aforesaid section , I do hereby exempt Joseph W."
     }
   },
-  "fingerprint": "98757472c868f96c5e9fb12cade934637ee4874fddf131551416faf6291b9339",
+  "fingerprint": "48c55f5438ab6158b5215fc701018524143e99d2ed25549ead61de5e956fc3da",
   "instrument_id": "EO:7565",
   "legal_cutoff": "2026-10-14",
   "lifecycle_obligations": [
@@ -625,5 +625,88 @@
     "notice": "Editorial leads, not an original, legal conclusion, provisional-status assignment or human certification.",
     "observation_count": 1
   },
-  "whole_order_status": "no"
+  "whole_order_status": "no",
+  "working_text_confirmation": {
+    "fragments": [
+      {
+        "acceptable_as_original": false,
+        "complete_text": null,
+        "declaration_path": "jobs/mabillon-held-printings/output/FRAGMENTS.jsonl",
+        "grade": "machine_read_government_printed_copy",
+        "instrument_id": "EO:7565",
+        "requires_page_check": false,
+        "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+        "text_path": "jobs/mabillon-held-printings/output/texts/EO_7565.txt",
+        "text_sha256": "10f949f433ed759b6506689c23b6ee142a31675b34b42c090e022fa3733cf60e",
+        "url": "https://commons.wikimedia.org/wiki/File:Executive_Orders_7262-8027.djvu"
+      }
+    ],
+    "record": {
+      "acceptable_as_original": false,
+      "complete_text_confirmed": true,
+      "confirmed": true,
+      "evidence": {
+        "complete_detail": {
+          "end_cue_kind": "dated_line",
+          "start_kind": "title_words"
+        },
+        "complete_route": "own_start_and_end",
+        "first_cue_snippet": "bors  TED STALL ©  ol Ac  Executive Order  EXEMPTION OF JOSEPH W. AusTIN From Co",
+        "identity_detail": {},
+        "identity_route": "a_number_and_date",
+        "last_cue_snippet": "thereof and continue him in the service until March 1, 1938.",
+        "matched_date": "February 27, 1937",
+        "matched_number": "No. 7565",
+        "pages_detail": {},
+        "register_date": "1937-02-27",
+        "register_number": "7565",
+        "similarity": [
+          {
+            "agrees": true,
+            "grade": "mirror_transcription",
+            "jaccard": 0.8681,
+            "length_ratio": 1.1135,
+            "producer": "app-executive-orders",
+            "sha256": "9b7238909abf7eca9f716146bf147eb5a9e900a4c4c175d609fdd7e0b02648c8"
+          }
+        ],
+        "skipped_witnesses": [
+          {
+            "grade": "official_printing",
+            "text_path": "jobs/photius-gpo-volumes/output/texts/EO_7565.txt",
+            "why": "grade_not_in_working_text_policy"
+          }
+        ],
+        "text_chars": 1512
+      },
+      "grade": "machine_read_government_printed_copy",
+      "identity_confirmed": true,
+      "instrument_id": "EO:7565",
+      "method": "machine",
+      "pages_confirmed": null,
+      "reasons": [],
+      "requires_page_check": false,
+      "ruling": "research/readiness/owner_rulings/2026-10-31-jacquard-and-working-texts.md",
+      "schema": "eo-lachmann-confirmation/v1",
+      "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+      "standing_note": "original not yet held; replace and re-check quotes when an official copy is retrieved.",
+      "text_path": "jobs/mabillon-held-printings/output/texts/EO_7565.txt",
+      "text_sha256": "10f949f433ed759b6506689c23b6ee142a31675b34b42c090e022fa3733cf60e",
+      "witnesses": [
+        {
+          "grade": "machine_read_government_printed_copy",
+          "producer": "mabillon-held-printings",
+          "sha256": "93e5cb0ed596f00e69d7b555ccf563e775625e7682188ee5cf6670ad0127d0e1",
+          "text_path": "jobs/mabillon-held-printings/output/texts/EO_7565.txt"
+        },
+        {
+          "grade": "mirror_transcription",
+          "producer": "app-executive-orders",
+          "sha256": "9b7238909abf7eca9f716146bf147eb5a9e900a4c4c175d609fdd7e0b02648c8",
+          "text_path": "jobs/app-executive-orders/output/texts/executive-order-7565-exemption-joseph-w-austin-from-compulsory-retirement-for-age.txt"
+        }
+      ]
+    },
+    "source_path": "jobs/lachmann/output/CONFIRMATIONS.jsonl"
+  }
 }
