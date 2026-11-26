@@ -10,6 +10,11 @@ Order of work, as finish_pair.py did it:
 4. Publication: replacement mode writes WAVEDIR/BATCH/REPLACEMENT_PROPOSAL.jsonl; own claims take the name the
    claim kit chooses (kit.py publication-name), never one chosen by hand.
 5. kit.py complete into a new complete-vN (--publish only when asked); its output goes to COMPLETE_vN.log.
+
+With a repair receipt (tiro_repair.repair_check, the owner's fix-and-recheck rule of 2026-11-25), finish works on the
+receipt's repaired applied folder after tiro_repair.verify_receipt() re-checks it, and pair_rule() counts a repaired
+claim only when both arms uphold that exact new hash: the rejecting arm's re-check (RECHECK_<arm>.jsonl) and the
+other arm's carried uphold (REPAIR_CARRIED_<arm>.jsonl).
 """
 import json
 from pathlib import Path
@@ -51,21 +56,42 @@ def adjudicate_controls(key, blind):
     return judg, missed, seeds
 
 
-def pair_rule(members, key, blind, after, arm=SECOND_ARM):
+def pair_rule(members, key, blind, after, arm=SECOND_ARM, repairs=None):
     """THE PAIR RULE (both arms must uphold). Arm A's verdicts are already applied by make_completion; this applies
     the second arm. A submitted member stays 'submit' only if `arm` upheld the exact same claim_sha256: verdict
     'upheld' in its blind review, or, for a genuine control, 'upheld_after_reveal' in its after-reveal review.
     Every other submitted member becomes blocked with that arm's defects as the reason.
 
-    Returns (new member list, demoted instrument ids). Later routes (for example a fix-and-recheck pass) should
-    extend this function, not add a second rule elsewhere."""
+    Fix-and-recheck: repairs maps a repaired claim's new hash to {'records': {arm: record}, 'problems': [...]}
+    (tiro_repair.verify_receipt). Such a member stays 'submit' only if BOTH arms have an 'upheld' record of that
+    exact new hash (the rejecting arm's re-check and the other arm's carried uphold) and the receipt check found no
+    problem. A planted control is never repaired.
+
+    Returns (new member list, demoted instrument ids). Later routes should extend this function, not add a second
+    rule elsewhere."""
     ctrl = {k['instrument_id'] for k in key['controls']}
+    repairs = repairs or {}
     out, demoted = [], []
     for mem in members:
         if mem.get('outcome') != 'submit':
             out.append(mem)
             continue
         is_ctrl = mem['instrument_id'] in ctrl
+        rep = repairs.get(mem.get('claim_sha256'))
+        if rep and not is_ctrl:
+            missing = [a for a in ARMS if not ((rep['records'].get(a) or {}).get('verdict') == 'upheld'
+                                               and rep['records'][a].get('claim_sha256') == mem['claim_sha256'])]
+            if not missing and not rep.get('problems'):
+                out.append(mem)
+                continue
+            why = '; '.join(rep.get('problems', []) + [
+                f"arm {a}: " + (json.dumps(rep['records'][a].get('defects'), ensure_ascii=False)
+                                if rep['records'].get(a) else 'no upheld record of this exact repaired version')
+                for a in missing])
+            out.append({'instrument_id': mem['instrument_id'], 'outcome': 'blocked',
+                        'reason': 'Fix-and-recheck: both arms must uphold this exact repaired version: ' + why})
+            demoted.append(mem['instrument_id'])
+            continue
         rec = (after[arm] if is_ctrl else blind[arm]).get(mem['claim_sha256'])
         need = 'upheld_after_reveal' if is_ctrl else 'upheld'
         if rec and rec.get('verdict') == need:
@@ -78,13 +104,24 @@ def pair_rule(members, key, blind, after, arm=SECOND_ARM):
     return out, demoted
 
 
-def finish(wave, batch, packet, publish=False, replacement=False, emit=print):
-    """Returns the exit code (0 done; 2 a control missed or a refusal; otherwise the failing tool's code)."""
+def finish(wave, batch, packet, publish=False, replacement=False, emit=print, repair_receipt=None):
+    """Returns the exit code (0 done; 2 a control missed or a refusal; otherwise the failing tool's code).
+
+    repair_receipt: a REPAIR_RECEIPT.json from repair-check; finish then completes the receipt's repaired applied
+    folder and counts each repaired claim under the fix-and-recheck rule (see pair_rule)."""
     packet = Path(packet)
     afr = packet / 'APPLIED_FOR_REVIEW'
     if not afr.exists():
         raise TiroError(f'no {wave.relpath(packet)}/APPLIED_FOR_REVIEW: run review-prep (or reuse-reviews) first')
     applied = packet / afr.read_text(encoding='utf-8').strip()
+    repairs, extra_reviews, receipt_file = {}, {a: [] for a in ARMS}, None
+    if repair_receipt:
+        import tiro_repair
+        receipt, repaired, repairs, extra_reviews, receipt_file = tiro_repair.verify_receipt(wave, batch, packet, repair_receipt)
+        if receipt['reviewed_applied'] != applied.name:
+            raise TiroError(f"repair receipt was made against {receipt['reviewed_applied']}, but APPLIED_FOR_REVIEW "
+                            f"names {applied.name}")
+        applied = packet / repaired
     keyf = wave.key_path(batch)
     if not keyf.exists():
         raise TiroError(f'no key {keyf}')
@@ -109,10 +146,12 @@ def finish(wave, batch, packet, publish=False, replacement=False, emit=print):
     else:
         pub = f'research/readiness/claims/{agent}-{wave.date}-{wave.short}-{batch}.jsonl'  # placeholder; chosen below
     receipts = [str(rv / f) for f in (f'BLIND_REVIEW_{SECOND_ARM}.jsonl', f'AFTER_REVEAL_{SECOND_ARM}.jsonl') if (rv / f).exists()]
+    receipts += [str(f) for f in extra_reviews[SECOND_ARM]] + ([str(receipt_file)] if receipt_file else [])
     for extra in ('CARRY.json', 'PRODUCER_REPORT.md', 'ASSESSMENT.jsonl'):
         if (packet / extra).exists():
             receipts.append(str(packet / extra))
-    cmd = C.py(C.MAKE_COMPLETION, packet, applied, rv / 'BLIND_REVIEW_A.jsonl',
+    blind_a = ','.join(str(f) for f in [rv / "BLIND_REVIEW_A.jsonl"] + extra_reviews["A"])
+    cmd = C.py(C.MAKE_COMPLETION, packet, applied, blind_a,
                rv / 'AFTER_REVEAL_A.jsonl' if (rv / 'AFTER_REVEAL_A.jsonl').exists() else '-',
                keyf, pub, wave.adjudicator, *judg, '--receipt', *receipts, isolated=True)
     r = C.run(cmd, wave.repo)
@@ -121,7 +160,7 @@ def finish(wave, batch, packet, publish=False, replacement=False, emit=print):
         return r.returncode
     mpath = out / 'COMPLETION.json'
     m = json.loads(mpath.read_text(encoding='utf-8'))
-    m['members'], demoted = pair_rule(m['members'], key, blind, after)
+    m['members'], demoted = pair_rule(m['members'], key, blind, after, repairs=repairs)
     submit = [x['instrument_id'] for x in m['members'] if x['outcome'] == 'submit']
     if replacement:
         m['publication'] = {'mode': 'replacement_proposal', 'path': pub}
@@ -139,7 +178,8 @@ def finish(wave, batch, packet, publish=False, replacement=False, emit=print):
         m['publication'] = {'mode': 'own_claims', 'path': pub}
     mpath.write_text(json.dumps(m, indent=1, ensure_ascii=False) + '\n', encoding='utf-8')
     emit(json.dumps({'batch': batch, 'agent': agent, 'publication': pub, 'submit_after_pair_rule': len(submit),
-                     'demoted_by_arm_B': demoted}))
+                     'demoted_by_arm_B': demoted, 'repaired_claims': sorted(r['instrument_id'] for r in repairs.values()),
+                     'applied': applied.name}))
     target = C.next_version(packet, 'complete-v')
     n = target.name.rsplit('v', 1)[1]
     p = C.run(C.kit('complete', mpath, '--write', target) + (['--publish'] if publish else []), wave.repo)

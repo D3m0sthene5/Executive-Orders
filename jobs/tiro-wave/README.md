@@ -85,17 +85,45 @@ Tiro also warns that a STALE result can come from files that are not checked out
 
 **5. Review sets.**
 
-    tiro.py --wave W review-prep y01 applied-v2 [--note FILE] [--packet P] [--kind date_shift] [--dry-run]
+    tiro.py --wave W review-prep y01 applied-v2 [--note FILE] [--packet P] [--kind K] [--seed S] [--dry-run]
 
-This plants max(1, round(n/15)) controls, seeded by the batch name, using `plants.make_controls`. Today's kind,
-`date_shift`, moves every first_end and whole_order_end date back three years. When no claim has an end date it moves
-every later_events date; when no claim has either, it moves every signing_date. Tiro writes
-`SCR/review/BATCH/REVIEW_SET{,_A,_B}.jsonl` (A and B are shuffled separately), `GENUINE_CONTROLS.jsonl`, the private
-key `SCR/keys/BATCH.json` (each control records its kind), and the reviewer and reveal prompts. In the packet it
-writes only `reviews/` and `APPLIED_FOR_REVIEW`; `--dry-run` skips those two writes. Tiro refuses to overwrite an
-existing key without `--force`, because `finish` scores both arms against that key.
+This plants max(1, round(n/15)) controls with `plants.make_controls`. Every control on 2026-11-25 was a three-year
+date shift; both arms caught all of them, and the Geddes date checks (`date_before_signing`,
+`end_year_conflicts_reasons`) now catch that kind mechanically, so it tests attention rather than judgment. Three kinds
+copy the defects genuine claims were actually rejected for:
 
-**6. Blind arms.** Two Opus reviewers, one per arm, each get `SCR/prompts/reviewer-BATCH-ARM.txt`. To pool several
+| Kind | What the planted copy does | Modes |
+|---|---|---|
+| `event_drop` | removes one recorded later event (one acting instrument, from every clause that records it) and lowers any stated count of that event type in the prose by one; prefers an instrument the prose never names and, for annual notices, neither the first nor the last | `notice`, `amendment`, `other` |
+| `clause_misdescription` | YES claim: an ended clause recorded as operative, its first_end removed and a continuing predicate citing the clause's own text added. NO claim: a terminated clause recorded as never_activated, or the reverse | `ended_to_operative`, `state_swap` |
+| `citation_drop` | removes one cited source of another instrument, and its quote, from every first_end, whole_order_end, current_predicate, savings_residuals or formal_disposition slot citing it; each slot falls back to the order's own text and the conclusion stays | the first slot type |
+| `date_shift` | the original plant: end dates moved back three years, else later-event dates, else signing dates | `end`, `event`, `signing` |
+
+Each of the three new kinds leaves the claim schema-valid (Stage 19 `claim_gate`), cites only sources the genuine
+claim already cites (so the claim kit's source, quote and dossier-evidence checks pass wherever the genuine claim
+passed), and adds no Geddes pre-review flag. `test_tiro_plants.py` checks this on fixture claims and on real
+2026-11-25 claims read from git (y16 EO 13757, n02 EO 13322, y05 EO 11755); with `TIRO_KIT_CHECK=1` it also runs the
+kit's `check_claim` against the real dossiers (about a minute). A plant never changes what a NO claim's end dates
+are, so `whole_order_end` stays the latest clause end. Not every claim can take every kind: all-operative claims
+whose sources are the order's own text, like most of y16, can take only `event_drop` or `date_shift`.
+
+`--kind` defaults to `rotation`: the seed (`--seed`, default the batch name) picks a start in
+`event_drop, clause_misdescription, citation_drop, date_shift`, successive controls take successive kinds, and a kind
+no remaining claim can take is skipped. `--kind NAME` plants only that kind and refuses when no claim fits;
+`--kind date_shift` draws exactly the orders the old tool drew. The key records `plant_kind`, `plant_seed`,
+`plant_rotation` and, per control, `kind`, `mode`, `type`, `defect` (a one-line description of the planted defect,
+which the reveal prompt shows) and `match` (the identifiers a rejection must name: the dropped instrument, the
+misdescribed clause or the removed source). Tiro writes `SCR/review/BATCH/REVIEW_SET{,_A,_B}.jsonl` (A and B are
+shuffled separately), `GENUINE_CONTROLS.jsonl`, the private key `SCR/keys/BATCH.json`, and the reviewer and reveal
+prompts. In the packet it writes only `reviews/` and `APPLIED_FOR_REVIEW`; `--dry-run` skips those two writes. Tiro
+refuses to overwrite an existing key without `--force`, because `finish` scores both arms against that key.
+
+**6. Blind arms.** Two Opus reviewers, one per arm, each get `SCR/prompts/reviewer-BATCH-ARM.txt`. The prompt tells
+them to read [`RUBRIC.md`](RUBRIC.md) first: what each verdict means, what sinks a claim and what is only a note
+(wording that misstates evidence sinks; style does not), unheld sources (notes, not verdicts), the three open
+conventions they record as `CONVENTION:` notes, and the tags every defect carries: `class` (date, omission,
+misdescription, citation, page_label, convention, other), `locality` (LOCAL or STRUCTURAL) and `fields` (the exact
+claim paths a fix would edit). To pool several
 small batches into one agent per arm (Gilbreth: pooling sets of 4 or more cuts the per-claim review cost):
 
     tiro.py --wave W pool-prompt y14 y15 y16 --arm A --write pool4
@@ -106,15 +134,65 @@ in the scratch root beyond what a one-batch review allows. After both blind file
 
 **7. Finish.**
 
-    tiro.py --wave W finish y01 [--packet P] [--publish] [--replacement]
+    tiro.py --wave W finish y01 [--packet P] [--publish] [--replacement] [--repair-receipt FILE]
 
-A control is caught only if both arms rejected its exact planted hash and named the planted defect. Any miss stops
+A control is caught only if both arms rejected its exact planted hash and named the planted defect: for a key entry
+with `match` identifiers, one of them and one of the kind's words; otherwise one of the kind's words. Any miss stops
 the batch before completion. `make_completion.py` then builds the manifest from arm A's records. `pair_rule()` in
 `tiro_finish.py` blocks every submitted member that arm B did not also uphold at the same hash (`upheld`, or
 `upheld_after_reveal` for a genuine control), quoting arm B's defects. Own claims take the file name that
 `kit.py publication-name` chooses. `--replacement` writes `WAVEDIR/BATCH/REPLACEMENT_PROPOSAL.jsonl` instead (the
 old scripts used the `REPLACEMENT=1` environment variable, which Tiro still honours). `kit.py complete` writes a new
 `complete-vN` and its log goes to `COMPLETE_vN.log`.
+
+**7a. Fix and re-check a one-arm LOCAL rejection** (owner rule, 2026-11-25). When a reviewer rejects a claim for a
+specific local defect, the producer may fix only that defect and the rejecting reviewer re-checks only that point,
+with the other reviewer's uphold carried over if nothing else in the claim changed. A claim whose fix touches anything
+beyond the flagged point still needs both reviewers again. Planted controls are never repairable, and a claim both
+arms rejected is not repairable under this rule. Run it after both blind files and the reveal files exist, before
+`finish`:
+
+    tiro.py --wave W repair-prep y01 [--packet P] [--tags FILE]
+    tiro.py --wave W repair-check y01 applied-v3 [--packet P] [--no-batch-check] [--dry-run]
+    tiro.py --wave W finish y01 --repair-receipt research/.../y01/packet/REPAIR_RECEIPT.json
+
+`repair-prep` reads the blind and after-reveal reviews of the `APPLIED_FOR_REVIEW` claims and lists every genuine
+claim one arm rejected and the other upheld whose defects are all LOCAL, of a repairable class and name exact
+`fields`. It writes `SCR/repair/BATCH/REPAIR_PLAN.json` (every order's status) and the producer prompt
+`SCR/prompts/repair-producer-BATCH.txt`, which names each claim, quotes each defect as the reviewer wrote it, and
+lists the fields the fix may change. It writes nothing in the packet. Reviews written before the rubric carry no
+tags, so every such defect is `untagged` and not repairable; `--tags FILE` (`{"EO:N": [{"class", "locality",
+"fields"} per defect, in order]}`) supplies tags for untagged defects only, and the plan records the file's sha256 on
+each tag it used.
+
+The producer fixes the named fields through the sheets and writes a new `applied-vN`. `repair-check` runs
+`batch-check` on it, then diffs every claim against the reviewed version. It refuses outright when an order outside
+the plan changed, the two files hold different orders, or the reviewed claims or the key changed since
+`repair-prep`. For each planned claim it accepts the fix only if every changed path lies inside the clause or
+top-level field the defect's `fields` name (the anchor) and is a field the class allows:
+
+| Class | A fix may change, inside the anchor |
+|---|---|
+| `page_label` | `page_or_item`, `evidence_id`, `char_start`, `char_end`, `location_confidence`, `location_verified`, `requires_page_check` (never the quote, the text file or the URL) |
+| `date` | `date`, `effective_date`, `earliest`, `latest`, `date_kind`, `checked_through`, and the prose fields |
+| `misdescription` | `state_at_cutoff`, `mechanism`, `mechanism_note`, `first_cause`, `actor`, anything under `first_end` or `current_predicate`, and the prose fields |
+| `omission` | anything under `later_events`, the prose fields, and the derived `fr_fulltext_captures` disclosure |
+| `citation` | anything under a `source` (never an `original_source`), the prose fields, and the derived `fr_fulltext_captures` disclosure |
+| `convention`, `other` | nothing: not repairable under this rule |
+
+The prose fields are `research_rationale`, `judgment_reason`, `legal_basis`, `reason` and `mechanism_note`. A claim
+with any change outside that map is refused and listed as needing both reviewers again; its new version has no
+review, so `finish` blocks it. For each accepted claim `repair-check` copies the upholding arm's record to
+`reviews/REPAIR_CARRIED_<arm>.jsonl` with the new `claim_sha256` (keeping the old one as
+`review_carried_from_claim_sha256`, as `reuse-reviews` does), writes the re-check set and the prompt
+`SCR/prompts/recheck-BATCH-ARM.txt` for the rejecting arm (the defect, each changed path before and after, and the
+output `reviews/RECHECK_<arm>.jsonl`), and writes `REPAIR_RECEIPT.json` in the packet. `--dry-run` writes the receipt
+and the carried file under `SCR/repair/BATCH/` instead.
+
+`finish --repair-receipt` re-verifies the receipt (both claim files' hashes, the same diff, the carried file's hash),
+completes the receipt's repaired applied folder, and passes arm A's extra files to `make_completion.py` with its
+blind file. `pair_rule()` keeps a repaired claim only if both arms have an `upheld` record of that exact new hash:
+the rejecting reviewer's re-check (same reviewer name) and the other arm's carried uphold.
 
 **8. Recover a stale packet** (the causes are below).
 
@@ -166,12 +244,15 @@ only when the claims are byte-identical or differ only in `claim_kit.dossier_sha
 
 ## Extending Tiro
 
-- **Plant kinds** live in `plants.py`. A kind is a class with `name`, `words` (the words a rejection must use for the
-  control to count as caught), `choose(claims)`, `plant(claim, mode)`, `defect(mode)` and `type(mode)`; register it in
-  `plants.KINDS` and pass `review-prep --kind NAME`. `finish` judges each control by its own kind's words. Keys
-  written before kinds existed have no `kind` field and are judged as `date_shift`.
+- **Plant kinds** live in `plants.py`. A kind is a class with `name`, `words` (a rejection must use one for the
+  control to count as caught), `eligible(claim, ctx)` and `plant_one(claim, rng, ctx)`, which returns the planted
+  copy and its `mode`, `type`, one-line `defect` and `match` identifiers. Register it in `plants.KINDS` and add it to
+  `plants.ROTATION`. A new kind must keep the claim schema-valid, cite only sources the genuine claim cites and add
+  no Geddes flag; add it to `NEW_KINDS` in `test_tiro_plants.py`, which checks all three. `finish` judges each control
+  by its own kind. Keys written before kinds existed have no `kind` field and are judged as `date_shift`.
 - **The pair rule** is `tiro_finish.pair_rule()`, and control adjudication is `tiro_finish.adjudicate_controls()`.
-  A fix-and-recheck route should extend these functions rather than add a second rule elsewhere.
+  The fix-and-recheck route extends `pair_rule()` (its `repairs` argument); a later route should do the same rather
+  than add a second rule elsewhere. The fix-and-recheck field map is `tiro_repair.FIELD_MAP`.
 - **External commands** all go through `tiro_common.run`, which the tests replace. The tests
   (`python3 -m pytest -q jobs/tiro-wave`) use small temporary fixtures and never run the real kit.
 - Tiro is a coordinator tool, not a scheduled job: it has no `job.py`, so `pick_jobs` never runs it, and it imports

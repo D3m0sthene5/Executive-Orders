@@ -72,6 +72,75 @@ def canon(obj):
     return hashlib.sha256(json.dumps(obj, sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode()).hexdigest()
 
 
+LIST_IDS = {'operative_clauses': 'scope_id', 'later_events': 'actor'}
+
+
+def _list_keys(name, items):
+    """Path keys for a list: scope_id for clauses, actor for later events (a repeated actor gets #2, #3), else None
+    (index the list by position)."""
+    field = LIST_IDS.get(name)
+    if not field or not all(isinstance(i, dict) and isinstance(i.get(field), str) for i in items):
+        return None
+    seen, keys = {}, []
+    for i in items:
+        k = i[field]
+        seen[k] = seen.get(k, 0) + 1
+        keys.append(k if seen[k] == 1 else f'{k}#{seen[k]}')
+    return keys
+
+
+def claim_diff(a, b, path='', name=''):
+    """Paths at which two claims differ, written as operative_clauses[<scope_id>].first_end.date,
+    operative_clauses[<scope_id>].later_events[<actor>], research_rationale, later_source_search[0].checked_on.
+    A key or list item present on one side only is reported at its own path."""
+    if type(a) is not type(b):
+        return [path]
+    if isinstance(a, dict):
+        out = []
+        for k in sorted(set(a) | set(b)):
+            p = f'{path}.{k}' if path else k
+            out += [p] if (k in a) != (k in b) else claim_diff(a[k], b[k], p, k)
+        return out
+    if isinstance(a, list):
+        ka, kb = _list_keys(name, a), _list_keys(name, b)
+        if ka is not None and kb is not None:
+            da, db = dict(zip(ka, a)), dict(zip(kb, b))
+            out = []
+            for k in ka + [k for k in kb if k not in da]:
+                p = f'{path}[{k}]'
+                out += [p] if (k in da) != (k in db) else claim_diff(da[k], db[k], p, name + '[]')
+            if not out and ka != kb:
+                out.append(path)  # same items, different order
+            return out
+        out = []
+        for i in range(max(len(a), len(b))):
+            p = f'{path}[{i}]'
+            out += [p] if i >= len(a) or i >= len(b) else claim_diff(a[i], b[i], p, name + '[]')
+        return out
+    return [] if a == b else [path]
+
+
+def value_at(claim, path):
+    """The value at a claim_diff path, or None when the path does not exist in this claim."""
+    cur = claim
+    for name, idx in re.findall(r'([^.\[\]]+)|\[([^\]]*)\]', path):
+        if name:
+            if not isinstance(cur, dict) or name not in cur:
+                return None
+            cur, last = cur[name], name
+            continue
+        if not isinstance(cur, list):
+            return None
+        keys = _list_keys(last, cur)
+        if keys is not None and idx in keys:
+            cur = cur[keys.index(idx)]
+        elif idx.isdigit() and int(idx) < len(cur):
+            cur = cur[int(idx)]
+        else:
+            return None
+    return cur
+
+
 def file_sha(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 

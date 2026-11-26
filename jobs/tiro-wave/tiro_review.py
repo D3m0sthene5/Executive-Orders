@@ -90,15 +90,20 @@ def reveal_prompt(batch, arm, controls, genuine_path, packet_rel):
             f"controls ({defects}). The genuine version(s) the producer filed are in {genuine_path} (one JSON claim "
             "per line). Review each genuine version on its merits with the same blinding and the same standard as your "
             "blind review (it must pass every check you applied to other claims; do not uphold it just because it is "
-            f"the genuine one). Write one JSON object per genuine claim to {packet_rel}/reviews/AFTER_REVEAL_{arm}.jsonl, "
+            "the genuine one), applying jobs/tiro-wave/RUBRIC.md and tagging any rejection as it says. "
+            f"Write one JSON object per genuine claim to {packet_rel}/reviews/AFTER_REVEAL_{arm}.jsonl, "
             f"in the same format as your BLIND_REVIEW_{arm}.jsonl records, with claim_sha256 computed the same way over "
             "the genuine claim, the same reviewer name, verdict \"upheld_after_reveal\" if it is right or \"rejected\" "
             f"with defects if not, and started_utc/ended_utc. Do not change BLIND_REVIEW_{arm}.jsonl. Reply in at most "
             "60 words with each order and its verdict.")
 
 
-def review_prep(wave, batch, packet, applied, note=None, kind=plants.DEFAULT_KIND, dry_run=False, force=False):
+def review_prep(wave, batch, packet, applied, note=None, kind=plants.DEFAULT_KIND, dry_run=False, force=False,
+                seed=None):
     """Plant controls and write two separately shuffled blind review sets with their reviewer and reveal prompts.
+
+    kind is 'rotation' (default: successive kinds from a seed-dependent start) or one plant kind; seed defaults to
+    the batch name. The key records the seed, the kind order and, per control, its kind and planted defect.
 
     Writes SCR/review/BATCH/{REVIEW_SET,REVIEW_SET_A,REVIEW_SET_B,GENUINE_CONTROLS}.jsonl, the private key
     SCR/keys/BATCH.json and SCR/prompts/{reviewer,reveal}-BATCH-{A,B}.txt; in the packet, reviews/ and
@@ -112,8 +117,13 @@ def review_prep(wave, batch, packet, applied, note=None, kind=plants.DEFAULT_KIN
     if keyf.exists() and not force:
         raise TiroError(f'key {keyf} exists (reviews may be in flight); pass --force to replace it, or use another --scratch')
     claims = load_jsonl(claims_path)
-    made = plants.make_controls(claims, batch, kind=kind)
-    key = {'batch': batch, 'wave': wave.name, 'packet': packet.name, 'applied': applied, 'controls': made['controls']}
+    try:
+        made = plants.make_controls(claims, batch, kind=kind, seed=seed)
+    except ValueError as e:
+        raise TiroError(str(e))
+    key = {'batch': batch, 'wave': wave.name, 'packet': packet.name, 'applied': applied,
+           'plant_kind': made['kind'], 'plant_seed': made['seed'], 'plant_rotation': made['rotation'],
+           'controls': made['controls']}
     rd = wave.scr('review', batch)
     rd.mkdir(parents=True, exist_ok=True)
     wave.scr('keys').mkdir(parents=True, exist_ok=True)
@@ -144,7 +154,9 @@ def review_prep(wave, batch, packet, applied, note=None, kind=plants.DEFAULT_KIN
                       encoding='utf-8')
         prompts[arm] = [str(rp), str(vp)]
     return {'batch': batch, 'packet': pk, 'applied': applied, 'claims': len(claims), 'kind': kind,
-            'mode': made['mode'], 'controls': sorted(k['instrument_id'] for k in made['controls']),
+            'seed': made['seed'], 'mode': made['mode'],
+            'control_kinds': {k['instrument_id']: k['kind'] for k in made['controls']},
+            'controls': sorted(k['instrument_id'] for k in made['controls']),
             'key': str(keyf), 'prompts': prompts, 'dry_run': dry_run,
             'packet_writes': [] if dry_run else [f'{pk}/reviews/', f'{pk}/APPLIED_FOR_REVIEW']}
 

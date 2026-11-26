@@ -6,8 +6,8 @@ under a scratch root outside the repository (default /home/claude/<wave short na
 
     python3 -X utf8 -I jobs/tiro-wave/tiro.py --wave baldus-2026-11-25 <subcommand> ...
 
-Subcommands: prepare, render-producer, review-prep, pool-prompt, finish, current, reapply, reuse-reviews, adopt,
-gzip-receipts, ledger, cost. See README.md for the whole wave, step by step.
+Subcommands: prepare, render-producer, review-prep, pool-prompt, repair-prep, repair-check, finish, current, reapply,
+reuse-reviews, adopt, gzip-receipts, ledger, cost. See README.md for the whole wave, step by step.
 """
 import argparse
 import gzip
@@ -269,7 +269,9 @@ def build_parser():
     s.add_argument('applied', help='applied-vN folder holding CLAIMS.proposed.jsonl')
     s.add_argument('--note', help='batch note file inserted in the reviewer prompts')
     s.add_argument('--packet')
-    s.add_argument('--kind', default=None, help='plant kind (default date_shift)')
+    s.add_argument('--kind', default=None, help='plant kind: rotation (default), event_drop, clause_misdescription, '
+                   'citation_drop or date_shift')
+    s.add_argument('--seed', help='plant seed recorded in the key (default: the batch name)')
     s.add_argument('--dry-run', action='store_true', help='write only under the scratch root, nothing in the packet')
     s.add_argument('--force', action='store_true', help='replace an existing key')
 
@@ -279,9 +281,23 @@ def build_parser():
     s.add_argument('--reveal', action='store_true', help='pool the after-reveal prompts instead')
     s.add_argument('--write', metavar='LABEL', help='also write SCR/prompts/pool-LABEL-ARM.txt')
 
+    s = sub.add_parser('repair-prep', help='fix-and-recheck: list one-arm LOCAL rejections, write the producer repair prompt')
+    s.add_argument('batch')
+    s.add_argument('--packet')
+    s.add_argument('--tags', help='JSON {instrument_id: [{class, locality, fields} per defect]} for untagged reviews')
+
+    s = sub.add_parser('repair-check', help='fix-and-recheck: diff repaired claims, carry upholds, re-check prompt, receipt')
+    s.add_argument('batch')
+    s.add_argument('repaired', help='the applied-vN folder the producer wrote with the fixes')
+    s.add_argument('--packet')
+    s.add_argument('--no-batch-check', action='store_true')
+    s.add_argument('--dry-run', action='store_true', help='write the receipt and carried upholds under the scratch root')
+    s.add_argument('--force', action='store_true', help='replace an existing REPAIR_RECEIPT.json')
+
     s = sub.add_parser('finish', help='control adjudication, pair rule, completion manifest, kit complete')
     s.add_argument('batch')
     s.add_argument('--packet')
+    s.add_argument('--repair-receipt', help='REPAIR_RECEIPT.json from repair-check (fix-and-recheck)')
     s.add_argument('--publish', action='store_true')
     s.add_argument('--replacement', action='store_true', help='isolated replacement proposal (env REPLACEMENT=1 before)')
 
@@ -378,7 +394,7 @@ def main(argv=None, emit=print):
         import plants
         import tiro_review
         emit(json.dumps(tiro_review.review_prep(wave, a.batch, wave.packet(a.batch, a.packet), a.applied, a.note,
-                                                a.kind or plants.DEFAULT_KIND, a.dry_run, a.force)))
+                                                a.kind or plants.DEFAULT_KIND, a.dry_run, a.force, a.seed)))
         return 0
     if a.cmd == 'pool-prompt':
         import tiro_review
@@ -390,10 +406,21 @@ def main(argv=None, emit=print):
                 emit(f'# wrote {p}')
             emit(t)
         return 0
+    if a.cmd == 'repair-prep':
+        import tiro_repair
+        res = tiro_repair.repair_prep(wave, a.batch, wave.packet(a.batch, a.packet), a.tags)
+        emit(json.dumps(res))
+        return 0
+    if a.cmd == 'repair-check':
+        import tiro_repair
+        res = tiro_repair.repair_check(wave, a.batch, wave.packet(a.batch, a.packet), a.repaired, not a.no_batch_check,
+                                       a.dry_run, a.force, emit)
+        emit(json.dumps(res))
+        return 0 if res['accepted'] and not res['refused'] else 1
     if a.cmd == 'finish':
         import tiro_finish
         return tiro_finish.finish(wave, a.batch, wave.packet(a.batch, a.packet), a.publish,
-                                  a.replacement or bool(os.environ.get('REPLACEMENT')), emit)
+                                  a.replacement or bool(os.environ.get('REPLACEMENT')), emit, a.repair_receipt)
     if a.cmd == 'current':
         return current(repo, a.packets, wave.scratch if wave else a.scratch, a.from_index, emit)
     if a.cmd == 'reapply':

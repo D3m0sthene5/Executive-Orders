@@ -174,3 +174,22 @@ def test_plant_kind_registry_is_extensible():
         assert not plants.names_defect({'verdict': 'rejected', 'defects': ['date']}, made['controls'][0])
     finally:
         del plants.KINDS['swap']
+
+
+def test_review_prep_records_the_plant_seed_and_rubric_tags(world):
+    import plant_fixtures
+    yes, no = plant_fixtures.build(world['repo'])
+    write_jsonl(world['packet'] / 'applied-v2' / 'CLAIMS.proposed.jsonl', [yes, no] + world['claims'])
+    res = tiro_review.review_prep(world['wave'], 'b01', world['packet'], 'applied-v2', dry_run=True, seed='s1')
+    key = json.loads(world['wave'].key_path('b01').read_text())
+    assert key['plant_seed'] == 's1' and key['plant_kind'] == 'rotation' and key['plant_rotation'] == plants.rotation_order('s1')
+    k = key['controls'][0]
+    assert k['kind'] == key['plant_rotation'][0] or k['kind'] in key['plant_rotation']
+    assert res['control_kinds'] == {k['instrument_id']: k['kind']}
+    t = (world['wave'].scratch / 'prompts' / 'reviewer-b01-A.txt').read_text()
+    assert 'jobs/tiro-wave/RUBRIC.md' in t and '"locality"' in t and 'CONVENTION:' in t
+    r = (world['wave'].scratch / 'prompts' / 'reveal-b01-A.txt').read_text()
+    assert k['defect'] in r and 'RUBRIC.md' in r
+    with pytest.raises(C.TiroError, match='fits no claim'):
+        tiro_review.review_prep(world['wave'], 'b01', world['packet'], 'applied-v1', dry_run=True, force=True,
+                                kind='citation_drop')
