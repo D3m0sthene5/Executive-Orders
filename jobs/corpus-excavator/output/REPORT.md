@@ -1,8 +1,8 @@
 # Excavator baseline and next work
 
-Legal cutoff: 2026-10-14. Inputs: `ea90e96aab8196a47e2c40eeeeb4a0d9c23dec005d832406a16338e6826c9ed9`.
+Legal cutoff: 2026-10-14. Inputs: `607c2c63c6f5fe4d79265c6763ddcf02a1aa4958484186ec17f82babcb3d3b7f`.
 
-Verified committed tracker: 15,002 identities; 11,214 undecided; 1251 ready for human review.
+Verified committed tracker: 15,003 identities; 11,202 undecided; 1393 ready for human review.
 
 ## Ranked bounded source pass
 
@@ -15,15 +15,15 @@ Verified committed tracker: 15,002 identities; 11,214 undecided; 1251 ready for 
 | 5 | opus-refetch:690dc06a74fde57d6cb5c688c50cbe5f1e593fa85e92c24a560a8abb3b5dda79 | 1 | 0 |
 | 6 | opus-refetch:69f10174179fea565836d0faeec3ebed5cd6a7aa4d09ddf33ce64c62b15be1e3 | 1 | 0 |
 | 7 | opus-refetch:92db8cdf40c43732ed50922cfb2b7d1549ea770bd29f62cdde41e359456be917 | 1 | 0 |
-| 8 | opus-refetch:a02da46f00deb6d7a1390ee8a7ee71b7b4c1075ddf1594621b4b9d46d013478a | 1 | 0 |
-| 9 | opus-refetch:c086b81bda2abc5b549e2ecd40e2e08d807f67e1c3c251bc04d7d34c1ce78fd9 | 1 | 0 |
-| 10 | opus-refetch:c8295dd77095f9eee36c0622c13c85169f2aee9ced5c8f76afd08fe69fe2fb37 | 1 | 0 |
-| 11 | opus-refetch:cb67d30ebca7b85e3d5c28d056e38a6901e4f3179d53dd62356248677cc999f5 | 1 | 0 |
-| 12 | opus-refetch:df58246501bb1ab86d95467a5d6eb6825f9476fe254be636d79635efca6faf93 | 1 | 0 |
+| 8 | opus-refetch:9851b08b89530b861fef83026cc8a161ddaa7b671b487ea60c54e8e4e0fad5e0 | 1 | 0 |
+| 9 | opus-refetch:a02da46f00deb6d7a1390ee8a7ee71b7b4c1075ddf1594621b4b9d46d013478a | 1 | 0 |
+| 10 | opus-refetch:c086b81bda2abc5b549e2ecd40e2e08d807f67e1c3c251bc04d7d34c1ce78fd9 | 1 | 0 |
+| 11 | opus-refetch:c8295dd77095f9eee36c0622c13c85169f2aee9ced5c8f76afd08fe69fe2fb37 | 1 | 0 |
+| 12 | opus-refetch:cb67d30ebca7b85e3d5c28d056e38a6901e4f3179d53dd62356248677cc999f5 | 1 | 0 |
 
 Readiness ceiling if the entire pass succeeds: 11; demonstrated readiness gain before execution: 0.
 
 Use SOURCE_PLAN.json with source-ladder JOB_PLAN_FILE. It contains existing queued requests only.
 All per-order remaining work is in ORDER_FRONTIER.jsonl. Claim-kit owns dossiers, decisions and assembly.
-Historical discovery: 89 witness/candidate/gap records outside the census, zero authenticated identities or admissions. Source pointers and next decisions are in DISCOVERY.jsonl.
+Historical discovery: 88 witness/candidate/gap records outside the census, zero authenticated identities or admissions. Source pointers and next decisions are in DISCOVERY.jsonl.
 Read UPSTREAM_STATUS and UNRESOLVED_RETRIEVALS before reuse. Retrieval failure never means search exhaustion.

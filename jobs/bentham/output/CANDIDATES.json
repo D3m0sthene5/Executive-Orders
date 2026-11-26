@@ -1,17 +1,17 @@
 {
   "generated_from": {
-    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "88cb0d693be18d211cb367d007d09af23c7249c63bd637db106a21e502e35778",
-    "jobs/readiness-tracker/output/TRACKER.md": "b8e9be5f3d602569b2e0afd78eec97b3819c3e47cade0fec380a0c28e21e9040",
-    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "7b46aacefd017bed4d9d4f3ecb92551a2b10e231060adb90c8056a61b5cf3526",
-    "jobs/polya/output/CANDIDATE_ACTIONS.json": "84598534fd7c46a64e98beab939a22be95818c6d559846b3ec200b143529989e",
-    "jobs/polya/output/COMPARE.json": "bc2e04eb23e79c487f962e8ab495920144f1855acfe2dba565d97a5d378fdf07",
+    "jobs/readiness-tracker/output/READINESS_BY_ORDER.csv": "c9af88b04ece43030413e39ef4fe6506c082593eeca04d44532c36c75370076a",
+    "jobs/readiness-tracker/output/TRACKER.md": "23d6490fe0e144577ac84530ef1b8f1e0fa494d0bcd422b7094fb195d3194625",
+    "jobs/readiness-tracker/output/SHARED_UNLOCKS.csv": "ed4ebd0f8305bebd7b5fb83e4971d71fd96fefcd237dc95dec9daa44b1b69cc1",
+    "jobs/polya/output/CANDIDATE_ACTIONS.json": "45ffa53d7e8f2d92212211601c6ca8e7554496ec160e9d67e8b0535ffa2a304c",
+    "jobs/polya/output/COMPARE.json": "a3274c47fa134464c85829a2640b64650a368801a26ceef9b28ef50657ac5795",
     "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json": "688bd3c450081288a998382e30e330ed0b51e8bfc6ce712090a6c46f9eeeee4d",
     "research/excavator/claude-tribonian-2026-11-04/REPORT.md": "6ae4b9e7ebfda4b74f02dc670f483fcea4b1874528c378448786641bcc073fd8",
-    "jobs/larrey-triage/output/GATES.jsonl": "cfa37d8928160fb60bc3eb3bc0f149030af46fe28ff2312420f93a61baab21ab",
+    "jobs/larrey-triage/output/GATES.jsonl": "b3eb7303d122352a81007434b9eefa23f57031411fe3848e2342bc4f5829b6f6",
     "jobs/linnaeus-types/output/SUMMARY.json": "6212023578b1e9f699a84ead03f39c94161da0473dad9efb3b61ef82edfc5a71"
   },
   "pool": {
-    "decided_not_ready_orders": 2459,
+    "decided_not_ready_orders": 2408,
     "held_by_unretrieved_source_or_quarantine": 21
   },
   "notes": [
@@ -25,7 +25,7 @@
       "id": "production.claim_ready.no.fr",
       "kind": "production",
       "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "orders": 1044,
+      "orders": 1042,
       "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.no.fr.txt",
       "rate_key": "filed_per_attempt.no.fr",
       "cost_key": "wave.per_attempt",
@@ -40,14 +40,21 @@
       ],
       "triage": {
         "applied": false,
-        "reason": "Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
+        "reason": "route not enforced: kit code changed since Larrey's back-test",
+        "receipt": {
+          "larrey_route": "decided_lifecycle",
+          "larrey_level": "hard",
+          "larrey_enforced": false,
+          "larrey_summary_sha256": "6f2b719f762706a16c690146ff09f587ee22010669dfb76f1ba8daed9e33c560",
+          "tracker_current": true
+        }
       }
     },
     {
       "id": "production.claim_ready.yes.fr",
       "kind": "production",
       "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
-      "orders": 260,
+      "orders": 221,
       "order_ids_path": "jobs/bentham/output/strata/production.claim_ready.yes.fr.txt",
       "rate_key": "filed_per_attempt.yes.fr",
       "cost_key": "wave.per_attempt",
@@ -62,14 +69,21 @@
       ],
       "triage": {
         "applied": false,
-        "reason": "Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
+        "reason": "route not enforced: kit code changed since Larrey's back-test",
+        "receipt": {
+          "larrey_route": "decided_lifecycle",
+          "larrey_level": "hard",
+          "larrey_enforced": false,
+          "larrey_summary_sha256": "6f2b719f762706a16c690146ff09f587ee22010669dfb76f1ba8daed9e33c560",
+          "tracker_current": true
+        }
       }
     },
     {
       "id": "production.one_step_away",
       "kind": "production",
       "description": "Close the single open step of orders that already have a claim and exactly one applicable step open. Excludes recovery orders.",
-      "orders": 202,
+      "orders": 192,
       "order_ids_path": "jobs/bentham/output/strata/production.one_step_away.txt",
       "rate_key": "filed_per_attempt.correction",
       "cost_key": "wave.per_attempt",
@@ -87,7 +101,7 @@
       "id": "status_assignment.undecided",
       "kind": "status_assignment",
       "description": "Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided (claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such.",
-      "orders": 11211,
+      "orders": 11202,
       "order_ids_path": "jobs/bentham/output/strata/status_assignment.undecided.txt",
       "rate_key": "filed_per_attempt.undecided",
       "cost_key": "wave.per_attempt",
@@ -102,7 +116,14 @@
       ],
       "triage": {
         "applied": false,
-        "reason": "Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
+        "reason": "route not enforced: kit code changed since Larrey's back-test",
+        "receipt": {
+          "larrey_route": "undecided_full",
+          "larrey_level": "hard",
+          "larrey_enforced": false,
+          "larrey_summary_sha256": "6f2b719f762706a16c690146ff09f587ee22010669dfb76f1ba8daed9e33c560",
+          "tracker_current": true
+        }
       }
     },
     {
@@ -443,7 +464,7 @@
         "acquire.current_law_sections"
       ],
       "yield_lift_not_counted": {
-        "orders": 249,
+        "orders": 217,
         "applies_to": [
           "production.claim_ready.yes.fr"
         ],
@@ -472,7 +493,7 @@
         "acquire.nea_continuation_notices"
       ],
       "yield_lift_not_counted": {
-        "orders": 276,
+        "orders": 208,
         "applies_to": [
           "production.claim_ready.yes.fr"
         ],
