@@ -179,6 +179,54 @@ class PriorResearchTests(unittest.TestCase):
             batch.load_packet(dest,self.repo)
         self.assertEqual(lifecycle.resume_decision(check,self.dossier,[{'id':'source'}],'a'*64,prior_research=self.collect())['action'], 'reopen')
 
+    def test_packet_survives_unscoped_ruling_and_receipts_but_not_member_evidence(self):
+        """D-20261125-scoped-ruling-pins end to end: a prepared packet still loads after another
+        batch's receipts and a ruling for other orders appear; a ruling naming its order, a new
+        claim version or a new review row for it still make it stale."""
+        import contextlib
+        import io
+        self.write('research/session/claim.json', self.claim)
+        out = self.repo/'compiled';self.write('compiled/dossiers/EO_11782.json', self.dossier)
+        self.write('compiled/INDEX.json', [{'instrument_id': 'EO:11782',
+            'status': self.dossier['whole_order_status'], 'fingerprint': self.dossier['fingerprint']}])
+        dest = self.repo/'research/packet'
+        batch.prepare(self.repo,out,dest,['EO:11782'],'test')
+        done = 'research/other/packet/complete-v1/'
+        self.write(done+'TALLY.json', {'schema': COMPLETION})
+        self.write(done+'receipts/research/readiness/SOURCE_AUDIT_HOLDS.jsonl', {**self.claim, 'research_rationale': 'Receipt.'})
+        rulings = self.repo/prior.RULING_DIR;rulings.mkdir(parents=True)
+        (rulings/'2026-11-26-adopt-others.md').write_text('# Owner decision\n\nAdopt EO 12553 and EO 9242A.')
+        with contextlib.redirect_stderr(io.StringIO()):
+            (rulings/'2026-11-26-standing.md').write_text('# Standing rule\n\nNo order named.')
+            batch.load_packet(dest,self.repo)
+        named = rulings/'2026-11-26-adopt-mine.md'
+        named.write_text('# Owner decision\n\nAdopt EO 11782 as proposed.')
+        with self.assertRaisesRegex(ValueError, 'changed prior research'):
+            batch.load_packet(dest,self.repo)
+        named.unlink()
+        batch.load_packet(dest,self.repo)
+        for path, value in (('research/session/v2/claim.json', {**self.claim, 'research_rationale': 'New version.'}),
+                            ('research/session/REVIEW.json', self.review('research/session/claim.json'))):
+            with self.subTest(path=path):
+                planted = self.write(path, value)
+                with self.assertRaisesRegex(ValueError, 'changed prior research'):
+                    batch.load_packet(dest,self.repo)
+                planted.unlink()
+                batch.load_packet(dest,self.repo)
+        # The replay script agrees with load_packet on the same planted changes.
+        import replay_prior_research as replay
+        with contextlib.redirect_stderr(io.StringIO()):
+            report = replay.replay(self.repo, dest, None)
+        self.assertEqual((report['mode'], report['new_rules']['stale']), ('exact', False))
+        named.write_text('# Owner decision\n\nAdopt EO 11782 as proposed.')
+        planted = self.write('research/session/REVIEW.json', self.review('research/session/claim.json'))
+        with contextlib.redirect_stderr(io.StringIO()):
+            report = replay.replay(self.repo, dest, None)
+        self.assertTrue(report['new_rules']['stale'])
+        self.assertEqual({(p['path'], p['category']) for p in report['new_rules']['differing_pins']},
+                         {(prior.RULING_DIR + '/2026-11-26-adopt-mine.md', 'owner_ruling'),
+                          ('research/session/REVIEW.json', 'other')})
+
 
 COMPLETION = 'eo-claim-kit-completion/v1'
 
@@ -257,10 +305,18 @@ class PriorResearchBindingTests(unittest.TestCase):
         self.assertEqual(self.collect(), bound)
         self.assertEqual(len(self.collect()['orders'][self.ID]['versions']), 2)
 
-    def test_completion_folder_other_files_still_bind(self):
+    def test_completion_folder_other_files_still_bind_but_receipts_do_not(self):
+        """Owner decision D-20261125-scoped-ruling-pins changed this test's old rule.
+
+        Before 2026-11-25 receipts/ files in a completion folder bound like any research file, so
+        one finished batch (its receipt copies of SOURCE_AUDIT_HOLDS.jsonl, MANSFIELD_AUDIT.json
+        and the like) staled other packets. Now a `receipts` directory directly inside a folder
+        with a completion-schema TALLY.json is not research and binds nothing, at any depth; the
+        selected and publishable claim files and every other file in the folder still bind.
+        """
         folder = self.completion_folder()
         before = self.collect()
-        for name in ('CLAIMS.selected.jsonl', 'CLAIMS.publishable.jsonl', 'receipts/TRACKER_CLAIMS.jsonl'):
+        for name in ('CLAIMS.selected.jsonl', 'CLAIMS.publishable.jsonl', 'checker/PER_CLAIM.json'):
             with self.subTest(name=name):
                 path = folder + '/' + name
                 self.write(path, {**self.claim, 'research_rationale': 'In ' + name})
@@ -269,6 +325,24 @@ class PriorResearchBindingTests(unittest.TestCase):
                 self.assertIn(path, bound['input_file_pins'])
                 (self.repo / path).unlink()
                 self.assertEqual(self.collect(), before)
+        for name in ('receipts/TRACKER_CLAIMS.jsonl', 'receipts/research/readiness/SOURCE_AUDIT_HOLDS.jsonl',
+                     'receipts/research/progress/x/MANSFIELD_AUDIT.json'):
+            with self.subTest(receipt=name):
+                self.write(folder + '/' + name, {**self.claim, 'research_rationale': 'Receipt copy ' + name})
+                self.assertEqual(self.collect(), before)
+
+    def test_receipts_outside_a_completion_folder_still_bind(self):
+        for folder, tally in (('research/a/complete-v1', None), ('research/b/complete-v1', {'schema': 'other/v1'}),
+                              ('research/c/complete-v1/sub', {'schema': COMPLETION})):
+            with self.subTest(folder=folder):
+                if tally is not None:
+                    self.write(folder.rsplit('/sub', 1)[0] + '/TALLY.json', tally)
+                path = folder + '/receipts/claim.json'
+                self.write(path, {**self.claim, 'research_rationale': 'Not a receipt copy.'})
+                bound = self.collect()
+                self.assertIn(path, bound['input_file_pins'])
+                (self.repo / path).unlink()
+                self.assertEqual(self.collect(), self.base)
 
     def test_unrelated_completion_does_not_invalidate_but_target_edit_does(self):
         folder = self.completion_folder()
@@ -289,15 +363,66 @@ class PriorResearchBindingTests(unittest.TestCase):
         self.write('research/session/sibling/claim.json', self.claim)
         self.assertNotEqual(self.collect(exclude=packet), self.base)
 
-    def test_owner_rulings_are_still_pinned(self):
-        ruling = self.repo / 'research/readiness/owner_rulings/2026-10-29-x.md'
-        ruling.parent.mkdir(parents=True)
-        ruling.write_text('ruling one')
+    def ruling(self, name, text):
+        path = self.repo / prior.RULING_DIR / name
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(text)
+        return path
+
+    def test_grandfathered_rulings_still_bind_every_order(self):
+        # A ruling present in main on 2026-11-25 binds every order, as before, even if it names others.
+        ruling = self.ruling('2026-10-21-strike-and-insert.md', '# Owner ruling\n\nEO 11877 and EO 14052 examples.')
         first = self.collect()
         self.assertEqual([r['path'] for r in first['current_rulings']],
-                         ['research/readiness/owner_rulings/2026-10-29-x.md'])
+                         ['research/readiness/owner_rulings/2026-10-21-strike-and-insert.md'])
         ruling.write_text('ruling two')
         self.assertNotEqual(self.collect()['current_rulings'], first['current_rulings'])
+
+    def test_grandfathered_manifest_is_the_31_rulings_in_main_on_2026_11_25(self):
+        names = sorted(prior.GRANDFATHERED_GLOBAL_RULINGS)
+        self.assertEqual(len(names), 31)
+        self.assertEqual(prior.sha('\n'.join(names).encode()),
+                         'da5766ad7e8b65d264ff502c9ef8f2ad3a6a9b63a10ef2f13ec4f500a8231389')
+        self.assertTrue(all(n <= '2026-11-25-zzz' and n.endswith('.md') for n in names))
+        real = Path(__file__).resolve().parents[2] / prior.RULING_DIR
+        if real.is_dir():
+            self.assertTrue(set(names) <= {p.name for p in real.glob('*.md')})
+
+    def test_new_ruling_binds_only_the_orders_it_names(self):
+        import contextlib
+        import io
+        for text in ('# Owner decision\n\nAdopt EO 999 and EO:1234A.', 'Executive Order 11782A applies.',
+                     'Executive Orders 9 and 117820 elsewhere.'):
+            with self.subTest(text=text):
+                self.ruling('2026-11-26-other.md', text)
+                self.assertEqual(self.collect(), self.base)
+        quiet = io.StringIO()
+        with contextlib.redirect_stderr(quiet):
+            self.ruling('2026-11-26-other.md', '# Standing rule\n\nApplies to future waves.')
+            self.assertEqual(self.collect(), self.base)
+        self.assertIn('2026-11-26-other.md names no order', quiet.getvalue())
+        rel = prior.RULING_DIR + '/2026-11-26-mine.md'
+        for text in ('# Owner decision\n\nAdopt EO 11782 as proposed.', 'Adopt EO:11782.',
+                     'Executive Order No. 11782 and 11783.', 'Executive Orders 9001, 11782 and 9003.',
+                     'E.O. 11,782 stays.', '# Rule\n\nScope: global\n\nNo order named.',
+                     '---\nscope: Global\n---\nApplies to every order.'):
+            with self.subTest(text=text):
+                self.ruling('2026-11-26-mine.md', text)
+                bound = self.collect()
+                self.assertNotEqual(bound, self.base)
+                self.assertEqual([r['path'] for r in bound['current_rulings']], [rel])
+                self.assertIn(rel, bound['input_file_pins'])
+        (self.repo / rel).unlink()
+        self.assertEqual(self.collect(), self.base)
+
+    def test_ruling_scope_reads_suffixes_lists_and_the_global_marker(self):
+        scope, named = prior.ruling_scope('x.md', 'EO 9242A, 9242-B and Executive Order 10,000; E.O. 7.')
+        self.assertEqual((scope, named), ('named', {'EO:9242A', 'EO:9242B', 'EO:10000', 'EO:7'}))
+        self.assertEqual(prior.ruling_scope('x.md', 'NEO 5 and EO 12553/12379')[1], {'EO:12553', 'EO:12379'})
+        self.assertEqual(prior.ruling_scope('x.md', '# T\n**Scope:** global')[0], 'global')
+        self.assertEqual(prior.ruling_scope('x.md', '# T\nScope: global orders only')[0], 'named')
+        self.assertEqual(prior.ruling_scope('x.md', '\n' * 10 + 'Scope: global')[0], 'named')
+        self.assertEqual(prior.ruling_scope('2026-10-28-light-pushes.md', 'x')[0], 'grandfathered_global')
 
     def test_blinded_control_directory_walk_matches_reveal_scoping(self):
         control = self.write('research/review/blind/C.json', self.claim)

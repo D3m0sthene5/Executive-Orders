@@ -122,6 +122,8 @@ or certification authority.
 
 ## Bounded pilot and efficiency limits
 
+Orders whose frozen claim was later replaced through an owner-approved adoption (`jobs/claim-kit/adopt_replacement.py`) are skipped and listed in `EXEMPTED_ADOPTED_REPLACEMENTS.json` with the adoption receipt path. The receipt (`research/excavator/*/REPLACEMENT_ADOPTION*.json`) must match the frozen and current claim sha256 and the published file's bytes; any other claim change still fails.
+
 `research/valla/pilot-2026-10-20/` freezes five seed cases, three matched controls and
 a separate eight-case sample selected after freezing the patterns. It contains
 exact review records, source-backed alternatives, outcomes, failure history and

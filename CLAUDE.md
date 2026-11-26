@@ -15,6 +15,8 @@
 
 An unranked Bentham refusal is a stop, never advice. The claim kit refuses orders outside the named Bentham action (`jobs/claim-kit/admission.py`). The Savigny supervisor stops lanes on measured spend per verified claim, not on what agents report. See `jobs/augur-launch/README.md`.
 
+**Run waves with Tiro (owner-approved 2026-11-25, Kean F-20261125-staleness-churn, F-20261125-review-calibration):** coordinate claim waves with `jobs/tiro-wave/tiro.py` and follow its README. Run Geddes pre-review checks before blind review, review against `jobs/tiro-wave/RUBRIC.md`, and use its reuse and repair routes instead of re-reviewing. Merge kit or protocol changes, and write owner-ruling files, only between waves; a new ruling file binds only the orders its text names, or every order if it is marked `Scope: global`. Two strikes: if the same failure recurs twice in a wave, stop and fix its cause before continuing.
+
 **Measure before you launch a long job (owner, 2026-11-12, Kean F-20261112-runner-deadline):** a GitHub runner job
 is killed at 6 hours (350-minute workflow timeout) and publishes nothing if it runs into the wall. Before starting any
 job that loops over many items, time 5-10 real items and multiply; never quote a run time you have not measured. Over

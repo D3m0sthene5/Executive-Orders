@@ -114,3 +114,18 @@ acquisition.
 
 `kit.py prepare` exits 0 when every member is dispatchable, 1 when it wrote the packet but some member is
 source-blocked (read `dispatch_check`), and 2 when it refused or failed.
+
+## Which owner rulings and completion files bind prior research (D-20261125-scoped-ruling-pins)
+
+A file in `research/readiness/owner_rulings/` binds a packet only when its text names one of the packet's orders
+(`EO 12345`, `EO:12345`, `E.O. 12345`, `Executive Order No. 12345`, lists such as `Executive Orders 9242A, 9242-B
+and 10,000`, or the order's exact id), or when one of its first 10 lines reads `Scope: global` (in front matter or
+right under the heading; letter case and Markdown emphasis ignored). The 31 rulings present in main on 2026-11-25
+are listed in `prior_research.GRANDFATHERED_GLOBAL_RULINGS` and still bind every order, so an edit to one of them
+still invalidates every packet. A new ruling that names no order and has no `Scope: global` line binds nothing;
+`prepare` and every recheck print a notice for it on stderr, so a standing rule meant for every order must carry
+the marker. Files under `receipts/` directly inside a completion folder (one holding a completion-schema
+`TALLY.json`) are byte copies of what a finished batch read and no longer bind; every other file there still does.
+`python3 jobs/claim-kit/replay_prior_research.py PACKET...` recomputes a packet's context under the old rules (at
+`--baseline-ref`, default HEAD) and the new ones, against the stored `PACKET.json` when present and otherwise over
+the window between the packet's preparation and its next sibling's, and lists what would make it stale.

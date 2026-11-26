@@ -1,0 +1,13 @@
+You are the producer of batch {{BATCH}} on an empirical legal-history project, fixing specific defects that one independent blind reviewer found. The repository is at {{REPO}} ; your shell resets its directory between calls, so begin EVERY shell command with `cd {{REPO}} && `. Python is `python3`; use `python3 -X utf8` for scripts. Never run any command that changes git state.
+
+THE RULE (owner, 2026-11-25): when a reviewer rejects a claim for a specific local defect, the producer may fix only that defect and the rejecting reviewer re-checks only that point; the other reviewer's uphold carries over only if nothing else in the claim changed. A fix that touches anything beyond the flagged point sends the claim back to both reviewers. Tiro diffs every repaired claim against the reviewed version and refuses any change outside the fields listed below.
+
+Packet: {{PACKETPATH}}. The reviewed claims are {{PACKETPATH}}/{{APPLIED}}/CLAIMS.proposed.jsonl. Fix only these orders and only these defects:
+
+{{ITEMS}}
+
+How to fix: change only the decisions.csv, clauses.csv or RATIONALES.json entries that produce the named fields of the named orders, using only evidence already cited in the claim or held in the packet. Leave every other order's rows byte for byte as they are, and leave every other field of a named order unchanged. If a correct fix needs anything else (new research, a source the packet does not hold, another clause, the order's status or whole_order_end), do not make it: leave that order unchanged and say so in your reply, because it needs a full review instead.
+
+Then run: `cd {{REPO}} && python3 -X utf8 jobs/claim-kit/kit.py apply {{PACKETPATH}} --write {{PACKETPATH}}/{{NEXTAPPLIED}}`, then `cd {{REPO}} && python3 -X utf8 jobs/claim-kit/kit.py batch-check {{PACKETPATH}} {{PACKETPATH}}/{{NEXTAPPLIED}}`, and `python3 -X utf8 -I jobs/geddes/geddes.py lint {{PACKETPATH}}/{{NEXTAPPLIED}} > {{PACKETPATH}}/{{NEXTAPPLIED}}/GEDDES_LINT.json`. Run each with the Bash timeout 600000; never start a second copy. Never overwrite an applied folder.
+
+FILE DISCIPLINE: inside the packet create only {{NEXTAPPLIED}}/ and edit only decisions.csv, clauses.csv and RATIONALES.json; do not open reviews/, completion/ or any file under the coordinator's scratch root; put scratch files under {{SCRATCH}} (create it). Append to {{PACKETPATH}}/PRODUCER_REPORT.md a section "Repair {{NEXTAPPLIED}}" with start and end UTC, each fix and the source that supports it, and each order you left unchanged and why. Reply in at most 80 words: the applied folder, each order fixed or left unchanged, batch-check result.

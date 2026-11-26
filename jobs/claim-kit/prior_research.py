@@ -10,6 +10,7 @@ import json
 import os
 from pathlib import Path, PurePath
 import re
+import sys
 
 from assemble import canonical_sha
 
@@ -50,19 +51,8 @@ def id_matcher(ids):
     return lambda raw: search(raw) is not None
 
 
-def is_completion_union_copy(directory, name, cache):
-    """True for TRACKER_CLAIMS.jsonl inside a completion result folder.
-
-    completion.py run_tracker writes that file as a byte copy of the UNION of all
-    canonical claims (the claims already discovered in research/readiness/claims
-    plus the selected lines present in CLAIMS.selected.jsonl). Binding it would tie
-    every target that has a canonical claim to every unrelated batch's completion.
-    Only the file with this name beside a TALLY.json of the completion schema is
-    skipped; CLAIMS.selected.jsonl, CLAIMS.publishable.jsonl, receipts and the same
-    name elsewhere are still discovered.
-    """
-    if name != UNION_COPY:
-        return False
+def is_completion_folder(directory, cache):
+    """True when `directory` holds a TALLY.json of the completion schema (a completion result folder)."""
     if directory not in cache:
         try:
             with open(os.path.join(directory, 'TALLY.json'), 'rb') as handle:
@@ -71,6 +61,99 @@ def is_completion_union_copy(directory, name, cache):
         except (ValueError, OSError):
             cache[directory] = False
     return cache[directory]
+
+
+def is_completion_union_copy(directory, name, cache):
+    """True for TRACKER_CLAIMS.jsonl inside a completion result folder.
+
+    completion.py run_tracker writes that file as a byte copy of the UNION of all
+    canonical claims (the claims already discovered in research/readiness/claims
+    plus the selected lines present in CLAIMS.selected.jsonl). Binding it would tie
+    every target that has a canonical claim to every unrelated batch's completion.
+    Only the file with this name beside a TALLY.json of the completion schema is
+    skipped; CLAIMS.selected.jsonl, CLAIMS.publishable.jsonl and the same name
+    elsewhere are still discovered. Receipts are skipped separately (RECEIPTS).
+    """
+    return name == UNION_COPY and is_completion_folder(directory, cache)
+
+
+# Owner decision D-20261125-scoped-ruling-pins (2026-11-25): completion.py saves byte
+# copies of the repository files a finished batch read under <completion folder>/receipts/
+# (SOURCE_AUDIT_HOLDS.jsonl, MANSFIELD_AUDIT.json and the like, which name many orders).
+# Those copies record what that batch used; they are not research, and the originals stay
+# discovered where they live. A `receipts` directory directly inside a folder with a
+# completion-schema TALLY.json is pruned from discovery, with everything below it.
+RECEIPTS = 'receipts'
+
+
+# Owner decision D-20261125-scoped-ruling-pins: an owner-ruling file binds a target order
+# only when its text names that order or the ruling is marked global. The global marker is
+# a line among the file's first RULING_HEAD_LINES lines that reads `Scope: global` (letter
+# case, surrounding spaces and Markdown emphasis or list/quote markers ignored), e.g. in YAML
+# front matter or right under the first heading. The 31 ruling files present in main when
+# the decision was made stay global by name, so every existing ruling binds every order
+# exactly as before; editing one of them still invalidates every packet.
+RULING_DIR = 'research/readiness/owner_rulings'
+RULING_HEAD_LINES = 10
+GLOBAL_MARKER = re.compile(r'^[\s>*_-]*scope[\s*_]*:[\s*_]*global[\s*_.]*$', re.I)
+GRANDFATHERED_GLOBAL_RULINGS = frozenset((
+    '2026-10-21-eo-10449-never-constituted.md', '2026-10-21-proquest-request.md',
+    '2026-10-21-report-deadline.md', '2026-10-21-status-proposal-adoption.md',
+    '2026-10-21-strike-and-insert.md', '2026-10-21-transcription-as-text.md',
+    '2026-10-21-unnamed-instruments.md', '2026-10-21-until-and-further-exempt.md',
+    '2026-10-28-evidence-not-convenience.md', '2026-10-28-light-pushes.md',
+    '2026-10-28-merge-permission.md', '2026-10-29-final-cross-stream-integration.md',
+    '2026-10-29-integration-merge-permission.md', '2026-10-29-tiered-delegation.md',
+    '2026-10-31-jacquard-and-working-texts.md', '2026-11-04-delegated-answers-to-open-asks.md',
+    '2026-11-05-brave-paid-search.md', '2026-11-05-empty-status-history.md',
+    '2026-11-06-encyclopedie-campaign.md', '2026-11-06-provisional-with-unchecked-original.md',
+    '2026-11-08-haloander-decisions.md', '2026-11-09-impact-scoped-checks.md',
+    '2026-11-09-skipped-witness-flag.md', '2026-11-10-cost-tests.md',
+    '2026-11-10-papinian-asks.md', '2026-11-10-ulpian-l1r-correction.md',
+    '2026-11-10-ulpian-outer-bound.md', '2026-11-24-bartolus-adoption.md',
+    '2026-11-25-adopt-bracton-13.md', '2026-11-25-adopt-upool1-9.md',
+    '2026-11-25-auto-adopt-replacements.md'))
+# 'EO 12345', 'EO:12345', 'E.O. 12345', 'Executive Order No. 12345', 'Executive Orders 9242A,
+# 9242-B and 10,000': each number (with an attached or hyphenated capital suffix) becomes EO:<n><S>.
+_RULING_NUM = r'(\d{1,2},\d{3}|\d{1,5})(?:-?([A-Z]))?(?![A-Za-z0-9])'
+_RULING_MENTION = re.compile(
+    r'(?<![A-Za-z0-9])(?:Executive\s+Orders?|E\.\s?O\.|EOs?)\s*:?\s*(?:(?:Nos?\.?|Numbers?)\s*)?'
+    r'(' + _RULING_NUM + r'(?:\s*(?:,|;|&|/|\band\b|\bor\b)\s*(?:(?:EO|E\.\s?O\.)\s*:?\s*)?' + _RULING_NUM + r')*)', re.I)
+_RULING_ONE = re.compile(_RULING_NUM)
+_unbound_warned = set()
+
+
+def ruling_scope(name, text):
+    """('global', 'grandfathered_global' or 'named', set of named order ids) for one ruling file."""
+    named = set()
+    for mention in _RULING_MENTION.finditer(text):
+        for number, suffix in _RULING_ONE.findall(mention.group(1)):
+            named.add('EO:' + number.replace(',', '') + suffix)
+    if any(GLOBAL_MARKER.match(line) for line in text.splitlines()[:RULING_HEAD_LINES]):
+        return 'global', named
+    if name in GRANDFATHERED_GLOBAL_RULINGS:
+        return 'grandfathered_global', named
+    return 'named', named
+
+
+def binds_ruling(text, scope, named, iid):
+    """A scoped ruling binds an order it names by number or by the order's exact id string."""
+    if scope != 'named':
+        return True
+    if iid in named:
+        return True
+    return re.search(r'(?<![A-Za-z0-9:])' + re.escape(iid) + r'(?![A-Za-z0-9])', text) is not None
+
+
+def ruling_files(repo, ids):
+    """[(repo-relative path, scope, named ids, bound target ids)] for every owner-ruling file."""
+    out = []
+    for path in sorted((repo / RULING_DIR).glob('*.md')):
+        text = path.read_bytes().decode('utf-8', 'replace')
+        scope, named = ruling_scope(path.name, text)
+        out.append((path.relative_to(repo).as_posix(), scope, named,
+                    sorted(i for i in ids if binds_ruling(text, scope, named, i))))
+    return out
 
 
 def under(resolved, roots):
@@ -109,6 +192,8 @@ def scan_research(repo, excluded):
             if is_dir:
                 if excluded_text and under(os.path.join(resolved_root, rel), excluded_text):
                     continue
+                if entry.name == RECEIPTS and is_completion_folder(directory, union_cache):
+                    continue  # a finished batch's receipt copies (D-20261125-scoped-ruling-pins)
                 stack.append((rel, entry.path))
                 continue
             name = entry.name
@@ -481,8 +566,20 @@ def collect(repo, dossiers, exclude=None):
                         pins[rel] = raw_sha
                         manifests[target].append({**record, 'pointer': location + pointer, 'record': row})
 
-    ruling_pins = [pin(path.relative_to(repo).as_posix())
-                   for path in sorted((repo / 'research/readiness/owner_rulings').glob('*.md'))]
+    # Scoped ruling pins (D-20261125-scoped-ruling-pins). The returned context lists only the
+    # rulings that bind these orders, so a ruling for other orders cannot stale this packet. A
+    # ruling that names no order and is not marked global binds nothing; it is reported on
+    # stderr (once per file version) rather than in the context, which would re-bind it.
+    ruling_pins = []
+    for rel, scope, named, bound in ruling_files(repo, ids):
+        if bound:
+            ruling_pins.append(pin(rel))
+        elif scope == 'named' and not named:
+            raw_sha = sha((repo / rel).read_bytes())
+            if (rel, raw_sha) not in _unbound_warned:
+                _unbound_warned.add((rel, raw_sha))
+                print('prior research: owner ruling %s names no order and has no "Scope: global" line; '
+                      'it binds no packet' % rel, file=sys.stderr)
     adoption_rows = {}
     authority = repo / 'research/progress/DECIDED_CASE_COMPLETENESS_RECONCILED.csv'
     if any(status_decisions.values()) or any(status_reviews.values()) or any(status_holds.values()):
