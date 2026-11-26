@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45888003928-1:0c433378eb4e9c2942f6bcf3d15cc3f802852c55128b44aafa5da30e1c05e529` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45898373940-1:a49df45d73a295188f54b3cc11f3469d1cd06e37dcd78b215e6101b9ccd8203c` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -92,7 +92,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 - isthmian-canal-1911: 105
 - indian-reservations-1912: 55
 - tischendorf-originals: 300
-- mabillon-held-printings: 2,037
+- mabillon-held-printings: 2,039
 - photius-gpo-volumes: 3,679
 - photius-csc-printings: 143
 - photius-free-printings: 471
