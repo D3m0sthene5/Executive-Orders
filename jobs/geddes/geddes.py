@@ -31,6 +31,7 @@ import event_checks as EC
 import name_checks as NC
 import consistency_checks as CON
 import citing_checks as CIT
+import prereview_checks as PRE
 
 SCHEMA = "geddes-lint/v1"
 FR_RE = re.compile(r"(?<!\w)(\d{1,3})\s+F\.?\s*R\.?\s+(\d+)(?!\d)", re.I)
@@ -271,7 +272,7 @@ def lint_one(line, claim, dossiers, repo: Path, packet_path=None, corpus_cache=N
                 "coverage_gaps": [{"code": "packet_member_missing"}]}
     cache = {} if corpus_cache is None else corpus_cache
     flags, gaps = [], []
-    for name, module in (("source", SC), ("citation", CC), ("event", EC), ("name", NC), ("consistency", CON), ("citing", CIT)):
+    for name, module in (("source", SC), ("citation", CC), ("event", EC), ("name", NC), ("consistency", CON), ("citing", CIT), ("prereview", PRE)):
         # Citing checks share the name module's snapshot-verified corpus cache.
         result = module.check(claim, dossier, repo, packet_path, cache.setdefault("name" if module is CIT else name, {}))
         flags.extend(result["flags"])

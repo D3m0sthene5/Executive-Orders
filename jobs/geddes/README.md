@@ -114,6 +114,48 @@ with explicit track counts or a `--filed-manifest` JSON sidecar such as
 `{"filed_claims":{"NRA":127,"General":127}}`. Missing telemetry remains
 unknown.
 
+## Pre-review checks
+
+`prereview_checks.py` runs inside `lint` (and therefore inside `kit.py batch-check`) and adds five
+flags for defects that blind reviewers rejected on 2026-11-25. Each one compares the claim with
+itself or with its own hash-pinned held text, uses no model, and is advisory: resolve each flag as
+`fixed_in_new_version` or `disputed` in `GEDDES_RESOLUTIONS.json` like any other flag.
+
+- `count_contradicts_records`: an explanatory field (the research rationale and its embedded
+  member checks, a clause's judgment reason or legal basis, the savings reason, source notes) says
+  that 0 (or some other number of) continuation notices are held, or that no instrument amends the
+  order or the clause, while `later_events` record such notices or amendments. A sentence naming
+  another order, or limited by words such as "other than", "after" or "until", is skipped. Only the
+  leading term of an event's `mechanism` classifies it, because the rest often says what the event
+  is not. A clause-level sentence about "the clause" or "it" is compared with that clause's events;
+  a sentence about "the order" is compared with every clause's events.
+- `emergency_declaration_unsupported`: the prose says this order declares a national emergency
+  ("the national emergency it declares", "declared in this order", "declared in Executive Order
+  <this number>"), but the held original text has no declaring words such as "hereby declare a
+  national emergency". The flag asks for a check; it does not decide whether the order declares one.
+- `page_label_excludes_span`: a cited source's `page_or_item` names PDF pages ("PDF page 1 (cover)")
+  that do not contain the page on which its cited character span lies. Pages come from the
+  `=== PDF page N of M ===` markers or form-feed breaks in the held text. A label whose range
+  contains the span ("PDF pages 1-8" for a span on pages 1-2) is not flagged. The span must match
+  the record's quote, or the record is reported as a coverage gap instead.
+- `date_before_signing`: a `first_end`, `whole_order_end` or later-event date precedes the
+  order's signing date (the dossier's, else the claim's original representation).
+- `end_year_conflicts_reasons`: a structured end date never appears in its own reasons, while the
+  reasons give the same month and day in a different year. For later events, only sentences that
+  name the acting instrument by number are compared, because annual notices share a month and day.
+
+Calibration on the 380 applied claim versions of `claude-baldus-2026-11-25` and
+`claude-baldus2-2026-11-25`, against their blind reviews (matched by claim hash):
+`count_contradicts_records` flagged 3 orders (EO 13413, 13694, 13894); reviewers cited the
+contradiction for 13413 and 13694, and 13894's legal basis says no instrument amends the clause
+while the clause records EO 14142 and EO 14312. `emergency_declaration_unsupported` flagged 7
+orders (EO 13984 and six Russia orders from y19); every reviewed one was rejected for it.
+`page_label_excludes_span` flagged the five m02 `PDF page 1 (cover)` labels, all cited by a
+reviewer, and none in the corrected m02 version. The two date checks flagged no genuine claim; on
+the 40 reconstructed planted control versions (dates moved back three years, rebuilt to the
+planted hash) they flagged 39. Because they catch the coordinator's planted controls, do not show
+lint output for a planted version to its blind reviewers.
+
 ## Claim-kit wiring, flag ids, the gate and run comparison
 
 `python3 jobs/claim-kit/kit.py batch-check <packet> <applied>` now runs the Geddes
