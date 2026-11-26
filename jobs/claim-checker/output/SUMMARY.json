@@ -234,21 +234,22 @@
   "claims_parse_errors": 0,
   "claims_checker_errors": 0,
   "orders_with_claim": 1697,
-  "claims_all_checks_passed": 1890,
-  "claims_mechanical_pass": 1976,
+  "claims_all_checks_passed": 1894,
+  "claims_mechanical_pass": 1980,
   "claims_mechanical_unverified": 2,
-  "claims_mechanical_fail": 80,
+  "claims_mechanical_fail": 76,
   "claims_gate_passed": 1968,
   "steps_checker_passed_effective_claims": {
-    "original_text": 1622,
-    "clause_inventory": 1611,
-    "ending_or_current_basis": 1574,
-    "savings_residuals": 1598,
-    "counterevidence": 1599
+    "original_text": 1625,
+    "clause_inventory": 1614,
+    "ending_or_current_basis": 1577,
+    "savings_residuals": 1601,
+    "counterevidence": 1602
   },
   "check_results": {
     "source_held": {
-      "pass": 28017,
+      "fail": 2,
+      "pass": 28015,
       "skip": 3
     },
     "source_identity": {
@@ -256,7 +257,8 @@
     },
     "quote_verbatim": {
       "fail": 7,
-      "pass": 36120
+      "pass": 36098,
+      "skip": 22
     },
     "date_valid": {
       "pass": 42528
@@ -269,7 +271,7 @@
       "warn": 12
     },
     "working_text_policy": {
-      "fail": 1074,
+      "fail": 962,
       "pass": 673
     },
     "factual_event_policy": {},
@@ -283,7 +285,8 @@
   "source_status_counts": {
     "custody_record_only": 3,
     "custody_text_only": 13,
-    "custody_text_only_disclosed": 4,
+    "custody_text_only_disclosed": 2,
+    "custody_text_only_disclosure_mismatch": 2,
     "gpo_published_hash_match": 10923,
     "held_bytes_in_release_or_repo": 123,
     "held_bytes_verified": 16954
@@ -292,9 +295,10 @@
     "recorded_for_this_order": 11006
   },
   "quote_status_counts": {
-    "exact": 36109,
+    "exact": 36087,
     "normalised": 11,
-    "not_found": 7
+    "not_found": 7,
+    "source_text_not_available": 22
   },
   "source_status_policy": {
     "held_bytes_verified": "pass",
@@ -305,8 +309,8 @@
   },
   "claim_checks_csv": {
     "mode": "non_pass_rows",
-    "rows_written": 1829,
-    "rows_total": 152057,
+    "rows_written": 1741,
+    "rows_total": 151945,
     "max_mb": 50.0,
     "note": "passing rows are left out unless CLAIM_CHECKER_CSV_ALL_ROWS=1; per-check pass counts are in PER_CLAIM.json check_counts"
   },
@@ -315,7 +319,7 @@
     "jobs/app-transcriptions/output/SOURCES.jsonl": 9902,
     "jobs/astra-source-retention/output/SOURCES.jsonl": 317,
     "jobs/cassiodorus/output/SOURCES.jsonl": 298,
-    "jobs/clark-discovery/output/SOURCES.jsonl": 284,
+    "jobs/clark-discovery/output/SOURCES.jsonl": 229,
     "jobs/clause-drafts/output/SOURCES.jsonl": 9798,
     "jobs/cotton-capture-custody/output/SOURCES.jsonl": 759,
     "jobs/cruden-fr-concordance/output/SOURCES.jsonl": 928,
@@ -332,7 +336,7 @@
     "jobs/isthmian-canal-1911/data/PROVENANCE.json": 1,
     "jobs/isthmian-canal-1911/output/FRAGMENTS.jsonl": 105,
     "jobs/later-events/output/SOURCES.jsonl": 16791,
-    "jobs/lewis-originals/output/SOURCES.jsonl": 431,
+    "jobs/lewis-originals/output/SOURCES.jsonl": 392,
     "jobs/mabillon-held-printings/output/SOURCES.jsonl": 2037,
     "jobs/numbered-early-orders/output/SOURCES.jsonl": 197,
     "jobs/ofr-codification-1989/data/PROVENANCE.json": 1,
@@ -341,17 +345,17 @@
     "jobs/opus-media-match/output/SOURCES.jsonl": 496,
     "jobs/peano-formulario/output/SOURCES.jsonl": 33,
     "jobs/pinakes-proquest-ingest/output/FRAGMENTS.jsonl": 4841,
-    "jobs/pothier/output/SOURCES.jsonl": 94,
+    "jobs/pothier/output/SOURCES.jsonl": 96,
     "jobs/ptolemy-custody/output/SOURCES.jsonl": 3060,
     "jobs/repetita-lsa/output/SOURCES.jsonl": 729,
     "jobs/richardson-volumes/data/PROVENANCE.json": 3,
     "jobs/richardson-volumes/output/FRAGMENTS.jsonl": 68,
     "jobs/selden-fr-acting/output/SOURCES.jsonl": 1361,
     "jobs/selden-fr-citers/output/SOURCES.jsonl": 4820,
-    "jobs/selden-statutes/output/SOURCES.jsonl": 1912,
+    "jobs/selden-statutes/output/SOURCES.jsonl": 1895,
     "jobs/shepard-citations/output/SOURCES.jsonl": 24,
     "jobs/source-ladder/output/SOURCES.jsonl": 1100,
-    "jobs/theophilus-sources/output/SOURCES.jsonl": 1377,
+    "jobs/theophilus-sources/output/SOURCES.jsonl": 1237,
     "jobs/wikisource-texts/output/SOURCES.jsonl": 1639,
     "jobs/youngstown-courts/output/SOURCES.jsonl": 1137,
     "opus_media_member_map": 496,
@@ -363,7 +367,7 @@
     "stage21_acquisition_log": 406,
     "stage21_custody": 385
   },
-  "held_distinct_sha256": 61213,
+  "held_distinct_sha256": 61022,
   "opus_text_pack_texts": 0,
   "signing_dates_loaded": {
     "identity_layer_year_only": 14843,
