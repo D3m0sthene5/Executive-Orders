@@ -56,6 +56,39 @@ def correction_safety(repo, packet, expected_claims):
     return proof
 
 
+ADOPTION_RECEIPTS = 'research/excavator/*/REPLACEMENT_ADOPTION*.json'
+ADOPTION_SCHEMA = 'eo-claim-kit-replacement-adoption/v1'
+
+
+def adopted_replacement(repo, iid, frozen, current):
+    """Receipt path if the owner-approved adoption tool replaced the frozen claim with the current one.
+
+    The receipt written by jobs/claim-kit/adopt_replacement.py must name the order with the frozen
+    claim's exact path, line and sha256 under `replaces`, and the current claim's sha256 and line,
+    in the claims file it published, whose bytes must still match the receipt's sha256."""
+    for receipt_path in sorted(Path(repo).glob(ADOPTION_RECEIPTS)):
+        try:
+            receipt = json.loads(receipt_path.read_text('utf-8'))
+        except ValueError:
+            continue
+        if not isinstance(receipt, dict) or receipt.get('schema') != ADOPTION_SCHEMA or not receipt.get('decision'):
+            continue
+        pub = receipt.get('publication') or {}
+        if pub.get('path') != current['path']:
+            continue
+        target = Path(repo) / pub['path']
+        if not target.is_file() or V.file_sha(target) != pub.get('sha256'):
+            continue
+        for row in receipt.get('claims', []):
+            old = row.get('replaces') or {}
+            if (row.get('instrument_id') == iid and row.get('claim_sha256') == current['claim_sha256']
+                    and row.get('line') == current['line']
+                    and (old.get('path'), old.get('line'), old.get('claim_sha256')) ==
+                    (frozen['path'], frozen['line'], frozen['claim_sha256'])):
+                return receipt_path.relative_to(Path(repo).resolve()).as_posix()
+    return None
+
+
 def run(repo, out, run_id):
     repo = Path(repo).resolve(); out = Path(out).resolve()
     if out.exists():
@@ -66,9 +99,18 @@ def run(repo, out, run_id):
         raise ValueError('pilot patterns changed after sample freeze')
     before_claims = V.pins(repo, [r['path'] for r in sample['claims'].values()])
     active, _ = V.active_claims(repo)
+    exempted = {}
     for iid, ref in sample['claims'].items():
         if active[iid]['ref'] != ref:
-            raise ValueError('pilot claim changed: ' + iid)
+            receipt = adopted_replacement(repo, iid, ref, active[iid]['ref'])
+            if not receipt:
+                raise ValueError('pilot claim changed: ' + iid)
+            exempted[iid] = {'adoption_receipt': receipt, 'frozen_claim': ref, 'current_claim': active[iid]['ref']}
+    sample['seed'] = [i for i in sample['seed'] if i not in exempted]
+    sample['claims'] = {i: r for i, r in sample['claims'].items() if i not in exempted}
+    V.dump(out / 'EXEMPTED_ADOPTED_REPLACEMENTS.json', exempted)
+    for iid, e in exempted.items():
+        print('exempt (adopted replacement): %s receipt=%s' % (iid, e['adoption_receipt']))
     index = V.build(repo); V.dump(out / 'INDEX.json', index)
     V.dump(out / 'SUMMARY.json', index['summary'])
     sys.path.insert(0, str(repo / 'jobs/claim-kit'))
@@ -159,6 +201,7 @@ def run(repo, out, run_id):
     proof = {'schema': 'valla-integrated-pilot/v1', 'head': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=repo, text=True).strip(),
              'validation_mode': 'current-blocker-retention; historical attestations are not renewed',
              'correction_safety': safety,
+             'exempted_adopted_replacements': {i: e['adoption_receipt'] for i, e in exempted.items()},
              'code_pins': V.pins(repo, ['jobs/valla/valla.py', 'jobs/valla/pilot.py', 'jobs/claim-kit/batch.py', 'jobs/mountweazel/paired.py']),
              'github_run_id': os.environ.get('GITHUB_RUN_ID'), 'valla_summary': index['summary'],
              'index_fingerprint': index['fingerprint'], 'canonical_claims_unchanged': True,
