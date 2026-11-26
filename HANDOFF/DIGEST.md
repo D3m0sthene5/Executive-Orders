@@ -10,7 +10,7 @@ New York date: 2026-11-26. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45873042843-1:3ce53aa0a4bbec2e6cd4f2b5dac1894206318745df20412df86bca577f9f383b` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45881602035-1:026a2e798da0b93acdd236639234511e684fa02439552ec9108e81244e519f76` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -29,6 +29,7 @@ Comparison snapshot: 2026-11-25; intervening runs may be absent.
 - claim-checker: claims_all_checks_passed: 1890 → 1888; claims_mechanical_fail: 80 → 82; claims_mechanical_pass: 1976 → 1974; held_distinct_sha256: 61213 → 60435
 - claim-drafts: decided_orders_with_draft: 3792 → 3801; drafts_whose_only_remaining_gaps_are_judgment_fields: 1157 → 1158; of_which_decided: 1157 → 1158; orders_with_any_conflict: 952 → 954
 - domesday-register: orders: 15002 → 15003; with_any_text_file: 14908 → 14918; with_date: 14996 → 14997; with_title: 14947 → 14948
+- family-rules: saved_texts_scanned: 87091 → 90116
 - gessner-cards: president_unknown_no_date: 59 → 57; presidents_derived_from_date: 4952 → 4953; presidents_from_register: 9991 → 9992; ready_for_human_review: 1393 → 1391
 - kean: decisions: 92 → 110; findings: 382 → 420; open_owner_questions: 9 → 10
 - lachmann: assessed: 952 → 953; complete_text_confirmed: 858 → 859; confirmed: 808 → 809; identity_confirmed: 862 → 863
@@ -76,4 +77,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45873042843)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45881602035)
