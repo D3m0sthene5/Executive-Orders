@@ -1,6 +1,6 @@
 # Daily research digest
 
-New York date: 2026-11-26. Generated mechanically; all findings remain provisional.
+New York date: 2026-11-27. Generated mechanically; all findings remain provisional.
 
 ## Tracker headline
 
@@ -10,7 +10,7 @@ New York date: 2026-11-26. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45932060498-1:82aff3fd66710c4ab6745f1d5979f217f331d51f4ecb574621cf49d978c32aca` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `46004904043-1:28e0fdeeaeb39152508780a95451807b047bcb275aa8f1f29b6ef840038ac51b` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -25,27 +25,7 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 
 ## Changes since the previous day
 
-Comparison snapshot: 2026-11-25; intervening runs may be absent.
-- claim-checker: claims_all_checks_passed: 1890 → 1894; claims_mechanical_fail: 80 → 76; claims_mechanical_pass: 1976 → 1980; held_distinct_sha256: 61213 → 61077
-- claim-drafts: decided_orders_with_draft: 3792 → 3801; drafts_whose_only_remaining_gaps_are_judgment_fields: 1157 → 1158; of_which_decided: 1157 → 1158; orders_with_any_conflict: 952 → 954
-- domesday-register: orders: 15002 → 15003; with_any_text_file: 14908 → 14918; with_date: 14996 → 14997; with_title: 14947 → 14948
-- family-rules: saved_texts_scanned: 87091 → 89882
-- gessner-cards: one_step_from_ready: 192 → 193; president_unknown_no_date: 59 → 57; presidents_derived_from_date: 4952 → 4953; presidents_from_register: 9991 → 9992
-- kean: decisions: 92 → 113; findings: 382 → 422; open_owner_questions: 9 → 10
-- lachmann: assessed: 952 → 953; complete_text_confirmed: 858 → 859; confirmed: 808 → 809; identity_confirmed: 862 → 863
-- lambertini: decided_orders_with_draft: 3788 → 3801; packet_targets: 851 → 852; pool_LAMBC: 403 → 588; pool_LAMBS: 44 → 48
-- larrey-triage: orders_with_compiled_inputs: 15002 → 15003
-- mabillon-held-printings: passages: 2482 → 2484; strong: 1787 → 1789; targets: 2037 → 2039
-- official-fixity: carried_forward: 7358 → 7352; files: 7358 → 7352
-- readiness-tracker: original_replacement_obligations: 884 → 847; quotation_recheck_obligations: 884 → 847; ready_for_human_review: 1393 → 1395; text_step_provisional_working_text: 284 → 252
-- selden-fr-citers: bytes_downloaded: 855827 → 0; requests: 71 → 0; targets_searched_total: 13537 → 13538; targets_total: 13207 → 13061
-- selden-statutes: attempted: 1937 → 1920; committed_pdf_bytes: 169760052 → 168939459; held: 1912 → 1895; orders_with_held_basis_statute: 4123 → 4071
-- shepard-citations: land_targets: 3535 → 3558; land_targets_with_any_edge: 1070 → 1079; land_targets_with_ending_candidate: 626 → 631
-- source-ladder: attempts_logged: 175 → 184; bytes_downloaded: 136472728 → 96729236; distinct_new_source_hashes: 3 → 0; embedded_cite_items: 9 → 10
-- status-history: printed_snapshot_undecided_identities: 2219 → 2217; undecided_with_history: 4744 → 4735; undecided_with_own_observation: 4572 → 4563
-- theophilus-sources: cfr_targets_planned: 529 → 414; eligible_yes_orders: 298 → 223; failures_total: 68 → 51; usc_sections_planned: 217 → 183
-- tischendorf-originals: bytes_downloaded: 869456604 → 1283327118; leads: 608 → 185; replacement_strong: 36 → 71; replacement_targets: 698 → 736
-- tsiolkovsky-trajectory: W_hours: 6842.0 → 7071.2; W_max_hours: 18195.0 → 18196.2; a_hours_per_day2_latest: 0.65 → 37.85; days: 39 → 41
+Comparison snapshot: 2026-11-26; intervening runs may be absent.
 
 ## Top shared unlocks
 
@@ -78,4 +58,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/45932060498)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/46004904043)
