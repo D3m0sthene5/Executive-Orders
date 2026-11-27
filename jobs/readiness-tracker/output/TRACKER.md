@@ -4,7 +4,7 @@
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `45898373940-1:a49df45d73a295188f54b3cc11f3469d1cd06e37dcd78b215e6101b9ccd8203c` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `45927477286-1:6315ed9ad60ab0bc741f48a13cdfca89c537db5e4b14e28870ce7ec518f0a57f` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
