@@ -17,8 +17,8 @@ Strict level (opt-in, `LARREY_LEVEL=strict`): 2704 admitted; strict gates failed
 |---|---:|---:|---|---|
 | original_not_usable | 331 | 331 | an official original, or a working text the route accepts |  |
 | soft:nea_continuation_notice_not_held | 99 | 99 | the National Emergencies Act continuation notices through 2026-10-14 | acquire.nea_continuation_notices |
-| no_held_text | 4 | 0 | an official original, or a working text the route accepts |  |
 | no_clause_inventory | 4 | 0 | a machine clause inventory (segmenter) |  |
+| no_held_text | 4 | 0 | an official original, or a working text the route accepts |  |
 
 ### status_only: 7093 of 11202 kept out (advisory: kit code changed since the back-test)
 
@@ -26,10 +26,10 @@ Strict level (opt-in, `LARREY_LEVEL=strict`): 3757 admitted; strict gates failed
 
 | Reason | Orders (any) | Orders (sole reason) | What admits them | Bentham action |
 |---|---:|---:|---|---|
-| soft:no_later_order_text_held | 6210 | 1931 | a held text of a later instrument acting on the order |  |
-| no_status_basis_record | 3519 | 0 | a held ending instrument, own-terms text or current-status record (or the Accursius F3/F5 route fixes that frame held ones) |  |
-| original_not_usable | 2061 | 460 | an official original, or a working text the route accepts |  |
-| soft:page_check_owed | 1050 | 175 | a page/image check of the official printing | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK |
+| soft:no_later_order_text_held | 6208 | 1931 | a held text of a later instrument acting on the order |  |
+| no_status_basis_record | 3520 | 0 | a held ending instrument, own-terms text or current-status record (or the Accursius F3/F5 route fixes that frame held ones) |  |
+| original_not_usable | 2090 | 452 | an official original, or a working text the route accepts |  |
+| soft:page_check_owed | 1055 | 166 | a page/image check of the official printing | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK |
 | no_held_text | 55 | 19 | an official original, or a working text the route accepts |  |
 
 ### undecided_full: 7093 of 11202 kept out (advisory: kit code changed since the back-test)
@@ -38,10 +38,10 @@ Strict level (opt-in, `LARREY_LEVEL=strict`): 3757 admitted; strict gates failed
 
 | Reason | Orders (any) | Orders (sole reason) | What admits them | Bentham action |
 |---|---:|---:|---|---|
-| soft:no_later_order_text_held | 6210 | 1931 | a held text of a later instrument acting on the order |  |
-| no_status_basis_record | 3519 | 0 | a held ending instrument, own-terms text or current-status record (or the Accursius F3/F5 route fixes that frame held ones) |  |
-| original_not_usable | 2061 | 460 | an official original, or a working text the route accepts |  |
-| soft:page_check_owed | 1050 | 175 | a page/image check of the official printing | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK |
-| no_held_text | 55 | 0 | an official original, or a working text the route accepts |  |
+| soft:no_later_order_text_held | 6208 | 1931 | a held text of a later instrument acting on the order |  |
+| no_status_basis_record | 3520 | 0 | a held ending instrument, own-terms text or current-status record (or the Accursius F3/F5 route fixes that frame held ones) |  |
+| original_not_usable | 2090 | 452 | an official original, or a working text the route accepts |  |
+| soft:page_check_owed | 1055 | 166 | a page/image check of the official printing | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK |
 | no_clause_inventory | 55 | 0 | a machine clause inventory (segmenter) |  |
+| no_held_text | 55 | 0 | an official original, or a working text the route accepts |  |
 
