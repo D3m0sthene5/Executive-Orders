@@ -10,7 +10,7 @@ New York date: 2026-11-27. Generated mechanically; all findings remain provision
 
 Unnumbered series (class catalogued_unnumbered, a separate denominator, no readiness count): 1,816 identities observed, a lower bound. Not part of the numbered-series proportion above.
 
-Generation: `46063216154-1:25db4b0ea68a99f853e21e31a10ce77e9b7919663d96942de3f78b3509a71149` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
+Generation: `46088413618-1:caac133b27fdf123ac32a016d4429b700f5be0f79a24e9c97e9ea22fe44cf54c` (the same id is in SUMMARY.json, READINESS_BY_ORDER.csv and STATUS.json).
 
 An order is ready when the machines have finished every step it needs: each step is backed by a saved
 source or a claim that passes the Stage 19 claim gate, or is recorded as searched to the end in
@@ -26,10 +26,12 @@ Text step provisional on a confirmed working text (separate from `done`, never a
 ## Changes since the previous day
 
 Comparison snapshot: 2026-11-26; intervening runs may be absent.
+- claim-checker: held_distinct_sha256: 61077 → 60984
 - family-rules: saved_texts_scanned: 89882 → 90036
 - lachmann: assessed: 953 → 958; complete_text_confirmed: 859 → 831; confirmed: 809 → 778; identity_confirmed: 863 → 867
 - readiness-tracker: original_replacement_obligations: 847 → 850; quotation_recheck_obligations: 847 → 850; text_step_provisional_working_text: 252 → 255; working_text_confirmations_counting: 809 → 778
 - source-ladder: attempts_logged: 184 → 178; bytes_downloaded: 96729236 → 96729227; embedded_cite_items: 10 → 9; http_requests: 58 → 51
+- theophilus-sources: failures_total: 51 → 724; orders_named_in_notices: 162 → 0
 
 ## Top shared unlocks
 
@@ -62,4 +64,4 @@ A failed attempt preserves the prior successful output. Newer failure receipts a
 - photius-free-printings: unknown (no run link)
 - photius-gpo-volumes: unknown (no run link)
 - photius-replica-check: unknown (no run link)
-[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/46063216154)
+[Current workflow status and retained attempt artifacts](https://github.com/D3m0sthene5/Executive-Orders/actions/runs/46088413618)
