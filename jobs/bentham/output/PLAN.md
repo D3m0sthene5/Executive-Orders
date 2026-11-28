@@ -11,19 +11,19 @@ Weekly allowance: not recorded, so no percent-of-week figures. Record one measur
 | 3 | acquire.shared.EO_6964 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 4 | acquire.shared.EO_6910 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
 | 5 | acquire.shared.CFR_26_CFR_458.324 | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
-| 6 | recovery.working_text_stale | recovery | 2 | 1.3 | 0.0 | $0.46 | 276.7 | $0.46 |
-| 7 | recovery.custody_stranded | recovery | 5 | 3.2 | 0.0 | $1.15 | 276.7 | $1.61 |
-| 8 | production.one_step_away | production | 192 | 122.6 | 0.0 | $64 | 192.0 | $65 |
-| 9 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 1 | 0.0 | 0.2 | $0.18 | 128.0 | $66 |
+| 6 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.1 | free | ∞ | free |
+| 7 | recovery.working_text_stale | recovery | 2 | 1.3 | 0.0 | $0.46 | 276.7 | $0.46 |
+| 8 | recovery.custody_stranded | recovery | 5 | 3.2 | 0.0 | $1.15 | 276.7 | $1.61 |
+| 9 | production.one_step_away | production | 193 | 123.2 | 0.0 | $64 | 192.0 | $66 |
 | 10 | production.claim_ready.yes.fr | production | 223 | 52.0 | 0.0 | $74 | 70.2 | $140 |
-| 11 | status_assignment.undecided | status_assignment | 11202 | 1120.2 | 0.0 | $3,725 | 30.1 | $3,864 |
-| 12 | production.claim_ready.no.fr | production | 1042 | 34.7 | 0.0 | $346 | 10.0 | $4,211 |
-| 13 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,211 |
-| 14 | acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,211 |
-| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $4,211 |
-| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,211 |
-| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,211 |
-| 18 | acquire.cruden_fr_statute_concordance | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,211 |
+| 11 | acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK | acquisition | 4 | 0.0 | 0.3 | $0.71 | 45.7 | $141 |
+| 12 | status_assignment.undecided | status_assignment | 11202 | 1120.2 | 0.0 | $3,725 | 30.1 | $3,865 |
+| 13 | production.claim_ready.no.fr | production | 1032 | 34.4 | 0.0 | $343 | 10.0 | $4,208 |
+| 14 | acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,208 |
+| 15 | zero_agent.opus_media_refetch | zero_agent | 0 | 0.0 | 0.0 | free | 0.0 | $4,208 |
+| 16 | acquire.nea_continuation_notices | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,208 |
+| 17 | acquire.current_law_sections | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,208 |
+| 18 | acquire.cruden_fr_statute_concordance | acquisition | 0 | 0.0 | 0.0 | free | 0.0 | $4,208 |
 
 Context per attempted order (last measured production wave): 751,017 tokens, of which 723,973 cache reads; 3.6 model turns. Smaller packets and fewer turns lower every production cost above.
 
@@ -57,8 +57,8 @@ Measured waves (Kean findings' structured measures; list-price dollars; not pool
 
 Ranking by subscription window tokens (cache reads weighted 1.0 and 0.1; the plan's real weighting is not published):
 
-- cache_read_weight_1.0: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, recovery.working_text_stale, recovery.custody_stranded, production.one_step_away ...
-- cache_read_weight_0.1: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, recovery.working_text_stale, recovery.custody_stranded, production.one_step_away ...
+- cache_read_weight_1.0: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, recovery.working_text_stale, recovery.custody_stranded ...
+- cache_read_weight_0.1: acquire.shared.EO_4314, acquire.shared.EO_6868, acquire.shared.EO_6964, acquire.shared.EO_6910, acquire.shared.CFR_26_CFR_458.324, acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND, recovery.working_text_stale, recovery.custody_stranded ...
 - No rank flips against the dollar ranking.
 
 The choice of actions within budget does not change between 30- and 180-day discounts.

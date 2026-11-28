@@ -91,6 +91,24 @@
       "share_of_week": null
     },
     {
+      "id": "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
+      "kind": "acquisition",
+      "orders": 0,
+      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 170 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "notes": [],
+      "expected_now": 0.0,
+      "fecundity": 0.1,
+      "value": 0.1,
+      "cost_usd": 0.0,
+      "cost_basis": "machine or zero-agent work: no model tokens",
+      "per_usd": Infinity,
+      "cost_key": null,
+      "within_budget": true,
+      "cumulative_usd": 0.0,
+      "cumulative_value": 0.9,
+      "share_of_week": null
+    },
+    {
       "id": "recovery.working_text_stale",
       "kind": "recovery",
       "orders": 2,
@@ -113,7 +131,7 @@
       "cost_key": "review.per_submitted",
       "within_budget": true,
       "cumulative_usd": 0.46,
-      "cumulative_value": 2.1,
+      "cumulative_value": 2.2,
       "share_of_week": null
     },
     {
@@ -139,13 +157,13 @@
       "cost_key": "review.per_submitted",
       "within_budget": true,
       "cumulative_usd": 1.61,
-      "cumulative_value": 5.3,
+      "cumulative_value": 5.4,
       "share_of_week": null
     },
     {
       "id": "production.one_step_away",
       "kind": "production",
-      "orders": 192,
+      "orders": 193,
       "description": "Close the single open step of orders that already have a claim and exactly one applicable step open. Excludes recovery orders.",
       "notes": [],
       "rate": {
@@ -156,35 +174,16 @@
         "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 122.6,
+      "expected_now": 123.2,
       "fecundity": 0.0,
-      "value": 122.6,
-      "cost_usd": 63.84,
-      "cost_basis": "192 x 0.33 USD (attempted_order)",
+      "value": 123.2,
+      "cost_usd": 64.17,
+      "cost_basis": "193 x 0.33 USD (attempted_order)",
       "per_usd": 1.9204898855013672,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 65.45,
-      "cumulative_value": 127.9,
-      "share_of_week": null
-    },
-    {
-      "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
-      "kind": "acquisition",
-      "orders": 1,
-      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 37 includes undecided orders, which unlock nothing until they have a provisional status)",
-      "notes": [],
-      "probe_cost_usd": 0.18,
-      "expected_now": 0.0,
-      "fecundity": 0.2,
-      "value": 0.2,
-      "cost_usd": 0.18,
-      "cost_basis": "1 x 0.18 USD (attempted_order)",
-      "per_usd": 1.2796103075112808,
-      "cost_key": "production.per_attempt",
-      "within_budget": true,
-      "cumulative_usd": 65.63,
-      "cumulative_value": 128.1,
+      "cumulative_usd": 65.78,
+      "cumulative_value": 128.6,
       "share_of_week": null
     },
     {
@@ -193,7 +192,7 @@
       "orders": 223,
       "description": "Draft whole-lifecycle dossiers for provisional-YES, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
       "notes": [
-        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
+        "Larrey triage not applied: Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
       ],
       "rate": {
         "key": "filed_per_attempt.yes.fr",
@@ -211,8 +210,27 @@
       "per_usd": 0.7017639141360342,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 139.78,
-      "cumulative_value": 180.1,
+      "cumulative_usd": 139.93,
+      "cumulative_value": 180.6,
+      "share_of_week": null
+    },
+    {
+      "id": "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
+      "kind": "acquisition",
+      "orders": 4,
+      "description": "Check the page location of fr-originals and official-compilation finds marked medium/low confidence (tracker reach 75 includes undecided orders, which unlock nothing until they have a provisional status)",
+      "notes": [],
+      "probe_cost_usd": 0.71,
+      "expected_now": 0.0,
+      "fecundity": 0.3,
+      "value": 0.3,
+      "cost_usd": 0.71,
+      "cost_basis": "4 x 0.18 USD (attempted_order)",
+      "per_usd": 0.45700368125402885,
+      "cost_key": "production.per_attempt",
+      "within_budget": true,
+      "cumulative_usd": 140.64,
+      "cumulative_value": 180.9,
       "share_of_week": null
     },
     {
@@ -221,7 +239,7 @@
       "orders": 11202,
       "description": "Assign a provisional YES/NO status with a whole-lifecycle dossier for orders the ledger has not decided (claim-kit undecided route, explicit empty status history). A contested or uncertain status is filed as such.",
       "notes": [
-        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
+        "Larrey triage not applied: Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
       ],
       "rate": {
         "key": "filed_per_attempt.undecided",
@@ -239,17 +257,17 @@
       "per_usd": 0.30075596320115755,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 3864.39,
-      "cumulative_value": 1300.3,
+      "cumulative_usd": 3865.25,
+      "cumulative_value": 1301.1,
       "share_of_week": null
     },
     {
       "id": "production.claim_ready.no.fr",
       "kind": "production",
-      "orders": 1042,
+      "orders": 1032,
       "description": "Draft whole-lifecycle dossiers for provisional-NO, Federal Register-era orders whose original text (done or provisional) and counterevidence are done and whose clause inventory, ending/current basis and savings/residuals are open. Excludes orders held by an unretrieved shared source, a quarantined relationship or an open source audit, and the custody-stranded recovery orders.",
       "notes": [
-        "Larrey triage not applied: route not enforced: kit code changed since Larrey's back-test"
+        "Larrey triage not applied: Larrey triage is stale: computed on other claim-kit outputs than jobs/claim-kit/output/SUMMARY.json; run: python3 -I jobs/larrey-triage/larrey.py triage (zero tokens, under a minute)"
       ],
       "rate": {
         "key": "filed_per_attempt.no.fr",
@@ -259,16 +277,16 @@
         "source": "research/excavator/claude-tribonian-2026-11-04/evidence/DISPOSITION.json"
       },
       "probe_cost_usd": 9.97,
-      "expected_now": 34.7,
+      "expected_now": 34.4,
       "fecundity": 0.0,
-      "value": 34.7,
-      "cost_usd": 346.46,
-      "cost_basis": "1042 x 0.33 USD (attempted_order)",
+      "value": 34.4,
+      "cost_usd": 343.14,
+      "cost_basis": "1032 x 0.33 USD (attempted_order)",
       "per_usd": 0.10025198773371917,
       "cost_key": "wave.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 4210.85,
-      "cumulative_value": 1335.0,
+      "cumulative_usd": 4208.39,
+      "cumulative_value": 1335.5,
       "share_of_week": null
     },
     {
@@ -286,26 +304,8 @@
       "per_usd": 0.0,
       "cost_key": "production.per_attempt",
       "within_budget": true,
-      "cumulative_usd": 4210.85,
-      "cumulative_value": 1335.0,
-      "share_of_week": null
-    },
-    {
-      "id": "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
-      "kind": "acquisition",
-      "orders": 0,
-      "description": "Fetch an official original for orders held only as a compiled transcription (Richardson, APP): orders from 1936 on were printed in the Federal Register (fr-originals / source-ladder route); earlier ones need an official compilation or archival copy (tracker reach 93 includes undecided orders, which unlock nothing until they have a provisional status)",
-      "notes": [],
-      "expected_now": 0.0,
-      "fecundity": 0.0,
-      "value": 0.0,
-      "cost_usd": 0.0,
-      "cost_basis": "machine or zero-agent work: no model tokens",
-      "per_usd": 0.0,
-      "cost_key": null,
-      "within_budget": true,
-      "cumulative_usd": 4210.85,
-      "cumulative_value": 1335.0,
+      "cumulative_usd": 4208.39,
+      "cumulative_value": 1335.5,
       "share_of_week": null
     },
     {
@@ -322,8 +322,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4210.85,
-      "cumulative_value": 1335.0,
+      "cumulative_usd": 4208.39,
+      "cumulative_value": 1335.5,
       "share_of_week": null
     },
     {
@@ -340,8 +340,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4210.85,
-      "cumulative_value": 1335.0,
+      "cumulative_usd": 4208.39,
+      "cumulative_value": 1335.5,
       "share_of_week": null
     },
     {
@@ -358,8 +358,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4210.85,
-      "cumulative_value": 1335.0,
+      "cumulative_usd": 4208.39,
+      "cumulative_value": 1335.5,
       "share_of_week": null
     },
     {
@@ -376,8 +376,8 @@
       "per_usd": 0.0,
       "cost_key": null,
       "within_budget": true,
-      "cumulative_usd": 4210.85,
-      "cumulative_value": 1335.0,
+      "cumulative_usd": 4208.39,
+      "cumulative_value": 1335.5,
       "share_of_week": null
     }
   ],
@@ -408,15 +408,15 @@
         "acquire.shared.EO_6964",
         "acquire.shared.EO_6910",
         "acquire.shared.CFR_26_CFR_458.324",
+        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "recovery.working_text_stale",
         "recovery.custody_stranded",
         "production.one_step_away",
-        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "production.claim_ready.yes.fr",
+        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "status_assignment.undecided",
         "production.claim_ready.no.fr",
         "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
-        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "zero_agent.opus_media_refetch",
         "acquire.nea_continuation_notices",
         "acquire.current_law_sections",
@@ -428,15 +428,15 @@
         "acquire.shared.EO_6964",
         "acquire.shared.EO_6910",
         "acquire.shared.CFR_26_CFR_458.324",
+        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "recovery.working_text_stale",
         "recovery.custody_stranded",
         "production.one_step_away",
-        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "production.claim_ready.yes.fr",
+        "acquire.ORIGINAL_FOUND_NEEDS_PAGE_CHECK",
         "status_assignment.undecided",
         "production.claim_ready.no.fr",
         "acquire.ARCHIVAL_REPLICA_FOUND_NEEDS_PAGE_CHECK",
-        "acquire.ONLY_COMPILED_TRANSCRIPTION_FOUND",
         "zero_agent.opus_media_refetch",
         "acquire.nea_continuation_notices",
         "acquire.current_law_sections",

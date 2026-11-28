@@ -1,8 +1,8 @@
 # Lewis: originals for transcription-only orders
 
-Generated 2026-11-26T22:45:13Z. Leads and verified file facts; no count or grade changes.
+Generated 2026-11-27T23:58:20Z. Leads and verified file facts; no count or grade changes.
 
-**Scope: 393 orders** (clark_identified 1, clark_identified_not_in_universe 15, transcription_only 377).
+**Scope: 441 orders** (clark_identified 1, clark_identified_not_in_universe 15, transcription_only 425).
 
 ## Where they stand on the ladder
 
@@ -10,12 +10,14 @@ Generated 2026-11-26T22:45:13Z. Leads and verified file facts; no count or grade
 |---|---|---:|
 | proquest_phrase_search | manual_lead | 184 |
 | proquest_local | pinakes_file_record_pages_unchecked | 150 |
-| federal_register | fr_era_not_in_ofr_catalog | 47 |
-| federal_register | in_ofr_catalog_no_citation | 6 |
+| federal_register | fr_era_not_in_ofr_catalog | 64 |
+| federal_register | retrieval_recorded_needs_review | 17 |
+| federal_register | in_ofr_catalog_no_citation | 11 |
+| federal_register | queued_result_not_published | 8 |
+| federal_register | queued_retry_later | 3 |
 | gpo_bound_volumes | in_volume_range_not_found | 2 |
-| federal_register | retrieval_recorded_needs_review | 2 |
 | proquest_supplied_link | awaiting_acquisition | 1 |
-| federal_register | queued_retry_later | 1 |
+| federal_register | queued_exhausted_proposed | 1 |
 
 ## ProQuest folder
 
@@ -31,9 +33,9 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 4
 
 | Owner | Orders |
 |---|---:|
-| agent_check | 207 |
+| agent_check | 244 |
 | owner | 185 |
-| machine_job | 1 |
+| machine_job | 12 |
 
 ## First twenty rows
 
@@ -62,7 +64,7 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 4
 
 ## Web search (online stage)
 
-100 of 393 targets advanced this run (0 never searched yet); 576 of 1500 requests used. 34470 hits on file, 254 pages confirmed to name the order (162 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
+100 of 441 targets advanced this run (0 never searched yet); 840 of 1500 requests used. 35838 hits on file, 345 pages confirmed to name the order (201 orders): `WEB_LEADS.csv`. State in `WEB_STATE.json` carries forward; nothing is marked exhausted by the machine.
 
 | Engine | Status |
 |---|---|
@@ -78,9 +80,9 @@ Authority: pinakes-proquest-ingest. PDF signature results are not reported for 4
 | govinfo_search_page | blocked_by_robots_txt |
 | hathitrust_catalog | blocked_by_robots_txt |
 | internet_archive | ok |
-| loc_books | http_429 |
-| loc_manuscripts | http_429 |
-| loc_newspapers | http_429 |
+| loc_books | error |
+| loc_manuscripts | error |
+| loc_newspapers | error |
 | marginalia | error |
 | mojeek_html | blocked_by_robots_txt |
 | nara_catalog | needs_key |
